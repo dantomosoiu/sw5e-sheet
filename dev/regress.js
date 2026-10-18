@@ -449,4 +449,4 @@ async function main() {
 }
 
 if (require.main === module) main().then((code) => { process.exitCode = code; }, (e) => { console.error(e); process.exitCode = 2; });
-module.exports = { htmlToLines, diffLines, makeCases, report };
+module.exports = { htmlToLines, diffLines, makeCases, report, flatten, NUMBER_FIELDS, NUMBER_SKIP };

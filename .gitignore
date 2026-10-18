@@ -17,3 +17,4 @@ dev/dumps/
 
 # Playwright test output (screenshots, console logs)
 .playwright-mcp/
+dev/engine/inputs.json

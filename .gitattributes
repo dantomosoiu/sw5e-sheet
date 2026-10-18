@@ -1,3 +1,4 @@
 * text=auto eol=lf
 *.png binary
 dev/regress/cases/*.json linguist-generated=true
+dev/engine/sw5e-results.json linguist-generated=true
