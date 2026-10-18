@@ -33,7 +33,7 @@ export async function record({ only = null } = {}) {
       batch.forEach((c, j) => {
         const r = (res.characters || [])[j] || {};
         if (!r.complete) progress.failed.push(`${c.label}: ${r.error || 'no result'}`);
-        results.push({ label: c.label, raw: c.raw, complete: r.complete || null, error: r.error || null });
+        results.push({ label: c.label, raw: c.raw, complete: r.complete || null, validation: r.validation || null, refs: r.refs || null, error: r.error || null });
       });
       progress.done += batch.length;
     }

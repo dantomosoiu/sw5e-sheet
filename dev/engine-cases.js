@@ -244,7 +244,16 @@ for (const [c, a] of [['Berserker', 'Champion Approach'], ['Scout', 'Deadeye Tec
 }
 add(character('Superiority archetype with a Fighter', { classes: [{ ...classEntry('Berserker', 5), archetype: { name: 'Champion Approach' } }, { ...classEntry('Fighter', 3, { first: false }), archetype: { name: 'Assault Specialist' } }] }));
 add(character('Superiority archetype with a Scholar', { classes: [{ ...classEntry('Scholar', 4), archetype: { name: 'Slicer Pursuit' } }, { ...classEntry('Operative', 3, { first: false }), archetype: { name: 'Maverick Practice' } }] }));
-add(character('Second class takes over first-level hit points',{ classes: [classEntry('Operative', 1), classEntry('Berserker', 5, { first: false })] }));
+// SW5E's checks: characters it won't build, or builds with a warning.
+add(character('Invalid: no name', { classes: [classEntry('Fighter', 1)], extra: { name: '' } }));
+add(character('Invalid: no species', { classes: [classEntry('Fighter', 1)], species: { name: '' } }));
+add(character('Invalid: unknown species', { classes: [classEntry('Fighter', 1)], species: { name: 'Gungan' } }));
+add(character('Invalid: no background', { classes: [classEntry('Fighter', 1)], background: { name: '', feat: null, feature: '' } }));
+add(character('Invalid: no ability scores', { classes: [classEntry('Fighter', 1)], scores: { Strength: 0, Dexterity: 0, Constitution: 0, Intelligence: 0, Wisdom: 0, Charisma: 0 } }));
+add(character('Invalid: unknown class', { classes: [{ name: 'Jedi', levels: 2, hitPoints: [5], abilityScoreImprovements: [] }] }));
+add(character('Invalid: a class at level 0', { classes: [{ ...classEntry('Fighter', 1), levels: 0 }] }));
+add(character('Invalid: hit points missing', { classes: [{ ...classEntry('Fighter', 4), hitPoints: [] }] }));
+add(character('Second class takes over first-level hit points', { classes: [classEntry('Operative', 1), classEntry('Berserker', 5, { first: false })] }));
 
 fs.mkdirSync(path.join(DEV, 'engine'), { recursive: true });
 fs.writeFileSync(path.join(DEV, 'engine', 'inputs.json'), JSON.stringify({ rulesVersion: null, characters: out }, null, 1) + '\n');

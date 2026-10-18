@@ -46,6 +46,20 @@ function everything(complete) {
   return out;
 }
 let project = numbers;
+/** The numbers plus SW5E's check of the character (validation.code, .message, .isValid). */
+function withValidation(nums, validation) {
+  const out = { ...nums };
+  for (const [k, v] of Object.entries(validation || {})) out[`validation.${k}`] = JSON.stringify(v);
+  return out;
+}
+/** --all: the computed sheet, SW5E's check of the character and the rules entries looked up for it. */
+function everythingOf(r) {
+  const out = r.complete ? everything(r.complete) : {};
+  const extra = (o, prefix) => { if (!o) return; const lines = []; flatten(o, prefix, lines, ALL_SKIP); for (const l of lines) { const i = l.indexOf(' = '); out[l.slice(0, i)] = l.slice(i + 3); } };
+  extra(r.validation, 'validation');
+  extra(r.refs, 'refs');
+  return out;
+}
 
 /** The pairs (character → SW5E's numbers) from the regression cases. */
 async function casePairs(data) {
@@ -60,13 +74,14 @@ async function casePairs(data) {
     sheet.get('state.rules = JSON.parse(__rules); setCatalog(JSON.parse(__catalog)); delete globalThis.__rules; delete globalThis.__catalog');
     const state = sheet.get('state');
     const snap = state.snapshots[c.key];
-    if (snap.complete) pairs.push({ label: `${c.name}: stored`, raw: snap.raw, sw5e: project(snap.complete) });
+    const full = (complete, validation) => (project === everything ? project(complete) : withValidation(project(complete), validation));
+    if (snap.complete) pairs.push({ label: `${c.name}: stored`, raw: snap.raw, sw5e: full(snap.complete, snap.validation) });
     const d = state.derived[c.key];
     if (d && sheet.get('needsDerived')(c.key)) {
       const { fx } = sheet.get('derivedInputs')(c.key);
       if (sheet.get('freshComputed')(c.key, fx.raw)) {
         // Plain JSON: the engine runs outside the sheet's context.
-        pairs.push({ label: `${c.name}: with effects`, raw: JSON.parse(JSON.stringify(fx.raw)), sw5e: project(d.complete) });
+        pairs.push({ label: `${c.name}: with effects`, raw: JSON.parse(JSON.stringify(fx.raw)), sw5e: full(d.complete, d.validation) });
         if (d.base) pairs.push({ label: `${c.name}: without tweaks`, raw: JSON.parse(JSON.stringify(fx.baseRaw)), sw5e: project(d.base) });
       }
     }
@@ -79,7 +94,7 @@ function recordedPairs() {
   if (project === everything) {
     const dump = path.join(DEV, 'dumps', 'engine-sw5e.json');
     if (!fs.existsSync(dump)) { console.log('--all needs dev/dumps/engine-sw5e.json (record it: see dev/README.md).'); return []; }
-    return readJson(dump).results.filter((r) => r.complete).map((r) => ({ label: r.label, raw: r.raw, sw5e: everything(r.complete) }));
+    return readJson(dump).results.map((r) => ({ label: r.label, raw: r.raw, sw5e: everythingOf(r) }));
   }
   const f = path.join(DEV, 'engine', 'sw5e-results.json');
   if (!fs.existsSync(f)) return [];
@@ -98,8 +113,9 @@ function importRecording(file) {
   const changed = [];
   const failed = [];
   for (const r of rec.results) {
-    if (!r.complete) { failed.push(`${r.label}: ${r.error || 'no result'}`); continue; }
-    const nums = numbers(r.complete);
+    if (!r.complete) failed.push(`${r.label}: ${r.error || 'no result'}`);
+    // SW5E's check of the character is kept too (characters it refuses have nothing else).
+    const nums = withValidation(r.complete ? numbers(r.complete) : {}, r.validation);
     const old = before.get(r.label);
     if (old) {
       for (const p of new Set(Object.keys(old).concat(Object.keys(nums)))) if (old[p] !== nums[p]) changed.push(`${r.label} · ${p}: ${old[p]} → ${nums[p]}`);
@@ -149,7 +165,10 @@ async function main() {
   let failed = 0;
   for (const pr of pairs) {
     let got;
-    try { got = project(E.engCompute(pr.raw, ctx)); } catch (e) { failed++; console.log(`ENGINE FAILED on ${pr.label}: ${e.stack.split('\n').slice(0, 2).join(' ')}`); continue; }
+    try {
+      const r = E.engComputeCharacter(pr.raw, ctx);
+      got = project === everything ? everythingOf(r) : withValidation(r.complete ? numbers(r.complete) : {}, r.validation);
+    } catch (e) { failed++; console.log(`ENGINE FAILED on ${pr.label}: ${e.stack.split('\n').slice(0, 2).join(' ')}`); continue; }
     for (const [p, want] of Object.entries(pr.sw5e)) {
       if (fieldFilter && !p.includes(fieldFilter)) continue;
       const g = group(p);

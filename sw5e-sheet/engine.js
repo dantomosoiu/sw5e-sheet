@@ -123,13 +123,14 @@ function engHitPoints(raw, ctx, scores, level) {
     const perLevel = engArr(k.hitPoints).slice(0, i === 0 ? levels - 1 : levels).map((x) => (fixed ? engNum(rules.hitPointsAtHigherLevelsNumber) : engNum(x)));
     if (i === 0 && levels > 0) max += engNum(rules.hitPointsAtFirstLevelNumber);
     max += perLevel.reduce((t, x) => t + x, 0);
-    const size = engNum(rules.hitDiceDieType);
+    // A class SW5E doesn't know has no die: SW5E writes "dundefined".
+    const size = rules.hitDiceDieType != null ? engNum(rules.hitDiceDieType) : 'undefined';
     if (size) dice[size] = (dice[size] || 0) + levels;
   });
   max += con * level;
   return {
     maximum: engTweaked(max, engTweak(raw, 'hitPoints.maximum')),
-    hitDice: Object.keys(dice).map(Number).sort((a, b) => a - b).map((s) => ({ size: `d${s}`, maximum: dice[s] })),
+    hitDice: Object.keys(dice).sort((a, b) => (Number(a) || Infinity) - (Number(b) || Infinity)).map((s) => ({ size: `d${s}`, maximum: dice[s] })),
   };
 }
 
@@ -549,4 +550,82 @@ function engCompute(raw, ctx) {
   };
 }
 
-if (typeof module !== 'undefined') module.exports = { engContext, engCompute, engTweak, engBaseScores, engArmorValue, ENG_ABILITIES };
+/**
+ * The rules entries the sheet looks up for a character (what the bridge gathers on sw5e.com): its classes and
+ * archetypes, species, background, feats, maneuvers, other picks kept in the class entries, and the conditions.
+ */
+function engRefs(raw, ctx) {
+  const mods = ctx.mods;
+  const namesOf = (v) => (!v ? [] : typeof v === 'string' ? [v] : Array.isArray(v) ? v.flatMap(namesOf)
+    : typeof v === 'object' && typeof v.name === 'string' ? [v.name] : []);
+  const find = (mod, name) => {
+    const n = String(name || '').trim();
+    if (!n) return null;
+    const list = engArr(mods[mod]);
+    return list.find((x) => x.name === n) || list.find((x) => engLc(x.name) === engLc(n)) || null;
+  };
+  const lookupAll = (mod, names, pick) => {
+    const out = {};
+    for (const n of new Set(engArr(names).filter(Boolean))) { const it = find(mod, n); if (it) out[n] = pick ? pick(it) : { ...it }; }
+    return out;
+  };
+  const pick = (o, keys) => Object.fromEntries(keys.filter((k) => o[k] !== undefined).map((k) => [k, o[k]]));
+  const classes = engArr(raw.classes);
+  const featNames = [];
+  if (raw.background && raw.background.feat && raw.background.feat.name) featNames.push(raw.background.feat.name);
+  for (const c of classes) for (const asi of engArr(c.abilityScoreImprovements)) if (asi && asi.type === 'Feat' && asi.name) featNames.push(asi.name);
+  for (const f of engArr(raw.customFeats)) featNames.push(...namesOf(f));
+  const KNOWN = new Set(['name', 'levels', 'hitPoints', 'abilityScoreImprovements', 'archetype', 'maneuvers', 'forcePowers', 'techPowers']);
+  const choices = {};
+  const scan = (obj) => {
+    if (!obj || typeof obj !== 'object') return;
+    for (const k of Object.keys(obj)) {
+      if (KNOWN.has(k)) continue;
+      const names = namesOf(obj[k]);
+      if (!names.length || !engArr(mods[k]).length) continue;
+      choices[k] = Object.assign(choices[k] || {}, lookupAll(k, names));
+    }
+  };
+  for (const c of classes) { scan(c); scan(c.archetype); }
+  return {
+    classes: lookupAll('classes', classes.map((c) => c.name), (c) => pick(c, ['name', 'summary', 'primaryAbility', 'hitDiceDieType',
+      'hitPointsAtFirstLevel', 'hitPointsAtHigherLevels', 'armorProficiencies', 'weaponProficiencies', 'toolProficiencies', 'savingThrows',
+      'skillChoices', 'levelChanges', 'casterType', 'casterRatio', 'multiClassProficiencies', 'archetypeFlavorName'])),
+    archetypes: lookupAll('archetypes', classes.map((c) => c.archetype && c.archetype.name), (a) => pick(a, ['name', 'className', 'casterType', 'casterRatio', 'leveledTable'])),
+    species: lookupAll('species', [raw.species && raw.species.name], (s) => pick(s, ['name', 'size', 'homeworld', 'language', 'distinctions',
+      'skinColorOptions', 'hairColorOptions', 'eyeColorOptions', 'heightAverage', 'heightRollMod', 'weightAverage', 'weightRollMod', 'traits', 'imageUrls'])),
+    backgrounds: lookupAll('backgrounds', [raw.background && raw.background.name], (b) => pick(b, ['name', 'flavorText', 'skillProficiencies',
+      'toolProficiencies', 'languages', 'equipment', 'featureName', 'featureText', 'flavorName', 'flavorDescription'])),
+    feats: lookupAll('feats', featNames),
+    maneuvers: lookupAll('maneuvers', classes.flatMap((c) => namesOf(c.maneuvers).concat(namesOf(c.archetype && c.archetype.maneuvers)))),
+    choices,
+    conditions: engArr(mods.conditions).map((c) => ({ name: c.name, description: c.description })),
+  };
+}
+
+/**
+ * SW5E's check of a character before it computes it: { code, message, isValid }, in SW5E's order. Hit points: one
+ * entry per level after the first in the first class, one per level in the others. An unknown species or class passes.
+ */
+function engValidation(raw) {
+  const fail = (code, message) => ({ code, message, isValid: false });
+  if (!String(raw.name || '').trim()) return fail(2, 'Missing a name');
+  if (!(raw.species && String(raw.species.name || '').trim())) return fail(3, 'Missing a species');
+  const classes = engArr(raw.classes);
+  if (!classes.length) return fail(4, 'Missing class levels');
+  if (classes.some((k, i) => engArr(k.hitPoints).length !== engNum(k.levels) - (i === 0 ? 1 : 0))) return fail(5, 'Missing hit points for a class');
+  if (ENG_ABILITIES.some((a) => !(engNum((raw.baseAbilityScores || {})[a]) > 0))) return fail(6, 'Missing an ability score');
+  if (!(raw.background && String(raw.background.name || '').trim())) return fail(7, 'Missing a background');
+  return { code: 0, message: 'All checks passed', isValid: true };
+}
+
+/** What the extension's sw5e.com bridge returns for each character (computeWithSw5e), computed here. */
+function engComputeCharacter(raw, ctx) {
+  const validation = engValidation(raw);
+  if (!validation.isValid) return { raw, complete: null, validation, refs: engRefs(raw, ctx), error: `The sheet's rules engine could not build this character (${validation.message})` };
+  return { raw, complete: engCompute(raw, ctx), validation, refs: engRefs(raw, ctx), error: null };
+}
+
+if (typeof module !== 'undefined') {
+  module.exports = { engContext, engCompute, engComputeCharacter, engRefs, engValidation, engTweak, engBaseScores, engArmorValue, ENG_ABILITIES };
+}
