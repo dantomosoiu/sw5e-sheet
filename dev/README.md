@@ -87,6 +87,23 @@ record them again (new test characters, or to see whether sw5e.com's engine chan
 The check needs SW5E's rules and item data in `dev/dumps/rules.json` and `catalog.json` (not in the repo; step 1
 writes them).
 
+## The own rules engine
+`sw5e-sheet/engine.js` computes a character's numbers from SW5E's character data and rules the way SW5E's engine
+does, quirks included (see `docs/phone-app.md`). It is checked against SW5E's own results:
+```
+node dev/engine-check.js            # every number SW5E computed, computed again by the engine
+node dev/engine-check.js --missing  # also list what the engine doesn't compute yet
+```
+SW5E's results come from the regression cases and from `dev/engine/sw5e-results.json`: made-up characters that
+cover the rules (every class at a spread of levels, multiclass pairs, every species, armor, weapon and tweak,
+edge cases), computed by sw5e.com. Record them again when the engine grows, and as a sanity check from time to
+time (sw5e.com can change):
+1. `node dev/engine-cases.js` writes the characters (`dev/engine/inputs.json`, git-ignored).
+2. In the dev page's console: `const rec = await import('/dev/engine-record.js'); rec.record()`, and wait for
+   `rec.progress.finished` (about two minutes). sw5e.com only computes them; nothing is saved there.
+3. `node dev/engine-check.js import` keeps their numbers and says what SW5E now computes differently.
+4. `node dev/engine-check.js`.
+
 ## Fixtures
 `dev/fixtures/*.json` are sheet snapshots (`format: "sw5e-sheet-snapshot"`), or raw SW5E exports
 (shown without computed data). To capture fresh snapshots:
