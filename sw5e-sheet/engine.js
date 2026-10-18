@@ -228,14 +228,20 @@ function engWeaponCovered(prof, item) {
   return p === n || p === `${n}s`;
 }
 
-/** Weapons in hand (equipped) and the unarmed strike, with SW5E's attack and damage bonuses. */
+/** "Core" or "ExpandedContent": the stored item list leaves it out; it follows the item's source. */
+const engContentType = (it) => it.contentType || (it.contentSource === 'EC' ? 'ExpandedContent' : 'Core');
+
+/**
+ * Every weapon in the equipment with SW5E's attack and damage bonuses, and the unarmed strike. SW5E lists the
+ * equipped ones (weapons) but gives the others their numbers too (in equipment).
+ */
 function engWeapons(raw, ctx, scores, pb, profs) {
   const mod = (a) => scores[a].modifier;
   const weaponProfs = profs.filter((p) => p.type === 'weapon' || p.type === 'other').map((p) => p.name);
   const all = engTweak(raw, 'weapon');
   const out = [];
   for (const g of engGear(raw, ctx)) {
-    if (!g.entry.equipped || g.entry.category === 'EnhancedItem' || g.item.equipmentCategory !== 'Weapon') continue;
+    if (g.entry.category === 'EnhancedItem' || g.item.equipmentCategory !== 'Weapon') continue;
     const it = g.item;
     const props = engArr(it.properties).map(engLc);
     // A ranged weapon (a "(range …)" property that isn't thrown) uses Dexterity, finesse the better of the two;
@@ -250,7 +256,8 @@ function engWeapons(raw, ctx, scores, pb, profs) {
     const damage = engTweaked(engTweaked(mod(ability), all.damage || {}), own.damage || {});
     const die = own.damageDice && own.damageDice.dieSize ? engNum(own.damageDice.dieSize) : engNum(it.damageDieType);
     out.push({
-      ...it, damageType: it.damageType || 'Unknown', damageDieType: die, quantity: engNum(g.entry.quantity == null ? 1 : g.entry.quantity), index: g.index, isFound: true, equipped: true,
+      ...ENG_ITEM_DEFAULTS, ...it, contentType: engContentType(it), damageType: it.damageType || 'Unknown', damageDieType: die,
+      quantity: g.entry.quantity == null ? 1 : g.entry.quantity, index: g.index, isFound: true, equipped: !!g.entry.equipped,
       attackBonus: toHit, damageBonus: damage, ability, isCustom: false, tweaks: own,
     });
   }
@@ -270,34 +277,55 @@ function engWeapons(raw, ctx, scores, pb, profs) {
 }
 
 const engOrdinal = (s) => engNum(String(s || '').replace(/\D/g, ''));
-/** Force or tech casting: points from each class's table at its own level, the power level from one table or the multiclass sum. */
+/** An archetype's table row at a class level, as { column: value }. */
+function engArchetypeRow(arch, lv) {
+  const row = arch && arch.leveledTable ? arch.leveledTable[String(Math.max(1, Math.min(20, lv)))] : null;
+  return Object.fromEntries(engArr(row).map((c) => [c.key, c.value]));
+}
+/**
+ * Force or tech casting. The casters are the classes that cast (their table at their level) and the archetypes that
+ * do (casterRatio above 0: their own table). Points: the tables' points added up, plus the ability modifier (at least 1);
+ * SW5E reads an archetype's points only for third-casters (ratio 1/3). Power level: the one caster's table, or with
+ * several, the full caster's table at the summed caster level (levels × ratio, rounded). Powers listed without a
+ * caster (the Rakatan Order's, custom powers): the modifier alone, power level 0.
+ */
 function engCasting(raw, ctx, scores, pb, kind) {
   const word = kind === 'force' ? 'Force' : 'Tech';
-  const casters = engArr(raw.classes).map((k) => ({ k, rules: ctx.classes.get(engLc(k.name)) }))
-    .filter((x) => x.rules && x.rules.casterType === word && engNum(x.rules.casterRatio) > 0);
-  // A class whose entry lists powers of this kind casts too (an archetype caster such as the Rakatan Order), with
-  // no table points of its own: SW5E then gives the ability modifier alone and power level 0.
-  const powerNames = engArr(raw.classes).flatMap((k) => engArr(k[`${kind}Powers`]).concat(engArr(k.archetype && k.archetype[`${kind}Powers`])));
-  const listsPowers = powerNames.length > 0;
-  if (!casters.length && !listsPowers) return false;
-  const row = (rules, lv) => (rules.levelChanges || {})[String(Math.max(1, Math.min(20, lv)))] || {};
-  const table = casters.reduce((t, x) => t + engNum(row(x.rules, engNum(x.k.levels))[`${word} Points`]), 0);
+  const casters = [];
+  for (const k of engArr(raw.classes)) {
+    const rules = ctx.classes.get(engLc(k.name));
+    const lv = engNum(k.levels);
+    if (rules && rules.casterType === word && engNum(rules.casterRatio) > 0) {
+      const row = (rules.levelChanges || {})[String(Math.max(1, Math.min(20, lv)))] || {};
+      casters.push({ lv, ratio: engNum(rules.casterRatio), points: engNum(row[`${word} Points`]), level: row['Max Power Level'] });
+    }
+    const arch = k.archetype && ctx.archetypes.get(engLc(k.archetype.name));
+    if (arch && arch.casterType === word && engNum(arch.casterRatio) > 0) {
+      const row = engArchetypeRow(arch, lv);
+      const third = Math.abs(engNum(arch.casterRatio) - 1 / 3) < 0.01;
+      casters.push({ lv, ratio: engNum(arch.casterRatio), points: third ? engNum(row[`${word} Points`]) : 0, level: row['Max Power Level'] });
+    }
+  }
+  // Each class's powers, then its archetype's (repeats kept), then the custom ones.
+  const custom = engArr(raw[kind === 'force' ? 'customForcePowers' : 'customTechPowers']);
+  const powerNames = engArr(raw.classes).flatMap((k) => engArr(k[`${kind}Powers`]).concat(engArr(k.archetype && k.archetype[`${kind}Powers`]))).concat(custom);
+  if (!casters.length && !powerNames.length) return false;
+  const table = casters.reduce((t, x) => t + x.points, 0);
   let maxPowerLevel;
   if (!casters.length) maxPowerLevel = 0;
-  else if (casters.length === 1) {
-    const v = row(casters[0].rules, engNum(casters[0].k.levels))['Max Power Level'];
-    maxPowerLevel = /\d/.test(String(v || '')) ? engOrdinal(v) : null;
-  } else {
+  else if (casters.length === 1) maxPowerLevel = /\d/.test(String(casters[0].level || '')) ? engOrdinal(casters[0].level) : null;
+  else {
     const full = engArr(ctx.mods.classes).find((c) => c.casterType === word && engNum(c.casterRatio) === 1);
-    const lv = Math.floor(casters.reduce((t, x) => t + engNum(x.k.levels) * engNum(x.rules.casterRatio), 0) + 1e-9);
-    maxPowerLevel = full ? engOrdinal(row(full, lv)['Max Power Level']) : 0;
+    const lv = Math.round(casters.reduce((t, x) => t + x.lv * x.ratio, 0));
+    maxPowerLevel = full ? engOrdinal(((full.levelChanges || {})[String(Math.max(1, Math.min(20, lv)))] || {})['Max Power Level']) : 0;
   }
   const mod = (a) => scores[a].modifier;
   const used = engNum((raw.currentStats || {})[`${kind}PointsUsed`]);
-  const powersKnown = powerNames.map((n) => (engArr(ctx.mods.powers).find((p) => p.name === n && p.powerType === word))).filter(Boolean);
+  const powersKnown = powerNames.map((n) => (engArr(ctx.mods.powers).find((p) => p.name === n && p.powerType === word))).filter(Boolean)
+    .map((p) => ({ prerequisite: null, higherLevelDescription: null, contentType: engContentType(p), ...p }));
   const t = (f) => engTweak(raw, `${kind}Casting.${f}`);
-  // At least 1 point (a level 1 Scout, whose table has none yet); a power level SW5E can't read stays null.
-  const points = (n) => engTweaked(Math.max(1, n), t('maxPoints'));
+  // With a caster: at least 1 point (a level 1 Scout, whose table has none yet). A power level SW5E can't read stays null.
+  const points = (n) => engTweaked(casters.length ? Math.max(1, n) : n, t('maxPoints'));
   const level = engHasOverride(t('maxPowerLevel')) || engNum(t('maxPowerLevel').bonus) || maxPowerLevel != null
     ? engTweaked(engNum(maxPowerLevel), t('maxPowerLevel')) : null;
   if (kind === 'tech') {
@@ -317,7 +345,143 @@ function engCasting(raw, ctx, scores, pb, kind) {
   };
 }
 
-/** The computed sheet for `raw` (SW5E's character data), in SW5E's shape: only what the engine computes so far. */
+// The stored item list leaves out empty values; SW5E's items have them all.
+const ENG_ITEM_DEFAULTS = {
+  description: null, damageNumberOfDice: 0, damageType: 'Unknown', damageDieModifier: 0, weaponClassification: 'Unknown',
+  armorClassification: 'Unknown', damageDieType: 0, properties: null, modes: [], ac: null, strengthRequirement: null,
+  stealthDisadvantage: false, contentType: 'Core',
+};
+const ENG_ENHANCED_DEFAULTS = {
+  requiresAttunement: false, valueText: null, prerequisite: null, cyberneticAugmentationType: 'None', droidCustomizationType: 'None',
+  adventuringGearType: 'None', enhancedArmorType: 'None', consumableType: 'None', focusType: 'None', enhancedShieldType: 'None',
+  enhancedWeaponType: 'None', itemModificationType: 'None', valuableType: 'None', contentType: 'Core',
+};
+
+/** The equipment as SW5E lists it: each entry with its item's data; weapons in hand with their attack numbers. */
+function engEquipment(raw, ctx, weapons) {
+  const byIndex = new Map(weapons.filter((w) => w.index >= 0).map((w) => [w.index, w]));
+  return engArr(raw.equipment).map((entry, index) => {
+    if (!entry) return null;
+    const item = ctx.items.get(engLc(entry.name));
+    if (!item) return { name: entry.name, quantity: engNum(entry.quantity), index, isFound: false };
+    const enhanced = entry.category === 'EnhancedItem' || item.type != null;
+    const out = { ...(enhanced ? ENG_ENHANCED_DEFAULTS : ENG_ITEM_DEFAULTS), ...item, contentType: engContentType(item) };
+    const w = byIndex.get(index);
+    if (w) Object.assign(out, { damageDieType: w.damageDieType, attackBonus: w.attackBonus, damageBonus: w.damageBonus, ability: w.ability, isCustom: false });
+    if ('equipped' in entry) out.equipped = entry.equipped;
+    if ('attuned' in entry) out.attuned = entry.attuned;
+    if (entry.tweaks) out.tweaks = entry.tweaks;
+    return Object.assign(out, { quantity: entry.quantity == null ? 1 : entry.quantity, index, isFound: true });
+  }).filter(Boolean);
+}
+
+/**
+ * Features as SW5E lists them (all under combatFeatures): every class's and archetype's features up to its level
+ * (a feature written at several levels keeps the latest one reached), by level, archetypes before classes, then by
+ * name; the species' traits; the feats (taken at Ability Score Improvements, then the background's).
+ */
+function engFeatures(raw, ctx) {
+  const all = engArr(ctx.mods.features);
+  const picked = new Map();
+  for (const k of engArr(raw.classes)) {
+    const lv = engNum(k.levels);
+    const arch = k.archetype && k.archetype.name;
+    for (const f of all) {
+      const mine = (f.source === 'Class' && f.sourceName === k.name) || (f.source === 'Archetype' && arch && f.sourceName === arch);
+      if (!mine || engNum(f.level) > lv) continue;
+      const key = `${f.source}|${f.sourceName}|${f.name}`;
+      const had = picked.get(key);
+      if (!had || engNum(f.level) > engNum(had.level)) picked.set(key, f);
+    }
+  }
+  const order = (f) => (f.source === 'Archetype' ? 0 : 1);
+  const byName = (a, b) => (a.name < b.name ? -1 : a.name > b.name ? 1 : 0);
+  const bySource = (a, b) => (a.sourceName < b.sourceName ? -1 : a.sourceName > b.sourceName ? 1 : 0);
+  const classFeatures = [...picked.values()].sort((a, b) => engNum(a.level) - engNum(b.level) || order(a) - order(b) || byName(a, b) || bySource(a, b));
+  const species = raw.species && raw.species.name;
+  const speciesFeatures = all.filter((f) => f.source === 'Species' && f.sourceName === species);
+  const featNames = engArr(raw.classes).flatMap((k) => engArr(k.abilityScoreImprovements).filter((a) => a && a.type === 'Feat').map((a) => a.name))
+    .concat(raw.background && raw.background.feat && raw.background.feat.name ? [raw.background.feat.name] : []);
+  const feats = featNames.map((n) => ctx.feats.get(engLc(n))).filter(Boolean).map((f) => ({ ...f, customIndex: -1, combat: true }))
+    // Feats added by hand (raw.customFeats, by name) come last, numbered.
+    .concat(engArr(raw.customFeats).map((n, i) => [ctx.feats.get(engLc(typeof n === 'string' ? n : n && n.name)), i])
+      .filter(([f]) => f).map(([f, i]) => ({ ...f, customIndex: i, combat: true })));
+  return classFeatures.concat(speciesFeatures).map((f) => ({ metadata: null, ...f, combat: true })).concat(feats);
+}
+
+function engBackgroundFeature(raw, ctx) {
+  const bg = ctx.backgrounds.get(engLc(raw.background && raw.background.name));
+  return bg ? { name: bg.featureName, combat: false, text: bg.featureText } : null;
+}
+
+/** Hit points now (the play state SW5E keeps in currentStats) and what a rest works from. */
+function engHitPointsNow(raw, hp, scores) {
+  const s = raw.currentStats || {};
+  const used = s.hitDiceUsed || {};
+  const hitDice = hp.hitDice.map((d) => ({ size: d.size, current: d.maximum - engNum(used[d.size]), maximum: d.maximum }));
+  // What a long rest gives back: half the character's hit dice (at least one), the largest spent ones first.
+  let back = Math.max(1, Math.floor(hp.hitDice.reduce((t, d) => t + d.maximum, 0) / 2));
+  const hitDiceRestored = [];
+  for (const d of hp.hitDice.slice().sort((a, b) => engNum(b.size.slice(1)) - engNum(a.size.slice(1)))) {
+    const n = Math.min(back, engNum(used[d.size]));
+    if (n > 0) { hitDiceRestored.push({ size: d.size, numRestored: n }); back -= n; }
+  }
+  const high = { level6: false, level7: false, level8: false, level9: false, ...(s.highLevelCasting || {}) };
+  return {
+    current: hp.maximum - engNum(s.hitPointsLost), temporary: engNum(s.temporaryHitPoints), maximum: hp.maximum, hitDice,
+    deathSaves: { successes: 0, failures: 0, ...(s.deathSaves || {}) },
+    resting: {
+      hitDieBonus: scores.Constitution.modifier, numHitDiceUsed: Object.values(used).reduce((t, n) => t + engNum(n), 0), hitDiceRestored,
+      techPointsUsed: engNum(s.techPointsUsed), forcePointsUsed: engNum(s.forcePointsUsed), highLevelCasting: high,
+      shortRestFeatures: [], longRestFeatures: [],
+    },
+  };
+}
+
+function engExperienceMessage(xp) {
+  if (xp.isCorrect) return '';
+  return xp.current < engNum(xp.previousLevel) ? 'Experience too low. Increase experience or remove class levels below'
+    : 'You have unused levels. Click below to add more class levels.';
+}
+
+/**
+ * Superiority as SW5E computes it, fitted to its results (it reads like a bug there; the sheet works superiority out
+ * itself from the class tables): only from an archetype's own table, read by column position. A Fighter or Scholar
+ * with any archetype table gets it (the Adept Specialist's force points become its dice), a Scout only with a
+ * superiority column (Deadeye); other classes never do, plain Fighters neither. Dice: the second column. "Size":
+ * the first column where the table has a dice-size column, else "0". Modifiers: the best ability of each kind (no
+ * proficiency); DCs: 8 + proficiency + it.
+ */
+function engSuperiority(raw, ctx, scores, pb) {
+  let dice = null, size = '0';
+  for (const k of engArr(raw.classes)) {
+    const arch = k.archetype && ctx.archetypes.get(engLc(k.archetype.name));
+    const row = arch && arch.leveledTable && arch.leveledTable[String(Math.max(1, Math.min(20, engNum(k.levels))))];
+    if (!row) continue;
+    const supColumns = row.some((c) => /Superiority/.test(c.key));
+    if (!(['Fighter', 'Scholar'].includes(k.name) || (k.name === 'Scout' && supColumns))) continue;
+    dice = (dice || 0) + engNum((row[1] || {}).value);
+    if (row.some((c) => c.key === 'Superiority Dice Size')) size = String((row[0] || {}).value || '0');
+  }
+  if (dice == null) return false;
+  const mod = (a) => scores[a].modifier;
+  const physical = Math.max(mod('Strength'), mod('Dexterity'));
+  const mental = Math.max(mod('Intelligence'), mod('Wisdom'), mod('Charisma'));
+  const general = Math.max(physical, mental);
+  const t = (f) => engTweak(raw, `superiority.${f}`);
+  const maneuvers = engArr(raw.classes).flatMap((k) => engArr(k.maneuvers).concat(engArr(k.archetype && k.archetype.maneuvers)))
+    .map((n) => engArr(ctx.mods.maneuvers).find((m) => m.name === n)).filter(Boolean).map((m) => ({ metadata: null, prerequisite: null, ...m }));
+  return {
+    currentDice: engNum((raw.currentStats || {}).superiorityDiceUsed), maxDice: engTweaked(dice, t('maxDice')),
+    diceSize: size,
+    physicalModifier: engTweaked(physical, t('physicalModifier')), physicalSaveDC: engTweaked(8 + pb + physical, t('physicalSaveDC')),
+    mentalModifier: engTweaked(mental, t('mentalModifier')), mentalSaveDC: engTweaked(8 + pb + mental, t('mentalSaveDC')),
+    generalModifier: engTweaked(general, t('generalModifier')), generalSaveDC: engTweaked(8 + pb + general, t('generalSaveDC')),
+    maneuvers,
+  };
+}
+
+/** The computed sheet for `raw` (SW5E's character data), in SW5E's shape. */
 function engCompute(raw, ctx) {
   const { level, classText } = engLevels(raw);
   const pb = engTweaked(engProficiencyBonus(ctx, level), engTweak(raw, 'proficiencyBonus'));
@@ -327,32 +491,61 @@ function engCompute(raw, ctx) {
   const armor = engArmor(raw, ctx, dex);
   const proficiencies = engProficiencies(raw, ctx);
   const stats = raw.currentStats || {};
+  const allWeapons = engWeapons(raw, ctx, abilityScores, pb, proficiencies);
+  const experiencePoints = engExperience(raw, ctx, level);
+  experiencePoints.errorMessage = engExperienceMessage(experiencePoints);
+  const forceCasting = engCasting(raw, ctx, abilityScores, pb, 'force');
+  const ch = raw.characteristics || {};
   return {
-    name: raw.name,
+    // What the character says about itself, as it is.
+    name: raw.name, builderVersion: raw.builderVersion, image: raw.image, characteristics: ch, tweaks: raw.tweaks || {},
+    customProficiencies: engArr(raw.customProficiencies), customLanguages: engArr(raw.customLanguages),
+    customFeatures: engArr(raw.customFeatures), customTechPowers: engArr(raw.customTechPowers),
+    customForcePowers: engArr(raw.customForcePowers), customEquipment: engArr(raw.customEquipment),
+    numCustomFeats: engArr(raw.customFeats).length,
     currentLevel: level,
     classText,
-    proficiencyBonus: pb,
+    alignment: ch.alignment,
+    species: raw.species && raw.species.name,
+    background: raw.background && raw.background.name,
+    experiencePoints,
     abilityScores,
+    proficiencyBonus: pb,
     initiative: engTweaked(dex, engTweak(raw, 'initiative')),
     armorClass: armor.armorClass,
     armorList: armor.armorList,
     passivePerception: engTweaked(10 + engNum(perception), engTweak(raw, 'passivePerception')),
+    inspiration: !!stats.hasInspiration,
     vision: 'normal',
     speed: engSpeed(raw, ctx, abilityScores, armor.worn),
-    hitPoints: engHitPoints(raw, ctx, abilityScores, level),
-    conditions: engArr(stats.conditions),
+    hitPoints: engHitPointsNow(raw, engHitPoints(raw, ctx, abilityScores, level), abilityScores),
+    // The conditions in effect, with their rules text.
+    // (Some texts in SW5E's data have "\r\n" written out; SW5E shows them as line breaks.)
+    conditions: engArr(stats.conditions).map((n) => {
+      const r = engArr(ctx.mods.conditions).find((c) => engLc(c.name) === engLc(n));
+      return r ? { name: r.name, description: String(r.description || '').replace(/\\r\\n/g, '\n') } : { name: n };
+    }),
     exhaustion: engNum(stats.exhaustion),
     proficiencies,
     skillAndSaveProficiencies: engSkillAndSaveList(raw, ctx, abilityScores),
     // Galactic Basic, the species language chosen (raw.species.language) and the background's; repeats kept.
     languages: ['Galactic Basic'].concat(raw.species && raw.species.language ? [raw.species.language] : [], engArr(raw.background && raw.background.languages)),
+    equipment: engEquipment(raw, ctx, allWeapons),
     attunement: engAttunement(raw, ctx, pb),
-    weapons: engWeapons(raw, ctx, abilityScores, pb, proficiencies),
+    weapons: allWeapons.filter((w) => w.equipped),
+    credits: engNum(raw.credits),
     carryingCapacity: engCarrying(abilityScores),
-    superiority: false,
+    superiority: engSuperiority(raw, ctx, abilityScores, pb),
+    highLevelCasting: { level6: false, level7: false, level8: false, level9: false, ...(stats.highLevelCasting || {}) },
     techCasting: engCasting(raw, ctx, abilityScores, pb, 'tech'),
-    forceCasting: engCasting(raw, ctx, abilityScores, pb, 'force'),
-    experiencePoints: engExperience(raw, ctx, level),
+    forceCasting,
+    // The custom force powers, then the classes' own lists (not their archetypes').
+    allForcePowers: engArr(raw.customForcePowers).concat(engArr(raw.classes).flatMap((k) => engArr(k.forcePowers))),
+    combatFeatures: engFeatures(raw, ctx),
+    nonCombatFeatures: [],
+    backgroundFeature: engBackgroundFeature(raw, ctx),
+    settings: raw.settings,
+    notes: raw.notes,
   };
 }
 

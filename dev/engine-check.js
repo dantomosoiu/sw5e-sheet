@@ -1,7 +1,8 @@
 /* Checks the sheet's own rules engine (sw5e-sheet/engine.js) against SW5E's: each character SW5E has computed is
  * computed again by the engine, and every number compared.
  *
- *   node dev/engine-check.js [--show=N] [--field=<path part>] [--case=<name part>]
+ *   node dev/engine-check.js [--show=N] [--field=<path part>] [--case=<name part>] [--missing] [--all]
+ *   (--all: every field of SW5E's computed sheet, not only the numbers; uses the local recording)
  *
  * SW5E's results come from:
  *   - the regression cases (dev/regress/cases/): each test character as stored, with the sheet's effects and
@@ -30,6 +31,22 @@ function numbers(complete) {
   return out;
 }
 
+// SW5E's storage details, and fields the sheet never reads that come from data the stored lists leave out
+// (propertiesMap, searchableRarity, hasPrerequisite): not compared.
+const ALL_SKIP = (k) => /Enum$|Json$/.test(k) || ['eTag', 'timestamp', 'partitionKey', 'rowKey', 'propertiesMap', 'searchableRarity', 'hasPrerequisite'].includes(k);
+// The stored rules and item lists leave out empty values, so SW5E's null, "", false, "Unknown", "None", [] and {} can't
+// be told apart: --all counts them as the same (and a field missing on one side as one of them).
+const EMPTY = new Set(['null', '""', 'false', '"Unknown"', '"None"', '[]', '{}', 'undefined']);
+/** path → value for everything in a computed sheet (--all). */
+function everything(complete) {
+  const lines = [];
+  for (const f of Object.keys(complete || {})) flatten(complete[f], f, lines, ALL_SKIP);
+  const out = {};
+  for (const l of lines) { const i = l.indexOf(' = '); out[l.slice(0, i)] = l.slice(i + 3); }
+  return out;
+}
+let project = numbers;
+
 /** The pairs (character → SW5E's numbers) from the regression cases. */
 async function casePairs(data) {
   const dir = path.join(DEV, 'regress', 'cases');
@@ -43,14 +60,14 @@ async function casePairs(data) {
     sheet.get('state.rules = JSON.parse(__rules); setCatalog(JSON.parse(__catalog)); delete globalThis.__rules; delete globalThis.__catalog');
     const state = sheet.get('state');
     const snap = state.snapshots[c.key];
-    if (snap.complete) pairs.push({ label: `${c.name}: stored`, raw: snap.raw, sw5e: numbers(snap.complete) });
+    if (snap.complete) pairs.push({ label: `${c.name}: stored`, raw: snap.raw, sw5e: project(snap.complete) });
     const d = state.derived[c.key];
     if (d && sheet.get('needsDerived')(c.key)) {
       const { fx } = sheet.get('derivedInputs')(c.key);
       if (sheet.get('freshComputed')(c.key, fx.raw)) {
         // Plain JSON: the engine runs outside the sheet's context.
-        pairs.push({ label: `${c.name}: with effects`, raw: JSON.parse(JSON.stringify(fx.raw)), sw5e: numbers(d.complete) });
-        if (d.base) pairs.push({ label: `${c.name}: without tweaks`, raw: JSON.parse(JSON.stringify(fx.baseRaw)), sw5e: numbers(d.base) });
+        pairs.push({ label: `${c.name}: with effects`, raw: JSON.parse(JSON.stringify(fx.raw)), sw5e: project(d.complete) });
+        if (d.base) pairs.push({ label: `${c.name}: without tweaks`, raw: JSON.parse(JSON.stringify(fx.baseRaw)), sw5e: project(d.base) });
       }
     }
   }
@@ -58,6 +75,12 @@ async function casePairs(data) {
 }
 
 function recordedPairs() {
+  // --all: SW5E's whole computed sheets, from the last recording (local only).
+  if (project === everything) {
+    const dump = path.join(DEV, 'dumps', 'engine-sw5e.json');
+    if (!fs.existsSync(dump)) { console.log('--all needs dev/dumps/engine-sw5e.json (record it: see dev/README.md).'); return []; }
+    return readJson(dump).results.filter((r) => r.complete).map((r) => ({ label: r.label, raw: r.raw, sw5e: everything(r.complete) }));
+  }
   const f = path.join(DEV, 'engine', 'sw5e-results.json');
   if (!fs.existsSync(f)) return [];
   return readJson(f).results.map((r) => ({ label: r.label, raw: r.raw, sw5e: r.numbers }));
@@ -103,6 +126,7 @@ async function main() {
   const show = Number(opt('show', 8));
   const fieldFilter = opt('field', null);
   const caseFilter = opt('case', null);
+  if (args.includes('--all')) project = everything;
   const rulesFile = path.join(DEV, 'dumps', 'rules.json');
   const catalogFile = path.join(DEV, 'dumps', 'catalog.json');
   if (!fs.existsSync(rulesFile) || !fs.existsSync(catalogFile)) { console.log('Needs dev/dumps/rules.json and catalog.json (see dev/README.md).'); return 2; }
@@ -125,11 +149,12 @@ async function main() {
   let failed = 0;
   for (const pr of pairs) {
     let got;
-    try { got = numbers(E.engCompute(pr.raw, ctx)); } catch (e) { failed++; console.log(`ENGINE FAILED on ${pr.label}: ${e.stack.split('\n').slice(0, 2).join(' ')}`); continue; }
+    try { got = project(E.engCompute(pr.raw, ctx)); } catch (e) { failed++; console.log(`ENGINE FAILED on ${pr.label}: ${e.stack.split('\n').slice(0, 2).join(' ')}`); continue; }
     for (const [p, want] of Object.entries(pr.sw5e)) {
       if (fieldFilter && !p.includes(fieldFilter)) continue;
       const g = group(p);
       const s = stats[g] || (stats[g] = { same: 0, wrong: 0, notYet: 0 });
+      if (project === everything && EMPTY.has(want) && (!(p in got) || EMPTY.has(got[p]))) { s.same++; continue; }
       if (!(p in got)) { s.notYet++; if (showMissing) (missing[g] || (missing[g] = [])).push(`${pr.label} · ${p}: SW5E ${want}`); continue; }
       if (got[p] === want) { s.same++; continue; }
       s.wrong++;

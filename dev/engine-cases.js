@@ -187,6 +187,65 @@ add(character('Enhanced armor and weapon', {
 }));
 add(character('Level 0 classes', { classes: [] }));
 
+// 8. Play state, custom content, enhanced weapons, archetype casters, several feats, languages.
+const played = (label, stats, classes = [classEntry('Fighter', 6), classEntry('Operative', 3, { first: false })]) => {
+  const c = character(label, { classes });
+  Object.assign(c.raw.currentStats, stats);
+  return c;
+};
+add(played('Play: hurt, temporary HP, inspiration', { hitPointsLost: 17, temporaryHitPoints: 5, hasInspiration: true }));
+add(played('Play: hit dice used', { hitDiceUsed: { d10: 3, d8: 2 } }));
+add(played('Play: all hit dice used', { hitDiceUsed: { d10: 6, d8: 3 } }));
+add(played('Play: death saves, conditions, exhaustion', { hitPointsLost: 76, deathSaves: { successes: 1, failures: 2 }, conditions: ['Poisoned', 'Prone'], exhaustion: 2 }));
+add(played('Play: features used', { featuresTimesUsed: { 'Second Wind': 1, 'Action Surge': 1 }, superiorityDiceUsed: 2 }));
+add(played('Play: force points used, high-level casting', { forcePointsUsed: 12, highLevelCasting: { level6: true, level7: false, level8: false, level9: false } }, [classEntry('Consular', 13)]));
+add(played('Play: tech points used', { techPointsUsed: 7 }, [classEntry('Engineer', 7)]));
+add(character('Custom features, feats and powers', {
+  classes: [classEntry('Consular', 5)],
+  extra: {
+    customFeatures: [{ name: 'Old Wound', content: 'Disadvantage on Constitution saves in the cold.' }, { name: 'Family Holocron', content: 'A heirloom.' }],
+    customFeats: ['Athlete', 'Durable'], customForcePowers: ['Force Lightning'], customTechPowers: ['Absorb Energy'],
+  },
+}));
+add(character('Custom equipment', {
+  classes: [classEntry('Fighter', 2)],
+  extra: { customEquipment: [{ name: 'Family blade', quantity: 1, equipmentCategory: 'Weapon', cost: 0, weight: '2', description: 'Heirloom.' }] },
+}));
+add(character('Enhanced weapon on its base', {
+  classes: [classEntry('Fighter', 5)],
+  equipment: [{ name: 'Weapon (Fine)', quantity: 1, category: 'EnhancedItem', equipped: true }, 'Vibrosword', { name: 'Armor (Fine)', quantity: 1, category: 'EnhancedItem', equipped: true }, 'Battle armor'],
+}));
+const ARCH_CASTERS = [['Fighter', 'Adept Specialist', 'force'], ['Operative', 'Beguiler Practice', 'force'], ['Berserker', 'Marauder Approach', 'force'],
+  ['Scholar', 'Archaeologist Pursuit', 'force'], ['Monk', 'Aing-Tii Order', 'force'], ['Berserker', 'Industrial Approach', 'tech'],
+  ['Fighter', 'Shield Specialist', 'tech'], ['Scout', 'Mechanist Technique', 'tech'], ['Operative', 'Saboteur Practice', 'tech'], ['Scholar', 'Slicer Pursuit', 'tech']];
+for (const [c, a, kind] of ARCH_CASTERS) {
+  for (const lv of [3, 7, 13]) {
+    const entry = { ...classEntry(c, lv), archetype: { name: a, [`${kind}Powers`]: powersOf(kind === 'force' ? 'Force' : 'Tech', 3) } };
+    add(character(`Archetype caster ${a} ${lv}`, { classes: [entry] }));
+  }
+}
+add(character('Archetype caster with a caster class', {
+  classes: [{ ...classEntry('Fighter', 5), archetype: { name: 'Adept Specialist', forcePowers: powersOf('Force', 2) } }, classEntry('Consular', 3, { first: false })],
+}));
+add(character('Feats at three ASIs and the background', {
+  classes: [{ ...classEntry('Fighter', 8), abilityScoreImprovements: [{ type: 'Feat', name: 'Tough' }, { type: 'Ability Score Improvement', abilitiesIncreased: [{ name: 'Strength', value: 2 }] }, { type: 'Feat', name: 'Athlete' }, { type: 'Feat', name: 'Durable' }] }],
+  background: { name: 'Scientist', feat: { name: 'Techie', type: 'Feat' }, feature: '', skills: ['Medicine', 'Technology'] },
+}));
+add(character('Languages from species and background', {
+  classes: [classEntry('Scholar', 1)], species: { name: 'Bothan', language: 'Bothese', abilityScoreImprovement: {} },
+  background: { name: 'Scientist', feat: { name: 'Techie', type: 'Feat' }, feature: '', skills: ['Medicine', 'Technology'], languages: ['Huttese', 'Binary'] },
+}));
+add(character('Monk with no armor and a Wookiee', { classes: [classEntry('Monk', 6)], species: { name: 'Wookiee', abilityScoreImprovement: {} } }));
+// Archetypes with superiority dice of their own, alone and with a class that has them.
+for (const [c, a] of [['Berserker', 'Champion Approach'], ['Scout', 'Deadeye Technique'], ['Fighter', 'Fireteam Specialist'], ['Operative', 'Maverick Practice']]) {
+  for (const lv of [3, 7, 13]) {
+    add(character(`Superiority archetype ${a} ${lv}`, { classes: [{ ...classEntry(c, lv), archetype: { name: a }, maneuvers: ['Precision Attack', 'Rally'] }] }));
+  }
+}
+add(character('Superiority archetype with a Fighter', { classes: [{ ...classEntry('Berserker', 5), archetype: { name: 'Champion Approach' } }, { ...classEntry('Fighter', 3, { first: false }), archetype: { name: 'Assault Specialist' } }] }));
+add(character('Superiority archetype with a Scholar', { classes: [{ ...classEntry('Scholar', 4), archetype: { name: 'Slicer Pursuit' } }, { ...classEntry('Operative', 3, { first: false }), archetype: { name: 'Maverick Practice' } }] }));
+add(character('Second class takes over first-level hit points',{ classes: [classEntry('Operative', 1), classEntry('Berserker', 5, { first: false })] }));
+
 fs.mkdirSync(path.join(DEV, 'engine'), { recursive: true });
 fs.writeFileSync(path.join(DEV, 'engine', 'inputs.json'), JSON.stringify({ rulesVersion: null, characters: out }, null, 1) + '\n');
 console.log(`${out.length} characters → dev/engine/inputs.json`);
