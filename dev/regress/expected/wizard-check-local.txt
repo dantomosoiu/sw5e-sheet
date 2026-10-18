@@ -1,0 +1,768 @@
+# Wizard Check (local)
+
+## Sent to SW5E's engine
+The recorded calculation matches.
+tweaks.abilityScores.Intelligence.skills.Technology.bonus = 0
+tweaks.abilityScores.Intelligence.skills.Technology.proficiency = "Proficient"
+tweaks.hitPoints.maximum.bonus = 4
+tweaks.unarmed.damage.bonus = 2
+tweaks.unarmed.damageDice.bonus = 0
+tweaks.unarmed.damageDice.dieSize = 4
+tweaks.unarmed.toHit.bonus = 3
+equipment[2 Vibrodagger].tweaks.toHit.bonus = 0
+equipment[2 Vibrodagger].tweaks.toHit.proficiency = "proficient"
+equipped = [Combat suit, Vibrodagger]
+
+## Numbers (SW5E's engine, with the sheet's edits)
+currentLevel = 4
+classText = "Engineer (Armstech Engineering) 4"
+proficiencyBonus = 2
+initiative = 2
+armorClass = 13
+armorList = ["Combat suit"]
+passivePerception = 11
+vision = "normal"
+speed.base = "30 ft"
+speed.day = "24 miles"
+speed.hour = "3 miles"
+speed.special = ""
+hitPoints.hitDice[0].maximum = 4
+hitPoints.hitDice[0].size = "d8"
+hitPoints.maximum = 40
+abilityScores.Charisma.modifier = 0
+abilityScores.Charisma.savingThrow.modifier = 0
+abilityScores.Charisma.savingThrow.proficiency = "none"
+abilityScores.Charisma.skills[Deception].modifier = 0
+abilityScores.Charisma.skills[Deception].proficiency = "none"
+abilityScores.Charisma.skills[Intimidation].modifier = 0
+abilityScores.Charisma.skills[Intimidation].proficiency = "none"
+abilityScores.Charisma.skills[Performance].modifier = 0
+abilityScores.Charisma.skills[Performance].proficiency = "none"
+abilityScores.Charisma.skills[Persuasion].modifier = 0
+abilityScores.Charisma.skills[Persuasion].proficiency = "none"
+abilityScores.Charisma.value = 10
+abilityScores.Constitution.modifier = 3
+abilityScores.Constitution.savingThrow.modifier = 5
+abilityScores.Constitution.savingThrow.proficiency = "proficient"
+abilityScores.Constitution.skills = []
+abilityScores.Constitution.value = 16
+abilityScores.Dexterity.modifier = 2
+abilityScores.Dexterity.savingThrow.modifier = 2
+abilityScores.Dexterity.savingThrow.proficiency = "none"
+abilityScores.Dexterity.skills[Acrobatics].modifier = 2
+abilityScores.Dexterity.skills[Acrobatics].proficiency = "none"
+abilityScores.Dexterity.skills[Sleight of Hand].modifier = 2
+abilityScores.Dexterity.skills[Sleight of Hand].proficiency = "none"
+abilityScores.Dexterity.skills[Stealth].modifier = 2
+abilityScores.Dexterity.skills[Stealth].proficiency = "none"
+abilityScores.Dexterity.value = 14
+abilityScores.Intelligence.modifier = 4
+abilityScores.Intelligence.savingThrow.modifier = 6
+abilityScores.Intelligence.savingThrow.proficiency = "proficient"
+abilityScores.Intelligence.skills[Investigation].modifier = 6
+abilityScores.Intelligence.skills[Investigation].proficiency = "proficient"
+abilityScores.Intelligence.skills[Lore].modifier = 6
+abilityScores.Intelligence.skills[Lore].proficiency = "proficient"
+abilityScores.Intelligence.skills[Nature].modifier = 4
+abilityScores.Intelligence.skills[Nature].proficiency = "none"
+abilityScores.Intelligence.skills[Piloting].modifier = 4
+abilityScores.Intelligence.skills[Piloting].proficiency = "none"
+abilityScores.Intelligence.skills[Technology].modifier = 6
+abilityScores.Intelligence.skills[Technology].proficiency = "proficient"
+abilityScores.Intelligence.value = 18
+abilityScores.Strength.modifier = -1
+abilityScores.Strength.savingThrow.modifier = -1
+abilityScores.Strength.savingThrow.proficiency = "none"
+abilityScores.Strength.skills[Athletics].modifier = -1
+abilityScores.Strength.skills[Athletics].proficiency = "none"
+abilityScores.Strength.value = 8
+abilityScores.Wisdom.modifier = 1
+abilityScores.Wisdom.savingThrow.modifier = 1
+abilityScores.Wisdom.savingThrow.proficiency = "none"
+abilityScores.Wisdom.skills[Animal Handling].modifier = 1
+abilityScores.Wisdom.skills[Animal Handling].proficiency = "none"
+abilityScores.Wisdom.skills[Insight].modifier = 1
+abilityScores.Wisdom.skills[Insight].proficiency = "none"
+abilityScores.Wisdom.skills[Medicine].modifier = 3
+abilityScores.Wisdom.skills[Medicine].proficiency = "proficient"
+abilityScores.Wisdom.skills[Perception].modifier = 1
+abilityScores.Wisdom.skills[Perception].proficiency = "none"
+abilityScores.Wisdom.skills[Survival].modifier = 1
+abilityScores.Wisdom.skills[Survival].proficiency = "none"
+abilityScores.Wisdom.value = 12
+weapons[Vibrodagger].ability = "Dexterity"
+weapons[Vibrodagger].attackBonus = 4
+weapons[Vibrodagger].damageBonus = 2
+weapons[Vibrodagger].damageDieModifier = 0
+weapons[Vibrodagger].damageDieType = 4
+weapons[Vibrodagger].damageNumberOfDice = 1
+weapons[Vibrodagger].damageType = "Kinetic"
+weapons[Vibrodagger].equipped = true
+weapons[Vibrodagger].index = 2
+weapons[Vibrodagger].isCustom = false
+weapons[Vibrodagger].properties = ["Finesse", "light", "thrown (range 20/60)"]
+weapons[Vibrodagger].quantity = 1
+weapons[Vibrodagger].tweaks.toHit.bonus = 0
+weapons[Vibrodagger].tweaks.toHit.proficiency = "proficient"
+weapons[Vibrodagger].weaponClassification = "SimpleVibroweapon"
+weapons[Unarmed Strike].ability = "Strength"
+weapons[Unarmed Strike].attackBonus = 4
+weapons[Unarmed Strike].damageBonus = 2
+weapons[Unarmed Strike].damageDieType = 4
+weapons[Unarmed Strike].damageNumberOfDice = 1
+weapons[Unarmed Strike].damageType = "Kinetic"
+weapons[Unarmed Strike].equipped = true
+weapons[Unarmed Strike].index = -1
+weapons[Unarmed Strike].isCustom = false
+weapons[Unarmed Strike].properties = []
+weapons[Unarmed Strike].quantity = 0
+weapons[Unarmed Strike].tweaks.damage.bonus = 2
+weapons[Unarmed Strike].tweaks.damageDice.bonus = 0
+weapons[Unarmed Strike].tweaks.damageDice.dieSize = 4
+weapons[Unarmed Strike].tweaks.toHit.bonus = 3
+weapons[Unarmed Strike].weaponClassification = "Unarmed"
+attunement.hasAttunable = false
+attunement.maximum = 2
+carryingCapacity.encumbered = 40
+carryingCapacity.heavilyEncumbered = 80
+carryingCapacity.maxCapacity = 120
+carryingCapacity.pushDragLift = 240
+superiority = false
+techCasting.attackModifier = 6
+techCasting.maxPoints = 12
+techCasting.maxPowerLevel = 2
+techCasting.pointsUsed = 0
+techCasting.saveDC = 14
+forceCasting = false
+proficiencies[Simple blasters].type = "weapon"
+proficiencies[simple vibroweapons].type = "weapon"
+proficiencies[Light armor].type = "armor"
+proficiencies[One of your choice].type = "tool"
+skillAndSaveProficiencies = ["Investigation", "Lore", "Technology", "Medicine", "Constitution Saving Throws", "Intelligence Saving Throws"]
+languages = ["Galactic Basic", "Zabraki", "Sullustese"]
+experiencePoints.isCorrect = true
+experiencePoints.nextLevel = 6500
+experiencePoints.previousLevel = 2700
+conditions = []
+exhaustion = 0
+techCasting.powersKnown = []
+
+## Effects and tweaks
+effect: Engineer weapon proficiencies · feature
+effect: Bonus Proficiencies · feature
+effect: Techie · feature
+effect: Coercive · feature
+effect: Crafters · feature
+effect: Toughness · feature
+effect: Unarmed Combatant · feature
+tweak: abilityScores.Intelligence.skills.Technology +0 {"proficiency":"Proficient"} · Techie
+tweak: hitPoints.maximum +4 · Toughness
+tweak: unarmed.damageDice +0 {"dieSize":4} · Unarmed Combatant
+tweak: unarmed.toHit +3 · Unarmed Combatant
+tweak: unarmed.damage +2 · Unarmed Combatant
+weapon tweak: #2 toHit +0 · Engineer weapon proficiencies
+
+## Rolls
+init: Initiative: d20 +2 · = +2 modifier
+death: Death saving throw: d20 +0
+hitdie|d8: Hit die (d8): d8 +3 · = +3 per die
+dice|1d4: 1d4: d4 +0
+check|Strength: Strength check: d20 −1 · = −1 modifier
+save|Strength: Strength saving throw: d20 −1 · = −1 modifier
+skill|Strength|0: Athletics (STR): d20 −1 · = −1 modifier
+check|Dexterity: Dexterity check: d20 +2 · = +2 modifier
+save|Dexterity: Dexterity saving throw: d20 +2 · = +2 modifier
+skill|Dexterity|0: Acrobatics (DEX): d20 +2 · = +2 modifier
+skill|Dexterity|1: Sleight of Hand (DEX): d20 +2 · = +2 modifier
+skill|Dexterity|2: Stealth (DEX): d20 +2 · = +2 modifier
+check|Constitution: Constitution check: d20 +3 · = +3 modifier
+save|Constitution: Constitution saving throw: d20 +5 · = +5 modifier
+check|Intelligence: Intelligence check: d20 +4 · = +4 modifier
+save|Intelligence: Intelligence saving throw: d20 +6 · = +6 modifier
+skill|Intelligence|0: Investigation (INT): d20 +6 · = +6 modifier
+skill|Intelligence|1: Lore (INT): d20 +6 · = +6 modifier
+skill|Intelligence|2: Nature (INT): d20 +4 · = +4 modifier
+skill|Intelligence|3: Piloting (INT): d20 +4 · = +4 modifier
+skill|Intelligence|4: Technology (INT): d20 +6 · = +6 modifier
+check|Wisdom: Wisdom check: d20 +1 · = +1 modifier
+save|Wisdom: Wisdom saving throw: d20 +1 · = +1 modifier
+skill|Wisdom|0: Animal Handling (WIS): d20 +1 · = +1 modifier
+skill|Wisdom|1: Insight (WIS): d20 +1 · = +1 modifier
+skill|Wisdom|2: Medicine (WIS): d20 +3 · = +3 modifier
+skill|Wisdom|3: Perception (WIS): d20 +1 · = +1 modifier
+skill|Wisdom|4: Survival (WIS): d20 +1 · = +1 modifier
+check|Charisma: Charisma check: d20 +0 · = +0 modifier
+save|Charisma: Charisma saving throw: d20 +0 · = +0 modifier
+skill|Charisma|0: Deception (CHA): d20 +0 · = +0 modifier
+skill|Charisma|1: Intimidation (CHA): d20 +0 · = +0 modifier
+skill|Charisma|2: Performance (CHA): d20 +0 · = +0 modifier
+skill|Charisma|3: Persuasion (CHA): d20 +0 · = +0 modifier
+attack|0: Vibrodagger attack: d20 +4 · = +4 modifier
+damage|0: Vibrodagger damage: d4 +2 · = +2 DEX modifier · Kinetic
+attack|1: Unarmed Strike attack: d20 +4 · = +4 modifier
+damage|1: Unarmed Strike damage: d4 +2 · = +2 Unarmed Combatant · Kinetic
+tech: Tech attack: d20 +6 · = +6 modifier
+pdmg|tech|Repair Droid|1|0: Repair Droid: healing: d8 +4 · = +4 casting modifier
+tool|One of your choice|proficient: One of your choice check: d20 +6 · = +4 INT modifier +2 proficiency
+tool|Slicer's kit|proficient: Slicer's kit check: d20 +6 · = +4 INT modifier +2 proficiency
+tool|armstech's implements|proficient: armstech's implements check: d20 +6 · = +4 INT modifier +2 proficiency
+damage|0|crit: Vibrodagger damage (critical): d4 d4 +2 · = +2 DEX modifier · Kinetic · critical
+damage|1|crit: Unarmed Strike damage (critical): d4 d4 +2 · = +2 Unarmed Combatant · Kinetic · critical
+
+## Sheet: Overview
+Wizard Check (local)
+Zabrak · Engineer (Armstech Engineering) 4
+Level 4 Background: Scientist Proficiency +2
+2,700 XP level 5 at 6,500 (3,800 to go)
+Still to choose (4): Armstech Modifications (4 more) · Engineer tech powers (10 more) · background skills · background tool
+
+## Sheet: Combat & Vitals
+Armor Class
+13
+Combat suit
+Hit Points
+40 / 40
+  ↳ hover hitPoints.maximum: Without tweaks or effects: 36 → now 40 / +4 HP maximum · Toughness Zabrak trait
+No temporary HP
+Initiative
++2
+Speed
+30 ft
+3 miles/hour · 24 miles/day
+Proficiency
++2
+Passive Perception
+11
+Hit Dice
+4/4d8
++3 per die spent (Con)
+Vision
+Normal
+Play tracker
+[] [untyped ▾] [Damage] [Heal] [Temp HP]
+Death saves ✓ [] [] [] ✗ [] [] [] [Roll]
+Tech points 12 / 12 [−] [+]
+Hit dice (d8) roll d8 +3, then Heal 4 / 4 [−] [+]
+Potent Aptitude short rest 2 / 2 [−] [+]
+Infuse Item long rest 1 / 1 [−] [+]
+Second Heart long rest 1 / 1 [−] [+]
+Repair Droid (Feat: Techie) long rest 1 / 1 [−] [+]
+Conditions None [Add a condition… ▾]
+Combat [Start combat]
+[☆ Inspiration] Exhaustion [−] 0 [+]
+[Short rest] [Long rest]
+Class dice
+Potent Aptitude 1d4
+Effects
+From class features (7)
+Engineer weapon proficiencies Proficient: Simple blasters Proficient: simple vibroweapons Engineer proficiencies
+Bonus Proficiencies Proficient: martial blasters Proficient: martial vibroweapons armstech's implements: proficient Proficient: medium armor Armstech Engineering feature
+Techie Technology: proficient feat
+Coercive Choose one of Persuasion, Intimidation Zabrak trait
+Crafters Choose one set of artisan’s implements of your choice Zabrak trait
+Toughness HP maximum +4 Zabrak trait
+Unarmed Combatant Zabrak trait
+Temporary
+No temporary effects.
+[]
+Your own effect (something the sheet doesn't know)…
+[] [] [No number (a reminder) ▾] [] [Add]
+It's applied like any effect (a dice bonus like Bless's d4 isn't a number: add it in the roller), and ends with End, a rest or Next round when it has run out.
+Bonuses are applied to the sheet's numbers in this browser only (not saved to SW5E); changed numbers are underlined: hover or tap them for details. Conditional … [256 chars #e163e104]
+Conditions
+None active (from SW5E)
+Carrying capacity
+Carried
+17 lb
+Unencumbered (variant rule)
+Encumbered at
+40 lb
+Heavily enc. at
+80 lb
+Max capacity
+120 lb
+Push / drag / lift
+240 lb
+
+## Sheet: Abilities & Saving Throws
+STR
+Strength
+−1
+8
+(Not proficient) Saving throw−1
+(Not proficient) Athletics−1
+base 8
+DEX
+Dexterity
++2
+14
+(Not proficient) Saving throw+2
+(Not proficient) Acrobatics+2
+(Not proficient) Sleight of Hand+2
+(Not proficient) Stealth+2
+base 13 · +1 Zabrak
+CON
+Constitution
++3
+16
+(Proficient) Saving throw+5
+base 14 · +2 Zabrak
+INT
+Intelligence
++4
+18
+(Proficient) Saving throw+6
+(Proficient) Investigation+6
+(Proficient) Lore+6
+(Not proficient) Nature+4
+(Not proficient) Piloting+4
+(Proficient) Technology+6
+base 15 · +2 ASI (Engineer 4) · +1 Techie (background feat)
+WIS
+Wisdom
++1
+12
+(Not proficient) Saving throw+1
+(Not proficient) Animal Handling+1
+(Not proficient) Insight+1
+(Proficient) Medicine+3
+(Not proficient) Perception+1
+(Not proficient) Survival+1
+base 12
+CHA
+Charisma
++0
+10
+(Not proficient) Saving throw+0
+(Not proficient) Deception+0
+(Not proficient) Intimidation+0
+(Not proficient) Performance+0
+(Not proficient) Persuasion+0
+base 10
+not proficient proficient expertise
+
+## Sheet: Skills
+Skill | Ability | Bonus | Passive | Proficiency |
+(Not proficient) Acrobatics | DEX | +2 | 12 | — |
+(Not proficient) Animal Handling | WIS | +1 | 11 | — |
+(Not proficient) Athletics | STR | −1 | 9 | — |
+(Not proficient) Deception | CHA | +0 | 10 | — |
+(Not proficient) Insight | WIS | +1 | 11 | — |
+(Not proficient) Intimidation | CHA | +0 | 10 | — |
+(Proficient) Investigation | INT | +6 | 16 | Proficient |
+(Proficient) Lore | INT | +6 | 16 | Proficient |
+(Proficient) Medicine | WIS | +3 | 13 | Proficient |
+(Not proficient) Nature | INT | +4 | 14 | — |
+(Not proficient) Perception | WIS | +1 | 11 | — |
+(Not proficient) Performance | CHA | +0 | 10 | — |
+(Not proficient) Persuasion | CHA | +0 | 10 | — |
+(Not proficient) Piloting | INT | +4 | 14 | — |
+(Not proficient) Sleight of Hand | DEX | +2 | 12 | — |
+(Not proficient) Stealth | DEX | +2 | 12 | — |
+(Not proficient) Survival | WIS | +1 | 11 | — |
+(Proficient) Technology | INT | +6 | 16 | Proficient |
+
+## Sheet: Weapons & Attacks
+Weapon | To hit | Damage | Ability | Type | Properties |
+Vibrodagger
+Finesse, light, thrown (range 20/60)
+| +4 | 1d4+2 Kinetic | Dexterity | Simple Vibroweapon | Finesse, light, thrown (range 20/60) |
+Unarmed Strike | +4 | 1d4+2 Kinetic | Dexterity (finesse) | Unarmed | — |
+  ↳ hover weapons.1.attackBonus: Without tweaks or effects: 1 → now 4 / +3 Finesse: DEX +2 instead of STR · Unarmed Combatant Zabrak trait
+  ↳ hover weapons.1.damageBonus: Without tweaks or effects: 0 → now 2 / +2 Finesse: DEX +2 instead of STR · Unarmed Combatant Zabrak trait
+
+## Sheet: Tech Casting
+Tech points
+12 / 12
+Max power level
+2
+Save DC
+14
+Attack
++6
+1st-level powers (1)
+Repair Droid Feat: Techie (Background (Scientist)) Once per long rest
+[1st level · 2 points ▾] [Cast]
+[Cast at 1st level (available)]
+Healing 1d8+4
+Casting 1 action Range Touch Duration Instantaneous Source PHB
+A droid or construct you touch regains a number of hit points equal to 1d8 + your techcasting ability modifier.
+Overcharge Tech. When you cast this power using a tech slot of 2nd level or higher, the healing increases by 1d8 for each slot level above 1st.
+
+## Sheet: Class Features
+Engineer (6)
+Potent Aptitude Level 1
+Uses (back on a short or long rest) 2 / 2 [−] [+]
+Engineer: 1st level
+Your technological experience lends you an uncommon insight that you can use to bolster your allies. To do so, you use a bonus action on your turn to choose one… [388 chars #b7fc5b55]
+Once within the next 10 minutes, the creature can roll the die and add the number rolled to one ability check, attack roll, or saving throw it makes. Once the Potent Aptitude die is rolled, it is lost.
+A creature can have only one Potent Aptitude die at a time.
+You can use this feature twice. You gain an additional use at 5th, 9th, 13th, and 17th level. You regain any expended uses when you finish a short or long rest.
+Your choices []
+Techcasting Level 1
+Engineer: 1st level
+During your training you have derived powers from schematics with the aid of your wristpad. See chapter 10 for the general rules of techcasting and chapter 12 for the tech powers list.
+Tech Powers Known
+You learn 6 tech powers of your choice, and you learn more at higher levels, as shown in the Tech Powers Known column of the engineer table. You may not learn a tech power of a level higher than your Max Power Level.
+Tech Points
+You have a number of tech points equal to your engineer level x 2, as shown in the Tech Points column of the engineer table, + your Intelligence modifier. You u… [275 chars #c9972ec6]
+Max Power Level
+Many tech powers can be overcharged, consuming more tech points to create a greater effect. You can overcharge these powers to a maximum level, which increases … [239 chars #bb0ee539]
+You may only cast tech powers at 6th, 7th, 8th, and 9th-level once. You regain the ability to do so after a long rest.
+Techcasting Ability
+Intelligence is your techcasting ability for your tech powers. You use your Intelligence whenever a power refers to your techcasting ability. Additionally, you … [290 chars #25c52137]
+Tech save DC = 8 + your proficiency bonus + your Intelligence modifier
+Tech attack modifier = your proficiency bonus + your Intelligence modifier
+Techcasting Focus
+You use a wristpad (found in chapter 5) or the tools in which you are granted proficiency by this class as a tech focus for your tech powers.
+Your choices []
+Infuse Item Level 2
+Uses (back on a long rest) 1 / 1 [−] [+]
+[Combat suit (AC +1) ▾] [Infuse]
+Engineer: 2nd level
+You gain the ability to temporarily enhance a weapon or armor. At the end of a long rest, you can touch one unenhanced object that is a suit of armor, a shield,… [394 chars #dfc18efa]
+Once you've used this feature, you can't use it again until you finish a long rest.
+This bonus increases to +2 at 10th level and +3 at 15th level.
+Notes []
+Tool Expertise Level 2
+Engineer: 2nd level
+You gain expertise in any tool proficiencies you gain from this class.
+Notes []
+Engineering Discipline Level 3
+Engineer: 3rd, 6th, 14th, and 18th level
+You begin to focus on a specific engineering discipline, which is detailed at the end of the class description.
+Chosen: Armstech Engineering · change it in Classes & Progression
+Notes []
+Ability Score Improvement Level 4
+Engineer: 4th, 8th, 12th, 16th, and 19th level
+You can increase one ability score by 2, or you can increase two ability scores by 1. You can't increase an ability score above 20 using this feature.
+Notes []
+Armstech Engineering (archetype) (3)
+Bonus Proficiencies Level 3
+Armstech Engineering: 3rd level
+You gain proficiency in armstech's implements, medium armor, martial blasters, and martial vibroweapons. Additionally, when you engage in crafting with armstech's implements, the rate at which you craft doubles.
+Notes []
+Close Call Level 3
+Armstech Engineering: 3rd level
+When you make an attack roll with your modified weapon and miss, you can expend one use of your Potent Aptitude to attempt to turn that miss into a hit. Roll the die and add it to the attack roll.
+Notes []
+Modified Weaponry Level 3
+Armstech Engineering: 3rd level
+You learn to modify one unenhanced weapon with which you are proficient utilizing your armstech experience. Over the course of a long rest, you can modify the w… [256 chars #d8b2328b]
+Your modified weapon is enhanced, requires attunement, can only be used by you, and counts as a tech focus for your tech powers while you are attuned to it. You… [559 chars #66e3b1df]
+Some modification effects require saving throws. When you use such an effect from this class, the DC equals your tech save DC.
+At 9th level, you can maintain two modified weapons. Each modified weapon has modification slots as shown in the Modification Slots column of the engineer table.
+Notes []
+
+## Sheet: Feats
+Choices from your feats
+Power given 1 / 1 Feat: Techie (Background (Scientist))
+Repair Droid from the feature
+A droid or construct you touch regains a number of hit points equal to 1d8 + your techcasting ability modifier.
+Overcharge Tech. When you cast this power using a tech slot of 2nd level or higher, the healing increases by 1d8 for each slot level above 1st.
+Power given, once per long rest 1 / 1 Feat: Techie (Background (Scientist))
+Repair Droid from the feature
+A droid or construct you touch regains a number of hit points equal to 1d8 + your techcasting ability modifier.
+Overcharge Tech. When you cast this power using a tech slot of 2nd level or higher, the healing increases by 1d8 for each slot level above 1st.
+Techie Background (Scientist)+ Intelligence
+You master the theory and practice of technology, gaining the following benefits:
+Increase your Intelligence score by 1, to a maximum of 20.
+You gain proficiency in the Technology skill. If you are already proficient in it, you instead gain expertise in it.
+You learn the repair droid tech power. You can cast it once, using supplies scavenged around you, without the use of a wristpad and without spending tech points… [226 chars #d0ad715a]
+
+## Sheet: Classes & Progression
+[Level up]
+Engineer 4 Armstech Engineering Starting class Tech caster
+Hit die d8 Primary Intelligence Saves Constitution, Intelligence HP by level 8 (max), 5, 6, 5
+Tech caster who enhances items to benefit allies
+Ability score improvements
+Ability Score Improvement: Intelligence +2
+Skill proficiencies 3 / 3 Choose three from Investigation, Lore, Medicine, Nature, Piloting, and Technology
+Technology [×] Lore [×] Investigation [×]
+Tool proficiency 1 / 1 Tinker's implements, one of your choice
+Slicer's kit [×]
+Archetype [Armstech Engineering ▾]
+Read the options (14)
+Tech powers 0 / 10 Engineer table · max power level 2
+None chosen yet.
+[Learn a tech power… ▾]
+Read the options (142)
+Armstech Modifications 0 / 4 Armstech Engineering, 3rd level · can be changed on a rest
+Modified Weaponry [— choose from your inventory — ▾] 4 slots
+None chosen yet.
+[Add from Armstech Modifications… ▾]
+Read the options (32)
+Class table
+Proficiency Bonus
++2 → +3 at 5
+Features
+Ability Score Improvement → — at 5
+Tech Powers Known
+10 → 12 at 5
+Tech Points
+8 → 10 at 5
+Max Power Level
+2nd → 3rd at 5
+Potent Aptitude
+d4 → d6 at 5
+Modification Slots
+4 → 5 at 5
+| Proficiency Bonus | Features | Tech Powers Known | Tech Points | Max Power Level | Potent Aptitude | Modification Slots |
+Now (4) | +2 | Ability Score Improvement | 10 | 8 | 2nd | d4 | 4 |
+Next (5) | +3 | — | 12 | 10 | 3rd | d6 | 5 |
+Armor Light armor Weapons Simple blasters, simple vibroweapons Tools Tinker's implements, one of your choice
+
+## Sheet: Species
+Size
+Medium
+Language
+Zabraki
+Average height
+5'1" +2d12"
+Average weight
+120 lb. x(2d4) lb.
+Skin
+Pale to dark brown, red, orange and yellow
+Hair
+Black, blonde, brown, red, or purple
+Eyes
+Yellow, green, orange, brown, blue, red, or purple
+Distinctions
+Horns, two hearts, facial tattoos
+Chosen increase
+Dexterity +1
+Traits (12)
+Ability Score Increase
+Your Constitution score increases by 2, and your Strength or Dexterity score increases by 1.
+Notes []
+Age
+Zabraks reach adulthood in their late teens and live less than a century.
+Notes []
+Alignment
+Zabraks tend toward no particular alignment. The best and worst are found among them.
+Notes []
+Coercive
+You have proficiency with Persuasion or Intimidation (your choice).
+Skill proficiency 0 / 1
+None chosen yet.
+[Choose a skill… ▾]
+Notes []
+Crafters
+You have proficiency with one set of artisan’s implements of your choice.
+Tool proficiency 0 / 1 one set of artisan’s implements of your choice
+None chosen yet.
+[Choose a tool… ▾]
+Notes []
+Darkvision
+Your vision can easily cut through darkness. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray.
+Notes []
+Languages
+You can speak, read, and write Galactic Basic and Zabraki.
+Notes []
+Second Heart
+Uses (back on a long rest) 1 / 1 [−] [+]
+When you are reduced to 0 hit points but not killed outright, you can drop to 1 hit point instead. You can’t use this feature again until you finish a long rest.
+Notes []
+Size
+Zabraks stand anywhere from 5 to 7 feet tall and weigh up to 300 lbs. Regardless of your position in that range, your size is Medium.
+Notes []
+Speed
+Your base walking speed is 30 feet.
+Notes []
+Toughness
+Your hit point maximum increases by 1, and it increases by 1 every time you gain a level.
+Notes []
+Unarmed Combatant
+Your unarmed strikes deal 1d4 kinetic damage and have the finesse property.
+Notes []
+
+## Sheet: Background
+Skill proficiencies
+Choose two from Lore, Medicine, Nature, and Technology
+Tool proficiencies
+One of your choice
+Languages
+One of your choice
+Starting equipment
+A set of common clothes, a datapad, a book on your field of research, a pouch containing 100 cr
+Background feat
+Techie
+Field of Research
+While scientist's are widely knowledgeable, they also choose a focus for their studies. Choose an option or roll on the table below to define your field of research.
+d8 | Field of Research |
+1 | Biology |
+2 | Artificial Intelligence |
+3 | Chemistry |
+4 | Geology |
+d8 | Field of Research |
+5 | Physics |
+6 | the Force |
+7 | Astrogation |
+8 | Medicine |
+Feature: Scientific Method Background feature
+You are well acquainted with your field of research from having read numerous journals or having attended scientific conferences. Concepts that are complicated,… [515 chars #41ecb162]
+About this background
+Nothing excites you more than pushing the boundaries of scientific knowledge. Most of your time is spent in a lab performing experiments to further your interes… [361 chars #6d4c121d]
+What is your scientific field of interest? Is it your insatiable curiousity, or a personal goal that drives you? Did you leave your lab voluntarily, or were you… [264 chars #6adaecfb]
+Your choices
+Skill proficiencies 1 / 2 Choose two from Lore, Medicine, Nature, and Technology
+Medicine [×]
+[Choose a skill… ▾]
+Tool proficiency 0 / 1 One of your choice
+None chosen yet.
+[Choose a tool… ▾]
+Languages 1 / 1 One of your choice
+Sullustese [×]
+Techie: +1 to 1 / 1 background feat
+Intelligence [×]
+
+## Sheet: Proficiencies & Languages
+Armor
+Light armor medium armor · Bonus Proficiencies
+Weapon
+Simple blasters simple vibroweapons martial blasters · Bonus Proficiencies martial vibroweapons · Bonus Proficiencies
+Tool
+One of your choice Slicer's kit ✎armstech's implements · Bonus Proficiencies
+Skills & saves
+Investigation Lore Technology Medicine Constitution Saving Throws Intelligence Saving Throws
+Languages
+Galactic Basic Zabraki Sullustese
+✎ = custom proficiency added on the character.
+
+## Sheet: Equipment & Inventory
+Add an item
+[All items ▾] []
+Qty [1] [Add]
+2425 items from sw5e.com, fetched 10/16/2026. [Refresh list]
+Credits
+100 cr
+[] [] [Apply]
+Total weight
+17 lb
+of 120 lb max
+Attunement
+0 / 2
+Items
+9
+Weapon (1)
+Item | Qty & actions | Weight | Cost | Source |
+Vibrodagger
+1d4 Kinetic · Finesse, light, thrown (range 20/60)
+| [−] 1 [+] [Equipped] [✎] [Sell] [×] | 0.5 lb | 50 cr | PHB |
+Armor (1)
+Item | Qty & actions | Weight | Cost | Source |
+Combat suit
+AC 11 + Dex modifier · Light
+Description
+Combat suits are seen all over the galaxy, and can be found for sale by almost any merchant who dealt in weapons and armor. Many such suits are used by military… [290 chars #9b071874]
+The suit itself offers decent protection from most types of attacks while maintaining maximum flexibility and minimum weight. However this armor is only recommended for light skirmishes.
+| [−] 1 [+] [Equipped] [✎] [Sell] [×] | 10 lb | 100 cr | PHB |
+Clothing (1)
+Item | Qty & actions | Weight | Cost | Source |
+Clothes, common | [−] 1 [+] [✎] [Sell] [×] | 3 lb | 5 cr | PHB |
+Data Recording And Storage (2)
+Item | Qty & actions | Weight | Cost | Source |
+Wristpad
+Description
+A wristpad is a harness with an integrated datapad and holoprojector interface that fits on the forearm and includes self-charging battery packs.
+| [−] 1 [+] [✎] [Sell] [×] | 2 lb | 600 cr | PHB |
+Datapad
+Description
+A datapad is a small electronic device used for the input, storage and displaying of information. It features a holoprojective surface for 3D viewing.
+| [−] 1 [+] [✎] [Sell] [×] | 0.5 lb | 100 cr | PHB |
+Storage (1)
+Item | Qty & actions | Weight | Cost | Source |
+Pouch
+Description
+A pouch stores 6.00 lb., not exceeding 1/5 cubic foot.
+| [−] 1 [+] [✎] [Sell] [×] | 1 lb | 5 cr | PHB |
+Tool (1)
+Item | Qty & actions | Weight | Cost | Source |
+Tinker's implements | [−] 1 [+] [✎] [Sell] [×] | — | 500 cr | PHB |
+Custom items (2)
+Item | Qty & actions | Weight | Cost | Source |
+Dungeoneer's pack custom
+Description
+Starting equipment.
+| [−] 1 [+] [Unpack] [✎] [Sell] [×] | — | — | |
+Book on your field of research custom
+Description
+Starting equipment.
+| [−] 1 [+] [✎] [Sell] [×] | — | — | |
+
+## Sheet: Personality & Appearance
+Personality Traits
+—
+Ideal
+—
+Bond
+—
+Flaw
+—
+Details
+Alignment
+—
+Gender
+—
+Place of Birth
+—
+Age
+—
+Height
+—
+Weight
+—
+Hair
+—
+Eyes
+—
+Skin
+—
+
+## Sheet: Backstory
+No backstory yet.
+
+## Sheet: Notes
+No notes yet.
+
+## Sheet: Settings, Tweaks & Data
+Tweaks (manual adjustments) 0
+From sw5e.com's editor or added here. Give each a reason (kept in this viewer and in backups); hovering or tapping a number they change shows it.
+No tweaks.
+[Add a tweak to… ▾] [add (+/−) ▾] [] [] [Add]
+Builder settings
+Is Enforcing Force Prerequisites
+true
+Is Fixed Hit Points
+false
+Ability Score Method
+Standard Array
+Record
+Source
+sw5e.com
+Loaded
+10/17/2026, 11:59:22 PM
+Last changed on SW5E
+10/17/2026, 8:55:17 PM
+Created
+10/17/2026, 8:53:27 PM
+Builder version
+0.7.6
+Validation
+All checks passed
+Character id
+00000000-0000-4000-8000-000012000001 ↗
+Local version history 3 / 25
+SW5E can lose saved characters, so every version seen here is kept in this browser. Compare a version with the character as it is now, or restore it (Undo puts it back).
+Backups (files you keep): this character never · [Back up this character]
+all characters never · [Back up all characters]
+10/17/2026, 8:55:19 PM latest as now
+Saved to SW5E as a new character · changed on SW5E 10/17/2026, 8:55:17 PM [Export]
+10/17/2026, 8:55:12 PM as now
+Before saving to SW5E as a new character · changed on SW5E 10/17/2026, 8:53:27 PM [Export]
+10/17/2026, 8:53:33 PM
+Created here · changed on SW5E 10/17/2026, 8:53:27 PM [Compare] [Restore] [Export]
+Raw SW5E character JSON
+{ "name": "Wizard Check (local)", "id": "00000000-0000-4000-8000-000012000001", "builderVersion": "0.7.6", "image": "", "experiencePoints": 2700, "species": { "… [2926 chars #e05cab17]
+Computed character JSON (from SW5E's rules engine)
+{ "name": "Wizard Check (local)", "builderVersion": "0.7.6", "image": "", "characteristics": { "alignment": "", "Personality Traits": "", "Ideal": "", "Bond": "… [29120 chars #88ff848d]

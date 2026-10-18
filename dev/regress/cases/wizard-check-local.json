@@ -1,0 +1,4768 @@
+{
+ "format": "sw5e-sheet-regress-case",
+ "name": "Wizard Check (local)",
+ "key": "id:00000000-0000-4000-8000-000012000001",
+ "recordedAt": 1792289049607,
+ "rules": {
+  "dataVersion": 199,
+  "fetchedAt": 1792273029637
+ },
+ "catalog": {
+  "dataVersion": 199,
+  "fetchedAt": 1792170265673,
+  "count": 2425
+ },
+ "storage": {
+  "snapshots": {
+   "id:00000000-0000-4000-8000-000012000001": {
+    "format": "sw5e-sheet-snapshot",
+    "version": 1,
+    "key": "id:00000000-0000-4000-8000-000012000001",
+    "raw": {
+     "name": "Wizard Check (local)",
+     "id": "00000000-0000-4000-8000-000012000001",
+     "builderVersion": "0.7.6",
+     "image": "",
+     "experiencePoints": 2700,
+     "species": {
+      "name": "Zabrak",
+      "abilityScoreImprovementSelectedOption": 0,
+      "abilityScoreImprovement": {
+       "Dexterity": 1
+      }
+     },
+     "classes": [
+      {
+       "name": "Engineer",
+       "levels": 4,
+       "hitPoints": [
+        5,
+        6,
+        5
+       ],
+       "abilityScoreImprovements": [
+        {
+         "type": "Ability Score Improvement",
+         "abilitiesIncreased": [
+          {
+           "name": "Intelligence",
+           "value": 2
+          }
+         ]
+        }
+       ],
+       "skills": [
+        "Technology",
+        "Lore",
+        "Investigation"
+       ],
+       "archetype": {
+        "name": "Armstech Engineering"
+       }
+      }
+     ],
+     "baseAbilityScores": {
+      "Strength": 8,
+      "Dexterity": 13,
+      "Constitution": 14,
+      "Intelligence": 15,
+      "Wisdom": 12,
+      "Charisma": 10
+     },
+     "background": {
+      "name": "Scientist",
+      "feat": {
+       "name": "Techie",
+       "type": "Feat",
+       "abilityScoreImprovements": {
+        "Intelligence": 1
+       }
+      },
+      "skills": [
+       "Medicine"
+      ],
+      "languages": [
+       "Sullustese"
+      ]
+     },
+     "characteristics": {
+      "alignment": "",
+      "Personality Traits": "",
+      "Ideal": "",
+      "Bond": "",
+      "Flaw": "",
+      "Gender": "",
+      "Place of Birth": "",
+      "Age": "",
+      "Height": "",
+      "Weight": "",
+      "Hair": "",
+      "Eyes": "",
+      "Skin": "",
+      "Appearance": "",
+      "Backstory": ""
+     },
+     "credits": 100,
+     "equipment": [
+      {
+       "name": "Combat suit",
+       "quantity": 1,
+       "category": "Equipment",
+       "equipped": true
+      },
+      {
+       "name": "Tinker's implements",
+       "quantity": 1,
+       "category": "Equipment"
+      },
+      {
+       "name": "Vibrodagger",
+       "quantity": 1,
+       "category": "Equipment",
+       "equipped": true
+      },
+      {
+       "name": "Wristpad",
+       "quantity": 1,
+       "category": "Equipment"
+      },
+      {
+       "name": "Clothes, common",
+       "quantity": 1,
+       "category": "Equipment"
+      },
+      {
+       "name": "Datapad",
+       "quantity": 1,
+       "category": "Equipment"
+      },
+      {
+       "name": "Pouch",
+       "quantity": 1,
+       "category": "Equipment"
+      }
+     ],
+     "currentStats": {
+      "hitPointsLost": 0,
+      "temporaryHitPoints": 0,
+      "techPointsUsed": 0,
+      "forcePointsUsed": 0,
+      "superiorityDiceUsed": 0,
+      "hitDiceUsed": {},
+      "deathSaves": {
+       "successes": 0,
+       "failures": 0
+      },
+      "hasInspiration": false,
+      "featuresTimesUsed": {},
+      "conditions": [],
+      "exhaustion": 0,
+      "highLevelCasting": {
+       "level6": false,
+       "level7": false,
+       "level8": false,
+       "level9": false
+      }
+     },
+     "tweaks": {},
+     "customProficiencies": [
+      {
+       "name": "Slicer's kit",
+       "type": "tool",
+       "proficiencyLevel": "proficient",
+       "from": "Class: Engineer #2"
+      }
+     ],
+     "customLanguages": [],
+     "customFeatures": [],
+     "customFeats": [],
+     "customTechPowers": [],
+     "customForcePowers": [],
+     "customEquipment": [
+      {
+       "name": "Dungeoneer's pack",
+       "quantity": 1,
+       "equipmentCategory": "Gear",
+       "cost": 0,
+       "weight": 0,
+       "description": "Starting equipment."
+      },
+      {
+       "name": "Book on your field of research",
+       "quantity": 1,
+       "equipmentCategory": "Gear",
+       "cost": 0,
+       "weight": 0,
+       "description": "Starting equipment."
+      }
+     ],
+     "settings": {
+      "isEnforcingForcePrerequisites": true,
+      "isFixedHitPoints": false,
+      "abilityScoreMethod": "Standard Array"
+     },
+     "notes": "",
+     "createdAt": 1792270407296,
+     "changedAt": 1792270517206,
+     "localId": "local-mvcviwzk2jpqx5",
+     "userId": "00000000-0000-4000-8000-000012000002"
+    },
+    "complete": {
+     "name": "Wizard Check (local)",
+     "builderVersion": "0.7.6",
+     "image": "",
+     "characteristics": {
+      "alignment": "",
+      "Personality Traits": "",
+      "Ideal": "",
+      "Bond": "",
+      "Flaw": "",
+      "Gender": "",
+      "Place of Birth": "",
+      "Age": "",
+      "Height": "",
+      "Weight": "",
+      "Hair": "",
+      "Eyes": "",
+      "Skin": "",
+      "Appearance": "",
+      "Backstory": ""
+     },
+     "tweaks": {},
+     "customProficiencies": [
+      {
+       "name": "Slicer's kit",
+       "type": "tool",
+       "proficiencyLevel": "proficient",
+       "from": "Class: Engineer #2"
+      }
+     ],
+     "customLanguages": [],
+     "customFeatures": [],
+     "customTechPowers": [],
+     "customForcePowers": [],
+     "customEquipment": [
+      {
+       "name": "Dungeoneer's pack",
+       "quantity": 1,
+       "equipmentCategory": "Gear",
+       "cost": 0,
+       "weight": 0,
+       "description": "Starting equipment."
+      },
+      {
+       "name": "Book on your field of research",
+       "quantity": 1,
+       "equipmentCategory": "Gear",
+       "cost": 0,
+       "weight": 0,
+       "description": "Starting equipment."
+      }
+     ],
+     "numCustomFeats": 0,
+     "currentLevel": 4,
+     "classText": "Engineer (Armstech Engineering) 4",
+     "alignment": "",
+     "species": "Zabrak",
+     "background": "Scientist",
+     "experiencePoints": {
+      "previousLevel": 2700,
+      "current": 2700,
+      "nextLevel": 6500,
+      "isCorrect": true,
+      "errorMessage": ""
+     },
+     "abilityScores": {
+      "Strength": {
+       "value": 8,
+       "modifier": -1,
+       "savingThrow": {
+        "modifier": -1,
+        "proficiency": "none"
+       },
+       "skills": [
+        {
+         "name": "Athletics",
+         "modifier": -1,
+         "proficiency": "none"
+        }
+       ]
+      },
+      "Dexterity": {
+       "value": 14,
+       "modifier": 2,
+       "savingThrow": {
+        "modifier": 2,
+        "proficiency": "none"
+       },
+       "skills": [
+        {
+         "name": "Acrobatics",
+         "modifier": 2,
+         "proficiency": "none"
+        },
+        {
+         "name": "Sleight of Hand",
+         "modifier": 2,
+         "proficiency": "none"
+        },
+        {
+         "name": "Stealth",
+         "modifier": 2,
+         "proficiency": "none"
+        }
+       ]
+      },
+      "Constitution": {
+       "value": 16,
+       "modifier": 3,
+       "savingThrow": {
+        "modifier": 5,
+        "proficiency": "proficient"
+       },
+       "skills": []
+      },
+      "Intelligence": {
+       "value": 18,
+       "modifier": 4,
+       "savingThrow": {
+        "modifier": 6,
+        "proficiency": "proficient"
+       },
+       "skills": [
+        {
+         "name": "Investigation",
+         "modifier": 6,
+         "proficiency": "proficient"
+        },
+        {
+         "name": "Lore",
+         "modifier": 6,
+         "proficiency": "proficient"
+        },
+        {
+         "name": "Nature",
+         "modifier": 4,
+         "proficiency": "none"
+        },
+        {
+         "name": "Piloting",
+         "modifier": 4,
+         "proficiency": "none"
+        },
+        {
+         "name": "Technology",
+         "modifier": 6,
+         "proficiency": "proficient"
+        }
+       ]
+      },
+      "Wisdom": {
+       "value": 12,
+       "modifier": 1,
+       "savingThrow": {
+        "modifier": 1,
+        "proficiency": "none"
+       },
+       "skills": [
+        {
+         "name": "Animal Handling",
+         "modifier": 1,
+         "proficiency": "none"
+        },
+        {
+         "name": "Insight",
+         "modifier": 1,
+         "proficiency": "none"
+        },
+        {
+         "name": "Medicine",
+         "modifier": 3,
+         "proficiency": "proficient"
+        },
+        {
+         "name": "Perception",
+         "modifier": 1,
+         "proficiency": "none"
+        },
+        {
+         "name": "Survival",
+         "modifier": 1,
+         "proficiency": "none"
+        }
+       ]
+      },
+      "Charisma": {
+       "value": 10,
+       "modifier": 0,
+       "savingThrow": {
+        "modifier": 0,
+        "proficiency": "none"
+       },
+       "skills": [
+        {
+         "name": "Deception",
+         "modifier": 0,
+         "proficiency": "none"
+        },
+        {
+         "name": "Intimidation",
+         "modifier": 0,
+         "proficiency": "none"
+        },
+        {
+         "name": "Performance",
+         "modifier": 0,
+         "proficiency": "none"
+        },
+        {
+         "name": "Persuasion",
+         "modifier": 0,
+         "proficiency": "none"
+        }
+       ]
+      }
+     },
+     "proficiencyBonus": 2,
+     "initiative": 2,
+     "armorClass": 13,
+     "armorList": [
+      "Combat suit"
+     ],
+     "passivePerception": 11,
+     "inspiration": false,
+     "vision": "normal",
+     "speed": {
+      "base": "30 ft",
+      "hour": "3 miles",
+      "day": "24 miles",
+      "special": ""
+     },
+     "hitPoints": {
+      "current": 36,
+      "temporary": 0,
+      "maximum": 36,
+      "hitDice": [
+       {
+        "size": "d8",
+        "current": 4,
+        "maximum": 4
+       }
+      ],
+      "deathSaves": {
+       "successes": 0,
+       "failures": 0
+      },
+      "resting": {
+       "hitDieBonus": 3,
+       "numHitDiceUsed": 0,
+       "hitDiceRestored": [],
+       "techPointsUsed": 0,
+       "forcePointsUsed": 0,
+       "highLevelCasting": {
+        "level6": false,
+        "level7": false,
+        "level8": false,
+        "level9": false
+       },
+       "shortRestFeatures": [],
+       "longRestFeatures": []
+      }
+     },
+     "conditions": [],
+     "exhaustion": 0,
+     "proficiencies": [
+      {
+       "name": "Simple blasters",
+       "type": "weapon"
+      },
+      {
+       "name": "simple vibroweapons",
+       "type": "weapon"
+      },
+      {
+       "name": "Light armor",
+       "type": "armor"
+      },
+      {
+       "name": "One of your choice",
+       "type": "tool"
+      }
+     ],
+     "skillAndSaveProficiencies": [
+      "Investigation",
+      "Lore",
+      "Technology",
+      "Medicine",
+      "Constitution Saving Throws",
+      "Intelligence Saving Throws"
+     ],
+     "languages": [
+      "Galactic Basic",
+      "Sullustese"
+     ],
+     "equipment": [
+      {
+       "name": "Combat suit",
+       "description": "Combat suits are seen all over the galaxy, and can be found for sale by almost any merchant who dealt in weapons and armor. Many such suits are used by military organizations, such as the Galactic Republic's military, as well as by mercenaries, criminals, bounty hunters and even some Jedi.\r\n\r\nThe suit itself offers decent protection from most types of attacks while maintaining maximum flexibility and minimum weight. However this armor is only recommended for light skirmishes.",
+       "cost": 100,
+       "weight": "10",
+       "equipmentCategoryEnum": 4,
+       "equipmentCategory": "Armor",
+       "damageNumberOfDice": 0,
+       "damageTypeEnum": 0,
+       "damageType": "Unknown",
+       "damageDieModifier": 0,
+       "weaponClassificationEnum": 0,
+       "weaponClassification": "Unknown",
+       "armorClassificationEnum": 1,
+       "armorClassification": "Light",
+       "damageDiceDieTypeEnum": 0,
+       "damageDieType": 0,
+       "properties": [],
+       "propertiesJson": "[]",
+       "propertiesMap": {},
+       "propertiesMapJson": "{}",
+       "modes": [],
+       "modesJson": "[]",
+       "ac": "11 + Dex modifier",
+       "strengthRequirement": "",
+       "stealthDisadvantage": false,
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Combat suit",
+       "timestamp": "2023-05-30T20:15:38.6892471+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A38.6892471Z'\"",
+       "equipped": true,
+       "quantity": 1,
+       "index": 0,
+       "isFound": true
+      },
+      {
+       "name": "Tinker's implements",
+       "description": null,
+       "cost": 500,
+       "weight": "0",
+       "equipmentCategoryEnum": 12,
+       "equipmentCategory": "Tool",
+       "damageNumberOfDice": 0,
+       "damageTypeEnum": 0,
+       "damageType": "Unknown",
+       "damageDieModifier": 0,
+       "weaponClassificationEnum": 0,
+       "weaponClassification": "Unknown",
+       "armorClassificationEnum": 0,
+       "armorClassification": "Unknown",
+       "damageDiceDieTypeEnum": 0,
+       "damageDieType": 0,
+       "properties": null,
+       "propertiesJson": "",
+       "propertiesMap": null,
+       "propertiesMapJson": "",
+       "modes": [],
+       "modesJson": "[]",
+       "ac": null,
+       "strengthRequirement": null,
+       "stealthDisadvantage": false,
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Tinker's implements",
+       "timestamp": "2023-05-30T20:15:38.6932443+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A38.6932443Z'\"",
+       "quantity": 1,
+       "index": 1,
+       "isFound": true
+      },
+      {
+       "name": "Vibrodagger",
+       "description": null,
+       "cost": 50,
+       "weight": "0.5",
+       "equipmentCategoryEnum": 3,
+       "equipmentCategory": "Weapon",
+       "damageNumberOfDice": 1,
+       "damageTypeEnum": 7,
+       "damageType": "Kinetic",
+       "damageDieModifier": 0,
+       "weaponClassificationEnum": 3,
+       "weaponClassification": "SimpleVibroweapon",
+       "armorClassificationEnum": 0,
+       "armorClassification": "Unknown",
+       "damageDiceDieTypeEnum": 4,
+       "damageDieType": 4,
+       "properties": [
+        "Finesse",
+        "light",
+        "thrown (range 20/60)"
+       ],
+       "propertiesJson": "[\"Finesse\",\"light\",\"thrown (range 20/60)\"]",
+       "propertiesMap": {
+        "Finesse": "Finesse",
+        "Light": "light",
+        "Range": "thrown (range 20/60)"
+       },
+       "propertiesMapJson": "{\"Finesse\":\"Finesse\",\"Light\":\"light\",\"Range\":\"thrown (range 20/60)\"}",
+       "modes": [],
+       "modesJson": "[]",
+       "ac": null,
+       "strengthRequirement": null,
+       "stealthDisadvantage": false,
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Vibrodagger",
+       "timestamp": "2023-05-30T20:15:38.6832509+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A38.6832509Z'\"",
+       "attackBonus": 4,
+       "damageBonus": 2,
+       "ability": "Dexterity",
+       "isCustom": false,
+       "equipped": true,
+       "quantity": 1,
+       "index": 2,
+       "tweaks": {},
+       "isFound": true
+      },
+      {
+       "name": "Wristpad",
+       "description": "A wristpad is a harness with an integrated datapad and holoprojector interface that fits on the forearm and includes self-charging battery packs.",
+       "cost": 600,
+       "weight": "2",
+       "equipmentCategoryEnum": 8,
+       "equipmentCategory": "DataRecordingAndStorage",
+       "damageNumberOfDice": 0,
+       "damageTypeEnum": 0,
+       "damageType": "Unknown",
+       "damageDieModifier": 0,
+       "weaponClassificationEnum": 0,
+       "weaponClassification": "Unknown",
+       "armorClassificationEnum": 0,
+       "armorClassification": "Unknown",
+       "damageDiceDieTypeEnum": 0,
+       "damageDieType": 0,
+       "properties": null,
+       "propertiesJson": "",
+       "propertiesMap": null,
+       "propertiesMapJson": "",
+       "modes": [],
+       "modesJson": "[]",
+       "ac": null,
+       "strengthRequirement": null,
+       "stealthDisadvantage": false,
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Wristpad",
+       "timestamp": "2023-05-30T20:15:38.9640901+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A38.9640901Z'\"",
+       "quantity": 1,
+       "index": 3,
+       "isFound": true
+      },
+      {
+       "name": "Clothes, common",
+       "description": null,
+       "cost": 5,
+       "weight": "3",
+       "equipmentCategoryEnum": 20,
+       "equipmentCategory": "Clothing",
+       "damageNumberOfDice": 0,
+       "damageTypeEnum": 0,
+       "damageType": "Unknown",
+       "damageDieModifier": 0,
+       "weaponClassificationEnum": 0,
+       "weaponClassification": "Unknown",
+       "armorClassificationEnum": 0,
+       "armorClassification": "Unknown",
+       "damageDiceDieTypeEnum": 0,
+       "damageDieType": 0,
+       "properties": null,
+       "propertiesJson": "",
+       "propertiesMap": null,
+       "propertiesMapJson": "",
+       "modes": [],
+       "modesJson": "[]",
+       "ac": null,
+       "strengthRequirement": null,
+       "stealthDisadvantage": false,
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Clothes, common",
+       "timestamp": "2023-05-30T20:15:38.9610928+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A38.9610928Z'\"",
+       "quantity": 1,
+       "index": 4,
+       "isFound": true
+      },
+      {
+       "name": "Datapad",
+       "description": "A datapad is a small electronic device used for the input, storage and displaying of information. It features a holoprojective surface for 3D viewing. ",
+       "cost": 100,
+       "weight": "0.5",
+       "equipmentCategoryEnum": 8,
+       "equipmentCategory": "DataRecordingAndStorage",
+       "damageNumberOfDice": 0,
+       "damageTypeEnum": 0,
+       "damageType": "Unknown",
+       "damageDieModifier": 0,
+       "weaponClassificationEnum": 0,
+       "weaponClassification": "Unknown",
+       "armorClassificationEnum": 0,
+       "armorClassification": "Unknown",
+       "damageDiceDieTypeEnum": 0,
+       "damageDieType": 0,
+       "properties": null,
+       "propertiesJson": "",
+       "propertiesMap": null,
+       "propertiesMapJson": "",
+       "modes": [],
+       "modesJson": "[]",
+       "ac": null,
+       "strengthRequirement": null,
+       "stealthDisadvantage": false,
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Datapad",
+       "timestamp": "2023-05-30T20:15:38.963091+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A38.963091Z'\"",
+       "quantity": 1,
+       "index": 5,
+       "isFound": true
+      },
+      {
+       "name": "Pouch",
+       "description": "A pouch stores 6.00 lb., not exceeding 1/5 cubic foot. ",
+       "cost": 5,
+       "weight": "1",
+       "equipmentCategoryEnum": 5,
+       "equipmentCategory": "Storage",
+       "damageNumberOfDice": 0,
+       "damageTypeEnum": 0,
+       "damageType": "Unknown",
+       "damageDieModifier": 0,
+       "weaponClassificationEnum": 0,
+       "weaponClassification": "Unknown",
+       "armorClassificationEnum": 0,
+       "armorClassification": "Unknown",
+       "damageDiceDieTypeEnum": 0,
+       "damageDieType": 0,
+       "properties": null,
+       "propertiesJson": "",
+       "propertiesMap": null,
+       "propertiesMapJson": "",
+       "modes": [],
+       "modesJson": "[]",
+       "ac": null,
+       "strengthRequirement": null,
+       "stealthDisadvantage": false,
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Pouch",
+       "timestamp": "2023-05-30T20:15:38.9680886+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A38.9680886Z'\"",
+       "quantity": 1,
+       "index": 6,
+       "isFound": true
+      }
+     ],
+     "attunement": {
+      "current": 0,
+      "maximum": 2,
+      "hasAttunable": false
+     },
+     "weapons": [
+      {
+       "name": "Vibrodagger",
+       "description": null,
+       "cost": 50,
+       "weight": "0.5",
+       "equipmentCategoryEnum": 3,
+       "equipmentCategory": "Weapon",
+       "damageNumberOfDice": 1,
+       "damageTypeEnum": 7,
+       "damageType": "Kinetic",
+       "damageDieModifier": 0,
+       "weaponClassificationEnum": 3,
+       "weaponClassification": "SimpleVibroweapon",
+       "armorClassificationEnum": 0,
+       "armorClassification": "Unknown",
+       "damageDiceDieTypeEnum": 4,
+       "damageDieType": 4,
+       "properties": [
+        "Finesse",
+        "light",
+        "thrown (range 20/60)"
+       ],
+       "propertiesJson": "[\"Finesse\",\"light\",\"thrown (range 20/60)\"]",
+       "propertiesMap": {
+        "Finesse": "Finesse",
+        "Light": "light",
+        "Range": "thrown (range 20/60)"
+       },
+       "propertiesMapJson": "{\"Finesse\":\"Finesse\",\"Light\":\"light\",\"Range\":\"thrown (range 20/60)\"}",
+       "modes": [],
+       "modesJson": "[]",
+       "ac": null,
+       "strengthRequirement": null,
+       "stealthDisadvantage": false,
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Vibrodagger",
+       "timestamp": "2023-05-30T20:15:38.6832509+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A38.6832509Z'\"",
+       "attackBonus": 4,
+       "damageBonus": 2,
+       "ability": "Dexterity",
+       "isCustom": false,
+       "equipped": true,
+       "quantity": 1,
+       "index": 2,
+       "tweaks": {},
+       "isFound": true
+      },
+      {
+       "name": "Unarmed Strike",
+       "description": null,
+       "cost": 0,
+       "weight": "0",
+       "equipmentCategory": "Weapon",
+       "contentType": "Core",
+       "contentSource": "PHB",
+       "damageNumberOfDice": 1,
+       "damageType": "Kinetic",
+       "weaponClassification": "Unarmed",
+       "damageDieType": 0,
+       "properties": [],
+       "propertiesMap": {},
+       "modes": [],
+       "quantity": 0,
+       "index": -1,
+       "isFound": true,
+       "equipped": true,
+       "attackBonus": 1,
+       "damageBonus": 0,
+       "ability": "Strength",
+       "isCustom": false,
+       "tweaks": {}
+      }
+     ],
+     "credits": 100,
+     "carryingCapacity": {
+      "encumbered": 40,
+      "heavilyEncumbered": 80,
+      "maxCapacity": 120,
+      "pushDragLift": 240
+     },
+     "superiority": false,
+     "highLevelCasting": {
+      "level6": false,
+      "level7": false,
+      "level8": false,
+      "level9": false
+     },
+     "techCasting": {
+      "pointsUsed": 0,
+      "maxPoints": 12,
+      "attackModifier": 6,
+      "saveDC": 14,
+      "maxPowerLevel": 2,
+      "powersKnown": []
+     },
+     "forceCasting": false,
+     "allForcePowers": [],
+     "combatFeatures": [
+      {
+       "name": "Potent Aptitude",
+       "text": "_**Engineer:** 1st level_\r\nYour technological experience lends you an uncommon insight that you can use to bolster your allies. To do so, you use a bonus action on your turn to choose one creature other than yourself within 60 feet of you who can hear you. That creature gains one Potent Aptitude die, a d4. This die changes as you gain engineer levels, as shown in the Potent Aptitude column of the engineer table.\r\nOnce within the next 10 minutes, the creature can roll the die and add the number rolled to one ability check, attack roll, or saving throw it makes. Once the Potent Aptitude die is rolled, it is lost.\r\nA creature can have only one Potent Aptitude die at a time.\r\nYou can use this feature twice. You gain an additional use at 5th, 9th, 13th, and 17th level. You regain any expended uses when you finish a short or long rest.",
+       "level": 1,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Engineer",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Engineer-Potent Aptitude-1",
+       "timestamp": "2023-05-30T20:15:43.3935639+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.3935639Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Techcasting",
+       "text": "_**Engineer:** 1st level_\r\nDuring your training you have derived powers from schematics with the aid of your wristpad. See chapter 10 for the general rules of techcasting and chapter 12 for the tech powers list.\r\n#### Tech Powers Known\r\nYou learn 6 tech powers of your choice, and you learn more at higher levels, as shown in the Tech Powers Known column of the engineer table. You may not learn a tech power of a level higher than your Max Power Level.\r\n#### Tech Points\r\nYou have a number of tech points equal to your engineer level x 2, as shown in the Tech Points column of the engineer table, + your Intelligence modifier. You use these tech points to cast tech powers. You regain all expended tech points when you finish a short or long rest.\r\n#### Max Power Level\r\nMany tech powers can be overcharged, consuming more tech points to create a greater effect. You can overcharge these powers to a maximum level, which increases at higher levels, as shown in the Max Power Level column of the engineer table.\r\nYou may only cast tech powers at 6th, 7th, 8th, and 9th-level once. You regain the ability to do so after a long rest.\r\n#### Techcasting Ability\r\nIntelligence is your techcasting ability for your tech powers. You use your Intelligence whenever a power refers to your techcasting ability. Additionally, you use your Intelligence modifier when setting the saving throw DC for a tech power you cast and when making an attack roll with one.\r\n___\r\n**Tech save DC** = 8 + your proficiency bonus + your Intelligence modifier\r\n___\r\n**Tech attack modifier** = your proficiency bonus + your Intelligence modifier\r\n___\r\n#### Techcasting Focus\r\nYou use a wristpad (found in chapter 5) or the tools in which you are granted proficiency by this class as a tech focus for your tech powers.",
+       "level": 1,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Engineer",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Engineer-Techcasting-1",
+       "timestamp": "2023-05-30T20:15:43.3935639+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.3935639Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Infuse Item",
+       "text": "_**Engineer:** 2nd level_\r\nYou gain the ability to temporarily enhance a weapon or armor. At the end of a long rest, you can touch one unenhanced object that is a suit of armor, a shield, or a simple or martial weapon. Until the end of your next long rest or until you die, the object becomes an enhanced item, granting a +1 bonus to AC if it's armor or a shield or a +1 bonus to attack and damage rolls if it's a weapon. \r\nOnce you've used this feature, you can't use it again until you finish a long rest.\r\nThis bonus increases to +2 at 10th level and +3 at 15th level.",
+       "level": 2,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Engineer",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Engineer-Infuse Item-2",
+       "timestamp": "2023-05-30T20:15:43.3935639+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.3935639Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Tool Expertise",
+       "text": "_**Engineer:** 2nd level_\r\nYou gain expertise in any tool proficiencies you gain from this class.",
+       "level": 2,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Engineer",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Engineer-Tool Expertise-2",
+       "timestamp": "2023-05-30T20:15:43.3935639+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.3935639Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Bonus Proficiencies",
+       "text": "_**Armstech Engineering:** 3rd level_\r\nYou gain proficiency in armstech's implements, medium armor, martial blasters, and martial vibroweapons. Additionally, when you engage in crafting with armstech's implements, the rate at which you craft doubles.",
+       "level": 3,
+       "sourceEnum": 1,
+       "source": "Archetype",
+       "sourceName": "Armstech Engineering",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Archetype-Armstech Engineering-Bonus Proficiencies-3",
+       "timestamp": "2023-05-30T20:15:42.71995+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A42.71995Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Close Call",
+       "text": "_**Armstech Engineering:** 3rd level_\r\nWhen you make an attack roll with your modified weapon and miss, you can expend one use of your Potent Aptitude to attempt to turn that miss into a hit. Roll the die and add it to the attack roll. ",
+       "level": 3,
+       "sourceEnum": 1,
+       "source": "Archetype",
+       "sourceName": "Armstech Engineering",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Archetype-Armstech Engineering-Close Call-3",
+       "timestamp": "2023-05-30T20:15:42.71995+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A42.71995Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Modified Weaponry",
+       "text": "_**Armstech Engineering:** 3rd level_\r\nYou learn to modify one unenhanced weapon with which you are proficient utilizing your armstech experience. Over the course of a long rest, you can modify the weapon. You must have the weapon and armstech's implements in order to perform this modification.\r\nYour modified weapon is enhanced, requires attunement, can only be used by you, and counts as a tech focus for your tech powers while you are attuned to it. Your modified weapon has 4 modification slots, and it gains more at higher levels, as shown in the Modification Slots column of the engineer table. For each modification installed in excess of your proficiency bonus, your tech point maximum is reduced by 1. Over the course of a long rest, you can install, replace, or remove a number of modifications up to your Intelligence modifier (minimum of one).\r\nSome modification effects require saving throws. When you use such an effect from this class, the DC equals your tech save DC.\r\nAt 9th level, you can maintain two modified weapons. Each modified weapon has modification slots as shown in the Modification Slots column of the engineer table.",
+       "level": 3,
+       "sourceEnum": 1,
+       "source": "Archetype",
+       "sourceName": "Armstech Engineering",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Archetype-Armstech Engineering-Modified Weaponry-3",
+       "timestamp": "2023-05-30T20:15:42.71995+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A42.71995Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Engineering Discipline",
+       "text": "_**Engineer:** 3rd, 6th, 14th, and 18th level_\r\nYou begin to focus on a specific engineering discipline, which is detailed at the end of the class description. ",
+       "level": 3,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Engineer",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Engineer-Engineering Discipline-3",
+       "timestamp": "2023-05-30T20:15:43.3935639+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.3935639Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Ability Score Improvement",
+       "text": "_**Engineer:** 4th, 8th, 12th, 16th, and 19th level_\r\nYou can increase one ability score by 2, or you can increase two ability scores by 1. You can't increase an ability score above 20 using this feature.",
+       "level": 4,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Engineer",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Engineer-Ability Score Improvement-4",
+       "timestamp": "2023-05-30T20:15:43.3935639+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.3935639Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Ability Score Increase",
+       "text": "Your Constitution score increases by 2, and your Strength or Dexterity score increases by 1.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Zabrak",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Zabrak-Ability Score Increase",
+       "timestamp": "2023-05-30T20:15:41.0049268+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A41.0049268Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Age",
+       "text": "Zabraks reach adulthood in their late teens and live less than a century.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Zabrak",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Zabrak-Age",
+       "timestamp": "2023-05-30T20:15:41.0049268+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A41.0049268Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Alignment",
+       "text": "Zabraks tend toward no particular alignment. The best and worst are found among them.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Zabrak",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Zabrak-Alignment",
+       "timestamp": "2023-05-30T20:15:41.0059258+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A41.0059258Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Coercive",
+       "text": "You have proficiency with Persuasion or Intimidation (your choice).",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Zabrak",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Zabrak-Coercive",
+       "timestamp": "2023-05-30T20:15:41.0059258+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A41.0059258Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Crafters",
+       "text": "You have proficiency with one set of artisan’s implements of your choice.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Zabrak",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Zabrak-Crafters",
+       "timestamp": "2023-05-30T20:15:41.0059258+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A41.0059258Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Darkvision",
+       "text": "Your vision can easily cut through darkness. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Zabrak",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Zabrak-Darkvision",
+       "timestamp": "2022-05-29T01:36:26.6243708+00:00",
+       "eTag": "W/\"datetime'2022-05-29T01%3A36%3A26.6243708Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Languages",
+       "text": "You can speak, read, and write Galactic Basic and Zabraki.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Zabrak",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Zabrak-Languages",
+       "timestamp": "2023-05-30T20:15:41.0059258+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A41.0059258Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Second Heart",
+       "text": "When you are reduced to 0 hit points but not killed outright, you can drop to 1 hit point instead. You can’t use this feature again until you finish a long rest.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Zabrak",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Zabrak-Second Heart",
+       "timestamp": "2023-05-30T20:15:41.0059258+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A41.0059258Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Size",
+       "text": "Zabraks stand anywhere from 5 to 7 feet tall and weigh up to 300 lbs. Regardless of your position in that range, your size is Medium.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Zabrak",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Zabrak-Size",
+       "timestamp": "2023-05-30T20:15:41.0059258+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A41.0059258Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Speed",
+       "text": "Your base walking speed is 30 feet.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Zabrak",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Zabrak-Speed",
+       "timestamp": "2023-05-30T20:15:41.0059258+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A41.0059258Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Toughness",
+       "text": "Your hit point maximum increases by 1, and it increases by 1 every time you gain a level.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Zabrak",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Zabrak-Toughness",
+       "timestamp": "2023-05-30T20:15:41.0059258+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A41.0059258Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Unarmed Combatant",
+       "text": "Your unarmed strikes deal 1d4 kinetic damage and have the finesse property.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Zabrak",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Zabrak-Unarmed Combatant",
+       "timestamp": "2023-05-30T20:15:41.0059258+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A41.0059258Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Techie",
+       "prerequisite": null,
+       "text": "You master the theory and practice of technology, gaining the following benefits: \r\n- Increase your Intelligence score by 1, to a maximum of 20. \r\n- You gain proficiency in the Technology skill. If you are already proficient in it, you instead gain expertise in it. \r\n- You learn the *repair droid* tech power. You can cast it once, using supplies scavenged around you, without the use of a wristpad and without spending tech points, and you regain the ability to do so when you finish a long rest.\r\n",
+       "attributesIncreased": [
+        "Intelligence"
+       ],
+       "attributesIncreasedJson": "[\"Intelligence\"]",
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Techie",
+       "timestamp": "2023-05-30T20:15:09.5568611+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A09.5568611Z'\"",
+       "customIndex": -1,
+       "combat": true
+      }
+     ],
+     "nonCombatFeatures": [],
+     "backgroundFeature": {
+      "name": "Scientific Method",
+      "combat": false,
+      "text": "You are well acquainted with your field of research from having read numerous journals or having attended scientific conferences. Concepts that are complicated, involving technical jargon that usually goes over most people's heads, are simple to you. You fully understand concepts, can recall key information, and know how to use equipment related to your field, unless the research was hidden from the public, in which case you may only partially understand it. You also recognize well-known figures in your field.\r\n"
+     },
+     "settings": {
+      "isEnforcingForcePrerequisites": true,
+      "isFixedHitPoints": false,
+      "abilityScoreMethod": "Standard Array"
+     },
+     "notes": ""
+    },
+    "refs": {
+     "classes": {
+      "Engineer": {
+       "name": "Engineer",
+       "summary": "Tech caster who enhances items to benefit allies",
+       "primaryAbility": "Intelligence",
+       "hitDiceDieType": 8,
+       "hitPointsAtFirstLevel": "8 + your Constitution modifier",
+       "hitPointsAtHigherLevels": "1d8 (or 5) + your Constitution modifier per engineer level after 1st",
+       "armorProficiencies": [
+        "Light armor"
+       ],
+       "weaponProficiencies": [
+        "Simple blasters",
+        "simple vibroweapons"
+       ],
+       "toolProficiencies": [
+        "Tinker's implements",
+        "one of your choice"
+       ],
+       "savingThrows": [
+        "Constitution",
+        "Intelligence"
+       ],
+       "skillChoices": "Choose three from Investigation, Lore, Medicine, Nature, Piloting, and Technology",
+       "levelChanges": {
+        "1": {
+         "Level": "1",
+         "Proficiency Bonus": "+2",
+         "Features": "Techcasting, Potent Aptitude",
+         "Tech Powers Known": "6",
+         "Tech Points": "2",
+         "Max Power Level": "1st",
+         "Potent Aptitude": "d4",
+         "Modification Slots": "�"
+        },
+        "2": {
+         "Level": "2",
+         "Proficiency Bonus": "+2",
+         "Features": "Infuse Item (+1), Tool Expertise",
+         "Tech Powers Known": "7",
+         "Tech Points": "4",
+         "Max Power Level": "1st",
+         "Potent Aptitude": "d4",
+         "Modification Slots": "�"
+        },
+        "3": {
+         "Level": "3",
+         "Proficiency Bonus": "+2",
+         "Features": "Engineering Discipline",
+         "Tech Powers Known": "9",
+         "Tech Points": "6",
+         "Max Power Level": "2nd",
+         "Potent Aptitude": "d4",
+         "Modification Slots": "4"
+        },
+        "4": {
+         "Level": "4",
+         "Proficiency Bonus": "+2",
+         "Features": "Ability Score Improvement",
+         "Tech Powers Known": "10",
+         "Tech Points": "8",
+         "Max Power Level": "2nd",
+         "Potent Aptitude": "d4",
+         "Modification Slots": "4"
+        },
+        "5": {
+         "Level": "5",
+         "Proficiency Bonus": "+3",
+         "Features": "�",
+         "Tech Powers Known": "12",
+         "Tech Points": "10",
+         "Max Power Level": "3rd",
+         "Potent Aptitude": "d6",
+         "Modification Slots": "5"
+        },
+        "6": {
+         "Level": "6",
+         "Proficiency Bonus": "+3",
+         "Features": "Discipline feature",
+         "Tech Powers Known": "13",
+         "Tech Points": "12",
+         "Max Power Level": "3rd",
+         "Potent Aptitude": "d6",
+         "Modification Slots": "5"
+        },
+        "7": {
+         "Level": "7",
+         "Proficiency Bonus": "+3",
+         "Features": "�",
+         "Tech Powers Known": "15",
+         "Tech Points": "14",
+         "Max Power Level": "4th",
+         "Potent Aptitude": "d6",
+         "Modification Slots": "5"
+        },
+        "8": {
+         "Level": "8",
+         "Proficiency Bonus": "+3",
+         "Features": "Ability Score Improvement",
+         "Tech Powers Known": "16",
+         "Tech Points": "16",
+         "Max Power Level": "4th",
+         "Potent Aptitude": "d6",
+         "Modification Slots": "5"
+        },
+        "9": {
+         "Level": "9",
+         "Proficiency Bonus": "+4",
+         "Features": "�",
+         "Tech Powers Known": "18",
+         "Tech Points": "18",
+         "Max Power Level": "5th",
+         "Potent Aptitude": "d8",
+         "Modification Slots": "6"
+        },
+        "10": {
+         "Level": "10",
+         "Proficiency Bonus": "+4",
+         "Features": "Infuse Item (+2)",
+         "Tech Powers Known": "19",
+         "Tech Points": "20",
+         "Max Power Level": "5th",
+         "Potent Aptitude": "d8",
+         "Modification Slots": "6"
+        },
+        "11": {
+         "Level": "11",
+         "Proficiency Bonus": "+4",
+         "Features": "�",
+         "Tech Powers Known": "21",
+         "Tech Points": "22",
+         "Max Power Level": "6th",
+         "Potent Aptitude": "d8",
+         "Modification Slots": "7"
+        },
+        "12": {
+         "Level": "12",
+         "Proficiency Bonus": "+4",
+         "Features": "Ability Score Improvement",
+         "Tech Powers Known": "22",
+         "Tech Points": "24",
+         "Max Power Level": "6th",
+         "Potent Aptitude": "d8",
+         "Modification Slots": "7"
+        },
+        "13": {
+         "Level": "13",
+         "Proficiency Bonus": "+5",
+         "Features": "�",
+         "Tech Powers Known": "23",
+         "Tech Points": "26",
+         "Max Power Level": "7th",
+         "Potent Aptitude": "d10",
+         "Modification Slots": "8"
+        },
+        "14": {
+         "Level": "14",
+         "Proficiency Bonus": "+5",
+         "Features": "Discipline feature",
+         "Tech Powers Known": "24",
+         "Tech Points": "28",
+         "Max Power Level": "7th",
+         "Potent Aptitude": "d10",
+         "Modification Slots": "8"
+        },
+        "15": {
+         "Level": "15",
+         "Proficiency Bonus": "+5",
+         "Features": "Infuse Item (+3)",
+         "Tech Powers Known": "25",
+         "Tech Points": "30",
+         "Max Power Level": "8th",
+         "Potent Aptitude": "d10",
+         "Modification Slots": "8"
+        },
+        "16": {
+         "Level": "16",
+         "Proficiency Bonus": "+5",
+         "Features": "Ability Score Improvement",
+         "Tech Powers Known": "26",
+         "Tech Points": "32",
+         "Max Power Level": "8th",
+         "Potent Aptitude": "d10",
+         "Modification Slots": "8"
+        },
+        "17": {
+         "Level": "17",
+         "Proficiency Bonus": "+6",
+         "Features": "�",
+         "Tech Powers Known": "27",
+         "Tech Points": "34",
+         "Max Power Level": "9th",
+         "Potent Aptitude": "d12",
+         "Modification Slots": "9"
+        },
+        "18": {
+         "Level": "18",
+         "Proficiency Bonus": "+6",
+         "Features": "Discipline feature",
+         "Tech Powers Known": "28",
+         "Tech Points": "36",
+         "Max Power Level": "9th",
+         "Potent Aptitude": "d12",
+         "Modification Slots": "9"
+        },
+        "19": {
+         "Level": "19",
+         "Proficiency Bonus": "+6",
+         "Features": "Ability Score Improvement",
+         "Tech Powers Known": "29",
+         "Tech Points": "38",
+         "Max Power Level": "9th",
+         "Potent Aptitude": "d12",
+         "Modification Slots": "9"
+        },
+        "20": {
+         "Level": "20",
+         "Proficiency Bonus": "+6",
+         "Features": "Tech Mastery",
+         "Tech Powers Known": "30",
+         "Tech Points": "40",
+         "Max Power Level": "9th",
+         "Potent Aptitude": "d12",
+         "Modification Slots": "9"
+        }
+       },
+       "casterType": "Tech",
+       "casterRatio": 1,
+       "multiClassProficiencies": [
+        "Light armor"
+       ],
+       "archetypeFlavorName": "Engineering Disciplines"
+      }
+     },
+     "archetypes": {
+      "Armstech Engineering": {
+       "name": "Armstech Engineering",
+       "className": "Engineer",
+       "casterType": "None",
+       "casterRatio": 0,
+       "leveledTable": null
+      }
+     },
+     "species": {
+      "Zabrak": {
+       "name": "Zabrak",
+       "size": "Medium",
+       "homeworld": null,
+       "language": "Zabraki",
+       "distinctions": "Horns, two hearts, facial tattoos",
+       "skinColorOptions": "Pale to dark brown, red, orange and yellow",
+       "hairColorOptions": "Black, blonde, brown, red, or purple",
+       "eyeColorOptions": "Yellow, green, orange, brown, blue, red, or purple",
+       "heightAverage": "5'1\"",
+       "heightRollMod": "+2d12\"",
+       "weightAverage": "120 lb.",
+       "weightRollMod": "x(2d4) lb.",
+       "traits": [
+        {
+         "name": "Ability Score Increase",
+         "description": "Your Constitution score increases by 2, and your Strength or Dexterity score increases by 1."
+        },
+        {
+         "name": "Age",
+         "description": "Zabraks reach adulthood in their late teens and live less than a century."
+        },
+        {
+         "name": "Alignment",
+         "description": "Zabraks tend toward no particular alignment. The best and worst are found among them."
+        },
+        {
+         "name": "Size",
+         "description": "Zabraks stand anywhere from 5 to 7 feet tall and weigh up to 300 lbs. Regardless of your position in that range, your size is Medium."
+        },
+        {
+         "name": "Speed",
+         "description": "Your base walking speed is 30 feet."
+        },
+        {
+         "name": "Coercive",
+         "description": "You have proficiency with Persuasion or Intimidation (your choice)."
+        },
+        {
+         "name": "Crafters",
+         "description": "You have proficiency with one set of artisan’s implements of your choice."
+        },
+        {
+         "name": "Second Heart",
+         "description": "When you are reduced to 0 hit points but not killed outright, you can drop to 1 hit point instead. You can’t use this feature again until you finish a long rest."
+        },
+        {
+         "name": "Toughness",
+         "description": "Your hit point maximum increases by 1, and it increases by 1 every time you gain a level."
+        },
+        {
+         "name": "Unarmed Combatant",
+         "description": "Your unarmed strikes deal 1d4 kinetic damage and have the finesse property."
+        },
+        {
+         "name": "Languages",
+         "description": "You can speak, read, and write Galactic Basic and Zabraki."
+        }
+       ],
+       "imageUrls": [
+        "https://starwars5ecentral.blob.core.windows.net/site-images/species/species_zabrak.png"
+       ]
+      }
+     },
+     "backgrounds": {
+      "Scientist": {
+       "name": "Scientist",
+       "flavorText": "Nothing excites you more than pushing the boundaries of scientific knowledge. Most of your time is spent in a lab performing experiments to further your interests. Few people understand the work you do. You can solve complex problems most people can't begin to wrap their heads around, and can solve simple problems in unexpected ways that surprise most people. \r\n\r\nWhat is your scientific field of interest? Is it your insatiable curiousity, or a personal goal that drives you? Did you leave your lab voluntarily, or were you kicked out? One thing is for sure - there are too many interesting research ideas, and too little time.\r\n",
+       "skillProficiencies": "Choose two from Lore, Medicine, Nature, and Technology",
+       "toolProficiencies": "One of your choice",
+       "languages": "One of your choice",
+       "equipment": "A set of common clothes, a datapad, a book on your field of research, a pouch containing 100 cr",
+       "featureName": "Scientific Method",
+       "featureText": "You are well acquainted with your field of research from having read numerous journals or having attended scientific conferences. Concepts that are complicated, involving technical jargon that usually goes over most people's heads, are simple to you. You fully understand concepts, can recall key information, and know how to use equipment related to your field, unless the research was hidden from the public, in which case you may only partially understand it. You also recognize well-known figures in your field.\r\n",
+       "flavorName": "Field of Research",
+       "flavorDescription": "While scientist's are widely knowledgeable, they also choose a focus for their studies. Choose an option or roll on the table below to define your field of research.\r\n\r\n| d8 | Field of Research  |\r\n|:----:|:-------------|\r\n| 1  | Biology |\r\n| 2  | Artificial Intelligence |\r\n| 3 | Chemistry |\r\n| 4 | Geology |\r\n\r\n| d8 | Field of Research  |\r\n|:----:|:-------------|\r\n| 5 | Physics |\r\n| 6 | the Force |\r\n| 7 | Astrogation |\r\n| 8 | Medicine |\r\n"
+      }
+     },
+     "feats": {
+      "Techie": {
+       "name": "Techie",
+       "prerequisite": null,
+       "text": "You master the theory and practice of technology, gaining the following benefits: \r\n- Increase your Intelligence score by 1, to a maximum of 20. \r\n- You gain proficiency in the Technology skill. If you are already proficient in it, you instead gain expertise in it. \r\n- You learn the *repair droid* tech power. You can cast it once, using supplies scavenged around you, without the use of a wristpad and without spending tech points, and you regain the ability to do so when you finish a long rest.\r\n",
+       "attributesIncreased": [
+        "Intelligence"
+       ],
+       "contentType": "Core",
+       "contentSource": "PHB"
+      }
+     },
+     "maneuvers": {},
+     "choices": {
+      "skills": {
+       "Technology": {
+        "name": "Technology",
+        "baseAttribute": "Intelligence",
+        "contentType": "Lookup",
+        "contentSource": "None"
+       },
+       "Lore": {
+        "name": "Lore",
+        "baseAttribute": "Intelligence",
+        "contentType": "Lookup",
+        "contentSource": "None"
+       },
+       "Investigation": {
+        "name": "Investigation",
+        "baseAttribute": "Intelligence",
+        "contentType": "Lookup",
+        "contentSource": "None"
+       }
+      }
+     },
+     "conditions": [
+      {
+       "name": "Blinded",
+       "description": "A blinded creature can't see and automatically fails any ability check that requires sight.\\r\\n- Attack rolls against the creature have advantage, and the creature's attack rolls have disadvantage."
+      },
+      {
+       "name": "Charmed",
+       "description": "A charmed creature can't attack the charmer or target the charmer with harmful abilities or enhanced effects.\\r\\n- The charmer has advantage on any ability check to interact socially with the creature."
+      },
+      {
+       "name": "Deafened",
+       "description": "A deafened creature can't hear and automatically fails any ability check that requires hearing."
+      },
+      {
+       "name": "Exhaustion",
+       "description": "Some special abilities and environmental hazards, such as and the long-term effects of freezing or scorching temperatures, can lead to a special condition called exhaustion. Exhaustion is measured in six levels. An effect can give a creature one or more levels of exhaustion, as specified in the effect's description. Exhaustion Level\\r\\n\\r\\n|Level|Effect|\\r\\n|:--:|:--|\\r\\n|1|Disadvantage on ability checks|\\r\\n|2|Speed halved|\\r\\n|3|Disadvantage on attack rolls and saving throws|\\r\\n|4|Hit point maximum halved|\\r\\n|5|Speed reduced to 0|\\r\\n|6|Death|\\r\\n\\r\\nIf an already exhausted creature suffers another effect that causes exhaustion, its current level of exhaustion increases by the amount specified in the effect's description.\\r\\n\\r\\nA creature suffers the effect of its current level of exhaustion as well as all lower levels. For example, a creature suffering level 2 exhaustion has its speed halved and has disadvantage on ability checks.\\r\\n\\r\\nAn effect that removes exhaustion reduces its level as specified in the effect's description, with all exhaustion effects ending if a creature's exhaustion level is reduced below 1.\\r\\n\\r\\nFinishing a long rest reduces a creature's exhaustion level by 1, provided that the creature has also ingested some food and drink."
+      },
+      {
+       "name": "Frightened",
+       "description": "A frightened creature has disadvantage on ability checks and attack rolls while the source of its fear is within line of sight.\\r\\n- The creature can't willingly move closer to the source of its fear."
+      },
+      {
+       "name": "Grappled",
+       "description": "A grappled creature's speed becomes 0, and it can't benefit from any bonus to its speed.\\r\\n- The condition ends if the grappler is incapacitated (see the condition).\\r\\n- The condition also ends if an effect removes the grappled creature from the reach of the grappler or grappling effect."
+      },
+      {
+       "name": "Incapacitated",
+       "description": "An incapacitated creature can't take actions or reactions."
+      },
+      {
+       "name": "Invisible",
+       "description": "An invisible creature is impossible to see without the aid of powers or a special sense. For the purpose of hiding, the creature is heavily obscured. The creature's location can be detected by any noise it makes or any tracks it leaves.\\r\\n- Attack rolls against the creature have disadvantage, and the creature's attack rolls have advantage."
+      },
+      {
+       "name": "Paralyzed",
+       "description": "A paralyzed creature is incapacitated (see the condition) and can't move or speak.\\r\\n- The creature automatically fails Strength and Dexterity saving throws. Attack rolls against the creature have advantage.\\r\\n- Any attack that hits the creature is a critical hit if the attacker is within 5 feet of the creature."
+      },
+      {
+       "name": "Petrified",
+       "description": "A petrified creature is transformed, along with any object it is wearing or carrying, into a solid inanimate substance (usually stone). Its weight increases by a factor of ten, and it ceases aging.\\r\\n- The creature is incapacitated (see the condition), can't move or speak, and is unaware of its surroundings.\\r\\n- Attack rolls against the creature have advantage. \\r\\n- The creature automatically fails Strength and Dexterity saving throws.\\r\\n- The creature has resistance to all damage.\\r\\n- The creature is immune to poison and disease, although a poison or disease already in its system is suspended, not neutralized."
+      },
+      {
+       "name": "Poisoned",
+       "description": "A poisoned creature has disadvantage on attack rolls and ability checks."
+      },
+      {
+       "name": "Prone",
+       "description": "A prone creature's only movement option is to crawl, unless it stands up and thereby ends the condition. \\r\\n- The creature has disadvantage on melee attack rolls.\\r\\n- The creature has disadvantage on ranged attack rolls against targets within 30 feet.\\r\\n- An attack roll against the creature has advantage if the attacker is within 5 feet of the creature. Otherwise, the attack roll has disadvantage."
+      },
+      {
+       "name": "Restrained",
+       "description": "A restrained creature's speed becomes 0, and it can't benefit from any bonus to its speed.\\r\\n- Attack rolls against the creature have advantage, and the creature's attack rolls have disadvantage.\\r\\n- The creature has disadvantage on Dexterity saving throws."
+      },
+      {
+       "name": "Shocked",
+       "description": "A shocked creature's speed is reduced by half.\\r\\n- The creature can't take reactions."
+      },
+      {
+       "name": "Stunned",
+       "description": "A stunned creature is incapacitated (see the condition), can't move, and can speak only falteringly.\\r\\n- The creature automatically fails Strength and Dexterity saving throws.\\r\\n- Attack rolls against the creature have advantage."
+      },
+      {
+       "name": "Unconscious",
+       "description": "An unconscious creature is incapacitated (see the condition), can't move or speak, and is unaware of its surroundings\\r\\n- The creature drops whatever it's holding and falls prone.\\r\\n- The creature automatically fails Strength and Dexterity saving throws.\\r\\n- Attack rolls against the creature have advantage.\\r\\n- Any attack that hits the creature is a critical hit if the attacker is within 5 feet of the creature."
+      }
+     ]
+    },
+    "validation": {
+     "code": 0,
+     "message": "All checks passed",
+     "isValid": true
+    },
+    "error": null,
+    "source": "sw5e",
+    "loadedAt": 1792281562506,
+    "meta": {
+     "bridge": 14,
+     "dataVersion": 199,
+     "loggedIn": true,
+     "sourceUrl": "https://sw5e.com/tools/mycharacters",
+     "extractedAt": 1792281562248
+    }
+   }
+  },
+  "derived": {
+   "id:00000000-0000-4000-8000-000012000001": {
+    "basis": "{\"background\":{\"feat\":{\"abilityScoreImprovements\":{\"Intelligence\":1},\"name\":\"Techie\",\"type\":\"Feat\"},\"languages\":[\"Sullustese\"],\"name\":\"Scientist\",\"skills\":[\"Medicine\"]},\"baseAbilityScores\":{\"Charisma\":10,\"Constitution\":14,\"Dexterity\":13,\"Intelligence\":15,\"Strength\":8,\"Wisdom\":12},\"builderVersion\":\"0.7.6\",\"changedAt\":1792270517206,\"characteristics\":null,\"classes\":[{\"abilityScoreImprovements\":[{\"abilitiesIncreased\":[{\"name\":\"Intelligence\",\"value\":2}],\"type\":\"Ability Score Improvement\"}],\"archetype\":{\"name\":\"Armstech Engineering\"},\"hitPoints\":[5,6,5],\"levels\":4,\"name\":\"Engineer\",\"skills\":[\"Technology\",\"Lore\",\"Investigation\"]}],\"createdAt\":1792270407296,\"credits\":null,\"currentStats\":{\"conditions\":[],\"deathSaves\":{\"failures\":0,\"successes\":0},\"exhaustion\":0,\"featuresTimesUsed\":{},\"forcePointsUsed\":0,\"hasInspiration\":false,\"highLevelCasting\":{\"level6\":false,\"level7\":false,\"level8\":false,\"level9\":false},\"hitDiceUsed\":{},\"hitPointsLost\":0,\"superiorityDiceUsed\":0,\"techPointsUsed\":0,\"temporaryHitPoints\":0},\"customEquipment\":[{\"cost\":0,\"description\":\"Starting equipment.\",\"equipmentCategory\":\"Gear\",\"name\":\"Dungeoneer's pack\",\"quantity\":1,\"weight\":0},{\"cost\":0,\"description\":\"Starting equipment.\",\"equipmentCategory\":\"Gear\",\"name\":\"Book on your field of research\",\"quantity\":1,\"weight\":0}],\"customFeats\":[],\"customFeatures\":[],\"customForcePowers\":[],\"customLanguages\":[],\"customProficiencies\":[{\"from\":\"Class: Engineer #2\",\"name\":\"Slicer's kit\",\"proficiencyLevel\":\"proficient\",\"type\":\"tool\"}],\"customTechPowers\":[],\"equipment\":[{\"category\":\"Equipment\",\"equipped\":true,\"name\":\"Combat suit\",\"quantity\":1},{\"category\":\"Equipment\",\"name\":\"Tinker's implements\",\"quantity\":1},{\"category\":\"Equipment\",\"equipped\":true,\"name\":\"Vibrodagger\",\"quantity\":1,\"tweaks\":{\"toHit\":{\"bonus\":0,\"proficiency\":\"proficient\"}}},{\"category\":\"Equipment\",\"name\":\"Wristpad\",\"quantity\":1},{\"category\":\"Equipment\",\"name\":\"Clothes, common\",\"quantity\":1},{\"category\":\"Equipment\",\"name\":\"Datapad\",\"quantity\":1},{\"category\":\"Equipment\",\"name\":\"Pouch\",\"quantity\":1}],\"experiencePoints\":2700,\"featureNotes\":null,\"id\":\"00000000-0000-4000-8000-000012000001\",\"image\":\"\",\"localId\":\"local-mvcviwzk2jpqx5\",\"name\":\"Wizard Check (local)\",\"notes\":null,\"settings\":{\"abilityScoreMethod\":\"Standard Array\",\"isEnforcingForcePrerequisites\":true,\"isFixedHitPoints\":false},\"species\":{\"abilityScoreImprovement\":{\"Dexterity\":1},\"abilityScoreImprovementSelectedOption\":0,\"language\":\"Zabraki\",\"name\":\"Zabrak\"},\"tweaks\":{\"abilityScores\":{\"Intelligence\":{\"skills\":{\"Technology\":{\"bonus\":0,\"proficiency\":\"Proficient\"}}}},\"hitPoints\":{\"maximum\":{\"bonus\":4}},\"unarmed\":{\"damage\":{\"bonus\":2},\"damageDice\":{\"bonus\":0,\"dieSize\":4},\"toHit\":{\"bonus\":3}}},\"userId\":\"00000000-0000-4000-8000-000012000002\"}",
+    "complete": {
+     "name": "Wizard Check (local)",
+     "builderVersion": "0.7.6",
+     "image": "",
+     "characteristics": {
+      "alignment": "",
+      "Personality Traits": "",
+      "Ideal": "",
+      "Bond": "",
+      "Flaw": "",
+      "Gender": "",
+      "Place of Birth": "",
+      "Age": "",
+      "Height": "",
+      "Weight": "",
+      "Hair": "",
+      "Eyes": "",
+      "Skin": "",
+      "Appearance": "",
+      "Backstory": ""
+     },
+     "tweaks": {
+      "abilityScores": {
+       "Intelligence": {
+        "skills": {
+         "Technology": {
+          "proficiency": "Proficient",
+          "bonus": 0
+         }
+        }
+       }
+      },
+      "hitPoints": {
+       "maximum": {
+        "bonus": 4
+       }
+      },
+      "unarmed": {
+       "damageDice": {
+        "dieSize": 4,
+        "bonus": 0
+       },
+       "toHit": {
+        "bonus": 3
+       },
+       "damage": {
+        "bonus": 2
+       }
+      }
+     },
+     "customProficiencies": [
+      {
+       "name": "Slicer's kit",
+       "type": "tool",
+       "proficiencyLevel": "proficient",
+       "from": "Class: Engineer #2"
+      }
+     ],
+     "customLanguages": [],
+     "customFeatures": [],
+     "customTechPowers": [],
+     "customForcePowers": [],
+     "customEquipment": [
+      {
+       "name": "Dungeoneer's pack",
+       "quantity": 1,
+       "equipmentCategory": "Gear",
+       "cost": 0,
+       "weight": 0,
+       "description": "Starting equipment."
+      },
+      {
+       "name": "Book on your field of research",
+       "quantity": 1,
+       "equipmentCategory": "Gear",
+       "cost": 0,
+       "weight": 0,
+       "description": "Starting equipment."
+      }
+     ],
+     "numCustomFeats": 0,
+     "currentLevel": 4,
+     "classText": "Engineer (Armstech Engineering) 4",
+     "alignment": "",
+     "species": "Zabrak",
+     "background": "Scientist",
+     "experiencePoints": {
+      "previousLevel": 2700,
+      "current": 2700,
+      "nextLevel": 6500,
+      "isCorrect": true,
+      "errorMessage": ""
+     },
+     "abilityScores": {
+      "Strength": {
+       "value": 8,
+       "modifier": -1,
+       "savingThrow": {
+        "modifier": -1,
+        "proficiency": "none"
+       },
+       "skills": [
+        {
+         "name": "Athletics",
+         "modifier": -1,
+         "proficiency": "none"
+        }
+       ]
+      },
+      "Dexterity": {
+       "value": 14,
+       "modifier": 2,
+       "savingThrow": {
+        "modifier": 2,
+        "proficiency": "none"
+       },
+       "skills": [
+        {
+         "name": "Acrobatics",
+         "modifier": 2,
+         "proficiency": "none"
+        },
+        {
+         "name": "Sleight of Hand",
+         "modifier": 2,
+         "proficiency": "none"
+        },
+        {
+         "name": "Stealth",
+         "modifier": 2,
+         "proficiency": "none"
+        }
+       ]
+      },
+      "Constitution": {
+       "value": 16,
+       "modifier": 3,
+       "savingThrow": {
+        "modifier": 5,
+        "proficiency": "proficient"
+       },
+       "skills": []
+      },
+      "Intelligence": {
+       "value": 18,
+       "modifier": 4,
+       "savingThrow": {
+        "modifier": 6,
+        "proficiency": "proficient"
+       },
+       "skills": [
+        {
+         "name": "Investigation",
+         "modifier": 6,
+         "proficiency": "proficient"
+        },
+        {
+         "name": "Lore",
+         "modifier": 6,
+         "proficiency": "proficient"
+        },
+        {
+         "name": "Nature",
+         "modifier": 4,
+         "proficiency": "none"
+        },
+        {
+         "name": "Piloting",
+         "modifier": 4,
+         "proficiency": "none"
+        },
+        {
+         "name": "Technology",
+         "modifier": 6,
+         "proficiency": "proficient"
+        }
+       ]
+      },
+      "Wisdom": {
+       "value": 12,
+       "modifier": 1,
+       "savingThrow": {
+        "modifier": 1,
+        "proficiency": "none"
+       },
+       "skills": [
+        {
+         "name": "Animal Handling",
+         "modifier": 1,
+         "proficiency": "none"
+        },
+        {
+         "name": "Insight",
+         "modifier": 1,
+         "proficiency": "none"
+        },
+        {
+         "name": "Medicine",
+         "modifier": 3,
+         "proficiency": "proficient"
+        },
+        {
+         "name": "Perception",
+         "modifier": 1,
+         "proficiency": "none"
+        },
+        {
+         "name": "Survival",
+         "modifier": 1,
+         "proficiency": "none"
+        }
+       ]
+      },
+      "Charisma": {
+       "value": 10,
+       "modifier": 0,
+       "savingThrow": {
+        "modifier": 0,
+        "proficiency": "none"
+       },
+       "skills": [
+        {
+         "name": "Deception",
+         "modifier": 0,
+         "proficiency": "none"
+        },
+        {
+         "name": "Intimidation",
+         "modifier": 0,
+         "proficiency": "none"
+        },
+        {
+         "name": "Performance",
+         "modifier": 0,
+         "proficiency": "none"
+        },
+        {
+         "name": "Persuasion",
+         "modifier": 0,
+         "proficiency": "none"
+        }
+       ]
+      }
+     },
+     "proficiencyBonus": 2,
+     "initiative": 2,
+     "armorClass": 13,
+     "armorList": [
+      "Combat suit"
+     ],
+     "passivePerception": 11,
+     "inspiration": false,
+     "vision": "normal",
+     "speed": {
+      "base": "30 ft",
+      "hour": "3 miles",
+      "day": "24 miles",
+      "special": ""
+     },
+     "hitPoints": {
+      "current": 40,
+      "temporary": 0,
+      "maximum": 40,
+      "hitDice": [
+       {
+        "size": "d8",
+        "current": 4,
+        "maximum": 4
+       }
+      ],
+      "deathSaves": {
+       "successes": 0,
+       "failures": 0
+      },
+      "resting": {
+       "hitDieBonus": 3,
+       "numHitDiceUsed": 0,
+       "hitDiceRestored": [],
+       "techPointsUsed": 0,
+       "forcePointsUsed": 0,
+       "highLevelCasting": {
+        "level6": false,
+        "level7": false,
+        "level8": false,
+        "level9": false
+       },
+       "shortRestFeatures": [],
+       "longRestFeatures": []
+      }
+     },
+     "conditions": [],
+     "exhaustion": 0,
+     "proficiencies": [
+      {
+       "name": "Simple blasters",
+       "type": "weapon"
+      },
+      {
+       "name": "simple vibroweapons",
+       "type": "weapon"
+      },
+      {
+       "name": "Light armor",
+       "type": "armor"
+      },
+      {
+       "name": "One of your choice",
+       "type": "tool"
+      }
+     ],
+     "skillAndSaveProficiencies": [
+      "Investigation",
+      "Lore",
+      "Technology",
+      "Medicine",
+      "Constitution Saving Throws",
+      "Intelligence Saving Throws"
+     ],
+     "languages": [
+      "Galactic Basic",
+      "Zabraki",
+      "Sullustese"
+     ],
+     "equipment": [
+      {
+       "name": "Combat suit",
+       "description": "Combat suits are seen all over the galaxy, and can be found for sale by almost any merchant who dealt in weapons and armor. Many such suits are used by military organizations, such as the Galactic Republic's military, as well as by mercenaries, criminals, bounty hunters and even some Jedi.\r\n\r\nThe suit itself offers decent protection from most types of attacks while maintaining maximum flexibility and minimum weight. However this armor is only recommended for light skirmishes.",
+       "cost": 100,
+       "weight": "10",
+       "equipmentCategoryEnum": 4,
+       "equipmentCategory": "Armor",
+       "damageNumberOfDice": 0,
+       "damageTypeEnum": 0,
+       "damageType": "Unknown",
+       "damageDieModifier": 0,
+       "weaponClassificationEnum": 0,
+       "weaponClassification": "Unknown",
+       "armorClassificationEnum": 1,
+       "armorClassification": "Light",
+       "damageDiceDieTypeEnum": 0,
+       "damageDieType": 0,
+       "properties": [],
+       "propertiesJson": "[]",
+       "propertiesMap": {},
+       "propertiesMapJson": "{}",
+       "modes": [],
+       "modesJson": "[]",
+       "ac": "11 + Dex modifier",
+       "strengthRequirement": "",
+       "stealthDisadvantage": false,
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Combat suit",
+       "timestamp": "2023-05-30T20:15:38.6892471+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A38.6892471Z'\"",
+       "equipped": true,
+       "quantity": 1,
+       "index": 0,
+       "isFound": true
+      },
+      {
+       "name": "Tinker's implements",
+       "description": null,
+       "cost": 500,
+       "weight": "0",
+       "equipmentCategoryEnum": 12,
+       "equipmentCategory": "Tool",
+       "damageNumberOfDice": 0,
+       "damageTypeEnum": 0,
+       "damageType": "Unknown",
+       "damageDieModifier": 0,
+       "weaponClassificationEnum": 0,
+       "weaponClassification": "Unknown",
+       "armorClassificationEnum": 0,
+       "armorClassification": "Unknown",
+       "damageDiceDieTypeEnum": 0,
+       "damageDieType": 0,
+       "properties": null,
+       "propertiesJson": "",
+       "propertiesMap": null,
+       "propertiesMapJson": "",
+       "modes": [],
+       "modesJson": "[]",
+       "ac": null,
+       "strengthRequirement": null,
+       "stealthDisadvantage": false,
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Tinker's implements",
+       "timestamp": "2023-05-30T20:15:38.6932443+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A38.6932443Z'\"",
+       "quantity": 1,
+       "index": 1,
+       "isFound": true
+      },
+      {
+       "name": "Vibrodagger",
+       "description": null,
+       "cost": 50,
+       "weight": "0.5",
+       "equipmentCategoryEnum": 3,
+       "equipmentCategory": "Weapon",
+       "damageNumberOfDice": 1,
+       "damageTypeEnum": 7,
+       "damageType": "Kinetic",
+       "damageDieModifier": 0,
+       "weaponClassificationEnum": 3,
+       "weaponClassification": "SimpleVibroweapon",
+       "armorClassificationEnum": 0,
+       "armorClassification": "Unknown",
+       "damageDiceDieTypeEnum": 4,
+       "damageDieType": 4,
+       "properties": [
+        "Finesse",
+        "light",
+        "thrown (range 20/60)"
+       ],
+       "propertiesJson": "[\"Finesse\",\"light\",\"thrown (range 20/60)\"]",
+       "propertiesMap": {
+        "Finesse": "Finesse",
+        "Light": "light",
+        "Range": "thrown (range 20/60)"
+       },
+       "propertiesMapJson": "{\"Finesse\":\"Finesse\",\"Light\":\"light\",\"Range\":\"thrown (range 20/60)\"}",
+       "modes": [],
+       "modesJson": "[]",
+       "ac": null,
+       "strengthRequirement": null,
+       "stealthDisadvantage": false,
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Vibrodagger",
+       "timestamp": "2023-05-30T20:15:38.6832509+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A38.6832509Z'\"",
+       "attackBonus": 4,
+       "damageBonus": 2,
+       "ability": "Dexterity",
+       "isCustom": false,
+       "equipped": true,
+       "quantity": 1,
+       "index": 2,
+       "tweaks": {
+        "toHit": {
+         "proficiency": "proficient",
+         "bonus": 0
+        }
+       },
+       "isFound": true
+      },
+      {
+       "name": "Wristpad",
+       "description": "A wristpad is a harness with an integrated datapad and holoprojector interface that fits on the forearm and includes self-charging battery packs.",
+       "cost": 600,
+       "weight": "2",
+       "equipmentCategoryEnum": 8,
+       "equipmentCategory": "DataRecordingAndStorage",
+       "damageNumberOfDice": 0,
+       "damageTypeEnum": 0,
+       "damageType": "Unknown",
+       "damageDieModifier": 0,
+       "weaponClassificationEnum": 0,
+       "weaponClassification": "Unknown",
+       "armorClassificationEnum": 0,
+       "armorClassification": "Unknown",
+       "damageDiceDieTypeEnum": 0,
+       "damageDieType": 0,
+       "properties": null,
+       "propertiesJson": "",
+       "propertiesMap": null,
+       "propertiesMapJson": "",
+       "modes": [],
+       "modesJson": "[]",
+       "ac": null,
+       "strengthRequirement": null,
+       "stealthDisadvantage": false,
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Wristpad",
+       "timestamp": "2023-05-30T20:15:38.9640901+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A38.9640901Z'\"",
+       "quantity": 1,
+       "index": 3,
+       "isFound": true
+      },
+      {
+       "name": "Clothes, common",
+       "description": null,
+       "cost": 5,
+       "weight": "3",
+       "equipmentCategoryEnum": 20,
+       "equipmentCategory": "Clothing",
+       "damageNumberOfDice": 0,
+       "damageTypeEnum": 0,
+       "damageType": "Unknown",
+       "damageDieModifier": 0,
+       "weaponClassificationEnum": 0,
+       "weaponClassification": "Unknown",
+       "armorClassificationEnum": 0,
+       "armorClassification": "Unknown",
+       "damageDiceDieTypeEnum": 0,
+       "damageDieType": 0,
+       "properties": null,
+       "propertiesJson": "",
+       "propertiesMap": null,
+       "propertiesMapJson": "",
+       "modes": [],
+       "modesJson": "[]",
+       "ac": null,
+       "strengthRequirement": null,
+       "stealthDisadvantage": false,
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Clothes, common",
+       "timestamp": "2023-05-30T20:15:38.9610928+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A38.9610928Z'\"",
+       "quantity": 1,
+       "index": 4,
+       "isFound": true
+      },
+      {
+       "name": "Datapad",
+       "description": "A datapad is a small electronic device used for the input, storage and displaying of information. It features a holoprojective surface for 3D viewing. ",
+       "cost": 100,
+       "weight": "0.5",
+       "equipmentCategoryEnum": 8,
+       "equipmentCategory": "DataRecordingAndStorage",
+       "damageNumberOfDice": 0,
+       "damageTypeEnum": 0,
+       "damageType": "Unknown",
+       "damageDieModifier": 0,
+       "weaponClassificationEnum": 0,
+       "weaponClassification": "Unknown",
+       "armorClassificationEnum": 0,
+       "armorClassification": "Unknown",
+       "damageDiceDieTypeEnum": 0,
+       "damageDieType": 0,
+       "properties": null,
+       "propertiesJson": "",
+       "propertiesMap": null,
+       "propertiesMapJson": "",
+       "modes": [],
+       "modesJson": "[]",
+       "ac": null,
+       "strengthRequirement": null,
+       "stealthDisadvantage": false,
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Datapad",
+       "timestamp": "2023-05-30T20:15:38.963091+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A38.963091Z'\"",
+       "quantity": 1,
+       "index": 5,
+       "isFound": true
+      },
+      {
+       "name": "Pouch",
+       "description": "A pouch stores 6.00 lb., not exceeding 1/5 cubic foot. ",
+       "cost": 5,
+       "weight": "1",
+       "equipmentCategoryEnum": 5,
+       "equipmentCategory": "Storage",
+       "damageNumberOfDice": 0,
+       "damageTypeEnum": 0,
+       "damageType": "Unknown",
+       "damageDieModifier": 0,
+       "weaponClassificationEnum": 0,
+       "weaponClassification": "Unknown",
+       "armorClassificationEnum": 0,
+       "armorClassification": "Unknown",
+       "damageDiceDieTypeEnum": 0,
+       "damageDieType": 0,
+       "properties": null,
+       "propertiesJson": "",
+       "propertiesMap": null,
+       "propertiesMapJson": "",
+       "modes": [],
+       "modesJson": "[]",
+       "ac": null,
+       "strengthRequirement": null,
+       "stealthDisadvantage": false,
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Pouch",
+       "timestamp": "2023-05-30T20:15:38.9680886+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A38.9680886Z'\"",
+       "quantity": 1,
+       "index": 6,
+       "isFound": true
+      }
+     ],
+     "attunement": {
+      "current": 0,
+      "maximum": 2,
+      "hasAttunable": false
+     },
+     "weapons": [
+      {
+       "name": "Vibrodagger",
+       "description": null,
+       "cost": 50,
+       "weight": "0.5",
+       "equipmentCategoryEnum": 3,
+       "equipmentCategory": "Weapon",
+       "damageNumberOfDice": 1,
+       "damageTypeEnum": 7,
+       "damageType": "Kinetic",
+       "damageDieModifier": 0,
+       "weaponClassificationEnum": 3,
+       "weaponClassification": "SimpleVibroweapon",
+       "armorClassificationEnum": 0,
+       "armorClassification": "Unknown",
+       "damageDiceDieTypeEnum": 4,
+       "damageDieType": 4,
+       "properties": [
+        "Finesse",
+        "light",
+        "thrown (range 20/60)"
+       ],
+       "propertiesJson": "[\"Finesse\",\"light\",\"thrown (range 20/60)\"]",
+       "propertiesMap": {
+        "Finesse": "Finesse",
+        "Light": "light",
+        "Range": "thrown (range 20/60)"
+       },
+       "propertiesMapJson": "{\"Finesse\":\"Finesse\",\"Light\":\"light\",\"Range\":\"thrown (range 20/60)\"}",
+       "modes": [],
+       "modesJson": "[]",
+       "ac": null,
+       "strengthRequirement": null,
+       "stealthDisadvantage": false,
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Vibrodagger",
+       "timestamp": "2023-05-30T20:15:38.6832509+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A38.6832509Z'\"",
+       "attackBonus": 4,
+       "damageBonus": 2,
+       "ability": "Dexterity",
+       "isCustom": false,
+       "equipped": true,
+       "quantity": 1,
+       "index": 2,
+       "tweaks": {
+        "toHit": {
+         "proficiency": "proficient",
+         "bonus": 0
+        }
+       },
+       "isFound": true
+      },
+      {
+       "name": "Unarmed Strike",
+       "description": null,
+       "cost": 0,
+       "weight": "0",
+       "equipmentCategory": "Weapon",
+       "contentType": "Core",
+       "contentSource": "PHB",
+       "damageNumberOfDice": 1,
+       "damageType": "Kinetic",
+       "weaponClassification": "Unarmed",
+       "damageDieType": 4,
+       "properties": [],
+       "propertiesMap": {},
+       "modes": [],
+       "quantity": 0,
+       "index": -1,
+       "isFound": true,
+       "equipped": true,
+       "attackBonus": 4,
+       "damageBonus": 2,
+       "ability": "Strength",
+       "isCustom": false,
+       "tweaks": {
+        "damageDice": {
+         "dieSize": 4,
+         "bonus": 0
+        },
+        "toHit": {
+         "bonus": 3
+        },
+        "damage": {
+         "bonus": 2
+        }
+       }
+      }
+     ],
+     "credits": 100,
+     "carryingCapacity": {
+      "encumbered": 40,
+      "heavilyEncumbered": 80,
+      "maxCapacity": 120,
+      "pushDragLift": 240
+     },
+     "superiority": false,
+     "highLevelCasting": {
+      "level6": false,
+      "level7": false,
+      "level8": false,
+      "level9": false
+     },
+     "techCasting": {
+      "pointsUsed": 0,
+      "maxPoints": 12,
+      "attackModifier": 6,
+      "saveDC": 14,
+      "maxPowerLevel": 2,
+      "powersKnown": []
+     },
+     "forceCasting": false,
+     "allForcePowers": [],
+     "combatFeatures": [
+      {
+       "name": "Potent Aptitude",
+       "text": "_**Engineer:** 1st level_\r\nYour technological experience lends you an uncommon insight that you can use to bolster your allies. To do so, you use a bonus action on your turn to choose one creature other than yourself within 60 feet of you who can hear you. That creature gains one Potent Aptitude die, a d4. This die changes as you gain engineer levels, as shown in the Potent Aptitude column of the engineer table.\r\nOnce within the next 10 minutes, the creature can roll the die and add the number rolled to one ability check, attack roll, or saving throw it makes. Once the Potent Aptitude die is rolled, it is lost.\r\nA creature can have only one Potent Aptitude die at a time.\r\nYou can use this feature twice. You gain an additional use at 5th, 9th, 13th, and 17th level. You regain any expended uses when you finish a short or long rest.",
+       "level": 1,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Engineer",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Engineer-Potent Aptitude-1",
+       "timestamp": "2023-05-30T20:15:43.3935639+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.3935639Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Techcasting",
+       "text": "_**Engineer:** 1st level_\r\nDuring your training you have derived powers from schematics with the aid of your wristpad. See chapter 10 for the general rules of techcasting and chapter 12 for the tech powers list.\r\n#### Tech Powers Known\r\nYou learn 6 tech powers of your choice, and you learn more at higher levels, as shown in the Tech Powers Known column of the engineer table. You may not learn a tech power of a level higher than your Max Power Level.\r\n#### Tech Points\r\nYou have a number of tech points equal to your engineer level x 2, as shown in the Tech Points column of the engineer table, + your Intelligence modifier. You use these tech points to cast tech powers. You regain all expended tech points when you finish a short or long rest.\r\n#### Max Power Level\r\nMany tech powers can be overcharged, consuming more tech points to create a greater effect. You can overcharge these powers to a maximum level, which increases at higher levels, as shown in the Max Power Level column of the engineer table.\r\nYou may only cast tech powers at 6th, 7th, 8th, and 9th-level once. You regain the ability to do so after a long rest.\r\n#### Techcasting Ability\r\nIntelligence is your techcasting ability for your tech powers. You use your Intelligence whenever a power refers to your techcasting ability. Additionally, you use your Intelligence modifier when setting the saving throw DC for a tech power you cast and when making an attack roll with one.\r\n___\r\n**Tech save DC** = 8 + your proficiency bonus + your Intelligence modifier\r\n___\r\n**Tech attack modifier** = your proficiency bonus + your Intelligence modifier\r\n___\r\n#### Techcasting Focus\r\nYou use a wristpad (found in chapter 5) or the tools in which you are granted proficiency by this class as a tech focus for your tech powers.",
+       "level": 1,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Engineer",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Engineer-Techcasting-1",
+       "timestamp": "2023-05-30T20:15:43.3935639+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.3935639Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Infuse Item",
+       "text": "_**Engineer:** 2nd level_\r\nYou gain the ability to temporarily enhance a weapon or armor. At the end of a long rest, you can touch one unenhanced object that is a suit of armor, a shield, or a simple or martial weapon. Until the end of your next long rest or until you die, the object becomes an enhanced item, granting a +1 bonus to AC if it's armor or a shield or a +1 bonus to attack and damage rolls if it's a weapon. \r\nOnce you've used this feature, you can't use it again until you finish a long rest.\r\nThis bonus increases to +2 at 10th level and +3 at 15th level.",
+       "level": 2,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Engineer",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Engineer-Infuse Item-2",
+       "timestamp": "2023-05-30T20:15:43.3935639+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.3935639Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Tool Expertise",
+       "text": "_**Engineer:** 2nd level_\r\nYou gain expertise in any tool proficiencies you gain from this class.",
+       "level": 2,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Engineer",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Engineer-Tool Expertise-2",
+       "timestamp": "2023-05-30T20:15:43.3935639+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.3935639Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Bonus Proficiencies",
+       "text": "_**Armstech Engineering:** 3rd level_\r\nYou gain proficiency in armstech's implements, medium armor, martial blasters, and martial vibroweapons. Additionally, when you engage in crafting with armstech's implements, the rate at which you craft doubles.",
+       "level": 3,
+       "sourceEnum": 1,
+       "source": "Archetype",
+       "sourceName": "Armstech Engineering",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Archetype-Armstech Engineering-Bonus Proficiencies-3",
+       "timestamp": "2023-05-30T20:15:42.71995+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A42.71995Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Close Call",
+       "text": "_**Armstech Engineering:** 3rd level_\r\nWhen you make an attack roll with your modified weapon and miss, you can expend one use of your Potent Aptitude to attempt to turn that miss into a hit. Roll the die and add it to the attack roll. ",
+       "level": 3,
+       "sourceEnum": 1,
+       "source": "Archetype",
+       "sourceName": "Armstech Engineering",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Archetype-Armstech Engineering-Close Call-3",
+       "timestamp": "2023-05-30T20:15:42.71995+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A42.71995Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Modified Weaponry",
+       "text": "_**Armstech Engineering:** 3rd level_\r\nYou learn to modify one unenhanced weapon with which you are proficient utilizing your armstech experience. Over the course of a long rest, you can modify the weapon. You must have the weapon and armstech's implements in order to perform this modification.\r\nYour modified weapon is enhanced, requires attunement, can only be used by you, and counts as a tech focus for your tech powers while you are attuned to it. Your modified weapon has 4 modification slots, and it gains more at higher levels, as shown in the Modification Slots column of the engineer table. For each modification installed in excess of your proficiency bonus, your tech point maximum is reduced by 1. Over the course of a long rest, you can install, replace, or remove a number of modifications up to your Intelligence modifier (minimum of one).\r\nSome modification effects require saving throws. When you use such an effect from this class, the DC equals your tech save DC.\r\nAt 9th level, you can maintain two modified weapons. Each modified weapon has modification slots as shown in the Modification Slots column of the engineer table.",
+       "level": 3,
+       "sourceEnum": 1,
+       "source": "Archetype",
+       "sourceName": "Armstech Engineering",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Archetype-Armstech Engineering-Modified Weaponry-3",
+       "timestamp": "2023-05-30T20:15:42.71995+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A42.71995Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Engineering Discipline",
+       "text": "_**Engineer:** 3rd, 6th, 14th, and 18th level_\r\nYou begin to focus on a specific engineering discipline, which is detailed at the end of the class description. ",
+       "level": 3,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Engineer",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Engineer-Engineering Discipline-3",
+       "timestamp": "2023-05-30T20:15:43.3935639+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.3935639Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Ability Score Improvement",
+       "text": "_**Engineer:** 4th, 8th, 12th, 16th, and 19th level_\r\nYou can increase one ability score by 2, or you can increase two ability scores by 1. You can't increase an ability score above 20 using this feature.",
+       "level": 4,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Engineer",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Engineer-Ability Score Improvement-4",
+       "timestamp": "2023-05-30T20:15:43.3935639+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.3935639Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Ability Score Increase",
+       "text": "Your Constitution score increases by 2, and your Strength or Dexterity score increases by 1.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Zabrak",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Zabrak-Ability Score Increase",
+       "timestamp": "2023-05-30T20:15:41.0049268+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A41.0049268Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Age",
+       "text": "Zabraks reach adulthood in their late teens and live less than a century.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Zabrak",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Zabrak-Age",
+       "timestamp": "2023-05-30T20:15:41.0049268+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A41.0049268Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Alignment",
+       "text": "Zabraks tend toward no particular alignment. The best and worst are found among them.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Zabrak",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Zabrak-Alignment",
+       "timestamp": "2023-05-30T20:15:41.0059258+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A41.0059258Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Coercive",
+       "text": "You have proficiency with Persuasion or Intimidation (your choice).",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Zabrak",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Zabrak-Coercive",
+       "timestamp": "2023-05-30T20:15:41.0059258+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A41.0059258Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Crafters",
+       "text": "You have proficiency with one set of artisan’s implements of your choice.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Zabrak",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Zabrak-Crafters",
+       "timestamp": "2023-05-30T20:15:41.0059258+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A41.0059258Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Darkvision",
+       "text": "Your vision can easily cut through darkness. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Zabrak",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Zabrak-Darkvision",
+       "timestamp": "2022-05-29T01:36:26.6243708+00:00",
+       "eTag": "W/\"datetime'2022-05-29T01%3A36%3A26.6243708Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Languages",
+       "text": "You can speak, read, and write Galactic Basic and Zabraki.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Zabrak",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Zabrak-Languages",
+       "timestamp": "2023-05-30T20:15:41.0059258+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A41.0059258Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Second Heart",
+       "text": "When you are reduced to 0 hit points but not killed outright, you can drop to 1 hit point instead. You can’t use this feature again until you finish a long rest.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Zabrak",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Zabrak-Second Heart",
+       "timestamp": "2023-05-30T20:15:41.0059258+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A41.0059258Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Size",
+       "text": "Zabraks stand anywhere from 5 to 7 feet tall and weigh up to 300 lbs. Regardless of your position in that range, your size is Medium.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Zabrak",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Zabrak-Size",
+       "timestamp": "2023-05-30T20:15:41.0059258+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A41.0059258Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Speed",
+       "text": "Your base walking speed is 30 feet.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Zabrak",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Zabrak-Speed",
+       "timestamp": "2023-05-30T20:15:41.0059258+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A41.0059258Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Toughness",
+       "text": "Your hit point maximum increases by 1, and it increases by 1 every time you gain a level.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Zabrak",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Zabrak-Toughness",
+       "timestamp": "2023-05-30T20:15:41.0059258+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A41.0059258Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Unarmed Combatant",
+       "text": "Your unarmed strikes deal 1d4 kinetic damage and have the finesse property.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Zabrak",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Zabrak-Unarmed Combatant",
+       "timestamp": "2023-05-30T20:15:41.0059258+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A41.0059258Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Techie",
+       "prerequisite": null,
+       "text": "You master the theory and practice of technology, gaining the following benefits: \r\n- Increase your Intelligence score by 1, to a maximum of 20. \r\n- You gain proficiency in the Technology skill. If you are already proficient in it, you instead gain expertise in it. \r\n- You learn the *repair droid* tech power. You can cast it once, using supplies scavenged around you, without the use of a wristpad and without spending tech points, and you regain the ability to do so when you finish a long rest.\r\n",
+       "attributesIncreased": [
+        "Intelligence"
+       ],
+       "attributesIncreasedJson": "[\"Intelligence\"]",
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Techie",
+       "timestamp": "2023-05-30T20:15:09.5568611+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A09.5568611Z'\"",
+       "customIndex": -1,
+       "combat": true
+      }
+     ],
+     "nonCombatFeatures": [],
+     "backgroundFeature": {
+      "name": "Scientific Method",
+      "combat": false,
+      "text": "You are well acquainted with your field of research from having read numerous journals or having attended scientific conferences. Concepts that are complicated, involving technical jargon that usually goes over most people's heads, are simple to you. You fully understand concepts, can recall key information, and know how to use equipment related to your field, unless the research was hidden from the public, in which case you may only partially understand it. You also recognize well-known figures in your field.\r\n"
+     },
+     "settings": {
+      "isEnforcingForcePrerequisites": true,
+      "isFixedHitPoints": false,
+      "abilityScoreMethod": "Standard Array"
+     },
+     "notes": ""
+    },
+    "base": {
+     "name": "Wizard Check (local)",
+     "builderVersion": "0.7.6",
+     "image": "",
+     "characteristics": {
+      "alignment": "",
+      "Personality Traits": "",
+      "Ideal": "",
+      "Bond": "",
+      "Flaw": "",
+      "Gender": "",
+      "Place of Birth": "",
+      "Age": "",
+      "Height": "",
+      "Weight": "",
+      "Hair": "",
+      "Eyes": "",
+      "Skin": "",
+      "Appearance": "",
+      "Backstory": ""
+     },
+     "tweaks": {},
+     "customProficiencies": [
+      {
+       "name": "Slicer's kit",
+       "type": "tool",
+       "proficiencyLevel": "proficient",
+       "from": "Class: Engineer #2"
+      }
+     ],
+     "customLanguages": [],
+     "customFeatures": [],
+     "customTechPowers": [],
+     "customForcePowers": [],
+     "customEquipment": [
+      {
+       "name": "Dungeoneer's pack",
+       "quantity": 1,
+       "equipmentCategory": "Gear",
+       "cost": 0,
+       "weight": 0,
+       "description": "Starting equipment."
+      },
+      {
+       "name": "Book on your field of research",
+       "quantity": 1,
+       "equipmentCategory": "Gear",
+       "cost": 0,
+       "weight": 0,
+       "description": "Starting equipment."
+      }
+     ],
+     "numCustomFeats": 0,
+     "currentLevel": 4,
+     "classText": "Engineer (Armstech Engineering) 4",
+     "alignment": "",
+     "species": "Zabrak",
+     "background": "Scientist",
+     "experiencePoints": {
+      "previousLevel": 2700,
+      "current": 2700,
+      "nextLevel": 6500,
+      "isCorrect": true,
+      "errorMessage": ""
+     },
+     "abilityScores": {
+      "Strength": {
+       "value": 8,
+       "modifier": -1,
+       "savingThrow": {
+        "modifier": -1,
+        "proficiency": "none"
+       },
+       "skills": [
+        {
+         "name": "Athletics",
+         "modifier": -1,
+         "proficiency": "none"
+        }
+       ]
+      },
+      "Dexterity": {
+       "value": 14,
+       "modifier": 2,
+       "savingThrow": {
+        "modifier": 2,
+        "proficiency": "none"
+       },
+       "skills": [
+        {
+         "name": "Acrobatics",
+         "modifier": 2,
+         "proficiency": "none"
+        },
+        {
+         "name": "Sleight of Hand",
+         "modifier": 2,
+         "proficiency": "none"
+        },
+        {
+         "name": "Stealth",
+         "modifier": 2,
+         "proficiency": "none"
+        }
+       ]
+      },
+      "Constitution": {
+       "value": 16,
+       "modifier": 3,
+       "savingThrow": {
+        "modifier": 5,
+        "proficiency": "proficient"
+       },
+       "skills": []
+      },
+      "Intelligence": {
+       "value": 18,
+       "modifier": 4,
+       "savingThrow": {
+        "modifier": 6,
+        "proficiency": "proficient"
+       },
+       "skills": [
+        {
+         "name": "Investigation",
+         "modifier": 6,
+         "proficiency": "proficient"
+        },
+        {
+         "name": "Lore",
+         "modifier": 6,
+         "proficiency": "proficient"
+        },
+        {
+         "name": "Nature",
+         "modifier": 4,
+         "proficiency": "none"
+        },
+        {
+         "name": "Piloting",
+         "modifier": 4,
+         "proficiency": "none"
+        },
+        {
+         "name": "Technology",
+         "modifier": 6,
+         "proficiency": "proficient"
+        }
+       ]
+      },
+      "Wisdom": {
+       "value": 12,
+       "modifier": 1,
+       "savingThrow": {
+        "modifier": 1,
+        "proficiency": "none"
+       },
+       "skills": [
+        {
+         "name": "Animal Handling",
+         "modifier": 1,
+         "proficiency": "none"
+        },
+        {
+         "name": "Insight",
+         "modifier": 1,
+         "proficiency": "none"
+        },
+        {
+         "name": "Medicine",
+         "modifier": 3,
+         "proficiency": "proficient"
+        },
+        {
+         "name": "Perception",
+         "modifier": 1,
+         "proficiency": "none"
+        },
+        {
+         "name": "Survival",
+         "modifier": 1,
+         "proficiency": "none"
+        }
+       ]
+      },
+      "Charisma": {
+       "value": 10,
+       "modifier": 0,
+       "savingThrow": {
+        "modifier": 0,
+        "proficiency": "none"
+       },
+       "skills": [
+        {
+         "name": "Deception",
+         "modifier": 0,
+         "proficiency": "none"
+        },
+        {
+         "name": "Intimidation",
+         "modifier": 0,
+         "proficiency": "none"
+        },
+        {
+         "name": "Performance",
+         "modifier": 0,
+         "proficiency": "none"
+        },
+        {
+         "name": "Persuasion",
+         "modifier": 0,
+         "proficiency": "none"
+        }
+       ]
+      }
+     },
+     "proficiencyBonus": 2,
+     "initiative": 2,
+     "armorClass": 13,
+     "armorList": [
+      "Combat suit"
+     ],
+     "passivePerception": 11,
+     "inspiration": false,
+     "vision": "normal",
+     "speed": {
+      "base": "30 ft",
+      "hour": "3 miles",
+      "day": "24 miles",
+      "special": ""
+     },
+     "hitPoints": {
+      "current": 36,
+      "temporary": 0,
+      "maximum": 36,
+      "hitDice": [
+       {
+        "size": "d8",
+        "current": 4,
+        "maximum": 4
+       }
+      ],
+      "deathSaves": {
+       "successes": 0,
+       "failures": 0
+      },
+      "resting": {
+       "hitDieBonus": 3,
+       "numHitDiceUsed": 0,
+       "hitDiceRestored": [],
+       "techPointsUsed": 0,
+       "forcePointsUsed": 0,
+       "highLevelCasting": {
+        "level6": false,
+        "level7": false,
+        "level8": false,
+        "level9": false
+       },
+       "shortRestFeatures": [],
+       "longRestFeatures": []
+      }
+     },
+     "conditions": [],
+     "exhaustion": 0,
+     "proficiencies": [
+      {
+       "name": "Simple blasters",
+       "type": "weapon"
+      },
+      {
+       "name": "simple vibroweapons",
+       "type": "weapon"
+      },
+      {
+       "name": "Light armor",
+       "type": "armor"
+      },
+      {
+       "name": "One of your choice",
+       "type": "tool"
+      }
+     ],
+     "skillAndSaveProficiencies": [
+      "Investigation",
+      "Lore",
+      "Technology",
+      "Medicine",
+      "Constitution Saving Throws",
+      "Intelligence Saving Throws"
+     ],
+     "languages": [
+      "Galactic Basic",
+      "Zabraki",
+      "Sullustese"
+     ],
+     "equipment": [
+      {
+       "name": "Combat suit",
+       "description": "Combat suits are seen all over the galaxy, and can be found for sale by almost any merchant who dealt in weapons and armor. Many such suits are used by military organizations, such as the Galactic Republic's military, as well as by mercenaries, criminals, bounty hunters and even some Jedi.\r\n\r\nThe suit itself offers decent protection from most types of attacks while maintaining maximum flexibility and minimum weight. However this armor is only recommended for light skirmishes.",
+       "cost": 100,
+       "weight": "10",
+       "equipmentCategoryEnum": 4,
+       "equipmentCategory": "Armor",
+       "damageNumberOfDice": 0,
+       "damageTypeEnum": 0,
+       "damageType": "Unknown",
+       "damageDieModifier": 0,
+       "weaponClassificationEnum": 0,
+       "weaponClassification": "Unknown",
+       "armorClassificationEnum": 1,
+       "armorClassification": "Light",
+       "damageDiceDieTypeEnum": 0,
+       "damageDieType": 0,
+       "properties": [],
+       "propertiesJson": "[]",
+       "propertiesMap": {},
+       "propertiesMapJson": "{}",
+       "modes": [],
+       "modesJson": "[]",
+       "ac": "11 + Dex modifier",
+       "strengthRequirement": "",
+       "stealthDisadvantage": false,
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Combat suit",
+       "timestamp": "2023-05-30T20:15:38.6892471+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A38.6892471Z'\"",
+       "equipped": true,
+       "quantity": 1,
+       "index": 0,
+       "isFound": true
+      },
+      {
+       "name": "Tinker's implements",
+       "description": null,
+       "cost": 500,
+       "weight": "0",
+       "equipmentCategoryEnum": 12,
+       "equipmentCategory": "Tool",
+       "damageNumberOfDice": 0,
+       "damageTypeEnum": 0,
+       "damageType": "Unknown",
+       "damageDieModifier": 0,
+       "weaponClassificationEnum": 0,
+       "weaponClassification": "Unknown",
+       "armorClassificationEnum": 0,
+       "armorClassification": "Unknown",
+       "damageDiceDieTypeEnum": 0,
+       "damageDieType": 0,
+       "properties": null,
+       "propertiesJson": "",
+       "propertiesMap": null,
+       "propertiesMapJson": "",
+       "modes": [],
+       "modesJson": "[]",
+       "ac": null,
+       "strengthRequirement": null,
+       "stealthDisadvantage": false,
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Tinker's implements",
+       "timestamp": "2023-05-30T20:15:38.6932443+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A38.6932443Z'\"",
+       "quantity": 1,
+       "index": 1,
+       "isFound": true
+      },
+      {
+       "name": "Vibrodagger",
+       "description": null,
+       "cost": 50,
+       "weight": "0.5",
+       "equipmentCategoryEnum": 3,
+       "equipmentCategory": "Weapon",
+       "damageNumberOfDice": 1,
+       "damageTypeEnum": 7,
+       "damageType": "Kinetic",
+       "damageDieModifier": 0,
+       "weaponClassificationEnum": 3,
+       "weaponClassification": "SimpleVibroweapon",
+       "armorClassificationEnum": 0,
+       "armorClassification": "Unknown",
+       "damageDiceDieTypeEnum": 4,
+       "damageDieType": 4,
+       "properties": [
+        "Finesse",
+        "light",
+        "thrown (range 20/60)"
+       ],
+       "propertiesJson": "[\"Finesse\",\"light\",\"thrown (range 20/60)\"]",
+       "propertiesMap": {
+        "Finesse": "Finesse",
+        "Light": "light",
+        "Range": "thrown (range 20/60)"
+       },
+       "propertiesMapJson": "{\"Finesse\":\"Finesse\",\"Light\":\"light\",\"Range\":\"thrown (range 20/60)\"}",
+       "modes": [],
+       "modesJson": "[]",
+       "ac": null,
+       "strengthRequirement": null,
+       "stealthDisadvantage": false,
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Vibrodagger",
+       "timestamp": "2023-05-30T20:15:38.6832509+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A38.6832509Z'\"",
+       "attackBonus": 4,
+       "damageBonus": 2,
+       "ability": "Dexterity",
+       "isCustom": false,
+       "equipped": true,
+       "quantity": 1,
+       "index": 2,
+       "tweaks": {},
+       "isFound": true
+      },
+      {
+       "name": "Wristpad",
+       "description": "A wristpad is a harness with an integrated datapad and holoprojector interface that fits on the forearm and includes self-charging battery packs.",
+       "cost": 600,
+       "weight": "2",
+       "equipmentCategoryEnum": 8,
+       "equipmentCategory": "DataRecordingAndStorage",
+       "damageNumberOfDice": 0,
+       "damageTypeEnum": 0,
+       "damageType": "Unknown",
+       "damageDieModifier": 0,
+       "weaponClassificationEnum": 0,
+       "weaponClassification": "Unknown",
+       "armorClassificationEnum": 0,
+       "armorClassification": "Unknown",
+       "damageDiceDieTypeEnum": 0,
+       "damageDieType": 0,
+       "properties": null,
+       "propertiesJson": "",
+       "propertiesMap": null,
+       "propertiesMapJson": "",
+       "modes": [],
+       "modesJson": "[]",
+       "ac": null,
+       "strengthRequirement": null,
+       "stealthDisadvantage": false,
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Wristpad",
+       "timestamp": "2023-05-30T20:15:38.9640901+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A38.9640901Z'\"",
+       "quantity": 1,
+       "index": 3,
+       "isFound": true
+      },
+      {
+       "name": "Clothes, common",
+       "description": null,
+       "cost": 5,
+       "weight": "3",
+       "equipmentCategoryEnum": 20,
+       "equipmentCategory": "Clothing",
+       "damageNumberOfDice": 0,
+       "damageTypeEnum": 0,
+       "damageType": "Unknown",
+       "damageDieModifier": 0,
+       "weaponClassificationEnum": 0,
+       "weaponClassification": "Unknown",
+       "armorClassificationEnum": 0,
+       "armorClassification": "Unknown",
+       "damageDiceDieTypeEnum": 0,
+       "damageDieType": 0,
+       "properties": null,
+       "propertiesJson": "",
+       "propertiesMap": null,
+       "propertiesMapJson": "",
+       "modes": [],
+       "modesJson": "[]",
+       "ac": null,
+       "strengthRequirement": null,
+       "stealthDisadvantage": false,
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Clothes, common",
+       "timestamp": "2023-05-30T20:15:38.9610928+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A38.9610928Z'\"",
+       "quantity": 1,
+       "index": 4,
+       "isFound": true
+      },
+      {
+       "name": "Datapad",
+       "description": "A datapad is a small electronic device used for the input, storage and displaying of information. It features a holoprojective surface for 3D viewing. ",
+       "cost": 100,
+       "weight": "0.5",
+       "equipmentCategoryEnum": 8,
+       "equipmentCategory": "DataRecordingAndStorage",
+       "damageNumberOfDice": 0,
+       "damageTypeEnum": 0,
+       "damageType": "Unknown",
+       "damageDieModifier": 0,
+       "weaponClassificationEnum": 0,
+       "weaponClassification": "Unknown",
+       "armorClassificationEnum": 0,
+       "armorClassification": "Unknown",
+       "damageDiceDieTypeEnum": 0,
+       "damageDieType": 0,
+       "properties": null,
+       "propertiesJson": "",
+       "propertiesMap": null,
+       "propertiesMapJson": "",
+       "modes": [],
+       "modesJson": "[]",
+       "ac": null,
+       "strengthRequirement": null,
+       "stealthDisadvantage": false,
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Datapad",
+       "timestamp": "2023-05-30T20:15:38.963091+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A38.963091Z'\"",
+       "quantity": 1,
+       "index": 5,
+       "isFound": true
+      },
+      {
+       "name": "Pouch",
+       "description": "A pouch stores 6.00 lb., not exceeding 1/5 cubic foot. ",
+       "cost": 5,
+       "weight": "1",
+       "equipmentCategoryEnum": 5,
+       "equipmentCategory": "Storage",
+       "damageNumberOfDice": 0,
+       "damageTypeEnum": 0,
+       "damageType": "Unknown",
+       "damageDieModifier": 0,
+       "weaponClassificationEnum": 0,
+       "weaponClassification": "Unknown",
+       "armorClassificationEnum": 0,
+       "armorClassification": "Unknown",
+       "damageDiceDieTypeEnum": 0,
+       "damageDieType": 0,
+       "properties": null,
+       "propertiesJson": "",
+       "propertiesMap": null,
+       "propertiesMapJson": "",
+       "modes": [],
+       "modesJson": "[]",
+       "ac": null,
+       "strengthRequirement": null,
+       "stealthDisadvantage": false,
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Pouch",
+       "timestamp": "2023-05-30T20:15:38.9680886+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A38.9680886Z'\"",
+       "quantity": 1,
+       "index": 6,
+       "isFound": true
+      }
+     ],
+     "attunement": {
+      "current": 0,
+      "maximum": 2,
+      "hasAttunable": false
+     },
+     "weapons": [
+      {
+       "name": "Vibrodagger",
+       "description": null,
+       "cost": 50,
+       "weight": "0.5",
+       "equipmentCategoryEnum": 3,
+       "equipmentCategory": "Weapon",
+       "damageNumberOfDice": 1,
+       "damageTypeEnum": 7,
+       "damageType": "Kinetic",
+       "damageDieModifier": 0,
+       "weaponClassificationEnum": 3,
+       "weaponClassification": "SimpleVibroweapon",
+       "armorClassificationEnum": 0,
+       "armorClassification": "Unknown",
+       "damageDiceDieTypeEnum": 4,
+       "damageDieType": 4,
+       "properties": [
+        "Finesse",
+        "light",
+        "thrown (range 20/60)"
+       ],
+       "propertiesJson": "[\"Finesse\",\"light\",\"thrown (range 20/60)\"]",
+       "propertiesMap": {
+        "Finesse": "Finesse",
+        "Light": "light",
+        "Range": "thrown (range 20/60)"
+       },
+       "propertiesMapJson": "{\"Finesse\":\"Finesse\",\"Light\":\"light\",\"Range\":\"thrown (range 20/60)\"}",
+       "modes": [],
+       "modesJson": "[]",
+       "ac": null,
+       "strengthRequirement": null,
+       "stealthDisadvantage": false,
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Vibrodagger",
+       "timestamp": "2023-05-30T20:15:38.6832509+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A38.6832509Z'\"",
+       "attackBonus": 4,
+       "damageBonus": 2,
+       "ability": "Dexterity",
+       "isCustom": false,
+       "equipped": true,
+       "quantity": 1,
+       "index": 2,
+       "tweaks": {},
+       "isFound": true
+      },
+      {
+       "name": "Unarmed Strike",
+       "description": null,
+       "cost": 0,
+       "weight": "0",
+       "equipmentCategory": "Weapon",
+       "contentType": "Core",
+       "contentSource": "PHB",
+       "damageNumberOfDice": 1,
+       "damageType": "Kinetic",
+       "weaponClassification": "Unarmed",
+       "damageDieType": 0,
+       "properties": [],
+       "propertiesMap": {},
+       "modes": [],
+       "quantity": 0,
+       "index": -1,
+       "isFound": true,
+       "equipped": true,
+       "attackBonus": 1,
+       "damageBonus": 0,
+       "ability": "Strength",
+       "isCustom": false,
+       "tweaks": {}
+      }
+     ],
+     "credits": 100,
+     "carryingCapacity": {
+      "encumbered": 40,
+      "heavilyEncumbered": 80,
+      "maxCapacity": 120,
+      "pushDragLift": 240
+     },
+     "superiority": false,
+     "highLevelCasting": {
+      "level6": false,
+      "level7": false,
+      "level8": false,
+      "level9": false
+     },
+     "techCasting": {
+      "pointsUsed": 0,
+      "maxPoints": 12,
+      "attackModifier": 6,
+      "saveDC": 14,
+      "maxPowerLevel": 2,
+      "powersKnown": []
+     },
+     "forceCasting": false,
+     "allForcePowers": [],
+     "combatFeatures": [
+      {
+       "name": "Potent Aptitude",
+       "text": "_**Engineer:** 1st level_\r\nYour technological experience lends you an uncommon insight that you can use to bolster your allies. To do so, you use a bonus action on your turn to choose one creature other than yourself within 60 feet of you who can hear you. That creature gains one Potent Aptitude die, a d4. This die changes as you gain engineer levels, as shown in the Potent Aptitude column of the engineer table.\r\nOnce within the next 10 minutes, the creature can roll the die and add the number rolled to one ability check, attack roll, or saving throw it makes. Once the Potent Aptitude die is rolled, it is lost.\r\nA creature can have only one Potent Aptitude die at a time.\r\nYou can use this feature twice. You gain an additional use at 5th, 9th, 13th, and 17th level. You regain any expended uses when you finish a short or long rest.",
+       "level": 1,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Engineer",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Engineer-Potent Aptitude-1",
+       "timestamp": "2023-05-30T20:15:43.3935639+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.3935639Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Techcasting",
+       "text": "_**Engineer:** 1st level_\r\nDuring your training you have derived powers from schematics with the aid of your wristpad. See chapter 10 for the general rules of techcasting and chapter 12 for the tech powers list.\r\n#### Tech Powers Known\r\nYou learn 6 tech powers of your choice, and you learn more at higher levels, as shown in the Tech Powers Known column of the engineer table. You may not learn a tech power of a level higher than your Max Power Level.\r\n#### Tech Points\r\nYou have a number of tech points equal to your engineer level x 2, as shown in the Tech Points column of the engineer table, + your Intelligence modifier. You use these tech points to cast tech powers. You regain all expended tech points when you finish a short or long rest.\r\n#### Max Power Level\r\nMany tech powers can be overcharged, consuming more tech points to create a greater effect. You can overcharge these powers to a maximum level, which increases at higher levels, as shown in the Max Power Level column of the engineer table.\r\nYou may only cast tech powers at 6th, 7th, 8th, and 9th-level once. You regain the ability to do so after a long rest.\r\n#### Techcasting Ability\r\nIntelligence is your techcasting ability for your tech powers. You use your Intelligence whenever a power refers to your techcasting ability. Additionally, you use your Intelligence modifier when setting the saving throw DC for a tech power you cast and when making an attack roll with one.\r\n___\r\n**Tech save DC** = 8 + your proficiency bonus + your Intelligence modifier\r\n___\r\n**Tech attack modifier** = your proficiency bonus + your Intelligence modifier\r\n___\r\n#### Techcasting Focus\r\nYou use a wristpad (found in chapter 5) or the tools in which you are granted proficiency by this class as a tech focus for your tech powers.",
+       "level": 1,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Engineer",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Engineer-Techcasting-1",
+       "timestamp": "2023-05-30T20:15:43.3935639+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.3935639Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Infuse Item",
+       "text": "_**Engineer:** 2nd level_\r\nYou gain the ability to temporarily enhance a weapon or armor. At the end of a long rest, you can touch one unenhanced object that is a suit of armor, a shield, or a simple or martial weapon. Until the end of your next long rest or until you die, the object becomes an enhanced item, granting a +1 bonus to AC if it's armor or a shield or a +1 bonus to attack and damage rolls if it's a weapon. \r\nOnce you've used this feature, you can't use it again until you finish a long rest.\r\nThis bonus increases to +2 at 10th level and +3 at 15th level.",
+       "level": 2,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Engineer",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Engineer-Infuse Item-2",
+       "timestamp": "2023-05-30T20:15:43.3935639+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.3935639Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Tool Expertise",
+       "text": "_**Engineer:** 2nd level_\r\nYou gain expertise in any tool proficiencies you gain from this class.",
+       "level": 2,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Engineer",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Engineer-Tool Expertise-2",
+       "timestamp": "2023-05-30T20:15:43.3935639+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.3935639Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Bonus Proficiencies",
+       "text": "_**Armstech Engineering:** 3rd level_\r\nYou gain proficiency in armstech's implements, medium armor, martial blasters, and martial vibroweapons. Additionally, when you engage in crafting with armstech's implements, the rate at which you craft doubles.",
+       "level": 3,
+       "sourceEnum": 1,
+       "source": "Archetype",
+       "sourceName": "Armstech Engineering",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Archetype-Armstech Engineering-Bonus Proficiencies-3",
+       "timestamp": "2023-05-30T20:15:42.71995+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A42.71995Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Close Call",
+       "text": "_**Armstech Engineering:** 3rd level_\r\nWhen you make an attack roll with your modified weapon and miss, you can expend one use of your Potent Aptitude to attempt to turn that miss into a hit. Roll the die and add it to the attack roll. ",
+       "level": 3,
+       "sourceEnum": 1,
+       "source": "Archetype",
+       "sourceName": "Armstech Engineering",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Archetype-Armstech Engineering-Close Call-3",
+       "timestamp": "2023-05-30T20:15:42.71995+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A42.71995Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Modified Weaponry",
+       "text": "_**Armstech Engineering:** 3rd level_\r\nYou learn to modify one unenhanced weapon with which you are proficient utilizing your armstech experience. Over the course of a long rest, you can modify the weapon. You must have the weapon and armstech's implements in order to perform this modification.\r\nYour modified weapon is enhanced, requires attunement, can only be used by you, and counts as a tech focus for your tech powers while you are attuned to it. Your modified weapon has 4 modification slots, and it gains more at higher levels, as shown in the Modification Slots column of the engineer table. For each modification installed in excess of your proficiency bonus, your tech point maximum is reduced by 1. Over the course of a long rest, you can install, replace, or remove a number of modifications up to your Intelligence modifier (minimum of one).\r\nSome modification effects require saving throws. When you use such an effect from this class, the DC equals your tech save DC.\r\nAt 9th level, you can maintain two modified weapons. Each modified weapon has modification slots as shown in the Modification Slots column of the engineer table.",
+       "level": 3,
+       "sourceEnum": 1,
+       "source": "Archetype",
+       "sourceName": "Armstech Engineering",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Archetype-Armstech Engineering-Modified Weaponry-3",
+       "timestamp": "2023-05-30T20:15:42.71995+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A42.71995Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Engineering Discipline",
+       "text": "_**Engineer:** 3rd, 6th, 14th, and 18th level_\r\nYou begin to focus on a specific engineering discipline, which is detailed at the end of the class description. ",
+       "level": 3,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Engineer",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Engineer-Engineering Discipline-3",
+       "timestamp": "2023-05-30T20:15:43.3935639+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.3935639Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Ability Score Improvement",
+       "text": "_**Engineer:** 4th, 8th, 12th, 16th, and 19th level_\r\nYou can increase one ability score by 2, or you can increase two ability scores by 1. You can't increase an ability score above 20 using this feature.",
+       "level": 4,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Engineer",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Engineer-Ability Score Improvement-4",
+       "timestamp": "2023-05-30T20:15:43.3935639+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.3935639Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Ability Score Increase",
+       "text": "Your Constitution score increases by 2, and your Strength or Dexterity score increases by 1.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Zabrak",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Zabrak-Ability Score Increase",
+       "timestamp": "2023-05-30T20:15:41.0049268+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A41.0049268Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Age",
+       "text": "Zabraks reach adulthood in their late teens and live less than a century.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Zabrak",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Zabrak-Age",
+       "timestamp": "2023-05-30T20:15:41.0049268+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A41.0049268Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Alignment",
+       "text": "Zabraks tend toward no particular alignment. The best and worst are found among them.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Zabrak",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Zabrak-Alignment",
+       "timestamp": "2023-05-30T20:15:41.0059258+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A41.0059258Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Coercive",
+       "text": "You have proficiency with Persuasion or Intimidation (your choice).",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Zabrak",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Zabrak-Coercive",
+       "timestamp": "2023-05-30T20:15:41.0059258+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A41.0059258Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Crafters",
+       "text": "You have proficiency with one set of artisan’s implements of your choice.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Zabrak",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Zabrak-Crafters",
+       "timestamp": "2023-05-30T20:15:41.0059258+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A41.0059258Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Darkvision",
+       "text": "Your vision can easily cut through darkness. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Zabrak",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Zabrak-Darkvision",
+       "timestamp": "2022-05-29T01:36:26.6243708+00:00",
+       "eTag": "W/\"datetime'2022-05-29T01%3A36%3A26.6243708Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Languages",
+       "text": "You can speak, read, and write Galactic Basic and Zabraki.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Zabrak",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Zabrak-Languages",
+       "timestamp": "2023-05-30T20:15:41.0059258+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A41.0059258Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Second Heart",
+       "text": "When you are reduced to 0 hit points but not killed outright, you can drop to 1 hit point instead. You can’t use this feature again until you finish a long rest.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Zabrak",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Zabrak-Second Heart",
+       "timestamp": "2023-05-30T20:15:41.0059258+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A41.0059258Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Size",
+       "text": "Zabraks stand anywhere from 5 to 7 feet tall and weigh up to 300 lbs. Regardless of your position in that range, your size is Medium.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Zabrak",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Zabrak-Size",
+       "timestamp": "2023-05-30T20:15:41.0059258+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A41.0059258Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Speed",
+       "text": "Your base walking speed is 30 feet.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Zabrak",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Zabrak-Speed",
+       "timestamp": "2023-05-30T20:15:41.0059258+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A41.0059258Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Toughness",
+       "text": "Your hit point maximum increases by 1, and it increases by 1 every time you gain a level.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Zabrak",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Zabrak-Toughness",
+       "timestamp": "2023-05-30T20:15:41.0059258+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A41.0059258Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Unarmed Combatant",
+       "text": "Your unarmed strikes deal 1d4 kinetic damage and have the finesse property.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Zabrak",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Zabrak-Unarmed Combatant",
+       "timestamp": "2023-05-30T20:15:41.0059258+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A41.0059258Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Techie",
+       "prerequisite": null,
+       "text": "You master the theory and practice of technology, gaining the following benefits: \r\n- Increase your Intelligence score by 1, to a maximum of 20. \r\n- You gain proficiency in the Technology skill. If you are already proficient in it, you instead gain expertise in it. \r\n- You learn the *repair droid* tech power. You can cast it once, using supplies scavenged around you, without the use of a wristpad and without spending tech points, and you regain the ability to do so when you finish a long rest.\r\n",
+       "attributesIncreased": [
+        "Intelligence"
+       ],
+       "attributesIncreasedJson": "[\"Intelligence\"]",
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Techie",
+       "timestamp": "2023-05-30T20:15:09.5568611+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A09.5568611Z'\"",
+       "customIndex": -1,
+       "combat": true
+      }
+     ],
+     "nonCombatFeatures": [],
+     "backgroundFeature": {
+      "name": "Scientific Method",
+      "combat": false,
+      "text": "You are well acquainted with your field of research from having read numerous journals or having attended scientific conferences. Concepts that are complicated, involving technical jargon that usually goes over most people's heads, are simple to you. You fully understand concepts, can recall key information, and know how to use equipment related to your field, unless the research was hidden from the public, in which case you may only partially understand it. You also recognize well-known figures in your field.\r\n"
+     },
+     "settings": {
+      "isEnforcingForcePrerequisites": true,
+      "isFixedHitPoints": false,
+      "abilityScoreMethod": "Standard Array"
+     },
+     "notes": ""
+    },
+    "refs": {
+     "classes": {
+      "Engineer": {
+       "name": "Engineer",
+       "summary": "Tech caster who enhances items to benefit allies",
+       "primaryAbility": "Intelligence",
+       "hitDiceDieType": 8,
+       "hitPointsAtFirstLevel": "8 + your Constitution modifier",
+       "hitPointsAtHigherLevels": "1d8 (or 5) + your Constitution modifier per engineer level after 1st",
+       "armorProficiencies": [
+        "Light armor"
+       ],
+       "weaponProficiencies": [
+        "Simple blasters",
+        "simple vibroweapons"
+       ],
+       "toolProficiencies": [
+        "Tinker's implements",
+        "one of your choice"
+       ],
+       "savingThrows": [
+        "Constitution",
+        "Intelligence"
+       ],
+       "skillChoices": "Choose three from Investigation, Lore, Medicine, Nature, Piloting, and Technology",
+       "levelChanges": {
+        "1": {
+         "Level": "1",
+         "Proficiency Bonus": "+2",
+         "Features": "Techcasting, Potent Aptitude",
+         "Tech Powers Known": "6",
+         "Tech Points": "2",
+         "Max Power Level": "1st",
+         "Potent Aptitude": "d4",
+         "Modification Slots": "�"
+        },
+        "2": {
+         "Level": "2",
+         "Proficiency Bonus": "+2",
+         "Features": "Infuse Item (+1), Tool Expertise",
+         "Tech Powers Known": "7",
+         "Tech Points": "4",
+         "Max Power Level": "1st",
+         "Potent Aptitude": "d4",
+         "Modification Slots": "�"
+        },
+        "3": {
+         "Level": "3",
+         "Proficiency Bonus": "+2",
+         "Features": "Engineering Discipline",
+         "Tech Powers Known": "9",
+         "Tech Points": "6",
+         "Max Power Level": "2nd",
+         "Potent Aptitude": "d4",
+         "Modification Slots": "4"
+        },
+        "4": {
+         "Level": "4",
+         "Proficiency Bonus": "+2",
+         "Features": "Ability Score Improvement",
+         "Tech Powers Known": "10",
+         "Tech Points": "8",
+         "Max Power Level": "2nd",
+         "Potent Aptitude": "d4",
+         "Modification Slots": "4"
+        },
+        "5": {
+         "Level": "5",
+         "Proficiency Bonus": "+3",
+         "Features": "�",
+         "Tech Powers Known": "12",
+         "Tech Points": "10",
+         "Max Power Level": "3rd",
+         "Potent Aptitude": "d6",
+         "Modification Slots": "5"
+        },
+        "6": {
+         "Level": "6",
+         "Proficiency Bonus": "+3",
+         "Features": "Discipline feature",
+         "Tech Powers Known": "13",
+         "Tech Points": "12",
+         "Max Power Level": "3rd",
+         "Potent Aptitude": "d6",
+         "Modification Slots": "5"
+        },
+        "7": {
+         "Level": "7",
+         "Proficiency Bonus": "+3",
+         "Features": "�",
+         "Tech Powers Known": "15",
+         "Tech Points": "14",
+         "Max Power Level": "4th",
+         "Potent Aptitude": "d6",
+         "Modification Slots": "5"
+        },
+        "8": {
+         "Level": "8",
+         "Proficiency Bonus": "+3",
+         "Features": "Ability Score Improvement",
+         "Tech Powers Known": "16",
+         "Tech Points": "16",
+         "Max Power Level": "4th",
+         "Potent Aptitude": "d6",
+         "Modification Slots": "5"
+        },
+        "9": {
+         "Level": "9",
+         "Proficiency Bonus": "+4",
+         "Features": "�",
+         "Tech Powers Known": "18",
+         "Tech Points": "18",
+         "Max Power Level": "5th",
+         "Potent Aptitude": "d8",
+         "Modification Slots": "6"
+        },
+        "10": {
+         "Level": "10",
+         "Proficiency Bonus": "+4",
+         "Features": "Infuse Item (+2)",
+         "Tech Powers Known": "19",
+         "Tech Points": "20",
+         "Max Power Level": "5th",
+         "Potent Aptitude": "d8",
+         "Modification Slots": "6"
+        },
+        "11": {
+         "Level": "11",
+         "Proficiency Bonus": "+4",
+         "Features": "�",
+         "Tech Powers Known": "21",
+         "Tech Points": "22",
+         "Max Power Level": "6th",
+         "Potent Aptitude": "d8",
+         "Modification Slots": "7"
+        },
+        "12": {
+         "Level": "12",
+         "Proficiency Bonus": "+4",
+         "Features": "Ability Score Improvement",
+         "Tech Powers Known": "22",
+         "Tech Points": "24",
+         "Max Power Level": "6th",
+         "Potent Aptitude": "d8",
+         "Modification Slots": "7"
+        },
+        "13": {
+         "Level": "13",
+         "Proficiency Bonus": "+5",
+         "Features": "�",
+         "Tech Powers Known": "23",
+         "Tech Points": "26",
+         "Max Power Level": "7th",
+         "Potent Aptitude": "d10",
+         "Modification Slots": "8"
+        },
+        "14": {
+         "Level": "14",
+         "Proficiency Bonus": "+5",
+         "Features": "Discipline feature",
+         "Tech Powers Known": "24",
+         "Tech Points": "28",
+         "Max Power Level": "7th",
+         "Potent Aptitude": "d10",
+         "Modification Slots": "8"
+        },
+        "15": {
+         "Level": "15",
+         "Proficiency Bonus": "+5",
+         "Features": "Infuse Item (+3)",
+         "Tech Powers Known": "25",
+         "Tech Points": "30",
+         "Max Power Level": "8th",
+         "Potent Aptitude": "d10",
+         "Modification Slots": "8"
+        },
+        "16": {
+         "Level": "16",
+         "Proficiency Bonus": "+5",
+         "Features": "Ability Score Improvement",
+         "Tech Powers Known": "26",
+         "Tech Points": "32",
+         "Max Power Level": "8th",
+         "Potent Aptitude": "d10",
+         "Modification Slots": "8"
+        },
+        "17": {
+         "Level": "17",
+         "Proficiency Bonus": "+6",
+         "Features": "�",
+         "Tech Powers Known": "27",
+         "Tech Points": "34",
+         "Max Power Level": "9th",
+         "Potent Aptitude": "d12",
+         "Modification Slots": "9"
+        },
+        "18": {
+         "Level": "18",
+         "Proficiency Bonus": "+6",
+         "Features": "Discipline feature",
+         "Tech Powers Known": "28",
+         "Tech Points": "36",
+         "Max Power Level": "9th",
+         "Potent Aptitude": "d12",
+         "Modification Slots": "9"
+        },
+        "19": {
+         "Level": "19",
+         "Proficiency Bonus": "+6",
+         "Features": "Ability Score Improvement",
+         "Tech Powers Known": "29",
+         "Tech Points": "38",
+         "Max Power Level": "9th",
+         "Potent Aptitude": "d12",
+         "Modification Slots": "9"
+        },
+        "20": {
+         "Level": "20",
+         "Proficiency Bonus": "+6",
+         "Features": "Tech Mastery",
+         "Tech Powers Known": "30",
+         "Tech Points": "40",
+         "Max Power Level": "9th",
+         "Potent Aptitude": "d12",
+         "Modification Slots": "9"
+        }
+       },
+       "casterType": "Tech",
+       "casterRatio": 1,
+       "multiClassProficiencies": [
+        "Light armor"
+       ],
+       "archetypeFlavorName": "Engineering Disciplines"
+      }
+     },
+     "archetypes": {
+      "Armstech Engineering": {
+       "name": "Armstech Engineering",
+       "className": "Engineer",
+       "casterType": "None",
+       "casterRatio": 0,
+       "leveledTable": null
+      }
+     },
+     "species": {
+      "Zabrak": {
+       "name": "Zabrak",
+       "size": "Medium",
+       "homeworld": null,
+       "language": "Zabraki",
+       "distinctions": "Horns, two hearts, facial tattoos",
+       "skinColorOptions": "Pale to dark brown, red, orange and yellow",
+       "hairColorOptions": "Black, blonde, brown, red, or purple",
+       "eyeColorOptions": "Yellow, green, orange, brown, blue, red, or purple",
+       "heightAverage": "5'1\"",
+       "heightRollMod": "+2d12\"",
+       "weightAverage": "120 lb.",
+       "weightRollMod": "x(2d4) lb.",
+       "traits": [
+        {
+         "name": "Ability Score Increase",
+         "description": "Your Constitution score increases by 2, and your Strength or Dexterity score increases by 1."
+        },
+        {
+         "name": "Age",
+         "description": "Zabraks reach adulthood in their late teens and live less than a century."
+        },
+        {
+         "name": "Alignment",
+         "description": "Zabraks tend toward no particular alignment. The best and worst are found among them."
+        },
+        {
+         "name": "Size",
+         "description": "Zabraks stand anywhere from 5 to 7 feet tall and weigh up to 300 lbs. Regardless of your position in that range, your size is Medium."
+        },
+        {
+         "name": "Speed",
+         "description": "Your base walking speed is 30 feet."
+        },
+        {
+         "name": "Coercive",
+         "description": "You have proficiency with Persuasion or Intimidation (your choice)."
+        },
+        {
+         "name": "Crafters",
+         "description": "You have proficiency with one set of artisan’s implements of your choice."
+        },
+        {
+         "name": "Second Heart",
+         "description": "When you are reduced to 0 hit points but not killed outright, you can drop to 1 hit point instead. You can’t use this feature again until you finish a long rest."
+        },
+        {
+         "name": "Toughness",
+         "description": "Your hit point maximum increases by 1, and it increases by 1 every time you gain a level."
+        },
+        {
+         "name": "Unarmed Combatant",
+         "description": "Your unarmed strikes deal 1d4 kinetic damage and have the finesse property."
+        },
+        {
+         "name": "Languages",
+         "description": "You can speak, read, and write Galactic Basic and Zabraki."
+        }
+       ],
+       "imageUrls": [
+        "https://starwars5ecentral.blob.core.windows.net/site-images/species/species_zabrak.png"
+       ]
+      }
+     },
+     "backgrounds": {
+      "Scientist": {
+       "name": "Scientist",
+       "flavorText": "Nothing excites you more than pushing the boundaries of scientific knowledge. Most of your time is spent in a lab performing experiments to further your interests. Few people understand the work you do. You can solve complex problems most people can't begin to wrap their heads around, and can solve simple problems in unexpected ways that surprise most people. \r\n\r\nWhat is your scientific field of interest? Is it your insatiable curiousity, or a personal goal that drives you? Did you leave your lab voluntarily, or were you kicked out? One thing is for sure - there are too many interesting research ideas, and too little time.\r\n",
+       "skillProficiencies": "Choose two from Lore, Medicine, Nature, and Technology",
+       "toolProficiencies": "One of your choice",
+       "languages": "One of your choice",
+       "equipment": "A set of common clothes, a datapad, a book on your field of research, a pouch containing 100 cr",
+       "featureName": "Scientific Method",
+       "featureText": "You are well acquainted with your field of research from having read numerous journals or having attended scientific conferences. Concepts that are complicated, involving technical jargon that usually goes over most people's heads, are simple to you. You fully understand concepts, can recall key information, and know how to use equipment related to your field, unless the research was hidden from the public, in which case you may only partially understand it. You also recognize well-known figures in your field.\r\n",
+       "flavorName": "Field of Research",
+       "flavorDescription": "While scientist's are widely knowledgeable, they also choose a focus for their studies. Choose an option or roll on the table below to define your field of research.\r\n\r\n| d8 | Field of Research  |\r\n|:----:|:-------------|\r\n| 1  | Biology |\r\n| 2  | Artificial Intelligence |\r\n| 3 | Chemistry |\r\n| 4 | Geology |\r\n\r\n| d8 | Field of Research  |\r\n|:----:|:-------------|\r\n| 5 | Physics |\r\n| 6 | the Force |\r\n| 7 | Astrogation |\r\n| 8 | Medicine |\r\n"
+      }
+     },
+     "feats": {
+      "Techie": {
+       "name": "Techie",
+       "prerequisite": null,
+       "text": "You master the theory and practice of technology, gaining the following benefits: \r\n- Increase your Intelligence score by 1, to a maximum of 20. \r\n- You gain proficiency in the Technology skill. If you are already proficient in it, you instead gain expertise in it. \r\n- You learn the *repair droid* tech power. You can cast it once, using supplies scavenged around you, without the use of a wristpad and without spending tech points, and you regain the ability to do so when you finish a long rest.\r\n",
+       "attributesIncreased": [
+        "Intelligence"
+       ],
+       "contentType": "Core",
+       "contentSource": "PHB"
+      }
+     },
+     "maneuvers": {},
+     "choices": {
+      "skills": {
+       "Technology": {
+        "name": "Technology",
+        "baseAttribute": "Intelligence",
+        "contentType": "Lookup",
+        "contentSource": "None"
+       },
+       "Lore": {
+        "name": "Lore",
+        "baseAttribute": "Intelligence",
+        "contentType": "Lookup",
+        "contentSource": "None"
+       },
+       "Investigation": {
+        "name": "Investigation",
+        "baseAttribute": "Intelligence",
+        "contentType": "Lookup",
+        "contentSource": "None"
+       }
+      }
+     },
+     "conditions": [
+      {
+       "name": "Blinded",
+       "description": "A blinded creature can't see and automatically fails any ability check that requires sight.\\r\\n- Attack rolls against the creature have advantage, and the creature's attack rolls have disadvantage."
+      },
+      {
+       "name": "Charmed",
+       "description": "A charmed creature can't attack the charmer or target the charmer with harmful abilities or enhanced effects.\\r\\n- The charmer has advantage on any ability check to interact socially with the creature."
+      },
+      {
+       "name": "Deafened",
+       "description": "A deafened creature can't hear and automatically fails any ability check that requires hearing."
+      },
+      {
+       "name": "Exhaustion",
+       "description": "Some special abilities and environmental hazards, such as and the long-term effects of freezing or scorching temperatures, can lead to a special condition called exhaustion. Exhaustion is measured in six levels. An effect can give a creature one or more levels of exhaustion, as specified in the effect's description. Exhaustion Level\\r\\n\\r\\n|Level|Effect|\\r\\n|:--:|:--|\\r\\n|1|Disadvantage on ability checks|\\r\\n|2|Speed halved|\\r\\n|3|Disadvantage on attack rolls and saving throws|\\r\\n|4|Hit point maximum halved|\\r\\n|5|Speed reduced to 0|\\r\\n|6|Death|\\r\\n\\r\\nIf an already exhausted creature suffers another effect that causes exhaustion, its current level of exhaustion increases by the amount specified in the effect's description.\\r\\n\\r\\nA creature suffers the effect of its current level of exhaustion as well as all lower levels. For example, a creature suffering level 2 exhaustion has its speed halved and has disadvantage on ability checks.\\r\\n\\r\\nAn effect that removes exhaustion reduces its level as specified in the effect's description, with all exhaustion effects ending if a creature's exhaustion level is reduced below 1.\\r\\n\\r\\nFinishing a long rest reduces a creature's exhaustion level by 1, provided that the creature has also ingested some food and drink."
+      },
+      {
+       "name": "Frightened",
+       "description": "A frightened creature has disadvantage on ability checks and attack rolls while the source of its fear is within line of sight.\\r\\n- The creature can't willingly move closer to the source of its fear."
+      },
+      {
+       "name": "Grappled",
+       "description": "A grappled creature's speed becomes 0, and it can't benefit from any bonus to its speed.\\r\\n- The condition ends if the grappler is incapacitated (see the condition).\\r\\n- The condition also ends if an effect removes the grappled creature from the reach of the grappler or grappling effect."
+      },
+      {
+       "name": "Incapacitated",
+       "description": "An incapacitated creature can't take actions or reactions."
+      },
+      {
+       "name": "Invisible",
+       "description": "An invisible creature is impossible to see without the aid of powers or a special sense. For the purpose of hiding, the creature is heavily obscured. The creature's location can be detected by any noise it makes or any tracks it leaves.\\r\\n- Attack rolls against the creature have disadvantage, and the creature's attack rolls have advantage."
+      },
+      {
+       "name": "Paralyzed",
+       "description": "A paralyzed creature is incapacitated (see the condition) and can't move or speak.\\r\\n- The creature automatically fails Strength and Dexterity saving throws. Attack rolls against the creature have advantage.\\r\\n- Any attack that hits the creature is a critical hit if the attacker is within 5 feet of the creature."
+      },
+      {
+       "name": "Petrified",
+       "description": "A petrified creature is transformed, along with any object it is wearing or carrying, into a solid inanimate substance (usually stone). Its weight increases by a factor of ten, and it ceases aging.\\r\\n- The creature is incapacitated (see the condition), can't move or speak, and is unaware of its surroundings.\\r\\n- Attack rolls against the creature have advantage. \\r\\n- The creature automatically fails Strength and Dexterity saving throws.\\r\\n- The creature has resistance to all damage.\\r\\n- The creature is immune to poison and disease, although a poison or disease already in its system is suspended, not neutralized."
+      },
+      {
+       "name": "Poisoned",
+       "description": "A poisoned creature has disadvantage on attack rolls and ability checks."
+      },
+      {
+       "name": "Prone",
+       "description": "A prone creature's only movement option is to crawl, unless it stands up and thereby ends the condition. \\r\\n- The creature has disadvantage on melee attack rolls.\\r\\n- The creature has disadvantage on ranged attack rolls against targets within 30 feet.\\r\\n- An attack roll against the creature has advantage if the attacker is within 5 feet of the creature. Otherwise, the attack roll has disadvantage."
+      },
+      {
+       "name": "Restrained",
+       "description": "A restrained creature's speed becomes 0, and it can't benefit from any bonus to its speed.\\r\\n- Attack rolls against the creature have advantage, and the creature's attack rolls have disadvantage.\\r\\n- The creature has disadvantage on Dexterity saving throws."
+      },
+      {
+       "name": "Shocked",
+       "description": "A shocked creature's speed is reduced by half.\\r\\n- The creature can't take reactions."
+      },
+      {
+       "name": "Stunned",
+       "description": "A stunned creature is incapacitated (see the condition), can't move, and can speak only falteringly.\\r\\n- The creature automatically fails Strength and Dexterity saving throws.\\r\\n- Attack rolls against the creature have advantage."
+      },
+      {
+       "name": "Unconscious",
+       "description": "An unconscious creature is incapacitated (see the condition), can't move or speak, and is unaware of its surroundings\\r\\n- The creature drops whatever it's holding and falls prone.\\r\\n- The creature automatically fails Strength and Dexterity saving throws.\\r\\n- Attack rolls against the creature have advantage.\\r\\n- Any attack that hits the creature is a critical hit if the attacker is within 5 feet of the creature."
+      }
+     ]
+    },
+    "validation": {
+     "code": 0,
+     "message": "All checks passed",
+     "isValid": true
+    },
+    "error": null,
+    "at": 1792289049562
+   }
+  },
+  "edits": {},
+  "itemState": {},
+  "trackers": {},
+  "history": {
+   "id:00000000-0000-4000-8000-000012000001": [
+    {
+     "at": 1792270413310,
+     "reason": "Created here",
+     "changedAt": 1792270407296,
+     "raw": {
+      "name": "Wizard Check (local)",
+      "id": "",
+      "builderVersion": "0.0.0",
+      "image": "",
+      "experiencePoints": 0,
+      "species": {
+       "name": "Zabrak",
+       "abilityScoreImprovementSelectedOption": 0,
+       "abilityScoreImprovement": {
+        "Dexterity": 1
+       }
+      },
+      "classes": [
+       {
+        "name": "Engineer",
+        "levels": 1,
+        "hitPoints": [],
+        "abilityScoreImprovements": [],
+        "skills": [
+         "Technology",
+         "Lore",
+         "Investigation"
+        ]
+       }
+      ],
+      "baseAbilityScores": {
+       "Strength": 8,
+       "Dexterity": 13,
+       "Constitution": 14,
+       "Intelligence": 15,
+       "Wisdom": 12,
+       "Charisma": 10
+      },
+      "background": {
+       "name": "Scientist",
+       "feat": {
+        "name": "Techie",
+        "type": "Feat",
+        "abilityScoreImprovements": {
+         "Intelligence": 1
+        }
+       },
+       "skills": [
+        "Medicine"
+       ],
+       "languages": [
+        "Sullustese"
+       ]
+      },
+      "characteristics": {
+       "alignment": "",
+       "Personality Traits": "",
+       "Ideal": "",
+       "Bond": "",
+       "Flaw": "",
+       "Gender": "",
+       "Place of Birth": "",
+       "Age": "",
+       "Height": "",
+       "Weight": "",
+       "Hair": "",
+       "Eyes": "",
+       "Skin": "",
+       "Appearance": "",
+       "Backstory": ""
+      },
+      "credits": 100,
+      "equipment": [
+       {
+        "name": "Combat suit",
+        "quantity": 1,
+        "category": "Equipment",
+        "equipped": true
+       },
+       {
+        "name": "Tinker's implements",
+        "quantity": 1,
+        "category": "Equipment"
+       },
+       {
+        "name": "Vibrodagger",
+        "quantity": 1,
+        "category": "Equipment",
+        "equipped": true
+       },
+       {
+        "name": "Wristpad",
+        "quantity": 1,
+        "category": "Equipment"
+       },
+       {
+        "name": "Clothes, common",
+        "quantity": 1,
+        "category": "Equipment"
+       },
+       {
+        "name": "Datapad",
+        "quantity": 1,
+        "category": "Equipment"
+       },
+       {
+        "name": "Pouch",
+        "quantity": 1,
+        "category": "Equipment"
+       }
+      ],
+      "currentStats": {
+       "hitPointsLost": 0,
+       "temporaryHitPoints": 0,
+       "techPointsUsed": 0,
+       "forcePointsUsed": 0,
+       "superiorityDiceUsed": 0,
+       "hitDiceUsed": {},
+       "deathSaves": {
+        "successes": 0,
+        "failures": 0
+       },
+       "hasInspiration": false,
+       "featuresTimesUsed": {},
+       "conditions": [],
+       "exhaustion": 0,
+       "highLevelCasting": {
+        "level6": false,
+        "level7": false,
+        "level8": false,
+        "level9": false
+       }
+      },
+      "tweaks": {},
+      "customProficiencies": [
+       {
+        "name": "Slicer's kit",
+        "type": "tool",
+        "proficiencyLevel": "proficient",
+        "from": "Class: Engineer #2"
+       }
+      ],
+      "customLanguages": [],
+      "customFeatures": [],
+      "customFeats": [],
+      "customTechPowers": [],
+      "customForcePowers": [],
+      "customEquipment": [
+       {
+        "name": "Dungeoneer's pack",
+        "quantity": 1,
+        "equipmentCategory": "Gear",
+        "cost": 0,
+        "weight": 0,
+        "description": "Starting equipment."
+       },
+       {
+        "name": "Book on your field of research",
+        "quantity": 1,
+        "equipmentCategory": "Gear",
+        "cost": 0,
+        "weight": 0,
+        "description": "Starting equipment."
+       }
+      ],
+      "settings": {
+       "isEnforcingForcePrerequisites": true,
+       "isFixedHitPoints": false,
+       "abilityScoreMethod": "Standard Array"
+      },
+      "notes": "",
+      "createdAt": 1792270407296,
+      "changedAt": 1792270407296,
+      "localId": "local-mvcviwzk2jpqx5"
+     }
+    },
+    {
+     "at": 1792270512592,
+     "reason": "Before saving to SW5E as a new character",
+     "changedAt": 1792270407296,
+     "raw": {
+      "name": "Wizard Check (local)",
+      "id": "",
+      "builderVersion": "0.0.0",
+      "image": "",
+      "experiencePoints": 2700,
+      "species": {
+       "name": "Zabrak",
+       "abilityScoreImprovementSelectedOption": 0,
+       "abilityScoreImprovement": {
+        "Dexterity": 1
+       }
+      },
+      "classes": [
+       {
+        "name": "Engineer",
+        "levels": 4,
+        "hitPoints": [
+         5,
+         6,
+         5
+        ],
+        "abilityScoreImprovements": [
+         {
+          "type": "Ability Score Improvement",
+          "abilitiesIncreased": [
+           {
+            "name": "Intelligence",
+            "value": 2
+           }
+          ]
+         }
+        ],
+        "skills": [
+         "Technology",
+         "Lore",
+         "Investigation"
+        ],
+        "archetype": {
+         "name": "Armstech Engineering"
+        }
+       }
+      ],
+      "baseAbilityScores": {
+       "Strength": 8,
+       "Dexterity": 13,
+       "Constitution": 14,
+       "Intelligence": 15,
+       "Wisdom": 12,
+       "Charisma": 10
+      },
+      "background": {
+       "name": "Scientist",
+       "feat": {
+        "name": "Techie",
+        "type": "Feat",
+        "abilityScoreImprovements": {
+         "Intelligence": 1
+        }
+       },
+       "skills": [
+        "Medicine"
+       ],
+       "languages": [
+        "Sullustese"
+       ]
+      },
+      "characteristics": {
+       "alignment": "",
+       "Personality Traits": "",
+       "Ideal": "",
+       "Bond": "",
+       "Flaw": "",
+       "Gender": "",
+       "Place of Birth": "",
+       "Age": "",
+       "Height": "",
+       "Weight": "",
+       "Hair": "",
+       "Eyes": "",
+       "Skin": "",
+       "Appearance": "",
+       "Backstory": ""
+      },
+      "credits": 100,
+      "equipment": [
+       {
+        "name": "Combat suit",
+        "quantity": 1,
+        "category": "Equipment",
+        "equipped": true
+       },
+       {
+        "name": "Tinker's implements",
+        "quantity": 1,
+        "category": "Equipment"
+       },
+       {
+        "name": "Vibrodagger",
+        "quantity": 1,
+        "category": "Equipment",
+        "equipped": true
+       },
+       {
+        "name": "Wristpad",
+        "quantity": 1,
+        "category": "Equipment"
+       },
+       {
+        "name": "Clothes, common",
+        "quantity": 1,
+        "category": "Equipment"
+       },
+       {
+        "name": "Datapad",
+        "quantity": 1,
+        "category": "Equipment"
+       },
+       {
+        "name": "Pouch",
+        "quantity": 1,
+        "category": "Equipment"
+       }
+      ],
+      "currentStats": {
+       "hitPointsLost": 0,
+       "temporaryHitPoints": 0,
+       "techPointsUsed": 0,
+       "forcePointsUsed": 0,
+       "superiorityDiceUsed": 0,
+       "hitDiceUsed": {},
+       "deathSaves": {
+        "successes": 0,
+        "failures": 0
+       },
+       "hasInspiration": false,
+       "featuresTimesUsed": {},
+       "conditions": [],
+       "exhaustion": 0,
+       "highLevelCasting": {
+        "level6": false,
+        "level7": false,
+        "level8": false,
+        "level9": false
+       }
+      },
+      "tweaks": {},
+      "customProficiencies": [
+       {
+        "name": "Slicer's kit",
+        "type": "tool",
+        "proficiencyLevel": "proficient",
+        "from": "Class: Engineer #2"
+       }
+      ],
+      "customLanguages": [],
+      "customFeatures": [],
+      "customFeats": [],
+      "customTechPowers": [],
+      "customForcePowers": [],
+      "customEquipment": [
+       {
+        "name": "Dungeoneer's pack",
+        "quantity": 1,
+        "equipmentCategory": "Gear",
+        "cost": 0,
+        "weight": 0,
+        "description": "Starting equipment."
+       },
+       {
+        "name": "Book on your field of research",
+        "quantity": 1,
+        "equipmentCategory": "Gear",
+        "cost": 0,
+        "weight": 0,
+        "description": "Starting equipment."
+       }
+      ],
+      "settings": {
+       "isEnforcingForcePrerequisites": true,
+       "isFixedHitPoints": false,
+       "abilityScoreMethod": "Standard Array"
+      },
+      "notes": "",
+      "createdAt": 1792270407296,
+      "changedAt": 1792270407296,
+      "localId": "local-mvcviwzk2jpqx5"
+     }
+    },
+    {
+     "at": 1792270519589,
+     "reason": "Saved to SW5E as a new character",
+     "changedAt": 1792270517206,
+     "raw": {
+      "name": "Wizard Check (local)",
+      "id": "00000000-0000-4000-8000-000012000001",
+      "builderVersion": "0.7.6",
+      "image": "",
+      "experiencePoints": 2700,
+      "species": {
+       "name": "Zabrak",
+       "abilityScoreImprovementSelectedOption": 0,
+       "abilityScoreImprovement": {
+        "Dexterity": 1
+       }
+      },
+      "classes": [
+       {
+        "name": "Engineer",
+        "levels": 4,
+        "hitPoints": [
+         5,
+         6,
+         5
+        ],
+        "abilityScoreImprovements": [
+         {
+          "type": "Ability Score Improvement",
+          "abilitiesIncreased": [
+           {
+            "name": "Intelligence",
+            "value": 2
+           }
+          ]
+         }
+        ],
+        "skills": [
+         "Technology",
+         "Lore",
+         "Investigation"
+        ],
+        "archetype": {
+         "name": "Armstech Engineering"
+        }
+       }
+      ],
+      "baseAbilityScores": {
+       "Strength": 8,
+       "Dexterity": 13,
+       "Constitution": 14,
+       "Intelligence": 15,
+       "Wisdom": 12,
+       "Charisma": 10
+      },
+      "background": {
+       "name": "Scientist",
+       "feat": {
+        "name": "Techie",
+        "type": "Feat",
+        "abilityScoreImprovements": {
+         "Intelligence": 1
+        }
+       },
+       "skills": [
+        "Medicine"
+       ],
+       "languages": [
+        "Sullustese"
+       ]
+      },
+      "characteristics": {
+       "alignment": "",
+       "Personality Traits": "",
+       "Ideal": "",
+       "Bond": "",
+       "Flaw": "",
+       "Gender": "",
+       "Place of Birth": "",
+       "Age": "",
+       "Height": "",
+       "Weight": "",
+       "Hair": "",
+       "Eyes": "",
+       "Skin": "",
+       "Appearance": "",
+       "Backstory": ""
+      },
+      "credits": 100,
+      "equipment": [
+       {
+        "name": "Combat suit",
+        "quantity": 1,
+        "category": "Equipment",
+        "equipped": true
+       },
+       {
+        "name": "Tinker's implements",
+        "quantity": 1,
+        "category": "Equipment"
+       },
+       {
+        "name": "Vibrodagger",
+        "quantity": 1,
+        "category": "Equipment",
+        "equipped": true
+       },
+       {
+        "name": "Wristpad",
+        "quantity": 1,
+        "category": "Equipment"
+       },
+       {
+        "name": "Clothes, common",
+        "quantity": 1,
+        "category": "Equipment"
+       },
+       {
+        "name": "Datapad",
+        "quantity": 1,
+        "category": "Equipment"
+       },
+       {
+        "name": "Pouch",
+        "quantity": 1,
+        "category": "Equipment"
+       }
+      ],
+      "currentStats": {
+       "hitPointsLost": 0,
+       "temporaryHitPoints": 0,
+       "techPointsUsed": 0,
+       "forcePointsUsed": 0,
+       "superiorityDiceUsed": 0,
+       "hitDiceUsed": {},
+       "deathSaves": {
+        "successes": 0,
+        "failures": 0
+       },
+       "hasInspiration": false,
+       "featuresTimesUsed": {},
+       "conditions": [],
+       "exhaustion": 0,
+       "highLevelCasting": {
+        "level6": false,
+        "level7": false,
+        "level8": false,
+        "level9": false
+       }
+      },
+      "tweaks": {},
+      "customProficiencies": [
+       {
+        "name": "Slicer's kit",
+        "type": "tool",
+        "proficiencyLevel": "proficient",
+        "from": "Class: Engineer #2"
+       }
+      ],
+      "customLanguages": [],
+      "customFeatures": [],
+      "customFeats": [],
+      "customTechPowers": [],
+      "customForcePowers": [],
+      "customEquipment": [
+       {
+        "name": "Dungeoneer's pack",
+        "quantity": 1,
+        "equipmentCategory": "Gear",
+        "cost": 0,
+        "weight": 0,
+        "description": "Starting equipment."
+       },
+       {
+        "name": "Book on your field of research",
+        "quantity": 1,
+        "equipmentCategory": "Gear",
+        "cost": 0,
+        "weight": 0,
+        "description": "Starting equipment."
+       }
+      ],
+      "settings": {
+       "isEnforcingForcePrerequisites": true,
+       "isFixedHitPoints": false,
+       "abilityScoreMethod": "Standard Array"
+      },
+      "notes": "",
+      "createdAt": 1792270407296,
+      "changedAt": 1792270517206,
+      "localId": "local-mvcviwzk2jpqx5",
+      "userId": "00000000-0000-4000-8000-000012000002"
+     }
+    }
+   ]
+  },
+  "rolls": [],
+  "rollSettings": {
+   "critMode": "max"
+  },
+  "rulesInfo": {
+   "dataVersion": 199,
+   "fetchedAt": 1792273029637
+  },
+  "catalogInfo": {
+   "dataVersion": 199,
+   "fetchedAt": 1792170265673,
+   "count": 2425
+  },
+  "backupInfo": {
+   "count": null,
+   "characters": {}
+  },
+  "lastCharacter": "id:00000000-0000-4000-8000-000012000001"
+ }
+}

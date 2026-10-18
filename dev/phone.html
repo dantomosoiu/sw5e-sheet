@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Viewer in a phone frame</title>
+  <style>
+    /* Dev only: the dev viewer at a phone or tablet width, in a normal desktop tab (same storage as the
+       dev viewer, so the same characters). Usage: /dev/phone.html?w=390&h=844 */
+    :root { color-scheme: dark; }
+    body { margin: 0; background: #1b1d22; color: #ccc; font: 13px system-ui, sans-serif; }
+    header { display: flex; gap: 8px; align-items: center; padding: 6px 12px; }
+    header a { color: #9cf; }
+    .frame { margin: 0 12px 12px; display: inline-block; border: 8px solid #000; border-radius: 22px; overflow: hidden; }
+    iframe { display: block; border: 0; background: #fff; }
+  </style>
+</head>
+<body>
+  <header>Phone frame · <a href="?w=360&h=780">360</a> <a href="?w=390&h=844">390</a> <a href="?w=430&h=900">430</a> <a href="?w=800&h=1000">800 (tablet)</a> · <span id="size"></span></header>
+  <div class="frame"><iframe id="view" title="Sheet viewer" src="/sw5e-sheet/viewer.html"></iframe></div>
+  <script>
+    const p = new URLSearchParams(location.search);
+    const w = Number(p.get('w')) || 390;
+    const h = Math.min(Number(p.get('h')) || 844, window.innerHeight - 60);
+    const f = document.getElementById('view');
+    f.width = w;
+    f.height = h;
+    document.getElementById('size').textContent = `${w} × ${h}`;
+  </script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+
+# Tooling (future)
+node_modules/
+*.zip
+*.crx
+*.pem
+
+# Release builds (dev/pack.py)
+dist/
+dev/dumps/
+
+# Playwright test output (screenshots, console logs)
+.playwright-mcp/

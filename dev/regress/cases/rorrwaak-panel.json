@@ -1,0 +1,4890 @@
+{
+ "format": "sw5e-sheet-regress-case",
+ "name": "Rorrwaak (Panel)",
+ "key": "id:00000000-0000-4000-8000-000011000001",
+ "recordedAt": 1792289049607,
+ "rules": {
+  "dataVersion": 199,
+  "fetchedAt": 1792273029637
+ },
+ "catalog": {
+  "dataVersion": 199,
+  "fetchedAt": 1792170265673,
+  "count": 2425
+ },
+ "storage": {
+  "snapshots": {
+   "id:00000000-0000-4000-8000-000011000001": {
+    "format": "sw5e-sheet-snapshot",
+    "version": 1,
+    "key": "id:00000000-0000-4000-8000-000011000001",
+    "raw": {
+     "name": "Rorrwaak (Panel)",
+     "id": "00000000-0000-4000-8000-000011000001",
+     "userId": "00000000-0000-4000-8000-000011000002",
+     "builderVersion": "0.7.6",
+     "image": "",
+     "user": "",
+     "experiencePoints": 0,
+     "species": {
+      "name": "Wookiee",
+      "abilityScoreImprovementSelectedOption": 0,
+      "abilityScoreImprovement": {}
+     },
+     "classes": [
+      {
+       "name": "Berserker",
+       "levels": 1,
+       "hitPoints": [],
+       "abilityScoreImprovements": []
+      }
+     ],
+     "baseAbilityScores": {
+      "Strength": 15,
+      "Dexterity": 13,
+      "Constitution": 14,
+      "Intelligence": 8,
+      "Wisdom": 12,
+      "Charisma": 10
+     },
+     "background": {
+      "name": "Mercenary",
+      "feat": {
+       "name": "Brawny",
+       "type": "Feat"
+      },
+      "feature": ""
+     },
+     "characteristics": {
+      "alignment": "Chaotic Light",
+      "Personality Traits": "",
+      "Ideal": "",
+      "Bond": "",
+      "Flaw": "",
+      "Gender": "",
+      "Place of Birth": "",
+      "Age": "",
+      "Height": "",
+      "Weight": "",
+      "Hair": "",
+      "Eyes": "",
+      "Skin": "",
+      "Appearance": "",
+      "Backstory": ""
+     },
+     "credits": 100,
+     "equipment": [
+      {
+       "name": "Vibroaxe",
+       "quantity": 1,
+       "category": "Equipment",
+       "equipped": true
+      },
+      {
+       "name": "Vibrospear",
+       "quantity": "2",
+       "category": "Equipment",
+       "equipped": false
+      },
+      {
+       "name": "Clothes, traveler's",
+       "quantity": 1,
+       "category": "Equipment"
+      },
+      {
+       "name": "Sabacc deck",
+       "quantity": 1,
+       "category": "Equipment"
+      }
+     ],
+     "currentStats": {
+      "hitPointsLost": 0,
+      "temporaryHitPoints": 0,
+      "techPointsUsed": 0,
+      "forcePointsUsed": 0,
+      "superiorityDiceUsed": 0,
+      "hitDiceUsed": {},
+      "deathSaves": {
+       "successes": 0,
+       "failures": 0
+      },
+      "hasInspiration": false,
+      "featuresTimesUsed": {},
+      "conditions": [],
+      "exhaustion": 0,
+      "highLevelCasting": {
+       "level6": false,
+       "level7": false,
+       "level8": false,
+       "level9": false
+      }
+     },
+     "tweaks": {},
+     "customProficiencies": [],
+     "customLanguages": [],
+     "customFeatures": [],
+     "customFeats": [],
+     "customTechPowers": [],
+     "customForcePowers": [],
+     "customEquipment": [],
+     "settings": {
+      "isEnforcingForcePrerequisites": true,
+      "isFixedHitPoints": false,
+      "abilityScoreMethod": "Standard Array"
+     },
+     "notes": "",
+     "createdAt": 1792245762516,
+     "changedAt": 1792246109001,
+     "localId": "temp-rf2lujr13"
+    },
+    "complete": {
+     "name": "Rorrwaak (Panel)",
+     "builderVersion": "0.7.6",
+     "image": "",
+     "characteristics": {
+      "alignment": "Chaotic Light",
+      "Personality Traits": "",
+      "Ideal": "",
+      "Bond": "",
+      "Flaw": "",
+      "Gender": "",
+      "Place of Birth": "",
+      "Age": "",
+      "Height": "",
+      "Weight": "",
+      "Hair": "",
+      "Eyes": "",
+      "Skin": "",
+      "Appearance": "",
+      "Backstory": ""
+     },
+     "tweaks": {},
+     "customProficiencies": [],
+     "customLanguages": [],
+     "customFeatures": [],
+     "customTechPowers": [],
+     "customForcePowers": [],
+     "customEquipment": [],
+     "numCustomFeats": 0,
+     "currentLevel": 1,
+     "classText": "Berserker 1",
+     "alignment": "Chaotic Light",
+     "species": "Wookiee",
+     "background": "Mercenary",
+     "experiencePoints": {
+      "previousLevel": 0,
+      "current": 0,
+      "nextLevel": 300,
+      "isCorrect": true,
+      "errorMessage": ""
+     },
+     "abilityScores": {
+      "Strength": {
+       "value": 17,
+       "modifier": 3,
+       "savingThrow": {
+        "modifier": 5,
+        "proficiency": "proficient"
+       },
+       "skills": [
+        {
+         "name": "Athletics",
+         "modifier": 3,
+         "proficiency": "none"
+        }
+       ]
+      },
+      "Dexterity": {
+       "value": 13,
+       "modifier": 1,
+       "savingThrow": {
+        "modifier": 1,
+        "proficiency": "none"
+       },
+       "skills": [
+        {
+         "name": "Acrobatics",
+         "modifier": 1,
+         "proficiency": "none"
+        },
+        {
+         "name": "Sleight of Hand",
+         "modifier": 1,
+         "proficiency": "none"
+        },
+        {
+         "name": "Stealth",
+         "modifier": 1,
+         "proficiency": "none"
+        }
+       ]
+      },
+      "Constitution": {
+       "value": 15,
+       "modifier": 2,
+       "savingThrow": {
+        "modifier": 4,
+        "proficiency": "proficient"
+       },
+       "skills": []
+      },
+      "Intelligence": {
+       "value": 8,
+       "modifier": -1,
+       "savingThrow": {
+        "modifier": -1,
+        "proficiency": "none"
+       },
+       "skills": [
+        {
+         "name": "Investigation",
+         "modifier": -1,
+         "proficiency": "none"
+        },
+        {
+         "name": "Lore",
+         "modifier": -1,
+         "proficiency": "none"
+        },
+        {
+         "name": "Nature",
+         "modifier": -1,
+         "proficiency": "none"
+        },
+        {
+         "name": "Piloting",
+         "modifier": -1,
+         "proficiency": "none"
+        },
+        {
+         "name": "Technology",
+         "modifier": -1,
+         "proficiency": "none"
+        }
+       ]
+      },
+      "Wisdom": {
+       "value": 12,
+       "modifier": 1,
+       "savingThrow": {
+        "modifier": 1,
+        "proficiency": "none"
+       },
+       "skills": [
+        {
+         "name": "Animal Handling",
+         "modifier": 1,
+         "proficiency": "none"
+        },
+        {
+         "name": "Insight",
+         "modifier": 1,
+         "proficiency": "none"
+        },
+        {
+         "name": "Medicine",
+         "modifier": 1,
+         "proficiency": "none"
+        },
+        {
+         "name": "Perception",
+         "modifier": 1,
+         "proficiency": "none"
+        },
+        {
+         "name": "Survival",
+         "modifier": 1,
+         "proficiency": "none"
+        }
+       ]
+      },
+      "Charisma": {
+       "value": 10,
+       "modifier": 0,
+       "savingThrow": {
+        "modifier": 0,
+        "proficiency": "none"
+       },
+       "skills": [
+        {
+         "name": "Deception",
+         "modifier": 0,
+         "proficiency": "none"
+        },
+        {
+         "name": "Intimidation",
+         "modifier": 0,
+         "proficiency": "none"
+        },
+        {
+         "name": "Performance",
+         "modifier": 0,
+         "proficiency": "none"
+        },
+        {
+         "name": "Persuasion",
+         "modifier": 0,
+         "proficiency": "none"
+        }
+       ]
+      }
+     },
+     "proficiencyBonus": 2,
+     "initiative": 1,
+     "armorClass": 11,
+     "armorList": [],
+     "passivePerception": 11,
+     "inspiration": false,
+     "vision": "normal",
+     "speed": {
+      "base": "30 ft",
+      "hour": "3 miles",
+      "day": "24 miles",
+      "special": ""
+     },
+     "hitPoints": {
+      "current": 14,
+      "temporary": 0,
+      "maximum": 14,
+      "hitDice": [
+       {
+        "size": "d12",
+        "current": 1,
+        "maximum": 1
+       }
+      ],
+      "deathSaves": {
+       "successes": 0,
+       "failures": 0
+      },
+      "resting": {
+       "hitDieBonus": 2,
+       "numHitDiceUsed": 0,
+       "hitDiceRestored": [],
+       "techPointsUsed": 0,
+       "forcePointsUsed": 0,
+       "highLevelCasting": {
+        "level6": false,
+        "level7": false,
+        "level8": false,
+        "level9": false
+       },
+       "shortRestFeatures": [],
+       "longRestFeatures": []
+      }
+     },
+     "conditions": [],
+     "exhaustion": 0,
+     "proficiencies": [
+      {
+       "name": "All vibroweapons",
+       "type": "weapon"
+      },
+      {
+       "name": "simple blasters",
+       "type": "weapon"
+      },
+      {
+       "name": "Light armor",
+       "type": "armor"
+      },
+      {
+       "name": "medium armor",
+       "type": "armor"
+      },
+      {
+       "name": "One type of gaming set",
+       "type": "tool"
+      }
+     ],
+     "skillAndSaveProficiencies": [
+      "Strength Saving Throws",
+      "Constitution Saving Throws"
+     ],
+     "languages": [
+      "Galactic Basic"
+     ],
+     "equipment": [
+      {
+       "name": "Vibroaxe",
+       "description": null,
+       "cost": 950,
+       "weight": "9.25",
+       "equipmentCategoryEnum": 3,
+       "equipmentCategory": "Weapon",
+       "damageNumberOfDice": 1,
+       "damageTypeEnum": 7,
+       "damageType": "Kinetic",
+       "damageDieModifier": 0,
+       "weaponClassificationEnum": 4,
+       "weaponClassification": "MartialVibroweapon",
+       "armorClassificationEnum": 0,
+       "armorClassification": "Unknown",
+       "damageDiceDieTypeEnum": 12,
+       "damageDieType": 12,
+       "properties": [
+        "Dexterity 11",
+        "heavy",
+        "two-handed"
+       ],
+       "propertiesJson": "[\"Dexterity 11\",\"heavy\",\"two-handed\"]",
+       "propertiesMap": {
+        "Dexterity": "Dexterity 11",
+        "Heavy": "heavy",
+        "Two-Handed": "two-handed"
+       },
+       "propertiesMapJson": "{\"Dexterity\":\"Dexterity 11\",\"Heavy\":\"heavy\",\"Two-Handed\":\"two-handed\"}",
+       "modes": [],
+       "modesJson": "[]",
+       "ac": null,
+       "strengthRequirement": null,
+       "stealthDisadvantage": false,
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Vibroaxe",
+       "timestamp": "2023-05-30T20:15:38.6852497+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A38.6852497Z'\"",
+       "attackBonus": 5,
+       "damageBonus": 3,
+       "ability": "Strength",
+       "isCustom": false,
+       "equipped": true,
+       "quantity": 1,
+       "index": 0,
+       "tweaks": {},
+       "isFound": true
+      },
+      {
+       "name": "Vibrospear",
+       "description": null,
+       "cost": 125,
+       "weight": "4",
+       "equipmentCategoryEnum": 3,
+       "equipmentCategory": "Weapon",
+       "damageNumberOfDice": 1,
+       "damageTypeEnum": 7,
+       "damageType": "Kinetic",
+       "damageDieModifier": 0,
+       "weaponClassificationEnum": 3,
+       "weaponClassification": "SimpleVibroweapon",
+       "armorClassificationEnum": 0,
+       "armorClassification": "Unknown",
+       "damageDiceDieTypeEnum": 6,
+       "damageDieType": 6,
+       "properties": [
+        "Thrown (range 25/75)",
+        "versatile (2d4)"
+       ],
+       "propertiesJson": "[\"Thrown (range 25/75)\",\"versatile (2d4)\"]",
+       "propertiesMap": {
+        "Range": "Thrown (range 25/75)",
+        "Versatile": "versatile (2d4)"
+       },
+       "propertiesMapJson": "{\"Range\":\"Thrown (range 25/75)\",\"Versatile\":\"versatile (2d4)\"}",
+       "modes": [],
+       "modesJson": "[]",
+       "ac": null,
+       "strengthRequirement": null,
+       "stealthDisadvantage": false,
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Vibrospear",
+       "timestamp": "2023-05-30T20:15:38.6842512+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A38.6842512Z'\"",
+       "attackBonus": 5,
+       "damageBonus": 3,
+       "ability": "Strength",
+       "isCustom": false,
+       "equipped": false,
+       "quantity": "2",
+       "index": 1,
+       "tweaks": {},
+       "isFound": true
+      },
+      {
+       "name": "Clothes, traveler's",
+       "description": null,
+       "cost": 20,
+       "weight": "4",
+       "equipmentCategoryEnum": 20,
+       "equipmentCategory": "Clothing",
+       "damageNumberOfDice": 0,
+       "damageTypeEnum": 0,
+       "damageType": "Unknown",
+       "damageDieModifier": 0,
+       "weaponClassificationEnum": 0,
+       "weaponClassification": "Unknown",
+       "armorClassificationEnum": 0,
+       "armorClassification": "Unknown",
+       "damageDiceDieTypeEnum": 0,
+       "damageDieType": 0,
+       "properties": null,
+       "propertiesJson": "",
+       "propertiesMap": null,
+       "propertiesMapJson": "",
+       "modes": [],
+       "modesJson": "[]",
+       "ac": null,
+       "strengthRequirement": null,
+       "stealthDisadvantage": false,
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Clothes, traveler's",
+       "timestamp": "2023-05-30T20:15:38.9620914+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A38.9620914Z'\"",
+       "quantity": 1,
+       "index": 2,
+       "isFound": true
+      },
+      {
+       "name": "Sabacc deck",
+       "description": null,
+       "cost": 150,
+       "weight": "0",
+       "equipmentCategoryEnum": 17,
+       "equipmentCategory": "GamingSet",
+       "damageNumberOfDice": 0,
+       "damageTypeEnum": 0,
+       "damageType": "Unknown",
+       "damageDieModifier": 0,
+       "weaponClassificationEnum": 0,
+       "weaponClassification": "Unknown",
+       "armorClassificationEnum": 0,
+       "armorClassification": "Unknown",
+       "damageDiceDieTypeEnum": 0,
+       "damageDieType": 0,
+       "properties": null,
+       "propertiesJson": "",
+       "propertiesMap": null,
+       "propertiesMapJson": "",
+       "modes": [],
+       "modesJson": "[]",
+       "ac": null,
+       "strengthRequirement": null,
+       "stealthDisadvantage": false,
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Sabacc deck",
+       "timestamp": "2023-05-30T20:15:38.6942443+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A38.6942443Z'\"",
+       "quantity": 1,
+       "index": 3,
+       "isFound": true
+      }
+     ],
+     "attunement": {
+      "current": 0,
+      "maximum": 2,
+      "hasAttunable": false
+     },
+     "weapons": [
+      {
+       "name": "Vibroaxe",
+       "description": null,
+       "cost": 950,
+       "weight": "9.25",
+       "equipmentCategoryEnum": 3,
+       "equipmentCategory": "Weapon",
+       "damageNumberOfDice": 1,
+       "damageTypeEnum": 7,
+       "damageType": "Kinetic",
+       "damageDieModifier": 0,
+       "weaponClassificationEnum": 4,
+       "weaponClassification": "MartialVibroweapon",
+       "armorClassificationEnum": 0,
+       "armorClassification": "Unknown",
+       "damageDiceDieTypeEnum": 12,
+       "damageDieType": 12,
+       "properties": [
+        "Dexterity 11",
+        "heavy",
+        "two-handed"
+       ],
+       "propertiesJson": "[\"Dexterity 11\",\"heavy\",\"two-handed\"]",
+       "propertiesMap": {
+        "Dexterity": "Dexterity 11",
+        "Heavy": "heavy",
+        "Two-Handed": "two-handed"
+       },
+       "propertiesMapJson": "{\"Dexterity\":\"Dexterity 11\",\"Heavy\":\"heavy\",\"Two-Handed\":\"two-handed\"}",
+       "modes": [],
+       "modesJson": "[]",
+       "ac": null,
+       "strengthRequirement": null,
+       "stealthDisadvantage": false,
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Vibroaxe",
+       "timestamp": "2023-05-30T20:15:38.6852497+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A38.6852497Z'\"",
+       "attackBonus": 5,
+       "damageBonus": 3,
+       "ability": "Strength",
+       "isCustom": false,
+       "equipped": true,
+       "quantity": 1,
+       "index": 0,
+       "tweaks": {},
+       "isFound": true
+      },
+      {
+       "name": "Unarmed Strike",
+       "description": null,
+       "cost": 0,
+       "weight": "0",
+       "equipmentCategory": "Weapon",
+       "contentType": "Core",
+       "contentSource": "PHB",
+       "damageNumberOfDice": 1,
+       "damageType": "Kinetic",
+       "weaponClassification": "Unarmed",
+       "damageDieType": 0,
+       "properties": [],
+       "propertiesMap": {},
+       "modes": [],
+       "quantity": 0,
+       "index": -1,
+       "isFound": true,
+       "equipped": true,
+       "attackBonus": 5,
+       "damageBonus": 4,
+       "ability": "Strength",
+       "isCustom": false,
+       "tweaks": {}
+      }
+     ],
+     "credits": 100,
+     "carryingCapacity": {
+      "encumbered": 85,
+      "heavilyEncumbered": 170,
+      "maxCapacity": 255,
+      "pushDragLift": 510
+     },
+     "superiority": false,
+     "highLevelCasting": {
+      "level6": false,
+      "level7": false,
+      "level8": false,
+      "level9": false
+     },
+     "techCasting": false,
+     "forceCasting": false,
+     "allForcePowers": [],
+     "combatFeatures": [
+      {
+       "name": "Rage",
+       "text": "_**Berserker:** 1st level_\r\nIn battle, you fight with primal ferocity. On your turn, you can enter a rage as a bonus action if you aren't wearing heavy armor.\r\nWhile raging, you gain the following benefits:\r\n- You have advantage on Strength checks and Strength saving throws.\r\n- When you make a melee weapon attack using Strength, you gain a bonus to the damage roll that increases as you gain levels as a berserker, as shown in the Rage Damage column of the berserker table.\r\n- You have resistance to kinetic and energy damage.\r\nIf you are able to cast powers, you can't cast them or concentrate on them while raging.\r\nYour rage lasts for 1 minute. It ends early if you are knocked unconscious, you don heavy armor, or if your turn ends and you haven't taken a hostile action or taken damage since your last turn. You can also end your rage on your turn as a bonus action.\r\nYou can enter a rage a number of times as shown in the Rages column of the berserker table. You regain all expended uses when you complete a long rest.",
+       "level": 1,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Berserker",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Berserker-Rage-1",
+       "timestamp": "2023-05-30T20:15:43.389567+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.389567Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Unarmored Defense",
+       "text": "_**Berserker:** 1st level_\r\nWhile you are not wearing any armor, your Armor Class equals 10 + your Dexterity modifier + your Constitution modifier. You can use a shield and still gain this benefit.",
+       "level": 1,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Berserker",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Berserker-Unarmored Defense-1",
+       "timestamp": "2023-05-30T20:15:43.389567+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.389567Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Ability Score Increase",
+       "text": "Your Strength score increases by 2, and your Constitution score increases by 1.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Wookiee",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Wookiee-Ability Score Increase",
+       "timestamp": "2023-05-30T20:15:41.0039273+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A41.0039273Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Age",
+       "text": "Wookiees reach adulthood at about 40 and can live to be 400.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Wookiee",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Wookiee-Age",
+       "timestamp": "2023-05-30T20:15:41.0039273+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A41.0039273Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Alignment",
+       "text": "Wookiees tend toward the light side, though there are exceptions.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Wookiee",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Wookiee-Alignment",
+       "timestamp": "2023-05-30T20:15:41.0039273+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A41.0039273Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Claws",
+       "text": "Your claws are natural weapons, which you can use to make unarmed strikes. Additionally, your unarmed strikes deal 1d4 kinetic damage.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Wookiee",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Wookiee-Claws",
+       "timestamp": "2023-05-30T20:15:41.0049268+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A41.0049268Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Darkvision",
+       "text": "Your vision can easily cut through darkness. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can’t discern color in darkness, only shades of gray.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Wookiee",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Wookiee-Darkvision",
+       "timestamp": "2023-05-30T20:15:41.0049268+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A41.0049268Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Hide",
+       "text": "You have a thick hide. While you are unarmored or wearing light armor, your AC is 13 + your Dexterity modifier. Additionally, you have advantage on Constitution saving throws made to avoid exhaustion due to extreme cold.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Wookiee",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Wookiee-Hide",
+       "timestamp": "2023-05-30T20:15:41.0049268+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A41.0049268Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Languages",
+       "text": "You can speak, read, and write Shyriiwook. You can understand spoken and written Galactic Basic, but your vocal cords do not allow you to speak it.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Wookiee",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Wookiee-Languages",
+       "timestamp": "2023-05-30T20:15:41.0049268+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A41.0049268Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Menacing",
+       "text": "You have proficiency in the Intimidation skill.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Wookiee",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Wookiee-Menacing",
+       "timestamp": "2023-05-30T20:15:41.0049268+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A41.0049268Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Powerful Build",
+       "text": "Your carrying capacity and the weight you can push, drag, or lift doubles. If it would already double, it instead triples.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Wookiee",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Wookiee-Powerful Build",
+       "timestamp": "2023-05-30T20:15:41.0049268+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A41.0049268Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Size",
+       "text": "Wookiees tend to tower over other species, reaching heights over 8 feet and weighing 300 pounds. Regardless of your position in that range, your size is Medium.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Wookiee",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Wookiee-Size",
+       "timestamp": "2023-05-30T20:15:41.0049268+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A41.0049268Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Speed",
+       "text": "Your base walking speed is 30 feet.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Wookiee",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Wookiee-Speed",
+       "timestamp": "2023-05-30T20:15:41.0049268+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A41.0049268Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Treeclimber",
+       "text": "You have a climbing speed of 30 feet. You have advantage on Strength saving throws and Strength (Athletics) checks that involve climbing.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Wookiee",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Wookiee-Treeclimber",
+       "timestamp": "2023-05-30T20:15:41.0049268+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A41.0049268Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Brawny",
+       "prerequisite": null,
+       "text": "You become stronger, gaining the following benefits: \r\n- Increase your Strength score by 1, to a maximum of 20. \r\n- You gain proficiency in the Athletics skill. If you are already proficient in it, you instead gain expertise in it. \r\n- Your carrying capacity and the weight you can push, drag, or lift doubles. If it would already double, it instead triples.\r\n",
+       "attributesIncreased": [
+        "Strength"
+       ],
+       "attributesIncreasedJson": "[\"Strength\"]",
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Brawny",
+       "timestamp": "2023-05-30T20:15:09.5518633+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A09.5518633Z'\"",
+       "customIndex": -1,
+       "combat": true
+      }
+     ],
+     "nonCombatFeatures": [],
+     "backgroundFeature": {
+      "name": "Mercenary Life",
+      "combat": false,
+      "text": "You know the mercenary life as only someone who has experienced it can. You are able to identify mercenary companies by their emblems, and you know a little about any such company, including the names and reputations of its commanders and leaders, and who has hired them recently. You can find the cantinas and feasthalls where mercenaries abide in any area, as long as you speak the language, and if you spend at least an hour in such a location you can come across one of the following bits of information: a job offer, significant rumor, referral to a skilled merchant, blacksmith, etc., or a hint towards the pursuit of your current quest. Additionally, you can find mercenary work between adventures sufficient to maintain a comfortable lifestyle (see \"Practicing a Profession\" under \"Downtime Activities\" in chapter 8 of the Player's Handbook).\r\n"
+     },
+     "settings": {
+      "isEnforcingForcePrerequisites": true,
+      "isFixedHitPoints": false,
+      "abilityScoreMethod": "Standard Array"
+     },
+     "notes": ""
+    },
+    "refs": {
+     "classes": {
+      "Berserker": {
+       "name": "Berserker",
+       "summary": "Melee combatant who utilizes rage to increase prowess",
+       "primaryAbility": "Strength",
+       "hitDiceDieType": 12,
+       "hitPointsAtFirstLevel": "12 + your Constitution modifier",
+       "hitPointsAtHigherLevels": "1d12 (or 7) + your Constitution modifier per berserker level after 1st",
+       "armorProficiencies": [
+        "Light armor",
+        "medium armor"
+       ],
+       "weaponProficiencies": [
+        "All vibroweapons",
+        "simple blasters"
+       ],
+       "toolProficiencies": [
+        "None"
+       ],
+       "savingThrows": [
+        "Strength",
+        "Constitution"
+       ],
+       "skillChoices": "Choose two from Animal Handling, Athletics, Intimidation, Nature, Perception, Survival",
+       "levelChanges": {
+        "1": {
+         "Level": "1st",
+         "Proficiency Bonus": "+2",
+         "Features": "Rage, Unarmored Defense",
+         "Rages": "2",
+         "Rage Damage": "+2",
+         "Berserker Instincts": "�"
+        },
+        "2": {
+         "Level": "2nd",
+         "Proficiency Bonus": "+2",
+         "Features": "Reckless Attack, Berserker Instincts",
+         "Rages": "2",
+         "Rage Damage": "+2",
+         "Berserker Instincts": "2"
+        },
+        "3": {
+         "Level": "3rd",
+         "Proficiency Bonus": "+2",
+         "Features": "Danger Sense, Berserker Approach",
+         "Rages": "3",
+         "Rage Damage": "+2",
+         "Berserker Instincts": "2"
+        },
+        "4": {
+         "Level": "4th",
+         "Proficiency Bonus": "+2",
+         "Features": "Ability Score Improvement",
+         "Rages": "3",
+         "Rage Damage": "+2",
+         "Berserker Instincts": "2"
+        },
+        "5": {
+         "Level": "5th",
+         "Proficiency Bonus": "+3",
+         "Features": "Extra Attack",
+         "Rages": "3",
+         "Rage Damage": "+2",
+         "Berserker Instincts": "2"
+        },
+        "6": {
+         "Level": "6th",
+         "Proficiency Bonus": "+3",
+         "Features": "Approach feature",
+         "Rages": "4",
+         "Rage Damage": "+2",
+         "Berserker Instincts": "2"
+        },
+        "7": {
+         "Level": "7th",
+         "Proficiency Bonus": "+3",
+         "Features": "Feral Impulse",
+         "Rages": "4",
+         "Rage Damage": "+2",
+         "Berserker Instincts": "3"
+        },
+        "8": {
+         "Level": "8th",
+         "Proficiency Bonus": "+3",
+         "Features": "Ability Score Improvement",
+         "Rages": "4",
+         "Rage Damage": "+2",
+         "Berserker Instincts": "3"
+        },
+        "9": {
+         "Level": "9th",
+         "Proficiency Bonus": "+4",
+         "Features": "Brutal Critical (one die)",
+         "Rages": "4",
+         "Rage Damage": "+3",
+         "Berserker Instincts": "3"
+        },
+        "10": {
+         "Level": "10th",
+         "Proficiency Bonus": "+4",
+         "Features": "Approach feature",
+         "Rages": "4",
+         "Rage Damage": "+3",
+         "Berserker Instincts": "3"
+        },
+        "11": {
+         "Level": "11th",
+         "Proficiency Bonus": "+4",
+         "Features": "Relentless Rage",
+         "Rages": "4",
+         "Rage Damage": "+3",
+         "Berserker Instincts": "3"
+        },
+        "12": {
+         "Level": "12th",
+         "Proficiency Bonus": "+4",
+         "Features": "Ability Score Improvement",
+         "Rages": "5",
+         "Rage Damage": "+3",
+         "Berserker Instincts": "3"
+        },
+        "13": {
+         "Level": "13th",
+         "Proficiency Bonus": "+5",
+         "Features": "Brutal Critical (two dice)",
+         "Rages": "5",
+         "Rage Damage": "+4",
+         "Berserker Instincts": "4"
+        },
+        "14": {
+         "Level": "14th",
+         "Proficiency Bonus": "+5",
+         "Features": "Approach feature",
+         "Rages": "5",
+         "Rage Damage": "+4",
+         "Berserker Instincts": "4"
+        },
+        "15": {
+         "Level": "15th",
+         "Proficiency Bonus": "+5",
+         "Features": "Persistent Rage",
+         "Rages": "5",
+         "Rage Damage": "+4",
+         "Berserker Instincts": "4"
+        },
+        "16": {
+         "Level": "16th",
+         "Proficiency Bonus": "+5",
+         "Features": "Ability Score Improvement",
+         "Rages": "5",
+         "Rage Damage": "+4",
+         "Berserker Instincts": "4"
+        },
+        "17": {
+         "Level": "17th",
+         "Proficiency Bonus": "+6",
+         "Features": "Brutal Critical (three dice)",
+         "Rages": "6",
+         "Rage Damage": "+5",
+         "Berserker Instincts": "5"
+        },
+        "18": {
+         "Level": "18th",
+         "Proficiency Bonus": "+6",
+         "Features": "Indomitable Might",
+         "Rages": "6",
+         "Rage Damage": "+5",
+         "Berserker Instincts": "5"
+        },
+        "19": {
+         "Level": "19th",
+         "Proficiency Bonus": "+6",
+         "Features": "Ability Score Improvement",
+         "Rages": "6",
+         "Rage Damage": "+5",
+         "Berserker Instincts": "5"
+        },
+        "20": {
+         "Level": "20th",
+         "Proficiency Bonus": "+6",
+         "Features": "Primal Champion",
+         "Rages": "Unlimited",
+         "Rage Damage": "+5",
+         "Berserker Instincts": "5"
+        }
+       },
+       "casterType": "None",
+       "casterRatio": 0,
+       "multiClassProficiencies": [
+        "Light armor",
+        "all vibroweapons"
+       ],
+       "archetypeFlavorName": "Berserker Approaches"
+      }
+     },
+     "archetypes": {},
+     "species": {
+      "Wookiee": {
+       "name": "Wookiee",
+       "size": "Medium",
+       "homeworld": "Kashyyyk",
+       "language": "Shyriiwook",
+       "distinctions": "Tall, hair covered, retractable climbing claws, long life spans",
+       "skinColorOptions": "Gray",
+       "hairColorOptions": "Different shades of black, brown, and white in varying combinations",
+       "eyeColorOptions": "Blue, green, yellow, golden, brown, or red",
+       "heightAverage": "6'3\"",
+       "heightRollMod": "+2d12\"",
+       "weightAverage": "190 lb.",
+       "weightRollMod": "x(2d6) lb.",
+       "traits": [
+        {
+         "name": "Ability Score Increase",
+         "description": "Your Strength score increases by 2, and your Constitution score increases by 1."
+        },
+        {
+         "name": "Age",
+         "description": "Wookiees reach adulthood at about 40 and can live to be 400."
+        },
+        {
+         "name": "Alignment",
+         "description": "Wookiees tend toward the light side, though there are exceptions."
+        },
+        {
+         "name": "Size",
+         "description": "Wookiees tend to tower over other species, reaching heights over 8 feet and weighing 300 pounds. Regardless of your position in that range, your size is Medium."
+        },
+        {
+         "name": "Speed",
+         "description": "Your base walking speed is 30 feet."
+        },
+        {
+         "name": "Claws",
+         "description": "Your claws are natural weapons, which you can use to make unarmed strikes. Additionally, your unarmed strikes deal 1d4 kinetic damage."
+        },
+        {
+         "name": "Darkvision",
+         "description": "Your vision can easily cut through darkness. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can’t discern color in darkness, only shades of gray."
+        },
+        {
+         "name": "Hide",
+         "description": "You have a thick hide. While you are unarmored or wearing light armor, your AC is 13 + your Dexterity modifier. Additionally, you have advantage on Constitution saving throws made to avoid exhaustion due to extreme cold."
+        },
+        {
+         "name": "Menacing",
+         "description": "You have proficiency in the Intimidation skill."
+        },
+        {
+         "name": "Powerful Build",
+         "description": "Your carrying capacity and the weight you can push, drag, or lift doubles. If it would already double, it instead triples."
+        },
+        {
+         "name": "Treeclimber",
+         "description": "You have a climbing speed of 30 feet. You have advantage on Strength saving throws and Strength (Athletics) checks that involve climbing."
+        },
+        {
+         "name": "Languages",
+         "description": "You can speak, read, and write Shyriiwook. You can understand spoken and written Galactic Basic, but your vocal cords do not allow you to speak it."
+        }
+       ],
+       "imageUrls": [
+        "https://starwars5ecentral.blob.core.windows.net/site-images/species/species_wookiee.png"
+       ]
+      }
+     },
+     "backgrounds": {
+      "Mercenary": {
+       "name": "Mercenary",
+       "flavorText": "As a sell-sword who fought battles for coin, you're well acquainted with risking life and limb for a chance at a share of treasure. Now, you look forward to fighting foes and reaping even greater rewards as an adventurer. Your experience makes you familiar with the ins and outs of mercenary life, and you likely have harrowing stories of events on the battlefield. You might have served with a large outfit or a smaller band of sell-swords, maybe even more than one. \r\n\r\nNow you're looking for something else, perhaps greater reward for the risks you take, or the freedom to choose your own activities. For whatever reason, you're leaving behind the life of a soldier for hire, but your skills are undeniably suited for battle, so now you fight on in a different way.",
+       "skillProficiencies": "Choose two from Athletics, Investigation, Persuasion, and Piloting",
+       "toolProficiencies": "One type of gaming set",
+       "languages": "One of your choice",
+       "equipment": "A uniform of your company (traveler's clothes in quality), an insignia of your rank, a gaming set (one of your choice), and a pouch containing the remainder of your last wages (100 cr)",
+       "featureName": "Mercenary Life",
+       "featureText": "You know the mercenary life as only someone who has experienced it can. You are able to identify mercenary companies by their emblems, and you know a little about any such company, including the names and reputations of its commanders and leaders, and who has hired them recently. You can find the cantinas and feasthalls where mercenaries abide in any area, as long as you speak the language, and if you spend at least an hour in such a location you can come across one of the following bits of information: a job offer, significant rumor, referral to a skilled merchant, blacksmith, etc., or a hint towards the pursuit of your current quest. Additionally, you can find mercenary work between adventures sufficient to maintain a comfortable lifestyle (see \"Practicing a Profession\" under \"Downtime Activities\" in chapter 8 of the Player's Handbook).\r\n",
+       "flavorName": null,
+       "flavorDescription": null
+      }
+     },
+     "feats": {
+      "Brawny": {
+       "name": "Brawny",
+       "prerequisite": null,
+       "text": "You become stronger, gaining the following benefits: \r\n- Increase your Strength score by 1, to a maximum of 20. \r\n- You gain proficiency in the Athletics skill. If you are already proficient in it, you instead gain expertise in it. \r\n- Your carrying capacity and the weight you can push, drag, or lift doubles. If it would already double, it instead triples.\r\n",
+       "attributesIncreased": [
+        "Strength"
+       ],
+       "contentType": "Core",
+       "contentSource": "PHB"
+      }
+     },
+     "maneuvers": {},
+     "choices": {},
+     "conditions": [
+      {
+       "name": "Blinded",
+       "description": "A blinded creature can't see and automatically fails any ability check that requires sight.\\r\\n- Attack rolls against the creature have advantage, and the creature's attack rolls have disadvantage."
+      },
+      {
+       "name": "Charmed",
+       "description": "A charmed creature can't attack the charmer or target the charmer with harmful abilities or enhanced effects.\\r\\n- The charmer has advantage on any ability check to interact socially with the creature."
+      },
+      {
+       "name": "Deafened",
+       "description": "A deafened creature can't hear and automatically fails any ability check that requires hearing."
+      },
+      {
+       "name": "Exhaustion",
+       "description": "Some special abilities and environmental hazards, such as and the long-term effects of freezing or scorching temperatures, can lead to a special condition called exhaustion. Exhaustion is measured in six levels. An effect can give a creature one or more levels of exhaustion, as specified in the effect's description. Exhaustion Level\\r\\n\\r\\n|Level|Effect|\\r\\n|:--:|:--|\\r\\n|1|Disadvantage on ability checks|\\r\\n|2|Speed halved|\\r\\n|3|Disadvantage on attack rolls and saving throws|\\r\\n|4|Hit point maximum halved|\\r\\n|5|Speed reduced to 0|\\r\\n|6|Death|\\r\\n\\r\\nIf an already exhausted creature suffers another effect that causes exhaustion, its current level of exhaustion increases by the amount specified in the effect's description.\\r\\n\\r\\nA creature suffers the effect of its current level of exhaustion as well as all lower levels. For example, a creature suffering level 2 exhaustion has its speed halved and has disadvantage on ability checks.\\r\\n\\r\\nAn effect that removes exhaustion reduces its level as specified in the effect's description, with all exhaustion effects ending if a creature's exhaustion level is reduced below 1.\\r\\n\\r\\nFinishing a long rest reduces a creature's exhaustion level by 1, provided that the creature has also ingested some food and drink."
+      },
+      {
+       "name": "Frightened",
+       "description": "A frightened creature has disadvantage on ability checks and attack rolls while the source of its fear is within line of sight.\\r\\n- The creature can't willingly move closer to the source of its fear."
+      },
+      {
+       "name": "Grappled",
+       "description": "A grappled creature's speed becomes 0, and it can't benefit from any bonus to its speed.\\r\\n- The condition ends if the grappler is incapacitated (see the condition).\\r\\n- The condition also ends if an effect removes the grappled creature from the reach of the grappler or grappling effect."
+      },
+      {
+       "name": "Incapacitated",
+       "description": "An incapacitated creature can't take actions or reactions."
+      },
+      {
+       "name": "Invisible",
+       "description": "An invisible creature is impossible to see without the aid of powers or a special sense. For the purpose of hiding, the creature is heavily obscured. The creature's location can be detected by any noise it makes or any tracks it leaves.\\r\\n- Attack rolls against the creature have disadvantage, and the creature's attack rolls have advantage."
+      },
+      {
+       "name": "Paralyzed",
+       "description": "A paralyzed creature is incapacitated (see the condition) and can't move or speak.\\r\\n- The creature automatically fails Strength and Dexterity saving throws. Attack rolls against the creature have advantage.\\r\\n- Any attack that hits the creature is a critical hit if the attacker is within 5 feet of the creature."
+      },
+      {
+       "name": "Petrified",
+       "description": "A petrified creature is transformed, along with any object it is wearing or carrying, into a solid inanimate substance (usually stone). Its weight increases by a factor of ten, and it ceases aging.\\r\\n- The creature is incapacitated (see the condition), can't move or speak, and is unaware of its surroundings.\\r\\n- Attack rolls against the creature have advantage. \\r\\n- The creature automatically fails Strength and Dexterity saving throws.\\r\\n- The creature has resistance to all damage.\\r\\n- The creature is immune to poison and disease, although a poison or disease already in its system is suspended, not neutralized."
+      },
+      {
+       "name": "Poisoned",
+       "description": "A poisoned creature has disadvantage on attack rolls and ability checks."
+      },
+      {
+       "name": "Prone",
+       "description": "A prone creature's only movement option is to crawl, unless it stands up and thereby ends the condition. \\r\\n- The creature has disadvantage on melee attack rolls.\\r\\n- The creature has disadvantage on ranged attack rolls against targets within 30 feet.\\r\\n- An attack roll against the creature has advantage if the attacker is within 5 feet of the creature. Otherwise, the attack roll has disadvantage."
+      },
+      {
+       "name": "Restrained",
+       "description": "A restrained creature's speed becomes 0, and it can't benefit from any bonus to its speed.\\r\\n- Attack rolls against the creature have advantage, and the creature's attack rolls have disadvantage.\\r\\n- The creature has disadvantage on Dexterity saving throws."
+      },
+      {
+       "name": "Shocked",
+       "description": "A shocked creature's speed is reduced by half.\\r\\n- The creature can't take reactions."
+      },
+      {
+       "name": "Stunned",
+       "description": "A stunned creature is incapacitated (see the condition), can't move, and can speak only falteringly.\\r\\n- The creature automatically fails Strength and Dexterity saving throws.\\r\\n- Attack rolls against the creature have advantage."
+      },
+      {
+       "name": "Unconscious",
+       "description": "An unconscious creature is incapacitated (see the condition), can't move or speak, and is unaware of its surroundings\\r\\n- The creature drops whatever it's holding and falls prone.\\r\\n- The creature automatically fails Strength and Dexterity saving throws.\\r\\n- Attack rolls against the creature have advantage.\\r\\n- Any attack that hits the creature is a critical hit if the attacker is within 5 feet of the creature."
+      }
+     ]
+    },
+    "validation": {
+     "code": 0,
+     "message": "All checks passed",
+     "isValid": true
+    },
+    "error": null,
+    "source": "sw5e",
+    "loadedAt": 1792281562508,
+    "meta": {
+     "bridge": 14,
+     "dataVersion": 199,
+     "loggedIn": true,
+     "sourceUrl": "https://sw5e.com/tools/mycharacters",
+     "extractedAt": 1792281562248
+    }
+   }
+  },
+  "derived": {
+   "id:00000000-0000-4000-8000-000011000001": {
+    "basis": "{\"background\":{\"feat\":{\"name\":\"Brawny\",\"type\":\"Feat\"},\"feature\":\"\",\"name\":\"Mercenary\"},\"baseAbilityScores\":{\"Charisma\":10,\"Constitution\":14,\"Dexterity\":13,\"Intelligence\":8,\"Strength\":15,\"Wisdom\":12},\"builderVersion\":\"0.7.6\",\"changedAt\":1792246109001,\"characteristics\":null,\"classes\":[{\"abilityScoreImprovements\":[{\"abilitiesIncreased\":[{\"name\":\"Strength\",\"value\":2}],\"type\":\"Ability Score Improvement\"}],\"archetype\":{\"name\":\"Frenzied Approach\"},\"hitPoints\":[7,7,7],\"levels\":4,\"name\":\"Berserker\",\"options\":{\"Berserker Instincts\":[{\"name\":\"Dewback's Instinct\",\"note\":\"Poison + Acid + Fire\"},{\"name\":\"Predator's Instinct\"}]}}],\"createdAt\":1792245762516,\"credits\":null,\"currentStats\":{\"conditions\":[],\"deathSaves\":{\"failures\":0,\"successes\":0},\"exhaustion\":0,\"featuresTimesUsed\":{},\"forcePointsUsed\":0,\"hasInspiration\":false,\"highLevelCasting\":{\"level6\":false,\"level7\":false,\"level8\":false,\"level9\":false},\"hitDiceUsed\":{},\"hitPointsLost\":0,\"superiorityDiceUsed\":0,\"techPointsUsed\":0,\"temporaryHitPoints\":0},\"customEquipment\":[],\"customFeats\":[],\"customFeatures\":[],\"customForcePowers\":[],\"customLanguages\":[],\"customProficiencies\":[],\"customTechPowers\":[],\"equipment\":[{\"category\":\"Equipment\",\"equipped\":true,\"name\":\"Vibroaxe\",\"quantity\":1,\"tweaks\":{\"damage\":{\"bonus\":1},\"toHit\":{\"bonus\":1,\"proficiency\":\"proficient\"}}},{\"category\":\"Equipment\",\"equipped\":false,\"name\":\"Vibrospear\",\"quantity\":\"2\",\"tweaks\":{\"toHit\":{\"bonus\":0,\"proficiency\":\"proficient\"}}},{\"category\":\"Equipment\",\"name\":\"Clothes, traveler's\",\"quantity\":1},{\"category\":\"Equipment\",\"name\":\"Sabacc deck\",\"quantity\":1},{\"category\":\"Equipment\",\"name\":\"Pouch\",\"quantity\":1},{\"category\":\"Equipment\",\"name\":\"Backpack\",\"quantity\":1},{\"category\":\"Equipment\",\"name\":\"Bedroll\",\"quantity\":1},{\"category\":\"Equipment\",\"name\":\"Field rations (one day's)\",\"quantity\":10},{\"category\":\"Equipment\",\"name\":\"Glowrod\",\"quantity\":1},{\"category\":\"Equipment\",\"equipped\":false,\"name\":\"Light physical shield\",\"quantity\":1},{\"category\":\"Equipment\",\"name\":\"Datapad\",\"quantity\":1},{\"category\":\"EnhancedItem\",\"equipped\":true,\"name\":\"Weapon (Fine)\",\"quantity\":1}],\"experiencePoints\":2700,\"featureNotes\":null,\"id\":\"00000000-0000-4000-8000-000011000001\",\"image\":\"\",\"localId\":\"temp-rf2lujr13\",\"name\":\"Rorrwaak (Panel)\",\"notes\":null,\"settings\":{\"abilityScoreMethod\":\"Standard Array\",\"isEnforcingForcePrerequisites\":true,\"isFixedHitPoints\":false},\"species\":{\"abilityScoreImprovement\":{},\"abilityScoreImprovementSelectedOption\":0,\"language\":\"Shyriiwook\",\"name\":\"Wookiee\"},\"tweaks\":{\"abilityScores\":{\"Charisma\":{\"skills\":{\"Intimidation\":{\"bonus\":0,\"proficiency\":\"Proficient\"},\"Persuasion\":{\"bonus\":0,\"proficiency\":\"Proficient\"}}},\"Intelligence\":{\"skills\":{\"Piloting\":{\"bonus\":0,\"proficiency\":\"Proficient\"}}},\"Strength\":{\"score\":{\"bonus\":1},\"skills\":{\"Athletics\":{\"bonus\":0,\"proficiency\":\"Expertise\"}}},\"Wisdom\":{\"skills\":{\"Perception\":{\"bonus\":0,\"proficiency\":\"Proficient\"}}}},\"armorClass\":{\"bonus\":4},\"speed\":{\"base\":{\"bonus\":10}},\"unarmed\":{\"damageDice\":{\"bonus\":0,\"dieSize\":4,\"override\":4}}},\"user\":\"\",\"userId\":\"00000000-0000-4000-8000-000011000002\"}",
+    "complete": {
+     "name": "Rorrwaak (Panel)",
+     "builderVersion": "0.7.6",
+     "image": "",
+     "characteristics": {
+      "alignment": "Chaotic Light",
+      "Personality Traits": "I face problems head-on. A simple, direct solution is the best path to success.",
+      "Ideal": "Live and Let Live. A little compassion goes a long way. (Light)",
+      "Bond": "I have a personal debt that must be paid: a life debt to the pilot who got me off a slaver ship.",
+      "Flaw": "When I get angry I stop listening, even to friends.",
+      "Gender": "Male",
+      "Place of Birth": "Kashyyyk",
+      "Age": "62",
+      "Height": "7'4\"",
+      "Weight": "310 lb",
+      "Hair": "Brown with grey streaks",
+      "Eyes": "Blue",
+      "Skin": "Gray",
+      "Appearance": "A towering Wookiee with a bandolier and a scarred left arm. Speaks Shyriiwook; understands Basic.",
+      "Backstory": ""
+     },
+     "tweaks": {
+      "abilityScores": {
+       "Strength": {
+        "skills": {
+         "Athletics": {
+          "proficiency": "Expertise",
+          "bonus": 0
+         }
+        },
+        "score": {
+         "bonus": 1
+        }
+       },
+       "Wisdom": {
+        "skills": {
+         "Perception": {
+          "proficiency": "Proficient",
+          "bonus": 0
+         }
+        }
+       },
+       "Charisma": {
+        "skills": {
+         "Persuasion": {
+          "proficiency": "Proficient",
+          "bonus": 0
+         },
+         "Intimidation": {
+          "proficiency": "Proficient",
+          "bonus": 0
+         }
+        }
+       },
+       "Intelligence": {
+        "skills": {
+         "Piloting": {
+          "proficiency": "Proficient",
+          "bonus": 0
+         }
+        }
+       }
+      },
+      "armorClass": {
+       "bonus": 4
+      },
+      "unarmed": {
+       "damageDice": {
+        "override": 4,
+        "dieSize": 4,
+        "bonus": 0
+       }
+      },
+      "speed": {
+       "base": {
+        "bonus": 10
+       }
+      }
+     },
+     "customProficiencies": [],
+     "customLanguages": [],
+     "customFeatures": [],
+     "customTechPowers": [],
+     "customForcePowers": [],
+     "customEquipment": [],
+     "numCustomFeats": 0,
+     "currentLevel": 4,
+     "classText": "Berserker (Frenzied Approach) 4",
+     "alignment": "Chaotic Light",
+     "species": "Wookiee",
+     "background": "Mercenary",
+     "experiencePoints": {
+      "previousLevel": 2700,
+      "current": 2700,
+      "nextLevel": 6500,
+      "isCorrect": true,
+      "errorMessage": ""
+     },
+     "abilityScores": {
+      "Strength": {
+       "value": 20,
+       "modifier": 5,
+       "savingThrow": {
+        "modifier": 7,
+        "proficiency": "proficient"
+       },
+       "skills": [
+        {
+         "name": "Athletics",
+         "modifier": 9,
+         "proficiency": "expertise"
+        }
+       ]
+      },
+      "Dexterity": {
+       "value": 13,
+       "modifier": 1,
+       "savingThrow": {
+        "modifier": 1,
+        "proficiency": "none"
+       },
+       "skills": [
+        {
+         "name": "Acrobatics",
+         "modifier": 1,
+         "proficiency": "none"
+        },
+        {
+         "name": "Sleight of Hand",
+         "modifier": 1,
+         "proficiency": "none"
+        },
+        {
+         "name": "Stealth",
+         "modifier": 1,
+         "proficiency": "none"
+        }
+       ]
+      },
+      "Constitution": {
+       "value": 15,
+       "modifier": 2,
+       "savingThrow": {
+        "modifier": 4,
+        "proficiency": "proficient"
+       },
+       "skills": []
+      },
+      "Intelligence": {
+       "value": 8,
+       "modifier": -1,
+       "savingThrow": {
+        "modifier": -1,
+        "proficiency": "none"
+       },
+       "skills": [
+        {
+         "name": "Investigation",
+         "modifier": -1,
+         "proficiency": "none"
+        },
+        {
+         "name": "Lore",
+         "modifier": -1,
+         "proficiency": "none"
+        },
+        {
+         "name": "Nature",
+         "modifier": -1,
+         "proficiency": "none"
+        },
+        {
+         "name": "Piloting",
+         "modifier": 1,
+         "proficiency": "proficient"
+        },
+        {
+         "name": "Technology",
+         "modifier": -1,
+         "proficiency": "none"
+        }
+       ]
+      },
+      "Wisdom": {
+       "value": 12,
+       "modifier": 1,
+       "savingThrow": {
+        "modifier": 1,
+        "proficiency": "none"
+       },
+       "skills": [
+        {
+         "name": "Animal Handling",
+         "modifier": 1,
+         "proficiency": "none"
+        },
+        {
+         "name": "Insight",
+         "modifier": 1,
+         "proficiency": "none"
+        },
+        {
+         "name": "Medicine",
+         "modifier": 1,
+         "proficiency": "none"
+        },
+        {
+         "name": "Perception",
+         "modifier": 3,
+         "proficiency": "proficient"
+        },
+        {
+         "name": "Survival",
+         "modifier": 1,
+         "proficiency": "none"
+        }
+       ]
+      },
+      "Charisma": {
+       "value": 10,
+       "modifier": 0,
+       "savingThrow": {
+        "modifier": 0,
+        "proficiency": "none"
+       },
+       "skills": [
+        {
+         "name": "Deception",
+         "modifier": 0,
+         "proficiency": "none"
+        },
+        {
+         "name": "Intimidation",
+         "modifier": 2,
+         "proficiency": "proficient"
+        },
+        {
+         "name": "Performance",
+         "modifier": 0,
+         "proficiency": "none"
+        },
+        {
+         "name": "Persuasion",
+         "modifier": 2,
+         "proficiency": "proficient"
+        }
+       ]
+      }
+     },
+     "proficiencyBonus": 2,
+     "initiative": 1,
+     "armorClass": 15,
+     "armorList": [],
+     "passivePerception": 13,
+     "inspiration": false,
+     "vision": "normal",
+     "speed": {
+      "base": "40 ft",
+      "hour": "4 miles",
+      "day": "32 miles",
+      "special": ""
+     },
+     "hitPoints": {
+      "current": 41,
+      "temporary": 0,
+      "maximum": 41,
+      "hitDice": [
+       {
+        "size": "d12",
+        "current": 4,
+        "maximum": 4
+       }
+      ],
+      "deathSaves": {
+       "successes": 0,
+       "failures": 0
+      },
+      "resting": {
+       "hitDieBonus": 2,
+       "numHitDiceUsed": 0,
+       "hitDiceRestored": [],
+       "techPointsUsed": 0,
+       "forcePointsUsed": 0,
+       "highLevelCasting": {
+        "level6": false,
+        "level7": false,
+        "level8": false,
+        "level9": false
+       },
+       "shortRestFeatures": [],
+       "longRestFeatures": []
+      }
+     },
+     "conditions": [],
+     "exhaustion": 0,
+     "proficiencies": [
+      {
+       "name": "All vibroweapons",
+       "type": "weapon"
+      },
+      {
+       "name": "simple blasters",
+       "type": "weapon"
+      },
+      {
+       "name": "Light armor",
+       "type": "armor"
+      },
+      {
+       "name": "medium armor",
+       "type": "armor"
+      },
+      {
+       "name": "One type of gaming set",
+       "type": "tool"
+      }
+     ],
+     "skillAndSaveProficiencies": [
+      "Athletics",
+      "Piloting",
+      "Perception",
+      "Intimidation",
+      "Persuasion",
+      "Strength Saving Throws",
+      "Constitution Saving Throws"
+     ],
+     "languages": [
+      "Galactic Basic",
+      "Shyriiwook"
+     ],
+     "equipment": [
+      {
+       "name": "Vibroaxe",
+       "description": null,
+       "cost": 950,
+       "weight": "9.25",
+       "equipmentCategoryEnum": 3,
+       "equipmentCategory": "Weapon",
+       "damageNumberOfDice": 1,
+       "damageTypeEnum": 7,
+       "damageType": "Kinetic",
+       "damageDieModifier": 0,
+       "weaponClassificationEnum": 4,
+       "weaponClassification": "MartialVibroweapon",
+       "armorClassificationEnum": 0,
+       "armorClassification": "Unknown",
+       "damageDiceDieTypeEnum": 12,
+       "damageDieType": 12,
+       "properties": [
+        "Dexterity 11",
+        "heavy",
+        "two-handed"
+       ],
+       "propertiesJson": "[\"Dexterity 11\",\"heavy\",\"two-handed\"]",
+       "propertiesMap": {
+        "Dexterity": "Dexterity 11",
+        "Heavy": "heavy",
+        "Two-Handed": "two-handed"
+       },
+       "propertiesMapJson": "{\"Dexterity\":\"Dexterity 11\",\"Heavy\":\"heavy\",\"Two-Handed\":\"two-handed\"}",
+       "modes": [],
+       "modesJson": "[]",
+       "ac": null,
+       "strengthRequirement": null,
+       "stealthDisadvantage": false,
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Vibroaxe",
+       "timestamp": "2023-05-30T20:15:38.6852497+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A38.6852497Z'\"",
+       "attackBonus": 8,
+       "damageBonus": 6,
+       "ability": "Strength",
+       "isCustom": false,
+       "equipped": true,
+       "quantity": 1,
+       "index": 0,
+       "tweaks": {
+        "toHit": {
+         "bonus": 1,
+         "proficiency": "proficient"
+        },
+        "damage": {
+         "bonus": 1
+        }
+       },
+       "isFound": true
+      },
+      {
+       "name": "Vibrospear",
+       "description": null,
+       "cost": 125,
+       "weight": "4",
+       "equipmentCategoryEnum": 3,
+       "equipmentCategory": "Weapon",
+       "damageNumberOfDice": 1,
+       "damageTypeEnum": 7,
+       "damageType": "Kinetic",
+       "damageDieModifier": 0,
+       "weaponClassificationEnum": 3,
+       "weaponClassification": "SimpleVibroweapon",
+       "armorClassificationEnum": 0,
+       "armorClassification": "Unknown",
+       "damageDiceDieTypeEnum": 6,
+       "damageDieType": 6,
+       "properties": [
+        "Thrown (range 25/75)",
+        "versatile (2d4)"
+       ],
+       "propertiesJson": "[\"Thrown (range 25/75)\",\"versatile (2d4)\"]",
+       "propertiesMap": {
+        "Range": "Thrown (range 25/75)",
+        "Versatile": "versatile (2d4)"
+       },
+       "propertiesMapJson": "{\"Range\":\"Thrown (range 25/75)\",\"Versatile\":\"versatile (2d4)\"}",
+       "modes": [],
+       "modesJson": "[]",
+       "ac": null,
+       "strengthRequirement": null,
+       "stealthDisadvantage": false,
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Vibrospear",
+       "timestamp": "2023-05-30T20:15:38.6842512+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A38.6842512Z'\"",
+       "attackBonus": 7,
+       "damageBonus": 5,
+       "ability": "Strength",
+       "isCustom": false,
+       "equipped": false,
+       "quantity": "2",
+       "index": 1,
+       "tweaks": {
+        "toHit": {
+         "proficiency": "proficient",
+         "bonus": 0
+        }
+       },
+       "isFound": true
+      },
+      {
+       "name": "Clothes, traveler's",
+       "description": null,
+       "cost": 20,
+       "weight": "4",
+       "equipmentCategoryEnum": 20,
+       "equipmentCategory": "Clothing",
+       "damageNumberOfDice": 0,
+       "damageTypeEnum": 0,
+       "damageType": "Unknown",
+       "damageDieModifier": 0,
+       "weaponClassificationEnum": 0,
+       "weaponClassification": "Unknown",
+       "armorClassificationEnum": 0,
+       "armorClassification": "Unknown",
+       "damageDiceDieTypeEnum": 0,
+       "damageDieType": 0,
+       "properties": null,
+       "propertiesJson": "",
+       "propertiesMap": null,
+       "propertiesMapJson": "",
+       "modes": [],
+       "modesJson": "[]",
+       "ac": null,
+       "strengthRequirement": null,
+       "stealthDisadvantage": false,
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Clothes, traveler's",
+       "timestamp": "2023-05-30T20:15:38.9620914+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A38.9620914Z'\"",
+       "quantity": 1,
+       "index": 2,
+       "isFound": true
+      },
+      {
+       "name": "Sabacc deck",
+       "description": null,
+       "cost": 150,
+       "weight": "0",
+       "equipmentCategoryEnum": 17,
+       "equipmentCategory": "GamingSet",
+       "damageNumberOfDice": 0,
+       "damageTypeEnum": 0,
+       "damageType": "Unknown",
+       "damageDieModifier": 0,
+       "weaponClassificationEnum": 0,
+       "weaponClassification": "Unknown",
+       "armorClassificationEnum": 0,
+       "armorClassification": "Unknown",
+       "damageDiceDieTypeEnum": 0,
+       "damageDieType": 0,
+       "properties": null,
+       "propertiesJson": "",
+       "propertiesMap": null,
+       "propertiesMapJson": "",
+       "modes": [],
+       "modesJson": "[]",
+       "ac": null,
+       "strengthRequirement": null,
+       "stealthDisadvantage": false,
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Sabacc deck",
+       "timestamp": "2023-05-30T20:15:38.6942443+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A38.6942443Z'\"",
+       "quantity": 1,
+       "index": 3,
+       "isFound": true
+      },
+      {
+       "name": "Pouch",
+       "description": "A pouch stores 6.00 lb., not exceeding 1/5 cubic foot. ",
+       "cost": 5,
+       "weight": "1",
+       "equipmentCategoryEnum": 5,
+       "equipmentCategory": "Storage",
+       "damageNumberOfDice": 0,
+       "damageTypeEnum": 0,
+       "damageType": "Unknown",
+       "damageDieModifier": 0,
+       "weaponClassificationEnum": 0,
+       "weaponClassification": "Unknown",
+       "armorClassificationEnum": 0,
+       "armorClassification": "Unknown",
+       "damageDiceDieTypeEnum": 0,
+       "damageDieType": 0,
+       "properties": null,
+       "propertiesJson": "",
+       "propertiesMap": null,
+       "propertiesMapJson": "",
+       "modes": [],
+       "modesJson": "[]",
+       "ac": null,
+       "strengthRequirement": null,
+       "stealthDisadvantage": false,
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Pouch",
+       "timestamp": "2023-05-30T20:15:38.9680886+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A38.9680886Z'\"",
+       "quantity": 1,
+       "index": 4,
+       "isFound": true
+      },
+      {
+       "name": "Backpack",
+       "description": "A backpack stores 30 lb., not exceeding 1 cubic foot. ",
+       "cost": 50,
+       "weight": "5",
+       "equipmentCategoryEnum": 5,
+       "equipmentCategory": "Storage",
+       "damageNumberOfDice": 0,
+       "damageTypeEnum": 0,
+       "damageType": "Unknown",
+       "damageDieModifier": 0,
+       "weaponClassificationEnum": 0,
+       "weaponClassification": "Unknown",
+       "armorClassificationEnum": 0,
+       "armorClassification": "Unknown",
+       "damageDiceDieTypeEnum": 0,
+       "damageDieType": 0,
+       "properties": null,
+       "propertiesJson": "",
+       "propertiesMap": null,
+       "propertiesMapJson": "",
+       "modes": [],
+       "modesJson": "[]",
+       "ac": null,
+       "strengthRequirement": null,
+       "stealthDisadvantage": false,
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Backpack",
+       "timestamp": "2023-05-30T20:15:38.9670882+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A38.9670882Z'\"",
+       "quantity": 1,
+       "index": 5,
+       "isFound": true
+      },
+      {
+       "name": "Bedroll",
+       "description": null,
+       "cost": 10,
+       "weight": "7",
+       "equipmentCategoryEnum": 16,
+       "equipmentCategory": "Utility",
+       "damageNumberOfDice": 0,
+       "damageTypeEnum": 0,
+       "damageType": "Unknown",
+       "damageDieModifier": 0,
+       "weaponClassificationEnum": 0,
+       "weaponClassification": "Unknown",
+       "armorClassificationEnum": 0,
+       "armorClassification": "Unknown",
+       "damageDiceDieTypeEnum": 0,
+       "damageDieType": 0,
+       "properties": null,
+       "propertiesJson": "",
+       "propertiesMap": null,
+       "propertiesMapJson": "",
+       "modes": [],
+       "modesJson": "[]",
+       "ac": null,
+       "strengthRequirement": null,
+       "stealthDisadvantage": false,
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Bedroll",
+       "timestamp": "2023-05-30T20:15:38.9680886+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A38.9680886Z'\"",
+       "quantity": 1,
+       "index": 6,
+       "isFound": true
+      },
+      {
+       "name": "Field rations (one day's)",
+       "description": null,
+       "cost": 5,
+       "weight": "1",
+       "equipmentCategoryEnum": 16,
+       "equipmentCategory": "Utility",
+       "damageNumberOfDice": 0,
+       "damageTypeEnum": 0,
+       "damageType": "Unknown",
+       "damageDieModifier": 0,
+       "weaponClassificationEnum": 0,
+       "weaponClassification": "Unknown",
+       "armorClassificationEnum": 0,
+       "armorClassification": "Unknown",
+       "damageDiceDieTypeEnum": 0,
+       "damageDieType": 0,
+       "properties": null,
+       "propertiesJson": "",
+       "propertiesMap": null,
+       "propertiesMapJson": "",
+       "modes": [],
+       "modesJson": "[]",
+       "ac": null,
+       "strengthRequirement": null,
+       "stealthDisadvantage": false,
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Field rations (one day's)",
+       "timestamp": "2023-05-30T20:15:38.9680886+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A38.9680886Z'\"",
+       "quantity": 10,
+       "index": 7,
+       "isFound": true
+      },
+      {
+       "name": "Glowrod",
+       "description": "Glowrods create a beam of light illuminating the area around you in bright light for a 20-foot radius and dim light for an additional 20 feet. The glowrod lasts for 10 hours and can be recharged by connecting to a power source or by replacing the power cell. ",
+       "cost": 10,
+       "weight": "2",
+       "equipmentCategoryEnum": 16,
+       "equipmentCategory": "Utility",
+       "damageNumberOfDice": 0,
+       "damageTypeEnum": 0,
+       "damageType": "Unknown",
+       "damageDieModifier": 0,
+       "weaponClassificationEnum": 0,
+       "weaponClassification": "Unknown",
+       "armorClassificationEnum": 0,
+       "armorClassification": "Unknown",
+       "damageDiceDieTypeEnum": 0,
+       "damageDieType": 0,
+       "properties": null,
+       "propertiesJson": "",
+       "propertiesMap": null,
+       "propertiesMapJson": "",
+       "modes": [],
+       "modesJson": "[]",
+       "ac": null,
+       "strengthRequirement": null,
+       "stealthDisadvantage": false,
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Glowrod",
+       "timestamp": "2023-05-30T20:15:38.969087+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A38.969087Z'\"",
+       "quantity": 1,
+       "index": 8,
+       "isFound": true
+      },
+      {
+       "name": "Light physical shield",
+       "description": null,
+       "cost": 50,
+       "weight": "0",
+       "equipmentCategoryEnum": 4,
+       "equipmentCategory": "Armor",
+       "damageNumberOfDice": 0,
+       "damageTypeEnum": 0,
+       "damageType": "Unknown",
+       "damageDieModifier": 0,
+       "weaponClassificationEnum": 0,
+       "weaponClassification": "Unknown",
+       "armorClassificationEnum": 4,
+       "armorClassification": "Shield",
+       "damageDiceDieTypeEnum": 0,
+       "damageDieType": 0,
+       "properties": [],
+       "propertiesJson": "[]",
+       "propertiesMap": {},
+       "propertiesMapJson": "{}",
+       "modes": [],
+       "modesJson": "[]",
+       "ac": "+1",
+       "strengthRequirement": "",
+       "stealthDisadvantage": false,
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Light physical shield",
+       "timestamp": "2023-05-30T20:15:38.6912462+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A38.6912462Z'\"",
+       "equipped": false,
+       "quantity": 1,
+       "index": 9,
+       "isFound": true
+      },
+      {
+       "name": "Datapad",
+       "description": "A datapad is a small electronic device used for the input, storage and displaying of information. It features a holoprojective surface for 3D viewing. ",
+       "cost": 100,
+       "weight": "0.5",
+       "equipmentCategoryEnum": 8,
+       "equipmentCategory": "DataRecordingAndStorage",
+       "damageNumberOfDice": 0,
+       "damageTypeEnum": 0,
+       "damageType": "Unknown",
+       "damageDieModifier": 0,
+       "weaponClassificationEnum": 0,
+       "weaponClassification": "Unknown",
+       "armorClassificationEnum": 0,
+       "armorClassification": "Unknown",
+       "damageDiceDieTypeEnum": 0,
+       "damageDieType": 0,
+       "properties": null,
+       "propertiesJson": "",
+       "propertiesMap": null,
+       "propertiesMapJson": "",
+       "modes": [],
+       "modesJson": "[]",
+       "ac": null,
+       "strengthRequirement": null,
+       "stealthDisadvantage": false,
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Datapad",
+       "timestamp": "2023-05-30T20:15:38.963091+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A38.963091Z'\"",
+       "quantity": 1,
+       "index": 10,
+       "isFound": true
+      },
+      {
+       "name": "Weapon (Fine)",
+       "typeEnum": 9,
+       "type": "Weapon",
+       "rarityOptionsEnum": [
+        2
+       ],
+       "rarityOptions": [
+        "Premium"
+       ],
+       "rarityOptionsJson": "[\"Premium\"]",
+       "rarityText": "premium",
+       "searchableRarity": "Premium",
+       "requiresAttunement": false,
+       "valueText": null,
+       "text": "You have a +1 bonus to attack and damage rolls made with this enhanced weapon.",
+       "hasPrerequisite": false,
+       "prerequisite": null,
+       "subtype": "any",
+       "cyberneticAugmentationTypeEnum": 0,
+       "cyberneticAugmentationType": "None",
+       "droidCustomizationTypeEnum": 0,
+       "droidCustomizationType": "None",
+       "adventuringGearTypeEnum": 0,
+       "adventuringGearType": "None",
+       "enhancedArmorTypeEnum": 0,
+       "enhancedArmorType": "None",
+       "consumableTypeEnum": 0,
+       "consumableType": "None",
+       "focusTypeEnum": 0,
+       "focusType": "None",
+       "enhancedShieldTypeEnum": 0,
+       "enhancedShieldType": "None",
+       "enhancedWeaponTypeEnum": 1,
+       "enhancedWeaponType": "Any",
+       "itemModificationTypeEnum": 0,
+       "itemModificationType": "None",
+       "valuableTypeEnum": 0,
+       "valuableType": "None",
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 2,
+       "contentSource": "WH",
+       "partitionKey": "Core",
+       "rowKey": "Weapon (Fine)",
+       "timestamp": "2023-05-30T20:15:16.1401065+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A16.1401065Z'\"",
+       "equipped": true,
+       "attuned": false,
+       "quantity": 1,
+       "index": 11,
+       "isFound": true
+      }
+     ],
+     "attunement": {
+      "current": 0,
+      "maximum": 2,
+      "hasAttunable": false
+     },
+     "weapons": [
+      {
+       "name": "Vibroaxe",
+       "description": null,
+       "cost": 950,
+       "weight": "9.25",
+       "equipmentCategoryEnum": 3,
+       "equipmentCategory": "Weapon",
+       "damageNumberOfDice": 1,
+       "damageTypeEnum": 7,
+       "damageType": "Kinetic",
+       "damageDieModifier": 0,
+       "weaponClassificationEnum": 4,
+       "weaponClassification": "MartialVibroweapon",
+       "armorClassificationEnum": 0,
+       "armorClassification": "Unknown",
+       "damageDiceDieTypeEnum": 12,
+       "damageDieType": 12,
+       "properties": [
+        "Dexterity 11",
+        "heavy",
+        "two-handed"
+       ],
+       "propertiesJson": "[\"Dexterity 11\",\"heavy\",\"two-handed\"]",
+       "propertiesMap": {
+        "Dexterity": "Dexterity 11",
+        "Heavy": "heavy",
+        "Two-Handed": "two-handed"
+       },
+       "propertiesMapJson": "{\"Dexterity\":\"Dexterity 11\",\"Heavy\":\"heavy\",\"Two-Handed\":\"two-handed\"}",
+       "modes": [],
+       "modesJson": "[]",
+       "ac": null,
+       "strengthRequirement": null,
+       "stealthDisadvantage": false,
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Vibroaxe",
+       "timestamp": "2023-05-30T20:15:38.6852497+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A38.6852497Z'\"",
+       "attackBonus": 8,
+       "damageBonus": 6,
+       "ability": "Strength",
+       "isCustom": false,
+       "equipped": true,
+       "quantity": 1,
+       "index": 0,
+       "tweaks": {
+        "toHit": {
+         "bonus": 1,
+         "proficiency": "proficient"
+        },
+        "damage": {
+         "bonus": 1
+        }
+       },
+       "isFound": true
+      },
+      {
+       "name": "Unarmed Strike",
+       "description": null,
+       "cost": 0,
+       "weight": "0",
+       "equipmentCategory": "Weapon",
+       "contentType": "Core",
+       "contentSource": "PHB",
+       "damageNumberOfDice": 1,
+       "damageType": "Kinetic",
+       "weaponClassification": "Unarmed",
+       "damageDieType": 4,
+       "properties": [],
+       "propertiesMap": {},
+       "modes": [],
+       "quantity": 0,
+       "index": -1,
+       "isFound": true,
+       "equipped": true,
+       "attackBonus": 7,
+       "damageBonus": 5,
+       "ability": "Strength",
+       "isCustom": false,
+       "tweaks": {
+        "damageDice": {
+         "override": 4,
+         "dieSize": 4,
+         "bonus": 0
+        }
+       }
+      }
+     ],
+     "credits": 450,
+     "carryingCapacity": {
+      "encumbered": 100,
+      "heavilyEncumbered": 200,
+      "maxCapacity": 300,
+      "pushDragLift": 600
+     },
+     "superiority": false,
+     "highLevelCasting": {
+      "level6": false,
+      "level7": false,
+      "level8": false,
+      "level9": false
+     },
+     "techCasting": false,
+     "forceCasting": false,
+     "allForcePowers": [],
+     "combatFeatures": [
+      {
+       "name": "Rage",
+       "text": "_**Berserker:** 1st level_\r\nIn battle, you fight with primal ferocity. On your turn, you can enter a rage as a bonus action if you aren't wearing heavy armor.\r\nWhile raging, you gain the following benefits:\r\n- You have advantage on Strength checks and Strength saving throws.\r\n- When you make a melee weapon attack using Strength, you gain a bonus to the damage roll that increases as you gain levels as a berserker, as shown in the Rage Damage column of the berserker table.\r\n- You have resistance to kinetic and energy damage.\r\nIf you are able to cast powers, you can't cast them or concentrate on them while raging.\r\nYour rage lasts for 1 minute. It ends early if you are knocked unconscious, you don heavy armor, or if your turn ends and you haven't taken a hostile action or taken damage since your last turn. You can also end your rage on your turn as a bonus action.\r\nYou can enter a rage a number of times as shown in the Rages column of the berserker table. You regain all expended uses when you complete a long rest.",
+       "level": 1,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Berserker",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Berserker-Rage-1",
+       "timestamp": "2023-05-30T20:15:43.389567+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.389567Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Unarmored Defense",
+       "text": "_**Berserker:** 1st level_\r\nWhile you are not wearing any armor, your Armor Class equals 10 + your Dexterity modifier + your Constitution modifier. You can use a shield and still gain this benefit.",
+       "level": 1,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Berserker",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Berserker-Unarmored Defense-1",
+       "timestamp": "2023-05-30T20:15:43.389567+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.389567Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Berserker Instincts",
+       "text": "_**Berserker:** 2nd level_\r\nYou've honed two instincts, as detailed at the end of the class description, and you hone more at higher levels, as shown in the Berserker Instincts column of the berserker table.",
+       "level": 2,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Berserker",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Berserker-Berserker Instincts-2",
+       "timestamp": "2023-05-30T20:15:43.389567+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.389567Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Reckless Attack",
+       "text": "_**Berserker:** 2nd level_\r\nYou can throw aside all concern for defense to attack with fierce desperation. When you make your first attack on your turn, you can decide to attack recklessly. Doing so gives you advantage on melee weapon attack rolls using Strength during this turn, but attack rolls against you have advantage until your next turn.",
+       "level": 2,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Berserker",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Berserker-Reckless Attack-2",
+       "timestamp": "2023-05-30T20:15:43.389567+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.389567Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Berserker Approach",
+       "text": "_**Berserker:** 3rd, 6th, 10th, and 14th level_\r\nYou choose an approach that shapes the nature of your rage which is detailed at the end of the class description. ",
+       "level": 3,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Berserker",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Berserker-Berserker Approach-3",
+       "timestamp": "2023-05-30T20:15:43.389567+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.389567Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Danger Sense",
+       "text": "_**Berserker:** 3rd level_\r\nYou gain an uncanny sense of when things nearby aren't as they should be, giving you an edge when you dodge away from danger. You have advantage on Dexterity saving throws against effects that you can see, such as traps and powers. To gain this benefit, you can't be blinded, deafened, or incapacitated.",
+       "level": 3,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Berserker",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Berserker-Danger Sense-3",
+       "timestamp": "2023-05-30T20:15:43.389567+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.389567Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Frenzy",
+       "text": "_**Frenzied Approach:** 3rd level_\r\nYou can go into a frenzy when you enter your rage. If you do so, for the duration of your rage you can make a single melee weapon attack as a bonus action on each of your turns after this one.\r\nThe first time you use this feature, you suffer no ill effect. If you use this feature again before you finish a long rest, you suffer one level of exhaustion when your rage ends each time you use it.\r\nWhen you finish a long rest, you reduce your exhaustion level by 2, instead of 1. Additionally, any effect that removes exhaustion reduces your exhaustion by 1 additional level.",
+       "level": 3,
+       "sourceEnum": 1,
+       "source": "Archetype",
+       "sourceName": "Frenzied Approach",
+       "metadata": null,
+       "partitionKey": "ExpandedContent",
+       "rowKey": "Archetype-Frenzied Approach-Frenzy-3",
+       "timestamp": "2023-05-30T20:15:26.4112497+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A26.4112497Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Maniacal Rage",
+       "text": "_**Frenzied Approach:** 3rd level_\r\nWhile raging, you have advantage on Charisma (Intimidation) checks.",
+       "level": 3,
+       "sourceEnum": 1,
+       "source": "Archetype",
+       "sourceName": "Frenzied Approach",
+       "metadata": null,
+       "partitionKey": "ExpandedContent",
+       "rowKey": "Archetype-Frenzied Approach-Maniacal Rage-3",
+       "timestamp": "2023-05-30T20:15:26.4112497+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A26.4112497Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Ability Score Improvement",
+       "text": "_**Berserker:** 4th, 8th, 12th, 16th, and 19th level_\r\nYou can increase one ability score by 2, or you can increase two ability scores by 1. You can't increase an ability score above 20 using this feature.",
+       "level": 4,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Berserker",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Berserker-Ability Score Improvement-4",
+       "timestamp": "2023-05-30T20:15:43.3905665+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.3905665Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Ability Score Increase",
+       "text": "Your Strength score increases by 2, and your Constitution score increases by 1.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Wookiee",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Wookiee-Ability Score Increase",
+       "timestamp": "2023-05-30T20:15:41.0039273+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A41.0039273Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Age",
+       "text": "Wookiees reach adulthood at about 40 and can live to be 400.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Wookiee",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Wookiee-Age",
+       "timestamp": "2023-05-30T20:15:41.0039273+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A41.0039273Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Alignment",
+       "text": "Wookiees tend toward the light side, though there are exceptions.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Wookiee",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Wookiee-Alignment",
+       "timestamp": "2023-05-30T20:15:41.0039273+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A41.0039273Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Claws",
+       "text": "Your claws are natural weapons, which you can use to make unarmed strikes. Additionally, your unarmed strikes deal 1d4 kinetic damage.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Wookiee",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Wookiee-Claws",
+       "timestamp": "2023-05-30T20:15:41.0049268+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A41.0049268Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Darkvision",
+       "text": "Your vision can easily cut through darkness. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can’t discern color in darkness, only shades of gray.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Wookiee",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Wookiee-Darkvision",
+       "timestamp": "2023-05-30T20:15:41.0049268+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A41.0049268Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Hide",
+       "text": "You have a thick hide. While you are unarmored or wearing light armor, your AC is 13 + your Dexterity modifier. Additionally, you have advantage on Constitution saving throws made to avoid exhaustion due to extreme cold.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Wookiee",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Wookiee-Hide",
+       "timestamp": "2023-05-30T20:15:41.0049268+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A41.0049268Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Languages",
+       "text": "You can speak, read, and write Shyriiwook. You can understand spoken and written Galactic Basic, but your vocal cords do not allow you to speak it.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Wookiee",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Wookiee-Languages",
+       "timestamp": "2023-05-30T20:15:41.0049268+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A41.0049268Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Menacing",
+       "text": "You have proficiency in the Intimidation skill.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Wookiee",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Wookiee-Menacing",
+       "timestamp": "2023-05-30T20:15:41.0049268+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A41.0049268Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Powerful Build",
+       "text": "Your carrying capacity and the weight you can push, drag, or lift doubles. If it would already double, it instead triples.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Wookiee",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Wookiee-Powerful Build",
+       "timestamp": "2023-05-30T20:15:41.0049268+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A41.0049268Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Size",
+       "text": "Wookiees tend to tower over other species, reaching heights over 8 feet and weighing 300 pounds. Regardless of your position in that range, your size is Medium.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Wookiee",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Wookiee-Size",
+       "timestamp": "2023-05-30T20:15:41.0049268+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A41.0049268Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Speed",
+       "text": "Your base walking speed is 30 feet.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Wookiee",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Wookiee-Speed",
+       "timestamp": "2023-05-30T20:15:41.0049268+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A41.0049268Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Treeclimber",
+       "text": "You have a climbing speed of 30 feet. You have advantage on Strength saving throws and Strength (Athletics) checks that involve climbing.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Wookiee",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Wookiee-Treeclimber",
+       "timestamp": "2023-05-30T20:15:41.0049268+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A41.0049268Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Brawny",
+       "prerequisite": null,
+       "text": "You become stronger, gaining the following benefits: \r\n- Increase your Strength score by 1, to a maximum of 20. \r\n- You gain proficiency in the Athletics skill. If you are already proficient in it, you instead gain expertise in it. \r\n- Your carrying capacity and the weight you can push, drag, or lift doubles. If it would already double, it instead triples.\r\n",
+       "attributesIncreased": [
+        "Strength"
+       ],
+       "attributesIncreasedJson": "[\"Strength\"]",
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Brawny",
+       "timestamp": "2023-05-30T20:15:09.5518633+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A09.5518633Z'\"",
+       "customIndex": -1,
+       "combat": true
+      }
+     ],
+     "nonCombatFeatures": [],
+     "backgroundFeature": {
+      "name": "Mercenary Life",
+      "combat": false,
+      "text": "You know the mercenary life as only someone who has experienced it can. You are able to identify mercenary companies by their emblems, and you know a little about any such company, including the names and reputations of its commanders and leaders, and who has hired them recently. You can find the cantinas and feasthalls where mercenaries abide in any area, as long as you speak the language, and if you spend at least an hour in such a location you can come across one of the following bits of information: a job offer, significant rumor, referral to a skilled merchant, blacksmith, etc., or a hint towards the pursuit of your current quest. Additionally, you can find mercenary work between adventures sufficient to maintain a comfortable lifestyle (see \"Practicing a Profession\" under \"Downtime Activities\" in chapter 8 of the Player's Handbook).\r\n"
+     },
+     "settings": {
+      "isEnforcingForcePrerequisites": true,
+      "isFixedHitPoints": false,
+      "abilityScoreMethod": "Standard Array"
+     },
+     "notes": "## Not on the sheet yet\n- **Tool:** Sabacc deck (Mercenary gaming set)\n- **Languages:** Shyriiwook (speak/read/write), Galactic Basic (understand only, can't speak), Huttese (Mercenary language choice)\n- **Insignia of rank** from my old mercenary company (no such item in SW5E's list)\n- Explorer's pack: added Backpack, Bedroll, 10 Field rations, Glowrod by hand\n\n## Session 1: Trouble on Ord Mantell\n- Cantina contact: Persuasion 18, Insight 15 (adv).\n- Kessa's Outfitters: bought a Light physical shield (50 cr) and 2 Medpacs at Kessa's 20% price (480 cr): paid 50 cr, **owe Kessa 430 cr**.\n\n- Ambush at the docks: raged, hit twice (14 + 14). Took 3 + 6 (halved by Rage). Ally medpac +6, my medpac to full. GM: no shield with a two-handed axe, so the shield is stowed.\n- Loot: 150 cr, Strength Stim (Basic), **Datapad = the coded datapad with the smuggler's coordinates** (story item).\n- Inspiration from the GM, spent on Stealth (10).\n- Long rest. **300 XP** (level 2 reached).\n"
+    },
+    "base": {
+     "name": "Rorrwaak (Panel)",
+     "builderVersion": "0.7.6",
+     "image": "",
+     "characteristics": {
+      "alignment": "Chaotic Light",
+      "Personality Traits": "I face problems head-on. A simple, direct solution is the best path to success.",
+      "Ideal": "Live and Let Live. A little compassion goes a long way. (Light)",
+      "Bond": "I have a personal debt that must be paid: a life debt to the pilot who got me off a slaver ship.",
+      "Flaw": "When I get angry I stop listening, even to friends.",
+      "Gender": "Male",
+      "Place of Birth": "Kashyyyk",
+      "Age": "62",
+      "Height": "7'4\"",
+      "Weight": "310 lb",
+      "Hair": "Brown with grey streaks",
+      "Eyes": "Blue",
+      "Skin": "Gray",
+      "Appearance": "A towering Wookiee with a bandolier and a scarred left arm. Speaks Shyriiwook; understands Basic.",
+      "Backstory": ""
+     },
+     "tweaks": {},
+     "customProficiencies": [],
+     "customLanguages": [],
+     "customFeatures": [],
+     "customTechPowers": [],
+     "customForcePowers": [],
+     "customEquipment": [],
+     "numCustomFeats": 0,
+     "currentLevel": 4,
+     "classText": "Berserker (Frenzied Approach) 4",
+     "alignment": "Chaotic Light",
+     "species": "Wookiee",
+     "background": "Mercenary",
+     "experiencePoints": {
+      "previousLevel": 2700,
+      "current": 2700,
+      "nextLevel": 6500,
+      "isCorrect": true,
+      "errorMessage": ""
+     },
+     "abilityScores": {
+      "Strength": {
+       "value": 19,
+       "modifier": 4,
+       "savingThrow": {
+        "modifier": 6,
+        "proficiency": "proficient"
+       },
+       "skills": [
+        {
+         "name": "Athletics",
+         "modifier": 4,
+         "proficiency": "none"
+        }
+       ]
+      },
+      "Dexterity": {
+       "value": 13,
+       "modifier": 1,
+       "savingThrow": {
+        "modifier": 1,
+        "proficiency": "none"
+       },
+       "skills": [
+        {
+         "name": "Acrobatics",
+         "modifier": 1,
+         "proficiency": "none"
+        },
+        {
+         "name": "Sleight of Hand",
+         "modifier": 1,
+         "proficiency": "none"
+        },
+        {
+         "name": "Stealth",
+         "modifier": 1,
+         "proficiency": "none"
+        }
+       ]
+      },
+      "Constitution": {
+       "value": 15,
+       "modifier": 2,
+       "savingThrow": {
+        "modifier": 4,
+        "proficiency": "proficient"
+       },
+       "skills": []
+      },
+      "Intelligence": {
+       "value": 8,
+       "modifier": -1,
+       "savingThrow": {
+        "modifier": -1,
+        "proficiency": "none"
+       },
+       "skills": [
+        {
+         "name": "Investigation",
+         "modifier": -1,
+         "proficiency": "none"
+        },
+        {
+         "name": "Lore",
+         "modifier": -1,
+         "proficiency": "none"
+        },
+        {
+         "name": "Nature",
+         "modifier": -1,
+         "proficiency": "none"
+        },
+        {
+         "name": "Piloting",
+         "modifier": -1,
+         "proficiency": "none"
+        },
+        {
+         "name": "Technology",
+         "modifier": -1,
+         "proficiency": "none"
+        }
+       ]
+      },
+      "Wisdom": {
+       "value": 12,
+       "modifier": 1,
+       "savingThrow": {
+        "modifier": 1,
+        "proficiency": "none"
+       },
+       "skills": [
+        {
+         "name": "Animal Handling",
+         "modifier": 1,
+         "proficiency": "none"
+        },
+        {
+         "name": "Insight",
+         "modifier": 1,
+         "proficiency": "none"
+        },
+        {
+         "name": "Medicine",
+         "modifier": 1,
+         "proficiency": "none"
+        },
+        {
+         "name": "Perception",
+         "modifier": 1,
+         "proficiency": "none"
+        },
+        {
+         "name": "Survival",
+         "modifier": 1,
+         "proficiency": "none"
+        }
+       ]
+      },
+      "Charisma": {
+       "value": 10,
+       "modifier": 0,
+       "savingThrow": {
+        "modifier": 0,
+        "proficiency": "none"
+       },
+       "skills": [
+        {
+         "name": "Deception",
+         "modifier": 0,
+         "proficiency": "none"
+        },
+        {
+         "name": "Intimidation",
+         "modifier": 0,
+         "proficiency": "none"
+        },
+        {
+         "name": "Performance",
+         "modifier": 0,
+         "proficiency": "none"
+        },
+        {
+         "name": "Persuasion",
+         "modifier": 0,
+         "proficiency": "none"
+        }
+       ]
+      }
+     },
+     "proficiencyBonus": 2,
+     "initiative": 1,
+     "armorClass": 11,
+     "armorList": [],
+     "passivePerception": 11,
+     "inspiration": false,
+     "vision": "normal",
+     "speed": {
+      "base": "30 ft",
+      "hour": "3 miles",
+      "day": "24 miles",
+      "special": ""
+     },
+     "hitPoints": {
+      "current": 41,
+      "temporary": 0,
+      "maximum": 41,
+      "hitDice": [
+       {
+        "size": "d12",
+        "current": 4,
+        "maximum": 4
+       }
+      ],
+      "deathSaves": {
+       "successes": 0,
+       "failures": 0
+      },
+      "resting": {
+       "hitDieBonus": 2,
+       "numHitDiceUsed": 0,
+       "hitDiceRestored": [],
+       "techPointsUsed": 0,
+       "forcePointsUsed": 0,
+       "highLevelCasting": {
+        "level6": false,
+        "level7": false,
+        "level8": false,
+        "level9": false
+       },
+       "shortRestFeatures": [],
+       "longRestFeatures": []
+      }
+     },
+     "conditions": [],
+     "exhaustion": 0,
+     "proficiencies": [
+      {
+       "name": "All vibroweapons",
+       "type": "weapon"
+      },
+      {
+       "name": "simple blasters",
+       "type": "weapon"
+      },
+      {
+       "name": "Light armor",
+       "type": "armor"
+      },
+      {
+       "name": "medium armor",
+       "type": "armor"
+      },
+      {
+       "name": "One type of gaming set",
+       "type": "tool"
+      }
+     ],
+     "skillAndSaveProficiencies": [
+      "Strength Saving Throws",
+      "Constitution Saving Throws"
+     ],
+     "languages": [
+      "Galactic Basic",
+      "Shyriiwook"
+     ],
+     "equipment": [
+      {
+       "name": "Vibroaxe",
+       "description": null,
+       "cost": 950,
+       "weight": "9.25",
+       "equipmentCategoryEnum": 3,
+       "equipmentCategory": "Weapon",
+       "damageNumberOfDice": 1,
+       "damageTypeEnum": 7,
+       "damageType": "Kinetic",
+       "damageDieModifier": 0,
+       "weaponClassificationEnum": 4,
+       "weaponClassification": "MartialVibroweapon",
+       "armorClassificationEnum": 0,
+       "armorClassification": "Unknown",
+       "damageDiceDieTypeEnum": 12,
+       "damageDieType": 12,
+       "properties": [
+        "Dexterity 11",
+        "heavy",
+        "two-handed"
+       ],
+       "propertiesJson": "[\"Dexterity 11\",\"heavy\",\"two-handed\"]",
+       "propertiesMap": {
+        "Dexterity": "Dexterity 11",
+        "Heavy": "heavy",
+        "Two-Handed": "two-handed"
+       },
+       "propertiesMapJson": "{\"Dexterity\":\"Dexterity 11\",\"Heavy\":\"heavy\",\"Two-Handed\":\"two-handed\"}",
+       "modes": [],
+       "modesJson": "[]",
+       "ac": null,
+       "strengthRequirement": null,
+       "stealthDisadvantage": false,
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Vibroaxe",
+       "timestamp": "2023-05-30T20:15:38.6852497+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A38.6852497Z'\"",
+       "attackBonus": 6,
+       "damageBonus": 4,
+       "ability": "Strength",
+       "isCustom": false,
+       "equipped": true,
+       "quantity": 1,
+       "index": 0,
+       "tweaks": {},
+       "isFound": true
+      },
+      {
+       "name": "Vibrospear",
+       "description": null,
+       "cost": 125,
+       "weight": "4",
+       "equipmentCategoryEnum": 3,
+       "equipmentCategory": "Weapon",
+       "damageNumberOfDice": 1,
+       "damageTypeEnum": 7,
+       "damageType": "Kinetic",
+       "damageDieModifier": 0,
+       "weaponClassificationEnum": 3,
+       "weaponClassification": "SimpleVibroweapon",
+       "armorClassificationEnum": 0,
+       "armorClassification": "Unknown",
+       "damageDiceDieTypeEnum": 6,
+       "damageDieType": 6,
+       "properties": [
+        "Thrown (range 25/75)",
+        "versatile (2d4)"
+       ],
+       "propertiesJson": "[\"Thrown (range 25/75)\",\"versatile (2d4)\"]",
+       "propertiesMap": {
+        "Range": "Thrown (range 25/75)",
+        "Versatile": "versatile (2d4)"
+       },
+       "propertiesMapJson": "{\"Range\":\"Thrown (range 25/75)\",\"Versatile\":\"versatile (2d4)\"}",
+       "modes": [],
+       "modesJson": "[]",
+       "ac": null,
+       "strengthRequirement": null,
+       "stealthDisadvantage": false,
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Vibrospear",
+       "timestamp": "2023-05-30T20:15:38.6842512+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A38.6842512Z'\"",
+       "attackBonus": 6,
+       "damageBonus": 4,
+       "ability": "Strength",
+       "isCustom": false,
+       "equipped": false,
+       "quantity": "2",
+       "index": 1,
+       "tweaks": {},
+       "isFound": true
+      },
+      {
+       "name": "Clothes, traveler's",
+       "description": null,
+       "cost": 20,
+       "weight": "4",
+       "equipmentCategoryEnum": 20,
+       "equipmentCategory": "Clothing",
+       "damageNumberOfDice": 0,
+       "damageTypeEnum": 0,
+       "damageType": "Unknown",
+       "damageDieModifier": 0,
+       "weaponClassificationEnum": 0,
+       "weaponClassification": "Unknown",
+       "armorClassificationEnum": 0,
+       "armorClassification": "Unknown",
+       "damageDiceDieTypeEnum": 0,
+       "damageDieType": 0,
+       "properties": null,
+       "propertiesJson": "",
+       "propertiesMap": null,
+       "propertiesMapJson": "",
+       "modes": [],
+       "modesJson": "[]",
+       "ac": null,
+       "strengthRequirement": null,
+       "stealthDisadvantage": false,
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Clothes, traveler's",
+       "timestamp": "2023-05-30T20:15:38.9620914+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A38.9620914Z'\"",
+       "quantity": 1,
+       "index": 2,
+       "isFound": true
+      },
+      {
+       "name": "Sabacc deck",
+       "description": null,
+       "cost": 150,
+       "weight": "0",
+       "equipmentCategoryEnum": 17,
+       "equipmentCategory": "GamingSet",
+       "damageNumberOfDice": 0,
+       "damageTypeEnum": 0,
+       "damageType": "Unknown",
+       "damageDieModifier": 0,
+       "weaponClassificationEnum": 0,
+       "weaponClassification": "Unknown",
+       "armorClassificationEnum": 0,
+       "armorClassification": "Unknown",
+       "damageDiceDieTypeEnum": 0,
+       "damageDieType": 0,
+       "properties": null,
+       "propertiesJson": "",
+       "propertiesMap": null,
+       "propertiesMapJson": "",
+       "modes": [],
+       "modesJson": "[]",
+       "ac": null,
+       "strengthRequirement": null,
+       "stealthDisadvantage": false,
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Sabacc deck",
+       "timestamp": "2023-05-30T20:15:38.6942443+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A38.6942443Z'\"",
+       "quantity": 1,
+       "index": 3,
+       "isFound": true
+      },
+      {
+       "name": "Pouch",
+       "description": "A pouch stores 6.00 lb., not exceeding 1/5 cubic foot. ",
+       "cost": 5,
+       "weight": "1",
+       "equipmentCategoryEnum": 5,
+       "equipmentCategory": "Storage",
+       "damageNumberOfDice": 0,
+       "damageTypeEnum": 0,
+       "damageType": "Unknown",
+       "damageDieModifier": 0,
+       "weaponClassificationEnum": 0,
+       "weaponClassification": "Unknown",
+       "armorClassificationEnum": 0,
+       "armorClassification": "Unknown",
+       "damageDiceDieTypeEnum": 0,
+       "damageDieType": 0,
+       "properties": null,
+       "propertiesJson": "",
+       "propertiesMap": null,
+       "propertiesMapJson": "",
+       "modes": [],
+       "modesJson": "[]",
+       "ac": null,
+       "strengthRequirement": null,
+       "stealthDisadvantage": false,
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Pouch",
+       "timestamp": "2023-05-30T20:15:38.9680886+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A38.9680886Z'\"",
+       "quantity": 1,
+       "index": 4,
+       "isFound": true
+      },
+      {
+       "name": "Backpack",
+       "description": "A backpack stores 30 lb., not exceeding 1 cubic foot. ",
+       "cost": 50,
+       "weight": "5",
+       "equipmentCategoryEnum": 5,
+       "equipmentCategory": "Storage",
+       "damageNumberOfDice": 0,
+       "damageTypeEnum": 0,
+       "damageType": "Unknown",
+       "damageDieModifier": 0,
+       "weaponClassificationEnum": 0,
+       "weaponClassification": "Unknown",
+       "armorClassificationEnum": 0,
+       "armorClassification": "Unknown",
+       "damageDiceDieTypeEnum": 0,
+       "damageDieType": 0,
+       "properties": null,
+       "propertiesJson": "",
+       "propertiesMap": null,
+       "propertiesMapJson": "",
+       "modes": [],
+       "modesJson": "[]",
+       "ac": null,
+       "strengthRequirement": null,
+       "stealthDisadvantage": false,
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Backpack",
+       "timestamp": "2023-05-30T20:15:38.9670882+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A38.9670882Z'\"",
+       "quantity": 1,
+       "index": 5,
+       "isFound": true
+      },
+      {
+       "name": "Bedroll",
+       "description": null,
+       "cost": 10,
+       "weight": "7",
+       "equipmentCategoryEnum": 16,
+       "equipmentCategory": "Utility",
+       "damageNumberOfDice": 0,
+       "damageTypeEnum": 0,
+       "damageType": "Unknown",
+       "damageDieModifier": 0,
+       "weaponClassificationEnum": 0,
+       "weaponClassification": "Unknown",
+       "armorClassificationEnum": 0,
+       "armorClassification": "Unknown",
+       "damageDiceDieTypeEnum": 0,
+       "damageDieType": 0,
+       "properties": null,
+       "propertiesJson": "",
+       "propertiesMap": null,
+       "propertiesMapJson": "",
+       "modes": [],
+       "modesJson": "[]",
+       "ac": null,
+       "strengthRequirement": null,
+       "stealthDisadvantage": false,
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Bedroll",
+       "timestamp": "2023-05-30T20:15:38.9680886+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A38.9680886Z'\"",
+       "quantity": 1,
+       "index": 6,
+       "isFound": true
+      },
+      {
+       "name": "Field rations (one day's)",
+       "description": null,
+       "cost": 5,
+       "weight": "1",
+       "equipmentCategoryEnum": 16,
+       "equipmentCategory": "Utility",
+       "damageNumberOfDice": 0,
+       "damageTypeEnum": 0,
+       "damageType": "Unknown",
+       "damageDieModifier": 0,
+       "weaponClassificationEnum": 0,
+       "weaponClassification": "Unknown",
+       "armorClassificationEnum": 0,
+       "armorClassification": "Unknown",
+       "damageDiceDieTypeEnum": 0,
+       "damageDieType": 0,
+       "properties": null,
+       "propertiesJson": "",
+       "propertiesMap": null,
+       "propertiesMapJson": "",
+       "modes": [],
+       "modesJson": "[]",
+       "ac": null,
+       "strengthRequirement": null,
+       "stealthDisadvantage": false,
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Field rations (one day's)",
+       "timestamp": "2023-05-30T20:15:38.9680886+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A38.9680886Z'\"",
+       "quantity": 10,
+       "index": 7,
+       "isFound": true
+      },
+      {
+       "name": "Glowrod",
+       "description": "Glowrods create a beam of light illuminating the area around you in bright light for a 20-foot radius and dim light for an additional 20 feet. The glowrod lasts for 10 hours and can be recharged by connecting to a power source or by replacing the power cell. ",
+       "cost": 10,
+       "weight": "2",
+       "equipmentCategoryEnum": 16,
+       "equipmentCategory": "Utility",
+       "damageNumberOfDice": 0,
+       "damageTypeEnum": 0,
+       "damageType": "Unknown",
+       "damageDieModifier": 0,
+       "weaponClassificationEnum": 0,
+       "weaponClassification": "Unknown",
+       "armorClassificationEnum": 0,
+       "armorClassification": "Unknown",
+       "damageDiceDieTypeEnum": 0,
+       "damageDieType": 0,
+       "properties": null,
+       "propertiesJson": "",
+       "propertiesMap": null,
+       "propertiesMapJson": "",
+       "modes": [],
+       "modesJson": "[]",
+       "ac": null,
+       "strengthRequirement": null,
+       "stealthDisadvantage": false,
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Glowrod",
+       "timestamp": "2023-05-30T20:15:38.969087+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A38.969087Z'\"",
+       "quantity": 1,
+       "index": 8,
+       "isFound": true
+      },
+      {
+       "name": "Light physical shield",
+       "description": null,
+       "cost": 50,
+       "weight": "0",
+       "equipmentCategoryEnum": 4,
+       "equipmentCategory": "Armor",
+       "damageNumberOfDice": 0,
+       "damageTypeEnum": 0,
+       "damageType": "Unknown",
+       "damageDieModifier": 0,
+       "weaponClassificationEnum": 0,
+       "weaponClassification": "Unknown",
+       "armorClassificationEnum": 4,
+       "armorClassification": "Shield",
+       "damageDiceDieTypeEnum": 0,
+       "damageDieType": 0,
+       "properties": [],
+       "propertiesJson": "[]",
+       "propertiesMap": {},
+       "propertiesMapJson": "{}",
+       "modes": [],
+       "modesJson": "[]",
+       "ac": "+1",
+       "strengthRequirement": "",
+       "stealthDisadvantage": false,
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Light physical shield",
+       "timestamp": "2023-05-30T20:15:38.6912462+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A38.6912462Z'\"",
+       "equipped": false,
+       "quantity": 1,
+       "index": 9,
+       "isFound": true
+      },
+      {
+       "name": "Datapad",
+       "description": "A datapad is a small electronic device used for the input, storage and displaying of information. It features a holoprojective surface for 3D viewing. ",
+       "cost": 100,
+       "weight": "0.5",
+       "equipmentCategoryEnum": 8,
+       "equipmentCategory": "DataRecordingAndStorage",
+       "damageNumberOfDice": 0,
+       "damageTypeEnum": 0,
+       "damageType": "Unknown",
+       "damageDieModifier": 0,
+       "weaponClassificationEnum": 0,
+       "weaponClassification": "Unknown",
+       "armorClassificationEnum": 0,
+       "armorClassification": "Unknown",
+       "damageDiceDieTypeEnum": 0,
+       "damageDieType": 0,
+       "properties": null,
+       "propertiesJson": "",
+       "propertiesMap": null,
+       "propertiesMapJson": "",
+       "modes": [],
+       "modesJson": "[]",
+       "ac": null,
+       "strengthRequirement": null,
+       "stealthDisadvantage": false,
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Datapad",
+       "timestamp": "2023-05-30T20:15:38.963091+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A38.963091Z'\"",
+       "quantity": 1,
+       "index": 10,
+       "isFound": true
+      },
+      {
+       "name": "Weapon (Fine)",
+       "typeEnum": 9,
+       "type": "Weapon",
+       "rarityOptionsEnum": [
+        2
+       ],
+       "rarityOptions": [
+        "Premium"
+       ],
+       "rarityOptionsJson": "[\"Premium\"]",
+       "rarityText": "premium",
+       "searchableRarity": "Premium",
+       "requiresAttunement": false,
+       "valueText": null,
+       "text": "You have a +1 bonus to attack and damage rolls made with this enhanced weapon.",
+       "hasPrerequisite": false,
+       "prerequisite": null,
+       "subtype": "any",
+       "cyberneticAugmentationTypeEnum": 0,
+       "cyberneticAugmentationType": "None",
+       "droidCustomizationTypeEnum": 0,
+       "droidCustomizationType": "None",
+       "adventuringGearTypeEnum": 0,
+       "adventuringGearType": "None",
+       "enhancedArmorTypeEnum": 0,
+       "enhancedArmorType": "None",
+       "consumableTypeEnum": 0,
+       "consumableType": "None",
+       "focusTypeEnum": 0,
+       "focusType": "None",
+       "enhancedShieldTypeEnum": 0,
+       "enhancedShieldType": "None",
+       "enhancedWeaponTypeEnum": 1,
+       "enhancedWeaponType": "Any",
+       "itemModificationTypeEnum": 0,
+       "itemModificationType": "None",
+       "valuableTypeEnum": 0,
+       "valuableType": "None",
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 2,
+       "contentSource": "WH",
+       "partitionKey": "Core",
+       "rowKey": "Weapon (Fine)",
+       "timestamp": "2023-05-30T20:15:16.1401065+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A16.1401065Z'\"",
+       "equipped": true,
+       "attuned": false,
+       "quantity": 1,
+       "index": 11,
+       "isFound": true
+      }
+     ],
+     "attunement": {
+      "current": 0,
+      "maximum": 2,
+      "hasAttunable": false
+     },
+     "weapons": [
+      {
+       "name": "Vibroaxe",
+       "description": null,
+       "cost": 950,
+       "weight": "9.25",
+       "equipmentCategoryEnum": 3,
+       "equipmentCategory": "Weapon",
+       "damageNumberOfDice": 1,
+       "damageTypeEnum": 7,
+       "damageType": "Kinetic",
+       "damageDieModifier": 0,
+       "weaponClassificationEnum": 4,
+       "weaponClassification": "MartialVibroweapon",
+       "armorClassificationEnum": 0,
+       "armorClassification": "Unknown",
+       "damageDiceDieTypeEnum": 12,
+       "damageDieType": 12,
+       "properties": [
+        "Dexterity 11",
+        "heavy",
+        "two-handed"
+       ],
+       "propertiesJson": "[\"Dexterity 11\",\"heavy\",\"two-handed\"]",
+       "propertiesMap": {
+        "Dexterity": "Dexterity 11",
+        "Heavy": "heavy",
+        "Two-Handed": "two-handed"
+       },
+       "propertiesMapJson": "{\"Dexterity\":\"Dexterity 11\",\"Heavy\":\"heavy\",\"Two-Handed\":\"two-handed\"}",
+       "modes": [],
+       "modesJson": "[]",
+       "ac": null,
+       "strengthRequirement": null,
+       "stealthDisadvantage": false,
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Vibroaxe",
+       "timestamp": "2023-05-30T20:15:38.6852497+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A38.6852497Z'\"",
+       "attackBonus": 6,
+       "damageBonus": 4,
+       "ability": "Strength",
+       "isCustom": false,
+       "equipped": true,
+       "quantity": 1,
+       "index": 0,
+       "tweaks": {},
+       "isFound": true
+      },
+      {
+       "name": "Unarmed Strike",
+       "description": null,
+       "cost": 0,
+       "weight": "0",
+       "equipmentCategory": "Weapon",
+       "contentType": "Core",
+       "contentSource": "PHB",
+       "damageNumberOfDice": 1,
+       "damageType": "Kinetic",
+       "weaponClassification": "Unarmed",
+       "damageDieType": 0,
+       "properties": [],
+       "propertiesMap": {},
+       "modes": [],
+       "quantity": 0,
+       "index": -1,
+       "isFound": true,
+       "equipped": true,
+       "attackBonus": 6,
+       "damageBonus": 5,
+       "ability": "Strength",
+       "isCustom": false,
+       "tweaks": {}
+      }
+     ],
+     "credits": 450,
+     "carryingCapacity": {
+      "encumbered": 95,
+      "heavilyEncumbered": 190,
+      "maxCapacity": 285,
+      "pushDragLift": 570
+     },
+     "superiority": false,
+     "highLevelCasting": {
+      "level6": false,
+      "level7": false,
+      "level8": false,
+      "level9": false
+     },
+     "techCasting": false,
+     "forceCasting": false,
+     "allForcePowers": [],
+     "combatFeatures": [
+      {
+       "name": "Rage",
+       "text": "_**Berserker:** 1st level_\r\nIn battle, you fight with primal ferocity. On your turn, you can enter a rage as a bonus action if you aren't wearing heavy armor.\r\nWhile raging, you gain the following benefits:\r\n- You have advantage on Strength checks and Strength saving throws.\r\n- When you make a melee weapon attack using Strength, you gain a bonus to the damage roll that increases as you gain levels as a berserker, as shown in the Rage Damage column of the berserker table.\r\n- You have resistance to kinetic and energy damage.\r\nIf you are able to cast powers, you can't cast them or concentrate on them while raging.\r\nYour rage lasts for 1 minute. It ends early if you are knocked unconscious, you don heavy armor, or if your turn ends and you haven't taken a hostile action or taken damage since your last turn. You can also end your rage on your turn as a bonus action.\r\nYou can enter a rage a number of times as shown in the Rages column of the berserker table. You regain all expended uses when you complete a long rest.",
+       "level": 1,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Berserker",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Berserker-Rage-1",
+       "timestamp": "2023-05-30T20:15:43.389567+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.389567Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Unarmored Defense",
+       "text": "_**Berserker:** 1st level_\r\nWhile you are not wearing any armor, your Armor Class equals 10 + your Dexterity modifier + your Constitution modifier. You can use a shield and still gain this benefit.",
+       "level": 1,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Berserker",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Berserker-Unarmored Defense-1",
+       "timestamp": "2023-05-30T20:15:43.389567+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.389567Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Berserker Instincts",
+       "text": "_**Berserker:** 2nd level_\r\nYou've honed two instincts, as detailed at the end of the class description, and you hone more at higher levels, as shown in the Berserker Instincts column of the berserker table.",
+       "level": 2,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Berserker",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Berserker-Berserker Instincts-2",
+       "timestamp": "2023-05-30T20:15:43.389567+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.389567Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Reckless Attack",
+       "text": "_**Berserker:** 2nd level_\r\nYou can throw aside all concern for defense to attack with fierce desperation. When you make your first attack on your turn, you can decide to attack recklessly. Doing so gives you advantage on melee weapon attack rolls using Strength during this turn, but attack rolls against you have advantage until your next turn.",
+       "level": 2,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Berserker",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Berserker-Reckless Attack-2",
+       "timestamp": "2023-05-30T20:15:43.389567+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.389567Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Berserker Approach",
+       "text": "_**Berserker:** 3rd, 6th, 10th, and 14th level_\r\nYou choose an approach that shapes the nature of your rage which is detailed at the end of the class description. ",
+       "level": 3,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Berserker",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Berserker-Berserker Approach-3",
+       "timestamp": "2023-05-30T20:15:43.389567+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.389567Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Danger Sense",
+       "text": "_**Berserker:** 3rd level_\r\nYou gain an uncanny sense of when things nearby aren't as they should be, giving you an edge when you dodge away from danger. You have advantage on Dexterity saving throws against effects that you can see, such as traps and powers. To gain this benefit, you can't be blinded, deafened, or incapacitated.",
+       "level": 3,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Berserker",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Berserker-Danger Sense-3",
+       "timestamp": "2023-05-30T20:15:43.389567+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.389567Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Frenzy",
+       "text": "_**Frenzied Approach:** 3rd level_\r\nYou can go into a frenzy when you enter your rage. If you do so, for the duration of your rage you can make a single melee weapon attack as a bonus action on each of your turns after this one.\r\nThe first time you use this feature, you suffer no ill effect. If you use this feature again before you finish a long rest, you suffer one level of exhaustion when your rage ends each time you use it.\r\nWhen you finish a long rest, you reduce your exhaustion level by 2, instead of 1. Additionally, any effect that removes exhaustion reduces your exhaustion by 1 additional level.",
+       "level": 3,
+       "sourceEnum": 1,
+       "source": "Archetype",
+       "sourceName": "Frenzied Approach",
+       "metadata": null,
+       "partitionKey": "ExpandedContent",
+       "rowKey": "Archetype-Frenzied Approach-Frenzy-3",
+       "timestamp": "2023-05-30T20:15:26.4112497+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A26.4112497Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Maniacal Rage",
+       "text": "_**Frenzied Approach:** 3rd level_\r\nWhile raging, you have advantage on Charisma (Intimidation) checks.",
+       "level": 3,
+       "sourceEnum": 1,
+       "source": "Archetype",
+       "sourceName": "Frenzied Approach",
+       "metadata": null,
+       "partitionKey": "ExpandedContent",
+       "rowKey": "Archetype-Frenzied Approach-Maniacal Rage-3",
+       "timestamp": "2023-05-30T20:15:26.4112497+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A26.4112497Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Ability Score Improvement",
+       "text": "_**Berserker:** 4th, 8th, 12th, 16th, and 19th level_\r\nYou can increase one ability score by 2, or you can increase two ability scores by 1. You can't increase an ability score above 20 using this feature.",
+       "level": 4,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Berserker",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Berserker-Ability Score Improvement-4",
+       "timestamp": "2023-05-30T20:15:43.3905665+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.3905665Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Ability Score Increase",
+       "text": "Your Strength score increases by 2, and your Constitution score increases by 1.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Wookiee",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Wookiee-Ability Score Increase",
+       "timestamp": "2023-05-30T20:15:41.0039273+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A41.0039273Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Age",
+       "text": "Wookiees reach adulthood at about 40 and can live to be 400.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Wookiee",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Wookiee-Age",
+       "timestamp": "2023-05-30T20:15:41.0039273+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A41.0039273Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Alignment",
+       "text": "Wookiees tend toward the light side, though there are exceptions.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Wookiee",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Wookiee-Alignment",
+       "timestamp": "2023-05-30T20:15:41.0039273+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A41.0039273Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Claws",
+       "text": "Your claws are natural weapons, which you can use to make unarmed strikes. Additionally, your unarmed strikes deal 1d4 kinetic damage.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Wookiee",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Wookiee-Claws",
+       "timestamp": "2023-05-30T20:15:41.0049268+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A41.0049268Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Darkvision",
+       "text": "Your vision can easily cut through darkness. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can’t discern color in darkness, only shades of gray.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Wookiee",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Wookiee-Darkvision",
+       "timestamp": "2023-05-30T20:15:41.0049268+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A41.0049268Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Hide",
+       "text": "You have a thick hide. While you are unarmored or wearing light armor, your AC is 13 + your Dexterity modifier. Additionally, you have advantage on Constitution saving throws made to avoid exhaustion due to extreme cold.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Wookiee",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Wookiee-Hide",
+       "timestamp": "2023-05-30T20:15:41.0049268+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A41.0049268Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Languages",
+       "text": "You can speak, read, and write Shyriiwook. You can understand spoken and written Galactic Basic, but your vocal cords do not allow you to speak it.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Wookiee",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Wookiee-Languages",
+       "timestamp": "2023-05-30T20:15:41.0049268+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A41.0049268Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Menacing",
+       "text": "You have proficiency in the Intimidation skill.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Wookiee",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Wookiee-Menacing",
+       "timestamp": "2023-05-30T20:15:41.0049268+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A41.0049268Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Powerful Build",
+       "text": "Your carrying capacity and the weight you can push, drag, or lift doubles. If it would already double, it instead triples.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Wookiee",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Wookiee-Powerful Build",
+       "timestamp": "2023-05-30T20:15:41.0049268+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A41.0049268Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Size",
+       "text": "Wookiees tend to tower over other species, reaching heights over 8 feet and weighing 300 pounds. Regardless of your position in that range, your size is Medium.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Wookiee",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Wookiee-Size",
+       "timestamp": "2023-05-30T20:15:41.0049268+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A41.0049268Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Speed",
+       "text": "Your base walking speed is 30 feet.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Wookiee",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Wookiee-Speed",
+       "timestamp": "2023-05-30T20:15:41.0049268+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A41.0049268Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Treeclimber",
+       "text": "You have a climbing speed of 30 feet. You have advantage on Strength saving throws and Strength (Athletics) checks that involve climbing.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Wookiee",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Wookiee-Treeclimber",
+       "timestamp": "2023-05-30T20:15:41.0049268+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A41.0049268Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Brawny",
+       "prerequisite": null,
+       "text": "You become stronger, gaining the following benefits: \r\n- Increase your Strength score by 1, to a maximum of 20. \r\n- You gain proficiency in the Athletics skill. If you are already proficient in it, you instead gain expertise in it. \r\n- Your carrying capacity and the weight you can push, drag, or lift doubles. If it would already double, it instead triples.\r\n",
+       "attributesIncreased": [
+        "Strength"
+       ],
+       "attributesIncreasedJson": "[\"Strength\"]",
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Brawny",
+       "timestamp": "2023-05-30T20:15:09.5518633+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A09.5518633Z'\"",
+       "customIndex": -1,
+       "combat": true
+      }
+     ],
+     "nonCombatFeatures": [],
+     "backgroundFeature": {
+      "name": "Mercenary Life",
+      "combat": false,
+      "text": "You know the mercenary life as only someone who has experienced it can. You are able to identify mercenary companies by their emblems, and you know a little about any such company, including the names and reputations of its commanders and leaders, and who has hired them recently. You can find the cantinas and feasthalls where mercenaries abide in any area, as long as you speak the language, and if you spend at least an hour in such a location you can come across one of the following bits of information: a job offer, significant rumor, referral to a skilled merchant, blacksmith, etc., or a hint towards the pursuit of your current quest. Additionally, you can find mercenary work between adventures sufficient to maintain a comfortable lifestyle (see \"Practicing a Profession\" under \"Downtime Activities\" in chapter 8 of the Player's Handbook).\r\n"
+     },
+     "settings": {
+      "isEnforcingForcePrerequisites": true,
+      "isFixedHitPoints": false,
+      "abilityScoreMethod": "Standard Array"
+     },
+     "notes": "## Not on the sheet yet\n- **Tool:** Sabacc deck (Mercenary gaming set)\n- **Languages:** Shyriiwook (speak/read/write), Galactic Basic (understand only, can't speak), Huttese (Mercenary language choice)\n- **Insignia of rank** from my old mercenary company (no such item in SW5E's list)\n- Explorer's pack: added Backpack, Bedroll, 10 Field rations, Glowrod by hand\n\n## Session 1: Trouble on Ord Mantell\n- Cantina contact: Persuasion 18, Insight 15 (adv).\n- Kessa's Outfitters: bought a Light physical shield (50 cr) and 2 Medpacs at Kessa's 20% price (480 cr): paid 50 cr, **owe Kessa 430 cr**.\n\n- Ambush at the docks: raged, hit twice (14 + 14). Took 3 + 6 (halved by Rage). Ally medpac +6, my medpac to full. GM: no shield with a two-handed axe, so the shield is stowed.\n- Loot: 150 cr, Strength Stim (Basic), **Datapad = the coded datapad with the smuggler's coordinates** (story item).\n- Inspiration from the GM, spent on Stealth (10).\n- Long rest. **300 XP** (level 2 reached).\n"
+    },
+    "refs": {
+     "classes": {
+      "Berserker": {
+       "name": "Berserker",
+       "summary": "Melee combatant who utilizes rage to increase prowess",
+       "primaryAbility": "Strength",
+       "hitDiceDieType": 12,
+       "hitPointsAtFirstLevel": "12 + your Constitution modifier",
+       "hitPointsAtHigherLevels": "1d12 (or 7) + your Constitution modifier per berserker level after 1st",
+       "armorProficiencies": [
+        "Light armor",
+        "medium armor"
+       ],
+       "weaponProficiencies": [
+        "All vibroweapons",
+        "simple blasters"
+       ],
+       "toolProficiencies": [
+        "None"
+       ],
+       "savingThrows": [
+        "Strength",
+        "Constitution"
+       ],
+       "skillChoices": "Choose two from Animal Handling, Athletics, Intimidation, Nature, Perception, Survival",
+       "levelChanges": {
+        "1": {
+         "Level": "1st",
+         "Proficiency Bonus": "+2",
+         "Features": "Rage, Unarmored Defense",
+         "Rages": "2",
+         "Rage Damage": "+2",
+         "Berserker Instincts": "�"
+        },
+        "2": {
+         "Level": "2nd",
+         "Proficiency Bonus": "+2",
+         "Features": "Reckless Attack, Berserker Instincts",
+         "Rages": "2",
+         "Rage Damage": "+2",
+         "Berserker Instincts": "2"
+        },
+        "3": {
+         "Level": "3rd",
+         "Proficiency Bonus": "+2",
+         "Features": "Danger Sense, Berserker Approach",
+         "Rages": "3",
+         "Rage Damage": "+2",
+         "Berserker Instincts": "2"
+        },
+        "4": {
+         "Level": "4th",
+         "Proficiency Bonus": "+2",
+         "Features": "Ability Score Improvement",
+         "Rages": "3",
+         "Rage Damage": "+2",
+         "Berserker Instincts": "2"
+        },
+        "5": {
+         "Level": "5th",
+         "Proficiency Bonus": "+3",
+         "Features": "Extra Attack",
+         "Rages": "3",
+         "Rage Damage": "+2",
+         "Berserker Instincts": "2"
+        },
+        "6": {
+         "Level": "6th",
+         "Proficiency Bonus": "+3",
+         "Features": "Approach feature",
+         "Rages": "4",
+         "Rage Damage": "+2",
+         "Berserker Instincts": "2"
+        },
+        "7": {
+         "Level": "7th",
+         "Proficiency Bonus": "+3",
+         "Features": "Feral Impulse",
+         "Rages": "4",
+         "Rage Damage": "+2",
+         "Berserker Instincts": "3"
+        },
+        "8": {
+         "Level": "8th",
+         "Proficiency Bonus": "+3",
+         "Features": "Ability Score Improvement",
+         "Rages": "4",
+         "Rage Damage": "+2",
+         "Berserker Instincts": "3"
+        },
+        "9": {
+         "Level": "9th",
+         "Proficiency Bonus": "+4",
+         "Features": "Brutal Critical (one die)",
+         "Rages": "4",
+         "Rage Damage": "+3",
+         "Berserker Instincts": "3"
+        },
+        "10": {
+         "Level": "10th",
+         "Proficiency Bonus": "+4",
+         "Features": "Approach feature",
+         "Rages": "4",
+         "Rage Damage": "+3",
+         "Berserker Instincts": "3"
+        },
+        "11": {
+         "Level": "11th",
+         "Proficiency Bonus": "+4",
+         "Features": "Relentless Rage",
+         "Rages": "4",
+         "Rage Damage": "+3",
+         "Berserker Instincts": "3"
+        },
+        "12": {
+         "Level": "12th",
+         "Proficiency Bonus": "+4",
+         "Features": "Ability Score Improvement",
+         "Rages": "5",
+         "Rage Damage": "+3",
+         "Berserker Instincts": "3"
+        },
+        "13": {
+         "Level": "13th",
+         "Proficiency Bonus": "+5",
+         "Features": "Brutal Critical (two dice)",
+         "Rages": "5",
+         "Rage Damage": "+4",
+         "Berserker Instincts": "4"
+        },
+        "14": {
+         "Level": "14th",
+         "Proficiency Bonus": "+5",
+         "Features": "Approach feature",
+         "Rages": "5",
+         "Rage Damage": "+4",
+         "Berserker Instincts": "4"
+        },
+        "15": {
+         "Level": "15th",
+         "Proficiency Bonus": "+5",
+         "Features": "Persistent Rage",
+         "Rages": "5",
+         "Rage Damage": "+4",
+         "Berserker Instincts": "4"
+        },
+        "16": {
+         "Level": "16th",
+         "Proficiency Bonus": "+5",
+         "Features": "Ability Score Improvement",
+         "Rages": "5",
+         "Rage Damage": "+4",
+         "Berserker Instincts": "4"
+        },
+        "17": {
+         "Level": "17th",
+         "Proficiency Bonus": "+6",
+         "Features": "Brutal Critical (three dice)",
+         "Rages": "6",
+         "Rage Damage": "+5",
+         "Berserker Instincts": "5"
+        },
+        "18": {
+         "Level": "18th",
+         "Proficiency Bonus": "+6",
+         "Features": "Indomitable Might",
+         "Rages": "6",
+         "Rage Damage": "+5",
+         "Berserker Instincts": "5"
+        },
+        "19": {
+         "Level": "19th",
+         "Proficiency Bonus": "+6",
+         "Features": "Ability Score Improvement",
+         "Rages": "6",
+         "Rage Damage": "+5",
+         "Berserker Instincts": "5"
+        },
+        "20": {
+         "Level": "20th",
+         "Proficiency Bonus": "+6",
+         "Features": "Primal Champion",
+         "Rages": "Unlimited",
+         "Rage Damage": "+5",
+         "Berserker Instincts": "5"
+        }
+       },
+       "casterType": "None",
+       "casterRatio": 0,
+       "multiClassProficiencies": [
+        "Light armor",
+        "all vibroweapons"
+       ],
+       "archetypeFlavorName": "Berserker Approaches"
+      }
+     },
+     "archetypes": {
+      "Frenzied Approach": {
+       "name": "Frenzied Approach",
+       "className": "Berserker",
+       "casterType": "None",
+       "casterRatio": 0,
+       "leveledTable": null
+      }
+     },
+     "species": {
+      "Wookiee": {
+       "name": "Wookiee",
+       "size": "Medium",
+       "homeworld": "Kashyyyk",
+       "language": "Shyriiwook",
+       "distinctions": "Tall, hair covered, retractable climbing claws, long life spans",
+       "skinColorOptions": "Gray",
+       "hairColorOptions": "Different shades of black, brown, and white in varying combinations",
+       "eyeColorOptions": "Blue, green, yellow, golden, brown, or red",
+       "heightAverage": "6'3\"",
+       "heightRollMod": "+2d12\"",
+       "weightAverage": "190 lb.",
+       "weightRollMod": "x(2d6) lb.",
+       "traits": [
+        {
+         "name": "Ability Score Increase",
+         "description": "Your Strength score increases by 2, and your Constitution score increases by 1."
+        },
+        {
+         "name": "Age",
+         "description": "Wookiees reach adulthood at about 40 and can live to be 400."
+        },
+        {
+         "name": "Alignment",
+         "description": "Wookiees tend toward the light side, though there are exceptions."
+        },
+        {
+         "name": "Size",
+         "description": "Wookiees tend to tower over other species, reaching heights over 8 feet and weighing 300 pounds. Regardless of your position in that range, your size is Medium."
+        },
+        {
+         "name": "Speed",
+         "description": "Your base walking speed is 30 feet."
+        },
+        {
+         "name": "Claws",
+         "description": "Your claws are natural weapons, which you can use to make unarmed strikes. Additionally, your unarmed strikes deal 1d4 kinetic damage."
+        },
+        {
+         "name": "Darkvision",
+         "description": "Your vision can easily cut through darkness. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can’t discern color in darkness, only shades of gray."
+        },
+        {
+         "name": "Hide",
+         "description": "You have a thick hide. While you are unarmored or wearing light armor, your AC is 13 + your Dexterity modifier. Additionally, you have advantage on Constitution saving throws made to avoid exhaustion due to extreme cold."
+        },
+        {
+         "name": "Menacing",
+         "description": "You have proficiency in the Intimidation skill."
+        },
+        {
+         "name": "Powerful Build",
+         "description": "Your carrying capacity and the weight you can push, drag, or lift doubles. If it would already double, it instead triples."
+        },
+        {
+         "name": "Treeclimber",
+         "description": "You have a climbing speed of 30 feet. You have advantage on Strength saving throws and Strength (Athletics) checks that involve climbing."
+        },
+        {
+         "name": "Languages",
+         "description": "You can speak, read, and write Shyriiwook. You can understand spoken and written Galactic Basic, but your vocal cords do not allow you to speak it."
+        }
+       ],
+       "imageUrls": [
+        "https://starwars5ecentral.blob.core.windows.net/site-images/species/species_wookiee.png"
+       ]
+      }
+     },
+     "backgrounds": {
+      "Mercenary": {
+       "name": "Mercenary",
+       "flavorText": "As a sell-sword who fought battles for coin, you're well acquainted with risking life and limb for a chance at a share of treasure. Now, you look forward to fighting foes and reaping even greater rewards as an adventurer. Your experience makes you familiar with the ins and outs of mercenary life, and you likely have harrowing stories of events on the battlefield. You might have served with a large outfit or a smaller band of sell-swords, maybe even more than one. \r\n\r\nNow you're looking for something else, perhaps greater reward for the risks you take, or the freedom to choose your own activities. For whatever reason, you're leaving behind the life of a soldier for hire, but your skills are undeniably suited for battle, so now you fight on in a different way.",
+       "skillProficiencies": "Choose two from Athletics, Investigation, Persuasion, and Piloting",
+       "toolProficiencies": "One type of gaming set",
+       "languages": "One of your choice",
+       "equipment": "A uniform of your company (traveler's clothes in quality), an insignia of your rank, a gaming set (one of your choice), and a pouch containing the remainder of your last wages (100 cr)",
+       "featureName": "Mercenary Life",
+       "featureText": "You know the mercenary life as only someone who has experienced it can. You are able to identify mercenary companies by their emblems, and you know a little about any such company, including the names and reputations of its commanders and leaders, and who has hired them recently. You can find the cantinas and feasthalls where mercenaries abide in any area, as long as you speak the language, and if you spend at least an hour in such a location you can come across one of the following bits of information: a job offer, significant rumor, referral to a skilled merchant, blacksmith, etc., or a hint towards the pursuit of your current quest. Additionally, you can find mercenary work between adventures sufficient to maintain a comfortable lifestyle (see \"Practicing a Profession\" under \"Downtime Activities\" in chapter 8 of the Player's Handbook).\r\n",
+       "flavorName": null,
+       "flavorDescription": null
+      }
+     },
+     "feats": {
+      "Brawny": {
+       "name": "Brawny",
+       "prerequisite": null,
+       "text": "You become stronger, gaining the following benefits: \r\n- Increase your Strength score by 1, to a maximum of 20. \r\n- You gain proficiency in the Athletics skill. If you are already proficient in it, you instead gain expertise in it. \r\n- Your carrying capacity and the weight you can push, drag, or lift doubles. If it would already double, it instead triples.\r\n",
+       "attributesIncreased": [
+        "Strength"
+       ],
+       "contentType": "Core",
+       "contentSource": "PHB"
+      }
+     },
+     "maneuvers": {},
+     "choices": {},
+     "conditions": [
+      {
+       "name": "Blinded",
+       "description": "A blinded creature can't see and automatically fails any ability check that requires sight.\\r\\n- Attack rolls against the creature have advantage, and the creature's attack rolls have disadvantage."
+      },
+      {
+       "name": "Charmed",
+       "description": "A charmed creature can't attack the charmer or target the charmer with harmful abilities or enhanced effects.\\r\\n- The charmer has advantage on any ability check to interact socially with the creature."
+      },
+      {
+       "name": "Deafened",
+       "description": "A deafened creature can't hear and automatically fails any ability check that requires hearing."
+      },
+      {
+       "name": "Exhaustion",
+       "description": "Some special abilities and environmental hazards, such as and the long-term effects of freezing or scorching temperatures, can lead to a special condition called exhaustion. Exhaustion is measured in six levels. An effect can give a creature one or more levels of exhaustion, as specified in the effect's description. Exhaustion Level\\r\\n\\r\\n|Level|Effect|\\r\\n|:--:|:--|\\r\\n|1|Disadvantage on ability checks|\\r\\n|2|Speed halved|\\r\\n|3|Disadvantage on attack rolls and saving throws|\\r\\n|4|Hit point maximum halved|\\r\\n|5|Speed reduced to 0|\\r\\n|6|Death|\\r\\n\\r\\nIf an already exhausted creature suffers another effect that causes exhaustion, its current level of exhaustion increases by the amount specified in the effect's description.\\r\\n\\r\\nA creature suffers the effect of its current level of exhaustion as well as all lower levels. For example, a creature suffering level 2 exhaustion has its speed halved and has disadvantage on ability checks.\\r\\n\\r\\nAn effect that removes exhaustion reduces its level as specified in the effect's description, with all exhaustion effects ending if a creature's exhaustion level is reduced below 1.\\r\\n\\r\\nFinishing a long rest reduces a creature's exhaustion level by 1, provided that the creature has also ingested some food and drink."
+      },
+      {
+       "name": "Frightened",
+       "description": "A frightened creature has disadvantage on ability checks and attack rolls while the source of its fear is within line of sight.\\r\\n- The creature can't willingly move closer to the source of its fear."
+      },
+      {
+       "name": "Grappled",
+       "description": "A grappled creature's speed becomes 0, and it can't benefit from any bonus to its speed.\\r\\n- The condition ends if the grappler is incapacitated (see the condition).\\r\\n- The condition also ends if an effect removes the grappled creature from the reach of the grappler or grappling effect."
+      },
+      {
+       "name": "Incapacitated",
+       "description": "An incapacitated creature can't take actions or reactions."
+      },
+      {
+       "name": "Invisible",
+       "description": "An invisible creature is impossible to see without the aid of powers or a special sense. For the purpose of hiding, the creature is heavily obscured. The creature's location can be detected by any noise it makes or any tracks it leaves.\\r\\n- Attack rolls against the creature have disadvantage, and the creature's attack rolls have advantage."
+      },
+      {
+       "name": "Paralyzed",
+       "description": "A paralyzed creature is incapacitated (see the condition) and can't move or speak.\\r\\n- The creature automatically fails Strength and Dexterity saving throws. Attack rolls against the creature have advantage.\\r\\n- Any attack that hits the creature is a critical hit if the attacker is within 5 feet of the creature."
+      },
+      {
+       "name": "Petrified",
+       "description": "A petrified creature is transformed, along with any object it is wearing or carrying, into a solid inanimate substance (usually stone). Its weight increases by a factor of ten, and it ceases aging.\\r\\n- The creature is incapacitated (see the condition), can't move or speak, and is unaware of its surroundings.\\r\\n- Attack rolls against the creature have advantage. \\r\\n- The creature automatically fails Strength and Dexterity saving throws.\\r\\n- The creature has resistance to all damage.\\r\\n- The creature is immune to poison and disease, although a poison or disease already in its system is suspended, not neutralized."
+      },
+      {
+       "name": "Poisoned",
+       "description": "A poisoned creature has disadvantage on attack rolls and ability checks."
+      },
+      {
+       "name": "Prone",
+       "description": "A prone creature's only movement option is to crawl, unless it stands up and thereby ends the condition. \\r\\n- The creature has disadvantage on melee attack rolls.\\r\\n- The creature has disadvantage on ranged attack rolls against targets within 30 feet.\\r\\n- An attack roll against the creature has advantage if the attacker is within 5 feet of the creature. Otherwise, the attack roll has disadvantage."
+      },
+      {
+       "name": "Restrained",
+       "description": "A restrained creature's speed becomes 0, and it can't benefit from any bonus to its speed.\\r\\n- Attack rolls against the creature have advantage, and the creature's attack rolls have disadvantage.\\r\\n- The creature has disadvantage on Dexterity saving throws."
+      },
+      {
+       "name": "Shocked",
+       "description": "A shocked creature's speed is reduced by half.\\r\\n- The creature can't take reactions."
+      },
+      {
+       "name": "Stunned",
+       "description": "A stunned creature is incapacitated (see the condition), can't move, and can speak only falteringly.\\r\\n- The creature automatically fails Strength and Dexterity saving throws.\\r\\n- Attack rolls against the creature have advantage."
+      },
+      {
+       "name": "Unconscious",
+       "description": "An unconscious creature is incapacitated (see the condition), can't move or speak, and is unaware of its surroundings\\r\\n- The creature drops whatever it's holding and falls prone.\\r\\n- The creature automatically fails Strength and Dexterity saving throws.\\r\\n- Attack rolls against the creature have advantage.\\r\\n- Any attack that hits the creature is a critical hit if the attacker is within 5 feet of the creature."
+      }
+     ]
+    },
+    "validation": {
+     "code": 0,
+     "message": "All checks passed",
+     "isValid": true
+    },
+    "error": null,
+    "at": 1792273530378
+   }
+  },
+  "edits": {
+   "id:00000000-0000-4000-8000-000011000001": {
+    "fields": {
+     "tweaks": {
+      "abilityScores": {
+       "Strength": {
+        "skills": {
+         "Athletics": {
+          "proficiency": "Expertise"
+         }
+        },
+        "score": {
+         "bonus": 1
+        }
+       },
+       "Wisdom": {
+        "skills": {
+         "Perception": {
+          "proficiency": "Proficient"
+         }
+        }
+       },
+       "Charisma": {
+        "skills": {
+         "Persuasion": {
+          "proficiency": "Proficient"
+         },
+         "Intimidation": {
+          "proficiency": "Proficient"
+         }
+        }
+       },
+       "Intelligence": {
+        "skills": {
+         "Piloting": {
+          "proficiency": "Proficient"
+         }
+        }
+       }
+      },
+      "armorClass": {
+       "override": null,
+       "bonus": 1
+      },
+      "unarmed": {
+       "damageDice": {
+        "override": 4,
+        "dieSize": 4
+       }
+      }
+     },
+     "characteristics.Personality Traits": "I face problems head-on. A simple, direct solution is the best path to success.",
+     "characteristics.Ideal": "Live and Let Live. A little compassion goes a long way. (Light)",
+     "characteristics.Bond": "I have a personal debt that must be paid: a life debt to the pilot who got me off a slaver ship.",
+     "characteristics.Flaw": "When I get angry I stop listening, even to friends.",
+     "characteristics.Gender": "Male",
+     "characteristics.Place of Birth": "Kashyyyk",
+     "characteristics.Age": "62",
+     "characteristics.Height": "7'4\"",
+     "characteristics.Weight": "310 lb",
+     "characteristics.Hair": "Brown with grey streaks",
+     "characteristics.Eyes": "Blue",
+     "characteristics.Skin": "Gray",
+     "characteristics.Appearance": "A towering Wookiee with a bandolier and a scarred left arm. Speaks Shyriiwook; understands Basic.",
+     "equipment": [
+      {
+       "name": "Vibroaxe",
+       "quantity": 1,
+       "category": "Equipment",
+       "equipped": true
+      },
+      {
+       "name": "Vibrospear",
+       "quantity": "2",
+       "category": "Equipment",
+       "equipped": false
+      },
+      {
+       "name": "Clothes, traveler's",
+       "quantity": 1,
+       "category": "Equipment"
+      },
+      {
+       "name": "Sabacc deck",
+       "quantity": 1,
+       "category": "Equipment"
+      },
+      {
+       "name": "Pouch",
+       "quantity": 1,
+       "category": "Equipment"
+      },
+      {
+       "name": "Backpack",
+       "quantity": 1,
+       "category": "Equipment"
+      },
+      {
+       "name": "Bedroll",
+       "quantity": 1,
+       "category": "Equipment"
+      },
+      {
+       "name": "Field rations (one day's)",
+       "quantity": 10,
+       "category": "Equipment"
+      },
+      {
+       "name": "Glowrod",
+       "quantity": 1,
+       "category": "Equipment"
+      },
+      {
+       "name": "Light physical shield",
+       "quantity": 1,
+       "category": "Equipment",
+       "equipped": false
+      },
+      {
+       "name": "Datapad",
+       "quantity": 1,
+       "category": "Equipment"
+      },
+      {
+       "name": "Weapon (Fine)",
+       "quantity": 1,
+       "category": "EnhancedItem",
+       "equipped": true
+      }
+     ],
+     "notes": "## Not on the sheet yet\n- **Tool:** Sabacc deck (Mercenary gaming set)\n- **Languages:** Shyriiwook (speak/read/write), Galactic Basic (understand only, can't speak), Huttese (Mercenary language choice)\n- **Insignia of rank** from my old mercenary company (no such item in SW5E's list)\n- Explorer's pack: added Backpack, Bedroll, 10 Field rations, Glowrod by hand\n\n## Session 1: Trouble on Ord Mantell\n- Cantina contact: Persuasion 18, Insight 15 (adv).\n- Kessa's Outfitters: bought a Light physical shield (50 cr) and 2 Medpacs at Kessa's 20% price (480 cr): paid 50 cr, **owe Kessa 430 cr**.\n\n- Ambush at the docks: raged, hit twice (14 + 14). Took 3 + 6 (halved by Rage). Ally medpac +6, my medpac to full. GM: no shield with a two-handed axe, so the shield is stowed.\n- Loot: 150 cr, Strength Stim (Basic), **Datapad = the coded datapad with the smuggler's coordinates** (story item).\n- Inspiration from the GM, spent on Stealth (10).\n- Long rest. **300 XP** (level 2 reached).\n",
+     "credits": 450,
+     "classes": [
+      {
+       "name": "Berserker",
+       "levels": 4,
+       "hitPoints": [
+        7,
+        7,
+        7
+       ],
+       "abilityScoreImprovements": [
+        {
+         "type": "Ability Score Improvement",
+         "abilitiesIncreased": [
+          {
+           "name": "Strength",
+           "value": 2
+          }
+         ]
+        }
+       ],
+       "options": {
+        "Berserker Instincts": [
+         {
+          "name": "Dewback's Instinct",
+          "note": "Poison + Acid + Fire"
+         },
+         {
+          "name": "Predator's Instinct"
+         }
+        ]
+       },
+       "archetype": {
+        "name": "Frenzied Approach"
+       }
+      }
+     ],
+     "experiencePoints": 2700
+    },
+    "updatedAt": 1792271137300
+   }
+  },
+  "itemState": {
+   "id:00000000-0000-4000-8000-000011000001": {
+    "charges": {},
+    "effects": [],
+    "reasons": {
+     "abilityScores.Strength.skills.Athletics": "Berserker class skill + Brawny feat (already proficient, so expertise)",
+     "abilityScores.Wisdom.skills.Perception": "Berserker class skill (chosen at 1st level)",
+     "abilityScores.Charisma.skills.Persuasion": "Mercenary background skill",
+     "abilityScores.Intelligence.skills.Piloting": "Mercenary background skill",
+     "abilityScores.Charisma.skills.Intimidation": "Wookiee Menacing trait (not applied by SW5E)",
+     "abilityScores.Strength.score": "Brawny feat: +1 Strength (not applied by SW5E)",
+     "armorClass": "Wookiee Hide (13 + Dex) is 1 better than Unarmored Defense (10 + Dex + Con)",
+     "unarmed.damageDice": "Wookiee Claws: unarmed strikes deal 1d4 (not applied by SW5E)"
+    },
+    "updatedAt": 1792272068848,
+    "targets": {
+     "Weapon (Fine)": "Vibroaxe"
+    }
+   }
+  },
+  "trackers": {
+   "id:00000000-0000-4000-8000-000011000001": {
+    "stats": {
+     "hitPointsLost": 2,
+     "temporaryHitPoints": 0,
+     "techPointsUsed": 0,
+     "forcePointsUsed": 0,
+     "superiorityDiceUsed": 0,
+     "hitDiceUsed": {
+      "d12": 0
+     },
+     "deathSaves": {
+      "successes": 0,
+      "failures": 0
+     },
+     "hasInspiration": false,
+     "featuresTimesUsed": {
+      "Rage": 2
+     },
+     "exhaustion": 1,
+     "highLevelCasting": {
+      "level6": false,
+      "level7": false,
+      "level8": false,
+      "level9": false
+     },
+     "conditions": []
+    },
+    "updatedAt": 1792272068699,
+    "hitPointsLost": 2,
+    "temporaryHitPoints": 0,
+    "techPointsUsed": 0,
+    "forcePointsUsed": 0,
+    "superiorityDiceUsed": 0,
+    "hitDiceUsed": {
+     "d12": 0
+    },
+    "deathSaves": {
+     "successes": 0,
+     "failures": 0
+    },
+    "hasInspiration": false,
+    "featuresTimesUsed": {
+     "Rage": 0
+    },
+    "exhaustion": 0,
+    "highLevelCasting": {
+     "level6": false,
+     "level7": false,
+     "level8": false,
+     "level9": false
+    },
+    "conditions": []
+   }
+  },
+  "history": {
+   "id:00000000-0000-4000-8000-000011000001": [
+    {
+     "at": 1792258755227,
+     "reason": "Loaded from SW5E",
+     "changedAt": 1792258723316,
+     "raw": {
+      "name": "Rorrwaak (Panel)",
+      "id": "00000000-0000-4000-8000-000011000001",
+      "userId": "00000000-0000-4000-8000-000011000002",
+      "builderVersion": "0.7.6",
+      "image": "",
+      "user": "",
+      "experiencePoints": 900,
+      "species": {
+       "name": "Wookiee",
+       "abilityScoreImprovementSelectedOption": 0,
+       "abilityScoreImprovement": {}
+      },
+      "classes": [
+       {
+        "name": "Berserker",
+        "levels": 3,
+        "hitPoints": [
+         7,
+         7
+        ],
+        "abilityScoreImprovements": []
+       }
+      ],
+      "baseAbilityScores": {
+       "Strength": 15,
+       "Dexterity": 13,
+       "Constitution": 14,
+       "Intelligence": 8,
+       "Wisdom": 12,
+       "Charisma": 10
+      },
+      "background": {
+       "name": "Mercenary",
+       "feat": {
+        "name": "Brawny",
+        "type": "Feat"
+       },
+       "feature": ""
+      },
+      "characteristics": {
+       "alignment": "Chaotic Light",
+       "Personality Traits": "",
+       "Ideal": "",
+       "Bond": "",
+       "Flaw": "",
+       "Gender": "",
+       "Place of Birth": "",
+       "Age": "",
+       "Height": "",
+       "Weight": "",
+       "Hair": "",
+       "Eyes": "",
+       "Skin": "",
+       "Appearance": "",
+       "Backstory": ""
+      },
+      "credits": 100,
+      "equipment": [
+       {
+        "name": "Vibroaxe",
+        "quantity": 1,
+        "category": "Equipment",
+        "equipped": true
+       },
+       {
+        "name": "Vibrospear",
+        "quantity": "2",
+        "category": "Equipment",
+        "equipped": false
+       },
+       {
+        "name": "Clothes, traveler's",
+        "quantity": 1,
+        "category": "Equipment"
+       },
+       {
+        "name": "Sabacc deck",
+        "quantity": 1,
+        "category": "Equipment"
+       }
+      ],
+      "currentStats": {
+       "hitPointsLost": 0,
+       "temporaryHitPoints": 0,
+       "techPointsUsed": 0,
+       "forcePointsUsed": 0,
+       "superiorityDiceUsed": 0,
+       "hitDiceUsed": {},
+       "deathSaves": {
+        "successes": 0,
+        "failures": 0
+       },
+       "hasInspiration": false,
+       "featuresTimesUsed": {},
+       "conditions": [],
+       "exhaustion": 0,
+       "highLevelCasting": {
+        "level6": false,
+        "level7": false,
+        "level8": false,
+        "level9": false
+       }
+      },
+      "tweaks": {},
+      "customProficiencies": [],
+      "customLanguages": [],
+      "customFeatures": [],
+      "customFeats": [],
+      "customTechPowers": [],
+      "customForcePowers": [],
+      "customEquipment": [],
+      "settings": {
+       "isEnforcingForcePrerequisites": true,
+       "isFixedHitPoints": false,
+       "abilityScoreMethod": "Standard Array"
+      },
+      "notes": "",
+      "createdAt": 1792245762516,
+      "changedAt": 1792258723316,
+      "localId": "temp-rf2lujr13"
+     }
+    },
+    {
+     "at": 1792259726518,
+     "reason": "Loaded from SW5E",
+     "changedAt": 1792259697275,
+     "raw": {
+      "name": "Rorrwaak (Panel)",
+      "id": "00000000-0000-4000-8000-000011000001",
+      "userId": "00000000-0000-4000-8000-000011000002",
+      "builderVersion": "0.7.6",
+      "image": "",
+      "user": "",
+      "experiencePoints": 2700,
+      "species": {
+       "name": "Wookiee",
+       "abilityScoreImprovementSelectedOption": 0,
+       "abilityScoreImprovement": {}
+      },
+      "classes": [
+       {
+        "name": "Berserker",
+        "levels": 4,
+        "hitPoints": [
+         7,
+         7,
+         7
+        ],
+        "abilityScoreImprovements": [
+         {
+          "type": "Ability Score Improvement",
+          "abilitiesIncreased": [
+           {
+            "name": "Strength",
+            "value": 2
+           }
+          ]
+         }
+        ]
+       }
+      ],
+      "baseAbilityScores": {
+       "Strength": 15,
+       "Dexterity": 13,
+       "Constitution": 14,
+       "Intelligence": 8,
+       "Wisdom": 12,
+       "Charisma": 10
+      },
+      "background": {
+       "name": "Mercenary",
+       "feat": {
+        "name": "Brawny",
+        "type": "Feat"
+       },
+       "feature": ""
+      },
+      "characteristics": {
+       "alignment": "Chaotic Light",
+       "Personality Traits": "",
+       "Ideal": "",
+       "Bond": "",
+       "Flaw": "",
+       "Gender": "",
+       "Place of Birth": "",
+       "Age": "",
+       "Height": "",
+       "Weight": "",
+       "Hair": "",
+       "Eyes": "",
+       "Skin": "",
+       "Appearance": "",
+       "Backstory": ""
+      },
+      "credits": 100,
+      "equipment": [
+       {
+        "name": "Vibroaxe",
+        "quantity": 1,
+        "category": "Equipment",
+        "equipped": true
+       },
+       {
+        "name": "Vibrospear",
+        "quantity": "2",
+        "category": "Equipment",
+        "equipped": false
+       },
+       {
+        "name": "Clothes, traveler's",
+        "quantity": 1,
+        "category": "Equipment"
+       },
+       {
+        "name": "Sabacc deck",
+        "quantity": 1,
+        "category": "Equipment"
+       }
+      ],
+      "currentStats": {
+       "hitPointsLost": 0,
+       "temporaryHitPoints": 0,
+       "techPointsUsed": 0,
+       "forcePointsUsed": 0,
+       "superiorityDiceUsed": 0,
+       "hitDiceUsed": {},
+       "deathSaves": {
+        "successes": 0,
+        "failures": 0
+       },
+       "hasInspiration": false,
+       "featuresTimesUsed": {},
+       "conditions": [],
+       "exhaustion": 0,
+       "highLevelCasting": {
+        "level6": false,
+        "level7": false,
+        "level8": false,
+        "level9": false
+       }
+      },
+      "tweaks": {},
+      "customProficiencies": [],
+      "customLanguages": [],
+      "customFeatures": [],
+      "customFeats": [],
+      "customTechPowers": [],
+      "customForcePowers": [],
+      "customEquipment": [],
+      "settings": {
+       "isEnforcingForcePrerequisites": true,
+       "isFixedHitPoints": false,
+       "abilityScoreMethod": "Standard Array"
+      },
+      "notes": "",
+      "createdAt": 1792245762516,
+      "changedAt": 1792259697275,
+      "localId": "temp-rf2lujr13"
+     }
+    },
+    {
+     "at": 1792264417280,
+     "reason": "Loaded from SW5E",
+     "changedAt": 1792246109001,
+     "raw": {
+      "name": "Rorrwaak (Panel)",
+      "id": "00000000-0000-4000-8000-000011000001",
+      "userId": "00000000-0000-4000-8000-000011000002",
+      "builderVersion": "0.7.6",
+      "image": "",
+      "user": "",
+      "experiencePoints": 0,
+      "species": {
+       "name": "Wookiee",
+       "abilityScoreImprovementSelectedOption": 0,
+       "abilityScoreImprovement": {}
+      },
+      "classes": [
+       {
+        "name": "Berserker",
+        "levels": 1,
+        "hitPoints": [],
+        "abilityScoreImprovements": []
+       }
+      ],
+      "baseAbilityScores": {
+       "Strength": 15,
+       "Dexterity": 13,
+       "Constitution": 14,
+       "Intelligence": 8,
+       "Wisdom": 12,
+       "Charisma": 10
+      },
+      "background": {
+       "name": "Mercenary",
+       "feat": {
+        "name": "Brawny",
+        "type": "Feat"
+       },
+       "feature": ""
+      },
+      "characteristics": {
+       "alignment": "Chaotic Light",
+       "Personality Traits": "",
+       "Ideal": "",
+       "Bond": "",
+       "Flaw": "",
+       "Gender": "",
+       "Place of Birth": "",
+       "Age": "",
+       "Height": "",
+       "Weight": "",
+       "Hair": "",
+       "Eyes": "",
+       "Skin": "",
+       "Appearance": "",
+       "Backstory": ""
+      },
+      "credits": 100,
+      "equipment": [
+       {
+        "name": "Vibroaxe",
+        "quantity": 1,
+        "category": "Equipment",
+        "equipped": true
+       },
+       {
+        "name": "Vibrospear",
+        "quantity": "2",
+        "category": "Equipment",
+        "equipped": false
+       },
+       {
+        "name": "Clothes, traveler's",
+        "quantity": 1,
+        "category": "Equipment"
+       },
+       {
+        "name": "Sabacc deck",
+        "quantity": 1,
+        "category": "Equipment"
+       }
+      ],
+      "currentStats": {
+       "hitPointsLost": 0,
+       "temporaryHitPoints": 0,
+       "techPointsUsed": 0,
+       "forcePointsUsed": 0,
+       "superiorityDiceUsed": 0,
+       "hitDiceUsed": {},
+       "deathSaves": {
+        "successes": 0,
+        "failures": 0
+       },
+       "hasInspiration": false,
+       "featuresTimesUsed": {},
+       "conditions": [],
+       "exhaustion": 0,
+       "highLevelCasting": {
+        "level6": false,
+        "level7": false,
+        "level8": false,
+        "level9": false
+       }
+      },
+      "tweaks": {},
+      "customProficiencies": [],
+      "customLanguages": [],
+      "customFeatures": [],
+      "customFeats": [],
+      "customTechPowers": [],
+      "customForcePowers": [],
+      "customEquipment": [],
+      "settings": {
+       "isEnforcingForcePrerequisites": true,
+       "isFixedHitPoints": false,
+       "abilityScoreMethod": "Standard Array"
+      },
+      "notes": "",
+      "createdAt": 1792245762516,
+      "changedAt": 1792246109001,
+      "localId": "temp-rf2lujr13"
+     }
+    }
+   ]
+  },
+  "rolls": [
+   {
+    "id": "mvcpdz6fg8e",
+    "char": "Rorrwaak (Panel)",
+    "key": "id:00000000-0000-4000-8000-000011000001",
+    "mode": "normal",
+    "custom": 0,
+    "rolled": true,
+    "at": 1792260099159,
+    "kind": "dice",
+    "label": "Vibroaxe damage",
+    "spec": "damage|0",
+    "crit": false,
+    "base": [
+     {
+      "label": "damage bonus",
+      "value": 6
+     }
+    ],
+    "conds": [
+     {
+      "label": "Rage Damage",
+      "bonus": 2,
+      "extra": [],
+      "on": false
+     }
+    ],
+    "damageType": "Kinetic",
+    "dice": [
+     {
+      "id": 2,
+      "sides": 12,
+      "tag": "base",
+      "value": 9,
+      "sign": 1
+     }
+    ]
+   },
+   {
+    "id": "mvcpcz1afqa",
+    "char": "Rorrwaak (Panel)",
+    "key": "id:00000000-0000-4000-8000-000011000001",
+    "mode": "normal",
+    "custom": 0,
+    "rolled": true,
+    "at": 1792260075757,
+    "kind": "d20",
+    "label": "Vibroaxe attack",
+    "base": [
+     {
+      "label": "modifier",
+      "value": 8
+     }
+    ],
+    "conds": [],
+    "spec": "attack|0",
+    "next": {
+     "spec": "damage|0"
+    },
+    "critMin": 20,
+    "critFrom": "",
+    "dice": [
+     {
+      "id": 1,
+      "sides": 20,
+      "tag": "d20",
+      "value": 9
+     }
+    ]
+   }
+  ],
+  "rollSettings": {
+   "critMode": "max"
+  },
+  "rulesInfo": {
+   "dataVersion": 199,
+   "fetchedAt": 1792273029637
+  },
+  "catalogInfo": {
+   "dataVersion": 199,
+   "fetchedAt": 1792170265673,
+   "count": 2425
+  },
+  "backupInfo": {
+   "count": null,
+   "characters": {}
+  },
+  "lastCharacter": "id:00000000-0000-4000-8000-000011000001"
+ }
+}

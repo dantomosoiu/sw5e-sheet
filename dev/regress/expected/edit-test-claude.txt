@@ -1,0 +1,928 @@
+# Edit Test (Claude)
+
+## Sent to SW5E's engine
+The recorded calculation matches.
+tweaks.abilityScores.Charisma.score.bonus = 2
+tweaks.abilityScores.Charisma.skills.Deception.bonus = 0
+tweaks.abilityScores.Charisma.skills.Deception.proficiency = "Expertise"
+tweaks.abilityScores.Strength.score.bonus = 6
+tweaks.armorClass.bonus = 1
+tweaks.unarmed.damage.bonus = 1
+tweaks.unarmed.toHit.bonus = 1
+equipment[2 Blaster pistol].tweaks.damage.bonus = 2
+equipment[2 Blaster pistol].tweaks.toHit.bonus = 1
+equipment[2 Blaster pistol].tweaks.toHit.proficiency = "proficient"
+equipped = [Blaster pistol, Shield (Fine), Weapon (Fine), Handwraps (Fine), Bonded Plates Mk I, Oscillating Amplifier Mk I, Fadecasting Core (Training)]
+
+## Numbers (SW5E's engine, with the sheet's edits)
+currentLevel = 7
+classText = "Fighter (Tactical Specialist) 5, Engineer 2"
+proficiencyBonus = 3
+initiative = 2
+armorClass = 13
+armorList = []
+passivePerception = 10
+vision = "normal"
+speed.base = "30 ft"
+speed.day = "24 miles"
+speed.hour = "3 miles"
+speed.special = ""
+hitPoints.hitDice[0].maximum = 2
+hitPoints.hitDice[0].size = "d8"
+hitPoints.hitDice[1].maximum = 5
+hitPoints.hitDice[1].size = "d10"
+hitPoints.maximum = 58
+abilityScores.Charisma.modifier = 0
+abilityScores.Charisma.savingThrow.modifier = 0
+abilityScores.Charisma.savingThrow.proficiency = "none"
+abilityScores.Charisma.skills[Deception].modifier = 6
+abilityScores.Charisma.skills[Deception].proficiency = "expertise"
+abilityScores.Charisma.skills[Intimidation].modifier = 0
+abilityScores.Charisma.skills[Intimidation].proficiency = "none"
+abilityScores.Charisma.skills[Performance].modifier = 0
+abilityScores.Charisma.skills[Performance].proficiency = "none"
+abilityScores.Charisma.skills[Persuasion].modifier = 0
+abilityScores.Charisma.skills[Persuasion].proficiency = "none"
+abilityScores.Charisma.value = 10
+abilityScores.Constitution.modifier = 2
+abilityScores.Constitution.savingThrow.modifier = 5
+abilityScores.Constitution.savingThrow.proficiency = "proficient"
+abilityScores.Constitution.skills = []
+abilityScores.Constitution.value = 14
+abilityScores.Dexterity.modifier = 2
+abilityScores.Dexterity.savingThrow.modifier = 2
+abilityScores.Dexterity.savingThrow.proficiency = "none"
+abilityScores.Dexterity.skills[Acrobatics].modifier = 2
+abilityScores.Dexterity.skills[Acrobatics].proficiency = "none"
+abilityScores.Dexterity.skills[Sleight of Hand].modifier = 2
+abilityScores.Dexterity.skills[Sleight of Hand].proficiency = "none"
+abilityScores.Dexterity.skills[Stealth].modifier = 2
+abilityScores.Dexterity.skills[Stealth].proficiency = "none"
+abilityScores.Dexterity.value = 15
+abilityScores.Intelligence.modifier = 2
+abilityScores.Intelligence.savingThrow.modifier = 2
+abilityScores.Intelligence.savingThrow.proficiency = "none"
+abilityScores.Intelligence.skills[Investigation].modifier = 2
+abilityScores.Intelligence.skills[Investigation].proficiency = "none"
+abilityScores.Intelligence.skills[Lore].modifier = 2
+abilityScores.Intelligence.skills[Lore].proficiency = "none"
+abilityScores.Intelligence.skills[Nature].modifier = 2
+abilityScores.Intelligence.skills[Nature].proficiency = "none"
+abilityScores.Intelligence.skills[Piloting].modifier = 2
+abilityScores.Intelligence.skills[Piloting].proficiency = "none"
+abilityScores.Intelligence.skills[Technology].modifier = 2
+abilityScores.Intelligence.skills[Technology].proficiency = "none"
+abilityScores.Intelligence.value = 15
+abilityScores.Strength.modifier = 5
+abilityScores.Strength.savingThrow.modifier = 8
+abilityScores.Strength.savingThrow.proficiency = "proficient"
+abilityScores.Strength.skills[Athletics].modifier = 5
+abilityScores.Strength.skills[Athletics].proficiency = "none"
+abilityScores.Strength.value = 21
+abilityScores.Wisdom.modifier = 0
+abilityScores.Wisdom.savingThrow.modifier = 0
+abilityScores.Wisdom.savingThrow.proficiency = "none"
+abilityScores.Wisdom.skills[Animal Handling].modifier = 0
+abilityScores.Wisdom.skills[Animal Handling].proficiency = "none"
+abilityScores.Wisdom.skills[Insight].modifier = 0
+abilityScores.Wisdom.skills[Insight].proficiency = "none"
+abilityScores.Wisdom.skills[Medicine].modifier = 0
+abilityScores.Wisdom.skills[Medicine].proficiency = "none"
+abilityScores.Wisdom.skills[Perception].modifier = 0
+abilityScores.Wisdom.skills[Perception].proficiency = "none"
+abilityScores.Wisdom.skills[Survival].modifier = 0
+abilityScores.Wisdom.skills[Survival].proficiency = "none"
+abilityScores.Wisdom.value = 10
+weapons[Blaster pistol].ability = "Dexterity"
+weapons[Blaster pistol].attackBonus = 6
+weapons[Blaster pistol].damageBonus = 4
+weapons[Blaster pistol].damageDieModifier = 0
+weapons[Blaster pistol].damageDieType = 6
+weapons[Blaster pistol].damageNumberOfDice = 1
+weapons[Blaster pistol].damageType = "Energy"
+weapons[Blaster pistol].equipped = true
+weapons[Blaster pistol].index = 2
+weapons[Blaster pistol].isCustom = false
+weapons[Blaster pistol].properties = ["Power cell (range 50/200)", "reload 16"]
+weapons[Blaster pistol].quantity = 1
+weapons[Blaster pistol].tweaks.damage.bonus = 2
+weapons[Blaster pistol].tweaks.toHit.bonus = 1
+weapons[Blaster pistol].tweaks.toHit.proficiency = "proficient"
+weapons[Blaster pistol].weaponClassification = "SimpleBlaster"
+weapons[Unarmed Strike].ability = "Strength"
+weapons[Unarmed Strike].attackBonus = 9
+weapons[Unarmed Strike].damageBonus = 7
+weapons[Unarmed Strike].damageDieType = 0
+weapons[Unarmed Strike].damageNumberOfDice = 1
+weapons[Unarmed Strike].damageType = "Kinetic"
+weapons[Unarmed Strike].equipped = true
+weapons[Unarmed Strike].index = -1
+weapons[Unarmed Strike].isCustom = false
+weapons[Unarmed Strike].properties = []
+weapons[Unarmed Strike].quantity = 0
+weapons[Unarmed Strike].tweaks.damage.bonus = 1
+weapons[Unarmed Strike].tweaks.toHit.bonus = 1
+weapons[Unarmed Strike].weaponClassification = "Unarmed"
+attunement.hasAttunable = true
+attunement.maximum = 3
+carryingCapacity.encumbered = 105
+carryingCapacity.heavilyEncumbered = 210
+carryingCapacity.maxCapacity = 315
+carryingCapacity.pushDragLift = 630
+superiority = false
+techCasting.attackModifier = 5
+techCasting.maxPoints = 6
+techCasting.maxPowerLevel = 1
+techCasting.pointsUsed = 0
+techCasting.saveDC = 13
+forceCasting = false
+proficiencies[All blasters].type = "weapon"
+proficiencies[all vibroweapons].type = "weapon"
+proficiencies[All armor].type = "armor"
+proficiencies[Light armor].type = "other"
+proficiencies[One type of gaming set].type = "tool"
+skillAndSaveProficiencies = ["Deception", "Strength Saving Throws", "Constitution Saving Throws"]
+languages = ["Galactic Basic", "Bothese"]
+experiencePoints.isCorrect = true
+experiencePoints.nextLevel = 34000
+experiencePoints.previousLevel = 23000
+conditions = []
+exhaustion = 0
+techCasting.powersKnown = []
+
+## Effects and tweaks
+effect: Test character setup: +1 CHA · tweak
+effect: Deception · tweak
+effect: Custom barrel · tweak
+effect: Fighter weapon proficiencies · feature
+effect: Bonus Proficiencies · feature
+effect: Silver-Tongued · feature
+effect: Aratech Echo Belt · item
+effect: Shield (Fine) · item
+effect: Strength Enhancer · item
+effect: Weapon (Fine) · item
+effect: Handwraps (Fine) · item
+effect: Bonded Plates Mk I · item
+effect: Oscillating Amplifier Mk I · item
+effect: Fadecasting Core (Training) · item
+effect: Cryo Cell (Average) · item · 1 hour
+tweak: abilityScores.Charisma.score +2 · Test character setup: +1 CHA
+tweak: abilityScores.Charisma.skills.Deception +0 {"proficiency":"Expertise"} · Deception
+tweak: abilityScores.Charisma.skills.Deception +0 {"proficiency":"Proficient"} · Silver-Tongued
+tweak: armorClass +1 · Shield (Fine)
+tweak: abilityScores.Strength.score +6 · Strength Enhancer
+tweak: unarmed.toHit +1 · Handwraps (Fine)
+tweak: unarmed.damage +1 · Handwraps (Fine)
+weapon tweak: #2 damage +1 · Custom barrel
+weapon tweak: #2 toHit +1 · Weapon (Fine)
+weapon tweak: #2 damage +1 · Weapon (Fine)
+weapon tweak: #2 toHit +0 · Fighter weapon proficiencies
+only sometimes: armorClass +1 vs melee · Bonded Plates Mk I
+only sometimes: armorClass -1 vs ranged · Bonded Plates Mk I
+only sometimes: techCasting.attackModifier +1 melee tech attacks · Oscillating Amplifier Mk I
+only sometimes: techCasting.attackModifier -1 ranged tech attacks · Oscillating Amplifier Mk I
+only sometimes: techCasting.saveDC +1 powers with STR/CON saves · Fadecasting Core (Training)
+only sometimes: techCasting.saveDC -1 powers with DEX/INT saves · Fadecasting Core (Training)
+only sometimes: weapon.toHit +1 with Cryo Cell (Average) · Cryo Cell (Average)
+only sometimes: weapon.damage +1 with Cryo Cell (Average) · Cryo Cell (Average)
+
+## Rolls
+init: Initiative: d20 +2 · = +2 modifier
+death: Death saving throw: d20 +0
+hitdie|d8: Hit die (d8): d8 +2 · = +2 per die
+hitdie|d10: Hit die (d10): d10 +2 · = +2 per die
+featheal|Second Wind|1d10|5|Fighter level: Second Wind: healing: d10 +5 · = +5 Fighter level
+dice|1d6: 1d6: d6 +0
+dice|1d4: 1d4: d4 +0
+check|Strength: Strength check: d20 +5 · = +5 modifier
+save|Strength: Strength saving throw: d20 +8 · = +8 modifier
+skill|Strength|0: Athletics (STR): d20 +5 · = +5 modifier
+check|Dexterity: Dexterity check: d20 +2 · = +2 modifier
+save|Dexterity: Dexterity saving throw: d20 +2 · = +2 modifier
+skill|Dexterity|0: Acrobatics (DEX): d20 +2 · = +2 modifier
+skill|Dexterity|1: Sleight of Hand (DEX): d20 +2 · = +2 modifier
+skill|Dexterity|2: Stealth (DEX): d20 +2 · = +2 modifier
+check|Constitution: Constitution check: d20 +2 · = +2 modifier
+save|Constitution: Constitution saving throw: d20 +5 · = +5 modifier
+check|Intelligence: Intelligence check: d20 +2 · = +2 modifier
+save|Intelligence: Intelligence saving throw: d20 +2 · = +2 modifier
+skill|Intelligence|0: Investigation (INT): d20 +2 · = +2 modifier
+skill|Intelligence|1: Lore (INT): d20 +2 · = +2 modifier
+skill|Intelligence|2: Nature (INT): d20 +2 · = +2 modifier
+skill|Intelligence|3: Piloting (INT): d20 +2 · = +2 modifier
+skill|Intelligence|4: Technology (INT): d20 +2 · = +2 modifier
+check|Wisdom: Wisdom check: d20 +0 · = +0 modifier
+save|Wisdom: Wisdom saving throw: d20 +0 · = +0 modifier
+skill|Wisdom|0: Animal Handling (WIS): d20 +0 · = +0 modifier
+skill|Wisdom|1: Insight (WIS): d20 +0 · = +0 modifier
+skill|Wisdom|2: Medicine (WIS): d20 +0 · = +0 modifier
+skill|Wisdom|3: Perception (WIS): d20 +0 · = +0 modifier
+skill|Wisdom|4: Survival (WIS): d20 +0 · = +0 modifier
+check|Charisma: Charisma check: d20 +0 · = +0 modifier
+save|Charisma: Charisma saving throw: d20 +0 · = +0 modifier
+skill|Charisma|0: Deception (CHA): d20 +6 · = +6 modifier
+skill|Charisma|1: Intimidation (CHA): d20 +0 · = +0 modifier
+skill|Charisma|2: Performance (CHA): d20 +0 · = +0 modifier
+skill|Charisma|3: Persuasion (CHA): d20 +0 · = +0 modifier
+attack|0: Blaster pistol attack: d20 +6 · = +6 modifier · option: with Cryo Cell (Average) +1
+damage|0: Blaster pistol damage: d6 +4 · = +2 DEX modifier +1 tweak (Custom barrel) +1 Weapon (Fine) · Energy · option: with Cryo Cell (Average) +1
+attack|1: Unarmed Strike attack: d20 +9 · = +9 modifier
+damage|1: Unarmed Strike damage: no dice +8 · = +5 STR modifier +1 Handwraps (Fine) +1 other (weapon, style…) +1 flat damage · Kinetic
+tech: Tech attack: d20 +5 · = +5 modifier · option: melee tech attacks +1 · option: ranged tech attacks −1
+tool|One type of gaming set|proficient: One type of gaming set check: d20 +5 · = +2 INT modifier +3 proficiency
+damage|0|crit: Blaster pistol damage (critical): d6 d6 +4 · = +2 DEX modifier +1 tweak (Custom barrel) +1 Weapon (Fine) · Energy · critical · option: with Cryo Cell (Average) +1
+damage|1|crit: Unarmed Strike damage (critical): no dice +8 · = +5 STR modifier +1 Handwraps (Fine) +1 other (weapon, style…) +1 flat damage · Kinetic · critical
+
+## Sheet: Overview
+Edit Test (Claude)
+Bothan · Fighter (Tactical Specialist) 5, Engineer 2
+Level 7 Background: Noble Lawful Light Proficiency +3
+24,000 XP level 8 at 34,000 (10,000 to go)
+Still to choose (12): Fighter skills (2 more) · Fighter 4th level: ability score improvement or feat · Fighter Strategies · Fighter maneuvers (6 more) · Enginee… [359 chars #484201c2]
+
+## Sheet: Combat & Vitals
+Armor Class
+13 · 14 vs melee · 12 vs ranged
+  ↳ hover armorClass: Without tweaks or effects: 12 → now 13 / +1 AC · Shield (Fine) while equipped / Only sometimes: / 14 vs melee: +1 · Bonded Plates Mk I while i… [224 chars #148a7ed9]
+Unarmored
+Hit Points
+51 / 58
+No temporary HP
+Initiative
++2
+Speed
+30 ft
+3 miles/hour · 24 miles/day
+Proficiency
++3
+Passive Perception
+10
+Hit Dice
+2/2d8 · 5/5d10
++2 per die spent (Con)
+Vision
+Normal
+Play tracker
+[] [untyped ▾] [Damage] [Heal] [Temp HP]
+Death saves ✓ [] [] [] ✗ [] [] [] [Roll]
+Superiority dice d6 6 / 6 [−] [+]
+Tech points 6 / 6 [−] [+]
+Hit dice (d8) roll d8 +2, then Heal 2 / 2 [−] [+]
+Hit dice (d10) roll d10 +2, then Heal 5 / 5 [−] [+]
+Potent Aptitude short rest 2 / 2 [−] [+]
+Second Wind roll 1d10 + 5, then Heal · short rest 1 / 1 [−] [+]
+Infuse Item long rest 1 / 1 [−] [+]
+Action Surge short rest 1 / 1 [−] [+]
+Conditions None [Add a condition… ▾]
+Combat [Start combat]
+[☆ Inspiration] Exhaustion [−] 0 [+]
+[Short rest] [Long rest]
+Class dice
+Superiority Dice Size 1d6 Potent Aptitude 1d4
+Effects
+From class features (3)
+Fighter weapon proficiencies Proficient: All blasters Proficient: all vibroweapons Fighter proficiencies
+Bonus Proficiencies Choose artisan's implements Tactical Specialist feature
+Silver-Tongued Deception: proficient feat
+From equipment
+Aratech Echo Belt while attuned
+While you wear this belt with its field on, Wisdom (Perception) checks made to see you have disadvantage, and you have advantage on Dexterity (Stealth) checks made to hide, as the belt funnels light around you.
+Shield (Fine) AC +1 while equipped
+Strength Enhancer STR 21 (+6) while attuned
+Weapon (Fine) Attack +1 Damage +1 on [Blaster pistol ▾] while equipped
+Handwraps (Fine) Unarmed attack +1 Unarmed damage +1 while equipped
+Bonded Plates Mk I AC +1 vs melee AC −1 vs ranged while installed
+Oscillating Amplifier Mk I Tech attack +1 melee tech attacks Tech attack −1 ranged tech attacks while installed
+Fadecasting Core (Training) Tech save DC +1 powers with STR/CON saves Tech save DC −1 powers with DEX/INT saves while installed
+Cryo Cell (Average) Attack +1 with Cryo Cell (Average) Damage +1 with Cryo Cell (Average) when you fire it
+Additionally, the loaded weapon deals cold damage instead of its normal damage type, and when you hit with a shot the creature must make a DC 16 Constitution saving throw.
+Temporary
+No temporary effects.
+[]
+Your own effect (something the sheet doesn't know)…
+[] [] [No number (a reminder) ▾] [] [Add]
+It's applied like any effect (a dice bonus like Bless's d4 isn't a number: add it in the roller), and ends with End, a rest or Next round when it has run out.
+Bonuses are applied to the sheet's numbers in this browser only (not saved to SW5E); changed numbers are underlined: hover or tap them for details. Conditional … [256 chars #e163e104]
+Conditions
+None active (from SW5E)
+Carrying capacity
+Carried
+26.5 lb
+Unencumbered (variant rule)
+Encumbered at
+105 lb
+  ↳ hover carryingCapacity.encumbered: Without tweaks or effects: 75 → now 105 / +6 STR (the item sets it to 21) · Strength Enhancer while attuned
+Heavily enc. at
+210 lb
+  ↳ hover carryingCapacity.heavilyEncumbered: Without tweaks or effects: 150 → now 210 / +6 STR (the item sets it to 21) · Strength Enhancer while attuned
+Max capacity
+315 lb
+  ↳ hover carryingCapacity.maxCapacity: Without tweaks or effects: 225 → now 315 / +6 STR (the item sets it to 21) · Strength Enhancer while attuned
+Push / drag / lift
+630 lb
+  ↳ hover carryingCapacity.pushDragLift: Without tweaks or effects: 450 → now 630 / +6 STR (the item sets it to 21) · Strength Enhancer while attuned
+
+## Sheet: Abilities & Saving Throws
+STR
+Strength
++5
+  ↳ hover abilityScores.Strength.modifier: Without tweaks or effects: 2 → now 5 / +6 STR (the item sets it to 21) · Strength Enhancer while attuned
+21
+  ↳ hover abilityScores.Strength.value: Without tweaks or effects: 15 → now 21 / +6 STR (the item sets it to 21) · Strength Enhancer while attuned
+(Proficient) Saving throw+8
+  ↳ hover abilityScores.Strength.savingThrow.modifier: Without tweaks or effects: 5 → now 8 / +6 STR (the item sets it to 21) · Strength Enhancer while attuned
+(Not proficient) Athletics+5
+  ↳ hover abilityScores.Strength.skills.0.modifier: Without tweaks or effects: 2 → now 5 / +6 STR (the item sets it to 21) · Strength Enhancer while attuned
+base 15 · +6 from Strength Enhancer
+DEX
+Dexterity
++2
+15
+(Not proficient) Saving throw+2
+(Not proficient) Acrobatics+2
+(Not proficient) Sleight of Hand+2
+(Not proficient) Stealth+2
+base 14 · +1 Bothan
+CON
+Constitution
++2
+14
+(Proficient) Saving throw+5
+base 14
+INT
+Intelligence
++2
+15
+(Not proficient) Saving throw+2
+(Not proficient) Investigation+2
+(Not proficient) Lore+2
+(Not proficient) Nature+2
+(Not proficient) Piloting+2
+(Not proficient) Technology+2
+base 13 · +2 Bothan
+WIS
+Wisdom
++0
+10
+(Not proficient) Saving throw+0
+(Not proficient) Animal Handling+0
+(Not proficient) Insight+0
+(Not proficient) Medicine+0
+(Not proficient) Perception+0
+(Not proficient) Survival+0
+base 10
+CHA
+Charisma
++0
+  ↳ hover abilityScores.Charisma.modifier: Without tweaks or effects: -1 → now 0 / +2 Charisma score · Test character setup: +1 CHA tweak
+10
+  ↳ hover abilityScores.Charisma.value: Without tweaks or effects: 8 → now 10 / +2 Charisma score · Test character setup: +1 CHA tweak
+(Not proficient) Saving throw+0
+  ↳ hover abilityScores.Charisma.savingThrow.modifier: Without tweaks or effects: -1 → now 0 / +2 Charisma score · Test character setup: +1 CHA tweak
+(Expertise) Deception+6
+  ↳ hover abilityScores.Charisma.skills.0.modifier: Without tweaks or effects: -1 → now 6 / +2 Charisma score · Test character setup: +1 CHA tweak / Expertise Decep… [245 chars #15264ded]
+(Not proficient) Intimidation+0
+  ↳ hover abilityScores.Charisma.skills.1.modifier: Without tweaks or effects: -1 → now 0 / +2 Charisma score · Test character setup: +1 CHA tweak
+(Not proficient) Performance+0
+  ↳ hover abilityScores.Charisma.skills.2.modifier: Without tweaks or effects: -1 → now 0 / +2 Charisma score · Test character setup: +1 CHA tweak
+(Not proficient) Persuasion+0
+  ↳ hover abilityScores.Charisma.skills.3.modifier: Without tweaks or effects: -1 → now 0 / +2 Charisma score · Test character setup: +1 CHA tweak
+base 8 · +2 from Test character setup: +1 CHA (tweak)
+not proficient proficient expertise
+
+## Sheet: Skills
+Skill | Ability | Bonus | Passive | Proficiency |
+(Not proficient) Acrobatics | DEX | +2 | 12 | — |
+(Not proficient) Animal Handling | WIS | +0 | 10 | — |
+(Not proficient) Athletics | STR | +5 | 15 | — |
+  ↳ hover abilityScores.Strength.skills.0.modifier: Without tweaks or effects: 2 → now 5 / +6 STR (the item sets it to 21) · Strength Enhancer while attuned
+  ↳ hover abilityScores.Strength.skills.0.modifier: Without tweaks or effects: 2 → now 5 / +6 STR (the item sets it to 21) · Strength Enhancer while attuned
+(Expertise) Deception | CHA | +6 | 16 | Expertise |
+  ↳ hover abilityScores.Charisma.skills.0.modifier: Without tweaks or effects: -1 → now 6 / +2 Charisma score · Test character setup: +1 CHA tweak / Expertise Decep… [245 chars #15264ded]
+  ↳ hover abilityScores.Charisma.skills.0.modifier: Without tweaks or effects: -1 → now 6 / +2 Charisma score · Test character setup: +1 CHA tweak / Expertise Decep… [245 chars #15264ded]
+(Not proficient) Insight | WIS | +0 | 10 | — |
+(Not proficient) Intimidation | CHA | +0 | 10 | — |
+  ↳ hover abilityScores.Charisma.skills.1.modifier: Without tweaks or effects: -1 → now 0 / +2 Charisma score · Test character setup: +1 CHA tweak
+  ↳ hover abilityScores.Charisma.skills.1.modifier: Without tweaks or effects: -1 → now 0 / +2 Charisma score · Test character setup: +1 CHA tweak
+(Not proficient) Investigation | INT | +2 | 12 | — |
+(Not proficient) Lore | INT | +2 | 12 | — |
+(Not proficient) Medicine | WIS | +0 | 10 | — |
+(Not proficient) Nature | INT | +2 | 12 | — |
+(Not proficient) Perception | WIS | +0 | 10 | — |
+(Not proficient) Performance | CHA | +0 | 10 | — |
+  ↳ hover abilityScores.Charisma.skills.2.modifier: Without tweaks or effects: -1 → now 0 / +2 Charisma score · Test character setup: +1 CHA tweak
+  ↳ hover abilityScores.Charisma.skills.2.modifier: Without tweaks or effects: -1 → now 0 / +2 Charisma score · Test character setup: +1 CHA tweak
+(Not proficient) Persuasion | CHA | +0 | 10 | — |
+  ↳ hover abilityScores.Charisma.skills.3.modifier: Without tweaks or effects: -1 → now 0 / +2 Charisma score · Test character setup: +1 CHA tweak
+  ↳ hover abilityScores.Charisma.skills.3.modifier: Without tweaks or effects: -1 → now 0 / +2 Charisma score · Test character setup: +1 CHA tweak
+(Not proficient) Piloting | INT | +2 | 12 | — |
+(Not proficient) Sleight of Hand | DEX | +2 | 12 | — |
+(Not proficient) Stealth | DEX | +2 | 12 | — |
+(Not proficient) Survival | WIS | +0 | 10 | — |
+(Not proficient) Technology | INT | +2 | 12 | — |
+
+## Sheet: Weapons & Attacks
+Weapon | To hit | Damage | Ability | Type | Properties |
+Blaster pistol
+Power cell (range 50/200), reload 16
+Shots 16/16 [−1] [Reload] 0 Power cells
+| +6 · +7 with Cryo Cell (Average) | 1d6+4 Energy · 1d6+5 Energy with Cryo Cell (Average) | Dexterity | Simple Blaster | Power cell (range 50/200), reload 16 |
+  ↳ hover weapons.0.attackBonus: Without tweaks or effects: 5 → now 6 / +1 Attack · Weapon (Fine) while equipped / proficient Proficient: All blasters · Fighter wea… [290 chars #ce0ae158]
+  ↳ hover weapons.0.damageBonus: Without tweaks or effects: 2 → now 4 / +1 Blaster pistol: damage · Custom barrel tweak / +1 Damage · Weapon (Fine) while equipped /… [259 chars #5d4d5b3b]
+Unarmed Strike | +9 | 7 Kinetic | Strength | Unarmed | — |
+  ↳ hover weapons.1.attackBonus: Without tweaks or effects: 5 → now 9 / +1 Unarmed attack · Handwraps (Fine) while equipped / +6 STR (the item sets it to 21) · Strength Enhancer while attuned
+  ↳ hover weapons.1.damageBonus: Without tweaks or effects: 3 → now 7 / +1 Unarmed damage · Handwraps (Fine) while equipped / +6 STR (the item sets it to 21) · Strength Enhancer while attuned
+
+## Sheet: Tech Casting
+Tech points
+6 / 6
+Max power level
+1
+Save DC
+13 · 14 powers with STR/CON saves · 12 powers with DEX/INT saves
+Attack
++5 · +6 melee tech attacks · +4 ranged tech attacks
+No powers known.
+
+## Sheet: Class Features
+Engineer (4)
+Potent Aptitude Level 1
+Uses (back on a short or long rest) 2 / 2 [−] [+]
+Engineer: 1st level
+Your technological experience lends you an uncommon insight that you can use to bolster your allies. To do so, you use a bonus action on your turn to choose one… [388 chars #b7fc5b55]
+Once within the next 10 minutes, the creature can roll the die and add the number rolled to one ability check, attack roll, or saving throw it makes. Once the Potent Aptitude die is rolled, it is lost.
+A creature can have only one Potent Aptitude die at a time.
+You can use this feature twice. You gain an additional use at 5th, 9th, 13th, and 17th level. You regain any expended uses when you finish a short or long rest.
+Your choices []
+Techcasting Level 1
+Engineer: 1st level
+During your training you have derived powers from schematics with the aid of your wristpad. See chapter 10 for the general rules of techcasting and chapter 12 for the tech powers list.
+Tech Powers Known
+You learn 6 tech powers of your choice, and you learn more at higher levels, as shown in the Tech Powers Known column of the engineer table. You may not learn a tech power of a level higher than your Max Power Level.
+Tech Points
+You have a number of tech points equal to your engineer level x 2, as shown in the Tech Points column of the engineer table, + your Intelligence modifier. You u… [275 chars #c9972ec6]
+Max Power Level
+Many tech powers can be overcharged, consuming more tech points to create a greater effect. You can overcharge these powers to a maximum level, which increases … [239 chars #bb0ee539]
+You may only cast tech powers at 6th, 7th, 8th, and 9th-level once. You regain the ability to do so after a long rest.
+Techcasting Ability
+Intelligence is your techcasting ability for your tech powers. You use your Intelligence whenever a power refers to your techcasting ability. Additionally, you … [290 chars #25c52137]
+Tech save DC = 8 + your proficiency bonus + your Intelligence modifier
+Tech attack modifier = your proficiency bonus + your Intelligence modifier
+Techcasting Focus
+You use a wristpad (found in chapter 5) or the tools in which you are granted proficiency by this class as a tech focus for your tech powers.
+Your choices []
+Infuse Item Level 2
+Uses (back on a long rest) 1 / 1 [−] [+]
+[Fiber armor (AC +1) ▾] [Infuse]
+Engineer: 2nd level
+You gain the ability to temporarily enhance a weapon or armor. At the end of a long rest, you can touch one unenhanced object that is a suit of armor, a shield,… [394 chars #dfc18efa]
+Once you've used this feature, you can't use it again until you finish a long rest.
+This bonus increases to +2 at 10th level and +3 at 15th level.
+Notes []
+Tool Expertise Level 2
+Engineer: 2nd level
+You gain expertise in any tool proficiencies you gain from this class.
+Notes []
+Fighter (8)
+Fighting Style Level 1
+Fighter: 1st level
+You adopt a particular style of fighting as your specialty. Choose one of the fighting style options, detailed in Chapter 6.
+Chosen: Superiority Style · change it in Classes & Progression
+Notes []
+Second Wind Level 1
+Uses (back on a short or long rest) roll 1d10 + 5, then Heal 1 / 1 [−] [+]
+Fighter: 1st level
+You have a limited well of stamina that you can draw on to protect yourself from harm. On your turn, you can use a bonus action to regain hit points equal to 1d10 + your fighter level.
+Once you've used this feature, you must finish a short or long rest before you can use it again.
+Notes []
+Action Surge Level 2
+Uses (back on a short or long rest) 1 / 1 [−] [+]
+Fighter: 2nd level
+You can push yourself beyond your normal limits for a moment. On your turn, you can take one additional action on top of your regular action.
+Once you've used this feature, you must finish a short or long rest before you can use it again. Starting at 17th level, you can use it twice before a rest, but only once on the same turn.
+Notes []
+Combat Superiority Level 2
+Fighter: 2nd level
+You learn maneuvers that are fueled by special dice called superiority dice. See chapter 13 for the maneuvers list.
+Maneuvers Known
+You learn one maneuver of your choice, and you earn more at higher levels, as shown in the Maneuvers Known column of the fighter table. Many maneuvers enhance a… [273 chars #2fe792f1]
+Each time you learn new maneuvers, you can also replace one maneuver you know with a different one.
+Superiority Dice
+You have two superiority dice, which are d4s, and you earn more at higher levels, as shown in the Superiority Dice Quantity column of the fighter table. This di… [311 chars #ac56cd20]
+You regain all of your expended superiority dice when you finish a short or long rest.
+Maneuver Ability
+Your maneuver ability varies based on the type of the maneuver you use. You use Strength, Dexterity, or Constitution for physical maneuvers (your choice), Intel… [452 chars #c8f71ca2]
+Maneuver save DC = 8 + your proficiency bonus + your maneuver ability modifier
+Your choices []
+Fighter Specialty Level 3
+Fighter: 3rd, 7th, 10th, 15th, and 18th level
+You choose a specialty that you strive to emulate in your combat styles and techniques, which is detailed at the end of the class description.
+Chosen: Tactical Specialist · change it in Classes & Progression
+Notes []
+Fighter Strategies Level 3
+Fighter: 3rd level
+You've adopted a fighter strategy, as detailed at the end of the class description, and you adopt more at higher levels, as shown in the Strategies Known column of the fighter table.
+Not chosen yet · choose it in Classes & Progression
+Notes []
+Ability Score Improvement Level 4
+Fighter: 4th, 6th, 8th, 12th, 14th, 16th, and 19th level
+You can increase one ability score by 2, or you can increase two ability scores by 1. You can't increase an ability score above 20 using this feature.
+Notes []
+Extra Attack Level 5
+Fighter: 5th level
+You can attack twice, instead of once, whenever you take the Attack action on your turn.
+Notes []
+Tactical Specialist (archetype) (4)
+Bonus Proficiencies Level 3
+Tactical Specialist: 3rd level
+You gain proficiency in your choice of artisan's implements.
+Tool proficiency 0 / 1 artisan's implements
+None chosen yet.
+[Choose a tool… ▾]
+Notes []
+Improved Combat Superiority Level 3
+Tactical Specialist: 3rd level
+Your tactical skill in combat improves, granting bonuses to your Combat Superiority.
+Improved Maneuvers
+You know four maneuvers of your choice, instead of two, and you earn more at higher levels, as shown in the Maneuvers Known column of the Tactical Superiority table.
+Improved Superiority Dice
+You have four superiority dice, instead of two, and you earn more at higher levels, as shown in the Superiority Dice Quantity column of the Tactical Superiority table.
+Your choices []
+Maneuver Versatility Level 3
+Tactical Specialist: 3rd level
+You can use each maneuver twice per turn, instead of once.
+Additionally, choose two maneuvers you know. The chosen maneuvers count as general maneuvers for you. You can choose another maneuver at 5th, 9th, 13th, and 17t… [280 chars #e24992b7]
+Your choices []
+Signature Maneuver Level 3
+Tactical Specialist: 3rd level
+You choose a maneuver you know from this class as your signature maneuver. Whenever you use that maneuver, you can use it without expending a Superiority Dice. You may only use this feature once per round.
+Your choices []
+Fighting styles (1)
+Superiority Style Fighter: Fighting Style
+You are skilled at utilizing maneuvers to enhance your skills on the battlefield. You gain the following benefits:
+You learn one maneuver, detailed in Chapter 13. Your maneuver ability is Strength, Dexterity, or Constitution for physical maneuvers (your choice), Intelligence… [270 chars #da72aa1c]
+You gain one superiority die, which is a d4. This die changes as you gain levels: to d6 at 5th level, to d8 at 9th level, to d10 at 13th level, and to d12 at 17… [303 chars #032e0bd7]
+
+## Sheet: Feats
+Silver-Tongued Background (Noble)+ Charisma
+You develop your conversational skill to better deceive others. You gain the following benefits:
+Increase your Charisma score by 1, to a maximum of 20.
+You gain proficiency in the Deception skill. If you are already proficient in it, you instead gain expertise in it.
+When you take the Attack action, you can replace one attack with an attempt to deceive one humanoid you can see within 30 feet of you that can see and hear you.… [568 chars #4907558c]
+
+## Sheet: Classes & Progression
+[Level up]
+Fighter 5 Tactical Specialist Starting class
+Hit die d10 Primary Strength Saves Strength, Constitution HP by level 10 (max), 6, 6, 6, 6
+Versatile combatant who excels at both range and in melee
+Skill proficiencies 0 / 2 Choose two skills from Acrobatics, Animal Handling, Athletics, Lore, Insight, Intimidation, Perception, and Survival
+None chosen yet.
+[Choose a skill… ▾]
+Archetype [Tactical Specialist ▾]
+Read the options (14)
+Maneuvers 0 / 6 6 from Tactical Specialist
+None chosen yet.
+[Add a maneuver… ▾]
+Read the options
+Fighter Strategies 0 / 1 from the Fighter table (“Strategies Known”)
+None chosen yet.
+[Add from Fighter Strategies… ▾]
+Read the options (8)
+Fighting style 1 / 1 Fighter: Fighting Style
+Superiority Style [×]
+[]
+You are skilled at utilizing maneuvers to enhance your skills on the battlefield. You gain the following benefits:
+You learn one maneuver, detailed in Chapter 13. Your maneuver ability is Strength, Dexterity, or Constitution for physical maneuvers (your choice), Intelligence… [270 chars #da72aa1c]
+You gain one superiority die, which is a d4. This die changes as you gain levels: to d6 at 5th level, to d8 at 9th level, to d10 at 13th level, and to d12 at 17… [303 chars #032e0bd7]
+Maneuver 0 / 1 Superiority Style (Fighter Fighting Style)
+None chosen yet.
+[Choose a maneuver… ▾]
+Read the options (119)
+Class table
+Proficiency Bonus
++3 → +3 at 6th
+Features
+Extra Attack → Ability Score Improvement at 6th
+Maneuvers Known
+4 → 4 at 6th
+Superiority Dice Quantity
+3 → 3 at 6th
+Superiority Dice Size
+d6 → d6 at 6th
+Strategies Known
+1 → 1 at 6th
+| Proficiency Bonus | Features | Maneuvers Known | Superiority Dice Quantity | Superiority Dice Size | Strategies Known |
+Now (5th) | +3 | Extra Attack | 4 | 3 | d6 | 1 |
+Next (6th) | +3 | Ability Score Improvement | 4 | 3 | d6 | 1 |
+Armor All armor Weapons All blasters, all vibroweapons Tools None
+Engineer 2 Multiclass Tech caster
+Hit die d8 Primary Intelligence Saves Constitution, Intelligence HP by level 5, 5
+Tech caster who enhances items to benefit allies
+Multiclass skill 0 / 1 from the class's skill list
+None chosen yet.
+[Choose a skill… ▾]
+Multiclass tool 0 / 1 from the class's list
+None chosen yet.
+[Choose a tool… ▾]
+Archetype [— at 3rd level — ▾]
+Tech powers 0 / 7 Engineer table · max power level 1
+None chosen yet.
+[Learn a tech power… ▾]
+Read the options (99)
+Class table
+Proficiency Bonus
++2 → +2 at 3
+Features
+Infuse Item (+1), Tool Expertise → Engineering Discipline at 3
+Tech Powers Known
+7 → 9 at 3
+Tech Points
+4 → 6 at 3
+Max Power Level
+1st → 2nd at 3
+Potent Aptitude
+d4 → d4 at 3
+Modification Slots
+— → 4 at 3
+| Proficiency Bonus | Features | Tech Powers Known | Tech Points | Max Power Level | Potent Aptitude | Modification Slots |
+Now (2) | +2 | Infuse Item (+1), Tool Expertise | 7 | 4 | 1st | d4 | — |
+Next (3) | +2 | Engineering Discipline | 9 | 6 | 2nd | d4 | 4 |
+Armor Light armor Weapons Simple blasters, simple vibroweapons Tools Tinker's implements, one of your choice Multiclass grants Light armor
+
+## Sheet: Species
+Size
+Medium
+Homeworld
+Bothawui
+Language
+Bothese
+Average height
+4'3" +2d4"
+Average weight
+60 lb. x(2d4) lb.
+Skin
+Brown
+Hair
+Black, brown, or gray (with age)
+Eyes
+Brown or green
+Distinctions
+Diminutive stature, mood-sensitive fur
+Traits (9)
+Ability Score Increase
+Your Intelligence score increases by 2, and your Dexterity score increases by 1.
+Notes []
+Age
+Bothans reach adulthood in their late teens and live less than a century.
+Notes []
+Alignment
+Bothans' duplicitous nature causes them to tend toward the dark side, though there are exceptions.
+Notes []
+Languages
+You can speak, read, and write Galactic Basic and Bothese. Bothese had a great influence on the forming of Galactic Basic; the two languages share many cognates.
+Notes []
+Naturally Stealthy
+You can attempt to hide even when you are obscured only by a creature that is your size or larger than you.
+Notes []
+Nimble Escape
+You can take the Disengage or Hide action as a bonus action on each of your turns.
+Notes []
+Shrewd
+You are proficient in the Insight and Deception skills.
+Notes []
+Size
+Bothans stand 4-5 feet tall and weigh under 100 pounds. Regardless of your position in that range, your size is Medium.
+Notes []
+Speed
+Your base walking speed is 30 feet.
+Notes []
+
+## Sheet: Background
+Skill proficiencies
+Choose two from Deception, Insight, Lore, and Persuasion
+Tool proficiencies
+One type of gaming set
+Languages
+One of your choice
+Starting equipment
+A set of fine clothes, a signet ring, a letter of pedigree, and a purse containing 250 cr
+Background feat
+Silver-Tongued
+Feature: Position of Privilege Background feature
+Thanks to your noble birth, people are inclined to think the best of you. You are welcome in high society, and people assume you have the right to be wherever y… [390 chars #064df76c]
+About this background
+You understand wealth, power, and privilege. You carry a noble title, and your family owns land, collects taxes, and wields significant political influence. You… [373 chars #12c34b19]
+Work with your GM to come up with an appropriate title and determine how much authority that title carries, as well as your family and their influence on you. I… [297 chars #a939cd75]
+What's your position in the family? Are you the heir to the head of the family or the head itself? Are you far down the line of succession? How does the head of… [246 chars #f0d70c9c]
+Does your family have a coat of arms you might wear, a signet ring, or particular colors?
+These details help establish your family and your title as features of the world of the campaign.
+Your choices
+Skill proficiencies 0 / 2 Choose two from Deception, Insight, Lore, and Persuasion
+None chosen yet.
+[Choose a skill… ▾]
+Tool proficiency 0 / 1 One type of gaming set
+None chosen yet.
+[Choose a tool… ▾]
+Languages 0 / 1 One of your choice
+None chosen yet.
+[Choose a language… ▾]
+Silver-Tongued: +1 to 0 / 1 background feat
+None chosen yet.
+[Choose an ability… ▾]
+
+## Sheet: Proficiencies & Languages
+Armor
+All armor
+Weapon
+All blasters all vibroweapons
+Tool
+One type of gaming set
+Other
+Light armor
+Skills & saves
+Deception Strength Saving Throws Constitution Saving Throws
+Languages
+Galactic Basic Bothese
+✎ = custom proficiency added on the character.
+
+## Sheet: Equipment & Inventory
+Add an item
+[All items ▾] []
+Qty [1] [Add]
+2425 items from sw5e.com, fetched 10/16/2026. [Refresh list]
+Credits
+575 cr
+[] [] [Apply]
+Total weight
+26.5 lb
+of 315 lb max
+Attunement
+2 / 3
+Items
+13
+Weapon (1)
+Item | Qty & actions | Weight | Cost | Source |
+Blaster pistol
+1d6 Energy · Power cell (range 50/200), reload 16
+| [−] 1 [+] [Equipped] [✎] [Sell] [×] | 2.5 lb | 175 cr | PHB |
+Armor (1)
+Item | Qty & actions | Weight | Cost | Source |
+Fiber armor
+AC 12 + Dex modifier · Light
+Description
+Fiber armor is a type of armor that offers more protection than the lighter combat suit. Fiber armor is heavier overall than combat suits, and not quite as flex… [287 chars #295e4c98]
+| [−] 1 [+] [Equip] [✎] [Sell] [×] | 13 lb | 450 cr | PHB |
+Enhanced: Adventuring Gear (3)
+Item | Qty & actions | Weight | Cost | Source |
+Aratech Echo Belt
+Premium (uncommon) · Requires attunement · Attuned
+Description
+Requires attunement
+While you wear this belt with its field on, Wisdom (Perception) checks made to see you have disadvantage, and you have advantage on Dexterity (Stealth) checks m… [263 chars #07c2b764]
+The success of this high-end stealth field generator emboldened Aratech to branch out into other hardware.
+| [−] 1 [+] [Attuned] [✎] [Sell] [×] | — | — | WH |
+Strength Enhancer
+Prototype (rare) · Requires attunement · Attuned
+Description
+Requires attunement
+While wearing this belt, your Strength score becomes 21. If your Strength is already equal to or greater than 21, it has no effect on you.
+This belt increases a users physical power with pneumaticized assistance joists that provide support and leverage in a minimal form-factor.
+| [−] 1 [+] [Attuned] [✎] [Sell] [×] | — | — | WH |
+Handwraps (Fine)
+Premium (uncommon)
+Description
+While wearing these handwraps, you have a +1 bonus to attack and damage rolls made with your unarmed strikes.
+| [−] 1 [+] [Equipped] [✎] [Sell] [×] | — | — | WH |
+Enhanced: Consumable (1)
+Item | Qty & actions | Weight | Cost | Source |
+Cryo Cell (Average)
+Premium (uncommon)
+Description
+You have a +1 bonus to attack and damage rolls made with this enhanced cryo cell. This bonus is in addition to any bonuses granted by the weapon. Once the cryo … [656 chars #29c7a15d]
+| [−] 1 [+] [Use] [✎] [Sell] [×] | — | — | EC |
+Enhanced: Item Modification (3)
+Item | Qty & actions | Weight | Cost | Source |
+Bonded Plates Mk I
+Standard (common)
+Description
+You gain a +1 bonus to AC against melee attacks and a -1 penalty to AC against ranged attacks while wearing this armor or wielding this shield.
+| [−] 1 [+] [Installed] [✎] [Sell] [×] | — | — | WH |
+Oscillating Amplifier Mk I
+Standard (common)
+Description
+While using this item as your focus, you gain a +1 bonus to melee tech attacks and a -1 penalty to ranged tech attacks.
+| [−] 1 [+] [Installed] [✎] [Sell] [×] | — | — | WH |
+Fadecasting Core (Training)
+Standard (common)
+Description
+While using this item as your focus, you gain a +1 bonus to the tech save DC of powers that require a Strength or Constitution saving throw and a -1 penalty to … [241 chars #10072127]
+| [−] 1 [+] [Installed] [✎] [Sell] [×] | — | — | WH |
+Enhanced: Shield (1)
+Item | Qty & actions | Weight | Cost | Source |
+Shield (Fine)
+Premium (uncommon)
+Base item [choose… (its damage, AC and weight) ▾]
+Description
+You have a +1 bonus to AC while wielding this shield.
+| [−] 1 [+] [Equipped] [✎] [Sell] [×] | — | — | WH |
+Enhanced: Weapon (1)
+Item | Qty & actions | Weight | Cost | Source |
+Weapon (Fine)
+Premium (uncommon)
+Base item [choose… (its damage, AC and weight) ▾]
+Description
+You have a +1 bonus to attack and damage rolls made with this enhanced weapon.
+| [−] 1 [+] [Equipped] [✎] [Sell] [×] | — | — | WH |
+Medical (1)
+Item | Qty & actions | Weight | Cost | Source |
+Medpac
+Description
+A medpac is a quick-acting syringe filled with a concentrated dose of kolto. As an action, you can use this medpac to restore hit points to a beast or humanoid … [443 chars #b7607503]
+| [−] 2 [+] [Use] [✎] [Sell] [×] | 1 lb | 300 cr | PHB |
+Storage (1)
+Item | Qty & actions | Weight | Cost | Source |
+Backpack
+Description
+A backpack stores 30 lb., not exceeding 1 cubic foot.
+| [−] 2 [+] [✎] [Sell] [×] | 10 lb | 50 cr | PHB |
+
+## Sheet: Personality & Appearance
+Personality Traits
+Calm under fire.
+Ideal
+Loyalty. My squad comes first.
+Bond
+—
+Flaw
+—
+Details
+Alignment
+Lawful Light
+Gender
+—
+Place of Birth
+Kothlis
+Age
+30
+Height
+—
+Weight
+—
+Hair
+—
+Eyes
+—
+Skin
+—
+
+## Sheet: Backstory
+Viewer version of the backstory.
+
+## Sheet: Notes
+Test character for the SW5E Sheet extension. Safe to delete.
+Session 1: found a holocron.
+
+## Sheet: Settings, Tweaks & Data
+Tweaks (manual adjustments) 3 · 1 tweak without a reason
+From sw5e.com's editor or added here. Give each a reason (kept in this viewer and in backups); hovering or tapping a number they change shows it.
+Stat | Adjustment | Reason | |
+Charisma score | Bonus [2] Set to [] | [Test character setup: +1 CHA] | [×] |
+Deception | Proficiency [Expertise ▾] Bonus [] | [] | [×] |
+Blaster pistol: damage | Bonus [1] Set to [] | [Custom barrel] | [×] |
+[Add a tweak to… ▾] [add (+/−) ▾] [] [] [Add]
+Builder settings
+Is Enforcing Force Prerequisites
+true
+Is Fixed Hit Points
+false
+Ability Score Method
+Manual
+Record
+Source
+sw5e.com
+Loaded
+10/17/2026, 11:59:22 PM
+Last changed on SW5E
+10/17/2026, 7:14:01 PM
+Created
+10/16/2026, 4:40:28 PM
+Builder version
+0.7.6
+Validation
+All checks passed
+Character id
+00000000-0000-4000-8000-000001000001 ↗
+Local version history 3 / 25
+SW5E can lose saved characters, so every version seen here is kept in this browser. Compare a version with the character as it is now, or restore it (Undo puts it back).
+Backups (files you keep): this character never · [Back up this character]
+all characters never · [Back up all characters]
+10/17/2026, 7:14:03 PM latest as now
+Synced to SW5E · changed on SW5E 10/17/2026, 7:14:01 PM [Export]
+10/17/2026, 7:13:50 PM
+Synced to SW5E · changed on SW5E 10/17/2026, 7:13:48 PM [Compare] [Restore] [Export]
+10/16/2026, 6:40:16 PM
+Loaded from SW5E · changed on SW5E 10/16/2026, 6:35:09 PM [Compare] [Restore] [Export]
+Raw SW5E character JSON
+{ "name": "Edit Test (Claude)", "image": "", "experiencePoints": 24000, "species": { "name": "Bothan", "abilityScoreImprovementSelectedOption": 0, "abilityScore… [3455 chars #bd4ad58f]
+Computed character JSON (from SW5E's rules engine)
+{ "name": "Edit Test (Claude)", "builderVersion": "0.7.6", "image": "", "characteristics": { "alignment": "Lawful Light", "Personality Traits": "Calm under fire… [43597 chars #a13bcc69]

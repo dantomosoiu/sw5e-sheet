@@ -1,0 +1,979 @@
+# Kadro Vos (Panel)
+
+## Sent to SW5E's engine
+The recorded calculation matches.
+tweaks.abilityScores.Charisma.skills.Intimidation.bonus = 0
+tweaks.abilityScores.Charisma.skills.Intimidation.proficiency = "Proficient"
+tweaks.abilityScores.Charisma.skills.Persuasion.bonus = 0
+tweaks.abilityScores.Charisma.skills.Persuasion.proficiency = "Proficient"
+tweaks.abilityScores.Dexterity.score.bonus = 1
+tweaks.abilityScores.Dexterity.skills.Stealth.bonus = 0
+tweaks.abilityScores.Dexterity.skills.Stealth.proficiency = "Proficient"
+tweaks.abilityScores.Intelligence.skills.Piloting.bonus = 0
+tweaks.abilityScores.Intelligence.skills.Piloting.proficiency = "Proficient"
+tweaks.abilityScores.Wisdom.skills.Insight.bonus = 0
+tweaks.abilityScores.Wisdom.skills.Insight.proficiency = "Proficient"
+tweaks.abilityScores.Wisdom.skills.Perception.bonus = 0
+tweaks.abilityScores.Wisdom.skills.Perception.proficiency = "Proficient"
+tweaks.hitPoints.maximum.bonus = 8
+tweaks.unarmed.damage.bonus = 5
+tweaks.unarmed.damageDice.bonus = 0
+tweaks.unarmed.damageDice.dieSize = 4
+tweaks.unarmed.damageDice.override = 4
+tweaks.unarmed.toHit.bonus = 4
+tweaks.weapon.damage.bonus = 2
+equipment[1 Blaster rifle].tweaks.damage.bonus = 1
+equipment[1 Blaster rifle].tweaks.toHit.bonus = 0
+equipment[1 Blaster rifle].tweaks.toHit.proficiency = "proficient"
+equipment[3 Light pistol].tweaks.toHit.bonus = 0
+equipment[3 Light pistol].tweaks.toHit.proficiency = "proficient"
+equipment[4 Vibrorapier].tweaks.toHit.bonus = 0
+equipment[4 Vibrorapier].tweaks.toHit.proficiency = "proficient"
+equipment[5 Vibrodagger].tweaks.toHit.bonus = 0
+equipment[5 Vibrodagger].tweaks.toHit.proficiency = "proficient"
+equipped = [Mesh armor, Blaster rifle, Vibrorapier, Xerrol Nightstinger Rifle]
+
+## Numbers (SW5E's engine, with the sheet's edits)
+currentLevel = 4
+classText = "Fighter (Assault Specialist) 3, Operative 1"
+proficiencyBonus = 2
+initiative = 3
+armorClass = 15
+armorList = ["Mesh armor"]
+passivePerception = 15
+vision = "normal"
+speed.base = "30 ft"
+speed.day = "24 miles"
+speed.hour = "3 miles"
+speed.special = ""
+hitPoints.hitDice[0].maximum = 1
+hitPoints.hitDice[0].size = "d8"
+hitPoints.hitDice[1].maximum = 3
+hitPoints.hitDice[1].size = "d10"
+hitPoints.maximum = 47
+abilityScores.Charisma.modifier = 1
+abilityScores.Charisma.savingThrow.modifier = 1
+abilityScores.Charisma.savingThrow.proficiency = "none"
+abilityScores.Charisma.skills[Deception].modifier = 1
+abilityScores.Charisma.skills[Deception].proficiency = "none"
+abilityScores.Charisma.skills[Intimidation].modifier = 3
+abilityScores.Charisma.skills[Intimidation].proficiency = "proficient"
+abilityScores.Charisma.skills[Performance].modifier = 1
+abilityScores.Charisma.skills[Performance].proficiency = "none"
+abilityScores.Charisma.skills[Persuasion].modifier = 3
+abilityScores.Charisma.skills[Persuasion].proficiency = "proficient"
+abilityScores.Charisma.value = 12
+abilityScores.Constitution.modifier = 3
+abilityScores.Constitution.savingThrow.modifier = 5
+abilityScores.Constitution.savingThrow.proficiency = "proficient"
+abilityScores.Constitution.skills = []
+abilityScores.Constitution.value = 16
+abilityScores.Dexterity.modifier = 3
+abilityScores.Dexterity.savingThrow.modifier = 3
+abilityScores.Dexterity.savingThrow.proficiency = "none"
+abilityScores.Dexterity.skills[Acrobatics].modifier = 3
+abilityScores.Dexterity.skills[Acrobatics].proficiency = "none"
+abilityScores.Dexterity.skills[Sleight of Hand].modifier = 3
+abilityScores.Dexterity.skills[Sleight of Hand].proficiency = "none"
+abilityScores.Dexterity.skills[Stealth].modifier = 7
+abilityScores.Dexterity.skills[Stealth].proficiency = "expertise"
+abilityScores.Dexterity.value = 17
+abilityScores.Intelligence.modifier = 0
+abilityScores.Intelligence.savingThrow.modifier = 0
+abilityScores.Intelligence.savingThrow.proficiency = "none"
+abilityScores.Intelligence.skills[Investigation].modifier = 0
+abilityScores.Intelligence.skills[Investigation].proficiency = "none"
+abilityScores.Intelligence.skills[Lore].modifier = 0
+abilityScores.Intelligence.skills[Lore].proficiency = "none"
+abilityScores.Intelligence.skills[Nature].modifier = 0
+abilityScores.Intelligence.skills[Nature].proficiency = "none"
+abilityScores.Intelligence.skills[Piloting].modifier = 2
+abilityScores.Intelligence.skills[Piloting].proficiency = "proficient"
+abilityScores.Intelligence.skills[Technology].modifier = 0
+abilityScores.Intelligence.skills[Technology].proficiency = "none"
+abilityScores.Intelligence.value = 10
+abilityScores.Strength.modifier = -1
+abilityScores.Strength.savingThrow.modifier = 1
+abilityScores.Strength.savingThrow.proficiency = "proficient"
+abilityScores.Strength.skills[Athletics].modifier = -1
+abilityScores.Strength.skills[Athletics].proficiency = "none"
+abilityScores.Strength.value = 8
+abilityScores.Wisdom.modifier = 1
+abilityScores.Wisdom.savingThrow.modifier = 1
+abilityScores.Wisdom.savingThrow.proficiency = "none"
+abilityScores.Wisdom.skills[Animal Handling].modifier = 1
+abilityScores.Wisdom.skills[Animal Handling].proficiency = "none"
+abilityScores.Wisdom.skills[Insight].modifier = 3
+abilityScores.Wisdom.skills[Insight].proficiency = "proficient"
+abilityScores.Wisdom.skills[Medicine].modifier = 1
+abilityScores.Wisdom.skills[Medicine].proficiency = "none"
+abilityScores.Wisdom.skills[Perception].modifier = 5
+abilityScores.Wisdom.skills[Perception].proficiency = "expertise"
+abilityScores.Wisdom.skills[Survival].modifier = 1
+abilityScores.Wisdom.skills[Survival].proficiency = "none"
+abilityScores.Wisdom.value = 13
+weapons[Blaster rifle].ability = "Dexterity"
+weapons[Blaster rifle].attackBonus = 5
+weapons[Blaster rifle].damageBonus = 6
+weapons[Blaster rifle].damageDieModifier = 0
+weapons[Blaster rifle].damageDieType = 8
+weapons[Blaster rifle].damageNumberOfDice = 1
+weapons[Blaster rifle].damageType = "Energy"
+weapons[Blaster rifle].equipped = true
+weapons[Blaster rifle].index = 1
+weapons[Blaster rifle].isCustom = false
+weapons[Blaster rifle].properties = ["Power cell (range 105/420)", "reload 12", "two-handed"]
+weapons[Blaster rifle].quantity = 1
+weapons[Blaster rifle].tweaks.damage.bonus = 1
+weapons[Blaster rifle].tweaks.toHit.bonus = 0
+weapons[Blaster rifle].tweaks.toHit.proficiency = "proficient"
+weapons[Blaster rifle].weaponClassification = "MartialBlaster"
+weapons[Vibrorapier].ability = "Dexterity"
+weapons[Vibrorapier].attackBonus = 5
+weapons[Vibrorapier].damageBonus = 5
+weapons[Vibrorapier].damageDieModifier = 0
+weapons[Vibrorapier].damageDieType = 8
+weapons[Vibrorapier].damageNumberOfDice = 1
+weapons[Vibrorapier].damageType = "Kinetic"
+weapons[Vibrorapier].equipped = true
+weapons[Vibrorapier].index = 4
+weapons[Vibrorapier].isCustom = false
+weapons[Vibrorapier].properties = ["Finesse"]
+weapons[Vibrorapier].quantity = 1
+weapons[Vibrorapier].tweaks.toHit.bonus = 0
+weapons[Vibrorapier].tweaks.toHit.proficiency = "proficient"
+weapons[Vibrorapier].weaponClassification = "MartialVibroweapon"
+weapons[Unarmed Strike].ability = "Strength"
+weapons[Unarmed Strike].attackBonus = 5
+weapons[Unarmed Strike].damageBonus = 5
+weapons[Unarmed Strike].damageDieType = 4
+weapons[Unarmed Strike].damageNumberOfDice = 1
+weapons[Unarmed Strike].damageType = "Kinetic"
+weapons[Unarmed Strike].equipped = true
+weapons[Unarmed Strike].index = -1
+weapons[Unarmed Strike].isCustom = false
+weapons[Unarmed Strike].properties = []
+weapons[Unarmed Strike].quantity = 0
+weapons[Unarmed Strike].tweaks.damage.bonus = 5
+weapons[Unarmed Strike].tweaks.damageDice.bonus = 0
+weapons[Unarmed Strike].tweaks.damageDice.dieSize = 4
+weapons[Unarmed Strike].tweaks.damageDice.override = 4
+weapons[Unarmed Strike].tweaks.toHit.bonus = 4
+weapons[Unarmed Strike].weaponClassification = "Unarmed"
+attunement.hasAttunable = false
+attunement.maximum = 2
+carryingCapacity.encumbered = 40
+carryingCapacity.heavilyEncumbered = 80
+carryingCapacity.maxCapacity = 120
+carryingCapacity.pushDragLift = 240
+superiority = false
+techCasting = false
+forceCasting = false
+proficiencies[All blasters].type = "weapon"
+proficiencies[all vibroweapons].type = "weapon"
+proficiencies[All armor].type = "armor"
+proficiencies[Light armor].type = "other"
+proficiencies[One type of gaming set].type = "tool"
+skillAndSaveProficiencies = ["Stealth", "Piloting", "Insight", "Perception", "Intimidation", "Persuasion", "Strength Saving Throws", "Constitution Saving Throws"]
+languages = ["Galactic Basic", "Zabraki"]
+experiencePoints.isCorrect = true
+experiencePoints.nextLevel = 6500
+experiencePoints.previousLevel = 2700
+conditions = []
+exhaustion = 0
+
+## Effects and tweaks
+effect: Zabrak Coercive (chose Persuasion) · tweak
+effect: Soldier background skill · tweak
+effect: Fighter class skill (chosen at 1st level) · tweak
+effect: Fighter class skill (chosen at 1st level) · tweak
+effect: Soldier background skill · tweak
+effect: Weapon Expert feat: +1 Dexterity (builder has no choice for it) · tweak
+effect: Operative multiclass: any one skill (SW5E multiclassing table) · tweak
+effect: Zabrak Toughness: +1 HP per level (not applied by SW5E) · tweak
+effect: Zabrak Unarmed Combatant: 1d4, finesse · tweak
+effect: Fighter weapon proficiencies · feature
+effect: Brute Force · feature
+effect: Improved Critical · feature
+effect: Expertise · feature
+effect: Weapon Expert · feature
+effect: Coercive · feature
+effect: Crafters · feature
+effect: Toughness · feature
+effect: Unarmed Combatant · feature
+effect: Xerrol Nightstinger Rifle · item
+tweak: abilityScores.Charisma.skills.Persuasion +0 {"proficiency":"Proficient"} · Zabrak Coercive (chose Persuasion)
+tweak: abilityScores.Charisma.skills.Intimidation +0 {"proficiency":"Proficient"} · Soldier background skill
+tweak: abilityScores.Wisdom.skills.Insight +0 {"proficiency":"Proficient"} · Fighter class skill (chosen at 1st level)
+tweak: abilityScores.Wisdom.skills.Perception +0 {"proficiency":"Proficient"} · Fighter class skill (chosen at 1st level)
+tweak: abilityScores.Intelligence.skills.Piloting +0 {"proficiency":"Proficient"} · Soldier background skill
+tweak: abilityScores.Dexterity.score +1 · Weapon Expert feat: +1 Dexterity (builder has no choice for it)
+tweak: abilityScores.Dexterity.skills.Stealth +0 {"proficiency":"Proficient"} · Operative multiclass: any one skill (SW5E multiclassing table)
+tweak: hitPoints.maximum +4 · Zabrak Toughness: +1 HP per level (not applied by SW5E)
+tweak: unarmed.damageDice +0 {"override":4,"dieSize":4} · Zabrak Unarmed Combatant: 1d4, finesse
+tweak: weapon.damage +2 · Brute Force
+tweak: unarmed.damage +2 · Brute Force
+tweak: abilityScores.Charisma.skills.Persuasion +0 {"proficiency":"Proficient"} · Coercive
+tweak: hitPoints.maximum +4 · Toughness
+tweak: unarmed.toHit +4 · Unarmed Combatant
+tweak: unarmed.damage +3 · Unarmed Combatant
+weapon tweak: #1 damage +1 · Xerrol Nightstinger Rifle
+weapon tweak: #1 toHit +0 · Fighter weapon proficiencies
+weapon tweak: #3 toHit +0 · Fighter weapon proficiencies
+weapon tweak: #4 toHit +0 · Fighter weapon proficiencies
+weapon tweak: #5 toHit +0 · Fighter weapon proficiencies
+
+## Rolls
+init: Initiative: d20 +3 · = +3 modifier
+death: Death saving throw: d20 +0
+hitdie|d8: Hit die (d8): d8 +3 · = +3 per die
+hitdie|d10: Hit die (d10): d10 +3 · = +3 per die
+featheal|Second Wind|1d10|3|Fighter level: Second Wind: healing: d10 +3 · = +3 Fighter level
+dice|1d4: 1d4: d4 +0
+dice|1d6: 1d6: d6 +0
+check|Strength: Strength check: d20 −1 · = −1 modifier
+save|Strength: Strength saving throw: d20 +1 · = +1 modifier
+skill|Strength|0: Athletics (STR): d20 −1 · = −1 modifier
+check|Dexterity: Dexterity check: d20 +3 · = +3 modifier
+save|Dexterity: Dexterity saving throw: d20 +3 · = +3 modifier
+skill|Dexterity|0: Acrobatics (DEX): d20 +3 · = +3 modifier
+skill|Dexterity|1: Sleight of Hand (DEX): d20 +3 · = +3 modifier
+skill|Dexterity|2: Stealth (DEX): d20 +7 · = +7 modifier
+check|Constitution: Constitution check: d20 +3 · = +3 modifier
+save|Constitution: Constitution saving throw: d20 +5 · = +5 modifier
+check|Intelligence: Intelligence check: d20 +0 · = +0 modifier
+save|Intelligence: Intelligence saving throw: d20 +0 · = +0 modifier
+skill|Intelligence|0: Investigation (INT): d20 +0 · = +0 modifier
+skill|Intelligence|1: Lore (INT): d20 +0 · = +0 modifier
+skill|Intelligence|2: Nature (INT): d20 +0 · = +0 modifier
+skill|Intelligence|3: Piloting (INT): d20 +2 · = +2 modifier
+skill|Intelligence|4: Technology (INT): d20 +0 · = +0 modifier
+check|Wisdom: Wisdom check: d20 +1 · = +1 modifier
+save|Wisdom: Wisdom saving throw: d20 +1 · = +1 modifier
+skill|Wisdom|0: Animal Handling (WIS): d20 +1 · = +1 modifier
+skill|Wisdom|1: Insight (WIS): d20 +3 · = +3 modifier
+skill|Wisdom|2: Medicine (WIS): d20 +1 · = +1 modifier
+skill|Wisdom|3: Perception (WIS): d20 +5 · = +5 modifier
+skill|Wisdom|4: Survival (WIS): d20 +1 · = +1 modifier
+check|Charisma: Charisma check: d20 +1 · = +1 modifier
+save|Charisma: Charisma saving throw: d20 +1 · = +1 modifier
+skill|Charisma|0: Deception (CHA): d20 +1 · = +1 modifier
+skill|Charisma|1: Intimidation (CHA): d20 +3 · = +3 modifier
+skill|Charisma|2: Performance (CHA): d20 +1 · = +1 modifier
+skill|Charisma|3: Persuasion (CHA): d20 +3 · = +3 modifier
+attack|0: Blaster rifle attack: d20 +5 · = +5 modifier · critical on 19–20 (Improved Critical) · option: Precision Attack +d4 +1d4
+damage|0: Blaster rifle damage: d8 +6 · = +3 DEX modifier +2 Brute Force +1 Xerrol Nightstinger Rifle · Energy · option: Sneak Attack +1d6 · option: Return Fire +d4 +1d4 · damage advantage: Weapon Expert
+attack|1: Vibrorapier attack: d20 +5 · = +5 modifier · critical on 19–20 (Improved Critical) · option: Precision Attack +d4 +1d4
+damage|1: Vibrorapier damage: d8 +5 · = +3 DEX modifier +2 Brute Force · Kinetic · option: Sneak Attack +1d6 · option: Return Fire +d4 +1d4 · damage advantage: Weapon Expert
+attack|2: Unarmed Strike attack: d20 +5 · = +5 modifier · critical on 19–20 (Improved Critical) · option: Precision Attack +d4 +1d4
+damage|2: Unarmed Strike damage: d4 +5 · = +2 Brute Force +3 Unarmed Combatant · Kinetic · option: Sneak Attack +1d6 · option: Return Fire +d4 +1d4
+supdie: Superiority die: d4 +0
+maneuver|Physical|Dexterity: Physical maneuver attack: d20 +5 · = +5 modifier
+maneuver|Mental|Wisdom: Mental maneuver attack: d20 +3 · = +3 modifier
+maneuver|General|Dexterity: General maneuver attack: d20 +5 · = +5 modifier
+tool|One type of gaming set|proficient: One type of gaming set check: d20 +2 · = +0 INT modifier +2 proficiency
+tool|Tinker's implements|proficient: Tinker's implements check: d20 +2 · = +0 INT modifier +2 proficiency
+damage|0|crit: Blaster rifle damage (critical): d8 d8 +6 · = +3 DEX modifier +2 Brute Force +1 Xerrol Nightstinger Rifle · Energy · critical · option: Sneak Attack +1d6 · option: Return Fire +d4 +1d4 · damage advantage: Weapon Expert
+damage|1|crit: Vibrorapier damage (critical): d8 d8 +5 · = +3 DEX modifier +2 Brute Force · Kinetic · critical · option: Sneak Attack +1d6 · option: Return Fire +d4 +1d4 · damage advantage: Weapon Expert
+damage|2|crit: Unarmed Strike damage (critical): d4 d4 +5 · = +2 Brute Force +3 Unarmed Combatant · Kinetic · critical · option: Sneak Attack +1d6 · option: Return Fire +d4 +1d4
+
+## Sheet: Overview
+Kadro Vos (Panel)
+Zabrak · Fighter (Assault Specialist) 3, Operative 1
+Level 4 Background: Soldier Chaotic Balanced Proficiency +2
+2,700 XP level 5 at 6,500 (3,800 to go)
+Still to choose (7): Fighter skills (2 more) · Operative multiclass skill · Operative multiclass tool · background skills (2 more) · background tool · background languages · Weapon Expert: +1
+
+## Sheet: Combat & Vitals
+Armor Class
+15
+Mesh armor
+Hit Points
+45 / 47
+  ↳ hover hitPoints.maximum: Without tweaks or effects: 39 → now 47 / +4 HP maximum · Zabrak Toughness: +1 HP per level (not applied by SW5E) tweak / +4 HP maximum · Toughness Zabrak trait
+No temporary HP
+Initiative
++3
+Speed
+30 ft
+3 miles/hour · 24 miles/day
+Proficiency
++2
+Passive Perception
+15
+Hit Dice
+1/1d8 · 3/3d10
++3 per die spent (Con)
+Vision
+Normal
+Play tracker
+[] [untyped ▾] [Damage] [Heal] [Temp HP]
+Death saves ✓ [] [] [] ✗ [] [] [] [Roll]
+Superiority dice d4 2 / 2 [−] [+]
+Hit dice (d8) roll d8 +3, then Heal 1 / 1 [−] [+]
+Hit dice (d10) roll d10 +3, then Heal 3 / 3 [−] [+]
+Second Wind roll 1d10 + 3, then Heal · short rest 1 / 1 [−] [+]
+Action Surge short rest 1 / 1 [−] [+]
+Second Heart long rest 1 / 1 [−] [+]
+Start or end
+[Mark a target (Sharpshooter)]
+Conditions None [Add a condition… ▾]
+Combat [Start combat]
+[☆ Inspiration] Exhaustion [−] 0 [+]
+[Short rest] [Long rest]
+Class dice
+Superiority Dice Size 1d4 Sneak Attack 1d6
+Defenses & senses
+Other Critical hit on 19–20 with weapons
+Effects
+From class features (9)
+Fighter weapon proficiencies Proficient: All blasters Proficient: all vibroweapons Fighter proficiencies
+Brute Force Weapon damage +2 Unarmed damage +2 Assault Specialist feature
+Improved Critical Critical on 19–20 Assault Specialist feature
+Expertise Choose the skills/tools for expertise Operative feature
+Weapon Expert Proficient: all blasters Proficient: all lightweapons Proficient: all vibroweapons feat
+Coercive Persuasion: proficient Zabrak trait
+Crafters Tinker's implements: proficient Zabrak trait
+Toughness HP maximum +4 Zabrak trait
+Unarmed Combatant Zabrak trait
+From equipment
+Xerrol Nightstinger Rifle Damage +1 on [Blaster rifle ▾] while equipped
+Additionally, when you make the Dexterity (Stealth) check to remain hidden as a part of the weapon's silent property, you have advantage on the check.
+Temporary
+No temporary effects.
+[]
+Your own effect (something the sheet doesn't know)…
+[] [] [No number (a reminder) ▾] [] [Add]
+It's applied like any effect (a dice bonus like Bless's d4 isn't a number: add it in the roller), and ends with End, a rest or Next round when it has run out.
+Bonuses are applied to the sheet's numbers in this browser only (not saved to SW5E); changed numbers are underlined: hover or tap them for details. Conditional … [256 chars #e163e104]
+Conditions
+None active (from SW5E)
+Carrying capacity
+Carried
+76.5 lb
+Encumbered (variant rule)
+Encumbered at
+40 lb
+Heavily enc. at
+80 lb
+Max capacity
+120 lb
+Push / drag / lift
+240 lb
+
+## Sheet: Abilities & Saving Throws
+STR
+Strength
+−1
+8
+(Proficient) Saving throw+1
+(Not proficient) Athletics−1
+base 8
+DEX
+Dexterity
++3
+17
+  ↳ hover abilityScores.Dexterity.value: Without tweaks or effects: 16 → now 17 / +1 Dexterity score · Weapon Expert feat: +1 Dexterity (builder has no choice for it) tweak
+(Not proficient) Saving throw+3
+(Not proficient) Acrobatics+3
+(Not proficient) Sleight of Hand+3
+(Expertise) Stealth+7
+base 15 · +1 Zabrak · +1 from Weapon Expert feat: +1 Dexterity (builder has no choice for it) (tweak)
+CON
+Constitution
++3
+16
+(Proficient) Saving throw+5
+base 14 · +2 Zabrak
+INT
+Intelligence
++0
+10
+(Not proficient) Saving throw+0
+(Not proficient) Investigation+0
+(Not proficient) Lore+0
+(Not proficient) Nature+0
+(Proficient) Piloting+2
+  ↳ hover abilityScores.Intelligence.skills.3.modifier: Without tweaks or effects: 0 → now 2 / Proficient Piloting · Soldier background skill tweak
+(Not proficient) Technology+0
+base 10
+WIS
+Wisdom
++1
+13
+(Not proficient) Saving throw+1
+(Not proficient) Animal Handling+1
+(Proficient) Insight+3
+  ↳ hover abilityScores.Wisdom.skills.1.modifier: Without tweaks or effects: 1 → now 3 / Proficient Insight · Fighter class skill (chosen at 1st level) tweak
+(Not proficient) Medicine+1
+(Expertise) Perception+5
+(Not proficient) Survival+1
+base 13
+CHA
+Charisma
++1
+12
+(Not proficient) Saving throw+1
+(Not proficient) Deception+1
+(Proficient) Intimidation+3
+  ↳ hover abilityScores.Charisma.skills.1.modifier: Without tweaks or effects: 1 → now 3 / Proficient Intimidation · Soldier background skill tweak
+(Not proficient) Performance+1
+(Proficient) Persuasion+3
+  ↳ hover abilityScores.Charisma.skills.3.modifier: Without tweaks or effects: 1 → now 3 / Proficient Persuasion · Zabrak Coercive (chose Persuasion) tweak / proficient Persuasion: proficient · Coercive Zabrak trait
+base 12
+not proficient proficient expertise
+
+## Sheet: Skills
+Skill | Ability | Bonus | Passive | Proficiency |
+(Not proficient) Acrobatics | DEX | +3 | 13 | — |
+(Not proficient) Animal Handling | WIS | +1 | 11 | — |
+(Not proficient) Athletics | STR | −1 | 9 | — |
+(Not proficient) Deception | CHA | +1 | 11 | — |
+(Proficient) Insight | WIS | +3 | 13 | Proficient |
+  ↳ hover abilityScores.Wisdom.skills.1.modifier: Without tweaks or effects: 1 → now 3 / Proficient Insight · Fighter class skill (chosen at 1st level) tweak
+  ↳ hover abilityScores.Wisdom.skills.1.modifier: Without tweaks or effects: 1 → now 3 / Proficient Insight · Fighter class skill (chosen at 1st level) tweak
+(Proficient) Intimidation | CHA | +3 | 13 | Proficient |
+  ↳ hover abilityScores.Charisma.skills.1.modifier: Without tweaks or effects: 1 → now 3 / Proficient Intimidation · Soldier background skill tweak
+  ↳ hover abilityScores.Charisma.skills.1.modifier: Without tweaks or effects: 1 → now 3 / Proficient Intimidation · Soldier background skill tweak
+(Not proficient) Investigation | INT | +0 | 10 | — |
+(Not proficient) Lore | INT | +0 | 10 | — |
+(Not proficient) Medicine | WIS | +1 | 11 | — |
+(Not proficient) Nature | INT | +0 | 10 | — |
+(Expertise) Perception | WIS | +5 | 15 | Expertise |
+(Not proficient) Performance | CHA | +1 | 11 | — |
+(Proficient) Persuasion | CHA | +3 | 13 | Proficient |
+  ↳ hover abilityScores.Charisma.skills.3.modifier: Without tweaks or effects: 1 → now 3 / Proficient Persuasion · Zabrak Coercive (chose Persuasion) tweak / proficient Persuasion: proficient · Coercive Zabrak trait
+  ↳ hover abilityScores.Charisma.skills.3.modifier: Without tweaks or effects: 1 → now 3 / Proficient Persuasion · Zabrak Coercive (chose Persuasion) tweak / proficient Persuasion: proficient · Coercive Zabrak trait
+(Proficient) Piloting | INT | +2 | 12 | Proficient |
+  ↳ hover abilityScores.Intelligence.skills.3.modifier: Without tweaks or effects: 0 → now 2 / Proficient Piloting · Soldier background skill tweak
+  ↳ hover abilityScores.Intelligence.skills.3.modifier: Without tweaks or effects: 0 → now 2 / Proficient Piloting · Soldier background skill tweak
+(Not proficient) Sleight of Hand | DEX | +3 | 13 | — |
+(Expertise) Stealth | DEX | +7 | 17 | Expertise |
+(Not proficient) Survival | WIS | +1 | 11 | — |
+(Not proficient) Technology | INT | +0 | 10 | — |
+
+## Sheet: Weapons & Attacks
+Weapon | To hit | Damage | Ability | Type | Properties |
+Blaster rifle
+Power cell (range 105/420), reload 12, two-handed
+Shots 11/12 [−1] [Reload] 13 Power cells
+| +5 | 1d8+6 Energy | Dexterity | Martial Blaster | Power cell (range 105/420), reload 12, two-handed |
+  ↳ hover weapons.0.damageBonus: Without tweaks or effects: 3 → now 6 / +2 Weapon damage · Brute Force Assault Specialist feature / +1 Damage · Xerrol Nightstinger … [273 chars #636e20b1]
+Vibrorapier
+Finesse
+| +5 | 1d8+5 Kinetic | Dexterity | Martial Vibroweapon | Finesse |
+  ↳ hover weapons.1.damageBonus: Without tweaks or effects: 3 → now 5 / +2 Weapon damage · Brute Force Assault Specialist feature / +1 Dexterity score · Weapon Expert feat: +1 Dexterity (builder has no choice for it) tweak
+Unarmed Strike | +5 | 1d4+5 Kinetic | Dexterity (finesse) | Unarmed | — |
+  ↳ hover weapons.2.attackBonus: Without tweaks or effects: 1 → now 5 / +4 Finesse: DEX +3 instead of STR · Unarmed Combatant Zabrak trait
+  ↳ hover weapons.2.damageBonus: Without tweaks or effects: 0 → now 5 / +2 Unarmed damage · Brute Force Assault Specialist feature / +3 Finesse: DEX +3 instead of STR · Unarmed Combatant Zabrak trait
+
+## Sheet: Superiority & Maneuvers
+Maneuvers Known
+2
+Superiority Dice Quantity
+2
+Superiority Dice Size
+d4
+Physical maneuver DC
+13
+DEX · attack +5
+Mental maneuver DC
+11
+WIS · attack +3
+General maneuver DC
+13
+DEX · attack +5
+Dice come from the class table at your level; save DCs are calculated here as 8 + proficiency + your best eligible ability modifier (SW5E's site does not compute superiority).
+General maneuvers (1)
+Precision Attack PHB
+When you make a weapon attack roll against a creature, you can expend one superiority die to add it to the roll. You can use this maneuver before or after makin… [228 chars #f67ac2fb]
+Physical maneuvers (1)
+Return Fire PHB
+When a creature misses you with a ranged attack, you can use your reaction and expend one superiority die to make a ranged weapon attack against the creature. I… [227 chars #fd83d733]
+
+## Sheet: Class Features
+Fighter (6)
+Fighting Style Level 1
+Fighter: 1st level
+You adopt a particular style of fighting as your specialty. Choose one of the fighting style options, detailed in Chapter 6.
+Chosen: Sharpshooter Style · change it in Classes & Progression
+Notes []
+Second Wind Level 1
+Uses (back on a short or long rest) roll 1d10 + 3, then Heal 1 / 1 [−] [+]
+Fighter: 1st level
+You have a limited well of stamina that you can draw on to protect yourself from harm. On your turn, you can use a bonus action to regain hit points equal to 1d10 + your fighter level.
+Once you've used this feature, you must finish a short or long rest before you can use it again.
+Notes []
+Action Surge Level 2
+Uses (back on a short or long rest) 1 / 1 [−] [+]
+Fighter: 2nd level
+You can push yourself beyond your normal limits for a moment. On your turn, you can take one additional action on top of your regular action.
+Once you've used this feature, you must finish a short or long rest before you can use it again. Starting at 17th level, you can use it twice before a rest, but only once on the same turn.
+Notes []
+Combat Superiority Level 2
+Fighter: 2nd level
+You learn maneuvers that are fueled by special dice called superiority dice. See chapter 13 for the maneuvers list.
+Maneuvers Known
+You learn one maneuver of your choice, and you earn more at higher levels, as shown in the Maneuvers Known column of the fighter table. Many maneuvers enhance a… [273 chars #2fe792f1]
+Each time you learn new maneuvers, you can also replace one maneuver you know with a different one.
+Superiority Dice
+You have two superiority dice, which are d4s, and you earn more at higher levels, as shown in the Superiority Dice Quantity column of the fighter table. This di… [311 chars #ac56cd20]
+You regain all of your expended superiority dice when you finish a short or long rest.
+Maneuver Ability
+Your maneuver ability varies based on the type of the maneuver you use. You use Strength, Dexterity, or Constitution for physical maneuvers (your choice), Intel… [452 chars #c8f71ca2]
+Maneuver save DC = 8 + your proficiency bonus + your maneuver ability modifier
+Your choices []
+Fighter Specialty Level 3
+Fighter: 3rd, 7th, 10th, 15th, and 18th level
+You choose a specialty that you strive to emulate in your combat styles and techniques, which is detailed at the end of the class description.
+Chosen: Assault Specialist · change it in Classes & Progression
+Notes []
+Fighter Strategies Level 3
+Fighter: 3rd level
+You've adopted a fighter strategy, as detailed at the end of the class description, and you adopt more at higher levels, as shown in the Strategies Known column of the fighter table.
+Chosen: Cover Strategist · change it in Classes & Progression
+Notes []
+Operative (2)
+Sneak Attack Level 1
+Operative: 1st level
+You know how to strike subtly and exploit a foe's distraction. Once per turn, you can deal an extra 1d6 damage to one creature you hit with a weapon attack if y… [299 chars #80e56766]
+You don't need advantage on the attack roll if another enemy of the target is within 5 feet of it, that enemy isn't incapacitated, and you don't have disadvantage on the attack roll.
+The amount of the extra damage increases as you gain levels in this class, as shown in the Sneak Attack column of the operative table.
+Notes []
+Expertise Levels 1, 6 from class text
+Choose two of your skill proficiencies, or one of skill proficiencies and one of your tool proficiencies, or two of your tool proficiencies. You gain expertise in those skills or tools.
+At 6th level, you can choose two more of your proficiencies (in skills or tools) to gain this benefit.
+Chosen: Stealth, Perception · change it in Classes & Progression
+Notes []
+Assault Specialist (archetype) (3)
+Brute Force Level 3
+Assault Specialist: 3rd, 10th, and 16th level
+When you make a weapon attack, you gain a +2 bonus to the damage roll. This bonus increases to +3 at 10th level and +4 at 16th level.
+Notes []
+Improved Critical Level 3
+Assault Specialist: 3rd level
+Your critical hit range with weapons increases by 1.
+Notes []
+Remarkable Athlete Level 3
+Assault Specialist: 3rd level
+You can add half your proficiency bonus to any Strength, Dexterity, or Constitution check you make that doesn't already use your proficiency bonus.
+Notes []
+Fighter: Fighter Strategies (1)
+Cover Strategist
+You treat partial cover as one step higher (from one-quarter to half or half to three-quarters). While in cover, your attacks reduce partial cover by one step (from three-quarters to half or half to one-quarter).
+Fighting styles (1)
+Sharpshooter Style Fighter: Fighting Style
+[Mark a target (Sharpshooter)]
+You are skilled with firing at distant targets. You gain the following benefits:
+You can use your bonus action to mark a target greater than 30 feet from you that you can see. If you do so, and that target moves at least 5 feet before the st… [318 chars #24994812]
+Your ranged weapon attacks reduce partial cover by one step (from three-quarters to half or half to one-quarter) against targets greater than 30 feet from you. If the target has one-quarter cover, you ignore it entirely.
+Grasping a two-handed weapon you are wielding in only one hand with your other hand no longer requires your object interaction.
+
+## Sheet: Feats
+Weapon Expert Background (Soldier)+ Strength+ Dexterity+ Constitution
+You have practiced extensively with a variety of weapons, gaining the following benefits:
+Increase your Strength, Dexterity, or Constitution score by 1, to a maximum of 20.
+You gain proficiency with all blasters. If you are already proficient with all blasters, instead once per turn when you would roll weapon damage using a blaster, you can choose to have advantage.
+You gain proficiency with all lightweapons. If you are already proficient with all lightweapons, instead once per turn when you would roll weapon damage using a lightweapon, you can choose to have advantage.
+You gain proficiency with all vibroweapons. If you are already proficient with all vibroweapons, instead once per turn when you would roll weapon damage using a vibroweapon, you can choose to have advantage.
+You can take this feat twice.
+
+## Sheet: Classes & Progression
+[Level up]
+Fighter 3 Assault Specialist Starting class
+Hit die d10 Primary Strength Saves Strength, Constitution HP by level 10 (max), 6, 6
+Versatile combatant who excels at both range and in melee
+Skill proficiencies 0 / 2 Choose two skills from Acrobatics, Animal Handling, Athletics, Lore, Insight, Intimidation, Perception, and Survival
+None chosen yet.
+[Choose a skill… ▾]
+Archetype [Assault Specialist ▾]
+Read the options (14)
+Maneuvers 2 / 2 2 from the Fighter table
+Precision Attack General [×]
+When you make a weapon attack roll against a creature, you can expend one superiority die to add it to the roll. You can use this maneuver before or after makin… [228 chars #f67ac2fb]
+Return Fire Physical [×]
+When a creature misses you with a ranged attack, you can use your reaction and expend one superiority die to make a ranged weapon attack against the creature. I… [227 chars #fd83d733]
+[Add a maneuver… ▾]
+Read the options
+Fighter Strategies 1 / 1 from the Fighter table (“Strategies Known”)
+Cover Strategist [×]
+You treat partial cover as one step higher (from one-quarter to half or half to three-quarters). While in cover, your attacks reduce partial cover by one step (from three-quarters to half or half to one-quarter).
+[Add from Fighter Strategies… ▾]
+Read the options (7)
+Fighting style 1 / 1 Fighter: Fighting Style
+Sharpshooter Style [×]
+[]
+You are skilled with firing at distant targets. You gain the following benefits:
+You can use your bonus action to mark a target greater than 30 feet from you that you can see. If you do so, and that target moves at least 5 feet before the st… [318 chars #24994812]
+Your ranged weapon attacks reduce partial cover by one step (from three-quarters to half or half to one-quarter) against targets greater than 30 feet from you. If the target has one-quarter cover, you ignore it entirely.
+Grasping a two-handed weapon you are wielding in only one hand with your other hand no longer requires your object interaction.
+Class table
+Proficiency Bonus
++2 → +2 at 4th
+Features
+Fighter Strategies, Fighter Specialty → Ability Score Improvement at 4th
+Maneuvers Known
+2 → 2 at 4th
+Superiority Dice Quantity
+2 → 2 at 4th
+Superiority Dice Size
+d4 → d4 at 4th
+Strategies Known
+1 → 1 at 4th
+| Proficiency Bonus | Features | Maneuvers Known | Superiority Dice Quantity | Superiority Dice Size | Strategies Known |
+Now (3rd) | +2 | Fighter Strategies, Fighter Specialty | 2 | 2 | d4 | 1 |
+Next (4th) | +2 | Ability Score Improvement | 2 | 2 | d4 | 1 |
+Armor All armor Weapons All blasters, all vibroweapons Tools None
+Operative 1 Multiclass
+Hit die d8 Primary Dexterity Saves Dexterity, Intelligence HP by level 5
+Controller who focuses on stealth and techniques
+Multiclass skill 0 / 1 any skill
+None chosen yet.
+[Choose a skill… ▾]
+Multiclass tool 0 / 1 from the class's list
+None chosen yet.
+[Choose a tool… ▾]
+Expertise 2 / 2 Operative 1st and 6th level
+Stealth [×] Perception [×]
+Archetype [— at 3rd level — ▾]
+Operative Exploits 0 / 0 from the Operative table (“Operative Exploits”)
+None chosen yet.
+[Add from Operative Exploits… ▾]
+Read the options (11)
+Class table
+Proficiency Bonus
++2 → +2 at 2nd
+Features
+Expertise, Sneak Attack → Cunning Action, Operative Exploits at 2nd
+Sneak Attack
+1d6 → 1d6 at 2nd
+Operative Exploits
+— → 2 at 2nd
+| Proficiency Bonus | Features | Sneak Attack | Operative Exploits |
+Now (1st) | +2 | Expertise, Sneak Attack | 1d6 | — |
+Next (2nd) | +2 | Cunning Action, Operative Exploits | 1d6 | 2 |
+Armor Light armor Weapons Simple blasters, simple vibroweapons, martial blasters that lack the auto, special, strength, and two-handed properties, martial vibro… [265 chars #19162a6c]
+
+## Sheet: Species
+Size
+Medium
+Language
+Zabraki
+Average height
+5'1" +2d12"
+Average weight
+120 lb. x(2d4) lb.
+Skin
+Pale to dark brown, red, orange and yellow
+Hair
+Black, blonde, brown, red, or purple
+Eyes
+Yellow, green, orange, brown, blue, red, or purple
+Distinctions
+Horns, two hearts, facial tattoos
+Chosen increase
+Dexterity +1
+Traits (12)
+Ability Score Increase
+Your Constitution score increases by 2, and your Strength or Dexterity score increases by 1.
+Notes []
+Age
+Zabraks reach adulthood in their late teens and live less than a century.
+Notes []
+Alignment
+Zabraks tend toward no particular alignment. The best and worst are found among them.
+Notes []
+Coercive
+You have proficiency with Persuasion or Intimidation (your choice).
+Skill proficiency 1 / 1
+Persuasion [×]
+Notes []
+Crafters
+You have proficiency with one set of artisan’s implements of your choice.
+Tool proficiency 1 / 1 one set of artisan’s implements of your choice
+Tinker's implements [×]
+Notes []
+Darkvision
+Your vision can easily cut through darkness. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray.
+Notes []
+Languages
+You can speak, read, and write Galactic Basic and Zabraki.
+Notes []
+Second Heart
+Uses (back on a long rest) 1 / 1 [−] [+]
+When you are reduced to 0 hit points but not killed outright, you can drop to 1 hit point instead. You can’t use this feature again until you finish a long rest.
+Notes []
+Size
+Zabraks stand anywhere from 5 to 7 feet tall and weigh up to 300 lbs. Regardless of your position in that range, your size is Medium.
+Notes []
+Speed
+Your base walking speed is 30 feet.
+Notes []
+Toughness
+Your hit point maximum increases by 1, and it increases by 1 every time you gain a level.
+Notes []
+Unarmed Combatant
+Your unarmed strikes deal 1d4 kinetic damage and have the finesse property.
+Notes []
+
+## Sheet: Background
+Skill proficiencies
+Choose two from Athletics, Intimidation, Persuasion, and Piloting
+Tool proficiencies
+One type of gaming set
+Languages
+One of your choice
+Starting equipment
+An insignia of rank, a trophy taken from a fallen enemy, a gaming set (one of your choice), a set of common clothes, and a belt pouch containing 100 cr
+Background feat
+Weapon Expert
+Specialty
+During your time as a soldier, you had a specific role to play in your unit or army. Roll a d8 or choose from the options in the table below to determine your role:
+d8 | Specialty |
+1 | Officer |
+2 | Scout |
+3 | Infantry |
+4 | Medic |
+d8 | Specialty |
+5 | Quartermaster |
+6 | Pilot |
+7 | Artisan |
+8 | Support Staff |
+Feature: Military Rank Background feature
+You have a military rank from your career as a soldier. Soldiers loyal to your former military organization still recognize your authority and influence, and th… [417 chars #07d82bc5]
+About this background
+War has been your life for as long as you care to remember. You trained as a youth, studied the use of weapons and armor, learned basic survival techniques, inc… [362 chars #b05030ad]
+When you choose this background, work with your GM to determine which military organization you were a part of, how far through its ranks you progressed, and wh… [306 chars #85e13a8a]
+Your choices
+Skill proficiencies 0 / 2 Choose two from Athletics, Intimidation, Persuasion, and Piloting
+None chosen yet.
+[Choose a skill… ▾]
+Tool proficiency 0 / 1 One type of gaming set
+None chosen yet.
+[Choose a tool… ▾]
+Languages 0 / 1 One of your choice
+None chosen yet.
+[Choose a language… ▾]
+Weapon Expert: +1 to 0 / 1 background feat
+None chosen yet.
+[Choose an ability… ▾]
+
+## Sheet: Proficiencies & Languages
+Armor
+All armor
+Weapon
+All blasters all vibroweapons all blasters · Weapon Expert all lightweapons · Weapon Expert all vibroweapons · Weapon Expert
+Tool
+One type of gaming set Tinker's implements · Crafters
+Other
+Light armor
+Skills & saves
+Stealth Piloting Insight Perception Intimidation Persuasion Strength Saving Throws Constitution Saving Throws
+Languages
+Galactic Basic Zabraki
+✎ = custom proficiency added on the character.
+
+## Sheet: Equipment & Inventory
+Add an item
+[All items ▾] []
+Qty [1] [Add]
+2425 items from sw5e.com, fetched 10/16/2026. [Refresh list]
+Credits
+450 cr
+[] [] [Apply]
+Total weight
+76.5 lb
+of 120 lb max
+Attunement
+0 / 2
+Items
+17
+Weapon (4)
+Item | Qty & actions | Weight | Cost | Source |
+Blaster rifle
+1d8 Energy · Power cell (range 105/420), reload 12, two-handed
+| [−] 1 [+] [Equipped] [✎] [Sell] [×] | 7.5 lb | 525 cr | PHB |
+Light pistol
+1d4 Energy · Light, power cell (range 40/160), reload 8
+| [−] 1 [+] [Equip] [✎] [Sell] [×] | 0.5 lb | 250 cr | PHB |
+Vibrorapier
+1d8 Kinetic · Finesse
+| [−] 1 [+] [Equipped] [✎] [Sell] [×] | 3.5 lb | 150 cr | PHB |
+Vibrodagger
+1d4 Kinetic · Finesse, light, thrown (range 20/60)
+| [−] 1 [+] [Equip] [✎] [Sell] [×] | 0.5 lb | 50 cr | PHB |
+Armor (1)
+Item | Qty & actions | Weight | Cost | Source |
+Mesh armor
+AC 13 + Dex modifier (max 2) · Medium
+Description
+Providing solid protection for a minimal cost, mesh armor is considered excellent protection for entrenched troops or guards. However, this protection comes at … [280 chars #c7f6f72d]
+| [−] 1 [+] [Equipped] [✎] [Sell] [×] | 20 lb | 500 cr | PHB |
+Ammunition (1)
+Item | Qty & actions | Weight | Cost | Source |
+Power cell
+Description
+Weapons with this property are fueled by power cells, which must be loaded in order to fire the weapon. A power cell fuels a number of attacks equal to the weapon's reload number.
+| [−] 13 [+] [Use] [✎] [Sell] [×] | 13 lb | 10 cr | PHB |
+Clothing (1)
+Item | Qty & actions | Weight | Cost | Source |
+Clothes, common | [−] 1 [+] [✎] [Sell] [×] | 3 lb | 5 cr | PHB |
+Enhanced: Weapon (1)
+Item | Qty & actions | Weight | Cost | Source |
+Xerrol Nightstinger Rifle
+Premium (uncommon)
+Built on [choose… (its damage, AC and weight) ▾]
+Description
+You have a +1 bonus to damage rolls with this enhanced weapon. Additionally, when you make the Dexterity (Stealth) check to remain hidden as a part of the weapon's silent property, you have advantage on the check.
+This nightstinger rifle has the unique property of shooting invisible rounds.
+| [−] 1 [+] [Equipped] [✎] [Sell] [×] | — | — | WH |
+Explosive (1)
+Item | Qty & actions | Weight | Cost | Source |
+Grenade, fragmentation
+Description
+Grenades can be set to detonate on impact or with a timer that causes them to explode on initiative count 20 (losing all initiative ties). As an action, you can… [420 chars #48947155]
+| [−] 1 [+] [Use] [✎] [Sell] [×] | 1 lb | 100 cr | PHB |
+Gaming Set (1)
+Item | Qty & actions | Weight | Cost | Source |
+Sabacc deck | [−] 1 [+] [✎] [Sell] [×] | — | 150 cr | PHB |
+Storage (2)
+Item | Qty & actions | Weight | Cost | Source |
+Backpack
+Description
+A backpack stores 30 lb., not exceeding 1 cubic foot.
+| [−] 1 [+] [✎] [Sell] [×] | 5 lb | 50 cr | PHB |
+Pouch
+Description
+A pouch stores 6.00 lb., not exceeding 1/5 cubic foot.
+| [−] 1 [+] [✎] [Sell] [×] | 1 lb | 5 cr | PHB |
+Utility (3)
+Item | Qty & actions | Weight | Cost | Source |
+Bedroll | [−] 1 [+] [✎] [Sell] [×] | 7 lb | 10 cr | PHB |
+Field rations (one day's) | [−] 10 [+] [✎] [Sell] [×] | 10 lb | 5 cr | PHB |
+Glowrod
+Description
+Glowrods create a beam of light illuminating the area around you in bright light for a 20-foot radius and dim light for an additional 20 feet. The glowrod lasts… [258 chars #59229a13]
+| [−] 2 [+] [✎] [Sell] [×] | 4 lb | 10 cr | PHB |
+Custom items (2)
+Item | Qty & actions | Weight | Cost | Source |
+Insignia of rank (Sergeant) custom
+Description
+Soldier background: my old unit's rank insignia.
+| [−] 1 [+] [✎] [Sell] [×] | — | — | |
+Coded datapad (smuggler's coordinates) custom
+Description
+Loot from the dock ambush (Session 1). Encrypted; holds the smuggler's coordinates.
+| [−] 1 [+] [✎] [Sell] [×] | 0.5 lb | — | |
+
+## Sheet: Personality & Appearance
+Personality Traits
+I can stare down a charging rancor without flinching. I count every shot I fire.
+Ideal
+Efficiency. The best fight is the one that ends in one shot.
+Bond
+My old squad, Rancor Company. I owe the survivors.
+Flaw
+I trust numbers more than people.
+Details
+Alignment
+Chaotic Balanced
+Gender
+Male
+Place of Birth
+Iridonia
+Age
+29
+Height
+—
+Weight
+—
+Hair
+None (horns)
+Eyes
+Yellow
+Skin
+Red, black facial tattoos
+
+## Sheet: Backstory
+No backstory yet.
+
+## Sheet: Notes
+Not on the sheet (no place for it):
+Tools: Tinker's implements (Zabrak Crafters), Sabacc deck (Soldier gaming set)
+Languages: Zabraki (species), Huttese (Soldier: one of your choice)
+Explorer's pack: bought as Backpack, Bedroll, 10 Field rations, 2 Glowrods (the pack isn't in the list)
+Trophy from a fallen enemy: a Trandoshan's tooth on a cord
+Unarmed strike should be finesse: +5 to hit, 1d4+3 (only the d4 is set by tweak)
+Weapon Expert: once per turn, advantage on weapon damage with blasters/vibroweapons
+Zabrak Toughness: HP tweak +1 must go up by 1 each level
+Session 1: Trouble on Ord Mantell
+Owe Kessa (Kessa's Outfitters) 460 cr: 2 medpacs at 20% off (480) + frag grenade (80), paid 100.
+Ambush at the docks: dropped to 0, used Zabrak Second Heart (back to 1 HP); Second Wind; used 1 medpac at full HP (script).
+Loot: 150 cr, Strength Stim (Basic), coded datapad (smuggler's coordinates; custom item made on sw5e.com), 10 power cells.
+300 XP: level 2 reached. Plan: Fighter 2, then Operative 1 at level 3.
+Level 3 (Session 2 start): Fighter 2 / Operative 1
+Levelled on sw5e.com's builder (no level-up in the sheet). HP Fighter 2 = 6 (average), Operative 1 = 5.
+Toughness tweak now +3 (level 3).
+Operative multiclass: skill = Stealth (tweak), tool = Security kit (no place for tools), light armor.
+Expertise: Stealth + Perception. Maneuver: Precision Attack.
+Session 2: The Smuggler's Hideout
+Boss fight: Sneak Attack + Action Surge; poisoned (no condition in the sheet, rolled disadvantage by hand); down to 2 HP; Strength Stim; Second Wind.
+Medpac used on an ally. Exhaustion 1 (gone after the long rest).
+Loot: 400 cr (gave 100 to the party). Xerrol Nightstinger Rifle (Premium): the sheet only applies its +1 damage to my Blaster rifle.
+Still owe Kessa 460 cr.
+Level 4: Fighter 3 (Assault Specialist), Cover Strategist, maneuvers Precision Attack + Return Fire. Toughness tweak +4.
+Remarkable Athlete not applied by the sheet: initiative should be +4.
+Next level-up: SYNC TO SW5E FIRST, or the builder's new level is ignored on Load.
+
+## Sheet: Settings, Tweaks & Data
+Tweaks (manual adjustments) 9 · 1 tweak may count twice
+From sw5e.com's editor or added here. Give each a reason (kept in this viewer and in backups); hovering or tapping a number they change shows it.
+Stat | Adjustment | Reason | |
+Persuasion | Proficiency [Proficient ▾] Bonus [] | [Zabrak Coercive (chose Persuasion)] | [×] |
+Intimidation | Proficiency [Proficient ▾] Bonus [] | [Soldier background skill] | [×] |
+Insight | Proficiency [Proficient ▾] Bonus [] | [Fighter class skill (chosen at 1st level)] | [×] |
+Perception | Proficiency [Proficient ▾] Bonus [] | [Fighter class skill (chosen at 1st level)] | [×] |
+Piloting | Proficiency [Proficient ▾] Bonus [] | [Soldier background skill] | [×] |
+Dexterity score | Bonus [1] Set to [] | [Weapon Expert feat: +1 Dexterity (builder has no choice for it)] | [×] |
+Stealth | Proficiency [Proficient ▾] Bonus [] | [Operative multiclass: any one skill (SW5E multiclassing table)] | [×] |
+HP maximum
+The sheet applies Toughness by itself now: with this tweak it counts twice. Remove the tweak (×) unless it's for something else.
+| Bonus [4] Set to [] | [Zabrak Toughness: +1 HP per level (not applied by SW5E)] | [×] |
+Unarmed: damage die | Die [4] | [Zabrak Unarmed Combatant: 1d4, finesse] | [×] |
+[Add a tweak to… ▾] [add (+/−) ▾] [] [] [Add]
+Builder settings
+Is Enforcing Force Prerequisites
+true
+Is Fixed Hit Points
+false
+Ability Score Method
+Point Buy
+Record
+Source
+sw5e.com
+Loaded
+10/17/2026, 11:59:22 PM
+Last changed on SW5E
+10/17/2026, 11:59:10 PM
+Created
+10/17/2026, 11:49:14 AM
+Builder version
+0.7.6
+Validation
+All checks passed
+Character id
+00000000-0000-4000-8000-000008000001 ↗
+Local version history 3 / 25
+SW5E can lose saved characters, so every version seen here is kept in this browser. Compare a version with the character as it is now, or restore it (Undo puts it back).
+Backups (files you keep): this character today, 00:02 · [Back up this character]
+all characters never · [Back up all characters]
+10/18/2026, 12:02:57 AM latest
+Restored the version of 17/10/2026, 12:58:48 · changed on SW5E 10/17/2026, 11:59:10 PM [Compare] [Restore] [Export]
+10/17/2026, 11:59:12 PM as now
+Synced to SW5E · changed on SW5E 10/17/2026, 11:59:10 PM [Export]
+10/17/2026, 3:50:44 PM
+Synced to SW5E · changed on SW5E 10/17/2026, 3:50:42 PM [Compare] [Restore] [Export]
+Raw SW5E character JSON
+{ "name": "Kadro Vos (Panel)", "id": "00000000-0000-4000-8000-000008000001", "userId": "00000000-0000-4000-8000-000008000002", "builderVersion": "0.7.6", "image… [7784 chars #abb05bad]
+Computed character JSON (from SW5E's rules engine)
+{ "name": "Kadro Vos (Panel)", "builderVersion": "0.7.6", "image": "", "characteristics": { "alignment": "Chaotic Balanced", "Personality Traits": "I can stare … [41811 chars #cd0bd1b0]
