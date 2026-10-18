@@ -1,7 +1,7 @@
 # Scholar Test (Claude)
 
-## Sent to SW5E's engine
-The recorded calculation matches.
+## Sent to the rules engine
+The sheet's engine computes the numbers. SW5E's recorded calculation is for this same character.
 tweaks.abilityScores.Charisma.score.bonus = 1
 tweaks.abilityScores.Charisma.skills.Deception.bonus = 0
 tweaks.abilityScores.Charisma.skills.Deception.proficiency = "Expertise"
@@ -15,7 +15,7 @@ equipment[1 Chakram].tweaks.toHit.bonus = 0
 equipment[1 Chakram].tweaks.toHit.proficiency = "proficient"
 equipped = [Fiber armor, Chakram, Vibrobaton]
 
-## Numbers (SW5E's engine, with the sheet's edits)
+## Numbers (the rules engine, with the sheet's edits)
 currentLevel = 3
 classText = "Scholar (Gambler Pursuit) 3"
 proficiencyBonus = 2
@@ -789,7 +789,10 @@ all characters never · [Back up all characters]
 Synced to SW5E · changed on SW5E 10/16/2026, 6:43:35 PM [Export]
 10/16/2026, 6:40:16 PM
 Loaded from SW5E · changed on SW5E 10/16/2026, 6:40:00 PM [Compare] [Restore] [Export]
+Rules engine
+The sheet computes the numbers itself, with SW5E's rules. Check with sw5e.com compares them with sw5e.com’s own calculation of this character (it also happens on each Load from SW5E).
+[Check with sw5e.com]
 Raw SW5E character JSON
 { "name": "Scholar Test (Claude)", "image": "", "experiencePoints": 900, "species": { "name": "Bothan", "abilityScoreImprovementSelectedOption": 0, "abilityScor… [3253 chars #70438903]
-Computed character JSON (from SW5E's rules engine)
-{ "name": "Scholar Test (Claude)", "builderVersion": "0.7.6", "image": "", "characteristics": { "alignment": "Balanced Neutral", "Personality Traits": "", "Idea… [24851 chars #6b67a103]
+Computed character JSON (the sheet's rules engine)
+{ "name": "Scholar Test (Claude)", "builderVersion": "0.7.6", "image": "", "characteristics": { "Age": "", "Appearance": "", "Backstory": "Copy of a real charac… [18133 chars #01e15344]

@@ -1,7 +1,7 @@
 # Thirza Vitchess (Panel)
 
-## Sent to SW5E's engine
-The recorded calculation matches.
+## Sent to the rules engine
+The sheet's engine computes the numbers. SW5E's recorded calculation is for this same character.
 tweaks.abilityScores.Charisma.skills.Persuasion.bonus = 0
 tweaks.abilityScores.Charisma.skills.Persuasion.proficiency = "Proficient"
 tweaks.abilityScores.Intelligence.skills.Lore.bonus = 0
@@ -20,7 +20,7 @@ equipment[0 Vibrostaff].tweaks.toHit.bonus = 0
 equipment[0 Vibrostaff].tweaks.toHit.proficiency = "proficient"
 equipped = [Vibrostaff]
 
-## Numbers (SW5E's engine, with the sheet's edits)
+## Numbers (the rules engine, with the sheet's edits)
 currentLevel = 4
 classText = "Consular (Way of the Seer) 4"
 proficiencyBonus = 2
@@ -917,7 +917,10 @@ Synced to SW5E · changed on SW5E 10/17/2026, 3:13:40 PM [Export]
 Synced to SW5E · changed on SW5E 10/17/2026, 3:11:00 PM [Export]
 10/17/2026, 3:09:40 PM
 Loaded from SW5E · changed on SW5E 10/17/2026, 3:09:33 PM [Compare] [Restore] [Export]
+Rules engine
+The sheet computes the numbers itself, with SW5E's rules. Check with sw5e.com compares them with sw5e.com’s own calculation of this character (it also happens on each Load from SW5E).
+[Check with sw5e.com]
 Raw SW5E character JSON
 { "name": "Thirza Vitchess (Panel)", "id": "00000000-0000-4000-8000-000007000001", "userId": "00000000-0000-4000-8000-000007000002", "builderVersion": "0.7.6", … [4436 chars #63b9c9ba]
-Computed character JSON (from SW5E's rules engine)
-{ "name": "Thirza Vitchess (Panel)", "builderVersion": "0.7.6", "image": "", "characteristics": { "alignment": "Lawful Balanced", "Personality Traits": "I see o… [49017 chars #010b4f33]
+Computed character JSON (the sheet's rules engine)
+{ "name": "Thirza Vitchess (Panel)", "builderVersion": "0.7.6", "image": "", "characteristics": { "Age": "34", "Appearance": "Antiox breath mask and protective … [36544 chars #c9b6f4ae]

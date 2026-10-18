@@ -1,7 +1,7 @@
 # Wizard Check (local)
 
-## Sent to SW5E's engine
-The recorded calculation matches.
+## Sent to the rules engine
+The sheet's engine computes the numbers. SW5E's recorded calculation is for this same character.
 tweaks.abilityScores.Intelligence.skills.Technology.bonus = 0
 tweaks.abilityScores.Intelligence.skills.Technology.proficiency = "Proficient"
 tweaks.hitPoints.maximum.bonus = 4
@@ -13,7 +13,7 @@ equipment[2 Vibrodagger].tweaks.toHit.bonus = 0
 equipment[2 Vibrodagger].tweaks.toHit.proficiency = "proficient"
 equipped = [Combat suit, Vibrodagger]
 
-## Numbers (SW5E's engine, with the sheet's edits)
+## Numbers (the rules engine, with the sheet's edits)
 currentLevel = 4
 classText = "Engineer (Armstech Engineering) 4"
 proficiencyBonus = 2
@@ -762,7 +762,10 @@ Saved to SW5E as a new character · changed on SW5E 10/17/2026, 8:55:17 PM [Expo
 Before saving to SW5E as a new character · changed on SW5E 10/17/2026, 8:53:27 PM [Export]
 10/17/2026, 8:53:33 PM
 Created here · changed on SW5E 10/17/2026, 8:53:27 PM [Compare] [Restore] [Export]
+Rules engine
+The sheet computes the numbers itself, with SW5E's rules. Check with sw5e.com compares them with sw5e.com’s own calculation of this character (it also happens on each Load from SW5E).
+[Check with sw5e.com]
 Raw SW5E character JSON
 { "name": "Wizard Check (local)", "id": "00000000-0000-4000-8000-000012000001", "builderVersion": "0.7.6", "image": "", "experiencePoints": 2700, "species": { "… [2926 chars #e05cab17]
-Computed character JSON (from SW5E's rules engine)
-{ "name": "Wizard Check (local)", "builderVersion": "0.7.6", "image": "", "characteristics": { "alignment": "", "Personality Traits": "", "Ideal": "", "Bond": "… [29120 chars #88ff848d]
+Computed character JSON (the sheet's rules engine)
+{ "name": "Wizard Check (local)", "builderVersion": "0.7.6", "image": "", "characteristics": { "Age": "", "Appearance": "", "Backstory": "", "Bond": "", "Eyes":… [21206 chars #bbf44341]

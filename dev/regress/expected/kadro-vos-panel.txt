@@ -1,7 +1,7 @@
 # Kadro Vos (Panel)
 
-## Sent to SW5E's engine
-The recorded calculation matches.
+## Sent to the rules engine
+The sheet's engine computes the numbers. SW5E's recorded calculation is for this same character.
 tweaks.abilityScores.Charisma.skills.Intimidation.bonus = 0
 tweaks.abilityScores.Charisma.skills.Intimidation.proficiency = "Proficient"
 tweaks.abilityScores.Charisma.skills.Persuasion.bonus = 0
@@ -33,7 +33,7 @@ equipment[5 Vibrodagger].tweaks.toHit.bonus = 0
 equipment[5 Vibrodagger].tweaks.toHit.proficiency = "proficient"
 equipped = [Mesh armor, Blaster rifle, Vibrorapier, Xerrol Nightstinger Rifle]
 
-## Numbers (SW5E's engine, with the sheet's edits)
+## Numbers (the rules engine, with the sheet's edits)
 currentLevel = 4
 classText = "Fighter (Assault Specialist) 3, Operative 1"
 proficiencyBonus = 2
@@ -973,7 +973,10 @@ Restored the version of 17/10/2026, 12:58:48 · changed on SW5E 10/17/2026, 11:5
 Synced to SW5E · changed on SW5E 10/17/2026, 11:59:10 PM [Export]
 10/17/2026, 3:50:44 PM
 Synced to SW5E · changed on SW5E 10/17/2026, 3:50:42 PM [Compare] [Restore] [Export]
+Rules engine
+The sheet computes the numbers itself, with SW5E's rules. Check with sw5e.com compares them with sw5e.com’s own calculation of this character (it also happens on each Load from SW5E).
+[Check with sw5e.com]
 Raw SW5E character JSON
 { "name": "Kadro Vos (Panel)", "id": "00000000-0000-4000-8000-000008000001", "userId": "00000000-0000-4000-8000-000008000002", "builderVersion": "0.7.6", "image… [7784 chars #abb05bad]
-Computed character JSON (from SW5E's rules engine)
-{ "name": "Kadro Vos (Panel)", "builderVersion": "0.7.6", "image": "", "characteristics": { "alignment": "Chaotic Balanced", "Personality Traits": "I can stare … [41811 chars #cd0bd1b0]
+Computed character JSON (the sheet's rules engine)
+{ "name": "Kadro Vos (Panel)", "builderVersion": "0.7.6", "image": "", "characteristics": { "Age": "29", "Appearance": "", "Backstory": "", "Bond": "My old squa… [29036 chars #7144c805]

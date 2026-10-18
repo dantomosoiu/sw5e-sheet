@@ -1,7 +1,7 @@
 # Tikk Plonr (Panel)
 
-## Sent to SW5E's engine
-The recorded calculation matches.
+## Sent to the rules engine
+The sheet's engine computes the numbers. SW5E's recorded calculation is for this same character.
 tweaks.abilityScores.Intelligence.score.bonus = 1
 tweaks.abilityScores.Intelligence.skills.Investigation.bonus = 0
 tweaks.abilityScores.Intelligence.skills.Investigation.proficiency = "Proficient"
@@ -23,7 +23,7 @@ equipment[4 Vibrodagger].tweaks.toHit.bonus = 0
 equipment[4 Vibrodagger].tweaks.toHit.proficiency = "proficient"
 equipped = [Combat suit, Blaster pistol, Armor (Fine)]
 
-## Numbers (SW5E's engine, with the sheet's edits)
+## Numbers (the rules engine, with the sheet's edits)
 currentLevel = 4
 classText = "Engineer (Armstech Engineering) 4"
 proficiencyBonus = 2
@@ -916,7 +916,10 @@ Synced to SW5E · changed on SW5E 10/17/2026, 4:39:03 PM [Compare] [Restore] [Ex
 Loaded from SW5E · changed on SW5E 10/17/2026, 4:37:31 PM [Compare] [Restore] [Export]
 10/17/2026, 4:35:37 PM
 Synced to SW5E · changed on SW5E 10/17/2026, 4:35:35 PM [Compare] [Restore] [Export]
+Rules engine
+The sheet computes the numbers itself, with SW5E's rules. Check with sw5e.com compares them with sw5e.com’s own calculation of this character (it also happens on each Load from SW5E).
+[Check with sw5e.com]
 Raw SW5E character JSON
 { "name": "Tikk Plonr (Panel)", "id": "00000000-0000-4000-8000-000009000001", "userId": "00000000-0000-4000-8000-000009000002", "builderVersion": "0.7.6", "imag… [4359 chars #71b50e61]
-Computed character JSON (from SW5E's rules engine)
-{ "name": "Tikk Plonr (Panel)", "builderVersion": "0.7.6", "image": "", "characteristics": { "alignment": "Neutral Light", "Personality Traits": "I take apart a… [43487 chars #c0e23530]
+Computed character JSON (the sheet's rules engine)
+{ "name": "Tikk Plonr (Panel)", "builderVersion": "0.7.6", "image": "", "characteristics": { "alignment": "Neutral Light", "Personality Traits": "I take apart a… [31536 chars #c3ec687f]

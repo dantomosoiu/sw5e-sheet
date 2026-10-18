@@ -1,7 +1,7 @@
 # Rorrwaak (Panel)
 
-## Sent to SW5E's engine
-The recorded calculation matches.
+## Sent to the rules engine
+The sheet's engine computes the numbers. SW5E's recorded calculation is for this same character.
 tweaks.abilityScores.Charisma.skills.Intimidation.bonus = 0
 tweaks.abilityScores.Charisma.skills.Intimidation.proficiency = "Proficient"
 tweaks.abilityScores.Charisma.skills.Persuasion.bonus = 0
@@ -25,7 +25,7 @@ equipment[1 Vibrospear].tweaks.toHit.bonus = 0
 equipment[1 Vibrospear].tweaks.toHit.proficiency = "proficient"
 equipped = [Vibroaxe, Weapon (Fine)]
 
-## Numbers (SW5E's engine, with the sheet's edits)
+## Numbers (the rules engine, with the sheet's edits)
 currentLevel = 4
 classText = "Berserker (Frenzied Approach) 4"
 proficiencyBonus = 2
@@ -790,7 +790,10 @@ Loaded from SW5E · changed on SW5E 10/17/2026, 2:08:29 PM [Compare] [Restore] [
 Loaded from SW5E · changed on SW5E 10/17/2026, 5:54:57 PM [Compare] [Restore] [Export]
 10/17/2026, 5:39:15 PM
 Loaded from SW5E · changed on SW5E 10/17/2026, 5:38:43 PM [Compare] [Restore] [Export]
+Rules engine
+The sheet computes the numbers itself, with SW5E's rules. Check with sw5e.com compares them with sw5e.com’s own calculation of this character (it also happens on each Load from SW5E).
+[Check with sw5e.com]
 Raw SW5E character JSON
 { "name": "Rorrwaak (Panel)", "id": "00000000-0000-4000-8000-000011000001", "userId": "00000000-0000-4000-8000-000011000002", "builderVersion": "0.7.6", "image"… [4855 chars #0bfb80a1]
-Computed character JSON (from SW5E's rules engine)
-{ "name": "Rorrwaak (Panel)", "builderVersion": "0.7.6", "image": "", "characteristics": { "alignment": "Chaotic Light", "Personality Traits": "", "Ideal": "", … [19221 chars #8c87225e]
+Computed character JSON (the sheet's rules engine)
+{ "name": "Rorrwaak (Panel)", "builderVersion": "0.7.6", "image": "", "characteristics": { "alignment": "Chaotic Light", "Personality Traits": "I face problems … [23543 chars #45cc89e1]

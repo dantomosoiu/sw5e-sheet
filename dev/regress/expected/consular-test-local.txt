@@ -1,12 +1,12 @@
 # Consular Test (local)
 
-## Sent to SW5E's engine
-The recorded calculation matches.
+## Sent to the rules engine
+The sheet's engine computes the numbers. SW5E's recorded calculation is for this same character.
 tweaks.abilityScores.Intelligence.skills.Technology.bonus = 0
 tweaks.abilityScores.Intelligence.skills.Technology.proficiency = "Proficient"
 equipped = []
 
-## Numbers (SW5E's engine, with the sheet's edits)
+## Numbers (the rules engine, with the sheet's edits)
 currentLevel = 5
 classText = "Consular (Way of Technology) 5"
 proficiencyBonus = 3
@@ -712,7 +712,10 @@ Backups (files you keep): this character never · [Back up this character]
 all characters never · [Back up all characters]
 10/16/2026, 9:43:50 PM latest as now
 Imported from file [Export]
+Rules engine
+The sheet computes the numbers itself, with SW5E's rules. A character on sw5e.com is checked against its calculation there on each Load.
+[Check with sw5e.com]
 Raw SW5E character JSON
 { "name": "Consular Test (local)", "builderVersion": "0.7.6", "image": "", "experiencePoints": 6500, "species": { "name": "Human", "abilityScoreImprovementSelec… [1599 chars #fed9b8b4]
-Computed character JSON (from SW5E's rules engine)
-{ "name": "Consular Test (local)", "builderVersion": "0.7.6", "image": "", "characteristics": { "alignment": "Lawful Light" }, "tweaks": {}, "customProficiencie… [23478 chars #a5941356]
+Computed character JSON (the sheet's rules engine)
+{ "name": "Consular Test (local)", "builderVersion": "0.7.6", "image": "", "characteristics": { "alignment": "Lawful Light" }, "tweaks": { "abilityScores": { "I… [18975 chars #5a426fbb]

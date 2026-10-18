@@ -9,7 +9,7 @@
  *
  * Each case (dev/regress/cases/<name>.json) is one character's stored data: SW5E's copy, the edits, play state,
  * effects and SW5E's calculation of it. Its expected output (dev/regress/expected/<name>.txt) has:
- *   - what the sheet sends to SW5E's engine (tweaks from effects and features), and whether the recorded
+ *   - what the sheet sends to the rules engine (tweaks from effects and features), and whether SW5E's recorded
  *     calculation still matches it: when it doesn't, the numbers can't be checked until the case is recorded again;
  *   - the numbers SW5E's engine gave (AC, HP, saves, skills, attacks, casting…);
  *   - every roll the sheet offers (to-hit, damage, critical damage, saves, skills…) as the dice card shows it;
@@ -245,22 +245,27 @@ function report(sheet, key) {
   const state = get('state');
   state.current = key;
   const snap = state.snapshots[key];
+  // SW5E's calculation recorded with the case (drawing replaces it with the engine's).
+  const recorded = state.derived[key] || null;
+  const { fx } = get('derivedInputs')(key);
+  const recordedFor = !!(recorded && recorded.basis === get('basisOf')(fx.raw));
   const m = get('buildModel')(snap);
   const L = [`# ${snap.raw.name}`];
 
-  // What goes to SW5E's engine, and whether the recorded calculation is for exactly that.
-  const needed = get('needsDerived')(key);
-  const { fx } = get('derivedInputs')(key);
-  const fresh = !needed || !!get('freshComputed')(key, fx.raw);
-  L.push('', "## Sent to SW5E's engine");
-  L.push(!needed ? 'Nothing to calculate (no changes or effects): SW5E\'s own numbers'
-    : fresh ? 'The recorded calculation matches.'
-      : 'OUT OF DATE: the sheet now sends something else than what was recorded, so the numbers below are the old ones. Check the tweaks here, then record the case again (dev/regress-record.js).');
+  // What the rules engine computes from (the sheet's own engine; sw5e.com's when the sheet has no rules data), and
+  // whether SW5E's recorded calculation is for exactly that (dev/engine-check.js compares the two).
+  const engine = !!get('engineCtx')();
+  const needed = engine || get('needsDerived')(key);
+  L.push('', "## Sent to the rules engine");
+  L.push(engine ? `The sheet's engine computes the numbers. ${recordedFor || !get('needsDerived')(key) ? "SW5E's recorded calculation is for this same character." : "OUT OF DATE: SW5E's recorded calculation is for an older version of this character; record the case again (dev/regress-record.js) for dev/engine-check.js."}`
+    : !needed ? 'Nothing to calculate (no changes or effects): SW5E\'s own numbers'
+      : recordedFor ? 'The recorded calculation matches.'
+        : 'OUT OF DATE: the sheet now sends something else than what was recorded, so the numbers below are the old ones. Check the tweaks here, then record the case again (dev/regress-record.js).');
   flatten(fx.raw.tweaks || {}, 'tweaks', L);
   arr(fx.raw.equipment).forEach((it, i) => { if (it && it.tweaks && Object.keys(it.tweaks).length) flatten(it.tweaks, `equipment[${i} ${it.name}].tweaks`, L); });
   if (fx.raw.equipment) L.push(`equipped = [${arr(fx.raw.equipment).filter((it) => it && it.equipped).map((it) => it.name).join(', ')}]`);
 
-  L.push('', "## Numbers (SW5E's engine, with the sheet's edits)");
+  L.push('', "## Numbers (the rules engine, with the sheet's edits)");
   for (const f of NUMBER_FIELDS) if (m.c[f] !== undefined) flatten(m.c[f], f, L, NUMBER_SKIP);
   for (const kind of ['force', 'tech']) {
     const k = m.c[`${kind}Casting`];

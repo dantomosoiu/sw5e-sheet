@@ -1,7 +1,7 @@
 # Maasha Vaal (Panel)
 
-## Sent to SW5E's engine
-The recorded calculation matches.
+## Sent to the rules engine
+The sheet's engine computes the numbers. SW5E's recorded calculation is for this same character.
 tweaks.abilityScores.Charisma.savingThrowModifier.bonus = 3
 tweaks.abilityScores.Charisma.skills.Persuasion.bonus = 0
 tweaks.abilityScores.Charisma.skills.Persuasion.proficiency = "Proficient"
@@ -26,7 +26,7 @@ equipment[8 Vibrodagger].tweaks.toHit.bonus = 0
 equipment[8 Vibrodagger].tweaks.toHit.proficiency = "proficient"
 equipped = [Mesh armor, Lightsaber, Light physical shield]
 
-## Numbers (SW5E's engine, with the sheet's edits)
+## Numbers (the rules engine, with the sheet's edits)
 currentLevel = 4
 classText = "Guardian (Soresu Form) 4"
 proficiencyBonus = 2
@@ -968,7 +968,10 @@ Loaded from SW5E · changed on SW5E 10/17/2026, 4:51:40 PM [Compare] [Restore] [
 Loaded from SW5E · changed on SW5E 10/17/2026, 5:20:20 PM [Compare] [Restore] [Export]
 10/17/2026, 5:16:17 PM
 Loaded from SW5E · changed on SW5E 10/17/2026, 4:51:40 PM [Compare] [Restore] [Export]
+Rules engine
+The sheet computes the numbers itself, with SW5E's rules. Check with sw5e.com compares them with sw5e.com’s own calculation of this character (it also happens on each Load from SW5E).
+[Check with sw5e.com]
 Raw SW5E character JSON
 { "name": "Maasha Vaal (Panel)", "id": "00000000-0000-4000-8000-000010000001", "userId": "00000000-0000-4000-8000-000010000002", "builderVersion": "0.7.6", "ima… [5218 chars #84a8d544]
-Computed character JSON (from SW5E's rules engine)
-{ "name": "Maasha Vaal (Panel)", "builderVersion": "0.7.6", "image": "", "characteristics": { "alignment": "Lawful Light", "Personality Traits": "I quote the Je… [38692 chars #f971ff95]
+Computed character JSON (the sheet's rules engine)
+{ "name": "Maasha Vaal (Panel)", "builderVersion": "0.7.6", "image": "", "characteristics": { "alignment": "Lawful Light", "Personality Traits": "I quote the Je… [33845 chars #0599cec0]

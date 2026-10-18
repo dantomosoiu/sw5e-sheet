@@ -1,7 +1,7 @@
 # Armstech Test (local)
 
-## Sent to SW5E's engine
-The recorded calculation matches.
+## Sent to the rules engine
+The sheet's engine computes the numbers. SW5E's recorded calculation is for this same character.
 equipment[0 Blaster rifle].tweaks.damage.bonus = 2
 equipment[0 Blaster rifle].tweaks.toHit.bonus = 2
 equipment[0 Blaster rifle].tweaks.toHit.proficiency = "proficient"
@@ -10,7 +10,7 @@ equipment[1 Vibrosword].tweaks.toHit.bonus = 0
 equipment[1 Vibrosword].tweaks.toHit.proficiency = "proficient"
 equipped = [Blaster rifle, Vibrosword]
 
-## Numbers (SW5E's engine, with the sheet's edits)
+## Numbers (the rules engine, with the sheet's edits)
 currentLevel = 9
 classText = "Engineer (Armstech Engineering) 9"
 proficiencyBonus = 4
@@ -803,7 +803,10 @@ Backups (files you keep): this character never · [Back up this character]
 all characters never · [Back up all characters]
 10/16/2026, 9:34:18 PM latest
 Imported from file [Compare] [Restore] [Export]
+Rules engine
+The sheet computes the numbers itself, with SW5E's rules. A character on sw5e.com is checked against its calculation there on each Load.
+[Check with sw5e.com]
 Raw SW5E character JSON
 { "name": "Armstech Test (local)", "builderVersion": "0.7.6", "image": "", "experiencePoints": 48000, "species": { "name": "Human", "abilityScoreImprovementSele… [1920 chars #388d02d2]
-Computed character JSON (from SW5E's rules engine)
-{ "name": "Armstech Test (local)", "builderVersion": "0.7.6", "image": "", "characteristics": { "alignment": "Balanced Neutral" }, "tweaks": {}, "customProficie… [25460 chars #9a9e53f6]
+Computed character JSON (the sheet's rules engine)
+{ "name": "Armstech Test (local)", "builderVersion": "0.7.6", "image": "", "characteristics": { "alignment": "Balanced Neutral" }, "tweaks": {}, "customProficie… [18750 chars #872fb32a]

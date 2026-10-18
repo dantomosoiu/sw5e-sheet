@@ -1,14 +1,14 @@
 # Rakatan Test (local)
 
-## Sent to SW5E's engine
-The recorded calculation matches.
+## Sent to the rules engine
+The sheet's engine computes the numbers. SW5E's recorded calculation is for this same character.
 tweaks.abilityScores.Charisma.skills.Deception.bonus = 0
 tweaks.abilityScores.Charisma.skills.Deception.proficiency = "Proficient"
 tweaks.armorClass.bonus = 3
 tweaks.speed.base.bonus = 15
 equipped = []
 
-## Numbers (SW5E's engine, with the sheet's edits)
+## Numbers (the rules engine, with the sheet's edits)
 currentLevel = 7
 classText = "Monk (Rakatan Order) 5, Operative 2"
 proficiencyBonus = 3
@@ -755,7 +755,10 @@ Imported from file [Export]
 Imported from file [Compare] [Restore] [Export]
 10/16/2026, 9:52:36 PM
 Imported from file [Compare] [Restore] [Export]
+Rules engine
+The sheet computes the numbers itself, with SW5E's rules. A character on sw5e.com is checked against its calculation there on each Load.
+[Check with sw5e.com]
 Raw SW5E character JSON
 { "name": "Rakatan Test (local)", "builderVersion": "0.7.6", "image": "", "experiencePoints": 6500, "species": { "name": "Human", "abilityScoreImprovementSelect… [1521 chars #e8c9c654]
-Computed character JSON (from SW5E's rules engine)
-{ "name": "Rakatan Test (local)", "builderVersion": "0.7.6", "image": "", "characteristics": { "alignment": "Lawful Light" }, "tweaks": {}, "customProficiencies… [24036 chars #b3648804]
+Computed character JSON (the sheet's rules engine)
+{ "name": "Rakatan Test (local)", "builderVersion": "0.7.6", "image": "", "characteristics": { "alignment": "Lawful Light" }, "tweaks": { "abilityScores": { "Ch… [18957 chars #8f259208]

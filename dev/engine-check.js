@@ -28,6 +28,23 @@ function numbers(complete) {
   for (const f of NUMBER_FIELDS) if (complete && complete[f] !== undefined) flatten(complete[f], f, lines, NUMBER_SKIP);
   const out = {};
   for (const l of lines) { const i = l.indexOf(' = '); out[l.slice(0, i)] = l.slice(i + 3); }
+  return withOrders(out, complete, NUMBER_FIELDS.concat(['combatFeatures', 'nonCombatFeatures', 'equipment']));
+}
+/**
+ * The order of each list of named things (features, weapons, skills, powers…), as "path.order": the flattened
+ * fields name them, so a list in another order would otherwise look the same. The sheet shows them in this order.
+ */
+function withOrders(out, complete, fields) {
+  const walk = (o, p) => {
+    if (!o || typeof o !== 'object') return;
+    if (Array.isArray(o)) {
+      if (o.length && o.every((v) => v && typeof v === 'object' && typeof v.name === 'string')) out[`${p}.order`] = JSON.stringify(o.map((v) => v.name));
+      o.forEach((v, i) => walk(v, `${p}[${v && typeof v.name === 'string' ? v.name : i}]`));
+      return;
+    }
+    for (const k of Object.keys(o)) walk(o[k], `${p}.${k}`);
+  };
+  for (const f of fields) if (complete && complete[f] !== undefined) walk(complete[f], f);
   return out;
 }
 
@@ -43,7 +60,7 @@ function everything(complete) {
   for (const f of Object.keys(complete || {})) flatten(complete[f], f, lines, ALL_SKIP);
   const out = {};
   for (const l of lines) { const i = l.indexOf(' = '); out[l.slice(0, i)] = l.slice(i + 3); }
-  return out;
+  return withOrders(out, complete, Object.keys(complete || {}));
 }
 let project = numbers;
 /** The numbers plus SW5E's check of the character (validation.code, .message, .isValid). */

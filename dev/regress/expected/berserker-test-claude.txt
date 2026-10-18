@@ -1,7 +1,7 @@
 # Berserker Test (Claude)
 
-## Sent to SW5E's engine
-The recorded calculation matches.
+## Sent to the rules engine
+The sheet's engine computes the numbers. SW5E's recorded calculation is for this same character.
 tweaks.armorClass.bonus = 3
 equipment[0 Dire vibroblade].tweaks.toHit.bonus = 0
 equipment[0 Dire vibroblade].tweaks.toHit.proficiency = "proficient"
@@ -9,7 +9,7 @@ equipment[3 Blaster pistol].tweaks.toHit.bonus = 0
 equipment[3 Blaster pistol].tweaks.toHit.proficiency = "proficient"
 equipped = [Dire vibroblade, Medium physical shield, Blaster pistol]
 
-## Numbers (SW5E's engine, with the sheet's edits)
+## Numbers (the rules engine, with the sheet's edits)
 currentLevel = 5
 classText = "Berserker 5"
 proficiencyBonus = 3
@@ -658,7 +658,10 @@ Backups (files you keep): this character never · [Back up this character]
 all characters never · [Back up all characters]
 10/16/2026, 7:20:20 PM latest as now
 Loaded from SW5E · changed on SW5E 10/16/2026, 7:20:02 PM [Export]
+Rules engine
+The sheet computes the numbers itself, with SW5E's rules. Check with sw5e.com compares them with sw5e.com’s own calculation of this character (it also happens on each Load from SW5E).
+[Check with sw5e.com]
 Raw SW5E character JSON
 { "name": "Berserker Test (Claude)", "image": "", "experiencePoints": 6500, "species": { "name": "Human", "abilityScoreImprovementSelectedOption": 0, "abilitySc… [2127 chars #7d9c7e34]
-Computed character JSON (from SW5E's rules engine)
-{ "name": "Berserker Test (Claude)", "builderVersion": "0.7.6", "image": "", "characteristics": { "alignment": "Balanced Neutral", "Personality Traits": "", "Id… [22407 chars #18222478]
+Computed character JSON (the sheet's rules engine)
+{ "name": "Berserker Test (Claude)", "builderVersion": "0.7.6", "image": "", "characteristics": { "Age": "", "Appearance": "", "Backstory": "", "Bond": "", "Eye… [15803 chars #d108fb2f]

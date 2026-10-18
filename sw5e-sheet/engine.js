@@ -200,7 +200,10 @@ function engProficiencies(raw, ctx) {
     for (const p of engArr(first.weaponProficiencies)) out.push({ name: p, type: 'weapon' });
     for (const p of engArr(first.armorProficiencies)) out.push({ name: p, type: 'armor' });
   }
-  for (const k of classes.slice(1)) for (const p of engArr(k.multiClassProficiencies)) out.push({ name: p, type: 'other' });
+  // The other classes' multiclass proficiencies, leaving out what's already listed (in any case).
+  for (const k of classes.slice(1)) {
+    for (const p of engArr(k.multiClassProficiencies)) if (!out.some((x) => engLc(x.name) === engLc(p))) out.push({ name: p, type: 'other' });
+  }
   const bg = ctx.backgrounds.get(engLc(raw.background && raw.background.name));
   if (bg && bg.toolProficiencies) out.push({ name: bg.toolProficiencies, type: 'tool' });
   return out;
@@ -378,8 +381,9 @@ function engEquipment(raw, ctx, weapons) {
 
 /**
  * Features as SW5E lists them (all under combatFeatures): every class's and archetype's features up to its level
- * (a feature written at several levels keeps the latest one reached), by level, archetypes before classes, then by
- * name; the species' traits; the feats (taken at Ability Score Improvements, then the background's).
+ * (a feature written at several levels keeps the latest one reached), in the rules list's own order (SW5E's: Core
+ * before Expanded Content, archetypes before classes, by name) sorted by level only; then the species' traits; then
+ * the feats (taken at Ability Score Improvements, the background's, then those added by hand).
  */
 function engFeatures(raw, ctx) {
   const all = engArr(ctx.mods.features);
@@ -387,18 +391,15 @@ function engFeatures(raw, ctx) {
   for (const k of engArr(raw.classes)) {
     const lv = engNum(k.levels);
     const arch = k.archetype && k.archetype.name;
-    for (const f of all) {
+    all.forEach((f, index) => {
       const mine = (f.source === 'Class' && f.sourceName === k.name) || (f.source === 'Archetype' && arch && f.sourceName === arch);
-      if (!mine || engNum(f.level) > lv) continue;
+      if (!mine || engNum(f.level) > lv) return;
       const key = `${f.source}|${f.sourceName}|${f.name}`;
       const had = picked.get(key);
-      if (!had || engNum(f.level) > engNum(had.level)) picked.set(key, f);
-    }
+      if (!had || engNum(f.level) > engNum(had.f.level)) picked.set(key, { f, index });
+    });
   }
-  const order = (f) => (f.source === 'Archetype' ? 0 : 1);
-  const byName = (a, b) => (a.name < b.name ? -1 : a.name > b.name ? 1 : 0);
-  const bySource = (a, b) => (a.sourceName < b.sourceName ? -1 : a.sourceName > b.sourceName ? 1 : 0);
-  const classFeatures = [...picked.values()].sort((a, b) => engNum(a.level) - engNum(b.level) || order(a) - order(b) || byName(a, b) || bySource(a, b));
+  const classFeatures = [...picked.values()].sort((a, b) => engNum(a.f.level) - engNum(b.f.level) || a.index - b.index).map((x) => x.f);
   const species = raw.species && raw.species.name;
   const speciesFeatures = all.filter((f) => f.source === 'Species' && f.sourceName === species);
   const featNames = engArr(raw.classes).flatMap((k) => engArr(k.abilityScoreImprovements).filter((a) => a && a.type === 'Feat').map((a) => a.name))
@@ -626,6 +627,46 @@ function engComputeCharacter(raw, ctx) {
   return { raw, complete: engCompute(raw, ctx), validation, refs: engRefs(raw, ctx), error: null };
 }
 
+// ------------------------------------------------------------- checking against SW5E's own calculation
+// The numbers and lists the sheet shows, as path → value (arrays of named things by name): what the sheet compares
+// when a character comes from sw5e.com with SW5E's calculation (the same fields as dev/engine-check.js).
+const ENG_CHECK_FIELDS = ['currentLevel', 'classText', 'proficiencyBonus', 'initiative', 'armorClass', 'armorList', 'passivePerception', 'vision',
+  'speed', 'hitPoints', 'abilityScores', 'weapons', 'attunement', 'carryingCapacity', 'superiority', 'techCasting', 'forceCasting',
+  'proficiencies', 'skillAndSaveProficiencies', 'languages', 'experiencePoints', 'conditions', 'exhaustion'];
+const ENG_CHECK_SKIP = new Set(['description', 'text', 'content', 'propertiesMap', 'powersKnown', 'allForcePowers', 'cost', 'weight', 'current',
+  'temporary', 'deathSaves', 'resting', 'errorMessage', 'eTag', 'timestamp', 'partitionKey', 'rowKey', 'contentSource', 'contentType', 'isFound',
+  'modes', 'ac', 'armorClassification', 'stealthDisadvantage', 'strengthRequirement', 'equipmentCategory']);
+function engNumbers(complete) {
+  const out = {};
+  const scalar = (v) => v == null || ['string', 'number', 'boolean'].includes(typeof v);
+  const walk = (o, p) => {
+    if (scalar(o)) { out[p] = JSON.stringify(o === undefined ? null : o); return; }
+    if (Array.isArray(o)) {
+      if (o.every(scalar)) { out[p] = JSON.stringify(o); return; }
+      const seen = {};
+      o.forEach((v, i) => {
+        const nm = v && typeof v === 'object' && typeof v.name === 'string' ? v.name : null;
+        const k = nm == null ? String(i) : seen[nm] ? `${nm}#${++seen[nm]}` : ((seen[nm] = 1), nm);
+        walk(v, `${p}[${k}]`);
+      });
+      return;
+    }
+    const named = /\]$/.test(p) && typeof o.name === 'string';
+    for (const k of Object.keys(o).sort()) if (!ENG_CHECK_SKIP.has(k) && !/Enum$|Json$/.test(k) && !(named && k === 'name')) walk(o[k], `${p}.${k}`);
+  };
+  for (const f of ENG_CHECK_FIELDS) if (complete && complete[f] !== undefined) walk(complete[f], f);
+  return out;
+}
+/** SW5E's calculation against the engine's: { compared, differences: [{ path, sw5e, engine }] }. */
+function engCheckAgainst(sw5eComplete, ownComplete) {
+  const want = engNumbers(sw5eComplete);
+  const got = engNumbers(ownComplete);
+  const differences = Object.keys(want).filter((p) => want[p] !== got[p]).map((p) => ({ path: p, sw5e: want[p], engine: p in got ? got[p] : '(none)' }));
+  return { compared: Object.keys(want).length, differences };
+}
+
 if (typeof module !== 'undefined') {
-  module.exports = { engContext, engCompute, engComputeCharacter, engRefs, engValidation, engTweak, engBaseScores, engArmorValue, ENG_ABILITIES };
+  module.exports = {
+    engContext, engCompute, engComputeCharacter, engRefs, engValidation, engNumbers, engCheckAgainst, engTweak, engBaseScores, engArmorValue, ENG_ABILITIES,
+  };
 }

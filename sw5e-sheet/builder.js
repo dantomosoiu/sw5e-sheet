@@ -755,9 +755,9 @@ async function bdCreateFinish() {
   if (spRef && spRef.language && !/varies|non-verbal/i.test(spRef.language)) raw.species.language = spRef.language;
   raw.createdAt = Date.now();
   raw.changedAt = Date.now();
-  setStatus('Computing the new character with SW5E\'s rules engine…');
+  setStatus('Computing the new character…');
   let res = null;
-  try { res = await computeWithSw5e([raw], { onStatus: (msg) => setStatus(msg, '', true) }); } catch (e) { console.error(e); }
+  try { res = await computeCharacters([raw], { onStatus: (msg) => setStatus(msg, '', true) }); } catch (e) { console.error(e); }
   const keys = addSnapshots(res && res.characters && res.characters[0] ? res.characters : [{ raw, error: 'Could not reach sw5e.com to compute the numbers yet; they appear once it can (Recompute in More ▾).' }], 'created', res && res.meta, 'Created here');
   state.create = null;
   state.current = keys[0];

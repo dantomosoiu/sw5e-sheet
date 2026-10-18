@@ -1,7 +1,7 @@
 # Edit Test (Claude)
 
-## Sent to SW5E's engine
-The recorded calculation matches.
+## Sent to the rules engine
+The sheet's engine computes the numbers. SW5E's recorded calculation is for this same character.
 tweaks.abilityScores.Charisma.score.bonus = 2
 tweaks.abilityScores.Charisma.skills.Deception.bonus = 0
 tweaks.abilityScores.Charisma.skills.Deception.proficiency = "Expertise"
@@ -14,7 +14,7 @@ equipment[2 Blaster pistol].tweaks.toHit.bonus = 1
 equipment[2 Blaster pistol].tweaks.toHit.proficiency = "proficient"
 equipped = [Blaster pistol, Shield (Fine), Weapon (Fine), Handwraps (Fine), Bonded Plates Mk I, Oscillating Amplifier Mk I, Fadecasting Core (Training)]
 
-## Numbers (SW5E's engine, with the sheet's edits)
+## Numbers (the rules engine, with the sheet's edits)
 currentLevel = 7
 classText = "Fighter (Tactical Specialist) 5, Engineer 2"
 proficiencyBonus = 3
@@ -922,7 +922,10 @@ Synced to SW5E · changed on SW5E 10/17/2026, 7:14:01 PM [Export]
 Synced to SW5E · changed on SW5E 10/17/2026, 7:13:48 PM [Compare] [Restore] [Export]
 10/16/2026, 6:40:16 PM
 Loaded from SW5E · changed on SW5E 10/16/2026, 6:35:09 PM [Compare] [Restore] [Export]
+Rules engine
+The sheet computes the numbers itself, with SW5E's rules. Check with sw5e.com compares them with sw5e.com’s own calculation of this character (it also happens on each Load from SW5E).
+[Check with sw5e.com]
 Raw SW5E character JSON
 { "name": "Edit Test (Claude)", "image": "", "experiencePoints": 24000, "species": { "name": "Bothan", "abilityScoreImprovementSelectedOption": 0, "abilityScore… [3455 chars #bd4ad58f]
-Computed character JSON (from SW5E's rules engine)
-{ "name": "Edit Test (Claude)", "builderVersion": "0.7.6", "image": "", "characteristics": { "alignment": "Lawful Light", "Personality Traits": "Calm under fire… [43597 chars #a13bcc69]
+Computed character JSON (the sheet's rules engine)
+{ "name": "Edit Test (Claude)", "builderVersion": "0.7.6", "image": "", "characteristics": { "Age": "30", "Appearance": "", "Backstory": "Viewer version of the … [30116 chars #291a5f6b]

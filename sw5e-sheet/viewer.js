@@ -244,6 +244,11 @@ function addSnapshots(results, source, meta, reason) {
       validation: r.validation || null, error: r.error || null,
       source, loadedAt: Date.now(), meta: meta || null,
     };
+    // Loaded with SW5E's own calculation: how the sheet's engine compares (Settings, Tweaks & Data → Rules engine).
+    if (r.complete && !(meta && meta.engine)) {
+      const check = engineCheckOf(r.raw, r.complete, engineCtx());
+      if (check) state.snapshots[key].engineCheck = check;
+    }
     recordHistory(key, r.raw, reason || (source === 'sw5e' ? 'Loaded from SW5E' : 'Imported from file'));
     keys.push(key);
     // Rolls that came with it (synced from another computer) join the log.
@@ -416,9 +421,9 @@ async function importFiles(files) {
   if (backups.length) { await saveTrackers(); await saveEdits(); await saveItemState(); }
   if (snaps.length) keys = keys.concat(addSnapshots(snaps, 'file'));
   if (raws.length) {
-    setStatus('Computing imported character with the SW5E rules engine…');
+    setStatus(engineCtx() ? 'Computing the imported character…' : 'Computing imported character with the SW5E rules engine…');
     try {
-      const res = await computeWithSw5e(raws, { onStatus: (m) => setStatus(m) });
+      const res = await computeCharacters(raws, { onStatus: (m) => setStatus(m) });
       keys = keys.concat(addSnapshots(res.characters, 'file', res.meta));
     } catch (e) {
       console.error(e);
@@ -439,6 +444,26 @@ async function importFiles(files) {
 async function recomputeCurrent() {
   const snap = state.snapshots[state.current];
   if (!snap) return;
+  // The sheet computes the numbers itself: this asks sw5e.com for its own calculation of the same character, to check.
+  const ctx = engineCtx();
+  if (ctx) {
+    setStatus("Asking sw5e.com for its calculation, to check the sheet's…");
+    try {
+      const raw = withEdits(snap.raw, editedFields(snap.key));
+      const r = (await computeWithSw5e([raw], { onStatus: (m) => setStatus(m) })).characters[0];
+      const check = r && r.complete ? engineCheckOf(raw, r.complete, ctx) : null;
+      if (!check) throw new Error((r && r.error) || 'no result');
+      snap.engineCheck = check;
+      await saveStore();
+      renderAll();
+      setStatus(check.differences.length
+        ? `sw5e.com computes ${plural(check.differences.length + check.more, 'number')} differently: see Settings, Tweaks & Data → Rules engine.`
+        : `Checked with sw5e.com: all ${check.compared} numbers the same.`, check.differences.length ? 'error' : '');
+    } catch (e) {
+      setStatus('Could not check with sw5e.com: ' + e.message, 'error');
+    }
+    return;
+  }
   setStatus('Recomputing with the SW5E rules engine…');
   try {
     const res = await computeWithSw5e([snap.raw], { onStatus: (m) => setStatus(m) });
@@ -756,9 +781,11 @@ function renderPending(m) {
 function buildModel(snap) {
   const edited = editedFields(snap.key);
   const raw = withEdits(snap.raw || {}, edited);
-  const fx = applyEffects(snap.key, raw, snap.complete || {});
-  const derive = ENGINE_FIELDS.some((p) => p in edited) || fx.effects.length > 0;
-  const fresh = derive ? freshComputed(snap.key, fx.raw) : null;
+  const engine = engineCtx();
+  const fx = applyEffects(snap.key, raw, snap.complete || (engine && engineResult(engine, raw).complete) || {});
+  // The sheet's own engine computes at once, with every edit and effect; without its data, sw5e.com does.
+  const derive = !!engine || ENGINE_FIELDS.some((p) => p in edited) || fx.effects.length > 0;
+  const fresh = engine ? engineDerived(snap.key, fx, engine) : derive ? freshComputed(snap.key, fx.raw) : null;
   // Until SW5E has recalculated with the latest change, the last recalculation is closer than SW5E's plain copy,
   // which has none of the tweaks and effects (e.g. AC with Unarmored Defense); the banner says it's being updated.
   const last = derive && !fresh && state.derived[snap.key] ? state.derived[snap.key] : null;
@@ -1904,12 +1931,67 @@ function applyEffects(key, editedRaw, complete) {
   return { raw: out, baseRaw, ...res, effects };
 }
 
+// ------------------------------------------------------------- the sheet's own rules engine
+// engine.js computes a character the way SW5E's engine on sw5e.com does (checked against it: dev/engine-check.js),
+// from the cached rules and item data: numbers update at once and need no sw5e.com. Until both are cached (the
+// first run fetches them from sw5e.com), sw5e.com computes. A character loaded from sw5e.com comes with SW5E's own
+// calculation, which the sheet compares with the engine's (engineCheckOf, shown under Settings, Tweaks & Data).
+function engineCtx() {
+  const items = state.catalog && state.catalog.items;
+  if (!state.rules || !state.rules.modules || !Array.isArray(items) || typeof engContext !== 'function') return null;
+  if (engineCtx.rules !== state.rules || engineCtx.items !== items) {
+    Object.assign(engineCtx, { rules: state.rules, items, ctx: engContext({ rules: state.rules.modules, catalog: items }), memo: new Map() });
+  }
+  return engineCtx.ctx;
+}
+/** The engine's result for a character (as the bridge returns it), remembered for the same character data. */
+function engineResult(ctx, raw) {
+  const basis = canonical(raw);
+  const memo = engineCtx.memo;
+  if (!memo.has(basis)) {
+    if (memo.size > 40) memo.delete(memo.keys().next().value);
+    memo.set(basis, engComputeCharacter(JSON.parse(basis), ctx));
+  }
+  return memo.get(basis);
+}
+/** Computes characters: with the sheet's engine when it has the data, else on sw5e.com. Like computeWithSw5e. */
+async function computeCharacters(raws, opts) {
+  const ctx = engineCtx();
+  if (!ctx) return computeWithSw5e(raws, opts);
+  return { characters: raws.map((raw) => engComputeCharacter(clone(raw), ctx)), meta: { engine: true, dataVersion: state.rules.dataVersion, extractedAt: Date.now() } };
+}
+/** The calculation with the character's edits and effects, by the engine: kept like sw5e.com's (state.derived). */
+function engineDerived(key, fx, ctx) {
+  const basis = basisOf(fx.raw);
+  const had = state.derived[key];
+  if (had && had.engine && had.basis === basis) return had;
+  const r = engineResult(ctx, fx.raw);
+  if (!r.complete) return null;
+  const d = {
+    basis, complete: r.complete, base: fx.effects.length ? engineResult(ctx, fx.baseRaw).complete : null,
+    refs: r.refs, validation: r.validation, error: r.error, at: Date.now(), engine: true,
+  };
+  state.derived[key] = d;
+  clearTimeout(engineDerived.save);
+  engineDerived.save = setTimeout(() => saveDerived().catch(() => {}), 1000);
+  return d;
+}
+/** SW5E's own calculation of a character against the engine's: { at, compared, differences }, or null. */
+function engineCheckOf(raw, sw5eComplete, ctx) {
+  if (!ctx || !sw5eComplete) return null;
+  const own = engineResult(ctx, raw).complete;
+  if (!own) return null;
+  const r = engCheckAgainst(sw5eComplete, own);
+  return { at: Date.now(), compared: r.compared, differences: r.differences.slice(0, 50), more: Math.max(0, r.differences.length - 50) };
+}
+
 /** What the sheet is computed from: the edited character, and with effects applied. */
 function derivedInputs(key) {
   const snap = state.snapshots[key];
   const edited = editedFields(key);
   const raw = withEdits(snap.raw, edited);
-  const fx = applyEffects(key, raw, snap.complete || {});
+  const engine = engineCtx();
+  const fx = applyEffects(key, raw, snap.complete || (engine && engineResult(engine, raw).complete) || {});
   return { raw, fx, needed: ENGINE_FIELDS.some((p) => p in edited) || fx.effects.length > 0 };
 }
 const needsDerived = (key) => !!state.snapshots[key] && derivedInputs(key).needed;
@@ -1931,12 +2013,13 @@ const recomputeTimers = {};
 const recomputeFail = {};
 const RETRY_DELAYS = [5000, 15000, 45000];
 function scheduleRecompute(key, delay = 1200) {
-  if (!needsDerived(key)) return;
+  // The sheet's engine recalculates while drawing (buildModel): nothing to wait for.
+  if (engineCtx() || !needsDerived(key)) return;
   clearTimeout(recomputeTimers[key]);
   recomputeTimers[key] = setTimeout(() => recomputeDerived(key), delay);
 }
 async function recomputeDerived(key) {
-  if (!needsDerived(key) || state.recomputing) return;
+  if (engineCtx() || !needsDerived(key) || state.recomputing) return;
   const { fx } = derivedInputs(key);
   if (freshComputed(key, fx.raw)) return;
   const basis = basisOf(fx.raw);
@@ -5877,9 +5960,28 @@ function renderData(m) {
           ${raw.id ? `<dt>Character id</dt><dd><a href="https://sw5e.com/tools/mycharacters/${esc(encodeURIComponent(raw.id))}" target="_blank" rel="noopener">${esc(raw.id)} ↗</a></dd>` : ''}
         </dl></div>
       ${renderHistoryCard(m)}
+      ${renderEngineCard(m)}
     </div>
     <details style="margin-top:12px"><summary>Raw SW5E character JSON</summary><pre class="json">${esc(JSON.stringify(raw, null, 2))}</pre></details>
-    <details style="margin-top:8px"><summary>Computed character JSON (from SW5E's rules engine)</summary><pre class="json">${esc(JSON.stringify(snap.complete, null, 2))}</pre></details>`;
+    <details style="margin-top:8px"><summary>Computed character JSON (${engineCtx() ? "the sheet's rules engine" : "from SW5E's rules engine"})</summary><pre class="json">${esc(JSON.stringify(m.c, null, 2))}</pre></details>`;
+}
+
+/** Where the numbers come from, and how the sheet's engine compared with sw5e.com's calculation of this character. */
+function renderEngineCard(m) {
+  const ck = m.snap.engineCheck;
+  const when = ck ? new Date(ck.at).toLocaleString() : '';
+  let body;
+  if (!engineCtx()) body = '<p>sw5e.com computes the numbers until SW5E’s rules and item data are kept in this browser (they are fetched the first time they’re needed).</p>';
+  else if (!ck) body = `<p>The sheet computes the numbers itself, with SW5E's rules. ${m.raw.id ? '<b>Check with sw5e.com</b> compares them with sw5e.com’s own calculation of this character (it also happens on each Load from SW5E).' : 'A character on sw5e.com is checked against its calculation there on each Load.'}</p>`;
+  else if (!ck.differences.length) body = `<p>The sheet computes the numbers itself, with SW5E's rules. sw5e.com's own calculation (${esc(when)}) gave the same: <b>all ${ck.compared} numbers</b>.</p>`;
+  else {
+    const n = ck.differences.length + (ck.more || 0);
+    body = `<p class="warn-text">sw5e.com's own calculation (${esc(when)}) differs on ${esc(plural(n, 'number'))}. The sheet shows its own; please report this (Copy the details).</p>
+      <ul class="engine-diffs">${ck.differences.map((d) => `<li><code>${esc(d.path)}</code>: sw5e.com ${esc(d.sw5e)}, the sheet ${esc(d.engine)}</li>`).join('')}${ck.more ? `<li>… ${ck.more} more</li>` : ''}</ul>
+      <button class="btn sm" data-act="engine-copy">Copy the details</button>`;
+  }
+  return `<div class="card no-toggle"><div class="card-head"><span class="title">Rules engine</span></div>${body}
+    ${engineCtx() ? `<p><button class="btn sm" data-act="recompute" title="Ask sw5e.com for its calculation of this character and compare">Check with sw5e.com</button></p>` : ''}</div>`;
 }
 
 function renderHistoryCard(m) {
@@ -6199,6 +6301,13 @@ async function handleAction(act, arg) {
     case 'load': return loadFromSw5e();
     case 'import': return $('#fileInput').click();
     case 'recompute': return recomputeCurrent();
+    case 'engine-copy': {
+      const snap = state.snapshots[state.current];
+      const ck = snap && snap.engineCheck;
+      if (!ck) return undefined;
+      const text = JSON.stringify({ character: snap.raw.name, rules: state.rules && state.rules.dataVersion, checked: new Date(ck.at).toISOString(), compared: ck.compared, differences: ck.differences, more: ck.more || 0 }, null, 1);
+      return navigator.clipboard.writeText(text).then(() => setStatus('Copied the differences.'), () => setStatus('Could not copy.', 'error'));
+    }
     case 'export-raw':
       if (snap) download(`${fileSafe(snap.raw.name)}.json`, withEdits(snap.raw, editedFields(snap.key)));
       return;
