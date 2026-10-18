@@ -1,14 +1,13 @@
-// Runs sw5e-sheet/classes.js over every class feature, archetype feature and class option and
+// Runs app/classes.js over every class feature, archetype feature and class option and
 // reports what it makes of them: effects, uses, states, and the stat-like sentences it doesn't use.
-// Usage: node dev/features-report.js dev/dumps/rules.json [--unhandled[=N]] [--states] [--class=Name] [--examples]
-//   (dump the rules from the dev page: see dev/README.md, "Dumps")
+// Usage: node dev/features-report.js [rules.json] [--unhandled[=N]] [--states] [--class=Name] [--examples]
+//   (default: the rules data that comes with the sheet, app/data/sw5e/rules.json)
 'use strict';
 const fs = require('fs');
 const path = require('path');
-const C = require(path.join(__dirname, '..', 'sw5e-sheet', 'classes.js'));
+const C = require(path.join(__dirname, '..', 'app', 'classes.js'));
 
-const file = process.argv[2];
-if (!file) { console.error('usage: node dev/features-report.js <rules.json> [--unhandled[=N]] [--class=Name] [--examples]'); process.exit(1); }
+const file = process.argv[2] && !process.argv[2].startsWith('--') ? process.argv[2] : path.join(__dirname, '..', 'app', 'data', 'sw5e', 'rules.json');
 const arg = (name) => (process.argv.find((a) => a.startsWith(`--${name}`)) || '').split('=')[1];
 const R = JSON.parse(fs.readFileSync(file, 'utf8')).modules;
 const onlyClass = arg('class');

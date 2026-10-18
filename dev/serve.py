@@ -1,16 +1,20 @@
-"""Dev server for the SW5E sheet viewer.
+"""Dev server for the SW5E sheet.
 
 Serves the repo root on http://127.0.0.1:8765 and:
-  * /                       -> redirects to the viewer
-  * /sw5e-sheet/viewer.html -> the real viewer page with dev/chrome-shim.js injected
-                               before the first <script> and dev/bridge-proxy.js after
-                               bridge.js (the extension files are untouched)
+  * /                       -> redirects to the sheet
+  * /app/ (index.html)      -> the sheet as a web page (app/), with dev storage and sw5e.com added:
+                               before app/platform.js, the IndexedDB name "sw5e-dev"; after it,
+                               dev/dev-storage.js (fixtures) and dev/bridge-proxy.js (sw5e.com through
+                               the installed extension). The files on disk are unchanged.
   * /dev/fixtures/index.json -> list of fixture snapshot files (generated)
-  * /dev/capture.js          -> paste-into-sw5e.com script built from bridge.js's
+  * /dev/capture.js          -> paste-into-sw5e.com script built from extension/bridge.js's
                                sw5ePageExtract; downloads sheet snapshots as fixtures
   * POST /dev/dump/<name>    -> saves the request body to dev/dumps/<name> (git-ignored),
                                for pulling data out of the dev page for analysis
 
+While it runs, dist/extension/ (the extension, dev/build.py) is rebuilt whenever app/ or extension/
+changes, so the installed extension stays current: a page reload shows sheet changes, and the
+extension reloads itself when its own code changed (extension/background.js).
 Everything is served with no-store so a plain reload picks up edits.
 Usage: python dev/serve.py [port]
 """
@@ -19,15 +23,19 @@ import json
 import pathlib
 import re
 import sys
+import threading
+
+import build
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-EXT = ROOT / 'sw5e-sheet'
+APP = ROOT / 'app'
+EXT = ROOT / 'extension'
 DEV = ROOT / 'dev'
 FIXTURES = DEV / 'fixtures'
 DUMPS = DEV / 'dumps'
-SHIM_TAG = '<script src="/dev/chrome-shim.js"></script>\n  '
-BRIDGE_TAG = '<script src="bridge.js"></script>'
-PROXY_TAG = '\n  <script src="/dev/bridge-proxy.js"></script>'
+PLATFORM_TAG = '<script src="platform.js"></script>'
+DEV_TAGS = ('<script>var SHEET_DB_NAME = \'sw5e-dev\';</script>\n  ' + PLATFORM_TAG
+            + '\n  <script src="/dev/dev-storage.js"></script>\n  <script src="/dev/bridge-proxy.js"></script>')
 
 
 def build_capture_js():
@@ -68,17 +76,17 @@ class Handler(http.server.SimpleHTTPRequestHandler):
 
     def do_GET(self):
         path, _, query = self.path.partition('?')
-        if path == '/':
+        # The sheet's old address (before app/) goes to the new one.
+        if path in ('/', '/app', '/sw5e-sheet/viewer.html'):
             self.send_response(302)
-            self.send_header('Location', '/sw5e-sheet/viewer.html' + ('?' + query if query else ''))
+            self.send_header('Location', '/app/' + ('?' + query if query else ''))
             self.end_headers()
             return
-        if path == '/sw5e-sheet/viewer.html':
-            html = (EXT / 'viewer.html').read_text(encoding='utf-8')
-            i = html.find('<script')
-            html = html[:i] + SHIM_TAG + html[i:] if i >= 0 else html
-            html = html.replace(BRIDGE_TAG, BRIDGE_TAG + PROXY_TAG)
-            return self.send_text(html, 'text/html')
+        if path in ('/app/', '/app/index.html'):
+            html = (APP / 'index.html').read_text(encoding='utf-8')
+            if PLATFORM_TAG not in html:
+                raise RuntimeError('app/index.html has no ' + PLATFORM_TAG)
+            return self.send_text(html.replace(PLATFORM_TAG, DEV_TAGS, 1), 'text/html')
         if path == '/dev/fixtures/index.json':
             files = sorted(p.name for p in FIXTURES.glob('*.json')) if FIXTURES.exists() else []
             return self.send_text(json.dumps(files), 'application/json')
@@ -89,5 +97,6 @@ class Handler(http.server.SimpleHTTPRequestHandler):
 
 if __name__ == '__main__':
     port = int(sys.argv[1]) if len(sys.argv) > 1 else 8765
-    print(f'SW5E sheet dev server: http://127.0.0.1:{port}/')
+    threading.Thread(target=build.watch, daemon=True).start()
+    print(f'SW5E sheet dev server: http://127.0.0.1:{port}/ (and dist/extension/ kept built)')
     http.server.ThreadingHTTPServer(('127.0.0.1', port), Handler).serve_forever()

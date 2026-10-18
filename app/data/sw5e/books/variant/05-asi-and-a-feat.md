@@ -1,0 +1,4 @@
+
+This one is simple. At level 4, 8, 12, 16, and 19, when a player gets the opportunity to choose between adding 2 to their ability scores or a feat, I'm letting them add 1 to an ability score *and* choose a feat.
+
+Now, this is going to create more powerful players, which means you need to pit them against more powerful monsters. I, personally, love this rule because I know it helps experienced players realize the exact character they want and helps to differentiate different characters of the same class. Then again, I'm a *huge* proponent of feats in general.

@@ -2,3 +2,4 @@
 *.png binary
 dev/regress/cases/*.json linguist-generated=true
 dev/engine/sw5e-results.json linguist-generated=true
+app/data/sw5e/** linguist-vendored

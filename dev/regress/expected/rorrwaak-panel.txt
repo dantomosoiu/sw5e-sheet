@@ -632,7 +632,7 @@ Galactic Basic Shyriiwook
 Add an item
 [All items ▾] []
 Qty [1] [Add]
-2425 items from sw5e.com, fetched 10/16/2026. [Refresh list]
+2425 items from SW5E (data version 199). [Check for a newer list]
 Credits
 450 cr
 [] [] [Apply]
@@ -792,6 +792,7 @@ Loaded from SW5E · changed on SW5E 10/17/2026, 5:54:57 PM [Compare] [Restore] [
 Loaded from SW5E · changed on SW5E 10/17/2026, 5:38:43 PM [Compare] [Restore] [Export]
 Rules engine
 The sheet computes the numbers itself, with SW5E's rules. Check with sw5e.com compares them with sw5e.com’s own calculation of this character (it also happens on each Load from SW5E).
+SW5E's rules and item data: version 199, as it comes with the sheet. SW5E is the work of Galiphile and the SW5E contributors: credits · the books.
 [Check with sw5e.com]
 Raw SW5E character JSON
 { "name": "Rorrwaak (Panel)", "id": "00000000-0000-4000-8000-000011000001", "userId": "00000000-0000-4000-8000-000011000002", "builderVersion": "0.7.6", "image"… [4855 chars #0bfb80a1]

@@ -10,8 +10,10 @@ const fs = require('fs');
 const path = require('path');
 
 const DEV = __dirname;
-const rules = JSON.parse(fs.readFileSync(path.join(DEV, 'dumps', 'rules.json'), 'utf8')).modules;
-const catalog = JSON.parse(fs.readFileSync(path.join(DEV, 'dumps', 'catalog.json'), 'utf8')).items;
+// SW5E's rules and item data: the copy that comes with the sheet.
+const SW5E_DATA = path.join(DEV, '..', 'app', 'data', 'sw5e');
+const rules = JSON.parse(fs.readFileSync(path.join(SW5E_DATA, 'rules.json'), 'utf8')).modules;
+const catalog = JSON.parse(fs.readFileSync(path.join(SW5E_DATA, 'catalog.json'), 'utf8')).items;
 
 const ABILITIES = ['Strength', 'Dexterity', 'Constitution', 'Intelligence', 'Wisdom', 'Charisma'];
 const PRIMARY = {

@@ -1,0 +1,2 @@
+
+When you fail an ability check, if you added your proficiency bonus to the check and you did not have advantage or disadvantage, you can spend 1 force or tech point to reroll the die. You can only use this feature once per ability check, and you must use the new roll.

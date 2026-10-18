@@ -1,0 +1,29 @@
+/* The rules reader (rules.html): SW5E's books next to the sheet, with its colours (viewer.css). */
+.rules-page .topbar { justify-content: space-between; }
+.rules-search { flex: 1; max-width: 420px; }
+.rules-search input { width: 100%; padding: 6px 10px; border-radius: 8px; border: 1px solid var(--line); background: var(--panel); color: var(--text); }
+.rules-layout { display: grid; grid-template-columns: 260px minmax(0, 1fr); gap: 20px; max-width: 1200px; margin: 0 auto; padding: 16px; }
+.rules-nav { position: sticky; top: calc(var(--topbar-h) + 12px); align-self: start; max-height: calc(100vh - var(--topbar-h) - 24px); overflow-y: auto; font-size: 13px; }
+.rules-nav details { margin-bottom: 6px; }
+.rules-nav summary { cursor: pointer; font-weight: 600; padding: 4px 0; }
+.rules-nav ul { list-style: none; margin: 0; padding: 0 0 0 10px; }
+.rules-nav li a { display: block; padding: 3px 6px; border-radius: 6px; color: var(--text); text-decoration: none; }
+.rules-nav a:hover { background: var(--panel-2); }
+.rules-nav a[aria-current="page"] { background: var(--chip); color: var(--accent); }
+.rules-credits-link { margin: 10px 0 0 6px; }
+.rules-text { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px 22px; min-width: 0; line-height: 1.6; }
+.rules-text h1 { font-size: 24px; margin: 4px 0 12px; }
+.rules-text .md-h { margin: 18px 0 6px; line-height: 1.3; }
+.rules-text h3.md-h { font-size: 21px; }
+.rules-text h4.md-h { font-size: 18px; }
+.rules-text h5.md-h { font-size: 16px; }
+.rules-text h6.md-h { font-size: 15px; }
+.rules-page .topbar a.btn { text-decoration: none; }
+.rules-where { margin: 0; }
+.rules-results li { margin-bottom: 10px; }
+@media (max-width: 800px) {
+  .rules-layout { grid-template-columns: 1fr; padding: 12px; }
+  .rules-nav { position: static; max-height: none; }
+  .rules-page .topbar .brand span { display: none; }
+  .rules-text { padding: 12px 14px; }
+}

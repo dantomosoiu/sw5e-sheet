@@ -1,16 +1,19 @@
 /* Choice slots, class lists and pick effects for a character, in Node (for checking the rules
  * reading without a browser). Usage:
- *   node dev/choices-check.js dev/dumps/rules.json <character.json | -e '<json>'> [--effects]
+ *   node dev/choices-check.js <character.json | -e '<json>'> [--effects]
+ * with SW5E's rules data from app/data/sw5e/rules.json (or a rules.json given first).
  * The character file may be SW5E's character JSON or a sheet snapshot ({ raw, complete }).
  */
 'use strict';
 const fs = require('fs');
 const path = require('path');
-const C = require('../sw5e-sheet/classes.js');
-const H = require('../sw5e-sheet/choices.js');
-const P = require('../sw5e-sheet/powers.js');
+const C = require('../app/classes.js');
+const H = require('../app/choices.js');
+const P = require('../app/powers.js');
 
 const args = process.argv.slice(2);
+// A rules file first is optional: the sheet's own copy otherwise.
+if (!/^rules.*\.json$/i.test(path.basename(args[0] || ''))) args.unshift(path.join(__dirname, '..', 'app', 'data', 'sw5e', 'rules.json'));
 const rules = JSON.parse(fs.readFileSync(args[0], 'utf8'));
 const modules = rules.modules || rules;
 let raw;

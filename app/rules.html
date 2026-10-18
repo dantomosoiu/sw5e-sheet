@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SW5E Rules</title>
+  <link rel="icon" href="icons/icon32.png">
+  <link rel="stylesheet" href="viewer.css">
+  <link rel="stylesheet" href="rules.css">
+</head>
+<body class="rules-page">
+  <header class="topbar">
+    <div class="brand"><img src="icons/icon32.png" alt=""><span>SW5E Rules</span></div>
+    <form class="rules-search" role="search">
+      <label class="sr-only" for="q">Search the books</label>
+      <input id="q" type="search" placeholder="Search the books…" autocomplete="off">
+    </form>
+    <a class="btn" href="index.html">Character sheet</a>
+  </header>
+  <div class="rules-layout">
+    <nav id="books" class="rules-nav" aria-label="Books and chapters"></nav>
+    <main id="chapter" class="rules-text" tabindex="-1"></main>
+  </div>
+  <script src="md.js"></script>
+  <script src="rules.js"></script>
+</body>
+</html>

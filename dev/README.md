@@ -1,59 +1,84 @@
-# Dev harness
+# Developing
 
-Runs the extension's real `viewer.html` as a normal web page so it can be developed and
-driven in a browser (including by Claude in Chrome, which can't open `chrome-extension://` pages).
-Nothing here is part of the extension: pack and ship only `sw5e-sheet/`.
+The sheet (`app/`) is a web app; the browser extension (`extension/`) wraps it, adding Chrome's storage and the
+connection to sw5e.com. Nothing in `dev/` ships.
 
-## Run
+## Build the extension
+```
+python dev/build.py         # dist/extension/ = app/ + extension/ (git-ignored)
+```
+Load `dist/extension/` unpacked in `chrome://extensions` (Developer mode). The build writes only what changed and
+removes what's gone, so Chrome can keep it loaded while it's rebuilt: a sheet change shows on a page reload. The
+extension's `platform.js` takes the place of the web one, and its `index.html` loads `bridge.js` before it. The dev
+server below rebuilds it whenever `app/` or `extension/` changes.
+
+The unpacked extension's id comes from the folder's path. To keep one id (and its storage) while the folder moves,
+load it from a fixed path that points at the build, e.g. on Windows a directory junction:
+`mklink /J C:\sw5e-sheet <repo>\dist\extension`.
+
+## Run the dev page
 ```
 python dev/serve.py        # http://127.0.0.1:8765/
 ```
-- `/` opens the viewer with `dev/chrome-shim.js` injected (the file on disk is unchanged).
-- Dev storage is IndexedDB ("sw5e-dev"; the extension's own storage has no 5 MB cap either). `/?reset` clears it and reloads fixtures.
+- `/` opens the sheet (`app/`) as a web page, with dev additions injected (the files on disk are unchanged):
+  storage in IndexedDB "sw5e-dev" (instead of the web version's "sw5e-sheet"), the test characters from
+  `dev/fixtures/` (`dev/dev-storage.js`; `/?reset` clears the dev storage and puts them in again), and sw5e.com
+  through the installed extension (`dev/bridge-proxy.js`).
 - Responses are `no-store`: edit a file, reload the page.
-- `/dev/phone.html?w=390&h=844` shows the viewer in a phone-sized frame (`?w=800&h=1000`: tablet), same storage.
+- `/dev/phone.html?w=390&h=844` shows the dev page in a phone-sized frame (`?w=800&h=1000`: tablet), same storage.
+- `/app/rules.html` is the rules reader (SW5E's books).
+- While it runs, `dist/extension/` is kept built.
 
 ## What works / what doesn't
-- `chrome.storage.local` is backed by localStorage (`sw5e-dev:` keys) and seeded from `dev/fixtures/*.json`.
-- Rendering, filter, themes, import/export, switching characters: all real viewer code.
-- **Load from SW5E / Recompute / computing imports go through the installed extension.**
-  `dev/bridge-proxy.js` (injected after `bridge.js`) replaces `runInSw5e` with a message to the
-  extension's background worker, which runs the real bridge against a sw5e.com tab.
-  This needs the extension installed from `sw5e-sheet/` with `externally_connectable` in its
-  manifest (dev builds have it; `dev/pack.py` strips it). Extension id defaults to
-  `mfikebeffkcgnkppppccnidnneblggaa`; use `/?ext=<id>` once if yours differs.
+- Everything the sheet does by itself: drawing, the rules engine, tracking, rolling, editing, import and export,
+  creating characters, the rules reader.
+- **Load from SW5E, Sync and Check with sw5e.com go through the installed extension.** `dev/bridge-proxy.js` gives
+  the page `platform.sw5e`: a message to the extension's background worker, which runs the real bridge
+  (`extension/bridge.js`) against a sw5e.com tab. This needs the extension installed from `dist/extension/` with
+  `externally_connectable` in its manifest (dev builds have it; `dev/pack.py` strips it). Extension id defaults to
+  `mfikebeffkcgnkppppccnidnneblggaa`; use `/?ext=<id>` once if yours differs. Without the extension (another
+  browser, Playwright) the dev page is the plain web version: those buttons are hidden.
 - **Protect your real characters first:** in the dev page's console,
   `localStorage.setItem('sw5e-dev:protectedIds', JSON.stringify(['<sw5e.com id>', …]))` (`'[]'` if none). Those
   characters are never saved to sw5e.com from the dev page nor recorded as test cases; until the list is set,
   the dev page saves and records nothing. Test saves against a throwaway character.
-- **The extension reloads itself** when `manifest.json`, `background.js` or `bridge.js` changed on
-  disk: on the dev page's next sw5e.com request it notices, reloads, and the page retries (a few
-  seconds; installed-viewer tabs close). The code that runs is the extension's, not the dev page's
-  copy of `bridge.js`. Reload by hand in `chrome://extensions` only if this check itself changed.
+- **The extension reloads itself** when its `manifest.json`, `background.js` or `bridge.js` changed on disk: on
+  the dev page's next sw5e.com request it notices, reloads, and the page retries (a few seconds; open extension
+  tabs close). Reload by hand in `chrome://extensions` only if this check itself changed.
 
-## Dumps and the reports
-`POST /dev/dump/<name>` saves the request body to `dev/dumps/<name>` (git-ignored), to pull data
-out of the dev page, e.g. the cached SW5E item catalog and rules (run in the dev page's console):
+## SW5E's data
+`app/data/sw5e/` is the copy of SW5E's rules data, item list and rule books that comes with the sheet (see its
+[README](../app/data/sw5e/README.md) for where it's from and whose it is). To update it:
+```
+node dev/fetch-sw5e.js --check    # what SW5E's data service has that's different; writes nothing
+node dev/fetch-sw5e.js            # fetch it into app/data/sw5e/
+```
+It says which classes, features, items and chapters changed. After a change: `node dev/engine-check.js` and
+`node dev/regress.js`, and record SW5E's results again (below) if the data the engine reads changed. The sheet
+also fetches newer data by itself when sw5e.com reports a newer data version than its copy.
 
-    for (const k of ['catalog', 'rules']) await fetch(`/dev/dump/${k}.json`, { method: 'POST', body: JSON.stringify((await chrome.storage.local.get(k))[k]) })
+## Reports
+`node dev/effects-report.js [catalog.json] [--items] [--unhandled]` runs `app/effects.js` over every item: how many
+get bonuses applied, by stat and item kind; `--items` lists each item's reading, `--unhandled` the stat-like
+sentences kept only as notes (candidates for new rules, or deliberately conditional).
 
-`node dev/effects-report.js dev/dumps/catalog.json [--items] [--unhandled]` runs
-`sw5e-sheet/effects.js` over every item: how many get bonuses applied, by stat and item kind;
-`--items` lists each item's reading, `--unhandled` the stat-like sentences kept only as notes
-(candidates for new rules, or deliberately conditional).
+`node dev/features-report.js [rules.json] [--unhandled[=N]] [--states] [--class=Name] [--examples]` does the same
+for `app/classes.js` over every class feature, archetype feature and class option: how many give effects, uses and
+states; `--states` lists the switch-on states it finds (and features worded like one that aren't); `--unhandled`
+the stat-like sentences it makes nothing of, after setting aside table-time rules (targets, actions, triggers) and
+numbers SW5E computes itself.
 
-`node dev/features-report.js dev/dumps/rules.json [--unhandled[=N]] [--states] [--class=Name] [--examples]`
-does the same for `sw5e-sheet/classes.js` over every class feature, archetype feature and class
-option: how many give effects, uses and states; `--states` lists the switch-on states it finds (and
-features worded like one that aren't); `--unhandled` the stat-like sentences it makes nothing of,
-after setting aside table-time rules (targets, actions, triggers) and numbers SW5E computes itself.
+`node dev/choices-check.js [rules.json] <character.json | -e '<json>'> [--effects]` prints what `app/choices.js`
+and `app/powers.js` make of a character: each class's option lists (with archetype lists and Engineer
+modifications), maneuvers, powers known from class and archetype tables, every choice slot (fighting styles,
+forms, focuses, improvements, maneuvers and powers given by features, feats and species) with its count, picks and
+problems, and with `--effects` what each pick does. The player panels use it to check the rules reading without a
+browser.
 
-`node dev/choices-check.js dev/dumps/rules.json <character.json | -e '<json>'> [--effects]` prints what
-`sw5e-sheet/choices.js` and `sw5e-sheet/powers.js` make of a character: each class's option lists (with archetype
-lists and Engineer modifications), maneuvers, powers known from class and archetype tables, every choice slot
-(fighting styles, forms, focuses, improvements, maneuvers and powers given by features, feats and species) with its
-count, picks and problems, and with `--effects` what each pick does. The player panels use it to check the rules
-reading without a browser.
+All three read SW5E's data from `app/data/sw5e/` unless given a file.
+
+`POST /dev/dump/<name>` saves the request body to `dev/dumps/<name>` (git-ignored), to pull data out of the dev
+page for analysis.
 
 ## Regression check
 ```
@@ -61,13 +86,14 @@ node dev/regress.js              # compare every case (exit code 1 when somethin
 node dev/regress.js kadro        # only the cases whose file name contains "kadro"
 node dev/regress.js --update     # accept what the sheet shows now
 ```
-Draws each recorded test character with the viewer's own code in Node (`dev/headless.js`: the same scripts as
-`viewer.html`, with stand-ins for the page, `chrome.storage` and a stopped clock; no browser, no sw5e.com) and
-compares the result with `dev/regress/expected/<case>.txt`. Each report has:
-- **Sent to SW5E's engine:** the tweaks the sheet's effects, features and edits add, and whether the recorded
-  calculation is still for exactly that. "OUT OF DATE" means a change alters what SW5E computes from: the numbers
-  can't be checked until the case is recorded again (check the tweak lines first).
-- **Numbers:** what SW5E's engine gave (AC, HP, saves, skills, weapons, casting…).
+Draws each recorded test character with the sheet's own code in Node (`dev/headless.js`: the same scripts as
+`app/index.html`, with stand-ins for the page, the platform's storage and a stopped clock; SW5E's data from
+`app/data/sw5e/`; no browser, no sw5e.com) and compares the result with `dev/regress/expected/<case>.txt`. Each
+report has:
+- **Sent to the rules engine:** the tweaks the sheet's effects, features and edits add, and whether SW5E's recorded
+  calculation is still for exactly that. "OUT OF DATE" means a change alters what's computed from: the numbers
+  can't be checked against SW5E until the case is recorded again (check the tweak lines first).
+- **Numbers:** what the rules engine gave (AC, HP, saves, skills, weapons, casting…).
 - **Effects and tweaks,** and **Rolls:** every roll the sheet offers (to-hit, damage, critical and two-handed damage,
   checks, saves, powers…) with its bonus by source, options, critical range and warnings.
 - **Sheet:** the text of every section, with the hover explanation of each number an effect changed.
@@ -75,23 +101,22 @@ compares the result with `dev/regress/expected/<case>.txt`. Each report has:
 Changes are listed by part, old line above new (`--full` shows all of them, `--out=<dir>` writes the reports).
 A change you meant: `--update`, and commit the expected files with it.
 
-The cases (`dev/regress/cases/`) are the test characters in the dev page, with SW5E's calculation of them. To
+The cases (`dev/regress/cases/`) are the test characters in the dev page, with SW5E's own calculation of them. To
 record them again (new test characters, or to see whether sw5e.com's engine changed: record, then compare):
-1. In the dev page's console: `const rec = await import('/dev/regress-record.js'); await rec.record()`. It
-   recalculates each character with SW5E's engine (nothing is saved to sw5e.com) and writes the dev storage and SW5E's
-   rules and item data to `dev/dumps/` (git-ignored). Protected characters (see above) are left out.
+1. In the dev page's console: `const rec = await import('/dev/regress-record.js'); await rec.record()`. It has
+   sw5e.com compute each character with its edits and effects (nothing is saved there) and writes the dev storage
+   with those calculations to `dev/dumps/regress-state.json` (git-ignored). Protected characters (see above) are
+   left out.
 2. `node dev/regress.js record` makes one case per character, with the sw5e.com ids and the account's id replaced
    by made-up ones (it stops if it finds an e-mail address).
 3. `node dev/regress.js` shows what the new recording changes; `--update` accepts it.
 
-The check needs SW5E's rules and item data in `dev/dumps/rules.json` and `catalog.json` (not in the repo; step 1
-writes them).
-
-## The own rules engine
-`sw5e-sheet/engine.js` computes a character's numbers from SW5E's character data and rules the way SW5E's engine
-does, quirks included (see `docs/phone-app.md`). It is checked against SW5E's own results:
+## The rules engine
+`app/engine.js` computes a character from SW5E's character data and rules the way SW5E's engine does, quirks
+included (see [docs/engine.md](../docs/engine.md)). It is checked against SW5E's own results:
 ```
 node dev/engine-check.js            # every number SW5E computed, computed again by the engine
+node dev/engine-check.js --all      # every field, the rules references and SW5E's validation too
 node dev/engine-check.js --missing  # also list what the engine doesn't compute yet
 ```
 SW5E's results come from the regression cases and from `dev/engine/sw5e-results.json`: made-up characters that
@@ -100,24 +125,28 @@ edge cases), computed by sw5e.com. Record them again when the engine grows, and 
 time (sw5e.com can change):
 1. `node dev/engine-cases.js` writes the characters (`dev/engine/inputs.json`, git-ignored).
 2. In the dev page's console: `const rec = await import('/dev/engine-record.js'); rec.record()`, and wait for
-   `rec.progress.finished` (about two minutes). sw5e.com only computes them; nothing is saved there.
+   `rec.progress.finished` (about two minutes). sw5e.com only computes them; nothing is saved there. The whole
+   computed sheets go to `dev/dumps/engine-sw5e.json` (git-ignored; `--all` reads them).
 3. `node dev/engine-check.js import` keeps their numbers and says what SW5E now computes differently.
 4. `node dev/engine-check.js`.
 
 ## Fixtures
-`dev/fixtures/*.json` are sheet snapshots (`format: "sw5e-sheet-snapshot"`), or raw SW5E exports
-(shown without computed data). To capture fresh snapshots:
+`dev/fixtures/*.json` are sheet snapshots (`format: "sw5e-sheet-snapshot"`), or raw SW5E exports (computed by
+the sheet's engine). To capture fresh snapshots:
 1. Open a signed-in `https://sw5e.com/tools/mycharacters` tab.
 2. Paste the contents of `http://127.0.0.1:8765/dev/capture.js` into its DevTools console
    (optionally first `window.CAPTURE_ONLY = ['Character name']`).
 3. Move the downloaded `*.sheet-snapshot.json` into `dev/fixtures/` and open `/?reset`.
 
-`capture.js` is generated from `sw5e-sheet/bridge.js` on each request, so it always matches the
-extension's extraction code. The "Export sheet snapshot" menu item in the installed extension
-produces the same format.
+`capture.js` is generated from `extension/bridge.js` on each request, so it always matches the extension's
+extraction code. "Export SW5E's copy with its numbers" in the sheet's menu produces the same format. Importing a
+file (Import file…) works too and needs no reset.
 
 ## Releasing
-`python dev/pack.py` writes `dist/sw5e-sheet-<version>.zip` with the dev-only manifest keys
-removed. Before publishing, unzip it, load it unpacked, and run through the toolbar button,
-Load from SW5E, Recompute and Import in the real viewer — the harness doesn't cover the
-viewer's own `chrome.storage` or the toolbar button.
+`python dev/pack.py` builds `dist/extension/` and writes `dist/sw5e-sheet-<version>.zip` with the dev-only
+manifest keys removed. Before publishing, unzip it, load it unpacked, and run through the toolbar button, Load from
+SW5E, Sync, Check with sw5e.com and Import in the extension's own page: the dev page doesn't cover the extension's
+`chrome.storage` or the toolbar button.
+
+The web version is `app/` as it is: any static file server can host it (it needs no server code). It keeps its
+data in the browser's IndexedDB and can't reach sw5e.com: characters come in as files.

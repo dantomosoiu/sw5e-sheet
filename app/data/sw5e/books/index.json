@@ -1,0 +1,467 @@
+{
+ "phb": {
+  "title": "Player's Handbook",
+  "chapters": [
+   {
+    "number": -1,
+    "name": "Whats Different",
+    "file": "phb/00-whats-different.md"
+   },
+   {
+    "number": 0,
+    "name": "Introduction",
+    "file": "phb/01-introduction.md"
+   },
+   {
+    "number": 1,
+    "name": "Step-By-Step Characters",
+    "file": "phb/02-step-by-step-characters.md"
+   },
+   {
+    "number": 2,
+    "name": "Species",
+    "file": "phb/03-species.md"
+   },
+   {
+    "number": 3,
+    "name": "Classes",
+    "file": "phb/04-classes.md"
+   },
+   {
+    "number": 4,
+    "name": "Personality and Backgrounds",
+    "file": "phb/05-personality-and-backgrounds.md"
+   },
+   {
+    "number": 5,
+    "name": "Equipment",
+    "file": "phb/06-equipment.md"
+   },
+   {
+    "number": 6,
+    "name": "Customization Options",
+    "file": "phb/07-customization-options.md"
+   },
+   {
+    "number": 7,
+    "name": "Using Ability Scores",
+    "file": "phb/08-using-ability-scores.md"
+   },
+   {
+    "number": 8,
+    "name": "Adventuring",
+    "file": "phb/09-adventuring.md"
+   },
+   {
+    "number": 9,
+    "name": "Combat",
+    "file": "phb/10-combat.md"
+   },
+   {
+    "number": 10,
+    "name": "Force- and Tech-casting",
+    "file": "phb/11-force-and-tech-casting.md"
+   },
+   {
+    "number": 13,
+    "name": "Appendix A: Conditions",
+    "file": "phb/12-appendix-a-conditions.md"
+   },
+   {
+    "number": 14,
+    "name": "Appendix B: Recommended Variant Rules",
+    "file": "phb/13-appendix-b-recommended-variant-rules.md"
+   },
+   {
+    "number": 99,
+    "name": "Changelog",
+    "file": "phb/14-changelog.md"
+   }
+  ]
+ },
+ "sotg": {
+  "title": "Starships of the Galaxy",
+  "chapters": [
+   {
+    "number": 0,
+    "name": "Introduction",
+    "file": "sotg/00-introduction.md"
+   },
+   {
+    "number": 1,
+    "name": "Step-By-Step Starships",
+    "file": "sotg/01-step-by-step-starships.md"
+   },
+   {
+    "number": 2,
+    "name": "Deployments",
+    "file": "sotg/02-deployments.md"
+   },
+   {
+    "number": 3,
+    "name": "Starships",
+    "file": "sotg/03-starships.md"
+   },
+   {
+    "number": 4,
+    "name": "Modifications",
+    "file": "sotg/04-modifications.md"
+   },
+   {
+    "number": 5,
+    "name": "Equipment",
+    "file": "sotg/05-equipment.md"
+   },
+   {
+    "number": 6,
+    "name": "Customization Options",
+    "file": "sotg/06-customization-options.md"
+   },
+   {
+    "number": 7,
+    "name": "Using Ability Scores",
+    "file": "sotg/07-using-ability-scores.md"
+   },
+   {
+    "number": 8,
+    "name": "Adventuring",
+    "file": "sotg/08-adventuring.md"
+   },
+   {
+    "number": 9,
+    "name": "Combat",
+    "file": "sotg/09-combat.md"
+   },
+   {
+    "number": 10,
+    "name": "Generating Encounters",
+    "file": "sotg/10-generating-encounters.md"
+   },
+   {
+    "number": 11,
+    "name": "Appendix A: Conditions",
+    "file": "sotg/11-appendix-a-conditions.md"
+   },
+   {
+    "number": 99,
+    "name": "Changelog",
+    "file": "sotg/12-changelog.md"
+   }
+  ]
+ },
+ "wh": {
+  "title": "Wretched Hives",
+  "chapters": [
+   {
+    "number": 1,
+    "name": "Introduction",
+    "file": "wh/00-introduction.md"
+   },
+   {
+    "number": 1,
+    "name": "Step-By-Step Factions",
+    "file": "wh/01-step-by-step-factions.md"
+   },
+   {
+    "number": 2,
+    "name": "Entertainment and Downtime",
+    "file": "wh/02-entertainment-and-downtime.md"
+   },
+   {
+    "number": 3,
+    "name": "Factions and Membership",
+    "file": "wh/03-factions-and-membership.md"
+   },
+   {
+    "number": 4,
+    "name": "Using Ability Scores",
+    "file": "wh/04-using-ability-scores.md"
+   },
+   {
+    "number": 5,
+    "name": "Equipment",
+    "file": "wh/05-equipment.md"
+   },
+   {
+    "number": 6,
+    "name": "Customization Options",
+    "file": "wh/06-customization-options.md"
+   },
+   {
+    "number": 7,
+    "name": "Enhanced Items",
+    "file": "wh/07-enhanced-items.md"
+   },
+   {
+    "number": 8,
+    "name": "Tool Proficiencies",
+    "file": "wh/08-tool-proficiencies.md"
+   },
+   {
+    "number": 99,
+    "name": "Changelog",
+    "file": "wh/09-changelog.md"
+   }
+  ]
+ },
+ "ec": {
+  "title": "Expanded Content",
+  "chapters": [
+   {
+    "number": 0,
+    "name": "Archetypes",
+    "file": "ec/00-archetypes.md"
+   },
+   {
+    "number": 0,
+    "name": "Backgrounds",
+    "file": "ec/01-backgrounds.md"
+   },
+   {
+    "number": 0,
+    "name": "Customization Options",
+    "file": "ec/02-customization-options.md"
+   },
+   {
+    "number": 0,
+    "name": "Enhanced Items",
+    "file": "ec/03-enhanced-items.md"
+   },
+   {
+    "number": 0,
+    "name": "Equipment",
+    "file": "ec/04-equipment.md"
+   },
+   {
+    "number": 0,
+    "name": "Force Powers",
+    "file": "ec/05-force-powers.md"
+   },
+   {
+    "number": 0,
+    "name": "Maneuvers",
+    "file": "ec/06-maneuvers.md"
+   },
+   {
+    "number": 0,
+    "name": "Species",
+    "file": "ec/07-species.md"
+   },
+   {
+    "number": 0,
+    "name": "Tech Powers",
+    "file": "ec/08-tech-powers.md"
+   },
+   {
+    "number": 0,
+    "name": "Variant Rules",
+    "file": "ec/09-variant-rules.md"
+   }
+  ]
+ },
+ "variant": {
+  "title": "Variant Rules",
+  "chapters": [
+   {
+    "number": 0,
+    "name": "Aging",
+    "file": "variant/00-aging.md"
+   },
+   {
+    "number": 0,
+    "name": "Alternate Casting",
+    "file": "variant/01-alternate-casting.md"
+   },
+   {
+    "number": 0,
+    "name": "Alternative Armor",
+    "file": "variant/02-alternative-armor.md"
+   },
+   {
+    "number": 0,
+    "name": "Alternative At-Wills and Extra Attack",
+    "file": "variant/03-alternative-at-wills-and-extra-attack.md"
+   },
+   {
+    "number": 0,
+    "name": "Ammunition Sizes",
+    "file": "variant/04-ammunition-sizes.md"
+   },
+   {
+    "number": 0,
+    "name": "ASI and a Feat",
+    "file": "variant/05-asi-and-a-feat.md"
+   },
+   {
+    "number": 0,
+    "name": "Bonus Action Consumables",
+    "file": "variant/06-bonus-action-consumables.md"
+   },
+   {
+    "number": 0,
+    "name": "Bonus Proficiencies",
+    "file": "variant/07-bonus-proficiencies.md"
+   },
+   {
+    "number": 0,
+    "name": "Called Shots",
+    "file": "variant/08-called-shots.md"
+   },
+   {
+    "number": 0,
+    "name": "Careful Checks",
+    "file": "variant/09-careful-checks.md"
+   },
+   {
+    "number": 0,
+    "name": "Combination Weapons",
+    "file": "variant/10-combination-weapons.md"
+   },
+   {
+    "number": 0,
+    "name": "Compound Advantage",
+    "file": "variant/11-compound-advantage.md"
+   },
+   {
+    "number": 0,
+    "name": "Compound Checks",
+    "file": "variant/12-compound-checks.md"
+   },
+   {
+    "number": 0,
+    "name": "Critical Saving Throws",
+    "file": "variant/13-critical-saving-throws.md"
+   },
+   {
+    "number": 0,
+    "name": "Crueler Criticals",
+    "file": "variant/14-crueler-criticals.md"
+   },
+   {
+    "number": 0,
+    "name": "Defense Rolls",
+    "file": "variant/15-defense-rolls.md"
+   },
+   {
+    "number": 0,
+    "name": "Destiny",
+    "file": "variant/16-destiny.md"
+   },
+   {
+    "number": 0,
+    "name": "Dismemberment",
+    "file": "variant/17-dismemberment.md"
+   },
+   {
+    "number": 0,
+    "name": "Dueling",
+    "file": "variant/18-dueling.md"
+   },
+   {
+    "number": 0,
+    "name": "Elevation",
+    "file": "variant/19-elevation.md"
+   },
+   {
+    "number": 0,
+    "name": "Exertion",
+    "file": "variant/20-exertion.md"
+   },
+   {
+    "number": 0,
+    "name": "Flanking",
+    "file": "variant/21-flanking.md"
+   },
+   {
+    "number": 0,
+    "name": "Force Alignment",
+    "file": "variant/22-force-alignment.md"
+   },
+   {
+    "number": 0,
+    "name": "Force and Tech Prowess",
+    "file": "variant/23-force-and-tech-prowess.md"
+   },
+   {
+    "number": 0,
+    "name": "Force-Bond",
+    "file": "variant/24-force-bond.md"
+   },
+   {
+    "number": 0,
+    "name": "Gestalt and Dichotomous Characters",
+    "file": "variant/25-gestalt-and-dichotomous-characters.md"
+   },
+   {
+    "number": 0,
+    "name": "Hunted",
+    "file": "variant/26-hunted.md"
+   },
+   {
+    "number": 0,
+    "name": "Invocation Versatility",
+    "file": "variant/27-invocation-versatility.md"
+   },
+   {
+    "number": 0,
+    "name": "Longer Rests",
+    "file": "variant/28-longer-rests.md"
+   },
+   {
+    "number": 0,
+    "name": "Milestone Leveling",
+    "file": "variant/29-milestone-leveling.md"
+   },
+   {
+    "number": 0,
+    "name": "Overlapping Features",
+    "file": "variant/30-overlapping-features.md"
+   },
+   {
+    "number": 0,
+    "name": "Replacing Powers",
+    "file": "variant/31-replacing-powers.md"
+   },
+   {
+    "number": 0,
+    "name": "Saving Throw Checks",
+    "file": "variant/32-saving-throw-checks.md"
+   },
+   {
+    "number": 0,
+    "name": "Simplified Forcecasting",
+    "file": "variant/33-simplified-forcecasting.md"
+   },
+   {
+    "number": 0,
+    "name": "Simplified Styles and Masteries",
+    "file": "variant/34-simplified-styles-and-masteries.md"
+   },
+   {
+    "number": 0,
+    "name": "Starship Destiny",
+    "file": "variant/35-starship-destiny.md"
+   },
+   {
+    "number": 0,
+    "name": "Strenuous Combat",
+    "file": "variant/36-strenuous-combat.md"
+   },
+   {
+    "number": 0,
+    "name": "Tactical Initiative",
+    "file": "variant/37-tactical-initiative.md"
+   },
+   {
+    "number": 0,
+    "name": "Weapon Sundering",
+    "file": "variant/38-weapon-sundering.md"
+   },
+   {
+    "number": 0,
+    "name": "Wounds",
+    "file": "variant/39-wounds.md"
+   }
+  ]
+ }
+}

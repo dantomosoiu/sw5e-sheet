@@ -1,4 +1,4 @@
-/* Checks the sheet's own rules engine (sw5e-sheet/engine.js) against SW5E's: each character SW5E has computed is
+/* Checks the sheet's own rules engine (app/engine.js) against SW5E's: each character SW5E has computed is
  * computed again by the engine, and every number compared.
  *
  *   node dev/engine-check.js [--show=N] [--field=<path part>] [--case=<name part>] [--missing] [--all]
@@ -10,14 +10,14 @@
  *   - dev/engine/sw5e-results.json: characters made up to cover the rules (classes and levels, species, armor,
  *     weapons, tweaks…), computed by sw5e.com through the extension (dev/engine-record.js in the dev page).
  * Fields the engine doesn't compute yet are counted as "not yet", not as wrong.
- * Needs SW5E's rules and item data in dev/dumps/ (see dev/README.md).
+ * SW5E's rules and item data: the copy that comes with the sheet (app/data/sw5e/).
  */
 'use strict';
 const fs = require('fs');
 const path = require('path');
 const { loadSheet } = require('./headless');
 const { flatten, NUMBER_FIELDS, NUMBER_SKIP } = require('./regress');
-const E = require('../sw5e-sheet/engine.js');
+const E = require('../app/engine.js');
 
 const DEV = __dirname;
 const readJson = (p) => JSON.parse(fs.readFileSync(p, 'utf8'));
@@ -86,9 +86,7 @@ async function casePairs(data) {
     const c = readJson(path.join(dir, f));
     const sheet = loadSheet({ storage: c.storage, now: c.recordedAt });
     await sheet.ready;
-    sheet.ctx.__rules = data.rulesText;
-    sheet.ctx.__catalog = data.catalogText;
-    sheet.get('state.rules = JSON.parse(__rules); setCatalog(JSON.parse(__catalog)); delete globalThis.__rules; delete globalThis.__catalog');
+    await sheet.get('ensureSw5eData()');
     const state = sheet.get('state');
     const snap = state.snapshots[c.key];
     const full = (complete, validation) => (project === everything ? project(complete) : withValidation(project(complete), validation));
@@ -160,13 +158,9 @@ async function main() {
   const fieldFilter = opt('field', null);
   const caseFilter = opt('case', null);
   if (args.includes('--all')) project = everything;
-  const rulesFile = path.join(DEV, 'dumps', 'rules.json');
-  const catalogFile = path.join(DEV, 'dumps', 'catalog.json');
-  if (!fs.existsSync(rulesFile) || !fs.existsSync(catalogFile)) { console.log('Needs dev/dumps/rules.json and catalog.json (see dev/README.md).'); return 2; }
-  const rulesText = fs.readFileSync(rulesFile, 'utf8');
-  const catalogText = fs.readFileSync(catalogFile, 'utf8');
-  const data = { rules: JSON.parse(rulesText), catalog: JSON.parse(catalogText), rulesText, catalogText };
-  const ctx = E.engContext({ rules: data.rules.modules || data.rules, catalog: data.catalog.items || data.catalog });
+  const SW5E_DATA = path.join(DEV, '..', 'app', 'data', 'sw5e');
+  const data = { rules: readJson(path.join(SW5E_DATA, 'rules.json')), catalog: readJson(path.join(SW5E_DATA, 'catalog.json')) };
+  const ctx = E.engContext({ rules: data.rules.modules, catalog: data.catalog.items });
 
   let pairs = (await casePairs(data)).concat(recordedPairs());
   if (caseFilter) pairs = pairs.filter((p) => p.label.toLowerCase().includes(caseFilter.toLowerCase()));

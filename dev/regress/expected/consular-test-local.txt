@@ -642,7 +642,7 @@ Galactic Basic
 Add an item
 [All items ▾] []
 Qty [1] [Add]
-2425 items from sw5e.com, fetched 10/16/2026. [Refresh list]
+2425 items from SW5E (data version 199). [Check for a newer list]
 Credits
 0 cr
 [] [] [Apply]
@@ -714,6 +714,7 @@ all characters never · [Back up all characters]
 Imported from file [Export]
 Rules engine
 The sheet computes the numbers itself, with SW5E's rules. A character on sw5e.com is checked against its calculation there on each Load.
+SW5E's rules and item data: version 199, as it comes with the sheet. SW5E is the work of Galiphile and the SW5E contributors: credits · the books.
 [Check with sw5e.com]
 Raw SW5E character JSON
 { "name": "Consular Test (local)", "builderVersion": "0.7.6", "image": "", "experiencePoints": 6500, "species": { "name": "Human", "abilityScoreImprovementSelec… [1599 chars #fed9b8b4]

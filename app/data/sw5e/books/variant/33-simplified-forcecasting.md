@@ -1,0 +1,4 @@
+
+The current version of the SW5e PHB has the player using different ability scores depending on the alignment of the powers they are trying to cast: Wisdom for light side, Charisma for dark side, player's choice for universal.
+
+For new players, this might be too complicated. Consider letting them instead choose between using Wisdom and Charisma as their forcecasting ability.

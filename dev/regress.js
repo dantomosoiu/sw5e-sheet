@@ -14,7 +14,7 @@
  *   - the numbers SW5E's engine gave (AC, HP, saves, skills, attacks, casting…);
  *   - every roll the sheet offers (to-hit, damage, critical damage, saves, skills…) as the dice card shows it;
  *   - the text of every section of the sheet, with the hover explanation of each changed number.
- * Needs SW5E's rules and item data in dev/dumps/rules.json and catalog.json (git-ignored; recording writes them).
+ * SW5E's rules and item data are the copy that comes with the sheet (app/data/sw5e/), loaded as the sheet loads it.
  */
 'use strict';
 const fs = require('fs');
@@ -26,6 +26,7 @@ const DEV = __dirname;
 const CASES = path.join(DEV, 'regress', 'cases');
 const EXPECTED = path.join(DEV, 'regress', 'expected');
 const DUMPS = path.join(DEV, 'dumps');
+const SW5E_DATA = path.join(DEV, '..', 'app', 'data', 'sw5e');
 
 const slug = (s) => String(s).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 const hash = (s) => crypto.createHash('sha1').update(s).digest('hex').slice(0, 8);
@@ -323,14 +324,12 @@ function report(sheet, key) {
   return L.concat(body).join('\n') + '\n';
 }
 /** The report for one case file. */
-async function runCase(file, data) {
+async function runCase(file) {
   const c = readJson(file);
   const sheet = loadSheet({ storage: c.storage, now: c.recordedAt || Date.UTC(2026, 0, 1) });
   await sheet.ready;
-  sheet.ctx.__rules = data.rules;
-  sheet.ctx.__catalog = data.catalog;
-  // Parsed inside the sheet's own context, as the extension would have them.
-  sheet.get('state.rules = JSON.parse(__rules); setCatalog(JSON.parse(__catalog)); delete globalThis.__rules; delete globalThis.__catalog');
+  // SW5E's rules and item data, loaded as the sheet loads them: its own copy (app/data/sw5e/).
+  await sheet.get('ensureSw5eData()');
   await sheet.get('loadRollLog()');
   const text = report(sheet, c.key);
   return { name: c.name, text, errors: sheet.errors, info: c };
@@ -407,14 +406,7 @@ async function main() {
     return 0;
   }
 
-  for (const f of ['rules.json', 'catalog.json']) {
-    if (!fs.existsSync(path.join(DUMPS, f))) {
-      console.log(`Missing dev/dumps/${f}: SW5E's data isn't in the repo. Record it from the dev page (dev/regress-record.js).`);
-      return 2;
-    }
-  }
-  const data = { rules: fs.readFileSync(path.join(DUMPS, 'rules.json'), 'utf8'), catalog: fs.readFileSync(path.join(DUMPS, 'catalog.json'), 'utf8') };
-  const rulesVersion = (() => { try { return JSON.parse(data.rules).dataVersion; } catch (e) { return null; } })();
+  const rulesVersion = (() => { try { return readJson(path.join(SW5E_DATA, 'rules.json')).dataVersion; } catch (e) { return null; } })();
   const files = (fs.existsSync(CASES) ? fs.readdirSync(CASES) : []).filter((f) => f.endsWith('.json')).sort()
     .filter((f) => !names.length || names.some((n) => f.includes(slug(n))));
   if (!files.length) { console.log('No cases (dev/regress/cases/). Record some first: see the top of dev/regress.js.'); return 2; }
@@ -424,7 +416,7 @@ async function main() {
 
   let changed = 0, stale = 0, added = 0;
   for (const f of files) {
-    const r = await runCase(path.join(CASES, f), data);
+    const r = await runCase(path.join(CASES, f));
     const exp = path.join(EXPECTED, f.replace(/\.json$/, '.txt'));
     if (outDir) fs.writeFileSync(path.join(outDir, path.basename(exp)), r.text);
     const outOfDate = /\nOUT OF DATE:/.test(r.text);

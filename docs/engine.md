@@ -1,7 +1,7 @@
 # The rules engine
 
-`sw5e-sheet/engine.js` computes a character the way SW5E's engine on sw5e.com does: from SW5E's character data
-(the JSON the site stores) and SW5E's rules and item lists, it builds the same computed sheet. The sheet layers its
+`app/engine.js` computes a character the way SW5E's engine on sw5e.com does: from SW5E's character data
+(the JSON the site stores) and SW5E's rules and item lists (`app/data/sw5e/`), it builds the same computed sheet. The sheet layers its
 own rules on top, as effects and tweaks (features and species traits SW5E's engine leaves out, items, states,
 conditions). So the engine copies SW5E's behaviour exactly, quirks and apparent bugs included, and anything better
 belongs in that layer, where the sheet already explains each change.
@@ -108,5 +108,12 @@ As of 2026-10-18: 621 characters, all 82,379 numbers and all 361,836 fields the 
 - An unknown species or class passes.
 
 ## Data
-The engine reads the rules and items as the extension keeps them, which drop empty values. Fields SW5E sets that
-the sheet doesn't read aren't rebuilt: an item's `propertiesMap`, `searchableRarity` and `hasPrerequisite`.
+The engine reads SW5E's rules and items as they come with the sheet (`app/data/sw5e/`, fetched from SW5E's data
+service by `dev/fetch-sw5e.js`), which drop empty values. Fields SW5E sets that the sheet doesn't read aren't
+rebuilt: an item's `propertiesMap`, `searchableRarity` and `hasPrerequisite`.
+
+## SW5E's own engine
+The code of SW5E's website, its character engine included, is public:
+[StarWars5e.Site](https://github.com/sangheili868/StarWars5e.Site), `src/modules/CharacterEngine/` (`generateCharacter.ts`
+and the `generate…` files next to it), with no license of its own. `engine.js` was written to give the same results
+and is checked against them; that code is the place to read when a result differs.

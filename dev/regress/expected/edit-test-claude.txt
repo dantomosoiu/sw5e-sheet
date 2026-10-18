@@ -749,7 +749,7 @@ Galactic Basic Bothese
 Add an item
 [All items ▾] []
 Qty [1] [Add]
-2425 items from sw5e.com, fetched 10/16/2026. [Refresh list]
+2425 items from SW5E (data version 199). [Check for a newer list]
 Credits
 575 cr
 [] [] [Apply]
@@ -924,6 +924,7 @@ Synced to SW5E · changed on SW5E 10/17/2026, 7:13:48 PM [Compare] [Restore] [Ex
 Loaded from SW5E · changed on SW5E 10/16/2026, 6:35:09 PM [Compare] [Restore] [Export]
 Rules engine
 The sheet computes the numbers itself, with SW5E's rules. Check with sw5e.com compares them with sw5e.com’s own calculation of this character (it also happens on each Load from SW5E).
+SW5E's rules and item data: version 199, as it comes with the sheet. SW5E is the work of Galiphile and the SW5E contributors: credits · the books.
 [Check with sw5e.com]
 Raw SW5E character JSON
 { "name": "Edit Test (Claude)", "image": "", "experiencePoints": 24000, "species": { "name": "Bothan", "abilityScoreImprovementSelectedOption": 0, "abilityScore… [3455 chars #bd4ad58f]

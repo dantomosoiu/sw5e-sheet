@@ -633,7 +633,7 @@ Galactic Basic Zabraki Sullustese
 Add an item
 [All items ▾] []
 Qty [1] [Add]
-2425 items from sw5e.com, fetched 10/16/2026. [Refresh list]
+2425 items from SW5E (data version 199). [Check for a newer list]
 Credits
 100 cr
 [] [] [Apply]
@@ -764,6 +764,7 @@ Before saving to SW5E as a new character · changed on SW5E 10/17/2026, 8:53:27 
 Created here · changed on SW5E 10/17/2026, 8:53:27 PM [Compare] [Restore] [Export]
 Rules engine
 The sheet computes the numbers itself, with SW5E's rules. Check with sw5e.com compares them with sw5e.com’s own calculation of this character (it also happens on each Load from SW5E).
+SW5E's rules and item data: version 199, as it comes with the sheet. SW5E is the work of Galiphile and the SW5E contributors: credits · the books.
 [Check with sw5e.com]
 Raw SW5E character JSON
 { "name": "Wizard Check (local)", "id": "00000000-0000-4000-8000-000012000001", "builderVersion": "0.7.6", "image": "", "experiencePoints": 2700, "species": { "… [2926 chars #e05cab17]

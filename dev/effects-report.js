@@ -1,13 +1,12 @@
-// Runs sw5e-sheet/effects.js over SW5E's item catalog and reports what it makes of each item.
-// Usage: node dev/effects-report.js dev/dumps/catalog.json [--items] [--unhandled]
-//   (dump the catalog from the dev page: see dev/README.md, "Dumps")
+// Runs app/effects.js over SW5E's item catalog and reports what it makes of each item.
+// Usage: node dev/effects-report.js [catalog.json] [--items] [--unhandled]
+//   (default: the catalog that comes with the sheet, app/data/sw5e/catalog.json)
 'use strict';
 const fs = require('fs');
 const path = require('path');
-const { parseItemEffect, fxSentences } = require(path.join(__dirname, '..', 'sw5e-sheet', 'effects.js'));
+const { parseItemEffect, fxSentences } = require(path.join(__dirname, '..', 'app', 'effects.js'));
 
-const file = process.argv[2];
-if (!file) { console.error('usage: node dev/effects-report.js <catalog.json> [--items] [--unhandled]'); process.exit(1); }
+const file = process.argv[2] && !process.argv[2].startsWith('--') ? process.argv[2] : path.join(__dirname, '..', 'app', 'data', 'sw5e', 'catalog.json');
 const data = JSON.parse(fs.readFileSync(file, 'utf8'));
 const items = data.items || data;
 const kind = (i) => i.type || 'Standard ' + i.equipmentCategory;

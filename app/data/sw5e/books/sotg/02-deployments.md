@@ -1,0 +1,11 @@
+# Chapter 2: Deployments
+
+Adventurers are extraordinary people, driven by a thirst for excitement into a life that others would never dare lead. They are heroes, compelled to explore the dark places of the world and take on the challenges that lesser women and men can't stand against.
+
+Deployments are roles your characters can fill that are not directly correlated with their class. A character can then specialize in a specific deployment, granting a variety of features, such as the gunner's gambits or the pilot's tactics. As you progress in your deployment specialization, you gain more powerful features, and some features improve. Each deployment specialization entry in this chapter includes a table summarizing the benefits you gain at every rank, and a detailed explanation of each one.
+
+A character can fill multiple roles simultaneously, provided it can reach the appropriate equipment to utilize that deployment's features.
+
+Unlike classes, when players achieve the space portion of the game, they start at rank 0. Players should attempt to experience multiple roles to see which suits them best before choosing the one in which they will specialize.
+
+> When engaging in the space portion of a campaign, many class features work in conjunction with a ship deployment, while others don't. It is up to your GM to determine which is which.

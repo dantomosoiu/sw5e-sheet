@@ -1,0 +1,2 @@
+
+Most consumables require an action to use, which makes sense when applying them to others. However, a common adjustment in 5e (which is even more logical in SW5e), is to allow administering such consumables to yourself as a bonus action, instead. This only applies to consumables that confer a positive benefit, such as a repair kit or medpac.
