@@ -3,8 +3,9 @@
 A character sheet for [SW5E](https://sw5e.com) (Star Wars 5e) characters: everything about the character on one
 scrollable page, a dice roller, play tracking (hit points, points, uses, conditions, rests), inventory, and
 creating and levelling up characters. It runs as a Chrome extension. The extension keeps its own copy of each
-character (with its play state and changes) in the browser; sw5e.com's character engine computes the numbers,
-and **Sync to SW5E** sends the character back to sw5e.com.
+character (with its play state and changes) in the browser and computes its numbers with its own rules engine,
+which follows SW5E's (checked against sw5e.com's on every load); **Sync to SW5E** sends the character back to
+sw5e.com.
 
 Not affiliated with SW5E, Lucasfilm, Disney or Wizards of the Coast.
 
@@ -19,6 +20,7 @@ Not affiliated with SW5E, Lucasfilm, Disney or Wizards of the Coast.
     `dev/choices-check.js`);
   - packing a release (`python dev/pack.py`).
 - `docs/`:
+  - [engine.md](docs/engine.md): how the rules engine computes, SW5E's quirks it follows, and how it's checked;
   - [open-decisions.md](docs/open-decisions.md): rules decisions and known gaps;
   - [class-audit.md](docs/class-audit.md): what each class needs;
   - [wishlist.md](docs/wishlist.md): every wish from simulated player panels, with its outcome, and

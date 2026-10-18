@@ -37,6 +37,12 @@ extension does.
 Our own rules engine (option 4), checked against SW5E's while it's built and as a sanity check from time to time
 after. The steps below stand, with the engine as the aim rather than a later option.
 
+**Status (2026-10-18):** the engine is built (`sw5e-sheet/engine.js`, see [engine.md](engine.md)) and the sheet uses
+it: every field of SW5E's calculation matches on 621 characters SW5E computed, and characters loaded from sw5e.com
+are checked against sw5e.com's own calculation. What a phone version still needs from sw5e.com: the characters
+themselves (loading and syncing) and SW5E's rules and item data (fetched once, then kept). Next: the storage seam
+and the web app (steps 1 and 2 below), with the rules data brought along in a backup file or fetched directly.
+
 ## Recommendation
 1. **Two seams first** (small):
    - a storage interface with three implementations: the extension, IndexedDB, and memory;
@@ -44,8 +50,7 @@ after. The steps below stand, with the engine as the aim rather than a later opt
 
    The dev shims already have these shapes; the sheet then stops naming `chrome.*` itself.
 2. **The web app (option 2)** as the first phone version: viewing, rolling, tracking HP and uses, conditions
-   and rests at the table. Numbers that need SW5E's engine show as "not recalculated yet", as they do today
-   when sw5e.com can't be reached.
+   and rests at the table, with the numbers recalculated by the sheet's own engine.
    - Characters come over in a backup file.
    - Syncing between devices is a separate decision: it needs a server and accounts, or sw5e.com.
 3. **Our own engine (option 4), in steps,** each checked against the recorded cases. Start with what changes
