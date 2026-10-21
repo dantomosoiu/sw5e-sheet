@@ -1,0 +1,16 @@
+{
+  "name": "SW5E Character Sheet",
+  "short_name": "SW5E Sheet",
+  "description": "Your SW5E (Star Wars 5e) characters on one page: rolls, play tracking, inventory, levelling up, and SW5E's books. Works offline.",
+  "id": "./",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#0f1218",
+  "theme_color": "#0f1218",
+  "icons": [
+    { "src": "icons/icon192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icons/icon512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "icons/maskable512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

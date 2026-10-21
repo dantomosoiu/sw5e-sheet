@@ -4,7 +4,9 @@ One scrollable page with everything about your SW5E character, plus a sticky sum
 
 ## Install
 - **As a Chrome extension** (connects to sw5e.com: Load, Sync, the check against sw5e.com): see [extension/README.md](../extension/README.md).
-- **As a web page:** serve this folder (`app/`) from any web server, or run `python dev/serve.py` and open http://127.0.0.1:8765/. It keeps its data in the browser and can't reach sw5e.com: characters come in as files (**Import file…**: SW5E's character export, or a backup from the extension), or are made with **New character…**. The buttons that need sw5e.com aren't shown there.
+- **As a web page or a phone app:** open the web version where it's hosted (`python dev/build.py` makes it, in `dist/web/`, for any https host). It keeps its data in the browser and can't reach sw5e.com: characters come in as files (**Import file…**: SW5E's character export, or a backup from the extension: More ▾ → **Back up all characters**), or are made with **New character…**. The buttons that need sw5e.com aren't shown there.
+  - **Install it as an app:** on Android (Chrome), ☰ → **Add to Home screen** / **Install app**; on an iPhone (Safari), Share → **Add to Home Screen**; on a computer (Chrome, Edge), the install icon in the address bar. It then opens in its own window, without a connection too: the first visit keeps every file of the sheet, SW5E's data and books included (about 9 MB).
+  - **New versions** are fetched by themselves; the sheet then says "A new version of the sheet is ready" with **Reload**. Until you reload (or close every sheet window), the version you have keeps working. Characters stay as they are.
 
 ## Your first session
 1. **Get your character.** Load from SW5E brings in your sw5e.com characters; New character… (More ▾) builds one here.

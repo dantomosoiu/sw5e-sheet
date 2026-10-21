@@ -6,7 +6,7 @@ levelling up characters, and SW5E's rule books to read and search. It keeps its 
 play state and changes) and computes the numbers with its own rules engine, which follows SW5E's and is checked
 against it. SW5E's rules data and books come with it, so it works offline.
 
-It is a web app (`app/`), and runs as a Chrome extension (`extension/`, a thin wrapper around the app) that also
+It is a web app (`app/`) that installs on a phone or computer and works offline, and runs as a Chrome extension (`extension/`, a thin wrapper around the app) that also
 connects it to sw5e.com: **Load from SW5E** brings in your sw5e.com characters, **Sync to SW5E** sends them back, and
 each load compares the sheet's numbers with sw5e.com's own calculation.
 
@@ -21,7 +21,8 @@ The rules are SW5E's, by Galiphile and the SW5E contributors ([credits](app/data
 - `extension/`: the Chrome extension around the app: manifest, toolbar button, the sw5e.com bridge, and its own
   `platform.js` (Chrome's storage, sw5e.com through a tab). [Installing it](extension/README.md).
 - `dev/`: development tools ([dev/README.md](dev/README.md)):
-  - building the extension (`python dev/build.py`) and packing a release (`python dev/pack.py`);
+  - building the extension and the web version (`python dev/build.py`: `dist/extension/`, `dist/web/`) and
+    packing an extension release (`python dev/pack.py`);
   - a server that runs the sheet as a web page (`python dev/serve.py`), with sw5e.com reached through the installed
     extension;
   - the regression check (`node dev/regress.js`), which draws recorded test characters in Node and compares the

@@ -44,13 +44,27 @@ fetched from SW5E's public data service), so it works offline.
 - **SW5E's data comes with the app.** A newer version is fetched from SW5E's data service directly, which any site
   may read (it allows every origin), so the web version can update it too.
 
+- **The web version installs as an app** (2026-10-22): `app/manifest.webmanifest`, `app/sw.js` (filled in by
+  `dev/build.py` into `dist/web/`) and `app/pwa.js`. The first visit keeps every file (about 9 MB, SW5E's books
+  included); the sheet then opens offline, and a new build is offered with "A new version of the sheet is ready ·
+  Reload". Checked in Chrome: installable with no errors, offline sheet and books, the update replacing the old
+  files. Not yet tried on a real phone (needs a host).
+
 ## Next
-1. **The web version as a phone app** (option 2): a web app manifest and a service worker, so it installs on a home
-   screen and opens offline; a host for the files (any static host).
+1. **A host for `dist/web/`** (any static https host). See "Hosting" below.
 2. **Getting characters onto the phone:** the extension's **Back up all characters** file, imported on the phone,
    works now. Syncing between devices is a separate decision: it needs a server and accounts, or sw5e.com.
 3. Option 1 only as a quick experiment, for someone who wants the extension on an Android phone now. Option 3
    isn't recommended.
+
+## Hosting
+`python dev/build.py` makes `dist/web/`; a host serves that folder as it is. The host's build command is
+`python dev/build.py` and its output folder `dist/web`. A hosted site can be opened by anyone with its address
+unless the host restricts it, which matters while the repository is private:
+- **GitHub Pages:** from a private repository it needs a paid GitHub plan, and the site itself is public.
+- **Cloudflare Pages:** free, builds from a private GitHub repository; Cloudflare Access (free for small teams)
+  can limit it to chosen e-mail addresses.
+- **Netlify:** free, builds from a private repository; a password needs a paid plan.
 
 ## Found out (2026-10-18)
 - SW5E's data service (`https://sw5eapi.azurewebsites.net/api/`) answers any site (`Access-Control-Allow-Origin: *`),

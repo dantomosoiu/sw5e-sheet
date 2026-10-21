@@ -6,14 +6,15 @@ Serves the repo root on http://127.0.0.1:8765 and:
                                before app/platform.js, the IndexedDB name "sw5e-dev"; after it,
                                dev/dev-storage.js (fixtures) and dev/bridge-proxy.js (sw5e.com through
                                the installed extension). The files on disk are unchanged.
+  * /web/                   -> dist/web/, the web version as a host would serve it (offline worker on)
   * /dev/fixtures/index.json -> list of fixture snapshot files (generated)
   * /dev/capture.js          -> paste-into-sw5e.com script built from extension/bridge.js's
                                sw5ePageExtract; downloads sheet snapshots as fixtures
   * POST /dev/dump/<name>    -> saves the request body to dev/dumps/<name> (git-ignored),
                                for pulling data out of the dev page for analysis
 
-While it runs, dist/extension/ (the extension, dev/build.py) is rebuilt whenever app/ or extension/
-changes, so the installed extension stays current: a page reload shows sheet changes, and the
+While it runs, dist/extension/ (the extension) and dist/web/ (the web version) are rebuilt
+(dev/build.py) whenever app/ or extension/ changes, so the installed extension stays current: a page reload shows sheet changes, and the
 extension reloads itself when its own code changed (extension/background.js).
 Everything is served with no-store so a plain reload picks up edits.
 Usage: python dev/serve.py [port]
@@ -48,6 +49,9 @@ def build_capture_js():
 
 
 class Handler(http.server.SimpleHTTPRequestHandler):
+    extensions_map = {**http.server.SimpleHTTPRequestHandler.extensions_map,
+                      '.webmanifest': 'application/manifest+json', '.md': 'text/markdown'}
+
     def __init__(self, *a, **kw):
         super().__init__(*a, directory=str(ROOT), **kw)
 
@@ -82,6 +86,11 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             self.send_header('Location', '/app/' + ('?' + query if query else ''))
             self.end_headers()
             return
+        if path in ('/web', '/web/'):
+            self.send_response(302)
+            self.send_header('Location', '/dist/web/' + ('?' + query if query else ''))
+            self.end_headers()
+            return
         if path in ('/app/', '/app/index.html'):
             html = (APP / 'index.html').read_text(encoding='utf-8')
             if PLATFORM_TAG not in html:
@@ -98,5 +107,5 @@ class Handler(http.server.SimpleHTTPRequestHandler):
 if __name__ == '__main__':
     port = int(sys.argv[1]) if len(sys.argv) > 1 else 8765
     threading.Thread(target=build.watch, daemon=True).start()
-    print(f'SW5E sheet dev server: http://127.0.0.1:{port}/ (and dist/extension/ kept built)')
+    print(f'SW5E sheet dev server: http://127.0.0.1:{port}/ (and dist/extension/, dist/web/ kept built)')
     http.server.ThreadingHTTPServer(('127.0.0.1', port), Handler).serve_forever()

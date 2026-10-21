@@ -6400,8 +6400,12 @@ async function handleAction(act, arg) {
     case 'feat-start':
       return startFeatureState(arg);
     case 'rules-books':
-      window.open('rules.html', '_blank');
+      // Installed as an app, the books open in the app's own window (with a way back); in a browser, a new tab.
+      if (window.matchMedia('(display-mode: standalone)').matches) location.href = 'rules.html';
+      else window.open('rules.html', '_blank');
       return undefined;
+    case 'app-update':
+      return updateOfflineApp();
     case 'rules-load':
       ensureRules().catch((e) => setStatus('Could not load the SW5E rules data: ' + e.message, 'error')).finally(() => renderAll({ keepTyping: true }));
       return undefined;

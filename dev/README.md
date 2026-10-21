@@ -3,10 +3,17 @@
 The sheet (`app/`) is a web app; the browser extension (`extension/`) wraps it, adding Chrome's storage and the
 connection to sw5e.com. Nothing in `dev/` ships.
 
-## Build the extension
+## Build
 ```
-python dev/build.py         # dist/extension/ = app/ + extension/ (git-ignored)
+python dev/build.py         # dist/extension/ = app/ + extension/; dist/web/ = the web version (both git-ignored)
 ```
+`dist/web/` is `app/` for a static host (https, or localhost): its `sw.js` gets the list of every file and a version
+(a hash of them all), so the installed app keeps them for offline use and notices a new build. `app/sw.js` itself has
+an empty list. `app/pwa.js` registers it only in the web version, never on the dev page. The phone icons
+(`icon192`, `icon512`, `maskable512`) are drawn by `python dev/icons.py` (needs Pillow); the smaller ones are drawn
+by hand.
+
+### The extension
 Load `dist/extension/` unpacked in `chrome://extensions` (Developer mode). The build writes only what changed and
 removes what's gone, so Chrome can keep it loaded while it's rebuilt: a sheet change shows on a page reload. The
 extension's `platform.js` takes the place of the web one, and its `index.html` loads `bridge.js` before it. The dev
@@ -27,7 +34,10 @@ python dev/serve.py        # http://127.0.0.1:8765/
 - Responses are `no-store`: edit a file, reload the page.
 - `/dev/phone.html?w=390&h=844` shows the dev page in a phone-sized frame (`?w=800&h=1000`: tablet), same storage.
 - `/app/rules.html` is the rules reader (SW5E's books).
-- While it runs, `dist/extension/` is kept built.
+- `/web/` is `dist/web/`, the web version as a host serves it: offline worker on, its own storage ("sw5e-sheet"),
+  no sw5e.com. Test installing, offline use (DevTools → Network → Offline) and updates there; after a change the
+  open page says a new version is ready.
+- While it runs, `dist/extension/` and `dist/web/` are kept built.
 
 ## What works / what doesn't
 - Everything the sheet does by itself: drawing, the rules engine, tracking, rolling, editing, import and export,
