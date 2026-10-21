@@ -51,7 +51,7 @@ fetched from SW5E's public data service), so it works offline.
   files. Not yet tried on a real phone (needs a host).
 
 ## Next
-1. **A host for `dist/web/`** (any static https host). See "Hosting" below.
+1. **Publish on GitHub Pages** (see "Hosting" below) and try it on a real phone.
 2. **Getting characters onto the phone:** the extension's **Back up all characters** file, imported on the phone,
    works now. Syncing between devices is a separate decision: it needs a server and accounts, or sw5e.com.
 3. Option 1 only as a quick experiment, for someone who wants the extension on an Android phone now. Option 3
@@ -61,7 +61,9 @@ fetched from SW5E's public data service), so it works offline.
 `python dev/build.py` makes `dist/web/`; a host serves that folder as it is. The host's build command is
 `python dev/build.py` and its output folder `dist/web`. A hosted site can be opened by anyone with its address
 unless the host restricts it, which matters while the repository is private:
-- **GitHub Pages:** from a private repository it needs a paid GitHub plan, and the site itself is public.
+- **GitHub Pages** (chosen, 2026-10-22): `.github/workflows/pages.yml` builds and publishes `dist/web/` on every
+  push to `main`. From a private repository it needs a paid GitHub plan, and the site itself is public (anyone
+  with its address). Set up once: Settings → Pages → Source: **GitHub Actions**.
 - **Cloudflare Pages:** free, builds from a private GitHub repository; Cloudflare Access (free for small teams)
   can limit it to chosen e-mail addresses.
 - **Netlify:** free, builds from a private repository; a password needs a paid plan.

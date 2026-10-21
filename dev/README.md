@@ -9,7 +9,8 @@ python dev/build.py         # dist/extension/ = app/ + extension/; dist/web/ = t
 ```
 `dist/web/` is `app/` for a static host (https, or localhost): its `sw.js` gets the list of every file and a version
 (a hash of them all), so the installed app keeps them for offline use and notices a new build. `app/sw.js` itself has
-an empty list. `app/pwa.js` registers it only in the web version, never on the dev page. The phone icons
+an empty list. `app/pwa.js` registers it only in the web version, never on the dev page. GitHub Pages publishes
+`dist/web/` on every push to `main` (`.github/workflows/pages.yml`). The phone icons
 (`icon192`, `icon512`, `maskable512`) are drawn by `python dev/icons.py` (needs Pillow); the smaller ones are drawn
 by hand.
 
