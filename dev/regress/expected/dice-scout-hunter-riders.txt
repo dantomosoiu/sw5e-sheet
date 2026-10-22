@@ -191,13 +191,13 @@ skill|Charisma|1: Intimidation (CHA): d20 −1 · = −1 modifier
 skill|Charisma|2: Performance (CHA): d20 −1 · = −1 modifier
 skill|Charisma|3: Persuasion (CHA): d20 −1 · = −1 modifier
 attack|0: Blaster rifle attack: d20 +7 · = +7 modifier
-damage|0: Blaster rifle damage: d8 +3 · = +3 DEX modifier · Energy · option: Colossus Slayer +1d8 · option: Ranger's Quarry +1d8
+damage|0: Blaster rifle damage: d8 +3 · = +3 DEX modifier · Energy · option: Ranger's Quarry +1d8
 attack|1: Unarmed Strike attack: d20 +4 · = +4 modifier
-damage|1: Unarmed Strike damage: no dice +1 · = +1 unarmed strike · Kinetic · option: Colossus Slayer +1d8 · option: Ranger's Quarry +1d8
+damage|1: Unarmed Strike damage: no dice +1 · = +1 unarmed strike · Kinetic · option: Ranger's Quarry +1d8
 tech: Tech attack: d20 +6 · = +6 modifier
 tool|One type of gaming set|proficient: One type of gaming set check: d20 +6 · = +2 INT modifier +4 proficiency
-damage|0|crit: Blaster rifle damage (critical): d8 d8 +3 · = +3 DEX modifier · Energy · critical · option: Colossus Slayer +1d8 · option: Ranger's Quarry +1d8
-damage|1|crit: Unarmed Strike damage (critical): no dice +1 · = +1 unarmed strike · Kinetic · critical · option: Colossus Slayer +1d8 · option: Ranger's Quarry +1d8
+damage|0|crit: Blaster rifle damage (critical): d8 d8 +3 · = +3 DEX modifier · Energy · critical · option: Ranger's Quarry +1d8
+damage|1|crit: Unarmed Strike damage (critical): no dice +1 · = +1 unarmed strike · Kinetic · critical · option: Ranger's Quarry +1d8
 
 ## Sheet: Overview
 Rakatan Test (local)

@@ -212,7 +212,12 @@ function d20Options(m, kind, ctx = {}) {
   const mod = (list) => Math.max(...list.map((a) => num((((m.c.abilityScores || {})[a]) || {}).modifier)));
   const abil = (s) => String(s).split(/ or /).filter((a) => ABBR[a]);
   for (const t of riderTexts(m)) {
+    let sub = ''; // the option a sentence is under ("#### Calculated Bluff …" in Gambler Discoveries)
     for (const s0 of t.text.split(/(?<=\.)\s+(?=[-A-Z_*#])/)) {
+      if (/^#{4,}\s/.test(s0)) sub = headingOf(s0);
+      else if (/^#{1,3}\s/.test(s0)) sub = '';
+      // One of a list of options to choose from: only one the character picked.
+      if (sub && !optionPicked(m, t.name, sub)) continue;
       const s = s0.replace(/^#+\s*[A-Z][\w'’ -]+?\s+(?=When|Whenever|Once|You|If|Your|As|At|Additionally)/, '').replace(/^[-#*_ ]+/, '');
       if (/friendly creature|\ban ally\b|\ballies\b/i.test(s)) continue;
       const label = headingOf(s0) || t.name;
@@ -224,6 +229,8 @@ function d20Options(m, kind, ctx = {}) {
           const b = x[2] ? Math.max(1, mod(abil(x[1]))) : mod(abil(x[1]));
           if (b) out.push({ label: `${cond ? `${cond}: ` : ''}${label}${spend ? ` (${spend} force points)` : ''}`, bonus: b, extra: [], on: false, ...(spend ? { spend: { op: 'force', arg: spend, what: `${spend} force points` } } : {}) });
         } else if ((x = /\broll an? (d\d+) and add the die to a saving throw you make/i.exec(s))) out.push({ label, bonus: 0, extra: [`1${x[1]}`], on: false });
+        // "While you are concentrating on a Force power, you have a +2 bonus to your AC and all saving throws" (Enduring Focus).
+        else if ((x = /^While you are ([^,]+), you have a \+(\d+) bonus to your AC and all saving throws/i.exec(s))) out.push({ label: `while ${x[1].replace(/ on an? (?:Force|force|tech) power$/, '')} (${label})`, bonus: num(x[2]), extra: [], on: false });
       } else if (kind === 'init') {
         if (/When you roll initiative, you can choose to add your proficiency bonus to the initiative check/i.test(s)) out.push({ label, bonus: pb, extra: [], on: false });
         // "You can use your Intelligence modifier instead of your Dexterity modifier when making Initiative checks" (Quick-Witted).
@@ -241,6 +248,20 @@ function d20Options(m, kind, ctx = {}) {
           && new RegExp(`\\b${ctx.skill}\\b`, 'i').test(typeof featureNoteOf === 'function' && m.raw ? featureNoteOf(m.raw, t.name) : '')) {
           // "… add half your Wisdom or Charisma modifier (your choice, minimum of one)" (Force Guidance; its notes name the skill).
           out.push({ label, bonus: Math.max(1, Math.floor(mod(['Wisdom', 'Charisma']) / 2)), extra: [], on: false });
+        // "When you make an ability check using Charisma, you can choose to instead make the check using your Intelligence or
+        // Wisdom modifier (your choice)" (Calculated Bluff).
+        } else if ((x = /When you make an ability check using (\w+), you can choose to instead make the check using your (\w+(?: or \w+)?) modifier/i.exec(s)) && x[1] === ctx.ability) {
+          const list = x[2].split(/ or /).filter((a) => ABBR[a]);
+          const best = list.reduce((b, a) => (mod([a]) > mod([b]) ? a : b), list[0]);
+          if (best) out.push({ label: `${ABBR[best]} instead of ${ABBR[x[1]]} (${label})`, bonus: mod([best]) - mod([x[1]]), extra: [], on: false });
+        // "When you make a Survival skill check, you may use your Critical Analysis ability modifier instead of your Wisdom
+        // modifier" (Survival Expert); "When you make a Strength (Athletics) or Dexterity (Acrobatics) check to grapple …, you
+        // can use your Critical Analysis ability modifier instead of Strength or Dexterity" (Mental Prowess). "Your Critical
+        // Analysis ability modifier": the one its feature names ("which is Intelligence").
+        } else if (kind === 'skill' && ((x = /When you make an? (\w+) skill check, you (?:may|can) use your ([\w ]+?) modifier instead of your (\w+) modifier/i.exec(s)) && x[1] === ctx.skill
+          || ((x = /When you make an? \w+ \((\w+)\)(?: or \w+ \((\w+)\))? check (to .+?), you can use your ([\w ]+?) modifier instead of/i.exec(s)) && [x[1], x[2]].includes(ctx.skill) && (x = [x[0], ctx.skill, x[4], ctx.ability, x[3]])))) {
+          const a = ABBR[x[2]] ? x[2] : ((new RegExp(`${x[2].replace(/[.*+?^${}()|[\]\\]/g, '\\$&')} modifier, which is (\\w+)`, 'i').exec(riderTexts(m).map((y) => y.text).join(' ')) || [])[1]);
+          if (ABBR[a]) out.push({ label: `${x[4] ? `${x[4]}: ` : ''}${ABBR[a]} instead of ${ABBR[ctx.ability]} (${label})`, bonus: mod([a]) - mod([ctx.ability]), extra: [], on: false });
         }
       } else if (kind === 'attack' || kind === 'damage') {
         const w = ctx.w || {};
@@ -273,6 +294,21 @@ function d20Options(m, kind, ctx = {}) {
     }
   }
   return out.filter((r) => r.bonus > 0 || r.extra.length).filter((r, i, all) => all.findIndex((y) => y.label === r.label) === i);
+}
+/**
+ * Is an option under a feature's "#### Name" heading the character's? Options to choose from ("Hunter's Prey", "Gambler
+ * Discoveries: … you can choose from any of the following"): when the character has picked any (the feature's notes or the
+ * classes' picks), only those; sub-sections of a feature that gives all of them (Force-Empowered Self's three effects): yes.
+ */
+function optionPicked(m, feature, sub) {
+  const t = (arr(m.allFeatures).find((f) => f.name === feature) || {});
+  const text = String(t.text || t.description || '');
+  const picks = arr(m.raw && m.raw.classes).flatMap((k) => Object.values(k.options || {}).flatMap((ps) => arr(ps).map((p) => p && p.name)))
+    .concat(typeof featureNoteOf === 'function' && m.raw ? [featureNoteOf(m.raw, feature)] : []).filter(Boolean).join(' | ').toLowerCase();
+  if (picks.includes(sub.toLowerCase())) return true;
+  // A list to choose from ("choose", "of your choice", "from any of the following"): not picked.
+  if (/\bchoose\b|\bof your choice\b|\bfrom (?:any of )?the following\b|\bselect\b/i.test(text.split(/####/)[0])) return false;
+  return true;
 }
 /** The class level behind a feature's "_**Berserker:** 9th, 13th, and 17th level_" (a class or archetype name). */
 function ownerLevel(m, owner) {
@@ -415,10 +451,7 @@ function weaponRiders(m, w, crit, die) {
       }
       // One option of several ("Hunter's Prey: Colossus Slayer, Giant Killer or Horde Breaker"): only the one picked,
       // when the picks are known (its notes or the archetype's list).
-      if (r.sub && typeof featureNoteOf === 'function' && m.raw) {
-        const picked = featureNoteOf(m.raw, t.name);
-        if (picked && !picked.toLowerCase().includes(r.sub.toLowerCase())) continue;
-      }
+      if (r.sub && !optionPicked(m, t.name, r.sub)) continue;
       const label = r.label || r.sub || t.name;
       if (r.weaponDice) {
         const n = r.weaponDice * (r.perLevel ? levelsReached(m, t.text) : 1);

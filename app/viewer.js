@@ -2335,11 +2335,14 @@ function applyEffects(key, editedRaw, complete) {
     let sub = ''; // the option it's under ("#### Agile Parry If you make an unarmed strike …")
     for (const s0 of String(f.text).replace(/\s+/g, ' ').split(/(?<=\.)\s+(?=[-A-Z_*#])/)) {
       if (/^#{4,}\s/.test(s0) && typeof headingOf === 'function') sub = headingOf(s0);
-      const x = /^(?:[^.]*?\s)?You gain a \+(\d+) bonus to AC until the start of your next turn\b/.exec(s0);
+      // "While you are concentrating on a Force power, you have a +2 bonus to your AC and all saving throws" (Enduring Focus).
+      const w = /^(?:[-#*_ ]*[A-Z][\w'’ -]+?\s+)?While you are ([^,]+), you have a \+(\d+) bonus to your AC\b/.exec(s0);
+      const x = w ? [w[0], w[2]] : /^(?:[^.]*?\s)?You gain a \+(\d+) bonus to AC until the start of your next turn\b/.exec(s0);
       if (!x || /\bfor each\b/i.test(s0)) continue;
       const name = sub || f.name;
+      const cond = w ? `while ${w[1].replace(/ on an? (?:Force|force|tech) power$/, '')}` : name;
       const e = { id: `ac-alt:${name}`, kind: 'feature', name, why: f.k ? `${f.k.name} feature` : 'feat', target: 'self', mods: [], notes: [] };
-      res.conds.push({ path: 'armorClass', bonus: num(x[1]), cond: name, ammo: null, weaponIndex: null, effect: e, mod: { path: 'armorClass', bonus: num(x[1]), label: `AC +${x[1]}`, cond: name } });
+      res.conds.push({ path: 'armorClass', bonus: num(x[1]), cond, ammo: null, weaponIndex: null, effect: e, mod: { path: 'armorClass', bonus: num(x[1]), label: `AC +${x[1]}`, cond } });
     }
   }
   // Each weapon with the best of them, where better than the ability SW5E uses: the difference on attack and damage.
