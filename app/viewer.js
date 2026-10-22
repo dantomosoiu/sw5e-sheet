@@ -2835,11 +2835,15 @@ const CONSUMABLE_CATS = ['Explosive', 'Ammunition', 'Spice', 'AlcoholicBeverage'
  * How an item is used: consumable? charges ("has five charges", "three uses"; some regain
  * them)? its effect on whoever it's used on (effects.js)? healing to roll? Null if it has no use.
  */
-function itemUse(ref) {
+function itemUse(ref, raw) {
   if (!ref) return null;
   const text = String(ref.text || ref.description || '').replace(/\s+/g, ' ');
   const ch = /\b(?:has|with) (\w+) (?:charges|uses)\b/i.exec(text);
-  const charges = ch && fxNum(ch[1]) ? { max: fxNum(ch[1]), recharges: /regains? [^.]*charges/i.test(text) } : null;
+  // The class items: "This item can hold a number of charges equal to half your fighter level (rounded up)".
+  const cl = /\bcan hold a number of charges equal to half your (\w+) level \(rounded up\)/i.exec(text);
+  const clsLevel = cl && raw ? num((arr(raw.classes).find((k) => String(k.name).toLowerCase() === cl[1].toLowerCase()) || {}).levels) : 0;
+  const charges = ch && fxNum(ch[1]) ? { max: fxNum(ch[1]), recharges: /regains? [^.]*charges/i.test(text) }
+    : clsLevel ? { max: Math.ceil(clsLevel / 2), recharges: true } : null;
   const consumable = ref.type === 'Consumable' || CONSUMABLE_CATS.includes(ref.equipmentCategory) || /^(medpac|poison|emergency rations)/i.test(ref.name || '');
   if (!consumable && !charges) return null;
   const fx = itemEffectOf(ref);
@@ -2891,7 +2895,7 @@ async function useItem(arg) {
   const items = shownItems(snap, list);
   const it = items[Number(idx)];
   const entry = list === 'equipment' ? arr(m.c.equipment).find((e) => e.index === Number(idx) && e.isFound) : it;
-  const info = itemUse(entry || (catalogIndex && catalogIndex.get(it && it.name)));
+  const info = itemUse(entry || (catalogIndex && catalogIndex.get(it && it.name)), m.raw);
   if (!it || !info) return;
   const st = itemStateOf(snap.key);
   let unitGone = !info.charges;
@@ -4196,6 +4200,9 @@ function defensesOf(m) {
  */
 function itemDefenseText(text, note) {
   let t = String(text || '').replace(/\r\n?/g, '\n').replace(/\bresistence\b/gi, 'resistance').replace(/\byou are resistant to\b/gi, 'you have resistance to')
+    // "You can activate or deactivate this implant as a bonus action. While active, you gain darkvision…": switched on
+    // and off, as classes.js reads a jetpack ("… (when switched on)").
+    .replace(/\byou can activate or deactivate (this [a-z ]+?) as an? (bonus )?action\. While active, /gi, (x, what, bonus) => `Activating or deactivating ${what} requires a ${bonus || ''}action and, while active, `)
     // The item is in use: "While wearing it, …", "… while you wear this armor" always hold.
     .replace(/\b(?:while|when) (?:you are )?wearing (?:it|this [a-z ]+?|these [a-z ]+?),\s*/gi, '').replace(/,? while you wear (?:it|this [a-z]+|these [a-z]+)(?=[.,])/gi, '');
   t = t.replace(/[^.\n]*\b(?:one of the following(?: options)?|one of the below modes|the following modes)\b[^\n]*(?:\n+\s*(?:_{3,}|-[^\n]*))+/gi, '');
@@ -6183,7 +6190,7 @@ function itemControls(m, e, list, i) {
 
 /** "Use" for consumables and items with charges: asks "on me / on someone else" when it has an effect. */
 function useControls(m, e, arg, info) {
-  const u = itemUse(info);
+  const u = itemUse(info, m.raw);
   if (!u) return '';
   const used = num((state.itemState[m.snap.key] || { charges: {} }).charges[e.name]);
   const left = u.charges ? u.charges.max - used : null;

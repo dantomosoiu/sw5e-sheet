@@ -373,6 +373,19 @@ function parseItemEffect(item) {
         continue;
       }
     }
+    // Extra dice a weapon deals only sometimes: "Once per turn when you hit … you can expend a charge to have the weapon
+    // deal an additional 1d8 kinetic damage" (Hewey), "on a hit, if the target is wearing heavy armor, it deals an
+    // additional 1d6 lightning damage" (Charric Pistol), "The first time you hit a creature … each round, the creature
+    // takes an additional 1d4 damage" (Flashy): an option on the weapon's damage roll, off until ticked.
+    if (ctx.weaponItem && !isConsumable && (m = /\b(?:deals?|takes?) an (?:additional|extra) (\d*d\d+)(?: ([a-z]+))? damage\b(?! for each)/i.exec(s))
+      && /\bonce per turn\b|\bthe first time\b|\bif the target\b|\broll a 20\b/i.test(s)) {
+      const why = /heavy armor/i.test(s) ? 'vs heavy armor' : /first time/i.test(s) ? 'first hit each round' : /roll a 20/i.test(s) ? 'on a 20, or a creature yet to act'
+        : `once per turn${/expend a charge/i.test(s) ? ', a charge' : ''}`;
+      riders.push({ on: ['weapon-damage'], dice: m[1].replace(/^d/, '1d'), type: m[2] || '', optional: true, weapon: true, why });
+      ctx.target = 'weapon';
+      ctx.notes.push(raw);
+      continue;
+    }
     // Ability scores: "your/the target's Strength score increases by 2, to a maximum of 20" /
     // "…, and your maximum for this score increases by 2" / "your Strength score becomes 19".
     for (const am of s.matchAll(new RegExp(`\\b${ABIL_RE} score (?:increases|is increased) by (\\d+)(?:, to a maximum of (\\d+))?(,? and (?:your|its|their) maximum for this score (?:increases|is increased) by (\\d+))?`, 'gi'))) {

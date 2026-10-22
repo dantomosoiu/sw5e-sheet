@@ -352,13 +352,16 @@ function startRoll(spec, opts = {}) {
     // (An attack also counts as "an attack roll using" its weapon's ability: a spice's high.)
     const kinds = /^damage\|/.test(spec) ? ['weapon-damage'] : plRollKinds(spec)
       .concat(/^attack\|/.test(spec) ? [`attack:${(arr(m.c.weapons)[spec.split('|')[1]] || {}).ability}`] : []);
-    for (const e of tempEffects(snap.key)) {
+    // A weapon's own sometimes-dice (Hewey's charge, Charric vs heavy armor): offered on its damage, not ticked.
+    const wIndex = /^damage\|/.test(spec) ? (arr(m.c.weapons)[spec.split('|')[1]] || {}).index : null;
+    for (const e of tempEffects(snap.key).concat(arr(m.effects).filter((x) => x.kind === 'item' && x.active && x.riders))) {
       for (const rd of arr(e.riders)) {
         if (!rd.on.some((o) => kinds.includes(o))) continue;
-        const label = `${String(e.power || e.name).replace(/ \(concentration\)$/, '')} +${rd.dice}`;
+        if (rd.weapon && (e.weaponIndex == null || e.weaponIndex !== wIndex)) continue;
+        const label = `${String(e.power || e.name).replace(/ \(concentration\)$/, '')} +${rd.dice}${rd.why ? ` (${rd.why})` : ''}`;
         if (roll.conds.some((c) => c.label === label)) continue;
         roll.conds.push({ label, bonus: 0, extra: [rd.dice], on: false, consume: rd.once ? e.id : null });
-        opts.conds = arr(opts.conds).concat(label);
+        if (!rd.optional) opts.conds = arr(opts.conds).concat(label);
       }
     }
   }
