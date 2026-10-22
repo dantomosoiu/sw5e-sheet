@@ -259,7 +259,7 @@ Human · Monk (Rakatan Order) 9, Operative 2
 Level 11 Background: Noble Lawful Light Proficiency +4 [Upload a picture] [Picture link…]
 6,500 XP level 12 at 100,000 (93,500 to go)
 Level 11 usually needs 85,000 XP (you have 6,500).
-Still to choose (19): Monk skills (2 more) · Monk 8th level: ability score improvement or feat · Monastic Vows (3 more) · Rakatan Order tech powers (7 more) · O… [632 chars #8fa6c260]
+Still to choose (20): Monk skills (2 more) · Monk 8th level: ability score improvement or feat · Monastic Vows (3 more) · Rakatan Order tech powers (7 more) · O… [692 chars #d7d9b02e]
 
 ## Sheet: Combat & Vitals
 Armor Class
@@ -726,6 +726,9 @@ The power captures some of the incoming energy, lessening its effect on you and 
 Overcharge Tech. When you cast this power using a power slot of 2nd level or higher, the extra damage increases by 1d6 for each slot level above 1st.
 [Learn a tech power… ▾]
 Read the options (141)
+Ability it uses 0 / 1 your choice of Intelligence or Wisdom or Charisma (until you choose: the best one)
+None chosen yet.
+[Choose an ability… ▾]
 Add a note
 Notes []
 Focused Tech Level 6

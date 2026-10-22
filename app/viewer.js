@@ -2971,24 +2971,55 @@ function attackGrantsOf(editedRaw) {
       // one its feature names ("…modifier, which is Intelligence").
       if ((x = /\byour unarmed strikes\b[^.]*?\byou can use your choice of (?:your )?([\w, ]+?) modif(?:i)?er for the attack and damage rolls\b/i.exec(s))) {
         const all = featureTextsOf(editedRaw).map((y) => y.text).join(' ');
-        const abilities = x[1].split(/,\s*(?:or\s+)?|\s+or\s+/).map((n) => n.trim()).filter(Boolean)
-          .map((n) => (ABBR[n] ? n : (new RegExp(`${n.replace(/ ability$/, '')} ability modifier, which is (\\w+)`, 'i').exec(all) || [])[1])).filter((a) => ABBR[a]);
-        if (abilities.length) out.push({ id: `grant:${f.name}`, name: f.name, why, abilities, finesse: false, target: { unarmed: true } });
+        const options = [...new Set(x[1].split(/,\s*(?:or\s+)?|\s+or\s+/).map((n) => n.trim()).filter(Boolean)
+          .map((n) => (ABBR[n] ? n : (new RegExp(`${n.replace(/ ability$/, '')} ability modifier, which is (\\w+)`, 'i').exec(all) || [])[1])).filter((a) => ABBR[a]))];
+        // "Your choice": the one noted, used for both rolls; until then the best of them.
+        const picked = options.filter((a) => new RegExp(`\\b(?:${a}|${ABBR[a]})\\b`, 'i').test(f.note || ''));
+        if (options.length) out.push({ id: `grant:${f.name}`, name: f.name, why, abilities: picked.length === 1 ? picked : options, options, chosen: picked.length === 1, finesse: false, target: { unarmed: true } });
         return;
       }
       x = new RegExp(`\\bYou can use (?:your choice of )?(${A}(?: or ${A})?)(?: modifier)? instead of (?:Strength|Dexterity)(?: or (?:Strength|Dexterity))? for the attack and damage rolls(?: (?:of|made with) ([^.]+?))?\\.`).exec(s);
       if (!x) return;
       const what = String(x[2] || '');
       if (/\bagainst\b|\bas a part of\b/i.test(what)) return; // against a target, or a power's attack: an option on the roll
-      let abilities = x[1].split(/ or /);
+      const options = x[1].split(/ or /);
+      let abilities = options;
       const chosen = abilities.filter((a) => new RegExp(`\\b(?:${a}|${ABBR[a]})\\b`, 'i').test(f.note || ''));
       if (chosen.length === 1) abilities = chosen;
       const target = what ? { unarmed: /unarmed strikes?/i.test(what), monk: /monk weapons/i.test(what), melee: /melee weapon attacks/i.test(what) }
         : { names: String(f.note || '').split(/\s*[,;]\s*|\s+and\s+/).map((n) => n.trim()).filter(Boolean) };
-      out.push({ id: `grant:${f.name}`, name: f.name, why, abilities, finesse: false, target });
+      out.push({ id: `grant:${f.name}`, name: f.name, why, abilities, options, chosen: chosen.length === 1, finesse: false, target });
     });
   }
   return out;
+}
+/**
+ * "Your choice" of an ability a feature uses for its numbers (decision B: one choice, used for all of them; the best of
+ * them until it's made): an attack grant's ("your choice of Wisdom or Charisma instead of Strength or Dexterity": Vow of
+ * Spirit, Forceblade Bond; Unnatural Weaponry), an archetype's casting ("+ your Intelligence, Wisdom, or Charisma modifier
+ * (your choice)": Archaeologist), written in the feature's notes. [{ name (the feature), options, chosen (name|null), key }].
+ */
+function abilityChoices(m) {
+  if (!state.rules) return [];
+  const out = [];
+  const add = (name, options, chosen) => { if (options.length > 1 && !out.some((x) => x.name === name)) out.push({ name, options, chosen }); };
+  for (const g of attackGrantsOf(m.raw)) if (g.options && g.options.length > 1) add(g.name, g.options, g.chosen ? g.abilities[0] : null);
+  for (const c of classCasting(m)) {
+    const ab = sourceAbilities(c);
+    if (!ab) continue;
+    // The one choice for the points (and so the casting): "+ your Intelligence, Wisdom, or Charisma modifier". Light, dark
+    // and universal powers' abilities follow the usual rules (as a consular's), not asked.
+    const options = [...new Set(arr(ab.points || ab.tech))];
+    const name = c.type === 'tech' ? 'Techcasting' : 'Forcecasting';
+    add(name, options, castingChoice(m.raw, c.type, options));
+  }
+  return out;
+}
+/** The casting ability noted on a Forcecasting/Techcasting card (Archaeologist's "(your choice)"), or null. */
+function castingChoice(raw, kind, options) {
+  const note = featureNoteOf(raw, kind === 'tech' ? 'Techcasting' : 'Forcecasting');
+  const hit = options.filter((a) => new RegExp(`\\b(?:${a}|${ABBR[a]})\\b`, 'i').test(note || ''));
+  return hit.length === 1 ? hit[0] : null;
 }
 /**
  * The calculation effects are worked out against (proficiency bonus, skills, weapons): the engine's, of the character as
@@ -5450,7 +5481,10 @@ function specialAttacks(m) {
     // "your focus ability modifier": the monk's, Wisdom or Charisma (the better one); else the ability named.
     const abilities = /focus ability/i.test(x[4]) ? ['Wisdom', 'Charisma'] : ABILITIES.filter((a) => new RegExp(`^${a}$`, 'i').test(x[4]));
     if (!abilities.length) continue;
-    const a = abilities.reduce((b, c) => (mod(c) > mod(b) ? c : b));
+    // The focus ability chosen on the Focus card ("You use your choice of Wisdom or Charisma for your focus ability").
+    const focusNote = /focus ability/i.test(x[4]) ? featureNoteOf(m.raw, 'Focus') : '';
+    const noted = abilities.filter((ab) => new RegExp(`\\b(?:${ab}|${ABBR[ab]})\\b`, 'i').test(focusNote));
+    const a = noted.length === 1 ? noted[0] : abilities.reduce((b, c) => (mod(c) > mod(b) ? c : b));
     const col = arr(m.classDice).find((d) => d.dice && d.column.toLowerCase() === x[6].toLowerCase());
     if (!col) continue;
     out.push({ name: f.name, from: f.sourceName || f.name, attack: pb + mod(a), dice: col.dice, bonus: mod(a), type: x[5], ability: a, kind: `${x[1]} ${x[2]} attack`, props: `range ${x[3]} ft` });
@@ -5586,7 +5620,9 @@ function ownCasting(m, kind, casters = classCasting(m)) {
   if (!own.length) return null;
   const cast = kind === 'force' ? m.c.forceCasting : m.c.techCasting;
   const engineKnows = cast && typeof cast === 'object' && mine.some((c) => !blindSource(c));
-  const best = (list) => list.reduce((b, a) => (mod(a) > mod(b) ? a : b));
+  // "(your choice)": the ability noted on the casting card, for points, DC and attack alike; until then the best one.
+  const chosenCast = castingChoice(m.raw, kind, [...new Set(own.flatMap((c) => arr((sourceAbilities(c) || {}).points || (sourceAbilities(c) || {}).tech)))]);
+  const best = (list) => (chosenCast && list.includes(chosenCast) ? chosenCast : list.reduce((b, a) => (mod(a) > mod(b) ? a : b)));
   const pointAbilities = [...new Set(own.flatMap((c) => (sourceAbilities(c) || {}).points || (sourceAbilities(c) || {}).tech || usual))];
   const ability = best(pointAbilities);
   const points = engineKnows
@@ -6792,7 +6828,10 @@ function featureNoteBox(m, f, opts = {}) {
   // A weapon picked that the ask's words exclude ("…that lack the heavy and strength properties").
   const misfit = (a) => (a.kind === 'weapon' ? a.chosen.filter((n) => { const w = catalogByName(n); return w && !weaponFitsProps(a.of, w); }) : []);
   const altPick = /Or instead: a language/.test(langs);
-  const pickers = (altPick ? '' : langs) + asks.filter((a) => askShown(a, asks)).map((a) => bdPickList({
+  // "Your choice" of the ability the feature's numbers use (Forceblade Bond, an archetype's casting): one picker.
+  const abilityPick = (f.source === 'Class' || f.source === 'Archetype' || /casting$/i.test(f.name)) ? abilityChoices(m).filter((x) => x.name === f.name && !asks.some((a) => a.kind === 'ability'))
+    .map((x) => bdPickList({ title: 'Ability it uses', from: `your choice of ${x.options.join(' or ')}${x.chosen ? '' : ' (until you choose: the best one)'}`, count: 1, chosen: x.chosen ? [x.chosen] : [], options: x.options, kind: 'fnote', arg: key, word: 'an ability' })).join('') : '';
+  const pickers = abilityPick + (altPick ? '' : langs) + asks.filter((a) => askShown(a, asks)).map((a) => bdPickList({
     problem: misfit(a).length ? `${misfit(a).join(', ')}: not one of ${String(a.of).replace(/^.*?\b(?:a|an|one|two|three)\s+/i, '')}` : '',
     title: a.label, from: ['tool', 'weapon'].includes(a.kind) && /\s/.test(a.of) ? a.of : '', count: a.count, chosen: a.chosen, options: askOptions(m, a), kind: 'fnote', arg: key, word: ASK_WORDS[a.kind] || 'one',
     hint: ['tool', 'weapon', 'skilltool'].includes(a.kind) && !state.catalog ? 'The list comes with SW5E\'s item list (Equipment → Add an item loads it).' : '',

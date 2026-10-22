@@ -137,6 +137,16 @@ function chOptions(modules, kind, parsed) {
   });
 }
 
+/**
+ * How many times a feat can be taken: "You can take this feat multiple times" (no limit), "You can take this feat
+ * twice" (Weapon Expert), "You can select this feat twice" (Casting Specialist), "… three times"; else once.
+ */
+function chFeatLimit(text) {
+  const m = /\byou can (?:take|select|choose|gain) this feat (multiple times|more than once|twice|three times|(\w+) times)\b/i.exec(String(text || ''));
+  if (!m) return 1;
+  if (/multiple|more than once/i.test(m[1])) return Infinity;
+  return /twice/i.test(m[1]) ? 2 : /three/i.test(m[1]) ? 3 : chNum(m[2]) || 1;
+}
 /** The character's feats, in a fixed order: [{ name, from, n (nth time taken) }]. */
 function chFeats(raw) {
   const out = [];
@@ -329,7 +339,7 @@ function choiceSlots(raw, ctx) {
       key: `Feat: ${f.name} (${f.from}${n > 1 ? ` #${n}` : ''})`, alt: `Feat: ${f.name}${f.n > 1 ? ` #${f.n}` : ''}`,
       from: `Feat: ${f.name} (${f.from})`, owner: null, feat: ref, order: when + 0.6, featLevel: when === 100 ? level : Math.min(when, level),
       takenWith: /^Background/.test(f.from) ? { k: classes[0], level: 1, only: true } : k ? { k, level: Math.min(when, Number(k.levels) || 0) } : null,
-      featTwice: f.n > 1 && !/you can take this feat multiple times/i.test(ref.text || ''),
+      featTwice: f.n > chFeatLimit(ref.text),
     };
     feats.push({ f, ref, base });
     used.add(`${base.key}: +1`); // the +1 of a feat added by hand (builder.js)
@@ -566,6 +576,11 @@ function choiceSlots(raw, ctx) {
       if (s.kind === 'multiclassImprovements' && !classes.some((k) => k.name === p.name)) s.problems.push(`${p.name}: you have no levels in ${p.name}`);
     });
     if (s.kind === 'lightsaberForms' && s.picks.some((p) => !p.auto) && casting.force < 0 && !lightweapon) s.problems.push('Lightsaber forms need the ability to cast force powers (or Lightweapon Strategist)');
+    // Forms "are restricted to forcecasters": force powers from a feat only (Force-Sensitive) count here, as the sheet's
+    // decision; a GM may require a class or archetype that casts (the GM panel's decision F).
+    else if (s.kind === 'lightsaberForms' && s.picks.some((p) => !p.auto) && baseCasting.force < 0 && casting.force >= 0 && !lightweapon) {
+      s.hint = `${s.hint ? `${s.hint} ` : ''}GM's call: your force casting comes from a feat's powers only; lightsaber forms are "restricted to forcecasters".`;
+    }
     if (s.kind === 'multiclassImprovements' && classes.length < 2) s.problems.push('Multiclass improvements need a second class');
   }
   // Feats: prerequisites at the level the feat was taken, with what you could cast before it; taken twice.
@@ -575,7 +590,7 @@ function choiceSlots(raw, ctx) {
     const unmet = waive(chUnmet(ref.prerequisite, { ...pctx, level: base.featLevel, feats: before, casting: castingBefore(base.order, base.key, castingAt(base.takenWith)) }), ref.text || '');
     const problems = [];
     if (unmet.length) problems.push(`The feat needs: ${unmet.join(', ')}${/^Background/.test(f.from) && unmet.some((u) => /level/i.test(u)) ? ' (a background feat is taken at 1st level)' : ''}`);
-    if (base.featTwice) problems.push(`${f.name} can be taken only once`);
+    if (base.featTwice) problems.push(`${f.name} can be taken only ${['once', 'twice', 'three times'][chFeatLimit(ref.text) - 1] || `${chFeatLimit(ref.text)} times`}`);
     const mine = slots.filter((s) => s.key === base.key || s.key.startsWith(`${base.key} (`) || s.key.startsWith(`${base.key} ›`));
     for (const s of mine) s.problems.push(...problems);
     if (!mine.length && problems.length) slots.push({ key: base.key, kind: 'feat', title: f.name, from: base.from, owner: null, count: 0, picks: [], options: [], problems, order: base.order, steps: [] });
@@ -987,6 +1002,6 @@ function chProseCount(list, archRef, level) {
 }
 
 if (typeof module !== 'undefined') {
-  module.exports = { CH_KINDS, chGrants, chOptions, chFeats, chUnmet, choiceSlots, chPickTexts, chWeaponBenefits, chClassInfo, chArchListCount, chFormState,
+  module.exports = { CH_KINDS, chFeatLimit, chGrants, chOptions, chFeats, chUnmet, choiceSlots, chPickTexts, chWeaponBenefits, chClassInfo, chArchListCount, chFormState,
     chModInfo, chItemFits, chMulticlassBoosts, chClassRow, chClassSupDice, chCastingLevels, chClassManeuvers };
 }

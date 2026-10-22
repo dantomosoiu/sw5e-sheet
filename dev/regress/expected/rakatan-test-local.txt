@@ -202,7 +202,7 @@ Human · Monk (Rakatan Order) 5, Operative 2
 Level 7 Background: Noble Lawful Light Proficiency +3 [Upload a picture] [Picture link…]
 6,500 XP level 8 at 34,000 (27,500 to go)
 Level 7 usually needs 23,000 XP (you have 6,500).
-Still to choose (18): Monk skills (2 more) · Monastic Vows (2 more) · Rakatan Order tech powers (3 more) · Operative multiclass skill · Operative multiclass too… [580 chars #d2c49bee]
+Still to choose (19): Monk skills (2 more) · Monastic Vows (2 more) · Rakatan Order tech powers (3 more) · Operative multiclass skill · Operative multiclass too… [640 chars #cc653ce8]
 
 ## Sheet: Combat & Vitals
 Armor Class
@@ -636,6 +636,9 @@ The power captures some of the incoming energy, lessening its effect on you and 
 Overcharge Tech. When you cast this power using a power slot of 2nd level or higher, the extra damage increases by 1d6 for each slot level above 1st.
 [Learn a tech power… ▾]
 Read the options (97)
+Ability it uses 0 / 1 your choice of Intelligence or Wisdom or Charisma (until you choose: the best one)
+None chosen yet.
+[Choose an ability… ▾]
 Add a note
 Notes []
 Improvements and other choices (1)

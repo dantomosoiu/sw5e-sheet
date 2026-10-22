@@ -417,7 +417,20 @@ function bdFeatureOpenAsks(m) {
       const open = openAsks(featureAsks(m, card));
       for (const a of open) out.push({ name: f.name, text: `${a.label.replace(/^[A-Z](?=[a-z])/, (c) => c.toLowerCase())}${lang ? ' or a language' : ''}${a.count - a.chosen.length > 1 ? ` (${a.count - a.chosen.length} more)` : ''}` });
     }
+    // The class's option picks ask too (Vow of the Focused's or Rancor's Discipline's ability), in the pick's note.
+    const parsed = classRules();
+    for (const [listKey, picks] of Object.entries(k.options || {})) {
+      const list = parsed && ((parsed.classes[k.name] && parsed.classes[k.name].lists.find((l) => l.key === listKey)) || (aref && parsed.archetypes[aref.name] && parsed.archetypes[aref.name].lists.find((l) => l.key === listKey)));
+      for (const p of arr(picks)) {
+        const o = list && list.options.find((x) => x.name === p.name);
+        if (!o) continue;
+        const asks = clsFeatureEffects(o.text, p.note || featureNoteOf(m.raw, p.name), { level: num(k.levels), pb: num(m.c.proficiencyBonus), isWeapon: isWeaponName }).asks;
+        for (const a of openAsks(asks)) out.push({ name: p.name, text: a.label.replace(/^[A-Z](?=[a-z])/, (c) => c.toLowerCase()) });
+      }
+    }
   }
+  // "Your choice" of the ability a feature's numbers use (decision B): listed until it's made (the best one meanwhile).
+  for (const x of abilityChoices(m)) if (!x.chosen && !out.some((y) => y.name === x.name)) out.push({ name: x.name, text: `ability (${x.options.join(' or ')})` });
   return out;
 }
 /** A feat's language picker, for its card. */
@@ -535,9 +548,10 @@ function bdLevelUpPanel(m) {
         ${L.hpMode === 'roll' ? `<input class="lvl-hp" type="number" min="1" max="${die}" data-lvl="hp" value="${esc(L.hp ?? '')}" aria-label="Hit die roll"> <button class="btn sm" data-act="lvl-roll" title="Roll 1d${die}">Roll</button>` : ''}
         <span class="faint">${con ? `${signed(con)} Con per level` : ''}</span></div>`;
   const abilitySelect = (field, plus) => `<select data-lvl="${field}" aria-label="Ability"><option value="">Ability…</option>${ABILITIES.map((a) => `<option value="${a}"${L[field] === a ? ' selected' : ''}${scores[a] + plus > 20 ? ' disabled' : ''}>${a} (${scores[a]})</option>`).join('')}</select>`;
-  const taken = new Set(arr(m.raw.classes).flatMap((x) => arr(x.abilityScoreImprovements)).filter((a) => a && a.type === 'Feat').map((a) => a.name)
-    .concat(m.raw.background && m.raw.background.feat ? [m.raw.background.feat.name] : []));
-  const feats = bdFeatList().filter((f) => !taken.has(f.name)).sort((a, b) => a.name.localeCompare(b.name));
+  // Feats already taken, as often as they can be ("You can take this feat twice": Weapon Expert).
+  const takenList = arr(m.raw.classes).flatMap((x) => arr(x.abilityScoreImprovements)).filter((a) => a && a.type === 'Feat').map((a) => a.name)
+    .concat(m.raw.background && m.raw.background.feat ? [m.raw.background.feat.name] : []);
+  const feats = bdFeatList().filter((f) => takenList.filter((n) => n === f.name).length < chFeatLimit(f.text)).sort((a, b) => a.name.localeCompare(b.name));
   const featRef = feats.find((f) => f.name === L.feat);
   const asiBlock = !asi ? '' : `<fieldset class="lvl-set"><legend>Ability Score Improvement (${esc(target)} ${ordinal(newLevel)} level)</legend>
       <div class="lvl-row">${radio('asi', 'two', '+2 to one ability')}${radio('asi', 'split', '+1 to two')}${radio('asi', 'feat', 'A feat')}</div>
