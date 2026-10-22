@@ -974,7 +974,7 @@ function featureUses(m) {
     const t = String((rulesModule('multiclassImprovements').find((x) => x.name === k.name) || {}).description || '');
     return new RegExp(`\\buses of (?:your )?${name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'i').test(t);
   }).reduce((s, b) => s + num(b.add), 0);
-  const ctxFor = (k, name) => ({ level: Math.min(20, num(k.levels) + (name ? boost(k, name) : 0)), pb, mods, row: k.name ? classRow(m.raw, k) : {} });
+  const ctxFor = (k, name) => ({ level: Math.min(20, num(k.levels) + (name ? boost(k, name) : 0)), pb, mods, row: k.name ? classRow(m.raw, k) : {}, note: name ? featureNoteOf(m.raw, name) : '' });
   const out = [];
   const seen = new Set();
   const add = (name, text, k) => {
@@ -2029,7 +2029,7 @@ function featureEffectsUncached(editedRaw) {
         }
         // Picks in an archetype's own list are read through its feature ("Hunter's Prey"), above. A modification's
         // sentences about the modified weapon ("with this weapon", its critical range) aren't the character's own.
-        const text = mods && mods.item ? o.text.split(/(?<=\.)\s+/).filter((x) => !/\bthis weapon\b|\byour modified (?:weapon|lightsaber|lightweapon)\b|critical hit range/i.test(x)).join(' ') : o.text;
+        const text = mods && mods.item && mods.item !== 'armor' ? o.text.split(/(?<=\.)\s+/).filter((x) => !/\bthis weapon\b|\byour modified (?:weapon|lightsaber|lightweapon)\b|critical hit range/i.test(x)).join(' ') : o.text;
         // An armor modification works while the modified armor is worn ("While wearing your modified armor…"; its power
         // fists): not while it's only carried. (An item the sheet can't find: as before.)
         if (mods && mods.item === 'armor') {
@@ -2076,13 +2076,23 @@ function featureEffectsUncached(editedRaw) {
     // A substitute ability for this class's features ("You can substitute Strength, Constitution, or Intelligence … for
     // Wisdom or Charisma for your monk class features": Vow of the Focused) and armor some of them work in ("…the benefits
     // of your Martial Arts and Unarmored Movement features while wearing light or medium armor": Vow of the Sentry).
+    // "You gain resistance to damage types for which you have a matching amplifier modification installed" (Elemental
+    // Shielding): the types of the amplifiers picked ("Cryo Amplifier, Mk II": its base's "takes cold damage").
+    const ampOpts = [...(cls ? cls.lists : []), ...(arch ? arch.lists : [])].flatMap((l) => l.options);
+    const ampTypes = [...new Set(Object.values(k.options || {}).flat().map((p) => p && /^(.+? Amplifier)\b/i.exec(p.name || ''))
+      .filter(Boolean).map((x) => (/\btakes (\w+) damage\b/i.exec((ampOpts.find((o) => o.name === x[1]) || {}).text || '') || [])[1]).filter(Boolean).map((x) => x.toLowerCase()))];
+    for (let i = classStart; i < out.length; i++) {
+      if (!arr(out[i].defenses).some((d) => /matching amplifier modification/i.test(d.text))) continue;
+      out[i] = { ...out[i], defenses: out[i].defenses.map((d) => (/matching amplifier modification/i.test(d.text)
+        ? { ...d, text: ampTypes.length ? `Resistance to ${ampTypes.join(', ')} damage (amplifiers installed)` : 'Resistance to the damage types of your amplifiers (none installed)' } : d)) };
+    }
     const sub = out.slice(classStart).find((e) => e.substitute);
     const allow = out.slice(classStart).find((e) => e.armorAllows);
     for (let i = classStart; i < out.length && (sub || allow); i++) {
       let e = out[i];
       if (sub && e !== sub) {
         const swap = (x) => (x.abilityMod && [].concat(x.abilityMod).every((a) => sub.substitute.for.includes(a))
-          ? { ...x, abilityMod: sub.substitute.with, label: `${x.label.replace(/\+ (?:[A-Z]{3}\/?)+$/, `+ ${sub.substitute.with.slice(0, 3).toUpperCase()}`)} (${sub.name})` } : x);
+          ? { ...x, abilityMod: [].concat(x.abilityMod, sub.substitute.with), label: `${x.label.replace(/\+ ((?:[A-Z]{3}\/?)+)$/, (all, abs) => `+ ${abs}/${sub.substitute.with.slice(0, 3).toUpperCase()}`)} (${sub.name})` } : x);
         e = { ...e, mods: arr(e.mods).map(swap) };
       }
       if (allow && allow.armorAllows.features.some((f) => f.toLowerCase() === String(e.name).toLowerCase())) {
@@ -2272,7 +2282,7 @@ function applyEffects(key, editedRaw, complete) {
     if (t.mod.acSwap) {
       const medium = armor.armor && !armor.light && !armor.heavy;
       const cap = (n) => (medium ? Math.min(n, 2) : n);
-      return { ...t, bonus: Math.max(0, cap(modOf(t.mod.acSwap.to)) - cap(modOf(t.mod.acSwap.from))) };
+      return { ...t, bonus: Math.max(0, cap(Math.max(...[].concat(t.mod.acSwap.to).map(modOf))) - cap(modOf(t.mod.acSwap.from))) };
     }
     if (t.mod.acFrom) return { ...t, bonus: num(t.mod.acFrom.base) - 10 + modOf(t.mod.acFrom.ability) - modOf('Dexterity') };
     if (t.mod.acFixed && base) return { ...t, bonus: num(t.mod.acFixed) - (num(base.armorClass) - shieldBonus) };
@@ -4629,7 +4639,7 @@ function defensesOf(m) {
   }
   // An item's damage reduction is itemDefenses' (with the item's wording and number), not listed twice.
   const fromText = (text, from, isItem = false) => {
-    const fe = clsFeatureEffects(text || '', '', { level: 0, pb: num(m.c.proficiencyBonus) });
+    const fe = clsFeatureEffects(text || '', '', { level: 0, pb: num(m.c.proficiencyBonus), mods: Object.fromEntries(ABILITIES.map((a) => [a, num(((m.c.abilityScores || {})[a] || {}).modifier)])) });
     add(isItem ? fe.defenses.filter((d) => !/^Damage from .* reduced by\b/.test(d.text)) : fe.defenses, from);
     add(fe.advantage.map((a) => ({ kind: 'advantage', text: ADV_TEXT(a) })), from);
   };
@@ -5732,9 +5742,10 @@ function missingClassFeatures(raw, have) {
 function featureNumberChips(m, f) {
   const k = arr(m.raw.classes).find((x) => x.name === f.sourceName || (x.archetype && x.archetype.name === f.sourceName));
   const mods = Object.fromEntries(ABILITIES.map((a) => [a, num(((m.c.abilityScores || {})[a] || {}).modifier)]));
-  const n = clsFeatureNumbers(f.text || f.description || '', { level: k ? num(k.levels) : charLevel(m), pb: num(m.c.proficiencyBonus), mods });
+  const scores = Object.fromEntries(ABILITIES.map((a) => [a, num(((m.c.abilityScores || {})[a] || {}).value)]));
+  const n = clsFeatureNumbers(f.text || f.description || '', { level: k ? num(k.levels) : charLevel(m), pb: num(m.c.proficiencyBonus), mods, scores });
   if (!n) return [];
-  return [n.dc ? `<span class="chip accent" title="8 + proficiency bonus + ${esc(n.dc.ability)} modifier">DC ${n.dc.value}${n.dc.save ? ` ${esc(n.dc.save)} save` : ''}</span>` : '',
+  return [n.dc ? `<span class="chip accent" title="${n.dc.score ? `${esc(n.dc.ability)} score + proficiency bonus` : `8 + proficiency bonus + ${esc(n.dc.ability)} modifier`}">DC ${n.dc.value}${n.dc.save ? ` ${esc(n.dc.save)} save` : ''}</span>` : '',
     n.damage ? `<span class="chip accent" title="At your level">${esc(n.damage.dice)} ${esc(n.damage.type)}</span>` : ''];
 }
 function featureCard(f, m) {
@@ -6273,7 +6284,8 @@ function renderFeats(m) {
       title: f.name,
       chips: [origin[f.name] ? chip(origin[f.name], 'accent') : '', ...(inc.length === 6 ? [chip('+1 to any ability')] : inc.map((a) => chip('+ ' + a))),
         (f.prerequisite || ref.prerequisite) ? chip('Prereq: ' + (f.prerequisite || ref.prerequisite), 'warn') : '',
-        rulesNote ? `<span class="chip warn" title="SW5E's feats list holds this rules note from its books: it isn't a feat and gives nothing">Not a feat: a rules note</span>` : ''].filter(Boolean),
+        rulesNote ? `<span class="chip warn" title="SW5E's feats list holds this rules note from its books: it isn't a feat and gives nothing">Not a feat: a rules note</span>` : '',
+        ...(rulesNote ? [] : featureNumberChips(m, { ...f, text }))].filter(Boolean),
       // A feat's own choices (classes.js asks: skills, tools, a damage type…), the languages it teaches, and its notes.
       body: md(text) + (state.rules && !rulesNote ? bdFeatLanguagePicks(m, f.name) + featureNoteBox(m, { ...f, text, source: 'Feat' }, {
         picked: null, choiceText: featSlots.some((s) => s.feat && s.feat.name === f.name) ? '' : bdFeatChoiceText({ text }),

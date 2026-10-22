@@ -5,7 +5,7 @@ The sheet's engine computes the numbers. OUT OF DATE: SW5E's recorded calculatio
 tweaks.abilityScores.Charisma.score.bonus = 1
 tweaks.abilityScores.Charisma.skills.Deception.bonus = 0
 tweaks.abilityScores.Charisma.skills.Deception.proficiency = "Proficient"
-tweaks.armorClass.bonus = 2
+tweaks.armorClass.bonus = 3
 tweaks.speed.base.bonus = 15
 tweaks.unarmed.damage.bonus = 3
 tweaks.unarmed.damageDice.bonus = 0
@@ -18,7 +18,7 @@ currentLevel = 7
 classText = "Monk (Rakatan Order) 5, Operative 2"
 proficiencyBonus = 3
 initiative = 3
-armorClass = 15
+armorClass = 16
 armorList = []
 passivePerception = 13
 vision = "normal"
@@ -147,7 +147,7 @@ effect: Silver-Tongued · feature
 effect: Silver-Tongued · feature
 effect: Human Versatility · feature
 effect: Martial Arts · feature
-tweak: armorClass +2 · Unarmored Defense
+tweak: armorClass +3 · Unarmored Defense
 tweak: speed.base +15 · Unarmored Movement
 tweak: abilityScores.Charisma.score +1 · Silver-Tongued
 tweak: abilityScores.Charisma.skills.Deception +0 {"proficiency":"Proficient"} · Silver-Tongued
@@ -207,8 +207,8 @@ Still to choose (16): Monk skills (2 more) · Monastic Vows · Rakatan Order tec
 
 ## Sheet: Combat & Vitals
 Armor Class
-15
-  ↳ hover armorClass: Without tweaks or effects: 13 → now 15 / +2 AC + CON (Vow of the Focused) · Unarmored Defense Monk feature
+16
+  ↳ hover armorClass: Without tweaks or effects: 13 → now 16 / +3 AC + WIS/CHA/CON (Vow of the Focused) · Unarmored Defense Monk feature
 Unarmored
 Hit Points
 52 / 52
@@ -244,7 +244,7 @@ Martial Arts 1d6 Sneak Attack 2d6
 Effects
 From class features, feats and species traits (9)
 Monk weapon proficiencies Proficient: Simple blasters Proficient: simple vibroweapons Proficient: martial vibroweapons that lack the dexterity, heavy, special, and two-handed properties Monk proficiencies
-Unarmored Defense AC + CON (Vow of the Focused) Monk feature
+Unarmored Defense AC + WIS/CHA/CON (Vow of the Focused) Monk feature
 Unarmored Movement Speed +15 ft Monk feature
 Vow of the Focused Monastic Vows feature
 Expertise Choose the skills/tools for expertise Operative feature
@@ -836,4 +836,4 @@ SW5E's rules and item data: version 199, as it comes with the sheet. SW5E is the
 Raw SW5E character JSON
 { "name": "Rakatan Test (local)", "builderVersion": "0.7.6", "image": "", "experiencePoints": 6500, "species": { "name": "Human", "abilityScoreImprovementSelect… [1649 chars #04a83e5b]
 Computed character JSON (the sheet's rules engine)
-{ "name": "Rakatan Test (local)", "builderVersion": "0.7.6", "image": "", "characteristics": { "alignment": "Lawful Light" }, "tweaks": { "abilityScores": { "Ch… [19187 chars #79045b88]
+{ "name": "Rakatan Test (local)", "builderVersion": "0.7.6", "image": "", "characteristics": { "alignment": "Lawful Light" }, "tweaks": { "abilityScores": { "Ch… [19187 chars #8214db29]

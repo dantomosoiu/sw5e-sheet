@@ -445,7 +445,7 @@ None chosen yet.
 Heat Shielded: +1 to 0 / 1 added by hand
 None chosen yet.
 [Choose an ability… ▾]
-Linguist Berserker ASI #1+ Intelligence
+Linguist Berserker ASI #1+ Intelligence DC 12
 You have studied languages and codes, gaining the following benefits:
 Increase your Intelligence score by 1, to a maximum of 20.
 You learn three languages of your choice.
