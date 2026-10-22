@@ -3878,7 +3878,9 @@ function effectRow(m, e) {
   // A keen modification: the weapon's critical range (the dice card's attack rolls use it).
   if (e.kind === 'item' && e.keen) chips.push(e.critRange ? chip(`Keen ${e.critRange}: critical range +${e.critRange}`, e.active ? 'good' : '') : chip(`Keen ${e.keen.gain}: choose a weapon`, 'warn'));
   const weapons = ownWeapons(m.raw);
-  const weaponPick = e.target === 'weapon' && e.linked ? `<span class="faint">on its ${esc(e.weaponName)}</span>` : e.target === 'weapon' ? `<label class="fx-weapon">on <select data-fxweapon="${esc(e.id)}">
+  // (Its base not equipped while it is: its numbers and options have no weapon roll to go on; equipping either sets both.)
+  const baseOff = e.target === 'weapon' && e.linked && e.active && !(arr(m.raw.equipment)[e.weaponIndex] || {}).equipped;
+  const weaponPick = e.target === 'weapon' && e.linked ? `<span class="faint">on its ${esc(e.weaponName)}</span>${baseOff ? chip(`its ${e.weaponName} isn't equipped`, 'warn') : ''}` : e.target === 'weapon' ? `<label class="fx-weapon">on <select data-fxweapon="${esc(e.id)}">
       <option value="">choose a weapon…</option>${weapons.map((w) => `<option${w.it.name === e.weaponName ? ' selected' : ''}>${esc(w.it.name)}</option>`).join('')}</select></label>` : '';
   // An item's effect (carried, or a consumable used or received) shows the item.
   const ref = catalogIndex && !['power', 'feature', 'custom'].includes(e.source) ? catalogIndex.get(e.name) : null;
