@@ -1916,13 +1916,13 @@ function featureEffectEntry(id, name, why, fe, origin = 'class feature') {
   const tools = fe.profs.tools.map((t) => ({ ...t, ...up('tool', t.name) }));
   const chains = arr(fe.profs.chains);
   const passives = fe.passives || {};
-  const other = fe.advantage.length || fe.defenses.length || fe.critRange || fe.halfProf || fe.unarmedStep || fe.unarmedDie || Object.keys(passives).length;
+  const other = fe.advantage.length || fe.defenses.length || fe.critRange || fe.halfProf || fe.unarmedStep || fe.unarmedDie || Object.keys(passives).length || fe.substitute || fe.armorAllows;
   if (!mods.length && !tools.length && !fe.profs.weapons.length && !fe.profs.armor.length && !chains.length && !fe.needsChoice.length && !other) return null;
   return {
     id, kind: 'feature', origin, name, why, mods, notes: [], needsChoice: fe.needsChoice, weapons: fe.profs.weapons, tools, armor: fe.profs.armor, chains, passives, target: 'self',
     advantage: fe.advantage, defenses: fe.defenses, critRange: fe.critRange, halfProf: fe.halfProf, unarmedStep: fe.unarmedStep,
     unarmedDie: fe.unarmedDie || 0, unarmedFinesse: !!fe.unarmedFinesse, ...(fe.critOn === 'unarmed' ? { critWeapons: ['unarmed'] } : fe.critOn ? { critOn: fe.critOn } : {}),
-    ...(fe.darkvisionPlus ? { darkvisionPlus: fe.darkvisionPlus } : {}),
+    ...(fe.darkvisionPlus ? { darkvisionPlus: fe.darkvisionPlus } : {}), ...(fe.substitute ? { substitute: fe.substitute } : {}), ...(fe.armorAllows ? { armorAllows: fe.armorAllows } : {}),
   };
 }
 /**
@@ -1976,6 +1976,7 @@ function featureEffectsUncached(editedRaw) {
   arr(editedRaw.classes).forEach((k, ci) => {
     const cref = rulesModule('classes').find((x) => x.name === k.name);
     if (!cref || !parsed) return;
+    const classStart = out.length; // this class's entries (for a substitute ability or armor allowance below)
     const level = num(k.levels);
     // charLevel: the character's ("your hit point maximum increases by a number equal to your level").
     const ctx = { level, row: classRow(editedRaw, k), isWeapon: isWeaponName, charLevel: arr(editedRaw.classes).reduce((t, x) => t + num(x.levels), 0) };
@@ -2009,7 +2010,17 @@ function featureEffectsUncached(editedRaw) {
         // Picks in an archetype's own list are read through its feature ("Hunter's Prey"), above. A modification's
         // sentences about the modified weapon ("with this weapon", its critical range) aren't the character's own.
         const text = mods && mods.item ? o.text.split(/(?<=\.)\s+/).filter((x) => !/\bthis weapon\b|\byour modified (?:weapon|lightsaber|lightweapon)\b|critical hit range/i.test(x)).join(' ') : o.text;
-        if (mods || !(arch && arch.lists.some((l) => l.key === listKey))) items.push({ name: p.name, text, note: p.note || '', source: listKey });
+        // An armor modification works while the modified armor is worn ("While wearing your modified armor…"; its power
+        // fists): not while it's only carried. (An item the sheet can't find: as before.)
+        if (mods && mods.item === 'armor') {
+          const it = arr(editedRaw.equipment).find((x) => x.name === arr(k.modifiedItems)[p.item || 0]);
+          if (it && !it.equipped) continue;
+        }
+        // A pick of an archetype list that no feature shows as "#### <option>" (Totem Options): read by itself.
+        const esc_ = (x) => x.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        const viaFeature = items.some((it) => new RegExp(`^#{4,}\\s*${esc_(o.name)}\\s*$`, 'mi').test(it.text || ''));
+        // Its choices: on the pick, or in the option card's notes and pickers (Vow of the Focused's ability).
+        if (mods || !(arch && arch.lists.some((l) => l.key === listKey)) || !viaFeature) items.push({ name: p.name, text, note: p.note || featureNoteOf(editedRaw, p.name), source: listKey });
       }
       // "For each modification installed in excess of your proficiency bonus, your tech point maximum is reduced by 1."
       const pb = Math.ceil(arr(editedRaw.classes).reduce((t, x) => t + num(x.levels), 0) / 4) + 1;
@@ -2042,6 +2053,33 @@ function featureEffectsUncached(editedRaw) {
       const e = featureEffectEntry(id, it.name, `${it.source} feature`, clsFeatureEffects(it.text, it.note, { ...ctx, featureLevel: it.level }));
       if (e) out.push(e);
     }
+    // A substitute ability for this class's features ("You can substitute Strength, Constitution, or Intelligence … for
+    // Wisdom or Charisma for your monk class features": Vow of the Focused) and armor some of them work in ("…the benefits
+    // of your Martial Arts and Unarmored Movement features while wearing light or medium armor": Vow of the Sentry).
+    const sub = out.slice(classStart).find((e) => e.substitute);
+    const allow = out.slice(classStart).find((e) => e.armorAllows);
+    for (let i = classStart; i < out.length && (sub || allow); i++) {
+      let e = out[i];
+      if (sub && e !== sub) {
+        const swap = (x) => (x.abilityMod && [].concat(x.abilityMod).every((a) => sub.substitute.for.includes(a))
+          ? { ...x, abilityMod: sub.substitute.with, label: `${x.label.replace(/\+ (?:[A-Z]{3}\/?)+$/, `+ ${sub.substitute.with.slice(0, 3).toUpperCase()}`)} (${sub.name})` } : x);
+        e = { ...e, mods: arr(e.mods).map(swap) };
+      }
+      if (allow && allow.armorAllows.features.some((f) => f.toLowerCase() === String(e.name).toLowerCase())) {
+        e = { ...e, mods: arr(e.mods).map((x) => (x.when && x.when.noArmor ? { ...x, when: allow.armorAllows.when } : x)) };
+      }
+      out[i] = e;
+    }
+    // The class's tools ("Tinker's implements, one of your choice"): SW5E's calculation leaves them out. Tool Expertise
+    // ("You gain expertise in any tool proficiencies you gain from this class"): those and the one picked for the class.
+    if (ci === 0) {
+      // Not the choices ("one of your choice", "Any one", "One specialist's kit of your choice"): those are picked.
+      const fixedTools = arr(cref.toolProficiencies).filter((x) => !/\bchoice\b|^none$|^(?:any|one)\b/i.test(x));
+      const expert = items.some((it) => /\byou gain expertise in any tool proficiencies you gain from this class\b/i.test(it.text || ''));
+      const picked = arr(editedRaw.customProficiencies).filter((p) => p && /tool/i.test(p.type || '') && String(p.from || '').toLowerCase() === `class: ${k.name}`.toLowerCase()).map((p) => p.name);
+      const tools = fixedTools.concat(expert ? picked : []).map((n) => ({ name: n, level: expert ? 'expertise' : 'proficient' }));
+      if (tools.length) out.push({ id: `feature:${k.name}:tools`, kind: 'feature', origin: 'class feature', name: expert ? 'Tool Expertise' : `${k.name} tools`, why: `${k.name} proficiencies`, mods: [], notes: [], weapons: [], tools, target: 'self' });
+    }
   });
   out.push(...bdFeatIncreaseEffects(editedRaw), ...bdSpeciesIncreaseEffects(editedRaw));
   // Feats' proficiencies and numbers ("You gain proficiency in the Insight skill", "Your speed increases by 10 feet"):
@@ -2070,7 +2108,7 @@ function featureEffectsUncached(editedRaw) {
     // A trait with options (Nikto's Adaptation): clsFeatureEffects reads the chosen one; the rest below reads its text.
     const fe = clsFeatureEffects(bdTraitFullText(tr), note, { level: arr(editedRaw.classes).reduce((t, k) => t + num(k.levels), 0), isWeapon: isWeaponName });
     tr = { ...tr, description: bdTraitText(editedRaw, tr) };
-    const profs = { ...fe, mods: fe.mods.slice(), critRange: 0, halfProf: false, unarmedStep: 0, unarmedDie: 0, unarmedFinesse: false };
+    const profs = { ...fe, mods: fe.mods.slice(), critRange: 0, halfProf: false, unarmedStep: 0 };
     // "Your base walking speed is 25 feet": SW5E's engine gives everyone 30. (A half-human's: its other half's.)
     const walk = /\byour base walking speed is (\d+)/i.exec(tr.description || '');
     if (walk && num(walk[1]) !== 30) profs.mods.push({ path: 'speed.base', bonus: num(walk[1]) - 30, label: `Walking speed ${walk[1]} ft` });
@@ -2078,9 +2116,6 @@ function featureEffectsUncached(editedRaw) {
     // armor, but if you are using a shield, you can apply the shield's bonus as normal" (Colicoid): resolved in applyEffects.
     const fixed = /\bbase AC of (\d+) \(your Dexterity modifier doesn't affect this number\)/i.exec(tr.description || '');
     if (fixed) profs.mods.push({ path: 'armorClass', bonus: 0, acFixed: num(fixed[1]), acFormula: true, label: `AC ${fixed[1]} (${tr.name})` });
-    // "Your unarmed strikes deal 1d4 kinetic damage and have the finesse property" (Zabrak, Wookiee Claws).
-    const ua = /\byour unarmed strikes deal (\d+)d(\d+) \w+ damage( and have the finesse property)?/i.exec(tr.description || '');
-    if (ua) { profs.unarmedDie = num(ua[2]); profs.unarmedFinesse = !!ua[3]; }
     const e = featureEffectEntry(`species:${tr.name}${note ? `:${note}` : ''}`, tr.name, `${sp.name} trait`, profs, 'species trait');
     if (e) out.push(e);
   }
@@ -6334,12 +6369,16 @@ function renderProficiencies(m) {
   // Tools are rollable (a check with the ability chosen in the roll card).
   const toolChip = (name, level, label) => rollable(`tool|${name}|${level || 'proficient'}`, chip(label), `Roll a ${name} check`);
   for (const p of arr(c.proficiencies)) (byType[p.type || 'other'] = byType[p.type || 'other'] || []).push(p.type === 'tool' ? { html: toolChip(p.name, 'proficient', p.name) } : p.name);
+  const raisedBy = (name) => arr(m.fx && m.fx.tools).find((t) => t.level === 'expertise' && t.name.toLowerCase() === String(name).toLowerCase());
   for (const p of arr(raw.customProficiencies)) {
+    if (p.type === 'tool' && raisedBy(p.name) && p.proficiencyLevel !== 'expertise') continue; // shown below, as expertise
     const label = `${p.name}${p.proficiencyLevel && p.proficiencyLevel !== 'proficient' ? ` (${p.proficiencyLevel})` : ''} ✎`;
     (byType[p.type || 'other'] = byType[p.type || 'other'] || []).push(p.type === 'tool' ? { html: toolChip(p.name, p.proficiencyLevel, label) } : label);
   }
   for (const t of arr(m.fx && m.fx.tools)) {
-    const already = arr(raw.customProficiencies).some((p) => p.name.toLowerCase().includes(t.name.toLowerCase()) || t.name.toLowerCase().includes(p.name.toLowerCase()));
+    const same = (n) => String(n).toLowerCase().includes(t.name.toLowerCase()) || t.name.toLowerCase().includes(String(n).toLowerCase());
+    const already = arr(raw.customProficiencies).some((p) => same(p.name) && (t.level !== 'expertise' || p.proficiencyLevel === 'expertise'))
+      || (t.level !== 'expertise' && arr(c.proficiencies).some((p) => p.type === 'tool' && same(p.name)));
     if (!already) (byType.tool = byType.tool || []).push({ html: rollable(`tool|${t.name}|${t.level}`, chip(`${t.name}${t.level === 'expertise' ? ' (expertise)' : ''} · ${t.effect.name}`), `Roll a ${t.name} check`) });
   }
   // Armor and weapons a feature gives (Armstech Engineering, Soresu Form's heavy armor); the class's own list is SW5E's.

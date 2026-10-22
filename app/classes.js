@@ -117,7 +117,8 @@ function clsCountAt(classRules, levelChanges, list, level) {
 function clsTextFeatures(text, sourceName, source) {
   const out = [];
   for (const sec of clsSections(text, 3)) {
-    const m = /^_\*\*[^*]+:\*\*\s*([^_]+)_\s*/.exec(sec.body);
+    // "_**Scholar:** 2nd and 13th level_", or "***Cybertech Engineering:** 3rd level*".
+    const m = /^(?:_\*\*|\*\*\*)[^*]+:\*\*\s*([^_*]+)[_*]\s*/.exec(sec.body);
     if (!m) continue;
     const levels = [...m[1].matchAll(/(\d+)(?:st|nd|rd|th)/g)].map((x) => Number(x[1]));
     if (!levels.length) continue;
@@ -1009,6 +1010,26 @@ function clsFeatureEffects(text, note, ctx) {
       const n = /\d/.test(m[2]) ? m[2] : pb || 'your proficiency bonus';
       const when = /\bwhile you are wearing (medium or heavy|heavy|medium) armor\b/i.exec(s);
       out.defenses.push({ kind: 'other', text: `Damage from ${m[1]} reduced by ${n}${when ? ` (in ${when[1].toLowerCase()} armor)` : ''}` });
+    }
+    // "Your unarmed strikes deal 1d4 kinetic damage and have the finesse property" (Zabrak, Unnatural Weaponry), "Your modified
+    // armor's unarmed strike deals 1d8 kinetic damage" (power fists).
+    if ((m = /\byour (?:modified armor's )?unarmed strikes? deals? (\d+)d(\d+) \w+ damage(,? and (?:have|has) the finesse property)?/i.exec(s))) {
+      out.unarmedDie = Math.max(out.unarmedDie || 0, Number(m[2]));
+      if (m[3]) out.unarmedFinesse = true;
+    }
+    // "You can substitute Strength, Constitution, or Intelligence (chosen when you take this vow) for Wisdom or Charisma for
+    // your monk class features" (Vow of the Focused): the ability picked, for the class's other features (the sheet).
+    if ((m = new RegExp(`\\byou can substitute ((?:${CLS_ABIL_ANY}(?:,? (?:or )?)?)+)\\s*(?:\\([^)]*\\)\\s*)?for ((?:${CLS_ABIL_ANY}(?:,? (?:or )?)?)+) for your (\\w+) class features`, 'i').exec(s))) {
+      const opts = [...m[1].matchAll(new RegExp(CLS_ABIL_RE, 'gi'))].map((x) => clsAbility(x[1]));
+      const chosen = picks.abilities.filter((a) => opts.includes(a)).slice(0, 1);
+      ask('ability', 'Substitute ability', opts, 1, chosen);
+      if (chosen.length) out.substitute = { with: chosen[0], for: [...m[2].matchAll(new RegExp(CLS_ABIL_RE, 'gi'))].map((x) => clsAbility(x[1])) };
+      else out.needsChoice.push(`the ability to substitute (${opts.join(', ')})`);
+    }
+    // "You can now gain the benefits of your Martial Arts and Unarmored Movement features while wearing light or medium armor as
+    // long as you are not wielding a shield" (Vow of the Sentry, Crimson Armaments): for those features (the sheet).
+    if ((m = /\bgain the benefits of your ([\w ]+?) features? while wearing light or medium armor(?: as long as you are not wielding a shield)?/i.exec(s))) {
+      out.armorAllows = { features: m[1].split(/,? and |, /).map((x) => x.trim()), when: { noHeavy: true, noShield: /not wielding a shield/i.test(m[0]) } };
     }
     // "You can't add more than +3 when determining your bonus to AC from your Dexterity" (Muscled Menace; a Hutt's Slow and
     // Lethargic), "…to Dexterity saving throws from Dexterity", "…to attack and damage rolls for weapon attacks using

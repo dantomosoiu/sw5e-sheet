@@ -162,6 +162,7 @@ effect: Accuracy Focus · feature
 effect: Amplifying Barrel · feature
 effect: Engineer weapon proficiencies · feature
 effect: Bonus Proficiencies · feature
+effect: Tool Expertise · feature
 effect: Human Versatility · feature
 effect: Blade Focus · feature
 effect: Juyo Form · temporary · state:lightsaber form · until the start of your next turn
@@ -215,6 +216,7 @@ damage|2: Unarmed Strike damage: no dice +1 · = +1 unarmed strike · Kinetic
 tech: Tech attack: d20 +7 · = +7 modifier
 tool|One type of gaming set|proficient: One type of gaming set check: d20 +7 · = +3 INT modifier +4 proficiency
 tool|armstech's implements|proficient: armstech's implements check: d20 +7 · = +3 INT modifier +4 proficiency
+tool|Tinker's implements|expertise: Tinker's implements check: d20 +11 · = +3 INT modifier +8 proficiency ×2
 damage|0|crit: Blaster rifle damage (critical): d8 d8 +5 · = +3 DEX modifier +2 Amplifying Barrel · Energy · critical
 damage|1|crit: Vibrosword damage (critical): d6 d6 d6 d6 +1 · = +1 Blade Focus · Kinetic · critical
 damage|2|crit: Unarmed Strike damage (critical): no dice +1 · = +1 unarmed strike · Kinetic · critical
@@ -268,11 +270,12 @@ Potent Aptitude 1d8
 Defenses & senses
 Other Critical hit on 19–20 with weapons
 Effects
-From class features, feats and species traits (6)
+From class features, feats and species traits (7)
 Accuracy Focus Accuracy Focus: attack +2 Armstech Modifications (Blaster rifle)
 Amplifying Barrel Amplifying Barrel: damage +2 Armstech Modifications (Blaster rifle)
 Engineer weapon proficiencies Proficient: Simple blasters Proficient: simple vibroweapons Engineer proficiencies
 Bonus Proficiencies Proficient: martial blasters Proficient: martial vibroweapons armstech's implements: proficient Proficient: medium armor Armstech Engineering feature
+Tool Expertise Tinker's implements: expertise Engineer proficiencies
 Human Versatility Choose one skill Choose one tool Choose one weapon of your choice Human trait
 Blade Focus Blade Focus: damage +1 Weapon focus (Vibrosword)
 Temporary
@@ -724,7 +727,7 @@ Light armor medium armor · Bonus Proficiencies
 Weapon
 Simple blasters simple vibroweapons martial blasters · Bonus Proficiencies martial vibroweapons · Bonus Proficiencies
 Tool
-One type of gaming set armstech's implements · Bonus Proficiencies
+One type of gaming set armstech's implements · Bonus Proficiencies Tinker's implements (expertise) · Tool Expertise
 Skills & saves
 Constitution Saving Throws Intelligence Saving Throws
 Languages
