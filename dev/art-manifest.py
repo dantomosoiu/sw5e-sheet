@@ -298,3 +298,85 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+
+# ------------------------------------------------------------- item modifications: parts and effect marks
+# A modification's picture is its part (art/items/mod-<subtype>-<part>.svg: the component it is) with a mark for what
+# it does (art/items/mark-<effect>.svg) and a colour of its own (app/art.js modArt). The briefs list each part with
+# the modification families that use it, and each mark with the effect words it stands for.
+MOD_MARKS = {
+    'str': 'Strength: a clenched fist / flexed arm', 'dex': 'Dexterity: a feather or a swift curved arrow',
+    'con': 'Constitution: a heart with a pulse', 'int': 'Intelligence: a brain-like circuit node',
+    'wis': 'Wisdom: an open eye', 'cha': 'Charisma: a radiant star or speech mark',
+    'fade': 'fadecasting / fading: a figure dissolving into dots', 'rend': 'rendcasting / rending: three tearing slashes',
+    'wither': 'withercasting / withering: a drooping, wilting sprout', 'range': 'range and accuracy: a crosshair with arrows outward',
+    'expand': 'bigger area or more targets: four arrows bursting outward', 'absorb': 'absorbing and resisting: a spiral drawn inward',
+    'repel': 'repelling and punishing attackers: a shield with spikes or a rebound arrow', 'store': 'storing and charging: a battery cell with bars',
+    'stealth': 'stealth and concealment: an eye with a slash', 'speed': 'speed and agility: double chevrons',
+    'power': 'damage and force: a jagged impact star', 'guard': 'reinforcement and safety: a shield with a check-like brace',
+    'energy': 'energy, light and dark: a crackling orb', 'skill': 'skills and know-how: an open book with a star',
+    'style': 'fighting styles and mastery: crossed blades', 'force': 'the Force: concentric ripples around a dot',
+}
+MOD_MARK_WORDS = {
+    'str': r'strength|brawny', 'dex': r'dexterity|acrobat', 'con': r'constitution', 'int': r'intelligence', 'wis': r'wisdom', 'cha': r'charisma|charmer|silver-tongued|performer',
+    'fade': r'fade|fading', 'rend': r'rend', 'wither': r'wither', 'range': r'rang|extend|elongat|distant|seeking|target|pinpoint|precision|accuracy|focus|multispectral|optic|scope',
+    'expand': r'expand|enlarg|inflat|increas|amplif|heighten|twinned|duplex|burst', 'absorb': r'absorb|mitigat|dispel|insulat|imperme|dampen',
+    'repel': r'repel|reactive|avoidant|barbed|spiked|threaten', 'store': r'stor|access|process|charg|recycl|linger|magazine',
+    'stealth': r'silent|obscur|conceal|inconspic|disguis|stealth|clandestine|silencer', 'speed': r'quicken|surg|rapid|agile|lightweight|light\b|flexib|celerity|semiauto|responsive|quick',
+    'power': r'brutal|mighty|heavy|vicious|dire|keen|piercing|siege|overload|powered|monomolecular|crippler', 'guard': r'reinforc|bonded|steadfast|balanced|regulat|careful|comfortable|interlock|lock|safety|defensive|guard',
+    'energy': r'ion|maser|disrupt|disintegr|burning|ghostfire|bright|lambent|gloom|corruption|biting|crystaliz|electrif|neuraliz',
+    'skill': r"'s\b|investigator|naturalist|survivalist|perceptive|empathic|medic|techie", 'style': r'fighting|dueling|mastery|ascendancy|supremacy|training',
+    'force': r'ossus|byrothsis|ferricite|phobium|echo|krayt',
+}
+
+
+def mod_parts():
+    """{ (subtype, part): [family names] } for every item modification."""
+    out = defaultdict(set)
+    for it in CATALOG:
+        if it.get('type') == 'ItemModification':
+            f = re.sub(r'\s*\([^)]*\)\s*$', '', it['name'])
+            f = re.sub(r'\s+Mk\s+[IVX]+$', '', f).strip()
+            out[((it.get('subtype') or '').lower(), f.split()[-1])].add(f)
+    return out
+
+
+def mod_briefs():
+    parts = mod_parts()
+    groups = {'m1-mod-armor': ['armor'], 'm2-mod-blaster': ['blaster'], 'm3-mod-light-vibro': ['lightweapon', 'vibroweapon'],
+              'm4-mod-tech-clothing': ['wristpad', 'focus generator', 'clothing', 'augment']}
+    briefs = {}
+    for batch, subs in groups.items():
+        lines = [f'# Batch {batch}: item modification parts', '',
+                 'Each file in `art/items/` is a **part**: the component a modification is (a scope, an oscillator, a weave…), '
+                 'drawn as that component on its own, compact, centred, with a connector or mounting point. The app adds '
+                 'a corner mark for the effect and paints `a-x` in the family\'s own colour, so give every part a clear '
+                 '`a-x` panel or band and keep the corner bottom-right free of important detail.', '']
+        for (sub, part), fams in sorted(parts.items()):
+            if sub not in subs:
+                continue
+            name = 'mod-' + slug(sub) + '-' + slug(part)
+            sample = sorted(fams)[:8]
+            ex = next((it for it in CATALOG if it.get('type') == 'ItemModification' and (it.get('subtype') or '').lower() == sub
+                       and it['name'].startswith(sample[0])), None)
+            lines.append(f'## `{name}.svg`: a {sub} modification, the {part.lower()} ({len(fams)} families)')
+            lines.append(f'- Families: {", ".join(sample)}{" …" if len(fams) > 8 else ""}')
+            if ex and text(ex):
+                lines.append(f'- SW5E ({ex["name"]}): {text(ex, 300)}')
+            lines.append('')
+        briefs[batch] = '\n'.join(lines)
+    marks = ['# Batch m5-mod-marks: effect marks', '',
+             'Small round marks (`art/items/mark-<name>.svg`), shown in a modification tile\'s corner like the damage badges '
+             '(`art/items/badge-*.svg`: copy their disc and glow technique exactly): a dark disc, one bold simple glyph in `a-g`/`a-w`, '
+             'readable at 16 px. The app sets the colour.', '']
+    for k, v in MOD_MARKS.items():
+        marks.append(f'## `mark-{k}.svg`: {v}')
+    briefs['m5-mod-marks'] = '\n'.join(marks) + '\n'
+    return briefs
+
+
+if __name__ == '__main__' and '--mods' in sys.argv:
+    OUT.mkdir(parents=True, exist_ok=True)
+    for batch, body in mod_briefs().items():
+        (OUT / f'{batch}.md').write_text(body, encoding='utf-8')
+        print(batch, body.count('## '), 'pictures')

@@ -4,7 +4,11 @@
  */
 'use strict';
 const path = require('path');
-global.ART_EQUIPMENT = require('../app/art/names.js').ART_EQUIPMENT; // which items have a picture of their own
+// Which pictures exist, read from the folders (so drawings not built into the sprite yet show too).
+const fs = require('fs');
+const stems = (dir) => fs.readdirSync(path.join(__dirname, '..', 'art', dir)).filter((f) => f.endsWith('.svg')).map((f) => f.slice(0, -4));
+global.ART_EQUIPMENT = new Set(stems('equipment'));
+global.ART_GENERAL = new Set(stems('items'));
 const { itemTile, itemArt } = require('../app/art.js');
 const items = require(path.join(__dirname, '..', 'app', 'data', 'sw5e', 'catalog.json')).items;
 

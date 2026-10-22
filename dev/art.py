@@ -53,8 +53,9 @@ def check_file(path):
     name = path.stem
     problems = []
     data = path.read_bytes()
-    if len(data) > 5200:
-        problems.append(f'{len(data)} bytes (keep it under 5 KB)')
+    limit = 6600 if path.parent.name == 'equipment' else 5200  # one item's picture may carry a little more detail
+    if len(data) > limit:
+        problems.append(f'{len(data)} bytes (keep it under {limit // 1024 + 1} KB)')
     try:
         root = ET.fromstring(data)
     except ET.ParseError as e:
@@ -124,12 +125,32 @@ def symbol(path, sid):
     return f'<symbol id="{sid}" viewBox="0 0 64 64">{inner}</symbol>'
 
 
+def class_marks():
+    """Each class's emblem (app/art/themes/<class>-emblem.svg) as a mark like the damage badges: a dark disc with
+    the emblem glowing in the energy colour (class augments carry it)."""
+    out = []
+    for p in sorted((ROOT / 'app' / 'art' / 'themes').glob('*-emblem.svg')):
+        cls = p.stem[:-len('-emblem')]
+        inner = re.sub(r'^\s*<svg[^>]*>|</svg>\s*$', '', p.read_text(encoding='utf-8').strip(), flags=re.S)
+        inner = re.sub(r'<!--.*?-->', '', inner, flags=re.S)
+        inner = re.sub(r'#000(000)?\b', 'currentColor', inner)
+        inner = re.sub(r'\bid="', f'id="mk-{cls}-', inner)
+        inner = re.sub(r'url\(#', f'url(#mk-{cls}-', inner)
+        inner = re.sub(r'href="#', f'href="#mk-{cls}-', inner)
+        inner = re.sub(r'>\s+<', '><', inner)
+        out.append(f'<symbol id="i-mark-class-{cls}" viewBox="0 0 64 64"><circle class="a-d a-oo" cx="32" cy="32" r="27"/>'
+                   f'<circle cx="32" cy="32" r="27" fill="url(#a-sheen)" opacity=".35"/>'
+                   f'<g style="color:var(--ag)" filter="url(#a-glow)" opacity=".7" transform="translate(15 15) scale(.53)">{inner}</g>'
+                   f'<g style="color:var(--ag)" transform="translate(15 15) scale(.53)">{inner.replace("id=\"mk-", "id=\"mk2-").replace("url(#mk-", "url(#mk2-").replace("href=\"#mk-", "href=\"#mk2-")}</g></symbol>')
+    return ''.join(out)
+
+
 def sprite_text():
     defs = DEFS.read_text(encoding='utf-8')
     defs = re.search(r'<defs>.*</defs>', defs, re.S).group(0)
     defs = re.sub(r'<!--.*?-->', '', defs, flags=re.S)
     defs = re.sub(r'>\s+<', '><', defs)
-    symbols = ''.join(symbol(p, sid) for p, sid in pictures())
+    symbols = ''.join(symbol(p, sid) for p, sid in pictures()) + class_marks()
     return ('<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" '
             'style="position:absolute;width:0;height:0;overflow:hidden">' + defs + symbols + '</svg>\n')
 
@@ -144,7 +165,8 @@ def build():
     eq = sorted(sid[5:] for _, sid in pictures() if sid.startswith('i-eq-'))
     names = ('// Made by dev/art.py: the SW5E items with a picture of their own (art/equipment/<name>.svg, symbol i-eq-<name>).\n'
              f'const ART_EQUIPMENT = new Set({json.dumps(eq)});\n'
-             "if (typeof module !== 'undefined') module.exports = { ART_EQUIPMENT };\n")
+             f'const ART_GENERAL = new Set({json.dumps(sorted(p.stem for p in ITEMS.glob("*.svg")))});\n'
+             "if (typeof module !== 'undefined') module.exports = { ART_EQUIPMENT, ART_GENERAL };\n")
     if not NAMES.exists() or NAMES.read_text(encoding='utf-8') != names:
         NAMES.write_text(names, encoding='utf-8', newline='\n')
     n = len(pictures())
@@ -315,7 +337,7 @@ def stack(pngs, out):
 
 
 if __name__ == '__main__':
-    cmd = sys.argv[1] if len(sys.argv) > 1 else 'build'
+    cmd = sys.argv[1] if len(sys.argv) > 1 else 'build'  # anything else: the usage above
     if cmd == 'check':
         sys.exit(0 if check() else 1)
     elif cmd == 'preview':
@@ -324,5 +346,7 @@ if __name__ == '__main__':
         themes(sys.argv[2:])
     elif cmd == 'items':
         items_preview(sys.argv[2:])
-    else:
+    elif cmd == 'build':
         sys.exit(0 if build() else 1)
+    else:
+        sys.exit(__doc__)

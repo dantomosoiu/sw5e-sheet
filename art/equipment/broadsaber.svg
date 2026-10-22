@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <g transform="rotate(-45 32 32)">
+    <path class="a-g" d="M24 24.6L57 25L71.6 32L57 39L24 39.4Z" filter="url(#a-glow-lg)" opacity=".9"/>
+    <path class="a-g" d="M24.6 27L57 27.4L69.4 32L57 36.6L24.6 37Z" filter="url(#a-glow)"/>
+    <path class="a-g" d="M25 27.4L57 27.8L68.4 32L57 36.2L25 36.6Z"/>
+    <path class="a-w" d="M25.6 30.2L57 30.6L64.4 32L57 33.4L25.6 33.8Z"/>
+    <rect class="a-c a-oo" x="1" y="29" width="18" height="6" rx="1"/>
+    <path class="a-p" d="M3 29.2l1.8 5.6M5.8 29.2l1.8 5.6M8.6 29.2l1.8 5.6M11.4 29.2l1.8 5.6M14.2 29.2l1.8 5.6"/>
+    <rect x="1" y="29" width="18" height="6" rx="1" fill="url(#a-shade)"/>
+    <path class="a-m a-oo" d="M1.6 28H-2.6L-5 30.4V33.6L-2.6 36H1.6Z"/>
+    <path d="M1.6 28H-2.6L-5 30.4V33.6L-2.6 36H1.6Z" fill="url(#a-sheen)"/>
+    <circle class="a-x a-o" cx="-1.4" cy="32" r="1.2"/>
+    <rect class="a-m a-o" x="16.4" y="28.4" width="3.4" height="7.2" rx=".6"/>
+    <path class="a-m a-oo" d="M19.8 23.6H24.6L25.4 24.8V39.2L24.6 40.4H19.8L19 39.2V24.8Z"/>
+    <path d="M19.8 23.6H24.6L25.4 24.8V39.2L24.6 40.4H19.8L19 39.2V24.8Z" fill="url(#a-sheen)"/>
+    <path class="a-p" d="M19.4 27.4h5.6M19.4 36.6h5.6"/>
+    <rect class="a-x a-o" x="20.8" y="29.6" width="2.8" height="4.8" rx=".6"/>
+    <rect class="a-d a-o" x="24.8" y="27" width="1.6" height="10" rx=".5"/>
+    <path class="a-l" d="M-3.6 30.2l1.4-1.4h3M2 30h14M17.2 29.4h2M20 24.6h4.2"/>
+  </g>
+</svg>

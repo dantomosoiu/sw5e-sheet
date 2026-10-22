@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <g transform="rotate(-45 32 32)">
+    <rect class="a-g" x="21" y="25.4" width="48.6" height="13.2" rx="6.6" filter="url(#a-glow-lg)" opacity=".9"/>
+    <circle class="a-g" cx="22" cy="32" r="11" filter="url(#a-glow-lg)" opacity=".8"/>
+    <rect class="a-g" x="22.6" y="26.6" width="47" height="10.8" rx="5.4" filter="url(#a-glow-lg)"/>
+    <rect class="a-g" x="23.6" y="27.8" width="45" height="8.4" rx="4.2" filter="url(#a-glow)"/>
+    <rect class="a-g" x="24" y="28.2" width="44" height="7.6" rx="3.8"/>
+    <rect class="a-w" x="24.6" y="29.4" width="42.8" height="5.2" rx="2.6"/>
+    <path class="a-m a-oo" d="M-1.6 28.8h-2.6l-2 2v2.4l2 2h2.6z"/>
+    <rect class="a-b a-oo" x="-2" y="28.6" width="14" height="6.8" rx="1"/>
+    <path class="a-d" d="M.6 29.6h1.2v4.8H.6zM3.6 29.6h1.2v4.8H3.6zM6.6 29.6h1.2v4.8H6.6z"/>
+    <rect x="-2" y="28.6" width="14" height="6.8" rx="1" fill="url(#a-sheen)"/>
+    <rect class="a-x a-o" x="9" y="28" width="2.4" height="8" rx=".6"/>
+    <rect class="a-b a-oo" x="11.4" y="28.4" width="9" height="7.2" rx="1"/>
+    <rect x="11.4" y="28.4" width="9" height="7.2" rx="1" fill="url(#a-sheen)"/>
+    <path class="a-x a-o" d="M25.8 32L24.4 35.3L24.7 40.5L23 39.9L22 44L21 39.9L19.3 40.5L19.6 35.3L18.2 32L19.6 28.7L19.3 23.5L21 24.1L22 20L23 24.1L24.7 23.5L24.4 28.7Z"/>
+    <ellipse class="a-b a-oo" cx="22" cy="32" rx="2.4" ry="7.8"/>
+    <ellipse cx="22" cy="32" rx="2.4" ry="7.8" fill="url(#a-sheen)"/>
+    <path class="a-m a-oo" d="M23.4 28.6L26.6 27.6L27.8 28.4V35.6L26.6 36.4L23.4 35.4Z"/>
+    <rect class="a-d a-o" x="27" y="28.2" width="1.6" height="7.6" rx=".5"/>
+    <circle class="a-g" cx="16" cy="33.6" r="1.1" filter="url(#a-glow)"/>
+    <circle class="a-w" cx="16" cy="33.6" r=".5"/>
+    <path class="a-l" d="M-5 30.4l1-1M-1 29.6h9.4M12.4 29.6h6.8M21 25.6q.6-.8 1.6-.8M24.2 29l2.2-.6"/>
+  </g>
+</svg>

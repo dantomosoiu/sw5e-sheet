@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <clipPath id="light-physical-shield-clip"><circle cx="32" cy="32" r="21"/></clipPath>
+  <circle class="a-d a-oo" cx="33.4" cy="33.6" r="25.6"/>
+  <circle class="a-m a-oo" cx="32" cy="32" r="25.6"/>
+  <circle cx="32" cy="32" r="25.6" fill="url(#a-sheen)"/>
+  <circle cx="32" cy="32" r="25.6" fill="url(#a-shade)"/>
+  <circle class="a-b a-o" cx="32" cy="32" r="21"/>
+  <path class="a-x" clip-path="url(#light-physical-shield-clip)" d="M16 0L64 48v8L8 0z"/>
+  <circle cx="32" cy="32" r="21" fill="url(#a-sheen)"/>
+  <circle cx="32" cy="32" r="21" fill="url(#a-shade)"/>
+  <path class="a-p" d="M32 11v12.6M32 40.4V53M11 32h12.6M40.4 32H53"/>
+  <circle class="a-d" cx="54" cy="41.1" r="1.1"/>
+  <circle class="a-d" cx="41.1" cy="54" r="1.1"/>
+  <circle class="a-d" cx="22.9" cy="54" r="1.1"/>
+  <circle class="a-d" cx="10" cy="41.1" r="1.1"/>
+  <circle class="a-d" cx="10" cy="22.9" r="1.1"/>
+  <circle class="a-d" cx="22.9" cy="10" r="1.1"/>
+  <circle class="a-d" cx="41.1" cy="10" r="1.1"/>
+  <circle class="a-d" cx="54" cy="22.9" r="1.1"/>
+  <circle class="a-m a-oo" cx="32" cy="32" r="8.4"/>
+  <circle cx="32" cy="32" r="8.4" fill="url(#a-sheen)"/>
+  <circle cx="32" cy="32" r="8.4" fill="url(#a-shade)"/>
+  <circle class="a-b a-o" cx="32" cy="32" r="4.2"/>
+  <circle cx="32" cy="32" r="4.2" fill="url(#a-sheen)"/>
+  <path class="a-l" d="M8 26.6A24.6 24.6 0 0 1 26.6 8M13.7 25.6A19.4 19.4 0 0 1 25.6 13.7M26.2 29.6a6.4 6.4 0 0 1 3.6-3.6"/>
+  <path class="a-l" opacity=".45" d="M40.6 45.4l3.4-2.2M17.4 39.4l2.6 1.4M44.8 20.4l1.6 2.6"/>
+</svg>

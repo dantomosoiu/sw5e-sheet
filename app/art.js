@@ -206,7 +206,7 @@ function artBadge(it, icon) {
   const rules = [[/\bion\b/, 'ion'], [/cryo|\bcold\b|freez/, 'cryo'], [/incendiar|incinerat|flame|fire|combust/, 'fire'], [/plasma/, 'plasma'],
     [/corrosive|acid/, 'acid'], [/lightning|electrif|electro|shock|arc caster/, 'lightning'], [/sonic|deafening|noisemaker/, 'sonic'],
     [/\bgas\b|poison|toxic|venom/, 'poison'], [/\bstun\b|tranquil/, 'stun'], [/fragmentation|shatter|flechette|frag\b/, 'frag'],
-    [/flash/, 'flash'], [/panic/, 'panic']];
+    [/\bflash\b/, 'flash'], [/panic/, 'panic']];
   for (const [re, b] of rules) if (re.test(name)) return b;
   const byType = { ion: 'ion', cold: 'cryo', fire: 'fire', acid: 'acid', lightning: 'lightning', sonic: 'sonic', poison: 'poison' };
   return byType[dt] || '';
@@ -229,6 +229,8 @@ function artGlow(it, icon, badge) {
   const byBadge = { ion: 'blue', cryo: 'pale', fire: 'orange', plasma: 'orange', acid: 'green', lightning: 'white', sonic: 'violet', poison: 'green',
     stun: 'cyan', flash: 'white', panic: 'violet', frag: 'red' };
   if (badge && byBadge[badge]) return byBadge[badge];
+  if (/radiation|radrifle/.test(name)) return 'yellow';
+  if (/vapor projector/.test(name)) return 'accent';
   if (/disruptor/.test(name)) return 'green';
   if (icon.startsWith('blaster') || ['wrist-blaster', 'bowcaster', 'launcher', 'grenade', 'mine', 'demo-charge', 'thermal-detonator'].includes(icon)) return 'red';
   if (['electrostaff', 'baton', 'whip', 'vibroclaw', 'power-cell', 'shield-generator', 'barrier', 'stealth-field'].includes(icon)) return 'cyan';
@@ -240,8 +242,16 @@ function artGlow(it, icon, badge) {
 /** The item's own colour (bands, paint): medical teal, explosives' hazard yellow, otherwise the theme's accent. */
 const ART_MOD_PAINT = { blaster: 'red', vibroweapon: 'gold', lightweapon: 'blue', armor: 'blue', clothing: 'purple', wristpad: 'accent',
   'focus generator': 'accent', augment: 'green' };
+// Items whose own colour is part of what they are (copper coils, purple matrix metal, a fried egg's yolk…).
+const ART_PAINT_BY_NAME = [
+  [/lightning|arc caster/, 'copper'], [/matrix armor/, 'purple'], [/beskar/, 'white'], [/chef/, 'gold'], [/bioanalysis/, 'green'],
+  [/disguise kit/, 'red'], [/poisoner/, 'green'], [/brewer/, 'copper'], [/incinerator/, 'red'], [/orbalisk/, 'green'],
+];
 function artPaint(icon, it) {
   if (icon === 'mod-chip') return ART_MOD_PAINT[String((it && it.subtype) || '').toLowerCase()] || 'accent';
+  const name = String((it && it.name) || '').toLowerCase();
+  const own = ART_PAINT_BY_NAME.find(([re]) => re.test(name));
+  if (own) return own[1];
   if (['medpac', 'med-kit', 'stimpac', 'adrenal', 'prosthesis'].includes(icon)) return 'med';
   if (['grenade', 'mine', 'demo-charge', 'ammo-canister', 'ammo-rocket', 'thermal-detonator', 'launcher'].includes(icon)) return 'hazard';
   if (['ammo-cartridge'].includes(icon)) return 'gold';
@@ -279,8 +289,51 @@ function artOwn(it) {
   return own(artSlug(it.name)) || own(artSlug(artFamily(it.name)));
 }
 
+// ------------------------------------------------------------- item modifications: part + effect mark + colour
+// The words in a modification's name say what it does; the first group that matches gives its mark (art/items/mark-*).
+const ART_MOD_MARKS = [
+  ['class', /^(berserker|consular|engineer|fighter|guardian|monk|operative|scholar|scout|sentinel)\b/],
+  ['str', /strength|brawny/], ['dex', /dexterity|acrobat/], ['con', /constitution/], ['int', /intelligence/], ['wis', /wisdom/],
+  ['cha', /charisma|charmer|silver-tongued|performer/],
+  ['fade', /fade|fading/], ['rend', /rend/], ['wither', /wither/],
+  ['style', /fighting|dueling|mastery|ascendancy|supremacy|training/], ['force', /ossus|byrothsis|ferricite|phobium|echo|krayt/],
+  ['stealth', /silent|obscur|conceal|inconspic|disguis|stealth|clandestine|silencer/],
+  ['energy', /\bion\b|maser|disrupt|disintegr|burning|ghostfire|bright|lambent|gloom|corruption|biting|crystaliz|electrif|neuraliz/],
+  ['absorb', /absorb|mitigat|dispel|insulat|imperme|dampen/], ['repel', /repel|reactive|avoidant|barbed|spiked|threaten/],
+  ['store', /stor|access|process|charg|recycl|linger|magazine/],
+  ['speed', /quicken|surg|rapid|agile|lightweight|\blight\b|flexib|celerity|semiauto|responsive|quick/],
+  ['power', /brutal|mighty|heavy|vicious|dire|keen|piercing|siege|overload|powered|monomolecular|crippler/],
+  ['guard', /reinforc|bonded|steadfast|balanced|regulat|careful|comfortable|interlock|lock|safety|defensive|guard/],
+  ['range', /rang|extend|elongat|distant|seeking|target|pinpoint|precision|accuracy|focus|multispectral|optic|scope/],
+  ['expand', /expand|enlarg|inflat|increas|amplif|heighten|twinned|duplex|burst/],
+  ['skill', /'s\b|investigator|naturalist|survivalist|perceptive|empathic|medic|techie/],
+];
+// Colours for modification families: distinct, rich, readable on the dark tile.
+const ART_MOD_COLORS = ['#c8463b', '#d9813a', '#d9b13c', '#8fb43a', '#3fa66a', '#2fa3a0', '#3f8bd0', '#5b63d6', '#8a55c9',
+  '#c04f9a', '#b7895a', '#8e9aab'];
+/** A modification's picture: { artIcon: its part, mark, axHex: its colour }. */
+function modArt(it) {
+  const fam = artFamily(it.name).replace(/\s*\([^)]*\)\s*$/, ''); // modifications' tiers have more names (Dueling, Fighting…)
+  const sub = artSlug(it.subtype || '');
+  const part = artSlug(fam.split(/\s+/).pop());
+  const general = typeof ART_GENERAL !== 'undefined' ? ART_GENERAL : null;
+  const icon = general && general.has(`mod-${sub}-${part}`) ? `mod-${sub}-${part}` : 'mod-chip';
+  const words = fam.toLowerCase().split(/\s+/).slice(0, -1).join(' ') || fam.toLowerCase();
+  const hit = ART_MOD_MARKS.find(([, re]) => re.test(words));
+  let mark = hit ? hit[0] : '';
+  if (mark === 'class') mark = `class-${words.split(' ')[0]}`;
+  if (mark && general && !general.has(`mark-${mark}`) && !mark.startsWith('class-')) mark = '';
+  return { artIcon: icon, mark, axHex: ART_MOD_COLORS[artHash(fam) % ART_MOD_COLORS.length] };
+}
+
 /** Everything the tile needs for an item. `kind` is the general picture, which also decides colours and badges. */
 function itemArt(it) {
+  if (it && it.type === 'ItemModification' && !it.artIcon) {
+    const m = modArt(it);
+    const rarity = typeof invRarity === 'function' ? invRarity(it) : String(it.rarityText || '').toLowerCase();
+    return { icon: m.artIcon, kind: m.artIcon, badge: '', mark: m.mark, axHex: m.axHex, glow: 'accent', paint: 'accent', tier: artTier(it.name),
+      rarity: ['standard', 'premium', 'prototype', 'advanced', 'legendary', 'artifact'].includes(rarity) ? rarity : '' };
+  }
   const kind = (it && (it.artKind || it.artIcon)) || artIcon(it || {});
   const icon = (it && it.artIcon) || artOwn(it) || kind;
   const badge = artBadge(it || {}, kind);
@@ -297,13 +350,15 @@ function itemArt(it) {
 function itemTile(it, size = '', title = '', opts = {}) {
   const a = itemArt(it);
   const cls = ['art-tile', size, a.rarity ? `rar-${a.rarity}` : '', `glow-${a.glow}`, `ax-${a.paint}`].filter(Boolean).join(' ');
-  const skin = it && /^#[0-9a-f]{6}$/i.test(it.skin || '') ? ` style="--ax:${it.skin}"` : '';
+  const hex = (it && it.skin) || a.axHex || '';
+  const skin = /^#[0-9a-f]{6}$/i.test(hex) ? ` style="--ax:${hex}"` : '';
   const q = (s) => String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
   const open = it && it.name && !opts.inert
     ? ` data-item="${q(it.name)}"${opts.custom ? ' data-custom="1"' : ''} role="button" tabindex="0" aria-label="${q(`About ${title || it.name}`)}"`
     : ' aria-hidden="true"';
   return `<span class="${cls}"${open}${skin}${title ? ` title="${q(title)}"` : ''}><svg viewBox="0 0 64 64" aria-hidden="true"><use href="#i-${a.icon}"/></svg>`
     + `${a.badge ? `<svg class="art-badge b-${a.badge}" viewBox="0 0 64 64"><use href="#i-badge-${a.badge}"/></svg>` : ''}`
+    + `${a.mark ? `<svg class="art-badge art-mark" viewBox="0 0 64 64"><use href="#i-mark-${a.mark}"/></svg>` : ''}`
     + `${a.tier ? `<i class="art-tier" style="--n:${a.tier}"></i>` : ''}</span>`;
 }
 
@@ -355,4 +410,4 @@ function unarmedArt(speciesName, ref, chars) {
   return { name: 'Unarmed Strike', artIcon: kind, skin: artSkinColor(own) || artSkinColor(listed) || '#c99a6b' };
 }
 
-if (typeof module !== 'undefined') module.exports = { artIcon, artBadge, artGlow, itemArt, itemTile, unarmedArt, artSkinColor, artFamily, artTier, artSlug, ART_COLORS };
+if (typeof module !== 'undefined') module.exports = { artIcon, artBadge, artGlow, itemArt, itemTile, unarmedArt, artSkinColor, artFamily, artTier, artSlug, modArt, ART_COLORS };

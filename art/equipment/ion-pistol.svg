@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <g transform="translate(0 -2.4)">
+    <path class="a-d a-oo" d="M12.4 29.5h10l-2.6 20.6H9.8z"/>
+    <path class="a-c" d="M14 32.4h6.6l-2 15H12z"/>
+    <path class="a-p" d="M13.6 35.4h6.6M13.2 38.4h6.6M12.8 41.4h6.6M12.4 44.4h6.6"/>
+    <path d="M12.4 29.5h10l-2.6 20.6H9.8z" fill="url(#a-shade)"/>
+    <rect class="a-m a-oo" x="8.6" y="49.4" width="12.4" height="4.4" rx="1.4"/>
+    <path class="a-o" fill="none" d="M26 30.2c0 5.8 1.8 7.4 5.4 7.4h2.2v-7.4"/>
+    <path class="a-d" d="M28.8 30.6c.7 2.4 1.5 3.4 2.8 4l.2-4z"/>
+    <path class="a-m a-o" d="M9.4 22.6v-2.4H12v2.4zM31 22.6v-2.8h2.2v2.8z"/>
+    <path class="a-b a-oo" d="M7.6 22.6h27.4l1.4 1.4v6.6H25l-1.8-2H10l-2.4-2.4z"/>
+    <path d="M7.6 22.6h27.4l1.4 1.4v6.6H25l-1.8-2H10l-2.4-2.4z" fill="url(#a-sheen)"/>
+    <rect class="a-d" x="11.6" y="24.6" width="9.4" height="2" rx="1"/>
+    <rect class="a-s a-o" x="26.4" y="24.6" width="7.4" height="3.2" rx=".8"/>
+    <rect class="a-g" x="27.2" y="25.3" width="5.8" height="1.8" rx=".5"/>
+    <rect class="a-m a-oo" x="36" y="24.2" width="16" height="4.4" rx="1"/>
+    <path class="a-g" d="M37.4 19.8h3.8v13.2h-3.8zM41.6 19.8h3.8v13.2h-3.8zM45.8 19.8h3.8v13.2h-3.8z" filter="url(#a-glow)" opacity=".75"/>
+    <rect class="a-m a-o" x="38" y="20.4" width="2.6" height="12" rx="1.1"/>
+    <rect class="a-m a-o" x="42.2" y="20.4" width="2.6" height="12" rx="1.1"/>
+    <rect class="a-m a-o" x="46.4" y="20.4" width="2.6" height="12" rx="1.1"/>
+    <path class="a-g" d="M38.8 21.8h1v9.2h-1zM43 21.8h1v9.2h-1zM47.2 21.8h1v9.2h-1z"/>
+    <rect class="a-m a-oo" x="51.4" y="21.8" width="3.4" height="9.2" rx="1"/>
+    <path class="a-m a-o" d="M54.4 21.4h6.2l1.8 1.6-1.6 1.8h-6.4zM54.4 28h6.4l1.6 1.8-1.8 1.6h-6.2z"/>
+    <path class="a-g" d="M60.6 24.8l-1.6 1.2 2 .6-1.6 1.2" filter="url(#a-glow-lg)"/>
+    <path class="a-gl" d="M60.4 24.8L58.8 26l2 .6-1.6 1.2"/>
+    <circle class="a-w" cx="57.8" cy="26.4" r=".8"/>
+    <path class="a-l" d="M9 23.8h25.6M36.8 25.2h14.4M55 22.4h5.2"/>
+  </g>
+</svg>

@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <g transform="translate(1.6 -.4) rotate(-28 32 32)">
+    <rect class="a-c a-o" x="3.2" y="21.6" width="4.4" height="15.4" rx="1.6"/>
+    <path class="a-d a-oo" d="M6.6 22.6l6.4-1.6v17.4l-6.4-1.6z"/>
+    <path class="a-d a-oo" d="M17.6 37.4h7.6l-2.2 11c-.3 1.4-1.2 2.2-2.6 2.2h-3c-1.4 0-2.2-1-2-2.4z"/>
+    <path class="a-m" d="M18.4 40h5.6l-.3 1.4h-5.6zM17.9 43h5.6l-.3 1.4h-5.6z"/>
+    <path class="a-o" fill="none" d="M25.6 38.2c0 3.4 1.2 4.6 3 4.6"/>
+    <path class="a-d a-oo" d="M38.6 34.6h5.8l-.6 9.6c0 1-.8 1.6-1.8 1.6h-1.6c-1 0-1.6-.6-1.6-1.6z"/>
+    <path class="a-m a-o" d="M33.4 37.2c2.4 0 3.6 1 4.4 2.6"/>
+    <rect class="a-m a-oo" x="35.6" y="22.4" width="17" height="12.6" rx="1.6"/>
+    <rect x="35.6" y="22.4" width="17" height="12.6" rx="1.6" fill="url(#a-sheen)"/>
+    <rect x="35.6" y="22.4" width="17" height="12.6" rx="1.6" fill="url(#a-shade)"/>
+    <path class="a-x a-o" d="M43.6 22.6h6v12.2h-6z"/>
+    <path class="a-d" d="M44.6 34.8l3.4-12.2h1.6l-3.4 12.2zM43.6 31.2l2.4-8.6h-1.6l-.8 3z"/>
+    <path class="a-d" d="M37.6 30.6h1.6v2h-1.6zM40.4 30.6H42v2h-1.6z"/>
+    <path class="a-m a-oo" d="M52 20.6h4.4c1 0 1.8.8 1.8 1.8v13c0 1-.8 1.8-1.8 1.8H52z"/>
+    <path d="M52 20.6h4.4c1 0 1.8.8 1.8 1.8v13c0 1-.8 1.8-1.8 1.8H52z" fill="url(#a-sheen)"/>
+    <ellipse class="a-d a-o" cx="58.4" cy="28.9" rx="1.6" ry="7"/>
+    <ellipse class="a-g" cx="58.6" cy="28.9" rx="1.2" ry="5" filter="url(#a-glow-lg)"/>
+    <ellipse class="a-gl" cx="58.6" cy="28.9" rx=".6" ry="4.2"/>
+    <circle class="a-w" cx="58.8" cy="28.9" r=".9"/>
+    <path class="a-m a-o" d="M16.4 20.6l3-5h2.4l-3 5zM20.8 20.6l3-5h2.4l-3 5zM25.2 20.6l3-5h2.4l-3 5zM29.6 20.6l3-5H35l-3 5z"/>
+    <path class="a-b a-oo" d="M12.6 20.6h22l2 2v15h-24z"/>
+    <path d="M12.6 20.6h22l2 2v15h-24z" fill="url(#a-sheen)"/>
+    <path d="M12.6 20.6h22l2 2v15h-24z" fill="url(#a-shade)"/>
+    <rect class="a-m a-oo" x="14.6" y="23.2" width="19.8" height="9" rx="4.5"/>
+    <rect class="a-s a-o" x="16.4" y="24.6" width="16.2" height="6.2" rx="3.1"/>
+    <path class="a-g" d="M18.2 25.8h1.8v3.8h-1.8zM21.2 25h1.8v5.4h-1.8zM24.2 25h1.8v5.4h-1.8zM27.2 25H29v5.4h-1.8zM30.2 25.8H32v3.8h-1.8z" filter="url(#a-glow)"/>
+    <path class="a-g" d="M18.6 26.2h1v3h-1zM21.6 25.4h1v4.6h-1zM24.6 25.4h1v4.6h-1zM27.6 25.4h1v4.6h-1zM30.6 26.2h1v3h-1z"/>
+    <path class="a-w" d="M21.9 26.2h.4v3h-.4zM24.9 26.2h.4v3h-.4zM27.9 26.2h.4v3h-.4z"/>
+    <path class="a-x" d="M13.2 33.4h22.8v2.4H13.2z"/>
+    <path class="a-d" d="M15.4 35.8l1.6-2.4h1.8l-1.6 2.4zM20 35.8l1.6-2.4h1.8l-1.6 2.4zM24.6 35.8l1.6-2.4H28l-1.6 2.4zM29.2 35.8l1.6-2.4h1.8L31 35.8z"/>
+    <path class="a-l" d="M14 21.8h20M36.6 23.6h6.4M52.8 21.8h3.4M18.2 24.2h12.4"/>
+  </g>
+</svg>

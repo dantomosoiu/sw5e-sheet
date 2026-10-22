@@ -123,3 +123,4 @@ tr.is-equipped .inv-item > .art-tile { outline: 2px solid color-mix(in srgb, var
 }
 .art-tile.sm > .art-tier { top: 1px; transform: translateX(-50%) scale(.75); }
 .stat:has(> .value > .stat-art) > .label, .stat:has(.stat-art) > .label { padding-right: 34px; }
+.ax-copper { --ax: #c0753a; }
