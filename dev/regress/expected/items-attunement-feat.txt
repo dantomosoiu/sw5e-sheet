@@ -199,6 +199,15 @@ init: Initiative: d20 +1 · = +1 modifier
 death: Death saving throw: d20 +0
 hitdie|d10: Hit die (d10): d10 +2 · = +2 per die
 dice|2d8: 2d8: d8 d8 +0
+attack|0: Lightsaber attack: d20 +6 · = +6 modifier · two-handed: 2d4
+damage|0: Lightsaber damage: d6 +4 · = +4 STR modifier · Energy · option: Force-Empowered Strikes +1d8 +1d8 · option: Force-Empowered Strikes +2d8 +2d8
+attack|1: Unarmed Strike attack: d20 +6 · = +6 modifier
+damage|1: Unarmed Strike damage: no dice +5 · = +1 unarmed strike +4 STR modifier · Kinetic · option: Force-Empowered Strikes +1d8 +1d8 · option: Force-Empowered Strikes +2d8 +2d8
+force|light: Light force attack: d20 +5 · = +5 modifier
+force|dark: Dark force attack: d20 +2 · = +2 modifier
+force|universal: Universal force attack: d20 +5 · = +5 modifier
+pdmg|force|Saber Reflect|0|0|Wisdom: Saber Reflect: damage reduction: d6 +0
+pdmg|force|Heal|1|0|Wisdom: Heal: healing: d8 +3 · = +3 WIS modifier
 check|Strength: Strength check: d20 +4 · = +4 modifier
 save|Strength: Strength saving throw: d20 +7 · = +7 modifier
 skill|Strength|0: Athletics (STR): d20 +6 · = +6 modifier
@@ -229,15 +238,6 @@ skill|Charisma|0: Deception (CHA): d20 +0 · = +0 modifier
 skill|Charisma|1: Intimidation (CHA): d20 +0 · = +0 modifier
 skill|Charisma|2: Performance (CHA): d20 +0 · = +0 modifier
 skill|Charisma|3: Persuasion (CHA): d20 +2 · = +2 modifier
-attack|0: Lightsaber attack: d20 +6 · = +6 modifier · two-handed: 2d4
-damage|0: Lightsaber damage: d6 +4 · = +4 STR modifier · Energy · option: Force-Empowered Strikes +1d8 +1d8 · option: Force-Empowered Strikes +2d8 +2d8
-attack|1: Unarmed Strike attack: d20 +6 · = +6 modifier
-damage|1: Unarmed Strike damage: no dice +5 · = +1 unarmed strike +4 STR modifier · Kinetic · option: Force-Empowered Strikes +1d8 +1d8 · option: Force-Empowered Strikes +2d8 +2d8
-force|light: Light force attack: d20 +5 · = +5 modifier
-force|dark: Dark force attack: d20 +2 · = +2 modifier
-force|universal: Universal force attack: d20 +5 · = +5 modifier
-pdmg|force|Saber Reflect|0|0|Wisdom: Saber Reflect: damage reduction: d6 +0
-pdmg|force|Heal|1|0|Wisdom: Heal: healing: d8 +3 · = +3 WIS modifier
 tool|Artificer's tools|proficient: Artificer's tools check: d20 +1 · = −1 INT modifier +2 proficiency
 damage|0|crit: Lightsaber damage (critical): d6 d6 +4 · = +4 STR modifier · Energy · critical · option: Force-Empowered Strikes +1d8 +1d8 · option: Force-Empowered Strikes +2d8 +2d8
 damage|1|crit: Unarmed Strike damage (critical): no dice +5 · = +1 unarmed strike +4 STR modifier · Kinetic · critical · option: Force-Empowered Strikes +1d8 +1d8 · option: Force-Empowered Strikes +2d8 +2d8
@@ -246,7 +246,7 @@ damage|0||two: Lightsaber damage (two-handed): d4 d4 +4 · = +4 STR modifier · 
 ## Sheet: Overview
 Maasha Vaal (Panel)
 Togruta · Guardian (Soresu Form) 4
-Level 4 Background: Jedi Lawful Light Proficiency +2 [Add a picture]
+Level 4 Background: Jedi Lawful Light Proficiency +2 [Upload a picture] [Picture link…]
 2,700 XP level 5 at 6,500 (3,800 to go)
 Still to choose (5): Guardian skills (2 more) · background skills (2 more) · background languages · Formfighting Dabbler: +1 · Investigative Attunement: +1
 
@@ -275,6 +275,7 @@ Vision
 Normal
 Play tracker
 [] [untyped ▾] [Damage] [Heal] [Temp HP]
+Enter: Damage · Shift + Enter: Heal
 Death saves ✓ [] [] [] ✗ [] [] [] [Roll]
 Force points 11 / 11 [−] [+]
 Hit dice (d10) roll d10 +2, then Heal 4 / 4 [−] [+]
@@ -332,6 +333,87 @@ Max capacity
 270 lb
 Push / drag / lift
 540 lb
+
+## Sheet: Weapons & Attacks
+Weapon | To hit | Damage | Ability | Type | Properties |
+Lightsaber
+Hidden, luminous, versatile (2d4)
+| +6 | 1d6+4 Energy | Strength | Simple Lightweapon | Hidden, luminous, versatile (2d4) |
+Unarmed Strike
+| +6 | 5 Kinetic | Strength | Unarmed | — |
+
+## Sheet: Force Casting
+Force points
+11 / 11
+  ↳ hover forceCasting.maxPoints: Without tweaks or effects: 10 → now 11 / +1 WIS modifier (+1 score) · Formfighting Dabbler (Jedi background feat): +1 to an ability of my choice tweak
+Max power level
+1
+Light side
+DC 13
+  ↳ hover forceCasting.lightSaveDC: Without tweaks or effects: 12 → now 13 / +1 WIS modifier (+1 score) · Formfighting Dabbler (Jedi background feat): +1 to an ability of my choice tweak
+attack +5
+  ↳ hover forceCasting.lightAttackModifier: Without tweaks or effects: 4 → now 5 / +1 WIS modifier (+1 score) · Formfighting Dabbler (Jedi background feat): +1 to an ability of my choice tweak
+Dark side
+DC 10
+attack +2
+Universal
+DC 13
+  ↳ hover forceCasting.universalSaveDC: Without tweaks or effects: 12 → now 13 / +1 WIS modifier (+1 score) · Formfighting Dabbler (Jedi background feat): +1 to an ability of my choice tweak
+attack +5
+  ↳ hover forceCasting.universalAttackModifier: Without tweaks or effects: 4 → now 5 / +1 WIS modifier (+1 score) · Formfighting Dabbler (Jedi background feat): +1 to an ability of my choice tweak
+At-will powers (5)
+Force Leap Universal Guardian
+[Cast]
+Casting 1 bonus action Range Self Duration 1 round Source PHB
+Until the end of your next turn, you can use your forcecasting ability score instead of your Strength score when you jump, and always count as having made a running start before jumping.
+Guidance Light Concentration Guardian
+[Cast]
+Casting 1 action Range Touch Duration up to 1 minute Source PHB
+You touch one willing creature. Once before the power ends, the target can roll a d4 and add the number rolled to one ability check of its choice. The power then ends.
+This power's die increases at higher levels: to a d6 at 5th level, a d8 at 11th level, and a d10 at 17th level.
+Saber Reflect Universal Guardian
+[Cast]
+Attack +5 · Reduction 1d6
+Casting 1 reaction, which you take in response to being dealt damage by a ranged attack Range Self Duration Instantaneous Source PHB
+In response to being attacked, you raise your weapon to attempt to deflect. When you use this power, the damage you take from the attack is reduced by 1d6. If y… [535 chars #719c2600]
+The power's damage reduction increases by 1d6 when you reach 5th level (2d6), 11th level (3d6), and 17th level (4d6).
+Saber Throw Universal Guardian
+Attack +5
+Casting 1 action Range 30 feet Duration Instantaneous Source PHB
+As a part of the action used to cast this power, you must make a ranged force attack with a lightweapon or vibroweapon against one target within the power's ran… [319 chars #ce95991f]
+This power can hit multiple targets when you reach higher levels: two targets at 5th level, three targets at 11th level, and four targets at 17th level. Each ta… [385 chars #e441b97e]
+Saber Ward Universal Guardian
+[Cast]
+Casting 1 action Range Self Duration 1 round Source PHB
+You take a defensive stance. Until the end of your next turn, you have resistance against kinetic, energy, and ion damage dealt by weapons.
+1st-level powers (5)
+Burst of Speed Universal Guardian
+[1st level · 2 points ▾] [Cast]
+Casting 1 action Range Touch Duration 1 hour Source PHB
+You touch a creature. The target's speed increases by 10 feet until the power ends.
+Force Potency. When you cast this power using a force slot of 2nd level or higher, you can target one additional creature for each slot level above 1st.
+Force Jump Universal Prereq: Force Leap Guardian
+[1st level · 2 points ▾] [Cast]
+Casting 1 action Range Self Duration Instantaneous Source PHB
+Using the Force to augment the strength in your legs, you leap up to 30 feet to an unoccupied space you can see, provided you have a direct path to the space.
+Force Potency. When you cast this power using a force slot of 2nd level or higher, your jump distance increases by 5 feet for each slot level above 1st.
+Heal Light Guardian
+[1st level · 2 points ▾] [Cast]
+Healing 1d8+3
+Casting 1 action Range Touch Duration Instantaneous Source PHB
+A creature you touch regains a number of hit points equal to 1d8 + your forcecasting ability modifier. This power has no effect on droids or constructs.
+Force Potency. When you cast this power using a force slot of 2nd level or higher, the healing increases by 1d8 for each slot level above 1st.
+Heroism Light Concentration Guardian
+[1st level · 2 points ▾] [Cast]
+Casting 1 action Range Touch Duration up to 1 minute Source PHB
+A willing creature you touch is imbued with bravery. Until the power ends, the creature is immune to being frightened and gains temporary hit points equal to yo… [367 chars #1056666d]
+Force Potency. When you cast this power using a force slot of 2nd level or higher, you can target one additional creature for each slot level above 1st.
+Sanctuary Light Guardian
+[1st level · 2 points ▾] [Cast]
+Wisdom save DC 13
+Casting 1 bonus action Range 30 feet Duration 1 minute Source PHB
+Until the power ends, any creature who targets the warded creature with an attack, a harmful power, or a hostile action must first make a Wisdom saving throw. O… [309 chars #5be8bffc]
+If the warded creature makes an attack, casts a power that affects an enemy creature, or takes a hostile action this power ends.
 
 ## Sheet: Abilities & Saving Throws
 STR
@@ -440,86 +522,178 @@ Skill | Ability | Bonus | Passive | Proficiency |
   ↳ hover abilityScores.Wisdom.skills.4.modifier: Without tweaks or effects: 2 → now 5 / +1 WIS modifier (+1 score) · Formfighting Dabbler (Jedi background feat): +… [333 chars #7aecbef4]
 (Not proficient) Technology | INT | −1 | 9 | — |
 
-## Sheet: Weapons & Attacks
-Weapon | To hit | Damage | Ability | Type | Properties |
-Lightsaber
-Hidden, luminous, versatile (2d4)
-| +6 | 1d6+4 Energy | Strength | Simple Lightweapon | Hidden, luminous, versatile (2d4) |
-Unarmed Strike
-| +6 | 5 Kinetic | Strength | Unarmed | — |
+## Sheet: Proficiencies & Languages
+Armor
+Light armor medium armor heavy armor · Bonus Proficiencies
+Weapon
+All lightweapons all vibroweapons
+Tool
+Artificer's tools
+Skills & saves
+Athletics Insight Perception Survival Persuasion Constitution Saving Throws Charisma Saving Throws
+Languages
+Galactic Basic Togruti
+✎ = custom proficiency added on the character.
 
-## Sheet: Force Casting
-Force points
-11 / 11
-  ↳ hover forceCasting.maxPoints: Without tweaks or effects: 10 → now 11 / +1 WIS modifier (+1 score) · Formfighting Dabbler (Jedi background feat): +1 to an ability of my choice tweak
-Max power level
-1
-Light side
-DC 13
-  ↳ hover forceCasting.lightSaveDC: Without tweaks or effects: 12 → now 13 / +1 WIS modifier (+1 score) · Formfighting Dabbler (Jedi background feat): +1 to an ability of my choice tweak
-attack +5
-  ↳ hover forceCasting.lightAttackModifier: Without tweaks or effects: 4 → now 5 / +1 WIS modifier (+1 score) · Formfighting Dabbler (Jedi background feat): +1 to an ability of my choice tweak
-Dark side
-DC 10
-attack +2
-Universal
-DC 13
-  ↳ hover forceCasting.universalSaveDC: Without tweaks or effects: 12 → now 13 / +1 WIS modifier (+1 score) · Formfighting Dabbler (Jedi background feat): +1 to an ability of my choice tweak
-attack +5
-  ↳ hover forceCasting.universalAttackModifier: Without tweaks or effects: 4 → now 5 / +1 WIS modifier (+1 score) · Formfighting Dabbler (Jedi background feat): +1 to an ability of my choice tweak
-At-will powers (5)
-Force Leap Universal Guardian
-[Cast]
-Casting 1 bonus action Range Self Duration 1 round Source PHB
+## Sheet: Equipment & Inventory
+Add an item
+[All items ▾] []
+Qty [1] [Add]
+2425 items from SW5E (data version 199). [Check for a newer list]
+Credits
+450 cr
+[] [] [Apply]
+Total weight
+50.75 lb
+of 270 lb max
+Attunement
+1 / 3
+  ↳ hover attunement.maximum: Without tweaks or effects: 2 → now 3 / +1 Attunement · Investigative Attunement feat
+Items
+12
+Weapon (2)
+Item | Qty & actions | Weight | Cost | Source |
+Lightsaber
+1d6 Energy · Hidden, luminous, versatile (2d4)
+| [−] 1 [+] [Equipped] [✎] [Sell] [×] | 2.25 lb | 450 cr | PHB |
+Vibrodagger
+1d4 Kinetic · Finesse, light, thrown (range 20/60)
+| [−] 1 [+] [Equip] [✎] [Sell] [×] | 0.5 lb | 50 cr | PHB |
+Armor (2)
+Item | Qty & actions | Weight | Cost | Source |
+Mesh armor
+AC 13 + Dex modifier (max 2) · Medium
+Description
+Providing solid protection for a minimal cost, mesh armor is considered excellent protection for entrenched troops or guards. However, this protection comes at … [280 chars #c7f6f72d]
+| [−] 1 [+] [Equipped] [✎] [Sell] [×] | 20 lb | 500 cr | PHB |
+Light physical shield
+AC +1 · Shield
+| [−] 1 [+] [Equipped] [✎] [Sell] [×] | — | 50 cr | PHB |
+Clothing (1)
+Item | Qty & actions | Weight | Cost | Source |
+Clothes, common
+| [−] 1 [+] [✎] [Sell] [×] | 3 lb | 5 cr | PHB |
+Enhanced: Armor (1)
+Item | Qty & actions | Weight | Cost | Source |
+Jensaarai Armor
+Prototype (rare) · Requires attunement · Attuned
+Base item [choose… (its damage, AC and weight) ▾]
+Description
+Requires attunement
+While wearing this armor, you are considered proficient regardless of whether or not you have proficiency in medium armor. Additionally, it grants a +1 bonus to AC.
+Jensaarai Regalia. While wearing and attuned to this armor and Jensaarai Cloak, you are adapted to both hot and cold climates, as described in chapter 5 of the … [389 chars #d5d293ed]
+At the height of their training, Jensaarai craft and bond with their own armor. While each set of armor is unique to its bearer, they share similar traits.
+| [−] 1 [+] [Attuned] [✎] [Sell] [×] | — | — | WH |
+Storage (1)
+Item | Qty & actions | Weight | Cost | Source |
+Backpack
+Description
+A backpack stores 30 lb., not exceeding 1 cubic foot.
+| [−] 1 [+] [✎] [Sell] [×] | 5 lb | 50 cr | PHB |
+Utility (3)
+Item | Qty & actions | Weight | Cost | Source |
+Bedroll
+| [−] 1 [+] [✎] [Sell] [×] | 7 lb | 10 cr | PHB |
+Field rations (one day's)
+| [−] 10 [+] [✎] [Sell] [×] | 10 lb | 5 cr | PHB |
+Glowrod
+Description
+Glowrods create a beam of light illuminating the area around you in bright light for a 20-foot radius and dim light for an additional 20 feet. The glowrod lasts… [258 chars #59229a13]
+| [−] 1 [+] [✎] [Sell] [×] | 2 lb | 10 cr | PHB |
+Custom items (2)
+Item | Qty & actions | Weight | Cost | Source |
+Coded datapad (smuggler's coordinates) custom
+Description
+Story item from the docks ambush on Ord Mantell: encrypted coordinates of the smuggler's hideout.
+| [−] 1 [+] [✎] [Sell] [×] | — | — | |
+Copy of the Jedi Code custom
+Description
+Jedi background starting equipment.
+| [−] 1 [+] [✎] [Sell] [×] | 1 lb | — | |
+
+## Sheet: Classes & Progression
+[Level up]
+Guardian 4 Soresu Form Starting class Force caster
+Hit die d10 Primary Strength Saves Constitution, Charisma HP by level 10 (max), 6, 6, 6
+Force-wielder specializing in melee combat
+Ability score improvements
+Ability Score Improvement: Strength +2 Feat: Investigative Attunement
+Skill proficiencies 0 / 2 Choose two from Acrobatics, Athletics, Deception, Insight, Intimidation, Lore, Perception, Persuasion, and Piloting
+None chosen yet.
+[Choose a skill… ▾]
+Archetype [Soresu Form ▾]
+Read the options (14)
+The Guardian archetypes named after forms ("Shien/Djem So Form") are guardian paths: they give their own features. The lightsaber forms you adopt in a fight (Dj… [262 chars #53e2edb8]
+Force powers 10 / 10 Guardian table · max power level 1
+Force Leap at-will · Universal [×]
 Until the end of your next turn, you can use your forcecasting ability score instead of your Strength score when you jump, and always count as having made a running start before jumping.
-Guidance Light Concentration Guardian
-[Cast]
-Casting 1 action Range Touch Duration up to 1 minute Source PHB
+Guidance at-will · Light [×]
 You touch one willing creature. Once before the power ends, the target can roll a d4 and add the number rolled to one ability check of its choice. The power then ends.
 This power's die increases at higher levels: to a d6 at 5th level, a d8 at 11th level, and a d10 at 17th level.
-Saber Reflect Universal Guardian
-[Cast]
-Attack +5 · Reduction 1d6
-Casting 1 reaction, which you take in response to being dealt damage by a ranged attack Range Self Duration Instantaneous Source PHB
+Saber Reflect at-will · Universal [×]
 In response to being attacked, you raise your weapon to attempt to deflect. When you use this power, the damage you take from the attack is reduced by 1d6. If y… [535 chars #719c2600]
 The power's damage reduction increases by 1d6 when you reach 5th level (2d6), 11th level (3d6), and 17th level (4d6).
-Saber Throw Universal Guardian
-Attack +5
-Casting 1 action Range 30 feet Duration Instantaneous Source PHB
+Saber Throw at-will · Universal [×]
 As a part of the action used to cast this power, you must make a ranged force attack with a lightweapon or vibroweapon against one target within the power's ran… [319 chars #ce95991f]
 This power can hit multiple targets when you reach higher levels: two targets at 5th level, three targets at 11th level, and four targets at 17th level. Each ta… [385 chars #e441b97e]
-Saber Ward Universal Guardian
-[Cast]
-Casting 1 action Range Self Duration 1 round Source PHB
+Saber Ward at-will · Universal [×]
 You take a defensive stance. Until the end of your next turn, you have resistance against kinetic, energy, and ion damage dealt by weapons.
-1st-level powers (5)
-Burst of Speed Universal Guardian
-[1st level · 2 points ▾] [Cast]
-Casting 1 action Range Touch Duration 1 hour Source PHB
+Burst of Speed 1st level · Universal [×]
 You touch a creature. The target's speed increases by 10 feet until the power ends.
 Force Potency. When you cast this power using a force slot of 2nd level or higher, you can target one additional creature for each slot level above 1st.
-Force Jump Universal Prereq: Force Leap Guardian
-[1st level · 2 points ▾] [Cast]
-Casting 1 action Range Self Duration Instantaneous Source PHB
+Force Jump 1st level · Universal [×]
+Prerequisite: Force Leap
 Using the Force to augment the strength in your legs, you leap up to 30 feet to an unoccupied space you can see, provided you have a direct path to the space.
 Force Potency. When you cast this power using a force slot of 2nd level or higher, your jump distance increases by 5 feet for each slot level above 1st.
-Heal Light Guardian
-[1st level · 2 points ▾] [Cast]
-Healing 1d8+3
-Casting 1 action Range Touch Duration Instantaneous Source PHB
+Heal 1st level · Light [×]
 A creature you touch regains a number of hit points equal to 1d8 + your forcecasting ability modifier. This power has no effect on droids or constructs.
 Force Potency. When you cast this power using a force slot of 2nd level or higher, the healing increases by 1d8 for each slot level above 1st.
-Heroism Light Concentration Guardian
-[1st level · 2 points ▾] [Cast]
-Casting 1 action Range Touch Duration up to 1 minute Source PHB
+Heroism 1st level · Light [×]
 A willing creature you touch is imbued with bravery. Until the power ends, the creature is immune to being frightened and gains temporary hit points equal to yo… [367 chars #1056666d]
 Force Potency. When you cast this power using a force slot of 2nd level or higher, you can target one additional creature for each slot level above 1st.
-Sanctuary Light Guardian
-[1st level · 2 points ▾] [Cast]
-Wisdom save DC 13
-Casting 1 bonus action Range 30 feet Duration 1 minute Source PHB
+Sanctuary 1st level · Light [×]
 Until the power ends, any creature who targets the warded creature with an attack, a harmful power, or a hostile action must first make a Wisdom saving throw. O… [309 chars #5be8bffc]
 If the warded creature makes an attack, casts a power that affects an enemy creature, or takes a hostile action this power ends.
+[Learn a force power… ▾]
+Read the options (74)
+Guardian Auras 1 / 1 from the Guardian table (“Auras Known”)
+Aura of Presence [×]
+Whenever you or a friendly creature within 5 feet of you must make a saving throw, the creature can add your Wisdom modifier to the saving throw.
+[Add from Guardian Auras… ▾]
+Read the options (6)
+Fighting style 1 / 1 Guardian: Fighting Style
+Defense Style [×]
+[]
+You are skilled at the art of defending yourself. You gain the following benefits:
+While you are wearing medium or heavy armor with which you are proficient, you can use your bonus action to mark a target within 30 feet that you can see until … [492 chars #19aa7073]
+You have advantage on Strength checks and Strength saving throws to avoid being moved.
+Lightsaber form 1 / 1 Soresu Form: Form Basics
+Form rules
+Lightsaber forms (PHB chapter 6): each form you know can be adopted on your turn by using your bonus action, and adopting one replaces the form you were in. Wha… [422 chars #a55c1a59]
+Shien Form [×]
+[]
+Before the end of your next turn, you can add half your Wisdom or Charisma modifier (your choice, minimum of +1) to your AC against one attack.
+Class table
+Proficiency Bonus
++2 → +3 at 5th
+Features
+Ability Score Improvement → Extra Attack at 5th
+Force Powers Known
+10 → 12 at 5th
+Force Points
+8 → 10 at 5th
+Max Power Level
+1st → 2nd at 5th
+Focused Strikes
+2d8 → 3d8 at 5th
+Auras Known
+1 → 1 at 5th
+Aura Radius
+5 ft. → 5 ft. at 5th
+| Proficiency Bonus | Features | Force Powers Known | Force Points | Max Power Level | Focused Strikes | Auras Known | Aura Radius |
+Now (4th) | +2 | Ability Score Improvement | 10 | 8 | 1st | 2d8 | 1 | 5 ft. |
+Next (5th) | +3 | Extra Attack | 12 | 10 | 2nd | 3d8 | 1 | 5 ft. |
+Armor Light armor, medium armor Weapons All lightweapons, all vibroweapons Tools None
 
 ## Sheet: Class Features
 Guardian (7)
@@ -703,90 +877,6 @@ You learn one lightsaber form, detailed later in this chapter. If you already kn
 Add a note
 Notes []
 
-## Sheet: Classes & Progression
-[Level up]
-Guardian 4 Soresu Form Starting class Force caster
-Hit die d10 Primary Strength Saves Constitution, Charisma HP by level 10 (max), 6, 6, 6
-Force-wielder specializing in melee combat
-Ability score improvements
-Ability Score Improvement: Strength +2 Feat: Investigative Attunement
-Skill proficiencies 0 / 2 Choose two from Acrobatics, Athletics, Deception, Insight, Intimidation, Lore, Perception, Persuasion, and Piloting
-None chosen yet.
-[Choose a skill… ▾]
-Archetype [Soresu Form ▾]
-Read the options (14)
-The Guardian archetypes named after forms ("Shien/Djem So Form") are guardian paths: they give their own features. The lightsaber forms you adopt in a fight (Dj… [262 chars #53e2edb8]
-Force powers 10 / 10 Guardian table · max power level 1
-Force Leap at-will · Universal [×]
-Until the end of your next turn, you can use your forcecasting ability score instead of your Strength score when you jump, and always count as having made a running start before jumping.
-Guidance at-will · Light [×]
-You touch one willing creature. Once before the power ends, the target can roll a d4 and add the number rolled to one ability check of its choice. The power then ends.
-This power's die increases at higher levels: to a d6 at 5th level, a d8 at 11th level, and a d10 at 17th level.
-Saber Reflect at-will · Universal [×]
-In response to being attacked, you raise your weapon to attempt to deflect. When you use this power, the damage you take from the attack is reduced by 1d6. If y… [535 chars #719c2600]
-The power's damage reduction increases by 1d6 when you reach 5th level (2d6), 11th level (3d6), and 17th level (4d6).
-Saber Throw at-will · Universal [×]
-As a part of the action used to cast this power, you must make a ranged force attack with a lightweapon or vibroweapon against one target within the power's ran… [319 chars #ce95991f]
-This power can hit multiple targets when you reach higher levels: two targets at 5th level, three targets at 11th level, and four targets at 17th level. Each ta… [385 chars #e441b97e]
-Saber Ward at-will · Universal [×]
-You take a defensive stance. Until the end of your next turn, you have resistance against kinetic, energy, and ion damage dealt by weapons.
-Burst of Speed 1st level · Universal [×]
-You touch a creature. The target's speed increases by 10 feet until the power ends.
-Force Potency. When you cast this power using a force slot of 2nd level or higher, you can target one additional creature for each slot level above 1st.
-Force Jump 1st level · Universal [×]
-Prerequisite: Force Leap
-Using the Force to augment the strength in your legs, you leap up to 30 feet to an unoccupied space you can see, provided you have a direct path to the space.
-Force Potency. When you cast this power using a force slot of 2nd level or higher, your jump distance increases by 5 feet for each slot level above 1st.
-Heal 1st level · Light [×]
-A creature you touch regains a number of hit points equal to 1d8 + your forcecasting ability modifier. This power has no effect on droids or constructs.
-Force Potency. When you cast this power using a force slot of 2nd level or higher, the healing increases by 1d8 for each slot level above 1st.
-Heroism 1st level · Light [×]
-A willing creature you touch is imbued with bravery. Until the power ends, the creature is immune to being frightened and gains temporary hit points equal to yo… [367 chars #1056666d]
-Force Potency. When you cast this power using a force slot of 2nd level or higher, you can target one additional creature for each slot level above 1st.
-Sanctuary 1st level · Light [×]
-Until the power ends, any creature who targets the warded creature with an attack, a harmful power, or a hostile action must first make a Wisdom saving throw. O… [309 chars #5be8bffc]
-If the warded creature makes an attack, casts a power that affects an enemy creature, or takes a hostile action this power ends.
-[Learn a force power… ▾]
-Read the options (74)
-Guardian Auras 1 / 1 from the Guardian table (“Auras Known”)
-Aura of Presence [×]
-Whenever you or a friendly creature within 5 feet of you must make a saving throw, the creature can add your Wisdom modifier to the saving throw.
-[Add from Guardian Auras… ▾]
-Read the options (6)
-Fighting style 1 / 1 Guardian: Fighting Style
-Defense Style [×]
-[]
-You are skilled at the art of defending yourself. You gain the following benefits:
-While you are wearing medium or heavy armor with which you are proficient, you can use your bonus action to mark a target within 30 feet that you can see until … [492 chars #19aa7073]
-You have advantage on Strength checks and Strength saving throws to avoid being moved.
-Lightsaber form 1 / 1 Soresu Form: Form Basics
-Form rules
-Lightsaber forms (PHB chapter 6): each form you know can be adopted on your turn by using your bonus action, and adopting one replaces the form you were in. Wha… [422 chars #a55c1a59]
-Shien Form [×]
-[]
-Before the end of your next turn, you can add half your Wisdom or Charisma modifier (your choice, minimum of +1) to your AC against one attack.
-Class table
-Proficiency Bonus
-+2 → +3 at 5th
-Features
-Ability Score Improvement → Extra Attack at 5th
-Force Powers Known
-10 → 12 at 5th
-Force Points
-8 → 10 at 5th
-Max Power Level
-1st → 2nd at 5th
-Focused Strikes
-2d8 → 3d8 at 5th
-Auras Known
-1 → 1 at 5th
-Aura Radius
-5 ft. → 5 ft. at 5th
-| Proficiency Bonus | Features | Force Powers Known | Force Points | Max Power Level | Focused Strikes | Auras Known | Aura Radius |
-Now (4th) | +2 | Ability Score Improvement | 10 | 8 | 1st | 2d8 | 1 | 5 ft. |
-Next (5th) | +3 | Extra Attack | 12 | 10 | 2nd | 3d8 | 1 | 5 ft. |
-Armor Light armor, medium armor Weapons All lightweapons, all vibroweapons Tools None
-
 ## Sheet: Species
 Size
 Medium
@@ -883,95 +973,6 @@ None chosen yet.
 Formfighting Dabbler: +1 to 0 / 1 background feat
 None chosen yet.
 [Choose an ability… ▾]
-
-## Sheet: Proficiencies & Languages
-Armor
-Light armor medium armor heavy armor · Bonus Proficiencies
-Weapon
-All lightweapons all vibroweapons
-Tool
-Artificer's tools
-Skills & saves
-Athletics Insight Perception Survival Persuasion Constitution Saving Throws Charisma Saving Throws
-Languages
-Galactic Basic Togruti
-✎ = custom proficiency added on the character.
-
-## Sheet: Equipment & Inventory
-Add an item
-[All items ▾] []
-Qty [1] [Add]
-2425 items from SW5E (data version 199). [Check for a newer list]
-Credits
-450 cr
-[] [] [Apply]
-Total weight
-50.75 lb
-of 270 lb max
-Attunement
-1 / 3
-  ↳ hover attunement.maximum: Without tweaks or effects: 2 → now 3 / +1 Attunement · Investigative Attunement feat
-Items
-12
-Weapon (2)
-Item | Qty & actions | Weight | Cost | Source |
-Lightsaber
-1d6 Energy · Hidden, luminous, versatile (2d4)
-| [−] 1 [+] [Equipped] [✎] [Sell] [×] | 2.25 lb | 450 cr | PHB |
-Vibrodagger
-1d4 Kinetic · Finesse, light, thrown (range 20/60)
-| [−] 1 [+] [Equip] [✎] [Sell] [×] | 0.5 lb | 50 cr | PHB |
-Armor (2)
-Item | Qty & actions | Weight | Cost | Source |
-Mesh armor
-AC 13 + Dex modifier (max 2) · Medium
-Description
-Providing solid protection for a minimal cost, mesh armor is considered excellent protection for entrenched troops or guards. However, this protection comes at … [280 chars #c7f6f72d]
-| [−] 1 [+] [Equipped] [✎] [Sell] [×] | 20 lb | 500 cr | PHB |
-Light physical shield
-AC +1 · Shield
-| [−] 1 [+] [Equipped] [✎] [Sell] [×] | — | 50 cr | PHB |
-Clothing (1)
-Item | Qty & actions | Weight | Cost | Source |
-Clothes, common
-| [−] 1 [+] [✎] [Sell] [×] | 3 lb | 5 cr | PHB |
-Enhanced: Armor (1)
-Item | Qty & actions | Weight | Cost | Source |
-Jensaarai Armor
-Prototype (rare) · Requires attunement · Attuned
-Base item [choose… (its damage, AC and weight) ▾]
-Description
-Requires attunement
-While wearing this armor, you are considered proficient regardless of whether or not you have proficiency in medium armor. Additionally, it grants a +1 bonus to AC.
-Jensaarai Regalia. While wearing and attuned to this armor and Jensaarai Cloak, you are adapted to both hot and cold climates, as described in chapter 5 of the … [389 chars #d5d293ed]
-At the height of their training, Jensaarai craft and bond with their own armor. While each set of armor is unique to its bearer, they share similar traits.
-| [−] 1 [+] [Attuned] [✎] [Sell] [×] | — | — | WH |
-Storage (1)
-Item | Qty & actions | Weight | Cost | Source |
-Backpack
-Description
-A backpack stores 30 lb., not exceeding 1 cubic foot.
-| [−] 1 [+] [✎] [Sell] [×] | 5 lb | 50 cr | PHB |
-Utility (3)
-Item | Qty & actions | Weight | Cost | Source |
-Bedroll
-| [−] 1 [+] [✎] [Sell] [×] | 7 lb | 10 cr | PHB |
-Field rations (one day's)
-| [−] 10 [+] [✎] [Sell] [×] | 10 lb | 5 cr | PHB |
-Glowrod
-Description
-Glowrods create a beam of light illuminating the area around you in bright light for a 20-foot radius and dim light for an additional 20 feet. The glowrod lasts… [258 chars #59229a13]
-| [−] 1 [+] [✎] [Sell] [×] | 2 lb | 10 cr | PHB |
-Custom items (2)
-Item | Qty & actions | Weight | Cost | Source |
-Coded datapad (smuggler's coordinates) custom
-Description
-Story item from the docks ambush on Ord Mantell: encrypted coordinates of the smuggler's hideout.
-| [−] 1 [+] [✎] [Sell] [×] | — | — | |
-Copy of the Jedi Code custom
-Description
-Jedi background starting equipment.
-| [−] 1 [+] [✎] [Sell] [×] | 1 lb | — | |
 
 ## Sheet: Personality & Appearance
 Personality Traits

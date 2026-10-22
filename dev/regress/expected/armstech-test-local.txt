@@ -177,6 +177,13 @@ init: Initiative: d20 +3 · = +3 modifier
 death: Death saving throw: d20 +0
 hitdie|d8: Hit die (d8): d8 +2 · = +2 per die
 dice|1d8: 1d8: d8 +0
+attack|0: Blaster rifle attack: d20 +9 · = +9 modifier · critical on 19–20 (Juyo Form) · option: Close Call +1d8 (after a miss) +1d8
+damage|0: Blaster rifle damage: d8 +5 · = +3 DEX modifier +2 Amplifying Barrel · Energy
+attack|1: Vibrosword attack: d20 +4 · = +4 modifier · critical on 19–20 (Juyo Form) · option: Close Call +1d8 (after a miss) +1d8
+damage|1: Vibrosword damage: d6 d6 +1 · = +1 Blade Focus · Kinetic
+attack|2: Unarmed Strike attack: d20 +4 · = +4 modifier · critical on 19–20 (Juyo Form)
+damage|2: Unarmed Strike damage: no dice +1 · = +1 unarmed strike · Kinetic
+tech: Tech attack: d20 +7 · = +7 modifier
 check|Strength: Strength check: d20 +0 · = +0 modifier
 save|Strength: Strength saving throw: d20 +0 · = +0 modifier
 skill|Strength|0: Athletics (STR): d20 +0 · = +0 modifier
@@ -207,13 +214,6 @@ skill|Charisma|0: Deception (CHA): d20 −1 · = −1 modifier
 skill|Charisma|1: Intimidation (CHA): d20 −1 · = −1 modifier
 skill|Charisma|2: Performance (CHA): d20 −1 · = −1 modifier
 skill|Charisma|3: Persuasion (CHA): d20 −1 · = −1 modifier
-attack|0: Blaster rifle attack: d20 +9 · = +9 modifier · critical on 19–20 (Juyo Form) · option: Close Call +1d8 (after a miss) +1d8
-damage|0: Blaster rifle damage: d8 +5 · = +3 DEX modifier +2 Amplifying Barrel · Energy
-attack|1: Vibrosword attack: d20 +4 · = +4 modifier · critical on 19–20 (Juyo Form) · option: Close Call +1d8 (after a miss) +1d8
-damage|1: Vibrosword damage: d6 d6 +1 · = +1 Blade Focus · Kinetic
-attack|2: Unarmed Strike attack: d20 +4 · = +4 modifier · critical on 19–20 (Juyo Form)
-damage|2: Unarmed Strike damage: no dice +1 · = +1 unarmed strike · Kinetic
-tech: Tech attack: d20 +7 · = +7 modifier
 tool|One type of gaming set|proficient: One type of gaming set check: d20 +7 · = +3 INT modifier +4 proficiency
 tool|armstech's implements|proficient: armstech's implements check: d20 +7 · = +3 INT modifier +4 proficiency
 tool|Tinker's implements|expertise: Tinker's implements check: d20 +11 · = +3 INT modifier +8 proficiency ×2
@@ -224,7 +224,7 @@ damage|2|crit: Unarmed Strike damage (critical): no dice +1 · = +1 unarmed stri
 ## Sheet: Overview
 Armstech Test (local)
 Human · Engineer (Armstech Engineering) 9
-Level 9 Background: Soldier Balanced Neutral Proficiency +4 [Add a picture]
+Level 9 Background: Soldier Balanced Neutral Proficiency +4 [Upload a picture] [Picture link…]
 48,000 XP level 10 at 64,000 (16,000 to go)
 Still to choose (17): Engineer skills (3 more) · Engineer tool · Armstech Modifications (9 more) · Engineer tech powers (18 more) · At-will tech power (2 more) … [589 chars #6e708b7e]
 
@@ -251,6 +251,7 @@ Vision
 Normal
 Play tracker
 [] [untyped ▾] [Damage] [Heal] [Temp HP]
+Enter: Damage · Shift + Enter: Heal
 Death saves ✓ [] [] [] ✗ [] [] [] [Roll]
 Tech points 21 / 21 [−] [+]
 Hit dice (d8) roll d8 +2, then Heal 9 / 9 [−] [+]
@@ -300,6 +301,38 @@ Max capacity
 150 lb
 Push / drag / lift
 300 lb
+
+## Sheet: Weapons & Attacks
+Weapon | To hit | Damage | Ability | Type | Properties |
+Blaster rifle modified
+Power cell (range 105/420), reload 12, two-handed
+Modified Weaponry · attuned · 2 mods
+Accuracy Focus: You gain a +2 bonus to attack rolls made with this weapon.
+Amplifying Barrel: You gain a +2 bonus to damage rolls made with this weapon.
+Shots 12/12 [−1] [Reload] 0 Power cells
+| +9 | 1d8+5 Energy | Dexterity | Martial Blaster | Power cell (range 105/420), reload 12, two-handed |
+  ↳ hover weapons.0.attackBonus: Without tweaks or effects: 3 → now 9 / +2 Accuracy Focus: attack · Accuracy Focus Armstech Modifications (Blaster rifle) / proficie… [242 chars #867df50b]
+  ↳ hover weapons.0.damageBonus: Without tweaks or effects: 3 → now 5 / +2 Amplifying Barrel: damage · Amplifying Barrel Armstech Modifications (Blaster rifle)
+Vibrosword modified
+Dexterity 11, two-handed
+Modified Weaponry · attuned · 1 mod
+Burst Core: Your weapon gains the burst property, with a burst number equal to its reload number.
+| +4 | 2d6+1 Kinetic | Strength | Martial Vibroweapon | Dexterity 11, two-handed |
+  ↳ hover weapons.1.attackBonus: Without tweaks or effects: 0 → now 4 / proficient Proficient: martial vibroweapons · Bonus Proficiencies Armstech Engineering feature
+  ↳ hover weapons.1.damageBonus: Without tweaks or effects: 0 → now 1 / +1 Blade Focus: damage · Blade Focus Weapon focus (Vibrosword)
+Unarmed Strike
+| +4 | 1 Kinetic | Strength | Unarmed | — |
+
+## Sheet: Tech Casting
+Tech points
+21 / 21
+Max power level
+5
+Save DC
+15
+Attack
++7
+No powers known.
 
 ## Sheet: Abilities & Saving Throws
 STR
@@ -379,37 +412,99 @@ Skill | Ability | Bonus | Passive | Proficiency |
 (Not proficient) Survival | WIS | +1 | 11 | — |
 (Not proficient) Technology | INT | +3 | 13 | — |
 
-## Sheet: Weapons & Attacks
-Weapon | To hit | Damage | Ability | Type | Properties |
-Blaster rifle modified
-Power cell (range 105/420), reload 12, two-handed
-Modified Weaponry · attuned · 2 mods
-Accuracy Focus: You gain a +2 bonus to attack rolls made with this weapon.
-Amplifying Barrel: You gain a +2 bonus to damage rolls made with this weapon.
-Shots 12/12 [−1] [Reload] 0 Power cells
-| +9 | 1d8+5 Energy | Dexterity | Martial Blaster | Power cell (range 105/420), reload 12, two-handed |
-  ↳ hover weapons.0.attackBonus: Without tweaks or effects: 3 → now 9 / +2 Accuracy Focus: attack · Accuracy Focus Armstech Modifications (Blaster rifle) / proficie… [242 chars #867df50b]
-  ↳ hover weapons.0.damageBonus: Without tweaks or effects: 3 → now 5 / +2 Amplifying Barrel: damage · Amplifying Barrel Armstech Modifications (Blaster rifle)
-Vibrosword modified
-Dexterity 11, two-handed
-Modified Weaponry · attuned · 1 mod
-Burst Core: Your weapon gains the burst property, with a burst number equal to its reload number.
-| +4 | 2d6+1 Kinetic | Strength | Martial Vibroweapon | Dexterity 11, two-handed |
-  ↳ hover weapons.1.attackBonus: Without tweaks or effects: 0 → now 4 / proficient Proficient: martial vibroweapons · Bonus Proficiencies Armstech Engineering feature
-  ↳ hover weapons.1.damageBonus: Without tweaks or effects: 0 → now 1 / +1 Blade Focus: damage · Blade Focus Weapon focus (Vibrosword)
-Unarmed Strike
-| +4 | 1 Kinetic | Strength | Unarmed | — |
+## Sheet: Proficiencies & Languages
+Armor
+Light armor medium armor · Bonus Proficiencies
+Weapon
+Simple blasters simple vibroweapons martial blasters · Bonus Proficiencies martial vibroweapons · Bonus Proficiencies
+Tool
+One type of gaming set armstech's implements · Bonus Proficiencies Tinker's implements (expertise) · Tool Expertise
+Skills & saves
+Constitution Saving Throws Intelligence Saving Throws
+Languages
+Galactic Basic
+✎ = custom proficiency added on the character.
 
-## Sheet: Tech Casting
-Tech points
-21 / 21
-Max power level
-5
-Save DC
-15
-Attack
-+7
-No powers known.
+## Sheet: Equipment & Inventory
+Add an item
+[All items ▾] []
+Qty [1] [Add]
+2425 items from SW5E (data version 199). [Check for a newer list]
+Credits
+0 cr
+[] [] [Apply]
+Total weight
+16.75 lb
+of 150 lb max
+Attunement
+2 / 4
+incl. Blaster rifle (modified weaponry), Vibrosword (modified weaponry)
+Items
+2
+Weapon (2)
+Item | Qty & actions | Weight | Cost | Source |
+Blaster rifle
+1d8 Energy · Power cell (range 105/420), reload 12, two-handed
+| [−] 1 [+] [Equipped] [✎] [Sell] [×] | 7.5 lb | 525 cr | PHB |
+Vibrosword
+2d6 Kinetic · Dexterity 11, two-handed
+| [−] 1 [+] [Equipped] [✎] [Sell] [×] | 9.25 lb | 1,150 cr | PHB |
+
+## Sheet: Classes & Progression
+[Level up]
+Engineer 9 Armstech Engineering Starting class Tech caster
+Hit die d8 Primary Intelligence Saves Constitution, Intelligence HP by level 8 (max), 5, 5, 5, 5, 5, 5, 5, 5
+Tech caster who enhances items to benefit allies
+Ability score improvements
+Feat: Weapon Focused Feat: Tech Dabbler
+Skill proficiencies 0 / 3 Choose three from Investigation, Lore, Medicine, Nature, Piloting, and Technology
+None chosen yet.
+[Choose a skill… ▾]
+Tool proficiency 0 / 1 Tinker's implements, one of your choice
+None chosen yet.
+[Choose a tool… ▾]
+Archetype [Armstech Engineering ▾]
+Read the options (14)
+Tech powers 0 / 18 Engineer table · max power level 5
+None chosen yet.
+[Learn a tech power… ▾]
+Read the options (201)
+Armstech Modifications 3 / 12 Armstech Engineering, 3rd level · can be changed on a rest
+Modified Weaponry 1 [Blaster rifle ▾] Modified Weaponry 2 [Vibrosword ▾] 6 slots each
+Burst Core needs a blaster as the modified weaponry
+Accuracy Focus Armstech Engineering [×]
+On [Blaster rifle ▾]
+Prerequisite: 5th level, Blaster
+You gain a +1 bonus to attack rolls made with this weapon. This bonus increases to +2 at 9th level and +3 at 13th level.
+Amplifying Barrel Armstech Engineering [×]
+On [Blaster rifle ▾]
+Prerequisite: 5th level, Blaster
+You gain a +1 bonus to damage rolls made with this weapon. This bonus increases to +2 at 9th level and +3 at 13th level.
+Burst Core Armstech Engineering [×]
+On [Vibrosword ▾]
+Prerequisite: Blaster
+Your weapon gains the burst property, with a burst number equal to its reload number.
+[Add from Armstech Modifications… ▾]
+Read the options (29)
+Class table
+Proficiency Bonus
++4 → +4 at 10
+Features
+— → Infuse Item (+2) at 10
+Tech Powers Known
+18 → 19 at 10
+Tech Points
+18 → 20 at 10
+Max Power Level
+5th → 5th at 10
+Potent Aptitude
+d8 → d8 at 10
+Modification Slots
+6 → 6 at 10
+| Proficiency Bonus | Features | Tech Powers Known | Tech Points | Max Power Level | Potent Aptitude | Modification Slots |
+Now (9) | +4 | — | 18 | 18 | 5th | d8 | 6 |
+Next (10) | +4 | Infuse Item (+2) | 19 | 20 | 5th | d8 | 6 |
+Armor Light armor Weapons Simple blasters, simple vibroweapons Tools Tinker's implements, one of your choice
 
 ## Sheet: Class Features
 Engineer (6)
@@ -594,62 +689,6 @@ You can take this feat multiple times.
 Add a note
 Notes []
 
-## Sheet: Classes & Progression
-[Level up]
-Engineer 9 Armstech Engineering Starting class Tech caster
-Hit die d8 Primary Intelligence Saves Constitution, Intelligence HP by level 8 (max), 5, 5, 5, 5, 5, 5, 5, 5
-Tech caster who enhances items to benefit allies
-Ability score improvements
-Feat: Weapon Focused Feat: Tech Dabbler
-Skill proficiencies 0 / 3 Choose three from Investigation, Lore, Medicine, Nature, Piloting, and Technology
-None chosen yet.
-[Choose a skill… ▾]
-Tool proficiency 0 / 1 Tinker's implements, one of your choice
-None chosen yet.
-[Choose a tool… ▾]
-Archetype [Armstech Engineering ▾]
-Read the options (14)
-Tech powers 0 / 18 Engineer table · max power level 5
-None chosen yet.
-[Learn a tech power… ▾]
-Read the options (201)
-Armstech Modifications 3 / 12 Armstech Engineering, 3rd level · can be changed on a rest
-Modified Weaponry 1 [Blaster rifle ▾] Modified Weaponry 2 [Vibrosword ▾] 6 slots each
-Burst Core needs a blaster as the modified weaponry
-Accuracy Focus Armstech Engineering [×]
-On [Blaster rifle ▾]
-Prerequisite: 5th level, Blaster
-You gain a +1 bonus to attack rolls made with this weapon. This bonus increases to +2 at 9th level and +3 at 13th level.
-Amplifying Barrel Armstech Engineering [×]
-On [Blaster rifle ▾]
-Prerequisite: 5th level, Blaster
-You gain a +1 bonus to damage rolls made with this weapon. This bonus increases to +2 at 9th level and +3 at 13th level.
-Burst Core Armstech Engineering [×]
-On [Vibrosword ▾]
-Prerequisite: Blaster
-Your weapon gains the burst property, with a burst number equal to its reload number.
-[Add from Armstech Modifications… ▾]
-Read the options (29)
-Class table
-Proficiency Bonus
-+4 → +4 at 10
-Features
-— → Infuse Item (+2) at 10
-Tech Powers Known
-18 → 19 at 10
-Tech Points
-18 → 20 at 10
-Max Power Level
-5th → 5th at 10
-Potent Aptitude
-d8 → d8 at 10
-Modification Slots
-6 → 6 at 10
-| Proficiency Bonus | Features | Tech Powers Known | Tech Points | Max Power Level | Potent Aptitude | Modification Slots |
-Now (9) | +4 | — | 18 | 18 | 5th | d8 | 6 |
-Next (10) | +4 | Infuse Item (+2) | 19 | 20 | 5th | d8 | 6 |
-Armor Light armor Weapons Simple blasters, simple vibroweapons Tools Tinker's implements, one of your choice
-
 ## Sheet: Species
 Size
 Medium
@@ -761,44 +800,6 @@ None chosen yet.
 Fighting Stylist: +1 to 0 / 1 background feat
 None chosen yet.
 [Choose an ability… ▾]
-
-## Sheet: Proficiencies & Languages
-Armor
-Light armor medium armor · Bonus Proficiencies
-Weapon
-Simple blasters simple vibroweapons martial blasters · Bonus Proficiencies martial vibroweapons · Bonus Proficiencies
-Tool
-One type of gaming set armstech's implements · Bonus Proficiencies Tinker's implements (expertise) · Tool Expertise
-Skills & saves
-Constitution Saving Throws Intelligence Saving Throws
-Languages
-Galactic Basic
-✎ = custom proficiency added on the character.
-
-## Sheet: Equipment & Inventory
-Add an item
-[All items ▾] []
-Qty [1] [Add]
-2425 items from SW5E (data version 199). [Check for a newer list]
-Credits
-0 cr
-[] [] [Apply]
-Total weight
-16.75 lb
-of 150 lb max
-Attunement
-2 / 4
-incl. Blaster rifle (modified weaponry), Vibrosword (modified weaponry)
-Items
-2
-Weapon (2)
-Item | Qty & actions | Weight | Cost | Source |
-Blaster rifle
-1d8 Energy · Power cell (range 105/420), reload 12, two-handed
-| [−] 1 [+] [Equipped] [✎] [Sell] [×] | 7.5 lb | 525 cr | PHB |
-Vibrosword
-2d6 Kinetic · Dexterity 11, two-handed
-| [−] 1 [+] [Equipped] [✎] [Sell] [×] | 9.25 lb | 1,150 cr | PHB |
 
 ## Sheet: Personality & Appearance
 Personality Traits

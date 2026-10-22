@@ -161,6 +161,9 @@ init: Initiative: d20 +3 · = +3 modifier
 death: Death saving throw: d20 +0
 hitdie|d8: Hit die (d8): d8 +2 · = +2 per die
 dice|1d6: 1d6: d6 +0
+attack|0: Unarmed Strike attack: d20 +6 · = +6 modifier
+damage|0: Unarmed Strike damage: d6 +3 · = +3 DEX modifier (Martial Arts) · Kinetic
+tech: Tech attack: d20 +5 · = +5 modifier
 check|Strength: Strength check: d20 +0 · = +0 modifier
 save|Strength: Strength saving throw: d20 +3 · = +3 modifier
 skill|Strength|0: Athletics (STR): d20 +0 · = +0 modifier
@@ -191,17 +194,14 @@ skill|Charisma|0: Deception (CHA): d20 +2 · = +2 modifier
 skill|Charisma|1: Intimidation (CHA): d20 −1 · = −1 modifier
 skill|Charisma|2: Performance (CHA): d20 −1 · = −1 modifier
 skill|Charisma|3: Persuasion (CHA): d20 −1 · = −1 modifier
-attack|0: Unarmed Strike attack: d20 +6 · = +6 modifier
-damage|0: Unarmed Strike damage: d6 +3 · = +3 DEX modifier (Martial Arts) · Kinetic
-tech: Tech attack: d20 +5 · = +5 modifier
-dice|1d4: 1d4: d4 +0
 tool|One type of gaming set|proficient: One type of gaming set check: d20 +5 · = +2 INT modifier +3 proficiency
+dice|1d4: 1d4: d4 +0
 damage|0|crit: Unarmed Strike damage (critical): d6 d6 +3 · = +3 DEX modifier (Martial Arts) · Kinetic · critical
 
 ## Sheet: Overview
 Rakatan Test (local)
 Human · Monk 5, Engineer 3
-Level 8 Background: Noble Lawful Light Proficiency +3 [Add a picture]
+Level 8 Background: Noble Lawful Light Proficiency +3 [Upload a picture] [Picture link…]
 6,500 XP level 9 at 48,000 (41,500 to go)
 Level 8 usually needs 34,000 XP (you have 6,500).
 Still to choose (18): Monk skills (2 more) · Monk 4th level: ability score improvement or feat · Monk order · Monastic Vows (2 more) · Engineer multiclass skill… [576 chars #c2e5f952]
@@ -231,6 +231,7 @@ Vision
 Normal
 Play tracker
 [] [untyped ▾] [Damage] [Heal] [Temp HP]
+Enter: Damage · Shift + Enter: Heal
 Death saves ✓ [] [] [] ✗ [] [] [] [Roll]
 Tech points 10 / 10 [−] [+]
 Hit dice (d8) roll d8 +2, then Heal 8 / 8 [−] [+]
@@ -274,6 +275,25 @@ Max capacity
 150 lb
 Push / drag / lift
 300 lb
+
+## Sheet: Weapons & Attacks
+Weapon | To hit | Damage | Ability | Type | Properties |
+Unarmed Strike
+| +6 | 1d6+3 Kinetic | Dexterity (finesse) | Unarmed | — |
+  ↳ hover weapons.0.attackBonus: Without tweaks or effects: 3 → now 6 / +3 Finesse: DEX +3 instead of STR · Martial Arts Monk feature
+  ↳ hover weapons.0.damageBonus: Without tweaks or effects: 1 → now 3 / d6 Unarmed damage die (1 → d6) · Martial Arts Monk feature / +3 Finesse: DEX +3 instead of STR · Martial Arts Monk feature
+
+## Sheet: Tech Casting
+Tech points
+10 / 10
+  ↳ hover techCasting.maxPoints: Without tweaks or effects: 8 → now 10 / +2 Tech points · Multiclass Improvement (Engineer) Monk levels
+Max power level
+2
+Save DC
+13
+Attack
++5
+No powers known.
 
 ## Sheet: Abilities & Saving Throws
 STR
@@ -357,24 +377,103 @@ Skill | Ability | Bonus | Passive | Proficiency |
 (Not proficient) Survival | WIS | +3 | 13 | — |
 (Not proficient) Technology | INT | +2 | 12 | — |
 
-## Sheet: Weapons & Attacks
-Weapon | To hit | Damage | Ability | Type | Properties |
-Unarmed Strike
-| +6 | 1d6+3 Kinetic | Dexterity (finesse) | Unarmed | — |
-  ↳ hover weapons.0.attackBonus: Without tweaks or effects: 3 → now 6 / +3 Finesse: DEX +3 instead of STR · Martial Arts Monk feature
-  ↳ hover weapons.0.damageBonus: Without tweaks or effects: 1 → now 3 / d6 Unarmed damage die (1 → d6) · Martial Arts Monk feature / +3 Finesse: DEX +3 instead of STR · Martial Arts Monk feature
+## Sheet: Proficiencies & Languages
+Armor
+None
+Weapon
+Simple blasters simple vibroweapons martial vibroweapons that lack the dexterity heavy special and two-handed properties
+Tool
+One type of gaming set
+Other
+Light armor
+Skills & saves
+Deception Strength Saving Throws Dexterity Saving Throws
+Languages
+Galactic Basic
+✎ = custom proficiency added on the character.
 
-## Sheet: Tech Casting
-Tech points
-10 / 10
-  ↳ hover techCasting.maxPoints: Without tweaks or effects: 8 → now 10 / +2 Tech points · Multiclass Improvement (Engineer) Monk levels
-Max power level
-2
-Save DC
-13
-Attack
-+5
-No powers known.
+## Sheet: Equipment & Inventory
+Add an item
+[All items ▾] []
+Qty [1] [Add]
+2425 items from SW5E (data version 199). [Check for a newer list]
+Credits
+0 cr
+[] [] [Apply]
+Total weight
+0 lb
+of 150 lb max
+Attunement
+0 / 3
+Items
+0
+No equipment.
+
+## Sheet: Classes & Progression
+[Level up]
+Monk 5 Starting class
+Hit die d8 Primary Dexterity Saves Strength, Dexterity HP by level 8 (max), 5, 5, 5, 5
+Unarmed combatant who uses focus to fuel abilities
+Skill proficiencies 0 / 2 Choose two from Acrobatics, Athletics, Insight, Lore, Perception, and Stealth
+None chosen yet.
+[Choose a skill… ▾]
+Archetype [— none — ▾]
+Read the options (13)
+Monastic Vows 0 / 2 from the Monk table (“Monastic Vows”)
+None chosen yet.
+[Add from Monastic Vows… ▾]
+Read the options (18)
+Class table
+Proficiency Bonus
++3 → +3 at 6th
+Features
+Extra Attack, Stunning Strike → Enhanced Strikes, Order feature at 6th
+Martial Arts
+d6 → d6 at 6th
+Focus Points
+5 → 6 at 6th
+Monastic Vows
+2 → 2 at 6th
+Unarmored Movement
++15 ft. → +15 ft. at 6th
+| Proficiency Bonus | Features | Martial Arts | Focus Points | Monastic Vows | Unarmored Movement |
+Now (5th) | +3 | Extra Attack, Stunning Strike | d6 | 5 | 2 | +15 ft. |
+Next (6th) | +3 | Enhanced Strikes, Order feature | d6 | 6 | 2 | +15 ft. |
+Armor None Weapons Simple blasters, simple vibroweapons, martial vibroweapons that lack the dexterity, heavy, special, and two-handed properties Tools None
+Engineer 3 Multiclass Tech caster
+Hit die d8 Primary Intelligence Saves Constitution, Intelligence HP by level 5, 5, 5
+Tech caster who enhances items to benefit allies
+Multiclass skill 0 / 1 from the class's skill list
+None chosen yet.
+[Choose a skill… ▾]
+Multiclass tool 0 / 1 from the class's list
+None chosen yet.
+[Choose a tool… ▾]
+Archetype [— none — ▾]
+Read the options (14)
+Tech powers 0 / 9 Engineer table · max power level 2
+None chosen yet.
+[Learn a tech power… ▾]
+Read the options (143)
+Class table
+Proficiency Bonus
++2 → +2 at 4
+Features
+Engineering Discipline → Ability Score Improvement at 4
+Tech Powers Known
+9 → 10 at 4
+Tech Points
+6 → 8 at 4
+Max Power Level
+2nd → 2nd at 4
+Potent Aptitude
+d4 → d4 at 4
+Modification Slots
+4 → 4 at 4
+| Proficiency Bonus | Features | Tech Powers Known | Tech Points | Max Power Level | Potent Aptitude | Modification Slots |
+Now (3) | +2 | Engineering Discipline | 9 | 6 | 2nd | d4 | 4 |
+Next (4) | +2 | Ability Score Improvement | 10 | 8 | 2nd | d4 | 4 |
+Armor Light armor Weapons Simple blasters, simple vibroweapons Tools Tinker's implements, one of your choice Multiclass grants Light armor
 
 ## Sheet: Class Features
 Engineer (5)
@@ -539,72 +638,6 @@ You've learned to blend the skills of your different classes. Choose two of the 
 Add a note
 Notes []
 
-## Sheet: Classes & Progression
-[Level up]
-Monk 5 Starting class
-Hit die d8 Primary Dexterity Saves Strength, Dexterity HP by level 8 (max), 5, 5, 5, 5
-Unarmed combatant who uses focus to fuel abilities
-Skill proficiencies 0 / 2 Choose two from Acrobatics, Athletics, Insight, Lore, Perception, and Stealth
-None chosen yet.
-[Choose a skill… ▾]
-Archetype [— none — ▾]
-Read the options (13)
-Monastic Vows 0 / 2 from the Monk table (“Monastic Vows”)
-None chosen yet.
-[Add from Monastic Vows… ▾]
-Read the options (18)
-Class table
-Proficiency Bonus
-+3 → +3 at 6th
-Features
-Extra Attack, Stunning Strike → Enhanced Strikes, Order feature at 6th
-Martial Arts
-d6 → d6 at 6th
-Focus Points
-5 → 6 at 6th
-Monastic Vows
-2 → 2 at 6th
-Unarmored Movement
-+15 ft. → +15 ft. at 6th
-| Proficiency Bonus | Features | Martial Arts | Focus Points | Monastic Vows | Unarmored Movement |
-Now (5th) | +3 | Extra Attack, Stunning Strike | d6 | 5 | 2 | +15 ft. |
-Next (6th) | +3 | Enhanced Strikes, Order feature | d6 | 6 | 2 | +15 ft. |
-Armor None Weapons Simple blasters, simple vibroweapons, martial vibroweapons that lack the dexterity, heavy, special, and two-handed properties Tools None
-Engineer 3 Multiclass Tech caster
-Hit die d8 Primary Intelligence Saves Constitution, Intelligence HP by level 5, 5, 5
-Tech caster who enhances items to benefit allies
-Multiclass skill 0 / 1 from the class's skill list
-None chosen yet.
-[Choose a skill… ▾]
-Multiclass tool 0 / 1 from the class's list
-None chosen yet.
-[Choose a tool… ▾]
-Archetype [— none — ▾]
-Read the options (14)
-Tech powers 0 / 9 Engineer table · max power level 2
-None chosen yet.
-[Learn a tech power… ▾]
-Read the options (143)
-Class table
-Proficiency Bonus
-+2 → +2 at 4
-Features
-Engineering Discipline → Ability Score Improvement at 4
-Tech Powers Known
-9 → 10 at 4
-Tech Points
-6 → 8 at 4
-Max Power Level
-2nd → 2nd at 4
-Potent Aptitude
-d4 → d4 at 4
-Modification Slots
-4 → 4 at 4
-| Proficiency Bonus | Features | Tech Powers Known | Tech Points | Max Power Level | Potent Aptitude | Modification Slots |
-Now (3) | +2 | Engineering Discipline | 9 | 6 | 2nd | d4 | 4 |
-Next (4) | +2 | Ability Score Improvement | 10 | 8 | 2nd | d4 | 4 |
-Armor Light armor Weapons Simple blasters, simple vibroweapons Tools Tinker's implements, one of your choice Multiclass grants Light armor
-
 ## Sheet: Species
 Size
 Medium
@@ -704,38 +737,6 @@ None chosen yet.
 Languages 0 / 1 One of your choice
 None chosen yet.
 [Choose a language… ▾]
-
-## Sheet: Proficiencies & Languages
-Armor
-None
-Weapon
-Simple blasters simple vibroweapons martial vibroweapons that lack the dexterity heavy special and two-handed properties
-Tool
-One type of gaming set
-Other
-Light armor
-Skills & saves
-Deception Strength Saving Throws Dexterity Saving Throws
-Languages
-Galactic Basic
-✎ = custom proficiency added on the character.
-
-## Sheet: Equipment & Inventory
-Add an item
-[All items ▾] []
-Qty [1] [Add]
-2425 items from SW5E (data version 199). [Check for a newer list]
-Credits
-0 cr
-[] [] [Apply]
-Total weight
-0 lb
-of 150 lb max
-Attunement
-0 / 3
-Items
-0
-No equipment.
 
 ## Sheet: Personality & Appearance
 Personality Traits

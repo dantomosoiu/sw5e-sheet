@@ -831,3 +831,66 @@ table.tweaks td { vertical-align: middle; }
 .defs-row { display: grid; grid-template-columns: 110px 1fr; gap: 8px; align-items: baseline; }
 .defs-row > .faint { font-size: 12px; text-transform: uppercase; letter-spacing: .04em; }
 @media (max-width: 520px) { .defs-row { grid-template-columns: 1fr; gap: 2px; } }
+
+/* ---------- Section list: icons, group headings, shortcut keys; look controls; the dice button ---------- */
+.ico { flex: none; display: inline-block; vertical-align: -4px; }
+.nav-group { font-size: 10.5px; font-weight: 650; text-transform: uppercase; letter-spacing: .14em; color: var(--faint); padding: 12px 10px 3px; }
+.nav-group:first-child { padding-top: 2px; }
+.nav a { align-items: center; justify-content: flex-start; gap: 9px; }
+.nav-ico { display: inline-flex; flex: none; color: var(--muted); transition: color .15s; }
+.nav-ico .ico { width: 17px; height: 17px; }
+.nav a:hover .nav-ico, .nav a.active .nav-ico { color: var(--accent); }
+.nav .nav-full, .nav .nav-short { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.nav-key { display: none; }
+kbd, .nav-key { font: 600 11px/1.5 var(--mono); padding: 0 5px; min-width: 1.6em; text-align: center; border-radius: 4px;
+  border: 1px solid var(--line); border-bottom-width: 2px; background: var(--panel-2); color: var(--text); }
+/* Shift held: each section's key shows (in place of its count). */
+html.keys-shown .nav .nav-key { display: inline-block; }
+html.keys-shown .nav .count { display: none; }
+.side-tools button, .side-look button, .welcome-look button { display: inline-flex; align-items: center; gap: 5px; }
+.side-tools .ico, .side-look .ico, .welcome-look .ico { width: 15px; height: 15px; }
+/* Always in sight at the bottom of the section list, however far the list is scrolled. */
+.side-look { position: sticky; bottom: 0; z-index: 1; display: flex; flex-wrap: wrap; gap: 6px; margin: 8px -12px -12px; padding: 8px 16px 12px;
+  border-top: 1px solid var(--line); background: var(--panel); border-radius: 0 0 var(--radius) var(--radius); }
+.side-look button { font-size: 12px; padding: 4px 8px; }
+.theme-btn > span { display: inline-flex; align-items: center; gap: 5px; }
+:root[data-theme="light"] .when-dark, :root:not([data-theme="light"]) .when-light { display: none !important; }
+.welcome-look { display: flex; justify-content: center; gap: 4px; }
+.pic-chip { cursor: pointer; border: 0; font: inherit; font-size: 12px; }
+.chips > button.chip { border: 0; cursor: pointer; font-family: inherit; }
+.pic-chip .ico { width: 13px; height: 13px; vertical-align: -2px; margin-right: 4px; }
+.trk-hint { display: block; font-size: 11.5px; margin-top: 3px; }
+
+/* The dice: a round button in the corner, always at hand (it hides while the dice are open; ✕ or Shift + D closes them). */
+.dice-fab { position: fixed; right: 22px; bottom: 22px; z-index: 35; width: 56px; height: 56px; padding: 0; border: 0; border-radius: 50%;
+  display: grid; place-items: center; cursor: pointer; background: var(--accent); color: var(--accent-ink);
+  box-shadow: 0 8px 22px rgba(0, 0, 0, .35), 0 0 0 4px color-mix(in srgb, var(--accent) 22%, transparent); transition: transform .15s ease, box-shadow .15s ease; }
+.dice-fab:hover { transform: rotate(-12deg) scale(1.06); box-shadow: 0 10px 26px rgba(0, 0, 0, .4), 0 0 0 6px color-mix(in srgb, var(--accent) 28%, transparent); }
+.dice-fab:focus-visible { outline: 2px solid var(--text); outline-offset: 4px; }
+body:has(#dice:not([hidden])) .dice-fab { display: none; }
+.sheet { padding-bottom: 64px; }
+@media (prefers-reduced-motion: reduce) { .dice-fab, .nav-ico { transition: none; } .dice-fab:hover { transform: none; } }
+@media print { .dice-fab, .side-look { display: none !important; } }
+
+/* "?": the keyboard shortcuts. */
+.msg-log.keys-pop { top: 50%; left: 50%; right: auto; transform: translate(-50%, -50%); width: min(780px, calc(100vw - 24px)); max-height: 84vh; }
+.keys-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 24px; }
+.keys-pop h4 { margin: 10px 0 4px; font-size: 12px; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); }
+.msg-log .keys-list { list-style: none; padding: 0; margin: 0; }
+.msg-log .keys-list li { display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 8px; align-items: start; margin: 0; padding: 3px 0; }
+.msg-log .keys-list li.keys-group { display: block; font-size: 10.5px; font-weight: 650; text-transform: uppercase; letter-spacing: .14em; color: var(--faint); padding-top: 8px; }
+.keys-list .keys { white-space: nowrap; }
+.keys-list li > span:not(.keys) { display: inline-flex; gap: 6px; align-items: baseline; flex-wrap: wrap; }
+.keys-list li > span .ico { width: 15px; height: 15px; align-self: center; color: var(--muted); }
+.keys-list li.faint > span { color: var(--faint); }
+.keys-list small { display: block; width: 100%; }
+@media (max-width: 640px) { .keys-cols { grid-template-columns: 1fr; } }
+
+@media (max-width: 900px) {
+  .nav-group, .side-look, .nav-key, html.keys-shown .nav .nav-key { display: none; }
+  .nav a { gap: 6px; }
+  .nav-ico .ico { width: 15px; height: 15px; }
+  .nav .nav-full, .nav .nav-short { flex: none; overflow: visible; }
+  .sheet { padding-bottom: 76px; }
+}
+@media (max-width: 560px) { .dice-fab { right: 14px; bottom: 14px; width: 52px; height: 52px; } }

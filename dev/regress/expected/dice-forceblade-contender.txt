@@ -215,6 +215,13 @@ init: Initiative: d20 +5 · = +5 modifier
 death: Death saving throw: d20 +0
 hitdie|d8: Hit die (d8): d8 +2 · = +2 per die
 dice|1d8: 1d8: d8 +0
+attack|0: Vibrorapier attack: d20 +9 · = +9 modifier
+damage|0: Vibrorapier damage: d8 +5 · = +5 WIS modifier (Forceblade Bond) · Kinetic · option: Double Strike (1 force point) +1d8
+attack|1: Unarmed Strike attack: d20 +7 · = +7 modifier
+damage|1: Unarmed Strike damage: d4 +3 · = +3 DEX modifier (Ideal of the Contender) · Kinetic · option: Double Strike (1 force point) +1d8
+force|light: Light force attack: d20 +9 · = +9 modifier
+force|dark: Dark force attack: d20 +3 · = +3 modifier
+force|universal: Universal force attack: d20 +9 · = +9 modifier
 check|Strength: Strength check: d20 +2 · = +0 modifier +2 half proficiency (Led by the Force)
 save|Strength: Strength saving throw: d20 +0 · = +0 modifier
 skill|Strength|0: Athletics (STR): d20 +2 · = +2 modifier
@@ -245,13 +252,6 @@ skill|Charisma|0: Deception (CHA): d20 +3 · = +3 modifier
 skill|Charisma|1: Intimidation (CHA): d20 +1 · = +1 modifier
 skill|Charisma|2: Performance (CHA): d20 +1 · = +1 modifier
 skill|Charisma|3: Persuasion (CHA): d20 +1 · = +1 modifier
-attack|0: Vibrorapier attack: d20 +9 · = +9 modifier
-damage|0: Vibrorapier damage: d8 +5 · = +5 WIS modifier (Forceblade Bond) · Kinetic · option: Double Strike (1 force point) +1d8
-attack|1: Unarmed Strike attack: d20 +7 · = +7 modifier
-damage|1: Unarmed Strike damage: d4 +3 · = +3 DEX modifier (Ideal of the Contender) · Kinetic · option: Double Strike (1 force point) +1d8
-force|light: Light force attack: d20 +9 · = +9 modifier
-force|dark: Dark force attack: d20 +3 · = +3 modifier
-force|universal: Universal force attack: d20 +9 · = +9 modifier
 tool|One type of gaming set|proficient: One type of gaming set check: d20 +6 · = +2 INT modifier +4 proficiency
 damage|0|crit: Vibrorapier damage (critical): d8 d8 +5 · = +5 WIS modifier (Forceblade Bond) · Kinetic · critical · option: Double Strike (1 force point) +1d8
 damage|1|crit: Unarmed Strike damage (critical): d4 d4 +3 · = +3 DEX modifier (Ideal of the Contender) · Kinetic · critical · option: Double Strike (1 force point) +1d8
@@ -259,7 +259,7 @@ damage|1|crit: Unarmed Strike damage (critical): d4 d4 +3 · = +3 DEX modifier (
 ## Sheet: Overview
 Rakatan Test (local)
 Human · Sentinel (Path of the Forceblade) 9
-Level 9 Background: Noble Lawful Light Proficiency +4 [Add a picture]
+Level 9 Background: Noble Lawful Light Proficiency +4 [Upload a picture] [Picture link…]
 6,500 XP level 10 at 64,000 (57,500 to go)
 Level 9 usually needs 48,000 XP (you have 6,500).
 Still to choose (14): Sentinel skills (3 more) · Sentinel tool · Sentinel 4th level: ability score improvement or feat · Sentinel 8th level: ability score impro… [493 chars #d2f304a7]
@@ -289,6 +289,7 @@ Vision
 Normal
 Play tracker
 [] [untyped ▾] [Damage] [Heal] [Temp HP]
+Enter: Damage · Shift + Enter: Heal
 Death saves ✓ [] [] [] ✗ [] [] [] [Roll]
 Force points 32 / 32 [−] [+]
 Hit dice (d8) roll d8 +2, then Heal 9 / 9 [−] [+]
@@ -333,6 +334,39 @@ Max capacity
 150 lb
 Push / drag / lift
 300 lb
+
+## Sheet: Weapons & Attacks
+Weapon | To hit | Damage | Ability | Type | Properties |
+Vibrorapier
+Finesse
+| +9 | 1d8+5 Kinetic | Wisdom (Forceblade Bond) | Martial Vibroweapon | Finesse |
+  ↳ hover weapons.0.attackBonus: Without tweaks or effects: 3 → now 9 / proficient Proficient: martial vibroweapons with the finesse property · Sentinel weapon prof… [268 chars #0d8f50c3]
+  ↳ hover weapons.0.damageBonus: Without tweaks or effects: 3 → now 5 / +2 WIS +5 instead of DEX · Forceblade Bond Path of the Forceblade feature
+Unarmed Strike
+| +7 | 1d4+3 Kinetic | Dexterity (finesse) | Unarmed | — |
+  ↳ hover weapons.1.attackBonus: Without tweaks or effects: 4 → now 7 / +3 Finesse: DEX +3 instead of STR · Ideal of the Contender Sentinel Ideals feature
+  ↳ hover weapons.1.damageBonus: Without tweaks or effects: 1 → now 3 / d4 Unarmed damage up a step (1 → d4) · Ideal of the Contender Sentinel Ideals feature / +3 F… [238 chars #ceefcdfa]
+
+## Sheet: Force Casting
+Force points
+32 / 32
+Max power level
+4
+Light side
+DC 17
+attack +9
+Dark side
+DC 11
+attack +3
+Universal
+DC 17
+attack +9
+At-will powers (1)
+Saber Throw Universal Path of the Forceblade Phasethrow
+Attack +9
+Casting 1 action Range 30 feet Duration Instantaneous Source PHB
+As a part of the action used to cast this power, you must make a ranged force attack with a lightweapon or vibroweapon against one target within the power's ran… [319 chars #ce95991f]
+This power can hit multiple targets when you reach higher levels: two targets at 5th level, three targets at 11th level, and four targets at 17th level. Each ta… [385 chars #e441b97e]
 
 ## Sheet: Abilities & Saving Throws
 STR
@@ -467,38 +501,93 @@ Skill | Ability | Bonus | Passive | Proficiency |
   ↳ hover abilityScores.Intelligence.skills.4.modifier: Without tweaks or effects: 2 → now 4 / +2 Half proficiency · Led by the Force Sentinel feature
   ↳ hover abilityScores.Intelligence.skills.4.modifier: Without tweaks or effects: 2 → now 4 / +2 Half proficiency · Led by the Force Sentinel feature
 
-## Sheet: Weapons & Attacks
-Weapon | To hit | Damage | Ability | Type | Properties |
-Vibrorapier
-Finesse
-| +9 | 1d8+5 Kinetic | Wisdom (Forceblade Bond) | Martial Vibroweapon | Finesse |
-  ↳ hover weapons.0.attackBonus: Without tweaks or effects: 3 → now 9 / proficient Proficient: martial vibroweapons with the finesse property · Sentinel weapon prof… [268 chars #0d8f50c3]
-  ↳ hover weapons.0.damageBonus: Without tweaks or effects: 3 → now 5 / +2 WIS +5 instead of DEX · Forceblade Bond Path of the Forceblade feature
-Unarmed Strike
-| +7 | 1d4+3 Kinetic | Dexterity (finesse) | Unarmed | — |
-  ↳ hover weapons.1.attackBonus: Without tweaks or effects: 4 → now 7 / +3 Finesse: DEX +3 instead of STR · Ideal of the Contender Sentinel Ideals feature
-  ↳ hover weapons.1.damageBonus: Without tweaks or effects: 1 → now 3 / d4 Unarmed damage up a step (1 → d4) · Ideal of the Contender Sentinel Ideals feature / +3 F… [238 chars #ceefcdfa]
+## Sheet: Proficiencies & Languages
+Armor
+Light armor
+Weapon
+Simple lightweapons simple vibroweapons martial lightweapons with the finesse property martial vibroweapons with the finesse property
+Tool
+One type of gaming set
+Skills & saves
+Stealth Deception Dexterity Saving Throws Charisma Saving Throws
+Languages
+Galactic Basic
+✎ = custom proficiency added on the character.
 
-## Sheet: Force Casting
-Force points
-32 / 32
-Max power level
-4
-Light side
-DC 17
-attack +9
-Dark side
-DC 11
-attack +3
-Universal
-DC 17
-attack +9
-At-will powers (1)
-Saber Throw Universal Path of the Forceblade Phasethrow
-Attack +9
-Casting 1 action Range 30 feet Duration Instantaneous Source PHB
+## Sheet: Equipment & Inventory
+Add an item
+[All items ▾] []
+Qty [1] [Add]
+2425 items from SW5E (data version 199). [Check for a newer list]
+Credits
+0 cr
+[] [] [Apply]
+Total weight
+3.5 lb
+of 150 lb max
+Attunement
+0 / 4
+Items
+1
+Weapon (1)
+Item | Qty & actions | Weight | Cost | Source |
+Vibrorapier
+1d8 Kinetic · Finesse
+| [−] 1 [+] [Equipped] [✎] [Sell] [×] | 3.5 lb | 150 cr | PHB |
+
+## Sheet: Classes & Progression
+[Level up]
+Sentinel 9 Path of the Forceblade Starting class Force caster
+Hit die d8 Primary Dexterity Saves Dexterity, Charisma HP by level 8 (max), 6, 6, 6, 6, 6, 6, 6, 6
+Force-wielder who blends melee combat with the Force
+Skill proficiencies 0 / 3 Choose three from Acrobatics, Animal Handling, Insight, Intimidation, Perception, Persuasion, Piloting, Stealth, and Technology
+None chosen yet.
+[Choose a skill… ▾]
+Tool proficiency 0 / 1 One specialist's kit of your choice
+None chosen yet.
+[Choose a tool… ▾]
+Archetype [Path of the Forceblade ▾]
+Read the options (13)
+Force powers 0 / 21 Sentinel table · max power level 4
+None chosen yet.
+[Learn a force power… ▾]
+Read the options (166)
+Sentinel Ideals 2 / 3 from the Sentinel table (“Ideals Known”)
+Ideal of the Agile [×]
+[]
+You gain a swimming speed and a climbing speed equal to your walking speed. When you make a long jump, you can cover a number of feet up to twice your Wisdom or… [330 chars #9edcc4f5]
+Additionally, as a bonus action, you can manifest this ideal in a brief surge of energy. For the next minute, opportunity attacks against you are made with disadvantage.
+Ideal of the Contender [×]
+[]
+Your unarmed strike damage increases by one step (from 1 to d4, d4 to d6, or d6 to d8), and your unarmed strikes gain the finesse property.
+Additionally, as a bonus action, you can manifest this ideal in a brief surge of energy. For the next minute, your unarmed strikes count as enhanced for the pur… [376 chars #e9898e34]
+[Add from Sentinel Ideals… ▾]
+Read the options (7)
+Power given 1 / 1 Path of the Forceblade: Phasethrow
+Saber Throw from the feature
 As a part of the action used to cast this power, you must make a ranged force attack with a lightweapon or vibroweapon against one target within the power's ran… [319 chars #ce95991f]
 This power can hit multiple targets when you reach higher levels: two targets at 5th level, three targets at 11th level, and four targets at 17th level. Each ta… [385 chars #e441b97e]
+Class table
+Proficiency Bonus
++4 → +4 at 10th
+Features
+3 → Battle Readiness at 10th
+Force Powers Known
+21 → 22 at 10th
+Force Points
+27 → 30 at 10th
+Max Power Level
+4th → 4th at 10th
+Kinetic Combat
+d8 → d8 at 10th
+Ideals Known
+3 → 3 at 10th
+Ideal Manifests
+3 → 3 at 10th
+| Proficiency Bonus | Features | Force Powers Known | Force Points | Max Power Level | Kinetic Combat | Ideals Known | Ideal Manifests |
+Now (9th) | +4 | 3 | 21 | 27 | 4th | d8 | 3 | 3 |
+Next (10th) | +4 | Battle Readiness | 22 | 30 | 4th | d8 | 3 | 3 |
+Armor Light armor Weapons Simple lightweapons, simple vibroweapons, martial lightweapons with the finesse property, martial vibroweapons with the finesse property Tools One specialist's kit of your choice
 
 ## Sheet: Class Features
 Sentinel (7)
@@ -633,60 +722,6 @@ You've learned to blend the skills of your different classes. Choose two of the 
 Add a note
 Notes []
 
-## Sheet: Classes & Progression
-[Level up]
-Sentinel 9 Path of the Forceblade Starting class Force caster
-Hit die d8 Primary Dexterity Saves Dexterity, Charisma HP by level 8 (max), 6, 6, 6, 6, 6, 6, 6, 6
-Force-wielder who blends melee combat with the Force
-Skill proficiencies 0 / 3 Choose three from Acrobatics, Animal Handling, Insight, Intimidation, Perception, Persuasion, Piloting, Stealth, and Technology
-None chosen yet.
-[Choose a skill… ▾]
-Tool proficiency 0 / 1 One specialist's kit of your choice
-None chosen yet.
-[Choose a tool… ▾]
-Archetype [Path of the Forceblade ▾]
-Read the options (13)
-Force powers 0 / 21 Sentinel table · max power level 4
-None chosen yet.
-[Learn a force power… ▾]
-Read the options (166)
-Sentinel Ideals 2 / 3 from the Sentinel table (“Ideals Known”)
-Ideal of the Agile [×]
-[]
-You gain a swimming speed and a climbing speed equal to your walking speed. When you make a long jump, you can cover a number of feet up to twice your Wisdom or… [330 chars #9edcc4f5]
-Additionally, as a bonus action, you can manifest this ideal in a brief surge of energy. For the next minute, opportunity attacks against you are made with disadvantage.
-Ideal of the Contender [×]
-[]
-Your unarmed strike damage increases by one step (from 1 to d4, d4 to d6, or d6 to d8), and your unarmed strikes gain the finesse property.
-Additionally, as a bonus action, you can manifest this ideal in a brief surge of energy. For the next minute, your unarmed strikes count as enhanced for the pur… [376 chars #e9898e34]
-[Add from Sentinel Ideals… ▾]
-Read the options (7)
-Power given 1 / 1 Path of the Forceblade: Phasethrow
-Saber Throw from the feature
-As a part of the action used to cast this power, you must make a ranged force attack with a lightweapon or vibroweapon against one target within the power's ran… [319 chars #ce95991f]
-This power can hit multiple targets when you reach higher levels: two targets at 5th level, three targets at 11th level, and four targets at 17th level. Each ta… [385 chars #e441b97e]
-Class table
-Proficiency Bonus
-+4 → +4 at 10th
-Features
-3 → Battle Readiness at 10th
-Force Powers Known
-21 → 22 at 10th
-Force Points
-27 → 30 at 10th
-Max Power Level
-4th → 4th at 10th
-Kinetic Combat
-d8 → d8 at 10th
-Ideals Known
-3 → 3 at 10th
-Ideal Manifests
-3 → 3 at 10th
-| Proficiency Bonus | Features | Force Powers Known | Force Points | Max Power Level | Kinetic Combat | Ideals Known | Ideal Manifests |
-Now (9th) | +4 | 3 | 21 | 27 | 4th | d8 | 3 | 3 |
-Next (10th) | +4 | Battle Readiness | 22 | 30 | 4th | d8 | 3 | 3 |
-Armor Light armor Weapons Simple lightweapons, simple vibroweapons, martial lightweapons with the finesse property, martial vibroweapons with the finesse property Tools One specialist's kit of your choice
-
 ## Sheet: Species
 Size
 Medium
@@ -785,40 +820,6 @@ None chosen yet.
 Languages 0 / 1 One of your choice
 None chosen yet.
 [Choose a language… ▾]
-
-## Sheet: Proficiencies & Languages
-Armor
-Light armor
-Weapon
-Simple lightweapons simple vibroweapons martial lightweapons with the finesse property martial vibroweapons with the finesse property
-Tool
-One type of gaming set
-Skills & saves
-Stealth Deception Dexterity Saving Throws Charisma Saving Throws
-Languages
-Galactic Basic
-✎ = custom proficiency added on the character.
-
-## Sheet: Equipment & Inventory
-Add an item
-[All items ▾] []
-Qty [1] [Add]
-2425 items from SW5E (data version 199). [Check for a newer list]
-Credits
-0 cr
-[] [] [Apply]
-Total weight
-3.5 lb
-of 150 lb max
-Attunement
-0 / 4
-Items
-1
-Weapon (1)
-Item | Qty & actions | Weight | Cost | Source |
-Vibrorapier
-1d8 Kinetic · Finesse
-| [−] 1 [+] [Equipped] [✎] [Sell] [×] | 3.5 lb | 150 cr | PHB |
 
 ## Sheet: Personality & Appearance
 Personality Traits

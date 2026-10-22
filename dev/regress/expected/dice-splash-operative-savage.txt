@@ -166,6 +166,16 @@ init: Initiative: d20 +2 · = +2 modifier
 death: Death saving throw: d20 +0
 hitdie|d6: Hit die (d6): d6 +2 · = +2 per die
 dice|1d6: 1d6: d6 +0
+attack|0: Vibrorapier attack: d20 +2 · = +2 modifier
+damage|0: Vibrorapier damage: d8 +2 · = +2 DEX modifier · Kinetic · option: Operative (splashclass improvement) +1d6
+attack|1: Vibrobaton attack: d20 +0 · = +0 modifier
+damage|1: Vibrobaton damage: d4 d4 +0 · Kinetic
+attack|2: Unarmed Strike attack: d20 +3 · = +3 modifier
+damage|2: Unarmed Strike damage: no dice +1 · = +1 unarmed strike · Kinetic
+force|light: Light force attack: d20 +6 · = +6 modifier
+force|dark: Dark force attack: d20 +5 · = +5 modifier
+force|universal: Universal force attack: d20 +6 · = +6 modifier
+pdmg|force|Force Push/Pull|0|0|Wisdom: Force Push/Pull: kinetic damage: d4 d4 +0 · kinetic
 check|Strength: Strength check: d20 +0 · = +0 modifier
 save|Strength: Strength saving throw: d20 +0 · = +0 modifier
 skill|Strength|0: Athletics (STR): d20 +0 · = +0 modifier
@@ -196,16 +206,6 @@ skill|Charisma|0: Deception (CHA): d20 +2 · = +2 modifier
 skill|Charisma|1: Intimidation (CHA): d20 +2 · = +2 modifier
 skill|Charisma|2: Performance (CHA): d20 +2 · = +2 modifier
 skill|Charisma|3: Persuasion (CHA): d20 +2 · = +2 modifier
-attack|0: Vibrorapier attack: d20 +2 · = +2 modifier
-damage|0: Vibrorapier damage: d8 +2 · = +2 DEX modifier · Kinetic · option: Operative (splashclass improvement) +1d6
-attack|1: Vibrobaton attack: d20 +0 · = +0 modifier
-damage|1: Vibrobaton damage: d4 d4 +0 · Kinetic
-attack|2: Unarmed Strike attack: d20 +3 · = +3 modifier
-damage|2: Unarmed Strike damage: no dice +1 · = +1 unarmed strike · Kinetic
-force|light: Light force attack: d20 +6 · = +6 modifier
-force|dark: Dark force attack: d20 +5 · = +5 modifier
-force|universal: Universal force attack: d20 +6 · = +6 modifier
-pdmg|force|Force Push/Pull|0|0|Wisdom: Force Push/Pull: kinetic damage: d4 d4 +0 · kinetic
 tool|One type of gaming set|proficient: One type of gaming set check: d20 +3 · = +0 INT modifier +3 proficiency
 damage|0|crit: Vibrorapier damage (critical): d8 d8 +2 · = +2 DEX modifier · Kinetic · critical · option (on): Savage Attacks +1d8 · option: Operative (splashclass improvement) +1d6
 damage|1|crit: Vibrobaton damage (critical): d4 d4 d4 d4 +0 · Kinetic · critical · option (on): Savage Attacks +1d4
@@ -214,7 +214,7 @@ damage|2|crit: Unarmed Strike damage (critical): no dice +1 · = +1 unarmed stri
 ## Sheet: Overview
 Consular Test (local)
 Gamorrean · Consular (Way of Technology) 5
-Level 5 Background: Noble Lawful Light Proficiency +3 [Add a picture]
+Level 5 Background: Noble Lawful Light Proficiency +3 [Upload a picture] [Picture link…]
 6,500 XP level 6 at 14,000 (7,500 to go)
 Still to choose (10): Consular skills (2 more) · Force-Empowered Castings (2 more) · Consular force powers (13 more) · At-will tech power (2 more) (Feat: Tech D… [354 chars #d88659d6]
 
@@ -242,6 +242,7 @@ Vision
 Normal
 Play tracker
 [] [untyped ▾] [Damage] [Heal] [Temp HP]
+Enter: Damage · Shift + Enter: Heal
 Death saves ✓ [] [] [] ✗ [] [] [] [Roll]
 Force points 20 / 23 [−] [+]
 Hit dice (d6) roll d6 +2, then Heal 5 / 5 [−] [+]
@@ -287,6 +288,53 @@ Max capacity
 150 lb
 Push / drag / lift
 300 lb
+
+## Sheet: Weapons & Attacks
+Weapon | To hit | Damage | Ability | Type | Properties |
+Vibrorapier
+Finesse
+| +2 | 1d8+2 Kinetic | Dexterity | Martial Vibroweapon | Finesse |
+Vibrobaton
+| +0 | 2d4 Kinetic | Strength | Martial Vibroweapon | — |
+Unarmed Strike
+| +3 | 1 Kinetic | Strength | Unarmed | — |
+
+## Sheet: Force Casting
+Force points
+20 / 23
+Max power level
+3
+Light side
+DC 14
+attack +6
+Dark side
+DC 13
+attack +5
+Universal
+DC 14
+attack +6
+At-will powers (3)
+Force Disarm Universal Consular
+Dexterity save DC 14
+Casting 1 action Range 30 feet Duration Instantaneous Source PHB
+You select a weapon or object being worn or carried by a Large or smaller creature within range. The creature must make a Strength or Dexterity saving throw (th… [398 chars #c9871d69]
+Force Push/Pull Universal Consular
+[Cast]
+Strength save DC 14 · Damage 2d4 kinetic
+Casting 1 action Range 60 feet Duration Instantaneous Source PHB
+You gain the minor ability to move or manipulate creatures and objects with the Force. You can exert fine control on objects with your telekinetic grip, such as… [380 chars #d4acff50]
+You use the Force to move a Medium or smaller creature or object not being worn or carried within range. The target must make a Strength saving throw. An object… [711 chars #708794cf]
+This power improves when you reach higher levels. At 5th level, you can move a Tiny creature or object up to 30 feet, a Small creature or object up to 20 feet, … [534 chars #d23711c1]
+Saber Throw Universal Consular
+Attack +6
+Casting 1 action Range 30 feet Duration Instantaneous Source PHB
+As a part of the action used to cast this power, you must make a ranged force attack with a lightweapon or vibroweapon against one target within the power's ran… [319 chars #ce95991f]
+This power can hit multiple targets when you reach higher levels: two targets at 5th level, three targets at 11th level, and four targets at 17th level. Each ta… [385 chars #e441b97e]
+1st-level powers (1)
+Battle Precognition Universal Consular
+[1st level · 2 points ▾] [Cast]
+Casting 1 action Range Self Duration 8 hours Source PHB
+Your attunement to the Force warns you when you are about to enter danger. Until the power ends, your base AC becomes 13 + your Dexterity modifier. This power has no effect if you are wearing armor.
 
 ## Sheet: Abilities & Saving Throws
 STR
@@ -369,52 +417,90 @@ Skill | Ability | Bonus | Passive | Proficiency |
   ↳ hover abilityScores.Intelligence.skills.4.modifier: Without tweaks or effects: 0 → now 3 / proficient Technology: proficient · Fundamentals of Mechu-deru Way of Technology feature
   ↳ hover abilityScores.Intelligence.skills.4.modifier: Without tweaks or effects: 0 → now 3 / proficient Technology: proficient · Fundamentals of Mechu-deru Way of Technology feature
 
-## Sheet: Weapons & Attacks
-Weapon | To hit | Damage | Ability | Type | Properties |
-Vibrorapier
-Finesse
-| +2 | 1d8+2 Kinetic | Dexterity | Martial Vibroweapon | Finesse |
-Vibrobaton
-| +0 | 2d4 Kinetic | Strength | Martial Vibroweapon | — |
-Unarmed Strike
-| +3 | 1 Kinetic | Strength | Unarmed | — |
+## Sheet: Proficiencies & Languages
+Armor
+None
+Weapon
+Simple lightweapons simple vibroweapons simple blasters · Fundamentals of Mechu-deru vibroaxe · Gamorrean Weaponry vibromace · Gamorrean Weaponry vibrosword · Gamorrean Weaponry
+Tool
+One type of gaming set
+Skills & saves
+Technology Wisdom Saving Throws Charisma Saving Throws
+Languages
+Galactic Basic Gamorrese
+✎ = custom proficiency added on the character.
 
-## Sheet: Force Casting
-Force points
-20 / 23
-Max power level
-3
-Light side
-DC 14
-attack +6
-Dark side
-DC 13
-attack +5
-Universal
-DC 14
-attack +6
-At-will powers (3)
-Force Disarm Universal Consular
-Dexterity save DC 14
-Casting 1 action Range 30 feet Duration Instantaneous Source PHB
+## Sheet: Equipment & Inventory
+Add an item
+[All items ▾] []
+Qty [1] [Add]
+2425 items from SW5E (data version 199). [Check for a newer list]
+Credits
+0 cr
+[] [] [Apply]
+Total weight
+7.5 lb
+of 150 lb max
+Attunement
+0 / 3
+Items
+2
+Weapon (2)
+Item | Qty & actions | Weight | Cost | Source |
+Vibrorapier
+1d8 Kinetic · Finesse
+| [−] 1 [+] [Equipped] [✎] [Sell] [×] | 3.5 lb | 150 cr | PHB |
+Vibrobaton
+2d4 Kinetic
+| [−] 1 [+] [Equipped] [✎] [Sell] [×] | 4 lb | 250 cr | EC |
+
+## Sheet: Classes & Progression
+[Level up]
+Consular 5 Way of Technology Starting class Force caster
+Hit die d6 Primary Wisdom Saves Wisdom, Charisma HP by level 6 (max), 4, 4, 4, 4
+Force-wielder who focuses on utilizing force powers
+Ability score improvements
+ASI: Wisdom +2
+Skill proficiencies 0 / 2 Choose two from Deception, Insight, Intimidation, Investigation, Lore, Medicine, and Persuasion
+None chosen yet.
+[Choose a skill… ▾]
+Archetype [Way of Technology ▾]
+Read the options (12)
+Force powers 4 / 17 Consular table · max power level 3
+Force Disarm at-will · Universal [×]
 You select a weapon or object being worn or carried by a Large or smaller creature within range. The creature must make a Strength or Dexterity saving throw (th… [398 chars #c9871d69]
-Force Push/Pull Universal Consular
-[Cast]
-Strength save DC 14 · Damage 2d4 kinetic
-Casting 1 action Range 60 feet Duration Instantaneous Source PHB
+Force Push/Pull at-will · Universal [×]
 You gain the minor ability to move or manipulate creatures and objects with the Force. You can exert fine control on objects with your telekinetic grip, such as… [380 chars #d4acff50]
 You use the Force to move a Medium or smaller creature or object not being worn or carried within range. The target must make a Strength saving throw. An object… [711 chars #708794cf]
 This power improves when you reach higher levels. At 5th level, you can move a Tiny creature or object up to 30 feet, a Small creature or object up to 20 feet, … [534 chars #d23711c1]
-Saber Throw Universal Consular
-Attack +6
-Casting 1 action Range 30 feet Duration Instantaneous Source PHB
+Saber Throw at-will · Universal [×]
 As a part of the action used to cast this power, you must make a ranged force attack with a lightweapon or vibroweapon against one target within the power's ran… [319 chars #ce95991f]
 This power can hit multiple targets when you reach higher levels: two targets at 5th level, three targets at 11th level, and four targets at 17th level. Each ta… [385 chars #e441b97e]
-1st-level powers (1)
-Battle Precognition Universal Consular
-[1st level · 2 points ▾] [Cast]
-Casting 1 action Range Self Duration 8 hours Source PHB
+Battle Precognition 1st level · Universal [×]
 Your attunement to the Force warns you when you are about to enter danger. Until the power ends, your base AC becomes 13 + your Dexterity modifier. This power has no effect if you are wearing armor.
+[Learn a force power… ▾]
+Read the options (146)
+Force-Empowered Castings 0 / 2 from the Consular table (“Force-Empowered Casting Options”)
+None chosen yet.
+[Add from Force-Empowered Castings… ▾]
+Read the options (11)
+Class table
+Proficiency Bonus
++3 → +3 at 6th
+Features
+— → Tradition feature at 6th
+Force Powers Known
+17 → 19 at 6th
+Force Points
+20 → 24 at 6th
+Max Power Level
+3rd → 3rd at 6th
+Force-Empowered Casting Options
+2 → 2 at 6th
+| Proficiency Bonus | Features | Force Powers Known | Force Points | Max Power Level | Force-Empowered Casting Options |
+Now (5th) | +3 | — | 17 | 20 | 3rd | 2 |
+Next (6th) | +3 | Tradition feature | 19 | 24 | 3rd | 2 |
+Armor None Weapons Simple lightweapons, simple vibroweapons Tools None
 
 ## Sheet: Class Features
 Consular (7)
@@ -543,54 +629,6 @@ You've learned to blend the skills of your different classes. Choose one of the 
 Add a note
 Notes []
 
-## Sheet: Classes & Progression
-[Level up]
-Consular 5 Way of Technology Starting class Force caster
-Hit die d6 Primary Wisdom Saves Wisdom, Charisma HP by level 6 (max), 4, 4, 4, 4
-Force-wielder who focuses on utilizing force powers
-Ability score improvements
-ASI: Wisdom +2
-Skill proficiencies 0 / 2 Choose two from Deception, Insight, Intimidation, Investigation, Lore, Medicine, and Persuasion
-None chosen yet.
-[Choose a skill… ▾]
-Archetype [Way of Technology ▾]
-Read the options (12)
-Force powers 4 / 17 Consular table · max power level 3
-Force Disarm at-will · Universal [×]
-You select a weapon or object being worn or carried by a Large or smaller creature within range. The creature must make a Strength or Dexterity saving throw (th… [398 chars #c9871d69]
-Force Push/Pull at-will · Universal [×]
-You gain the minor ability to move or manipulate creatures and objects with the Force. You can exert fine control on objects with your telekinetic grip, such as… [380 chars #d4acff50]
-You use the Force to move a Medium or smaller creature or object not being worn or carried within range. The target must make a Strength saving throw. An object… [711 chars #708794cf]
-This power improves when you reach higher levels. At 5th level, you can move a Tiny creature or object up to 30 feet, a Small creature or object up to 20 feet, … [534 chars #d23711c1]
-Saber Throw at-will · Universal [×]
-As a part of the action used to cast this power, you must make a ranged force attack with a lightweapon or vibroweapon against one target within the power's ran… [319 chars #ce95991f]
-This power can hit multiple targets when you reach higher levels: two targets at 5th level, three targets at 11th level, and four targets at 17th level. Each ta… [385 chars #e441b97e]
-Battle Precognition 1st level · Universal [×]
-Your attunement to the Force warns you when you are about to enter danger. Until the power ends, your base AC becomes 13 + your Dexterity modifier. This power has no effect if you are wearing armor.
-[Learn a force power… ▾]
-Read the options (146)
-Force-Empowered Castings 0 / 2 from the Consular table (“Force-Empowered Casting Options”)
-None chosen yet.
-[Add from Force-Empowered Castings… ▾]
-Read the options (11)
-Class table
-Proficiency Bonus
-+3 → +3 at 6th
-Features
-— → Tradition feature at 6th
-Force Powers Known
-17 → 19 at 6th
-Force Points
-20 → 24 at 6th
-Max Power Level
-3rd → 3rd at 6th
-Force-Empowered Casting Options
-2 → 2 at 6th
-| Proficiency Bonus | Features | Force Powers Known | Force Points | Max Power Level | Force-Empowered Casting Options |
-Now (5th) | +3 | — | 17 | 20 | 3rd | 2 |
-Next (6th) | +3 | Tradition feature | 19 | 24 | 3rd | 2 |
-Armor None Weapons Simple lightweapons, simple vibroweapons Tools None
-
 ## Sheet: Species
 Size
 Medium
@@ -677,43 +715,6 @@ None chosen yet.
 Languages 0 / 1 One of your choice
 None chosen yet.
 [Choose a language… ▾]
-
-## Sheet: Proficiencies & Languages
-Armor
-None
-Weapon
-Simple lightweapons simple vibroweapons simple blasters · Fundamentals of Mechu-deru vibroaxe · Gamorrean Weaponry vibromace · Gamorrean Weaponry vibrosword · Gamorrean Weaponry
-Tool
-One type of gaming set
-Skills & saves
-Technology Wisdom Saving Throws Charisma Saving Throws
-Languages
-Galactic Basic Gamorrese
-✎ = custom proficiency added on the character.
-
-## Sheet: Equipment & Inventory
-Add an item
-[All items ▾] []
-Qty [1] [Add]
-2425 items from SW5E (data version 199). [Check for a newer list]
-Credits
-0 cr
-[] [] [Apply]
-Total weight
-7.5 lb
-of 150 lb max
-Attunement
-0 / 3
-Items
-2
-Weapon (2)
-Item | Qty & actions | Weight | Cost | Source |
-Vibrorapier
-1d8 Kinetic · Finesse
-| [−] 1 [+] [Equipped] [✎] [Sell] [×] | 3.5 lb | 150 cr | PHB |
-Vibrobaton
-2d4 Kinetic
-| [−] 1 [+] [Equipped] [✎] [Sell] [×] | 4 lb | 250 cr | EC |
 
 ## Sheet: Personality & Appearance
 Personality Traits

@@ -138,6 +138,15 @@ tweak: abilityScores.Intelligence.skills.Technology +0 {"proficiency":"Proficien
 init: Initiative: d20 +2 · = +2 modifier
 death: Death saving throw: d20 +0
 hitdie|d6: Hit die (d6): d6 +2 · = +2 per die
+attack|0: Unarmed Strike attack: d20 +2 · = +2 modifier
+damage|0: Unarmed Strike damage: no dice +0 · = +1 unarmed strike −1 STR modifier · Kinetic
+force|light: Light force attack: d20 +6 · = +6 modifier
+force|dark: Dark force attack: d20 +5 · = +5 modifier
+force|universal: Universal force attack: d20 +6 · = +6 modifier
+pdmg|force|Force Push/Pull|0|0|Wisdom: Force Push/Pull: kinetic damage: d4 d4 +0 · kinetic
+pdmg|tech|Ion Blast|0|0|Intelligence: Ion Blast: ion damage: d4 d4 +0 · ion
+pdmg|tech|Repair Droid|1|0|Intelligence: Repair Droid: healing: d8 +1 · = +1 INT modifier
+pdmg|tech|Overheat|2|0|Intelligence: Overheat: fire damage: d8 d8 +0 · fire
 check|Strength: Strength check: d20 −1 · = −1 modifier
 save|Strength: Strength saving throw: d20 −1 · = −1 modifier
 skill|Strength|0: Athletics (STR): d20 −1 · = −1 modifier
@@ -168,22 +177,13 @@ skill|Charisma|0: Deception (CHA): d20 +2 · = +2 modifier
 skill|Charisma|1: Intimidation (CHA): d20 +2 · = +2 modifier
 skill|Charisma|2: Performance (CHA): d20 +2 · = +2 modifier
 skill|Charisma|3: Persuasion (CHA): d20 +2 · = +2 modifier
-attack|0: Unarmed Strike attack: d20 +2 · = +2 modifier
-damage|0: Unarmed Strike damage: no dice +0 · = +1 unarmed strike −1 STR modifier · Kinetic
-force|light: Light force attack: d20 +6 · = +6 modifier
-force|dark: Dark force attack: d20 +5 · = +5 modifier
-force|universal: Universal force attack: d20 +6 · = +6 modifier
-pdmg|force|Force Push/Pull|0|0|Wisdom: Force Push/Pull: kinetic damage: d4 d4 +0 · kinetic
-pdmg|tech|Ion Blast|0|0|Intelligence: Ion Blast: ion damage: d4 d4 +0 · ion
-pdmg|tech|Repair Droid|1|0|Intelligence: Repair Droid: healing: d8 +1 · = +1 INT modifier
-pdmg|tech|Overheat|2|0|Intelligence: Overheat: fire damage: d8 d8 +0 · fire
 tool|One type of gaming set|proficient: One type of gaming set check: d20 +4 · = +1 INT modifier +3 proficiency
 damage|0|crit: Unarmed Strike damage (critical): no dice +0 · = +1 unarmed strike −1 STR modifier · Kinetic · critical
 
 ## Sheet: Overview
 Consular Test (local)
 Anomid · Consular (Way of Technology) 5
-Level 5 Background: Noble Lawful Light Proficiency +3 [Add a picture]
+Level 5 Background: Noble Lawful Light Proficiency +3 [Upload a picture] [Picture link…]
 6,500 XP level 6 at 14,000 (7,500 to go)
 Still to choose (7): Consular skills (2 more) · Force-Empowered Castings (2 more) · Consular force powers (13 more) · background skills (2 more) · background tool · background languages · Force Affinity: choose one
 
@@ -210,6 +210,7 @@ Vision
 Normal
 Play tracker
 [] [untyped ▾] [Damage] [Heal] [Temp HP]
+Enter: Damage · Shift + Enter: Heal
 Death saves ✓ [] [] [] ✗ [] [] [] [Roll]
 Force points 20 / 23 [−] [+]
 Hit dice (d6) roll d6 +2, then Heal 5 / 5 [−] [+]
@@ -256,87 +257,6 @@ Max capacity
 120 lb
 Push / drag / lift
 240 lb
-
-## Sheet: Abilities & Saving Throws
-STR
-Strength
-−1
-8
-(Not proficient) Saving throw−1
-(Not proficient) Athletics−1
-base 8
-DEX
-Dexterity
-+2
-14
-(Not proficient) Saving throw+2
-(Not proficient) Acrobatics+2
-(Not proficient) Sleight of Hand+2
-(Not proficient) Stealth+2
-base 14
-CON
-Constitution
-+2
-14
-(Not proficient) Saving throw+2
-base 14
-INT
-Intelligence
-+1
-12
-(Not proficient) Saving throw+1
-(Not proficient) Investigation+1
-(Not proficient) Lore+1
-(Not proficient) Nature+1
-(Not proficient) Piloting+1
-(Proficient) Technology+4
-  ↳ hover abilityScores.Intelligence.skills.4.modifier: Without tweaks or effects: 1 → now 4 / proficient Technology: proficient · Fundamentals of Mechu-deru Way of… [242 chars #5643e85e]
-base 10 · +2 Anomid
-WIS
-Wisdom
-+3
-17
-(Proficient) Saving throw+6
-(Not proficient) Animal Handling+3
-(Not proficient) Insight+3
-(Not proficient) Medicine+3
-(Not proficient) Perception+3
-(Not proficient) Survival+3
-base 16 · +1 Anomid · +2 ASI (Consular 4) · −2 other
-CHA
-Charisma
-+2
-14
-(Proficient) Saving throw+5
-(Not proficient) Deception+2
-(Not proficient) Intimidation+2
-(Not proficient) Performance+2
-(Not proficient) Persuasion+2
-base 14
-not proficient proficient expertise
-
-## Sheet: Skills
-Skill | Ability | Bonus | Passive | Proficiency |
-(Not proficient) Acrobatics | DEX | +2 | 12 | — |
-(Not proficient) Animal Handling | WIS | +3 | 13 | — |
-(Not proficient) Athletics | STR | −1 | 9 | — |
-(Not proficient) Deception | CHA | +2 | 12 | — |
-(Not proficient) Insight | WIS | +3 | 13 | — |
-(Not proficient) Intimidation | CHA | +2 | 12 | — |
-(Not proficient) Investigation | INT | +1 | 11 | — |
-(Not proficient) Lore | INT | +1 | 11 | — |
-(Not proficient) Medicine | WIS | +3 | 13 | — |
-(Not proficient) Nature | INT | +1 | 11 | — |
-(Not proficient) Perception | WIS | +3 | 13 | — |
-(Not proficient) Performance | CHA | +2 | 12 | — |
-(Not proficient) Persuasion | CHA | +2 | 12 | — |
-(Not proficient) Piloting | INT | +1 | 11 | — |
-(Not proficient) Sleight of Hand | DEX | +2 | 12 | — |
-(Not proficient) Stealth | DEX | +2 | 12 | — |
-(Not proficient) Survival | WIS | +3 | 13 | — |
-(Proficient) Technology | INT | +4 | 14 | Proficient |
-  ↳ hover abilityScores.Intelligence.skills.4.modifier: Without tweaks or effects: 1 → now 4 / proficient Technology: proficient · Fundamentals of Mechu-deru Way of… [242 chars #5643e85e]
-  ↳ hover abilityScores.Intelligence.skills.4.modifier: Without tweaks or effects: 1 → now 4 / proficient Technology: proficient · Fundamentals of Mechu-deru Way of… [242 chars #5643e85e]
 
 ## Sheet: Weapons & Attacks
 Weapon | To hit | Damage | Ability | Type | Properties |
@@ -430,6 +350,165 @@ Casting 1 action Range 60 feet Duration up to 1 minute DC / attack 12 / +4 (INT)
 Choose a manufactured metal object, such as a blaster or a suit of heavy or medium metal armor, that you can see within range. You cause the object to glow red-… [370 chars #bd2db813]
 If an object is held, worn, or integrated, and a creature takes the damage from it, the creature must succeed on a Constitution saving throw or drop the object … [300 chars #1a5fa78e]
 Overcharge Tech. When you cast this power using a tech slot of 3rd level or higher, the damage increases by 1d8 for each slot level above 2nd.
+
+## Sheet: Abilities & Saving Throws
+STR
+Strength
+−1
+8
+(Not proficient) Saving throw−1
+(Not proficient) Athletics−1
+base 8
+DEX
+Dexterity
++2
+14
+(Not proficient) Saving throw+2
+(Not proficient) Acrobatics+2
+(Not proficient) Sleight of Hand+2
+(Not proficient) Stealth+2
+base 14
+CON
+Constitution
++2
+14
+(Not proficient) Saving throw+2
+base 14
+INT
+Intelligence
++1
+12
+(Not proficient) Saving throw+1
+(Not proficient) Investigation+1
+(Not proficient) Lore+1
+(Not proficient) Nature+1
+(Not proficient) Piloting+1
+(Proficient) Technology+4
+  ↳ hover abilityScores.Intelligence.skills.4.modifier: Without tweaks or effects: 1 → now 4 / proficient Technology: proficient · Fundamentals of Mechu-deru Way of… [242 chars #5643e85e]
+base 10 · +2 Anomid
+WIS
+Wisdom
++3
+17
+(Proficient) Saving throw+6
+(Not proficient) Animal Handling+3
+(Not proficient) Insight+3
+(Not proficient) Medicine+3
+(Not proficient) Perception+3
+(Not proficient) Survival+3
+base 16 · +1 Anomid · +2 ASI (Consular 4) · −2 other
+CHA
+Charisma
++2
+14
+(Proficient) Saving throw+5
+(Not proficient) Deception+2
+(Not proficient) Intimidation+2
+(Not proficient) Performance+2
+(Not proficient) Persuasion+2
+base 14
+not proficient proficient expertise
+
+## Sheet: Skills
+Skill | Ability | Bonus | Passive | Proficiency |
+(Not proficient) Acrobatics | DEX | +2 | 12 | — |
+(Not proficient) Animal Handling | WIS | +3 | 13 | — |
+(Not proficient) Athletics | STR | −1 | 9 | — |
+(Not proficient) Deception | CHA | +2 | 12 | — |
+(Not proficient) Insight | WIS | +3 | 13 | — |
+(Not proficient) Intimidation | CHA | +2 | 12 | — |
+(Not proficient) Investigation | INT | +1 | 11 | — |
+(Not proficient) Lore | INT | +1 | 11 | — |
+(Not proficient) Medicine | WIS | +3 | 13 | — |
+(Not proficient) Nature | INT | +1 | 11 | — |
+(Not proficient) Perception | WIS | +3 | 13 | — |
+(Not proficient) Performance | CHA | +2 | 12 | — |
+(Not proficient) Persuasion | CHA | +2 | 12 | — |
+(Not proficient) Piloting | INT | +1 | 11 | — |
+(Not proficient) Sleight of Hand | DEX | +2 | 12 | — |
+(Not proficient) Stealth | DEX | +2 | 12 | — |
+(Not proficient) Survival | WIS | +3 | 13 | — |
+(Proficient) Technology | INT | +4 | 14 | Proficient |
+  ↳ hover abilityScores.Intelligence.skills.4.modifier: Without tweaks or effects: 1 → now 4 / proficient Technology: proficient · Fundamentals of Mechu-deru Way of… [242 chars #5643e85e]
+  ↳ hover abilityScores.Intelligence.skills.4.modifier: Without tweaks or effects: 1 → now 4 / proficient Technology: proficient · Fundamentals of Mechu-deru Way of… [242 chars #5643e85e]
+
+## Sheet: Proficiencies & Languages
+Armor
+None
+Weapon
+Simple lightweapons simple vibroweapons simple blasters · Fundamentals of Mechu-deru
+Tool
+One type of gaming set
+Skills & saves
+Technology Wisdom Saving Throws Charisma Saving Throws
+Languages
+Galactic Basic Anomid Sign Language
+✎ = custom proficiency added on the character.
+
+## Sheet: Equipment & Inventory
+Add an item
+[All items ▾] []
+Qty [1] [Add]
+2425 items from SW5E (data version 199). [Check for a newer list]
+Credits
+0 cr
+[] [] [Apply]
+Total weight
+0 lb
+of 120 lb max
+Attunement
+0 / 3
+Items
+0
+No equipment.
+
+## Sheet: Classes & Progression
+[Level up]
+Consular 5 Way of Technology Starting class Force caster
+Hit die d6 Primary Wisdom Saves Wisdom, Charisma HP by level 6 (max), 4, 4, 4, 4
+Force-wielder who focuses on utilizing force powers
+Ability score improvements
+ASI: Wisdom +2
+Skill proficiencies 0 / 2 Choose two from Deception, Insight, Intimidation, Investigation, Lore, Medicine, and Persuasion
+None chosen yet.
+[Choose a skill… ▾]
+Archetype [Way of Technology ▾]
+Read the options (12)
+Force powers 4 / 17 Consular table · max power level 3
+Force Disarm at-will · Universal [×]
+You select a weapon or object being worn or carried by a Large or smaller creature within range. The creature must make a Strength or Dexterity saving throw (th… [398 chars #c9871d69]
+Force Push/Pull at-will · Universal [×]
+You gain the minor ability to move or manipulate creatures and objects with the Force. You can exert fine control on objects with your telekinetic grip, such as… [380 chars #d4acff50]
+You use the Force to move a Medium or smaller creature or object not being worn or carried within range. The target must make a Strength saving throw. An object… [711 chars #708794cf]
+This power improves when you reach higher levels. At 5th level, you can move a Tiny creature or object up to 30 feet, a Small creature or object up to 20 feet, … [534 chars #d23711c1]
+Saber Throw at-will · Universal [×]
+As a part of the action used to cast this power, you must make a ranged force attack with a lightweapon or vibroweapon against one target within the power's ran… [319 chars #ce95991f]
+This power can hit multiple targets when you reach higher levels: two targets at 5th level, three targets at 11th level, and four targets at 17th level. Each ta… [385 chars #e441b97e]
+Battle Precognition 1st level · Universal [×]
+Your attunement to the Force warns you when you are about to enter danger. Until the power ends, your base AC becomes 13 + your Dexterity modifier. This power has no effect if you are wearing armor.
+[Learn a force power… ▾]
+Read the options (146)
+Force-Empowered Castings 0 / 2 from the Consular table (“Force-Empowered Casting Options”)
+None chosen yet.
+[Add from Force-Empowered Castings… ▾]
+Read the options (11)
+Class table
+Proficiency Bonus
++3 → +3 at 6th
+Features
+— → Tradition feature at 6th
+Force Powers Known
+17 → 19 at 6th
+Force Points
+20 → 24 at 6th
+Max Power Level
+3rd → 3rd at 6th
+Force-Empowered Casting Options
+2 → 2 at 6th
+| Proficiency Bonus | Features | Force Powers Known | Force Points | Max Power Level | Force-Empowered Casting Options |
+Now (5th) | +3 | — | 17 | 20 | 3rd | 2 |
+Next (6th) | +3 | Tradition feature | 19 | 24 | 3rd | 2 |
+Armor None Weapons Simple lightweapons, simple vibroweapons Tools None
 
 ## Sheet: Class Features
 Consular (7)
@@ -549,54 +628,6 @@ You know two at-will tech powers. When you reach 3rd level, you learn and can ca
 Add a note
 Notes []
 
-## Sheet: Classes & Progression
-[Level up]
-Consular 5 Way of Technology Starting class Force caster
-Hit die d6 Primary Wisdom Saves Wisdom, Charisma HP by level 6 (max), 4, 4, 4, 4
-Force-wielder who focuses on utilizing force powers
-Ability score improvements
-ASI: Wisdom +2
-Skill proficiencies 0 / 2 Choose two from Deception, Insight, Intimidation, Investigation, Lore, Medicine, and Persuasion
-None chosen yet.
-[Choose a skill… ▾]
-Archetype [Way of Technology ▾]
-Read the options (12)
-Force powers 4 / 17 Consular table · max power level 3
-Force Disarm at-will · Universal [×]
-You select a weapon or object being worn or carried by a Large or smaller creature within range. The creature must make a Strength or Dexterity saving throw (th… [398 chars #c9871d69]
-Force Push/Pull at-will · Universal [×]
-You gain the minor ability to move or manipulate creatures and objects with the Force. You can exert fine control on objects with your telekinetic grip, such as… [380 chars #d4acff50]
-You use the Force to move a Medium or smaller creature or object not being worn or carried within range. The target must make a Strength saving throw. An object… [711 chars #708794cf]
-This power improves when you reach higher levels. At 5th level, you can move a Tiny creature or object up to 30 feet, a Small creature or object up to 20 feet, … [534 chars #d23711c1]
-Saber Throw at-will · Universal [×]
-As a part of the action used to cast this power, you must make a ranged force attack with a lightweapon or vibroweapon against one target within the power's ran… [319 chars #ce95991f]
-This power can hit multiple targets when you reach higher levels: two targets at 5th level, three targets at 11th level, and four targets at 17th level. Each ta… [385 chars #e441b97e]
-Battle Precognition 1st level · Universal [×]
-Your attunement to the Force warns you when you are about to enter danger. Until the power ends, your base AC becomes 13 + your Dexterity modifier. This power has no effect if you are wearing armor.
-[Learn a force power… ▾]
-Read the options (146)
-Force-Empowered Castings 0 / 2 from the Consular table (“Force-Empowered Casting Options”)
-None chosen yet.
-[Add from Force-Empowered Castings… ▾]
-Read the options (11)
-Class table
-Proficiency Bonus
-+3 → +3 at 6th
-Features
-— → Tradition feature at 6th
-Force Powers Known
-17 → 19 at 6th
-Force Points
-20 → 24 at 6th
-Max Power Level
-3rd → 3rd at 6th
-Force-Empowered Casting Options
-2 → 2 at 6th
-| Proficiency Bonus | Features | Force Powers Known | Force Points | Max Power Level | Force-Empowered Casting Options |
-Now (5th) | +3 | — | 17 | 20 | 3rd | 2 |
-Next (6th) | +3 | Tradition feature | 19 | 24 | 3rd | 2 |
-Armor None Weapons Simple lightweapons, simple vibroweapons Tools None
-
 ## Sheet: Species
 Size
 Medium
@@ -714,36 +745,6 @@ None chosen yet.
 Languages 0 / 1 One of your choice
 None chosen yet.
 [Choose a language… ▾]
-
-## Sheet: Proficiencies & Languages
-Armor
-None
-Weapon
-Simple lightweapons simple vibroweapons simple blasters · Fundamentals of Mechu-deru
-Tool
-One type of gaming set
-Skills & saves
-Technology Wisdom Saving Throws Charisma Saving Throws
-Languages
-Galactic Basic Anomid Sign Language
-✎ = custom proficiency added on the character.
-
-## Sheet: Equipment & Inventory
-Add an item
-[All items ▾] []
-Qty [1] [Add]
-2425 items from SW5E (data version 199). [Check for a newer list]
-Credits
-0 cr
-[] [] [Apply]
-Total weight
-0 lb
-of 120 lb max
-Attunement
-0 / 3
-Items
-0
-No equipment.
 
 ## Sheet: Personality & Appearance
 Personality Traits
