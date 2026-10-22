@@ -369,7 +369,7 @@ Dexterity Weave (Champion) DEX saves: expertise while installed
 Intuitive Facial Prosthesis INT 13 (+3) Lore: half proficiency Nature: half proficiency Technology: half proficiency Half proficiency on Intelligence checks without it while installed
 Additionally, you can add half your proficiency bonus (rounded down) to any Intelligence check you make that doesn't already include your proficiency bonus.
 Side Effect: When you roll a 1 an Intelligence saving throw, the implant stutters, causing any ability checks in which you are proficient you make before the start of your next turn to not include your proficiency bonus.
-Charming Noble Package CHA +1 Advantage on Charisma saving throws while installed
+Charming Noble Package CHA +1 Advantage on Charisma saving throws Choose the score the GM lowers by 1 (not Charisma) while installed
 Additionally, you have advantage on Charisma saving throws.
 Iridonian Grav-lev Arm Unarmed strikes: d4 while installed
 Unarmed strikes with it: 1d4 ion damage.
