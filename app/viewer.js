@@ -1634,13 +1634,35 @@ function itemEffects(key, editedRaw, complete) {
     const linked = invBaseIndex(equipment, i);
     const ck = copyKey(equipment, i);
     const weaponName = fx.target === 'weapon' ? (linked >= 0 ? equipment[linked].name : itemTargets(key)[ck] || null) : null;
+    // "…by an amount equal to your level, and it increases by 1 every time you gain a level": at the current level.
+    const level = arr(editedRaw.classes).reduce((t, k) => t + num(k.levels), 0);
+    const mods = arr(fx.mods).map((x) => (x.perLevel ? { ...x, bonus: x.perLevel * level, label: x.label.replace(/\+(\d+) per level$/, (p) => `+${x.perLevel * level} (${p})`) } : x));
     out.push({
-      ...fx, id: 'item:' + ck, kind: 'item', name: it.name, index: i, active,
+      ...fx, mods, id: 'item:' + ck, kind: 'item', name: it.name, index: i, active,
       why: fx.activation === 'carry' ? 'when you fire it' : fx.activation === 'attune' ? (active ? 'while attuned' : 'needs attunement') : (active ? `while ${how}` : `needs to be ${how}`),
       weaponName, weaponIndex: linked >= 0 && fx.target === 'weapon' ? linked : weaponIndexByName(editedRaw, weaponName), linked: linked >= 0,
     });
   });
   return out;
+}
+
+/**
+ * Dice an item adds to a weapon's damage on every hit ("deal an additional 1d10 damage with this enhanced weapon",
+ * Ostrine Edge's 1d6 of a type the GM chose): [{ dice, type, from }]. The weapons table shows them in the damage, the
+ * dice card rolls them with the weapon's.
+ */
+function weaponExtraDice(m, w) {
+  const unarmed = w.name === 'Unarmed Strike';
+  return arr(m.fx && m.fx.dice).filter((d) => (unarmed ? d.unarmed : !d.unarmed && d.weaponIndex != null && d.weaponIndex === w.index))
+    .map((d) => ({ dice: d.dice, type: d.type || '', from: d.effect.name }));
+}
+/** A weapon's damage as the weapons table shows it, with the dice items add ("1d8+1d10+5 Kinetic"). */
+function weaponDamageText(m, w) {
+  const extra = weaponExtraDice(m, w);
+  const s = damageText(w);
+  if (!extra.length) return s;
+  const more = extra.map((x) => `+${x.dice}`).join(''); // its own damage type: on the dice card
+  return num(w.damageDieType) > 0 && num(w.damageNumberOfDice) > 0 ? s.replace(/^(\d+d\d+)/, `$1${more}`) : `${more.slice(1)}+${s}`;
 }
 
 // ------------------------------------------------------------- tweaks
@@ -2068,6 +2090,7 @@ function applyEffects(key, editedRaw, complete) {
   res.tweaks = res.tweaks.filter((t) => !res.setByTweak.includes(t));
   if (acSet) res.acAlternatives = [];
   for (const t of res.tweaks) {
+    if (/^(?:force|tech)Powers\./.test(t.path)) continue; // power damage/healing bonuses: the dice card adds them
     const cur = getPath(out.tweaks, t.path) || {};
     const fields = { ...(t.fields || {}) };
     // Proficiency never goes down (a feature's "proficient" doesn't undo a tweak's "expertise").
@@ -2757,6 +2780,8 @@ function makeEffect(ref, fx, source, weaponName) {
     id: Date.now().toString(36) + Math.random().toString(36).slice(2, 6), kind: 'temporary', name: ref.name, source,
     startedAt: Date.now(), duration: fx.duration, group: fx.group, mods: fx.mods, notes: fx.notes,
     target: fx.target, weaponName: weaponName || null, text: ref.text || ref.description || '',
+    // A spice's high: a die the dice card offers on some rolls while it lasts.
+    ...(fx.riders ? { riders: fx.riders } : {}),
   };
 }
 /** Start an effect; "only one stimpac/adrenal at a time" replaces the older one. Returns those replaced. */
@@ -2959,12 +2984,17 @@ function effectRow(m, e) {
     if (mod.cond) return chip(`${mod.label} ${mod.cond}${mod.extraDamage ? `, +${mod.extraDamage} damage` : ''}`, e.kind === 'item' && !e.active ? '' : 'blue');
     const got = applied.filter((t) => t.mod === mod || (t.mod.path === mod.path && t.mod.label === mod.label));
     if (!e.active && e.kind === 'item') return chip(mod.label);
+    // Extra damage dice: on the weapon chosen (shown in its damage and rolled with it).
+    if (mod.dice) return arr(m.fx.dice).some((d) => d.effect.id === e.id && d.mod.path === mod.path) ? chip(mod.label, 'good') : chip(`${mod.label}: choose a weapon`, 'warn');
+    if (!got.length && mod.scoreAs) return chip(`${mod.label}: no effect (${mod.scoreAs.ability} ${mod.scoreAs.score} or more${mod.path === 'armorClass' ? `, or an AC without ${mod.scoreAs.ability}` : ''})`);
     if (!got.length && mod.when && !armorAllows(mod.when, armorState(m.raw))) return chip(`${mod.label}: not with armor on`);
     if (!got.length && arr(m.fx.setByTweak).some((t) => t.effect.id === e.id && t.mod.path === mod.path)) return chip(`${mod.label}: AC is set by a tweak`);
     if (!got.length && mod.acFormula) return chip(`${mod.label}: another AC formula is better`);
     if (!got.length) return chip(`${mod.label}: no effect`, 'warn');
     const b = got.reduce((s, t) => s + t.bonus, 0);
-    return chip(b === mod.bonus || mod.bonus == null ? (mod.set != null ? `${mod.label} (${signedLabel(b)})` : mod.label) : `${mod.label} → ${signedLabel(b)} (cap)`, 'good');
+    // Worked out from the scores ("AC 19 (base)", "AC as DEX 15"): the bonus it comes to.
+    const worked = mod.set != null || mod.scoreAs || mod.acFlat != null || mod.abilityMod;
+    return chip(worked ? `${mod.label} (${signedLabel(b)})` : b === mod.bonus || mod.bonus == null ? mod.label : `${mod.label} → ${signedLabel(b)} (cap)`, 'good');
   });
   const weapons = ownWeapons(m.raw);
   const weaponPick = e.target === 'weapon' && e.linked ? `<span class="faint">on its ${esc(e.weaponName)}</span>` : e.target === 'weapon' ? `<label class="fx-weapon">on <select data-fxweapon="${esc(e.id)}">
@@ -4038,6 +4068,16 @@ function defensesOf(m) {
       : /Consumable|Explosive|Ammunition|Spice|AlcoholicBeverage|Medical/i.test(`${ref.equipmentCategory} ${ref.type}`)) continue;
     fromText(ref.text || ref.description, it.name);
   }
+  // "If you already have darkvision, these goggles increase its range by 30 feet": the longest darkvision from
+  // something else, longer (the goggles' own 60 feet otherwise).
+  const ft = (d) => num((/^Darkvision (\d+) ft/.exec(d.text) || [])[1]);
+  for (const e of m.effects.filter((x) => x.kind === 'item' && x.darkvisionPlus)) {
+    const own = out.filter((d) => d.kind === 'sense' && ft(d) && d.from !== e.name);
+    const best = own.reduce((a, d) => (ft(d) > ft(a || {}) ? d : a), null);
+    if (!best) continue;
+    for (let i = out.length - 1; i >= 0; i--) if (out[i].kind === 'sense' && ft(out[i])) out.splice(i, 1);
+    out.push({ kind: 'sense', text: `Darkvision ${ft(best) + e.darkvisionPlus} ft`, from: `${best.from} +${e.darkvisionPlus} ft ${e.name}` });
+  }
   return out.filter((d, i) => out.findIndex((x) => x.text.toLowerCase() === d.text.toLowerCase()) === i);
 }
 function renderDefenses(m) {
@@ -4174,7 +4214,7 @@ function renderAttacks(m) {
           <button class="btn sm" data-act="reload" data-arg="${wi}" ${sh.used ? '' : 'disabled'} title="Uses one ${esc(sh.ammo.toLowerCase())} from your inventory">Reload</button>
           <span class="faint">${sh.cells} ${esc(sh.cellName)}${sh.cells === 1 ? '' : 's'}</span></div>` : ''}</div></div></td>
       <td class="num"><b>${rollable(`attack|${wi}`, bump(m, `weapons.${wi}.attackBonus`, signed(w.attackBonus)), `Roll an attack with the ${w.name}`)}</b></td>
-      <td>${rollable(`damage|${wi}`, bump(m, `weapons.${wi}.damageBonus`, esc(damageText(w))), `Roll ${w.name} damage`)}</td>
+      <td>${rollable(`damage|${wi}`, bump(m, `weapons.${wi}.damageBonus`, esc(weaponDamageText(m, w))), `Roll ${w.name} damage`)}</td>
       <td class="muted col-ability">${esc(w.name === 'Unarmed Strike' && m.fx.tweaks.some((t) => t.mod && t.mod.finesse) ? 'Dexterity (finesse)' : w.ability || '')}</td>
       <td class="muted col-type">${esc(titleCase(w.weaponClassification || ''))}</td>
       <td class="col-props">${propsHtml(w.properties) || '<span class="faint">—</span>'}</td></tr>

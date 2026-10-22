@@ -222,9 +222,12 @@ function buildRoll(m, spec, opts = {}) {
       const we = arr(m.feats).concat(arr(m.allFeatures)).find((f) => /when you would roll weapon damage using an? (blaster|lightweapon|vibroweapon)s?, you can choose to have advantage/i.test(f.text || f.description || ''));
       const weKinds = we ? [...String(we.text || we.description).matchAll(/roll weapon damage using an? (blaster|lightweapon|vibroweapon)/gi)].map((x) => x[1].toLowerCase()) : [];
       const dmgAdv = weKinds.some((k) => new RegExp(k, 'i').test(w.weaponClassification || '')) ? we.name : '';
+      // Dice items add on every hit ("deal an additional 1d10 damage with this enhanced weapon"): rolled with the weapon's.
+      const more = typeof weaponExtraDice === 'function' ? weaponExtraDice(m, w) : [];
+      const moreDice = more.flatMap((x) => { const p = parseDice(x.dice); return p ? p.dice.map((d) => d.sides) : []; });
       return {
         kind: 'dice', label: `${w.name} damage${vers ? ' (two-handed)' : ''}${crit ? ' (critical)' : ''}`, spec, crit,
-        diceSpec: die > 0 ? Array.from({ length: n }, () => die) : [],
+        diceSpec: (die > 0 ? Array.from({ length: n }, () => die) : []).concat(moreDice),
         // The bonus by source ("+4 STR modifier + 2 Rage"). A weapon without dice deals its damage bonus alone: the
         // unarmed strike's "1 + your Strength modifier" is already in it (as the weapons table shows it).
         base: typeof damageParts === 'function' ? damageParts(m, w) : [{ label: 'damage bonus', value: num(w.damageBonus) + num(w.damageDieModifier) }],
@@ -232,8 +235,8 @@ function buildRoll(m, spec, opts = {}) {
         damageType: w.damageType && w.damageType !== 'Unknown' ? w.damageType : '',
         minTotal: 0, // a penalty can't make damage negative
         dmgAdv,
-        // What the weapon's modifications do when it deals damage (Celerity Oscillator).
-        notes: typeof modHitNotes === 'function' ? modHitNotes(m, w) : [],
+        // What the weapon's modifications do when it deals damage (Celerity Oscillator); the dice items add.
+        notes: (typeof modHitNotes === 'function' ? modHitNotes(m, w) : []).concat(more.map((x) => `${x.from}: +${x.dice}${x.type ? ` ${x.type}` : ''} damage (rolled)`)),
       };
     }
     case 'tech': {
@@ -346,7 +349,9 @@ function startRoll(spec, opts = {}) {
   // Dice that active powers add (Guidance on a check, Battle Meditation on attacks and saves, Target Lock on weapon
   // damage): ticked; one that's used once (Guidance) ends its power when the roll is made with it.
   if (snap && (roll.kind === 'd20' || /^damage\|/.test(spec))) {
-    const kinds = /^damage\|/.test(spec) ? ['weapon-damage'] : plRollKinds(spec);
+    // (An attack also counts as "an attack roll using" its weapon's ability: a spice's high.)
+    const kinds = /^damage\|/.test(spec) ? ['weapon-damage'] : plRollKinds(spec)
+      .concat(/^attack\|/.test(spec) ? [`attack:${(arr(m.c.weapons)[spec.split('|')[1]] || {}).ability}`] : []);
     for (const e of tempEffects(snap.key)) {
       for (const rd of arr(e.riders)) {
         if (!rd.on.some((o) => kinds.includes(o))) continue;
