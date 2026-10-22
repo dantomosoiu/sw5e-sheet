@@ -301,10 +301,8 @@ Aura of Presence STR save + WIS DEX save + WIS CON save + WIS INT save + WIS WIS
 Wild Hunters Survival: proficient Togruta trait
 Defense Style Advantage on Strength checks and Strength saving throws to avoid being moved Fighting style
 From equipment
-Jensaarai Armor AC +1 while attuned
+Jensaarai Armor AC +1 AC +1 (with Jensaarai Cloak): not yet AC +1 (with Jensaarai Cloak and Jensaarai Headgear): not yet while attuned
 While wearing this armor, you are considered proficient regardless of whether or not you have proficiency in medium armor.
-Additionally, this armor now grants a +2 bonus to AC, instead of +1.
-While wearing and attuned to this armor, Jensaarai Cloak, and Jensaarai Headgear, this armor now grants a +3 bonus to AC, instead of +2.
 Temporary
 No temporary effects.
 []

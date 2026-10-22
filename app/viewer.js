@@ -1651,6 +1651,11 @@ function itemEffects(key, editedRaw, complete) {
       : x.property && swapFrom(x.property) ? { ...x, swap: { from: swapFrom(x.property), to: swapFrom(x.property) === 'Strength' ? 'Dexterity' : 'Strength' } }
         : x.profSteps ? { ...x, baseRank: rankOf(x.path) }
           : x.halfProf ? { ...x, baseRank: rankOf(x.path), bonus: Math.floor(num(complete && complete.proficiencyBonus) / 2) } : x));
+    // A set's bonuses ("While wearing and attuned to this armor and Jensaarai Cloak, …") hold with the other pieces
+    // attuned too; the ones still missing are listed (setPending).
+    const setMet = (names) => arr(names).every((n) => equipment.some((x) => x.attuned && invSameName(x.name, n)));
+    const setPending = mods.filter((x) => x.requires && !setMet(x.requires));
+    for (const x of setPending) mods.splice(mods.indexOf(x), 1);
     // Proficiencies and always-on advantages in the item's text, read as a feature's are (classes.js), with a choice it
     // asks for ("proficiency in one blaster or vibroweapon of your choice") written in the item's note.
     const fe = itemFeatureEffects(ref, it.notes);
@@ -1671,11 +1676,23 @@ function itemEffects(key, editedRaw, complete) {
       weaponName, weaponIndex, linked: linked >= 0,
       ...(keen ? { critRange: keen, critWeapons: [weaponIndex] } : {}),
       ...(fe ? { weapons: fe.profs.weapons, tools: fe.profs.tools, armor: fe.profs.armor, advantage: fe.advantage, needsChoice: fe.needsChoice } : {}),
+      setPending, freeAttune: !!fx.freeAttune && !!it.attuned && setMet(fx.freeAttune),
     });
   });
   return out;
 }
 
+/** One item named in another's text ("Jensaraai Armor" is SW5E's typo for Jensaarai Armor): letters only, one off. */
+function invSameName(a, b) {
+  const x = String(a).toLowerCase().replace(/[^a-z]/g, '');
+  const y = String(b).toLowerCase().replace(/[^a-z]/g, '');
+  if (x === y) return true;
+  if (Math.abs(x.length - y.length) > 1 || x.slice(0, 4) !== y.slice(0, 4) || x.slice(-4) !== y.slice(-4)) return false;
+  let i = 0;
+  while (i < x.length && x[i] === y[i]) i++;
+  const tail = (s) => s.slice(i + 1);
+  return tail(x) === tail(y) || tail(x) === y.slice(i) || x.slice(i) === tail(y) || tail(x).split('').reverse().join('') === tail(y).split('').reverse().join('');
+}
 /** What classes.js reads in an item's text (proficiencies, advantages, choices), or null when it finds none. */
 const itemFeCache = new Map();
 function itemFeatureEffects(ref, note) {
@@ -3055,6 +3072,8 @@ function effectRow(m, e) {
       ...arr(e.halfProfChecks).map((a) => chip(`Half proficiency on ${a} checks without it`, on)), ...(e.unarmedDie ? [chip(`Unarmed strikes: d${e.unarmedDie}`, on)] : []),
       ...arr(e.needsChoice).map((c) => `<span class="chip warn" title="Write your choice in the item's note (✎ under Equipment)">Choose ${esc(c)}</span>`));
   }
+  // A set's bonuses still to come ("AC +1 (with Jensaarai Cloak)"), and a piece that takes no attunement slot.
+  if (e.kind === 'item') chips.push(...arr(e.setPending).map((x) => chip(`${x.label}: not yet`)), ...(e.freeAttune ? [chip('takes no attunement slot (set)', 'good')] : []));
   // A keen modification: the weapon's critical range (the dice card's attack rolls use it).
   if (e.kind === 'item' && e.keen) chips.push(e.critRange ? chip(`Keen ${e.critRange}: critical range +${e.critRange}`, e.active ? 'good' : '') : chip(`Keen ${e.keen.gain}: choose a weapon`, 'warn'));
   const weapons = ownWeapons(m.raw);
@@ -5475,9 +5494,14 @@ function modifiedItemsOf(m) {
   }
   return out;
 }
-/** Attunement slots in use: attuned items, plus modified items that require attunement (they're attuned to you). */
+/**
+ * Attunement slots in use: attuned items, plus modified items that require attunement (they're attuned to you), less
+ * a set's pieces that "no longer count towards your maximum attunement" (Jensaarai Headgear with the armor).
+ */
 function attunementUsed(m) {
-  return num((m.c.attunement || {}).current) + modifiedItemsOf(m).filter((x) => x.attune).length;
+  const free = arr(m.effects).filter((e, i, all) => e.kind === 'item' && e.freeAttune && all.findIndex((x) => x.id === e.id) === i)
+    .reduce((t, e) => t + attuneCost((catalogIndex && catalogIndex.get(e.name)) || {}), 0);
+  return num((m.c.attunement || {}).current) + modifiedItemsOf(m).filter((x) => x.attune).length - free;
 }
 /** What a modified weapon's mods do when it hits: "Celerity Oscillator: Once per turn, when you deal damage…". */
 function modHitNotes(m, w) {

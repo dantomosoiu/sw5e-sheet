@@ -223,9 +223,28 @@ function parseItemEffect(item) {
   let darkvisionPlus = 0;
   let m;
   let options = false; // after "choose from the following": modes to pick from, not always on
+  let requires = null; // a set bonus's other pieces ("While wearing and attuned to this armor and Jensaarai Cloak, …")
+  let freeAttune = null;
   for (const raw of fxSentences(text)) {
-    const s = raw.replace(ACTIVATION_CLAUSE, '');
+    let s = raw.replace(ACTIVATION_CLAUSE, '');
     let used = false;
+    // Set bonuses (Jensaarai Regalia, Mandalorian Vestments): "While wearing and attuned to this armor, Jensaarai Cloak,
+    // and Jensaarai Headgear, this armor now grants a +3 bonus to AC, instead of +2." What the sentence (and the ones
+    // after it, until the next set) gives holds only with those items attuned too (`requires`, checked by itemEffects).
+    const setM = /^while wearing and attuned to (?:this|these) [a-z]+((?:,? (?:and )?[A-Z][\w'’]*(?: [A-Z][\w'’]*)*)+),\s*(.*)$/.exec(s.replace(/^While/, 'while'));
+    if (setM) {
+      requires = setM[1].split(/,\s*(?:and\s+)?|\s+and\s+/).map((x) => x.trim()).filter(Boolean);
+      s = setM[2];
+    } else if (/^[A-Z][\w' ]+ (?:Regalia|Vestments)\.$/.test(s)) continue;
+    const before = mods.length;
+    // "…this armor now grants a +2 bonus to AC, instead of +1": the difference, with the other pieces.
+    if (requires && (m = /\bnow grants? a \+(\d+) bonus to (?:AC|armor class), instead of \+(\d+)/i.exec(s))) {
+      const n = Number(m[1]) - Number(m[2]);
+      mods.push({ path: 'armorClass', bonus: n, requires, label: `AC +${n} (with ${requires.join(' and ')})` });
+      continue;
+    }
+    // "…this headgear no longer count towards your maximum attunement".
+    if (requires && /\bno longer counts? towards your maximum attunement\b/i.test(s)) { freeAttune = requires; continue; }
     if (options) { if (TRAIT.test(s)) notes.push(raw); continue; }
     if (/choose (?:one )?(?:from|of) the following/i.test(s)) {
       options = true;
@@ -416,17 +435,19 @@ function parseItemEffect(item) {
       const got = list && list.length ? list : fxBonusMods(n, phrase, ctx);
       if (got && got.length) { mods.push(...got); used = true; }
     }
+    if (requires) for (const x of mods.slice(before)) x.requires = requires;
     if (!used && TRAIT.test(s)) notes.push(raw);
   }
   notes.push(...ctx.notes);
   // Ammunition's bonuses apply while it's carried (and fired); other consumables' when used.
   const activation = ctx.ammo ? 'carry' : isConsumable ? 'use' : item.requiresAttunement ? 'attune' : 'equip';
-  if (!mods.length && !notes.length && !riders.length && !darkvisionPlus && !ctx.keen && !(isConsumable && duration)) return null;
+  if (!mods.length && !notes.length && !riders.length && !darkvisionPlus && !ctx.keen && !freeAttune && !(isConsumable && duration)) return null;
   return {
     mods, notes, target: ctx.target, weaponKind: ctx.weaponKind || null, duration, group, activation,
     heals: /regains? [^.]*hit points|temporary hit points/i.test(text),
     ...(riders.length ? { riders } : {}), ...(darkvisionPlus ? { darkvisionPlus } : {}), ...(ctx.keen ? { keen: ctx.keen } : {}),
     ...(ctx.halfProfChecks ? { halfProfChecks: ctx.halfProfChecks } : {}), ...(ctx.unarmedDie ? { unarmedDie: ctx.unarmedDie } : {}),
+    ...(freeAttune ? { freeAttune } : {}),
   };
 }
 
