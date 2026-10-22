@@ -280,6 +280,7 @@ Force points 11 / 11 [−] [+]
 Hit dice (d10) roll d10 +2, then Heal 4 / 4 [−] [+]
 Channel the Force short rest 1 / 2 [−] [+]
 The Way of the Mynock long rest 0 / 1 [−] [+]
+Investigative Attunement long rest 1 / 1 [−] [+]
 Start or end
 [Start The Way of the Mynock]
 [Mark a target (Defense)]

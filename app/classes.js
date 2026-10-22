@@ -138,7 +138,10 @@ const CLS_ABILITIES = ['Strength', 'Dexterity', 'Constitution', 'Intelligence', 
  * Returns { maximum, recharge: 'shortRest' | 'longRest', basis } or null.
  */
 function clsUsage(text, ctx) {
-  const t = String(text || '').replace(/\s+/g, ' ');
+  // A feature with options ("Choose one of the following options… #### Defensive Field"): the chosen one's uses, if any.
+  const sub = clsChosenText(text, ctx.note);
+  // None chosen yet: what the text says before its options (Channel the Force's uses hold whatever is picked).
+  const t = String(sub.choice ? (sub.chosen.length ? sub.text : String(text || '').split(/^#{4,}\s/m)[0]) : text || '').replace(/\s+/g, ' ');
   const level = Number(ctx.level) || 0;
   let max = null;
   let basis = '';
@@ -168,7 +171,9 @@ function clsUsage(text, ctx) {
     const n = parseInt(v.replace(/[^\d]/g, ''), 10);
     if (n) { max = n; basis = `${m[1]} column`; }
   }
-  if (max == null && /once you(?:'|’)ve used (?:this feature|it)|can(?:'|’)t use (?:this feature|it) again until|\b(?:cannot|can(?:'|’)t) do so again until\b/i.test(t)) max = 1;
+  // "Once you've used this feature / done so, you must…", "You can't use this trait again until…", "Once per short or long
+  // rest, when an ally…" (Snappy Interjection), "You cannot do so again until…" (and SW5E's "can�t").
+  if (max == null && /once you(?:'|’)ve (?:used (?:this feature|this trait|it)|done so)|can(?:'|’|\uFFFD)?t use (?:this feature|this trait|it) again until|\b(?:cannot|can(?:'|’|\uFFFD)?t) do so again until\b|(?:^|[.:]\s*|-\s*)once per (?:short or )?long rest,/i.test(t)) max = 1;
   // "You have 3 luck points… You regain your expended luck points when you finish a long rest" (Lucky).
   if (max == null && (m = /\byou have (\d+|one|two|three|four|five|six) ([a-z-]+) points\b/i.exec(t)) && !/\b(?:force|tech|focus|hit)$/i.test(m[2])) { max = clsTimes(m[1]); basis = `${m[2]} points`; }
   if (max == null || max <= 0) return null;
@@ -443,14 +448,9 @@ function clsApplyProfList(items, into, picks, isWeapon, out, ask, opts = {}) {
   const tool = (n) => { into.tools.push({ name: n, level: 'proficient' }); got.push({ kind: 'tool', name: n }); };
   const save = (n) => { into.saves.push(n); got.push({ kind: 'save', name: n }); };
   const weapon = (n) => { into.weapons.push(n); got.push({ kind: 'weapon', name: n }); };
-  // Weapon choices in one list are one pick ("one vibroweapon and one blaster of your choice": two weapons).
-  const wch = items.filter((it) => it.kind === 'choice' && it.choice.kind === 'weapon' && !it.alts);
-  if (wch.length > 1) {
-    const count = wch.reduce((t, it) => t + it.choice.count, 0);
-    const kinds = wch.map((it) => it.choice.of.replace(new RegExp(`^${CLS_COUNT_RE}\\s+`, 'i'), '').replace(/\s+of your choice$/i, '')
-      .replace(/\b(blaster|vibroweapon|lightweapon|weapon)$/i, '$1s'));
-    items = items.filter((it) => !wch.includes(it)).concat([{ kind: 'choice', choice: { kind: 'weapon', count, options: null, of: `${['', 'one', 'two', 'three', 'four'][count] || count} ${kinds.join(' or ')}` } }]);
-  }
+  // Weapon picks are taken in turn ("one vibroweapon and one blaster of your choice": the first weapon named, then the next).
+  let nextWeapon = 0;
+  const takeWeapons = (n) => { const w = weapons.slice(nextWeapon, nextWeapon + n); nextWeapon += w.length; return w; };
   for (const it of items) {
     if (it.kind === 'save') it.names.forEach(save);
     else if (it.kind === 'skill') skill(it.name);
@@ -479,9 +479,11 @@ function clsApplyProfList(items, into, picks, isWeapon, out, ask, opts = {}) {
         const w = altWeapon ? weapons.slice(0, altWeapon.choice.count) : [];
         const t = !s.length && !w.length && altTools.length ? tools.slice(0, 1) : [];
         s.forEach(skill); w.forEach(weapon); t.forEach(tool);
-        if (altSkills.length) asked(ask('skill', 'Skill proficiency', altSkills, 1, s, c.of));
-        if (altTools.length) asked(ask('tool', 'Tool proficiency', null, 1, t, altTools.map((a) => (a.kind === 'tool' ? a.name : a.choice.of)).join(' or ')));
-        if (altWeapon) asked(ask('weapon', 'Weapon proficiency', null, altWeapon.choice.count, w, altWeapon.choice.of));
+        // The asks are alternatives (oneOf: the same text): answering one answers the choice.
+        const one = (a) => { if (a) a.oneOf = c.of; return a; };
+        if (altSkills.length) asked(one(ask('skill', 'Skill proficiency', altSkills, 1, s, c.of)));
+        if (altTools.length) asked(one(ask('tool', 'Tool proficiency', null, 1, t, altTools.map((a) => (a.kind === 'tool' ? a.name : a.choice.of)).join(' or '))));
+        if (altWeapon) asked(one(ask('weapon', 'Weapon proficiency', null, altWeapon.choice.count, w, altWeapon.choice.of)));
         if (!s.length && !w.length && !t.length) need(c.of);
         continue;
       }
@@ -501,7 +503,7 @@ function clsApplyProfList(items, into, picks, isWeapon, out, ask, opts = {}) {
         asked(ask('tool', 'Tool proficiency', c.options, c.count, t, c.of));
         if (!t.length) need(c.of);
       } else if (c.kind === 'weapon') {
-        const w = weapons.slice(0, c.count);
+        const w = takeWeapons(c.count);
         w.forEach(weapon);
         asked(ask('weapon', 'Weapon proficiency', null, c.count, w, c.of));
         if (!w.length) need(c.of);
@@ -649,14 +651,15 @@ function clsFeatureEffects(text, note, ctx) {
   // other lists ("The Force flows through your body, granting the following benefits: - …") are.
   const sentences = t.replace(/([^\n]*?)([^\n.]*following (?:benefits|effects)[^\n]*)\n((?:\s*- [^\n]*(?:\n|$))+)/gi, (all, before, lead, list) => {
     const prev = before.split(/(?<=\.)\s+/).slice(-2).join(' ');
-    return CLS_STATE_CUE.test(lead) || CLS_DURATION.test(prev) ? `${before}\n` : `${before}\n${list.replace(/^\s*- /gm, '')}`;
+    const onlyWhile = /^\s*While (?!you are not wearing|you aren't wearing|you are wearing no|wearing no)/i.test(lead);
+    return CLS_STATE_CUE.test(lead) || CLS_DURATION.test(prev) || onlyWhile ? `${before}\n` : `${before}\n${list.replace(/^\s*- /gm, '')}`;
   }).replace(/\n+/g, ' ').split(/(?<=\.)\s+(?=[A-Z_*])/);
   const picks = clsNoteNames(note);
   const out = {
     mods: [], profs: { saves: [], skills: [], tools: [], weapons: [], armor: [], upgrades: [], chains: [] }, notes: [], needsChoice: [],
     advantage: [], critRange: 0, halfProf: false, unarmedStep: 0, defenses: [], asks: optionAsk(), passives: {},
   };
-  const same = (x, a) => x.kind === a.kind && x.label === a.label && String(x.options) === String(a.options);
+  const same = (x, a) => x.kind === a.kind && x.label === a.label && String(x.options) === String(a.options) && String(x.of || '') === String(a.of || '');
   const ask = (kind, label, options, count, chosen, of = '') => {
     const a = { kind, label, options: options && options.length ? options : null, count: count || 1, chosen: [...new Set(chosen || [])], of };
     const had = out.asks.find((x) => same(x, a));
@@ -761,10 +764,13 @@ function clsFeatureEffects(text, note, ctx) {
     }
     // "…you can use your Intelligence modifier instead of your Dexterity modifier when determining your AC" (Instinctive
     // Combatant: in light or medium armor; spiked armor: Constitution while wearing it): the better of the two (acSwap).
-    if ((m = new RegExp(`\\buse your ${CLS_ABIL_RE} modifier instead of your Dexterity modifier when determining your (?:AC|Armor Class)`, 'i').exec(s))) {
-      const ab = clsAbility(m[1]);
+    if ((m = new RegExp(`\\buse your ${CLS_ABIL_RE}(?: or ${CLS_ABIL_RE})? modifier(?: \\(your choice\\))? instead of your Dexterity modifier when determining your (?:AC|Armor Class)`, 'i').exec(s))) {
+      // "Wisdom or Charisma (your choice)" (Path of Iron): the one picked, or the better of the two.
+      const opts = [m[1], m[2]].filter(Boolean).map(clsAbility);
+      if (opts.length > 1) ask('ability', 'AC: instead of Dexterity', opts, 1, picks.abilities.filter((a) => opts.includes(a)).slice(0, 1));
+      const ab = opts.length > 1 ? (picks.abilities.find((a) => opts.includes(a)) || opts) : opts[0];
       const when = /\bwearing light or medium armor\b/i.test(s) ? { armor: true, noHeavy: true } : /\bwhile wearing (?:your|this) [\w' ]*armor\b/i.test(s) ? { armor: true } : null;
-      out.mods.push({ path: 'armorClass', acSwap: { to: ab, from: 'Dexterity' }, when, label: `AC: ${ab.slice(0, 3).toUpperCase()} instead of DEX` });
+      out.mods.push({ path: 'armorClass', acSwap: { to: ab, from: 'Dexterity' }, when, label: `AC: ${[].concat(ab).map((a) => a.slice(0, 3).toUpperCase()).join('/')} instead of DEX` });
     }
     // "Your base AC becomes 13 + your Constitution modifier" (Upheld by the Force): unarmored, instead of 10 + Dexterity.
     if ((m = new RegExp(`\\bbase (?:AC|Armor Class) becomes (\\d+) \\+ your ${CLS_ABIL_RE} modifier`, 'i').exec(s))) {
@@ -888,9 +894,11 @@ function clsFeatureEffects(text, note, ctx) {
     const toggle = /\b(?:activating or deactivating|toggling)\b[^.]*?\brequires an? (?:bonus )?action,? and,? while (?:it is )?active,\s*/i;
     const switched = toggle.test(core);
     // "You have resistance to necrotic damage, and while exposed to the vacuum of space…": the first part always holds.
-    const dcore = core.replace(toggle, '').replace(/,? and (?:while|when|if)\b.*$/i, '');
-    // ("…, while leaving your hands free" isn't a condition.)
-    if (!/\b(?:when|whenever|if|until|for the next|for 1 minute|while (?!you are not wearing|wearing no|leaving\b))\b/i.test(dcore)) {
+    // (", though you fall if you end your turn in the air" adds a rule, not a condition: Boggdo's Instinct.)
+    const dcore = core.replace(toggle, '').replace(/,? and (?:while|when|if)\b.*$/i, '').replace(/,\s*though\b.*$/i, '');
+    // ("…, while leaving your hands free" isn't a condition; "for the duration" is.)
+    const gated = /\b(?:when|whenever|if|until|for the next|for the duration|for 1 minute|while (?!you are not wearing|wearing no|leaving\b))\b/i.test(dcore);
+    if (!gated) {
       const core = dcore; // eslint-disable-line no-shadow
       const def = (kind, txt) => out.defenses.push({ kind, text: txt.replace(/\s+/g, ' ').trim() + (switched ? ' (when switched on)' : '') });
       for (const am of (switched ? [] : core.matchAll(new RegExp(`\\badvantage on (initiative(?: checks| rolls)?|${CLS_ABIL_ANY} (?:ability )?(?:checks|saving throws)(?:(?:,| and| or) (?:${CLS_ABIL_ANY} )?(?:ability )?(?:checks|saving throws))*)(?! (?:against|that|made|to|involving))`, 'gi')))) {
@@ -906,7 +914,7 @@ function clsFeatureEffects(text, note, ctx) {
         }
       }
       // "advantage on ability checks and saving throws to avoid being disarmed".
-      if ((m = /\badvantage on (ability checks and saving throws (?:to avoid|against|made to)[^.;]+?)(?=[.;]|$)/i.exec(core))) def('advantage', `Advantage on ${m[1]}`);
+      if ((m = /\badvantage on (?:an? )?(ability checks and saving throws (?:to avoid|against|made to|related to)[^.;]+?)(?=[.;]|$)/i.exec(core))) def('advantage', `Advantage on ${m[1]}`);
       if ((m = /\bdarkvision (?:out )?(?:to |with |of )?(?:a range of )?(\d+) feet/i.exec(core))) def('sense', `Darkvision ${m[1]} ft`);
       // "If you already have darkvision, this ideal increases its range by 30 feet" (Ideal of the Hunter): see defensesOf.
       if ((m = /\bif you already have darkvision, [^.]*?increases? its range by (\d+) feet/i.exec(t))) out.darkvisionPlus = Number(m[1]);
@@ -974,13 +982,38 @@ function clsFeatureEffects(text, note, ctx) {
     }
     // Species Darkvision traits describe it without the word (and with an "as if"): "You can see in dim light within 60 feet of you as if it were bright light".
     if ((m = /\bsee in dim light within (\d+) feet of you as if it were bright light/i.exec(core)) && !out.defenses.some((d) => /^Darkvision/.test(d.text))) out.defenses.push({ kind: 'sense', text: `Darkvision ${m[1]} ft` });
+    // An advantage whose condition comes after it ("…on Charisma (Deception) and Charisma (Performance) checks when trying to
+    // pass yourself off…", "…on ability checks and saving throws to avoid falling off or down while climbing"): the gate
+    // above leaves the sentence out; listed with its condition. Not one after a condition ("When you…, you have advantage").
+    if (gated) {
+      for (const am of core.matchAll(/\badvantage on ((?:a |any )?[^.;]*?\b(?:checks?|saving throws?)\b[^.;]*?)(?=,?\s+and\s+(?:you|resistance|each|when)\b|[.;]|$)/gi)) {
+        const before = core.slice(0, am.index).replace(/^.*[.;]\s+/, '');
+        if (/\b(?:when|whenever|if|until|during|for the next|for the duration|while (?!you are not wearing|wearing no))\b/i.test(before)) continue;
+        if (/\b(?:it|they|creatures?|ally|allies|targets?|that grants)\b/i.test(before) && !/\byou and\b/i.test(before)) continue;
+        if (/\buntil\b|\bfor (?:1|one|the next) minute\b/i.test(am[1]) || /saving throws? (?:against|made to|that would|that you make to)/i.test(am[1])) continue;
+        out.defenses.push({ kind: 'advantage', text: `Advantage on ${am[1].replace(/^(?:a|any) /i, '').replace(/\s+/g, ' ')}` });
+      }
+    }
+    // "Whenever you make an ability check related to identifying salt or spice…, you have advantage" (Arcona).
+    if ((m = /^Whenever you make an? ([^,]+?), you have advantage\b/i.exec(core))) out.defenses.push({ kind: 'advantage', text: `Advantage on ${m[1].replace(/^ability check/i, 'ability checks')}` });
+    // Others' disadvantage because of you: "Wisdom (Insight) checks made against you have disadvantage" (Inscrutable),
+    // "Creatures within 60 feet of you have disadvantage on Dexterity (Stealth) checks made to hide from you" (Exalted Awareness).
+    if ((m = /\b((?:[A-Z][a-z]+ \()?[A-Z][\w ]*?\)? checks) made against you have disadvantage/.exec(core))) out.defenses.push({ kind: 'other', text: `${m[1]} against you have disadvantage` });
+    if ((m = /\bcreatures within (\d+) feet of you have disadvantage on ([^.;]+)/i.exec(core))) out.defenses.push({ kind: 'other', text: `Creatures within ${m[1]} ft have disadvantage on ${m[2]}` });
+    // "You can hold your breath for a number of minutes equal to 1 + twice your Constitution modifier" (Mariner).
+    if (/\bhold your breath for a number of minutes equal to 1 \+ twice your Constitution modifier/i.test(core)) {
+      const con = ctx.mods && ctx.mods.Constitution != null ? Number(ctx.mods.Constitution) : null;
+      out.defenses.push({ kind: 'other', text: `Hold breath ${con != null ? `${Math.max(1, 1 + 2 * con)} minutes` : 'for 1 + twice your CON modifier minutes'}` });
+    }
+    // "You are constantly under the effects of the force power *force sight*" (Miraluka, Tarasin): a sense.
+    if ((m = /\byou are constantly under the effects of the (?:force |tech )?power \*?([\w' -]+?)\*?(?:,|\.|$)/i.exec(core))) out.defenses.push({ kind: 'sense', text: `${m[1][0].toUpperCase()}${m[1].slice(1)} (always on)` });
     // "…advantage on saving throws against poison, and you have resistance…"; "…on Wisdom and Charisma saving throws against force
     // powers"; "…on Constitution saving throws that you make to maintain your concentration on a power when you take damage"
     // (War Caster: its own "when" is part of it). Not one that holds only after something ("When you…, you have advantage…").
     // Yours ("you have", "Shistavanen have"; not "it has", "a respirator that grants…"), and not for a while ("…until the start
     // of your next turn").
     const advBefore = (i) => core.slice(0, i).replace(/^.*[.;]\s+/, '');
-    if ((m = new RegExp(`\\badvantage on ((?:(?:${CLS_ABIL_ANY})(?:,? (?:and|or) ${CLS_ABIL_ANY})* )?saving throws (?:against|made to|that would|that you make to)[^.;]+?)(?=,?\\s+and\\s+(?:you|resistance|when|whenever|if)\\b|\\s+\\(explained|[.;]|$)`, 'i').exec(core))
+    if ((m = new RegExp(`\\badvantage on (?:any )?((?:(?:${CLS_ABIL_ANY})(?:,? (?:and |or )?${CLS_ABIL_ANY})* )?saving throws? (?:against|made to|that would|that you make to)[^.;]+?)(?=,?\\s+and\\s+(?:you|resistance|when|whenever|if)\\b|\\s+\\(explained|[.;]|$)`, 'i').exec(core))
       && !/\b(?:when|whenever|if|until|during|for the next|for 1 minute|while (?!you are not wearing|wearing no))\b/i.test(advBefore(m.index))
       && (!/\b(?:it|they|creatures?|ally|allies|targets?|that grants)\b/i.test(advBefore(m.index)) || /\byou and\b/i.test(advBefore(m.index)))
       && !/\buntil\b|\bfor (?:1|one|the next) minute\b/i.test(m[1])) {
@@ -1044,8 +1077,8 @@ function clsFeatureEffects(text, note, ctx) {
     }
     // "You can now gain the benefits of your Martial Arts and Unarmored Movement features while wearing light or medium armor as
     // long as you are not wielding a shield" (Vow of the Sentry, Crimson Armaments): for those features (the sheet).
-    if ((m = /\bgain the benefits of your ([\w ]+?) features? while wearing light or medium armor(?: as long as you are not wielding a shield)?/i.exec(s))) {
-      out.armorAllows = { features: m[1].split(/,? and |, /).map((x) => x.trim()), when: { noHeavy: true, noShield: /not wielding a shield/i.test(m[0]) } };
+    if ((m = /\bgain the benefits of your ([\w ]+?) features? while wearing (light or medium )?armor(?: as long as you are not wielding a shield)?/i.exec(s))) {
+      out.armorAllows = { features: m[1].split(/,? and |, /).map((x) => x.trim()), when: { ...(m[2] ? { noHeavy: true } : {}), noShield: /not wielding a shield/i.test(m[0]) } };
     }
     // "You can't add more than +3 when determining your bonus to AC from your Dexterity" (Muscled Menace; a Hutt's Slow and
     // Lethargic), "…to Dexterity saving throws from Dexterity", "…to attack and damage rolls for weapon attacks using
@@ -1107,11 +1140,11 @@ function clsFeatureState(name, text, ctx) {
   const lead = leadAt >= 0 ? sentences[leadAt] : '';
   const listed = !!lead && (ACT.test(lead) || (leadAt > 0 && CLS_DURATION.test(sentences[leadAt - 1])) || /\bwhile the target is\b/i.test(lead));
   // "enter a balanced stance for one minute", "take a savage stance… for 1 minute", "become invisible for 1 minute".
-  const selfTimed = sentences.find((s) => ACT.test(s) && /\b(?:enter|assume|adopt|take|become|focus|transform)\b[^.]{0,120}?\bfor (?:1|one|10|an?) (?:minute|hour)s?\b/i.test(s));
+  const selfTimed = sentences.find((s) => ACT.test(s) && /\b(?:enter|assume|adopt|take|become|focus|transform|step)\b[^.]{0,120}?\bfor (?:1|one|10|an?) (?:minute|hour)s?\b/i.test(s));
   const durM = leadAt > 0 && !ACT.test(lead) ? /\bfor (1|one|10|an?) (minute|hour)s?\b/i.exec(sentences[leadAt - 1]) : null;
   const lasts = /(?:lasts?|benefits|effects?|focus|stance|state|rage|form) for (1|one|10|an?) (minute|hour)s?/i.exec(flat)
     || /\bfor (1|one|10|an?) (minute|hour)s?\b/i.exec(selfTimed || '') || durM || /to a maximum (?:duration )?of (1|one|10) (minute|hour)s?/i.exec(flat);
-  const nextTurn = /\b(?:benefits|effects?)[^.]{0,40}\buntil the (?:start|end) of your next turn\b|\bUntil the start of your next turn, you (?:have|gain)\b/i.test(flat);
+  const nextTurn = /\b(?:benefits|effects?)(?: [a-z]+){0,3} until the (?:start|end) of your next turn\b|\bUntil the start of your next turn, you (?:have|gain)\b/i.test(flat);
   const activated = ACT.test(flat);
   if (!word && !timed && !listed && !selfTimed && !(lasts && activated) && !(nextTurn && activated)) return null;
   // "While raging, you gain the following benefits" in a feature that doesn't start the rage (Explosive):
@@ -1123,11 +1156,13 @@ function clsFeatureState(name, text, ctx) {
   const listM = /\b(?:gain|gaining|granting|grants?|receive) the following (?:benefits|effects)[^\n]*\n((?:\s*- .+\n?)+)/i.exec(t);
   if (listM) for (const line of listM[1].split('\n')) if (/^\s*- /.test(line)) benefits.push(line.replace(/^\s*- /, '').trim());
   // Without a list: "During that time, you also have…", "For the duration, …", "Until the start of your next turn, you have…".
+  // (From the text before any "####" sections: Elemental Attunement's elements are each their own.)
   if (!benefits.length) {
     let on = false;
-    for (const s of sentences) {
-      const bm = /^(?:Additionally, |Also, )?(?:during that time|for the duration|until the (?:start|end) of your next turn|while (?:in )?(?:this|that|the) (?:stance|state|form|focus|mode)|while (?:it is |this is |this ability is )?active)\b,?\s*/i.exec(s);
-      if (bm && s.length > bm[0].length) { benefits.push(s.slice(bm[0].length).replace(/^./, (c) => c.toUpperCase())); on = true; }
+    for (const s of t.split(/^#{4,}\s/m)[0].replace(/\s+/g, ' ').split(/(?<=[.:])\s+(?=[A-Z_*-])/)) {
+      // (After a short clause of its own: "Regardless of your appearance, for the duration, your speed doubles…": Out of Touch.)
+      const bm = /^(?:Additionally, |Also, |[^,.]{1,40}, )?(?:during that time|for the duration|until the (?:start|end) of your next turn|while (?:in )?(?:this|that|the) (?:stance|state|form|focus|mode)|while (?:it is |this is |this ability is )?active)\b,?\s*/i.exec(s);
+      if (bm && s.length > bm[0].length) { benefits.push(s.slice(bm[0].length).replace(/\s*#{2,}.*$/, '').replace(/^./, (c) => c.toUpperCase())); on = true; }
       // "…you have resistance to cold… You also gain a burrow, fly, and swim speed…" (Avatar): the next one goes on.
       else if (on && /^(?:You also |Additionally, you )/i.test(s)) benefits.push(s.replace(/^Additionally, you/i, 'You').replace(/^You also /i, 'You '));
       else on = false;
@@ -1160,9 +1195,14 @@ function clsFeatureState(name, text, ctx) {
  * or null.
  */
 function clsFeatureNumbers(text, ctx) {
-  const t = String(text || '').replace(/\s+/g, ' ');
+  // Not a table's rows (Tend the Wounded's side effects: "| 6 | … takes 2d6 acid damage |").
+  const t = String(text || '').split('\n').filter((l) => (l.match(/\|/g) || []).length < 2).join('\n').replace(/\s+/g, ' ');
   const out = {};
   let m;
+  if ((m = new RegExp(`\\bDC (?:=|equals) your ${CLS_ABIL_RE} score \\+ your proficiency bonus`, 'i').exec(t)) && ctx.pb && ctx.scores) {
+    const ab = clsAbility(m[1]);
+    out.dc = { value: (Number(ctx.scores[ab]) || 10) + Number(ctx.pb), ability: ab, save: null, score: true };
+  }
   if ((m = new RegExp(`\\bDC (?:=|equals|of) 8 \\+ your proficiency bonus \\+ your ${CLS_ABIL_RE} modifier`, 'i').exec(t)) && ctx.pb) {
     const ab = clsAbility(m[1]);
     const save = new RegExp(`\\b${CLS_ABIL_RE} saving throw \\((?:save )?DC`, 'i').exec(t);
