@@ -790,6 +790,10 @@ function buildRoll(m, spec, opts = {}) {
     case 'dice': {
       const p = parseDice(a1);
       if (!p) return null;
+      // A plain d20 ("d20", "1d20+3"): a d20 roll of its own (advantage, disadvantage, a DC), nothing of the character's.
+      if (!a2 && p.dice.length === 1 && p.dice[0].sides === 20 && p.dice[0].sign > 0) {
+        return { kind: 'd20', plain: true, label: `d20${p.mod ? ` ${signed(p.mod)}` : ''}`, spec, base: p.mod ? [{ label: 'modifier', value: p.mod }] : [], conds: [] };
+      }
       // dice|1d6+3|Ichor Lightning damage|necrotic: a named roll (a feature's special attack), with its damage type.
       return { kind: 'dice', label: a2 || a1, spec, diceSpec: p.dice.map((d) => d.sides * d.sign), base: p.mod ? [{ label: a2 ? 'ability modifier' : 'modifier', value: p.mod }] : [], conds: [],
         ...(a3 ? { damageType: titleCase(a3), minTotal: 0 } : {}) };
@@ -825,7 +829,7 @@ function startRoll(spec, opts = {}) {
   // Advantage from features (Feral Impulse: initiative), active states (Rage: Strength checks and saves) and War Caster;
   // disadvantage from conditions (Poisoned…) and exhaustion; automatic failure (Stunned: Strength and Dexterity
   // saves). Advantage and disadvantage cancel out. Unless chosen otherwise.
-  if (!opts.mode && snap && roll.kind === 'd20') {
+  if (!opts.mode && snap && roll.kind === 'd20' && !roll.plain) {
     const [kind, ab, i] = spec.split('|');
     const skill = kind === 'skill' ? (arr(((m.c.abilityScores || {})[ab] || {}).skills)[i] || {}).name : null;
     const fits = (a) => (kind === 'save' ? a.kind === 'save' && a.ability === ab
@@ -861,7 +865,7 @@ function startRoll(spec, opts = {}) {
   }
   // Dice that active powers add (Guidance on a check, Battle Meditation on attacks and saves, Target Lock on weapon
   // damage): ticked; one that's used once (Guidance) ends its power when the roll is made with it.
-  if (snap && (roll.kind === 'd20' || /^damage\|/.test(spec))) {
+  if (snap && ((roll.kind === 'd20' && !roll.plain) || /^damage\|/.test(spec))) {
     // (An attack also counts as "an attack roll using" its weapon's ability: a spice's high.)
     const [sk, sa, si] = spec.split('|');
     const skillProf = sk === 'skill' ? (arr(((m.c.abilityScores || {})[sa] || {}).skills)[si] || {}).proficiency : null;
@@ -966,25 +970,26 @@ const TUMBLE_STEPS = [45, 55, 65, 80, 95, 115, 140, 170];
 function tumble(r, ids, done) {
   clearTimeout(rollState.tumbleTimer);
   const still = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (!ids.length || still || typeof document === 'undefined') { rollState.tumbling = null; done(); landed(); return; }
+  if (!ids.length || still || typeof document === 'undefined') { rollState.tumbling = null; done(); landed(new Set(ids)); return; }
   rollState.tumbling = { id: r.id, dice: new Set(ids) };
   renderDice(false);
   let step = 0;
   const flick = () => {
     if (!rollState.tumbling || rollState.tumbling.id !== r.id) return;
     for (const el of document.querySelectorAll('#dice .die.tumbling b')) el.textContent = String(rollDie(Number(el.dataset.sides)));
+    // (The dice turn over in 3D while they tumble: a new face each flick.)
     if (step < TUMBLE_STEPS.length) { rollState.tumbleTimer = setTimeout(flick, TUMBLE_STEPS[step++]); return; }
     rollState.tumbling = null;
     done();
-    landed();
+    landed(new Set(ids));
   };
   flick();
 }
 /** The result just landed: the total and the dice give a small pop. */
-function landed() {
+function landed(ids) {
   const dock = document.getElementById('dice');
   if (!dock) return;
-  for (const el of dock.querySelectorAll('.rl-total, .rl-dice .die')) el.classList.add('landed');
+  for (const el of dock.querySelectorAll('.rl-total, .rl-dice .die')) if (!ids || !el.dataset.die || ids.has(Number(el.dataset.die))) el.classList.add('landed');
 }
 const isTumbling = (r, d) => !!(rollState.tumbling && rollState.tumbling.id === r.id && (!d || rollState.tumbling.dice.has(d.id)));
 /** Tell screen readers the result (the dock itself is redrawn on every change). */
@@ -1005,6 +1010,7 @@ function setMode(mode) {
   const r = rollState.current;
   if (!r || r.kind !== 'd20' || r.mode === mode) return;
   const ds = d20s(r);
+  const before = new Set(r.dice.map((d) => d.id));
   if (mode === 'normal') {
     // Keep the first d20 rolled; drop the one added for advantage/disadvantage.
     r.dice = r.dice.filter((d) => d.tag !== 'd20' || d === ds[0]);
@@ -1012,13 +1018,14 @@ function setMode(mode) {
     r.dice.splice(r.dice.indexOf(ds[0]) + 1, 0, newDie(20, 'd20', r.rolled));
   }
   r.mode = mode;
-  afterAmend();
+  afterAmend(before);
 }
 function addDice(sides, count = 1) {
   const r = rollState.current;
   if (!r) return;
+  const before = new Set(r.dice.map((d) => d.id));
   for (let i = 0; i < count; i++) r.dice.push(newDie(sides, 'extra', r.rolled));
-  afterAmend();
+  afterAmend(before);
 }
 function removeDie(id) {
   const r = rollState.current;
@@ -1044,6 +1051,7 @@ function toggleCond(i) {
   if (!cd) return;
   cd.on = !cd.on;
   const tag = `cond:${cd.label}`;
+  const before = new Set(r.dice.map((d) => d.id));
   if (cd.on) r.dice.push(...condDice(r, cd));
   else r.dice = r.dice.filter((d) => d.tag !== tag);
   // One of a group (Force-Empowered Strikes +1d8 / +2d8).
@@ -1056,7 +1064,7 @@ function toggleCond(i) {
     }
   }
   if (r.rolled) spendCond(cd, !cd.on);
-  afterAmend();
+  afterAmend(before);
 }
 /**
  * Switch how critical damage counts, remembered from now on. On a critical roll already made,
@@ -1074,16 +1082,66 @@ function setCritMode(mode) {
   }
   renderDice(false);
 }
-function afterAmend() {
+/** After a change to the roll. before: the dice it had, so new ones are shown arriving (or, once rolled, tumbling). */
+function afterAmend(before) {
   const r = rollState.current;
+  const added = r && before ? r.dice.filter((d) => !before.has(d.id)).map((d) => d.id) : [];
   if (r && r.rolled) {
     r.amended = true;
     saveRollLog();
+    if (added.length) { tumble(r, added, () => renderDice(false)); return; }
   }
+  rollState.entering = new Set(added);
   renderDice(false);
+  rollState.entering = null;
 }
 
 // ------------------------------------------------------------- dock
+/**
+ * A die drawn as its polyhedron, seen from above (SVG, 100 × 100): the facet facing you holds the number, the others
+ * are shaded as if lit from the top left. `face`: the facet's polygon; `rest`: the facets around it.
+ */
+const DIE_POLY = (() => {
+  const pt = (r, deg) => [50 + r * Math.cos((deg * Math.PI) / 180), 50 + r * Math.sin((deg * Math.PI) / 180)];
+  const ring = (r, n, start) => Array.from({ length: n }, (x, i) => pt(r, start + (360 / n) * i));
+  // d12: a pentagon in the middle, five around it (the outline a decagon).
+  const out12 = ring(47, 10, -90);
+  const in12 = ring(27, 5, -90);
+  // d20: a triangle in the middle of a hexagon.
+  const H = ring(47, 6, -90);
+  const T = [[50, 22], [76, 67], [24, 67]];
+  return {
+    4: { out: [[50, 6], [94, 88], [6, 88]], face: null, rest: [[[50, 6], [50, 62], [6, 88]], [[50, 6], [94, 88], [50, 62]], [[6, 88], [50, 62], [94, 88]]], num: 66 },
+    6: { out: [[8, 8], [92, 8], [92, 92], [8, 92]], face: [[23, 23], [77, 23], [77, 77], [23, 77]], rest: [[[8, 8], [92, 8], [77, 23], [23, 23]], [[92, 8], [92, 92], [77, 77], [77, 23]], [[92, 92], [8, 92], [23, 77], [77, 77]], [[8, 92], [8, 8], [23, 23], [23, 77]]], num: 50 },
+    8: { out: [[50, 4], [94, 50], [50, 96], [6, 50]], face: [[50, 7], [84, 64], [16, 64]], rest: [[[50, 4], [16, 64], [6, 50]], [[50, 4], [94, 50], [84, 64]], [[6, 50], [16, 64], [50, 96]], [[16, 64], [84, 64], [50, 96]], [[84, 64], [94, 50], [50, 96]]], num: 46 },
+    // d10: a kite, its widest point high up.
+    10: { out: [[50, 3], [90, 40], [50, 97], [10, 40]], face: [[50, 6], [69, 44], [50, 60], [31, 44]], rest: [[[50, 3], [31, 44], [10, 40]], [[50, 3], [90, 40], [69, 44]], [[10, 40], [31, 44], [50, 60], [50, 97]], [[90, 40], [50, 97], [50, 60], [69, 44]]], num: 38 },
+    12: { out: out12, face: in12, rest: in12.map((p, i) => [p, out12[2 * i], out12[2 * i + 1], out12[(2 * i + 2) % 10], in12[(i + 1) % 5]]), num: 51 },
+    20: { out: H, face: T, rest: [[H[5], H[0], T[0]], [H[0], H[1], T[0]], [H[1], T[1], T[0]], [H[1], H[2], T[1]], [H[2], H[3], T[1]], [H[3], T[2], T[1]], [H[3], H[4], T[2]], [H[4], H[5], T[2]], [H[5], T[0], T[2]]], num: 54 },
+  };
+})();
+/** The shape of a d<sides> (any other size: the d10's). */
+function dieSvg(sides) {
+  const p = DIE_POLY[sides] || DIE_POLY[10];
+  const pts = (poly) => poly.map(([x, y]) => `${x.toFixed(1)},${y.toFixed(1)}`).join(' ');
+  // Light from the top left: a facet facing that way is lighter, one facing away darker.
+  const shade = (poly) => {
+    const cx = poly.reduce((t, q) => t + q[0], 0) / poly.length - 50;
+    const cy = poly.reduce((t, q) => t + q[1], 0) / poly.length - 50;
+    const len = Math.hypot(cx, cy) || 1;
+    const lit = (-cx - cy) / (len * Math.SQRT2);
+    return lit >= 0 ? `fill="#fff" fill-opacity="${(0.06 + 0.22 * lit).toFixed(2)}"` : `fill="#000" fill-opacity="${(0.08 + 0.3 * -lit).toFixed(2)}"`;
+  };
+  // (A d4's three faces meet at a point below the middle; there's no face toward you.)
+  return `<svg class="die-shape" viewBox="0 0 100 100" aria-hidden="true" focusable="false"><polygon class="die-body" points="${pts(p.out)}"/>${
+    p.rest.map((f) => `<polygon class="die-facet" points="${pts(f)}"/><polygon points="${pts(f)}" ${shade(f)}/>`).join('')}${
+    p.face ? `<polygon class="die-face" points="${pts(p.face)}"/>` : ''}<polygon class="die-edge" points="${pts(p.out)}"/></svg>`;
+}
+const dieNumTop = (sides) => (DIE_POLY[sides] || DIE_POLY[10]).num;
+/** The dice to pick before anything is rolled (and to add to a roll): each a small polyhedron. */
+function diceTray(act, title) {
+  return DIE_SIDES.map((s) => `<button type="button" class="die-pick s${s}" data-rl="${act}" data-arg="${s}" title="${esc(title(s))}">${dieSvg(s)}<span>d${s}</span></button>`).join('');
+}
 function diceText(d) {
   if (d.value == null) return `d${d.sides}`;
   return String(d.value);
@@ -1132,11 +1190,12 @@ function renderRollCard(r) {
       !rolling && d.tag === 'd20' && d.value === 20 ? 'nat20' : '', !rolling && d.tag === 'd20' && d.value === 1 ? 'nat1' : ''].filter(Boolean).join(' ');
     const removable = d.tag !== 'd20' || d20s(r).length > 1;
     const title = `d${d.sides}${d.tag.startsWith('cond:') ? ' · ' + d.tag.slice(5) : ''}${d.crit ? (d.max ? ' · critical, at its maximum' : ' · critical') : ''}${dropped ? ' (not counted)' : ''}`;
-    const face = `<b data-sides="${d.sides}">${esc(spin ? String(rollDie(d.sides)) : diceText(d))}</b><small>${d.max ? 'max ' : ''}d${d.sides}</small>`;
+    const face = `<span class="die-3d" style="--num-top:${dieNumTop(d.sides)}%">${dieSvg(d.sides)}<b data-sides="${d.sides}">${esc(spin ? String(rollDie(d.sides)) : diceText(d))}</b></span><small>${d.max ? 'max ' : ''}d${d.sides}</small>`;
+    const enter = rollState.entering && rollState.entering.has(d.id) ? ' entering' : '';
     // A die that can be taken off is a button: a click anywhere on it removes it (× shows that it can).
     return removable
-      ? `<button type="button" class="die ${cls}" data-rl="remove" data-arg="${d.id}" title="${esc(title)} · click to remove" aria-label="Remove d${d.sides}${d.value != null && !spin ? ` (${d.value})` : ''}">${face}<span class="die-x" aria-hidden="true">×</span></button>`
-      : `<span class="die ${cls}" title="${esc(title)}">${face}</span>`;
+      ? `<button type="button" class="die s${d.sides} ${cls}${enter}" data-die="${d.id}" data-rl="remove" data-arg="${d.id}" title="${esc(title)} · click to remove" aria-label="Remove d${d.sides}${d.value != null && !spin ? ` (${d.value})` : ''}">${face}<span class="die-x" aria-hidden="true">×</span></button>`
+      : `<span class="die s${d.sides} ${cls}${enter}" data-die="${d.id}" title="${esc(title)}">${face}</span>`;
   }).join('');
   const conds = r.conds.length ? `<div class="rl-conds">${r.conds.map((cd, i) => `<label class="rl-cond${cd.blocked ? ' blocked' : ''}"${cd.blocked ? ` title="${esc(cd.blocked)}"` : ''}><input type="checkbox" data-rl="cond" data-arg="${i}"${cd.on ? ' checked' : ''}> ${esc(cd.label)} <span class="faint">${[num(cd.bonus) ? signed(cd.bonus) : '', ...cd.extra.map((e) => '+' + e)].filter(Boolean).join(' ')}${cd.blocked ? ` · ${esc(cd.blocked)}` : ''}</span></label>`).join('')}</div>` : '';
   const crit = r.kind === 'd20' && nat != null && nat >= (r.critMin || 20);
@@ -1156,7 +1215,7 @@ function renderRollCard(r) {
     ${r.critMin && r.critMin < 20 ? `<div class="rl-critrange"><span class="chip accent" title="${esc(r.critFrom)}">Critical hit on ${r.critMin}–20</span> <span class="faint">${esc(r.critFrom)}</span></div>` : ''}
     ${r.warn ? `<div class="rl-note warn">${esc(r.warn)}</div>` : ''}${arr(r.notes).map((n) => `<div class="rl-note">${esc(n)}</div>`).join('')}${modes}${conds}${dmgAdv}${foretellButtons(r)}
     <div class="rl-dice">${dice || '<span class="faint">No dice</span>'}</div>
-    <div class="rl-add">Add ${DIE_SIDES.map((s) => `<button class="btn sm" data-rl="add" data-arg="${s}" title="Add a d${s}${r.rolled ? ' (rolled now)' : ''}">+d${s}</button>`).join('')}
+    <div class="rl-add"><span class="rl-add-dice">Add ${diceTray('add', (s) => `Add a d${s}${r.rolled ? ' (rolled now)' : ''}`)}</span>
       <label class="rl-mod">Modifier <input type="number" step="1" data-rl="custom" value="${num(r.custom) || ''}" placeholder="0"></label>
       ${r.kind === 'd20' ? `<label class="rl-mod" title="The number to reach (a save's or check's DC, a target's AC)">DC <input type="number" step="1" data-rl="dc" value="${num(r.dc) || ''}" placeholder="—"></label>` : ''}</div>
     ${r.rolled && rolling
@@ -1259,6 +1318,7 @@ function renderDice(focus) {
   const log = rollState.log.filter((x) => !x.key || x.key === state.current);
   const head = `<div class="dice-head"><b>Dice</b>
       <form class="dice-free" data-rl-free><input name="expr" placeholder="e.g. 2d6+3" aria-label="Dice to roll" autocomplete="off"><button class="btn sm" type="submit">Roll</button></form>
+      ${r && !rollState.min ? '<button class="btn sm" data-rl="clear" data-arg="" title="Put this roll away and pick plain dice (it stays in the log)">New roll</button>' : ''}
       <button class="btn sm" data-rl="min" data-arg="" title="${rollState.min ? 'Show the whole roll' : 'Make the dice small (the sheet stays clickable)'}" aria-label="${rollState.min ? 'Expand the dice' : 'Minimise the dice'}" aria-expanded="${!rollState.min}">${rollState.min ? '▴' : '▾'}</button>
       <button class="btn sm" data-rl="close" data-arg="" title="Hide the dice (the log is kept)" aria-label="Close the dice">✕</button></div>`;
   if (rollState.min) {
@@ -1268,7 +1328,9 @@ function renderDice(focus) {
     return;
   }
   dock.innerHTML = `${head}
-    ${r ? renderRollCard(r) : '<p class="faint" style="margin:8px 0">Click a number on the sheet (skills, saves, attacks, damage…) to roll it.</p>'}
+    ${r ? renderRollCard(r) : `<div class="rl-card rl-empty"><p class="faint">Click a number on the sheet (skills, saves, attacks, damage…) to roll it: its bonuses, advantage and extra dice are added for you.</p>
+      <div class="rl-tray" role="group" aria-label="Plain dice">${diceTray('pick', (s) => `A plain d${s} roll`)}</div>
+      <p class="faint">Or pick dice for a plain roll (a d20 can have advantage or disadvantage).</p></div>`}
     ${log.length ? `<div class="dice-log"><div class="faint">Recent rolls${state.current ? ' for this character' : ''}</div>${log.map((x) => `<button class="log-row${r && x.id === r.id ? ' cur' : ''}" data-rl="open" data-arg="${esc(x.id)}">
       <span>${esc(x.label)}${x.amended ? ' ✎' : ''}</span><b>${rollTotal(x)}</b><span class="faint">${esc(new Date(x.at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }))}</span></button>`).join('')}</div>` : ''}`;
   document.querySelectorAll('[data-dice-toggle]').forEach((b) => { b.classList.toggle('on', rollState.open); b.setAttribute('aria-expanded', String(rollState.open)); });
@@ -1350,6 +1412,14 @@ function handleRl(act, arg, el) {
     case 'roll': return doRoll();
     case 'mode': return setMode(arg);
     case 'add': return addDice(Number(arg));
+    // A plain die picked in the empty dock: a roll of its own, not rolled yet (more dice, advantage, then Roll).
+    case 'pick': {
+      startRoll(`dice|1d${num(arg)}`, {});
+      const p = rollState.current;
+      if (p) { rollState.entering = new Set(p.dice.map((d) => d.id)); renderDice(true); rollState.entering = null; }
+      return undefined;
+    }
+    case 'clear': rollState.current = null; renderDice(false); return undefined;
     case 'remove': return removeDie(arg);
     case 'cond': return toggleCond(Number(arg));
     case 'again': if (r) startRoll(r.spec, { mode: r.mode, conds: r.conds.filter((c) => c.on).map((c) => c.label), ability: r.toolAbility, sameAs: r, now: true }); return undefined;
@@ -1368,9 +1438,10 @@ function handleRl(act, arg, el) {
     case 'min': rollState.min = !rollState.min; renderDice(false); return undefined;
     case 'dmgadv': {
       if (!r) return undefined;
+      const before = new Set(r.dice.map((d) => d.id));
       if (r.dice.some((d) => d.tag === 'adv')) r.dice = r.dice.filter((d) => d.tag !== 'adv');
       else r.dice.push(...r.dice.filter((d) => d.tag === 'base').map((d) => ({ ...newDie(d.sides, 'adv', r.rolled), sign: d.sign })));
-      return afterAmend();
+      return afterAmend(before);
     }
     case 'foretell': return useForetold(num(arg));
     case 'insp':

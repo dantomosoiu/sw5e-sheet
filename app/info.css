@@ -76,7 +76,7 @@
   .sugg-item { min-height: 44px; }
   input[type="checkbox"], input[type="radio"] { width: 20px; height: 20px; }
   select { min-height: 36px; }
-  .die { min-width: 46px; height: 50px; }
+  .die-pick { min-width: 44px; min-height: 44px; }
   .inv-ctl .btn.sm { min-width: 36px; }
   .loadout .art-tile { --t: 44px; }
   .theme-pick button { min-height: 48px; }

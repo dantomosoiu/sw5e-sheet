@@ -528,29 +528,74 @@ button.dot.on.bad { background: var(--bad); border-color: var(--bad); }
 .rl-conds { display: flex; flex-wrap: wrap; gap: 4px 12px; font-size: 13px; }
 .rl-cond { display: inline-flex; gap: 4px; align-items: center; }
 .rl-dice { display: flex; flex-wrap: wrap; gap: 6px; }
-.die { position: relative; display: inline-flex; flex-direction: column; align-items: center; justify-content: center; min-width: 40px; height: 44px;
-  padding: 0 6px; border: 1px solid var(--line); border-radius: 8px; background: var(--panel-2); color: inherit; font: inherit; }
+/* Dice: each drawn as its polyhedron (roller.js dieSvg), the facet toward you holding the number. --die-c: its colour. */
+.die { --die-c: var(--muted); position: relative; display: inline-flex; flex-direction: column; align-items: center; gap: 1px; padding: 0;
+  border: 0; background: none; color: inherit; font: inherit; }
+.die-3d { position: relative; display: block; width: 48px; height: 48px; transform-style: preserve-3d; }
+.die-shape { display: block; width: 100%; height: 100%; overflow: visible; filter: drop-shadow(0 2px 2px rgba(0, 0, 0, .35)); }
+.die-body, .die-face, .die-facet { fill: color-mix(in srgb, var(--die-c) 26%, var(--panel-2)); }
+.die-face { fill: color-mix(in srgb, var(--die-c) 18%, var(--panel-2)); }
+.die-facet, .die-face { stroke: color-mix(in srgb, var(--die-c) 55%, transparent); stroke-width: 1.4; stroke-linejoin: round; }
+.die-edge { fill: none; stroke: var(--die-c); stroke-width: 3; stroke-linejoin: round; }
+.die-3d b { position: absolute; left: 0; right: 0; top: var(--num-top, 50%); transform: translateY(-50%); text-align: center;
+  font-size: 17px; font-weight: 700; line-height: 1; color: var(--text); text-shadow: 0 1px 2px rgba(0, 0, 0, .45); }
+.die.s4 .die-3d b { font-size: 14px; }
 button.die { cursor: pointer; }
-button.die:hover { border-color: var(--bad); }
-.die.tumbling { animation: die-tumble .16s ease-in-out infinite alternate; border-color: var(--accent); }
+button.die:hover .die-edge { stroke: var(--bad); }
+/* Rolling: the dice turn over in 3D while their numbers flick, then drop onto the table; new dice roll in. */
+.die.tumbling .die-3d { animation: die-roll3d .55s linear infinite; }
+.die.tumbling:nth-child(2n) .die-3d { animation-duration: .62s; animation-direction: reverse; }
+.die.tumbling:nth-child(3n) .die-3d { animation-duration: .48s; }
 .die.tumbling b { color: var(--muted); }
-@keyframes die-tumble { from { transform: rotate(-9deg) translateY(1px); } to { transform: rotate(9deg) translateY(-2px); } }
-.die.landed { animation: die-land .32s ease-out; }
-@keyframes die-land { 0% { transform: scale(1.18); } 60% { transform: scale(.96); } 100% { transform: none; } }
+@keyframes die-roll3d {
+  0% { transform: perspective(170px) translateY(0) rotateX(0) rotateY(0) rotateZ(0); }
+  25% { transform: perspective(170px) translateY(-5px) rotateX(75deg) rotateY(25deg) rotateZ(50deg); }
+  50% { transform: perspective(170px) translateY(-7px) rotateX(180deg) rotateY(-10deg) rotateZ(95deg); }
+  75% { transform: perspective(170px) translateY(-4px) rotateX(260deg) rotateY(-30deg) rotateZ(145deg); }
+  100% { transform: perspective(170px) translateY(0) rotateX(360deg) rotateY(0) rotateZ(180deg); }
+}
+.die.landed .die-3d { animation: die-land3d .55s cubic-bezier(.2, 1.4, .4, 1); }
+@keyframes die-land3d {
+  0% { transform: perspective(170px) translateY(-14px) rotateX(55deg) rotateZ(-25deg) scale(1.1); }
+  55% { transform: perspective(170px) translateY(2px) rotateX(-8deg) rotateZ(4deg) scale(.97); }
+  100% { transform: none; }
+}
+.die.entering .die-3d { animation: die-enter .55s cubic-bezier(.2, 1.3, .4, 1); }
+@keyframes die-enter {
+  0% { opacity: 0; transform: perspective(170px) translate(-28px, -12px) rotateY(-120deg) rotateZ(-110deg) scale(.6); }
+  100% { opacity: 1; transform: none; }
+}
 .rl-total.landed { display: inline-block; animation: total-land .4s cubic-bezier(.2, 1.6, .4, 1); }
+/* Dice to pick (the empty dock) and to add to a roll. */
+.rl-empty { gap: 6px; }
+.rl-empty p { margin: 0; }
+.rl-tray { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 10px; padding: 4px 0; }
+.die-pick { --die-c: var(--muted); display: inline-flex; flex-direction: column; align-items: center; gap: 2px; padding: 2px; border: 0; background: none;
+  color: var(--muted); font: inherit; font-size: 11.5px; cursor: pointer; border-radius: 8px; }
+.die-pick.s20 { --die-c: var(--accent); }
+.die-pick .die-shape { width: 42px; height: 42px; transition: transform .2s ease; }
+.die-pick:hover, .die-pick:focus-visible { color: var(--text); --die-c: var(--accent); }
+.die-pick:hover .die-shape, .die-pick:focus-visible .die-shape { transform: perspective(170px) rotateX(20deg) rotateY(-22deg) translateY(-2px); }
+.die-pick:active .die-shape { transform: perspective(170px) rotateX(40deg) rotateY(-40deg) scale(.92); }
+.rl-add-dice { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 2px 4px; }
+.rl-add .die-pick { flex-direction: row; gap: 2px; }
+.rl-add .die-pick .die-shape { width: 24px; height: 24px; }
+.rl-add .die-pick span::before { content: '+'; }
 @keyframes total-land { 0% { transform: scale(.4); opacity: 0; } 100% { transform: none; opacity: 1; } }
 .rl-result.rolling .rl-total { color: var(--faint); }
-@media (prefers-reduced-motion: reduce) { .die.tumbling, .die.landed, .rl-total.landed { animation: none; } }
+@media (prefers-reduced-motion: reduce) { .die .die-3d, .die.tumbling .die-3d, .die.landed .die-3d, .die.entering .die-3d, .rl-total.landed { animation: none; } .die-pick .die-shape { transition: none; } }
 .die b { font-size: 17px; line-height: 1; }
 .die small { font-size: 10px; color: var(--muted); }
-.die.d20 { border-color: var(--accent); }
-.die.dropped { opacity: .4; text-decoration: line-through; }
-.die.nat20 { border-color: var(--good); color: var(--good); }
-.die.nat1 { border-color: var(--bad); color: var(--bad); }
-.die.critd { border-style: dashed; }
-.die.maxed { border-color: var(--warn); color: var(--warn); }
+.die.d20 { --die-c: var(--accent); }
+.die.dropped { opacity: .4; }
+.die.dropped b { text-decoration: line-through; }
+.die.nat20 { --die-c: var(--good); color: var(--good); }
+.die.nat1 { --die-c: var(--bad); color: var(--bad); }
+.die.nat20 .die-3d b, .die.nat1 .die-3d b { color: var(--die-c); }
+.die.critd .die-edge { stroke-dasharray: 7 4; }
+.die.maxed { --die-c: var(--warn); color: var(--warn); }
 .rl-critmode { display: inline-flex; gap: 4px; align-items: center; font-size: 12.5px; color: var(--muted); margin-left: auto; }
-.die-x { position: absolute; top: -7px; right: -7px; width: 18px; height: 18px; border-radius: 50%; border: 1px solid var(--line); background: var(--panel);
+.die-x { position: absolute; top: -4px; right: -4px; width: 18px; height: 18px; border-radius: 50%; border: 1px solid var(--line); background: var(--panel);
   color: var(--muted); font-size: 11px; line-height: 16px; text-align: center; display: none; }
 .die:hover .die-x, .die:focus-visible .die-x { display: block; }
 button.die:hover .die-x { color: var(--bad); border-color: var(--bad); }
@@ -767,6 +812,7 @@ table.tweaks td { vertical-align: middle; }
   .nav a { padding: 7px 12px; }
   .cast-ctl select, .cls-add, .cls-arch select, .mod-items select, .add-row select, .add-row input, .tw-vals input, .tw-vals select, .feat-note input, .cls-note { min-height: 34px; }
   .rl-add .btn.sm { min-width: 44px; }
+  .rl-add .die-pick { min-height: 40px; min-width: 44px; justify-content: center; }
   .hint-kbd { display: none; }
 }
 @media print {

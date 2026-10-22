@@ -275,7 +275,7 @@ body { background-image: var(--bg-art, none); background-size: var(--bg-art-size
 /* Monk: soft paper, round everything. */
 :root[data-style="monk"] .section { background-image: radial-gradient(ellipse at 0 0, color-mix(in srgb, var(--accent) 7%, transparent), transparent 55%); }
 :root[data-style="monk"] .stat, :root[data-style="monk"] .card { border-radius: 14px; }
-:root[data-style="monk"] .die { border-radius: 50%; min-width: 44px; }
+
 
 /* Scholar: a page with a double rule and a flourished heading. */
 :root[data-style="scholar"] .section { outline: 1px solid color-mix(in srgb, var(--accent) 35%, transparent); outline-offset: -6px; }
@@ -293,6 +293,4 @@ body { background-image: var(--bg-art, none); background-size: var(--bg-art-size
 :root[data-style="sentinel"][data-theme="light"] .section > h2 { background: linear-gradient(90deg, var(--accent), #b58a00); -webkit-background-clip: text; background-clip: text; }
 
 /* Dice in each style: the die faces take the style's corners and glow. */
-:root[data-style]:not([data-style="standard"]) .die.d20 { box-shadow: 0 0 10px -4px var(--accent); }
-:root[data-style="berserker"] .die, :root[data-style="operative"] .die, :root[data-style="engineer"] .die { border-radius: 3px; }
-:root[data-style="consular"] .die, :root[data-style="guardian"] .die { border-radius: 12px; }
+:root[data-style]:not([data-style="standard"]) .die.d20 .die-shape { filter: drop-shadow(0 0 5px color-mix(in srgb, var(--accent) 70%, transparent)) drop-shadow(0 2px 2px rgba(0, 0, 0, .35)); }
