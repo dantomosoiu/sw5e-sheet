@@ -6527,7 +6527,8 @@ function featurePickers(m, f) {
       html.push(classManeuverBlock(m, k, idx, info));
       chosen.push(...arr(info.maneuvers.chosen));
     }
-    const casting = /^(force|tech)casting$/i.exec(base);
+    // Forcecasting, Techcasting, and an archetype's "Improved Techcasting" ("You know 7 tech powers of your choice").
+    const casting = /^(?:improved )?(force|tech)casting$/i.exec(base);
     if (casting && pwClassCasting(k, state.rules.modules || {}).some((c) => c.type === casting[1])) {
       html.push(renderPowerBlocks(m, k, idx, casting[1]));
       chosen.push(...arr(k[`${casting[1]}Powers`]).concat(arr(k.archetype && k.archetype[`${casting[1]}Powers`])));
@@ -6551,6 +6552,15 @@ function openAsks(asks) {
 }
 /** Of alternatives (oneOf), the one answered: the others' pickers go once one is chosen. */
 const askShown = (a, asks) => !a.oneOf || a.chosen.length || !asks.some((x) => x !== a && x.oneOf === a.oneOf && x.chosen.length);
+/**
+ * A card whose choices are made elsewhere, so it has no "Your choices" box: a species' Ability Score Increase and
+ * Languages (their pickers are under Species), and a trait SW5E repeats under another name (Human Versatility as
+ * "Proficiency": the rules' own trait's card has the pickers).
+ */
+function choicesElsewhere(m, f) {
+  return f.source === 'Species' && !!state.rules && (/^(?:Ability Score Increase|Languages?|Size|Speed|Age|Alignment)$/i.test(f.name)
+    || !bdSpeciesTraitFeatures(m).some((t) => t.name === f.name));
+}
 /** What a feature asks the player to choose (classes.js asks: one of its options, an ability, skills, tools…). */
 function featureAsks(m, f) {
   const text = f.text || f.description || '';
@@ -6650,8 +6660,14 @@ function featureNoteBox(m, f, opts = {}) {
   const rest = keep ? tokens.filter((t) => !managed.has(lc(t))).join(', ') : note;
   // A choice to write down, not one made at the table ("you can choose to", "choose a creature", "(your choice)").
   const choiceWords = String(opts.choiceText != null ? opts.choiceText : f.text || f.description || '')
-    .replace(/\byou can (?:also )?choose to\b|\b(?:choose|select) (?:a|an|one|two|up to \w+|any number of)? ?(?:other )?(?:creatures?|targets?|all(?:y|ies)|points?|spaces?|numbers?|hostile|friendly|willing|enemies|enem(?:y|ies))\b|\((?:your choice|of your choice)[^)]*\)|\bat your choice\b/gi, '');
-  const free = picked == null && !asks.length && /\b(?:choose|choice|of your choice|select)\b/i.test(choiceWords);
+    .replace(/\b(?:you|it|they|(?:a|the|that) (?:creature|target)) can (?:also )?choose\b[^.]*|\b(?:an?|one|any) (?:other )?(?:enemy|enemies|creatures?|targets?|all(?:y|ies)|points?|spaces?|objects?) (?:of your choice|you choose)\b|\b(?:choose|select) (?:a|an|one|two|up to \w+|any number of)? ?(?:other )?(?:creatures?|targets?|all(?:y|ies)|points?|spaces?|numbers?|hostile|friendly|willing|enemies|enem(?:y|ies))\b|\((?:your choice|of your choice)[^)]*\)|\bat your choice\b/gi, '');
+  // A choice to write down: a sentence that chooses, not one made in play ("When…", "As an action…", "On a failed save…",
+  // "you may choose to…", "creatures/a direction/one of the following effects of your choice"), nor in a "####"
+  // sub-option's text (effects you pick when you use it).
+  const lasting = String(choiceWords).split(/^#{4,}\s/m)[0].replace(/\s+/g, ' ').split(/(?<=[.!?])\s+/)
+    .filter((s) => /\b(?:choose|choice|of your choice|select)\b/i.test(s))
+    .filter((s) => !/\b(?:when|whenever|as an? (?:bonus )?action|as a reaction|on a (?:failed|successful) save|once per|if|unless|while|until|for the duration|each time|for each|you may choose|can choose to|may instead|must choose|instead choose|choose wisely|(?:creatures?|targets?|all(?:y|ies)|enem(?:y|ies)|points?|directions?) (?:of your choice|you choose)|(?:choose|select) (?:any|up to \w+|each)? ?(?:such )?creatures|deploy your choice|(?:effects?|direction|space|item|object|cloak|appearance|characteristics|damage type|structures?) (?:of|from) (?:your|these)|you make this choice)\b/i.test(s));
+  const free = picked == null && !asks.length && !choicesElsewhere(m, f) && lasting.length > 0;
   const chosen = pk ? `<div class="cls-choices feat-pickers">${pk.html}</div>` : picked == null ? ''
     : `<div class="feat-chosen">${picked.length ? `Chosen: <b>${esc(picked.join(', '))}</b>` : '<span class="warn-text">Not chosen yet</span>'} · <a href="#sec-classes">${picked.length ? 'change' : 'choose'} it in Classes &amp; Progression</a></div>`;
   // Languages a class feature teaches (Silver Tongue's two).

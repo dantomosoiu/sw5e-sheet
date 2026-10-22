@@ -451,7 +451,8 @@ Brutal Shot
 You attempt to knock the target prone. The target must make a Strength saving throw or be knocked prone.
 Hampering Shot
 You attempt to hobble the enemy's movement. The target must make a Dexterity saving throw. If it fails, it gains 1 slowed level and it has disadvantage on Dexterity saving throws until the end of its next turn.
-Your choices []
+Add a note
+Notes []
 Dive For Cover Level 9
 Uses (back on a long rest) 4 / 4 [−] [+]
 Gunslinger Practice: 3rd, 5th, 9th, 13th, and 17th level
@@ -603,7 +604,8 @@ Biped with bilateral symmetry, opposable thumbs
 Traits (9)
 Ability Score Increase
 One ability score of your choice increases by 2, and two other ability scores of your choice increase by 1. Alternatively, four ability scores of your choice each increase by 1.
-Your choices []
+Add a note
+Notes []
 Age
 Humans reach adulthood in their late teens and live less than a century.
 Add a note
@@ -632,10 +634,12 @@ Add a note
 Notes []
 Languages
 You can speak, read, and write Galactic Basic and one extra language of your choice. Humans typically learn the languages of other peoples they deal with, inclu… [346 chars #ff842958]
-Your choices []
+Add a note
+Notes []
 Proficiency
 You gain proficiency in one skill, one tool, and one weapon of your choice.
-Your choices []
+Add a note
+Notes []
 Size
 Humans vary widely in height and build, from barely 5 feet to well over 6 feet tall. Regardless of your position in that range, your size is Medium.
 Add a note

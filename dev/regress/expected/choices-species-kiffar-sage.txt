@@ -632,7 +632,8 @@ Add a note
 Notes []
 Languages
 You can speak, read, and write Galactic Basic and one extra language of your choice. Kiffar never had a tongue to call their own, using Galactic Basic as far back as their history goes.
-Your choices []
+Add a note
+Notes []
 Nimble Reflexes
 Kiffar are naturally adapted to avoiding the Force. You have advantage on Dexterity and Intelligence saving throws against force powers.
 Add a note
