@@ -407,7 +407,7 @@ Skill | Ability | Bonus | Passive | Proficiency |
 (Not proficient) Nature | INT | −1 | 9 | — |
 (Proficient) Perception | WIS | +3 | 13 | Proficient |
   ↳ hover abilityScores.Wisdom.skills.3.modifier: Without tweaks or effects: 1 → now 3 / Proficient Perception · Berserker class skill (chosen at 1st level) tweak (not synced to SW5E yet)
-  ↳ hover abilityScores.Wisdom.skills.3.modifier: Without tweaks or effects: 1 → now 3 / Proficient Perception · Berserker class skill (chosen at 1st level) tweak (not synced to SW5E yet)
+  ↳ hover passivePerception: Without tweaks or effects: 11 → now 13 / Proficient Perception · Berserker class skill (chosen at 1st level) tweak (not synced to SW5E yet)
 (Not proficient) Performance | CHA | +0 | 10 | — |
 (Proficient) Persuasion | CHA | +2 | 12 | Proficient |
   ↳ hover abilityScores.Charisma.skills.3.modifier: Without tweaks or effects: 0 → now 2 / Proficient Persuasion · Mercenary background skill tweak (not synced to SW5E yet)

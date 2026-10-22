@@ -159,7 +159,7 @@ function buildRoll(m, spec, opts = {}) {
     case 'check': {
       const r = d20(`${a1} check`, num((sc[a1] || {}).modifier), `abilityScores.${a1}.modifier`);
       // Led by the Force: half proficiency on checks that don't include it.
-      const half = arr(m.effects).find((e) => e.halfProf);
+      const half = arr(m.effects).find((e) => e.halfProf === true || (Array.isArray(e.halfProf) && e.halfProf.includes(a1)));
       if (half && Math.floor(pb / 2)) r.base.push({ label: `half proficiency (${half.name})`, value: Math.floor(pb / 2) });
       return r;
     }

@@ -48,7 +48,8 @@ function effectsBlock(text, ctx) {
   }
   for (const k of ['critRange', 'halfProf', 'unarmedStep']) if (fe[k]) out.push(`  ${k} ${fe[k]}`);
   for (const k of Object.keys(fe).filter((k) => !['mods', 'profs', 'notes', 'needsChoice', 'asks', 'advantage', 'defenses', 'critRange', 'halfProf', 'unarmedStep'].includes(k))) {
-    if (fe[k] && (!Array.isArray(fe[k]) || fe[k].length)) out.push(`  ${k} ${JSON.stringify(fe[k])}`);
+    const v = fe[k];
+    if (v && (Array.isArray(v) ? v.length : typeof v !== 'object' || Object.keys(v).length)) out.push(`  ${k} ${typeof v === 'object' ? JSON.stringify(v) : v}`);
   }
   if (fe.advantage.length) out.push(`  advantage ${fe.advantage.map((a) => [a.kind, a.ability || a.skill].filter(Boolean).join(' ')).join(', ')}`);
   for (const d of fe.defenses) out.push(`  ${d.kind}: ${d.text}`);

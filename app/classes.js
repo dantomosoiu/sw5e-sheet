@@ -168,6 +168,8 @@ function clsUsage(text, ctx) {
     if (n) { max = n; basis = `${m[1]} column`; }
   }
   if (max == null && /once you(?:'|’)ve used (?:this feature|it)|can(?:'|’)t use (?:this feature|it) again until/i.test(t)) max = 1;
+  // "You have 3 luck points… You regain your expended luck points when you finish a long rest" (Lucky).
+  if (max == null && (m = /\byou have (\d+|one|two|three|four|five|six) ([a-z-]+) points\b/i.exec(t)) && !/\b(?:force|tech|focus|hit)$/i.test(m[2])) { max = clsTimes(m[1]); basis = `${m[2]} points`; }
   if (max == null || max <= 0) return null;
   // "You gain an additional use at 5th, 9th, 13th, and 17th level."
   if ((m = /additional use (?:of (?:this feature|it) )?at ((?:\d+(?:st|nd|rd|th)(?:,? (?:and )?)?)+) level/i.exec(t))) {
@@ -621,7 +623,7 @@ function clsFeatureEffects(text, note, ctx) {
   const optionAsk = () => (sub.choice ? [{ kind: 'option', label: 'Choose one', options: sub.options, count: 1, chosen: sub.chosen, of: '' }] : []);
   if (sub.choice && sub.chosen.length && /\bfor the duration\b|\bwhile wearing your [\w' ]+, you gain the (?:effects|benefits) of the chosen\b/i.test(String(text).split(/^#{4,}\s/m)[0])) {
     // Only during the state / while wearing the item: not permanent numbers (the text stays on the card).
-    return { mods: [], profs: { saves: [], skills: [], tools: [], weapons: [], armor: [], upgrades: [], chains: [] }, notes: [], needsChoice: [], asks: optionAsk(), advantage: [], critRange: 0, halfProf: false, unarmedStep: 0, defenses: [] };
+    return { mods: [], profs: { saves: [], skills: [], tools: [], weapons: [], armor: [], upgrades: [], chains: [] }, notes: [], needsChoice: [], asks: optionAsk(), advantage: [], critRange: 0, halfProf: false, unarmedStep: 0, defenses: [], passives: {} };
   }
   const t = clsScaleText(sub.text, level);
   // A state's benefits list ("While raging, you gain the following benefits: - …") isn't permanent;
@@ -633,7 +635,7 @@ function clsFeatureEffects(text, note, ctx) {
   const picks = clsNoteNames(note);
   const out = {
     mods: [], profs: { saves: [], skills: [], tools: [], weapons: [], armor: [], upgrades: [], chains: [] }, notes: [], needsChoice: [],
-    advantage: [], critRange: 0, halfProf: false, unarmedStep: 0, defenses: [], asks: optionAsk(),
+    advantage: [], critRange: 0, halfProf: false, unarmedStep: 0, defenses: [], asks: optionAsk(), passives: {},
   };
   const same = (x, a) => x.kind === a.kind && x.label === a.label && String(x.options) === String(a.options);
   const ask = (kind, label, options, count, chosen, of = '') => {
@@ -770,7 +772,13 @@ function clsFeatureEffects(text, note, ctx) {
     if ((m = /critical hit ranges?(?: with weapons)? increases? by (\d+)/i.exec(s))) out.critRange = Math.max(out.critRange, Number(m[1]));
     if (!conditional && (m = /(?:score|scores) a critical hit on a roll of (\d+) or 20/i.exec(s))) out.critRange = Math.max(out.critRange, 20 - Number(m[1]));
     // Half proficiency on checks without proficiency (Led by the Force).
-    if (/add half your proficiency bonus to any ability check you make that doesn(?:'|’)t already include your proficiency bonus/i.test(s)) out.halfProf = true;
+    // Or only some: "…to any Strength, Dexterity, or Constitution check you make that doesn't already use your proficiency
+    // bonus" (Remarkable Athlete), "…to any Charisma check…" (Social Opportunist), "Whenever you make an ability check that
+    // uses your Intelligence, you can add half your proficiency bonus" (Cunning Intellect): halfProf lists the abilities.
+    const halfOf = (abilities) => { out.halfProf = out.halfProf === true || !abilities.length ? true : [...new Set((Array.isArray(out.halfProf) ? out.halfProf : []).concat(abilities))]; };
+    if ((m = new RegExp(`add half your proficiency bonus to any ((?:${CLS_ABIL_ANY}(?:,? (?:or|and) |,? )?)*)\\s*(?:ability )?check you make that doesn(?:'|’)t already (?:include|use) your proficiency bonus`, 'i').exec(s))) {
+      halfOf([...m[1].matchAll(new RegExp(CLS_ABIL_RE, 'gi'))].map((x) => clsAbility(x[1])));
+    } else if ((m = new RegExp(`\\bability check that uses your ${CLS_ABIL_RE}, you can add half your proficiency bonus(?: \\(rounded down\\))? if it doesn(?:'|’)t already include your proficiency bonus`, 'i').exec(s))) halfOf([clsAbility(m[1])]);
     // "Your unarmed strike damage increases by one step" (Fists of Fury).
     if (/unarmed strike damage increases by one step|damage die for your unarmed strikes[^.]*increases by one step/i.test(s)) out.unarmedStep = 1;
     // Always-on advantages (the roller pre-selects them) and the rest of the defenses & senses. Gear
@@ -817,7 +825,7 @@ function clsFeatureEffects(text, note, ctx) {
       else if ((m = /\b(blindsight|truesight|tremorsense) (?:out )?to a number of feet equal to (\d+) x your proficiency bonus/i.exec(core))) {
         def('sense', `${m[1][0].toUpperCase()}${m[1].slice(1)} ${ctx.pb ? `${Number(m[2]) * ctx.pb} ft` : `${m[2]} × proficiency bonus ft`}`);
       }
-      for (const sm of core.matchAll(/\b(climbing|swimming|flying) speed (?:of (\d+) feet|equal (?:to )?your (?:walking |movement )?speed)/gi)) def('speed', `${sm[1][0].toUpperCase()}${sm[1].slice(1)} speed ${sm[2] ? sm[2] + ' ft' : 'equal to walking speed'}`);
+      for (const sm of core.matchAll(/\b(climbing|swimming|flying|crawling) speed (?:of (\d+) feet|equal (?:to )?your (?:walking |movement )?speed)/gi)) def('speed', `${sm[1][0].toUpperCase()}${sm[1].slice(1)} speed ${sm[2] ? sm[2] + ' ft' : 'equal to walking speed'}`);
       // "a swimming speed and a climbing speed equal to your walking speed": both.
       for (const sm of core.matchAll(/\ba (climbing|swimming|flying) speed and an? (?:climbing|swimming|flying) speed (?:of (\d+) feet|equal (?:to )?your (?:walking |movement )?speed)/gi)) def('speed', `${sm[1][0].toUpperCase()}${sm[1].slice(1)} speed ${sm[2] ? sm[2] + ' ft' : 'equal to walking speed'}`);
       if ((m = /\b((?:opportunity |ranged |melee )?attack(?:s| rolls) (?:made )?against you (?:have|are made with|has) disadvantage)/i.exec(core))) def('other', m[1][0].toUpperCase() + m[1].slice(1));
@@ -838,6 +846,28 @@ function clsFeatureEffects(text, note, ctx) {
     }
     // Species Darkvision traits describe it without the word (and with an "as if"): "You can see in dim light within 60 feet of you as if it were bright light".
     if ((m = /\bsee in dim light within (\d+) feet of you as if it were bright light/i.exec(core)) && !out.defenses.some((d) => /^Darkvision/.test(d.text))) out.defenses.push({ kind: 'sense', text: `Darkvision ${m[1]} ft` });
+    // Hit point maximum: "increases by 1, and it increases by 1 every time you gain a level" (Toughness: from the character's
+    // level), "…by 3, and it increases by 1 again whenever you gain a level in this class" (Path of Iron: from the level the
+    // feature came at), "…by a number equal to your level, and it increases by 1 every time you gain a level" (Mutagenic
+    // Hardiness), "…by an amount equal to twice your level when you gain this feat. Whenever you gain a level thereafter,
+    // … by an additional 2" (Durable).
+    const charLevel = Number(ctx.charLevel) || level;
+    let hp = null;
+    if ((m = /\bhit point maximum increases by (\d+),? and it increases by (\d+) (?:again )?(?:every time|whenever) you gain a level( in this class)?/i.exec(s))) {
+      const from = m[3] ? (Number(ctx.featureLevel) || Number(m[1])) : 1;
+      hp = Number(m[1]) + Number(m[2]) * Math.max(0, (m[3] ? level : charLevel) - from);
+    } else if (/\bhit point maximum increases by a number equal to your level,? and it increases by 1 every time you gain a level/i.test(s)) hp = charLevel;
+    else if (/\bhit point maximum increases by an amount equal to twice your level when you gain this feat/i.test(s)) hp = 2 * charLevel;
+    if (hp) out.mods.push({ path: 'hitPoints.maximum', bonus: hp, label: `HP maximum +${hp}` });
+    // "You are considered to have advantage when determining your passive Wisdom (Perception) and passive Intelligence
+    // (Investigation) scores" (Observant): +5 to each. Passive Perception is the engine's; the others the skills table adds.
+    if ((m = /\bconsidered to have advantage when determining your (passive [^.]+?) scores?\b/i.exec(s))) {
+      for (const pm of m[1].matchAll(new RegExp(`passive (?:${CLS_ABIL_ANY} \\()?(${CLS_SKILLS.join('|')})\\)?`, 'gi'))) {
+        const sk = clsSkill(pm[1]);
+        if (sk === 'Perception') out.mods.push({ path: 'passivePerception', bonus: 5, label: 'Passive Perception +5 (advantage)' });
+        else out.passives[sk] = 5;
+      }
+    }
     // "You can't add more than +3 when determining your bonus to AC from your Dexterity" (Muscled Menace; a Hutt's Slow and
     // Lethargic), "…to Dexterity saving throws from Dexterity", "…to attack and damage rolls for weapon attacks using
     // Strength" (Puny, Fragile): what the modifier adds over that is taken off (capAbility; resolved with the final scores).

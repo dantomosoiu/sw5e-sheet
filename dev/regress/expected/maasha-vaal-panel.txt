@@ -425,7 +425,7 @@ Skill | Ability | Bonus | Passive | Proficiency |
 (Not proficient) Nature | INT | −1 | 9 | — |
 (Proficient) Perception | WIS | +5 | 15 | Proficient |
   ↳ hover abilityScores.Wisdom.skills.3.modifier: Without tweaks or effects: 2 → now 5 / +1 Wisdom score · Formfighting Dabbler (Jedi background feat): +1 to an abi… [245 chars #94c071aa]
-  ↳ hover abilityScores.Wisdom.skills.3.modifier: Without tweaks or effects: 2 → now 5 / +1 Wisdom score · Formfighting Dabbler (Jedi background feat): +1 to an abi… [245 chars #94c071aa]
+  ↳ hover passivePerception: Without tweaks or effects: 12 → now 15 / +1 Wisdom score · Formfighting Dabbler (Jedi background feat): +1 to an ability of my choice t… [226 chars #3cabdafa]
 (Not proficient) Performance | CHA | +0 | 10 | — |
 (Proficient) Persuasion | CHA | +2 | 12 | Proficient |
   ↳ hover abilityScores.Charisma.skills.3.modifier: Without tweaks or effects: 0 → now 2 / Proficient Persuasion · Jedi background skill (2 of 2) tweak

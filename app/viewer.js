@@ -1779,10 +1779,11 @@ function featureEffectEntry(id, name, why, fe, origin = 'class feature') {
   for (const sk of fe.profs.skills) mods.push(profMod('skill', sk.name, sk.level, up('skill', sk.name)));
   const tools = fe.profs.tools.map((t) => ({ ...t, ...up('tool', t.name) }));
   const chains = arr(fe.profs.chains);
-  const other = fe.advantage.length || fe.defenses.length || fe.critRange || fe.halfProf || fe.unarmedStep || fe.unarmedDie;
+  const passives = fe.passives || {};
+  const other = fe.advantage.length || fe.defenses.length || fe.critRange || fe.halfProf || fe.unarmedStep || fe.unarmedDie || Object.keys(passives).length;
   if (!mods.length && !tools.length && !fe.profs.weapons.length && !fe.profs.armor.length && !chains.length && !fe.needsChoice.length && !other) return null;
   return {
-    id, kind: 'feature', origin, name, why, mods, notes: [], needsChoice: fe.needsChoice, weapons: fe.profs.weapons, tools, armor: fe.profs.armor, chains, target: 'self',
+    id, kind: 'feature', origin, name, why, mods, notes: [], needsChoice: fe.needsChoice, weapons: fe.profs.weapons, tools, armor: fe.profs.armor, chains, passives, target: 'self',
     advantage: fe.advantage, defenses: fe.defenses, critRange: fe.critRange, halfProf: fe.halfProf, unarmedStep: fe.unarmedStep,
     unarmedDie: fe.unarmedDie || 0, unarmedFinesse: !!fe.unarmedFinesse,
   };
@@ -1839,12 +1840,13 @@ function featureEffectsUncached(editedRaw) {
     const cref = rulesModule('classes').find((x) => x.name === k.name);
     if (!cref || !parsed) return;
     const level = num(k.levels);
-    const ctx = { level, row: classRow(editedRaw, k), isWeapon: isWeaponName };
+    // charLevel: the character's ("your hit point maximum increases by a number equal to your level").
+    const ctx = { level, row: classRow(editedRaw, k), isWeapon: isWeaponName, charLevel: arr(editedRaw.classes).reduce((t, x) => t + num(x.levels), 0) };
     const aref = k.archetype && k.archetype.name ? rulesModule('archetypes').find((x) => x.name === k.archetype.name) : null;
     const items = clsTextFeatures(cref.classFeatureText, k.name, 'Class')
       .concat(aref ? clsTextFeatures(aref.text, aref.name, 'Archetype') : [])
       .filter((f) => f.level <= level)
-      .map((f) => ({ name: f.name, text: f.text, note: featureNoteOf(editedRaw, f.name), source: f.sourceName }));
+      .map((f) => ({ name: f.name, text: f.text, note: featureNoteOf(editedRaw, f.name), source: f.sourceName, level: f.level }));
     const cls = parsed.classes[k.name];
     const arch = aref ? parsed.archetypes[aref.name] : null;
     for (const [listKey, picks] of Object.entries(k.options || {})) {
@@ -1899,7 +1901,8 @@ function featureEffectsUncached(editedRaw) {
     for (const it of items) {
       const id = `feature:${it.source}:${it.name}${it.note ? `:${it.note}` : ''}`;
       if (out.some((x) => x.id === id)) continue;
-      const e = featureEffectEntry(id, it.name, `${it.source} feature`, clsFeatureEffects(it.text, it.note, ctx));
+      // featureLevel: the class level it came at ("…increases by 1 again whenever you gain a level in this class").
+      const e = featureEffectEntry(id, it.name, `${it.source} feature`, clsFeatureEffects(it.text, it.note, { ...ctx, featureLevel: it.level }));
       if (e) out.push(e);
     }
   });
@@ -1922,7 +1925,7 @@ function featureEffectsUncached(editedRaw) {
   // Species traits: their proficiencies ("You have proficiency in the Survival skill"; Coercive's "Persuasion or
   // Intimidation (your choice)" from the trait's notes), numbers ("You have a +1 bonus to AC"; "you can't add more than
   // +3"), advantages (on the dice card), defenses and senses; SW5E's engine applies none of them. And the ones only a
-  // species has, below: its walking speed, Toughness, a hide's or carapace's AC, natural weapons.
+  // species has, below: its walking speed, a hide's or carapace's AC, natural weapons (Toughness is read like Durable).
   const sp = editedRaw.species && editedRaw.species.name ? rulesModule('species').find((x) => x.name === editedRaw.species.name) : null;
   for (const tr of arr(sp && sp.traits)) {
     if (/^(?:Ability Score Increase|Age|Alignment|Size|Languages?)$/i.test(tr.name)) continue;
@@ -1936,13 +1939,6 @@ function featureEffectsUncached(editedRaw) {
     // armor, but if you are using a shield, you can apply the shield's bonus as normal" (Colicoid): resolved in applyEffects.
     const fixed = /\bbase AC of (\d+) \(your Dexterity modifier doesn't affect this number\)/i.exec(tr.description || '');
     if (fixed) profs.mods.push({ path: 'armorClass', bonus: 0, acFixed: num(fixed[1]), acFormula: true, label: `AC ${fixed[1]} (${tr.name})` });
-    // "Your hit point maximum increases by 1, and it increases by 1 every time you gain a level" (Zabrak Toughness).
-    const tough = /hit point maximum increases by (\d+),? and it increases by (\d+) every time you gain a level/i.exec(tr.description || '');
-    if (tough) {
-      const lvl = Math.max(1, arr(editedRaw.classes).reduce((t, k) => t + num(k.levels), 0));
-      const n = num(tough[1]) + num(tough[2]) * (lvl - 1);
-      profs.mods.push({ path: 'hitPoints.maximum', bonus: n, label: `HP maximum +${n}` });
-    }
     // "While you are unarmored or wearing light armor, your AC is 13 + your Dexterity modifier" (Wookiee Hide).
     const hide = /\b(While you are unarmored(?: or wearing light armor)?|When you aren't wearing armor|While you aren't wearing armor), your (?:AC|Armor Class) (?:is|equals|becomes) (\d+) \+ your Dexterity modifier/i.exec(tr.description || '');
     if (hide) {
@@ -2132,12 +2128,15 @@ function applyEffects(key, editedRaw, complete) {
   }
   // "Add half your proficiency bonus to any ability check that doesn't already include it": skills
   // without proficiency and initiative (plain ability checks get it in the roller).
-  const half = effects.find((x) => x.halfProf);
-  if (half) {
+  // Some give it on checks of some abilities only (halfProf lists them: Remarkable Athlete, Cunning Intellect).
+  const halfFor = (a) => effects.find((x) => x.halfProf === true || (Array.isArray(x.halfProf) && x.halfProf.includes(a)));
+  if (effects.some((x) => x.halfProf)) {
     const n = Math.floor(num(complete && complete.proficiencyBonus) / 2);
     const label = `Half proficiency ${signedLabel(n)}`;
-    if (n) res.tweaks.push({ path: 'initiative', bonus: n, fields: null, effect: half, mod: { path: 'initiative', label } });
+    if (n && halfFor('Dexterity')) res.tweaks.push({ path: 'initiative', bonus: n, fields: null, effect: halfFor('Dexterity'), mod: { path: 'initiative', label } });
     for (const a of ABILITIES) {
+      const half = halfFor(a);
+      if (!half) continue;
       for (const sk of arr((((complete && complete.abilityScores) || {})[a] || {}).skills)) {
         const path = `abilityScores.${a}.skills.${sk.name}`;
         const profd = PROF_RANK(sk.proficiency) > 0 || res.tweaks.some((t) => t.path === path && t.fields && PROF_RANK(t.fields.proficiency) > 0);
@@ -3095,7 +3094,7 @@ function renderEffects(m) {
       ${arr(e.mods).map((x) => chip(x.label, 'good')).join('')}${arr(e.weapons).map((w) => chip(`Proficient: ${w}`, 'good')).join('')}
       ${arr(e.tools).map((t) => chip(`${t.name}: ${t.level}`, 'good')).join('')}${arr(e.armor).map((a) => chip(`Proficient: ${a}`)).join('')}
       ${arr(e.advantage).map((a) => chip(ADV_TEXT(a), 'good')).join('')}${e.critRange ? chip(`Critical on ${20 - e.critRange}–20`, 'good') : ''}
-      ${e.halfProf ? chip('Half proficiency on checks', 'good') : ''}${e.unarmedStep ? chip('Unarmed die +1 step', 'good') : ''}
+      ${e.halfProf ? chip(`Half proficiency on ${halfProfWhich(e)}checks`, 'good') : ''}${e.unarmedStep ? chip('Unarmed die +1 step', 'good') : ''}
       ${arr(e.defenses).map((d) => chip(d.text)).join('')}
       ${arr(e.needsChoice).map((c) => `<span class="chip warn" title="${esc(e.origin === 'feat' ? "Choose it on the feat's card (Feats)" : e.origin === 'species trait' ? "Choose it on the trait's card (Species)" : "Choose it on the feature's card (Class Features)")}">Choose ${esc(c)}</span>`).join('')}
       <span class="faint">${esc(e.why)}</span></div></div>`;
@@ -4094,6 +4093,8 @@ function renderCombat(m) {
 // ------------------------------------------------------------- defenses & senses
 // Resistances, immunities, advantages on saves, senses and other speeds, read from the text of class
 // features (and states that are on), species traits and feats. SW5E's data has none of these.
+/** "Strength/Dexterity/Constitution " when half proficiency is on some abilities' checks only, '' for every check. */
+const halfProfWhich = (e) => (Array.isArray(e.halfProf) ? `${e.halfProf.join('/')} ` : '');
 const ADV_TEXT = (a) => (a.kind === 'init' ? 'Advantage on initiative' : a.kind === 'skill' ? `Advantage on ${a.skill} checks`
   : a.kind === 'attack' ? `Advantage on ${a.melee ? 'melee ' : ''}weapon attacks${a.ability ? ` using ${a.ability}` : ''}`
   : `Advantage on ${a.ability} ${a.kind === 'save' ? 'saving throws' : 'checks'}`);
@@ -4107,7 +4108,7 @@ function defensesOf(m) {
     add(e.defenses, e.name, e.kind);
     add(arr(e.advantage).map((a) => ({ kind: 'advantage', text: ADV_TEXT(a) })), e.name, e.kind);
     if (e.critRange) add([{ kind: 'other', text: `Critical hit on ${20 - e.critRange}–20 with ${e.critWeapons ? e.weaponName || 'the chosen weapon' : 'weapons'}` }], e.name, e.kind);
-    if (e.halfProf) add([{ kind: 'other', text: 'Half proficiency on checks without it' }], e.name, e.kind);
+    if (e.halfProf) add([{ kind: 'other', text: `Half proficiency on ${halfProfWhich(e)}checks without it` }], e.name, e.kind);
   }
   const fromText = (text, from) => {
     const fe = clsFeatureEffects(text || '', '', { level: 0 });
@@ -4229,11 +4230,21 @@ function renderSkills(m) {
     arr(((m.c.abilityScores || {})[a] || {}).skills).forEach((k, i) => rows.push({ ...k, ability: a, idx: i, path: `abilityScores.${a}.skills.${i}.modifier` }));
   }
   rows.sort((x, y) => x.name.localeCompare(y.name));
+  // Passive scores: 10 + the skill's bonus, and what effects add to a passive only (Observant: +5, as with advantage);
+  // Perception's is the engine's (passivePerception, with its own tweaks and effects).
+  const passiveFx = (name) => arr(m.effects).filter((e) => num((e.passives || {})[name])).map((e) => ({ e, n: num(e.passives[name]) }));
+  const passive = (k) => {
+    if (k.name === 'Perception' && m.c.passivePerception != null) return bump(m, 'passivePerception', esc(m.c.passivePerception));
+    const fx = passiveFx(k.name);
+    const n = 10 + num(k.modifier) + fx.reduce((t, x) => t + x.n, 0);
+    const shown = bump(m, k.path, String(n), null, { noAlts: true });
+    return fx.length ? `<span title="${esc(fx.map((x) => `${signedLabel(x.n)} ${x.e.name}`).join(', '))}">${shown}</span>` : shown;
+  };
   return `<div class="table-wrap"><table>
     <thead><tr><th>Skill</th><th>Ability</th><th class="num">Bonus</th><th class="num">Passive</th><th class="col-prof">Proficiency</th></tr></thead>
     <tbody>${rows.map((k) => `<tr class="${k.proficiency && k.proficiency !== 'none' ? 'prof' : ''}">
       <td class="skill-name">${profPip(k.proficiency)}${esc(k.name)}</td><td class="muted">${ABBR[k.ability]}</td>
-      <td class="num"><b>${rollable(`skill|${k.ability}|${k.idx}`, bump(m, k.path, signed(k.modifier)), `Roll ${k.name}`)}</b></td><td class="num muted">${bump(m, k.path, String(10 + num(k.modifier)), null, { noAlts: true })}</td>
+      <td class="num"><b>${rollable(`skill|${k.ability}|${k.idx}`, bump(m, k.path, signed(k.modifier)), `Roll ${k.name}`)}</b></td><td class="num muted">${passive(k)}</td>
       <td class="col-prof">${k.proficiency && k.proficiency !== 'none' ? esc(titleCase(k.proficiency)) : '<span class="faint">—</span>'}</td></tr>`).join('')}</tbody>
   </table></div>`;
 }

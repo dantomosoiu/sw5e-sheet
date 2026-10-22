@@ -407,7 +407,7 @@ Skill | Ability | Bonus | Passive | Proficiency |
 (Not proficient) Nature | INT | +4 | 14 | — |
 (Proficient) Perception | WIS | +3 | 13 | Proficient |
   ↳ hover abilityScores.Wisdom.skills.3.modifier: Without tweaks or effects: 1 → now 3 / proficient Perception: proficient · Focused Navigator Explorer Pursuit feature
-  ↳ hover abilityScores.Wisdom.skills.3.modifier: Without tweaks or effects: 1 → now 3 / proficient Perception: proficient · Focused Navigator Explorer Pursuit feature
+  ↳ hover passivePerception: Without tweaks or effects: 11 → now 13 / proficient Perception: proficient · Focused Navigator Explorer Pursuit feature
 (Not proficient) Performance | CHA | +1 | 11 | — |
   ↳ hover abilityScores.Charisma.skills.2.modifier: Without tweaks or effects: 0 → now 1 / +1 Charisma score · no reason given tweak / +1 CHA · Silver-Tongued feat (background feat)
   ↳ hover abilityScores.Charisma.skills.2.modifier: Without tweaks or effects: 0 → now 1 / +1 Charisma score · no reason given tweak / +1 CHA · Silver-Tongued feat (background feat)

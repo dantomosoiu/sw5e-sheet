@@ -396,7 +396,7 @@ Skill | Ability | Bonus | Passive | Proficiency |
 (Not proficient) Nature | INT | +0 | 10 | — |
 (Proficient) Perception | WIS | +6 | 16 | Proficient |
   ↳ hover abilityScores.Wisdom.skills.3.modifier: Without tweaks or effects: 3 → now 6 / +1 WIS · Empathic feat (background feat) / Proficient Perception · Force Adept background skill tweak
-  ↳ hover abilityScores.Wisdom.skills.3.modifier: Without tweaks or effects: 3 → now 6 / +1 WIS · Empathic feat (background feat) / Proficient Perception · Force Adept background skill tweak
+  ↳ hover passivePerception: Without tweaks or effects: 13 → now 16 / Proficient Perception · Force Adept background skill tweak / +1 WIS · Empathic feat (background feat)
 (Not proficient) Performance | CHA | +1 | 11 | — |
 (Proficient) Persuasion | CHA | +3 | 13 | Proficient |
   ↳ hover abilityScores.Charisma.skills.3.modifier: Without tweaks or effects: 1 → now 3 / Proficient Persuasion · Force Adept background skill tweak

@@ -391,7 +391,7 @@ Skill | Ability | Bonus | Passive | Proficiency |
 (Not proficient) Nature | INT | +2 | 12 | — |
 (Not proficient) Perception | WIS | +6 | 16 | — |
   ↳ hover abilityScores.Wisdom.skills.3.modifier: Without tweaks or effects: 5 → now 6 / +2 WIS · Perfect Self Monk feature
-  ↳ hover abilityScores.Wisdom.skills.3.modifier: Without tweaks or effects: 5 → now 6 / +2 WIS · Perfect Self Monk feature
+  ↳ hover passivePerception: Without tweaks or effects: 15 → now 16 / +2 WIS · Perfect Self Monk feature
 (Not proficient) Performance | CHA | −1 | 9 | — |
 (Not proficient) Persuasion | CHA | −1 | 9 | — |
 (Not proficient) Piloting | INT | +2 | 12 | — |
