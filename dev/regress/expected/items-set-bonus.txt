@@ -1037,13 +1037,16 @@ GM: Inspiration (spent on Stealth 17). 300 XP → level 2 reached.
 Tweaks (manual adjustments) 6
 From sw5e.com's editor or added here. Give each a reason (kept in this viewer and in backups); hovering or tapping a number they change shows it.
 Stat | Adjustment | Reason | |
-Wisdom score | [add ▾] [1] | [Formfighting Dabbler (Jedi background feat): +1 to an ability of my choice] | [×] |
+Wisdom score | [add ▾] [1]
+Add: adds 1 (a negative number subtracts) on top of everything else
+| [Formfighting Dabbler (Jedi background feat): +1 to an ability of my choice] | [×] |
 Survival | Proficiency [Proficient ▾] [add ▾] [0] | [Togruta Wild Hunters: proficiency in Survival] | [×] |
 Perception | Proficiency [Proficient ▾] [add ▾] [0] | [Guardian class skill (2 of 2)] | [×] |
 Insight | Proficiency [Proficient ▾] [add ▾] [0] | [Jedi background skill (1 of 2)] | [×] |
 Athletics | Proficiency [Proficient ▾] [add ▾] [0] | [Guardian class skill (1 of 2)] | [×] |
 Persuasion | Proficiency [Proficient ▾] [add ▾] [0] | [Jedi background skill (2 of 2)] | [×] |
 [Add a tweak to… ▾] [add (+/−) ▾] [] [] [Add]
+Add: adds N (a negative number subtracts) on top of everything else
 Builder settings
 Is Enforcing Force Prerequisites
 true

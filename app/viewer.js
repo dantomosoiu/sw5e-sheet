@@ -3708,7 +3708,9 @@ async function useItem(arg) {
   }
   const dice = (n) => (n === 1 ? 'one die' : `${n} dice`);
   const who = target === 'other' ? ' on someone else' : target === 'me' ? ' on yourself' : '';
+  const blocked = target === 'me' ? blockedBySetTweak(m, info.effect) : [];
   setStatus(`Used ${it.name}${who}.${note}${weaponNote}${hdNote}${replaced.length ? ` It replaces ${replaced.map((e) => e.name).join(', ')} (only one at a time).` : ''}`
+    + (blocked.length ? ` ${blocked.join('; ')}: this ${it.name} won't change it (change the tweak to "bump to" or "add" if it should).` : '')
     + (target === 'me' && info.hdRoll ? ` Its healing (${dice(info.hdRoll.count)} the size of your Hit Die + your Constitution modifier) is rolled in the dice roller: Heal puts it on your hit points.`
       : target === 'other' && info.hdRoll ? ` They regain ${dice(info.hdRoll.count)} the size of their Hit Die + their Constitution modifier in hit points (at least 1).`
         : target === 'me' && info.heals ? ' Roll its healing, then enter it under Combat & Vitals → Heal.' : ''));
@@ -7523,6 +7525,20 @@ function itemControls(m, e, list, i) {
   </span>`;
 }
 
+/**
+ * What an effect would change that a "set to" tweak fixes: ["Strength is set to 16 by a tweak"], so a consumable
+ * isn't used up for nothing.
+ */
+function blockedBySetTweak(m, effect) {
+  const set = tweakRows(m.raw).filter((r) => r.where === 'tweaks' && tweakMode(r.value) === 'override');
+  const out = [];
+  for (const x of arr(effect && effect.mods)) {
+    if (x.cond || (effect.target === 'weapon')) continue;
+    const r = set.find((y) => y.path === x.path);
+    if (r && !out.some((s) => s.startsWith(r.name))) out.push(`${r.name.replace(/ score$/, '')} is set to ${r.value.override} by a tweak`);
+  }
+  return out;
+}
 /** "Use" for consumables and items with charges: asks "on me / on someone else" when it has an effect. */
 function useControls(m, e, arg, info) {
   const u = itemUse(info, m.raw);
@@ -7536,7 +7552,9 @@ function useControls(m, e, arg, info) {
     const healOnly = (u.heals || u.hdRoll) && !u.effect && !u.hdBack;
     const missing = healOnly && m.t ? m.t.lim.hpMax - m.t.hpCurrent : null;
     const me = missing == null ? 'On me' : missing > 0 ? `On me (${missing} HP missing)` : 'On me (at full HP)';
-    return `${charges}<span class="use-menu"><button class="btn sm primary" data-inv="use" data-arg="${esc(arg)}|me"${missing === 0 ? ' disabled' : ''} title="${missing === 0 ? 'You are at full hit points: it would heal nothing' : 'Apply it to this character'}">${esc(me)}</button><button class="btn sm" data-inv="use" data-arg="${esc(arg)}|other" title="Use it up without applying it here">On someone else</button><button class="btn sm" data-inv="use-cancel" data-arg="${esc(arg)}">Cancel</button></span>`;
+    // Before it's used: what a "set to" tweak keeps it from changing.
+    const blocked = blockedBySetTweak(m, u.effect);
+    return `${charges}<span class="use-menu">${blocked.length ? `<span class="warn-text" style="font-size:12px">${esc(blocked.join('; '))}: this won't change it.</span> ` : ''}<button class="btn sm primary" data-inv="use" data-arg="${esc(arg)}|me"${missing === 0 ? ' disabled' : ''} title="${missing === 0 ? 'You are at full hit points: it would heal nothing' : 'Apply it to this character'}">${esc(me)}</button><button class="btn sm" data-inv="use" data-arg="${esc(arg)}|other" title="Use it up without applying it here">On someone else</button><button class="btn sm" data-inv="use-cancel" data-arg="${esc(arg)}">Cancel</button></span>`;
   }
   const asks = u.effect || u.heals || u.hdBack;
   return `${charges}<button class="btn sm" data-inv="${asks ? 'use-menu' : 'use'}" data-arg="${esc(arg)}${asks ? '' : '|'}" title="${esc(u.charges ? 'Use one charge' : 'Use one')}">Use</button>`;
@@ -7717,7 +7735,8 @@ function renderTweaks(m) {
     const mode = tweakMode(r.value);
     const n = mode === 'override' ? r.value.override : mode === 'floor' ? r.value.floor : num(r.value.bonus);
     return `<select data-tw="${esc(r.rkey)}" data-twf="mode" aria-label="Set to, bump to or add">${TWEAK_MODES.map(([v, l, t]) => `<option value="${v}" title="${esc(t)}"${mode === v ? ' selected' : ''}>${l}</option>`).join('')}</select>
-      <input data-tw="${esc(r.rkey)}" data-twf="amount" type="number" step="1" value="${esc(n)}" title="${esc(TWEAK_MODES.find((x) => x[0] === mode)[2])}" aria-label="Amount">${mode === 'override' && num(r.value.bonus) ? ` <span class="faint">(${esc(signedLabel(num(r.value.bonus)))} ignored while it's set)</span>` : ''}${mode === 'floor' ? ' <span class="faint" title="sw5e.com keeps it with the character but doesn\'t apply it">(this sheet only)</span>' : ''}`;
+      <input data-tw="${esc(r.rkey)}" data-twf="amount" type="number" step="1" value="${esc(n)}" title="${esc(tweakModeHelp(mode, n))}" aria-label="Amount">${mode === 'override' && num(r.value.bonus) ? ` <span class="faint">(${esc(signedLabel(num(r.value.bonus)))} ignored while it's set)</span>` : ''}${mode === 'floor' ? ' <span class="faint" title="sw5e.com keeps it with the character but doesn\'t apply it">(this sheet only)</span>' : ''}
+      ${mode !== 'bonus' || num(n) ? `<div class="faint tw-mode-help" style="font-size:12px">${esc(tweakModeHelp(mode, n))}</div>` : ''}`;
   };
   const d = state.tweakDraft || {};
   return `<div class="card no-toggle tweaks-card"><div class="card-head"><span class="title">Tweaks (manual adjustments)</span>
@@ -7745,6 +7764,7 @@ function renderTweaks(m) {
       <input data-twadd="reason" class="tw-reason" placeholder="Reason (recommended)" value="${esc(d.reason ?? '')}" aria-label="Reason">
       <button class="btn sm primary" data-act="tweak-add">Add</button>
     </div>
+    <p id="twModeHelp" class="faint tw-mode-help" style="font-size:12px;margin:4px 0 0"${TWEAK_MODES.some((x) => x[0] === (d.kind || 'bonus')) ? '' : ' hidden'}>${esc(tweakModeHelp(d.kind || 'bonus', d.value))}</p>
     <p id="twErr" class="ed-err" hidden></p>
   </div>`;
 }
@@ -7778,10 +7798,15 @@ async function writeTweak(snap, row, value) {
 const currentTweakRow = (snap, rkey) => tweakRows(withEdits(snap.raw, editedFields(snap.key))).find((r) => r.rkey === rkey);
 /** The tweak editor's modes: [value, label, what it does]. */
 const TWEAK_MODES = [
-  ['bonus', 'add', 'Added to the number; a negative amount subtracts'],
-  ['override', 'set to', 'The number is this, whatever the sheet computes or effects would do (items, features, temporary effects)'],
-  ['floor', 'bump to', 'The number is at least this: what it would be with everything else, raised to this if lower (this sheet only)'],
+  ['bonus', 'add', 'Add: adds N (a negative number subtracts) on top of everything else'],
+  ['override', 'set to', 'Set to: this number is exactly N; nothing else changes it (effects such as a stim are shown as not applied)'],
+  ['floor', 'bump to', 'Bump to: at least N; if everything else gives more, the higher number counts (a minimum; this sheet only)'],
 ];
+/** The mode's explanation with the tweak's own number ("Set to: this number is exactly 16; …"). */
+const tweakModeHelp = (mode, n) => {
+  const t = (TWEAK_MODES.find((x) => x[0] === mode) || TWEAK_MODES[0])[2];
+  return n === '' || n == null ? t : t.replace(/\bN\b/g, String(n));
+};
 /** A tweak's mode: 'override' (set to), 'floor' (bump to) or 'bonus' (add). */
 const tweakMode = (v) => (v.override != null && v.override !== '' ? 'override' : v.floor != null && v.floor !== '' ? 'floor' : 'bonus');
 /**
@@ -8756,6 +8781,10 @@ function wireUi() {
       state.tweakDraft = { ...(state.tweakDraft || {}), [e.target.dataset.twadd]: e.target.value };
       const amount = $('[data-twadd="value"]');
       if (e.target.dataset.twadd === 'path' && amount) amount.placeholder = /damageDice$/.test(e.target.value) ? 'die, e.g. d4' : 'e.g. 1';
+      // What the chosen mode does, with the number typed.
+      const help = $('#twModeHelp');
+      const dk = state.tweakDraft.kind || 'bonus';
+      if (help) { help.hidden = !TWEAK_MODES.some((x) => x[0] === dk); help.textContent = tweakModeHelp(dk, state.tweakDraft.value); }
       const err = $('#twErr');
       if (err) err.hidden = true;
     }

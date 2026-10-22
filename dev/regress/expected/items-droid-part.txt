@@ -1019,7 +1019,9 @@ From sw5e.com's editor or added here. Give each a reason (kept in this viewer an
 Stat | Adjustment | Reason | |
 Intelligence score
 not applied The sheet applies Techie (background feat) by itself now: with this tweak it would count twice, so the tweak is left out. Remove it (×), or [apply it anyway] if it's for something else.
-| [add ▾] [1] | [Techie feat: Int +1 (SW5E doesn't apply it)] | [×] |
+| [add ▾] [1]
+Add: adds 1 (a negative number subtracts) on top of everything else
+| [Techie feat: Int +1 (SW5E doesn't apply it)] | [×] |
 Piloting | Proficiency [Proficient ▾] [add ▾] [0] | [Sullustan: Pilot] | [×] |
 Investigation | Proficiency [Proficient ▾] [add ▾] [0] | [Engineer skill (3 of 6)] | [×] |
 Nature | Proficiency [Proficient ▾] [add ▾] [0] | [Engineer skill (3 of 6)] | [×] |
@@ -1027,6 +1029,7 @@ Lore | Proficiency [Proficient ▾] [add ▾] [0] | [Scientist background skill]
 Technology | Proficiency [Expertise ▾] [add ▾] [0] | [Scientist skill + Techie (already proficient -> expertise)] | [×] |
 Medicine | Proficiency [Proficient ▾] [add ▾] [0] | [Engineer skill (3 of 6)] | [×] |
 [Add a tweak to… ▾] [add (+/−) ▾] [] [] [Add]
+Add: adds N (a negative number subtracts) on top of everything else
 Builder settings
 Is Enforcing Force Prerequisites
 true

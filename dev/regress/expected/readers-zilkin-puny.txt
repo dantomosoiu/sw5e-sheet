@@ -778,6 +778,7 @@ Tweaks (manual adjustments) 0
 From sw5e.com's editor or added here. Give each a reason (kept in this viewer and in backups); hovering or tapping a number they change shows it.
 No tweaks.
 [Add a tweak to… ▾] [add (+/−) ▾] [] [] [Add]
+Add: adds N (a negative number subtracts) on top of everything else
 Builder settings
 None
 Record
