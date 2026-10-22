@@ -587,6 +587,7 @@ You master the theory and practice of technology, gaining the following benefits
 Increase your Intelligence score by 1, to a maximum of 20.
 You gain proficiency in the Technology skill. If you are already proficient in it, you instead gain expertise in it.
 You learn the repair droid tech power. You can cast it once, using supplies scavenged around you, without the use of a wristpad and without spending tech points… [226 chars #d0ad715a]
+Notes []
 
 ## Sheet: Classes & Progression
 [Level up]

@@ -204,6 +204,15 @@ function prFeatAbilities(featRef) {
   if (!a.length || !/increase (?:your|an|one)[^.]*?score[^.]*?by 1/i.test(t)) return [];
   return a.some((x) => /^any$/i.test(x)) ? PR_ABILITIES.slice() : a.filter((x) => PR_ABILITIES.includes(x));
 }
+/**
+ * Is an entry of SW5E's feats list a feat? The list also holds rules notes from the books ("Class Proficiencies":
+ * "Certain classes, such as fighters or guardians, gain proficiency in all weapons within a specific category…";
+ * "Fighting Styles and Masteries": "You'll want to extend the benefits of certain Fighting Styles…"). A feat says what
+ * it gives you: "you gain", "you can", "you have", "you learn", "you know", "Increase your…".
+ */
+function prIsFeat(featRef) {
+  return !!featRef && /\byou (?:gain|can|have|learn|know)\b|\bincrease\b/i.test(String(featRef.text || ''));
+}
 /** What else follows a feat's chosen ability: "You gain proficiency in saving throws using the chosen ability" → { save: true }. */
 function prFeatChosenAbilityUse(featRef) {
   const t = String((featRef && featRef.text) || '').replace(/\s+/g, ' ');
@@ -224,10 +233,24 @@ function prPointBuyCost(scores) {
   }
   return t;
 }
-/** A species' ability increases: its options ([{ text, picks: [{ abilities: [...], amount }] }]) from SW5E's data. */
+/**
+ * A species' ability increases: its options ([{ picks: [{ abilities: [...], amount, all }] }]) from SW5E's data. SW5E
+ * gives "Your Strength, Constitution, and Intelligence scores increase by 1" (Harch, Klatooinian, Tognath) as a pick of
+ * Strength or Constitution plus Intelligence; the text raises all three, so such an entry is `all` (each of its
+ * abilities), read from the Ability Score Increase trait: a list joined by "and", without "or".
+ */
 function prSpeciesIncreases(speciesRef) {
+  const tr = prArr(speciesRef && speciesRef.traits).find((t) => /^Ability Score Increase$/i.test(t.name));
+  const together = [];
+  for (const m of String((tr && tr.description) || '').matchAll(/\byour ([A-Za-z, ]+?) scores increase by (\d+)/gi)) {
+    if (!/\bor\b/i.test(m[1]) && /\band\b/i.test(m[1])) together.push({ abilities: prAbilitiesIn(m[1]), amount: Number(m[2]) });
+  }
   return prArr(speciesRef && speciesRef.abilitiesIncreased).map((opt) => ({
-    picks: prArr(opt).map((x) => ({ abilities: prArr(x.abilities), amount: Number(x.amount) || 0 })),
+    picks: prArr(opt).map((x) => {
+      const abilities = prArr(x.abilities);
+      const all = abilities.length > 1 && together.some((g) => g.amount === Number(x.amount) && abilities.every((a) => g.abilities.includes(a)));
+      return { abilities, amount: Number(x.amount) || 0, all };
+    }),
   }));
 }
 
@@ -338,7 +361,7 @@ function prCharacteristics(bgRef) {
 if (typeof module !== 'undefined') {
   module.exports = {
     PR_ABILITIES, PR_STANDARD_ARRAY, PR_POINT_COST, PR_POINTS, prSkillChoice, prMulticlassRules, prMulticlassUnmet, prToolChoices,
-    prLanguageChoices, prLanguages, prXpTable, prAsiLevels, prTableFeatures, prAddLevel, prAsiSlots, prAsiIncreases, prFeatAbilities, prFeatChosenAbilityUse,
+    prLanguageChoices, prLanguages, prXpTable, prAsiLevels, prTableFeatures, prAddLevel, prAsiSlots, prAsiIncreases, prFeatAbilities, prFeatChosenAbilityUse, prIsFeat,
     prPointBuyCost, prSpeciesIncreases, prList, prEquipmentOptions, prEquipmentItems, prResolveEquipment, prCharacteristics,
     prPackContents, prPackCost,
   };

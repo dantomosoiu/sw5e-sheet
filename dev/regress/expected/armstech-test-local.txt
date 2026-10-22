@@ -224,7 +224,7 @@ Armstech Test (local)
 Human · Engineer (Armstech Engineering) 9
 Level 9 Background: Soldier Balanced Neutral Proficiency +4 [Add a picture]
 48,000 XP level 10 at 64,000 (16,000 to go)
-Still to choose (12): Engineer skills (3 more) · Engineer tool · Armstech Modifications (9 more) · Engineer tech powers (18 more) · At-will tech power (2 more) … [409 chars #66637dd8]
+Still to choose (14): Engineer skills (3 more) · Engineer tool · Armstech Modifications (9 more) · Engineer tech powers (18 more) · At-will tech power (2 more) … [472 chars #1a814fd2]
 
 ## Sheet: Combat & Vitals
 Armor Class
@@ -545,13 +545,16 @@ Until the start of your next turn, your critical hit range with weapons increase
 Read the options (19)
 Weapon Focused Engineer ASI #1 Prereq: 4th level
 You adopt a particular type of weapon as your focus. Choose one of the weapon focus options, detailed later in this chapter. You can take this feat multiple times.
+Notes []
 Tech Dabbler Engineer ASI #2
 You know two at-will tech powers. When you reach 3rd level, you learn and can cast one 1st-level tech power once per long rest. When you reach 5th level, you le… [382 chars #b0d200c1]
+Notes []
 Fighting Stylist Background (Soldier)+ Strength+ Dexterity+ Constitution Prereq: 4th level
 You adopt a particular style of fighting as your specialty, gaining the following benefits:
 Increase your Strength, Dexterity, or Constitution score by 1, to a maximum of 20.
 Choose one of the fighting style options, detailed later in this chapter.
 You can take this feat multiple times.
+Notes []
 
 ## Sheet: Classes & Progression
 [Level up]
@@ -666,6 +669,12 @@ Notes []
 Speed
 Your base walking speed is 30 feet.
 Notes []
+Ability score +2 0 / 1 One ability score of your choice increases by 2, and two other ability scores of your choice increase by 1. Alternatively, four ability scores of your choice each increase by 1.
+None chosen yet.
+[Choose an ability… ▾]
+Ability score +1 0 / 2 One ability score of your choice increases by 2, and two other ability scores of your choice increase by 1. Alternatively, four ability scores of your choice each increase by 1.
+None chosen yet.
+[Choose an ability… ▾]
 
 ## Sheet: Background
 Skill proficiencies

@@ -212,7 +212,7 @@ Human · Monk (Rakatan Order) 20
 Level 20 Background: Noble Lawful Light Proficiency +6 [Add a picture]
 6,500 XP highest level
 Level 20 usually needs 355,000 XP (you have 6,500).
-Still to choose (13): Monk skills (2 more) · Monk 8th level: ability score improvement or feat · Monk 10th level: ability score improvement or feat · Monk 12th … [548 chars #abe7e53d]
+Still to choose (15): Monk skills (2 more) · Monk 8th level: ability score improvement or feat · Monk 10th level: ability score improvement or feat · Monk 12th … [611 chars #bd4fcef8]
 
 ## Sheet: Combat & Vitals
 Armor Class
@@ -628,8 +628,10 @@ You develop your conversational skill to better deceive others. You gain the fol
 Increase your Charisma score by 1, to a maximum of 20.
 You gain proficiency in the Deception skill. If you are already proficient in it, you instead gain expertise in it.
 When you take the Attack action, you can replace one attack with an attempt to deceive one humanoid you can see within 30 feet of you that can see and hear you.… [568 chars #4907558c]
+Notes []
 Multiclass Improvement Prereq: 4th level
 You've learned to blend the skills of your different classes. Choose two of the multiclass improvement options, detailed later in this chapter. You can take this feat multiple times.
+Notes []
 
 ## Sheet: Classes & Progression
 Monk 20 Rakatan Order Starting class
@@ -737,6 +739,12 @@ Notes []
 Speed
 Your base walking speed is 30 feet.
 Notes []
+Ability score +2 0 / 1 One ability score of your choice increases by 2, and two other ability scores of your choice increase by 1. Alternatively, four ability scores of your choice each increase by 1.
+None chosen yet.
+[Choose an ability… ▾]
+Ability score +1 0 / 2 One ability score of your choice increases by 2, and two other ability scores of your choice increase by 1. Alternatively, four ability scores of your choice each increase by 1.
+None chosen yet.
+[Choose an ability… ▾]
 
 ## Sheet: Background
 Skill proficiencies
