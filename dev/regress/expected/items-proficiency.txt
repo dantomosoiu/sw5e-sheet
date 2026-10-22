@@ -372,7 +372,7 @@ Side Effect: When you roll a 1 an Intelligence saving throw, the implant stutter
 Charming Noble Package CHA +1 Advantage on Charisma saving throws Choose the score the GM lowers by 1 (not Charisma) while installed
 Additionally, you have advantage on Charisma saving throws.
 Iridonian Grav-lev Arm Unarmed strikes: d4 ion while installed
-Resourceful Drive Speed +5 ft Choose one blaster or vibroweapon of your choice while installed
+Resourceful Drive Speed +5 ft Choose one blaster or vibroweapon of your choice weapon proficiency [choose… ▾] while installed
 Temporary
 No temporary effects.
 []

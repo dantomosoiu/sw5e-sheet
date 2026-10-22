@@ -1676,7 +1676,7 @@ function itemEffects(key, editedRaw, complete) {
   const entries = arr(complete && complete.equipment);
   const equipment = arr(editedRaw.equipment);
   equipment.forEach((it, i) => {
-    if (it.category !== 'EnhancedItem') return;
+    if (!isEnhancedEntry(it)) return;
     const ref = entries.find((e) => e.index === i && e.name === it.name && e.isFound) || (catalogIndex && catalogIndex.get(it.name));
     const fx = itemEffectOf(ref);
     if (!fx || fx.activation === 'use') return;
@@ -1740,7 +1740,9 @@ function itemEffects(key, editedRaw, complete) {
     if (/\bresistance to one type of damage\b/i.test(ref.text || '') && !new RegExp(`\\b(?:${PL_DAMAGE_TYPES.join('|')})\\b`, 'i').test(it.notes || '')) needs.push('the damage type the GM chose (resistance)');
     // Proficiencies and always-on advantages in the item's text, read as a feature's are (classes.js), with a choice it
     // asks for ("proficiency in one blaster or vibroweapon of your choice") written in the item's note.
-    const fe = itemFeatureEffects(ref, it.notes);
+    // (The choices it asks for: picked on the item, itemState.itemPicks, or written in its note.)
+    const picked = arr(((state.itemState[key] && state.itemState[key].itemPicks) || {})[ck]);
+    const fe = itemFeatureEffects(ref, [it.notes, ...picked].filter(Boolean).join(', '));
     if (fe) {
       for (const a of fe.profs.saves) mods.push({ path: `abilityScores.${a}.savingThrowModifier`, bonus: 0, fields: { proficiency: 'Proficient' }, label: `${a} saves: proficient` });
       for (const k of fe.profs.skills) mods.push({ path: `abilityScores.${FX_SKILLS[k.name]}.skills.${k.name}`, bonus: 0, fields: { proficiency: k.level }, label: `${k.name}: ${String(k.level).toLowerCase()}` });
@@ -1785,7 +1787,7 @@ function itemEffects(key, editedRaw, complete) {
       why: fx.activation === 'carry' ? 'when you fire it' : fx.activation === 'attune' ? (active ? 'while attuned' : 'needs attunement') : (active ? `while ${how}` : `needs to be ${how}`),
       weaponName, weaponIndex, linked: linked >= 0,
       ...(keen ? { critRange: keen, critWeapons: [weaponIndex] } : {}),
-      ...(fe ? { weapons: fe.profs.weapons, tools: fe.profs.tools, armor: fe.profs.armor, advantage: fe.advantage } : {}),
+      ...(fe ? { weapons: fe.profs.weapons, tools: fe.profs.tools, armor: fe.profs.armor, advantage: fe.advantage, asks: fe.asks, picked } : {}),
       // The picked tool at the level it comes to (trained, below proficient, changes no number).
       ...(toolPick ? { toolPick, tools: (fe ? fe.profs.tools : []).concat(FX_PROF_LADDER.indexOf(toolPick.level) >= 2
         ? [{ name: toolPick.name, level: toolPick.level === 'proficient' ? 'proficient' : 'expertise' }] : []) } : {}),
@@ -1855,6 +1857,16 @@ function itemPropsOf(m, index, own) {
 }
 /** A weapon's properties (weapons table, dice card): with its modifications'. */
 const weaponProps = (m, w) => (w && w.index != null && w.index >= 0 ? itemPropsOf(m, w.index, w.properties) : arr(w && w.properties));
+/**
+ * An enhanced item's entry: SW5E's category, or (an entry written without one) an item SW5E's catalog lists as
+ * enhanced (Resourceful Drive pushed as { name, equipped }).
+ */
+function isEnhancedEntry(it) {
+  if (!it) return false;
+  if (it.category) return it.category === 'EnhancedItem';
+  const ref = catalogIndex && catalogIndex.get(it.name);
+  return !!ref && !ref.equipmentCategory && !!ref.type;
+}
 /** What classes.js reads in an item's text (proficiencies, advantages, choices), or null when it finds none. */
 const itemFeCache = new Map();
 function itemFeatureEffects(ref, note) {
@@ -3561,7 +3573,7 @@ async function saveItemStateFor(key, st) {
   st.updatedAt = Date.now();
   if (!Object.keys(st.charges || {}).length && !arr(st.effects).length && !Object.keys(st.targets || {}).length
     && !Object.keys(st.reasons || {}).length && !st.combat && !arr(st.foretell).length && !st.frenzy
-    && !Object.keys(st.shots || {}).length && !Object.keys(st.keepTweaks || {}).length && !Object.keys(st.toolPicks || {}).length) delete state.itemState[key];
+    && !Object.keys(st.shots || {}).length && !Object.keys(st.keepTweaks || {}).length && !Object.keys(st.toolPicks || {}).length && !Object.keys(st.itemPicks || {}).length) delete state.itemState[key];
   else state.itemState[key] = st;
   await saveItemState();
 }
@@ -3715,6 +3727,18 @@ async function startItemMode(arg) {
   scheduleRecompute(snap.key);
   setStatus(`${mode.name} is on${e.duration ? ` for ${e.duration}` : ''}${replaced.length ? ` (instead of ${replaced.map((x) => x.name).join(', ')})` : ''}. End it under Effects.`);
 }
+/** What an item's choice is (a weapon proficiency of your choice): kept per item copy (itemState.itemPicks). */
+async function setItemPick(id, name) {
+  const snap = state.snapshots[state.current];
+  if (!snap || !id.startsWith('item:')) return;
+  const st = itemStateOf(snap.key);
+  st.itemPicks = { ...(st.itemPicks || {}) };
+  if (name) st.itemPicks[id.slice(5)] = [name];
+  else delete st.itemPicks[id.slice(5)];
+  await saveItemStateFor(snap.key, st);
+  renderAll();
+  scheduleRecompute(snap.key);
+}
 /** Which tool a Tool (Basic…Champion) item is ("these tools"): kept per item copy (itemState.toolPicks). */
 async function setItemTool(id, name) {
   const snap = state.snapshots[state.current];
@@ -3817,6 +3841,13 @@ function effectRow(m, e) {
   }
   // Modes to switch on (Automated Adrenal Package's adrenals): each starts as a temporary effect.
   if (e.kind === 'item' && e.active && e.modes) chips.push(...e.modes.map((x, i) => `<button class="btn sm" data-act="fx-mode" data-arg="${esc(e.id)}|${i}" title="${esc(x.text)}">${esc(x.name)}</button>`));
+  // A choice the item's text asks for (Resourceful Drive's "one blaster or vibroweapon of your choice"): a picker.
+  if (e.kind === 'item') {
+    for (const a of arr(e.asks).filter((x) => ['weapon', 'skill', 'tool'].includes(x.kind) && x.count === 1)) {
+      const cur = arr(e.picked).find((p) => askOptions(m, a).includes(p)) || a.chosen[0] || '';
+      chips.push(`<label class="fx-weapon${cur ? '' : ' warn-text'}">${esc(a.label.toLowerCase())} <select data-fxpick="${esc(e.id)}"><option value="">choose…</option>${askOptions(m, a).map((n) => `<option${n === cur ? ' selected' : ''}>${esc(n)}</option>`).join('')}</select></label>`);
+    }
+  }
   // Tool (Basic…Champion): which tool it is, picked here; the level it comes to.
   if (e.kind === 'item' && e.toolSteps) {
     const names = [...new Set(bdTools().map((x) => x.name))].sort();
@@ -4924,7 +4955,7 @@ function defensesOf(m) {
   for (const it of arr(m.raw.equipment)) {
     const ref = catalogIndex && catalogIndex.get(it.name);
     if (!ref || qtyOf(it) <= 0) continue;
-    if (it.category === 'EnhancedItem') {
+    if (isEnhancedEntry(it)) {
       // In use: attuned, equipped or installed (whether or not it has numbers: Matrix Armor's text alone).
       if (ref.type === 'Consumable' || !(ref.requiresAttunement ? it.attuned : canEquip({ ...ref, isFound: true }, false) ? it.equipped : true)) continue;
     } else if (['Weapon', 'Armor'].includes(ref.equipmentCategory) ? !it.equipped
@@ -5049,7 +5080,7 @@ function carryFactor(m) {
   }
   // Enhanced items in use: equipped (installed), or attuned when they need it (Mighty Build, an Iridonian Grav-lev Arm).
   for (const it of arr(m.raw && m.raw.equipment)) {
-    const ref = it.category === 'EnhancedItem' && catalogIndex && catalogIndex.get(it.name);
+    const ref = isEnhancedEntry(it) && catalogIndex && catalogIndex.get(it.name);
     if (ref && (ref.requiresAttunement ? it.attuned : it.equipped)) texts.push({ name: it.name, text: ref.text || ref.description || '' });
   }
   const from = [];
@@ -6732,7 +6763,7 @@ const multiclassBoosts = (raw, k) => chMulticlassBoosts(raw, k, (state.rules && 
 const classRow = (raw, k) => itemClassRow(raw, k, chClassRow(raw, k, (state.rules && state.rules.modules) || {}));
 /** The class augments installed ("Berserker Offensive Augment"): [{ name, cls, boosts }] (effects.js classBoosts). */
 function itemClassBoosts(raw) {
-  return arr(raw.equipment).filter((it) => it.category === 'EnhancedItem').map((it) => {
+  return arr(raw.equipment).filter(isEnhancedEntry).map((it) => {
     const fx = itemEffectOf(catalogIndex && catalogIndex.get(it.name));
     const on = fx && fx.classBoosts && (fx.activation === 'attune' ? it.attuned : it.equipped);
     return on ? { name: it.name, ...fx.classBoosts } : null;
@@ -8587,6 +8618,7 @@ function wireUi() {
     const ds = e.target.dataset || {};
     if (ds.fxweapon) setEffectWeapon(ds.fxweapon, e.target.value);
     if (ds.fxtool) setItemTool(ds.fxtool, e.target.value);
+    if (ds.fxpick) setItemPick(ds.fxpick, e.target.value);
     if (ds.invBase) inventoryAction('base', `${ds.invBase}|${e.target.value}`);
     if (ds.jump != null) {
       const v = e.target.value;
