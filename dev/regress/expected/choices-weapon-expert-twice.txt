@@ -1000,13 +1000,18 @@ Intimidation | Proficiency [Proficient ▾] [add ▾] [0] | [Soldier background 
 Insight | Proficiency [Proficient ▾] [add ▾] [0] | [Fighter class skill (chosen at 1st level)] | [×] |
 Perception | Proficiency [Proficient ▾] [add ▾] [0] | [Fighter class skill (chosen at 1st level)] | [×] |
 Piloting | Proficiency [Proficient ▾] [add ▾] [0] | [Soldier background skill] | [×] |
-Dexterity score | [add ▾] [1] | [Weapon Expert feat: +1 Dexterity (builder has no choice for it)] | [×] |
+Dexterity score | [add ▾] [1]
+Add: adds 1 (a negative number subtracts) on top of everything else
+| [Weapon Expert feat: +1 Dexterity (builder has no choice for it)] | [×] |
 Stealth | Proficiency [Proficient ▾] [add ▾] [0] | [Operative multiclass: any one skill (SW5E multiclassing table)] | [×] |
 HP maximum
 not applied The sheet applies Toughness (Zabrak trait) by itself now: with this tweak it would count twice, so the tweak is left out. Remove it (×), or [apply it anyway] if it's for something else.
-| [add ▾] [4] | [Zabrak Toughness: +1 HP per level (not applied by SW5E)] | [×] |
+| [add ▾] [4]
+Add: adds 4 (a negative number subtracts) on top of everything else
+| [Zabrak Toughness: +1 HP per level (not applied by SW5E)] | [×] |
 Unarmed: damage die | Die [4] | [Zabrak Unarmed Combatant: 1d4, finesse] | [×] |
 [Add a tweak to… ▾] [add (+/−) ▾] [] [] [Add]
+Add: adds N (a negative number subtracts) on top of everything else
 Builder settings
 Is Enforcing Force Prerequisites
 true
