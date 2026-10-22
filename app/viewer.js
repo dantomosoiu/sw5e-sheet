@@ -1916,13 +1916,14 @@ function featureEffectEntry(id, name, why, fe, origin = 'class feature') {
   const tools = fe.profs.tools.map((t) => ({ ...t, ...up('tool', t.name) }));
   const chains = arr(fe.profs.chains);
   const passives = fe.passives || {};
-  const other = fe.advantage.length || fe.defenses.length || fe.critRange || fe.halfProf || fe.unarmedStep || fe.unarmedDie || Object.keys(passives).length || fe.substitute || fe.armorAllows;
+  const other = fe.advantage.length || fe.defenses.length || fe.critRange || fe.halfProf || fe.unarmedStep || fe.unarmedDie || Object.keys(passives).length || fe.substitute || fe.armorAllows || fe.ignoreArmorStrength;
   if (!mods.length && !tools.length && !fe.profs.weapons.length && !fe.profs.armor.length && !chains.length && !fe.needsChoice.length && !other) return null;
   return {
     id, kind: 'feature', origin, name, why, mods, notes: [], needsChoice: fe.needsChoice, weapons: fe.profs.weapons, tools, armor: fe.profs.armor, chains, passives, target: 'self',
     advantage: fe.advantage, defenses: fe.defenses, critRange: fe.critRange, halfProf: fe.halfProf, unarmedStep: fe.unarmedStep,
     unarmedDie: fe.unarmedDie || 0, unarmedFinesse: !!fe.unarmedFinesse, ...(fe.critOn === 'unarmed' ? { critWeapons: ['unarmed'] } : fe.critOn ? { critOn: fe.critOn } : {}),
     ...(fe.darkvisionPlus ? { darkvisionPlus: fe.darkvisionPlus } : {}), ...(fe.substitute ? { substitute: fe.substitute } : {}), ...(fe.armorAllows ? { armorAllows: fe.armorAllows } : {}),
+    ...(fe.ignoreArmorStrength ? { ignoreArmorStrength: true } : {}),
   };
 }
 /**
@@ -2260,6 +2261,17 @@ function applyEffects(key, editedRaw, complete) {
   res.tweaks = res.tweaks.map((t) => (t.mod.acFormula ? bestAc : withMod(t))).filter(takesOff);
   res.weaponTweaks = res.weaponTweaks.map((t) => (t.mod.capAbility ? withMod(t) : t)).filter(takesOff);
   res.acAlternatives = formulas.filter((t) => t !== bestAc);
+  // "You ignore the strength property of heavy armor" (Gank): the engine slows by 10 ft for worn armor whose Strength
+  // number is above the score; taken back.
+  const ignores = effects.find((e) => e.ignoreArmorStrength);
+  if (ignores) {
+    const tooStrong = arr(editedRaw.equipment).some((it) => {
+      const ref = it.equipped && catalogIndex && catalogIndex.get(it.name);
+      const need = ref && ref.equipmentCategory === 'Armor' && /heavy/i.test(ref.armorClassification || '') ? /\bstrength (\d+)/i.exec(propsText(ref.properties)) : null;
+      return need && num(final.Strength) < num(need[1]);
+    });
+    if (tooStrong) res.tweaks.push({ path: 'speed.base', bonus: 10, fields: null, effect: ignores, mod: { path: 'speed.base', label: 'Speed +10 ft (ignores heavy armor\'s Strength)' } });
+  }
   // Weapon proficiencies from class lists and features: each carried weapon they describe.
   for (const e of effects) {
     for (const desc of arr(e.weapons)) {

@@ -168,7 +168,7 @@ function clsUsage(text, ctx) {
     const n = parseInt(v.replace(/[^\d]/g, ''), 10);
     if (n) { max = n; basis = `${m[1]} column`; }
   }
-  if (max == null && /once you(?:'|’)ve used (?:this feature|it)|can(?:'|’)t use (?:this feature|it) again until/i.test(t)) max = 1;
+  if (max == null && /once you(?:'|’)ve used (?:this feature|it)|can(?:'|’)t use (?:this feature|it) again until|\b(?:cannot|can(?:'|’)t) do so again until\b/i.test(t)) max = 1;
   // "You have 3 luck points… You regain your expended luck points when you finish a long rest" (Lucky).
   if (max == null && (m = /\byou have (\d+|one|two|three|four|five|six) ([a-z-]+) points\b/i.exec(t)) && !/\b(?:force|tech|focus|hit)$/i.test(m[2])) { max = clsTimes(m[1]); basis = `${m[2]} points`; }
   if (max == null || max <= 0) return null;
@@ -905,8 +905,6 @@ function clsFeatureEffects(text, note, ctx) {
           if (a) out.advantage.push({ kind: /saving/i.test(part) ? 'save' : 'check', ability: a });
         }
       }
-      // "advantage on saving throws against poison, and you have resistance…"; "…on Wisdom and Charisma saving throws against force powers".
-      if ((m = new RegExp(`\\badvantage on ((?:(?:${CLS_ABIL_ANY})(?:,? (?:and|or) ${CLS_ABIL_ANY})* )?saving throws (?:against|made to|that would)[^.;]+?)(?=,?\\s+and\\s+(?:you|resistance)\\b|\\s+\\(explained|[.;]|$)`, 'i').exec(core))) def('advantage', `Advantage on ${m[1]}`);
       // "advantage on ability checks and saving throws to avoid being disarmed".
       if ((m = /\badvantage on (ability checks and saving throws (?:to avoid|against|made to)[^.;]+?)(?=[.;]|$)/i.exec(core))) def('advantage', `Advantage on ${m[1]}`);
       if ((m = /\bdarkvision (?:out )?(?:to |with |of )?(?:a range of )?(\d+) feet/i.exec(core))) def('sense', `Darkvision ${m[1]} ft`);
@@ -976,6 +974,24 @@ function clsFeatureEffects(text, note, ctx) {
     }
     // Species Darkvision traits describe it without the word (and with an "as if"): "You can see in dim light within 60 feet of you as if it were bright light".
     if ((m = /\bsee in dim light within (\d+) feet of you as if it were bright light/i.exec(core)) && !out.defenses.some((d) => /^Darkvision/.test(d.text))) out.defenses.push({ kind: 'sense', text: `Darkvision ${m[1]} ft` });
+    // "…advantage on saving throws against poison, and you have resistance…"; "…on Wisdom and Charisma saving throws against force
+    // powers"; "…on Constitution saving throws that you make to maintain your concentration on a power when you take damage"
+    // (War Caster: its own "when" is part of it). Not one that holds only after something ("When you…, you have advantage…").
+    // Yours ("you have", "Shistavanen have"; not "it has", "a respirator that grants…"), and not for a while ("…until the start
+    // of your next turn").
+    const advBefore = (i) => core.slice(0, i).replace(/^.*[.;]\s+/, '');
+    if ((m = new RegExp(`\\badvantage on ((?:(?:${CLS_ABIL_ANY})(?:,? (?:and|or) ${CLS_ABIL_ANY})* )?saving throws (?:against|made to|that would|that you make to)[^.;]+?)(?=,?\\s+and\\s+(?:you|resistance|when|whenever|if)\\b|\\s+\\(explained|[.;]|$)`, 'i').exec(core))
+      && !/\b(?:when|whenever|if|until|during|for the next|for 1 minute|while (?!you are not wearing|wearing no))\b/i.test(advBefore(m.index))
+      && (!/\b(?:it|they|creatures?|ally|allies|targets?|that grants)\b/i.test(advBefore(m.index)) || /\byou and\b/i.test(advBefore(m.index)))
+      && !/\buntil\b|\bfor (?:1|one|the next) minute\b/i.test(m[1])) {
+      out.defenses.push({ kind: 'advantage', text: `Advantage on ${m[1]}` });
+    }
+    // "You can communicate telepathically with creatures within 30 feet of you" (Kel Dor): a sense, listed.
+    if ((m = /\byou can communicate telepathically with (?:any )?creatures? within (\d+) feet of you/i.exec(core))) out.defenses.push({ kind: 'sense', text: `Telepathy ${m[1]} ft` });
+    // "You can't be surprised while you are conscious" (Alert).
+    if (/\byou can(?:'|’)t be surprised\b/i.test(core)) out.defenses.push({ kind: 'other', text: `Can't be surprised${/while you are conscious/i.test(core) ? ' while conscious' : ''}` });
+    // "You ignore the strength property of heavy armor" (Gank): heavy armor too strong for you doesn't slow you (the sheet).
+    if (/\byou ignore the strength property of heavy armor\b/i.test(core)) out.ignoreArmorStrength = true;
     // "If you are able to hear, you are aware of the location of any hidden or invisible creature within 10 feet of you"
     // (Blindsense: its "if" is the sense's own condition).
     if ((m = /\byou are aware of the location of any hidden or invisible creature within (\d+) feet of you/i.exec(core))) out.defenses.push({ kind: 'sense', text: `Blindsense ${m[1]} ft${/\bif you are able to hear\b/i.test(core) ? ' (if you can hear)' : ''}` });

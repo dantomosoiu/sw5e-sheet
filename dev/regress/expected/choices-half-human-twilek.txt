@@ -249,7 +249,7 @@ Force Affinity Choose one of Ashla, Bendu, Bogan Consular feature
 Fundamentals of Mechu-deru Technology: proficient Proficient: simple blasters Way of Technology feature
 Charismatic Choose one of Deception, Persuasion Half-human trait
 Elegant Dancers Performance: proficient Half-human trait
-Natural Antitoxins Advantage on saving throws against poison and disease Resistance to poison damage Half-human trait
+Natural Antitoxins Resistance to poison damage Advantage on saving throws against poison and disease Half-human trait
 Unarmed Combatant Half-human trait
 Temporary
 No temporary effects.

@@ -245,8 +245,8 @@ Death saves ✓ [] [] [] ✗ [] [] [] [Roll]
 Tech points 16 / 16 [−] [+]
 Hit dice (d8) roll d8 +2, then Heal 20 / 20 [−] [+]
 Focus short rest 20 / 20 [−] [+]
+Harmonious Rakatan short rest 1 / 1 [−] [+]
 Defiant short rest 1 / 1 [−] [+]
-Analyze (Rakatan Order Harmonious Rakatan) short rest 1 / 1 [−] [+]
 Start or end
 [Start Empty Body]
 Conditions None [Add a condition… ▾]
@@ -436,8 +436,8 @@ Absorb Energy Rakatan Order
 Casting 1 reaction, which you take when you take acid, cold, energy, fire, ion, kinetic, lightning, or sonic damage Range Self Duration 1 round DC / attack 20 / +12 (WIS) Source PHB
 The power captures some of the incoming energy, lessening its effect on you and storing it for your next melee attack. You have resistance to the triggering dam… [352 chars #7492347e]
 Overcharge Tech. When you cast this power using a power slot of 2nd level or higher, the extra damage increases by 1d6 for each slot level above 1st.
-Analyze Rakatan Order Harmonious Rakatan Once per short rest cast only
-[Cast at 1st level (available)]
+Analyze Rakatan Order Harmonious Rakatan Uses Harmonious Rakatan cast only
+[Cast at 1st level] 1/1 Harmonious Rakatan uses left
 Casting 1 minute Range Touch Duration Instantaneous DC / attack 20 / +12 (WIS) Source PHB
 You choose one object that you must touch throughout the casting of the power. If it is an enhanced or modified item, you learn its properties and how to use th… [380 chars #f07ac2a0]
 If you instead touch a creature throughout the casting, you learn what tech powers, if any, are currently affecting it.
@@ -597,6 +597,7 @@ Patient Defense. While under the effects of your Patient Defense, when you are h
 Step of the Wind. While under the effects of your Step of the Wind, you can become immune to the shocked condition, and have each slowed level only reduce your speed by 5 feet, unless it would reduce your speed to 0.
 Notes []
 Harmonious Rakatan Level 11
+Uses (back on a short or long rest) 1 / 1 [−] [+]
 Rakatan Order: 11th level
 You can use your Focus features using your tech points. When you do so, your maximum tech points are reduced by 1 until you complete a long rest.
 Additionally, you are constantly under the effects of the detect enhancement tech power. As an action, you can cast the analyze tech power without expending tec… [285 chars #659c5c06]
