@@ -198,7 +198,7 @@ Human · Monk (Nightsister Order) 5, Operative 2
 Level 7 Background: Noble Lawful Light Proficiency +3 [Add a picture]
 6,500 XP level 8 at 34,000 (27,500 to go)
 Level 7 usually needs 23,000 XP (you have 6,500).
-Still to choose (15): Monk skills (2 more) · Monastic Vows (2 more) · Operative multiclass skill · Operative multiclass tool · Operative Expertise (2 more) · Op… [491 chars #dc596a4a]
+Still to choose (16): Monk skills (2 more) · Monastic Vows (2 more) · Operative multiclass skill · Operative multiclass tool · Operative Expertise (2 more) · Op… [520 chars #7d5d3920]
 
 ## Sheet: Combat & Vitals
 Armor Class

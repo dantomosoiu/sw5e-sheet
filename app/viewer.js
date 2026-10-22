@@ -6590,14 +6590,18 @@ function featureNoteBox(m, f, opts = {}) {
   const chosen = pk ? `<div class="cls-choices feat-pickers">${pk.html}</div>` : picked == null ? ''
     : `<div class="feat-chosen">${picked.length ? `Chosen: <b>${esc(picked.join(', '))}</b>` : '<span class="warn-text">Not chosen yet</span>'} · <a href="#sec-classes">${picked.length ? 'change' : 'choose'} it in Classes &amp; Progression</a></div>`;
   // Languages a class feature teaches (Silver Tongue's two).
-  const langs = f.source === 'Class' || f.source === 'Archetype' ? bdFeatureLanguagePicks(m, f.name) : '';
+  const langs = f.source === 'Class' || f.source === 'Archetype' ? bdFeatureLanguagePicks(m, f.name, asks) : '';
+  // An alternative language chosen (Praetorian's Bonus Proficiency): the feature's other choice isn't asked.
+  const altLang = langs && /Or instead: a language/.test(langs) && bdFeatureLanguages(m.raw).some((l) => l.name === f.name && l.alt && l.chosen.length);
+  if (altLang) asks.splice(0);
   // A weapon picked that the ask's words exclude ("…that lack the heavy and strength properties").
   const misfit = (a) => (a.kind === 'weapon' ? a.chosen.filter((n) => { const w = catalogByName(n); return w && !weaponFitsProps(a.of, w); }) : []);
-  const pickers = langs + asks.filter((a) => askShown(a, asks)).map((a) => bdPickList({
+  const altPick = /Or instead: a language/.test(langs);
+  const pickers = (altPick ? '' : langs) + asks.filter((a) => askShown(a, asks)).map((a) => bdPickList({
     problem: misfit(a).length ? `${misfit(a).join(', ')}: not one of ${String(a.of).replace(/^.*?\b(?:a|an|one|two|three)\s+/i, '')}` : '',
     title: a.label, from: ['tool', 'weapon'].includes(a.kind) && /\s/.test(a.of) ? a.of : '', count: a.count, chosen: a.chosen, options: askOptions(m, a), kind: 'fnote', arg: key, word: ASK_WORDS[a.kind] || 'one',
     hint: ['tool', 'weapon', 'skilltool'].includes(a.kind) && !state.catalog ? 'The list comes with SW5E\'s item list (Equipment → Add an item loads it).' : '',
-  })).join('');
+  })).join('') + (altPick ? langs : '');
   const box = `<label class="feat-note${free && !note ? ' asks' : ''}"><span>${free ? 'Your choices' : 'Notes'}</span>
     <textarea rows="1" data-feat-note="${esc(key)}" data-feat-keep="${esc(keep)}" placeholder="${free ? 'What you chose (e.g. Persuasion + Forgery kit)' : 'Anything to remember'}" aria-label="Notes for ${esc(f.name)}">${esc(rest)}</textarea></label>`;
   // Choices all made with pickers, or nothing to choose: the notes box only when it holds something, else a small way
