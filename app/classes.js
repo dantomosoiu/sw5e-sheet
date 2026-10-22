@@ -652,7 +652,8 @@ function clsFeatureEffects(text, note, ctx) {
   // other lists ("The Force flows through your body, granting the following benefits: - …") are.
   const sentences = t.replace(/([^\n]*?)([^\n.]*following (?:benefits|effects)[^\n]*)\n((?:\s*- [^\n]*(?:\n|$))+)/gi, (all, before, lead, list) => {
     const prev = before.split(/(?<=\.)\s+/).slice(-2).join(' ');
-    const onlyWhile = /^\s*While (?!you are not wearing|you aren't wearing|you are wearing no|wearing no)/i.test(lead);
+    // ("Additionally, while your Saber Storm is active, … you gain the following benefits": only then.)
+    const onlyWhile = /^\s*(?:Additionally, |Also, )?While (?!you are not wearing|you aren't wearing|you are wearing no|wearing no)/i.test(lead);
     return CLS_STATE_CUE.test(lead) || CLS_DURATION.test(prev) || onlyWhile ? `${before}\n` : `${before}\n${list.replace(/^\s*- /gm, '')}`;
   }).replace(/\n+/g, ' ').split(/(?<=\.)\s+(?=[A-Z_*])/);
   const picks = clsNoteNames(note);
@@ -681,7 +682,10 @@ function clsFeatureEffects(text, note, ctx) {
   // speed…": Avatar).
   const STATE_ON = /\b(?:while (?:(?:this|that|the) (?:ability|stance|state|form|focus|mode) is active|(?:it is |this is )?active|(?!wearing|wielding|leaving|using)[a-z]+ing\b)|for the duration|during that time)/i;
   const goesOn = (s, i) => i > 0 && /^(?:You also|Additionally, you|Lastly, you|You (?:can )?also)\b/.test(s) && STATE_ON.test(sentences[i - 1]);
-  const permanent = sentences.filter((s, i) => !/following (?:benefits|effects)/i.test(s) && !/^- /.test(s) && !goesOn(s, i));
+  // Nor what lasts a while once invoked ("…invoke the totem as a bonus action. For 10 minutes, … your Strength score
+  // increases by 2": Totem of the Acklay).
+  const timed = (s) => /^For (?:1|one|10|ten|an?|8|eight|24) (?:minute|hour|round)s?,/i.test(s);
+  const permanent = sentences.filter((s, i) => !/following (?:benefits|effects)/i.test(s) && !/^- /.test(s) && !goesOn(s, i) && !timed(s));
   // Clauses that only say the feature's precondition is met by having the feature/equipment.
   const ALWAYS = /,?\s*\bwhile (?:you are |you're )?(?:not wearing[^,.]*|wearing no[^,.]*|using (?:your|this|a) [\w' ]+? as (?:a|your) (?:tech |force )?focus|wearing (?:your|these|this) (?:[\w']+ ){0,3}?(?:armor|harness|goggles|gloves|pack|implements|shield|suit|helmet|wristpad|platform|instrument|boots|belt)|wearing (?:your|these|this) [\w ]+?|wielding a weapon with which you are proficient)(?=[,.]|\s+(?:you|your)\b|$),?/gi;
   let m;
