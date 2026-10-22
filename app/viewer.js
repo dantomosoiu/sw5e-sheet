@@ -2262,7 +2262,8 @@ function applyEffects(key, editedRaw, complete) {
   res.tweaks = res.tweaks.filter((t) => !res.setByTweak.includes(t));
   if (acSet) res.acAlternatives = [];
   for (const t of res.tweaks) {
-    if (/^(?:force|tech)Powers\./.test(t.path)) continue; // power damage/healing bonuses: the dice card adds them
+    // Power damage/healing bonuses (the dice card adds them) and the attunement maximum (attunementMax): no engine tweak.
+    if (/^(?:(?:force|tech)Powers|attunement)\./.test(t.path)) continue;
     const cur = getPath(out.tweaks, t.path) || {};
     const fields = { ...(t.fields || {}) };
     // Proficiency never goes down (a feature's "proficient" doesn't undo a tweak's "expertise").
@@ -2463,7 +2464,7 @@ function bumpSources(m, path) {
   const rel = {
     armorClass: ['armorClass', 'Dexterity'], initiative: ['initiative', 'Dexterity'], passivePerception: ['passivePerception', 'Wisdom', 'abilityScores.Wisdom.skills.Perception'],
     hitPoints: ['hitPoints', 'Constitution'], speed: ['speed', 'Strength'], carryingCapacity: ['Strength'],
-    techCasting: ['techCasting', '*'], forceCasting: ['forceCasting', '*'], proficiencyBonus: [],
+    techCasting: ['techCasting', '*'], forceCasting: ['forceCasting', '*'], proficiencyBonus: [], attunement: ['attunement'],
   }[path.split('.')[0]] || ['*'];
   // Carrying capacity and speed (heavy armor's Strength) go by the score itself; the rest by the modifier.
   const byScore = ['carryingCapacity', 'speed'].includes(path.split('.')[0]);
@@ -2620,9 +2621,18 @@ const canEquip = (e, custom) => (custom ? e.equipmentCategory !== 'Gear'
 const EQUIP_VERB = { Equipped: 'Equip', Installed: 'Install', 'Using as focus': 'Use as focus' };
 const canAttune = (e, custom) => !custom && !!e.isFound && isEnhanced(e) && !!e.requiresAttunement;
 const atAttuneLimit = (m, e) => {
-  const att = m.c.attunement || {};
-  return !e.attuned && att.maximum != null && attunementUsed(m) + attuneCost(e) > num(att.maximum);
+  const max = attunementMax(m);
+  return !e.attuned && max != null && attunementUsed(m) + attuneCost(e) > max;
 };
+/**
+ * The attunement maximum: SW5E's (the proficiency bonus) and what feats add ("Your maximum attunement increases by 1",
+ * Investigative Attunement: a mod on attunement.maximum, which SW5E's engine has no tweak for). Null without one.
+ */
+function attunementMax(m) {
+  const att = m.c.attunement || {};
+  if (att.maximum == null) return null;
+  return num(att.maximum) + arr(m.fx && m.fx.tweaks).filter((t) => t.path === 'attunement.maximum').reduce((s, t) => s + num(t.bonus), 0);
+}
 /** A catalog item's price in credits, or 0 if it has none. */
 const priceOf = (ref) => {
   if (typeof ref.cost === 'number') return ref.cost;
@@ -6419,7 +6429,9 @@ function renderEquipment(m) {
       ${stat('Total weight', fmtNum(totalWeight(m)) + ' lb', c.carryingCapacity ? `of ${num(c.carryingCapacity.maxCapacity) * carryFactor(m).factor} lb max` : '')}
       ${(() => {
         const mods = modifiedItemsOf(m).filter((x) => x.attune);
-        return stat('Attunement', `${attunementUsed(m)} / ${esc(att.maximum ?? '—')}`, mods.length ? esc(`incl. ${mods.map((x) => `${x.item} (${x.what.toLowerCase()})`).join(', ')}`) : '');
+        const max = attunementMax(m);
+        const maxHtml = max == null ? '—' : bump(m, 'attunement.maximum', esc(max), { from: num(att.maximum), to: max });
+        return stat('Attunement', `${attunementUsed(m)} / ${maxHtml}`, mods.length ? esc(`incl. ${mods.map((x) => `${x.item} (${x.what.toLowerCase()})`).join(', ')}`) : '');
       })()}
       ${stat('Items', items.filter((e) => !own(e, false).enhancedBy).length + custom.length)}
     </div>
