@@ -1748,6 +1748,16 @@ function itemEffects(key, editedRaw, complete) {
       : x.property && swapFrom(x.property) ? { ...x, swap: { from: swapFrom(x.property), to: swapFrom(x.property) === 'Strength' ? 'Dexterity' : 'Strength' } }
         : x.profSteps ? { ...x, baseRank: rankOf(x.path) }
           : x.halfProf ? { ...x, baseRank: rankOf(x.path), bonus: Math.floor(num(complete && complete.proficiencyBonus) / 2) } : x));
+    // "While using this item as your focus": the player ticks it (itemState.focusOn, per copy); then those bonuses
+    // apply (as the conditions they may also have).
+    const asFocusOn = !!fx.asFocus && !!((state.itemState[key] && state.itemState[key].focusOn) || {})[ck];
+    if (asFocusOn) {
+      for (const [j, x] of mods.entries()) {
+        if (!x.asFocus) continue;
+        const rest = String(x.cond).replace(/,? ?while it's your focus$/, '');
+        mods[j] = rest ? { ...x, cond: rest } : (({ cond, ...y }) => y)(x);
+      }
+    }
     // A set's bonuses ("While wearing and attuned to this armor and Jensaarai Cloak, …") hold with the other pieces
     // attuned too; the ones still missing are listed (setPending).
     const setMet = (names) => arr(names).every((n) => equipment.some((x) => x.attuned && invSameName(x.name, n)));
@@ -1836,7 +1846,7 @@ function itemEffects(key, editedRaw, complete) {
       ...(toolPick ? { toolPick, tools: (fe ? fe.profs.tools : []).concat(FX_PROF_LADDER.indexOf(toolPick.level) >= 2
         ? [{ name: toolPick.name, level: toolPick.level === 'proficient' ? 'proficient' : 'expertise' }] : []) } : {}),
       needsChoice: (fe ? fe.needsChoice : []).concat(needs),
-      setPending, freeAttune: !!fx.freeAttune && !!it.attuned && setMet(fx.freeAttune), classChanges,
+      asFocusOn, setPending, freeAttune: !!fx.freeAttune && !!it.attuned && setMet(fx.freeAttune), classChanges,
     });
   });
   return out;
@@ -2001,6 +2011,9 @@ function tweakEffects(key, editedRaw) {
 // the feature's notes. They're effects of kind 'feature', applied like tweaks, never saved.
 const PROF_RANK = (p) => ({ proficient: 1, expertise: 2 }[String(p || '').toLowerCase()] || 0);
 let featureFxCache = null;
+// What the player says is in use (itemState.inUse: "biochemist's pack as a tech focus" → true), for the features and
+// modifications that only work then; set by featureEffects for featureEffectsUncached.
+let featureInUse = {};
 function featureEffects(key, editedRaw, complete) {
   if (!state.rules) return [];
   // Cached: the same classes, notes, choices and rules give the same effects (this runs on every redraw).
@@ -2008,7 +2021,9 @@ function featureEffects(key, editedRaw, complete) {
     editedRaw.customFeats || null, editedRaw.species || null, arr(editedRaw.equipment).map((it) => it.name), castingLevels(complete, editedRaw),
     num(complete && complete.proficiencyBonus), // choice slots' "5 x your proficiency bonus"
     editedRaw.tweaks || null, editedRaw.customProficiencies || null, arr(complete && complete.proficiencies).length, // "if you are already proficient"
-    catalogIndex ? catalogIndex.size : 0]); // weapons are found through the catalog
+    catalogIndex ? catalogIndex.size : 0, // weapons are found through the catalog
+    (state.itemState[key] && state.itemState[key].inUse) || null, arr(editedRaw.equipment).map((it) => !!it.equipped)]);
+  featureInUse = (state.itemState[key] && state.itemState[key].inUse) || {};
   if (featureFxCache && featureFxCache.rules === state.rules && featureFxCache.sig === sig) return featureFxCache.out;
   const own = featureEffectsUncached(editedRaw);
   const out = proficiencyRules(editedRaw, complete, own.concat(choiceEffects(editedRaw, complete, own)));
@@ -2190,7 +2205,30 @@ function featureEffectsUncached(editedRaw) {
         }
         // Picks in an archetype's own list are read through its feature ("Hunter's Prey"), above. A modification's
         // sentences about the modified weapon ("with this weapon", its critical range) aren't the character's own.
-        const text = mods && mods.item && mods.item !== 'armor' ? o.text.split(/(?<=\.)\s+/).filter((x) => !/\bthis weapon\b|\byour modified (?:weapon|lightsaber|lightweapon)\b|critical hit range/i.test(x)).join(' ') : o.text;
+        let text = mods && mods.item && mods.item !== 'armor' ? o.text.split(/(?<=\.)\s+/).filter((x) => !/\bthis weapon\b|\byour modified (?:weapon|lightsaber|lightweapon)\b|critical hit range/i.test(x)).join(' ') : o.text;
+        // "While using your biochemist's pack as a tech focus, you gain a +1 bonus to tech attack rolls", "While wearing
+        // your gadgeteer harness you have immunity to lightning damage", "While wielding your modified lightsaber, …":
+        // only then. A modified item the sheet carries counts while equipped; otherwise the player says so (a
+        // checkbox on the effect, itemState.inUse). Until then the bonus is shown as an alternative ("· +2 with your
+        // biochemist's pack as a tech focus") and the defenses aren't counted.
+        let inUse = null;
+        if (mods) {
+          const parts = text.split(/(?<=\.)\s+/);
+          const condOf = (x) => /\bwhile (using your (?!body\b)([\w' ]+?) as a (?:tech|force) focus|(?:wearing|wielding) your (?!modified armor\b)([\w' ]+?))(?=,|\s+you\b)/i.exec(x);
+          const cond = parts.map(condOf).find(Boolean);
+          if (cond && !/^as an action\b/i.test(parts.find((x) => condOf(x)) || '')) {
+            const label = cond[1].toLowerCase();
+            const modified = arr(k.modifiedItems)[p.item || 0];
+            const carried = /\bmodified\b/i.test(label) && modified ? arr(editedRaw.equipment).find((x) => x.name === modified) : null;
+            const on = carried ? !!carried.equipped : !!featureInUse[label];
+            inUse = { key: label, label, on, byItem: !!carried };
+            // (with the sentences that go on from it: "This bonus increases to +2 at 9th level…")
+            const inCond = parts.map((x, j) => !!condOf(x));
+            for (let j = 1; j < parts.length; j++) if (!inCond[j] && inCond[j - 1] && /^(?:this bonus|additionally)\b/i.test(parts[j])) inCond[j] = true;
+            items.push({ name: p.name, text: parts.filter((x, j) => inCond[j]).join(' '), note: optionNoteFitting(o, p.note || featureNoteOf(editedRaw, p.name)), source: listKey, inUse });
+            text = parts.filter((x, j) => !inCond[j]).join(' ');
+          }
+        }
         // An armor modification works while the modified armor is worn ("While wearing your modified armor…"; its power
         // fists): not while it's only carried. (An item the sheet can't find: as before.)
         if (mods && mods.item === 'armor') {
@@ -2228,10 +2266,22 @@ function featureEffectsUncached(editedRaw) {
       out.push({ id: `feature:${k.name}:weapons`, kind: 'feature', name: `${k.name} weapon proficiencies`, why: `${k.name} proficiencies`, mods: [], notes: [], weapons: weaponProfs, tools: [], target: 'self' });
     }
     for (const it of items) {
-      const id = `feature:${it.source}:${it.name}${it.note ? `:${it.note}` : ''}`;
+      if (!String(it.text || '').trim()) continue;
+      const id = `feature:${it.source}:${it.name}${it.inUse ? ':in-use' : ''}${it.note ? `:${it.note}` : ''}`;
       if (out.some((x) => x.id === id)) continue;
       // featureLevel: the class level it came at ("…increases by 1 again whenever you gain a level in this class").
       const e = featureEffectEntry(id, it.name, `${it.source} feature`, clsFeatureEffects(it.text, it.note, { ...ctx, featureLevel: it.level }));
+      if (e && it.inUse) {
+        // Only while the item is in use: off, its numbers are alternatives and its defenses and advantages don't count.
+        e.inUse = it.inUse;
+        e.why = `${e.why}, ${it.inUse.on ? 'while' : 'only while'} ${it.inUse.label}`;
+        if (!it.inUse.on) {
+          e.mods = e.mods.map((x) => (x.cond ? x : { ...x, cond: `while ${it.inUse.label}` }));
+          e.offDefenses = e.defenses;
+          e.defenses = [];
+          e.advantage = [];
+        }
+      }
       if (e) out.push(e);
     }
     // A substitute ability for this class's features ("You can substitute Strength, Constitution, or Intelligence … for
@@ -3650,7 +3700,7 @@ async function saveItemStateFor(key, st) {
   st.updatedAt = Date.now();
   if (!Object.keys(st.charges || {}).length && !arr(st.effects).length && !Object.keys(st.targets || {}).length
     && !Object.keys(st.reasons || {}).length && !st.combat && !arr(st.foretell).length && !st.frenzy
-    && !Object.keys(st.shots || {}).length && !Object.keys(st.keepTweaks || {}).length && !Object.keys(st.toolPicks || {}).length && !Object.keys(st.itemPicks || {}).length) delete state.itemState[key];
+    && !Object.keys(st.shots || {}).length && !Object.keys(st.keepTweaks || {}).length && !Object.keys(st.toolPicks || {}).length && !Object.keys(st.itemPicks || {}).length && !Object.keys(st.inUse || {}).length && !Object.keys(st.focusOn || {}).length) delete state.itemState[key];
   else state.itemState[key] = st;
   await saveItemState();
 }
@@ -3816,6 +3866,30 @@ async function setItemPick(id, name) {
   renderAll();
   scheduleRecompute(snap.key);
 }
+/** Whether the item a modification is in is used as your focus (itemState.focusOn, per item copy). */
+async function setItemFocus(id, on) {
+  const snap = state.snapshots[state.current];
+  if (!snap || !id.startsWith('item:')) return;
+  const st = itemStateOf(snap.key);
+  st.focusOn = { ...(st.focusOn || {}) };
+  if (on) st.focusOn[id.slice(5)] = true;
+  else delete st.focusOn[id.slice(5)];
+  await saveItemStateFor(snap.key, st);
+  renderAll();
+  scheduleRecompute(snap.key);
+}
+/** Whether something a feature needs is in use ("using your biochemist's pack as a tech focus"): itemState.inUse. */
+async function setInUse(label, on) {
+  const snap = state.snapshots[state.current];
+  if (!snap) return;
+  const st = itemStateOf(snap.key);
+  st.inUse = { ...(st.inUse || {}) };
+  if (on) st.inUse[label] = true;
+  else delete st.inUse[label];
+  await saveItemStateFor(snap.key, st);
+  renderAll();
+  scheduleRecompute(snap.key);
+}
 /** Which tool a Tool (Basic…Champion) item is ("these tools"): kept per item copy (itemState.toolPicks). */
 async function setItemTool(id, name) {
   const snap = state.snapshots[state.current];
@@ -3925,6 +3999,8 @@ function effectRow(m, e) {
       chips.push(`<label class="fx-weapon${cur ? '' : ' warn-text'}">${esc(a.label.toLowerCase())} <select data-fxpick="${esc(e.id)}"><option value="">choose…</option>${askOptions(m, a).map((n) => `<option${n === cur ? ' selected' : ''}>${esc(n)}</option>`).join('')}</select></label>`);
     }
   }
+  // "While using this item as your focus": ticked here.
+  if (e.kind === 'item' && e.asFocus) chips.push(`<label class="fx-weapon"><input type="checkbox" data-asfocus="${esc(e.id)}"${e.asFocusOn ? ' checked' : ''}> used as your focus</label>`);
   // Tool (Basic…Champion): which tool it is, picked here; the level it comes to.
   if (e.kind === 'item' && e.toolSteps) {
     const names = [...new Set(bdTools().map((x) => x.name))].sort();
@@ -3985,7 +4061,10 @@ function renderEffects(m) {
     .map(({ e, also }) => (also.length ? { ...e, ...Object.fromEntries(['mods', 'weapons', 'tools', 'armor', 'advantage', 'defenses', 'needsChoice'].map((k) => [k, [e, ...also].flatMap((x) => arr(x[k]))])),
       critRange: Math.max(...[e, ...also].map((x) => num(x.critRange))), halfProf: [e, ...also].some((x) => x.halfProf), unarmedStep: Math.max(...[e, ...also].map((x) => num(x.unarmedStep))),
       unarmedDie: Math.max(...[e, ...also].map((x) => num(x.unarmedDie))), unarmedFinesse: [e, ...also].some((x) => x.unarmedFinesse) } : e));
-  const featRow = (e) => `<div class="eff"><div class="eff-head"><b>${esc(e.name)}</b>${e.unarmedDie ? chip(`Unarmed strike d${e.unarmedDie}${e.unarmedFinesse ? ', finesse' : ''}`, 'good') : ''}
+  // "Only while using your biochemist's pack as a tech focus": the player says whether it is (a modified item the sheet
+  // carries: its Equipped).
+  const inUseBox = (e) => (e.inUse && !e.inUse.byItem ? `<label class="fx-weapon"><input type="checkbox" data-inuse="${esc(e.inUse.key)}"${e.inUse.on ? ' checked' : ''}> ${esc(e.inUse.label)}</label>` : '');
+  const featRow = (e) => `<div class="eff"><div class="eff-head"><b>${esc(e.name)}</b>${inUseBox(e)}${e.unarmedDie ? chip(`Unarmed strike d${e.unarmedDie}${e.unarmedFinesse ? ', finesse' : ''}`, 'good') : ''}
       ${arr(e.mods).map((x) => (x.cond ? chip(`${x.label} ${x.cond}`, 'blue') : chip(x.label, 'good'))).join('')}${arr(e.weapons).map((w) => chip(`Proficient: ${w}`, 'good')).join('')}
       ${arr(e.tools).map((t) => chip(`${t.name}: ${t.level}`, 'good')).join('')}${arr(e.armor).map((a) => chip(`Proficient: ${a}`)).join('')}
       ${arr(e.advantage).map((a) => chip(ADV_TEXT(a), 'good')).join('')}${e.critRange ? chip(`Critical on ${20 - e.critRange}–20`, 'good') : ''}
@@ -8836,6 +8915,8 @@ function wireUi() {
     const ds = e.target.dataset || {};
     if (ds.fxweapon) setEffectWeapon(ds.fxweapon, e.target.value);
     if (ds.fxtool) setItemTool(ds.fxtool, e.target.value);
+    if (ds.inuse) setInUse(ds.inuse, e.target.checked);
+    if (ds.asfocus) setItemFocus(ds.asfocus, e.target.checked);
     if (ds.fxpick) setItemPick(ds.fxpick, e.target.value);
     if (ds.invBase) inventoryAction('base', `${ds.invBase}|${e.target.value}`);
     if (ds.jump != null) {
