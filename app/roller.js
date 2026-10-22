@@ -164,7 +164,13 @@ function isFinesseWeapon(m, w) {
   return !!ref && typeof martialArtsOf === 'function' && !!m.raw && martialArtsOf(m.raw).some((x) => x.ma.finesse && x.ma.weapons && clsWeaponMatches(x.ma.weapons.desc, ref));
 }
 /** The ability the attack uses: Dexterity for a finesse unarmed strike whose Dexterity counts (its finesse tweak). */
-const weaponAbility = (m, w) => (w.name === 'Unarmed Strike' && arr(m.fx && m.fx.tweaks).some((t) => t.path === 'unarmed.toHit' && t.mod && t.mod.finesse) ? 'Dexterity' : w.ability);
+/** The ability the attack uses: the one a feature gives it over SW5E's (finesse's Dexterity, Vow of Spirit's Wisdom…). */
+function weaponAbility(m, w) {
+  const tw = w.name === 'Unarmed Strike' ? arr(m.fx && m.fx.tweaks).filter((t) => t.path === 'unarmed.toHit')
+    : arr(m.fx && m.fx.weaponTweaks).filter((t) => t.index === w.index && t.path === 'toHit');
+  const t = tw.find((x) => x.mod && (x.mod.ability || x.mod.finesse));
+  return t ? t.mod.ability || 'Dexterity' : w.ability;
+}
 /** The texts of the character's features, species traits and slot picks: [{ name, text }] (a pick: "Operative (splashclass improvement)"). */
 function riderTexts(m) {
   const out = [];
@@ -200,7 +206,7 @@ function riderTexts(m) {
  *   Slayer).
  * Not what helps allies ("you or a friendly creature": auras).
  */
-function d20Options(m, kind) {
+function d20Options(m, kind, ctx = {}) {
   const out = [];
   const pb = num((m.c || {}).proficiencyBonus);
   const mod = (list) => Math.max(...list.map((a) => num((((m.c.abilityScores || {})[a]) || {}).modifier)));
@@ -220,13 +226,48 @@ function d20Options(m, kind) {
         } else if ((x = /\broll an? (d\d+) and add the die to a saving throw you make/i.exec(s))) out.push({ label, bonus: 0, extra: [`1${x[1]}`], on: false });
       } else if (kind === 'init') {
         if (/When you roll initiative, you can choose to add your proficiency bonus to the initiative check/i.test(s)) out.push({ label, bonus: pb, extra: [], on: false });
+        // "You can use your Intelligence modifier instead of your Dexterity modifier when making Initiative checks" (Quick-Witted).
+        else if ((x = /You can use your (\w+) modifier instead of your (\w+) modifier when making Initiative checks/i.exec(s)) && ABBR[x[1]] && ABBR[x[2]]) out.push({ label: `${ABBR[x[1]]} instead of ${ABBR[x[2]]} (${label})`, bonus: mod([x[1]]) - mod([x[2]]), extra: [], on: false });
+      } else if (kind === 'skill' || kind === 'check') {
+        // "You can use your Charisma modifier instead of your Wisdom modifier when making Insight checks" (Force of
+        // Personality), "… when making Constitution checks" (Forceful Vigor), "proficiency in Medicine, and you can use your
+        // Intelligence modifier instead of your Wisdom modifier for checks made with it" (General Practice).
+        const named = kind === 'skill' ? ctx.skill : ctx.ability;
+        if ((x = /You can use your (\w+) modifier instead of your (\w+) modifier when making ([\w ]+?) checks/i.exec(s)) && ABBR[x[1]] && ABBR[x[2]] && x[3] === named && x[2] === ctx.ability) {
+          out.push({ label: `${ABBR[x[1]]} instead of ${ABBR[x[2]]} (${label})`, bonus: mod([x[1]]) - mod([x[2]]), extra: [], on: false });
+        } else if (kind === 'skill' && (x = /proficiency in (\w+), and you can use your (\w+) modifier instead of your (\w+) modifier for checks made with it/i.exec(s)) && x[1] === ctx.skill && ABBR[x[2]] && x[3] === ctx.ability) {
+          out.push({ label: `${ABBR[x[2]]} instead of ${ABBR[x[3]]} (${label})`, bonus: mod([x[2]]) - mod([x[3]]), extra: [], on: false });
+        } else if (kind === 'skill' && /When you make an ability check with the chosen skill or tool, you can add half your Wisdom or Charisma modifier/i.test(s)
+          && new RegExp(`\\b${ctx.skill}\\b`, 'i').test(typeof featureNoteOf === 'function' && m.raw ? featureNoteOf(m.raw, t.name) : '')) {
+          // "… add half your Wisdom or Charisma modifier (your choice, minimum of one)" (Force Guidance; its notes name the skill).
+          out.push({ label, bonus: Math.max(1, Math.floor(mod(['Wisdom', 'Charisma']) / 2)), extra: [], on: false });
+        }
       } else if (kind === 'attack' || kind === 'damage') {
+        const w = ctx.w || {};
+        const ab = ctx.ability || w.ability;
         if (kind === 'attack' && (x = /a bonus to the first weapon attack roll you make[^.]*? equal to your (\w+) modifier/i.exec(s)) && ABBR[x[1]]) out.push({ label, bonus: mod([x[1]]), extra: [], on: false });
         else if ((x = /you can add your (\w+) modifier to the attack roll or the damage roll of an attack you make/i.exec(s)) && ABBR[x[1]]) out.push({ label, bonus: mod([x[1]]), extra: [], on: false });
+        // "your attack and damage rolls made with weapons with the finesse property or blaster weapons against that target may
+        // use your Critical Analysis ability modifier, which is Intelligence, instead of Strength or Dexterity" (Critical
+        // Analysis); "You can use Intelligence instead of Dexterity for the attack and damage rolls made with weapons with the
+        // finesse property or blaster weapons against the target of your Ranger's Quarry" (Mark of the Meticulous).
+        else if (ctx.w && (x = /attack and damage rolls made with weapons with the finesse property or blaster weapons (against [^.]+?) may use your [\w ]+?, which is (\w+), instead of|You can use (\w+) instead of (?:Strength or Dexterity|Dexterity or Strength|Dexterity|Strength) for the attack and damage rolls made with weapons with the finesse property or blaster weapons (against [^.]+?)\./i.exec(s))
+          && ABBR[x[2] || x[3]] && (ctx.finesse || /blaster/i.test(w.weaponClassification || '')) && mod([x[2] || x[3]]) > mod([ab])) {
+          const a = x[2] || x[3];
+          out.push({ label: `${(x[1] || x[4]).replace(/^against the target of your /i, 'vs ').replace(/^against /i, 'vs ')} (${ABBR[a]}, ${label})`, bonus: mod([a]) - mod([ab]), extra: [], on: false });
+        // "When you make an attack roll using your Strength, you can choose to add half your Constitution modifier to the
+        // attack roll" (Adaptable Fading), and its "Alternatively, when you would make an attack roll using Constitution…".
+        } else if (kind === 'attack' && (x = /when you (?:would )?make an attack roll using (?:your )?(\w+), you can (?:choose to )?add half your (\w+) modifier to the attack roll/i.exec(s)) && x[1] === ab && ABBR[x[2]]) {
+          out.push({ label: `half ${ABBR[x[2]]} (${label})`, bonus: Math.floor(mod([x[2]]) / 2), extra: [], on: false });
+        // "You can add half your Charisma modifier (minimum of one) to any weapon damage roll you make against the marked
+        // target that doesn't already include that modifier" (Exhibition Specialist).
+        } else if ((x = new RegExp(`You can add half your (\\w+) modifier( \\(minimum of one\\))? to any weapon ${kind === 'attack' ? 'attack' : 'damage'} roll you make (against [^.]+?) that doesn't already include that modifier`, 'i').exec(s)) && ABBR[x[1]] && ab !== x[1]) {
+          out.push({ label: `${x[3].replace(/^against /i, 'vs ')} (${label})`, bonus: x[2] ? Math.max(1, Math.floor(mod([x[1]]) / 2)) : Math.floor(mod([x[1]]) / 2), extra: [], on: false });
+        }
       }
     }
   }
-  return out.filter((r, i) => r.bonus || r.extra.length).filter((r, i, all) => all.findIndex((y) => y.label === r.label) === i);
+  return out.filter((r) => r.bonus > 0 || r.extra.length).filter((r, i, all) => all.findIndex((y) => y.label === r.label) === i);
 }
 /** The class level behind a feature's "_**Berserker:** 9th, 13th, and 17th level_" (a class or archetype name). */
 function ownerLevel(m, owner) {
@@ -435,6 +476,7 @@ function buildRoll(m, spec, opts = {}) {
       // Half proficiency on every check, on this ability's (Cunning Intellect: halfProf lists them), or an item's (halfProfChecks).
       const half = arr(m.effects).find((e) => e.halfProf === true || (Array.isArray(e.halfProf) && e.halfProf.includes(a1)) || arr(e.halfProfChecks).includes(a1));
       if (half && Math.floor(pb / 2)) r.base.push({ label: `half proficiency (${half.name})`, value: Math.floor(pb / 2) });
+      r.conds.push(...d20Options(m, 'check', { ability: a1 }));
       return r;
     }
     case 'save': {
@@ -452,7 +494,7 @@ function buildRoll(m, spec, opts = {}) {
       // adds over the skill's own proficiency (half proficiency from Know a Bit counts as already there).
       if (k.proficiency !== 'expertise') {
         const path = `abilityScores.${a1}.skills.${k.name}`;
-        const have = k.proficiency === 'proficient' ? pb : arr(m.fx && m.fx.tweaks).filter((t) => t.path === path && t.effect && t.effect.halfProf).reduce((s, t) => s + num(t.bonus), 0);
+        const have = k.proficiency === 'proficient' ? pb : arr(m.fx && m.fx.tweaks).filter((t) => t.path === path && ((t.effect && t.effect.halfProf) || (t.mod && t.mod.halfProf))).reduce((s, t) => s + num(t.bonus), 0);
         for (const f of riderTexts(m)) {
           for (const s of f.text.split(/(?<=\.)\s+/)) {
             if (!/\bconsidered to have expertise in\b/i.test(s)) continue;
@@ -465,6 +507,7 @@ function buildRoll(m, spec, opts = {}) {
           }
         }
       }
+      r.conds.push(...d20Options(m, 'skill', { skill: k.name, ability: a1 }));
       return r;
     }
     case 'init': {
@@ -492,7 +535,7 @@ function buildRoll(m, spec, opts = {}) {
       const atk = d20(`${w.name} attack`, num(w.attackBonus), `weapons.${a1}.attackBonus`, {
         next: { spec: `damage|${a1}`, two: vers ? vers[1].replace(/^d/, '1d') : null }, critMin: Math.max(2, 20 - add), critFrom: wider.map((e) => e.name).join(' + '),
       });
-      atk.conds.push(...resourceConds(m, 'attack', w), ...d20Options(m, 'attack'));
+      atk.conds.push(...resourceConds(m, 'attack', w), ...d20Options(m, 'attack', { w, ability: weaponAbility(m, w), finesse: isFinesseWeapon(m, w) }));
       // A two-handed weapon with a shield equipped (W-149): say so before the roll.
       const hc = typeof handsConflict === 'function' && m.raw ? handsConflict(m.raw) : null;
       const ent = w.index >= 0 ? arr(m.raw && m.raw.equipment)[w.index] : null;
@@ -507,7 +550,7 @@ function buildRoll(m, spec, opts = {}) {
       const crit = a2 === 'crit';
       // Damage riders from the features' text, for this weapon (Sneak Attack on finesse or ranged weapons, Rage Damage on
       // melee Strength attacks, Ranger's Quarry, critical-hit dice…): weaponRiders.
-      const conds = condsAt(`weapons.${a1}.damageBonus`).concat(weaponRiders(m, w, crit, die), resourceConds(m, 'damage', w), d20Options(m, 'damage'));
+      const conds = condsAt(`weapons.${a1}.damageBonus`).concat(weaponRiders(m, w, crit, die), resourceConds(m, 'damage', w), d20Options(m, 'damage', { w, ability: weaponAbility(m, w), finesse: isFinesseWeapon(m, w) }));
       // Weapon Expert: "You gain proficiency with all blasters. If you are already proficient with all blasters, instead
       // once per turn when you would roll weapon damage using a blaster, you can choose to have advantage." Already: by
       // the class, species or another feature (all of the kind, or its simple and martial ones), or the feat taken twice.
