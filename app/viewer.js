@@ -4423,7 +4423,9 @@ function knownPowers(m, kind) {
       }
     }
   }
-  return out;
+  // A power you can't cast with points but can another way (Naturalist: "You can cast it once… without spending tech
+  // points"): only that way, not also "Not castable".
+  return out.filter((x) => !(x.mode === 'points' && x.invalid && out.some((y) => y !== x && y.name === x.name && y.mode !== 'points' && !y.invalid)));
 }
 /** Once-per-rest casts: one per power, or one for the feature when it gives several ("Once you've cast a power using this feature…"). */
 const powerUseName = (power, slot) => (slot.castOnly && slot.count > 1 && slot.useFeature !== false ? `${String(slot.from).replace(/\s*\(.*$/, '')} (cast)` : `${power} (${String(slot.from).replace(/\s*\(.*$/, '')})`);
