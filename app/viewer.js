@@ -2663,9 +2663,12 @@ function featureTextsOf(editedRaw) {
       .filter((f) => f.level <= num(k.levels));
     // Picked options ("Ideal of the Contender: your unarmed strikes gain the finesse property").
     const cls = parsed && parsed.classes[k.name];
+    const arch = parsed && aref ? parsed.archetypes[aref.name] : null;
     for (const [key, picks] of Object.entries(k.options || {})) {
-      const list = cls && cls.lists.find((l) => l.key === key);
-      for (const p of arr(picks)) { const o = list && list.options.find((x) => x.name === p.name); if (o) items.push({ name: o.name, text: o.text, note: p.note || '' }); }
+      // The class's list, the archetype's own, and what the archetype adds to the class's (Gambler/Geneticist Discoveries).
+      const list = (cls && cls.lists.find((l) => l.key === key)) || (arch && arch.lists.find((l) => l.key === key));
+      const options = (list ? list.options : []).concat((arch && arch.extends && arch.extends[key]) || []);
+      for (const p of arr(picks)) { const o = options.find((x) => x.name === p.name); if (o) items.push({ name: o.name, text: o.text, note: p.note || '' }); }
     }
     for (const f of items) out.push({ name: f.name, text: f.text, k, note: f.note || featureNoteOf(editedRaw, f.name) });
   }
@@ -2712,7 +2715,14 @@ function attackGrantsOf(editedRaw) {
   for (const f of featureTextsOf(editedRaw)) {
     const why = f.k ? `${f.k.name} feature` : 'feat';
     const sentences = String(f.text).replace(/\s+/g, ' ').split(/(?<=\.)\s+(?=[-A-Z_*#])/);
+    // Options listed under "#### Name" in a feature that has you choose ("Mutations…"): only the ones picked.
+    const choosing = /\bchoose\b|\bof your choice\b|\bfrom (?:any of )?the following\b/i.test(String(f.text).split(/####/)[0]);
+    const picks = arr(editedRaw.classes).flatMap((k) => Object.values(k.options || {}).flatMap((ps) => arr(ps).map((p) => p && p.name))).concat([f.note]).filter(Boolean).join(' | ').toLowerCase();
+    let sub = '';
     sentences.forEach((s0, i) => {
+      if (/^#{4,}\s/.test(s0)) sub = (/^#+\s*([A-Z][\w'’ -]+?)\s+(?=[A-Z][a-z])/.exec(s0) || [])[1] || '';
+      else if (/^#{1,3}\s/.test(s0)) sub = '';
+      if (sub && choosing && !picks.includes(sub.toLowerCase())) return;
       const s = s0.replace(/^[-#*_ ]+/, '');
       // A state's ("for the duration", "until the end of your next turn", "while in this stance"): not for good.
       const lead = sentences.slice(Math.max(0, i - 3), i + 1).join(' ');
