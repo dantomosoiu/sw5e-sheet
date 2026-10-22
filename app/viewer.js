@@ -2285,12 +2285,21 @@ function applyEffects(key, editedRaw, complete) {
   // Martial Arts on monk weapons ("vibroweapons with which you are proficient that lack the dexterity, heavy, special,
   // and two-handed properties"): its die in place of a smaller one, and Dexterity where it's better (finesse).
   const abilityFor = {}; // weapon index → [{ a: ability it can use, e: the effect, finesse }]
+  // Monk weapons a feature names (weaponKindsOf: Echani, Whills weapons) count while Martial Arts does (its armor
+  // condition); proficiency comes with them ("You gain proficiency with these weapons").
+  const kinds = martial.length ? weaponKindsOf(editedRaw) : [];
+  const ofKind = (it) => kinds.filter((x) => x.names.some((n) => invSameName(n, it.name) || invSameName(n, it.label || '') || invSameName(n.replace(/s$/, ''), it.name)));
   for (const x of martial.filter((y) => y.ma.weapons)) {
     const profs = arr(complete && complete.proficiencies).filter((p) => p && /weapon|other/.test(p.type || '')).map((p) => p.name)
       .concat(effects.flatMap((e) => arr(e.weapons)));
     arr(editedRaw.equipment).forEach((it, i) => {
       const ref = it.category === 'Equipment' && catalogIndex && catalogIndex.get(it.name);
-      if (!ref || ref.equipmentCategory !== 'Weapon' || !clsWeaponMatches(x.ma.weapons.desc, ref)) return;
+      const named = ofKind(it);
+      if (!ref || ref.equipmentCategory !== 'Weapon' || !(clsWeaponMatches(x.ma.weapons.desc, ref) || named.some((k) => k.monk))) return;
+      if (named.some((k) => k.prof) && !res.weaponTweaks.some((t) => t.index === i && t.fields && t.fields.proficiency)) {
+        const k = named.find((y) => y.prof);
+        res.weaponTweaks.push({ index: i, path: 'toHit', bonus: 0, fields: { proficiency: 'proficient' }, effect: x.e, mod: { path: 'weapon.toHit', label: `Proficient: ${k.kind} weapon (${k.name})` } });
+      }
       const proficient = profs.some((d) => clsWeaponMatches(d, ref)) || res.weaponTweaks.some((t) => t.index === i && t.fields && t.fields.proficiency);
       if (!proficient) return;
       if (num(ref.damageNumberOfDice) <= 1 && x.size > num(ref.damageDieType) && !res.weaponTweaks.some((t) => t.index === i && t.path === 'damageDice')) {
@@ -2316,10 +2325,23 @@ function applyEffects(key, editedRaw, complete) {
     for (const g of grants) {
       const t = g.target;
       const fits = (t.lacking && clsWeaponMatches(`weapons that lack the ${t.lacking} properties`, ref)) || (t.melee && !ranged)
-        || (t.monk && monkDesc.some((d) => clsWeaponMatches(d, ref))) || arr(t.names).some((n) => invSameName(n, it.name) || invSameName(n, it.label || ''));
+        || (t.monk && (monkDesc.some((d) => clsWeaponMatches(d, ref)) || ofKind(it).some((k) => k.monk))) || arr(t.names).some((n) => invSameName(n, it.name) || invSameName(n, it.label || ''));
       if (fits) for (const a of g.abilities) (abilityFor[i] = abilityFor[i] || []).push({ a, e: g.e, finesse: g.finesse });
     }
   });
+  // "You gain a +2 bonus to AC until the start of your next turn, while the weapon is in your hand" (Agile Parry): shown
+  // next to AC as an alternative, not applied.
+  for (const f of featureTextsOf(editedRaw)) {
+    let sub = ''; // the option it's under ("#### Agile Parry If you make an unarmed strike …")
+    for (const s0 of String(f.text).replace(/\s+/g, ' ').split(/(?<=\.)\s+(?=[-A-Z_*#])/)) {
+      if (/^#{4,}\s/.test(s0) && typeof headingOf === 'function') sub = headingOf(s0);
+      const x = /^(?:[^.]*?\s)?You gain a \+(\d+) bonus to AC until the start of your next turn\b/.exec(s0);
+      if (!x || /\bfor each\b/i.test(s0)) continue;
+      const name = sub || f.name;
+      const e = { id: `ac-alt:${name}`, kind: 'feature', name, why: f.k ? `${f.k.name} feature` : 'feat', target: 'self', mods: [], notes: [] };
+      res.conds.push({ path: 'armorClass', bonus: num(x[1]), cond: name, ammo: null, weaponIndex: null, effect: e, mod: { path: 'armorClass', bonus: num(x[1]), label: `AC +${x[1]}`, cond: name } });
+    }
+  }
   // Each weapon with the best of them, where better than the ability SW5E uses: the difference on attack and damage.
   for (const [i, list] of Object.entries(abilityFor)) {
     const w = arr(complete && complete.weapons).find((y) => y.index === Number(i));
@@ -2506,6 +2528,26 @@ function featureTextsOf(editedRaw) {
     if (ref) out.push({ name, text: ref.text || '', k: null, note: featureNoteOf(editedRaw, name) });
   }
   featureTextsOf.cache = { rules: state.rules, sig, out };
+  return out;
+}
+/**
+ * Weapons a feature makes the character's own kind: "Choose two types of weapons to be your Echani weapons … You gain
+ * proficiency with these weapons … Weapons of the chosen types are monk weapons for you" (the notes name them), "You gain
+ * proficiency in blaster pistols, blaster rifles, ion pistols, ion rifles, and the lightbow, which are your Whills weapons
+ * and are monk weapons for you". [{ name, kind, names, monk, prof }]
+ */
+function weaponKindsOf(editedRaw) {
+  const out = [];
+  for (const f of featureTextsOf(editedRaw)) {
+    const t = String(f.text).replace(/\s+/g, ' ');
+    let x;
+    if ((x = /\bto be your (\w+) weapons\b/.exec(t)) && /\bWeapons of the chosen types are monk weapons for you\b/.test(t)) {
+      const names = String(f.note || featureNoteOf(editedRaw, `${x[1]} Weapons`) || '').split(/\s*[,;]\s*|\s+and\s+/).map((n) => n.trim()).filter(Boolean);
+      out.push({ name: f.name, kind: x[1], names, monk: true, prof: /\bYou gain proficiency with these weapons\b/.test(t) });
+    } else if ((x = /\bYou gain proficiency in ([^.]+?), which are your (\w+) weapons and are monk weapons for you\b/.exec(t))) {
+      out.push({ name: f.name, kind: x[2], names: x[1].split(/,\s*(?:and\s+)?|\s+and\s+/).map((n) => n.replace(/^the\s+/i, '').trim()).filter(Boolean), monk: true, prof: true });
+    }
+  }
   return out;
 }
 /**
@@ -4758,9 +4800,39 @@ function renderAttacks(m) {
       <td class="muted col-type">${esc(titleCase(w.weaponClassification || ''))}</td>
       <td class="col-props">${propsHtml(w.properties) || '<span class="faint">—</span>'}</td></tr>
       ${arr(w.modes).length ? `<tr class="dim"><td colspan="6">Modes: ${arr(w.modes).map((md_) => esc(md_.name || JSON.stringify(md_))).join(' · ')}</td></tr>` : ''}`;
-    }).join('')}</tbody>
+    }).join('')}${specialAttacks(m).map((s) => `<tr>
+      <td><div class="inv-item"><div class="inv-what"><b>${esc(s.name)}</b> <span class="chip" title="${esc(s.from)}">special attack</span><div class="m-props">${esc(s.props)}</div></div></div></td>
+      <td class="num"><b>${rollable(`pattack|${s.name}|${s.attack}`, signed(s.attack), `Roll ${s.name}'s attack`)}</b></td>
+      <td>${rollable(`dice|${s.dice}${s.bonus ? signed(s.bonus) : ''}`, esc(`${s.dice}${s.bonus ? signed(s.bonus) : ''} ${titleCase(s.type)}`), `Roll ${s.name}'s damage`)}</td>
+      <td class="muted col-ability">${esc(s.ability)}</td><td class="muted col-type">${esc(titleCase(s.kind))}</td><td class="col-props"><span class="faint">${esc(s.props)}</span></td></tr>`).join('')}</tbody>
   </table></div>
   ${ws.some((w) => w.description) ? `<h3>Weapon notes</h3><div class="grid cards">${ws.filter((w) => w.description).map((w) => card({ title: w.name, body: md(w.description) })).join('')}</div>` : ''}`;
+}
+
+/**
+ * Attacks a feature gives besides the weapons: "This special attack is a ranged focus attack with a range of 30 feet. You
+ * are proficient with it, and you add your focus ability modifier to its attack and damage rolls. Its damage is necrotic,
+ * … and it uses your Martial Arts die for its damage die" (Ichor Lightning). [{ name, from, attack, dice, bonus, type,
+ * ability, kind, props }]
+ */
+function specialAttacks(m) {
+  const out = [];
+  const sc = m.c.abilityScores || {};
+  const mod = (a) => num((sc[a] || {}).modifier);
+  const pb = num(m.c.proficiencyBonus);
+  for (const f of arr(m.allFeatures)) {
+    const t = String(f.text || f.description || '').replace(/\s+/g, ' ');
+    const x = /This special attack is a (ranged|melee) (\w+) attack with a range of (\d+) feet\. You are proficient with it, and you add your ([\w ]+?) modifier to its attack and damage rolls\. Its damage is (\w+)[^.]*?\buses your ([\w' ]+?) die for its damage die/i.exec(t);
+    if (!x || out.some((s) => s.name === f.name)) continue;
+    // "your focus ability modifier": the monk's, Wisdom or Charisma (the better one); else the ability named.
+    const abilities = /focus ability/i.test(x[4]) ? ['Wisdom', 'Charisma'] : ABILITIES.filter((a) => new RegExp(`^${a}$`, 'i').test(x[4]));
+    if (!abilities.length) continue;
+    const a = abilities.reduce((b, c) => (mod(c) > mod(b) ? c : b));
+    const col = arr(m.classDice).find((d) => d.dice && d.column.toLowerCase() === x[6].toLowerCase());
+    if (!col) continue;
+    out.push({ name: f.name, from: f.sourceName || f.name, attack: pb + mod(a), dice: col.dice, bonus: mod(a), type: x[5], ability: a, kind: `${x[1]} ${x[2]} attack`, props: `range ${x[3]} ft` });
+  }
+  return out;
 }
 
 function superiorityInfo(m) {

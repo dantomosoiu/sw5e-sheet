@@ -1,0 +1,4350 @@
+{
+ "format": "sw5e-sheet-regress-case",
+ "name": "dice-echani-order",
+ "key": "file:rakatan-test-(local)",
+ "recordedAt": 1792289049607,
+ "rules": {
+  "dataVersion": 199,
+  "fetchedAt": 1792273029637
+ },
+ "catalog": {
+  "dataVersion": 199,
+  "fetchedAt": 1792170265673,
+  "count": 2425
+ },
+ "storage": {
+  "snapshots": {
+   "file:rakatan-test-(local)": {
+    "format": "sw5e-sheet-snapshot",
+    "version": 1,
+    "key": "file:rakatan-test-(local)",
+    "raw": {
+     "name": "Rakatan Test (local)",
+     "builderVersion": "0.7.6",
+     "image": "",
+     "experiencePoints": 6500,
+     "species": {
+      "name": "Human",
+      "abilityScoreImprovementSelectedOption": 0,
+      "abilityScoreImprovement": {}
+     },
+     "baseAbilityScores": {
+      "Strength": 10,
+      "Dexterity": 16,
+      "Constitution": 14,
+      "Intelligence": 14,
+      "Wisdom": 16,
+      "Charisma": 8
+     },
+     "background": {
+      "name": "Noble",
+      "feat": {
+       "name": "Silver-Tongued",
+       "type": "Feat"
+      },
+      "feature": ""
+     },
+     "characteristics": {
+      "alignment": "Lawful Light"
+     },
+     "credits": 0,
+     "equipment": [
+      {
+       "name": "Vibrosword",
+       "quantity": 1,
+       "category": "Equipment",
+       "equipped": true
+      }
+     ],
+     "currentStats": {
+      "hitPointsLost": 0,
+      "temporaryHitPoints": 0,
+      "techPointsUsed": 0,
+      "forcePointsUsed": 0,
+      "superiorityDiceUsed": 0,
+      "hitDiceUsed": {},
+      "deathSaves": {
+       "successes": 0,
+       "failures": 0
+      },
+      "hasInspiration": false,
+      "featuresTimesUsed": {},
+      "conditions": [],
+      "exhaustion": 0
+     },
+     "classes": [
+      {
+       "name": "Monk",
+       "levels": 11,
+       "hitPoints": [
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5
+       ],
+       "archetype": {
+        "name": "Echani Order"
+       },
+       "abilityScoreImprovements": [
+        {
+         "type": "ASI",
+         "abilitiesIncreased": [
+          {
+           "name": "Dexterity",
+           "value": 2
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "name": "Operative",
+       "levels": 2,
+       "hitPoints": [
+        5,
+        5
+       ],
+       "abilityScoreImprovements": []
+      }
+     ],
+     "featureChoices": {
+      "Feat: Multiclass Improvement": [
+       {
+        "name": "Operative",
+        "note": "Monk"
+       }
+      ]
+     },
+     "tweaks": {},
+     "customProficiencies": [],
+     "customLanguages": [],
+     "customFeatures": [],
+     "customFeats": [
+      "Multiclass Improvement"
+     ],
+     "customTechPowers": [],
+     "customForcePowers": [],
+     "customEquipment": [],
+     "settings": {},
+     "notes": "",
+     "featureNotes": {
+      "echani weapons": "Vibrosword, Blaster rifle"
+     }
+    },
+    "complete": {
+     "name": "Rakatan Test (local)",
+     "builderVersion": "0.7.6",
+     "image": "",
+     "characteristics": {
+      "alignment": "Lawful Light"
+     },
+     "tweaks": {},
+     "customProficiencies": [],
+     "customLanguages": [],
+     "customFeatures": [],
+     "customTechPowers": [],
+     "customForcePowers": [],
+     "customEquipment": [],
+     "numCustomFeats": 1,
+     "currentLevel": 7,
+     "classText": "Monk (Rakatan Order) 5, Operative 2",
+     "alignment": "Lawful Light",
+     "species": "Human",
+     "background": "Noble",
+     "experiencePoints": {
+      "previousLevel": 23000,
+      "current": 6500,
+      "nextLevel": 34000,
+      "isCorrect": false,
+      "errorMessage": "Experience too low. Increase experience or remove class levels below"
+     },
+     "abilityScores": {
+      "Strength": {
+       "value": 10,
+       "modifier": 0,
+       "savingThrow": {
+        "modifier": 3,
+        "proficiency": "proficient"
+       },
+       "skills": [
+        {
+         "name": "Athletics",
+         "modifier": 0,
+         "proficiency": "none"
+        }
+       ]
+      },
+      "Dexterity": {
+       "value": 16,
+       "modifier": 3,
+       "savingThrow": {
+        "modifier": 6,
+        "proficiency": "proficient"
+       },
+       "skills": [
+        {
+         "name": "Acrobatics",
+         "modifier": 3,
+         "proficiency": "none"
+        },
+        {
+         "name": "Sleight of Hand",
+         "modifier": 3,
+         "proficiency": "none"
+        },
+        {
+         "name": "Stealth",
+         "modifier": 3,
+         "proficiency": "none"
+        }
+       ]
+      },
+      "Constitution": {
+       "value": 14,
+       "modifier": 2,
+       "savingThrow": {
+        "modifier": 2,
+        "proficiency": "none"
+       },
+       "skills": []
+      },
+      "Intelligence": {
+       "value": 14,
+       "modifier": 2,
+       "savingThrow": {
+        "modifier": 2,
+        "proficiency": "none"
+       },
+       "skills": [
+        {
+         "name": "Investigation",
+         "modifier": 2,
+         "proficiency": "none"
+        },
+        {
+         "name": "Lore",
+         "modifier": 2,
+         "proficiency": "none"
+        },
+        {
+         "name": "Nature",
+         "modifier": 2,
+         "proficiency": "none"
+        },
+        {
+         "name": "Piloting",
+         "modifier": 2,
+         "proficiency": "none"
+        },
+        {
+         "name": "Technology",
+         "modifier": 2,
+         "proficiency": "none"
+        }
+       ]
+      },
+      "Wisdom": {
+       "value": 16,
+       "modifier": 3,
+       "savingThrow": {
+        "modifier": 3,
+        "proficiency": "none"
+       },
+       "skills": [
+        {
+         "name": "Animal Handling",
+         "modifier": 3,
+         "proficiency": "none"
+        },
+        {
+         "name": "Insight",
+         "modifier": 3,
+         "proficiency": "none"
+        },
+        {
+         "name": "Medicine",
+         "modifier": 3,
+         "proficiency": "none"
+        },
+        {
+         "name": "Perception",
+         "modifier": 3,
+         "proficiency": "none"
+        },
+        {
+         "name": "Survival",
+         "modifier": 3,
+         "proficiency": "none"
+        }
+       ]
+      },
+      "Charisma": {
+       "value": 8,
+       "modifier": -1,
+       "savingThrow": {
+        "modifier": -1,
+        "proficiency": "none"
+       },
+       "skills": [
+        {
+         "name": "Deception",
+         "modifier": -1,
+         "proficiency": "none"
+        },
+        {
+         "name": "Intimidation",
+         "modifier": -1,
+         "proficiency": "none"
+        },
+        {
+         "name": "Performance",
+         "modifier": -1,
+         "proficiency": "none"
+        },
+        {
+         "name": "Persuasion",
+         "modifier": -1,
+         "proficiency": "none"
+        }
+       ]
+      }
+     },
+     "proficiencyBonus": 3,
+     "initiative": 3,
+     "armorClass": 13,
+     "armorList": [],
+     "passivePerception": 13,
+     "inspiration": false,
+     "vision": "normal",
+     "speed": {
+      "base": "30 ft",
+      "hour": "3 miles",
+      "day": "24 miles",
+      "special": ""
+     },
+     "hitPoints": {
+      "current": 52,
+      "temporary": 0,
+      "maximum": 52,
+      "hitDice": [
+       {
+        "size": "d8",
+        "current": 7,
+        "maximum": 7
+       }
+      ],
+      "deathSaves": {
+       "successes": 0,
+       "failures": 0
+      },
+      "resting": {
+       "hitDieBonus": 2,
+       "numHitDiceUsed": 0,
+       "hitDiceRestored": [],
+       "techPointsUsed": 0,
+       "forcePointsUsed": 0,
+       "shortRestFeatures": [],
+       "longRestFeatures": []
+      }
+     },
+     "conditions": [],
+     "exhaustion": 0,
+     "proficiencies": [
+      {
+       "name": "Simple blasters",
+       "type": "weapon"
+      },
+      {
+       "name": "simple vibroweapons",
+       "type": "weapon"
+      },
+      {
+       "name": "martial vibroweapons that lack the dexterity",
+       "type": "weapon"
+      },
+      {
+       "name": "heavy",
+       "type": "weapon"
+      },
+      {
+       "name": "special",
+       "type": "weapon"
+      },
+      {
+       "name": "and two-handed properties",
+       "type": "weapon"
+      },
+      {
+       "name": "None",
+       "type": "armor"
+      },
+      {
+       "name": "Light armor",
+       "type": "other"
+      },
+      {
+       "name": "One type of gaming set",
+       "type": "tool"
+      }
+     ],
+     "skillAndSaveProficiencies": [
+      "Strength Saving Throws",
+      "Dexterity Saving Throws"
+     ],
+     "languages": [
+      "Galactic Basic"
+     ],
+     "equipment": [],
+     "attunement": {
+      "current": 0,
+      "maximum": 3,
+      "hasAttunable": false
+     },
+     "weapons": [
+      {
+       "name": "Unarmed Strike",
+       "description": null,
+       "cost": 0,
+       "weight": "0",
+       "equipmentCategory": "Weapon",
+       "contentType": "Core",
+       "contentSource": "PHB",
+       "damageNumberOfDice": 1,
+       "damageType": "Kinetic",
+       "weaponClassification": "Unarmed",
+       "damageDieType": 0,
+       "properties": [],
+       "propertiesMap": {},
+       "modes": [],
+       "quantity": 0,
+       "index": -1,
+       "isFound": true,
+       "equipped": true,
+       "attackBonus": 3,
+       "damageBonus": 1,
+       "ability": "Strength",
+       "isCustom": false,
+       "tweaks": {}
+      }
+     ],
+     "credits": 0,
+     "carryingCapacity": {
+      "encumbered": 50,
+      "heavilyEncumbered": 100,
+      "maxCapacity": 150,
+      "pushDragLift": 300
+     },
+     "superiority": false,
+     "techCasting": {
+      "pointsUsed": 0,
+      "maxPoints": 2,
+      "attackModifier": 5,
+      "saveDC": 13,
+      "maxPowerLevel": 0,
+      "powersKnown": [
+       {
+        "name": "Encrypted Message",
+        "powerTypeEnum": 2,
+        "powerType": "Tech",
+        "prerequisite": null,
+        "level": 0,
+        "castingPeriodEnum": 1,
+        "castingPeriod": "Action",
+        "castingPeriodText": "1 action",
+        "range": "120 feet",
+        "duration": "1 round",
+        "concentration": false,
+        "forceAlignmentEnum": 0,
+        "forceAlignment": "None",
+        "description": "You point your finger toward a creature within range that possesses a commlink and whisper a message. The target (and only the target) hears the message and can send an encrypted reply that only you can hear. These messages cannot be intercepted or decrypted by unenhanced means.\r\n\r\nYou can cast this power through solid objects if you are familiar with the target and know it is beyond the barrier. 1 foot of stone, 1 inch of common metal, a thin sheet of lead, or 3 feet of wood blocks the power. The power doesn't have to follow a straight line and can travel freely around corners or through openings.",
+        "higherLevelDescription": null,
+        "contentTypeEnum": 1,
+        "contentType": "Core",
+        "contentSourceEnum": 1,
+        "contentSource": "PHB",
+        "partitionKey": "Core",
+        "rowKey": "Encrypted Message",
+        "timestamp": "2023-05-30T20:15:09.2190531+00:00",
+        "eTag": "W/\"datetime'2023-05-30T20%3A15%3A09.2190531Z'\""
+       },
+       {
+        "name": "Absorb Energy",
+        "powerTypeEnum": 2,
+        "powerType": "Tech",
+        "prerequisite": null,
+        "level": 1,
+        "castingPeriodEnum": 3,
+        "castingPeriod": "Reaction",
+        "castingPeriodText": "1 reaction, which you take when you take acid, cold, energy, fire, ion, kinetic, lightning, or sonic damage",
+        "range": "Self",
+        "duration": "1 round",
+        "concentration": false,
+        "forceAlignmentEnum": 0,
+        "forceAlignment": "None",
+        "description": "The power captures some of the incoming energy, lessening its effect on you and storing it for your next melee attack. You have resistance to the triggering damage type until the start of your next turn. Also, the first time you hit with a melee attack on your next turn, the target takes an extra 1d6 damage of the triggering type, and the power ends.\r\n\r\n***Overcharge Tech.*** When you cast this power using a power slot of 2nd level or higher, the extra damage increases by 1d6 for each slot level above 1st.",
+        "higherLevelDescription": null,
+        "contentTypeEnum": 1,
+        "contentType": "Core",
+        "contentSourceEnum": 1,
+        "contentSource": "PHB",
+        "partitionKey": "Core",
+        "rowKey": "Absorb Energy",
+        "timestamp": "2023-05-30T20:15:09.2130569+00:00",
+        "eTag": "W/\"datetime'2023-05-30T20%3A15%3A09.2130569Z'\""
+       }
+      ]
+     },
+     "forceCasting": false,
+     "allForcePowers": [],
+     "combatFeatures": [
+      {
+       "name": "Martial Arts",
+       "text": "_**Monk:** 1st level_ \r\nYour practice of martial arts gives you mastery of combat styles that use unarmed strikes and monk weapons, which are vibroweapons with which you are proficient that lack the dexterity, heavy, special, and two-handed properties.\r\nYou gain the following benefits while you are unarmed or wielding only monk weapons and you aren't wearing armor or wielding a shield:\r\n- Your unarmed strikes and monk weapons gain the finesse property.\r\n- You can roll a d4 in place of the normal damage of your unarmed strike or monk weapon. This die changes as you gain monk levels, as shown in the Martial Arts column of the monk table.\r\n- You can use Dexterity instead of Strength whenever you would make a Strength (Athletics) check to grapple, shove, or trip a creature.\r\n- When you use the Attack action with an unarmed strike or a monk weapon on your turn, you can make one unarmed strike as a bonus action. \r\n- You can take the Dash or Disengage actions as a bonus action.\r\n> ##### Variant: Monks with Lightweapons\r\n> If monks gain lightweapon proficiency, consider letting them use lightweapons as monk weapons, provided the weapon lacks the dexterity, heavy, special, and two-handed properties.",
+       "level": 1,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Monk",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Monk-Martial Arts-1",
+       "timestamp": "2023-05-30T20:15:43.3985623+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.3985623Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Unarmored Defense",
+       "text": "_**Monk:** 1st level_\r\nWhile you are wearing no armor and not wielding a shield, your AC equals 10 + your Dexterity modifier + your Wisdom or Charisma modifier (your choice).",
+       "level": 1,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Monk",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Monk-Unarmored Defense-1",
+       "timestamp": "2023-05-30T20:15:43.3985623+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.3985623Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Sneak Attack",
+       "text": "_**Operative:** 1st level_\r\nYou know how to strike subtly and exploit a foe's distraction. Once per turn, you can deal an extra 1d6 damage to one creature you hit with a weapon attack if you have advantage on the attack roll. This damage is the same as the weapon's damage, and the attack must use a finesse or a ranged weapon. \r\nYou don't need advantage on the attack roll if another enemy of the target is within 5 feet of it, that enemy isn't incapacitated, and you don't have disadvantage on the attack roll.\r\nThe amount of the extra damage increases as you gain levels in this class, as shown in the Sneak Attack column of the operative table.",
+       "level": 1,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Operative",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Operative-Sneak Attack-1",
+       "timestamp": "2023-05-30T20:15:43.4385388+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.4385388Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Monastic Vows",
+       "text": "_**Monk:** 2nd level_\r\nYou've sworn two vows, as detailed at the end of the class description. You swear an additional vow at 7th, 13th, and 17th level.",
+       "level": 2,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Monk",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Monk-Monastic Vows-2",
+       "timestamp": "2023-05-30T20:15:43.3995607+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.3995607Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Cunning Action",
+       "text": "_**Operative:** 2nd level_\r\nYour quick thinking and agility allow you to move and act quickly. You can take the Dash, Disengage, or Hide actions as a bonus action.",
+       "level": 2,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Operative",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Operative-Cunning Action-2",
+       "timestamp": "2023-05-30T20:15:43.4385388+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.4385388Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Operative Exploits",
+       "text": "_**Operative:** 2nd level_\r\nYou've adopted two exploits, as detailed at the end of the class description. You adopt an additional exploit at 7th, 13th, and 17th level.",
+       "level": 2,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Operative",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Operative-Operative Exploits-2",
+       "timestamp": "2023-05-30T20:15:43.4385388+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.4385388Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Deflect Missiles",
+       "text": "_**Monk:** 3rd level_\r\nYou can use your reaction to deflect a projectile when you are dealt damage by a ranged weapon attack. When you do so, the damage you take from the attack is reduced by 1d10 + your Dexterity modifier + your monk level.\r\nIf you reduce the damage to 0, and the damage is kinetic, energy, or ion, you can redirect it at another target if you have a weapon capable of doing so. You can spend 1 focus point to make a ranged attack with a range of 20/60 as you deflect the projectile, as part of the same reaction. You make this attack with proficiency, regardless of your weapon proficiencies, and the projectile counts as a monk weapon for the attack.",
+       "level": 3,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Monk",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Monk-Deflect Missiles-3",
+       "timestamp": "2023-05-30T20:15:43.3995607+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.3995607Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Monastic Order",
+       "text": "_**Monk:** 3rd, 6th, 11th, and 17th level_\r\nYou commit yourself to one monastic order, which is detailed at the end of the class description. ",
+       "level": 3,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Monk",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Monk-Monastic Order-3",
+       "timestamp": "2023-05-30T20:15:43.3995607+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.3995607Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Techcasting",
+       "text": "_**Rakatan Order:** 3rd level_\r\nYou have derived powers from schematics with the aid of your wristpad. See chapter 10 for the general rules of techcasting and chapter 12 for the tech powers list.\r\n#### Tech Powers Known\r\nYou learn 3 tech powers of your choice, and you learn more at higher levels, as shown in the Tech Powers Known column of the Rakatan Order Techcasting table. You may not learn a tech power of a level higher than your Max Power Level.\r\n#### Tech Points\r\nYou have a number of tech points equal to half of your monk level (rounded up), as shown in the Tech Points column of the Rakatan Order Techcasting table, + your Intelligence, Wisdom, or Charisma modifier (your choice). You use these tech points to cast tech powers. You regain all expended tech points when you finish a short or long rest.\r\n#### Max Power Level\r\nMany tech powers can be overcharged, consuming more tech points to create a greater effect. You can overcharge these powers to a maximum level, which increases at higher levels, as shown in the Max Power Level column of the Rakatan Order Techcasting table.\r\nYou may only cast tech powers at 4th-level once. You regain the ability to do so after a long rest.\r\n#### Techcasting Ability\r\nIntelligence, Wisdom, or Charisma is your techcasting ability for your tech powers (your choice). You use this ability whenever a power refers to your techcasting ability. Additionally, you use this ability modifier when setting the saving throw DC for a tech power you cast and when making an attack roll with one.\r\n___\r\n**Tech save DC** = 8 + your proficiency bonus + your techcasting ability modifer\r\n___\r\n**Tech attack modifier** = your proficiency bonus + your techcasting ability modifer\r\n___\r\n#### Techcasting Focus\r\nYou use a wristpad (found in chapter 5) as a techcasting focus for your tech powers.",
+       "level": 3,
+       "sourceEnum": 1,
+       "source": "Archetype",
+       "sourceName": "Rakatan Order",
+       "metadata": null,
+       "partitionKey": "ExpandedContent",
+       "rowKey": "Archetype-Rakatan Order-Techcasting-3",
+       "timestamp": "2023-05-30T20:15:26.6231293+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A26.6231293Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Ability Score Improvement",
+       "text": "_**Monk:** 4th, 8th, 10th, 12th, 16th, and 19th level_\r\nYou can increase one ability score by 2, or you can increase two ability scores by 1. You can't increase an ability score above 20 using this feature.",
+       "level": 4,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Monk",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Monk-Ability Score Improvement-4",
+       "timestamp": "2023-05-30T20:15:43.4365397+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.4365397Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Slow Fall",
+       "text": "_**Monk:** 4th level_\r\nYou can use your reaction when you fall to reduce any falling damage you take by an amount equal to five times your monk level.",
+       "level": 4,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Monk",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Monk-Slow Fall-4",
+       "timestamp": "2023-05-30T20:15:43.4375396+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.4375396Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Extra Attack",
+       "text": "_**Monk:** 5th level_\r\nYou can attack twice, instead of once, whenever you take the Attack action on your turn.",
+       "level": 5,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Monk",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Monk-Extra Attack-5",
+       "timestamp": "2023-05-30T20:15:43.4375396+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.4375396Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Stunning Strike",
+       "text": "_**Monk:** 5th level_\r\nYou can interfere with an opponent's body. When you hit another creature with a melee weapon attack, you can spend 1 focus point to attempt a stunning strike. The target must succeed on a Constitution saving throw or be stunned until the end of your next turn.",
+       "level": 5,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Monk",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Monk-Stunning Strike-5",
+       "timestamp": "2023-05-30T20:15:43.4375396+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.4375396Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Ability Score Increase",
+       "text": "One ability score of your choice increases by 2, and two other ability scores of your choice increase by 1. Alternatively, four ability scores of your choice each increase by 1.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Ability Score Increase",
+       "timestamp": "2023-05-30T20:15:40.8130359+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.8130359Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Age",
+       "text": "Humans reach adulthood in their late teens and live less than a century.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Age",
+       "timestamp": "2023-05-30T20:15:40.814035+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.814035Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Alignment",
+       "text": "Humans tend toward no particular alignment. The best and worst are found among them.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Alignment",
+       "timestamp": "2023-05-30T20:15:40.814035+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.814035Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Defiant",
+       "text": "Humans are known to be stubborn and often refuse to give up, even against the worst odds. When you or a creature you can see that can see and understand you makes an ability check, attack roll, or saving throw, you can roll a d4 and add it to their roll (no action required). Once you've used this feature, you must complete a short or long rest before you can use it again.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Defiant",
+       "timestamp": "2023-05-30T20:15:40.814035+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.814035Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Human Versatility",
+       "text": "You gain proficiency in one skill, one tool, and one weapon of your choice.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Human Versatility",
+       "timestamp": "2023-05-30T20:15:40.814035+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.814035Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Languages",
+       "text": "You can speak, read, and write Galactic Basic and one extra language of your choice. Humans typically learn the languages of other peoples they deal with, including obscure dialects. They are fond of sprinkling their speech with words borrowed from other tongues: trandoshan curses, twi'lek musical expressions, chiss military phrases, and so on.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Languages",
+       "timestamp": "2023-05-30T20:15:40.814035+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.814035Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Proficiency",
+       "text": "You gain proficiency in one skill, one tool, and one weapon of your choice.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Proficiency",
+       "timestamp": "2022-05-29T01:36:26.4474283+00:00",
+       "eTag": "W/\"datetime'2022-05-29T01%3A36%3A26.4474283Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Size",
+       "text": "Humans vary widely in height and build, from barely 5 feet to well over 6 feet tall. Regardless of your position in that range, your size is Medium.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Size",
+       "timestamp": "2023-05-30T20:15:40.814035+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.814035Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Speed",
+       "text": "Your base walking speed is 30 feet.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Speed",
+       "timestamp": "2023-05-30T20:15:40.814035+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.814035Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Silver-Tongued",
+       "prerequisite": null,
+       "text": "You develop your conversational skill to better deceive others. You gain the following benefits: \r\n- Increase your Charisma score by 1, to a maximum of 20. \r\n- You gain proficiency in the Deception skill. If you are already proficient in it, you instead gain expertise in it. \r\n- When you take the Attack action, you can replace one attack with an attempt to deceive one humanoid you can see within 30 feet of you that can see and hear you. Make a Charisma (Deception) check contested by the target's Wisdom (Insight) check. If your check succeeds, your movement doesn't provoke opportunity attacks from the target and your attack rolls against it have advantage; both benefits last until the end of your next turn or until you use this ability on a different target. If your check fails, the target can't be deceived by you in this way for 1 hour.\r\n",
+       "attributesIncreased": [
+        "Charisma"
+       ],
+       "attributesIncreasedJson": "[\"Charisma\"]",
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Silver-Tongued",
+       "timestamp": "2023-05-30T20:15:09.5558628+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A09.5558628Z'\"",
+       "customIndex": -1,
+       "combat": true
+      },
+      {
+       "name": "Multiclass Improvement",
+       "prerequisite": "4th level",
+       "text": "You've learned to blend the skills of your different classes. Choose two of the multiclass improvement options, detailed later in this chapter. You can take this feat multiple times. \r\n",
+       "attributesIncreased": null,
+       "attributesIncreasedJson": "",
+       "contentTypeEnum": 2,
+       "contentType": "ExpandedContent",
+       "contentSourceEnum": 5,
+       "contentSource": "EC",
+       "partitionKey": "ExpandedContent",
+       "rowKey": "Multiclass Improvement",
+       "timestamp": "2023-05-06T20:49:24.5012011+00:00",
+       "eTag": "W/\"datetime'2023-05-06T20%3A49%3A24.5012011Z'\"",
+       "customIndex": 0,
+       "combat": true
+      }
+     ],
+     "nonCombatFeatures": [],
+     "backgroundFeature": {
+      "name": "Position of Privilege",
+      "combat": false,
+      "text": "Thanks to your noble birth, people are inclined to think the best of you. You are welcome in high society, and people assume you have the right to be wherever you are. The common folk make every effort to accommodate you and avoid your displeasure, and other people of high birth treat you as a member of the same social sphere. You can secure an audience with a local noble if you need to.\r\n"
+     },
+     "settings": {},
+     "notes": ""
+    },
+    "refs": {
+     "classes": {
+      "Monk": {
+       "name": "Monk",
+       "summary": "Unarmed combatant who uses focus to fuel abilities",
+       "primaryAbility": "Dexterity",
+       "hitDiceDieType": 8,
+       "hitPointsAtFirstLevel": "8 + your Constitution modifier",
+       "hitPointsAtHigherLevels": "1d8 (or 5) + your Constitution modifier per monk level after 1st",
+       "armorProficiencies": [
+        "None"
+       ],
+       "weaponProficiencies": [
+        "Simple blasters",
+        "simple vibroweapons",
+        "martial vibroweapons that lack the dexterity",
+        "heavy",
+        "special",
+        "and two-handed properties"
+       ],
+       "toolProficiencies": [
+        "None"
+       ],
+       "savingThrows": [
+        "Strength",
+        "Dexterity"
+       ],
+       "skillChoices": "Choose two from Acrobatics, Athletics, Insight, Lore, Perception, and Stealth",
+       "levelChanges": {
+        "1": {
+         "Level": "1st",
+         "Proficiency Bonus": "+2",
+         "Features": "Martial Arts, Unarmored Defense",
+         "Martial Arts": "d4",
+         "Focus Points": "�",
+         "Monastic Vows": "�",
+         "Unarmored Movement": "�"
+        },
+        "2": {
+         "Level": "2nd",
+         "Proficiency Bonus": "+2",
+         "Features": "Focus, Monastic Vows",
+         "Martial Arts": "d4",
+         "Focus Points": "2",
+         "Monastic Vows": "2",
+         "Unarmored Movement": "�"
+        },
+        "3": {
+         "Level": "3rd",
+         "Proficiency Bonus": "+2",
+         "Features": "Unarmored Movement, Deflect Missiles, Monastic Order",
+         "Martial Arts": "d4",
+         "Focus Points": "3",
+         "Monastic Vows": "2",
+         "Unarmored Movement": "+10 ft."
+        },
+        "4": {
+         "Level": "4th",
+         "Proficiency Bonus": "+2",
+         "Features": "Ability Score Improvement, Slow Fall",
+         "Martial Arts": "d4",
+         "Focus Points": "4",
+         "Monastic Vows": "2",
+         "Unarmored Movement": "+10 ft."
+        },
+        "5": {
+         "Level": "5th",
+         "Proficiency Bonus": "+3",
+         "Features": "Extra Attack, Stunning Strike",
+         "Martial Arts": "d6",
+         "Focus Points": "5",
+         "Monastic Vows": "2",
+         "Unarmored Movement": "+15 ft."
+        },
+        "6": {
+         "Level": "6th",
+         "Proficiency Bonus": "+3",
+         "Features": "Enhanced Strikes, Order feature",
+         "Martial Arts": "d6",
+         "Focus Points": "6",
+         "Monastic Vows": "2",
+         "Unarmored Movement": "+15 ft."
+        },
+        "7": {
+         "Level": "7th",
+         "Proficiency Bonus": "+3",
+         "Features": "Evasion, Stillness of Mind",
+         "Martial Arts": "d6",
+         "Focus Points": "7",
+         "Monastic Vows": "3",
+         "Unarmored Movement": "+15 ft."
+        },
+        "8": {
+         "Level": "8th",
+         "Proficiency Bonus": "+3",
+         "Features": "Ability Score Improvement",
+         "Martial Arts": "d6",
+         "Focus Points": "8",
+         "Monastic Vows": "3",
+         "Unarmored Movement": "+15 ft."
+        },
+        "9": {
+         "Level": "9th",
+         "Proficiency Bonus": "+4",
+         "Features": "Unarmored Movement Improvement",
+         "Martial Arts": "d8",
+         "Focus Points": "9",
+         "Monastic Vows": "3",
+         "Unarmored Movement": "+20 ft."
+        },
+        "10": {
+         "Level": "10th",
+         "Proficiency Bonus": "+4",
+         "Features": "Ability Score Improvement",
+         "Martial Arts": "d8",
+         "Focus Points": "10",
+         "Monastic Vows": "3",
+         "Unarmored Movement": "+20 ft."
+        },
+        "11": {
+         "Level": "11th",
+         "Proficiency Bonus": "+4",
+         "Features": "Order feature",
+         "Martial Arts": "d8",
+         "Focus Points": "11",
+         "Monastic Vows": "3",
+         "Unarmored Movement": "+20 ft."
+        },
+        "12": {
+         "Level": "12th",
+         "Proficiency Bonus": "+4",
+         "Features": "Ability Score Improvement",
+         "Martial Arts": "d8",
+         "Focus Points": "12",
+         "Monastic Vows": "3",
+         "Unarmored Movement": "+20 ft."
+        },
+        "13": {
+         "Level": "13th",
+         "Proficiency Bonus": "+5",
+         "Features": "Purity of Body",
+         "Martial Arts": "d10",
+         "Focus Points": "13",
+         "Monastic Vows": "4",
+         "Unarmored Movement": "+25 ft."
+        },
+        "14": {
+         "Level": "14th",
+         "Proficiency Bonus": "+5",
+         "Features": "Diamond Soul",
+         "Martial Arts": "d10",
+         "Focus Points": "14",
+         "Monastic Vows": "4",
+         "Unarmored Movement": "+25 ft."
+        },
+        "15": {
+         "Level": "15th",
+         "Proficiency Bonus": "+5",
+         "Features": "Timeless Vessel",
+         "Martial Arts": "d10",
+         "Focus Points": "15",
+         "Monastic Vows": "4",
+         "Unarmored Movement": "+25 ft."
+        },
+        "16": {
+         "Level": "16th",
+         "Proficiency Bonus": "+5",
+         "Features": "Ability Score Improvement",
+         "Martial Arts": "d10",
+         "Focus Points": "16",
+         "Monastic Vows": "4",
+         "Unarmored Movement": "+25 ft."
+        },
+        "17": {
+         "Level": "17th",
+         "Proficiency Bonus": "+6",
+         "Features": "Order feature",
+         "Martial Arts": "d12",
+         "Focus Points": "17",
+         "Monastic Vows": "5",
+         "Unarmored Movement": "+30 ft."
+        },
+        "18": {
+         "Level": "18th",
+         "Proficiency Bonus": "+6",
+         "Features": "Empty Body",
+         "Martial Arts": "d12",
+         "Focus Points": "18",
+         "Monastic Vows": "5",
+         "Unarmored Movement": "+30 ft."
+        },
+        "19": {
+         "Level": "19th",
+         "Proficiency Bonus": "+6",
+         "Features": "Ability Score Improvement",
+         "Martial Arts": "d12",
+         "Focus Points": "19",
+         "Monastic Vows": "5",
+         "Unarmored Movement": "+30 ft."
+        },
+        "20": {
+         "Level": "20th",
+         "Proficiency Bonus": "+6",
+         "Features": "Perfect Self",
+         "Martial Arts": "d12",
+         "Focus Points": "20",
+         "Monastic Vows": "5",
+         "Unarmored Movement": "+30 ft."
+        }
+       },
+       "casterType": "None",
+       "casterRatio": 0,
+       "multiClassProficiencies": [
+        "Simple vibroweapons",
+        "techblades"
+       ],
+       "archetypeFlavorName": "Monastic Orders"
+      },
+      "Operative": {
+       "name": "Operative",
+       "summary": "Controller who focuses on stealth and techniques",
+       "primaryAbility": "Dexterity",
+       "hitDiceDieType": 8,
+       "hitPointsAtFirstLevel": "8 + your Constitution modifier",
+       "hitPointsAtHigherLevels": "1d8 (or 5) + your Constitution modifier per operative level after 1st",
+       "armorProficiencies": [
+        "Light armor"
+       ],
+       "weaponProficiencies": [
+        "Simple blasters",
+        "simple vibroweapons",
+        "martial blasters that lack the auto",
+        "special",
+        "strength",
+        "and two-handed properties",
+        "martial vibroweapons with the finesse property"
+       ],
+       "toolProficiencies": [
+        "One specialist's kit of your choice"
+       ],
+       "savingThrows": [
+        "Dexterity",
+        "Intelligence"
+       ],
+       "skillChoices": "Choose any four",
+       "levelChanges": {
+        "1": {
+         "Level": "1st",
+         "Proficiency Bonus": "+2",
+         "Features": "Expertise, Sneak Attack",
+         "Sneak Attack": "1d6",
+         "Operative Exploits": "�"
+        },
+        "2": {
+         "Level": "2nd",
+         "Proficiency Bonus": "+2",
+         "Features": "Cunning Action, Operative Exploits",
+         "Sneak Attack": "1d6",
+         "Operative Exploits": "2"
+        },
+        "3": {
+         "Level": "3rd",
+         "Proficiency Bonus": "+2",
+         "Features": "Bad Feeling, Operative Practice",
+         "Sneak Attack": "2d6",
+         "Operative Exploits": "2"
+        },
+        "4": {
+         "Level": "4th",
+         "Proficiency Bonus": "+2",
+         "Features": "Ability Score Improvement",
+         "Sneak Attack": "2d6",
+         "Operative Exploits": "2"
+        },
+        "5": {
+         "Level": "5th",
+         "Proficiency Bonus": "+3",
+         "Features": "Uncanny Dodge",
+         "Sneak Attack": "3d6",
+         "Operative Exploits": "2"
+        },
+        "6": {
+         "Level": "6th",
+         "Proficiency Bonus": "+3",
+         "Features": "Expertise",
+         "Sneak Attack": "3d6",
+         "Operative Exploits": "2"
+        },
+        "7": {
+         "Level": "7th",
+         "Proficiency Bonus": "+3",
+         "Features": "Evasion",
+         "Sneak Attack": "4d6",
+         "Operative Exploits": "3"
+        },
+        "8": {
+         "Level": "8th",
+         "Proficiency Bonus": "+3",
+         "Features": "Ability Score Improvement",
+         "Sneak Attack": "4d6",
+         "Operative Exploits": "3"
+        },
+        "9": {
+         "Level": "9th",
+         "Proficiency Bonus": "+4",
+         "Features": "Practice feature",
+         "Sneak Attack": "5d6",
+         "Operative Exploits": "3"
+        },
+        "10": {
+         "Level": "10th",
+         "Proficiency Bonus": "+4",
+         "Features": "Ability Score Improvement",
+         "Sneak Attack": "5d6",
+         "Operative Exploits": "3"
+        },
+        "11": {
+         "Level": "11th",
+         "Proficiency Bonus": "+4",
+         "Features": "Reliable Talent",
+         "Sneak Attack": "6d6",
+         "Operative Exploits": "3"
+        },
+        "12": {
+         "Level": "12th",
+         "Proficiency Bonus": "+4",
+         "Features": "Ability Score Improvement",
+         "Sneak Attack": "6d6",
+         "Operative Exploits": "3"
+        },
+        "13": {
+         "Level": "13th",
+         "Proficiency Bonus": "+5",
+         "Features": "Practice feature",
+         "Sneak Attack": "7d6",
+         "Operative Exploits": "4"
+        },
+        "14": {
+         "Level": "14th",
+         "Proficiency Bonus": "+5",
+         "Features": "Blindsense",
+         "Sneak Attack": "7d6",
+         "Operative Exploits": "4"
+        },
+        "15": {
+         "Level": "15th",
+         "Proficiency Bonus": "+5",
+         "Features": "Slippery Mind",
+         "Sneak Attack": "8d6",
+         "Operative Exploits": "4"
+        },
+        "16": {
+         "Level": "16th",
+         "Proficiency Bonus": "+5",
+         "Features": "Ability Score Improvement",
+         "Sneak Attack": "8d6",
+         "Operative Exploits": "4"
+        },
+        "17": {
+         "Level": "17th",
+         "Proficiency Bonus": "+6",
+         "Features": "Practice feature",
+         "Sneak Attack": "9d6",
+         "Operative Exploits": "5"
+        },
+        "18": {
+         "Level": "18th",
+         "Proficiency Bonus": "+6",
+         "Features": "Elusive",
+         "Sneak Attack": "9d6",
+         "Operative Exploits": "5"
+        },
+        "19": {
+         "Level": "19th",
+         "Proficiency Bonus": "+6",
+         "Features": "Ability Score Improvement",
+         "Sneak Attack": "10d6",
+         "Operative Exploits": "5"
+        },
+        "20": {
+         "Level": "20th",
+         "Proficiency Bonus": "+6",
+         "Features": "Stroke of Luck",
+         "Sneak Attack": "10d6",
+         "Operative Exploits": "5"
+        }
+       },
+       "casterType": "None",
+       "casterRatio": 0,
+       "multiClassProficiencies": [
+        "Light armor"
+       ],
+       "archetypeFlavorName": "Operative Practices"
+      }
+     },
+     "archetypes": {
+      "Rakatan Order": {
+       "name": "Rakatan Order",
+       "className": "Monk",
+       "casterType": "None",
+       "casterRatio": 0,
+       "leveledTable": {
+        "3": [
+         {
+          "key": "Tech Powers Known",
+          "value": "3"
+         },
+         {
+          "key": "Tech Points",
+          "value": "2"
+         },
+         {
+          "key": "Max Power Level",
+          "value": "1st"
+         }
+        ],
+        "4": [
+         {
+          "key": "Tech Powers Known",
+          "value": "4"
+         },
+         {
+          "key": "Tech Points",
+          "value": "2"
+         },
+         {
+          "key": "Max Power Level",
+          "value": "1st"
+         }
+        ],
+        "5": [
+         {
+          "key": "Tech Powers Known",
+          "value": "5"
+         },
+         {
+          "key": "Tech Points",
+          "value": "3"
+         },
+         {
+          "key": "Max Power Level",
+          "value": "1st"
+         }
+        ],
+        "6": [
+         {
+          "key": "Tech Powers Known",
+          "value": "6"
+         },
+         {
+          "key": "Tech Points",
+          "value": "3"
+         },
+         {
+          "key": "Max Power Level",
+          "value": "1st"
+         }
+        ],
+        "7": [
+         {
+          "key": "Tech Powers Known",
+          "value": "7"
+         },
+         {
+          "key": "Tech Points",
+          "value": "4"
+         },
+         {
+          "key": "Max Power Level",
+          "value": "2nd"
+         }
+        ],
+        "8": [
+         {
+          "key": "Tech Powers Known",
+          "value": "8"
+         },
+         {
+          "key": "Tech Points",
+          "value": "4"
+         },
+         {
+          "key": "Max Power Level",
+          "value": "2nd"
+         }
+        ],
+        "9": [
+         {
+          "key": "Tech Powers Known",
+          "value": "9"
+         },
+         {
+          "key": "Tech Points",
+          "value": "5"
+         },
+         {
+          "key": "Max Power Level",
+          "value": "2nd"
+         }
+        ],
+        "10": [
+         {
+          "key": "Tech Powers Known",
+          "value": "10"
+         },
+         {
+          "key": "Tech Points",
+          "value": "5"
+         },
+         {
+          "key": "Max Power Level",
+          "value": "2nd"
+         }
+        ],
+        "11": [
+         {
+          "key": "Tech Powers Known",
+          "value": "11"
+         },
+         {
+          "key": "Tech Points",
+          "value": "6"
+         },
+         {
+          "key": "Max Power Level",
+          "value": "2nd"
+         }
+        ],
+        "12": [
+         {
+          "key": "Tech Powers Known",
+          "value": "12"
+         },
+         {
+          "key": "Tech Points",
+          "value": "6"
+         },
+         {
+          "key": "Max Power Level",
+          "value": "2nd"
+         }
+        ],
+        "13": [
+         {
+          "key": "Tech Powers Known",
+          "value": "13"
+         },
+         {
+          "key": "Tech Points",
+          "value": "7"
+         },
+         {
+          "key": "Max Power Level",
+          "value": "3rd"
+         }
+        ],
+        "14": [
+         {
+          "key": "Tech Powers Known",
+          "value": "14"
+         },
+         {
+          "key": "Tech Points",
+          "value": "7"
+         },
+         {
+          "key": "Max Power Level",
+          "value": "3rd"
+         }
+        ],
+        "15": [
+         {
+          "key": "Tech Powers Known",
+          "value": "15"
+         },
+         {
+          "key": "Tech Points",
+          "value": "8"
+         },
+         {
+          "key": "Max Power Level",
+          "value": "3rd"
+         }
+        ],
+        "16": [
+         {
+          "key": "Tech Powers Known",
+          "value": "16"
+         },
+         {
+          "key": "Tech Points",
+          "value": "8"
+         },
+         {
+          "key": "Max Power Level",
+          "value": "3rd"
+         }
+        ],
+        "17": [
+         {
+          "key": "Tech Powers Known",
+          "value": "17"
+         },
+         {
+          "key": "Tech Points",
+          "value": "9"
+         },
+         {
+          "key": "Max Power Level",
+          "value": "4th"
+         }
+        ],
+        "18": [
+         {
+          "key": "Tech Powers Known",
+          "value": "18"
+         },
+         {
+          "key": "Tech Points",
+          "value": "9"
+         },
+         {
+          "key": "Max Power Level",
+          "value": "4th"
+         }
+        ],
+        "19": [
+         {
+          "key": "Tech Powers Known",
+          "value": "19"
+         },
+         {
+          "key": "Tech Points",
+          "value": "10"
+         },
+         {
+          "key": "Max Power Level",
+          "value": "4th"
+         }
+        ],
+        "20": [
+         {
+          "key": "Tech Powers Known",
+          "value": "20"
+         },
+         {
+          "key": "Tech Points",
+          "value": "10"
+         },
+         {
+          "key": "Max Power Level",
+          "value": "4th"
+         }
+        ]
+       }
+      }
+     },
+     "species": {
+      "Human": {
+       "name": "Human",
+       "size": "Medium",
+       "homeworld": "Coruscant",
+       "language": "Galactic Basic",
+       "distinctions": "Biped with bilateral symmetry, opposable thumbs",
+       "skinColorOptions": "Light to dark tones",
+       "hairColorOptions": "Black, blond, orange, brown, gray to white (usually with age)",
+       "eyeColorOptions": "Amber, blue, brown, gray, green, hazel, purple, or red",
+       "heightAverage": "4'8\"",
+       "heightRollMod": "+2d10\"",
+       "weightAverage": "110 lb.",
+       "weightRollMod": "x(2d4) lb.",
+       "traits": [
+        {
+         "name": "Ability Score Increase",
+         "description": "One ability score of your choice increases by 2, and two other ability scores of your choice increase by 1. Alternatively, four ability scores of your choice each increase by 1."
+        },
+        {
+         "name": "Age",
+         "description": "Humans reach adulthood in their late teens and live less than a century."
+        },
+        {
+         "name": "Alignment",
+         "description": "Humans tend toward no particular alignment. The best and worst are found among them."
+        },
+        {
+         "name": "Size",
+         "description": "Humans vary widely in height and build, from barely 5 feet to well over 6 feet tall. Regardless of your position in that range, your size is Medium."
+        },
+        {
+         "name": "Speed",
+         "description": "Your base walking speed is 30 feet."
+        },
+        {
+         "name": "Defiant",
+         "description": "Humans are known to be stubborn and often refuse to give up, even against the worst odds. When you or a creature you can see that can see and understand you makes an ability check, attack roll, or saving throw, you can roll a d4 and add it to their roll (no action required). Once you've used this feature, you must complete a short or long rest before you can use it again."
+        },
+        {
+         "name": "Human Versatility",
+         "description": "You gain proficiency in one skill, one tool, and one weapon of your choice."
+        },
+        {
+         "name": "Languages",
+         "description": "You can speak, read, and write Galactic Basic and one extra language of your choice. Humans typically learn the languages of other peoples they deal with, including obscure dialects. They are fond of sprinkling their speech with words borrowed from other tongues: trandoshan curses, twi'lek musical expressions, chiss military phrases, and so on."
+        }
+       ],
+       "imageUrls": [
+        "https://starwars5ecentral.blob.core.windows.net/site-images/species/species_human.png"
+       ]
+      }
+     },
+     "backgrounds": {
+      "Noble": {
+       "name": "Noble",
+       "flavorText": "You understand wealth, power, and privilege. You carry a noble title, and your family owns land, collects taxes, and wields significant political influence. You might be a pampered aristocrat unfamiliar with manual labor, a former merchant just elevated to the nobility, or an honest, hard-working landowner who cares deeply about the people who live and work on your land.\r\n\r\nWork with your GM to come up with an appropriate title and determine how much authority that title carries, as well as your family and their influence on you. Is your family old and established, or was your title only recently bestowed? How much influence do they wield, how do people regard them?\r\n\r\nWhat's your position in the family? Are you the heir to the head of the family or the head itself? Are you far down the line of succession? How does the head of your family feel about your adventuring career? Are you in your family's good graces? \r\n\r\nDoes your family have a coat of arms you might wear, a signet ring, or particular colors? \r\n\r\nThese details help establish your family and your title as features of the world of the campaign.\r\n",
+       "skillProficiencies": "Choose two from Deception, Insight, Lore, and Persuasion",
+       "toolProficiencies": "One type of gaming set",
+       "languages": "One of your choice",
+       "equipment": "A set of fine clothes, a signet ring, a letter of pedigree, and a purse containing 250 cr",
+       "featureName": "Position of Privilege",
+       "featureText": "Thanks to your noble birth, people are inclined to think the best of you. You are welcome in high society, and people assume you have the right to be wherever you are. The common folk make every effort to accommodate you and avoid your displeasure, and other people of high birth treat you as a member of the same social sphere. You can secure an audience with a local noble if you need to.\r\n",
+       "flavorName": null,
+       "flavorDescription": null
+      }
+     },
+     "feats": {
+      "Silver-Tongued": {
+       "name": "Silver-Tongued",
+       "prerequisite": null,
+       "text": "You develop your conversational skill to better deceive others. You gain the following benefits: \r\n- Increase your Charisma score by 1, to a maximum of 20. \r\n- You gain proficiency in the Deception skill. If you are already proficient in it, you instead gain expertise in it. \r\n- When you take the Attack action, you can replace one attack with an attempt to deceive one humanoid you can see within 30 feet of you that can see and hear you. Make a Charisma (Deception) check contested by the target's Wisdom (Insight) check. If your check succeeds, your movement doesn't provoke opportunity attacks from the target and your attack rolls against it have advantage; both benefits last until the end of your next turn or until you use this ability on a different target. If your check fails, the target can't be deceived by you in this way for 1 hour.\r\n",
+       "attributesIncreased": [
+        "Charisma"
+       ],
+       "contentType": "Core",
+       "contentSource": "PHB"
+      },
+      "Multiclass Improvement": {
+       "name": "Multiclass Improvement",
+       "prerequisite": "4th level",
+       "text": "You've learned to blend the skills of your different classes. Choose two of the multiclass improvement options, detailed later in this chapter. You can take this feat multiple times. \r\n",
+       "attributesIncreased": null,
+       "contentType": "ExpandedContent",
+       "contentSource": "EC"
+      }
+     },
+     "maneuvers": {},
+     "choices": {},
+     "conditions": [
+      {
+       "name": "Blinded",
+       "description": "A blinded creature can't see and automatically fails any ability check that requires sight.\\r\\n- Attack rolls against the creature have advantage, and the creature's attack rolls have disadvantage."
+      },
+      {
+       "name": "Charmed",
+       "description": "A charmed creature can't attack the charmer or target the charmer with harmful abilities or enhanced effects.\\r\\n- The charmer has advantage on any ability check to interact socially with the creature."
+      },
+      {
+       "name": "Deafened",
+       "description": "A deafened creature can't hear and automatically fails any ability check that requires hearing."
+      },
+      {
+       "name": "Exhaustion",
+       "description": "Some special abilities and environmental hazards, such as and the long-term effects of freezing or scorching temperatures, can lead to a special condition called exhaustion. Exhaustion is measured in six levels. An effect can give a creature one or more levels of exhaustion, as specified in the effect's description. Exhaustion Level\\r\\n\\r\\n|Level|Effect|\\r\\n|:--:|:--|\\r\\n|1|Disadvantage on ability checks|\\r\\n|2|Speed halved|\\r\\n|3|Disadvantage on attack rolls and saving throws|\\r\\n|4|Hit point maximum halved|\\r\\n|5|Speed reduced to 0|\\r\\n|6|Death|\\r\\n\\r\\nIf an already exhausted creature suffers another effect that causes exhaustion, its current level of exhaustion increases by the amount specified in the effect's description.\\r\\n\\r\\nA creature suffers the effect of its current level of exhaustion as well as all lower levels. For example, a creature suffering level 2 exhaustion has its speed halved and has disadvantage on ability checks.\\r\\n\\r\\nAn effect that removes exhaustion reduces its level as specified in the effect's description, with all exhaustion effects ending if a creature's exhaustion level is reduced below 1.\\r\\n\\r\\nFinishing a long rest reduces a creature's exhaustion level by 1, provided that the creature has also ingested some food and drink."
+      },
+      {
+       "name": "Frightened",
+       "description": "A frightened creature has disadvantage on ability checks and attack rolls while the source of its fear is within line of sight.\\r\\n- The creature can't willingly move closer to the source of its fear."
+      },
+      {
+       "name": "Grappled",
+       "description": "A grappled creature's speed becomes 0, and it can't benefit from any bonus to its speed.\\r\\n- The condition ends if the grappler is incapacitated (see the condition).\\r\\n- The condition also ends if an effect removes the grappled creature from the reach of the grappler or grappling effect."
+      },
+      {
+       "name": "Incapacitated",
+       "description": "An incapacitated creature can't take actions or reactions."
+      },
+      {
+       "name": "Invisible",
+       "description": "An invisible creature is impossible to see without the aid of powers or a special sense. For the purpose of hiding, the creature is heavily obscured. The creature's location can be detected by any noise it makes or any tracks it leaves.\\r\\n- Attack rolls against the creature have disadvantage, and the creature's attack rolls have advantage."
+      },
+      {
+       "name": "Paralyzed",
+       "description": "A paralyzed creature is incapacitated (see the condition) and can't move or speak.\\r\\n- The creature automatically fails Strength and Dexterity saving throws. Attack rolls against the creature have advantage.\\r\\n- Any attack that hits the creature is a critical hit if the attacker is within 5 feet of the creature."
+      },
+      {
+       "name": "Petrified",
+       "description": "A petrified creature is transformed, along with any object it is wearing or carrying, into a solid inanimate substance (usually stone). Its weight increases by a factor of ten, and it ceases aging.\\r\\n- The creature is incapacitated (see the condition), can't move or speak, and is unaware of its surroundings.\\r\\n- Attack rolls against the creature have advantage. \\r\\n- The creature automatically fails Strength and Dexterity saving throws.\\r\\n- The creature has resistance to all damage.\\r\\n- The creature is immune to poison and disease, although a poison or disease already in its system is suspended, not neutralized."
+      },
+      {
+       "name": "Poisoned",
+       "description": "A poisoned creature has disadvantage on attack rolls and ability checks."
+      },
+      {
+       "name": "Prone",
+       "description": "A prone creature's only movement option is to crawl, unless it stands up and thereby ends the condition. \\r\\n- The creature has disadvantage on melee attack rolls.\\r\\n- The creature has disadvantage on ranged attack rolls against targets within 30 feet.\\r\\n- An attack roll against the creature has advantage if the attacker is within 5 feet of the creature. Otherwise, the attack roll has disadvantage."
+      },
+      {
+       "name": "Restrained",
+       "description": "A restrained creature's speed becomes 0, and it can't benefit from any bonus to its speed.\\r\\n- Attack rolls against the creature have advantage, and the creature's attack rolls have disadvantage.\\r\\n- The creature has disadvantage on Dexterity saving throws."
+      },
+      {
+       "name": "Shocked",
+       "description": "A shocked creature's speed is reduced by half.\\r\\n- The creature can't take reactions."
+      },
+      {
+       "name": "Stunned",
+       "description": "A stunned creature is incapacitated (see the condition), can't move, and can speak only falteringly.\\r\\n- The creature automatically fails Strength and Dexterity saving throws.\\r\\n- Attack rolls against the creature have advantage."
+      },
+      {
+       "name": "Unconscious",
+       "description": "An unconscious creature is incapacitated (see the condition), can't move or speak, and is unaware of its surroundings\\r\\n- The creature drops whatever it's holding and falls prone.\\r\\n- The creature automatically fails Strength and Dexterity saving throws.\\r\\n- Attack rolls against the creature have advantage.\\r\\n- Any attack that hits the creature is a critical hit if the attacker is within 5 feet of the creature."
+      }
+     ]
+    },
+    "validation": {
+     "code": 0,
+     "message": "All checks passed",
+     "isValid": true
+    },
+    "error": null,
+    "source": "file",
+    "loadedAt": 1792187619334,
+    "meta": {
+     "bridge": 9,
+     "dataVersion": 199,
+     "loggedIn": true,
+     "sourceUrl": "https://sw5e.com/tools/mycharacters",
+     "extractedAt": 1792187619046
+    }
+   }
+  },
+  "derived": {
+   "file:rakatan-test-(local)": {
+    "basis": "{\"background\":{\"feat\":{\"name\":\"Silver-Tongued\",\"type\":\"Feat\"},\"feature\":\"\",\"name\":\"Noble\"},\"baseAbilityScores\":{\"Charisma\":8,\"Constitution\":14,\"Dexterity\":16,\"Intelligence\":14,\"Strength\":10,\"Wisdom\":16},\"builderVersion\":\"0.7.6\",\"characteristics\":null,\"classes\":[{\"abilityScoreImprovements\":[{\"abilitiesIncreased\":[{\"name\":\"Dexterity\",\"value\":2}],\"type\":\"ASI\"}],\"archetype\":{\"name\":\"Rakatan Order\",\"techPowers\":[\"Encrypted Message\",\"Absorb Energy\"]},\"hitPoints\":[5,5,5,5],\"levels\":5,\"name\":\"Monk\"},{\"abilityScoreImprovements\":[],\"hitPoints\":[5,5],\"levels\":2,\"name\":\"Operative\"}],\"credits\":null,\"currentStats\":{\"conditions\":[],\"deathSaves\":{\"failures\":0,\"successes\":0},\"exhaustion\":0,\"featuresTimesUsed\":{},\"forcePointsUsed\":0,\"hasInspiration\":false,\"hitDiceUsed\":{},\"hitPointsLost\":0,\"superiorityDiceUsed\":0,\"techPointsUsed\":0,\"temporaryHitPoints\":0},\"customEquipment\":[],\"customFeats\":[\"Multiclass Improvement\"],\"customFeatures\":[],\"customForcePowers\":[],\"customLanguages\":[],\"customProficiencies\":[],\"customTechPowers\":[],\"equipment\":[],\"experiencePoints\":6500,\"featureChoices\":{\"Feat: Multiclass Improvement\":[{\"name\":\"Operative\",\"note\":\"Monk\"}]},\"featureNotes\":null,\"image\":\"\",\"name\":\"Rakatan Test (local)\",\"notes\":null,\"settings\":{},\"species\":{\"abilityScoreImprovement\":{},\"abilityScoreImprovementSelectedOption\":0,\"language\":\"Galactic Basic\",\"name\":\"Human\"},\"tweaks\":{\"abilityScores\":{\"Charisma\":{\"skills\":{\"Deception\":{\"bonus\":0,\"proficiency\":\"Proficient\"}}}},\"armorClass\":{\"bonus\":3},\"speed\":{\"base\":{\"bonus\":15}}}}",
+    "complete": {
+     "name": "Rakatan Test (local)",
+     "builderVersion": "0.7.6",
+     "image": "",
+     "characteristics": {
+      "alignment": "Lawful Light"
+     },
+     "tweaks": {
+      "armorClass": {
+       "bonus": 3
+      },
+      "speed": {
+       "base": {
+        "bonus": 15
+       }
+      },
+      "abilityScores": {
+       "Charisma": {
+        "skills": {
+         "Deception": {
+          "proficiency": "Proficient",
+          "bonus": 0
+         }
+        }
+       }
+      }
+     },
+     "customProficiencies": [],
+     "customLanguages": [],
+     "customFeatures": [],
+     "customTechPowers": [],
+     "customForcePowers": [],
+     "customEquipment": [],
+     "numCustomFeats": 1,
+     "currentLevel": 7,
+     "classText": "Monk (Rakatan Order) 5, Operative 2",
+     "alignment": "Lawful Light",
+     "species": "Human",
+     "background": "Noble",
+     "experiencePoints": {
+      "previousLevel": 23000,
+      "current": 6500,
+      "nextLevel": 34000,
+      "isCorrect": false,
+      "errorMessage": "Experience too low. Increase experience or remove class levels below"
+     },
+     "abilityScores": {
+      "Strength": {
+       "value": 10,
+       "modifier": 0,
+       "savingThrow": {
+        "modifier": 3,
+        "proficiency": "proficient"
+       },
+       "skills": [
+        {
+         "name": "Athletics",
+         "modifier": 0,
+         "proficiency": "none"
+        }
+       ]
+      },
+      "Dexterity": {
+       "value": 16,
+       "modifier": 3,
+       "savingThrow": {
+        "modifier": 6,
+        "proficiency": "proficient"
+       },
+       "skills": [
+        {
+         "name": "Acrobatics",
+         "modifier": 3,
+         "proficiency": "none"
+        },
+        {
+         "name": "Sleight of Hand",
+         "modifier": 3,
+         "proficiency": "none"
+        },
+        {
+         "name": "Stealth",
+         "modifier": 3,
+         "proficiency": "none"
+        }
+       ]
+      },
+      "Constitution": {
+       "value": 14,
+       "modifier": 2,
+       "savingThrow": {
+        "modifier": 2,
+        "proficiency": "none"
+       },
+       "skills": []
+      },
+      "Intelligence": {
+       "value": 14,
+       "modifier": 2,
+       "savingThrow": {
+        "modifier": 2,
+        "proficiency": "none"
+       },
+       "skills": [
+        {
+         "name": "Investigation",
+         "modifier": 2,
+         "proficiency": "none"
+        },
+        {
+         "name": "Lore",
+         "modifier": 2,
+         "proficiency": "none"
+        },
+        {
+         "name": "Nature",
+         "modifier": 2,
+         "proficiency": "none"
+        },
+        {
+         "name": "Piloting",
+         "modifier": 2,
+         "proficiency": "none"
+        },
+        {
+         "name": "Technology",
+         "modifier": 2,
+         "proficiency": "none"
+        }
+       ]
+      },
+      "Wisdom": {
+       "value": 16,
+       "modifier": 3,
+       "savingThrow": {
+        "modifier": 3,
+        "proficiency": "none"
+       },
+       "skills": [
+        {
+         "name": "Animal Handling",
+         "modifier": 3,
+         "proficiency": "none"
+        },
+        {
+         "name": "Insight",
+         "modifier": 3,
+         "proficiency": "none"
+        },
+        {
+         "name": "Medicine",
+         "modifier": 3,
+         "proficiency": "none"
+        },
+        {
+         "name": "Perception",
+         "modifier": 3,
+         "proficiency": "none"
+        },
+        {
+         "name": "Survival",
+         "modifier": 3,
+         "proficiency": "none"
+        }
+       ]
+      },
+      "Charisma": {
+       "value": 8,
+       "modifier": -1,
+       "savingThrow": {
+        "modifier": -1,
+        "proficiency": "none"
+       },
+       "skills": [
+        {
+         "name": "Deception",
+         "modifier": 2,
+         "proficiency": "proficient"
+        },
+        {
+         "name": "Intimidation",
+         "modifier": -1,
+         "proficiency": "none"
+        },
+        {
+         "name": "Performance",
+         "modifier": -1,
+         "proficiency": "none"
+        },
+        {
+         "name": "Persuasion",
+         "modifier": -1,
+         "proficiency": "none"
+        }
+       ]
+      }
+     },
+     "proficiencyBonus": 3,
+     "initiative": 3,
+     "armorClass": 16,
+     "armorList": [],
+     "passivePerception": 13,
+     "inspiration": false,
+     "vision": "normal",
+     "speed": {
+      "base": "45 ft",
+      "hour": "4.5 miles",
+      "day": "36 miles",
+      "special": ""
+     },
+     "hitPoints": {
+      "current": 52,
+      "temporary": 0,
+      "maximum": 52,
+      "hitDice": [
+       {
+        "size": "d8",
+        "current": 7,
+        "maximum": 7
+       }
+      ],
+      "deathSaves": {
+       "successes": 0,
+       "failures": 0
+      },
+      "resting": {
+       "hitDieBonus": 2,
+       "numHitDiceUsed": 0,
+       "hitDiceRestored": [],
+       "techPointsUsed": 0,
+       "forcePointsUsed": 0,
+       "shortRestFeatures": [],
+       "longRestFeatures": []
+      }
+     },
+     "conditions": [],
+     "exhaustion": 0,
+     "proficiencies": [
+      {
+       "name": "Simple blasters",
+       "type": "weapon"
+      },
+      {
+       "name": "simple vibroweapons",
+       "type": "weapon"
+      },
+      {
+       "name": "martial vibroweapons that lack the dexterity",
+       "type": "weapon"
+      },
+      {
+       "name": "heavy",
+       "type": "weapon"
+      },
+      {
+       "name": "special",
+       "type": "weapon"
+      },
+      {
+       "name": "and two-handed properties",
+       "type": "weapon"
+      },
+      {
+       "name": "None",
+       "type": "armor"
+      },
+      {
+       "name": "Light armor",
+       "type": "other"
+      },
+      {
+       "name": "One type of gaming set",
+       "type": "tool"
+      }
+     ],
+     "skillAndSaveProficiencies": [
+      "Deception",
+      "Strength Saving Throws",
+      "Dexterity Saving Throws"
+     ],
+     "languages": [
+      "Galactic Basic",
+      "Galactic Basic"
+     ],
+     "equipment": [],
+     "attunement": {
+      "current": 0,
+      "maximum": 3,
+      "hasAttunable": false
+     },
+     "weapons": [
+      {
+       "name": "Unarmed Strike",
+       "description": null,
+       "cost": 0,
+       "weight": "0",
+       "equipmentCategory": "Weapon",
+       "contentType": "Core",
+       "contentSource": "PHB",
+       "damageNumberOfDice": 1,
+       "damageType": "Kinetic",
+       "weaponClassification": "Unarmed",
+       "damageDieType": 0,
+       "properties": [],
+       "propertiesMap": {},
+       "modes": [],
+       "quantity": 0,
+       "index": -1,
+       "isFound": true,
+       "equipped": true,
+       "attackBonus": 3,
+       "damageBonus": 1,
+       "ability": "Strength",
+       "isCustom": false,
+       "tweaks": {}
+      }
+     ],
+     "credits": 0,
+     "carryingCapacity": {
+      "encumbered": 50,
+      "heavilyEncumbered": 100,
+      "maxCapacity": 150,
+      "pushDragLift": 300
+     },
+     "superiority": false,
+     "techCasting": {
+      "pointsUsed": 0,
+      "maxPoints": 2,
+      "attackModifier": 5,
+      "saveDC": 13,
+      "maxPowerLevel": 0,
+      "powersKnown": [
+       {
+        "name": "Encrypted Message",
+        "powerTypeEnum": 2,
+        "powerType": "Tech",
+        "prerequisite": null,
+        "level": 0,
+        "castingPeriodEnum": 1,
+        "castingPeriod": "Action",
+        "castingPeriodText": "1 action",
+        "range": "120 feet",
+        "duration": "1 round",
+        "concentration": false,
+        "forceAlignmentEnum": 0,
+        "forceAlignment": "None",
+        "description": "You point your finger toward a creature within range that possesses a commlink and whisper a message. The target (and only the target) hears the message and can send an encrypted reply that only you can hear. These messages cannot be intercepted or decrypted by unenhanced means.\r\n\r\nYou can cast this power through solid objects if you are familiar with the target and know it is beyond the barrier. 1 foot of stone, 1 inch of common metal, a thin sheet of lead, or 3 feet of wood blocks the power. The power doesn't have to follow a straight line and can travel freely around corners or through openings.",
+        "higherLevelDescription": null,
+        "contentTypeEnum": 1,
+        "contentType": "Core",
+        "contentSourceEnum": 1,
+        "contentSource": "PHB",
+        "partitionKey": "Core",
+        "rowKey": "Encrypted Message",
+        "timestamp": "2023-05-30T20:15:09.2190531+00:00",
+        "eTag": "W/\"datetime'2023-05-30T20%3A15%3A09.2190531Z'\""
+       },
+       {
+        "name": "Absorb Energy",
+        "powerTypeEnum": 2,
+        "powerType": "Tech",
+        "prerequisite": null,
+        "level": 1,
+        "castingPeriodEnum": 3,
+        "castingPeriod": "Reaction",
+        "castingPeriodText": "1 reaction, which you take when you take acid, cold, energy, fire, ion, kinetic, lightning, or sonic damage",
+        "range": "Self",
+        "duration": "1 round",
+        "concentration": false,
+        "forceAlignmentEnum": 0,
+        "forceAlignment": "None",
+        "description": "The power captures some of the incoming energy, lessening its effect on you and storing it for your next melee attack. You have resistance to the triggering damage type until the start of your next turn. Also, the first time you hit with a melee attack on your next turn, the target takes an extra 1d6 damage of the triggering type, and the power ends.\r\n\r\n***Overcharge Tech.*** When you cast this power using a power slot of 2nd level or higher, the extra damage increases by 1d6 for each slot level above 1st.",
+        "higherLevelDescription": null,
+        "contentTypeEnum": 1,
+        "contentType": "Core",
+        "contentSourceEnum": 1,
+        "contentSource": "PHB",
+        "partitionKey": "Core",
+        "rowKey": "Absorb Energy",
+        "timestamp": "2023-05-30T20:15:09.2130569+00:00",
+        "eTag": "W/\"datetime'2023-05-30T20%3A15%3A09.2130569Z'\""
+       }
+      ]
+     },
+     "forceCasting": false,
+     "allForcePowers": [],
+     "combatFeatures": [
+      {
+       "name": "Martial Arts",
+       "text": "_**Monk:** 1st level_ \r\nYour practice of martial arts gives you mastery of combat styles that use unarmed strikes and monk weapons, which are vibroweapons with which you are proficient that lack the dexterity, heavy, special, and two-handed properties.\r\nYou gain the following benefits while you are unarmed or wielding only monk weapons and you aren't wearing armor or wielding a shield:\r\n- Your unarmed strikes and monk weapons gain the finesse property.\r\n- You can roll a d4 in place of the normal damage of your unarmed strike or monk weapon. This die changes as you gain monk levels, as shown in the Martial Arts column of the monk table.\r\n- You can use Dexterity instead of Strength whenever you would make a Strength (Athletics) check to grapple, shove, or trip a creature.\r\n- When you use the Attack action with an unarmed strike or a monk weapon on your turn, you can make one unarmed strike as a bonus action. \r\n- You can take the Dash or Disengage actions as a bonus action.\r\n> ##### Variant: Monks with Lightweapons\r\n> If monks gain lightweapon proficiency, consider letting them use lightweapons as monk weapons, provided the weapon lacks the dexterity, heavy, special, and two-handed properties.",
+       "level": 1,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Monk",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Monk-Martial Arts-1",
+       "timestamp": "2023-05-30T20:15:43.3985623+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.3985623Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Unarmored Defense",
+       "text": "_**Monk:** 1st level_\r\nWhile you are wearing no armor and not wielding a shield, your AC equals 10 + your Dexterity modifier + your Wisdom or Charisma modifier (your choice).",
+       "level": 1,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Monk",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Monk-Unarmored Defense-1",
+       "timestamp": "2023-05-30T20:15:43.3985623+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.3985623Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Sneak Attack",
+       "text": "_**Operative:** 1st level_\r\nYou know how to strike subtly and exploit a foe's distraction. Once per turn, you can deal an extra 1d6 damage to one creature you hit with a weapon attack if you have advantage on the attack roll. This damage is the same as the weapon's damage, and the attack must use a finesse or a ranged weapon. \r\nYou don't need advantage on the attack roll if another enemy of the target is within 5 feet of it, that enemy isn't incapacitated, and you don't have disadvantage on the attack roll.\r\nThe amount of the extra damage increases as you gain levels in this class, as shown in the Sneak Attack column of the operative table.",
+       "level": 1,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Operative",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Operative-Sneak Attack-1",
+       "timestamp": "2023-05-30T20:15:43.4385388+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.4385388Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Monastic Vows",
+       "text": "_**Monk:** 2nd level_\r\nYou've sworn two vows, as detailed at the end of the class description. You swear an additional vow at 7th, 13th, and 17th level.",
+       "level": 2,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Monk",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Monk-Monastic Vows-2",
+       "timestamp": "2023-05-30T20:15:43.3995607+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.3995607Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Cunning Action",
+       "text": "_**Operative:** 2nd level_\r\nYour quick thinking and agility allow you to move and act quickly. You can take the Dash, Disengage, or Hide actions as a bonus action.",
+       "level": 2,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Operative",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Operative-Cunning Action-2",
+       "timestamp": "2023-05-30T20:15:43.4385388+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.4385388Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Operative Exploits",
+       "text": "_**Operative:** 2nd level_\r\nYou've adopted two exploits, as detailed at the end of the class description. You adopt an additional exploit at 7th, 13th, and 17th level.",
+       "level": 2,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Operative",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Operative-Operative Exploits-2",
+       "timestamp": "2023-05-30T20:15:43.4385388+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.4385388Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Deflect Missiles",
+       "text": "_**Monk:** 3rd level_\r\nYou can use your reaction to deflect a projectile when you are dealt damage by a ranged weapon attack. When you do so, the damage you take from the attack is reduced by 1d10 + your Dexterity modifier + your monk level.\r\nIf you reduce the damage to 0, and the damage is kinetic, energy, or ion, you can redirect it at another target if you have a weapon capable of doing so. You can spend 1 focus point to make a ranged attack with a range of 20/60 as you deflect the projectile, as part of the same reaction. You make this attack with proficiency, regardless of your weapon proficiencies, and the projectile counts as a monk weapon for the attack.",
+       "level": 3,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Monk",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Monk-Deflect Missiles-3",
+       "timestamp": "2023-05-30T20:15:43.3995607+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.3995607Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Monastic Order",
+       "text": "_**Monk:** 3rd, 6th, 11th, and 17th level_\r\nYou commit yourself to one monastic order, which is detailed at the end of the class description. ",
+       "level": 3,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Monk",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Monk-Monastic Order-3",
+       "timestamp": "2023-05-30T20:15:43.3995607+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.3995607Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Techcasting",
+       "text": "_**Rakatan Order:** 3rd level_\r\nYou have derived powers from schematics with the aid of your wristpad. See chapter 10 for the general rules of techcasting and chapter 12 for the tech powers list.\r\n#### Tech Powers Known\r\nYou learn 3 tech powers of your choice, and you learn more at higher levels, as shown in the Tech Powers Known column of the Rakatan Order Techcasting table. You may not learn a tech power of a level higher than your Max Power Level.\r\n#### Tech Points\r\nYou have a number of tech points equal to half of your monk level (rounded up), as shown in the Tech Points column of the Rakatan Order Techcasting table, + your Intelligence, Wisdom, or Charisma modifier (your choice). You use these tech points to cast tech powers. You regain all expended tech points when you finish a short or long rest.\r\n#### Max Power Level\r\nMany tech powers can be overcharged, consuming more tech points to create a greater effect. You can overcharge these powers to a maximum level, which increases at higher levels, as shown in the Max Power Level column of the Rakatan Order Techcasting table.\r\nYou may only cast tech powers at 4th-level once. You regain the ability to do so after a long rest.\r\n#### Techcasting Ability\r\nIntelligence, Wisdom, or Charisma is your techcasting ability for your tech powers (your choice). You use this ability whenever a power refers to your techcasting ability. Additionally, you use this ability modifier when setting the saving throw DC for a tech power you cast and when making an attack roll with one.\r\n___\r\n**Tech save DC** = 8 + your proficiency bonus + your techcasting ability modifer\r\n___\r\n**Tech attack modifier** = your proficiency bonus + your techcasting ability modifer\r\n___\r\n#### Techcasting Focus\r\nYou use a wristpad (found in chapter 5) as a techcasting focus for your tech powers.",
+       "level": 3,
+       "sourceEnum": 1,
+       "source": "Archetype",
+       "sourceName": "Rakatan Order",
+       "metadata": null,
+       "partitionKey": "ExpandedContent",
+       "rowKey": "Archetype-Rakatan Order-Techcasting-3",
+       "timestamp": "2023-05-30T20:15:26.6231293+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A26.6231293Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Ability Score Improvement",
+       "text": "_**Monk:** 4th, 8th, 10th, 12th, 16th, and 19th level_\r\nYou can increase one ability score by 2, or you can increase two ability scores by 1. You can't increase an ability score above 20 using this feature.",
+       "level": 4,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Monk",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Monk-Ability Score Improvement-4",
+       "timestamp": "2023-05-30T20:15:43.4365397+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.4365397Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Slow Fall",
+       "text": "_**Monk:** 4th level_\r\nYou can use your reaction when you fall to reduce any falling damage you take by an amount equal to five times your monk level.",
+       "level": 4,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Monk",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Monk-Slow Fall-4",
+       "timestamp": "2023-05-30T20:15:43.4375396+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.4375396Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Extra Attack",
+       "text": "_**Monk:** 5th level_\r\nYou can attack twice, instead of once, whenever you take the Attack action on your turn.",
+       "level": 5,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Monk",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Monk-Extra Attack-5",
+       "timestamp": "2023-05-30T20:15:43.4375396+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.4375396Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Stunning Strike",
+       "text": "_**Monk:** 5th level_\r\nYou can interfere with an opponent's body. When you hit another creature with a melee weapon attack, you can spend 1 focus point to attempt a stunning strike. The target must succeed on a Constitution saving throw or be stunned until the end of your next turn.",
+       "level": 5,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Monk",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Monk-Stunning Strike-5",
+       "timestamp": "2023-05-30T20:15:43.4375396+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.4375396Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Ability Score Increase",
+       "text": "One ability score of your choice increases by 2, and two other ability scores of your choice increase by 1. Alternatively, four ability scores of your choice each increase by 1.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Ability Score Increase",
+       "timestamp": "2023-05-30T20:15:40.8130359+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.8130359Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Age",
+       "text": "Humans reach adulthood in their late teens and live less than a century.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Age",
+       "timestamp": "2023-05-30T20:15:40.814035+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.814035Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Alignment",
+       "text": "Humans tend toward no particular alignment. The best and worst are found among them.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Alignment",
+       "timestamp": "2023-05-30T20:15:40.814035+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.814035Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Defiant",
+       "text": "Humans are known to be stubborn and often refuse to give up, even against the worst odds. When you or a creature you can see that can see and understand you makes an ability check, attack roll, or saving throw, you can roll a d4 and add it to their roll (no action required). Once you've used this feature, you must complete a short or long rest before you can use it again.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Defiant",
+       "timestamp": "2023-05-30T20:15:40.814035+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.814035Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Human Versatility",
+       "text": "You gain proficiency in one skill, one tool, and one weapon of your choice.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Human Versatility",
+       "timestamp": "2023-05-30T20:15:40.814035+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.814035Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Languages",
+       "text": "You can speak, read, and write Galactic Basic and one extra language of your choice. Humans typically learn the languages of other peoples they deal with, including obscure dialects. They are fond of sprinkling their speech with words borrowed from other tongues: trandoshan curses, twi'lek musical expressions, chiss military phrases, and so on.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Languages",
+       "timestamp": "2023-05-30T20:15:40.814035+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.814035Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Proficiency",
+       "text": "You gain proficiency in one skill, one tool, and one weapon of your choice.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Proficiency",
+       "timestamp": "2022-05-29T01:36:26.4474283+00:00",
+       "eTag": "W/\"datetime'2022-05-29T01%3A36%3A26.4474283Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Size",
+       "text": "Humans vary widely in height and build, from barely 5 feet to well over 6 feet tall. Regardless of your position in that range, your size is Medium.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Size",
+       "timestamp": "2023-05-30T20:15:40.814035+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.814035Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Speed",
+       "text": "Your base walking speed is 30 feet.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Speed",
+       "timestamp": "2023-05-30T20:15:40.814035+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.814035Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Silver-Tongued",
+       "prerequisite": null,
+       "text": "You develop your conversational skill to better deceive others. You gain the following benefits: \r\n- Increase your Charisma score by 1, to a maximum of 20. \r\n- You gain proficiency in the Deception skill. If you are already proficient in it, you instead gain expertise in it. \r\n- When you take the Attack action, you can replace one attack with an attempt to deceive one humanoid you can see within 30 feet of you that can see and hear you. Make a Charisma (Deception) check contested by the target's Wisdom (Insight) check. If your check succeeds, your movement doesn't provoke opportunity attacks from the target and your attack rolls against it have advantage; both benefits last until the end of your next turn or until you use this ability on a different target. If your check fails, the target can't be deceived by you in this way for 1 hour.\r\n",
+       "attributesIncreased": [
+        "Charisma"
+       ],
+       "attributesIncreasedJson": "[\"Charisma\"]",
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Silver-Tongued",
+       "timestamp": "2023-05-30T20:15:09.5558628+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A09.5558628Z'\"",
+       "customIndex": -1,
+       "combat": true
+      },
+      {
+       "name": "Multiclass Improvement",
+       "prerequisite": "4th level",
+       "text": "You've learned to blend the skills of your different classes. Choose two of the multiclass improvement options, detailed later in this chapter. You can take this feat multiple times. \r\n",
+       "attributesIncreased": null,
+       "attributesIncreasedJson": "",
+       "contentTypeEnum": 2,
+       "contentType": "ExpandedContent",
+       "contentSourceEnum": 5,
+       "contentSource": "EC",
+       "partitionKey": "ExpandedContent",
+       "rowKey": "Multiclass Improvement",
+       "timestamp": "2023-05-06T20:49:24.5012011+00:00",
+       "eTag": "W/\"datetime'2023-05-06T20%3A49%3A24.5012011Z'\"",
+       "customIndex": 0,
+       "combat": true
+      }
+     ],
+     "nonCombatFeatures": [],
+     "backgroundFeature": {
+      "name": "Position of Privilege",
+      "combat": false,
+      "text": "Thanks to your noble birth, people are inclined to think the best of you. You are welcome in high society, and people assume you have the right to be wherever you are. The common folk make every effort to accommodate you and avoid your displeasure, and other people of high birth treat you as a member of the same social sphere. You can secure an audience with a local noble if you need to.\r\n"
+     },
+     "settings": {},
+     "notes": ""
+    },
+    "base": {
+     "name": "Rakatan Test (local)",
+     "builderVersion": "0.7.6",
+     "image": "",
+     "characteristics": {
+      "alignment": "Lawful Light"
+     },
+     "tweaks": {},
+     "customProficiencies": [],
+     "customLanguages": [],
+     "customFeatures": [],
+     "customTechPowers": [],
+     "customForcePowers": [],
+     "customEquipment": [],
+     "numCustomFeats": 1,
+     "currentLevel": 7,
+     "classText": "Monk (Rakatan Order) 5, Operative 2",
+     "alignment": "Lawful Light",
+     "species": "Human",
+     "background": "Noble",
+     "experiencePoints": {
+      "previousLevel": 23000,
+      "current": 6500,
+      "nextLevel": 34000,
+      "isCorrect": false,
+      "errorMessage": "Experience too low. Increase experience or remove class levels below"
+     },
+     "abilityScores": {
+      "Strength": {
+       "value": 10,
+       "modifier": 0,
+       "savingThrow": {
+        "modifier": 3,
+        "proficiency": "proficient"
+       },
+       "skills": [
+        {
+         "name": "Athletics",
+         "modifier": 0,
+         "proficiency": "none"
+        }
+       ]
+      },
+      "Dexterity": {
+       "value": 16,
+       "modifier": 3,
+       "savingThrow": {
+        "modifier": 6,
+        "proficiency": "proficient"
+       },
+       "skills": [
+        {
+         "name": "Acrobatics",
+         "modifier": 3,
+         "proficiency": "none"
+        },
+        {
+         "name": "Sleight of Hand",
+         "modifier": 3,
+         "proficiency": "none"
+        },
+        {
+         "name": "Stealth",
+         "modifier": 3,
+         "proficiency": "none"
+        }
+       ]
+      },
+      "Constitution": {
+       "value": 14,
+       "modifier": 2,
+       "savingThrow": {
+        "modifier": 2,
+        "proficiency": "none"
+       },
+       "skills": []
+      },
+      "Intelligence": {
+       "value": 14,
+       "modifier": 2,
+       "savingThrow": {
+        "modifier": 2,
+        "proficiency": "none"
+       },
+       "skills": [
+        {
+         "name": "Investigation",
+         "modifier": 2,
+         "proficiency": "none"
+        },
+        {
+         "name": "Lore",
+         "modifier": 2,
+         "proficiency": "none"
+        },
+        {
+         "name": "Nature",
+         "modifier": 2,
+         "proficiency": "none"
+        },
+        {
+         "name": "Piloting",
+         "modifier": 2,
+         "proficiency": "none"
+        },
+        {
+         "name": "Technology",
+         "modifier": 2,
+         "proficiency": "none"
+        }
+       ]
+      },
+      "Wisdom": {
+       "value": 16,
+       "modifier": 3,
+       "savingThrow": {
+        "modifier": 3,
+        "proficiency": "none"
+       },
+       "skills": [
+        {
+         "name": "Animal Handling",
+         "modifier": 3,
+         "proficiency": "none"
+        },
+        {
+         "name": "Insight",
+         "modifier": 3,
+         "proficiency": "none"
+        },
+        {
+         "name": "Medicine",
+         "modifier": 3,
+         "proficiency": "none"
+        },
+        {
+         "name": "Perception",
+         "modifier": 3,
+         "proficiency": "none"
+        },
+        {
+         "name": "Survival",
+         "modifier": 3,
+         "proficiency": "none"
+        }
+       ]
+      },
+      "Charisma": {
+       "value": 8,
+       "modifier": -1,
+       "savingThrow": {
+        "modifier": -1,
+        "proficiency": "none"
+       },
+       "skills": [
+        {
+         "name": "Deception",
+         "modifier": -1,
+         "proficiency": "none"
+        },
+        {
+         "name": "Intimidation",
+         "modifier": -1,
+         "proficiency": "none"
+        },
+        {
+         "name": "Performance",
+         "modifier": -1,
+         "proficiency": "none"
+        },
+        {
+         "name": "Persuasion",
+         "modifier": -1,
+         "proficiency": "none"
+        }
+       ]
+      }
+     },
+     "proficiencyBonus": 3,
+     "initiative": 3,
+     "armorClass": 13,
+     "armorList": [],
+     "passivePerception": 13,
+     "inspiration": false,
+     "vision": "normal",
+     "speed": {
+      "base": "30 ft",
+      "hour": "3 miles",
+      "day": "24 miles",
+      "special": ""
+     },
+     "hitPoints": {
+      "current": 52,
+      "temporary": 0,
+      "maximum": 52,
+      "hitDice": [
+       {
+        "size": "d8",
+        "current": 7,
+        "maximum": 7
+       }
+      ],
+      "deathSaves": {
+       "successes": 0,
+       "failures": 0
+      },
+      "resting": {
+       "hitDieBonus": 2,
+       "numHitDiceUsed": 0,
+       "hitDiceRestored": [],
+       "techPointsUsed": 0,
+       "forcePointsUsed": 0,
+       "shortRestFeatures": [],
+       "longRestFeatures": []
+      }
+     },
+     "conditions": [],
+     "exhaustion": 0,
+     "proficiencies": [
+      {
+       "name": "Simple blasters",
+       "type": "weapon"
+      },
+      {
+       "name": "simple vibroweapons",
+       "type": "weapon"
+      },
+      {
+       "name": "martial vibroweapons that lack the dexterity",
+       "type": "weapon"
+      },
+      {
+       "name": "heavy",
+       "type": "weapon"
+      },
+      {
+       "name": "special",
+       "type": "weapon"
+      },
+      {
+       "name": "and two-handed properties",
+       "type": "weapon"
+      },
+      {
+       "name": "None",
+       "type": "armor"
+      },
+      {
+       "name": "Light armor",
+       "type": "other"
+      },
+      {
+       "name": "One type of gaming set",
+       "type": "tool"
+      }
+     ],
+     "skillAndSaveProficiencies": [
+      "Strength Saving Throws",
+      "Dexterity Saving Throws"
+     ],
+     "languages": [
+      "Galactic Basic",
+      "Galactic Basic"
+     ],
+     "equipment": [],
+     "attunement": {
+      "current": 0,
+      "maximum": 3,
+      "hasAttunable": false
+     },
+     "weapons": [
+      {
+       "name": "Unarmed Strike",
+       "description": null,
+       "cost": 0,
+       "weight": "0",
+       "equipmentCategory": "Weapon",
+       "contentType": "Core",
+       "contentSource": "PHB",
+       "damageNumberOfDice": 1,
+       "damageType": "Kinetic",
+       "weaponClassification": "Unarmed",
+       "damageDieType": 0,
+       "properties": [],
+       "propertiesMap": {},
+       "modes": [],
+       "quantity": 0,
+       "index": -1,
+       "isFound": true,
+       "equipped": true,
+       "attackBonus": 3,
+       "damageBonus": 1,
+       "ability": "Strength",
+       "isCustom": false,
+       "tweaks": {}
+      }
+     ],
+     "credits": 0,
+     "carryingCapacity": {
+      "encumbered": 50,
+      "heavilyEncumbered": 100,
+      "maxCapacity": 150,
+      "pushDragLift": 300
+     },
+     "superiority": false,
+     "techCasting": {
+      "pointsUsed": 0,
+      "maxPoints": 2,
+      "attackModifier": 5,
+      "saveDC": 13,
+      "maxPowerLevel": 0,
+      "powersKnown": [
+       {
+        "name": "Encrypted Message",
+        "powerTypeEnum": 2,
+        "powerType": "Tech",
+        "prerequisite": null,
+        "level": 0,
+        "castingPeriodEnum": 1,
+        "castingPeriod": "Action",
+        "castingPeriodText": "1 action",
+        "range": "120 feet",
+        "duration": "1 round",
+        "concentration": false,
+        "forceAlignmentEnum": 0,
+        "forceAlignment": "None",
+        "description": "You point your finger toward a creature within range that possesses a commlink and whisper a message. The target (and only the target) hears the message and can send an encrypted reply that only you can hear. These messages cannot be intercepted or decrypted by unenhanced means.\r\n\r\nYou can cast this power through solid objects if you are familiar with the target and know it is beyond the barrier. 1 foot of stone, 1 inch of common metal, a thin sheet of lead, or 3 feet of wood blocks the power. The power doesn't have to follow a straight line and can travel freely around corners or through openings.",
+        "higherLevelDescription": null,
+        "contentTypeEnum": 1,
+        "contentType": "Core",
+        "contentSourceEnum": 1,
+        "contentSource": "PHB",
+        "partitionKey": "Core",
+        "rowKey": "Encrypted Message",
+        "timestamp": "2023-05-30T20:15:09.2190531+00:00",
+        "eTag": "W/\"datetime'2023-05-30T20%3A15%3A09.2190531Z'\""
+       },
+       {
+        "name": "Absorb Energy",
+        "powerTypeEnum": 2,
+        "powerType": "Tech",
+        "prerequisite": null,
+        "level": 1,
+        "castingPeriodEnum": 3,
+        "castingPeriod": "Reaction",
+        "castingPeriodText": "1 reaction, which you take when you take acid, cold, energy, fire, ion, kinetic, lightning, or sonic damage",
+        "range": "Self",
+        "duration": "1 round",
+        "concentration": false,
+        "forceAlignmentEnum": 0,
+        "forceAlignment": "None",
+        "description": "The power captures some of the incoming energy, lessening its effect on you and storing it for your next melee attack. You have resistance to the triggering damage type until the start of your next turn. Also, the first time you hit with a melee attack on your next turn, the target takes an extra 1d6 damage of the triggering type, and the power ends.\r\n\r\n***Overcharge Tech.*** When you cast this power using a power slot of 2nd level or higher, the extra damage increases by 1d6 for each slot level above 1st.",
+        "higherLevelDescription": null,
+        "contentTypeEnum": 1,
+        "contentType": "Core",
+        "contentSourceEnum": 1,
+        "contentSource": "PHB",
+        "partitionKey": "Core",
+        "rowKey": "Absorb Energy",
+        "timestamp": "2023-05-30T20:15:09.2130569+00:00",
+        "eTag": "W/\"datetime'2023-05-30T20%3A15%3A09.2130569Z'\""
+       }
+      ]
+     },
+     "forceCasting": false,
+     "allForcePowers": [],
+     "combatFeatures": [
+      {
+       "name": "Martial Arts",
+       "text": "_**Monk:** 1st level_ \r\nYour practice of martial arts gives you mastery of combat styles that use unarmed strikes and monk weapons, which are vibroweapons with which you are proficient that lack the dexterity, heavy, special, and two-handed properties.\r\nYou gain the following benefits while you are unarmed or wielding only monk weapons and you aren't wearing armor or wielding a shield:\r\n- Your unarmed strikes and monk weapons gain the finesse property.\r\n- You can roll a d4 in place of the normal damage of your unarmed strike or monk weapon. This die changes as you gain monk levels, as shown in the Martial Arts column of the monk table.\r\n- You can use Dexterity instead of Strength whenever you would make a Strength (Athletics) check to grapple, shove, or trip a creature.\r\n- When you use the Attack action with an unarmed strike or a monk weapon on your turn, you can make one unarmed strike as a bonus action. \r\n- You can take the Dash or Disengage actions as a bonus action.\r\n> ##### Variant: Monks with Lightweapons\r\n> If monks gain lightweapon proficiency, consider letting them use lightweapons as monk weapons, provided the weapon lacks the dexterity, heavy, special, and two-handed properties.",
+       "level": 1,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Monk",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Monk-Martial Arts-1",
+       "timestamp": "2023-05-30T20:15:43.3985623+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.3985623Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Unarmored Defense",
+       "text": "_**Monk:** 1st level_\r\nWhile you are wearing no armor and not wielding a shield, your AC equals 10 + your Dexterity modifier + your Wisdom or Charisma modifier (your choice).",
+       "level": 1,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Monk",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Monk-Unarmored Defense-1",
+       "timestamp": "2023-05-30T20:15:43.3985623+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.3985623Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Sneak Attack",
+       "text": "_**Operative:** 1st level_\r\nYou know how to strike subtly and exploit a foe's distraction. Once per turn, you can deal an extra 1d6 damage to one creature you hit with a weapon attack if you have advantage on the attack roll. This damage is the same as the weapon's damage, and the attack must use a finesse or a ranged weapon. \r\nYou don't need advantage on the attack roll if another enemy of the target is within 5 feet of it, that enemy isn't incapacitated, and you don't have disadvantage on the attack roll.\r\nThe amount of the extra damage increases as you gain levels in this class, as shown in the Sneak Attack column of the operative table.",
+       "level": 1,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Operative",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Operative-Sneak Attack-1",
+       "timestamp": "2023-05-30T20:15:43.4385388+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.4385388Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Monastic Vows",
+       "text": "_**Monk:** 2nd level_\r\nYou've sworn two vows, as detailed at the end of the class description. You swear an additional vow at 7th, 13th, and 17th level.",
+       "level": 2,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Monk",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Monk-Monastic Vows-2",
+       "timestamp": "2023-05-30T20:15:43.3995607+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.3995607Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Cunning Action",
+       "text": "_**Operative:** 2nd level_\r\nYour quick thinking and agility allow you to move and act quickly. You can take the Dash, Disengage, or Hide actions as a bonus action.",
+       "level": 2,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Operative",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Operative-Cunning Action-2",
+       "timestamp": "2023-05-30T20:15:43.4385388+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.4385388Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Operative Exploits",
+       "text": "_**Operative:** 2nd level_\r\nYou've adopted two exploits, as detailed at the end of the class description. You adopt an additional exploit at 7th, 13th, and 17th level.",
+       "level": 2,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Operative",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Operative-Operative Exploits-2",
+       "timestamp": "2023-05-30T20:15:43.4385388+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.4385388Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Deflect Missiles",
+       "text": "_**Monk:** 3rd level_\r\nYou can use your reaction to deflect a projectile when you are dealt damage by a ranged weapon attack. When you do so, the damage you take from the attack is reduced by 1d10 + your Dexterity modifier + your monk level.\r\nIf you reduce the damage to 0, and the damage is kinetic, energy, or ion, you can redirect it at another target if you have a weapon capable of doing so. You can spend 1 focus point to make a ranged attack with a range of 20/60 as you deflect the projectile, as part of the same reaction. You make this attack with proficiency, regardless of your weapon proficiencies, and the projectile counts as a monk weapon for the attack.",
+       "level": 3,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Monk",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Monk-Deflect Missiles-3",
+       "timestamp": "2023-05-30T20:15:43.3995607+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.3995607Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Monastic Order",
+       "text": "_**Monk:** 3rd, 6th, 11th, and 17th level_\r\nYou commit yourself to one monastic order, which is detailed at the end of the class description. ",
+       "level": 3,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Monk",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Monk-Monastic Order-3",
+       "timestamp": "2023-05-30T20:15:43.3995607+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.3995607Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Techcasting",
+       "text": "_**Rakatan Order:** 3rd level_\r\nYou have derived powers from schematics with the aid of your wristpad. See chapter 10 for the general rules of techcasting and chapter 12 for the tech powers list.\r\n#### Tech Powers Known\r\nYou learn 3 tech powers of your choice, and you learn more at higher levels, as shown in the Tech Powers Known column of the Rakatan Order Techcasting table. You may not learn a tech power of a level higher than your Max Power Level.\r\n#### Tech Points\r\nYou have a number of tech points equal to half of your monk level (rounded up), as shown in the Tech Points column of the Rakatan Order Techcasting table, + your Intelligence, Wisdom, or Charisma modifier (your choice). You use these tech points to cast tech powers. You regain all expended tech points when you finish a short or long rest.\r\n#### Max Power Level\r\nMany tech powers can be overcharged, consuming more tech points to create a greater effect. You can overcharge these powers to a maximum level, which increases at higher levels, as shown in the Max Power Level column of the Rakatan Order Techcasting table.\r\nYou may only cast tech powers at 4th-level once. You regain the ability to do so after a long rest.\r\n#### Techcasting Ability\r\nIntelligence, Wisdom, or Charisma is your techcasting ability for your tech powers (your choice). You use this ability whenever a power refers to your techcasting ability. Additionally, you use this ability modifier when setting the saving throw DC for a tech power you cast and when making an attack roll with one.\r\n___\r\n**Tech save DC** = 8 + your proficiency bonus + your techcasting ability modifer\r\n___\r\n**Tech attack modifier** = your proficiency bonus + your techcasting ability modifer\r\n___\r\n#### Techcasting Focus\r\nYou use a wristpad (found in chapter 5) as a techcasting focus for your tech powers.",
+       "level": 3,
+       "sourceEnum": 1,
+       "source": "Archetype",
+       "sourceName": "Rakatan Order",
+       "metadata": null,
+       "partitionKey": "ExpandedContent",
+       "rowKey": "Archetype-Rakatan Order-Techcasting-3",
+       "timestamp": "2023-05-30T20:15:26.6231293+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A26.6231293Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Ability Score Improvement",
+       "text": "_**Monk:** 4th, 8th, 10th, 12th, 16th, and 19th level_\r\nYou can increase one ability score by 2, or you can increase two ability scores by 1. You can't increase an ability score above 20 using this feature.",
+       "level": 4,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Monk",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Monk-Ability Score Improvement-4",
+       "timestamp": "2023-05-30T20:15:43.4365397+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.4365397Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Slow Fall",
+       "text": "_**Monk:** 4th level_\r\nYou can use your reaction when you fall to reduce any falling damage you take by an amount equal to five times your monk level.",
+       "level": 4,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Monk",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Monk-Slow Fall-4",
+       "timestamp": "2023-05-30T20:15:43.4375396+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.4375396Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Extra Attack",
+       "text": "_**Monk:** 5th level_\r\nYou can attack twice, instead of once, whenever you take the Attack action on your turn.",
+       "level": 5,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Monk",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Monk-Extra Attack-5",
+       "timestamp": "2023-05-30T20:15:43.4375396+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.4375396Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Stunning Strike",
+       "text": "_**Monk:** 5th level_\r\nYou can interfere with an opponent's body. When you hit another creature with a melee weapon attack, you can spend 1 focus point to attempt a stunning strike. The target must succeed on a Constitution saving throw or be stunned until the end of your next turn.",
+       "level": 5,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Monk",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Monk-Stunning Strike-5",
+       "timestamp": "2023-05-30T20:15:43.4375396+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.4375396Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Ability Score Increase",
+       "text": "One ability score of your choice increases by 2, and two other ability scores of your choice increase by 1. Alternatively, four ability scores of your choice each increase by 1.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Ability Score Increase",
+       "timestamp": "2023-05-30T20:15:40.8130359+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.8130359Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Age",
+       "text": "Humans reach adulthood in their late teens and live less than a century.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Age",
+       "timestamp": "2023-05-30T20:15:40.814035+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.814035Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Alignment",
+       "text": "Humans tend toward no particular alignment. The best and worst are found among them.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Alignment",
+       "timestamp": "2023-05-30T20:15:40.814035+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.814035Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Defiant",
+       "text": "Humans are known to be stubborn and often refuse to give up, even against the worst odds. When you or a creature you can see that can see and understand you makes an ability check, attack roll, or saving throw, you can roll a d4 and add it to their roll (no action required). Once you've used this feature, you must complete a short or long rest before you can use it again.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Defiant",
+       "timestamp": "2023-05-30T20:15:40.814035+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.814035Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Human Versatility",
+       "text": "You gain proficiency in one skill, one tool, and one weapon of your choice.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Human Versatility",
+       "timestamp": "2023-05-30T20:15:40.814035+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.814035Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Languages",
+       "text": "You can speak, read, and write Galactic Basic and one extra language of your choice. Humans typically learn the languages of other peoples they deal with, including obscure dialects. They are fond of sprinkling their speech with words borrowed from other tongues: trandoshan curses, twi'lek musical expressions, chiss military phrases, and so on.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Languages",
+       "timestamp": "2023-05-30T20:15:40.814035+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.814035Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Proficiency",
+       "text": "You gain proficiency in one skill, one tool, and one weapon of your choice.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Proficiency",
+       "timestamp": "2022-05-29T01:36:26.4474283+00:00",
+       "eTag": "W/\"datetime'2022-05-29T01%3A36%3A26.4474283Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Size",
+       "text": "Humans vary widely in height and build, from barely 5 feet to well over 6 feet tall. Regardless of your position in that range, your size is Medium.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Size",
+       "timestamp": "2023-05-30T20:15:40.814035+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.814035Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Speed",
+       "text": "Your base walking speed is 30 feet.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Speed",
+       "timestamp": "2023-05-30T20:15:40.814035+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.814035Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Silver-Tongued",
+       "prerequisite": null,
+       "text": "You develop your conversational skill to better deceive others. You gain the following benefits: \r\n- Increase your Charisma score by 1, to a maximum of 20. \r\n- You gain proficiency in the Deception skill. If you are already proficient in it, you instead gain expertise in it. \r\n- When you take the Attack action, you can replace one attack with an attempt to deceive one humanoid you can see within 30 feet of you that can see and hear you. Make a Charisma (Deception) check contested by the target's Wisdom (Insight) check. If your check succeeds, your movement doesn't provoke opportunity attacks from the target and your attack rolls against it have advantage; both benefits last until the end of your next turn or until you use this ability on a different target. If your check fails, the target can't be deceived by you in this way for 1 hour.\r\n",
+       "attributesIncreased": [
+        "Charisma"
+       ],
+       "attributesIncreasedJson": "[\"Charisma\"]",
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Silver-Tongued",
+       "timestamp": "2023-05-30T20:15:09.5558628+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A09.5558628Z'\"",
+       "customIndex": -1,
+       "combat": true
+      },
+      {
+       "name": "Multiclass Improvement",
+       "prerequisite": "4th level",
+       "text": "You've learned to blend the skills of your different classes. Choose two of the multiclass improvement options, detailed later in this chapter. You can take this feat multiple times. \r\n",
+       "attributesIncreased": null,
+       "attributesIncreasedJson": "",
+       "contentTypeEnum": 2,
+       "contentType": "ExpandedContent",
+       "contentSourceEnum": 5,
+       "contentSource": "EC",
+       "partitionKey": "ExpandedContent",
+       "rowKey": "Multiclass Improvement",
+       "timestamp": "2023-05-06T20:49:24.5012011+00:00",
+       "eTag": "W/\"datetime'2023-05-06T20%3A49%3A24.5012011Z'\"",
+       "customIndex": 0,
+       "combat": true
+      }
+     ],
+     "nonCombatFeatures": [],
+     "backgroundFeature": {
+      "name": "Position of Privilege",
+      "combat": false,
+      "text": "Thanks to your noble birth, people are inclined to think the best of you. You are welcome in high society, and people assume you have the right to be wherever you are. The common folk make every effort to accommodate you and avoid your displeasure, and other people of high birth treat you as a member of the same social sphere. You can secure an audience with a local noble if you need to.\r\n"
+     },
+     "settings": {},
+     "notes": ""
+    },
+    "refs": {
+     "classes": {
+      "Monk": {
+       "name": "Monk",
+       "summary": "Unarmed combatant who uses focus to fuel abilities",
+       "primaryAbility": "Dexterity",
+       "hitDiceDieType": 8,
+       "hitPointsAtFirstLevel": "8 + your Constitution modifier",
+       "hitPointsAtHigherLevels": "1d8 (or 5) + your Constitution modifier per monk level after 1st",
+       "armorProficiencies": [
+        "None"
+       ],
+       "weaponProficiencies": [
+        "Simple blasters",
+        "simple vibroweapons",
+        "martial vibroweapons that lack the dexterity",
+        "heavy",
+        "special",
+        "and two-handed properties"
+       ],
+       "toolProficiencies": [
+        "None"
+       ],
+       "savingThrows": [
+        "Strength",
+        "Dexterity"
+       ],
+       "skillChoices": "Choose two from Acrobatics, Athletics, Insight, Lore, Perception, and Stealth",
+       "levelChanges": {
+        "1": {
+         "Level": "1st",
+         "Proficiency Bonus": "+2",
+         "Features": "Martial Arts, Unarmored Defense",
+         "Martial Arts": "d4",
+         "Focus Points": "�",
+         "Monastic Vows": "�",
+         "Unarmored Movement": "�"
+        },
+        "2": {
+         "Level": "2nd",
+         "Proficiency Bonus": "+2",
+         "Features": "Focus, Monastic Vows",
+         "Martial Arts": "d4",
+         "Focus Points": "2",
+         "Monastic Vows": "2",
+         "Unarmored Movement": "�"
+        },
+        "3": {
+         "Level": "3rd",
+         "Proficiency Bonus": "+2",
+         "Features": "Unarmored Movement, Deflect Missiles, Monastic Order",
+         "Martial Arts": "d4",
+         "Focus Points": "3",
+         "Monastic Vows": "2",
+         "Unarmored Movement": "+10 ft."
+        },
+        "4": {
+         "Level": "4th",
+         "Proficiency Bonus": "+2",
+         "Features": "Ability Score Improvement, Slow Fall",
+         "Martial Arts": "d4",
+         "Focus Points": "4",
+         "Monastic Vows": "2",
+         "Unarmored Movement": "+10 ft."
+        },
+        "5": {
+         "Level": "5th",
+         "Proficiency Bonus": "+3",
+         "Features": "Extra Attack, Stunning Strike",
+         "Martial Arts": "d6",
+         "Focus Points": "5",
+         "Monastic Vows": "2",
+         "Unarmored Movement": "+15 ft."
+        },
+        "6": {
+         "Level": "6th",
+         "Proficiency Bonus": "+3",
+         "Features": "Enhanced Strikes, Order feature",
+         "Martial Arts": "d6",
+         "Focus Points": "6",
+         "Monastic Vows": "2",
+         "Unarmored Movement": "+15 ft."
+        },
+        "7": {
+         "Level": "7th",
+         "Proficiency Bonus": "+3",
+         "Features": "Evasion, Stillness of Mind",
+         "Martial Arts": "d6",
+         "Focus Points": "7",
+         "Monastic Vows": "3",
+         "Unarmored Movement": "+15 ft."
+        },
+        "8": {
+         "Level": "8th",
+         "Proficiency Bonus": "+3",
+         "Features": "Ability Score Improvement",
+         "Martial Arts": "d6",
+         "Focus Points": "8",
+         "Monastic Vows": "3",
+         "Unarmored Movement": "+15 ft."
+        },
+        "9": {
+         "Level": "9th",
+         "Proficiency Bonus": "+4",
+         "Features": "Unarmored Movement Improvement",
+         "Martial Arts": "d8",
+         "Focus Points": "9",
+         "Monastic Vows": "3",
+         "Unarmored Movement": "+20 ft."
+        },
+        "10": {
+         "Level": "10th",
+         "Proficiency Bonus": "+4",
+         "Features": "Ability Score Improvement",
+         "Martial Arts": "d8",
+         "Focus Points": "10",
+         "Monastic Vows": "3",
+         "Unarmored Movement": "+20 ft."
+        },
+        "11": {
+         "Level": "11th",
+         "Proficiency Bonus": "+4",
+         "Features": "Order feature",
+         "Martial Arts": "d8",
+         "Focus Points": "11",
+         "Monastic Vows": "3",
+         "Unarmored Movement": "+20 ft."
+        },
+        "12": {
+         "Level": "12th",
+         "Proficiency Bonus": "+4",
+         "Features": "Ability Score Improvement",
+         "Martial Arts": "d8",
+         "Focus Points": "12",
+         "Monastic Vows": "3",
+         "Unarmored Movement": "+20 ft."
+        },
+        "13": {
+         "Level": "13th",
+         "Proficiency Bonus": "+5",
+         "Features": "Purity of Body",
+         "Martial Arts": "d10",
+         "Focus Points": "13",
+         "Monastic Vows": "4",
+         "Unarmored Movement": "+25 ft."
+        },
+        "14": {
+         "Level": "14th",
+         "Proficiency Bonus": "+5",
+         "Features": "Diamond Soul",
+         "Martial Arts": "d10",
+         "Focus Points": "14",
+         "Monastic Vows": "4",
+         "Unarmored Movement": "+25 ft."
+        },
+        "15": {
+         "Level": "15th",
+         "Proficiency Bonus": "+5",
+         "Features": "Timeless Vessel",
+         "Martial Arts": "d10",
+         "Focus Points": "15",
+         "Monastic Vows": "4",
+         "Unarmored Movement": "+25 ft."
+        },
+        "16": {
+         "Level": "16th",
+         "Proficiency Bonus": "+5",
+         "Features": "Ability Score Improvement",
+         "Martial Arts": "d10",
+         "Focus Points": "16",
+         "Monastic Vows": "4",
+         "Unarmored Movement": "+25 ft."
+        },
+        "17": {
+         "Level": "17th",
+         "Proficiency Bonus": "+6",
+         "Features": "Order feature",
+         "Martial Arts": "d12",
+         "Focus Points": "17",
+         "Monastic Vows": "5",
+         "Unarmored Movement": "+30 ft."
+        },
+        "18": {
+         "Level": "18th",
+         "Proficiency Bonus": "+6",
+         "Features": "Empty Body",
+         "Martial Arts": "d12",
+         "Focus Points": "18",
+         "Monastic Vows": "5",
+         "Unarmored Movement": "+30 ft."
+        },
+        "19": {
+         "Level": "19th",
+         "Proficiency Bonus": "+6",
+         "Features": "Ability Score Improvement",
+         "Martial Arts": "d12",
+         "Focus Points": "19",
+         "Monastic Vows": "5",
+         "Unarmored Movement": "+30 ft."
+        },
+        "20": {
+         "Level": "20th",
+         "Proficiency Bonus": "+6",
+         "Features": "Perfect Self",
+         "Martial Arts": "d12",
+         "Focus Points": "20",
+         "Monastic Vows": "5",
+         "Unarmored Movement": "+30 ft."
+        }
+       },
+       "casterType": "None",
+       "casterRatio": 0,
+       "multiClassProficiencies": [
+        "Simple vibroweapons",
+        "techblades"
+       ],
+       "archetypeFlavorName": "Monastic Orders"
+      },
+      "Operative": {
+       "name": "Operative",
+       "summary": "Controller who focuses on stealth and techniques",
+       "primaryAbility": "Dexterity",
+       "hitDiceDieType": 8,
+       "hitPointsAtFirstLevel": "8 + your Constitution modifier",
+       "hitPointsAtHigherLevels": "1d8 (or 5) + your Constitution modifier per operative level after 1st",
+       "armorProficiencies": [
+        "Light armor"
+       ],
+       "weaponProficiencies": [
+        "Simple blasters",
+        "simple vibroweapons",
+        "martial blasters that lack the auto",
+        "special",
+        "strength",
+        "and two-handed properties",
+        "martial vibroweapons with the finesse property"
+       ],
+       "toolProficiencies": [
+        "One specialist's kit of your choice"
+       ],
+       "savingThrows": [
+        "Dexterity",
+        "Intelligence"
+       ],
+       "skillChoices": "Choose any four",
+       "levelChanges": {
+        "1": {
+         "Level": "1st",
+         "Proficiency Bonus": "+2",
+         "Features": "Expertise, Sneak Attack",
+         "Sneak Attack": "1d6",
+         "Operative Exploits": "�"
+        },
+        "2": {
+         "Level": "2nd",
+         "Proficiency Bonus": "+2",
+         "Features": "Cunning Action, Operative Exploits",
+         "Sneak Attack": "1d6",
+         "Operative Exploits": "2"
+        },
+        "3": {
+         "Level": "3rd",
+         "Proficiency Bonus": "+2",
+         "Features": "Bad Feeling, Operative Practice",
+         "Sneak Attack": "2d6",
+         "Operative Exploits": "2"
+        },
+        "4": {
+         "Level": "4th",
+         "Proficiency Bonus": "+2",
+         "Features": "Ability Score Improvement",
+         "Sneak Attack": "2d6",
+         "Operative Exploits": "2"
+        },
+        "5": {
+         "Level": "5th",
+         "Proficiency Bonus": "+3",
+         "Features": "Uncanny Dodge",
+         "Sneak Attack": "3d6",
+         "Operative Exploits": "2"
+        },
+        "6": {
+         "Level": "6th",
+         "Proficiency Bonus": "+3",
+         "Features": "Expertise",
+         "Sneak Attack": "3d6",
+         "Operative Exploits": "2"
+        },
+        "7": {
+         "Level": "7th",
+         "Proficiency Bonus": "+3",
+         "Features": "Evasion",
+         "Sneak Attack": "4d6",
+         "Operative Exploits": "3"
+        },
+        "8": {
+         "Level": "8th",
+         "Proficiency Bonus": "+3",
+         "Features": "Ability Score Improvement",
+         "Sneak Attack": "4d6",
+         "Operative Exploits": "3"
+        },
+        "9": {
+         "Level": "9th",
+         "Proficiency Bonus": "+4",
+         "Features": "Practice feature",
+         "Sneak Attack": "5d6",
+         "Operative Exploits": "3"
+        },
+        "10": {
+         "Level": "10th",
+         "Proficiency Bonus": "+4",
+         "Features": "Ability Score Improvement",
+         "Sneak Attack": "5d6",
+         "Operative Exploits": "3"
+        },
+        "11": {
+         "Level": "11th",
+         "Proficiency Bonus": "+4",
+         "Features": "Reliable Talent",
+         "Sneak Attack": "6d6",
+         "Operative Exploits": "3"
+        },
+        "12": {
+         "Level": "12th",
+         "Proficiency Bonus": "+4",
+         "Features": "Ability Score Improvement",
+         "Sneak Attack": "6d6",
+         "Operative Exploits": "3"
+        },
+        "13": {
+         "Level": "13th",
+         "Proficiency Bonus": "+5",
+         "Features": "Practice feature",
+         "Sneak Attack": "7d6",
+         "Operative Exploits": "4"
+        },
+        "14": {
+         "Level": "14th",
+         "Proficiency Bonus": "+5",
+         "Features": "Blindsense",
+         "Sneak Attack": "7d6",
+         "Operative Exploits": "4"
+        },
+        "15": {
+         "Level": "15th",
+         "Proficiency Bonus": "+5",
+         "Features": "Slippery Mind",
+         "Sneak Attack": "8d6",
+         "Operative Exploits": "4"
+        },
+        "16": {
+         "Level": "16th",
+         "Proficiency Bonus": "+5",
+         "Features": "Ability Score Improvement",
+         "Sneak Attack": "8d6",
+         "Operative Exploits": "4"
+        },
+        "17": {
+         "Level": "17th",
+         "Proficiency Bonus": "+6",
+         "Features": "Practice feature",
+         "Sneak Attack": "9d6",
+         "Operative Exploits": "5"
+        },
+        "18": {
+         "Level": "18th",
+         "Proficiency Bonus": "+6",
+         "Features": "Elusive",
+         "Sneak Attack": "9d6",
+         "Operative Exploits": "5"
+        },
+        "19": {
+         "Level": "19th",
+         "Proficiency Bonus": "+6",
+         "Features": "Ability Score Improvement",
+         "Sneak Attack": "10d6",
+         "Operative Exploits": "5"
+        },
+        "20": {
+         "Level": "20th",
+         "Proficiency Bonus": "+6",
+         "Features": "Stroke of Luck",
+         "Sneak Attack": "10d6",
+         "Operative Exploits": "5"
+        }
+       },
+       "casterType": "None",
+       "casterRatio": 0,
+       "multiClassProficiencies": [
+        "Light armor"
+       ],
+       "archetypeFlavorName": "Operative Practices"
+      }
+     },
+     "archetypes": {
+      "Rakatan Order": {
+       "name": "Rakatan Order",
+       "className": "Monk",
+       "casterType": "None",
+       "casterRatio": 0,
+       "leveledTable": {
+        "3": [
+         {
+          "key": "Tech Powers Known",
+          "value": "3"
+         },
+         {
+          "key": "Tech Points",
+          "value": "2"
+         },
+         {
+          "key": "Max Power Level",
+          "value": "1st"
+         }
+        ],
+        "4": [
+         {
+          "key": "Tech Powers Known",
+          "value": "4"
+         },
+         {
+          "key": "Tech Points",
+          "value": "2"
+         },
+         {
+          "key": "Max Power Level",
+          "value": "1st"
+         }
+        ],
+        "5": [
+         {
+          "key": "Tech Powers Known",
+          "value": "5"
+         },
+         {
+          "key": "Tech Points",
+          "value": "3"
+         },
+         {
+          "key": "Max Power Level",
+          "value": "1st"
+         }
+        ],
+        "6": [
+         {
+          "key": "Tech Powers Known",
+          "value": "6"
+         },
+         {
+          "key": "Tech Points",
+          "value": "3"
+         },
+         {
+          "key": "Max Power Level",
+          "value": "1st"
+         }
+        ],
+        "7": [
+         {
+          "key": "Tech Powers Known",
+          "value": "7"
+         },
+         {
+          "key": "Tech Points",
+          "value": "4"
+         },
+         {
+          "key": "Max Power Level",
+          "value": "2nd"
+         }
+        ],
+        "8": [
+         {
+          "key": "Tech Powers Known",
+          "value": "8"
+         },
+         {
+          "key": "Tech Points",
+          "value": "4"
+         },
+         {
+          "key": "Max Power Level",
+          "value": "2nd"
+         }
+        ],
+        "9": [
+         {
+          "key": "Tech Powers Known",
+          "value": "9"
+         },
+         {
+          "key": "Tech Points",
+          "value": "5"
+         },
+         {
+          "key": "Max Power Level",
+          "value": "2nd"
+         }
+        ],
+        "10": [
+         {
+          "key": "Tech Powers Known",
+          "value": "10"
+         },
+         {
+          "key": "Tech Points",
+          "value": "5"
+         },
+         {
+          "key": "Max Power Level",
+          "value": "2nd"
+         }
+        ],
+        "11": [
+         {
+          "key": "Tech Powers Known",
+          "value": "11"
+         },
+         {
+          "key": "Tech Points",
+          "value": "6"
+         },
+         {
+          "key": "Max Power Level",
+          "value": "2nd"
+         }
+        ],
+        "12": [
+         {
+          "key": "Tech Powers Known",
+          "value": "12"
+         },
+         {
+          "key": "Tech Points",
+          "value": "6"
+         },
+         {
+          "key": "Max Power Level",
+          "value": "2nd"
+         }
+        ],
+        "13": [
+         {
+          "key": "Tech Powers Known",
+          "value": "13"
+         },
+         {
+          "key": "Tech Points",
+          "value": "7"
+         },
+         {
+          "key": "Max Power Level",
+          "value": "3rd"
+         }
+        ],
+        "14": [
+         {
+          "key": "Tech Powers Known",
+          "value": "14"
+         },
+         {
+          "key": "Tech Points",
+          "value": "7"
+         },
+         {
+          "key": "Max Power Level",
+          "value": "3rd"
+         }
+        ],
+        "15": [
+         {
+          "key": "Tech Powers Known",
+          "value": "15"
+         },
+         {
+          "key": "Tech Points",
+          "value": "8"
+         },
+         {
+          "key": "Max Power Level",
+          "value": "3rd"
+         }
+        ],
+        "16": [
+         {
+          "key": "Tech Powers Known",
+          "value": "16"
+         },
+         {
+          "key": "Tech Points",
+          "value": "8"
+         },
+         {
+          "key": "Max Power Level",
+          "value": "3rd"
+         }
+        ],
+        "17": [
+         {
+          "key": "Tech Powers Known",
+          "value": "17"
+         },
+         {
+          "key": "Tech Points",
+          "value": "9"
+         },
+         {
+          "key": "Max Power Level",
+          "value": "4th"
+         }
+        ],
+        "18": [
+         {
+          "key": "Tech Powers Known",
+          "value": "18"
+         },
+         {
+          "key": "Tech Points",
+          "value": "9"
+         },
+         {
+          "key": "Max Power Level",
+          "value": "4th"
+         }
+        ],
+        "19": [
+         {
+          "key": "Tech Powers Known",
+          "value": "19"
+         },
+         {
+          "key": "Tech Points",
+          "value": "10"
+         },
+         {
+          "key": "Max Power Level",
+          "value": "4th"
+         }
+        ],
+        "20": [
+         {
+          "key": "Tech Powers Known",
+          "value": "20"
+         },
+         {
+          "key": "Tech Points",
+          "value": "10"
+         },
+         {
+          "key": "Max Power Level",
+          "value": "4th"
+         }
+        ]
+       }
+      }
+     },
+     "species": {
+      "Human": {
+       "name": "Human",
+       "size": "Medium",
+       "homeworld": "Coruscant",
+       "language": "Galactic Basic",
+       "distinctions": "Biped with bilateral symmetry, opposable thumbs",
+       "skinColorOptions": "Light to dark tones",
+       "hairColorOptions": "Black, blond, orange, brown, gray to white (usually with age)",
+       "eyeColorOptions": "Amber, blue, brown, gray, green, hazel, purple, or red",
+       "heightAverage": "4'8\"",
+       "heightRollMod": "+2d10\"",
+       "weightAverage": "110 lb.",
+       "weightRollMod": "x(2d4) lb.",
+       "traits": [
+        {
+         "name": "Ability Score Increase",
+         "description": "One ability score of your choice increases by 2, and two other ability scores of your choice increase by 1. Alternatively, four ability scores of your choice each increase by 1."
+        },
+        {
+         "name": "Age",
+         "description": "Humans reach adulthood in their late teens and live less than a century."
+        },
+        {
+         "name": "Alignment",
+         "description": "Humans tend toward no particular alignment. The best and worst are found among them."
+        },
+        {
+         "name": "Size",
+         "description": "Humans vary widely in height and build, from barely 5 feet to well over 6 feet tall. Regardless of your position in that range, your size is Medium."
+        },
+        {
+         "name": "Speed",
+         "description": "Your base walking speed is 30 feet."
+        },
+        {
+         "name": "Defiant",
+         "description": "Humans are known to be stubborn and often refuse to give up, even against the worst odds. When you or a creature you can see that can see and understand you makes an ability check, attack roll, or saving throw, you can roll a d4 and add it to their roll (no action required). Once you've used this feature, you must complete a short or long rest before you can use it again."
+        },
+        {
+         "name": "Human Versatility",
+         "description": "You gain proficiency in one skill, one tool, and one weapon of your choice."
+        },
+        {
+         "name": "Languages",
+         "description": "You can speak, read, and write Galactic Basic and one extra language of your choice. Humans typically learn the languages of other peoples they deal with, including obscure dialects. They are fond of sprinkling their speech with words borrowed from other tongues: trandoshan curses, twi'lek musical expressions, chiss military phrases, and so on."
+        }
+       ],
+       "imageUrls": [
+        "https://starwars5ecentral.blob.core.windows.net/site-images/species/species_human.png"
+       ]
+      }
+     },
+     "backgrounds": {
+      "Noble": {
+       "name": "Noble",
+       "flavorText": "You understand wealth, power, and privilege. You carry a noble title, and your family owns land, collects taxes, and wields significant political influence. You might be a pampered aristocrat unfamiliar with manual labor, a former merchant just elevated to the nobility, or an honest, hard-working landowner who cares deeply about the people who live and work on your land.\r\n\r\nWork with your GM to come up with an appropriate title and determine how much authority that title carries, as well as your family and their influence on you. Is your family old and established, or was your title only recently bestowed? How much influence do they wield, how do people regard them?\r\n\r\nWhat's your position in the family? Are you the heir to the head of the family or the head itself? Are you far down the line of succession? How does the head of your family feel about your adventuring career? Are you in your family's good graces? \r\n\r\nDoes your family have a coat of arms you might wear, a signet ring, or particular colors? \r\n\r\nThese details help establish your family and your title as features of the world of the campaign.\r\n",
+       "skillProficiencies": "Choose two from Deception, Insight, Lore, and Persuasion",
+       "toolProficiencies": "One type of gaming set",
+       "languages": "One of your choice",
+       "equipment": "A set of fine clothes, a signet ring, a letter of pedigree, and a purse containing 250 cr",
+       "featureName": "Position of Privilege",
+       "featureText": "Thanks to your noble birth, people are inclined to think the best of you. You are welcome in high society, and people assume you have the right to be wherever you are. The common folk make every effort to accommodate you and avoid your displeasure, and other people of high birth treat you as a member of the same social sphere. You can secure an audience with a local noble if you need to.\r\n",
+       "flavorName": null,
+       "flavorDescription": null
+      }
+     },
+     "feats": {
+      "Silver-Tongued": {
+       "name": "Silver-Tongued",
+       "prerequisite": null,
+       "text": "You develop your conversational skill to better deceive others. You gain the following benefits: \r\n- Increase your Charisma score by 1, to a maximum of 20. \r\n- You gain proficiency in the Deception skill. If you are already proficient in it, you instead gain expertise in it. \r\n- When you take the Attack action, you can replace one attack with an attempt to deceive one humanoid you can see within 30 feet of you that can see and hear you. Make a Charisma (Deception) check contested by the target's Wisdom (Insight) check. If your check succeeds, your movement doesn't provoke opportunity attacks from the target and your attack rolls against it have advantage; both benefits last until the end of your next turn or until you use this ability on a different target. If your check fails, the target can't be deceived by you in this way for 1 hour.\r\n",
+       "attributesIncreased": [
+        "Charisma"
+       ],
+       "contentType": "Core",
+       "contentSource": "PHB"
+      },
+      "Multiclass Improvement": {
+       "name": "Multiclass Improvement",
+       "prerequisite": "4th level",
+       "text": "You've learned to blend the skills of your different classes. Choose two of the multiclass improvement options, detailed later in this chapter. You can take this feat multiple times. \r\n",
+       "attributesIncreased": null,
+       "contentType": "ExpandedContent",
+       "contentSource": "EC"
+      }
+     },
+     "maneuvers": {},
+     "choices": {},
+     "conditions": [
+      {
+       "name": "Blinded",
+       "description": "A blinded creature can't see and automatically fails any ability check that requires sight.\\r\\n- Attack rolls against the creature have advantage, and the creature's attack rolls have disadvantage."
+      },
+      {
+       "name": "Charmed",
+       "description": "A charmed creature can't attack the charmer or target the charmer with harmful abilities or enhanced effects.\\r\\n- The charmer has advantage on any ability check to interact socially with the creature."
+      },
+      {
+       "name": "Deafened",
+       "description": "A deafened creature can't hear and automatically fails any ability check that requires hearing."
+      },
+      {
+       "name": "Exhaustion",
+       "description": "Some special abilities and environmental hazards, such as and the long-term effects of freezing or scorching temperatures, can lead to a special condition called exhaustion. Exhaustion is measured in six levels. An effect can give a creature one or more levels of exhaustion, as specified in the effect's description. Exhaustion Level\\r\\n\\r\\n|Level|Effect|\\r\\n|:--:|:--|\\r\\n|1|Disadvantage on ability checks|\\r\\n|2|Speed halved|\\r\\n|3|Disadvantage on attack rolls and saving throws|\\r\\n|4|Hit point maximum halved|\\r\\n|5|Speed reduced to 0|\\r\\n|6|Death|\\r\\n\\r\\nIf an already exhausted creature suffers another effect that causes exhaustion, its current level of exhaustion increases by the amount specified in the effect's description.\\r\\n\\r\\nA creature suffers the effect of its current level of exhaustion as well as all lower levels. For example, a creature suffering level 2 exhaustion has its speed halved and has disadvantage on ability checks.\\r\\n\\r\\nAn effect that removes exhaustion reduces its level as specified in the effect's description, with all exhaustion effects ending if a creature's exhaustion level is reduced below 1.\\r\\n\\r\\nFinishing a long rest reduces a creature's exhaustion level by 1, provided that the creature has also ingested some food and drink."
+      },
+      {
+       "name": "Frightened",
+       "description": "A frightened creature has disadvantage on ability checks and attack rolls while the source of its fear is within line of sight.\\r\\n- The creature can't willingly move closer to the source of its fear."
+      },
+      {
+       "name": "Grappled",
+       "description": "A grappled creature's speed becomes 0, and it can't benefit from any bonus to its speed.\\r\\n- The condition ends if the grappler is incapacitated (see the condition).\\r\\n- The condition also ends if an effect removes the grappled creature from the reach of the grappler or grappling effect."
+      },
+      {
+       "name": "Incapacitated",
+       "description": "An incapacitated creature can't take actions or reactions."
+      },
+      {
+       "name": "Invisible",
+       "description": "An invisible creature is impossible to see without the aid of powers or a special sense. For the purpose of hiding, the creature is heavily obscured. The creature's location can be detected by any noise it makes or any tracks it leaves.\\r\\n- Attack rolls against the creature have disadvantage, and the creature's attack rolls have advantage."
+      },
+      {
+       "name": "Paralyzed",
+       "description": "A paralyzed creature is incapacitated (see the condition) and can't move or speak.\\r\\n- The creature automatically fails Strength and Dexterity saving throws. Attack rolls against the creature have advantage.\\r\\n- Any attack that hits the creature is a critical hit if the attacker is within 5 feet of the creature."
+      },
+      {
+       "name": "Petrified",
+       "description": "A petrified creature is transformed, along with any object it is wearing or carrying, into a solid inanimate substance (usually stone). Its weight increases by a factor of ten, and it ceases aging.\\r\\n- The creature is incapacitated (see the condition), can't move or speak, and is unaware of its surroundings.\\r\\n- Attack rolls against the creature have advantage. \\r\\n- The creature automatically fails Strength and Dexterity saving throws.\\r\\n- The creature has resistance to all damage.\\r\\n- The creature is immune to poison and disease, although a poison or disease already in its system is suspended, not neutralized."
+      },
+      {
+       "name": "Poisoned",
+       "description": "A poisoned creature has disadvantage on attack rolls and ability checks."
+      },
+      {
+       "name": "Prone",
+       "description": "A prone creature's only movement option is to crawl, unless it stands up and thereby ends the condition. \\r\\n- The creature has disadvantage on melee attack rolls.\\r\\n- The creature has disadvantage on ranged attack rolls against targets within 30 feet.\\r\\n- An attack roll against the creature has advantage if the attacker is within 5 feet of the creature. Otherwise, the attack roll has disadvantage."
+      },
+      {
+       "name": "Restrained",
+       "description": "A restrained creature's speed becomes 0, and it can't benefit from any bonus to its speed.\\r\\n- Attack rolls against the creature have advantage, and the creature's attack rolls have disadvantage.\\r\\n- The creature has disadvantage on Dexterity saving throws."
+      },
+      {
+       "name": "Shocked",
+       "description": "A shocked creature's speed is reduced by half.\\r\\n- The creature can't take reactions."
+      },
+      {
+       "name": "Stunned",
+       "description": "A stunned creature is incapacitated (see the condition), can't move, and can speak only falteringly.\\r\\n- The creature automatically fails Strength and Dexterity saving throws.\\r\\n- Attack rolls against the creature have advantage."
+      },
+      {
+       "name": "Unconscious",
+       "description": "An unconscious creature is incapacitated (see the condition), can't move or speak, and is unaware of its surroundings\\r\\n- The creature drops whatever it's holding and falls prone.\\r\\n- The creature automatically fails Strength and Dexterity saving throws.\\r\\n- Attack rolls against the creature have advantage.\\r\\n- Any attack that hits the creature is a critical hit if the attacker is within 5 feet of the creature."
+      }
+     ]
+    },
+    "validation": {
+     "code": 0,
+     "message": "All checks passed",
+     "isValid": true
+    },
+    "error": null,
+    "at": 1792280724354
+   }
+  },
+  "edits": {
+   "file:rakatan-test-(local)": {}
+  },
+  "itemState": {
+   "file:rakatan-test-(local)": {}
+  },
+  "trackers": {},
+  "history": {
+   "file:rakatan-test-(local)": [
+    {
+     "at": 1792187556457,
+     "reason": "Imported from file",
+     "changedAt": null,
+     "raw": {
+      "name": "Rakatan Test (local)",
+      "builderVersion": "0.7.6",
+      "image": "",
+      "experiencePoints": 6500,
+      "species": {
+       "name": "Human",
+       "abilityScoreImprovementSelectedOption": 0,
+       "abilityScoreImprovement": {}
+      },
+      "baseAbilityScores": {
+       "Strength": 10,
+       "Dexterity": 16,
+       "Constitution": 14,
+       "Intelligence": 14,
+       "Wisdom": 16,
+       "Charisma": 8
+      },
+      "background": {
+       "name": "Noble",
+       "feat": {
+        "name": "Silver-Tongued",
+        "type": "Feat"
+       },
+       "feature": ""
+      },
+      "characteristics": {
+       "alignment": "Lawful Light"
+      },
+      "credits": 0,
+      "equipment": [],
+      "currentStats": {
+       "hitPointsLost": 0,
+       "temporaryHitPoints": 0,
+       "techPointsUsed": 0,
+       "forcePointsUsed": 0,
+       "superiorityDiceUsed": 0,
+       "hitDiceUsed": {},
+       "deathSaves": {
+        "successes": 0,
+        "failures": 0
+       },
+       "hasInspiration": false,
+       "featuresTimesUsed": {},
+       "conditions": [],
+       "exhaustion": 0
+      },
+      "classes": [
+       {
+        "name": "Monk",
+        "levels": 5,
+        "hitPoints": [
+         5,
+         5,
+         5,
+         5
+        ],
+        "archetype": {
+         "name": "Rakatan Order",
+         "techPowers": [
+          "Encrypted Message",
+          "Absorb Energy"
+         ]
+        },
+        "abilityScoreImprovements": [
+         {
+          "type": "ASI",
+          "abilitiesIncreased": [
+           {
+            "name": "Dexterity",
+            "value": 2
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "name": "Operative",
+        "levels": 2,
+        "hitPoints": [
+         5
+        ]
+       }
+      ],
+      "featureChoices": {
+       "Feat: Multiclass Improvement": [
+        {
+         "name": "Operative",
+         "note": "Monk"
+        }
+       ]
+      },
+      "tweaks": {},
+      "customProficiencies": [],
+      "customLanguages": [],
+      "customFeatures": [],
+      "customFeats": [
+       "Multiclass Improvement"
+      ],
+      "customTechPowers": [],
+      "customForcePowers": [],
+      "customEquipment": [],
+      "settings": {},
+      "notes": ""
+     }
+    },
+    {
+     "at": 1792187584521,
+     "reason": "Imported from file",
+     "changedAt": null,
+     "raw": {
+      "name": "Rakatan Test (local)",
+      "builderVersion": "0.7.6",
+      "image": "",
+      "experiencePoints": 6500,
+      "species": {
+       "name": "Human",
+       "abilityScoreImprovementSelectedOption": 0,
+       "abilityScoreImprovement": {}
+      },
+      "baseAbilityScores": {
+       "Strength": 10,
+       "Dexterity": 16,
+       "Constitution": 14,
+       "Intelligence": 14,
+       "Wisdom": 16,
+       "Charisma": 8
+      },
+      "background": {
+       "name": "Noble",
+       "feat": {
+        "name": "Silver-Tongued",
+        "type": "Feat"
+       },
+       "feature": ""
+      },
+      "characteristics": {
+       "alignment": "Lawful Light"
+      },
+      "credits": 0,
+      "equipment": [],
+      "currentStats": {
+       "hitPointsLost": 0,
+       "temporaryHitPoints": 0,
+       "techPointsUsed": 0,
+       "forcePointsUsed": 0,
+       "superiorityDiceUsed": 0,
+       "hitDiceUsed": {},
+       "deathSaves": {
+        "successes": 0,
+        "failures": 0
+       },
+       "hasInspiration": false,
+       "featuresTimesUsed": {},
+       "conditions": [],
+       "exhaustion": 0
+      },
+      "classes": [
+       {
+        "name": "Monk",
+        "levels": 5,
+        "hitPoints": [
+         5,
+         5,
+         5,
+         5
+        ],
+        "archetype": {
+         "name": "Rakatan Order",
+         "techPowers": [
+          "Encrypted Message",
+          "Absorb Energy"
+         ]
+        },
+        "abilityScoreImprovements": [
+         {
+          "type": "ASI",
+          "abilitiesIncreased": [
+           {
+            "name": "Dexterity",
+            "value": 2
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "name": "Operative",
+        "levels": 2,
+        "hitPoints": [
+         5,
+         5
+        ]
+       }
+      ],
+      "featureChoices": {
+       "Feat: Multiclass Improvement": [
+        {
+         "name": "Operative",
+         "note": "Monk"
+        }
+       ]
+      },
+      "tweaks": {},
+      "customProficiencies": [],
+      "customLanguages": [],
+      "customFeatures": [],
+      "customFeats": [
+       "Multiclass Improvement"
+      ],
+      "customTechPowers": [],
+      "customForcePowers": [],
+      "customEquipment": [],
+      "settings": {},
+      "notes": ""
+     }
+    },
+    {
+     "at": 1792187619334,
+     "reason": "Imported from file",
+     "changedAt": null,
+     "raw": {
+      "name": "Rakatan Test (local)",
+      "builderVersion": "0.7.6",
+      "image": "",
+      "experiencePoints": 6500,
+      "species": {
+       "name": "Human",
+       "abilityScoreImprovementSelectedOption": 0,
+       "abilityScoreImprovement": {}
+      },
+      "baseAbilityScores": {
+       "Strength": 10,
+       "Dexterity": 16,
+       "Constitution": 14,
+       "Intelligence": 14,
+       "Wisdom": 16,
+       "Charisma": 8
+      },
+      "background": {
+       "name": "Noble",
+       "feat": {
+        "name": "Silver-Tongued",
+        "type": "Feat"
+       },
+       "feature": ""
+      },
+      "characteristics": {
+       "alignment": "Lawful Light"
+      },
+      "credits": 0,
+      "equipment": [],
+      "currentStats": {
+       "hitPointsLost": 0,
+       "temporaryHitPoints": 0,
+       "techPointsUsed": 0,
+       "forcePointsUsed": 0,
+       "superiorityDiceUsed": 0,
+       "hitDiceUsed": {},
+       "deathSaves": {
+        "successes": 0,
+        "failures": 0
+       },
+       "hasInspiration": false,
+       "featuresTimesUsed": {},
+       "conditions": [],
+       "exhaustion": 0
+      },
+      "classes": [
+       {
+        "name": "Monk",
+        "levels": 5,
+        "hitPoints": [
+         5,
+         5,
+         5,
+         5
+        ],
+        "archetype": {
+         "name": "Rakatan Order",
+         "techPowers": [
+          "Encrypted Message",
+          "Absorb Energy"
+         ]
+        },
+        "abilityScoreImprovements": [
+         {
+          "type": "ASI",
+          "abilitiesIncreased": [
+           {
+            "name": "Dexterity",
+            "value": 2
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "name": "Operative",
+        "levels": 2,
+        "hitPoints": [
+         5,
+         5
+        ],
+        "abilityScoreImprovements": []
+       }
+      ],
+      "featureChoices": {
+       "Feat: Multiclass Improvement": [
+        {
+         "name": "Operative",
+         "note": "Monk"
+        }
+       ]
+      },
+      "tweaks": {},
+      "customProficiencies": [],
+      "customLanguages": [],
+      "customFeatures": [],
+      "customFeats": [
+       "Multiclass Improvement"
+      ],
+      "customTechPowers": [],
+      "customForcePowers": [],
+      "customEquipment": [],
+      "settings": {},
+      "notes": ""
+     }
+    }
+   ]
+  },
+  "rolls": [],
+  "rollSettings": {
+   "critMode": "max"
+  },
+  "rulesInfo": {
+   "dataVersion": 199,
+   "fetchedAt": 1792273029637
+  },
+  "catalogInfo": {
+   "dataVersion": 199,
+   "fetchedAt": 1792170265673,
+   "count": 2425
+  },
+  "backupInfo": {
+   "count": null,
+   "characters": {}
+  },
+  "lastCharacter": "file:rakatan-test-(local)"
+ },
+ "from": {
+  "case": "rakatan-test-local",
+  "changes": [
+   "--js",
+   "raw.classes[0].archetype={name:'Echani Order'}; raw.classes[0].levels=11; raw.classes[0].hitPoints.push(5,5,5,5,5,5); raw.featureNotes={'echani weapons':'Vibrosword, Blaster rifle'}",
+   "--item",
+   "Vibrosword",
+   "--equip"
+  ]
+ }
+}

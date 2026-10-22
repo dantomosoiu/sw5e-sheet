@@ -263,6 +263,11 @@ function d20Options(m, kind, ctx = {}) {
         // target that doesn't already include that modifier" (Exhibition Specialist).
         } else if ((x = new RegExp(`You can add half your (\\w+) modifier( \\(minimum of one\\))? to any weapon ${kind === 'attack' ? 'attack' : 'damage'} roll you make (against [^.]+?) that doesn't already include that modifier`, 'i').exec(s)) && ABBR[x[1]] && ab !== x[1]) {
           out.push({ label: `${x[3].replace(/^against /i, 'vs ')} (${label})`, bonus: x[2] ? Math.max(1, Math.floor(mod([x[1]]) / 2)) : Math.floor(mod([x[1]]) / 2), extra: [], on: false });
+        // "you can expend up to 3 focus points to grant one Echani weapon you touch a bonus to attack and damage rolls when you
+        // attack with it. The bonus equals the number of points you spent" (Sharpen the Blade): +1 to +3 on those weapons.
+        } else if (ctx.w && (x = /expend up to (\d+) (\w+) points to grant one (\w+) weapon you touch a bonus to attack and damage rolls/i.exec(s))
+          && typeof weaponKindsOf === 'function' && m.raw && weaponKindsOf(m.raw).some((k) => k.kind === x[3] && k.names.some((n) => invSameName(n, w.name) || invSameName(n.replace(/s$/, ''), w.name)))) {
+          for (let n = 1; n <= num(x[1]); n++) out.push({ label: `${label} (${n} ${x[2]} point${n > 1 ? 's' : ''} when started)`, bonus: n, extra: [], on: false, group: label });
         }
       }
     }
