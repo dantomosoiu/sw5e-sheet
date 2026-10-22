@@ -38,13 +38,13 @@ const newDie = (sides, tag, rolled) => ({ id: ++dieSeq, sides, tag, value: rolle
 const critDie = (sides, tag, rolled) => (rollSettings.critMode === 'max'
   ? { id: ++dieSeq, sides, tag, value: sides, crit: true, max: true }
   : { ...newDie(sides, tag, rolled), crit: true });
-/** A condition's extra dice ("+1d8"), doubled on a critical. */
+/** A condition's extra dice ("+1d8"), doubled on a critical (not a critical hit's own extra dice: noDouble). */
 function condDice(roll, cd) {
   const out = [];
   for (const e of cd.extra) {
     for (const d of (parseDice(e) || { dice: [] }).dice) {
       out.push(newDie(d.sides, `cond:${cd.label}`, roll.rolled));
-      if (roll.crit) out.push(critDie(d.sides, `cond:${cd.label}`, roll.rolled));
+      if (roll.crit && !cd.noDouble) out.push(critDie(d.sides, `cond:${cd.label}`, roll.rolled));
     }
   }
   return out;
@@ -68,12 +68,23 @@ function resourceConds(m, kind, w) {
       if (fits) out.push({ label: `${n} +${t.lim.supSize}`, bonus: 0, extra: [`1${t.lim.supSize}`], on: false, spend: { op: 'sup', arg: '1', what: 'a superiority die' } });
     }
   }
-  const melee = w && !/blaster/i.test(w.weaponClassification || '') && !/ranged/i.test(propsText(w.properties));
-  if (kind === 'damage' && melee && arr(m.allFeatures).some((f) => /^Force-Empowered Strikes$/i.test(f.name))) {
-    const col = arr(m.classDice).find((d) => /focused strikes/i.test(d.column));
-    const max = col ? num(String(col.dice).split('d')[0]) || 1 : 1;
-    const left = t.lim.force - num(t.s.forcePointsUsed);
-    for (let n = 1; n <= Math.min(max, left); n++) out.push({ label: `Force-Empowered Strikes +${n}d8`, bonus: 0, extra: [`${n}d8`], on: false, group: 'fes', spend: { op: 'force', arg: String(n), what: `${n} force point${n > 1 ? 's' : ''}` } });
+  // "When you hit a creature with a melee weapon attack, you can expend force points to deal additional damage … The
+  // additional damage is 1d8 for each point spent in this way. You can't deal more additional damage than the amount shown
+  // in the Focused Strikes column" (Force-Empowered Strikes; "than 2d8", Splashclass Guardian; ranged: Force-Empowered
+  // Shots, which also takes a use of Channel the Force).
+  if (kind === 'damage' && w) {
+    const melee = !isRangedWeapon(w);
+    for (const f of riderTexts(m)) {
+      const x = /(?:#+ ([A-Z][\w'’ -]+?) )?(?:Once per turn, )?[Ww]hen you hit a creature with a (melee|ranged) weapon attack, you can (?:expend a use of your ([\w ]+?) and )?expend force points to deal additional damage[^.]*\. The additional damage is 1?d(\d+) for each point spent in this way\. You can't deal more (?:additional damage than the amount shown in the ([\w' ]+?) column|than (\d+)d\d+ additional damage)/.exec(f.text);
+      if (!x || (x[2] === 'melee') !== melee) continue;
+      const col = x[5] && arr(m.classDice).find((d) => d.dice && d.column.toLowerCase() === x[5].toLowerCase());
+      const max = x[6] ? num(x[6]) : col ? num(String(col.dice).split('d')[0]) || 1 : 1;
+      const left = t.lim.force - num(t.s.forcePointsUsed);
+      const name = x[1] || f.name;
+      for (let n = 1; n <= Math.min(max, left); n++) {
+        out.push({ label: `${name} +${n}d${x[4]}${x[3] ? ` (and a use of ${x[3]})` : ''}`, bonus: 0, extra: [`${n}d${x[4]}`], on: false, group: name, spend: { op: 'force', arg: String(n), what: `${n} force point${n > 1 ? 's' : ''}` } });
+      }
+    }
   }
   if (kind === 'attack' && w) {
     const cc = arr(m.allFeatures).find((f) => /^Close Call$/i.test(f.name));
@@ -139,6 +150,214 @@ function parseDice(expr) {
     else mod += sign * Number(body);
   }
   return { dice, mod };
+}
+
+// ------------------------------------------------------------- damage riders (the weapon damage card)
+const wProps = (w) => arr(w && w.properties).map((p) => String(p).toLowerCase().trim());
+/** A ranged weapon: a blaster, or a "(range …)" property that isn't thrown (as the engine reads it). */
+const isRangedWeapon = (w) => /blaster/i.test((w && w.weaponClassification) || '') || wProps(w).some((p) => /\(range /.test(p) && !p.startsWith('thrown'));
+/** Finesse: the property, or an unarmed strike given it (Unarmed Combatant, Martial Arts). */
+const isFinesseWeapon = (m, w) => wProps(w).some((p) => p.startsWith('finesse')) || (w.name === 'Unarmed Strike' && arr(m.effects).some((e) => e.unarmedFinesse));
+/** The ability the attack uses: Dexterity for a finesse unarmed strike whose Dexterity counts (its finesse tweak). */
+const weaponAbility = (m, w) => (w.name === 'Unarmed Strike' && arr(m.fx && m.fx.tweaks).some((t) => t.path === 'unarmed.toHit' && t.mod && t.mod.finesse) ? 'Dexterity' : w.ability);
+/** The texts of the character's features, species traits and slot picks: [{ name, text }] (a pick: "Operative (splashclass improvement)"). */
+function riderTexts(m) {
+  const out = [];
+  const seen = new Set();
+  const list = arr(m.allFeatures).concat(typeof bdSpeciesTraitFeatures === 'function' && m.raw ? bdSpeciesTraitFeatures(m) : [], typeof slotPickFeatures === 'function' && m.raw ? slotPickFeatures(m) : []);
+  for (const f of list) {
+    const text = String(f.text || f.description || '').replace(/\s+/g, ' ').trim();
+    const key = `${f.name}|${text.slice(0, 80)}`;
+    if (!text || seen.has(key)) continue;
+    seen.add(key);
+    out.push({ name: f.slotKind && f.sourceName ? `${f.name} (${String(f.sourceName).toLowerCase()})` : f.name, text });
+  }
+  return out;
+}
+/** The class level behind a feature's "_**Berserker:** 9th, 13th, and 17th level_" (a class or archetype name). */
+function ownerLevel(m, owner) {
+  const k = arr(m.raw && m.raw.classes).find((x) => x.name === owner || (x.archetype && x.archetype.name === owner));
+  return k ? num(k.levels) : charLevel(m);
+}
+/** How many of a feature's levels the character has reached (Brutal Critical at 9th, 13th and 17th: 1 to 3). */
+function levelsReached(m, text) {
+  const h = /_\*\*([^*]+?):\*\* ([^_]+?) level_/.exec(text);
+  if (!h) return 1;
+  const lv = ownerLevel(m, h[1]);
+  return Math.max(1, [...h[2].matchAll(/(\d+)(?:st|nd|rd|th)/g)].filter((x) => num(x[1]) <= lv).length);
+}
+/** A sentence's own heading: "#### Double Strike When you hit…", "***Double Strike.*** You can roll…". */
+function headingOf(s) {
+  const x = /^#+\s*([A-Z][\w'’ -]+?)\s+(?=When|Whenever|Once|You|If|Your|As|At|While)/.exec(s) || /^\*{2,3}([^*.]+)\.?\*{2,3}/.exec(s);
+  return x ? x[1].trim() : '';
+}
+/**
+ * Extra damage a hit can deal, read from a feature's text, for the weapon damage card: [{ name, label, dice, column,
+ * steps, weaponDice, levelOf, ability, melee, ranged, finesseOrRanged, crit, on, spend }]. The wordings:
+ * - extra dice on a hit: "you can deal an extra 1d6 damage to one creature you hit with an attack if you have advantage"
+ *   (Shadow Strike: "The extra damage increases to 2d6 at 11th level"), "the creature takes an extra 1d8 damage"
+ *   (Improved Force-Empowered Strikes), "you can deal 1d4 additional damage … as shown in the Ranger's Quarry column"
+ *   (the column's die), "roll a Kinetic Combat die and deal additional damage" (Double Strike), "extra damage equal to your
+ *   Ranger's Quarry Damage Die" (Mark of the Slayer), "the attack deals an extra 2d6 damage" (Surprise Attack);
+ * - a bonus: "additional damage equal to your focus ability modifier (a minimum of +1)" (Guided Strikes), "a bonus to the
+ *   first melee weapon damage rolls … equal to your Charisma modifier" (Aura of Hatred), "The extra damage equals your
+ *   level" (Fury of the Small);
+ * - critical hits: "roll one additional weapon damage die when determining the extra damage for a critical hit with a
+ *   melee attack" (Brutal Critical, once per level listed), "roll one of the weapon's damage dice one additional time"
+ *   (Savage Attacks), "a bonus to that weapon's damage roll equal to your fighter level" (Devastating Critical).
+ * Conditions: "melee weapon attack", "ranged weapon attack", "the attack must use a finesse or a ranged weapon". Ticked at
+ * first only when unconditional ("Whenever you hit a creature with a melee weapon attack, …") or on a critical hit.
+ * Not read: what allies, companions or powers deal, what a forgone die buys, force points spent per die (resourceConds).
+ */
+function riderSpecs(name, text) {
+  const out = [];
+  const sentences = text.split(/(?<=\.)\s+(?=[-A-Z_*#])/);
+  const column = (/as shown in the ([A-Z][\w' ]+?) column/.exec(text) || [])[1] || '';
+  const spend = /\bcosts? 1 force point\b|\bspend 1 force point\b/i.test(text) ? { op: 'force', arg: '1', what: '1 force point' } : null;
+  // The option a sentence belongs to: the last "#### Colossus Slayer …" heading before it (Hunter's Prey lists three).
+  let sub = '';
+  sentences.forEach((s0, i) => {
+    if (/^#{4,}\s/.test(s0)) sub = headingOf(s0);
+    else if (/^#{1,3}\s/.test(s0)) sub = '';
+    // The sentence without its heading ("#### Aura of Hatred You and…", "***Double Strike.*** You…") or list dash.
+    const s = s0.replace(/^#+\s*[A-Z][\w'’ -]+?\s+(?=When|Whenever|Once|You|If|Your|As|At|While)/, '').replace(/^\*{2,3}[^*.]+\.?\*{2,3}\s*/, '').replace(/^[-#*_ ]+/, '');
+    const listItem = /^- /.test(s0) || /following benefits/i.test(sentences.slice(Math.max(0, i - 2), i).join(' '));
+    if (/\bforgo|\ban ally\b|\ballies\b|\bthe next ally|your ally|companion|turret|droid|\bburst\b|\brapid\b|\bpowers? (?:you cast|that)|expend force points|regain|temporary hit points|\bmodified\b|by the shot|\busing an? [A-Z]\w+ weapon/i.test(s)) return;
+    if (/friendly creature/i.test(s) && !/^You and friendly creatures/i.test(s)) return;
+    // "Additionally, on a hit, you deal an extra 1d8 damage": the sentence before says which attack.
+    const ctx = /^(?:Additionally|On a hit|This)\b/i.test(s) ? `${sentences[i - 1] || ''} ${s}` : s;
+    const meleeOnly = /\bmelee (?:weapon )?(?:attack|weapon damage|strike)/i.test(ctx) && !/\branged weapon attack/i.test(ctx);
+    const rangedOnly = /\branged weapon attack/i.test(ctx) && !/\bmelee/i.test(ctx);
+    // "At 11th level, once per turn, when you hit…": from that level of the class or archetype.
+    const minLevel = num((/^At (\d+)(?:st|nd|rd|th) level\b/i.exec(s) || [])[1]);
+    const base = { name, sub, melee: meleeOnly, ranged: rangedOnly, finesseOrRanged: /must use a finesse or a ranged weapon/i.test(text), spend: null, minLevel };
+    const unconditional = /^Whenever you hit\b/i.test(s) && !/\byou can\b|\bif\b|\bonce\b|\bfirst\b/i.test(s);
+    let x;
+    // Critical hits.
+    if ((x = /roll (one|two|three|\d+) additional weapon damage dic?e? when determining the extra damage for a critical hit with a (melee )?attack/i.exec(s))) {
+      out.push({ ...base, crit: true, weaponDice: { one: 1, two: 2, three: 3 }[x[1].toLowerCase()] || num(x[1]), perLevel: true, melee: !!x[2], on: true });
+      return;
+    }
+    if ((x = /When you score a critical hit with a (melee )?weapon attack, you can roll one of the weapon(?:'|’)s damage dice one additional time/i.exec(s))) {
+      out.push({ ...base, crit: true, weaponDice: 1, melee: !!x[1], on: true });
+      return;
+    }
+    if ((x = /When you score a critical hit with a (melee )?weapon attack, you gain a bonus to that weapon(?:'|’)s damage roll equal to your (\w+) level/i.exec(s))) {
+      out.push({ ...base, crit: true, levelOf: titleCase(x[2]), melee: !!x[1], on: true });
+      return;
+    }
+    if (/critical hit/i.test(s)) return;
+    // "you can cause the attack or power to deal extra damage to the creature. The extra damage equals your level."
+    if (/\battack\b[^.]*extra damage to the creature/i.test(s) && /^The extra damage equals your level/i.test(sentences[i + 1] || '')) {
+      out.push({ ...base, levelOf: '', on: false });
+      return;
+    }
+    if ((x = /\broll an? (?:([A-Z][\w' ]+?) die|(d\d+)) and deal additional damage/i.exec(s))) {
+      // Its attack can be in an earlier sentence: "When you hit a creature with a melee weapon attack, you can spend 1 force point".
+      const melee = base.melee || /hit a creature with a melee weapon attack, you can (?:spend|expend)/i.test(text);
+      out.push({ ...base, melee, dice: x[2] ? `1${x[2]}` : '', column: x[1] || column, label: headingOf(s0), spend, on: false });
+      return;
+    }
+    if (!/\bhit\b|\bfirst (?:ranged |melee )?weapon (?:attack|damage)|\battack deals\b/i.test(s)) return;
+    // Extra dice.
+    if ((x = /\b(?:deal|deals|takes?) an? extra (\d*d\d+) (?:\w+ )?damage\b|\b(?:deal|deals) (\d*d\d+) additional damage\b/i.exec(s))) {
+      // "The extra damage increases to 2d6 at 11th level and 3d6 at 17th level", "This damage increases to 1d10 at 13th level".
+      const more = /(?:extra|This) damage increases to [^.]*/i.exec(text);
+      const steps = more ? [...more[0].matchAll(/(\d*d\d+) at (\d+)(?:st|nd|rd|th) level/gi)].map((y) => ({ dice: y[1], level: num(y[2]) })) : [];
+      out.push({ ...base, dice: (x[1] || x[2]).replace(/^d/, '1d'), column, steps, on: unconditional && !listItem });
+      return;
+    }
+    if ((x = /(?:extra|additional) damage equal to (?:your |the )?([A-Z][\w' ]+?) (?:Damage )?Die\b/i.exec(s))) {
+      out.push({ ...base, column: x[1], on: false });
+      return;
+    }
+    // Bonuses.
+    if ((x = /(?:additional damage|a bonus to the (?:first )?(?:melee )?weapon damage rolls?[^.]*?) equal to (?:your )?(Strength|Dexterity|Constitution|Intelligence|Wisdom|Charisma|focus ability) modifier( \((?:your choice, )?(?:a )?minimum of (?:\+?1|one)\))?/i.exec(s))) {
+      out.push({ ...base, ability: x[1], min1: !!x[2], on: false });
+    }
+  });
+  return out;
+}
+/**
+ * The riders for a weapon damage roll, as roll options: riderSpecs over the character's texts (a column's die from the
+ * class table), and Rage Damage.
+ */
+function weaponRiders(m, w, crit, die) {
+  const out = [];
+  const texts = riderTexts(m);
+  const all = texts.map((t) => t.text).join(' ');
+  const melee = !isRangedWeapon(w);
+  const ability = weaponAbility(m, w);
+  const finesse = isFinesseWeapon(m, w);
+  const props = wProps(w);
+  const unarmed = w.name === 'Unarmed Strike';
+  const colDice = (col) => { const d = arr(m.classDice).find((x) => x.dice && x.column.toLowerCase() === String(col).toLowerCase()); return d ? d.dice : ''; };
+  const mod = (a) => num((((m.c.abilityScores || {})[a]) || {}).modifier);
+  for (const t of texts) {
+    for (const r of riderSpecs(t.name, t.text)) {
+      if (r.crit && !crit) continue;
+      if (r.minLevel && ownerLevel(m, (/_\*\*([^*]+?):\*\*/.exec(t.text) || [])[1]) < r.minLevel) continue;
+      if ((r.melee && !melee) || (r.ranged && melee)) continue;
+      if (r.finesseOrRanged && !finesse && melee) {
+        // "you can deal Sneak Attack damage with any weapon, as long as it does not have the heavy or special properties"
+        // (Pugnacity Practice); "you can apply your Sneak Attack damage when you hit with an unarmed strike even if it
+        // doesn't have the finesse property" (Disabling Practice).
+        const nm = (r.column || r.name).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        const any = new RegExp(`deal ${nm} damage with any weapon, as long as it does not have the (\\w+) or (\\w+) properties`, 'i').exec(all);
+        const okAny = any && !props.some((p) => p.startsWith(any[1].toLowerCase()) || p.startsWith(any[2].toLowerCase()));
+        const okUnarmed = unarmed && new RegExp(`apply your ${nm} damage when you hit with an unarmed strike`, 'i').test(all);
+        if (!okAny && !okUnarmed) continue;
+      }
+      let dice = (r.column && colDice(r.column)) || r.dice;
+      if (r.steps && r.steps.length) {
+        const lv = ownerLevel(m, (/_\*\*([^*]+?):\*\*/.exec(t.text) || [])[1]);
+        for (const s of r.steps) if (lv >= s.level) dice = s.dice;
+      }
+      // One option of several ("Hunter's Prey: Colossus Slayer, Giant Killer or Horde Breaker"): only the one picked,
+      // when the picks are known (its notes or the archetype's list).
+      if (r.sub && typeof featureNoteOf === 'function' && m.raw) {
+        const picked = featureNoteOf(m.raw, t.name);
+        if (picked && !picked.toLowerCase().includes(r.sub.toLowerCase())) continue;
+      }
+      const label = r.label || r.sub || t.name;
+      if (r.weaponDice) {
+        const n = r.weaponDice * (r.perLevel ? levelsReached(m, t.text) : 1);
+        if (die > 0) out.push({ label, bonus: 0, extra: [`${n}d${die}`], on: r.on, noDouble: true });
+      } else if (r.levelOf != null) {
+        const lv = r.levelOf ? ownerLevel(m, r.levelOf) : charLevel(m);
+        if (lv) out.push({ label, bonus: lv, extra: [], on: r.on });
+      } else if (r.ability) {
+        const v = /focus/i.test(r.ability) ? Math.max(mod('Wisdom'), mod('Charisma')) : mod(r.ability);
+        const b = r.min1 ? Math.max(1, v) : v;
+        if (b) out.push({ label, bonus: b, extra: [], on: r.on });
+      } else if (dice) {
+        out.push({ label: `${label}${r.spend ? ` (${r.spend.what})` : ''}`, bonus: 0, extra: [dice], on: r.on, ...(r.spend ? { spend: r.spend } : {}) });
+      }
+    }
+  }
+  // Weapon focuses on this weapon: "When you score a critical hit with the weapon, you can roll one additional weapon
+  // damage die" (Polearm Focus, Rifle Focus).
+  if (crit && die > 0 && typeof chPickTexts === 'function' && typeof choiceInfo === 'function' && state.rules && m.raw) {
+    const res = choiceInfo(m);
+    for (const p of res ? chPickTexts(res) : []) {
+      if (!/When you score a critical hit with the weapon, you can roll one additional weapon damage die/i.test(p.text || '')) continue;
+      if (arr(p.weapons).some((n) => weaponIndexByName(m.raw, n) === w.index)) out.push({ label: p.name, bonus: 0, extra: [`1d${die}`], on: true, noDouble: true });
+    }
+  }
+  // Rage Damage: "When you make a melee weapon attack using Strength, you gain a bonus to the damage roll"; also "to
+  // damage rolls from ranged weapon attacks using Strength" (Ballistic Approach) and "when you make a melee weapon attack
+  // using Dexterity, you add your rage damage" (Precision Approach). While raging it's ticked, or already in the weapon's
+  // numbers where the rage effect puts it (melee Strength weapons, once the numbers are recalculated).
+  const rage = arr(m.classDice).find((d) => d.bonus && /rage damage/i.test(d.column));
+  if (rage) {
+    const raging = !!m.snap && tempEffects(m.snap.key).some((e) => e.group === 'state:raging');
+    const fits = (melee && ability === 'Strength') || (!melee && ability === 'Strength' && /rage damage to damage rolls from ranged weapon attacks using Strength/i.test(all))
+      || (melee && ability === 'Dexterity' && /melee weapon attack using Dexterity, you add your rage damage/i.test(all));
+    const inNumbers = raging && !m.stale && w.ability === 'Strength' && !/blaster/i.test(w.weaponClassification || '');
+    if (fits && !inNumbers) out.push({ label: rage.column, bonus: rage.bonus, extra: [], on: raging });
+  }
+  // The same rider from two texts (a feature and its table): once.
+  return out.filter((r, i) => out.findIndex((y) => y.label === r.label) === i);
 }
 
 // ------------------------------------------------------------- what a roll is for
@@ -209,15 +428,9 @@ function buildRoll(m, spec, opts = {}) {
       const n = vers ? (num(vers[1]) || 1) : num(w.damageNumberOfDice);
       const die = vers ? num(vers[2]) : num(w.damageDieType);
       const crit = a2 === 'crit';
-      // Class damage riders the player decides on (off by default): Sneak Attack dice, Rage Damage.
-      // Rage Damage while raging is already in the weapon's numbers once SW5E has recalculated with the rage;
-      // until then it's ticked here (melee Strength weapons only, as the rage applies it).
-      const raging = m.snap && tempEffects(m.snap.key).some((e) => e.group === 'state:raging');
-      const meleeStr = w.ability === 'Strength' && !/ranged/i.test(`${w.weaponClassification || ''} ${propsText(w.properties)}`);
-      const riders = arr(m.classDice).filter((d) => d.rider || /sneak attack/i.test(d.column) || (d.bonus && /rage damage/i.test(d.column)))
-        .filter((d) => !(raging && !m.stale && /rage damage/i.test(d.column)))
-        .map((d) => ({ label: d.column, bonus: d.bonus || 0, extra: d.dice ? [d.dice] : [], on: !!(raging && m.stale && meleeStr && /rage damage/i.test(d.column)) }));
-      const conds = condsAt(`weapons.${a1}.damageBonus`).concat(riders, resourceConds(m, 'damage', w));
+      // Damage riders from the features' text, for this weapon (Sneak Attack on finesse or ranged weapons, Rage Damage on
+      // melee Strength attacks, Ranger's Quarry, critical-hit dice…): weaponRiders.
+      const conds = condsAt(`weapons.${a1}.damageBonus`).concat(weaponRiders(m, w, crit, die), resourceConds(m, 'damage', w));
       // Weapon Expert: "You gain proficiency with all blasters. If you are already proficient with all blasters, instead
       // once per turn when you would roll weapon damage using a blaster, you can choose to have advantage." Already: by
       // the class, species or another feature (all of the kind, or its simple and martial ones), or the feat taken twice.

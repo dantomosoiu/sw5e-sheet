@@ -216,11 +216,11 @@ skill|Charisma|1: Intimidation (CHA): d20 +1 · = +1 modifier
 skill|Charisma|2: Performance (CHA): d20 +1 · = +1 modifier
 skill|Charisma|3: Persuasion (CHA): d20 +1 · = +1 modifier
 attack|0: Unarmed Strike attack: d20 +4 · = +4 modifier
-damage|0: Unarmed Strike damage: no dice +1 · = +1 unarmed strike · Kinetic · option: Sneak Attack +4d6
+damage|0: Unarmed Strike damage: no dice +1 · = +1 unarmed strike · Kinetic
 pattack|Tech|7: Tech attack: d20 +7 · = +7 modifier
 dice|2d6: 2d6: d6 d6 +0
 tool|One type of gaming set|proficient: One type of gaming set check: d20 +6 · = +2 INT modifier +4 proficiency
-damage|0|crit: Unarmed Strike damage (critical): no dice +1 · = +1 unarmed strike · Kinetic · critical · option: Sneak Attack +4d6
+damage|0|crit: Unarmed Strike damage (critical): no dice +1 · = +1 unarmed strike · Kinetic · critical
 
 ## Sheet: Overview
 Rakatan Test (local)

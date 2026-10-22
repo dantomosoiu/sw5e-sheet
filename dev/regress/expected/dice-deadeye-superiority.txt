@@ -180,14 +180,14 @@ skill|Charisma|1: Intimidation (CHA): d20 −1 · = −1 modifier
 skill|Charisma|2: Performance (CHA): d20 −1 · = −1 modifier
 skill|Charisma|3: Persuasion (CHA): d20 −1 · = −1 modifier
 attack|0: Unarmed Strike attack: d20 +4 · = +4 modifier
-damage|0: Unarmed Strike damage: no dice +1 · = +1 unarmed strike · Kinetic
+damage|0: Unarmed Strike damage: no dice +1 · = +1 unarmed strike · Kinetic · option: Ranger's Quarry +1d8
 supdie: Superiority die: d8 +0
 maneuver|Physical|Dexterity: Physical maneuver attack: d20 +7 · = +7 modifier
 maneuver|Mental|Wisdom: Mental maneuver attack: d20 +7 · = +7 modifier
 maneuver|General|Dexterity: General maneuver attack: d20 +7 · = +7 modifier
 tech: Tech attack: d20 +6 · = +6 modifier
 tool|One type of gaming set|proficient: One type of gaming set check: d20 +6 · = +2 INT modifier +4 proficiency
-damage|0|crit: Unarmed Strike damage (critical): no dice +1 · = +1 unarmed strike · Kinetic · critical
+damage|0|crit: Unarmed Strike damage (critical): no dice +1 · = +1 unarmed strike · Kinetic · critical · option: Ranger's Quarry +1d8
 
 ## Sheet: Overview
 Rakatan Test (local)
