@@ -4211,7 +4211,7 @@ function renderCarry(m) {
   const cf = carryFactor(m);
   const cc = cf.factor !== 1 ? { ...cc0, maxCapacity: num(cc0.maxCapacity) * cf.factor, pushDragLift: num(cc0.pushDragLift) * cf.factor } : cc0;
   const w = totalWeight(m);
-  const why = cf.factor !== 1 ? ` <span class="faint" title="SW5E's numbers ${esc(cc0.maxCapacity)} / ${esc(cc0.pushDragLift)} lb, ×${esc(cf.text)}">×${esc(cf.text)} (${esc(cf.from.concat(cf.size ? [cf.size] : []).join(', '))})</span>` : '';
+  const why = cf.factor !== 1 || cf.from.length ? ` <span class="faint" title="SW5E's numbers ${esc(cc0.maxCapacity)} / ${esc(cc0.pushDragLift)} lb, ×${esc(cf.text)}">×${esc(cf.text)} (${esc(cf.from.concat(cf.size ? [cf.size] : []).join(', '))})</span>` : '';
   // The hover explains the number shown (×2 included), from the number without tweaks or effects.
   const calc = (k) => (cf.factor !== 1 ? { from: num(base[k]), to: cc[k] } : undefined);
   return `<div class="grid auto">

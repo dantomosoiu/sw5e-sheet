@@ -247,9 +247,9 @@ Encumbered at
 Heavily enc. at
 180 lb
 Max capacity
-270 lb
+270 lb ×1 (Mighty Build, Tiny: halved)
 Push / drag / lift
-540 lb
+540 lb ×1 (Mighty Build, Tiny: halved)
 
 ## Sheet: Abilities & Saving Throws
 STR
