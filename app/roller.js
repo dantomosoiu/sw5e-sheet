@@ -256,7 +256,7 @@ function d20Options(m, kind, ctx = {}) {
         else if ((x = /^While you are ([^,]+), you have a \+(\d+) bonus to your AC and all saving throws/i.exec(s))) out.push({ label: `while ${x[1].replace(/ on an? (?:Force|force|tech) power$/, '')} (${label})`, bonus: num(x[2]), extra: [], on: false });
         // "While you are the target of your Critical Analysis feature, you can add half your Critical Analysis ability modifer
         // (minimum of one) to any saving throw you make that doesn't already include that modifier" (Mutagenic Analysis).
-        else if ((x = /^While you are ([^,]+), you can add half your ([\w ]+?) modif(?:i)?er \(minimum of one\) to any saving throw you make that doesn't already include that modifier/i.exec(s))) {
+        else if ((x = /\bWhile you are ([^,]+), you can add half your ([\w ]+?) modif(?:i)?er \(minimum of one\) to any saving throw you make that doesn't already include that modifier/i.exec(s))) {
           const name = x[2].replace(/ ability$/, '');
           const a = ABBR[x[2]] ? x[2] : (new RegExp(`${name} ability modifier, which is (\\w+)`, 'i').exec(riderTexts(m).map((y) => y.text).join(' ')) || [])[1];
           if (ABBR[a] && ctx.ability !== a) out.push({ label: `while ${x[1].replace(/^the target of your /i, 'analyzed by your ')} (${label})`, bonus: Math.max(1, Math.floor(mod([a]) / 2)), extra: [], on: false });
@@ -315,8 +315,8 @@ function d20Options(m, kind, ctx = {}) {
         // Analysis); "You can use Intelligence instead of Dexterity for the attack and damage rolls made with weapons with the
         // finesse property or blaster weapons against the target of your Ranger's Quarry" (Mark of the Meticulous).
         else if (ctx.w && (x = /attack and damage rolls made with weapons with the finesse property or blaster weapons (against [^.]+?) may use your [\w ]+?, which is (\w+), instead of|You can use (\w+) instead of (?:Strength or Dexterity|Dexterity or Strength|Dexterity|Strength) for the attack and damage rolls made with weapons with the finesse property or blaster weapons (against [^.]+?)\./i.exec(s))
-          && ABBR[x[2] || x[3]] && (ctx.finesse || /blaster/i.test(w.weaponClassification || '')) && mod([x[2] || x[3]]) > mod([ab])) {
-          const a = x[2] || x[3];
+          && ABBR[x[2] || x[3]] && (ctx.finesse || /blaster/i.test(w.weaponClassification || '')) && mod([classAbility(m, t.name, x[2] || x[3])]) > mod([ab])) {
+          const a = classAbility(m, t.name, x[2] || x[3]);
           out.push({ label: `${(x[1] || x[4]).replace(/^against the target of your /i, 'vs ').replace(/^against /i, 'vs ')} (${ABBR[a]}, ${label})`, bonus: mod([a]) - mod([ab]), extra: [], on: false });
         // "You can use your choice of Strength or Dexterity modifier for the attack and damage rolls of blaster weapons
         // against targets within 30 feet of you" (Ballistic Approach: Firestorm).
@@ -357,6 +357,24 @@ function optionPicked(m, feature, sub) {
   // A list to choose from ("choose", "of your choice", "from any of the following"): not picked.
   if (/\bchoose\b|\bof your choice\b|\bfrom (?:any of )?the following\b|\bselect\b/i.test(text.split(/####/)[0])) return false;
   return true;
+}
+/**
+ * The ability a class feature uses, after a substitution the character picked: "You can substitute Wisdom or Charisma
+ * (chosen when you study this discipline) for Intelligence for your scholar class features, except for other discoveries
+ * and Academic Pursuit features" (Rancor's Discipline, its pick's note naming the ability). The better one ("can").
+ */
+function classAbility(m, feature, ability) {
+  const mod = (a) => num((((m.c.abilityScores || {})[a]) || {}).modifier);
+  for (const k of arr(m.raw && m.raw.classes)) {
+    for (const p of Object.values(k.options || {}).flatMap((ps) => arr(ps))) {
+      const t = riderTexts(m).find((x) => x.name === p.name);
+      const x = t && new RegExp(`You can substitute (\\w+) or (\\w+) \\([^)]*\\) for ${ability} for your ${k.name.toLowerCase()} class features`, 'i').exec(t.text);
+      if (!x || feature === p.name) continue;
+      const chosen = [x[1], x[2]].find((a) => new RegExp(`\\b(?:${a}|${ABBR[a] || a})\\b`, 'i').test(`${p.note || ''} ${typeof featureNoteOf === 'function' ? featureNoteOf(m.raw, p.name) : ''}`));
+      if (chosen && mod(chosen) > mod(ability)) return chosen;
+    }
+  }
+  return ability;
 }
 /** Is a feature's state, form or stance on now ("Niman Form (lightsaber form)" → the started "Niman Form")? */
 function stateOn(m, name) {
@@ -648,6 +666,16 @@ function buildRoll(m, spec, opts = {}) {
       const mult = /expert/i.test(level) ? 2 : /half/i.test(level) ? 0.5 : 1;
       const r = d20(`${a1} check`, 0, null, { toolAbility: ability });
       r.base = [{ label: `${ABBR[ability]} modifier`, value: num((sc[ability] || {}).modifier) }, { label: `proficiency${mult === 2 ? ' ×2' : ''}`, value: Math.floor(pb * mult) }];
+      // "Whenever you make an ability check with the chosen kit and you don't have disadvantage on the check, you can treat a
+      // d20 roll of 9 or lower as a 10, as long as you spend at least 1 minute on the check" (Specialist, its notes naming
+      // the kit): an option that raises the kept d20.
+      for (const f of riderTexts(m)) {
+        const x = /with the chosen kit and you don't have disadvantage on the check, you can treat a d20 roll of (\d+) or lower as an? (\d+)(, as long as [^.]+)?/i.exec(f.text);
+        const kit = x && typeof featureNoteOf === 'function' && m.raw ? featureNoteOf(m.raw, f.name) : '';
+        if (x && kit && String(a1).toLowerCase().includes(kit.toLowerCase().replace(/s$/, '').trim())) {
+          r.conds.push({ label: `d20 of ${x[1]} or lower counts as ${x[2]}${x[3] ? ` (${x[3].replace(/^, as long as /, '').trim()})` : ''} (${f.name})`, bonus: 0, extra: [], on: false, d20Min: num(x[2]) });
+        }
+      }
       return r;
     }
     case 'attack': {
@@ -750,6 +778,9 @@ function buildRoll(m, spec, opts = {}) {
         if (/\byou have advantage on death saving throws\b/i.test(f.text)) r.advFrom = f.name;
         const x = /\byou can add your (Strength|Dexterity|Constitution|Intelligence|Wisdom|Charisma) modifier to death saving throws\b/i.exec(f.text);
         if (x) r.base.push({ label: `${ABBR[x[1]]} modifier (${f.name})`, value: num((sc[x[1]] || {}).modifier) });
+        // "…roll a d8 and add the die to a saving throw you make" (Brutish Durability): a death save is one too.
+        const y = /\broll an? (d\d+) and add the die to a saving throw you make/i.exec(f.text);
+        if (y && !r.conds.some((c) => c.label === f.name)) r.conds.push({ label: f.name, bonus: 0, extra: [`1${y[1]}`], on: false });
       }
       return r;
     }
@@ -879,7 +910,8 @@ function startRoll(spec, opts = {}) {
       for (const rd of arr(e.riders)) {
         if (!rd.on.some((o) => kinds.includes(o))) continue;
         if (rd.weapon && (e.weaponIndex == null || e.weaponIndex !== wIndex)) continue;
-        const label = `${String(e.power || e.name).replace(/ \(concentration\)$/, '')} ${/^-/.test(rd.dice) ? `−${rd.dice.slice(1)}` : `+${rd.dice}`}${rd.why ? ` (${rd.why})` : ''}`;
+        // The dice show beside the label (the card adds them): not in it as well.
+        const label = `${String(e.power || e.name).replace(/ \(concentration\)$/, '')}${rd.why ? ` (${rd.why})` : ''}`;
         if (roll.conds.some((c) => c.label === label)) continue;
         roll.conds.push({ label, bonus: 0, extra: [rd.dice], on: false, consume: rd.once ? e.id : null });
         if (!rd.optional) opts.conds = arr(opts.conds).concat(label);
@@ -922,7 +954,9 @@ function keptD20(r) {
 }
 function rollSum(r) {
   const kept = keptD20(r);
-  let t = kept ? kept.value : 0;
+  // An option that counts a low d20 as more ("treat a d20 roll of 9 or lower as a 10", Specialist).
+  const floor = Math.max(0, ...r.conds.filter((cd) => cd.on && cd.d20Min).map((cd) => num(cd.d20Min)));
+  let t = kept ? Math.max(kept.value, floor) : 0;
   // Damage with advantage: the weapon's dice twice, the higher set counts.
   const set = (tag) => r.dice.filter((d) => d.tag === tag && d.value != null).reduce((s, d) => s + (d.sign || 1) * d.value, 0);
   if (r.dice.some((d) => d.tag === 'adv')) t += Math.max(set('base'), set('adv')) - set('base') - set('adv');
@@ -1197,7 +1231,7 @@ function renderRollCard(r) {
       ? `<button type="button" class="die s${d.sides} ${cls}${enter}" data-die="${d.id}" data-rl="remove" data-arg="${d.id}" title="${esc(title)} · click to remove" aria-label="Remove d${d.sides}${d.value != null && !spin ? ` (${d.value})` : ''}">${face}<span class="die-x" aria-hidden="true">×</span></button>`
       : `<span class="die s${d.sides} ${cls}${enter}" data-die="${d.id}" title="${esc(title)}">${face}</span>`;
   }).join('');
-  const conds = r.conds.length ? `<div class="rl-conds">${r.conds.map((cd, i) => `<label class="rl-cond${cd.blocked ? ' blocked' : ''}"${cd.blocked ? ` title="${esc(cd.blocked)}"` : ''}><input type="checkbox" data-rl="cond" data-arg="${i}"${cd.on ? ' checked' : ''}> ${esc(cd.label)} <span class="faint">${[num(cd.bonus) ? signed(cd.bonus) : '', ...cd.extra.map((e) => '+' + e)].filter(Boolean).join(' ')}${cd.blocked ? ` · ${esc(cd.blocked)}` : ''}</span></label>`).join('')}</div>` : '';
+  const conds = r.conds.length ? `<div class="rl-conds">${r.conds.map((cd, i) => `<label class="rl-cond${cd.blocked ? ' blocked' : ''}"${cd.blocked ? ` title="${esc(cd.blocked)}"` : ''}><input type="checkbox" data-rl="cond" data-arg="${i}"${cd.on ? ' checked' : ''}> ${esc(cd.label)} <span class="faint">${[num(cd.bonus) ? signed(cd.bonus) : '', ...cd.extra.map((e) => (/^-/.test(e) ? `−${e.slice(1)}` : '+' + e))].filter(Boolean).join(' ')}${cd.blocked ? ` · ${esc(cd.blocked)}` : ''}</span></label>`).join('')}</div>` : '';
   const crit = r.kind === 'd20' && nat != null && nat >= (r.critMin || 20);
   const fumble = r.kind === 'd20' && nat === 1;
   const advSet = r.dice.some((d) => d.tag === 'adv');

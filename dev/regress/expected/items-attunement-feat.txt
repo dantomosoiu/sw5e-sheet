@@ -267,7 +267,7 @@ Proficiency
 +2
 Passive Perception
 15
-  ↳ hover passivePerception: Without tweaks or effects: 12 → now 15 / +1 Wisdom score · Formfighting Dabbler (Jedi background feat): +1 to an ability of my choice t… [226 chars #3cabdafa]
+  ↳ hover passivePerception: Without tweaks or effects: 12 → now 15 / +1 WIS modifier (+1 score) · Formfighting Dabbler (Jedi background feat): +1 to an ability of … [237 chars #0e15478a]
 Hit Dice
 4/4d10
 +2 per die spent (Con)
@@ -379,17 +379,17 @@ Wisdom
 16
   ↳ hover abilityScores.Wisdom.value: Without tweaks or effects: 15 → now 16 / +1 Wisdom score · Formfighting Dabbler (Jedi background feat): +1 to an ability of my choice tweak
 (Not proficient) Saving throw+6
-  ↳ hover abilityScores.Wisdom.savingThrow.modifier: Without tweaks or effects: 2 → now 6 / +1 Wisdom score · Formfighting Dabbler (Jedi background feat): +1 to an … [248 chars #5168a888]
+  ↳ hover abilityScores.Wisdom.savingThrow.modifier: Without tweaks or effects: 2 → now 6 / +1 WIS modifier (+1 score) · Formfighting Dabbler (Jedi background feat)… [259 chars #d1c21171]
 (Not proficient) Animal Handling+3
-  ↳ hover abilityScores.Wisdom.skills.0.modifier: Without tweaks or effects: 2 → now 3 / +1 Wisdom score · Formfighting Dabbler (Jedi background feat): +1 to an ability of my choice tweak
+  ↳ hover abilityScores.Wisdom.skills.0.modifier: Without tweaks or effects: 2 → now 3 / +1 WIS modifier (+1 score) · Formfighting Dabbler (Jedi background feat): +1 to an ability of my choice tweak
 (Proficient) Insight+5
-  ↳ hover abilityScores.Wisdom.skills.1.modifier: Without tweaks or effects: 2 → now 5 / +1 Wisdom score · Formfighting Dabbler (Jedi background feat): +1 to an abi… [243 chars #6b810d8a]
+  ↳ hover abilityScores.Wisdom.skills.1.modifier: Without tweaks or effects: 2 → now 5 / +1 WIS modifier (+1 score) · Formfighting Dabbler (Jedi background feat): +… [254 chars #766254d4]
 (Not proficient) Medicine+3
-  ↳ hover abilityScores.Wisdom.skills.2.modifier: Without tweaks or effects: 2 → now 3 / +1 Wisdom score · Formfighting Dabbler (Jedi background feat): +1 to an ability of my choice tweak
+  ↳ hover abilityScores.Wisdom.skills.2.modifier: Without tweaks or effects: 2 → now 3 / +1 WIS modifier (+1 score) · Formfighting Dabbler (Jedi background feat): +1 to an ability of my choice tweak
 (Proficient) Perception+5
-  ↳ hover abilityScores.Wisdom.skills.3.modifier: Without tweaks or effects: 2 → now 5 / +1 Wisdom score · Formfighting Dabbler (Jedi background feat): +1 to an abi… [245 chars #94c071aa]
+  ↳ hover abilityScores.Wisdom.skills.3.modifier: Without tweaks or effects: 2 → now 5 / +1 WIS modifier (+1 score) · Formfighting Dabbler (Jedi background feat): +… [256 chars #8ce1ce11]
 (Proficient) Survival+5
-  ↳ hover abilityScores.Wisdom.skills.4.modifier: Without tweaks or effects: 2 → now 5 / +1 Wisdom score · Formfighting Dabbler (Jedi background feat): +1 to an abi… [322 chars #8a3ba6b8]
+  ↳ hover abilityScores.Wisdom.skills.4.modifier: Without tweaks or effects: 2 → now 5 / +1 WIS modifier (+1 score) · Formfighting Dabbler (Jedi background feat): +… [333 chars #7aecbef4]
 base 13 · +2 Togruta · +1 from Formfighting Dabbler (Jedi background feat): +1 to an ability of my choice (tweak)
 CHA
 Charisma
@@ -409,25 +409,25 @@ not proficient proficient expertise
 Skill | Ability | Bonus | Passive | Proficiency |
 (Not proficient) Acrobatics | DEX | +1 | 11 | — |
 (Not proficient) Animal Handling | WIS | +3 | 13 | — |
-  ↳ hover abilityScores.Wisdom.skills.0.modifier: Without tweaks or effects: 2 → now 3 / +1 Wisdom score · Formfighting Dabbler (Jedi background feat): +1 to an ability of my choice tweak
-  ↳ hover abilityScores.Wisdom.skills.0.modifier: Without tweaks or effects: 2 → now 3 / +1 Wisdom score · Formfighting Dabbler (Jedi background feat): +1 to an ability of my choice tweak
+  ↳ hover abilityScores.Wisdom.skills.0.modifier: Without tweaks or effects: 2 → now 3 / +1 WIS modifier (+1 score) · Formfighting Dabbler (Jedi background feat): +1 to an ability of my choice tweak
+  ↳ hover abilityScores.Wisdom.skills.0.modifier: Without tweaks or effects: 2 → now 3 / +1 WIS modifier (+1 score) · Formfighting Dabbler (Jedi background feat): +1 to an ability of my choice tweak
 (Proficient) Athletics | STR | +6 | 16 | Proficient |
   ↳ hover abilityScores.Strength.skills.0.modifier: Without tweaks or effects: 4 → now 6 / Proficient Athletics · Guardian class skill (1 of 2) tweak
   ↳ hover abilityScores.Strength.skills.0.modifier: Without tweaks or effects: 4 → now 6 / Proficient Athletics · Guardian class skill (1 of 2) tweak
 (Not proficient) Deception | CHA | +0 | 10 | — |
 (Proficient) Insight | WIS | +5 | 15 | Proficient |
-  ↳ hover abilityScores.Wisdom.skills.1.modifier: Without tweaks or effects: 2 → now 5 / +1 Wisdom score · Formfighting Dabbler (Jedi background feat): +1 to an abi… [243 chars #6b810d8a]
-  ↳ hover abilityScores.Wisdom.skills.1.modifier: Without tweaks or effects: 2 → now 5 / +1 Wisdom score · Formfighting Dabbler (Jedi background feat): +1 to an abi… [243 chars #6b810d8a]
+  ↳ hover abilityScores.Wisdom.skills.1.modifier: Without tweaks or effects: 2 → now 5 / +1 WIS modifier (+1 score) · Formfighting Dabbler (Jedi background feat): +… [254 chars #766254d4]
+  ↳ hover abilityScores.Wisdom.skills.1.modifier: Without tweaks or effects: 2 → now 5 / +1 WIS modifier (+1 score) · Formfighting Dabbler (Jedi background feat): +… [254 chars #766254d4]
 (Not proficient) Intimidation | CHA | +0 | 10 | — |
 (Not proficient) Investigation | INT | −1 | 9 | — |
 (Not proficient) Lore | INT | −1 | 9 | — |
 (Not proficient) Medicine | WIS | +3 | 13 | — |
-  ↳ hover abilityScores.Wisdom.skills.2.modifier: Without tweaks or effects: 2 → now 3 / +1 Wisdom score · Formfighting Dabbler (Jedi background feat): +1 to an ability of my choice tweak
-  ↳ hover abilityScores.Wisdom.skills.2.modifier: Without tweaks or effects: 2 → now 3 / +1 Wisdom score · Formfighting Dabbler (Jedi background feat): +1 to an ability of my choice tweak
+  ↳ hover abilityScores.Wisdom.skills.2.modifier: Without tweaks or effects: 2 → now 3 / +1 WIS modifier (+1 score) · Formfighting Dabbler (Jedi background feat): +1 to an ability of my choice tweak
+  ↳ hover abilityScores.Wisdom.skills.2.modifier: Without tweaks or effects: 2 → now 3 / +1 WIS modifier (+1 score) · Formfighting Dabbler (Jedi background feat): +1 to an ability of my choice tweak
 (Not proficient) Nature | INT | −1 | 9 | — |
 (Proficient) Perception | WIS | +5 | 15 | Proficient |
-  ↳ hover abilityScores.Wisdom.skills.3.modifier: Without tweaks or effects: 2 → now 5 / +1 Wisdom score · Formfighting Dabbler (Jedi background feat): +1 to an abi… [245 chars #94c071aa]
-  ↳ hover passivePerception: Without tweaks or effects: 12 → now 15 / +1 Wisdom score · Formfighting Dabbler (Jedi background feat): +1 to an ability of my choice t… [226 chars #3cabdafa]
+  ↳ hover abilityScores.Wisdom.skills.3.modifier: Without tweaks or effects: 2 → now 5 / +1 WIS modifier (+1 score) · Formfighting Dabbler (Jedi background feat): +… [256 chars #8ce1ce11]
+  ↳ hover passivePerception: Without tweaks or effects: 12 → now 15 / +1 WIS modifier (+1 score) · Formfighting Dabbler (Jedi background feat): +1 to an ability of … [237 chars #0e15478a]
 (Not proficient) Performance | CHA | +0 | 10 | — |
 (Proficient) Persuasion | CHA | +2 | 12 | Proficient |
   ↳ hover abilityScores.Charisma.skills.3.modifier: Without tweaks or effects: 0 → now 2 / Proficient Persuasion · Jedi background skill (2 of 2) tweak
@@ -436,8 +436,8 @@ Skill | Ability | Bonus | Passive | Proficiency |
 (Not proficient) Sleight of Hand | DEX | +1 | 11 | — |
 (Not proficient) Stealth | DEX | +1 | 11 | — |
 (Proficient) Survival | WIS | +5 | 15 | Proficient |
-  ↳ hover abilityScores.Wisdom.skills.4.modifier: Without tweaks or effects: 2 → now 5 / +1 Wisdom score · Formfighting Dabbler (Jedi background feat): +1 to an abi… [322 chars #8a3ba6b8]
-  ↳ hover abilityScores.Wisdom.skills.4.modifier: Without tweaks or effects: 2 → now 5 / +1 Wisdom score · Formfighting Dabbler (Jedi background feat): +1 to an abi… [322 chars #8a3ba6b8]
+  ↳ hover abilityScores.Wisdom.skills.4.modifier: Without tweaks or effects: 2 → now 5 / +1 WIS modifier (+1 score) · Formfighting Dabbler (Jedi background feat): +… [333 chars #7aecbef4]
+  ↳ hover abilityScores.Wisdom.skills.4.modifier: Without tweaks or effects: 2 → now 5 / +1 WIS modifier (+1 score) · Formfighting Dabbler (Jedi background feat): +… [333 chars #7aecbef4]
 (Not proficient) Technology | INT | −1 | 9 | — |
 
 ## Sheet: Weapons & Attacks
@@ -451,22 +451,22 @@ Unarmed Strike
 ## Sheet: Force Casting
 Force points
 11 / 11
-  ↳ hover forceCasting.maxPoints: Without tweaks or effects: 10 → now 11 / +1 Wisdom score · Formfighting Dabbler (Jedi background feat): +1 to an ability of my choice tweak
+  ↳ hover forceCasting.maxPoints: Without tweaks or effects: 10 → now 11 / +1 WIS modifier (+1 score) · Formfighting Dabbler (Jedi background feat): +1 to an ability of my choice tweak
 Max power level
 1
 Light side
 DC 13
-  ↳ hover forceCasting.lightSaveDC: Without tweaks or effects: 12 → now 13 / +1 Wisdom score · Formfighting Dabbler (Jedi background feat): +1 to an ability of my choice tweak
+  ↳ hover forceCasting.lightSaveDC: Without tweaks or effects: 12 → now 13 / +1 WIS modifier (+1 score) · Formfighting Dabbler (Jedi background feat): +1 to an ability of my choice tweak
 attack +5
-  ↳ hover forceCasting.lightAttackModifier: Without tweaks or effects: 4 → now 5 / +1 Wisdom score · Formfighting Dabbler (Jedi background feat): +1 to an ability of my choice tweak
+  ↳ hover forceCasting.lightAttackModifier: Without tweaks or effects: 4 → now 5 / +1 WIS modifier (+1 score) · Formfighting Dabbler (Jedi background feat): +1 to an ability of my choice tweak
 Dark side
 DC 10
 attack +2
 Universal
 DC 13
-  ↳ hover forceCasting.universalSaveDC: Without tweaks or effects: 12 → now 13 / +1 Wisdom score · Formfighting Dabbler (Jedi background feat): +1 to an ability of my choice tweak
+  ↳ hover forceCasting.universalSaveDC: Without tweaks or effects: 12 → now 13 / +1 WIS modifier (+1 score) · Formfighting Dabbler (Jedi background feat): +1 to an ability of my choice tweak
 attack +5
-  ↳ hover forceCasting.universalAttackModifier: Without tweaks or effects: 4 → now 5 / +1 Wisdom score · Formfighting Dabbler (Jedi background feat): +1 to an ability of my choice tweak
+  ↳ hover forceCasting.universalAttackModifier: Without tweaks or effects: 4 → now 5 / +1 WIS modifier (+1 score) · Formfighting Dabbler (Jedi background feat): +1 to an ability of my choice tweak
 At-will powers (5)
 Force Leap Universal Guardian
 [Cast]

@@ -363,28 +363,28 @@ Carried
 Encumbered (variant rule)
 Encumbered at
 75 lb
-  ↳ hover carryingCapacity.encumbered: Without tweaks or effects: 40 → now 75 / bump to 15 Strength score · no reason given tweak / +2 STR · Strength Stim (Fine) used, lasts 1 hour, since Thu 00:00
+  ↳ hover carryingCapacity.encumbered: Without tweaks or effects: 40 → now 75 / bump to 15 Strength score · tweak / +2 STR · Strength Stim (Fine) used, lasts 1 hour, since Thu 00:00
 Heavily enc. at
 150 lb
-  ↳ hover carryingCapacity.heavilyEncumbered: Without tweaks or effects: 80 → now 150 / bump to 15 Strength score · no reason given tweak / +2 STR · Strength Stim (Fine) used, lasts 1 hour, since Thu 00:00
+  ↳ hover carryingCapacity.heavilyEncumbered: Without tweaks or effects: 80 → now 150 / bump to 15 Strength score · tweak / +2 STR · Strength Stim (Fine) used, lasts 1 hour, since Thu 00:00
 Max capacity
 225 lb
-  ↳ hover carryingCapacity.maxCapacity: Without tweaks or effects: 120 → now 225 / bump to 15 Strength score · no reason given tweak / +2 STR · Strength Stim (Fine) used, lasts 1 hour, since Thu 00:00
+  ↳ hover carryingCapacity.maxCapacity: Without tweaks or effects: 120 → now 225 / bump to 15 Strength score · tweak / +2 STR · Strength Stim (Fine) used, lasts 1 hour, since Thu 00:00
 Push / drag / lift
 450 lb
-  ↳ hover carryingCapacity.pushDragLift: Without tweaks or effects: 240 → now 450 / bump to 15 Strength score · no reason given tweak / +2 STR · Strength Stim (Fine) used, lasts 1 hour, since Thu 00:00
+  ↳ hover carryingCapacity.pushDragLift: Without tweaks or effects: 240 → now 450 / bump to 15 Strength score · tweak / +2 STR · Strength Stim (Fine) used, lasts 1 hour, since Thu 00:00
 
 ## Sheet: Abilities & Saving Throws
 STR
 Strength
 +2
-  ↳ hover abilityScores.Strength.modifier: Without tweaks or effects: -1 → now 2 / bump to 15 Strength score · no reason given tweak / +2 STR · Strength Stim (Fine) used, lasts 1 hour, since Thu 00:00
+  ↳ hover abilityScores.Strength.modifier: Without tweaks or effects: -1 → now 2 / bump to 15 Strength score · tweak / +2 STR · Strength Stim (Fine) used, lasts 1 hour, since Thu 00:00
 15
-  ↳ hover abilityScores.Strength.value: Without tweaks or effects: 8 → now 15 / bump to 15 Strength score · no reason given tweak / +2 STR · Strength Stim (Fine) used, lasts 1 hour, since Thu 00:00
+  ↳ hover abilityScores.Strength.value: Without tweaks or effects: 8 → now 15 / bump to 15 Strength score · tweak / +2 STR · Strength Stim (Fine) used, lasts 1 hour, since Thu 00:00
 (Proficient) Saving throw+4
-  ↳ hover abilityScores.Strength.savingThrow.modifier: Without tweaks or effects: 1 → now 4 / bump to 15 Strength score · no reason given tweak / +2 STR · Strength Stim (Fine) used, lasts 1 hour, since Thu 00:00
+  ↳ hover abilityScores.Strength.savingThrow.modifier: Without tweaks or effects: 1 → now 4 / bump to 15 Strength score · tweak / +2 STR score · Strength Stim (Fine) used, lasts 1 hour, since Thu 00:00
 (Not proficient) Athletics+2
-  ↳ hover abilityScores.Strength.skills.0.modifier: Without tweaks or effects: -1 → now 2 / bump to 15 Strength score · no reason given tweak / +2 STR · Strength Stim (Fine) used, lasts 1 hour, since Thu 00:00
+  ↳ hover abilityScores.Strength.skills.0.modifier: Without tweaks or effects: -1 → now 2 / bump to 15 Strength score · tweak / +2 STR score · Strength Stim (Fine) used, lasts 1 hour, since Thu 00:00
 base 8 · +2 from Strength Stim (Fine) (temporary) · bumped to 15 by a tweak
 DEX
 Dexterity
@@ -445,8 +445,8 @@ Skill | Ability | Bonus | Passive | Proficiency |
 (Not proficient) Acrobatics | DEX | +3 | 13 | — |
 (Not proficient) Animal Handling | WIS | +1 | 11 | — |
 (Not proficient) Athletics | STR | +2 | 12 | — |
-  ↳ hover abilityScores.Strength.skills.0.modifier: Without tweaks or effects: -1 → now 2 / bump to 15 Strength score · no reason given tweak / +2 STR · Strength Stim (Fine) used, lasts 1 hour, since Thu 00:00
-  ↳ hover abilityScores.Strength.skills.0.modifier: Without tweaks or effects: -1 → now 2 / bump to 15 Strength score · no reason given tweak / +2 STR · Strength Stim (Fine) used, lasts 1 hour, since Thu 00:00
+  ↳ hover abilityScores.Strength.skills.0.modifier: Without tweaks or effects: -1 → now 2 / bump to 15 Strength score · tweak / +2 STR score · Strength Stim (Fine) used, lasts 1 hour, since Thu 00:00
+  ↳ hover abilityScores.Strength.skills.0.modifier: Without tweaks or effects: -1 → now 2 / bump to 15 Strength score · tweak / +2 STR score · Strength Stim (Fine) used, lasts 1 hour, since Thu 00:00
 (Not proficient) Deception | CHA | +1 | 11 | — |
 (Proficient) Insight | WIS | +3 | 13 | Proficient |
   ↳ hover abilityScores.Wisdom.skills.1.modifier: Without tweaks or effects: 1 → now 3 / Proficient Insight · Fighter class skill (chosen at 1st level) tweak
@@ -484,8 +484,8 @@ Finesse
   ↳ hover weapons.1.damageBonus: Without tweaks or effects: 3 → now 5 / +2 Weapon damage · Brute Force Assault Specialist feature
 Unarmed Strike
 | +5 | 1d4+5 Kinetic | Dexterity (finesse) | Unarmed | — |
-  ↳ hover weapons.2.attackBonus: Without tweaks or effects: 1 → now 5 / +1 Finesse: DEX +3 instead of STR · Unarmed Combatant Zabrak trait / bump to 15 Strength sco… [254 chars #00e50dbc]
-  ↳ hover weapons.2.damageBonus: Without tweaks or effects: 0 → now 5 / = 4, d4 Unarmed: damage die · Zabrak Unarmed Combatant: 1d4, finesse tweak / +2 Unarmed dama… [392 chars #7dec3f1a]
+  ↳ hover weapons.2.attackBonus: Without tweaks or effects: 1 → now 5 / +1 Finesse: DEX +3 instead of STR · Unarmed Combatant Zabrak trait / bump to 15 Strength sco… [244 chars #1bbb813a]
+  ↳ hover weapons.2.damageBonus: Without tweaks or effects: 0 → now 5 / = 4, d4 Unarmed: damage die · Zabrak Unarmed Combatant: 1d4, finesse tweak / +2 Unarmed dama… [382 chars #768ee210]
 
 ## Sheet: Superiority & Maneuvers
 Maneuvers Known

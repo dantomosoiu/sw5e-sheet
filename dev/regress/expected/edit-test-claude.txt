@@ -338,9 +338,9 @@ Strength
 21
   ↳ hover abilityScores.Strength.value: Without tweaks or effects: 15 → now 21 / +6 STR (the item sets it to 21) · Strength Enhancer while attuned
 (Proficient) Saving throw+8
-  ↳ hover abilityScores.Strength.savingThrow.modifier: Without tweaks or effects: 5 → now 8 / +6 STR (the item sets it to 21) · Strength Enhancer while attuned
+  ↳ hover abilityScores.Strength.savingThrow.modifier: Without tweaks or effects: 5 → now 8 / +3 STR modifier (+6 score) (the item sets it to 21) · Strength Enhancer while attuned
 (Not proficient) Athletics+5
-  ↳ hover abilityScores.Strength.skills.0.modifier: Without tweaks or effects: 2 → now 5 / +6 STR (the item sets it to 21) · Strength Enhancer while attuned
+  ↳ hover abilityScores.Strength.skills.0.modifier: Without tweaks or effects: 2 → now 5 / +3 STR modifier (+6 score) (the item sets it to 21) · Strength Enhancer while attuned
 base 15 · +6 from Strength Enhancer
 DEX
 Dexterity
@@ -387,15 +387,15 @@ Charisma
 11
   ↳ hover abilityScores.Charisma.value: Without tweaks or effects: 8 → now 11 / +2 Charisma score · Test character setup: +1 CHA tweak / +1 CHA · Silver-Tongued feat (background feat)
 (Not proficient) Saving throw+0
-  ↳ hover abilityScores.Charisma.savingThrow.modifier: Without tweaks or effects: -1 → now 0 / +2 Charisma score · Test character setup: +1 CHA tweak / +1 CHA · Silver-Tongued feat (background feat)
+  ↳ hover abilityScores.Charisma.savingThrow.modifier: Without tweaks or effects: -1 → now 0 / +2 CHA score · Test character setup: +1 CHA tweak / +1 CHA score · Silver-Tongued feat (background feat)
 (Expertise) Deception+6
-  ↳ hover abilityScores.Charisma.skills.0.modifier: Without tweaks or effects: -1 → now 6 / +2 Charisma score · Test character setup: +1 CHA tweak / +1 CHA · Silver… [370 chars #0a9959b9]
+  ↳ hover abilityScores.Charisma.skills.0.modifier: Without tweaks or effects: -1 → now 6 / +2 CHA score · Test character setup: +1 CHA tweak / +1 CHA score · Silve… [355 chars #847dc04c]
 (Not proficient) Intimidation+0
-  ↳ hover abilityScores.Charisma.skills.1.modifier: Without tweaks or effects: -1 → now 0 / +2 Charisma score · Test character setup: +1 CHA tweak / +1 CHA · Silver-Tongued feat (background feat)
+  ↳ hover abilityScores.Charisma.skills.1.modifier: Without tweaks or effects: -1 → now 0 / +2 CHA score · Test character setup: +1 CHA tweak / +1 CHA score · Silver-Tongued feat (background feat)
 (Not proficient) Performance+0
-  ↳ hover abilityScores.Charisma.skills.2.modifier: Without tweaks or effects: -1 → now 0 / +2 Charisma score · Test character setup: +1 CHA tweak / +1 CHA · Silver-Tongued feat (background feat)
+  ↳ hover abilityScores.Charisma.skills.2.modifier: Without tweaks or effects: -1 → now 0 / +2 CHA score · Test character setup: +1 CHA tweak / +1 CHA score · Silver-Tongued feat (background feat)
 (Not proficient) Persuasion+0
-  ↳ hover abilityScores.Charisma.skills.3.modifier: Without tweaks or effects: -1 → now 0 / +2 Charisma score · Test character setup: +1 CHA tweak / +1 CHA · Silver-Tongued feat (background feat)
+  ↳ hover abilityScores.Charisma.skills.3.modifier: Without tweaks or effects: -1 → now 0 / +2 CHA score · Test character setup: +1 CHA tweak / +1 CHA score · Silver-Tongued feat (background feat)
 base 8 · +2 from Test character setup: +1 CHA (tweak) · +1 from Silver-Tongued (feat)
 not proficient proficient expertise
 
@@ -404,28 +404,28 @@ Skill | Ability | Bonus | Passive | Proficiency |
 (Not proficient) Acrobatics | DEX | +2 | 12 | — |
 (Not proficient) Animal Handling | WIS | +0 | 10 | — |
 (Not proficient) Athletics | STR | +5 | 15 | — |
-  ↳ hover abilityScores.Strength.skills.0.modifier: Without tweaks or effects: 2 → now 5 / +6 STR (the item sets it to 21) · Strength Enhancer while attuned
-  ↳ hover abilityScores.Strength.skills.0.modifier: Without tweaks or effects: 2 → now 5 / +6 STR (the item sets it to 21) · Strength Enhancer while attuned
+  ↳ hover abilityScores.Strength.skills.0.modifier: Without tweaks or effects: 2 → now 5 / +3 STR modifier (+6 score) (the item sets it to 21) · Strength Enhancer while attuned
+  ↳ hover abilityScores.Strength.skills.0.modifier: Without tweaks or effects: 2 → now 5 / +3 STR modifier (+6 score) (the item sets it to 21) · Strength Enhancer while attuned
 (Expertise) Deception | CHA | +6 | 16 | Expertise |
-  ↳ hover abilityScores.Charisma.skills.0.modifier: Without tweaks or effects: -1 → now 6 / +2 Charisma score · Test character setup: +1 CHA tweak / +1 CHA · Silver… [370 chars #0a9959b9]
-  ↳ hover abilityScores.Charisma.skills.0.modifier: Without tweaks or effects: -1 → now 6 / +2 Charisma score · Test character setup: +1 CHA tweak / +1 CHA · Silver… [370 chars #0a9959b9]
+  ↳ hover abilityScores.Charisma.skills.0.modifier: Without tweaks or effects: -1 → now 6 / +2 CHA score · Test character setup: +1 CHA tweak / +1 CHA score · Silve… [355 chars #847dc04c]
+  ↳ hover abilityScores.Charisma.skills.0.modifier: Without tweaks or effects: -1 → now 6 / +2 CHA score · Test character setup: +1 CHA tweak / +1 CHA score · Silve… [355 chars #847dc04c]
 (Proficient) Insight | WIS | +3 | 13 | Proficient |
   ↳ hover abilityScores.Wisdom.skills.1.modifier: Without tweaks or effects: 0 → now 3 / proficient Insight: proficient · Shrewd Bothan trait
   ↳ hover abilityScores.Wisdom.skills.1.modifier: Without tweaks or effects: 0 → now 3 / proficient Insight: proficient · Shrewd Bothan trait
 (Not proficient) Intimidation | CHA | +0 | 10 | — |
-  ↳ hover abilityScores.Charisma.skills.1.modifier: Without tweaks or effects: -1 → now 0 / +2 Charisma score · Test character setup: +1 CHA tweak / +1 CHA · Silver-Tongued feat (background feat)
-  ↳ hover abilityScores.Charisma.skills.1.modifier: Without tweaks or effects: -1 → now 0 / +2 Charisma score · Test character setup: +1 CHA tweak / +1 CHA · Silver-Tongued feat (background feat)
+  ↳ hover abilityScores.Charisma.skills.1.modifier: Without tweaks or effects: -1 → now 0 / +2 CHA score · Test character setup: +1 CHA tweak / +1 CHA score · Silver-Tongued feat (background feat)
+  ↳ hover abilityScores.Charisma.skills.1.modifier: Without tweaks or effects: -1 → now 0 / +2 CHA score · Test character setup: +1 CHA tweak / +1 CHA score · Silver-Tongued feat (background feat)
 (Not proficient) Investigation | INT | +2 | 12 | — |
 (Not proficient) Lore | INT | +2 | 12 | — |
 (Not proficient) Medicine | WIS | +0 | 10 | — |
 (Not proficient) Nature | INT | +2 | 12 | — |
 (Not proficient) Perception | WIS | +0 | 10 | — |
 (Not proficient) Performance | CHA | +0 | 10 | — |
-  ↳ hover abilityScores.Charisma.skills.2.modifier: Without tweaks or effects: -1 → now 0 / +2 Charisma score · Test character setup: +1 CHA tweak / +1 CHA · Silver-Tongued feat (background feat)
-  ↳ hover abilityScores.Charisma.skills.2.modifier: Without tweaks or effects: -1 → now 0 / +2 Charisma score · Test character setup: +1 CHA tweak / +1 CHA · Silver-Tongued feat (background feat)
+  ↳ hover abilityScores.Charisma.skills.2.modifier: Without tweaks or effects: -1 → now 0 / +2 CHA score · Test character setup: +1 CHA tweak / +1 CHA score · Silver-Tongued feat (background feat)
+  ↳ hover abilityScores.Charisma.skills.2.modifier: Without tweaks or effects: -1 → now 0 / +2 CHA score · Test character setup: +1 CHA tweak / +1 CHA score · Silver-Tongued feat (background feat)
 (Not proficient) Persuasion | CHA | +0 | 10 | — |
-  ↳ hover abilityScores.Charisma.skills.3.modifier: Without tweaks or effects: -1 → now 0 / +2 Charisma score · Test character setup: +1 CHA tweak / +1 CHA · Silver-Tongued feat (background feat)
-  ↳ hover abilityScores.Charisma.skills.3.modifier: Without tweaks or effects: -1 → now 0 / +2 Charisma score · Test character setup: +1 CHA tweak / +1 CHA · Silver-Tongued feat (background feat)
+  ↳ hover abilityScores.Charisma.skills.3.modifier: Without tweaks or effects: -1 → now 0 / +2 CHA score · Test character setup: +1 CHA tweak / +1 CHA score · Silver-Tongued feat (background feat)
+  ↳ hover abilityScores.Charisma.skills.3.modifier: Without tweaks or effects: -1 → now 0 / +2 CHA score · Test character setup: +1 CHA tweak / +1 CHA score · Silver-Tongued feat (background feat)
 (Not proficient) Piloting | INT | +2 | 12 | — |
 (Not proficient) Sleight of Hand | DEX | +2 | 12 | — |
 (Not proficient) Stealth | DEX | +2 | 12 | — |
@@ -442,8 +442,8 @@ Shots 16/16 [−1] [Reload] 0 Power cells
   ↳ hover weapons.0.damageBonus: Without tweaks or effects: 2 → now 4 / +1 Blaster pistol: damage · Custom barrel tweak / +1 Damage · Weapon (Fine) while equipped /… [259 chars #5d4d5b3b]
 Unarmed Strike
 | +9 | 7 Kinetic | Strength | Unarmed | — |
-  ↳ hover weapons.1.attackBonus: Without tweaks or effects: 5 → now 9 / +1 Unarmed attack · Handwraps (Fine) while equipped / +6 STR (the item sets it to 21) · Strength Enhancer while attuned
-  ↳ hover weapons.1.damageBonus: Without tweaks or effects: 3 → now 7 / +1 Unarmed damage · Handwraps (Fine) while equipped / +6 STR (the item sets it to 21) · Strength Enhancer while attuned
+  ↳ hover weapons.1.attackBonus: Without tweaks or effects: 5 → now 9 / +1 Unarmed attack · Handwraps (Fine) while equipped / +3 STR modifier (+6 score) (the item sets it to 21) · Strength Enhancer while attuned
+  ↳ hover weapons.1.damageBonus: Without tweaks or effects: 3 → now 7 / +1 Unarmed damage · Handwraps (Fine) while equipped / +3 STR modifier (+6 score) (the item sets it to 21) · Strength Enhancer while attuned
 
 ## Sheet: Tech Casting
 Tech points

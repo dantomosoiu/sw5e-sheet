@@ -2611,6 +2611,9 @@ function applyEffects(key, editedRaw, complete) {
       const w = /^(?:[-#*_ ]*[A-Z][\w'’ -]+?\s+)?While you are ([^,]+), you have a \+(\d+) bonus to your AC\b/.exec(s0);
       // "While wielding your modified lightsaber, you gain a +1 bonus to your armor class against melee weapon attacks"
       // (Crossguard, an Artificer modification picked).
+      // Only with the modified weapon equipped ("while wielding").
+      const modifiedOn = arr(editedRaw.classes).flatMap((k) => arr(k.modifiedItems)).some((n) => arr(editedRaw.equipment).some((it) => it.equipped && invSameName(n, it.name)));
+      if (!modifiedOn && /\bWhile wielding your modified \w+, you gain a \+\d+ bonus to your armor class/i.test(s0)) continue;
       const v = /\bWhile wielding your modified \w+, you gain a \+(\d+) bonus to your armor class against melee weapon attacks/i.exec(s0);
       const x = v ? [v[0], v[1]] : w ? [w[0], w[2]] : /^(?:[^.]*?\s)?You gain a \+(\d+) bonus to AC until the start of your next turn\b/.exec(s0);
       if (!x || /\bfor each\b/i.test(s0)) continue;
@@ -3070,7 +3073,12 @@ function bumpSources(m, path) {
   const rel = {
     armorClass: ['armorClass', 'Dexterity'], initiative: ['initiative', 'Dexterity'], passivePerception: ['passivePerception', 'Wisdom', 'abilityScores.Wisdom.skills.Perception'],
     // Speed goes by Strength only through worn armor's strength number (Muscled Menace's +1 STR doesn't move it otherwise).
-    hitPoints: ['hitPoints', 'Constitution'], speed: ['speed'].concat(arr(m.c.equipment).some((e) => e.equipped && e.equipmentCategory === 'Armor' && arr(e.properties).some((p) => /^strength \d+/i.test(String(p).trim()))) ? ['Strength'] : []),
+    // (only when the change crosses a worn piece's strength number).
+    hitPoints: ['hitPoints', 'Constitution'], speed: ['speed'].concat(arr(m.c.equipment).some((e) => e.equipped && e.equipmentCategory === 'Armor' && arr(e.properties).some((p) => {
+      const n = num((/^strength (\d+)/i.exec(String(p).trim()) || [])[1]);
+      const was = num((((m.base && m.base.abilityScores) || {}).Strength || {}).value), now = num(((m.c.abilityScores || {}).Strength || {}).value);
+      return n && (was < n) !== (now < n);
+    })) ? ['Strength'] : []),
     carryingCapacity: ['Strength'],
     proficiencyBonus: [], attunement: ['attunement'],
   }[path.split('.')[0]] || ['*'];
@@ -3156,10 +3164,20 @@ function bumpTip(m, path, d) {
   const alts = (m.alts[path] || []).map((a) => `<li><b>${esc(altValue(m, path, a))}</b> ${esc(a.cond)}: ${a.sources.map((cd) => `${esc(cd.mod.extraDamage && /damageBonus$/.test(path) ? '+' + cd.mod.extraDamage + ' damage' : signedLabel(cd.bonus))} · ${esc(cd.effect.name)} <span class="faint">${esc(effectWhen(cd.effect))}</span>`).join('; ')}</li>`);
   const condHtml = alts.length ? `<div class="tip-head" style="margin-top:6px">Only sometimes:</div><ul>${alts.join('')}</ul>` : '';
   if (d.to == null || d.to === '') return condHtml.replace('margin-top:6px', 'margin-top:0');
-  const tweakLine = (t) => `<li><b>${esc(fxTweakValueText({ ...(t.fields || {}), bonus: t.bonus }))}</b> ${esc(t.effect.tweakName)}
-      · ${t.effect.reason ? esc(t.effect.reason) : '<span class="warn-text">no reason given</span>'} <span class="faint">${esc(effectWhen(t.effect))}</span></li>`;
+  // A score change under a number that uses the modifier: what it did to the modifier ("+1 DEX modifier (+2 score)").
+  const scoreMod = (t) => {
+    const a = (/^abilityScores\.(\w+)\.score$/.exec(t.path) || [])[1];
+    if (!a || path.startsWith(`abilityScores.${a}.value`) || path.startsWith(`abilityScores.${a}.modifier`) || !num(t.bonus) || /^(?:carryingCapacity|speed)/.test(path)) return null;
+    // Several changes to one score move its modifier together: then each is named as a score change.
+    if (src.filter((x) => x.path === t.path).length > 1) return `${signedLabel(num(t.bonus))} ${ABBR[a]} score`;
+    const f = num((m.fx.scores || {})[a]);
+    const d = Math.floor((f - 10) / 2) - Math.floor((f - num(t.bonus) - 10) / 2);
+    return `${signedLabel(d)} ${ABBR[a]} modifier (${signedLabel(num(t.bonus))} score)`;
+  };
+  const tweakLine = (t) => `<li><b>${esc(scoreMod(t) || fxTweakValueText({ ...(t.fields || {}), bonus: t.bonus }))}</b> ${esc(scoreMod(t) ? '' : t.effect.tweakName)}
+      · ${t.effect.reason ? `${esc(t.effect.reason)} ` : ''}<span class="faint">${esc(effectWhen(t.effect))}</span></li>`;
   return `<div class="tip-head">Without tweaks or effects: <b>${fmt(d.from ?? '—')}</b> → now <b>${fmt(d.to)}</b></div>
-    ${src.length || carryLines(m, path) ? `<ul>${carryLines(m, path)}${src.map((t) => (t.effect.kind === 'tweak' ? tweakLine(t) : `<li><b>${esc(!t.bonus && t.fields && t.fields.proficiency ? String(t.fields.proficiency).toLowerCase() : !t.bonus && t.fields && t.fields.dieSize ? `d${t.fields.dieSize}` : signedLabel(t.bonus))}</b> ${esc(t.mod.label.replace(/\s*[+\-−]?\d+( ft)?$/, ''))}${t.mod.set != null ? ` <span class="faint">(the item sets it to ${t.mod.set})</span>`
+    ${src.length || carryLines(m, path) ? `<ul>${carryLines(m, path)}${src.map((t) => (t.effect.kind === 'tweak' ? tweakLine(t) : `<li><b>${esc(scoreMod(t) || (!t.bonus && t.fields && t.fields.proficiency ? String(t.fields.proficiency).toLowerCase() : !t.bonus && t.fields && t.fields.dieSize ? `d${t.fields.dieSize}` : signedLabel(t.bonus)))}</b> ${esc(scoreMod(t) ? '' : t.mod.label.replace(/\s*[+\-−]?\d+( ft)?$/, ''))}${t.mod.set != null ? ` <span class="faint">(the item sets it to ${t.mod.set})</span>`
       : t.mod.cap != null && typeof t.mod.bonus === 'number' && t.bonus !== t.mod.bonus ? ` <span class="faint">(capped from ${esc(signedLabel(t.mod.bonus))})</span>` : ''}
       · ${esc(t.effect.name)} <span class="faint">${esc(effectWhen(t.effect))}</span></li>`)).join('')}${setAsideLines(m, src)}</ul>`
       : '<div class="faint">Changed by the tweaks or effects listed under Settings, Tweaks &amp; Data and Combat &amp; Vitals → Effects.</div>'}${condHtml}${acOthers(m, path)}`;
@@ -3867,7 +3885,7 @@ function effectRow(m, e) {
     if (!got.length) return chip(`${mod.label}: no effect`, 'warn');
     const b = got.reduce((s, t) => s + t.bonus, 0);
     // Worked out from the scores ("AC 19 (base)", "AC as DEX 15"): the bonus it comes to.
-    const worked = mod.set != null || mod.scoreAs || mod.acFlat != null || mod.abilityMod;
+    const worked = mod.set != null || mod.scoreAs || mod.acFlat != null || mod.abilityMod || mod.swap || mod.property;
     return chip(worked ? `${mod.label} (${signedLabel(b)})` : b === mod.bonus || mod.bonus == null ? mod.label : `${mod.label} → ${signedLabel(b)} (cap)`, 'good');
   });
   // Proficiencies, advantages and choices the item's text gives (as a feature's), and half proficiency on checks.
@@ -3953,7 +3971,7 @@ function renderEffects(m) {
       critRange: Math.max(...[e, ...also].map((x) => num(x.critRange))), halfProf: [e, ...also].some((x) => x.halfProf), unarmedStep: Math.max(...[e, ...also].map((x) => num(x.unarmedStep))),
       unarmedDie: Math.max(...[e, ...also].map((x) => num(x.unarmedDie))), unarmedFinesse: [e, ...also].some((x) => x.unarmedFinesse) } : e));
   const featRow = (e) => `<div class="eff"><div class="eff-head"><b>${esc(e.name)}</b>${e.unarmedDie ? chip(`Unarmed strike d${e.unarmedDie}${e.unarmedFinesse ? ', finesse' : ''}`, 'good') : ''}
-      ${arr(e.mods).map((x) => chip(x.label, 'good')).join('')}${arr(e.weapons).map((w) => chip(`Proficient: ${w}`, 'good')).join('')}
+      ${arr(e.mods).map((x) => (x.cond ? chip(`${x.label} ${x.cond}`, 'blue') : chip(x.label, 'good'))).join('')}${arr(e.weapons).map((w) => chip(`Proficient: ${w}`, 'good')).join('')}
       ${arr(e.tools).map((t) => chip(`${t.name}: ${t.level}`, 'good')).join('')}${arr(e.armor).map((a) => chip(`Proficient: ${a}`)).join('')}
       ${arr(e.advantage).map((a) => chip(ADV_TEXT(a), 'good')).join('')}${e.critRange ? chip(`Critical on ${20 - e.critRange}–20`, 'good') : ''}
       ${e.halfProf ? chip(`Half proficiency on ${halfProfWhich(e)}checks`, 'good') : ''}${e.unarmedStep ? chip('Unarmed die +1 step', 'good') : ''}
