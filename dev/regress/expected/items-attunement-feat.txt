@@ -297,14 +297,14 @@ Combat [Start combat]
 Class dice
 Focused Strikes 2d8
 Defenses & senses
-Advantages Advantage on Strength checks and Strength saving throws to avoid being moved
+Advantages Advantage on ability checks to identify items Advantage on Strength checks and Strength saving throws to avoid being moved
 Senses Tremorsense 30 ft
 Effects
 From class features, feats and species traits (7)
 Guardian weapon proficiencies Proficient: All lightweapons Proficient: all vibroweapons Guardian proficiencies
 Bonus Proficiencies Proficient: heavy armor Soresu Form feature
 Aura of Presence STR save + WIS DEX save + WIS CON save + WIS INT save + WIS WIS save + WIS CHA save + WIS Guardian Auras feature
-Investigative Attunement Attunement +1 feat
+Investigative Attunement Attunement +1 Advantage on ability checks to identify items feat
 Montral Reception Tremorsense 30 ft Togruta trait
 Wild Hunters Survival: proficient Togruta trait
 Defense Style Advantage on Strength checks and Strength saving throws to avoid being moved Fighting style
