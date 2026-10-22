@@ -327,6 +327,11 @@ function parseItemEffect(item) {
         mods.push({ path, bonus: 0, profSteps: steps, label: `${sk || `${FX_ABBR[fxAbility(sv[1])]} saves`}: ${m[3] ? 'grand mastery' : `+${steps} proficiency step${steps === 1 ? '' : 's'}`}` });
         continue;
       }
+      // "these tools" (Tool (Basic…Champion)): the tool the player says it is (itemEffects, picked on the item).
+      if (/^these tools$/i.test(what)) {
+        ctx.toolSteps = steps;
+        continue;
+      }
     }
     // "…you can add half your proficiency bonus (rounded down) to any Intelligence check you make that doesn't already
     // include your proficiency bonus" (Intuitive Facial Prosthesis): its skills without proficiency (fxResolve), and
@@ -492,12 +497,13 @@ function parseItemEffect(item) {
   notes.push(...ctx.notes);
   // Ammunition's bonuses apply while it's carried (and fired); other consumables' when used.
   const activation = ctx.ammo ? 'carry' : isConsumable ? 'use' : item.requiresAttunement ? 'attune' : 'equip';
-  if (!mods.length && !notes.length && !riders.length && !darkvisionPlus && !ctx.keen && !freeAttune && !ctx.unarmedDie && !(isConsumable && duration)) return null;
+  if (!mods.length && !notes.length && !riders.length && !darkvisionPlus && !ctx.keen && !freeAttune && !ctx.unarmedDie && !ctx.toolSteps && !(isConsumable && duration)) return null;
   return {
     mods, notes, target: ctx.target, weaponKind: ctx.weaponKind || null, duration, group, activation,
     heals: /regains? [^.]*hit points|temporary hit points/i.test(text),
     ...(riders.length ? { riders } : {}), ...(darkvisionPlus ? { darkvisionPlus } : {}), ...(ctx.keen ? { keen: ctx.keen } : {}),
     ...(ctx.halfProfChecks ? { halfProfChecks: ctx.halfProfChecks } : {}), ...(ctx.unarmedDie ? { unarmedDie: ctx.unarmedDie, unarmedType: ctx.unarmedType } : {}),
+    ...(ctx.toolSteps ? { toolSteps: ctx.toolSteps } : {}),
     ...(freeAttune ? { freeAttune } : {}), ...(ctx.sideEffect ? { sideEffect: ctx.sideEffect } : {}), ...(ctx.classBoosts ? { classBoosts: ctx.classBoosts } : {}),
   };
 }

@@ -1715,6 +1715,22 @@ function itemEffects(key, editedRaw, complete) {
     const classChanges = kc ? itemBoostChanges(chClassRow(editedRaw, kc, (state.rules && state.rules.modules) || {}), fx.classBoosts.boosts) : [];
     // "One ability score other than Charisma (chosen by the GM) decreases by 1": the score the item's note names.
     const needs = [];
+    // "Your level of proficiency in these tools increases by two steps" (Tool (Fine)): the tool picked on the item
+    // (itemState.toolPicks), from the proficiency the character has in it (proficient, or expertise from a custom one).
+    let toolPick = null;
+    if (fx.toolSteps) {
+      const name = ((state.itemState[key] && state.itemState[key].toolPicks) || {})[ck] || '';
+      if (name) {
+        const lc = name.toLowerCase();
+        const custom = arr(editedRaw.customProficiencies).find((p) => p && p.type === 'tool' && String(p.name).toLowerCase() === lc);
+        // (and the tools features give: Armstech Engineering's armstech's implements, a feat's expertise)
+        const fromFeatures = featureEffects(key, editedRaw, complete).flatMap((x) => arr(x.tools)).filter((t) => String(t.name).toLowerCase() === lc);
+        const rank = (custom && /exp/i.test(custom.proficiencyLevel || '')) || fromFeatures.some((t) => /exp/i.test(t.level)) ? 2
+          : custom || fromFeatures.length || arr(complete && complete.proficiencies).some((p) => p.type === 'tool' && String(p.name).toLowerCase() === lc) ? 1 : 0;
+        const level = FX_PROF_LADDER[Math.min(FX_PROF_LADDER.length - 1, [0, 2, 3][rank] + fx.toolSteps)];
+        toolPick = { name, level };
+      }
+    }
     if (fx.sideEffect) {
       const a = clsNoteNames(it.notes).abilities.find((x) => x !== fx.sideEffect.except);
       if (a) mods.push({ path: `abilityScores.${a}.score`, bonus: -fx.sideEffect.by, label: `${a.slice(0, 3).toUpperCase()} −${fx.sideEffect.by} (side effect)` });
@@ -1742,6 +1758,9 @@ function itemEffects(key, editedRaw, complete) {
       weaponName, weaponIndex, linked: linked >= 0,
       ...(keen ? { critRange: keen, critWeapons: [weaponIndex] } : {}),
       ...(fe ? { weapons: fe.profs.weapons, tools: fe.profs.tools, armor: fe.profs.armor, advantage: fe.advantage } : {}),
+      // The picked tool at the level it comes to (trained, below proficient, changes no number).
+      ...(toolPick ? { toolPick, tools: (fe ? fe.profs.tools : []).concat(FX_PROF_LADDER.indexOf(toolPick.level) >= 2
+        ? [{ name: toolPick.name, level: toolPick.level === 'proficient' ? 'proficient' : 'expertise' }] : []) } : {}),
       needsChoice: (fe ? fe.needsChoice : []).concat(needs),
       setPending, freeAttune: !!fx.freeAttune && !!it.attuned && setMet(fx.freeAttune), classChanges,
     });
@@ -3362,7 +3381,7 @@ async function saveItemStateFor(key, st) {
   st.updatedAt = Date.now();
   if (!Object.keys(st.charges || {}).length && !arr(st.effects).length && !Object.keys(st.targets || {}).length
     && !Object.keys(st.reasons || {}).length && !st.combat && !arr(st.foretell).length && !st.frenzy
-    && !Object.keys(st.shots || {}).length) delete state.itemState[key];
+    && !Object.keys(st.shots || {}).length && !Object.keys(st.keepTweaks || {}).length && !Object.keys(st.toolPicks || {}).length) delete state.itemState[key];
   else state.itemState[key] = st;
   await saveItemState();
 }
@@ -3495,6 +3514,18 @@ async function addCustomEffect() {
   setStatus(`${name.trim()} is now active${label ? ` (${label})` : ''}. End it under Effects.`);
 }
 
+/** Which tool a Tool (Basic…Champion) item is ("these tools"): kept per item copy (itemState.toolPicks). */
+async function setItemTool(id, name) {
+  const snap = state.snapshots[state.current];
+  if (!snap || !id.startsWith('item:')) return;
+  const st = itemStateOf(snap.key);
+  st.toolPicks = { ...(st.toolPicks || {}) };
+  if (name) st.toolPicks[id.slice(5)] = name;
+  else delete st.toolPicks[id.slice(5)];
+  await saveItemStateFor(snap.key, st);
+  renderAll();
+  scheduleRecompute(snap.key);
+}
 /** Which weapon an effect's weapon bonus applies to: an item's (by item name) or a temporary effect's. */
 async function setEffectWeapon(id, weaponName) {
   const snap = state.snapshots[state.current];
@@ -3577,6 +3608,16 @@ function effectRow(m, e) {
       ...arr(e.tools).map((t) => chip(`${t.name}: ${t.level}`, on)), ...arr(e.advantage).map((a) => chip(ADV_TEXT(a), on)),
       ...arr(e.halfProfChecks).map((a) => chip(`Half proficiency on ${a} checks without it`, on)), ...(e.unarmedDie ? [chip(`Unarmed strikes: d${e.unarmedDie}${e.unarmedType ? ` ${e.unarmedType}` : ''}`, on)] : []),
       ...arr(e.needsChoice).map((c) => `<span class="chip warn" title="Write your choice in the item's note (✎ under Equipment)">Choose ${esc(c)}</span>`));
+  }
+  // Tool (Basic…Champion): which tool it is, picked here; the level it comes to.
+  if (e.kind === 'item' && e.toolSteps) {
+    const names = [...new Set(bdTools().map((x) => x.name))].sort();
+    const cur = e.toolPick ? e.toolPick.name : '';
+    chips.push(`<label class="fx-weapon${cur ? '' : ' warn-text'}">tool <select data-fxtool="${esc(e.id)}"><option value="">choose the tool…</option>${names.map((n) => `<option${n === cur ? ' selected' : ''}>${esc(n)}</option>`).join('')}</select></label>`);
+    // (proficient and expertise show with the other tools above)
+    if (e.toolPick && (e.toolPick.level === 'trained' || /mastery/.test(e.toolPick.level))) {
+      chips.push(chip(`${e.toolPick.name}: ${e.toolPick.level}${e.toolPick.level === 'trained' ? " (a level the sheet doesn't count)" : ' (counted as expertise)'}`, e.active && e.toolPick.level !== 'trained' ? 'good' : ''));
+    }
   }
   // A set's bonuses still to come ("AC +1 (with Jensaarai Cloak)"), and a piece that takes no attunement slot.
   if (e.kind === 'item') chips.push(...arr(e.setPending).map((x) => chip(`${x.label}: not yet`)), ...(e.freeAttune ? [chip('takes no attunement slot (set)', 'good')] : []));
@@ -8144,6 +8185,7 @@ function wireUi() {
   document.addEventListener('change', (e) => {
     const ds = e.target.dataset || {};
     if (ds.fxweapon) setEffectWeapon(ds.fxweapon, e.target.value);
+    if (ds.fxtool) setItemTool(ds.fxtool, e.target.value);
     if (ds.invBase) inventoryAction('base', `${ds.invBase}|${e.target.value}`);
     if (ds.jump != null) {
       const v = e.target.value;
