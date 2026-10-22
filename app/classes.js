@@ -505,6 +505,56 @@ function clsApplyProfList(items, into, picks, isWeapon, out, ask, opts = {}) {
   return got;
 }
 
+// ------------------------------------------------------------- resistances, immunities, vulnerabilities
+const CLS_DEF_KIND = { resistance: 'resistance', resistant: 'resistance', immunity: 'immunity', immune: 'immunity', vulnerability: 'vulnerability', vulnerable: 'vulnerability' };
+const CLS_DAMAGE_WORD = '(?:acid|cold|energy|fire|force|ion|kinetic|lightning|necrotic|poison|psychic|sonic|true|disease)';
+
+/**
+ * What a sentence makes you resistant, immune or vulnerable to: "You have resistance to necrotic damage", "You are
+ * resistant to necrotic, poison, and psychic damage, and are immune to poison and disease", "giving you resistance to
+ * fire damage", "…makes you immune to poison and disease", "You are vulnerable to ion damage". Not another creature's
+ * ("your portable structures have resistance", "They gain resistance", "Creatures that can't be charmed are immune")
+ * and not one that only holds sometimes ("When you expend…, you gain resistance…", "During that time, you also have…",
+ * "While raging…"); "While wearing your spiked armor" is kept as `wearing`. [{ kind, what, wearing, allies }].
+ */
+function clsDefenseClauses(s) {
+  const out = [];
+  const lead = /\b(you (?:also )?(?:have|gain)|you are(?: also)?|you and (?:your|the|friendly)\b[\w' ,]{0,40}? have|(?:giving|making|makes?|make|grants?|gives?|granting) you|,?\s*and (?:are |have |gain )?)\s*(resistance|immunity|vulnerability|resistant|immune|vulnerable)\s+(?:to|against)\s+/gi;
+  // A clause ends at ", and you…", ", and each…" — not inside a list of damage types ("necrotic, poison, and psychic damage").
+  const end = new RegExp(`,?\\s+and\\s+(?:are|have|gain|you|resistant|immune|vulnerable|resistance|immunity)\\b|,\\s*and\\s+(?!${CLS_DAMAGE_WORD}(?:,|\\s+(?:and|or)\\b|\\s+damage\\b))|,\\s*(?:which|whenever|when|while|if|letting|until)\\b|\\s+\\(explained|\\s+(?:until|for (?:1|one) minute|for the next)\\b|[.;](?=\\s|$)|$`, 'i');
+  let you = false;
+  for (const m of s.matchAll(lead)) {
+    const before = s.slice(0, m.index);
+    if (/^,?\s*and\b/i.test(m[1])) {
+      // "…, and are immune to…", "granting you advantage on … and resistance to …": the same "you" goes on.
+      // Or after another "you" clause with no condition ("…, you no longer take damage from falling…, and have resistance…").
+      const lastSentence = before.replace(/^.*[.;]\s+/, '');
+      const youClause = /(?:^|[,;]\s*)you (?!r\b)/i.test(lastSentence) && !/\b(?:when|whenever|if|until|during|while)\b/i.test(lastSentence);
+      if (!you && !youClause && !/\b(?:granting|giving) you\b/i.test(before)) continue;
+    } else {
+      const lastSentence = before.replace(/^.*[.;]\s+/, '');
+      if (/\b(?:when|whenever|if|until|during|for the (?:duration|next)|for \d+ minutes?|as an? (?:bonus )?action|while (?!wearing (?:your|this|these)\b|you are wearing (?:your|this)\b))\b/i.test(lastSentence)) { you = false; continue; }
+      you = true;
+    }
+    const rest = s.slice(m.index + m[0].length);
+    const e = end.exec(rest);
+    let what = rest.slice(0, e ? e.index : undefined).replace(/\s+/g, ' ').trim();
+    if (!what || /\bthey\b|\bthem\b/i.test(what)) continue;
+    what = what.replace(/^the damage of\b/i, 'damage from').replace(/^the damage\b/i, 'damage').replace(/\bdamage but (\w+) damage\b/i, 'damage except $1 damage');
+    const wear = /\bwhile wearing (?:your|this|these) ([\w' -]+?)(?:,|\s+you\b)/i.exec(before.replace(/^.*[.;]\s+/, ''));
+    const allies = /\byou and friendly creatures\b/i.test(before) || /^you and /i.test(m[1]);
+    out.push({ kind: CLS_DEF_KIND[m[2].toLowerCase()], what, wearing: wear ? wear[1].trim() : null, allies });
+  }
+  // "You have disadvantage on Strength saving throws, and…", "…on attack rolls and on Wisdom (Perception) checks that rely
+  // on sight when you… are in direct sunlight" (its own condition is part of it); not "…, during which you have…".
+  for (const m of s.matchAll(/(?:^|[,;]\s*|\bAdditionally,\s*)you have disadvantage on ([^.;]+?)(?=,\s*and\b|\s+\(explained|[.;](?=\s|$)|$)/gi)) {
+    const lastSentence = s.slice(0, m.index).replace(/^.*[.;]\s+/, '');
+    if (/\b(?:when|whenever|if|until|during|while)\b/i.test(lastSentence) || /^(?:this|that|these|those|it|its)\b/i.test(m[1])) continue;
+    out.push({ kind: 'disadvantage', what: m[1].replace(/\s+/g, ' ').trim(), wearing: null, allies: false });
+  }
+  return out;
+}
+
 /** [{ kind, name }] for the fixed things in a list (what an "If you are already proficient in X" names). */
 const clsProfNames = (items) => items.flatMap((it) => (it.kind === 'save' ? it.names.map((n) => ({ kind: 'save', name: n }))
   : ['skill', 'armor', 'weapon', 'tool'].includes(it.kind) ? [{ kind: it.kind, name: it.name }] : []));
@@ -606,7 +656,16 @@ function clsFeatureEffects(text, note, ctx) {
   // Clauses that only say the feature's precondition is met by having the feature/equipment.
   const ALWAYS = /,?\s*\bwhile (?:you are |you're )?(?:not wearing[^,.]*|wearing no[^,.]*|using (?:your|this|a) [\w ]+? as (?:a|your) (?:tech |force )?focus|wearing (?:your|these|this) (?:[\w']+ ){0,3}?(?:armor|harness|goggles|gloves|pack|implements|shield|suit|helmet|wristpad|platform|instrument|boots|belt)|wearing (?:your|these|this) [\w ]+?|wielding a weapon with which you are proficient)(?=[,.]|\s+(?:you|your)\b|$),?/gi;
   let m;
+  // A damage type the player picks: "Choose one of the following damage types: acid, cold, fire, lightning, or sonic".
+  // Or any of them: "Choose three damage types other than true damage" (Dewback's Instinct).
+  const dtList = /\bchoose (one|two|three) of the following damage types:?\s*([^.]+)/i.exec(t) || /\bchoose (one|two|three) damage types?(?: other than (\w+)(?: damage)?)?\b/i.exec(t);
+  const dtOptions = !dtList ? null : /following/i.test(dtList[0]) ? CLS_DAMAGE_TYPES.filter((d) => new RegExp(`\\b${d}\\b`, 'i').test(dtList[2]))
+    : CLS_DAMAGE_TYPES.filter((d) => d !== String(dtList[2] || '').toLowerCase());
+  const dtPicked = String(note || '').split(/[,;/+&]|\band\b|\bor\b/).map((x) => x.trim().toLowerCase()).filter((x) => CLS_DAMAGE_TYPES.includes(x) || x === 'true');
+  if (dtList) ask('damage', 'Damage type', dtOptions, clsCount(dtList[1]), dtPicked.filter((d) => dtOptions.includes(d)));
   for (const s of permanent) {
+    // Table rows ("| 16 | The creature becomes ravenous. |") aren't the character's sentences.
+    if ((s.match(/\|/g) || []).length >= 2) continue;
     const cond = clsArmorCondition(s);
     const core = s.replace(ALWAYS, '');
     const conditional = CLS_CONDITIONAL.test(core);
@@ -675,8 +734,10 @@ function clsFeatureEffects(text, note, ctx) {
       const ab = chosen ? chosen.slice(0, 3).toUpperCase() : opts.map((a) => a.slice(0, 3).toUpperCase()).join('/');
       for (const x of got || []) out.mods.push({ path: x.path, abilityMod: chosen || opts, min: m[4] ? Number(m[4]) : null, label: `${x.label.replace(/ [+\-−]?0$/, '')} + ${ab}`, when: cond || null });
     }
-    // "+N bonus to <phrase>" (AC, initiative, saves, skills, tech/force attack and DC…), always or only sometimes.
-    if (!conditional || /\bto (?:the )?(?:melee|ranged) (?:tech|force)|save dc of powers/i.test(core)) {
+    // "+N bonus to <phrase>" (AC, initiative, saves, skills, tech/force attack and DC…), always or only sometimes; not one
+    // the sentence takes away ("Traveling at a fast pace no longer imposes a -5 penalty to your passive Wisdom (Perception)").
+    const removed = /\b(?:no longer|doesn't|does not|don't|do not|never) (?:impose|imposes|give|gives|grant|grants|suffer|take)\b/i.test(core);
+    if (!removed && (!conditional || /\bto (?:the )?(?:melee|ranged) (?:tech|force)|save dc of powers/i.test(core))) {
       for (const cm of core.matchAll(/([+\-−])(\d+) (bonus|penalty) to ([^.;]+?)(?=(?:,? and (?:a|an) [+\-−]\d+ (?:bonus|penalty))|[.;]|$)/gi)) {
         const n = Number(cm[2]) * (cm[3].toLowerCase() === 'penalty' || cm[1] !== '+' ? -1 : 1);
         const phrase = cm[4].trim();
@@ -733,23 +794,23 @@ function clsFeatureEffects(text, note, ctx) {
           if (a) out.advantage.push({ kind: /saving/i.test(part) ? 'save' : 'check', ability: a });
         }
       }
-      // "resistance to that damage", "…to the chosen damage types" (Dewback's Instinct): the types are in the notes.
-      if ((m = /\b(?:you have|you gain|gain|have) resistance to (?:that (?:type of )?damage(?: type)?|the chosen damage(?: types?)?|the damage types? (?:you )?cho(?:se|ose|sen))\b/i.exec(core))) {
-        const types = String(note || '').split(/[,;/+&]|\band\b|\bor\b/).map((x) => x.trim().toLowerCase()).filter((x) => /^(?:acid|cold|energy|fire|force|ion|kinetic|lightning|necrotic|poison|psychic|sonic|true)$/.test(x));
-        if (types.length) def('resistance', `Resistance to ${types.join(', ')} damage`);
-        else out.needsChoice.push('the damage type');
-        const n = /\b(one|two|three) (?:damage )?types?\b/i.exec(t);
-        ask('damage', 'Damage type', CLS_DAMAGE_TYPES, n ? clsCount(n[1]) : 1, types);
-      } else if ((m = /\b(?:you have|you gain|gain|have) resistance to ([^.]*?damage(?: from [^.,]+)?)/i.exec(core))) def('resistance', `Resistance to ${m[1]}${/\byou and friendly creatures\b/i.test(core) ? ' (you and nearby allies)' : ''}`);
-      if ((m = /\b(?:you are|you become|are|makes you) immune to ([^.]+)/i.exec(core)) || (m = /\b(?:gain|have) immunity to ([^.,]+(?:, [^.,]+)*)/i.exec(core))) def('immunity', `Immune to ${m[1]}`);
-      if ((m = /\badvantage on ((?:[A-Za-z]+ )?saving throws (?:against|made to|that would)[^.;]+?)(?=[.;]|$)/i.exec(core))) def('advantage', `Advantage on ${m[1]}`);
+      // "advantage on saving throws against poison, and you have resistance…"; "…on Wisdom and Charisma saving throws against force powers".
+      if ((m = new RegExp(`\\badvantage on ((?:(?:${CLS_ABIL_ANY})(?:,? (?:and|or) ${CLS_ABIL_ANY})* )?saving throws (?:against|made to|that would)[^.;]+?)(?=,?\\s+and\\s+(?:you|resistance)\\b|\\s+\\(explained|[.;]|$)`, 'i').exec(core))) def('advantage', `Advantage on ${m[1]}`);
       // "advantage on ability checks and saving throws to avoid being disarmed".
       if ((m = /\badvantage on (ability checks and saving throws (?:to avoid|against|made to)[^.;]+?)(?=[.;]|$)/i.exec(core))) def('advantage', `Advantage on ${m[1]}`);
       if ((m = /\bdarkvision (?:out )?(?:to |with |of )?(?:a range of )?(\d+) feet/i.exec(core))) def('sense', `Darkvision ${m[1]} ft`);
-      // "advantage on Intelligence (Investigation) checks" / "advantage on Stealth checks".
-      for (const sm of core.matchAll(new RegExp(`\\badvantage on (?:${CLS_ABIL_ANY} \\()?(${CLS_SKILLS.join('|')})\\)? checks(?! (?:against|that|made|to|involving))`, 'gi'))) {
-        if (switched) def('advantage', `Advantage on ${clsSkill(sm[1])} checks`);
-        else out.advantage.push({ kind: 'skill', skill: clsSkill(sm[1]) });
+      // "advantage on Intelligence (Investigation) checks", "…on Charisma (Deception) and Charisma (Persuasion) checks": every
+      // roll of the skill. With more after "checks" ("in that area", "to locate any secret doors", "you make about…") only
+      // sometimes: listed with what it says, not on every roll.
+      const SK = `(?:${CLS_ABIL_ANY} \\()?(${CLS_SKILLS.join('|')})\\)?`;
+      for (const sm of core.matchAll(new RegExp(`\\badvantage on ${SK}(?: (?:and|or) ${SK})? checks`, 'gi'))) {
+        const skills = [sm[1], sm[2]].filter(Boolean).map(clsSkill);
+        let after = /^[^.;]*/.exec(core.slice(sm.index + sm[0].length))[0].replace(/,\s*and\b.*$|\s+and\s+(?:you|resistance|advantage)\b.*$/i, '').replace(/,\s*$/, '').trim();
+        // "…on Dexterity (Sleight of Hand) checks and Charisma (Deception) checks": the second one too.
+        const more = new RegExp(`^and ${SK} checks`, 'i').exec(after);
+        if (more) { skills.push(clsSkill(more[1])); after = after.slice(more[0].length).trim(); }
+        if (switched || after) def('advantage', `Advantage on ${skills.join(' and ')} checks${after ? ` ${after}` : ''}`);
+        else skills.forEach((skill) => out.advantage.push({ kind: 'skill', skill }));
       }
       if ((m = /\b(blindsight|truesight|tremorsense) (?:to a range of |out to |of )?(\d+) feet/i.exec(core))) def('sense', `${m[1][0].toUpperCase()}${m[1].slice(1)} ${m[2]} ft`);
       else if ((m = /\b(blindsight|truesight|tremorsense) (?:out )?to a number of feet equal to (\d+) x your proficiency bonus/i.exec(core))) {
@@ -761,6 +822,19 @@ function clsFeatureEffects(text, note, ctx) {
       if ((m = /\b((?:opportunity |ranged |melee )?attack(?:s| rolls) (?:made )?against you (?:have|are made with|has) disadvantage)/i.exec(core))) def('other', m[1][0].toUpperCase() + m[1].slice(1));
       if ((m = /can(?:'|’)t have disadvantage on ([^.]+)/i.exec(core)) && !/\b(?:creatures?|allies|ally|targets?|they|it)\b[^.]*$/i.test(core.slice(0, m.index))) def('other', `Can't have disadvantage on ${m[1]}`);
     }
+    for (const d of clsDefenseClauses(s)) {
+      const word = { resistance: 'Resistance to', immunity: 'Immune to', vulnerability: 'Vulnerable to', disadvantage: 'Disadvantage on' }[d.kind];
+      const tail = `${d.wearing ? ` (while wearing your ${d.wearing})` : ''}${d.allies ? ' (you and nearby allies)' : ''}`;
+      // "resistance to damage of the chosen type", "to that type of damage", "to the chosen damage types": the pick.
+      if (/^(?:that (?:type of )?damage(?: type)?|damage of the chosen type|the chosen damage(?: types?)?|the damage types? (?:you )?cho(?:se|ose|sen))$/i.test(d.what)) {
+        const types = dtOptions ? dtPicked.filter((x) => dtOptions.includes(x)) : dtPicked;
+        if (types.length) out.defenses.push({ kind: d.kind, text: `${word} ${types.join(', ')} damage${tail}` });
+        else out.needsChoice.push('the damage type');
+        if (!dtList) { const n = /\b(one|two|three) (?:damage )?types?\b/i.exec(t); ask('damage', 'Damage type', CLS_DAMAGE_TYPES, n ? clsCount(n[1]) : 1, types); }
+        continue;
+      }
+      out.defenses.push({ kind: d.kind, text: `${word} ${d.what}${tail}` });
+    }
     // Species Darkvision traits describe it without the word (and with an "as if"): "You can see in dim light within 60 feet of you as if it were bright light".
     if ((m = /\bsee in dim light within (\d+) feet of you as if it were bright light/i.exec(core)) && !out.defenses.some((d) => /^Darkvision/.test(d.text))) out.defenses.push({ kind: 'sense', text: `Darkvision ${m[1]} ft` });
   }
@@ -769,7 +843,7 @@ function clsFeatureEffects(text, note, ctx) {
   out.profs.skills = uniq(out.profs.skills, (x) => x.name + x.level);
   out.profs.tools = uniq(out.profs.tools, (x) => x.name.toLowerCase() + x.level);
   out.profs.saves = [...new Set(out.profs.saves)];
-  out.advantage = uniq(out.advantage, (x) => x.kind + (x.ability || ''));
+  out.advantage = uniq(out.advantage, (x) => x.kind + (x.ability || x.skill || ''));
   out.defenses = uniq(out.defenses, (x) => x.text.toLowerCase());
   out.needsChoice = [...new Set(out.needsChoice)];
   return out;

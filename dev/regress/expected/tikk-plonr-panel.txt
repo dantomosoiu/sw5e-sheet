@@ -280,6 +280,7 @@ Combat [Start combat]
 Class dice
 Potent Aptitude 1d4
 Defenses & senses
+Advantages Advantage on Perception checks that rely on hearing
 Senses Darkvision 60 ft
 Effects
 From class features, feats and species traits (5)

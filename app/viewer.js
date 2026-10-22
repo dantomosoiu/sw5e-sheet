@@ -4117,7 +4117,8 @@ function renderDefenses(m) {
   if (!state.rules) return '';
   const defs = defensesOf(m);
   if (!defs.length) return '';
-  const GROUPS = [['resistance', 'Resistances'], ['immunity', 'Immunities'], ['advantage', 'Advantages'], ['sense', 'Senses'], ['speed', 'Speeds'], ['other', 'Other']];
+  const GROUPS = [['resistance', 'Resistances'], ['immunity', 'Immunities'], ['vulnerability', 'Vulnerabilities'], ['advantage', 'Advantages'], ['disadvantage', 'Disadvantages'],
+    ['sense', 'Senses'], ['speed', 'Speeds'], ['other', 'Other']];
   return `<h3>Defenses &amp; senses</h3><div class="defs">${GROUPS.map(([k, label]) => {
     const list = defs.filter((d) => d.kind === k);
     // "…checks you make with them": say which feature "them" is in.

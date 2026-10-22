@@ -148,7 +148,6 @@ effect: Unarmored Defense · feature
 effect: Unarmored Movement · feature
 effect: Purity of Body · feature
 effect: Diamond Soul · feature
-effect: Empty Body · feature
 effect: Perfect Self · feature
 effect: Silver-Tongued · feature
 effect: Silver-Tongued · feature
@@ -257,16 +256,15 @@ Combat [Start combat]
 Class dice
 Martial Arts 1d12
 Defenses & senses
-Resistances Resistance to all damage
-Immunities Immune to disease and poison and resistant to poison damage
+Resistances Resistance to poison damage
+Immunities Immune to disease and poison
 Effects
-From class features, feats and species traits (10)
+From class features, feats and species traits (9)
 Monk weapon proficiencies Proficient: Simple blasters Proficient: simple vibroweapons Proficient: martial vibroweapons that lack the dexterity, heavy, special, and two-handed properties Monk proficiencies
 Unarmored Defense AC + WIS/CHA Monk feature
 Unarmored Movement Speed +30 ft Monk feature
-Purity of Body Immune to disease and poison and resistant to poison damage Monk feature
+Purity of Body Immune to disease and poison Resistance to poison damage Monk feature
 Diamond Soul Strength saves: proficient Dexterity saves: proficient Constitution saves: proficient Intelligence saves: proficient Wisdom saves: proficient Charisma saves: proficient Monk feature
-Empty Body Resistance to all damage Monk feature
 Perfect Self DEX +2 WIS +2 Monk feature
 Silver-Tongued CHA +1 feat (background feat)
 Silver-Tongued Deception: proficient feat
