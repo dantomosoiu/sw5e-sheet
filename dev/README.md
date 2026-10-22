@@ -147,6 +147,26 @@ time (sw5e.com can change):
 3. `node dev/engine-check.js import` keeps their numbers and says what SW5E now computes differently.
 4. `node dev/engine-check.js`.
 
+## Art
+The item pictures, the class styles' emblems, patterns and scenes are all drawn for this project
+([art/README.md](../art/README.md): the style guide and the colour classes).
+```
+python dev/art.py                 # check art/items/*.svg and build app/art/items.svg (the sprite the sheet loads)
+python dev/art.py preview         # dist/art/preview.png: every item picture in four themes, rarity tiles, energy colours
+python dev/art.py preview --only lightsaber*,medpac --scale 160
+python dev/art.py preview --emblems
+python dev/art.py themes --styles engineer,scholar   # the sheet itself in those styles, dark and light
+```
+`themes` draws a saved copy of the dev page (`dev/dumps/mock.html`, git-ignored). To make one, open the dev page on a
+character and run in its console:
+`fetch('/dev/dump/mock.html', {method: 'POST', body: '<!doctype html>
+' + document.documentElement.outerHTML})`.
+The previews use headless Chrome or Edge (`CHROME=<path>` if it isn't found) and Pillow to stack the images.
+
+Which picture an item gets is `app/art.js` (by name, then by kind); `node -e` with `require('./app/art.js')` over
+`app/data/sw5e/catalog.json` lists the spread. The screen effects (low HP, conditions, Rage…) are `app/fx.css`,
+driven by `screenFx` in viewer.js.
+
 ## Fixtures
 `dev/fixtures/*.json` are sheet snapshots (`format: "sw5e-sheet-snapshot"`), or raw SW5E exports (computed by
 the sheet's engine). To capture fresh snapshots:

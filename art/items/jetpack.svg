@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <path class="a-c a-oo" d="M21 14c0-6 2.4-9.5 6-9.5s6 3.5 6 9.5h-3.6c0-3.6-1-5.6-2.4-5.6s-2.4 2-2.4 5.6zM31 14c0-6 2.4-9.5 6-9.5s6 3.5 6 9.5h-3.6c0-3.6-1-5.6-2.4-5.6s-2.4 2-2.4 5.6z"/>
+  <path class="a-m a-o" d="M20.8 11h4v3h-4zM39.2 11h4v3h-4z"/>
+  <path class="a-g" d="M9 51h12c0 4.6-2.6 8-6 11-3.4-3-6-6.4-6-11zM43 51h12c0 4.6-2.6 8-6 11-3.4-3-6-6.4-6-11z" filter="url(#a-glow-lg)" opacity=".9"/>
+  <path class="a-g" d="M10.4 51h9.2c0 3.6-2 6.4-4.6 8.8-2.6-2.4-4.6-5.2-4.6-8.8zM44.4 51h9.2c0 3.6-2 6.4-4.6 8.8-2.6-2.4-4.6-5.2-4.6-8.8z"/>
+  <path class="a-w" d="M12.6 51h4.8c0 2.2-1 4-2.4 5.4-1.4-1.4-2.4-3.2-2.4-5.4zM46.6 51h4.8c0 2.2-1 4-2.4 5.4-1.4-1.4-2.4-3.2-2.4-5.4z"/>
+  <path class="a-m a-oo" d="M10 45h10l1.6 6.4H8.4zM44 45h10l1.6 6.4H42.4z"/>
+  <rect class="a-m a-oo" x="19" y="12" width="26" height="33" rx="3"/>
+  <rect x="19" y="12" width="26" height="33" rx="3" fill="url(#a-shade)"/>
+  <rect class="a-s a-o" x="26" y="16" width="12" height="7" rx="1.4"/>
+  <rect class="a-g" x="27.2" y="17.2" width="5" height="1.6" rx=".6"/>
+  <rect class="a-g" x="27.2" y="20.2" width="8" height="1.4" rx=".6" opacity=".6"/>
+  <path class="a-d" d="M25.5 28h13v1.6h-13zM25.5 31.4h13V33h-13zM25.5 34.8h13v1.6h-13z"/>
+  <path class="a-x a-o" d="M23 39.5h18v3H23z"/>
+  <rect class="a-b a-oo" x="7" y="9.5" width="15.5" height="36.5" rx="7.75"/>
+  <rect class="a-b a-oo" x="41.5" y="9.5" width="15.5" height="36.5" rx="7.75"/>
+  <path class="a-x" d="M7 20h15.5v3.2H7zM41.5 20H57v3.2H41.5z"/>
+  <path class="a-p" d="M7.2 37h15M41.7 37h15M14.75 24v12M49.25 24v12"/>
+  <rect x="7" y="9.5" width="15.5" height="36.5" rx="7.75" fill="url(#a-sheen)"/>
+  <rect x="41.5" y="9.5" width="15.5" height="36.5" rx="7.75" fill="url(#a-sheen)"/>
+  <rect x="7" y="9.5" width="15.5" height="36.5" rx="7.75" fill="url(#a-shade)"/>
+  <rect x="41.5" y="9.5" width="15.5" height="36.5" rx="7.75" fill="url(#a-shade)"/>
+  <path class="a-l" d="M9.4 15.4c.8-2.6 2.8-4.4 5.4-4.8M43.9 15.4c.8-2.6 2.8-4.4 5.4-4.8M20.4 13.2h4.2M39.4 13.2h4.2M10.4 46.2h9.2M44.4 46.2h9.2"/>
+</svg>

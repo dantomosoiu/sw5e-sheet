@@ -408,7 +408,8 @@ Weapon | To hit | Damage | Ability | Type | Properties |
 Vibrostaff
 Versatile (2d4)
 | +1 | 1d6−1 Kinetic | Strength | Simple Vibroweapon | Versatile (2d4) |
-Unarmed Strike | +1 | 0 Kinetic | Strength | Unarmed | — |
+Unarmed Strike
+| +1 | 0 Kinetic | Strength | Unarmed | — |
 
 ## Sheet: Force Casting
 Force points
@@ -800,7 +801,8 @@ Vibroknife
 | [−] 1 [+] [Equip] [✎] [Sell] [×] | 1 lb | 225 cr | WH |
 Clothing (1)
 Item | Qty & actions | Weight | Cost | Source |
-Clothes, common | [−] 1 [+] [✎] [Sell] [×] | 3 lb | 5 cr | PHB |
+Clothes, common
+| [−] 1 [+] [✎] [Sell] [×] | 3 lb | 5 cr | PHB |
 Data Recording And Storage (2)
 Item | Qty & actions | Weight | Cost | Source |
 Focus generator

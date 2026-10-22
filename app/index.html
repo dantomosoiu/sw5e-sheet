@@ -10,11 +10,15 @@
   <meta name="theme-color" content="#0f1218">
   <link rel="stylesheet" href="viewer.css">
   <link rel="stylesheet" href="themes.css">
+  <link rel="stylesheet" href="art/art.css">
+  <link rel="stylesheet" href="fx.css">
 </head>
 <body>
+  <div class="theme-art" aria-hidden="true"></div>
+  <div class="fx-layer" aria-hidden="true"><i class="fx-hp"></i><i class="fx-cond"></i><i class="fx-state"></i><i class="fx-motion"></i><i class="fx-pulse"></i></div>
   <a class="skip-link" href="#sheet">Skip to the sheet</a>
   <header class="topbar">
-    <div class="brand"><img src="icons/icon32.png" alt=""><span>SW5E Sheet</span></div>
+    <div class="brand"><img src="icons/icon32.png" alt=""><span class="emblem" aria-hidden="true"></span><span>SW5E Sheet</span></div>
     <label class="picker">
       <span class="sr-only">Character</span>
       <select id="charSelect" title="Choose a character"></select>
@@ -74,6 +78,7 @@
   <script src="engine.js"></script>
   <script src="roller.js"></script>
   <script src="builder.js"></script>
+  <script src="art.js"></script>
   <script src="viewer.js"></script>
   <script src="pwa.js"></script>
 </body>

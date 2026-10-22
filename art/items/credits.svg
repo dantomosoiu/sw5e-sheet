@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <g transform="rotate(16 47 24)">
+    <rect class="a-b a-oo" x="40" y="8" width="15" height="27" rx="2"/>
+    <rect x="40" y="8" width="15" height="27" rx="2" fill="url(#a-sheen)"/>
+    <rect class="a-g" x="42.6" y="12" width="2.4" height="13" rx="1.2" filter="url(#a-glow)"/>
+    <rect class="a-w" x="43.3" y="12.8" width="1" height="11.4" rx=".5"/>
+    <path class="a-p" d="M47.5 12h5M47.5 15h5M47.5 18h3"/>
+  </g>
+  <path class="a-x a-oo" d="M9 24v26a14 5 0 0 0 28 0V24z"/>
+  <path d="M9 24v26a14 5 0 0 0 28 0V24z" fill="url(#a-shade)"/>
+  <path class="a-p" d="M9 28.3a14 5 0 0 0 28 0M9 32.6a14 5 0 0 0 28 0M9 36.9a14 5 0 0 0 28 0M9 41.2a14 5 0 0 0 28 0M9 45.5a14 5 0 0 0 28 0"/>
+  <ellipse class="a-x a-o" cx="23" cy="24" rx="14" ry="5"/>
+  <ellipse cx="23" cy="24" rx="14" ry="5" fill="url(#a-sheen)"/>
+  <ellipse class="a-p" cx="23" cy="24" rx="10" ry="3.4"/>
+  <rect class="a-d" x="19.5" y="22.8" width="7" height="2.4" rx="1.2"/>
+  <path class="a-x a-oo" d="M26 41v13a14 5 0 0 0 28 0V41z"/>
+  <path d="M26 41v13a14 5 0 0 0 28 0V41z" fill="url(#a-shade)"/>
+  <path class="a-p" d="M26 45.3a14 5 0 0 0 28 0M26 49.6a14 5 0 0 0 28 0"/>
+  <ellipse class="a-x a-o" cx="40" cy="41" rx="14" ry="5"/>
+  <ellipse cx="40" cy="41" rx="14" ry="5" fill="url(#a-sheen)"/>
+  <ellipse class="a-p" cx="40" cy="41" rx="10" ry="3.4"/>
+  <rect class="a-d" x="36.5" y="39.8" width="7" height="2.4" rx="1.2"/>
+  <path class="a-l" d="M12 22.2c3-1.6 7-2.2 11-2.2M29 39.2c3-1.6 7-2.2 11-2.2"/>
+</svg>

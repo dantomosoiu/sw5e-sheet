@@ -463,7 +463,8 @@ Vibrorapier
 Finesse
 | +5 | 1d8+5 Kinetic | Dexterity | Martial Vibroweapon | Finesse |
   ↳ hover weapons.1.damageBonus: Without tweaks or effects: 3 → now 5 / +2 Weapon damage · Brute Force Assault Specialist feature / +1 Dexterity score · Weapon Expert feat: +1 Dexterity (builder has no choice for it) tweak
-Unarmed Strike | +5 | 1d4+5 Kinetic | Dexterity (finesse) | Unarmed | — |
+Unarmed Strike
+| +5 | 1d4+5 Kinetic | Dexterity (finesse) | Unarmed | — |
   ↳ hover weapons.2.attackBonus: Without tweaks or effects: 1 → now 5 / +4 Finesse: DEX +3 instead of STR · Unarmed Combatant Zabrak trait
   ↳ hover weapons.2.damageBonus: Without tweaks or effects: 0 → now 5 / +2 Unarmed damage · Brute Force Assault Specialist feature / +3 Finesse: DEX +3 instead of STR · Unarmed Combatant Zabrak trait
 
@@ -817,7 +818,8 @@ Weapons with this property are fueled by power cells, which must be loaded in or
 | [−] 13 [+] [Use] [✎] [Sell] [×] | 13 lb | 10 cr | PHB |
 Clothing (1)
 Item | Qty & actions | Weight | Cost | Source |
-Clothes, common | [−] 1 [+] [✎] [Sell] [×] | 3 lb | 5 cr | PHB |
+Clothes, common
+| [−] 1 [+] [✎] [Sell] [×] | 3 lb | 5 cr | PHB |
 Enhanced: Weapon (1)
 Item | Qty & actions | Weight | Cost | Source |
 Xerrol Nightstinger Rifle
@@ -835,7 +837,8 @@ Grenades can be set to detonate on impact or with a timer that causes them to ex
 | [−] 1 [+] [Use] [✎] [Sell] [×] | 1 lb | 100 cr | PHB |
 Gaming Set (1)
 Item | Qty & actions | Weight | Cost | Source |
-Sabacc deck | [−] 1 [+] [✎] [Sell] [×] | — | 150 cr | PHB |
+Sabacc deck
+| [−] 1 [+] [✎] [Sell] [×] | — | 150 cr | PHB |
 Storage (2)
 Item | Qty & actions | Weight | Cost | Source |
 Backpack
@@ -848,8 +851,10 @@ A pouch stores 6.00 lb., not exceeding 1/5 cubic foot.
 | [−] 1 [+] [✎] [Sell] [×] | 1 lb | 5 cr | PHB |
 Utility (3)
 Item | Qty & actions | Weight | Cost | Source |
-Bedroll | [−] 1 [+] [✎] [Sell] [×] | 7 lb | 10 cr | PHB |
-Field rations (one day's) | [−] 10 [+] [✎] [Sell] [×] | 10 lb | 5 cr | PHB |
+Bedroll
+| [−] 1 [+] [✎] [Sell] [×] | 7 lb | 10 cr | PHB |
+Field rations (one day's)
+| [−] 10 [+] [✎] [Sell] [×] | 10 lb | 5 cr | PHB |
 Glowrod
 Description
 Glowrods create a beam of light illuminating the area around you in bright light for a 20-foot radius and dim light for an additional 20 feet. The glowrod lasts… [258 chars #59229a13]

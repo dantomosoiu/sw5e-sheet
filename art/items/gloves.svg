@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <g id="gloves-a" transform="rotate(-9 16 46)">
+    <rect class="a-c a-o" x="-2.8" y="-8.5" width="5.6" height="17" rx="2.8" transform="translate(27.8 30.5) rotate(38)"/>
+    <path class="a-b a-o" d="M28.4 22.6l4.2 3-2.8 3.9-4.2-3z"/>
+    <path class="a-c a-o" d="M5.2 14.2c0-1.4 1.1-2.4 2.4-2.4S10 12.8 10 14.2V28H5.2zM10 9.2c0-1.4 1.1-2.4 2.4-2.4s2.4 1 2.4 2.4V27H10zM14.8 7.7c0-1.4 1.1-2.4 2.4-2.4s2.4 1 2.4 2.4V27h-4.8zM19.6 9.7c0-1.4 1.1-2.4 2.4-2.4s2.4 1 2.4 2.4V27h-4.8z"/>
+    <path class="a-b a-o" d="M5.6 14.6h4v5.2h-4zM5.6 21h4v4.6h-4zM10.4 9.6h4v5.6h-4zM10.4 16.4h4v5.4h-4zM15.2 8.1h4v5.8h-4zM15.2 15.1h4v5.6h-4zM20 10.1h4v5.6h-4zM20 16.9h4v5.4h-4z"/>
+    <path class="a-c a-oo" d="M4.8 27.5c0-1.4 1-2.5 2.4-2.5h17.2c1.4 0 2.4 1.1 2.4 2.5v10c0 3.4-1.6 5.8-4.4 5.8H9.2c-2.8 0-4.4-2.4-4.4-5.8z"/>
+    <path class="a-b a-o" d="M5.4 24.6h20.8l.3 3.4-1.4 8.8-3 2.6H10.1l-3-2.6-1.4-8.8z"/>
+    <path d="M5.4 24.6h20.8l.3 3.4-1.4 8.8-3 2.6H10.1l-3-2.6-1.4-8.8z" fill="url(#a-sheen)"/>
+    <path class="a-p" d="M5.8 28.4h20.4M15.8 28.6v10.6"/>
+    <path class="a-m a-oo" d="M6 42.5h19.6l2.6 15.5H3.4z"/>
+    <path class="a-x" d="M5 49h21.6l.4 2.6H4.6z"/>
+    <path d="M6 42.5h19.6l2.6 15.5H3.4z" fill="url(#a-shade)"/>
+    <circle class="a-g" cx="21" cy="45.9" r="1.4" filter="url(#a-glow)"/>
+    <circle class="a-w" cx="21" cy="45.9" r=".6"/>
+    <path class="a-l" d="M6.4 25.6h18.8M7 43.5h17.6M6 12.8c.4-.6 1-.9 1.6-.9M10.8 7.8c.4-.6 1-.9 1.6-.9M15.6 6.3c.4-.6 1-.9 1.6-.9M20.4 8.3c.4-.6 1-.9 1.6-.9"/>
+  </g>
+  <use href="#gloves-a" transform="matrix(-1 0 0 1 64 0)"/>
+</svg>

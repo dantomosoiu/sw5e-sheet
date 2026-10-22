@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <g transform="rotate(-10 38 27)">
+    <path class="a-c a-o" fill-rule="evenodd" d="M17.5 25a18.5 14.1 0 1 0 37 0a18.5 14.1 0 1 0-37 0zM20.5 25a15.5 11.1 0 1 0 31 0a15.5 11.1 0 1 0-31 0z"/>
+    <ellipse class="a-p" cx="36" cy="25" rx="17" ry="12.6" stroke-dasharray="1 1.4"/>
+    <path class="a-c a-o" fill-rule="evenodd" d="M19.7 27.4a18.5 14.1 0 1 0 37 0a18.5 14.1 0 1 0-37 0zM22.7 27.4a15.5 11.1 0 1 0 31 0a15.5 11.1 0 1 0-31 0z"/>
+    <ellipse class="a-p" cx="38.2" cy="27.4" rx="17" ry="12.6" stroke-dasharray="1 1.4"/>
+    <path class="a-c a-oo" fill-rule="evenodd" d="M21.9 29.8a18.5 14.1 0 1 0 37 0a18.5 14.1 0 1 0-37 0zM24.9 29.8a15.5 11.1 0 1 0 31 0a15.5 11.1 0 1 0-31 0z"/>
+    <ellipse class="a-p" cx="40.4" cy="29.8" rx="17" ry="12.6" stroke-dasharray="1 1.4"/>
+    <path fill-rule="evenodd" d="M21.9 29.8a18.5 14.1 0 1 0 37 0a18.5 14.1 0 1 0-37 0zM24.9 29.8a15.5 11.1 0 1 0 31 0a15.5 11.1 0 1 0-31 0z" fill="url(#a-shade)"/>
+    <path class="a-l" d="M27.6 18.6q6-5 15.4-4.4"/>
+  </g>
+  <path class="a-c a-o" d="M19.6 46.6Q20.6 45.2 21.3 44.2Q22 43.3 22.6 42.5Q23.3 41.8 24.2 41.3Q25 40.9 26 40.5Q27 40.1 28.5 39.6L27.5 36.8Q26 37.3 24.9 37.7Q23.7 38.1 22.6 38.8Q21.5 39.4 20.6 40.4Q19.6 41.4 18.9 42.4Q18.1 43.5 17.2 45Z"/>
+  <path class="a-c a-o" d="M49.4 39.1Q50.6 40.5 51.4 41.4Q52.1 42.3 52.6 43.2Q53.1 44 53.2 44.8Q53.3 45.5 53.2 46.5Q53.1 47.5 53.1 48.5Q53 49.5 53.3 50.4Q53.6 51.4 54 52.1Q54.4 52.8 54.9 53.7L56.7 52.7Q56.3 51.8 56 51.2Q55.7 50.6 55.5 49.9Q55.4 49.3 55.4 48.5Q55.5 47.7 55.7 46.7Q55.8 45.6 55.8 44.4Q55.7 43.2 55.1 42Q54.4 40.8 53.7 39.7Q52.9 38.7 51.8 37.3Z"/>
+  <circle class="a-g" cx="57" cy="56" r="4.4" filter="url(#a-glow-lg)" opacity=".9"/>
+  <rect class="a-m a-o" x="54" y="51.4" width="3.4" height="5" rx="1.4" transform="rotate(-28 55.7 53.9)"/>
+  <path class="a-gl" d="M57.6 56.6l2.2-.6-.6 2 2.2.2M56.4 57.6l-.8 2 1.8-.2-.4 1.8M58 55l1.6-1.8.2 1.6 1.6-1.4" filter="url(#a-glow)"/>
+  <path class="a-gl" d="M57.6 56.6l2.2-.6-.6 2 2.2.2M56.4 57.6l-.8 2 1.8-.2-.4 1.8M58 55l1.6-1.8.2 1.6 1.6-1.4"/>
+  <circle class="a-w" cx="57.2" cy="56.4" r="1"/>
+  <g transform="translate(5.6 58.4) rotate(-45)">
+    <rect class="a-m a-oo" x="-1.8" y="-3.2" width="4" height="6.4" rx="1.8"/>
+    <rect class="a-c a-oo" x="1.6" y="-2.8" width="11" height="5.6" rx="1"/>
+    <path class="a-p" d="M2.8-2.6l2.4 5.2M5.2-2.6L2.8 2.6M6.6-2.6L9 2.6M9-2.6L6.6 2.6M10.4-2.6l2 4.6M12.4-2.2L10.2 2.6"/>
+    <rect x="1.6" y="-2.8" width="11" height="5.6" rx="1" fill="url(#a-shade)"/>
+    <path class="a-m a-oo" d="M12.4-3.2h4.4l2.2 1.4v3.6l-2.2 1.4h-4.4z"/>
+    <path d="M12.4-3.2h4.4l2.2 1.4v3.6l-2.2 1.4h-4.4z" fill="url(#a-sheen)"/>
+    <rect class="a-x a-o" x="13.4" y="-3.4" width="1.8" height="6.8" rx=".4"/>
+    <circle class="a-g" cx="17" cy=".6" r="1" filter="url(#a-glow)"/>
+    <circle class="a-w" cx="17" cy=".6" r=".45"/>
+    <path class="a-l" d="M-.8-2.2h1.6M15.6-2.2h1.4"/>
+  </g>
+</svg>

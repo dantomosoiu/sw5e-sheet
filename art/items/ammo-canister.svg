@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <clipPath id="ammo-canister-c"><path d="M17 22c0-5.5 4-8.5 9-8.5h12c5 0 9 3 9 8.5v29.5c0 2.7-2 4.5-4.5 4.5h-21c-2.5 0-4.5-1.8-4.5-4.5z"/></clipPath>
+  <rect class="a-m a-oo" x="23" y="5" width="18" height="3.6" rx="1.6"/>
+  <rect x="23" y="5" width="18" height="3.6" rx="1.6" fill="url(#a-sheen)"/>
+  <rect class="a-m a-o" x="30.4" y="8" width="3.2" height="3"/>
+  <path class="a-m a-o" d="M36 10.6h8.6c.8 0 1.4.6 1.4 1.4v3h-2.6v-1.8H36z"/>
+  <rect class="a-d a-o" x="42.6" y="14.6" width="4.2" height="2.4" rx=".6"/>
+  <rect class="a-m a-oo" x="26.4" y="10.4" width="11.2" height="4.4" rx="1"/>
+  <rect class="a-m a-o" x="18.4" y="52.6" width="27.2" height="5.6" rx="1.4"/>
+  <path class="a-b a-oo" d="M17 22c0-5.5 4-8.5 9-8.5h12c5 0 9 3 9 8.5v29.5c0 2.7-2 4.5-4.5 4.5h-21c-2.5 0-4.5-1.8-4.5-4.5z"/>
+  <g clip-path="url(#ammo-canister-c)">
+    <rect class="a-x" x="16" y="32.4" width="32" height="9.4"/>
+    <path class="a-d" d="M14 41.8l6.4-9.4h4.4l-6.4 9.4zM23.4 41.8l6.4-9.4h4.4l-6.4 9.4zM32.8 41.8l6.4-9.4h4.4l-6.4 9.4zM42.2 41.8l6.4-9.4h4.4l-6.4 9.4z"/>
+    <path class="a-p" d="M16 32.4h32M16 41.8h32M16 22h32M16 48.4h32"/>
+    <rect x="10.75" y="19.75" width="42.5" height="30" fill="url(#a-sheen)" transform="rotate(-90 32 34.75)"/>
+    <rect x="10.75" y="19.75" width="42.5" height="30" fill="url(#a-shade)" transform="rotate(-90 32 34.75)"/>
+  </g>
+  <path class="a-oo" fill="none" d="M17 22c0-5.5 4-8.5 9-8.5h12c5 0 9 3 9 8.5v29.5c0 2.7-2 4.5-4.5 4.5h-21c-2.5 0-4.5-1.8-4.5-4.5z"/>
+  <circle class="a-m a-o" cx="26" cy="26.6" r="4.4"/>
+  <circle class="a-s" cx="26" cy="26.6" r="3.1"/>
+  <path class="a-gl" d="M26 26.6l1.8-1.8"/>
+  <circle class="a-g" cx="39.4" cy="26.6" r="1.6" filter="url(#a-glow)"/>
+  <circle class="a-w" cx="39.4" cy="26.6" r=".7"/>
+  <path class="a-l" d="M19.4 21c.8-3.4 3.6-5.2 7-5.2M24.4 6.2h15M19.4 24v26"/>
+</svg>

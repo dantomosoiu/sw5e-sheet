@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <path class="a-x a-o" d="M11 47h3.4v8.5H11zM16.6 47H20v8.5h-3.4zM22.2 47h3.4v8.5h-3.4zM27.8 47h3.4v8.5h-3.4zM33.4 47h3.4v8.5h-3.4zM39 47h3.4v8.5H39zM44.6 47H48v8.5h-3.4zM50.2 47h3.4v8.5h-3.4z"/>
+  <rect class="a-d a-oo" x="6" y="22" width="52" height="27" rx="1.5"/>
+  <path class="a-gl" d="M12.7 49v-7l4-4h7M18.3 49v-4.5l2.5-2.5h3.2M23.9 49v-6M29.5 49v-6M35.1 49v-6M40.7 49v-5l-1.7-1.7M46.3 49v-6.5l-4-4H39M51.9 49V37l-4-4H39M10 29.5h7l2.5 2.5H24" filter="url(#a-glow)" opacity=".7"/>
+  <path class="a-gl" d="M12.7 49v-7l4-4h7M18.3 49v-4.5l2.5-2.5h3.2M23.9 49v-6M29.5 49v-6M35.1 49v-6M40.7 49v-5l-1.7-1.7M46.3 49v-6.5l-4-4H39M51.9 49V37l-4-4H39M10 29.5h7l2.5 2.5H24"/>
+  <path class="a-g" d="M10 28.3a1.2 1.2 0 1 0 0 2.4a1.2 1.2 0 1 0 0-2.4zM51.9 35.8a1.2 1.2 0 1 0 0 2.4a1.2 1.2 0 1 0 0-2.4z"/>
+  <rect class="a-m a-o" x="24" y="30" width="15" height="13" rx="1"/>
+  <rect x="24" y="30" width="15" height="13" rx="1" fill="url(#a-sheen)"/>
+  <rect class="a-p" x="26.5" y="32.5" width="10" height="8" rx=".6"/>
+  <circle class="a-w" cx="35" cy="34" r=".9"/>
+  <path class="a-b a-oo" d="M9 7h46a3 3 0 0 1 3 3v15H6V10a3 3 0 0 1 3-3z"/>
+  <path d="M9 7h46a3 3 0 0 1 3 3v15H6V10a3 3 0 0 1 3-3z" fill="url(#a-sheen)"/>
+  <path d="M9 7h46a3 3 0 0 1 3 3v15H6V10a3 3 0 0 1 3-3z" fill="url(#a-shade)"/>
+  <rect class="a-x a-o" x="11" y="11" width="16" height="9" rx="1.2"/>
+  <path class="a-d" d="M13.5 13.6h11v1.5h-11zM13.5 16.4h7v1.5h-7z"/>
+  <path class="a-p" d="M38 11v10M41 11v10M44 11v10M47 11v10"/>
+  <circle class="a-g" cx="53" cy="15.5" r="2" filter="url(#a-glow)"/>
+  <circle class="a-g a-o" cx="53" cy="15.5" r="1.3"/>
+  <path class="a-l" d="M9 8.3h46"/>
+</svg>

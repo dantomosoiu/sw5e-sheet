@@ -422,7 +422,16 @@ function doRoll() {
     rollState.log = capRollLog([r].concat(rollState.log.filter((x) => x.id !== r.id)));
   }
   saveRollLog();
-  tumble(r, fresh, () => { renderDice('next'); announceRoll(r); });
+  tumble(r, fresh, () => {
+    renderDice('next');
+    announceRoll(r);
+    // A natural 20 or 1 on a d20 roll: a flash over the page (screen effects).
+    const kept = r.kind === 'd20' ? keptD20(r) : null;
+    if (kept && typeof fxPulse === 'function') {
+      if (kept.value >= (r.critMin || 20)) fxPulse('crit');
+      else if (kept.value === 1) fxPulse('fumble');
+    }
+  });
 }
 /**
  * The dice tumble for a moment before the result shows: their faces flick through numbers, slowing down, then land

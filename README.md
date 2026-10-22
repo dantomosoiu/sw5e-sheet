@@ -18,6 +18,8 @@ The rules are SW5E's, by Galiphile and the SW5E contributors ([credits](app/data
   - `app/data/sw5e/`: SW5E's rules data, item list and books, as SW5E publishes them ([where from, and whose](app/data/sw5e/README.md)).
   - `app/platform.js`: where the sheet keeps its data and whether it can reach sw5e.com; the one file a wrapper replaces.
   - `app/engine.js`: the rules engine ([docs/engine.md](docs/engine.md)).
+- `art/`: the item pictures, drawn for this project ([style guide](art/README.md)); `dev/art.py` builds them into
+  `app/art/`, where the class styles' emblems and background art are too.
 - `extension/`: the Chrome extension around the app: manifest, toolbar button, the sw5e.com bridge, and its own
   `platform.js` (Chrome's storage, sw5e.com through a tab). [Installing it](extension/README.md).
 - `dev/`: development tools ([dev/README.md](dev/README.md)):

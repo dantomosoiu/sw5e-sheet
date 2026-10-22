@@ -1,0 +1,127 @@
+/*
+ * Screen effects: what is happening to the character, shown around the sheet. viewer.js puts words on
+ * <html data-fx="…"> (screenFx): low hit points (bloodied, critical, down), conditions (c-poisoned, c-blinded…),
+ * exhaustion, states (rage, a lightsaber form), concentrating, a shield or temporary hit points, inspiration, haste,
+ * invisibility. Brief flashes (hit, heal, shield, crit, fumble) are classes on .fx-pulse for a moment.
+ * Everything here stays at the edges, lets clicks through, and holds still for reduced motion. More ▾ → Theme… turns
+ * them off.
+ */
+.fx-layer { position: fixed; inset: 0; pointer-events: none; z-index: 15; overflow: hidden; }
+.fx-layer > i { position: absolute; inset: 0; opacity: 0; transition: opacity .8s ease; }
+
+/* ---------- Hit points ---------- */
+[data-fx~="bloodied"] .fx-hp { opacity: 1; box-shadow: inset 0 0 70px rgba(190, 28, 28, .16); }
+[data-fx~="critical"] .fx-hp { opacity: 1; box-shadow: inset 0 0 120px rgba(220, 20, 20, .34); animation: fx-heartbeat 1.15s ease-in-out infinite; }
+[data-fx~="down"] .fx-hp, [data-fx~="c-unconscious"] .fx-hp {
+  opacity: 1; background: radial-gradient(ellipse 75% 70% at 50% 45%, transparent 45%, rgba(0, 0, 0, .55) 100%);
+  box-shadow: inset 0 0 160px rgba(110, 0, 0, .5); animation: fx-heartbeat 1.9s ease-in-out infinite;
+}
+[data-fx~="down"] #sheet, [data-fx~="c-unconscious"] #sheet { filter: grayscale(.8) brightness(.92); transition: filter 1s ease; }
+@keyframes fx-heartbeat { 0%, 100% { opacity: .55; } 12% { opacity: 1; } 24% { opacity: .65; } 36% { opacity: .95; } }
+
+/* ---------- Conditions ---------- */
+[data-fx~="c-poisoned"] .fx-cond { opacity: 1; box-shadow: inset 0 0 110px rgba(70, 200, 70, .26);
+  background: radial-gradient(circle at 8% 92%, rgba(90, 210, 80, .14), transparent 30%), radial-gradient(circle at 94% 10%, rgba(90, 210, 80, .1), transparent 26%);
+  animation: fx-sway 5s ease-in-out infinite; }
+[data-fx~="c-blinded"] .fx-cond { opacity: 1; background: radial-gradient(ellipse 58% 55% at 50% 46%, transparent 52%, rgba(0, 0, 0, .78) 100%); }
+[data-fx~="c-deafened"] .fx-cond { opacity: 1; box-shadow: inset 0 0 80px rgba(150, 150, 165, .22); }
+[data-fx~="c-charmed"] .fx-cond { opacity: 1; box-shadow: inset 0 0 120px rgba(255, 110, 190, .24);
+  background: radial-gradient(1.5px 1.5px at 12% 20%, rgba(255, 190, 230, .9), transparent), radial-gradient(1.5px 1.5px at 88% 30%, rgba(255, 190, 230, .8), transparent),
+    radial-gradient(2px 2px at 80% 85%, rgba(255, 190, 230, .8), transparent), radial-gradient(1.5px 1.5px at 6% 70%, rgba(255, 190, 230, .8), transparent);
+  animation: fx-sway 3.5s ease-in-out infinite; }
+[data-fx~="c-frightened"] .fx-cond { opacity: 1; box-shadow: inset 0 0 140px rgba(55, 20, 90, .45); }
+[data-fx~="c-frightened"] #sheet { filter: saturate(.7); }
+[data-fx~="c-frightened"] .hero h1 { animation: fx-tremble .35s steps(2) infinite; }
+[data-fx~="c-stunned"] .fx-cond, [data-fx~="c-incapacitated"] .fx-cond {
+  opacity: .9; background: repeating-linear-gradient(0deg, rgba(255, 255, 255, .05) 0 1px, transparent 1px 3px);
+  box-shadow: inset 0 0 90px rgba(255, 230, 120, .16); animation: fx-static .9s steps(3) infinite; }
+[data-fx~="c-paralyzed"] .fx-cond { opacity: 1;
+  background: radial-gradient(circle at 0 0, rgba(185, 232, 255, .34), transparent 28%), radial-gradient(circle at 100% 0, rgba(185, 232, 255, .28), transparent 24%),
+    radial-gradient(circle at 0 100%, rgba(185, 232, 255, .28), transparent 24%), radial-gradient(circle at 100% 100%, rgba(185, 232, 255, .34), transparent 28%); }
+[data-fx~="c-petrified"] .fx-cond { opacity: 1; box-shadow: inset 0 0 130px rgba(120, 115, 105, .5); }
+[data-fx~="c-petrified"] #sheet { filter: grayscale(.9) sepia(.15); }
+[data-fx~="c-restrained"] .fx-cond, [data-fx~="c-grappled"] .fx-cond {
+  opacity: .8; border: 9px solid transparent;
+  border-image: repeating-linear-gradient(45deg, rgba(170, 170, 185, .38) 0 7px, transparent 7px 14px) 9; }
+[data-fx~="c-prone"] .fx-cond { opacity: 1; background: linear-gradient(to top, rgba(120, 90, 55, .26), transparent 22%); }
+[data-fx~="c-shocked"] .fx-cond { opacity: 1; box-shadow: inset 0 0 90px rgba(110, 200, 255, .3); animation: fx-crackle 1.6s steps(1) infinite; }
+[data-fx~="c-slowed"] .fx-cond { opacity: 1; box-shadow: inset 0 0 110px rgba(110, 140, 190, .3); }
+[data-fx~="c-slowed"] #sheet { filter: saturate(.8); }
+[data-fx~="c-ignited"] .fx-cond, [data-fx~="c-burning"] .fx-cond { opacity: 1; background: linear-gradient(to top, rgba(255, 110, 20, .3), transparent 26%); animation: fx-sway 1.4s ease-in-out infinite; }
+[data-fx~="c-corroded"] .fx-cond { opacity: 1; box-shadow: inset 0 0 100px rgba(170, 200, 40, .26); }
+[data-fx~="c-weakened"] .fx-cond { opacity: 1; box-shadow: inset 0 0 100px rgba(90, 80, 70, .3); }
+[data-fx~="c-invisible"] .hero, [data-fx~="cloaked"] .hero, [data-fx~="c-invisible"] .side-summary, [data-fx~="cloaked"] .side-summary { opacity: .55; animation: fx-shimmer 3.2s ease-in-out infinite; }
+[data-fx~="c-invisible"] .fx-cond, [data-fx~="cloaked"] .fx-cond { opacity: 1;
+  background: repeating-linear-gradient(115deg, rgba(200, 230, 255, .045) 0 2px, transparent 2px 9px); animation: fx-drift 6s linear infinite; }
+[data-fx~="exhausted"] #sheet { filter: saturate(var(--fx-sat, .85)); }
+[data-fx~="exh-2"] { --fx-sat: .75; } [data-fx~="exh-3"] { --fx-sat: .65; } [data-fx~="exh-4"] { --fx-sat: .55; } [data-fx~="exh-5"], [data-fx~="exh-6"] { --fx-sat: .45; }
+[data-fx~="exhausted"] .fx-cond { opacity: 1; box-shadow: inset 0 0 120px rgba(0, 0, 0, .28); }
+
+/* ---------- States ---------- */
+[data-fx~="rage"] .fx-state { opacity: 1; box-shadow: inset 0 0 130px rgba(255, 55, 20, .32); animation: fx-throb 2.4s ease-in-out infinite; }
+[data-fx~="rage"] .fx-state::before {
+  content: ''; position: absolute; left: 0; right: 0; bottom: -40%; height: 140%;
+  background-image:
+    radial-gradient(2px 2px at 10% 90%, rgba(255, 170, 70, .95), transparent), radial-gradient(1.5px 1.5px at 25% 70%, rgba(255, 120, 40, .9), transparent),
+    radial-gradient(2px 2px at 42% 95%, rgba(255, 190, 90, .9), transparent), radial-gradient(1.5px 1.5px at 61% 80%, rgba(255, 120, 40, .9), transparent),
+    radial-gradient(2.5px 2.5px at 78% 92%, rgba(255, 170, 70, .95), transparent), radial-gradient(1.5px 1.5px at 92% 75%, rgba(255, 140, 50, .9), transparent);
+  background-size: 100% 50%; animation: fx-embers 5s linear infinite;
+  -webkit-mask: linear-gradient(to top, #000 0%, transparent 55%); mask: linear-gradient(to top, #000 0%, transparent 55%);
+}
+[data-fx~="rage"] .topbar { --topbar-line: rgba(255, 70, 30, .85); }
+[data-fx~="form"] .art-tile[class*="glow-"] > svg:first-child { filter: drop-shadow(0 0 3px var(--ag)); }
+[data-fx~="form"] .fx-state { opacity: 1; box-shadow: inset 0 0 90px color-mix(in srgb, var(--accent) 22%, transparent); }
+[data-fx~="hasted"] .fx-motion { opacity: .9;
+  background: linear-gradient(90deg, rgba(255, 255, 255, .06), transparent 7%, transparent 93%, rgba(255, 255, 255, .06)),
+    repeating-linear-gradient(90deg, transparent 0 40px, rgba(160, 220, 255, .05) 40px 42px);
+  -webkit-mask: linear-gradient(90deg, #000, transparent 10%, transparent 90%, #000); mask: linear-gradient(90deg, #000, transparent 10%, transparent 90%, #000);
+  animation: fx-streak .6s linear infinite; }
+/* Concentration: a light running along the top bar. */
+[data-fx~="concentrating"] .topbar::after {
+  content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 2px; pointer-events: none;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent) no-repeat; background-size: 30% 100%;
+  animation: fx-scan 2.8s ease-in-out infinite;
+}
+/* Shields and temporary hit points: a hex shimmer on the HP box. */
+[data-fx~="temphp"] [data-live="hp"], [data-fx~="shielded"] [data-live="hp"] {
+  position: relative; box-shadow: 0 0 0 1px rgba(90, 175, 255, .55), 0 0 18px -4px rgba(90, 175, 255, .7);
+}
+[data-fx~="temphp"] [data-live="hp"]::after, [data-fx~="shielded"] [data-live="hp"]::after {
+  content: ''; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; opacity: .5;
+  background: radial-gradient(circle at 50% 50%, transparent 60%, rgba(90, 175, 255, .18) 100%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='42' viewBox='0 0 24 42'%3E%3Cpath d='M12 0l12 7v14l-12 7L0 21V7zM12 28l12 7v14M12 28L0 35v14' fill='none' stroke='%235aafff' stroke-opacity='.35'/%3E%3C/svg%3E");
+  animation: fx-sway 3s ease-in-out infinite;
+}
+[data-fx~="shielded"] .fx-state { opacity: 1; box-shadow: inset 0 0 70px rgba(90, 175, 255, .18); }
+[data-fx~="inspired"] .insp { color: #ffd23a; text-shadow: 0 0 8px rgba(255, 210, 60, .9); animation: fx-twinkle 2.2s ease-in-out infinite; }
+
+/* ---------- Flashes ---------- */
+.fx-pulse.hit { animation: fx-hit .55s ease-out; }
+.fx-pulse.heal { animation: fx-heal .9s ease-out; }
+.fx-pulse.shield { animation: fx-shield .8s ease-out; }
+.fx-pulse.crit { animation: fx-crit .9s ease-out; }
+.fx-pulse.fumble { animation: fx-fumble .7s ease-out; }
+@keyframes fx-hit { 0% { opacity: 1; box-shadow: inset 0 0 0 9999px rgba(255, 30, 30, .16), inset 0 0 160px rgba(255, 20, 20, .7); } 100% { opacity: 0; } }
+@keyframes fx-heal { 0% { opacity: 1; background: linear-gradient(to top, rgba(60, 230, 170, .32), transparent 60%); } 100% { opacity: 0; } }
+@keyframes fx-shield { 0% { opacity: 1; box-shadow: inset 0 0 150px rgba(90, 175, 255, .6); } 100% { opacity: 0; } }
+@keyframes fx-crit { 0% { opacity: 1; background: radial-gradient(circle at 50% 100%, rgba(255, 210, 60, .4), transparent 60%); } 100% { opacity: 0; } }
+@keyframes fx-fumble { 0% { opacity: 1; box-shadow: inset 0 0 140px rgba(90, 90, 100, .6); } 100% { opacity: 0; } }
+
+@keyframes fx-sway { 0%, 100% { opacity: .75; } 50% { opacity: 1; } }
+@keyframes fx-throb { 0%, 100% { opacity: .7; } 50% { opacity: 1; } }
+@keyframes fx-static { 0% { background-position: 0 0; } 33% { background-position: 0 1px; } 66% { background-position: 0 2px; } }
+@keyframes fx-crackle { 0%, 100% { opacity: .6; } 8% { opacity: 1; } 10% { opacity: .5; } 13% { opacity: 1; } 50% { opacity: .7; } }
+@keyframes fx-tremble { 0% { transform: translateX(0); } 100% { transform: translateX(.6px); } }
+@keyframes fx-shimmer { 0%, 100% { opacity: .5; } 50% { opacity: .68; } }
+@keyframes fx-drift { from { background-position: 0 0; } to { background-position: 90px 0; } }
+@keyframes fx-embers { from { transform: translateY(0); } to { transform: translateY(-50%); } }
+@keyframes fx-streak { from { background-position: 0 0, 0 0; } to { background-position: 0 0, -42px 0; } }
+@keyframes fx-scan { 0% { background-position: -30% 0; } 100% { background-position: 130% 0; } }
+@keyframes fx-twinkle { 0%, 100% { opacity: .8; } 50% { opacity: 1; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .fx-layer > i, .fx-layer > i::before, [data-fx] .topbar::after, [data-fx] .hero, [data-fx] .hero h1, [data-fx] .side-summary, [data-fx] .insp,
+  [data-fx] [data-live="hp"]::after { animation: none !important; }
+  .fx-pulse { display: none; }
+}
+@media print { .fx-layer { display: none; } }

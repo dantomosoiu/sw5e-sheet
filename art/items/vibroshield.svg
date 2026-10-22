@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <circle class="a-d a-oo" cx="33.4" cy="33.4" r="25.6"/>
+  <path class="a-b a-oo" d="M32 5.8L36.8 7.9L42 7.8L45.7 11.5L50.5 13.5L52.5 18.3L56.2 22L56.1 27.2L58.2 32L56.1 36.8L56.2 42L52.5 45.7L50.5 50.5L45.7 52.5L42 56.2L36.8 56.1L32 58.2L27.2 56.1L22 56.2L18.3 52.5L13.5 50.5L11.5 45.7L7.8 42L7.9 36.8L5.8 32L7.9 27.2L7.8 22L11.5 18.3L13.5 13.5L18.3 11.5L22 7.8L27.2 7.9Z"/>
+  <path d="M32 5.8L36.8 7.9L42 7.8L45.7 11.5L50.5 13.5L52.5 18.3L56.2 22L56.1 27.2L58.2 32L56.1 36.8L56.2 42L52.5 45.7L50.5 50.5L45.7 52.5L42 56.2L36.8 56.1L32 58.2L27.2 56.1L22 56.2L18.3 52.5L13.5 50.5L11.5 45.7L7.8 42L7.9 36.8L5.8 32L7.9 27.2L7.8 22L11.5 18.3L13.5 13.5L18.3 11.5L22 7.8L27.2 7.9Z" fill="url(#a-sheen)"/>
+  <circle class="a-gl" cx="32" cy="32" r="22.6" filter="url(#a-glow)"/>
+  <circle class="a-gl" cx="32" cy="32" r="22.6"/>
+  <circle class="a-m a-oo" cx="32" cy="32" r="21"/>
+  <path class="a-x a-o" d="M22.2 28.4L12.8 25A20.4 20.4 0 0 1 25 12.8L28.4 22.2A10.4 10.4 0 0 0 22.2 28.4ZM41.8 35.6L51.2 39A20.4 20.4 0 0 1 39 51.2L35.6 41.8A10.4 10.4 0 0 0 41.8 35.6Z"/>
+  <circle cx="32" cy="32" r="21" fill="url(#a-sheen)"/>
+  <circle cx="32" cy="32" r="21" fill="url(#a-shade)"/>
+  <path class="a-p" d="M41.4 32L52.4 32M38.6 38.6L46.4 46.4M32 41.4L32 52.4M25.4 38.6L17.6 46.4M22.6 32L11.6 32M25.4 25.4L17.6 17.6M32 22.6L32 11.6M38.6 25.4L46.4 17.6"/>
+  <circle class="a-d" cx="44.6" cy="19.4" r=".9"/>
+  <circle class="a-d" cx="19.4" cy="44.6" r=".9"/>
+  <circle class="a-d" cx="44.6" cy="44.6" r=".9"/>
+  <circle class="a-d" cx="19.4" cy="19.4" r=".9"/>
+  <circle class="a-b a-oo" cx="32" cy="32" r="8.4"/>
+  <circle cx="32" cy="32" r="8.4" fill="url(#a-sheen)"/>
+  <circle class="a-s a-o" cx="32" cy="32" r="4.2"/>
+  <circle class="a-g" cx="32" cy="32" r="2.4" filter="url(#a-glow)"/>
+  <circle class="a-g" cx="32" cy="32" r="1.8"/>
+  <circle class="a-w" cx="31.4" cy="31.4" r=".8"/>
+  <path class="a-l" d="M14.4 21.6a20.6 20.6 0 0 1 9.2-8.8M25.8 26.4a8 8 0 0 1 4-2.4M9.4 22.6l2.6-4.4M18.8 10.6l3.4-1.8"/>
+</svg>

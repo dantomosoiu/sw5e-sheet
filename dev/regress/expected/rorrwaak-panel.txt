@@ -423,7 +423,8 @@ Dexterity 11, heavy, two-handed
 | +8 | 1d12+6 Kinetic | Strength | Martial Vibroweapon | Dexterity 11, heavy, two-handed |
   ↳ hover weapons.0.attackBonus: Without tweaks or effects: 6 → now 8 / +1 Attack · Weapon (Fine) while equipped / proficient Proficient: All vibroweapons · Berserk… [307 chars #abc91c56]
   ↳ hover weapons.0.damageBonus: Without tweaks or effects: 4 → now 6 / +1 Damage · Weapon (Fine) while equipped / +1 Strength score · Brawny feat: +1 Strength (not applied by SW5E) tweak (not synced to SW5E yet)
-Unarmed Strike | +7 | 1d4+5 Kinetic | Strength | Unarmed | — |
+Unarmed Strike
+| +7 | 1d4+5 Kinetic | Strength | Unarmed | — |
   ↳ hover weapons.1.attackBonus: Without tweaks or effects: 6 → now 7 / +1 Strength score · Brawny feat: +1 Strength (not applied by SW5E) tweak (not synced to SW5E yet)
 
 ## Sheet: Class Features
@@ -658,7 +659,8 @@ AC +1 · Shield
 | [−] 1 [+] [Equip] [✎] [Sell] [×] | — | 50 cr | PHB |
 Clothing (1)
 Item | Qty & actions | Weight | Cost | Source |
-Clothes, traveler's | [−] 1 [+] [✎] [Sell] [×] | 4 lb | 20 cr | PHB |
+Clothes, traveler's
+| [−] 1 [+] [✎] [Sell] [×] | 4 lb | 20 cr | PHB |
 Data Recording And Storage (1)
 Item | Qty & actions | Weight | Cost | Source |
 Datapad
@@ -675,7 +677,8 @@ You have a +1 bonus to attack and damage rolls made with this enhanced weapon.
 | [−] 1 [+] [Equipped] [✎] [Sell] [×] | — | — | WH |
 Gaming Set (1)
 Item | Qty & actions | Weight | Cost | Source |
-Sabacc deck | [−] 1 [+] [✎] [Sell] [×] | — | 150 cr | PHB |
+Sabacc deck
+| [−] 1 [+] [✎] [Sell] [×] | — | 150 cr | PHB |
 Storage (2)
 Item | Qty & actions | Weight | Cost | Source |
 Pouch
@@ -688,8 +691,10 @@ A backpack stores 30 lb., not exceeding 1 cubic foot.
 | [−] 1 [+] [✎] [Sell] [×] | 5 lb | 50 cr | PHB |
 Utility (3)
 Item | Qty & actions | Weight | Cost | Source |
-Bedroll | [−] 1 [+] [✎] [Sell] [×] | 7 lb | 10 cr | PHB |
-Field rations (one day's) | [−] 10 [+] [✎] [Sell] [×] | 10 lb | 5 cr | PHB |
+Bedroll
+| [−] 1 [+] [✎] [Sell] [×] | 7 lb | 10 cr | PHB |
+Field rations (one day's)
+| [−] 10 [+] [✎] [Sell] [×] | 10 lb | 5 cr | PHB |
 Glowrod
 Description
 Glowrods create a beam of light illuminating the area around you in bright light for a 20-foot radius and dim light for an additional 20 feet. The glowrod lasts… [258 chars #59229a13]

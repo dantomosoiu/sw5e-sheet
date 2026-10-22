@@ -615,9 +615,11 @@ function renderAllInner(opts) {
         Imports accept the JSON from SW5E's character export, a backup from this sheet, or a snapshot exported from it.</p>
       </div>`;
     document.title = 'SW5E Character Sheet';
+    applyScreenFx(null);
     return;
   }
   const model = buildModel(snap);
+  applyScreenFx(model);
   document.title = `${snap.raw.name || 'Character'} · SW5E Sheet`;
   // Re-rendering replaces the form controls: keep the focused one focused (and, see opts.keepTyping, what's
   // typed in it), the damage/heal amount (only read when a button is pressed), and the page where it was:
@@ -1262,6 +1264,9 @@ async function trackerAction(op, arg, rolled) {
       else if (op === 'heal' || op === 'hdheal') setStatus('At full hit points: nothing to heal.');
       return;
     }
+    if (op === 'damage' && taken > 0) fxPulse('hit');
+    else if (op === 'heal' || op === 'hdheal') fxPulse('heal');
+    else if (op === 'temp') fxPulse('shield');
     if (ending.length) {
       const st = itemStateOf(snap.key);
       st.effects = st.effects.filter((e) => !ending.some((x) => x.id === e.id));
@@ -2289,7 +2294,7 @@ const attuneCost = (e) => (arr(e.rarityOptions).some((r) => /legendary|artifact/
 const qtyOf = (e) => (e.quantity == null || e.quantity === '' ? 1 : num(e.quantity));
 const RAW_ITEM_KEYS = ['quantity', 'equipped', 'attuned', 'index', 'tweaks', 'category', 'isFound', 'isCustom'];
 // The sheet's own fields on inventory entries: a name and a note of yours, what you paid, an enhanced item's base.
-const LOCAL_ITEM_KEYS = ['label', 'notes', 'paid', 'baseItem', 'enhancedBy', 'addedForBase'];
+const LOCAL_ITEM_KEYS = ['label', 'notes', 'paid', 'baseItem', 'enhancedBy', 'addedForBase', 'color'];
 
 /** Inventory entries as the engine would show them: reference data + the character's own fields. */
 function mergeEquipment(list, prevComplete) {
@@ -2489,6 +2494,8 @@ async function inventoryAction(op, arg) {
     }
     const note = val('notes');
     if (note != null) { if (note) it.notes = note; else delete it.notes; }
+    const color = val('color');
+    if (color != null) { if (color) it.color = color; else delete it.color; }
     state.itemEdit = null;
     msg = `${it.label || it.name} updated.`;
   } else if (op === 'sell') {
@@ -2843,8 +2850,10 @@ function effectRow(m, e) {
   const weapons = ownWeapons(m.raw);
   const weaponPick = e.target === 'weapon' && e.linked ? `<span class="faint">on its ${esc(e.weaponName)}</span>` : e.target === 'weapon' ? `<label class="fx-weapon">on <select data-fxweapon="${esc(e.id)}">
       <option value="">choose a weapon…</option>${weapons.map((w) => `<option${w.it.name === e.weaponName ? ' selected' : ''}>${esc(w.it.name)}</option>`).join('')}</select></label>` : '';
+  // An item's effect (carried, or a consumable used or received) shows the item.
+  const ref = catalogIndex && !['power', 'feature', 'custom'].includes(e.source) ? catalogIndex.get(e.name) : null;
   return `<div class="eff${e.kind === 'item' && !e.active ? ' off' : ''}">
-    <div class="eff-head"><b>${esc(e.name)}</b>${chips.join('')}${weaponPick}
+    <div class="eff-head">${ref ? itemTile(ref, 'sm') : ''}<b>${esc(e.name)}</b>${chips.join('')}${weaponPick}
       <span class="faint">${esc(effectWhen(e))}</span>
       ${e.kind === 'item' ? '' : `<button class="btn sm" data-act="effect-end" data-arg="${esc(e.id)}" title="The effect has worn off">End</button>`}</div>
     ${arr(e.notes).length ? `<ul class="eff-notes">${e.notes.map((n) => `<li>${md(n).replace(/^<p>|<\/p>$/g, '')}</li>`).join('')}</ul>` : ''}
@@ -3129,7 +3138,7 @@ function renderAddSuggestions() {
   const hi = clamp(num(d0.hi), 0, Math.min(hits.length, SUGGEST_MAX) - 1);
   const price = (it) => (it.pack ? it.cost : !isEnhanced(it) ? priceOf(it) : 0);
   return `<div class="sugg" role="listbox">${hits.slice(0, SUGGEST_MAX).map((it, i) => `<button type="button" class="sugg-item${i === hi ? ' hi' : ''}" role="option" aria-selected="${i === hi}"
-      data-act="add-pick" data-arg="${esc(it.name)}"><span>${esc(it.name)}</span><span class="faint">${esc([itemKind(it), price(it) ? `${fmtNum(price(it))} cr` : ''].filter(Boolean).join(' · '))}</span></button>`).join('')}
+      data-act="add-pick" data-arg="${esc(it.name)}"><span class="sugg-name">${it.pack ? '' : itemTile(it, 'sm')}${esc(it.name)}</span><span class="faint">${esc([itemKind(it), price(it) ? `${fmtNum(price(it))} cr` : ''].filter(Boolean).join(' · '))}</span></button>`).join('')}
     ${hits.length > SUGGEST_MAX ? `<div class="faint sugg-more">${hits.length - SUGGEST_MAX} more; keep typing to narrow it down</div>` : ''}${asCustom}</div>`;
 }
 function pickAddItem(name) {
@@ -3181,7 +3190,7 @@ function renderAddDetail(m) {
       : `<label><input type="checkbox" data-add="attune"${d.attune ? ' checked' : ''}> Attuned</label>`) : '',
     payRow,
   ].filter(Boolean);
-  return `<div class="add-detail"><div><b>${esc(ref.name)}</b> <span class="muted">${esc(facts.join(' · '))}</span></div>
+  return `<div class="add-detail"><div class="add-head">${itemTile(ref, 'lg')}<div><b>${esc(ref.name)}</b> <span class="muted">${esc(facts.join(' · '))}</span></div></div>
     ${baseSelect(m, ref, 'data-add="base"', d.base)}
     ${checks.length ? `<div class="add-checks">${checks.join('')}</div>` : ''}
     ${ref.description || ref.text ? `<details class="item-desc"><summary>Description</summary><div class="desc">${md(ref.description || ref.text)}</div></details>` : ''}</div>`;
@@ -3522,6 +3531,7 @@ function renderOverview(m) {
         ${img ? `<a class="chip blue" href="${esc(img)}" target="_blank" rel="noopener">Portrait link ↗</a>` : ''}
         <button class="chip" data-act="edit-image" title="Add or change the picture: a link to a picture file">${img ? 'Change picture' : 'Add a picture'}</button>
       </div>
+      ${loadoutStrip(m)}
       <div class="xp">
         <div class="xp-bar"><div style="width:${xi.pct.toFixed(1)}%"></div></div>
         <div class="xp-label"><span>${fmtNum(cur)} XP</span><span>${esc(xi.label)}</span></div>
@@ -3531,6 +3541,73 @@ function renderOverview(m) {
     </div>
   </div>`;
 }
+
+/** Equipped and attuned gear as a row of tiles under the name (a tap goes to the inventory). */
+function loadoutStrip(m) {
+  const raw = withEdits(m.snap.raw, editedFields(m.snap.key));
+  const ref = (it) => (catalogIndex && catalogIndex.get(it.name)) || it;
+  const list = arr(raw.equipment).filter((it) => (it.equipped || it.attuned) && !it.enhancedBy)
+    .map((it) => {
+      const base = arr(raw.equipment).find((x) => x.enhancedBy === it.name);
+      return { it: { ...ref(base || it), ...(base ? { rarityText: invRarity(ref(it)) } : {}), color: it.color || (base && base.color) }, name: it.label || it.name };
+    })
+    .concat(arr(raw.customEquipment).filter((it) => it.equipped).map((it) => ({ it, name: it.name })));
+  if (!list.length) return '';
+  return `<a class="loadout" href="#sec-equipment" title="Equipped and attuned: go to the inventory">${list.slice(0, 12).map((x) => itemTile(x.it, '', x.name)).join('')}</a>`;
+}
+// ------------------------------------------------------------- screen effects (fx.css)
+/**
+ * What is happening to the character, as words for <html data-fx>: low hit points, conditions, exhaustion, states
+ * (Rage, a lightsaber form), concentration, a shield or temporary hit points, inspiration, haste, invisibility.
+ */
+const screenFxOn = () => { try { return localStorage.getItem('fx') !== 'off'; } catch (e) { return true; } };
+function screenFx(m) {
+  if (!m || !m.t) return [];
+  const t = m.t;
+  const out = [];
+  const max = num(t.lim.hpMax);
+  const hp = num(t.hpCurrent);
+  if (max) {
+    if (hp <= 0) out.push('down');
+    else if (hp <= max * 0.25) out.push('critical');
+    else if (hp <= max * 0.5) out.push('bloodied');
+  }
+  for (const c of arr(t.s.conditions)) out.push('c-' + String(c).toLowerCase().replace(/[^a-z]+/g, '-'));
+  const exh = num(t.s.exhaustion);
+  if (exh) out.push('exhausted', `exh-${Math.min(6, exh)}`);
+  if (num(t.s.temporaryHitPoints) > 0) out.push('temphp');
+  if (t.s.hasInspiration) out.push('inspired');
+  for (const e of tempEffects(m.snap.key)) {
+    const g = String(e.group || '');
+    const n = String(e.name || '').toLowerCase();
+    if (g === 'concentration') out.push('concentrating');
+    if (g === 'state:raging' || /\brage\b/.test(n)) out.push('rage');
+    if (g === 'state:lightsaber form') out.push('form');
+    if (/shield|barrier|deflect|\bward\b|armor of/.test(n)) out.push('shielded');
+    if (/invisib|cloak|camouflage|stealth field|shroud/.test(n)) out.push('cloaked');
+    if (/haste|speed|alacrity|celerity|sprint|burst of/.test(n)) out.push('hasted');
+  }
+  return [...new Set(out)];
+}
+function applyScreenFx(m) {
+  if (typeof document === 'undefined' || !document.documentElement) return;
+  const root = document.documentElement;
+  const v = screenFxOn() ? screenFx(m).join(' ') : '';
+  if ((root.dataset.fx || '') === v) return;
+  if (v) root.dataset.fx = v; else delete root.dataset.fx;
+}
+/** A brief flash over the page: 'hit', 'heal', 'shield', 'crit', 'fumble'. */
+function fxPulse(kind) {
+  if (!screenFxOn() || typeof document === 'undefined') return;
+  const el = document.querySelector('.fx-pulse');
+  if (!el) return;
+  el.className = 'fx-pulse';
+  void el.offsetWidth; // restart the animation
+  el.className = `fx-pulse ${kind}`;
+}
+
+/** Items whose blade or crystal can have a colour of the player's choosing. */
+const hasEnergyColor = (it) => /^light|kyber/.test(itemArt(it).icon);
 
 // Parts of the sheet that show tracked play state. They're rendered inside
 // <… data-live="name[:arg]"> wrappers so refreshTracked() can update them in place
@@ -3592,6 +3669,7 @@ function refreshTrackedInner(only) {
   const snap = state.snapshots[state.current];
   if (!snap) return;
   const m = buildModel(snap);
+  applyScreenFx(m);
   const focused = document.activeElement && document.activeElement.id;
   const focusLoc = document.activeElement && document.activeElement !== document.body && document.activeElement.closest('[data-live]') ? locate(document.activeElement) : null;
   const anchor = anchorFor(recentControl());
@@ -3751,9 +3829,14 @@ function renderCombat(m) {
   const speed = c.speed || {};
   const conds = arr(c.conditions);
   const condRefs = arr(m.refs.conditions);
+  // The armor and shield worn, as pictures in the corner of the Armor Class box.
+  const worn = arr(withEdits(m.snap.raw, editedFields(m.snap.key)).equipment).filter((it) => it.equipped)
+    .map((it) => ({ it, ref: (catalogIndex && catalogIndex.get(it.name)) || it }))
+    .filter(({ ref }) => ref.equipmentCategory === 'Armor' || ['Armor', 'Shield'].includes(ref.type));
+  const acArt = worn.length ? `<span class="stat-art">${worn.map(({ it, ref }) => itemTile({ ...ref, color: it.color }, 'sm', it.label || it.name)).join('')}</span>` : '';
   return `
     <div class="grid auto">
-      ${stat('Armor Class', bump(m, 'armorClass', esc(c.armorClass)), esc(arr(c.armorList).join(', ') || 'Unarmored')
+      ${stat('Armor Class', bump(m, 'armorClass', esc(c.armorClass)) + acArt, esc(arr(c.armorList).join(', ') || 'Unarmored')
         + (acSetByTweak(m.raw) != null ? ` · <span class="warn-text" title="Armor, shields and effects don't change it while the tweak is there">set to ${acSetByTweak(m.raw)} by a tweak</span>` : ''))}
       ${live('hp', m, 'div', 'stat')}
       ${stat('Initiative', rollable('init', bump(m, 'initiative', signed(c.initiative)), 'Roll initiative'))}
@@ -3946,13 +4029,15 @@ function renderAttacks(m) {
       const modLine = mi ? `<details class="w-mods"><summary>${esc(mi.what)}${mi.attune ? ' · attuned' : ''} · ${plural(mi.mods.length, 'mod')}</summary>
           ${mi.mods.map((x) => `<div><b>${esc(x.name)}</b>: ${mdInline(String(x.text).replace(/_\*\*[^*]+\*\*_\s*/g, '').replace(/\s+/g, ' ').trim())}</div>`).join('') || '<div class="faint">No modifications installed yet (Classes &amp; Progression).</div>'}</details>` : '';
       const hands = w.equipped !== false && hc && hc.weapons.includes(shown) ? `<span class="chip warn" title="${esc(handsWarning(hc))}">two-handed + shield</span>` : '';
+      const enh = ent && ent.enhancedBy && catalogIndex ? catalogIndex.get(ent.enhancedBy) : null;
+      const tile = itemTile({ ...w, rarityText: enh ? invRarity(enh) : w.rarityText, color: ent && ent.color }, '', shown);
       return `<tr>
-      <td><b>${esc(shown)}</b>${shown !== w.name ? ` <span class="faint">(${esc(w.name)})</span>` : ''}${mi ? ' <span class="chip accent" title="Modified by your Engineer archetype">modified</span>' : ''}${hands ? ` ${hands}` : ''}${w.equipped === false ? ' <span class="chip">not equipped</span>' : ''}${w.isCustom ? ' <span class="chip">custom</span>' : ''}
+      <td><div class="inv-item">${tile}<div class="inv-what"><b>${esc(shown)}</b>${shown !== w.name ? ` <span class="faint">(${esc(w.name)})</span>` : ''}${mi ? ' <span class="chip accent" title="Modified by your Engineer archetype">modified</span>' : ''}${hands ? ` ${hands}` : ''}${w.equipped === false ? ' <span class="chip">not equipped</span>' : ''}${w.isCustom ? ' <span class="chip">custom</span>' : ''}
         ${propsText(w.properties) ? `<div class="m-props">${propsHtml(w.properties)}</div>` : ''}${modLine}
         ${sh ? `<div class="shots">Shots <b class="${sh.shots - sh.used ? '' : 'bad-text'}">${sh.shots - sh.used}</b>/${sh.shots}
           <button class="btn sm" data-act="shot" data-arg="${wi}" ${sh.used >= sh.shots ? 'disabled' : ''} title="Fired without rolling here (attacks rolled here count by themselves)">−1</button>
           <button class="btn sm" data-act="reload" data-arg="${wi}" ${sh.used ? '' : 'disabled'} title="Uses one ${esc(sh.ammo.toLowerCase())} from your inventory">Reload</button>
-          <span class="faint">${sh.cells} ${esc(sh.cellName)}${sh.cells === 1 ? '' : 's'}</span></div>` : ''}</td>
+          <span class="faint">${sh.cells} ${esc(sh.cellName)}${sh.cells === 1 ? '' : 's'}</span></div>` : ''}</div></div></td>
       <td class="num"><b>${rollable(`attack|${wi}`, bump(m, `weapons.${wi}.attackBonus`, signed(w.attackBonus)), `Roll an attack with the ${w.name}`)}</b></td>
       <td>${rollable(`damage|${wi}`, bump(m, `weapons.${wi}.damageBonus`, esc(damageText(w))), `Roll ${w.name} damage`)}</td>
       <td class="muted col-ability">${esc(w.name === 'Unarmed Strike' && m.fx.tweaks.some((t) => t.mod && t.mod.finesse) ? 'Dexterity (finesse)' : w.ability || '')}</td>
@@ -5780,6 +5865,8 @@ function renderEquipment(m) {
         ${isCustom ? `<label>Name <input data-ie="name" value="${esc(e.name)}"></label><label>Weight <input data-ie="weight" inputmode="decimal" value="${esc(e.weight ?? '')}"> lb</label><label>Cost <input data-ie="cost" inputmode="numeric" value="${esc(e.cost ?? '')}"> cr</label>
           <label class="wide">Description <textarea data-ie="description" rows="2">${esc(e.description || '')}</textarea></label>`
           : `<label>Your name for it <input data-ie="label" value="${esc(e.label || '')}" placeholder="${esc(e.name)}"></label>`}
+        ${hasEnergyColor(baseE || e) ? `<label>${itemArt(baseE || e).icon === 'kyber-crystal' ? 'Crystal' : 'Blade'} colour <select data-ie="color"><option value="">${esc(`as drawn (${itemArt({ ...(baseE || e), color: '' }).glow})`)}</option>
+          ${ART_COLORS.map((c) => `<option${e.color === c ? ' selected' : ''}>${c}</option>`).join('')}</select></label>` : ''}
         <label class="wide">Note <input data-ie="notes" value="${esc(e.notes || '')}" placeholder="Where it came from, what it's for…"></label>
         <span><button class="btn sm primary" data-inv="edit-save" data-arg="${esc(arg)}">Save</button><button class="btn sm" data-inv="edit-cancel" data-arg="${esc(arg)}">Cancel</button></span></div>` : '';
     const sellBox = selling ? `<div class="inv-edit" data-sell-for="${esc(arg)}">
@@ -5795,13 +5882,15 @@ function renderEquipment(m) {
     ].filter((x) => x && (typeof x === 'string' || x.html)).map((x) => (typeof x === 'string' ? esc(x) : x.html)).join(' · ');
     const desc = e.description || e.text || '';
     const weight = num(e.weight) * qty + (baseE ? num(baseE.weight) * qtyOf(baseE) : 0);
+    // Its picture: an enhanced weapon or armor looks like its base item, in its own rarity's tile.
+    const tile = itemTile(baseE ? { ...baseE, rarityText: invRarity(e), color: e.color || baseE.color } : e, '', e.label || e.name);
     const cost = num(e.cost) + (baseE ? num(baseE.cost) : 0);
-    return `<tr>
-      <td><b>${esc(e.label || e.name)}</b>${e.label ? ` <span class="faint">(${esc(e.name)})</span>` : ''}${isCustom ? ' <span class="chip">custom</span>' : ''}${e.isFound === false ? ' <span class="chip warn">not in SW5E data</span>' : ''}
+    return `<tr${e.equipped ? ' class="is-equipped"' : ''}>
+      <td><div class="inv-item">${tile}<div class="inv-what"><b>${esc(e.label || e.name)}</b>${e.label ? ` <span class="faint">(${esc(e.name)})</span>` : ''}${isCustom ? ' <span class="chip">custom</span>' : ''}${e.isFound === false ? ' <span class="chip warn">not in SW5E data</span>' : ''}
         ${extra ? `<div class="muted" style="font-size:12.5px">${extra}</div>` : ''}${baseLine}
         ${e.notes ? `<div class="inv-note">${esc(e.notes)}</div>` : ''}
         ${desc ? `<details class="item-desc" data-ui="desc:${esc(e.name)}"><summary>Description</summary><div class="desc" style="font-size:13px">${md(desc)}</div></details>` : ''}
-        ${editBox}${sellBox}</td>
+        ${editBox}${sellBox}</div></div></td>
       ${editing0 ? `<td>${itemControls(m, e, isCustom ? 'customEquipment' : 'equipment', e.index)}</td>` : `<td class="num">${qty}</td>`}<td class="num">${weight ? fmtNum(weight) + ' lb' : '—'}</td>
       <td class="num">${cost ? fmtNum(cost) + ' cr' : '—'}${e.paid ? `<div class="faint" style="font-size:12px">paid ${fmtNum(num(e.paid))}</div>` : ''}</td><td class="muted">${esc(e.contentSource || '')}</td></tr>`;
   }).join('');
@@ -6406,7 +6495,8 @@ function showThemes(redraw) {
   const sw = (id) => {
     const s = THEME_STYLES.find(([x]) => x === id) || THEME_STYLES[0];
     const [bg, accent] = light ? [s[4], s[5]] : [s[2], s[3]];
-    return `<span class="sw" style="background:linear-gradient(135deg, ${bg} 50%, ${accent} 50%)"></span>`;
+    const mark = s[0] === 'standard' ? `<i class="std" style="background:${accent}"></i>` : `<i style="--e:url(art/themes/${s[0]}-emblem.svg);color:${accent}"></i>`;
+    return `<span class="sw" style="background:radial-gradient(circle at 50% 40%, ${bg} 55%, color-mix(in srgb, ${accent} 45%, ${bg}))">${mark}</span>`;
   };
   const opt = (id, name, sub) => `<button data-act="style" data-arg="${id}" aria-pressed="${pref === id}">${sw(id === 'auto' ? mine : id)}<span>${esc(name)}${sub ? `<br><small class="faint">${esc(sub)}</small>` : ''}</span></button>`;
   pop.innerHTML = `<div class="msg-head"><b>Theme</b><button class="btn sm" data-act="themes" aria-label="Close">✕</button></div>
@@ -6416,7 +6506,9 @@ function showThemes(redraw) {
       ${opt('auto', "The character's class", `now ${(THEME_STYLES.find(([x]) => x === mine) || THEME_STYLES[0])[1]}`)}
       ${THEME_STYLES.map(([id, name]) => opt(id, name)).join('')}
     </div>
-    <p class="faint">Kept in this browser. "The character's class" follows the character on screen (the class with most levels); every style has a light and a dark version.</p>`;
+    <div class="theme-modes" role="group" aria-label="Screen effects" style="margin-top:8px">${[['on', 'Screen effects on'], ['off', 'Off']]
+    .map(([v, l]) => `<button class="btn sm${(v === 'on') === screenFxOn() ? ' on' : ''}" data-act="fx-mode" data-arg="${v}" aria-pressed="${(v === 'on') === screenFxOn()}" title="${v === 'on' ? 'Low hit points, conditions, Rage, concentration, shields and the like show around the sheet; hits, healing and natural 20s flash' : 'No screen effects'}">${l}</button>`).join('')}</div>
+    <p class="faint">Kept in this browser. "The character's class" follows the character on screen (the class with most levels); every style has a light and a dark version. Screen effects show what is happening to the character around the sheet.</p>`;
   const bar = document.querySelector('.side-nav');
   const narrow = window.matchMedia('(max-width: 900px)').matches;
   pop.style.top = `${narrow && bar ? Math.max(8, Math.round(bar.getBoundingClientRect().bottom) + 8) : 56}px`;
@@ -6634,6 +6726,10 @@ async function handleAction(act, arg) {
     case 'themes': return showThemes();
     case 'theme-mode':
       setTheme(arg === 'light' ? 'light' : 'dark');
+      return showThemes(true);
+    case 'fx-mode':
+      try { localStorage.setItem('fx', arg === 'off' ? 'off' : 'on'); } catch (e) { /* ignore */ }
+      applyScreenFx(state.snapshots[state.current] ? buildModel(state.snapshots[state.current]) : null);
       return showThemes(true);
     case 'style':
       try { localStorage.setItem('style', arg); } catch (e) { /* ignore */ }
@@ -7026,6 +7122,7 @@ async function main() {
   // Only the browser extension reaches sw5e.com: elsewhere its buttons are hidden (.needs-sw5e).
   document.documentElement.dataset.sw5e = canReachSw5e() ? 'on' : 'off';
   initTheme();
+  loadItemArt();
   wireUi();
   const last = await loadStore();
   await loadRollLog(); // again, once storage is surely readable (the dev harness's storage opens late)

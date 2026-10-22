@@ -333,7 +333,8 @@ Skill | Ability | Bonus | Passive | Proficiency |
 
 ## Sheet: Weapons & Attacks
 Weapon | To hit | Damage | Ability | Type | Properties |
-Unarmed Strike | +2 | 0 Kinetic | Strength | Unarmed | — |
+Unarmed Strike
+| +2 | 0 Kinetic | Strength | Unarmed | — |
 
 ## Sheet: Force Casting
 Force points

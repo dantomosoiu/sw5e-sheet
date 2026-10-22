@@ -439,7 +439,8 @@ Weapon | To hit | Damage | Ability | Type | Properties |
 Lightsaber
 Hidden, luminous, versatile (2d4)
 | +6 | 1d6+4 Energy | Strength | Simple Lightweapon | Hidden, luminous, versatile (2d4) |
-Unarmed Strike | +6 | 5 Kinetic | Strength | Unarmed | — |
+Unarmed Strike
+| +6 | 5 Kinetic | Strength | Unarmed | — |
 
 ## Sheet: Force Casting
 Force points
@@ -842,7 +843,8 @@ AC +1 · Shield
 | [−] 1 [+] [Equipped] [✎] [Sell] [×] | — | 50 cr | PHB |
 Clothing (1)
 Item | Qty & actions | Weight | Cost | Source |
-Clothes, common | [−] 1 [+] [✎] [Sell] [×] | 3 lb | 5 cr | PHB |
+Clothes, common
+| [−] 1 [+] [✎] [Sell] [×] | 3 lb | 5 cr | PHB |
 Enhanced: Armor (1)
 Item | Qty & actions | Weight | Cost | Source |
 Jensaarai Armor
@@ -862,8 +864,10 @@ A backpack stores 30 lb., not exceeding 1 cubic foot.
 | [−] 1 [+] [✎] [Sell] [×] | 5 lb | 50 cr | PHB |
 Utility (3)
 Item | Qty & actions | Weight | Cost | Source |
-Bedroll | [−] 1 [+] [✎] [Sell] [×] | 7 lb | 10 cr | PHB |
-Field rations (one day's) | [−] 10 [+] [✎] [Sell] [×] | 10 lb | 5 cr | PHB |
+Bedroll
+| [−] 1 [+] [✎] [Sell] [×] | 7 lb | 10 cr | PHB |
+Field rations (one day's)
+| [−] 10 [+] [✎] [Sell] [×] | 10 lb | 5 cr | PHB |
 Glowrod
 Description
 Glowrods create a beam of light illuminating the area around you in bright light for a 20-foot radius and dim light for an additional 20 feet. The glowrod lasts… [258 chars #59229a13]

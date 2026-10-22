@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <path class="a-m a-o" d="M45.4 33l-6.6 20.4h2.8l6.2-19.6zM48.4 33l7.6 20.4h-2.8l-7.4-19.6z"/>
+  <path class="a-d a-o" d="M37 53h5.6v2.6H37zM51.6 53h5.6v2.6h-5.6z"/>
+  <path class="a-d a-oo" d="M7.5 32.5h8l-1.8 13.4c-.2 1.4-1.2 2.2-2.6 2.2H7.6c-1.4 0-2.3-1-2-2.4z"/>
+  <path class="a-c" d="M8.6 35h5l-1.4 10.4H7.1z"/>
+  <path class="a-m a-oo" d="M17.5 31h14.5v15c0 1.2-.8 2-2 2H19.5c-1.2 0-2-.8-2-2z"/>
+  <path d="M17.5 31h14.5v15c0 1.2-.8 2-2 2H19.5c-1.2 0-2-.8-2-2z" fill="url(#a-shade)"/>
+  <path class="a-x" d="M18 35.4h13.6v2.6H18z"/>
+  <rect class="a-s" x="20.4" y="40" width="8.8" height="5" rx="1"/>
+  <path class="a-g" d="M21.4 41h1.8v3h-1.8zM24 41h1.8v3H24zM26.6 41h1.6v3h-1.6z"/>
+  <path class="a-m a-o" d="M46 18.2h14c.6 0 1 .4 1 1v2.4c0 .6-.4 1-1 1H46zM46 23.2h14c.6 0 1 .4 1 1v2.4c0 .6-.4 1-1 1H46zM46 28.2h14c.6 0 1 .4 1 1v2.4c0 .6-.4 1-1 1H46z"/>
+  <path class="a-d" d="M59.6 19.4h.8v2h-.8zM59.6 24.4h.8v2h-.8zM59.6 29.4h.8v2h-.8z"/>
+  <rect class="a-m a-oo" x="53.8" y="16.4" width="3" height="17.4" rx=".8"/>
+  <rect class="a-m a-oo" x="31" y="16" width="17" height="18" rx="3"/>
+  <rect x="31" y="16" width="17" height="18" rx="3" fill="url(#a-sheen)"/>
+  <rect x="31" y="16" width="17" height="18" rx="3" fill="url(#a-shade)"/>
+  <path class="a-d" d="M35 18.6h2.4v4h-2.4zM39.4 18.6h2.4v4h-2.4zM43.8 18.6h2.4v4h-2.4zM35 27.4h2.4v4h-2.4zM39.4 27.4h2.4v4h-2.4zM43.8 27.4h2.4v4h-2.4z"/>
+  <path class="a-p" d="M31.4 25h16.2"/>
+  <path class="a-m a-oo" d="M17 19.5V14c0-1.4 1-2.4 2.4-2.4h9.2c1.4 0 2.4 1 2.4 2.4v5.5h-3v-4.8h-8v4.8z"/>
+  <path class="a-b a-oo" d="M4.5 22.5l3-4H32v15H7.5l-3-3z"/>
+  <path d="M4.5 22.5l3-4H32v15H7.5l-3-3z" fill="url(#a-sheen)"/>
+  <path class="a-x" d="M5.2 26.6H32v2.6H5.2z"/>
+  <path class="a-p" d="M14 19v7.4M5.2 30.6H32"/>
+  <circle class="a-m a-o" cx="25.6" cy="23" r="2"/>
+  <circle class="a-g" cx="9.6" cy="22.6" r="1.5" filter="url(#a-glow)"/>
+  <circle class="a-w" cx="9.6" cy="22.6" r=".6"/>
+  <path class="a-l" d="M8 19.8h23.4M32.4 17.4h14M18.4 12.8h9.8M46.6 19.4h12.6"/>
+</svg>

@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <g transform="rotate(14 45 27)">
+    <path class="a-b a-oo" d="M45 13l12.1 7v14L45 41l-12.1-7V20z"/>
+    <path d="M45 13l12.1 7L45 27l-12.1-7z" fill="url(#a-sheen)"/>
+    <path class="a-d" d="M45 27l12.1-7v14L45 41z" opacity=".35"/>
+    <path class="a-d" d="M45 27l-12.1-7v14L45 41z" opacity=".12"/>
+    <path class="a-p" d="M32.9 20L45 27l12.1-7M45 27v14"/>
+    <g class="a-g" filter="url(#a-glow)" opacity=".8">
+      <g transform="matrix(12.1 -7 12.1 7 32.9 20)"><circle cx=".28" cy=".28" r=".12"/><circle cx=".72" cy=".72" r=".12"/><circle cx=".28" cy=".72" r=".12"/><circle cx=".72" cy=".28" r=".12"/></g>
+      <g transform="matrix(12.1 7 0 14 32.9 20)"><circle cx=".5" cy=".5" r=".15"/></g>
+      <g transform="matrix(12.1 -7 0 14 45 27)"><circle cx=".28" cy=".28" r=".13"/><circle cx=".72" cy=".72" r=".13"/></g>
+    </g>
+    <g class="a-g">
+      <g transform="matrix(12.1 -7 12.1 7 32.9 20)"><circle cx=".28" cy=".28" r=".1"/><circle cx=".72" cy=".72" r=".1"/><circle cx=".28" cy=".72" r=".1"/><circle cx=".72" cy=".28" r=".1"/></g>
+      <g transform="matrix(12.1 7 0 14 32.9 20)"><circle cx=".5" cy=".5" r=".13"/></g>
+      <g transform="matrix(12.1 -7 0 14 45 27)"><circle cx=".28" cy=".28" r=".11"/><circle cx=".72" cy=".72" r=".11"/></g>
+    </g>
+    <path class="a-l" d="M34.4 19.6L45 13.6l10.6 6"/>
+  </g>
+  <path class="a-x a-oo" d="M21 22l13.9 8v16L21 54 7.1 46V30z"/>
+  <path d="M21 22l13.9 8L21 38 7.1 30z" fill="url(#a-sheen)"/>
+  <path class="a-d" d="M21 38l13.9-8v16L21 54z" opacity=".35"/>
+  <path class="a-d" d="M21 38L7.1 30v16L21 54z" opacity=".12"/>
+  <path class="a-p" d="M7.1 30L21 38l13.9-8M21 38v16"/>
+  <g class="a-g" filter="url(#a-glow)" opacity=".8">
+    <g transform="matrix(13.9 -8 13.9 8 7.1 30)"><circle cx=".5" cy=".5" r=".17"/></g>
+    <g transform="matrix(13.9 8 0 16 7.1 30)"><circle cx=".27" cy=".27" r=".13"/><circle cx=".73" cy=".73" r=".13"/></g>
+    <g transform="matrix(13.9 -8 0 16 21 38)"><circle cx=".25" cy=".25" r=".12"/><circle cx=".5" cy=".5" r=".12"/><circle cx=".75" cy=".75" r=".12"/></g>
+  </g>
+  <g class="a-g">
+    <g transform="matrix(13.9 -8 13.9 8 7.1 30)"><circle cx=".5" cy=".5" r=".15"/></g>
+    <g transform="matrix(13.9 8 0 16 7.1 30)"><circle cx=".27" cy=".27" r=".11"/><circle cx=".73" cy=".73" r=".11"/></g>
+    <g transform="matrix(13.9 -8 0 16 21 38)"><circle cx=".25" cy=".25" r=".1"/><circle cx=".5" cy=".5" r=".1"/><circle cx=".75" cy=".75" r=".1"/></g>
+  </g>
+  <g class="a-w"><g transform="matrix(13.9 -8 13.9 8 7.1 30)"><circle cx=".5" cy=".5" r=".07"/></g></g>
+  <path class="a-l" d="M8.8 29.6L21 22.6l12.2 7"/>
+</svg>

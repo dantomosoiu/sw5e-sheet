@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <circle class="a-d a-oo" cx="32" cy="32" r="26"/>
+  <circle cx="32" cy="32" r="26" fill="url(#a-sheen)" opacity=".3"/>
+  <path class="a-l" d="M8.9 23.6A24.6 24.6 0 0 1 38.4 8.2" opacity=".4"/>
+  <g class="a-g" filter="url(#a-glow)" opacity=".8"><circle cx="20.5" cy="40" r="6.5"/><circle cx="28" cy="32.5" r="8.5"/><circle cx="38.5" cy="33.5" r="8"/><circle cx="45" cy="40.5" r="6"/><rect x="20.5" y="38" width="24.5" height="8.5"/><path fill-rule="evenodd" d="M16.6 19a4.4 4.4 0 1 0 8.8 0a4.4 4.4 0 1 0-8.8 0zM19 19a2 2 0 1 0 4 0a2 2 0 1 0-4 0zM30.2 13a2.8 2.8 0 1 0 5.6 0a2.8 2.8 0 1 0-5.6 0zM31.8 13a1.2 1.2 0 1 0 2.4 0a1.2 1.2 0 1 0-2.4 0zM39 21.4a3.4 3.4 0 1 0 6.8 0a3.4 3.4 0 1 0-6.8 0zM40.8 21.4a1.6 1.6 0 1 0 3.2 0a1.6 1.6 0 1 0-3.2 0z"/></g>
+  <g class="a-g"><circle cx="20.5" cy="40" r="6.5"/><circle cx="28" cy="32.5" r="8.5"/><circle cx="38.5" cy="33.5" r="8"/><circle cx="45" cy="40.5" r="6"/><rect x="20.5" y="38" width="24.5" height="8.5"/></g>
+  <path class="a-g" fill-rule="evenodd" d="M16.6 19a4.4 4.4 0 1 0 8.8 0a4.4 4.4 0 1 0-8.8 0zM19 19a2 2 0 1 0 4 0a2 2 0 1 0-4 0zM30.2 13a2.8 2.8 0 1 0 5.6 0a2.8 2.8 0 1 0-5.6 0zM31.8 13a1.2 1.2 0 1 0 2.4 0a1.2 1.2 0 1 0-2.4 0zM39 21.4a3.4 3.4 0 1 0 6.8 0a3.4 3.4 0 1 0-6.8 0zM40.8 21.4a1.6 1.6 0 1 0 3.2 0a1.6 1.6 0 1 0-3.2 0z"/>
+  <path class="a-w" d="M22.4 32.6a8.5 8.5 0 0 1 9-7.4a6 6 0 0 0-9 7.4z" opacity=".8"/>
+</svg>

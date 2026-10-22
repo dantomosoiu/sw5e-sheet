@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <ellipse class="a-g" cx="32" cy="30" rx="19" ry="20" filter="url(#a-glow-lg)" opacity=".45"/>
+  <path class="a-g a-o" d="M15 50L11.5 29L13 20.5L19.5 27L24.5 49z"/>
+  <path class="a-w" d="M15 50L11.5 29L13 20.5L16 28L18.5 50z" opacity=".4"/>
+  <path class="a-g a-o" d="M40 50L46 28.5L53.5 20L54.5 30L50 51z"/>
+  <path class="a-w" d="M40 50L46 28.5L53.5 20L48.5 30L45 50.5z" opacity=".4"/>
+  <path class="a-g a-o" d="M25.5 50L28 15L35 4.5L40.5 14.5L38.5 50z"/>
+  <path class="a-w" d="M25.5 50L28 15L35 4.5L33 15.5L31.5 50z" opacity=".45"/>
+  <path class="a-l" d="M33 15.5L35 5M33 15.5L31.6 48M16 28L13.2 21.5M48.5 30L53 21" opacity=".75"/>
+  <path class="a-m a-oo" d="M7 53l6-6 8-1 7 3 8-2 9 1 7-1 6 6-2 6H9z"/>
+  <path d="M7 53l6-6 8-1 7 3 8-2 9 1 7-1 6 6-2 6H9z" fill="url(#a-sheen)"/>
+  <path d="M7 53l6-6 8-1 7 3 8-2 9 1 7-1 6 6-2 6H9z" fill="url(#a-shade)"/>
+  <path class="a-p" d="M17 51l3 4M36 49.5l-2 5.5M50 51l3 4"/>
+  <path class="a-g a-o" d="M20 55L19.5 45L23.5 39.5L27 45.5L27.5 55z"/>
+  <path class="a-w" d="M20 55L19.5 45L23.5 39.5L23 46L23.5 55z" opacity=".4"/>
+  <path class="a-g a-o" d="M41 56L43 47L48 43.5L49 50.5L47.5 56z"/>
+  <path class="a-w" d="M41 56L43 47L48 43.5L45.5 50L44.5 56z" opacity=".4"/>
+  <path class="a-w" d="M35 1.8l.7 2 2 .7-2 .7-.7 2-.7-2-2-.7 2-.7z"/>
+</svg>

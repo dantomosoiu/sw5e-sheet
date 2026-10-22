@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect class="a-b a-oo" x="4" y="12" width="56" height="40" rx="5"/>
+  <rect x="4" y="12" width="56" height="40" rx="5" fill="url(#a-sheen)"/>
+  <rect x="4" y="12" width="56" height="40" rx="5" fill="url(#a-shade)"/>
+  <path class="a-d" d="M4 18v-1a5 5 0 0 1 5-5h3v6zM60 18v-1a5 5 0 0 0-5-5h-3v6zM4 46v1a5 5 0 0 0 5 5h3v-6zM60 46v1a5 5 0 0 1-5 5h-3v-6z"/>
+  <rect class="a-s a-oo" x="8.5" y="16" width="37" height="29" rx="2"/>
+  <rect class="a-g" x="10" y="17.5" width="34" height="26" rx="1" opacity=".14"/>
+  <path class="a-gl" d="M12.5 21h10M12.5 24.5h7M30 21h6" opacity=".65"/>
+  <polyline class="a-gl" points="12.5,40 18,35 22.5,37 28,29.5 33,32 37.5,24.5 42,27" filter="url(#a-glow)" opacity=".8"/>
+  <polyline class="a-gl" points="12.5,40 18,35 22.5,37 28,29.5 33,32 37.5,24.5 42,27"/>
+  <circle class="a-w" cx="37.5" cy="24.5" r=".9"/>
+  <path class="a-d" d="M49.5 17.5h7v4h-7zM49.5 23.5h7v4h-7z"/>
+  <circle class="a-m a-o" cx="53" cy="35.5" r="4.5"/>
+  <circle cx="53" cy="35.5" r="4.5" fill="url(#a-sheen)"/>
+  <circle class="a-d" cx="53" cy="35.5" r="1.6"/>
+  <circle class="a-g" cx="53" cy="45.5" r="1.6" filter="url(#a-glow)"/>
+  <circle class="a-g" cx="53" cy="45.5" r="1"/>
+  <path class="a-d" d="M14 47.5h12v1.6H14zM28 47.5h4v1.6h-4z"/>
+  <path class="a-l" d="M12 13.4h40M10 17.4h6"/>
+</svg>

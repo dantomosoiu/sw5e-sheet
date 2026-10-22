@@ -366,7 +366,8 @@ Blaster pistol
 Power cell (range 50/200), reload 16
 Shots 16/16 [−1] [Reload] 0 Power cells
 | +5 | 1d6+2 Energy | Dexterity | Simple Blaster | Power cell (range 50/200), reload 16 |
-Unarmed Strike | +6 | 4 Kinetic | Strength | Unarmed | — |
+Unarmed Strike
+| +6 | 4 Kinetic | Strength | Unarmed | — |
 
 ## Sheet: Class Features
 Berserker (8)

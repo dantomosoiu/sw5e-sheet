@@ -367,7 +367,8 @@ Weapon | To hit | Damage | Ability | Type | Properties |
 Vibrodagger
 Finesse, light, thrown (range 20/60)
 | +4 | 1d4+2 Kinetic | Dexterity | Simple Vibroweapon | Finesse, light, thrown (range 20/60) |
-Unarmed Strike | +4 | 1d4+2 Kinetic | Dexterity (finesse) | Unarmed | — |
+Unarmed Strike
+| +4 | 1d4+2 Kinetic | Dexterity (finesse) | Unarmed | — |
   ↳ hover weapons.1.attackBonus: Without tweaks or effects: 1 → now 4 / +3 Finesse: DEX +2 instead of STR · Unarmed Combatant Zabrak trait
   ↳ hover weapons.1.damageBonus: Without tweaks or effects: 0 → now 2 / +2 Finesse: DEX +2 instead of STR · Unarmed Combatant Zabrak trait
 
@@ -659,7 +660,8 @@ The suit itself offers decent protection from most types of attacks while mainta
 | [−] 1 [+] [Equipped] [✎] [Sell] [×] | 10 lb | 100 cr | PHB |
 Clothing (1)
 Item | Qty & actions | Weight | Cost | Source |
-Clothes, common | [−] 1 [+] [✎] [Sell] [×] | 3 lb | 5 cr | PHB |
+Clothes, common
+| [−] 1 [+] [✎] [Sell] [×] | 3 lb | 5 cr | PHB |
 Data Recording And Storage (2)
 Item | Qty & actions | Weight | Cost | Source |
 Wristpad
@@ -678,7 +680,8 @@ A pouch stores 6.00 lb., not exceeding 1/5 cubic foot.
 | [−] 1 [+] [✎] [Sell] [×] | 1 lb | 5 cr | PHB |
 Tool (1)
 Item | Qty & actions | Weight | Cost | Source |
-Tinker's implements | [−] 1 [+] [✎] [Sell] [×] | — | 500 cr | PHB |
+Tinker's implements
+| [−] 1 [+] [✎] [Sell] [×] | — | 500 cr | PHB |
 Custom items (2)
 Item | Qty & actions | Weight | Cost | Source |
 Dungeoneer's pack custom

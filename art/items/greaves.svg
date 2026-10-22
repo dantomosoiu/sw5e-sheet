@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <g id="greaves-a">
+    <path class="a-c a-oo" d="M13.5 18h15v18h-15zM15 50h11l2.8 6.5H12.2z"/>
+    <path class="a-b a-oo" d="M12 4h17.5l-1.6 17.5c-2 1.8-4.6 2.7-7.2 2.7s-5.2-.9-7.2-2.7z"/>
+    <path d="M12 4h17.5l-1.6 17.5c-2 1.8-4.6 2.7-7.2 2.7s-5.2-.9-7.2-2.7z" fill="url(#a-sheen)"/>
+    <path class="a-c a-o" d="M11.6 9.4h18.3v3.4H11.6z"/>
+    <path class="a-m a-o" d="M10.4 8.6h3.4v5h-3.4z"/>
+    <path class="a-b a-oo" d="M13.5 31h14.8l-1 15.5c-.4 4-1.4 7-3 9.5h-6.8c-1.6-2.5-2.6-5.5-3-9.5z"/>
+    <path class="a-x" d="M14.4 36.6l6.5 3.2 6.5-3.2-.1 2.8-6.4 3.2-6.4-3.2z"/>
+    <path d="M13.5 31h14.8l-1 15.5c-.4 4-1.4 7-3 9.5h-6.8c-1.6-2.5-2.6-5.5-3-9.5z" fill="url(#a-sheen)"/>
+    <path d="M13.5 31h14.8l-1 15.5c-.4 4-1.4 7-3 9.5h-6.8c-1.6-2.5-2.6-5.5-3-9.5z" fill="url(#a-shade)"/>
+    <path class="a-p" d="M20.9 43v12M20.8 6v15"/>
+    <path class="a-m a-o" d="M14.5 25l-6 1.8 1.2 7.4 5.6-1.6z"/>
+    <path class="a-b a-oo" d="M20.9 22c4.2 0 7.2 2.6 7.2 6s-3 6-7.2 6-7.2-2.6-7.2-6 3-6 7.2-6z"/>
+    <path d="M20.9 22c4.2 0 7.2 2.6 7.2 6s-3 6-7.2 6-7.2-2.6-7.2-6 3-6 7.2-6z" fill="url(#a-sheen)"/>
+    <path class="a-p" d="M14.6 28.6c4 1.4 8.6 1.4 12.6 0"/>
+    <path class="a-l" d="M13 5.2h15.4M15 23.6c1.6-.9 3.6-1.4 5.9-1.4M15.2 32.2l.8 14M19.8 43.4v11"/>
+  </g>
+  <use href="#greaves-a" transform="matrix(-1 0 0 1 64 0)"/>
+  <circle class="a-g" cx="24.6" cy="16.6" r="1.4" filter="url(#a-glow)"/>
+  <circle class="a-w" cx="24.6" cy="16.6" r=".6"/>
+</svg>

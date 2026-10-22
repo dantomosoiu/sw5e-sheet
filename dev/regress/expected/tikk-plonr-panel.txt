@@ -420,7 +420,8 @@ Shots 16/16 [−1] [Reload] 17 Power cells
 | +5 | 1d6+3 Energy | Dexterity | Simple Blaster | Power cell (range 50/200), reload 16 |
   ↳ hover weapons.0.attackBonus: Without tweaks or effects: 4 → now 5 / +1 Attack · Infuse Item: Blaster pistol started, lasts until the end of your next long rest,… [272 chars #1025da25]
   ↳ hover weapons.0.damageBonus: Without tweaks or effects: 2 → now 3 / +1 Damage · Infuse Item: Blaster pistol started, lasts until the end of your next long rest, since Sat 21:22
-Unarmed Strike | +1 | 0 Kinetic | Strength | Unarmed | — |
+Unarmed Strike
+| +1 | 0 Kinetic | Strength | Unarmed | — |
 
 ## Sheet: Tech Casting
 Tech points
@@ -800,7 +801,8 @@ Weapons with this property are fueled by power cells, which must be loaded in or
 | [−] 17 [+] [Use] [✎] [Sell] [×] | 17 lb | 10 cr | PHB |
 Clothing (1)
 Item | Qty & actions | Weight | Cost | Source |
-Clothes, common | [−] 1 [+] [✎] [Sell] [×] | 3 lb | 5 cr | PHB |
+Clothes, common
+| [−] 1 [+] [✎] [Sell] [×] | 3 lb | 5 cr | PHB |
 Data Recording And Storage (2)
 Item | Qty & actions | Weight | Cost | Source |
 Wristpad
@@ -827,7 +829,8 @@ A backpack stores 30 lb., not exceeding 1 cubic foot.
 | [−] 1 [+] [✎] [Sell] [×] | 5 lb | 50 cr | PHB |
 Tool (1)
 Item | Qty & actions | Weight | Cost | Source |
-Tinker's implements | [−] 1 [+] [✎] [Sell] [×] | — | 500 cr | PHB |
+Tinker's implements
+| [−] 1 [+] [✎] [Sell] [×] | — | 500 cr | PHB |
 
 ## Sheet: Personality & Appearance
 Personality Traits

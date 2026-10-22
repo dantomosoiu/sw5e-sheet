@@ -18,10 +18,56 @@ body { background-image: var(--bg-art, none); background-size: var(--bg-art-size
   --chip: color-mix(in srgb, var(--panel) 82%, var(--accent));
 }
 .topbar { box-shadow: inset 0 -2px 0 var(--topbar-line, transparent); }
+
+/* Each class style's art (app/art/themes/<class>-scene.svg, -pattern.svg, -emblem.svg): drawn in one colour and
+   painted through masks in the style's accent, so one drawing serves dark and light. The scene is a large picture
+   kept to the edges (the middle stays calm for reading), the pattern a fine texture over everything, the emblem
+   the class's mark (top bar, section titles, behind the overview). */
+.theme-art { position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; }
+.theme-art::before, .theme-art::after { content: ''; position: absolute; inset: 0; background: var(--art-tint, var(--accent)); }
+.theme-art::before {
+  -webkit-mask: var(--theme-scene, none) center / cover no-repeat; mask: var(--theme-scene, none) center / cover no-repeat;
+  opacity: var(--theme-scene-o, .3);
+}
+.theme-art::after {
+  -webkit-mask: var(--theme-pattern, none) 0 0 / var(--theme-pattern-size, 220px) repeat; mask: var(--theme-pattern, none) 0 0 / var(--theme-pattern-size, 220px) repeat;
+  opacity: var(--theme-pattern-o, .07);
+}
+:root[data-theme="light"] .theme-art::before { opacity: var(--theme-scene-ol, .16); }
+/* The scene shows through the panels a little (blurred on wider screens; inner boxes stay solid for reading). */
+:root[data-style]:not([data-style="standard"]) .section, :root[data-style]:not([data-style="standard"]) .side-card {
+  background-color: color-mix(in srgb, var(--panel) 80%, transparent);
+}
+:root[data-style]:not([data-style="standard"])[data-theme="light"] .section, :root[data-style]:not([data-style="standard"])[data-theme="light"] .side-card {
+  background-color: color-mix(in srgb, var(--panel) 84%, transparent);
+}
+@media (min-width: 901px) {
+  :root[data-style]:not([data-style="standard"]) .section, :root[data-style]:not([data-style="standard"]) .side-card {
+    -webkit-backdrop-filter: blur(6px) saturate(1.15); backdrop-filter: blur(6px) saturate(1.15);
+  }
+}
+:root[data-theme="light"] .theme-art::after { opacity: var(--theme-pattern-ol, .06); }
+:root:not([data-style]) .theme-art, :root[data-style="standard"] .theme-art { display: none; }
+.emblem { display: inline-block; flex: none; width: 1em; height: 1em; background: currentColor;
+  -webkit-mask: var(--theme-emblem) center / contain no-repeat; mask: var(--theme-emblem) center / contain no-repeat; }
+.brand .emblem { width: 24px; height: 24px; color: var(--accent); display: none; }
+:root[data-style]:not([data-style="standard"]) .brand .emblem { display: inline-block; }
+:root[data-style]:not([data-style="standard"]) .brand img { display: none; }
+:root[data-style]:not([data-style="standard"]) .section > h2::before {
+  content: ''; flex: none; width: 15px; height: 15px; align-self: center; background: var(--accent);
+  -webkit-mask: var(--theme-emblem) center / contain no-repeat; mask: var(--theme-emblem) center / contain no-repeat;
+}
+:root[data-style]:not([data-style="standard"]) #sec-overview { position: relative; overflow: hidden; }
+:root[data-style]:not([data-style="standard"]) #sec-overview::after {
+  content: ''; position: absolute; right: -40px; top: -30px; width: 260px; height: 260px; pointer-events: none; background: var(--accent);
+  -webkit-mask: var(--theme-emblem) center / contain no-repeat; mask: var(--theme-emblem) center / contain no-repeat; opacity: .07;
+}
+
 :root[data-style]:not([data-style="standard"]) .topbar { --topbar-line: color-mix(in srgb, var(--accent) 45%, transparent); }
 
 /* Berserker: rage. Embers on charred iron; heavy upright headings, hard corners. */
 :root[data-style="berserker"] {
+  --theme-scene: url(art/themes/berserker-scene.svg); --theme-pattern: url(art/themes/berserker-pattern.svg); --theme-emblem: url(art/themes/berserker-emblem.svg);
   --bg: #130c0c; --panel: #201314; --line: #47272a; --text: #f1e7e5; --muted: #b59b98; --faint: #7f6662;
   --accent: #e5472f; --accent-ink: #fff;
   --radius: 4px; --font-display: Impact, Haettenschweiler, "Arial Narrow Bold", "Franklin Gothic Bold", sans-serif;
@@ -36,6 +82,7 @@ body { background-image: var(--bg-art, none); background-size: var(--bg-art-size
 
 /* Consular: the Force's quiet. Deep night teal, a glow above; book-like serif headings, soft corners. */
 :root[data-style="consular"] {
+  --theme-scene: url(art/themes/consular-scene.svg); --theme-pattern: url(art/themes/consular-pattern.svg); --theme-emblem: url(art/themes/consular-emblem.svg);
   --bg: #0b1117; --panel: #13202e; --line: #26405a; --text: #e5edf6; --muted: #95aac0; --faint: #63768b;
   --accent: #5ccbc2; --accent-ink: #052120;
   --radius: 14px; --font-display: "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
@@ -50,6 +97,7 @@ body { background-image: var(--bg-art, none); background-size: var(--bg-art-size
 
 /* Engineer: workbench and circuits. Graphite with a blueprint grid; monospaced capitals, small corners. */
 :root[data-style="engineer"] {
+  --theme-scene: url(art/themes/engineer-scene.svg); --theme-pattern: url(art/themes/engineer-pattern.svg); --theme-emblem: url(art/themes/engineer-emblem.svg);
   --bg: #0a0f12; --panel: #121b20; --line: #23363f; --text: #e0f1f5; --muted: #8db0ba; --faint: #5d7b84;
   --accent: #26d4ee; --accent-ink: #032329;
   --radius: 5px; --font-display: var(--mono); --display-case: uppercase; --display-spacing: .16em; --title-spacing: .04em;
@@ -64,6 +112,7 @@ body { background-image: var(--bg-art, none); background-size: var(--bg-art-size
 
 /* Fighter: the soldier's kit. Gunmetal and brass; stencilled headings, square-ish corners. */
 :root[data-style="fighter"] {
+  --theme-scene: url(art/themes/fighter-scene.svg); --theme-pattern: url(art/themes/fighter-pattern.svg); --theme-emblem: url(art/themes/fighter-emblem.svg);
   --bg: #0f1215; --panel: #1a1f25; --line: #313943; --text: #e8eaed; --muted: #a2a9b2; --faint: #6e7681;
   --accent: #cda548; --accent-ink: #1c1505;
   --radius: 6px; --font-display: "Franklin Gothic Medium", "Arial Narrow", "Segoe UI", sans-serif;
@@ -78,6 +127,7 @@ body { background-image: var(--bg-art, none); background-size: var(--bg-art-size
 
 /* Guardian: the blue blade. Night blue with a lightsaber glow; clean strong headings. */
 :root[data-style="guardian"] {
+  --theme-scene: url(art/themes/guardian-scene.svg); --theme-pattern: url(art/themes/guardian-pattern.svg); --theme-emblem: url(art/themes/guardian-emblem.svg);
   --bg: #090e1b; --panel: #121a2d; --line: #243459; --text: #e6edfb; --muted: #98a8c8; --faint: #66769a;
   --accent: #58a6ff; --accent-ink: #03122b;
   --radius: 10px; --display-spacing: .14em; --title-spacing: .01em;
@@ -91,6 +141,7 @@ body { background-image: var(--bg-art, none); background-size: var(--bg-art-size
 
 /* Monk: stillness and the body. Warm earth and saffron; round, open headings and corners. */
 :root[data-style="monk"] {
+  --theme-scene: url(art/themes/monk-scene.svg); --theme-pattern: url(art/themes/monk-pattern.svg); --theme-emblem: url(art/themes/monk-emblem.svg);
   --bg: #13100b; --panel: #1f1911; --line: #3e3321; --text: #f4ede1; --muted: #bbab8e; --faint: #85775f;
   --accent: #f28f2c; --accent-ink: #231302;
   --radius: 18px; --font-display: "Trebuchet MS", "Segoe UI", sans-serif; --display-spacing: .1em;
@@ -104,6 +155,7 @@ body { background-image: var(--bg-art, none); background-size: var(--bg-art-size
 
 /* Operative: covert work. Dark slate with a faint scan-line; terminal capitals, sharp corners. */
 :root[data-style="operative"] {
+  --theme-scene: url(art/themes/operative-scene.svg); --theme-pattern: url(art/themes/operative-pattern.svg); --theme-emblem: url(art/themes/operative-emblem.svg);
   --bg: #0c0f0d; --panel: #141a16; --line: #27322b; --text: #dde8df; --muted: #93a79a; --faint: #617468;
   --accent: #7fe08a; --accent-ink: #052008;
   --radius: 3px; --font-display: var(--mono); --display-case: uppercase; --display-spacing: .2em; --title-spacing: .06em;
@@ -117,6 +169,7 @@ body { background-image: var(--bg-art, none); background-size: var(--bg-art-size
 
 /* Scholar: archives and lore. Ink and parchment; serif headings, a vignette like an old page. */
 :root[data-style="scholar"] {
+  --theme-scene: url(art/themes/scholar-scene.svg); --theme-pattern: url(art/themes/scholar-pattern.svg); --theme-emblem: url(art/themes/scholar-emblem.svg);
   --bg: #14110d; --panel: #1f1a14; --line: #3c3326; --text: #f0e7d5; --muted: #b8a88b; --faint: #85775f;
   --accent: #d8b25c; --accent-ink: #211805;
   --radius: 8px; --font-display: Georgia, "Book Antiqua", "Times New Roman", serif; --display-spacing: .08em;
@@ -130,6 +183,7 @@ body { background-image: var(--bg-art, none); background-size: var(--bg-art-size
 
 /* Scout: the trail. Forest and moss with a dawn light; sturdy headings. */
 :root[data-style="scout"] {
+  --theme-scene: url(art/themes/scout-scene.svg); --theme-pattern: url(art/themes/scout-pattern.svg); --theme-emblem: url(art/themes/scout-emblem.svg);
   --bg: #0d120e; --panel: #162018; --line: #2b3b2e; --text: #e4ece2; --muted: #9eb09c; --faint: #6b7c6a;
   --accent: #9fc75c; --accent-ink: #132006;
   --radius: 10px; --font-display: "Segoe UI Semibold", "Trebuchet MS", "Segoe UI", sans-serif; --display-spacing: .12em;
@@ -143,6 +197,7 @@ body { background-image: var(--bg-art, none); background-size: var(--bg-art-size
 
 /* Sentinel: the yellow blade between light and shadow. Violet dusk and gold; poised headings. */
 :root[data-style="sentinel"] {
+  --theme-scene: url(art/themes/sentinel-scene.svg); --theme-pattern: url(art/themes/sentinel-pattern.svg); --theme-emblem: url(art/themes/sentinel-emblem.svg);
   --bg: #100d17; --panel: #1b1626; --line: #352b4a; --text: #ede8f6; --muted: #aa9fc0; --faint: #776d8e;
   --accent: #f2c94c; --accent-ink: #231a02;
   --radius: 12px; --display-spacing: .14em; --title-spacing: .01em;
@@ -159,5 +214,85 @@ body { background-image: var(--bg-art, none); background-size: var(--bg-art-size
 .theme-pick button { display: flex; align-items: center; gap: 8px; text-align: left; padding: 6px 8px; border: 1px solid var(--line);
   border-radius: 8px; background: var(--panel-2); color: var(--text); cursor: pointer; font: inherit; font-size: 13px; }
 .theme-pick button[aria-pressed="true"] { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent) inset; }
-.theme-pick .sw { flex: none; width: 22px; height: 22px; border-radius: 50%; border: 1px solid rgba(127, 127, 127, .4); }
+.theme-pick .sw { position: relative; flex: none; width: 30px; height: 30px; border-radius: 50%; border: 1px solid rgba(127, 127, 127, .4); }
+.theme-pick .sw i { position: absolute; inset: 5px; background: currentColor; -webkit-mask: var(--e) center / contain no-repeat; mask: var(--e) center / contain no-repeat; }
+.theme-pick .sw i.std { inset: 10px; border-radius: 50%; -webkit-mask: none; mask: none; }
 .theme-modes { display: flex; gap: 6px; flex-wrap: wrap; }
+
+/* ---------- Each class style's details: sections, cards, buttons, dice ---------- */
+:root[data-style]:not([data-style="standard"]) {
+  scrollbar-color: color-mix(in srgb, var(--accent) 45%, var(--line)) transparent;
+}
+:root[data-style]:not([data-style="standard"]) ::selection { background: color-mix(in srgb, var(--accent) 38%, transparent); }
+:root[data-style]:not([data-style="standard"]) .topbar {
+  background: linear-gradient(180deg, color-mix(in srgb, var(--accent) 7%, color-mix(in srgb, var(--bg) 88%, transparent)), color-mix(in srgb, var(--bg) 88%, transparent));
+}
+:root[data-style]:not([data-style="standard"]) .card-head .title { color: color-mix(in srgb, var(--text) 88%, var(--accent)); }
+
+/* Corner brackets (Engineer's blueprint frame, Operative's HUD): four L-shaped marks at a box's corners. */
+:root[data-style="engineer"] .section, :root[data-style="operative"] .section, :root[data-style="operative"] .side-card {
+  --bk: color-mix(in srgb, var(--accent) 70%, transparent); --bl: 16px; --bw: 2px;
+  background-image:
+    linear-gradient(var(--bk), var(--bk)), linear-gradient(var(--bk), var(--bk)), linear-gradient(var(--bk), var(--bk)), linear-gradient(var(--bk), var(--bk)),
+    linear-gradient(var(--bk), var(--bk)), linear-gradient(var(--bk), var(--bk)), linear-gradient(var(--bk), var(--bk)), linear-gradient(var(--bk), var(--bk));
+  background-size: var(--bl) var(--bw), var(--bw) var(--bl), var(--bl) var(--bw), var(--bw) var(--bl), var(--bl) var(--bw), var(--bw) var(--bl), var(--bl) var(--bw), var(--bw) var(--bl);
+  background-position: 0 0, 0 0, 100% 0, 100% 0, 0 100%, 0 100%, 100% 100%, 100% 100%;
+  background-repeat: no-repeat;
+}
+:root[data-style="operative"] .side-card { --bl: 10px; --bw: 1px; }
+:root[data-style="engineer"] .card, :root[data-style="engineer"] .stat { border-style: dashed; border-color: color-mix(in srgb, var(--accent) 30%, var(--line)); }
+:root[data-style="engineer"] .btn.primary, :root[data-style="fighter"] .btn.primary, :root[data-style="operative"] .btn.primary {
+  border-radius: 0; clip-path: polygon(7px 0, 100% 0, 100% calc(100% - 7px), calc(100% - 7px) 100%, 0 100%, 0 7px);
+}
+:root[data-style="operative"] .btn.primary { background: transparent; color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); }
+:root[data-style="operative"] .btn.primary:hover { background: color-mix(in srgb, var(--accent) 18%, transparent); }
+:root[data-style="operative"] .section > h2 { font-size: 12px; }
+
+/* Berserker: forge heat along the top of each section; ember-lit headings. */
+:root[data-style="berserker"] .section { box-shadow: var(--shadow), inset 0 2px 0 var(--accent), inset 0 34px 40px -34px rgba(229, 71, 47, .28); }
+:root[data-style="berserker"] .section > h2, :root[data-style="berserker"] .hero h1 { text-shadow: 0 0 14px rgba(229, 71, 47, .45); }
+:root[data-style="berserker"] .btn.primary { background: linear-gradient(180deg, var(--accent), color-mix(in srgb, var(--accent) 70%, #000)); }
+
+/* Consular: a calm glow around everything; round, gentle shapes. */
+:root[data-style="consular"] .section { box-shadow: 0 0 0 1px color-mix(in srgb, var(--accent) 16%, transparent), 0 12px 34px -16px color-mix(in srgb, var(--accent) 45%, transparent); }
+:root[data-style="consular"] .btn.primary, :root[data-style="monk"] .btn.primary { border-radius: 999px; }
+:root[data-style="consular"] .section > h2 { text-shadow: 0 0 12px color-mix(in srgb, var(--accent) 55%, transparent); }
+
+/* Fighter: brass trim and rivets on every plate. */
+:root[data-style="fighter"] .section {
+  border-top: 3px solid color-mix(in srgb, var(--accent) 75%, var(--line));
+  background-image: radial-gradient(circle, color-mix(in srgb, var(--accent) 60%, #000) 2px, transparent 2.6px), radial-gradient(circle, color-mix(in srgb, var(--accent) 60%, #000) 2px, transparent 2.6px),
+    radial-gradient(circle, color-mix(in srgb, var(--accent) 60%, #000) 2px, transparent 2.6px), radial-gradient(circle, color-mix(in srgb, var(--accent) 60%, #000) 2px, transparent 2.6px);
+  background-size: 14px 14px; background-repeat: no-repeat; background-position: 4px 4px, calc(100% - 4px) 4px, 4px calc(100% - 4px), calc(100% - 4px) calc(100% - 4px);
+}
+:root[data-style="fighter"] .stat { border-left: 3px solid color-mix(in srgb, var(--accent) 55%, var(--line)); }
+
+/* Guardian: a blade of light down each section's edge. */
+:root[data-style="guardian"] .section { border-left: 2px solid var(--accent); box-shadow: var(--shadow), -6px 0 18px -10px var(--accent); }
+:root[data-style="guardian"] .section > h2, :root[data-style="guardian"] .hero h1 { text-shadow: 0 0 10px color-mix(in srgb, var(--accent) 70%, transparent); }
+:root[data-style="guardian"] .btn.primary { box-shadow: 0 0 14px -3px var(--accent); }
+
+/* Monk: soft paper, round everything. */
+:root[data-style="monk"] .section { background-image: radial-gradient(ellipse at 0 0, color-mix(in srgb, var(--accent) 7%, transparent), transparent 55%); }
+:root[data-style="monk"] .stat, :root[data-style="monk"] .card { border-radius: 14px; }
+:root[data-style="monk"] .die { border-radius: 50%; min-width: 44px; }
+
+/* Scholar: a page with a double rule and a flourished heading. */
+:root[data-style="scholar"] .section { outline: 1px solid color-mix(in srgb, var(--accent) 35%, transparent); outline-offset: -6px; }
+:root[data-style="scholar"] .section > h2 { border-bottom: 1px solid color-mix(in srgb, var(--accent) 35%, transparent); padding-bottom: 6px; font-variant: small-caps; text-transform: none; font-size: 16px; letter-spacing: .06em; }
+:root[data-style="scholar"] .hero h1::first-letter { color: var(--accent); }
+:root[data-style="scholar"] .card { box-shadow: inset 0 0 0 3px color-mix(in srgb, var(--panel) 70%, transparent), inset 0 0 0 4px color-mix(in srgb, var(--accent) 18%, transparent); }
+
+/* Scout: trail markers. */
+:root[data-style="scout"] .section > h2::after { content: ''; flex: 1; height: 0; border-top: 2px dashed color-mix(in srgb, var(--accent) 40%, transparent); align-self: center; margin-left: 6px; }
+:root[data-style="scout"] .section { border-bottom: 3px solid color-mix(in srgb, var(--accent) 40%, var(--line)); }
+
+/* Sentinel: light meets shadow at each section's corners. */
+:root[data-style="sentinel"] .section { box-shadow: var(--shadow), -1px -1px 0 color-mix(in srgb, var(--accent) 55%, transparent), 1px 1px 0 rgba(150, 110, 230, .55); }
+:root[data-style="sentinel"] .section > h2 { background: linear-gradient(90deg, var(--accent), rgba(150, 110, 230, .95)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+:root[data-style="sentinel"][data-theme="light"] .section > h2 { background: linear-gradient(90deg, var(--accent), #b58a00); -webkit-background-clip: text; background-clip: text; }
+
+/* Dice in each style: the die faces take the style's corners and glow. */
+:root[data-style]:not([data-style="standard"]) .die.d20 { box-shadow: 0 0 10px -4px var(--accent); }
+:root[data-style="berserker"] .die, :root[data-style="operative"] .die, :root[data-style="engineer"] .die { border-radius: 3px; }
+:root[data-style="consular"] .die, :root[data-style="guardian"] .die { border-radius: 12px; }

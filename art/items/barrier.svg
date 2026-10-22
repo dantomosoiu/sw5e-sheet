@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <clipPath id="barrier-clip"><rect x="12" y="11" width="40" height="36"/></clipPath>
+  <rect class="a-g" x="12" y="11" width="40" height="36" filter="url(#a-glow-lg)" opacity=".35"/>
+  <rect class="a-g" x="12" y="11" width="40" height="36" opacity=".16"/>
+  <rect class="a-g" x="12" y="32" width="40" height="15" filter="url(#a-glow)" opacity=".22"/>
+  <path class="a-gl" clip-path="url(#barrier-clip)" opacity=".5" d="M9.5 6.7h5l2.5 4.3h5l2.5-4.3h5l2.5 4.3h5l2.5-4.3h5l2.5 4.3h5l2.5-4.3h5M7 11l2.5 4.3h5l2.5-4.3h5l2.5 4.3h5l2.5-4.3h5l2.5 4.3h5l2.5-4.3h5l2.5 4.3M9.5 15.3h5l2.5 4.3h5l2.5-4.3h5l2.5 4.3h5l2.5-4.3h5l2.5 4.3h5l2.5-4.3h5M7 19.7l2.5 4.3h5l2.5-4.3h5l2.5 4.3h5l2.5-4.3h5l2.5 4.3h5l2.5-4.3h5l2.5 4.3M9.5 24h5l2.5 4.3h5l2.5-4.3h5l2.5 4.3h5l2.5-4.3h5l2.5 4.3h5l2.5-4.3h5M7 28.3l2.5 4.3h5l2.5-4.3h5l2.5 4.3h5l2.5-4.3h5l2.5 4.3h5l2.5-4.3h5l2.5 4.3M9.5 32.7h5l2.5 4.3h5l2.5-4.3h5l2.5 4.3h5l2.5-4.3h5l2.5 4.3h5l2.5-4.3h5M7 37l2.5 4.3h5l2.5-4.3h5l2.5 4.3h5l2.5-4.3h5l2.5 4.3h5l2.5-4.3h5l2.5 4.3M9.5 41.3h5l2.5 4.3h5l2.5-4.3h5l2.5 4.3h5l2.5-4.3h5l2.5 4.3h5l2.5-4.3h5"/>
+  <path class="a-gl" d="M12 11.4h40" filter="url(#a-glow)"/>
+  <path class="a-w" d="M12 10.8h40v1.2H12z" opacity=".7"/>
+  <rect class="a-m a-oo" x="6.5" y="9" width="6" height="40" rx="1.4"/>
+  <rect class="a-m a-oo" x="51.5" y="9" width="6" height="40" rx="1.4"/>
+  <rect x="6.5" y="9" width="6" height="40" rx="1.4" fill="url(#a-shade)"/>
+  <rect x="51.5" y="9" width="6" height="40" rx="1.4" fill="url(#a-shade)"/>
+  <rect class="a-g" x="11" y="12" width="2.4" height="34" rx="1.2" filter="url(#a-glow)"/>
+  <rect class="a-g" x="50.6" y="12" width="2.4" height="34" rx="1.2" filter="url(#a-glow)"/>
+  <rect class="a-w" x="11.6" y="13" width="1" height="32" rx=".5"/>
+  <rect class="a-w" x="51.4" y="13" width="1" height="32" rx=".5"/>
+  <path class="a-p" d="M7 20h5M7 36h5M52 20h5M52 36h5"/>
+  <rect class="a-b a-oo" x="5" y="5.5" width="9" height="5.5" rx="1.6"/>
+  <rect class="a-b a-oo" x="50" y="5.5" width="9" height="5.5" rx="1.6"/>
+  <circle class="a-g" cx="9.5" cy="8.2" r="1"/>
+  <circle class="a-g" cx="54.5" cy="8.2" r="1"/>
+  <path class="a-b a-oo" d="M4.5 47h55l-2.6 8.4a2.2 2.2 0 0 1-2.1 1.6H9.2a2.2 2.2 0 0 1-2.1-1.6z"/>
+  <path d="M4.5 47h55l-2.6 8.4a2.2 2.2 0 0 1-2.1 1.6H9.2a2.2 2.2 0 0 1-2.1-1.6z" fill="url(#a-sheen)"/>
+  <path d="M4.5 47h55l-2.6 8.4a2.2 2.2 0 0 1-2.1 1.6H9.2a2.2 2.2 0 0 1-2.1-1.6z" fill="url(#a-shade)"/>
+  <path class="a-x" d="M5.4 50h53.2l-.7 2.4H6.1z"/>
+  <rect class="a-d" x="13" y="46.2" width="38" height="2" rx=".8"/>
+  <path class="a-d" d="M22 53.4h2v2h-2zM26 53.4h2v2h-2zM36 53.4h2v2h-2zM40 53.4h2v2h-2z"/>
+  <circle class="a-g" cx="32" cy="54.4" r="1.4" filter="url(#a-glow)"/>
+  <circle class="a-g" cx="32" cy="54.4" r=".9"/>
+  <path class="a-l" d="M6 47.9h52M6 6.5h7M51 6.5h7"/>
+</svg>

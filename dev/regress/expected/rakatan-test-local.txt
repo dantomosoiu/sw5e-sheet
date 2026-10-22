@@ -338,7 +338,8 @@ Skill | Ability | Bonus | Passive | Proficiency |
 
 ## Sheet: Weapons & Attacks
 Weapon | To hit | Damage | Ability | Type | Properties |
-Unarmed Strike | +3 | 1 Kinetic | Strength | Unarmed | — |
+Unarmed Strike
+| +3 | 1 Kinetic | Strength | Unarmed | — |
 
 ## Sheet: Tech Casting
 Tech points

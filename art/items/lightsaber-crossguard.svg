@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <g transform="rotate(-45 32 32)">
+    <rect class="a-g" x="22" y="26.4" width="49.6" height="11.2" rx="5.6" filter="url(#a-glow-lg)" opacity=".9"/>
+    <g transform="rotate(20 21.6 26)">
+      <rect class="a-g" x="19" y="14.6" width="5.2" height="12" rx="2.6" filter="url(#a-glow)" opacity=".9"/>
+      <rect class="a-g" x="20" y="16" width="3.2" height="10.6" rx="1.6"/>
+      <rect class="a-w" x="21" y="17" width="1.2" height="9.4" rx=".6"/>
+    </g>
+    <g transform="rotate(-20 21.6 38)">
+      <rect class="a-g" x="19" y="37.4" width="5.2" height="12" rx="2.6" filter="url(#a-glow)" opacity=".9"/>
+      <rect class="a-g" x="20" y="37.4" width="3.2" height="10.6" rx="1.6"/>
+      <rect class="a-w" x="21" y="37.6" width="1.2" height="9.4" rx=".6"/>
+    </g>
+    <rect class="a-g" x="23.5" y="28.4" width="47" height="7.2" rx="3.6" filter="url(#a-glow)"/>
+    <rect class="a-g" x="24" y="28.8" width="46" height="6.4" rx="3.2"/>
+    <rect class="a-w" x="24.5" y="30.4" width="45" height="3.2" rx="1.6"/>
+    <path class="a-m a-oo" d="M-1 26.6h-3l-2.6 2.6v5.6l2.6 2.6h3z"/>
+    <rect class="a-c a-oo" x="-1.2" y="27.6" width="12.6" height="8.8" rx=".8"/>
+    <path class="a-p" d="M.4 27.8l3 8.4M3.4 27.8l-3 8.4M4.6 27.8l3 8.4M7.6 27.8l-3 8.4M8.8 27.8l2.4 6.6M11 28.6l-2.6 7.6"/>
+    <rect x="-1.2" y="27.6" width="12.6" height="8.8" rx=".8" fill="url(#a-shade)"/>
+    <rect class="a-m a-o" x="11" y="26.8" width="2.4" height="10.4" rx=".6"/>
+    <rect class="a-b a-oo" x="13.2" y="26.6" width="6" height="10.8" rx="1"/>
+    <rect x="13.2" y="26.6" width="6" height="10.8" rx="1" fill="url(#a-sheen)"/>
+    <rect class="a-x a-o" x="14.4" y="29.6" width="3.6" height="4.8" rx=".6"/>
+    <path class="a-m a-oo" d="M19 24.6h5.4l1.6 1.6v11.6l-1.6 1.6H19z"/>
+    <path d="M19 24.6h5.4l1.6 1.6v11.6l-1.6 1.6H19z" fill="url(#a-sheen)"/>
+    <path class="a-d" d="M20 25.2h3.4v2.2H20zM20 36.6h3.4v2.2H20z"/>
+    <rect class="a-d a-o" x="24.6" y="27.4" width="1.8" height="9.2" rx=".6"/>
+    <path class="a-p" d="M19.6 32h4.8M-4.6 32h3.2"/>
+    <circle class="a-g" cx="16.2" cy="35.8" r="1" filter="url(#a-glow)"/>
+    <circle class="a-w" cx="16.2" cy="35.8" r=".45"/>
+    <path class="a-l" d="M-5.4 29l1.8-1.6M14 27.8h4.4M19.8 25.6h4.2M-.2 28.6h10.6"/>
+  </g>
+</svg>

@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <path class="a-c a-oo" d="M3 28c8-4 50-4 58 0v9c-8-3.5-50-3.5-58 0z"/>
+  <path d="M3 28c8-4 50-4 58 0v9c-8-3.5-50-3.5-58 0z" fill="url(#a-shade)"/>
+  <rect class="a-m a-oo" x="27" y="27.5" width="10" height="7" rx="2"/>
+  <circle class="a-m a-oo" cx="19" cy="32" r="12.5"/>
+  <circle class="a-m a-oo" cx="45" cy="32" r="12.5"/>
+  <circle cx="19" cy="32" r="12.5" fill="url(#a-sheen)"/>
+  <circle cx="45" cy="32" r="12.5" fill="url(#a-sheen)"/>
+  <path class="a-d" d="M7.4 28.6h2v6.8h-2zM54.6 28.6h2v6.8h-2z"/>
+  <circle class="a-b a-o" cx="19" cy="32" r="10.2"/>
+  <circle class="a-b a-o" cx="45" cy="32" r="10.2"/>
+  <circle class="a-s a-o" cx="19" cy="32" r="8.2"/>
+  <circle class="a-s a-o" cx="45" cy="32" r="8.2"/>
+  <circle class="a-x" cx="19" cy="32" r="8.2" opacity=".35"/>
+  <circle class="a-x" cx="45" cy="32" r="8.2" opacity=".35"/>
+  <path class="a-g" d="M12.6 36.4a8.2 8.2 0 0 0 13 0 9.4 9.4 0 0 1-13 0zM38.6 36.4a8.2 8.2 0 0 0 13 0 9.4 9.4 0 0 1-13 0z" opacity=".5"/>
+  <path class="a-l" d="M13.4 30c.8-2.6 2.8-4.6 5.4-5.2M39.4 30c.8-2.6 2.8-4.6 5.4-5.2M9 26c2-4.4 5.6-7.2 10-7.6M35 26c2-4.4 5.6-7.2 10-7.6M28 28.6h8"/>
+  <circle class="a-w" cx="16" cy="28.4" r="1"/>
+  <circle class="a-w" cx="42" cy="28.4" r="1"/>
+  <path class="a-d" d="M19 21.6a.9.9 0 1 0 .1 0zM45 21.6a.9.9 0 1 0 .1 0zM19 40.6a.9.9 0 1 0 .1 0zM45 40.6a.9.9 0 1 0 .1 0z"/>
+  <circle class="a-g" cx="32" cy="31.2" r="1.2" filter="url(#a-glow)"/>
+  <circle class="a-g" cx="32" cy="31.2" r=".7"/>
+</svg>

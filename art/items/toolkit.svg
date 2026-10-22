@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <path class="a-b a-oo" d="M7.5 33l4.6-21a2.4 2.4 0 0 1 2.3-1.8h35.2a2.4 2.4 0 0 1 2.3 1.8l4.6 21z"/>
+  <path class="a-d" d="M11.6 31.5l3.6-17.6h33.6l3.6 17.6z"/>
+  <path class="a-p" d="M14.4 17.5h35.2M13.6 21.6h36.8"/>
+  <path class="a-l" d="M14.6 11.3h34.8"/>
+  <path class="a-m a-o" d="M15.6 34V21.6h3.6V34z"/>
+  <path class="a-m a-o" d="M15.2 13.4a4.4 4.4 0 1 0 4.4 0l-.6 3.2h-3.2z"/>
+  <rect class="a-x a-o" x="24.4" y="22" width="5.4" height="12" rx="1.6"/>
+  <path class="a-p" d="M25.6 25v6M27.1 25v6M28.6 25v6"/>
+  <rect class="a-m a-o" x="25.6" y="19.4" width="3" height="3" rx=".6"/>
+  <path class="a-m a-o" d="M26.2 19.4v-8h1.8v8z"/>
+  <rect class="a-b a-o" x="33.6" y="16" width="6.4" height="18" rx="1.4"/>
+  <rect x="33.6" y="16" width="6.4" height="18" rx="1.4" fill="url(#a-sheen)"/>
+  <rect class="a-s a-o" x="34.9" y="18.4" width="3.8" height="5" rx=".6"/>
+  <rect class="a-g" x="35.5" y="19.4" width="2.6" height="1.4" filter="url(#a-glow)"/>
+  <rect class="a-g" x="35.5" y="19.4" width="2.6" height="1.4"/>
+  <rect class="a-g" x="35.5" y="21.4" width="1.6" height="1"/>
+  <path class="a-m a-o" d="M43.5 34l1.4-13.6h3.4L49.5 34zM44.4 20.4l.8-5.6h2.8l.8 5.6z"/>
+  <path class="a-p" d="M45.6 24v8"/>
+  <path class="a-m a-oo" d="M5 31.5h54v20a3.5 3.5 0 0 1-3.5 3.5h-47A3.5 3.5 0 0 1 5 51.5z"/>
+  <path d="M5 31.5h54v20a3.5 3.5 0 0 1-3.5 3.5h-47A3.5 3.5 0 0 1 5 51.5z" fill="url(#a-sheen)"/>
+  <path d="M5 31.5h54v20a3.5 3.5 0 0 1-3.5 3.5h-47A3.5 3.5 0 0 1 5 51.5z" fill="url(#a-shade)"/>
+  <path class="a-b" d="M5.9 32.4h52.2v3H5.9z"/>
+  <path class="a-x" d="M5.9 40h52.2v3.6H5.9z"/>
+  <path class="a-p" d="M5.9 35.4h52.2M5.9 45h52.2"/>
+  <path class="a-d" d="M5 48v3.5A3.5 3.5 0 0 0 8.5 55H12v-7zM59 48v3.5a3.5 3.5 0 0 1-3.5 3.5H52v-7z"/>
+  <rect class="a-b a-o" x="11.5" y="35.6" width="6" height="7.6" rx="1.2"/>
+  <rect class="a-b a-o" x="46.5" y="35.6" width="6" height="7.6" rx="1.2"/>
+  <rect class="a-d" x="13.4" y="38" width="2.2" height="3" rx=".5"/>
+  <rect class="a-d" x="48.4" y="38" width="2.2" height="3" rx=".5"/>
+  <rect class="a-s a-o" x="26" y="47.4" width="12" height="4" rx="1"/>
+  <circle class="a-g" cx="29" cy="49.4" r="1.4" filter="url(#a-glow)"/>
+  <circle class="a-g" cx="29" cy="49.4" r=".9"/>
+  <rect class="a-d" x="31.4" y="48.7" width="5" height="1.4" rx=".6"/>
+  <path class="a-l" d="M6.4 32.5h51.2"/>
+</svg>

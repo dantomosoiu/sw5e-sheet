@@ -409,8 +409,10 @@ Chakram
 Finesse, returning, thrown (range 30/90)
 | +5 | 1d6+3 Kinetic | Dexterity | Martial Vibroweapon | Finesse, returning, thrown (range 30/90) |
   ↳ hover weapons.0.attackBonus: Without tweaks or effects: 3 → now 5 / proficient Proficient: martial vibroweapons with the finesse property · Scholar weapon proficiencies Scholar proficiencies
-Vibrobaton | +1 | 2d4+1 Kinetic | Strength | Martial Vibroweapon | — |
-Unarmed Strike | +3 | 2 Kinetic | Strength | Unarmed | — |
+Vibrobaton
+| +1 | 2d4+1 Kinetic | Strength | Martial Vibroweapon | — |
+Unarmed Strike
+| +3 | 2 Kinetic | Strength | Unarmed | — |
 
 ## Sheet: Superiority & Maneuvers
 Maneuvers Known
@@ -709,10 +711,12 @@ Fiber armor is a type of armor that offers more protection than the lighter comb
 | [−] 1 [+] [Equipped] [✎] [Sell] [×] | 13 lb | 450 cr | PHB |
 Gaming Set (1)
 Item | Qty & actions | Weight | Cost | Source |
-Pazaak deck | [−] 1 [+] [✎] [Sell] [×] | — | 100 cr | PHB |
+Pazaak deck
+| [−] 1 [+] [✎] [Sell] [×] | — | 100 cr | PHB |
 Kit (1)
 Item | Qty & actions | Weight | Cost | Source |
-Forgery kit | [−] 1 [+] [✎] [Sell] [×] | 5 lb | 150 cr | PHB |
+Forgery kit
+| [−] 1 [+] [✎] [Sell] [×] | 5 lb | 150 cr | PHB |
 
 ## Sheet: Personality & Appearance
 Personality Traits

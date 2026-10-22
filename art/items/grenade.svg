@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <clipPath id="grenade-c"><path d="M17.4 35.6h28.2a14.5 17 0 0 1 0 7.6H17.4a14.5 17 0 0 1 0-7.6z"/></clipPath>
+  <g transform="rotate(12 32 34)">
+    <path class="a-m a-o" fill-rule="evenodd" d="M13.4 14.6a4.6 4.6 0 1 0 9.2 0a4.6 4.6 0 1 0-9.2 0zM15.6 14.6a2.4 2.4 0 1 0 4.8 0a2.4 2.4 0 1 0-4.8 0z"/>
+    <rect class="a-m a-o" x="21.6" y="13.8" width="3" height="1.8"/>
+    <rect class="a-m a-o" x="26.5" y="19" width="10" height="4.6"/>
+    <ellipse class="a-m a-oo" cx="31.5" cy="39.4" rx="14.5" ry="17"/>
+    <ellipse cx="31.5" cy="39.4" rx="14.5" ry="17" fill="url(#a-sheen)"/>
+    <ellipse cx="31.5" cy="39.4" rx="14.5" ry="17" fill="url(#a-shade)"/>
+    <path class="a-p" d="M24.6 24.4c-4 8-4 22 0 30M38.4 24.4c4 8 4 22 0 30M31.5 22.6v34"/>
+    <g clip-path="url(#grenade-c)">
+      <rect class="a-x" x="16" y="35.6" width="31" height="7.6"/>
+      <path class="a-d" d="M15 43.2l5-7.6h3.6l-5 7.6zM22.6 43.2l5-7.6h3.6l-5 7.6zM30.2 43.2l5-7.6h3.6l-5 7.6zM37.8 43.2l5-7.6h3.6l-5 7.6z"/>
+    </g>
+    <path class="a-o" fill="none" d="M17.4 35.6h28.2M17.4 43.2h28.2"/>
+    <path class="a-b a-o" d="M37.4 12.4h4.4c1.6 0 2.6 1 2.8 2.6l2.6 19-2.4.8-3.4-18.4h-4z"/>
+    <rect class="a-m a-o" x="27.6" y="8.6" width="7.8" height="4" rx="1"/>
+    <rect class="a-b a-oo" x="23" y="12.2" width="17" height="8" rx="2.2"/>
+    <rect x="23" y="12.2" width="17" height="8" rx="2.2" fill="url(#a-sheen)"/>
+    <path class="a-p" d="M32 12.6v7.2M34.8 12.6v7.2M37.6 12.6v7.2"/>
+    <circle class="a-g" cx="27.4" cy="16.2" r="2" filter="url(#a-glow)"/>
+    <circle class="a-g a-o" cx="27.4" cy="16.2" r="1.4"/>
+    <circle class="a-w" cx="27.1" cy="15.9" r=".5"/>
+    <path class="a-l" d="M24.4 13.4h14M22 28c1.6-2.6 3.4-4.2 5.6-5"/>
+  </g>
+</svg>

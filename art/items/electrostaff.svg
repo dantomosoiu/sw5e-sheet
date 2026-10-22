@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <g transform="rotate(-45 32 32)">
+    <rect class="a-m a-oo" x="8" y="29.8" width="48" height="4.4" rx="1"/>
+    <rect x="8" y="29.8" width="48" height="4.4" rx="1" fill="url(#a-sheen)"/>
+    <rect class="a-d a-o" x="14.4" y="29.2" width="2" height="5.6" rx=".5"/>
+    <rect class="a-d a-o" x="47.6" y="29.2" width="2" height="5.6" rx=".5"/>
+    <rect class="a-c a-o" x="21.6" y="29.2" width="8.6" height="5.6" rx=".8"/>
+    <rect class="a-c a-o" x="33.8" y="29.2" width="8.6" height="5.6" rx=".8"/>
+    <path class="a-p" d="M23.4 29.4l1 5.2M25.8 29.4l1 5.2M28.2 29.4l1 5.2M35.6 29.4l1 5.2M38 29.4l1 5.2M40.4 29.4l1 5.2"/>
+    <rect class="a-b a-oo" x="29.4" y="28.2" width="5.2" height="7.6" rx="1"/>
+    <rect x="29.4" y="28.2" width="5.2" height="7.6" rx="1" fill="url(#a-sheen)"/>
+    <rect class="a-x a-o" x="31.2" y="28" width="1.6" height="8" rx=".4"/>
+    <g id="electrostaff-cap">
+      <circle class="a-g" cx="60.6" cy="32" r="5.6" filter="url(#a-glow-lg)" opacity=".9"/>
+      <polyline class="a-gl" points="54,27.6 55.4,24.2 57.6,25.6 59.4,22.8 61.6,26 63.4,24.8 64.4,28.6" filter="url(#a-glow)" opacity=".9"/>
+      <polyline class="a-gl" points="54,36.4 55.6,39.6 57.8,38.2 59.6,41 61.8,37.8 63.6,38.8 64.4,35.4" filter="url(#a-glow)" opacity=".9"/>
+      <polyline class="a-gl" points="54,27.6 55.4,24.2 57.6,25.6 59.4,22.8 61.6,26 63.4,24.8 64.4,28.6"/>
+      <polyline class="a-gl" points="54,36.4 55.6,39.6 57.8,38.2 59.6,41 61.8,37.8 63.6,38.8 64.4,35.4"/>
+      <path class="a-m a-oo" d="M51.6 27.6H56l1.6 1.6v5.6L56 36.4h-4.4z"/>
+      <path d="M51.6 27.6H56l1.6 1.6v5.6L56 36.4h-4.4z" fill="url(#a-sheen)"/>
+      <rect class="a-g" x="57.4" y="28.6" width="2" height="6.8" rx=".6"/>
+      <path class="a-b a-oo" d="M59 28.8l3.4.6q3 2.6 0 5.2l-3.4.6z"/>
+      <circle class="a-w" cx="62.8" cy="32" r="1.1"/>
+      <circle class="a-w" cx="59.4" cy="22.8" r=".7"/>
+      <circle class="a-w" cx="59.6" cy="41" r=".7"/>
+      <path class="a-p" d="M54 28v8"/>
+      <path class="a-l" d="M52.4 28.6h3.2M59.6 29.6l2.4.4"/>
+    </g>
+    <use href="#electrostaff-cap" transform="matrix(-1 0 0 1 64 0)"/>
+    <path class="a-l" d="M17 30.8h4M42.6 30.8h4.6M30 29.2h1"/>
+  </g>
+</svg>

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <circle class="a-d a-oo" cx="32" cy="32" r="26"/>
+  <circle cx="32" cy="32" r="26" fill="url(#a-sheen)" opacity=".3"/>
+  <path class="a-l" d="M8.9 23.6A24.6 24.6 0 0 1 38.4 8.2" opacity=".4"/>
+  <g class="a-g" filter="url(#a-glow)" opacity=".8"><g><rect x="30.3" y="13" width="3.4" height="38" rx="1.7"/><path d="M25.6 18.4l2.2-2.2 4.2 4.2 4.2-4.2 2.2 2.2-6.4 6.4zM25.6 45.6l2.2 2.2 4.2-4.2 4.2 4.2 2.2-2.2-6.4-6.4z"/></g><g transform="rotate(60 32 32)"><rect x="30.3" y="13" width="3.4" height="38" rx="1.7"/><path d="M25.6 18.4l2.2-2.2 4.2 4.2 4.2-4.2 2.2 2.2-6.4 6.4zM25.6 45.6l2.2 2.2 4.2-4.2 4.2 4.2 2.2-2.2-6.4-6.4z"/></g><g transform="rotate(120 32 32)"><rect x="30.3" y="13" width="3.4" height="38" rx="1.7"/><path d="M25.6 18.4l2.2-2.2 4.2 4.2 4.2-4.2 2.2 2.2-6.4 6.4zM25.6 45.6l2.2 2.2 4.2-4.2 4.2 4.2 2.2-2.2-6.4-6.4z"/></g></g>
+  <g class="a-g"><g><rect x="30.3" y="13" width="3.4" height="38" rx="1.7"/><path d="M25.6 18.4l2.2-2.2 4.2 4.2 4.2-4.2 2.2 2.2-6.4 6.4zM25.6 45.6l2.2 2.2 4.2-4.2 4.2 4.2 2.2-2.2-6.4-6.4z"/></g><g transform="rotate(60 32 32)"><rect x="30.3" y="13" width="3.4" height="38" rx="1.7"/><path d="M25.6 18.4l2.2-2.2 4.2 4.2 4.2-4.2 2.2 2.2-6.4 6.4zM25.6 45.6l2.2 2.2 4.2-4.2 4.2 4.2 2.2-2.2-6.4-6.4z"/></g><g transform="rotate(120 32 32)"><rect x="30.3" y="13" width="3.4" height="38" rx="1.7"/><path d="M25.6 18.4l2.2-2.2 4.2 4.2 4.2-4.2 2.2 2.2-6.4 6.4zM25.6 45.6l2.2 2.2 4.2-4.2 4.2 4.2 2.2-2.2-6.4-6.4z"/></g></g>
+  <g class="a-w"><rect x="31.4" y="16" width="1.2" height="32" rx=".6"/><rect x="31.4" y="16" width="1.2" height="32" rx=".6" transform="rotate(60 32 32)"/><rect x="31.4" y="16" width="1.2" height="32" rx=".6" transform="rotate(120 32 32)"/></g>
+  <path class="a-w" d="M32 28.4l3.1 1.8v3.6L32 35.6l-3.1-1.8v-3.6z"/>
+</svg>
