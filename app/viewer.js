@@ -2503,7 +2503,7 @@ function bumpTip(m, path, d) {
   const tweakLine = (t) => `<li><b>${esc(fxTweakValueText({ ...(t.fields || {}), bonus: t.bonus }))}</b> ${esc(t.effect.tweakName)}
       · ${t.effect.reason ? esc(t.effect.reason) : '<span class="warn-text">no reason given</span>'} <span class="faint">${esc(effectWhen(t.effect))}</span></li>`;
   return `<div class="tip-head">Without tweaks or effects: <b>${fmt(d.from ?? '—')}</b> → now <b>${fmt(d.to)}</b></div>
-    ${src.length ? `<ul>${src.map((t) => (t.effect.kind === 'tweak' ? tweakLine(t) : `<li><b>${esc(!t.bonus && t.fields && t.fields.proficiency ? String(t.fields.proficiency).toLowerCase() : !t.bonus && t.fields && t.fields.dieSize ? `d${t.fields.dieSize}` : signedLabel(t.bonus))}</b> ${esc(t.mod.label.replace(/\s*[+\-−]?\d+( ft)?$/, ''))}${t.mod.set != null ? ` <span class="faint">(the item sets it to ${t.mod.set})</span>`
+    ${src.length || carryLines(m, path) ? `<ul>${carryLines(m, path)}${src.map((t) => (t.effect.kind === 'tweak' ? tweakLine(t) : `<li><b>${esc(!t.bonus && t.fields && t.fields.proficiency ? String(t.fields.proficiency).toLowerCase() : !t.bonus && t.fields && t.fields.dieSize ? `d${t.fields.dieSize}` : signedLabel(t.bonus))}</b> ${esc(t.mod.label.replace(/\s*[+\-−]?\d+( ft)?$/, ''))}${t.mod.set != null ? ` <span class="faint">(the item sets it to ${t.mod.set})</span>`
       : typeof t.mod.bonus === 'number' && t.bonus !== t.mod.bonus && !t.mod.abilityMod ? ` <span class="faint">(capped from ${esc(signedLabel(t.mod.bonus))})</span>` : ''}
       · ${esc(t.effect.name)} <span class="faint">${esc(effectWhen(t.effect))}</span></li>`)).join('')}</ul>`
       : '<div class="faint">Changed by the tweaks or effects listed under Settings, Tweaks &amp; Data and Combat &amp; Vitals → Effects.</div>'}${condHtml}${acOthers(m, path)}`;
@@ -4207,24 +4207,69 @@ function renderDefenses(m) {
 
 function renderCarry(m) {
   const cc0 = m.c.carryingCapacity || {};
+  const base = (m.base && m.base.carryingCapacity) || cc0;
   const cf = carryFactor(m);
-  const cc = cf.factor > 1 ? { ...cc0, maxCapacity: num(cc0.maxCapacity) * cf.factor, pushDragLift: num(cc0.pushDragLift) * cf.factor } : cc0;
+  const cc = cf.factor !== 1 ? { ...cc0, maxCapacity: num(cc0.maxCapacity) * cf.factor, pushDragLift: num(cc0.pushDragLift) * cf.factor } : cc0;
   const w = totalWeight(m);
-  const why = cf.factor > 1 ? ` <span class="faint" title="SW5E's numbers ${esc(cc0.maxCapacity)} / ${esc(cc0.pushDragLift)} lb, ×${cf.factor}">×${cf.factor} (${esc(cf.from.join(', '))})</span>` : '';
+  const why = cf.factor !== 1 ? ` <span class="faint" title="SW5E's numbers ${esc(cc0.maxCapacity)} / ${esc(cc0.pushDragLift)} lb, ×${esc(cf.text)}">×${esc(cf.text)} (${esc(cf.from.concat(cf.size ? [cf.size] : []).join(', '))})</span>` : '';
+  // The hover explains the number shown (×2 included), from the number without tweaks or effects.
+  const calc = (k) => (cf.factor !== 1 ? { from: num(base[k]), to: cc[k] } : undefined);
   return `<div class="grid auto">
     ${stat('Carried', `${fmtNum(w)} lb`, `<span title="Variant encumbrance, if your GM uses it: encumbered, speed −10 ft; heavily encumbered, speed −20 ft and disadvantage on ability checks, attack rolls and saving throws that use Strength, Dexterity or Constitution">${w > num(cc.heavilyEncumbered) ? 'Heavily encumbered' : w > num(cc.encumbered) ? 'Encumbered' : 'Unencumbered'} (variant rule)</span>`)}
     ${stat('Encumbered at', bump(m, 'carryingCapacity.encumbered', `${esc(cc.encumbered ?? '—')} lb`))}
     ${stat('Heavily enc. at', bump(m, 'carryingCapacity.heavilyEncumbered', `${esc(cc.heavilyEncumbered ?? '—')} lb`))}
-    ${stat('Max capacity', bump(m, 'carryingCapacity.maxCapacity', `${esc(cc.maxCapacity ?? '—')} lb`) + why)}
-    ${stat('Push / drag / lift', bump(m, 'carryingCapacity.pushDragLift', `${esc(cc.pushDragLift ?? '—')} lb`) + why)}
+    ${stat('Max capacity', bump(m, 'carryingCapacity.maxCapacity', `${esc(cc.maxCapacity ?? '—')} lb`, calc('maxCapacity')) + why)}
+    ${stat('Push / drag / lift', bump(m, 'carryingCapacity.pushDragLift', `${esc(cc.pushDragLift ?? '—')} lb`, calc('pushDragLift')) + why)}
   </div>`;
 }
 
-/** Powerful Build and Brawny: "your carrying capacity … doubles. If it would already double, it instead triples." */
+/**
+ * What multiplies the carrying capacity and the weight you can push, drag, or lift: "Your carrying capacity and the
+ * weight you can push, drag, or lift doubles. If it would already double, it instead triples." (Powerful Build, Brawny,
+ * Bantha's Instinct, Mighty Build, an Iridonian Grav-lev Arm…: ×2, two or more ×3), and size: "For a Tiny creature,
+ * halve these weights" (PHB, Size and Strength). From a feature's state ("you can gain the following benefits for 1
+ * minute: … doubles", Totemic Might; "While anchored", Heavy Suit) only while that state is on. { factor, text, from, size }.
+ */
 function carryFactor(m) {
-  const from = [...new Set(arr(m.feats).concat(arr(m.allFeatures), state.rules ? bdSpeciesTraitFeatures(m) : [])
-    .filter((f) => /carrying capacity and the weight you can push, drag, or lift doubles/i.test(f.text || f.description || '')).map((f) => f.name))];
-  return { factor: from.length >= 2 ? 3 : from.length ? 2 : 1, from };
+  const DOUBLES = /carrying capacity and the weight you can push, drag, or lift doubles/i;
+  const temps = m.snap ? tempEffects(m.snap.key) : [];
+  const on = (name) => temps.some((e) => e.name === name || String(e.group || '').toLowerCase() === `state:${String(name).toLowerCase()}`);
+  const texts = arr(m.feats).concat(arr(m.allFeatures), state.rules && m.raw ? bdSpeciesTraitFeatures(m) : [], typeof slotPickFeatures === 'function' && state.rules ? slotPickFeatures(m) : [])
+    .map((f) => ({ name: f.name, text: f.text || f.description || '' }));
+  // Picked class options (Berserker Instincts: Bantha's Instinct).
+  if (state.rules) {
+    for (const k of arr(m.raw && m.raw.classes)) {
+      const info = classChoiceInfo(m, k);
+      for (const l of (info ? info.lists : [])) for (const p of l.chosen) { const o = l.options.find((x) => x.name === p.name); if (o) texts.push({ name: o.name, text: o.text || '' }); }
+    }
+  }
+  // Enhanced items in use: equipped (installed), or attuned when they need it (Mighty Build, an Iridonian Grav-lev Arm).
+  for (const it of arr(m.raw && m.raw.equipment)) {
+    const ref = it.category === 'EnhancedItem' && catalogIndex && catalogIndex.get(it.name);
+    if (ref && (ref.requiresAttunement ? it.attuned : it.equipped)) texts.push({ name: it.name, text: ref.text || ref.description || '' });
+  }
+  const from = [];
+  for (const t of texts) {
+    const sentences = String(t.text).replace(/\s+/g, ' ').split(/(?<=\.)\s+(?=[-A-Z_*#])/);
+    const i = sentences.findIndex((s) => DOUBLES.test(s));
+    if (i < 0 || from.includes(t.name)) continue;
+    const lead = sentences.slice(Math.max(0, i - 2), i + 1).join(' ');
+    const state = /\bwhile [a-z]+(?:ed|ing)\b|\bfor (?:1|one|10|ten) minutes?\b|\bfollowing benefits\b/i.test(lead);
+    if (!state || on(t.name)) from.push(t.name);
+  }
+  const sp = state.rules && m.raw && m.raw.species ? rulesModule('species').find((x) => x.name === m.raw.species.name) : null;
+  const tiny = !!sp && /^tiny$/i.test(String(sp.size || ''));
+  const mult = from.length >= 2 ? 3 : from.length ? 2 : 1;
+  const factor = mult * (tiny ? 0.5 : 1);
+  return { factor, text: factor === 0.5 ? '½' : String(factor), from, size: tiny ? 'Tiny: halved' : '' };
+}
+/** The carrying-capacity hover's multipliers ("×2 Brawny feat", "×½ Tiny"): list items, or ''. */
+function carryLines(m, path) {
+  if (!/^carryingCapacity\.(?:maxCapacity|pushDragLift)$/.test(path)) return '';
+  const cf = carryFactor(m);
+  if (cf.factor === 1 && !cf.from.length) return '';
+  return cf.from.map((n, i) => `<li><b>${i === 0 ? '×2' : i === 1 ? '×3 instead' : '(no more)'}</b> ${esc(n)} <span class="faint">"doubles; if it would already double, it instead triples"</span></li>`).join('')
+    + (cf.size ? '<li><b>×½</b> Tiny <span class="faint">"For a Tiny creature, halve these weights"</span></li>' : '');
 }
 /** An ability score's increases the engine applies, each named: [{ n, label }]. */
 function abilitySources(m, a) {
