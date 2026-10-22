@@ -826,8 +826,9 @@ function buildRoll(m, spec, opts = {}) {
         return { kind: 'd20', plain: true, label: `d20${p.mod ? ` ${signed(p.mod)}` : ''}`, spec, base: p.mod ? [{ label: 'modifier', value: p.mod }] : [], conds: [] };
       }
       // dice|1d6+3|Ichor Lightning damage|necrotic: a named roll (a feature's special attack), with its damage type.
+      // (Unnamed: plain dice, picked or typed; their name follows the dice as they change.)
       return { kind: 'dice', label: a2 || a1, spec, diceSpec: p.dice.map((d) => d.sides * d.sign), base: p.mod ? [{ label: a2 ? 'ability modifier' : 'modifier', value: p.mod }] : [], conds: [],
-        ...(a3 ? { damageType: titleCase(a3), minTotal: 0 } : {}) };
+        ...(a2 ? {} : { plain: true }), ...(a3 ? { damageType: titleCase(a3), minTotal: 0 } : {}) };
     }
     default: return null;
   }
@@ -848,7 +849,7 @@ function startRoll(spec, opts = {}) {
   const r = buildRoll(m, spec, opts);
   if (!r) return setStatus(`Can't roll "${spec.split('|').slice(1).join(' ')}".`, 'error');
   const roll = {
-    id: Date.now().toString(36) + Math.random().toString(36).slice(2, 5), char: snap ? snap.raw.name : '', key: snap ? snap.key : null,
+    id: rollId(), char: snap ? snap.raw.name : '', key: snap ? snap.key : null,
     mode: 'normal', custom: 0, rolled: false, at: null, ...r,
     dice: r.kind === 'd20' ? [newDie(20, 'd20', false)] : arr(r.diceSpec).map((s) => ({ ...newDie(Math.abs(s), 'base', false), sign: s < 0 ? -1 : 1 })),
   };
@@ -930,7 +931,11 @@ function startRoll(spec, opts = {}) {
   // Roll again: the same dice as the roll it repeats (dice added or taken off after rolling too), modifier and DC.
   if (opts.sameAs) {
     const was = opts.sameAs;
-    roll.dice = was.dice.map((d) => ({ ...d, id: ++dieSeq, value: d.max ? d.value : null }));
+    const ids = new Map();
+    roll.dice = was.dice.map((d) => { const x = { ...d, id: ++dieSeq, value: d.max ? d.value : null }; ids.set(d.id, x.id); return x; });
+    // (A single die's twin, rolled for advantage, stays paired with it.)
+    for (const d of roll.dice) if (d.twin) d.twin = ids.get(d.twin);
+    if (was.plain) { roll.kind = was.kind; roll.label = was.label; }
     roll.mode = was.mode;
     roll.custom = was.custom;
     if (was.dc != null) roll.dc = was.dc;
@@ -952,6 +957,33 @@ function keptD20(r) {
   if (r.mode === 'dis') return ds.reduce((a, b) => (b.value < a.value ? b : a));
   return ds[0];
 }
+/**
+ * Advantage on any other single die (a plain d6): it's rolled twice ({ twin: the first die's id } on the second) and
+ * the higher counts, or the lower with disadvantage. The pair, or [] when there's none.
+ */
+function twinPair(r) {
+  const tw = r.dice.filter((d) => d.twin);
+  if (!tw.length) return [];
+  const first = r.dice.find((d) => d.id === tw[0].twin);
+  return first ? [first, ...tw] : tw;
+}
+function keptTwin(r) {
+  const ds = twinPair(r).filter((d) => d.value != null);
+  if (!ds.length) return null;
+  return r.mode === 'dis' ? ds.reduce((a, b) => (b.value < a.value ? b : a)) : ds.reduce((a, b) => (b.value > a.value ? b : a));
+}
+/** The one die a roll has (not counting a twin), or null. */
+const loneDie = (r) => { const ds = r.dice.filter((d) => !d.twin); return ds.length === 1 ? ds[0] : null; };
+/**
+ * Does the card offer advantage / normal / disadvantage? A d20 roll from the sheet always (as it always did); any other
+ * roll when it has a single die (a plain d20, a d6…), or already has its two for advantage or disadvantage.
+ */
+function offersModes(r) {
+  if (r.kind === 'd20' && !r.plain) return true;
+  if (r.mode && r.mode !== 'normal') return true;
+  if (r.crit || r.dmgAdv) return false;
+  return r.dice.length === 1;
+}
 function rollSum(r) {
   const kept = keptD20(r);
   // An option that counts a low d20 as more ("treat a d20 roll of 9 or lower as a 10", Specialist).
@@ -960,7 +992,10 @@ function rollSum(r) {
   // Damage with advantage: the weapon's dice twice, the higher set counts.
   const set = (tag) => r.dice.filter((d) => d.tag === tag && d.value != null).reduce((s, d) => s + (d.sign || 1) * d.value, 0);
   if (r.dice.some((d) => d.tag === 'adv')) t += Math.max(set('base'), set('adv')) - set('base') - set('adv');
-  for (const d of r.dice) if (d.tag !== 'd20' && d.value != null) t += (d.sign || 1) * d.value;
+  // A single die rolled twice: only the one kept counts.
+  const pair = twinPair(r);
+  const keep = keptTwin(r);
+  for (const d of r.dice) if (d.tag !== 'd20' && d.value != null && (!pair.includes(d) || d === keep)) t += (d.sign || 1) * d.value;
   for (const b of r.base) t += num(b.value);
   for (const cd of r.conds) if (cd.on) t += num(cd.bonus);
   return t + num(r.custom);
@@ -997,27 +1032,23 @@ function doRoll() {
   });
 }
 /**
- * The dice tumble for a moment before the result shows: their faces flick through numbers, slowing down, then land
- * (the numbers are already rolled and saved; this is only how they're shown). No tumbling with reduced motion.
+ * The dice tumble for a moment before the result shows: each drops, bounces and spins down onto the face with its
+ * number (dice3d.js; the numbers are already rolled and saved, this is only how they're shown). No tumbling with
+ * reduced motion.
  */
-const TUMBLE_STEPS = [45, 55, 65, 80, 95, 115, 140, 170];
 function tumble(r, ids, done) {
   clearTimeout(rollState.tumbleTimer);
   const still = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (!ids.length || still || typeof document === 'undefined') { rollState.tumbling = null; done(); landed(new Set(ids)); return; }
+  const ms = !ids.length || still || typeof document === 'undefined' || typeof Dice3D === 'undefined' ? 0 : Dice3D.roll(ids);
+  if (!ms) { rollState.tumbling = null; done(); landed(new Set(ids)); return; }
   rollState.tumbling = { id: r.id, dice: new Set(ids) };
   renderDice(false);
-  let step = 0;
-  const flick = () => {
+  rollState.tumbleTimer = setTimeout(() => {
     if (!rollState.tumbling || rollState.tumbling.id !== r.id) return;
-    for (const el of document.querySelectorAll('#dice .die.tumbling b')) el.textContent = String(rollDie(Number(el.dataset.sides)));
-    // (The dice turn over in 3D while they tumble: a new face each flick.)
-    if (step < TUMBLE_STEPS.length) { rollState.tumbleTimer = setTimeout(flick, TUMBLE_STEPS[step++]); return; }
     rollState.tumbling = null;
     done();
     landed(new Set(ids));
-  };
-  flick();
+  }, ms + 40);
 }
 /** The result just landed: the total and the dice give a small pop. */
 function landed(ids) {
@@ -1039,17 +1070,31 @@ function announceRoll(r) {
   }
   el.textContent = `${r.label}: ${rollTotal(r)}`;
 }
-/** Advantage / normal / disadvantage, before or after rolling (adds or drops a d20 only). */
+/**
+ * Advantage / normal / disadvantage, before or after rolling: a d20 roll adds or drops a d20; a roll of any other
+ * single die adds or drops its twin (rolled now if the roll was made).
+ */
 function setMode(mode) {
   const r = rollState.current;
-  if (!r || r.kind !== 'd20' || r.mode === mode) return;
+  if (!r || r.mode === mode || !offersModes(r)) return;
   const ds = d20s(r);
   const before = new Set(r.dice.map((d) => d.id));
-  if (mode === 'normal') {
-    // Keep the first d20 rolled; drop the one added for advantage/disadvantage.
-    r.dice = r.dice.filter((d) => d.tag !== 'd20' || d === ds[0]);
-  } else if (ds.length < 2) {
-    r.dice.splice(r.dice.indexOf(ds[0]) + 1, 0, newDie(20, 'd20', r.rolled));
+  if (r.kind === 'd20' && (ds.length || !r.plain)) {
+    if (mode === 'normal') {
+      // Keep the first d20 rolled; drop the one added for advantage/disadvantage.
+      r.dice = r.dice.filter((d) => d.tag !== 'd20' || d === ds[0]);
+    } else {
+      // (A d20 taken off a sheet roll comes back.)
+      if (!ds.length) r.dice.unshift(newDie(20, 'd20', r.rolled));
+      const first = d20s(r)[0];
+      if (d20s(r).length < 2) r.dice.splice(r.dice.indexOf(first) + 1, 0, newDie(20, 'd20', r.rolled));
+    }
+  } else if (mode === 'normal') {
+    r.dice = r.dice.filter((d) => !d.twin);
+  } else if (!r.dice.some((d) => d.twin)) {
+    const d = loneDie(r);
+    if (!d) return;
+    r.dice.splice(r.dice.indexOf(d) + 1, 0, { ...newDie(d.sides, d.tag, r.rolled), ...(d.sign < 0 ? { sign: -1 } : {}), twin: d.id });
   }
   r.mode = mode;
   afterAmend(before);
@@ -1058,24 +1103,42 @@ function addDice(sides, count = 1) {
   const r = rollState.current;
   if (!r) return;
   const before = new Set(r.dice.map((d) => d.id));
-  for (let i = 0; i < count; i++) r.dice.push(newDie(sides, 'extra', r.rolled));
+  for (let i = 0; i < count; i++) {
+    // The first die of an empty plain roll makes it a d20 roll (a natural 20, a DC) or a roll of dice; a d20 put back
+    // on a d20 roll that had lost its own is that roll's d20 again.
+    let tag = 'extra';
+    if (r.plain && !r.dice.length) { r.kind = sides === 20 ? 'd20' : 'dice'; tag = sides === 20 ? 'd20' : 'base'; }
+    else if (sides === 20 && r.kind === 'd20' && !d20s(r).length) tag = 'd20';
+    r.dice.push(newDie(sides, tag, r.rolled));
+  }
   afterAmend(before);
 }
+/**
+ * Take a die off. The last one leaves an empty card: a new plain roll, not rolled, that the Add buttons fill. The roll
+ * it was (a sheet roll's name, modifiers and options, the next step) is done with: rolled, it stays in the log as it
+ * last was; not rolled, it's dropped.
+ */
 function removeDie(id) {
   const r = rollState.current;
   if (!r) return;
   const d = r.dice.find((x) => x.id === Number(id));
   if (!d) return;
+  if (r.dice.length === 1) {
+    rollState.current = { id: rollId(), char: r.char, key: r.key, kind: 'dice', plain: true, label: 'Plain dice', spec: 'dice|', mode: 'normal',
+      custom: 0, rolled: false, at: null, dice: [], base: [], conds: [] };
+    renderDice(false);
+    return;
+  }
+  r.dice = r.dice.filter((x) => x !== d);
   if (d.tag === 'd20') {
-    if (d20s(r).length < 2) return;
-    r.dice = r.dice.filter((x) => x !== d);
+    if (d20s(r).length < 2) r.mode = 'normal';
+  } else if (d.twin || r.dice.some((x) => x.twin === d.id)) {
+    // One of a single die's two (advantage): the other is the die now.
+    r.dice = r.dice.map((x) => { if (!x.twin) return x; const { twin, ...rest } = x; return rest; }); // eslint-disable-line no-unused-vars
     r.mode = 'normal';
-  } else {
-    r.dice = r.dice.filter((x) => x !== d);
-    if (d.tag.startsWith('cond:')) {
-      const cd = r.conds.find((x) => `cond:${x.label}` === d.tag);
-      if (cd && !r.dice.some((x) => x.tag === d.tag)) cd.on = false;
-    }
+  } else if (d.tag.startsWith('cond:')) {
+    const cd = r.conds.find((x) => `cond:${x.label}` === d.tag);
+    if (cd && !r.dice.some((x) => x.tag === d.tag)) cd.on = false;
   }
   afterAmend();
 }
@@ -1120,61 +1183,53 @@ function setCritMode(mode) {
 function afterAmend(before) {
   const r = rollState.current;
   const added = r && before ? r.dice.filter((d) => !before.has(d.id)).map((d) => d.id) : [];
+  if (r && r.plain) namePlain(r);
   if (r && r.rolled) {
     r.amended = true;
     saveRollLog();
     if (added.length) { tumble(r, added, () => renderDice(false)); return; }
   }
-  rollState.entering = new Set(added);
+  // New dice roll in.
+  if (added.length && typeof Dice3D !== 'undefined') Dice3D.enter(added);
   renderDice(false);
-  rollState.entering = null;
+}
+const rollId = () => Date.now().toString(36) + Math.random().toString(36).slice(2, 5);
+/**
+ * Plain dice are named after their dice ("2d6 + d4 +3"), and "Roll again" rolls the same. Before rolling, a lone
+ * d20 left in a plain roll of dice becomes a d20 roll (a natural 20 shows).
+ */
+function namePlain(r) {
+  if (!r.rolled && r.kind === 'dice' && r.dice.length === 1 && r.dice[0].sides === 20 && (r.dice[0].sign || 1) > 0) {
+    r.kind = 'd20';
+    r.dice[0].tag = 'd20';
+  }
+  const groups = [];
+  for (const d of r.dice) {
+    // (Advantage's second die isn't part of the name.)
+    if (d.twin || (d.tag === 'd20' && d !== d20s(r)[0])) continue;
+    const k = `${(d.sign || 1) < 0 ? '-' : '+'}${d.sides}`;
+    const g = groups.find((x) => x.k === k);
+    if (g) g.n++;
+    else groups.push({ k, n: 1, sides: d.sides, neg: (d.sign || 1) < 0 });
+  }
+  const mod = r.base.reduce((t, b) => t + num(b.value), 0);
+  const parts = groups.map((g, i) => `${g.neg ? '-' : i ? '+' : ''}${g.n > 1 ? g.n : ''}d${g.sides}`);
+  if (!parts.length) { r.label = 'Plain dice'; r.spec = 'dice|'; return; }
+  r.spec = `dice|${parts.join('')}${mod ? (mod > 0 ? `+${mod}` : mod) : ''}`;
+  r.label = `${parts.join('').replace(/([+-])/g, ' $1 ').replace(/-/g, '−').trim()}${mod ? ` ${signed(mod)}` : ''}`;
 }
 
 // ------------------------------------------------------------- dock
 /**
- * A die drawn as its polyhedron, seen from above (SVG, 100 × 100): the facet facing you holds the number, the others
- * are shaded as if lit from the top left. `face`: the facet's polygon; `rest`: the facets around it.
+ * A die's picture: a canvas that dice3d.js draws the polyhedron on (lit in 3D, its number on the face toward you).
+ * size: 'roll' (a die of the roll, with room around it to bounce), 'pick' (the tray), 'add' (the small Add buttons).
  */
-const DIE_POLY = (() => {
-  const pt = (r, deg) => [50 + r * Math.cos((deg * Math.PI) / 180), 50 + r * Math.sin((deg * Math.PI) / 180)];
-  const ring = (r, n, start) => Array.from({ length: n }, (x, i) => pt(r, start + (360 / n) * i));
-  // d12: a pentagon in the middle, five around it (the outline a decagon).
-  const out12 = ring(47, 10, -90);
-  const in12 = ring(27, 5, -90);
-  // d20: a triangle in the middle of a hexagon.
-  const H = ring(47, 6, -90);
-  const T = [[50, 22], [76, 67], [24, 67]];
-  return {
-    4: { out: [[50, 6], [94, 88], [6, 88]], face: null, rest: [[[50, 6], [50, 62], [6, 88]], [[50, 6], [94, 88], [50, 62]], [[6, 88], [50, 62], [94, 88]]], num: 66 },
-    6: { out: [[8, 8], [92, 8], [92, 92], [8, 92]], face: [[23, 23], [77, 23], [77, 77], [23, 77]], rest: [[[8, 8], [92, 8], [77, 23], [23, 23]], [[92, 8], [92, 92], [77, 77], [77, 23]], [[92, 92], [8, 92], [23, 77], [77, 77]], [[8, 92], [8, 8], [23, 23], [23, 77]]], num: 50 },
-    8: { out: [[50, 4], [94, 50], [50, 96], [6, 50]], face: [[50, 7], [84, 64], [16, 64]], rest: [[[50, 4], [16, 64], [6, 50]], [[50, 4], [94, 50], [84, 64]], [[6, 50], [16, 64], [50, 96]], [[16, 64], [84, 64], [50, 96]], [[84, 64], [94, 50], [50, 96]]], num: 46 },
-    // d10: a kite, its widest point high up.
-    10: { out: [[50, 3], [90, 40], [50, 97], [10, 40]], face: [[50, 6], [69, 44], [50, 60], [31, 44]], rest: [[[50, 3], [31, 44], [10, 40]], [[50, 3], [90, 40], [69, 44]], [[10, 40], [31, 44], [50, 60], [50, 97]], [[90, 40], [50, 97], [50, 60], [69, 44]]], num: 38 },
-    12: { out: out12, face: in12, rest: in12.map((p, i) => [p, out12[2 * i], out12[2 * i + 1], out12[(2 * i + 2) % 10], in12[(i + 1) % 5]]), num: 51 },
-    20: { out: H, face: T, rest: [[H[5], H[0], T[0]], [H[0], H[1], T[0]], [H[1], T[1], T[0]], [H[1], H[2], T[1]], [H[2], H[3], T[1]], [H[3], T[2], T[1]], [H[3], H[4], T[2]], [H[4], H[5], T[2]], [H[5], T[0], T[2]]], num: 54 },
-  };
-})();
-/** The shape of a d<sides> (any other size: the d10's). */
-function dieSvg(sides) {
-  const p = DIE_POLY[sides] || DIE_POLY[10];
-  const pts = (poly) => poly.map(([x, y]) => `${x.toFixed(1)},${y.toFixed(1)}`).join(' ');
-  // Light from the top left: a facet facing that way is lighter, one facing away darker.
-  const shade = (poly) => {
-    const cx = poly.reduce((t, q) => t + q[0], 0) / poly.length - 50;
-    const cy = poly.reduce((t, q) => t + q[1], 0) / poly.length - 50;
-    const len = Math.hypot(cx, cy) || 1;
-    const lit = (-cx - cy) / (len * Math.SQRT2);
-    return lit >= 0 ? `fill="#fff" fill-opacity="${(0.06 + 0.22 * lit).toFixed(2)}"` : `fill="#000" fill-opacity="${(0.08 + 0.3 * -lit).toFixed(2)}"`;
-  };
-  // (A d4's three faces meet at a point below the middle; there's no face toward you.)
-  return `<svg class="die-shape" viewBox="0 0 100 100" aria-hidden="true" focusable="false"><polygon class="die-body" points="${pts(p.out)}"/>${
-    p.rest.map((f) => `<polygon class="die-facet" points="${pts(f)}"/><polygon points="${pts(f)}" ${shade(f)}/>`).join('')}${
-    p.face ? `<polygon class="die-face" points="${pts(p.face)}"/>` : ''}<polygon class="die-edge" points="${pts(p.out)}"/></svg>`;
+function dieCanvas(key, sides, value, size, label = '') {
+  return `<canvas class="die-cv" data-key="${esc(key)}" data-sides="${sides}" data-value="${value == null ? '' : value}" data-size="${size}"${label ? ` data-label="${esc(label)}"` : ''} aria-hidden="true"></canvas>`;
 }
-const dieNumTop = (sides) => (DIE_POLY[sides] || DIE_POLY[10]).num;
 /** The dice to pick before anything is rolled (and to add to a roll): each a small polyhedron. */
 function diceTray(act, title) {
-  return DIE_SIDES.map((s) => `<button type="button" class="die-pick s${s}" data-rl="${act}" data-arg="${s}" title="${esc(title(s))}">${dieSvg(s)}<span>d${s}</span></button>`).join('');
+  return DIE_SIDES.map((s) => `<button type="button" class="die-pick s${s}" data-rl="${act}" data-arg="${s}" title="${esc(title(s))}">${dieCanvas(`pick:${act}:${s}`, s, s, act === 'add' ? 'add' : 'pick')}<span>d${s}</span></button>`).join('');
 }
 function diceText(d) {
   if (d.value == null) return `d${d.sides}`;
@@ -1184,10 +1239,14 @@ function diceText(d) {
 function rollBreakdown(r) {
   const parts = [];
   const kept = keptD20(r);
-  if (kept) parts.push(['+', `d20 ${kept.value}${r.mode !== 'normal' ? ` (${r.mode === 'adv' ? 'advantage' : 'disadvantage'})` : ''}`]);
+  const modeText = r.mode !== 'normal' ? ` (${r.mode === 'adv' ? 'advantage' : 'disadvantage'})` : '';
+  if (kept) parts.push(['+', `d20 ${kept.value}${modeText}`]);
+  const pair = twinPair(r);
+  const keep = keptTwin(r);
+  if (pair.length) parts.push([(pair[0].sign || 1) < 0 ? '−' : '+', `d${pair[0].sides} ${keep ? keep.value : '?'}${modeText}`]);
   // Other dice, grouped by what they are: "2d6 7 (3+4)", "1d8 critical 5", "1d4 Bless 2".
   const groups = [];
-  for (const d of r.dice.filter((x) => x.tag !== 'd20')) {
+  for (const d of r.dice.filter((x) => x.tag !== 'd20' && !pair.includes(x))) {
     const k = [d.tag, d.sides, d.sign || 1, d.crit ? 'c' : ''].join('|');
     let g = groups.find((x) => x.k === k);
     if (!g) groups.push(g = { k, d, vals: [] });
@@ -1214,22 +1273,21 @@ function renderRollCard(r) {
   const snap = r.key && r.key === state.current ? state.snapshots[r.key] : null;
   const inspired = r.kind === 'd20' && !r.rolled && snap && snap.complete && buildModel(snap).t.s.hasInspiration;
   const insp = inspired ? `<button class="btn sm" data-rl="insp" data-arg="" title="Spend your Inspiration: advantage on this roll">★ Use Inspiration</button>` : r.inspired ? '<span class="chip good">★ Inspiration used</span>' : '';
-  const modes = r.kind === 'd20' ? `<div class="rl-modes" role="group" aria-label="Advantage">${[['dis', 'Disadvantage'], ['normal', 'Normal'], ['adv', 'Advantage']]
+  const modes = offersModes(r) ? `<div class="rl-modes" role="group" aria-label="Advantage">${[['dis', 'Disadvantage'], ['normal', 'Normal'], ['adv', 'Advantage']]
     .map(([v, l]) => `<button class="btn sm${r.mode === v ? ' on' : ''}" data-rl="mode" data-arg="${v}" aria-pressed="${r.mode === v}">${l}</button>`).join('')}${insp}</div>` : '';
+  const pair = twinPair(r);
+  const keep = keptTwin(r);
   const dice = r.dice.map((d) => {
-    // While the dice tumble, nothing gives the result away (which d20 counts, a natural 20).
+    // While the dice tumble, nothing gives the result away (which die counts, a natural 20).
     const spin = rolling && isTumbling(r, d);
-    const dropped = !rolling && d.tag === 'd20' && r.rolled && kept && d !== kept;
-    const cls = [d.tag === 'd20' ? 'd20' : 'dx', spin ? 'tumbling' : '', dropped ? 'dropped' : '', d.max ? 'maxed' : '', d.crit ? 'critd' : '',
+    const dropped = !rolling && r.rolled && (d.tag === 'd20' ? kept && d !== kept : pair.includes(d) && keep && d !== keep);
+    const cls = [d.tag === 'd20' || d.sides === 20 ? 'd20' : 'dx', spin ? 'tumbling' : '', dropped ? 'dropped' : '', d.max ? 'maxed' : '', d.crit ? 'critd' : '',
       !rolling && d.tag === 'd20' && d.value === 20 ? 'nat20' : '', !rolling && d.tag === 'd20' && d.value === 1 ? 'nat1' : ''].filter(Boolean).join(' ');
-    const removable = d.tag !== 'd20' || d20s(r).length > 1;
     const title = `d${d.sides}${d.tag.startsWith('cond:') ? ' · ' + d.tag.slice(5) : ''}${d.crit ? (d.max ? ' · critical, at its maximum' : ' · critical') : ''}${dropped ? ' (not counted)' : ''}`;
-    const face = `<span class="die-3d" style="--num-top:${dieNumTop(d.sides)}%">${dieSvg(d.sides)}<b data-sides="${d.sides}">${esc(spin ? String(rollDie(d.sides)) : diceText(d))}</b></span><small>${d.max ? 'max ' : ''}d${d.sides}</small>`;
-    const enter = rollState.entering && rollState.entering.has(d.id) ? ' entering' : '';
-    // A die that can be taken off is a button: a click anywhere on it removes it (× shows that it can).
-    return removable
-      ? `<button type="button" class="die s${d.sides} ${cls}${enter}" data-die="${d.id}" data-rl="remove" data-arg="${d.id}" title="${esc(title)} · click to remove" aria-label="Remove d${d.sides}${d.value != null && !spin ? ` (${d.value})` : ''}">${face}<span class="die-x" aria-hidden="true">×</span></button>`
-      : `<span class="die s${d.sides} ${cls}${enter}" data-die="${d.id}" title="${esc(title)}">${face}</span>`;
+    // The die in 3D (dice3d.js; while it tumbles it's already headed for its number); its number for screen readers.
+    const face = `<span class="die-3d">${dieCanvas(`die:${d.id}`, d.sides, d.value, 'roll', `d${d.sides}`)}<span class="sr-only">${esc(spin ? '' : diceText(d))}</span></span><small>${d.max ? 'max ' : ''}d${d.sides}</small>`;
+    // Every die can be taken off (the last too: the card is then an empty plain roll); a click anywhere on it does.
+    return `<button type="button" class="die s${d.sides} ${cls}" data-die="${d.id}" data-rl="remove" data-arg="${d.id}" title="${esc(title)} · click to remove" aria-label="Remove d${d.sides}${d.value != null && !spin ? ` (${d.value})` : ''}">${face}<span class="die-x" aria-hidden="true">×</span></button>`;
   }).join('');
   const conds = r.conds.length ? `<div class="rl-conds">${r.conds.map((cd, i) => `<label class="rl-cond${cd.blocked ? ' blocked' : ''}"${cd.blocked ? ` title="${esc(cd.blocked)}"` : ''}><input type="checkbox" data-rl="cond" data-arg="${i}"${cd.on ? ' checked' : ''}> ${esc(cd.label)} <span class="faint">${[num(cd.bonus) ? signed(cd.bonus) : '', ...cd.extra.map((e) => (/^-/.test(e) ? `−${e.slice(1)}` : '+' + e))].filter(Boolean).join(' ')}${cd.blocked ? ` · ${esc(cd.blocked)}` : ''}</span></label>`).join('')}</div>` : '';
   const crit = r.kind === 'd20' && nat != null && nat >= (r.critMin || 20);
@@ -1248,7 +1306,7 @@ function renderRollCard(r) {
     ${r.crit ? `<div class="rl-next">${critToggle}</div>` : ''}${r.preset ? `<div class="faint">${esc(r.preset)}</div>` : ''}
     ${r.critMin && r.critMin < 20 ? `<div class="rl-critrange"><span class="chip accent" title="${esc(r.critFrom)}">Critical hit on ${r.critMin}–20</span> <span class="faint">${esc(r.critFrom)}</span></div>` : ''}
     ${r.warn ? `<div class="rl-note warn">${esc(r.warn)}</div>` : ''}${arr(r.notes).map((n) => `<div class="rl-note">${esc(n)}</div>`).join('')}${modes}${conds}${dmgAdv}${foretellButtons(r)}
-    <div class="rl-dice">${dice || '<span class="faint">No dice</span>'}</div>
+    <div class="rl-dice">${dice || '<span class="faint rl-nodice">No dice: add some below for a new roll.</span>'}</div>
     <div class="rl-add"><span class="rl-add-dice">Add ${diceTray('add', (s) => `Add a d${s}${r.rolled ? ' (rolled now)' : ''}`)}</span>
       <label class="rl-mod">Modifier <input type="number" step="1" data-rl="custom" value="${num(r.custom) || ''}" placeholder="0"></label>
       ${r.kind === 'd20' ? `<label class="rl-mod" title="The number to reach (a save's or check's DC, a target's AC)">DC <input type="number" step="1" data-rl="dc" value="${num(r.dc) || ''}" placeholder="—"></label>` : ''}</div>
@@ -1261,7 +1319,7 @@ function renderRollCard(r) {
         <button class="btn sm rl-again" data-rl="again" data-arg="" title="Roll the same thing again">Roll again</button>
         <div class="rl-break faint">${esc(rollBreakdown(r))}</div></div>
       ${follow}${applyButtons(r, total, nat)}`
-    : `<div class="rl-actions"><button class="btn primary" data-rl="roll" data-arg="" id="rlGo">Roll ${esc(r.base.length ? signed(r.base.reduce((t, b) => t + num(b.value), 0)) : '')}</button>
+    : `<div class="rl-actions"><button class="btn primary" data-rl="roll" data-arg="" id="rlGo"${r.dice.length ? '' : ' disabled title="Add dice to roll"'}>Roll ${esc(r.base.length ? signed(r.base.reduce((t, b) => t + num(b.value), 0)) : '')}</button>
         <span class="faint hint-kbd">Enter rolls · Shift-click a value to roll straight away</span></div>`}
   </div>`;
 }
@@ -1364,7 +1422,7 @@ function renderDice(focus) {
   dock.innerHTML = `${head}
     ${r ? renderRollCard(r) : `<div class="rl-card rl-empty"><p class="faint">Click a number on the sheet (skills, saves, attacks, damage…) to roll it: its bonuses, advantage and extra dice are added for you.</p>
       <div class="rl-tray" role="group" aria-label="Plain dice">${diceTray('pick', (s) => `A plain d${s} roll`)}</div>
-      <p class="faint">Or pick dice for a plain roll (a d20 can have advantage or disadvantage).</p></div>`}
+      <p class="faint">Or pick dice for a plain roll (a single die can have advantage or disadvantage).</p></div>`}
     ${log.length ? `<div class="dice-log"><div class="faint">Recent rolls${state.current ? ' for this character' : ''}</div>${log.map((x) => `<button class="log-row${r && x.id === r.id ? ' cur' : ''}" data-rl="open" data-arg="${esc(x.id)}">
       <span>${esc(x.label)}${x.amended ? ' ✎' : ''}</span><b>${rollTotal(x)}</b><span class="faint">${esc(new Date(x.at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }))}</span></button>`).join('')}</div>` : ''}`;
   document.querySelectorAll('[data-dice-toggle]').forEach((b) => { b.classList.toggle('on', rollState.open); b.setAttribute('aria-expanded', String(rollState.open)); });
@@ -1376,6 +1434,8 @@ function renderDice(focus) {
   }
   // Room under the dock, so the end of the sheet can still be scrolled into view.
   document.body.style.paddingBottom = rollState.open ? `${dock.offsetHeight + 16}px` : '';
+  // The dice themselves: drawn (or kept tumbling) on their canvases.
+  if (rollState.open && typeof Dice3D !== 'undefined') Dice3D.paint(dock);
   // Never take the focus from a box being typed in outside the dock (the tracker's Amount).
   const ae = document.activeElement;
   if (ae && /^(INPUT|TEXTAREA)$/.test(ae.tagName) && !/checkbox|radio|button|submit/.test(ae.type) && !ae.closest('#dice')) focus = false;
@@ -1450,7 +1510,7 @@ function handleRl(act, arg, el) {
     case 'pick': {
       startRoll(`dice|1d${num(arg)}`, {});
       const p = rollState.current;
-      if (p) { rollState.entering = new Set(p.dice.map((d) => d.id)); renderDice(true); rollState.entering = null; }
+      if (p) { namePlain(p); if (typeof Dice3D !== 'undefined') Dice3D.enter(p.dice.map((d) => d.id)); renderDice(true); }
       return undefined;
     }
     case 'clear': rollState.current = null; renderDice(false); return undefined;
@@ -1505,6 +1565,13 @@ document.addEventListener('click', (e) => {
   }
   if (el) { rollOpener = el; startRoll(el.dataset.roll, { now: e.shiftKey }); }
   if (e.target.closest('[data-dice-toggle]')) { rollState.open = !rollState.open; renderDice(false); }
+});
+// A die to pick, pointed at: it gives a twirl.
+document.addEventListener('mouseover', (e) => {
+  const b = e.target.closest && e.target.closest('#dice .die-pick');
+  if (!b || (e.relatedTarget && b.contains(e.relatedTarget)) || typeof Dice3D === 'undefined') return;
+  const cv = b.querySelector('canvas.die-cv');
+  if (cv) Dice3D.spin(cv.dataset.key);
 });
 document.addEventListener('mousedown', (e) => { if (e.shiftKey && e.target.closest && e.target.closest('[data-roll]')) e.preventDefault(); });
 try {
