@@ -2319,7 +2319,9 @@ function applyEffects(key, editedRaw, complete) {
   const armor = armorState(editedRaw);
   // Mods aimed at "melee weapon attacks using Strength" (Rage) go to each such weapon and unarmed strikes.
   const weaponsFor = (f) => arr(complete && complete.weapons).filter((w) => (!f.ability || w.ability === f.ability)
-    && (!f.melee || !/blaster/i.test(w.weaponClassification || '')));
+    && (!f.melee || !/blaster/i.test(w.weaponClassification || ''))
+    // Ranged: a blaster, or a "(range …)" property that isn't thrown (as the engine reads it); never the unarmed strike.
+    && (!f.ranged || (w.name !== 'Unarmed Strike' && (/blaster/i.test(w.weaponClassification || '') || arr(w.properties).some((p) => /\(range /i.test(p) && !/^thrown/i.test(String(p).trim()))))));
   const expand = (e) => {
     const plain = arr(e.mods).filter((x) => !x.weaponFilter);
     const out = [{ ...e, mods: plain }];
@@ -2631,7 +2633,14 @@ function applyEffects(key, editedRaw, complete) {
   // The unarmed strike's ability: Dexterity with finesse (a species' natural weapons, Martial Arts, Ideal of the
   // Contender), the abilities features allow (Vow of Spirit's Wisdom or Charisma), the best of them over SW5E's Strength.
   const unarmedCan = effects.filter((x) => x.unarmedFinesse).map((e) => ({ a: 'Dexterity', e, finesse: true }))
-    .concat(grants.filter((g) => g.target.unarmed || g.target.melee).flatMap((g) => g.abilities.map((a) => ({ a, e: g.e, finesse: g.finesse }))));
+    .concat(grants.filter((g) => g.target.unarmed || g.target.melee).flatMap((g) => g.abilities.map((a) => ({ a, e: g.e, finesse: g.finesse }))))
+    // An item you make unarmed strikes with: "You can use your choice of Strength or Intelligence for the attack and damage
+    // rolls" (Shock Arm).
+    .concat(effects.filter((e) => e.kind === 'item' && e.unarmedDie).flatMap((e) => {
+      const ref = catalogIndex && catalogIndex.get(e.name);
+      const x = /You can use your choice of (\w+) or (\w+)(?: modifier)? for the attack and damage rolls/i.exec(String((ref && (ref.text || ref.description)) || ''));
+      return x ? [x[1], x[2]].filter((a) => ABBR[a]).map((a) => ({ a, e })) : [];
+    }));
   if (unarmedCan.length && unarmed) {
     // From the final scores (a belt that makes Strength 21 ends the gain), not the last calculation.
     const mod = modOf;
@@ -5206,7 +5215,7 @@ function renderAttacks(m) {
     }).join('')}${specialAttacks(m).map((s) => `<tr>
       <td><div class="inv-item"><div class="inv-what"><b>${esc(s.name)}</b> <span class="chip" title="${esc(s.from)}">special attack</span><div class="m-props">${esc(s.props)}</div></div></div></td>
       <td class="num"><b>${rollable(`pattack|${s.name}|${s.attack}`, signed(s.attack), `Roll ${s.name}'s attack`)}</b></td>
-      <td>${rollable(`dice|${s.dice}${s.bonus ? signed(s.bonus) : ''}`, esc(`${s.dice}${s.bonus ? signed(s.bonus) : ''} ${titleCase(s.type)}`), `Roll ${s.name}'s damage`)}</td>
+      <td>${rollable(`dice|${s.dice}${s.bonus ? signed(s.bonus) : ''}|${s.name} damage|${s.type}`, esc(`${s.dice}${s.bonus ? signed(s.bonus) : ''} ${titleCase(s.type)}`), `Roll ${s.name}'s damage`)}</td>
       <td class="muted col-ability">${esc(s.ability)}</td><td class="muted col-type">${esc(titleCase(s.kind))}</td><td class="col-props"><span class="faint">${esc(s.props)}</span></td></tr>`).join('')}</tbody>
   </table></div>
   ${ws.some((w) => w.description) ? `<h3>Weapon notes</h3><div class="grid cards">${ws.filter((w) => w.description).map((w) => card({ title: w.name, body: md(w.description) })).join('')}</div>` : ''}`;

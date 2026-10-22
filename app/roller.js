@@ -726,7 +726,9 @@ function buildRoll(m, spec, opts = {}) {
     case 'dice': {
       const p = parseDice(a1);
       if (!p) return null;
-      return { kind: 'dice', label: a1, spec, diceSpec: p.dice.map((d) => d.sides * d.sign), base: p.mod ? [{ label: 'modifier', value: p.mod }] : [], conds: [] };
+      // dice|1d6+3|Ichor Lightning damage|necrotic: a named roll (a feature's special attack), with its damage type.
+      return { kind: 'dice', label: a2 || a1, spec, diceSpec: p.dice.map((d) => d.sides * d.sign), base: p.mod ? [{ label: a2 ? 'ability modifier' : 'modifier', value: p.mod }] : [], conds: [],
+        ...(a3 ? { damageType: titleCase(a3), minTotal: 0 } : {}) };
     }
     default: return null;
   }

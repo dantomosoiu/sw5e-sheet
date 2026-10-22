@@ -122,9 +122,10 @@ function fxBonusMods(n, phrase, ctx) {
     // "a +3 bonus to attack rolls and deal an additional 1d10 damage with this enhanced weapon": the dice on every hit.
     if (m[3]) { add('weapon.toHit', 'Attack'); ctx.target = 'weapon'; } else add('unarmed.toHit', 'Unarmed attack');
     mods.push({ path: m[3] ? 'weapon.extraDice' : 'unarmed.extraDice', dice: m[1], label: `Damage +${m[1]}` });
-  } else if (/^damage rolls of melee weapon attacks$/.test(p)) {
-    // "+1 bonus to the damage rolls of melee weapon attacks" (Strength Adrenal): each melee weapon and unarmed strikes.
-    mods.push({ path: 'weapon.damage', bonus: n, weaponFilter: { melee: true }, label: `Melee weapon damage ${signedLabel(n)}` });
+  } else if ((m = /^damage rolls of (melee|ranged) weapon attacks$/.exec(p))) {
+    // "+1 bonus to the damage rolls of melee weapon attacks" (Strength Adrenal): each melee weapon and unarmed strikes;
+    // "… of ranged weapon attacks" (the Alacrity Adrenal): each ranged weapon.
+    mods.push({ path: 'weapon.damage', bonus: n, weaponFilter: { [m[1]]: true }, label: `${m[1] === 'melee' ? 'Melee' : 'Ranged'} weapon damage ${signedLabel(n)}` });
   } else if ((m = /^damage rolls (?:made )?with weapons(?: and (force|tech) powers)?$/.exec(p))) {
     add('weapon.damage', 'Weapon damage');
     add('unarmed.damage', 'Unarmed damage');
