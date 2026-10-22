@@ -51,6 +51,7 @@ const fxNum = (w) => (/^\d+$/.test(w) ? Number(w) : FX_NUM[String(w).toLowerCase
 const fxAbility = (w) => FX_ABILITIES.find((a) => a.toLowerCase() === String(w).toLowerCase());
 const ABIL_RE = '(Strength|Dexterity|Constitution|Intelligence|Wisdom|Charisma)';
 const SKILL_RE = '(' + Object.keys(FX_SKILLS).join('|') + ')';
+const arr0 = (v) => (Array.isArray(v) ? v : []);
 const signedLabel = (n) => (n >= 0 ? '+' + n : '−' + Math.abs(n));
 
 // Clauses that only say when an item works ("while wearing this armor"): its activation, not a condition.
@@ -121,6 +122,9 @@ function fxBonusMods(n, phrase, ctx) {
     // "a +3 bonus to attack rolls and deal an additional 1d10 damage with this enhanced weapon": the dice on every hit.
     if (m[3]) { add('weapon.toHit', 'Attack'); ctx.target = 'weapon'; } else add('unarmed.toHit', 'Unarmed attack');
     mods.push({ path: m[3] ? 'weapon.extraDice' : 'unarmed.extraDice', dice: m[1], label: `Damage +${m[1]}` });
+  } else if (/^damage rolls of melee weapon attacks$/.test(p)) {
+    // "+1 bonus to the damage rolls of melee weapon attacks" (Strength Adrenal): each melee weapon and unarmed strikes.
+    mods.push({ path: 'weapon.damage', bonus: n, weaponFilter: { melee: true }, label: `Melee weapon damage ${signedLabel(n)}` });
   } else if ((m = /^damage rolls (?:made )?with weapons(?: and (force|tech) powers)?$/.exec(p))) {
     add('weapon.damage', 'Weapon damage');
     add('unarmed.damage', 'Unarmed damage');
@@ -223,6 +227,10 @@ function parseItemEffect(item) {
   let darkvisionPlus = 0;
   let m;
   let options = false; // after "choose from the following": modes to pick from, not always on
+  // Modes to switch on ("You can choose from the following types of adrenals: - **Strength Adrenal:** …", Automated
+  // Adrenal Package): each one started as a temporary effect from the item (viewer: fx-mode).
+  const modeList = /\bchoose from the following[^\n]*\n(?:\s*_{3,}\s*\n)?((?:\s*- \*\*[^*]+?:?\*\*:?[^\n]*\n?)+)/i.exec(String(text).replace(/\r\n?/g, '\n'));
+  const modes = modeList && !isConsumable ? [...modeList[1].matchAll(/- \*\*([^*:]+):?\*\*:?\s*([^\n]*)/g)].map((x) => ({ name: x[1].trim(), text: x[2].trim() })) : [];
   let requires = null; // a set bonus's other pieces ("While wearing and attuned to this armor and Jensaarai Cloak, …")
   let freeAttune = null;
   for (const raw of fxSentences(text)) {
@@ -306,6 +314,28 @@ function parseItemEffect(item) {
       ctx.keen = { ...(ctx.keen || {}), ...(m[3] ? { to: Number(m[3]) } : { by: Number(m[1]), max: Number(m[2]) }) };
       continue;
     }
+    // Other properties a modification gives that change a number or a roll: smart (15, +2) (the weapon's Dexterity and
+    // proficiency bonus instead of yours), versatile (1d10), brutal 1 (extra dice on a critical), vicious 3, the armor's
+    // absorptive / avoidant / reactive N and lightweight, and the strength number lowered ("reduced by one step") or
+    // removed. Worked out on the weapon or the armor worn, from its own properties (itemEffects).
+    if ((m = /\bthis (weapon|armor|armor or shield|clothing|item) gains the (smart|versatile|brutal|vicious|absorptive|avoidant|reactive|lightweight)(?: \(([^)]*)\)| (\d+))?(?: armor)? property/i.exec(s))) {
+      const name = m[2].toLowerCase();
+      const v = m[3] || m[4] || '';
+      ctx.props = (ctx.props || []).concat({ name, value: name === 'smart' ? v.split(/,\s*/).map((x) => Number(x.replace('+', ''))) : /^\d+$/.test(v) ? Number(v) : v || true });
+      if (/weapon/i.test(m[1])) ctx.target = 'weapon';
+      continue;
+    }
+    if ((m = /^if it already has the (smart|versatile|brutal|vicious|absorptive|avoidant|reactive)(?: armor)? property, (?:its|the) [a-z]+ (?:number|numbers|damage|property) increases? (?:by (\+?\d+|one|two|three)(?: steps?)?(?: and \+?\d+)?(?:, respectively)?(?:, to a maximum of (\d+))?|to (\d+))/i.exec(s))) {
+      const p = arr0(ctx.props).find((x) => x.name === m[1].toLowerCase());
+      if (p) Object.assign(p, m[4] ? { to: Number(m[4]) } : { by: fxNum(String(m[2]).replace('+', '')), max: m[3] ? Number(m[3]) : null });
+      continue;
+    }
+    if ((m = /\bthis (weapon|armor or shield)'s strength number is reduced by (\w+) steps?\b|\bthis (weapon|armor|armor or shield) loses the strength property\b/i.exec(s))) {
+      ctx.props = (ctx.props || []).concat({ name: 'strength', down: m[2] ? fxNum(m[2]) : 99 });
+      if (/weapon/i.test(m[1] || m[3])) ctx.target = 'weapon';
+      continue;
+    }
+    if (/^if the strength number is \d+(?: or lower)?, this modification removes the strength property/i.test(s)) continue;
     // Finesse ("you use your choice of your Strength or Dexterity modifier for the attack and damage rolls"), and a
     // blaster's mighty (the same): the better one, worked out on the weapon (itemEffects, fxResolve).
     if ((m = /\bthis weapon gains the (finesse|mighty) property\b/i.exec(s))) {
@@ -327,6 +357,11 @@ function parseItemEffect(item) {
         mods.push({ path, bonus: 0, profSteps: steps, label: `${sk || `${FX_ABBR[fxAbility(sv[1])]} saves`}: ${m[3] ? 'grand mastery' : `+${steps} proficiency step${steps === 1 ? '' : 's'}`}` });
         continue;
       }
+      // "these tools" (Tool (Basic…Champion)): the tool the player says it is (itemEffects, picked on the item).
+      if (/^these tools$/i.test(what)) {
+        ctx.toolSteps = steps;
+        continue;
+      }
     }
     // "…you can add half your proficiency bonus (rounded down) to any Intelligence check you make that doesn't already
     // include your proficiency bonus" (Intuitive Facial Prosthesis): its skills without proficiency (fxResolve), and
@@ -337,10 +372,25 @@ function parseItemEffect(item) {
       for (const sk of Object.keys(FX_SKILLS).filter((k) => FX_SKILLS[k] === a)) mods.push({ path: `abilityScores.${a}.skills.${sk}`, bonus: 0, halfProf: true, label: `${sk}: half proficiency` });
     }
     // "Your unarmed strikes with this arm deal 1d4 ion damage" (Iridonian Grav-lev Arm): the unarmed die, as a species'
-    // natural weapons give it (the strike's damage type stays SW5E's: the note says which).
+    // natural weapons give it, and its damage type (weaponDamageType).
     if ((m = /\byour unarmed strikes(?: with this \w+)? deal (\d+)d(\d+) (\w+) damage/i.exec(s))) {
       ctx.unarmedDie = Number(m[2]);
-      ctx.notes.push(`Unarmed strikes${/with this/i.test(m[0]) ? ' with it' : ''}: ${m[1]}d${m[2]} ${m[3].toLowerCase()} damage.`);
+      ctx.unarmedType = m[3].toLowerCase();
+    }
+    // "…a small integrated droid shock arm with which you can make unarmed strikes. … deals 1d6 lightning damage on a hit"
+    // (Shock Arm): the unarmed die and type (its reach and "Strength or Intelligence" stay in the note).
+    if (/\bwith which you can make unarmed strikes\b/i.test(text) && (m = /\bdeals (\d+)d(\d+) (\w+) damage on a hit/i.exec(s))) {
+      ctx.unarmedDie = Number(m[2]);
+      ctx.unarmedType = m[3].toLowerCase();
+      notes.push(raw);
+      continue;
+    }
+    // A spice's high: "increases their current and maximum tech points by 2d4" (Muon Gold; Spicebrew: force points):
+    // rolled when it's used (makeEffect), the maximum goes up by the roll and the current with it.
+    if ((m = /\bincreases their current and maximum (tech|force) points by (\d*d\d+)/i.exec(s))) {
+      const k = m[1].toLowerCase();
+      mods.push({ path: `${k}Casting.maxPoints`, bonus: 0, rollBonus: m[2], label: `${k === 'tech' ? 'Tech' : 'Force'} points +${m[2]}` });
+      used = true;
     }
     // "One ability score other than Charisma (chosen by the GM) decreases by 1" (enhancements, augments, packages): the
     // GM's pick is asked for (itemEffects reads it from the item's note).
@@ -372,6 +422,13 @@ function parseItemEffect(item) {
         notes.push(raw);
         continue;
       }
+    }
+    // "When you make an ability check using a skill you are proficient in, you can roll a d4 and add the result to your
+    // total. Side Effect: … not proficient in, you must roll a d4 and subtract the result" (Skills Enhancement Package):
+    // offered (and, for the side effect, ticked) on skill checks.
+    if ((m = /\bability check using a skill you are (not )?proficient in, you (can|must) roll an? (d\d+) and (add|subtract) the result/i.exec(s))) {
+      riders.push({ on: [m[1] ? 'skill:unproficient' : 'skill:proficient'], dice: `${m[4] === 'subtract' ? '-' : ''}1${m[3]}`, optional: m[2] === 'can', why: m[1] ? 'side effect: not proficient' : 'proficient skill' });
+      used = true;
     }
     // Extra dice a weapon deals only sometimes: "Once per turn when you hit … you can expend a charge to have the weapon
     // deal an additional 1d8 kinetic damage" (Hewey), "on a hit, if the target is wearing heavy armor, it deals an
@@ -460,7 +517,9 @@ function parseItemEffect(item) {
       // "…with this enhanced weapon, and when you hit a creature… takes an extra 1d4" (Torchy) / "…with this weapon,
       // when you attack a creature with it, the creature can't take reactions" (Ghostfire Crystal): the bonus is
       // unconditional, what follows is another effect.
-      cm[4] = cm[4].replace(/,\s+(?:and\s+)?when you (?:hit|attack) a creature\b.*$/i, '');
+      cm[4] = cm[4].replace(/,\s+(?:and\s+)?when you (?:hit|attack) a creature\b.*$/i, '')
+        // "…to the damage rolls of melee weapon attacks, and your carrying capacity … doubles": another effect.
+        .replace(/,\s+and\s+(?:your|you)\b.*$/i, '');
       // "…with this enhanced shoulder cannon, which has the smart (18, +4) property": what the weapon is like.
       if (ctx.weaponItem && !isConsumable) cm[4] = cm[4].replace(/,\s+which\b.*$/i, '');
       const phrase = cm[4].replace(/\s*\(.*$/, (x) => (/^\s*\((?:strength|dexterity|constitution|intelligence|wisdom|charisma)\)?/i.test(x) ? x : '')).trim();
@@ -485,12 +544,13 @@ function parseItemEffect(item) {
   notes.push(...ctx.notes);
   // Ammunition's bonuses apply while it's carried (and fired); other consumables' when used.
   const activation = ctx.ammo ? 'carry' : isConsumable ? 'use' : item.requiresAttunement ? 'attune' : 'equip';
-  if (!mods.length && !notes.length && !riders.length && !darkvisionPlus && !ctx.keen && !freeAttune && !(isConsumable && duration)) return null;
+  if (!mods.length && !notes.length && !riders.length && !darkvisionPlus && !ctx.keen && !freeAttune && !ctx.unarmedDie && !ctx.toolSteps && !ctx.props && !modes.length && !(isConsumable && duration)) return null;
   return {
     mods, notes, target: ctx.target, weaponKind: ctx.weaponKind || null, duration, group, activation,
     heals: /regains? [^.]*hit points|temporary hit points/i.test(text),
     ...(riders.length ? { riders } : {}), ...(darkvisionPlus ? { darkvisionPlus } : {}), ...(ctx.keen ? { keen: ctx.keen } : {}),
-    ...(ctx.halfProfChecks ? { halfProfChecks: ctx.halfProfChecks } : {}), ...(ctx.unarmedDie ? { unarmedDie: ctx.unarmedDie } : {}),
+    ...(ctx.halfProfChecks ? { halfProfChecks: ctx.halfProfChecks } : {}), ...(ctx.unarmedDie ? { unarmedDie: ctx.unarmedDie, unarmedType: ctx.unarmedType } : {}),
+    ...(ctx.toolSteps ? { toolSteps: ctx.toolSteps } : {}), ...(ctx.props ? { props: ctx.props } : {}), ...(modes.length ? { modes } : {}),
     ...(freeAttune ? { freeAttune } : {}), ...(ctx.sideEffect ? { sideEffect: ctx.sideEffect } : {}), ...(ctx.classBoosts ? { classBoosts: ctx.classBoosts } : {}),
   };
 }

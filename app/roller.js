@@ -43,7 +43,8 @@ function condDice(roll, cd) {
   const out = [];
   for (const e of cd.extra) {
     for (const d of (parseDice(e) || { dice: [] }).dice) {
-      out.push(newDie(d.sides, `cond:${cd.label}`, roll.rolled));
+      // ("−1d4": a die taken off, a side effect's.)
+      out.push(d.sign < 0 ? { ...newDie(d.sides, `cond:${cd.label}`, roll.rolled), sign: -1 } : newDie(d.sides, `cond:${cd.label}`, roll.rolled));
       if (roll.crit && !cd.noDouble) out.push(critDie(d.sides, `cond:${cd.label}`, roll.rolled));
     }
   }
@@ -575,7 +576,7 @@ function buildRoll(m, spec, opts = {}) {
       // unless a keen modification on it already counts it (its effect's critRange is the weapon's keen number).
       const keen = wider.some((e) => e.keen) ? 0 : num((/\bkeen (\d+)/i.exec(propsText(w.properties)) || [])[1]);
       const add = wider.reduce((t, e) => t + num(e.critRange), 0) + keen;
-      const vers = /\bversatile \((\d*d\d+)\)/i.exec(propsText(w.properties));
+      const vers = /\bversatile \((\d*d\d+)\)/i.exec(propsText(typeof weaponProps === 'function' ? weaponProps(m, w) : w.properties));
       const atk = d20(`${w.name} attack`, num(w.attackBonus), `weapons.${a1}.attackBonus`, {
         next: { spec: `damage|${a1}`, two: vers ? vers[1].replace(/^d/, '1d') : null }, critMin: Math.max(2, 20 - add),
         critFrom: wider.map((e) => e.name).concat(keen ? [`keen ${keen}`] : []).join(' + '),
@@ -589,7 +590,9 @@ function buildRoll(m, spec, opts = {}) {
     }
     case 'damage': { // damage|weapon|crit?|two? (two: the versatile weapon held in two hands)
       const w = arr(c.weapons)[a1] || {};
-      const vers = a3 === 'two' && /\bversatile \((\d*)d(\d+)\)/i.exec(propsText(w.properties));
+      // The weapon's properties with its modifications' (a Versatile Frame's versatile (1d10), a Brutal Cell's brutal 1).
+      const props = propsText(typeof weaponProps === 'function' ? weaponProps(m, w) : w.properties);
+      const vers = a3 === 'two' && /\bversatile \((\d*)d(\d+)\)/i.exec(props);
       const n = vers ? (num(vers[1]) || 1) : num(w.damageNumberOfDice);
       const die = vers ? num(vers[2]) : num(w.damageDieType);
       const crit = a2 === 'crit';
@@ -616,11 +619,15 @@ function buildRoll(m, spec, opts = {}) {
         // unarmed strike's "1 + your Strength modifier" is already in it (as the weapons table shows it).
         base: typeof damageParts === 'function' ? damageParts(m, w) : [{ label: 'damage bonus', value: num(w.damageBonus) + num(w.damageDieModifier) }],
         conds,
-        damageType: w.damageType && w.damageType !== 'Unknown' ? w.damageType : '',
+        damageType: typeof weaponDamageType === 'function' ? weaponDamageType(m, w) : w.damageType && w.damageType !== 'Unknown' ? w.damageType : '',
         minTotal: 0, // a penalty can't make damage negative
         dmgAdv,
         // What the weapon's modifications do when it deals damage (Celerity Oscillator); the dice items add.
-        notes: (typeof modHitNotes === 'function' ? modHitNotes(m, w) : []).concat(more.map((x) => `${x.from}: +${x.dice}${x.type ? ` ${x.type}` : ''} damage (rolled)`)),
+        notes: (typeof modHitNotes === 'function' ? modHitNotes(m, w) : []).concat(more.map((x) => `${x.from}: +${x.dice}${x.type ? ` ${x.type}` : ''} damage (rolled)`),
+          /\bvicious (\d+)/i.test(props) ? [`Vicious ${/\bvicious (\d+)/i.exec(props)[1]}: +${/\bvicious (\d+)/i.exec(props)[1]} damage when a weapon die rolls its maximum`] : []),
+        // Brutal N: "When you score a critical hit…, you roll a number of additional weapon damage dice equal to the
+        // brutal number" (rolled once, not doubled).
+        critExtra: crit && die > 0 ? Array.from({ length: num((/\bbrutal (\d+)/i.exec(props) || [])[1]) }, () => die) : [],
       };
     }
     case 'tech': {
@@ -710,7 +717,8 @@ function startRoll(spec, opts = {}) {
     mode: 'normal', custom: 0, rolled: false, at: null, ...r,
     dice: r.kind === 'd20' ? [newDie(20, 'd20', false)] : arr(r.diceSpec).map((s) => ({ ...newDie(Math.abs(s), 'base', false), sign: s < 0 ? -1 : 1 })),
   };
-  if (roll.crit) roll.dice = roll.dice.concat(roll.dice.map((d) => critDie(d.sides, d.tag, false)));
+  if (roll.crit) roll.dice = roll.dice.concat(roll.dice.map((d) => critDie(d.sides, d.tag, false)), arr(r.critExtra).map((s) => critDie(s, 'base', false)));
+  delete roll.critExtra;
   delete roll.diceSpec;
   // Advantage from features (Feral Impulse: initiative) and active states (Rage: Strength checks
   // and saves), unless chosen otherwise.
@@ -747,15 +755,19 @@ function startRoll(spec, opts = {}) {
   // damage): ticked; one that's used once (Guidance) ends its power when the roll is made with it.
   if (snap && (roll.kind === 'd20' || /^damage\|/.test(spec))) {
     // (An attack also counts as "an attack roll using" its weapon's ability: a spice's high.)
+    const [sk, sa, si] = spec.split('|');
+    const skillProf = sk === 'skill' ? (arr(((m.c.abilityScores || {})[sa] || {}).skills)[si] || {}).proficiency : null;
     const kinds = /^damage\|/.test(spec) ? ['weapon-damage'] : plRollKinds(spec)
-      .concat(/^attack\|/.test(spec) ? [`attack:${(arr(m.c.weapons)[spec.split('|')[1]] || {}).ability}`] : []);
+      .concat(/^attack\|/.test(spec) ? [`attack:${(arr(m.c.weapons)[spec.split('|')[1]] || {}).ability}`] : [])
+      // A skill check with or without proficiency (Skills Enhancement Package).
+      .concat(skillProf != null ? [skillProf && skillProf !== 'none' ? 'skill:proficient' : 'skill:unproficient'] : []);
     // A weapon's own sometimes-dice (Hewey's charge, Charric vs heavy armor): offered on its damage, not ticked.
     const wIndex = /^damage\|/.test(spec) ? (arr(m.c.weapons)[spec.split('|')[1]] || {}).index : null;
     for (const e of tempEffects(snap.key).concat(arr(m.effects).filter((x) => x.kind === 'item' && x.active && x.riders))) {
       for (const rd of arr(e.riders)) {
         if (!rd.on.some((o) => kinds.includes(o))) continue;
         if (rd.weapon && (e.weaponIndex == null || e.weaponIndex !== wIndex)) continue;
-        const label = `${String(e.power || e.name).replace(/ \(concentration\)$/, '')} +${rd.dice}${rd.why ? ` (${rd.why})` : ''}`;
+        const label = `${String(e.power || e.name).replace(/ \(concentration\)$/, '')} ${/^-/.test(rd.dice) ? `−${rd.dice.slice(1)}` : `+${rd.dice}`}${rd.why ? ` (${rd.why})` : ''}`;
         if (roll.conds.some((c) => c.label === label)) continue;
         roll.conds.push({ label, bonus: 0, extra: [rd.dice], on: false, consume: rd.once ? e.id : null });
         if (!rd.optional) opts.conds = arr(opts.conds).concat(label);
