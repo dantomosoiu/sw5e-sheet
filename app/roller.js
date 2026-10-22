@@ -170,6 +170,13 @@ function riderTexts(m) {
   const out = [];
   const seen = new Set();
   const list = arr(m.allFeatures).concat(typeof bdSpeciesTraitFeatures === 'function' && m.raw ? bdSpeciesTraitFeatures(m) : [], typeof slotPickFeatures === 'function' && m.raw ? slotPickFeatures(m) : []);
+  // Picked class options (Guardian Auras, Scout Routines, Scholar Discoveries).
+  if (typeof classChoiceInfo === 'function' && state.rules && m.raw) {
+    for (const k of arr(m.raw.classes)) {
+      const info = classChoiceInfo(m, k);
+      for (const l of (info ? info.lists : [])) for (const p of l.chosen) { const o = l.options.find((x) => x.name === p.name); if (o) list.push({ name: o.name, text: o.text || '' }); }
+    }
+  }
   for (const f of list) {
     const text = String(f.text || f.description || '').replace(/\s+/g, ' ').trim();
     const key = `${f.name}|${text.slice(0, 80)}`;
@@ -178,6 +185,48 @@ function riderTexts(m) {
     out.push({ name: f.slotKind && f.sourceName ? `${f.name} (${String(f.sourceName).toLowerCase()})` : f.name, text });
   }
   return out;
+}
+/**
+ * Bonuses the player may add to a d20 roll, read from the features' text and offered unticked (kind 'save', 'init',
+ * 'attack', or 'damage' for the same sentence's damage half):
+ * - saves: "When you make a saving throw caused by an effect you can see, you may gain a bonus to the saving throw equal
+ *   to your Intelligence modifier" (Calm and Collected), "… to resist charm and fear effects, you may add your
+ *   Intelligence modifier to the roll" (Resolute), "you can spend 2 force points to add your Wisdom or Charisma modifier
+ *   (your choice, minimum of one) to the saving throw" (Enlightened Evasion), "roll a d8 and add the die to a saving
+ *   throw you make" (Brutish Durability);
+ * - initiative: "When you roll initiative, you can choose to add your proficiency bonus to the initiative check";
+ * - attacks: "a bonus to the first weapon attack roll you make … equal to your Intelligence modifier" (Sharpshooter's
+ *   Routine), "you can add your Intelligence modifier to the attack roll or the damage roll of an attack you make" (Foe
+ *   Slayer).
+ * Not what helps allies ("you or a friendly creature": auras).
+ */
+function d20Options(m, kind) {
+  const out = [];
+  const pb = num((m.c || {}).proficiencyBonus);
+  const mod = (list) => Math.max(...list.map((a) => num((((m.c.abilityScores || {})[a]) || {}).modifier)));
+  const abil = (s) => String(s).split(/ or /).filter((a) => ABBR[a]);
+  for (const t of riderTexts(m)) {
+    for (const s0 of t.text.split(/(?<=\.)\s+(?=[-A-Z_*#])/)) {
+      const s = s0.replace(/^#+\s*[A-Z][\w'’ -]+?\s+(?=When|Whenever|Once|You|If|Your|As|At|Additionally)/, '').replace(/^[-#*_ ]+/, '');
+      if (/friendly creature|\ban ally\b|\ballies\b/i.test(s)) continue;
+      const label = headingOf(s0) || t.name;
+      const spend = (/\bspend (\d+) force points?\b/i.exec(s) || [])[1];
+      let x;
+      if (kind === 'save') {
+        if ((x = /\byou (?:may|can)(?: spend \d+ force points? to)? (?:gain a bonus to the saving throw equal to|add) your ((?:Strength|Dexterity|Constitution|Intelligence|Wisdom|Charisma)(?: or (?:Strength|Dexterity|Constitution|Intelligence|Wisdom|Charisma))?) modifier( \((?:your choice, )?minimum of (?:one|\+?1)\))?(?: to the (?:roll|saving throw))?/i.exec(s)) && /saving throw/i.test(s)) {
+          const cond = (/^When you make a saving throw ((?:caused by|to resist|against)[^,]+),/i.exec(s) || [])[1];
+          const b = x[2] ? Math.max(1, mod(abil(x[1]))) : mod(abil(x[1]));
+          if (b) out.push({ label: `${cond ? `${cond}: ` : ''}${label}${spend ? ` (${spend} force points)` : ''}`, bonus: b, extra: [], on: false, ...(spend ? { spend: { op: 'force', arg: spend, what: `${spend} force points` } } : {}) });
+        } else if ((x = /\broll an? (d\d+) and add the die to a saving throw you make/i.exec(s))) out.push({ label, bonus: 0, extra: [`1${x[1]}`], on: false });
+      } else if (kind === 'init') {
+        if (/When you roll initiative, you can choose to add your proficiency bonus to the initiative check/i.test(s)) out.push({ label, bonus: pb, extra: [], on: false });
+      } else if (kind === 'attack' || kind === 'damage') {
+        if (kind === 'attack' && (x = /a bonus to the first weapon attack roll you make[^.]*? equal to your (\w+) modifier/i.exec(s)) && ABBR[x[1]]) out.push({ label, bonus: mod([x[1]]), extra: [], on: false });
+        else if ((x = /you can add your (\w+) modifier to the attack roll or the damage roll of an attack you make/i.exec(s)) && ABBR[x[1]]) out.push({ label, bonus: mod([x[1]]), extra: [], on: false });
+      }
+    }
+  }
+  return out.filter((r, i) => r.bonus || r.extra.length).filter((r, i, all) => all.findIndex((y) => y.label === r.label) === i);
 }
 /** The class level behind a feature's "_**Berserker:** 9th, 13th, and 17th level_" (a class or archetype name). */
 function ownerLevel(m, owner) {
@@ -387,7 +436,11 @@ function buildRoll(m, spec, opts = {}) {
       if (half && Math.floor(pb / 2)) r.base.push({ label: `half proficiency (${half.name})`, value: Math.floor(pb / 2) });
       return r;
     }
-    case 'save': return d20(`${a1} saving throw`, num(((sc[a1] || {}).savingThrow || {}).modifier), `abilityScores.${a1}.savingThrow.modifier`);
+    case 'save': {
+      const r = d20(`${a1} saving throw`, num(((sc[a1] || {}).savingThrow || {}).modifier), `abilityScores.${a1}.savingThrow.modifier`);
+      r.conds.push(...d20Options(m, 'save'));
+      return r;
+    }
     case 'skill': {
       const k = arr((sc[a1] || {}).skills)[a2] || {};
       const r = d20(`${k.name} (${ABBR[a1]})`, num(k.modifier), `abilityScores.${a1}.skills.${a2}.modifier`);
@@ -413,7 +466,11 @@ function buildRoll(m, spec, opts = {}) {
       }
       return r;
     }
-    case 'init': return d20('Initiative', num(c.initiative), 'initiative');
+    case 'init': {
+      const r = d20('Initiative', num(c.initiative), 'initiative');
+      r.conds.push(...d20Options(m, 'init'));
+      return r;
+    }
     case 'tool': {
       const level = a2 || 'proficient';
       const ability = opts.ability || a3 || 'Intelligence';
@@ -434,7 +491,7 @@ function buildRoll(m, spec, opts = {}) {
       const atk = d20(`${w.name} attack`, num(w.attackBonus), `weapons.${a1}.attackBonus`, {
         next: { spec: `damage|${a1}`, two: vers ? vers[1].replace(/^d/, '1d') : null }, critMin: Math.max(2, 20 - add), critFrom: wider.map((e) => e.name).join(' + '),
       });
-      atk.conds.push(...resourceConds(m, 'attack', w));
+      atk.conds.push(...resourceConds(m, 'attack', w), ...d20Options(m, 'attack'));
       // A two-handed weapon with a shield equipped (W-149): say so before the roll.
       const hc = typeof handsConflict === 'function' && m.raw ? handsConflict(m.raw) : null;
       const ent = w.index >= 0 ? arr(m.raw && m.raw.equipment)[w.index] : null;
@@ -449,7 +506,7 @@ function buildRoll(m, spec, opts = {}) {
       const crit = a2 === 'crit';
       // Damage riders from the features' text, for this weapon (Sneak Attack on finesse or ranged weapons, Rage Damage on
       // melee Strength attacks, Ranger's Quarry, critical-hit dice…): weaponRiders.
-      const conds = condsAt(`weapons.${a1}.damageBonus`).concat(weaponRiders(m, w, crit, die), resourceConds(m, 'damage', w));
+      const conds = condsAt(`weapons.${a1}.damageBonus`).concat(weaponRiders(m, w, crit, die), resourceConds(m, 'damage', w), d20Options(m, 'damage'));
       // Weapon Expert: "You gain proficiency with all blasters. If you are already proficient with all blasters, instead
       // once per turn when you would roll weapon damage using a blaster, you can choose to have advantage." Already: by
       // the class, species or another feature (all of the kind, or its simple and martial ones), or the feat taken twice.
