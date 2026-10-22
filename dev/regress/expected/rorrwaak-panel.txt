@@ -171,8 +171,10 @@ effect: Predator's Instinct · feature
 effect: Brawny · feature
 effect: Brawny · feature
 effect: Claws · feature
+effect: Darkvision · feature
 effect: Hide · feature
 effect: Menacing · feature
+effect: Treeclimber · feature
 effect: Weapon (Fine) · item
 tweak: abilityScores.Strength.skills.Athletics +0 {"proficiency":"Expertise"} · Berserker class skill + Brawny feat (already proficient, so expertise)
 tweak: abilityScores.Wisdom.skills.Perception +0 {"proficiency":"Proficient"} · Berserker class skill (chosen at 1st level)
@@ -182,7 +184,7 @@ tweak: abilityScores.Intelligence.skills.Piloting +0 {"proficiency":"Proficient"
 tweak: unarmed.damageDice +0 {"override":4,"dieSize":4} · Wookiee Claws: unarmed strikes deal 1d4 (not applied by SW5E)
 tweak: speed.base +10 · Predator's Instinct
 tweak: abilityScores.Strength.score +1 · Brawny
-tweak: abilityScores.Strength.skills.Athletics +0 {"proficiency":"Proficient"} · Brawny
+tweak: abilityScores.Strength.skills.Athletics +0 {"proficiency":"Expertise"} · Brawny
 tweak: armorClass +3 · Hide
 tweak: abilityScores.Charisma.skills.Intimidation +0 {"proficiency":"Proficient"} · Menacing
 weapon tweak: #0 toHit +1 · Weapon (Fine)
@@ -282,16 +284,18 @@ Advantages Advantage on Dexterity saving throws against effects that you can see
 Senses Darkvision 60 ft
 Speeds Climbing speed 30 ft
 Effects
-From class features, feats and species traits (9)
+From class features, feats and species traits (11)
 Berserker weapon proficiencies Proficient: All vibroweapons Proficient: simple blasters Berserker proficiencies
 Unarmored Defense AC + CON Berserker feature
 Danger Sense Advantage on Dexterity saving throws against effects that you can see, such as traps and powers Berserker feature
 Predator's Instinct Speed +10 ft Berserker Instincts feature
 Brawny STR +1 feat (background feat)
-Brawny Athletics: proficient feat
+Brawny Athletics: expertise (already proficient) feat
 Claws Wookiee trait
-Hide AC 13 + DEX (Hide) Wookiee trait
+Darkvision Darkvision 60 ft Wookiee trait
+Hide AC 13 + DEX (Hide) Advantage on Constitution saving throws made to avoid exhaustion due to extreme cold Wookiee trait
 Menacing Intimidation: proficient Wookiee trait
+Treeclimber Climbing speed 30 ft Advantage on Strength saving throws and Strength (Athletics) checks that involve climbing Wookiee trait
 From equipment
 Weapon (Fine) Attack +1 Damage +1 on [Vibroaxe ▾] while equipped
 Temporary
@@ -330,7 +334,7 @@ Strength
 (Proficient) Saving throw+7
   ↳ hover abilityScores.Strength.savingThrow.modifier: Without tweaks or effects: 6 → now 7 / +1 STR · Brawny feat (background feat)
 (Expertise) Athletics+9
-  ↳ hover abilityScores.Strength.skills.0.modifier: Without tweaks or effects: 4 → now 9 / +1 STR · Brawny feat (background feat) / Expertise Athletics · Berserker … [300 chars #d91fa75b]
+  ↳ hover abilityScores.Strength.skills.0.modifier: Without tweaks or effects: 4 → now 9 / +1 STR · Brawny feat (background feat) / Expertise Athletics · Berserker … [319 chars #aa73cf74]
 base 15 · +2 Wookiee · +2 ASI (Berserker 4) · +1 from Brawny (feat)
 DEX
 Dexterity
@@ -390,8 +394,8 @@ Skill | Ability | Bonus | Passive | Proficiency |
 (Not proficient) Acrobatics | DEX | +1 | 11 | — |
 (Not proficient) Animal Handling | WIS | +1 | 11 | — |
 (Expertise) Athletics | STR | +9 | 19 | Expertise |
-  ↳ hover abilityScores.Strength.skills.0.modifier: Without tweaks or effects: 4 → now 9 / +1 STR · Brawny feat (background feat) / Expertise Athletics · Berserker … [300 chars #d91fa75b]
-  ↳ hover abilityScores.Strength.skills.0.modifier: Without tweaks or effects: 4 → now 9 / +1 STR · Brawny feat (background feat) / Expertise Athletics · Berserker … [300 chars #d91fa75b]
+  ↳ hover abilityScores.Strength.skills.0.modifier: Without tweaks or effects: 4 → now 9 / +1 STR · Brawny feat (background feat) / Expertise Athletics · Berserker … [319 chars #aa73cf74]
+  ↳ hover abilityScores.Strength.skills.0.modifier: Without tweaks or effects: 4 → now 9 / +1 STR · Brawny feat (background feat) / Expertise Athletics · Berserker … [319 chars #aa73cf74]
 (Not proficient) Deception | CHA | +0 | 10 | — |
 (Not proficient) Insight | WIS | +1 | 11 | — |
 (Proficient) Intimidation | CHA | +2 | 12 | Proficient |
@@ -403,7 +407,7 @@ Skill | Ability | Bonus | Passive | Proficiency |
 (Not proficient) Nature | INT | −1 | 9 | — |
 (Proficient) Perception | WIS | +3 | 13 | Proficient |
   ↳ hover abilityScores.Wisdom.skills.3.modifier: Without tweaks or effects: 1 → now 3 / Proficient Perception · Berserker class skill (chosen at 1st level) tweak (not synced to SW5E yet)
-  ↳ hover abilityScores.Wisdom.skills.3.modifier: Without tweaks or effects: 1 → now 3 / Proficient Perception · Berserker class skill (chosen at 1st level) tweak (not synced to SW5E yet)
+  ↳ hover passivePerception: Without tweaks or effects: 11 → now 13 / Proficient Perception · Berserker class skill (chosen at 1st level) tweak (not synced to SW5E yet)
 (Not proficient) Performance | CHA | +0 | 10 | — |
 (Proficient) Persuasion | CHA | +2 | 12 | Proficient |
   ↳ hover abilityScores.Charisma.skills.3.modifier: Without tweaks or effects: 0 → now 2 / Proficient Persuasion · Mercenary background skill tweak (not synced to SW5E yet)
@@ -492,6 +496,7 @@ You become stronger, gaining the following benefits:
 Increase your Strength score by 1, to a maximum of 20.
 You gain proficiency in the Athletics skill. If you are already proficient in it, you instead gain expertise in it.
 Your carrying capacity and the weight you can push, drag, or lift doubles. If it would already double, it instead triples.
+Notes []
 
 ## Sheet: Classes & Progression
 [Level up]

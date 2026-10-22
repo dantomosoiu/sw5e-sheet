@@ -157,6 +157,7 @@ effect: Consular weapon proficiencies · feature
 effect: Force Affinity · feature
 effect: Fundamentals of Mechu-deru · feature
 effect: Gamorrean Toughness · feature
+effect: Gamorrean Weaponry · feature
 tweak: abilityScores.Intelligence.skills.Technology +0 {"proficiency":"Proficient"} · Fundamentals of Mechu-deru
 tweak: hitPoints.maximum +5 · Gamorrean Toughness
 
@@ -174,7 +175,7 @@ skill|Dexterity|0: Acrobatics (DEX): d20 +2 · = +2 modifier
 skill|Dexterity|1: Sleight of Hand (DEX): d20 +2 · = +2 modifier
 skill|Dexterity|2: Stealth (DEX): d20 +2 · = +2 modifier
 check|Constitution: Constitution check: d20 +2 · = +2 modifier
-save|Constitution: Constitution saving throw: d20 +2 · = +2 modifier
+save|Constitution: Constitution saving throw: d20 d20 +2 · = +2 modifier · mode adv · Advantage from Gamorrean Toughness
 check|Intelligence: Intelligence check: d20 +0 · = +0 modifier
 save|Intelligence: Intelligence saving throw: d20 +0 · = +0 modifier
 skill|Intelligence|0: Investigation (INT): d20 +0 · = +0 modifier
@@ -259,11 +260,12 @@ Operative (splashclass improvement) 1d6
 Defenses & senses
 Advantages Advantage on Constitution saving throws
 Effects
-From class features and species traits (4)
+From class features and species traits (5)
 Consular weapon proficiencies Proficient: Simple lightweapons Proficient: simple vibroweapons Consular proficiencies
 Force Affinity Choose one of Ashla, Bendu, Bogan Consular feature
-Fundamentals of Mechu-deru Technology: proficient Way of Technology feature
-Gamorrean Toughness HP maximum +5 Gamorrean trait
+Fundamentals of Mechu-deru Technology: proficient Proficient: simple blasters Way of Technology feature
+Gamorrean Toughness HP maximum +5 Advantage on Constitution saving throws Gamorrean trait
+Gamorrean Weaponry Proficient: vibroaxe Proficient: vibromace Proficient: vibrosword Gamorrean trait
 Temporary
 No temporary effects.
 []
@@ -507,8 +509,10 @@ You don't need advantage on the attack roll if another enemy of the target is wi
 You can deal this additional damage a number of times equal to your proficiency bonus. You regain all expended uses when you complete a long rest.
 Tech Dabbler Background (Noble)
 You know two at-will tech powers. When you reach 3rd level, you learn and can cast one 1st-level tech power once per long rest. When you reach 5th level, you le… [382 chars #b0d200c1]
+Notes []
 Splashclass Improvement Prereq: 4th level
 You've learned to blend the skills of your different classes. Choose one of the splashclass improvement options, detailed later in this chapter. You can take this feat multiple times.
+Notes []
 
 ## Sheet: Classes & Progression
 [Level up]
@@ -640,7 +644,7 @@ None chosen yet.
 Armor
 None
 Weapon
-Simple lightweapons simple vibroweapons
+Simple lightweapons simple vibroweapons simple blasters · Fundamentals of Mechu-deru vibroaxe · Gamorrean Weaponry vibromace · Gamorrean Weaponry vibrosword · Gamorrean Weaponry
 Tool
 One type of gaming set
 Skills & saves

@@ -204,6 +204,15 @@ function prFeatAbilities(featRef) {
   if (!a.length || !/increase (?:your|an|one)[^.]*?score[^.]*?by 1/i.test(t)) return [];
   return a.some((x) => /^any$/i.test(x)) ? PR_ABILITIES.slice() : a.filter((x) => PR_ABILITIES.includes(x));
 }
+/**
+ * Is an entry of SW5E's feats list a feat? The list also holds rules notes from the books ("Class Proficiencies":
+ * "Certain classes, such as fighters or guardians, gain proficiency in all weapons within a specific category…";
+ * "Fighting Styles and Masteries": "You'll want to extend the benefits of certain Fighting Styles…"). A feat says what
+ * it gives you: "you gain", "you can", "you have", "you learn", "you know", "Increase your…".
+ */
+function prIsFeat(featRef) {
+  return !!featRef && /\byou (?:gain|can|have|learn|know)\b|\bincrease\b/i.test(String(featRef.text || ''));
+}
 /** What else follows a feat's chosen ability: "You gain proficiency in saving throws using the chosen ability" → { save: true }. */
 function prFeatChosenAbilityUse(featRef) {
   const t = String((featRef && featRef.text) || '').replace(/\s+/g, ' ');
@@ -224,11 +233,77 @@ function prPointBuyCost(scores) {
   }
   return t;
 }
-/** A species' ability increases: its options ([{ text, picks: [{ abilities: [...], amount }] }]) from SW5E's data. */
+/**
+ * A species' ability increases: its options ([{ picks: [{ abilities: [...], amount, all }] }]) from SW5E's data. SW5E
+ * gives "Your Strength, Constitution, and Intelligence scores increase by 1" (Harch, Klatooinian, Tognath) as a pick of
+ * Strength or Constitution plus Intelligence; the text raises all three, so such an entry is `all` (each of its
+ * abilities), read from the Ability Score Increase trait: a list joined by "and", without "or".
+ */
 function prSpeciesIncreases(speciesRef) {
+  const tr = prArr(speciesRef && speciesRef.traits).find((t) => /^Ability Score Increase$/i.test(t.name));
+  const together = [];
+  for (const m of String((tr && tr.description) || '').matchAll(/\byour ([A-Za-z, ]+?) scores increase by (\d+)/gi)) {
+    if (!/\bor\b/i.test(m[1]) && /\band\b/i.test(m[1])) together.push({ abilities: prAbilitiesIn(m[1]), amount: Number(m[2]) });
+  }
   return prArr(speciesRef && speciesRef.abilitiesIncreased).map((opt) => ({
-    picks: prArr(opt).map((x) => ({ abilities: prArr(x.abilities), amount: Number(x.amount) || 0 })),
+    picks: prArr(opt).map((x) => {
+      const abilities = prArr(x.abilities);
+      const all = abilities.length > 1 && together.some((g) => g.amount === Number(x.amount) && abilities.every((a) => g.abilities.includes(a)));
+      return { abilities, amount: Number(x.amount) || 0, all };
+    }),
   }));
+}
+
+// ------------------------------------------------------------- half-human
+const prLetters = (s) => String(s || '').toLowerCase().replace(/[^a-z]/g, '');
+/** Edit distance of two short strings (SW5E's Half-Human table misspells some species: "Advosze", "Kalloran"). */
+function prDistance(a, b) {
+  const d = Array.from({ length: a.length + 1 }, (_, i) => [i, ...Array(b.length).fill(0)]);
+  for (let j = 1; j <= b.length; j++) d[0][j] = j;
+  for (let i = 1; i <= a.length; i++) for (let j = 1; j <= b.length; j++) d[i][j] = Math.min(d[i - 1][j] + 1, d[i][j - 1] + 1, d[i - 1][j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1));
+  return d[a.length][b.length];
+}
+/** A half-human: its entry holds the Half-Human table (every other species' holds an empty one). */
+const prIsHalfHuman = (ref) => !!ref && Object.keys(ref.halfHumanTableEntries || {}).length > 0;
+/** The species a half-human can have as the non-human half: every species but humans and droids. */
+const prHalfHumanHalves = (modules) => prArr(modules && modules.species).filter((s) => s.name && !/^(?:Human|Half-human)$/i.test(s.name) && !/^Droid\b/i.test(s.name));
+/**
+ * The traits a half-human doesn't get from `other` (the Half-Human table: "Arkanian: Darkvision Infrared Sight Sunlight
+ * Sensitivity"): { entry (the table's words), lost: [the other species' trait names it names] }. The table's species
+ * names have typos ("Ssi Ruu", "Ho'Din", "Sith" for Sith Pureblood): matched by letters, within two, or as the start of
+ * the name; its trait names too ("Naturally Stealth", "Carapace" for Hardened Carapace, "Darkvision" for Superior
+ * Darkvision). Some name a trait the species' data doesn't have (Muun: "Second Heart"; it has Three Hearts): lost [].
+ */
+function prHalfHumanLost(table, other) {
+  const want = prLetters(other && other.name);
+  const key = Object.keys(table || {}).find((k) => prLetters(k) === want)
+    || Object.keys(table || {}).find((k) => prDistance(prLetters(k), want) <= 2 || (prLetters(k).length >= 4 && want.startsWith(prLetters(k))));
+  const entry = key ? String(table[key]) : '';
+  const e = entry.toLowerCase();
+  const lost = !e ? [] : prArr(other && other.traits).map((t) => t.name)
+    .filter((n) => !/^(?:Ability Score Increase|Age|Alignment|Size|Speed|Languages?)$/i.test(n) && (e.includes(n.toLowerCase()) || n.toLowerCase().endsWith(e) || prDistance(prLetters(n), prLetters(e)) <= 2));
+  return { entry, lost };
+}
+/**
+ * The species as its traits apply. A half-human ("Half-humans gain the Defiant special trait from their human half.
+ * They also gain the special traits from their non-human half, except for those trait(s) mentioned in the Half-Human
+ * table"; size, speed and languages "of your non-human half") with its other half in species.halfHumanOf: Half-human's
+ * own rule traits and Defiant, the other half's Size and Speed, its traits but the lost ones; its size and language.
+ * Any other species: SW5E's entry as is.
+ */
+function prSpeciesOf(modules, species) {
+  const ref = prArr(modules && modules.species).find((s) => s.name === (species && species.name)) || null;
+  const other = prIsHalfHuman(ref) && species.halfHumanOf ? prHalfHumanHalves(modules).find((s) => s.name === species.halfHumanOf) : null;
+  if (!other) return ref;
+  const { entry, lost } = prHalfHumanLost(ref.halfHumanTableEntries, other);
+  const rule = /^(?:Ability Score Increase|Age|Alignment|Size|Speed|Languages?)$/i;
+  const own = (n) => prArr(ref.traits).filter((t) => new RegExp(`^(?:${n})$`, 'i').test(t.name));
+  const theirs = (n) => prArr(other.traits).filter((t) => new RegExp(`^(?:${n})$`, 'i').test(t.name));
+  return {
+    ...ref, size: other.size, language: other.language, halfOf: other.name, lost, lostEntry: entry,
+    traits: own('Ability Score Increase|Age|Alignment').concat(theirs('Size|Speed'), prArr(ref.traits).filter((t) => !rule.test(t.name)),
+      prArr(other.traits).filter((t) => !rule.test(t.name) && !lost.includes(t.name)), own('Languages?')),
+  };
 }
 
 // ------------------------------------------------------------- starting equipment
@@ -338,8 +413,8 @@ function prCharacteristics(bgRef) {
 if (typeof module !== 'undefined') {
   module.exports = {
     PR_ABILITIES, PR_STANDARD_ARRAY, PR_POINT_COST, PR_POINTS, prSkillChoice, prMulticlassRules, prMulticlassUnmet, prToolChoices,
-    prLanguageChoices, prLanguages, prXpTable, prAsiLevels, prTableFeatures, prAddLevel, prAsiSlots, prAsiIncreases, prFeatAbilities, prFeatChosenAbilityUse,
+    prLanguageChoices, prLanguages, prXpTable, prAsiLevels, prTableFeatures, prAddLevel, prAsiSlots, prAsiIncreases, prFeatAbilities, prFeatChosenAbilityUse, prIsFeat,
     prPointBuyCost, prSpeciesIncreases, prList, prEquipmentOptions, prEquipmentItems, prResolveEquipment, prCharacteristics,
-    prPackContents, prPackCost,
+    prPackContents, prPackCost, prSpeciesOf, prHalfHumanLost, prHalfHumanHalves, prIsHalfHuman,
   };
 }

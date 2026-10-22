@@ -4,6 +4,10 @@
 The sheet's engine computes the numbers. OUT OF DATE: SW5E's recorded calculation is for an older version of this character; record the case again (dev/regress-record.js) for dev/engine-check.js.
 tweaks.abilityScores.Intelligence.skills.Technology.bonus = 0
 tweaks.abilityScores.Intelligence.skills.Technology.proficiency = "Proficient"
+tweaks.armorClass.bonus = 1
+tweaks.speed.base.bonus = -10
+tweaks.unarmed.damage.bonus = -1
+tweaks.unarmed.toHit.bonus = -1
 equipped = [Mighty Build]
 
 ## Numbers (the rules engine, with the sheet's edits)
@@ -11,13 +15,13 @@ currentLevel = 5
 classText = "Consular (Way of Technology) 5"
 proficiencyBonus = 3
 initiative = 3
-armorClass = 13
+armorClass = 14
 armorList = []
 passivePerception = 13
 vision = "normal"
-speed.base = "30 ft"
-speed.day = "24 miles"
-speed.hour = "3 miles"
+speed.base = "20 ft"
+speed.day = "16 miles"
+speed.hour = "2 miles"
 speed.special = ""
 hitPoints.hitDice[0].maximum = 5
 hitPoints.hitDice[0].size = "d6"
@@ -84,8 +88,8 @@ abilityScores.Wisdom.skills[Survival].modifier = 3
 abilityScores.Wisdom.skills[Survival].proficiency = "none"
 abilityScores.Wisdom.value = 16
 weapons[Unarmed Strike].ability = "Strength"
-weapons[Unarmed Strike].attackBonus = 7
-weapons[Unarmed Strike].damageBonus = 5
+weapons[Unarmed Strike].attackBonus = 6
+weapons[Unarmed Strike].damageBonus = 4
 weapons[Unarmed Strike].damageDieType = 0
 weapons[Unarmed Strike].damageNumberOfDice = 1
 weapons[Unarmed Strike].damageType = "Kinetic"
@@ -94,6 +98,8 @@ weapons[Unarmed Strike].index = -1
 weapons[Unarmed Strike].isCustom = false
 weapons[Unarmed Strike].properties = []
 weapons[Unarmed Strike].quantity = 0
+weapons[Unarmed Strike].tweaks.damage.bonus = -1
+weapons[Unarmed Strike].tweaks.toHit.bonus = -1
 weapons[Unarmed Strike].weaponClassification = "Unarmed"
 attunement.hasAttunable = false
 attunement.maximum = 3
@@ -129,7 +135,18 @@ forceCasting.powersKnown = [Saber Throw, Force Push/Pull, Battle Precognition, F
 effect: Consular weapon proficiencies · feature
 effect: Force Affinity · feature
 effect: Fundamentals of Mechu-deru · feature
+effect: Speed · feature
+effect: Darkvision · feature
+effect: Puny · feature
+effect: Puny · feature
+effect: Puny · feature
+effect: Small and Nimble · feature
+effect: Swim · feature
 tweak: abilityScores.Intelligence.skills.Technology +0 {"proficiency":"Proficient"} · Fundamentals of Mechu-deru
+tweak: speed.base -10 · Speed
+tweak: unarmed.toHit -1 · Puny
+tweak: unarmed.damage -1 · Puny
+tweak: armorClass +1 · Small and Nimble
 
 ## Rolls
 init: Initiative: d20 +3 · = +3 modifier
@@ -139,7 +156,7 @@ check|Strength: Strength check: d20 +4 · = +4 modifier
 save|Strength: Strength saving throw: d20 +4 · = +4 modifier
 skill|Strength|0: Athletics (STR): d20 +4 · = +4 modifier
 check|Dexterity: Dexterity check: d20 +3 · = +3 modifier
-save|Dexterity: Dexterity saving throw: d20 +3 · = +3 modifier
+save|Dexterity: Dexterity saving throw: d20 d20 +3 · = +3 modifier · mode adv · Advantage from Small and Nimble
 skill|Dexterity|0: Acrobatics (DEX): d20 +3 · = +3 modifier
 skill|Dexterity|1: Sleight of Hand (DEX): d20 +3 · = +3 modifier
 skill|Dexterity|2: Stealth (DEX): d20 +3 · = +3 modifier
@@ -165,8 +182,8 @@ skill|Charisma|0: Deception (CHA): d20 +2 · = +2 modifier
 skill|Charisma|1: Intimidation (CHA): d20 +2 · = +2 modifier
 skill|Charisma|2: Performance (CHA): d20 +2 · = +2 modifier
 skill|Charisma|3: Persuasion (CHA): d20 +2 · = +2 modifier
-attack|0: Unarmed Strike attack: d20 +7 · = +7 modifier
-damage|0: Unarmed Strike damage: no dice +5 · = +1 unarmed strike +4 STR modifier · Kinetic
+attack|0: Unarmed Strike attack: d20 +6 · = +6 modifier
+damage|0: Unarmed Strike damage: no dice +4 · = +1 unarmed strike +4 STR modifier −1 Puny · Kinetic
 force|light: Light force attack: d20 +6 · = +6 modifier
 force|dark: Dark force attack: d20 +5 · = +5 modifier
 force|universal: Universal force attack: d20 +6 · = +6 modifier
@@ -174,18 +191,19 @@ pdmg|force|Force Push/Pull|0|0|Wisdom: Force Push/Pull: kinetic damage: d4 d4 +0
 pdmg|tech|Ion Blast|0|0|Intelligence: Ion Blast: ion damage: d4 d4 +0 · ion
 pdmg|tech|Overheat|2|0|Intelligence: Overheat: fire damage: d8 d8 +0 · fire
 tool|One type of gaming set|proficient: One type of gaming set check: d20 +3 · = +0 INT modifier +3 proficiency
-damage|0|crit: Unarmed Strike damage (critical): no dice +5 · = +1 unarmed strike +4 STR modifier · Kinetic · critical
+damage|0|crit: Unarmed Strike damage (critical): no dice +4 · = +1 unarmed strike +4 STR modifier −1 Puny · Kinetic · critical
 
 ## Sheet: Overview
 Consular Test (local)
 Zilkin · Consular (Way of Technology) 5
 Level 5 Background: Noble Lawful Light Proficiency +3 [Add a picture]
 6,500 XP level 6 at 14,000 (7,500 to go)
-Still to choose (6): Consular skills (2 more) · Force-Empowered Castings (2 more) · Consular force powers (13 more) · background skills (2 more) · background tool · background languages
+Still to choose (7): Consular skills (2 more) · Force-Empowered Castings (2 more) · Consular force powers (13 more) · background skills (2 more) · background to… [221 chars #731f1387]
 
 ## Sheet: Combat & Vitals
 Armor Class
-13
+14
+  ↳ hover armorClass: Without tweaks or effects: 13 → now 14 / +1 AC · Small and Nimble Zilkin trait
 Unarmored
 Hit Points
 32 / 32
@@ -193,8 +211,9 @@ No temporary HP
 Initiative
 +3
 Speed
-30 ft
-3 miles/hour · 24 miles/day
+20 ft
+  ↳ hover speed.base: Without tweaks or effects: 30 ft → now 20 ft / −10 Walking speed · Speed Zilkin trait
+2 miles/hour · 16 miles/day
 Proficiency
 +3
 Passive Perception
@@ -222,13 +241,19 @@ Combat [Start combat]
 [Short rest] [Long rest] HP and uses: saved here, not on sw5e.com yet. [Use sw5e.com's values]
 Defenses & senses
 Advantages Advantage on Dexterity saving throws
+Disadvantages Disadvantage on Strength saving throws
 Senses Darkvision 60 ft
 Speeds Swimming speed 20 ft
 Effects
-From class features (3)
+From class features and species traits (8)
 Consular weapon proficiencies Proficient: Simple lightweapons Proficient: simple vibroweapons Consular proficiencies
 Force Affinity Choose one of Ashla, Bendu, Bogan Consular feature
-Fundamentals of Mechu-deru Technology: proficient Way of Technology feature
+Fundamentals of Mechu-deru Technology: proficient Proficient: simple blasters Way of Technology feature
+Speed Walking speed 20 ft Zilkin trait
+Darkvision Darkvision 60 ft Zilkin trait
+Puny Disadvantage on Strength saving throws Zilkin trait
+Small and Nimble AC +1 Advantage on Dexterity saving throws Zilkin trait
+Swim Swimming speed 20 ft Zilkin trait
 Temporary
 No temporary effects.
 []
@@ -335,7 +360,9 @@ Skill | Ability | Bonus | Passive | Proficiency |
 ## Sheet: Weapons & Attacks
 Weapon | To hit | Damage | Ability | Type | Properties |
 Unarmed Strike
-| +7 | 5 Kinetic | Strength | Unarmed | — |
+| +6 | 4 Kinetic | Strength | Unarmed | — |
+  ↳ hover weapons.0.attackBonus: Without tweaks or effects: 7 → now 6 / −1 Attack: Strength counts up to · Puny Zilkin trait
+  ↳ hover weapons.0.damageBonus: Without tweaks or effects: 5 → now 4 / −1 Damage: Strength counts up to · Puny Zilkin trait
 
 ## Sheet: Force Casting
 Force points
@@ -490,6 +517,7 @@ If an object is held, worn, or integrated, and a creature takes the damage from 
 Overcharge Tech. When you cast this power using a tech slot of 3rd level or higher, the damage increases by 1d8 for each slot level above 2nd.
 Tech Dabbler Background (Noble)
 You know two at-will tech powers. When you reach 3rd level, you learn and can cast one 1st-level tech power once per long rest. When you reach 5th level, you le… [382 chars #b0d200c1]
+Notes []
 
 ## Sheet: Classes & Progression
 [Level up]
@@ -601,6 +629,9 @@ Notes []
 Swim
 You have a swimming speed of 20 feet.
 Notes []
+Ability score +1 0 / 2 Your Dexterity score increases by 2, and two other ability scores of your choice increase by 1.
+None chosen yet.
+[Choose an ability… ▾]
 
 ## Sheet: Background
 Skill proficiencies
@@ -636,7 +667,7 @@ None chosen yet.
 Armor
 None
 Weapon
-Simple lightweapons simple vibroweapons
+Simple lightweapons simple vibroweapons simple blasters · Fundamentals of Mechu-deru
 Tool
 One type of gaming set
 Skills & saves
@@ -732,4 +763,4 @@ SW5E's rules and item data: version 199, as it comes with the sheet. SW5E is the
 Raw SW5E character JSON
 { "name": "Consular Test (local)", "builderVersion": "0.7.6", "image": "", "experiencePoints": 6500, "species": { "name": "Zilkin", "abilityScoreImprovementSele… [1690 chars #89c3c5c6]
 Computed character JSON (the sheet's rules engine)
-{ "name": "Consular Test (local)", "builderVersion": "0.7.6", "image": "", "characteristics": { "alignment": "Lawful Light" }, "tweaks": { "abilityScores": { "I… [20827 chars #8a672de1]
+{ "name": "Consular Test (local)", "builderVersion": "0.7.6", "image": "", "characteristics": { "alignment": "Lawful Light" }, "tweaks": { "abilityScores": { "I… [21017 chars #eb37cf6b]

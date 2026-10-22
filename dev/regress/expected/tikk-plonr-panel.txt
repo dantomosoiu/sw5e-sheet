@@ -166,6 +166,8 @@ effect: Engineer weapon proficiencies · feature
 effect: Bonus Proficiencies · feature
 effect: Techie · feature
 effect: Techie · feature
+effect: Darkvision · feature
+effect: Keen Hearing · feature
 effect: Pilot · feature
 effect: Armor (Fine) · item
 effect: Infuse Item: Blaster pistol · temporary · infuse · until the end of your next long rest
@@ -176,7 +178,7 @@ tweak: abilityScores.Intelligence.skills.Lore +0 {"proficiency":"Proficient"} ·
 tweak: abilityScores.Intelligence.skills.Technology +0 {"proficiency":"Expertise"} · Scientist skill + Techie (already proficient -> expertise)
 tweak: abilityScores.Wisdom.skills.Medicine +0 {"proficiency":"Proficient"} · Engineer skill (3 of 6)
 tweak: abilityScores.Intelligence.score +1 · Techie
-tweak: abilityScores.Intelligence.skills.Technology +0 {"proficiency":"Proficient"} · Techie
+tweak: abilityScores.Intelligence.skills.Technology +0 {"proficiency":"Expertise"} · Techie
 tweak: abilityScores.Intelligence.skills.Piloting +0 {"proficiency":"Proficient"} · Pilot
 tweak: armorClass +1 · Armor (Fine)
 weapon tweak: #1 toHit +1 · Infuse Item: Blaster pistol
@@ -280,13 +282,16 @@ Combat [Start combat]
 Class dice
 Potent Aptitude 1d4
 Defenses & senses
+Advantages Advantage on Perception checks that rely on hearing
 Senses Darkvision 60 ft
 Effects
-From class features, feats and species traits (5)
+From class features, feats and species traits (7)
 Engineer weapon proficiencies Proficient: Simple blasters Proficient: simple vibroweapons Engineer proficiencies
 Bonus Proficiencies Proficient: martial blasters Proficient: martial vibroweapons armstech's implements: proficient Proficient: medium armor Armstech Engineering feature
 Techie INT +1 feat (background feat)
-Techie Technology: proficient feat
+Techie Technology: expertise (already proficient) feat
+Darkvision Darkvision 60 ft Sullustan trait
+Keen Hearing Advantage on Perception checks that rely on hearing Sullustan trait
 Pilot Piloting: proficient Sullustan trait
 From equipment
 Armor (Fine) AC +1 while equipped
@@ -352,7 +357,7 @@ Intelligence
 (Proficient) Piloting+7
   ↳ hover abilityScores.Intelligence.skills.3.modifier: Without tweaks or effects: 4 → now 7 / +1 INT · Techie feat (background feat) / Proficient Piloting · Sullus… [234 chars #298967e9]
 (Expertise) Technology+9
-  ↳ hover abilityScores.Intelligence.skills.4.modifier: Without tweaks or effects: 4 → now 9 / +1 INT · Techie feat (background feat) / Expertise Technology · Scien… [269 chars #b2c26b82]
+  ↳ hover abilityScores.Intelligence.skills.4.modifier: Without tweaks or effects: 4 → now 9 / +1 INT · Techie feat (background feat) / Expertise Technology · Scien… [288 chars #5e37b24b]
 base 15 · +2 Sullustan · +2 ASI (Engineer 4) · +1 from Techie (feat)
 WIS
 Wisdom
@@ -408,8 +413,8 @@ Skill | Ability | Bonus | Passive | Proficiency |
 (Not proficient) Stealth | DEX | +2 | 12 | — |
 (Not proficient) Survival | WIS | +1 | 11 | — |
 (Expertise) Technology | INT | +9 | 19 | Expertise |
-  ↳ hover abilityScores.Intelligence.skills.4.modifier: Without tweaks or effects: 4 → now 9 / +1 INT · Techie feat (background feat) / Expertise Technology · Scien… [269 chars #b2c26b82]
-  ↳ hover abilityScores.Intelligence.skills.4.modifier: Without tweaks or effects: 4 → now 9 / +1 INT · Techie feat (background feat) / Expertise Technology · Scien… [269 chars #b2c26b82]
+  ↳ hover abilityScores.Intelligence.skills.4.modifier: Without tweaks or effects: 4 → now 9 / +1 INT · Techie feat (background feat) / Expertise Technology · Scien… [288 chars #5e37b24b]
+  ↳ hover abilityScores.Intelligence.skills.4.modifier: Without tweaks or effects: 4 → now 9 / +1 INT · Techie feat (background feat) / Expertise Technology · Scien… [288 chars #5e37b24b]
 
 ## Sheet: Weapons & Attacks
 Weapon | To hit | Damage | Ability | Type | Properties |
@@ -586,6 +591,7 @@ You master the theory and practice of technology, gaining the following benefits
 Increase your Intelligence score by 1, to a maximum of 20.
 You gain proficiency in the Technology skill. If you are already proficient in it, you instead gain expertise in it.
 You learn the repair droid tech power. You can cast it once, using supplies scavenged around you, without the use of a wristpad and without spending tech points… [226 chars #d0ad715a]
+Notes []
 
 ## Sheet: Classes & Progression
 [Level up]

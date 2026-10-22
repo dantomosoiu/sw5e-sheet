@@ -9,6 +9,8 @@ tweaks.abilityScores.Charisma.skills.Persuasion.bonus = 0
 tweaks.abilityScores.Charisma.skills.Persuasion.proficiency = "Expertise"
 tweaks.abilityScores.Dexterity.skills.Sleight of Hand.bonus = 0
 tweaks.abilityScores.Dexterity.skills.Sleight of Hand.proficiency = "Proficient"
+tweaks.abilityScores.Intelligence.skills.Lore.bonus = 0
+tweaks.abilityScores.Intelligence.skills.Lore.proficiency = "Proficient"
 tweaks.abilityScores.Wisdom.skills.Insight.bonus = 0
 tweaks.abilityScores.Wisdom.skills.Insight.proficiency = "Proficient"
 equipment[1 Chakram].tweaks.toHit.bonus = 0
@@ -63,8 +65,8 @@ abilityScores.Intelligence.savingThrow.modifier = 6
 abilityScores.Intelligence.savingThrow.proficiency = "proficient"
 abilityScores.Intelligence.skills[Investigation].modifier = 4
 abilityScores.Intelligence.skills[Investigation].proficiency = "none"
-abilityScores.Intelligence.skills[Lore].modifier = 4
-abilityScores.Intelligence.skills[Lore].proficiency = "none"
+abilityScores.Intelligence.skills[Lore].modifier = 6
+abilityScores.Intelligence.skills[Lore].proficiency = "proficient"
 abilityScores.Intelligence.skills[Nature].modifier = 4
 abilityScores.Intelligence.skills[Nature].proficiency = "none"
 abilityScores.Intelligence.skills[Piloting].modifier = 4
@@ -180,7 +182,7 @@ proficiencies[simple vibroweapons].type = "weapon"
 proficiencies[martial vibroweapons with the finesse property].type = "weapon"
 proficiencies[Light armor].type = "armor"
 proficiencies[One type of gaming set].type = "tool"
-skillAndSaveProficiencies = ["Sleight of Hand", "Insight", "Deception", "Persuasion", "Intelligence Saving Throws", "Wisdom Saving Throws"]
+skillAndSaveProficiencies = ["Sleight of Hand", "Lore", "Insight", "Deception", "Persuasion", "Intelligence Saving Throws", "Wisdom Saving Throws"]
 languages = ["Galactic Basic", "Bothese"]
 experiencePoints.isCorrect = true
 experiencePoints.nextLevel = 2700
@@ -202,15 +204,19 @@ effect: Lifelong Learning · feature
 effect: Running on Fumes · feature
 effect: Silver-Tongued · feature
 effect: Silver-Tongued · feature
+effect: Shrewd · feature
 tweak: abilityScores.Charisma.skills.Deception +0 {"proficiency":"Expertise"} · Deception
 tweak: abilityScores.Charisma.skills.Persuasion +0 {"proficiency":"Expertise"} · Persuasion
 tweak: abilityScores.Charisma.score +1 · Charisma score
 tweak: abilityScores.Wisdom.skills.Insight +0 {"proficiency":"Proficient"} · Insight
 tweak: abilityScores.Dexterity.skills.Sleight of Hand +0 {"proficiency":"Proficient"} · Sleight of Hand
 tweak: abilityScores.Charisma.skills.Persuasion +0 {"proficiency":"Expertise"} · Expertise
+tweak: abilityScores.Intelligence.skills.Lore +0 {"proficiency":"Proficient"} · Studious Excavator
 tweak: abilityScores.Charisma.skills.Persuasion +0 {"proficiency":"Proficient"} · Lifelong Learning
 tweak: abilityScores.Charisma.score +1 · Silver-Tongued
-tweak: abilityScores.Charisma.skills.Deception +0 {"proficiency":"Proficient"} · Silver-Tongued
+tweak: abilityScores.Charisma.skills.Deception +0 {"proficiency":"Expertise"} · Silver-Tongued
+tweak: abilityScores.Wisdom.skills.Insight +0 {"proficiency":"Proficient"} · Shrewd
+tweak: abilityScores.Charisma.skills.Deception +0 {"proficiency":"Proficient"} · Shrewd
 weapon tweak: #1 toHit +0 · Scholar weapon proficiencies
 
 ## Rolls
@@ -231,7 +237,7 @@ save|Constitution: Constitution saving throw: d20 +1 · = +1 modifier
 check|Intelligence: Intelligence check: d20 +4 · = +4 modifier
 save|Intelligence: Intelligence saving throw: d20 +6 · = +6 modifier
 skill|Intelligence|0: Investigation (INT): d20 +4 · = +4 modifier
-skill|Intelligence|1: Lore (INT): d20 +4 · = +4 modifier
+skill|Intelligence|1: Lore (INT): d20 +6 · = +6 modifier
 skill|Intelligence|2: Nature (INT): d20 +4 · = +4 modifier
 skill|Intelligence|3: Piloting (INT): d20 +4 · = +4 modifier
 skill|Intelligence|4: Technology (INT): d20 +4 · = +4 modifier
@@ -265,7 +271,7 @@ pattack|Saber Throw|6: Saber Throw attack: d20 +6 · = +6 modifier
 tool|One type of gaming set|proficient: One type of gaming set check: d20 +6 · = +4 INT modifier +2 proficiency
 tool|Pazaak deck|proficient: Pazaak deck check: d20 +6 · = +4 INT modifier +2 proficiency
 tool|Forgery kit|expertise: Forgery kit check: d20 +8 · = +4 INT modifier +4 proficiency ×2
-tool|archaeologist kits and in the Lore skill|proficient: archaeologist kits and in the Lore skill check: d20 +6 · = +4 INT modifier +2 proficiency
+tool|archaeologist kits|proficient: archaeologist kits check: d20 +6 · = +4 INT modifier +2 proficiency
 damage|0|crit: Chakram damage (critical): d6 d6 +3 · = +3 DEX modifier · Kinetic · critical · option: Tyrannical Strike +d4 +1d4 · option: Disarming Blow +d4 +1d4
 damage|1|crit: Vibrobaton damage (critical): d4 d4 d4 d4 +1 · = +1 STR modifier · Kinetic · critical · option: Tyrannical Strike +d4 +1d4 · option: Disarming Blow +d4 +1d4
 damage|2|crit: Unarmed Strike damage (critical): no dice +2 · = +1 unarmed strike +1 STR modifier · Kinetic · critical · option: Tyrannical Strike +d4 +1d4 · option: Disarming Blow +d4 +1d4
@@ -317,14 +323,15 @@ Defenses & senses
 Advantages Advantage on saving throws against exhaustion
 Other Can't have disadvantage on checks you make with them (Studious Excavator)
 Effects
-From class features and feats (7)
+From class features, feats and species traits (8)
 Scholar weapon proficiencies Proficient: Simple blasters Proficient: simple vibroweapons Proficient: martial vibroweapons with the finesse property Scholar proficiencies
 Expertise Persuasion: expertise Forgery Kit: expertise Scholar feature
-Studious Excavator archaeologist kits and in the Lore skill: proficient Can't have disadvantage on checks you make with them Archaeologist Pursuit feature
+Studious Excavator Lore: proficient archaeologist kits: proficient Can't have disadvantage on checks you make with them Archaeologist Pursuit feature
 Lifelong Learning Persuasion: proficient Forgery kit: proficient Discoveries feature
 Running on Fumes Advantage on saving throws against exhaustion Discoveries feature
 Silver-Tongued CHA +1 feat (background feat)
-Silver-Tongued Deception: proficient feat
+Silver-Tongued Deception: expertise (already proficient) feat
+Shrewd Insight: proficient Deception: proficient Bothan trait
 Temporary
 No temporary effects.
 []
@@ -377,7 +384,8 @@ Intelligence
 18
 (Proficient) Saving throw+6
 (Not proficient) Investigation+4
-(Not proficient) Lore+4
+(Proficient) Lore+6
+  ↳ hover abilityScores.Intelligence.skills.1.modifier: Without tweaks or effects: 4 → now 6 / proficient Lore: proficient · Studious Excavator Archaeologist Pursuit feature
 (Not proficient) Nature+4
 (Not proficient) Piloting+4
 (Not proficient) Technology+4
@@ -389,7 +397,7 @@ Wisdom
 (Proficient) Saving throw+3
 (Not proficient) Animal Handling+1
 (Proficient) Insight+3
-  ↳ hover abilityScores.Wisdom.skills.1.modifier: Without tweaks or effects: 1 → now 3 / Proficient Insight · no reason given tweak
+  ↳ hover abilityScores.Wisdom.skills.1.modifier: Without tweaks or effects: 1 → now 3 / Proficient Insight · no reason given tweak / proficient Insight: proficient · Shrewd Bothan trait
 (Not proficient) Medicine+1
 (Not proficient) Perception+1
 (Not proficient) Survival+1
@@ -403,7 +411,7 @@ Charisma
 (Not proficient) Saving throw+1
   ↳ hover abilityScores.Charisma.savingThrow.modifier: Without tweaks or effects: 0 → now 1 / +1 Charisma score · no reason given tweak / +1 CHA · Silver-Tongued feat (background feat)
 (Expertise) Deception+5
-  ↳ hover abilityScores.Charisma.skills.0.modifier: Without tweaks or effects: 0 → now 5 / +1 Charisma score · no reason given tweak / +1 CHA · Silver-Tongued feat … [280 chars #5f17a787]
+  ↳ hover abilityScores.Charisma.skills.0.modifier: Without tweaks or effects: 0 → now 5 / +1 Charisma score · no reason given tweak / +1 CHA · Silver-Tongued feat … [356 chars #3abca13b]
 (Not proficient) Intimidation+1
   ↳ hover abilityScores.Charisma.skills.1.modifier: Without tweaks or effects: 0 → now 1 / +1 Charisma score · no reason given tweak / +1 CHA · Silver-Tongued feat (background feat)
 (Not proficient) Performance+1
@@ -419,16 +427,18 @@ Skill | Ability | Bonus | Passive | Proficiency |
 (Not proficient) Animal Handling | WIS | +1 | 11 | — |
 (Not proficient) Athletics | STR | +1 | 11 | — |
 (Expertise) Deception | CHA | +5 | 15 | Expertise |
-  ↳ hover abilityScores.Charisma.skills.0.modifier: Without tweaks or effects: 0 → now 5 / +1 Charisma score · no reason given tweak / +1 CHA · Silver-Tongued feat … [280 chars #5f17a787]
-  ↳ hover abilityScores.Charisma.skills.0.modifier: Without tweaks or effects: 0 → now 5 / +1 Charisma score · no reason given tweak / +1 CHA · Silver-Tongued feat … [280 chars #5f17a787]
+  ↳ hover abilityScores.Charisma.skills.0.modifier: Without tweaks or effects: 0 → now 5 / +1 Charisma score · no reason given tweak / +1 CHA · Silver-Tongued feat … [356 chars #3abca13b]
+  ↳ hover abilityScores.Charisma.skills.0.modifier: Without tweaks or effects: 0 → now 5 / +1 Charisma score · no reason given tweak / +1 CHA · Silver-Tongued feat … [356 chars #3abca13b]
 (Proficient) Insight | WIS | +3 | 13 | Proficient |
-  ↳ hover abilityScores.Wisdom.skills.1.modifier: Without tweaks or effects: 1 → now 3 / Proficient Insight · no reason given tweak
-  ↳ hover abilityScores.Wisdom.skills.1.modifier: Without tweaks or effects: 1 → now 3 / Proficient Insight · no reason given tweak
+  ↳ hover abilityScores.Wisdom.skills.1.modifier: Without tweaks or effects: 1 → now 3 / Proficient Insight · no reason given tweak / proficient Insight: proficient · Shrewd Bothan trait
+  ↳ hover abilityScores.Wisdom.skills.1.modifier: Without tweaks or effects: 1 → now 3 / Proficient Insight · no reason given tweak / proficient Insight: proficient · Shrewd Bothan trait
 (Not proficient) Intimidation | CHA | +1 | 11 | — |
   ↳ hover abilityScores.Charisma.skills.1.modifier: Without tweaks or effects: 0 → now 1 / +1 Charisma score · no reason given tweak / +1 CHA · Silver-Tongued feat (background feat)
   ↳ hover abilityScores.Charisma.skills.1.modifier: Without tweaks or effects: 0 → now 1 / +1 Charisma score · no reason given tweak / +1 CHA · Silver-Tongued feat (background feat)
 (Not proficient) Investigation | INT | +4 | 14 | — |
-(Not proficient) Lore | INT | +4 | 14 | — |
+(Proficient) Lore | INT | +6 | 16 | Proficient |
+  ↳ hover abilityScores.Intelligence.skills.1.modifier: Without tweaks or effects: 4 → now 6 / proficient Lore: proficient · Studious Excavator Archaeologist Pursuit feature
+  ↳ hover abilityScores.Intelligence.skills.1.modifier: Without tweaks or effects: 4 → now 6 / proficient Lore: proficient · Studious Excavator Archaeologist Pursuit feature
 (Not proficient) Medicine | WIS | +1 | 11 | — |
 (Not proficient) Nature | INT | +4 | 14 | — |
 (Not proficient) Perception | WIS | +1 | 11 | — |
@@ -614,6 +624,7 @@ You develop your conversational skill to better deceive others. You gain the fol
 Increase your Charisma score by 1, to a maximum of 20.
 You gain proficiency in the Deception skill. If you are already proficient in it, you instead gain expertise in it.
 When you take the Attack action, you can replace one attack with an attempt to deceive one humanoid you can see within 30 feet of you that can see and hear you.… [568 chars #4907558c]
+Notes []
 
 ## Sheet: Classes & Progression
 [Level up]
@@ -770,9 +781,9 @@ Light armor
 Weapon
 Simple blasters simple vibroweapons martial vibroweapons with the finesse property
 Tool
-One type of gaming set Pazaak deck ✎Forgery kit (expertise) ✎archaeologist kits and in the Lore skill · Studious Excavator
+One type of gaming set Pazaak deck ✎Forgery kit (expertise) ✎archaeologist kits · Studious Excavator
 Skills & saves
-Sleight of Hand Insight Deception Persuasion Intelligence Saving Throws Wisdom Saving Throws
+Sleight of Hand Lore Insight Deception Persuasion Intelligence Saving Throws Wisdom Saving Throws
 Languages
 Galactic Basic Bothese
 ✎ = custom proficiency added on the character.
@@ -898,4 +909,4 @@ SW5E's rules and item data: version 199, as it comes with the sheet. SW5E is the
 Raw SW5E character JSON
 { "name": "Scholar Test (Claude)", "image": "", "experiencePoints": 900, "species": { "name": "Bothan", "abilityScoreImprovementSelectedOption": 0, "abilityScor… [3307 chars #bb9f1851]
 Computed character JSON (the sheet's rules engine)
-{ "name": "Scholar Test (Claude)", "builderVersion": "0.7.6", "image": "", "characteristics": { "Age": "", "Appearance": "", "Backstory": "Copy of a real charac… [25178 chars #1f6ac520]
+{ "name": "Scholar Test (Claude)", "builderVersion": "0.7.6", "image": "", "characteristics": { "Age": "", "Appearance": "", "Backstory": "Copy of a real charac… [25279 chars #a114ae04]

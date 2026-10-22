@@ -205,7 +205,7 @@ Human · Scout (Hunter Technique) 9
 Level 9 Background: Noble Lawful Light Proficiency +4 [Add a picture]
 6,500 XP level 10 at 64,000 (57,500 to go)
 Level 9 usually needs 48,000 XP (you have 6,500).
-Still to choose (11): Scout skills (3 more) · Scout Expertise (2 more) · Scout Routines (2 more) · Hunter's Prey · Defensive Tactics · Scout tech powers (12 mor… [329 chars #84f70b6d]
+Still to choose (15): Scout skills (3 more) · Scout Expertise (2 more) · Scout Routines (2 more) · Hunter's Prey · Defensive Tactics · Scout tech powers (12 mor… [470 chars #b352743d]
 
 ## Sheet: Combat & Vitals
 Armor Class
@@ -250,7 +250,7 @@ Hunter's Prey Choose one of Colossus Slayer, Giant Killer, Horde Breaker Hunter 
 Defensive Tactics Choose one of Escape the Horde, Multiattack Defense, Steel Will Hunter Technique feature
 Silver-Tongued CHA +1 feat (background feat)
 Silver-Tongued Deception: proficient feat
-Human Versatility Stealth: proficient Human trait
+Human Versatility Stealth: proficient Choose one tool Choose one weapon of your choice Human trait
 Temporary
 No temporary effects.
 []
@@ -494,8 +494,10 @@ You develop your conversational skill to better deceive others. You gain the fol
 Increase your Charisma score by 1, to a maximum of 20.
 You gain proficiency in the Deception skill. If you are already proficient in it, you instead gain expertise in it.
 When you take the Attack action, you can replace one attack with an attempt to deceive one humanoid you can see within 30 feet of you that can see and hear you.… [568 chars #4907558c]
+Notes []
 Multiclass Improvement Prereq: 4th level
 You've learned to blend the skills of your different classes. Choose two of the multiclass improvement options, detailed later in this chapter. You can take this feat multiple times.
+Notes []
 
 ## Sheet: Classes & Progression
 [Level up]
@@ -591,10 +593,10 @@ Human Versatility
 You gain proficiency in one skill, one tool, and one weapon of your choice.
 Skill proficiency 1 / 1
 Stealth [×]
-Tool proficiency 0 / 1
+Tool proficiency 0 / 1 one tool
 None chosen yet.
 [Choose a tool… ▾]
-Weapon proficiency 0 / 1
+Weapon proficiency 0 / 1 one weapon of your choice
 None chosen yet.
 [Choose a weapon… ▾]
 Notes []
@@ -610,6 +612,12 @@ Notes []
 Speed
 Your base walking speed is 30 feet.
 Notes []
+Ability score +2 0 / 1 One ability score of your choice increases by 2, and two other ability scores of your choice increase by 1. Alternatively, four ability scores of your choice each increase by 1.
+None chosen yet.
+[Choose an ability… ▾]
+Ability score +1 0 / 2 One ability score of your choice increases by 2, and two other ability scores of your choice increase by 1. Alternatively, four ability scores of your choice each increase by 1.
+None chosen yet.
+[Choose an ability… ▾]
 
 ## Sheet: Background
 Skill proficiencies

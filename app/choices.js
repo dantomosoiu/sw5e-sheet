@@ -26,6 +26,9 @@ const chPw = {
   get pwMulticlassMax() { return typeof pwMulticlassMax !== 'undefined' ? pwMulticlassMax : require('./powers.js').pwMulticlassMax; }, // eslint-disable-line no-undef
 };
 
+// progression.js loads after this file too: a half-human's species with its non-human half's traits (prSpeciesOf).
+const chSpeciesOf = (modules, species) => (typeof prSpeciesOf !== 'undefined' ? prSpeciesOf : require('./progression.js').prSpeciesOf)(modules, species || {}); // eslint-disable-line no-undef
+
 /** What can be picked: SW5E module, words used in rule text, whether one pick may be taken twice. */
 const CH_KINDS = {
   fightingStyles: { module: 'fightingStyles', word: 'fighting style', title: 'Fighting style' },
@@ -148,18 +151,41 @@ function chFeats(raw) {
   return out;
 }
 
+const CH_ABIL = '(?:Strength|Dexterity|Constitution|Intelligence|Wisdom|Charisma)';
 /**
  * Prerequisites that aren't met: "At least 3 levels in berserker", "No levels in consular", "The ability
- * to cast force powers", "The ability to cast 3rd-level tech powers", "4th level". Unknown wording counts
- * as met. ctx: { classes: { name: level }, level (character), casting: { force, tech } (max power level you
- * can cast: 0 = at-will powers only, -1 = none) }.
+ * to cast force powers", "The ability to cast 3rd-level tech powers", "4th level", "Strength 13",
+ * "Dexterity, Intelligence, Wisdom, or Charisma 13", "size Small", "Type beast or humanoid", "Durable feat".
+ * Unknown wording, or what ctx doesn't say, counts as met. ctx: { classes: { name: level }, level (character),
+ * casting: { force, tech } (max power level you can cast: 0 = at-will powers only, -1 = none), scores?: { Strength: 13 },
+ * size?: 'Medium', types?: ['humanoid'], feats?: [names taken before] }.
  */
 function chUnmet(prerequisite, ctx) {
   const out = [];
-  for (const part of String(prerequisite || '').split(/,\s*|;\s*/)) {
+  // "Dexterity, Intelligence, Wisdom, or Charisma 13" (any of them) before the list is split at its commas.
+  const abilities = [];
+  const rest = String(prerequisite || '').replace(new RegExp(`${CH_ABIL}(?:,? (?:or )?${CH_ABIL})* \\d+`, 'g'), (x) => { abilities.push(x); return ''; });
+  for (const p of abilities) {
+    const min = Number(/(\d+)$/.exec(p)[1]);
+    const names = p.match(new RegExp(CH_ABIL, 'g'));
+    if (ctx.scores && !names.some((a) => Number(ctx.scores[a]) >= min)) out.push(p);
+  }
+  for (const part of rest.split(/,\s*|;\s*/)) {
     const p = part.trim();
     let m;
     if (!p) continue;
+    if ((m = /^size (\w+)$/i.exec(p))) {
+      if (ctx.size && ctx.size.toLowerCase() !== m[1].toLowerCase()) out.push(p);
+      continue;
+    }
+    if ((m = /^type (.+)$/i.exec(p))) {
+      if (ctx.types && !m[1].split(/\s+or\s+/i).some((t) => ctx.types.includes(t.trim().toLowerCase()))) out.push(p);
+      continue;
+    }
+    if ((m = /^(.+) feat$/i.exec(p))) {
+      if (ctx.feats && !ctx.feats.some((n) => n.toLowerCase() === m[1].trim().toLowerCase())) out.push(p);
+      continue;
+    }
     if ((m = /at least (\d+) levels? in (\w+)/i.exec(p))) {
       const lv = Object.entries(ctx.classes).find(([n]) => n.toLowerCase() === m[2].toLowerCase());
       if (!lv || lv[1] < Number(m[1])) out.push(p);
@@ -197,7 +223,14 @@ function choiceSlots(raw, ctx) {
   const classes = chArr(raw.classes);
   const level = classes.reduce((t, k) => t + (Number(k.levels) || 0), 0);
   const baseCasting = ctx.casting || { force: -1, tech: -1 };
-  const pctx = { classes: Object.fromEntries(classes.map((k) => [k.name, Number(k.levels) || 0])), level, casting: baseCasting };
+  // The species' size and creature type ("Your creature type is droid"; humanoid unless a Type trait says otherwise).
+  const spRef = raw.species && chSpeciesOf(modules, raw.species);
+  const typeTrait = spRef && chArr(spRef.traits).find((t) => /^Type$/i.test(t.name));
+  const pctx = {
+    classes: Object.fromEntries(classes.map((k) => [k.name, Number(k.levels) || 0])), level, casting: baseCasting, scores: ctx.scores || null,
+    size: (spRef && spRef.size) || null,
+    types: !spRef ? null : typeTrait ? [...String(typeTrait.description || '').toLowerCase().matchAll(/\b(droid|humanoid|beast|aberration|construct|plant|monstrosity)\b/g)].map((x) => x[1]) : ['humanoid'],
+  };
   const slots = [];
   const superiority = [];
   const queue = [];
@@ -305,9 +338,17 @@ function choiceSlots(raw, ctx) {
 
   // 4. Species traits ("You know the *ion blast* at-will tech power"; "When you reach 3rd level, you learn and
   // can cast the *repair droid* tech power once per long rest").
-  const sp = raw.species && chArr(modules.species).find((x) => x.name === raw.species.name);
+  const sp = raw.species && chSpeciesOf(modules, raw.species);
   for (const tr of chArr(sp && sp.traits)) {
-    addGrants(tr.description, { key: `Species: ${tr.name}`, from: `${sp.name}: ${tr.name}`, owner: null, species: true, lv: level, order: 0 }, { maneuvers: false });
+    // A trait with options (Kiffar Heritage's Sage: "You learn and can cast the *telemetry* force power once per long
+    // rest"; sw5e-data.js adds them from the books): only the one chosen in its notes.
+    let text = tr.description || '';
+    if (chArr(tr.options).length) {
+      const full = [text, ...tr.options.map((o) => `#### ${o.name}\n${o.text}`)].join('\n');
+      const sub = chCls.clsChosenText(full, notes[chCls.clsBaseName(tr.name)] || '');
+      text = sub.choice ? sub.text : text;
+    }
+    addGrants(text, { key: `Species: ${tr.name}`, from: `${sp.name}: ${tr.name}`, owner: null, species: true, lv: level, order: 0 }, { maneuvers: false });
   }
 
   // Work through the grants; picks can grant more (Formfighting Style → three forms, Superiority Style → a maneuver).
@@ -464,7 +505,7 @@ function choiceSlots(raw, ctx) {
   const maneuversKnown = new Set([...classManeuvers, ...slots.filter((s) => s.kind === 'maneuvers').flatMap((s) => s.picks.map((p) => p.name))]);
   const powersKnown = chArr(ctx.classPowerNames).concat(slots.filter((x) => /owers$/.test(x.kind) && !x.castOnly).flatMap((x) => x.picks.map((q) => q.name)));
   // "Force-Insensitive: You can not use force powers…" / "Tech-Impaired: You can not use tech powers…".
-  const sp0 = raw.species && chArr(modules.species).find((x) => x.name === raw.species.name);
+  const sp0 = raw.species && chSpeciesOf(modules, raw.species);
   const cannot = { force: false, tech: false };
   for (const tr of chArr(sp0 && sp0.traits)) {
     const mm = /\byou can ?not use (force|tech) powers\b/i.exec(tr.description || '');
@@ -529,7 +570,9 @@ function choiceSlots(raw, ctx) {
   }
   // Feats: prerequisites at the level the feat was taken, with what you could cast before it; taken twice.
   for (const { f, ref, base } of feats) {
-    const unmet = waive(chUnmet(ref.prerequisite, { ...pctx, level: base.featLevel, casting: castingBefore(base.order, base.key, castingAt(base.takenWith)) }), ref.text || '');
+    // Another feat as a prerequisite ("Tough: Durable feat"): one taken before this one.
+    const before = feats.filter((x) => x.base.order < base.order).map((x) => x.f.name);
+    const unmet = waive(chUnmet(ref.prerequisite, { ...pctx, level: base.featLevel, feats: before, casting: castingBefore(base.order, base.key, castingAt(base.takenWith)) }), ref.text || '');
     const problems = [];
     if (unmet.length) problems.push(`The feat needs: ${unmet.join(', ')}${/^Background/.test(f.from) && unmet.some((u) => /level/i.test(u)) ? ' (a background feat is taken at 1st level)' : ''}`);
     if (base.featTwice) problems.push(`${f.name} can be taken only once`);

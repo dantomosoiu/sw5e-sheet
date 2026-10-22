@@ -1,0 +1,993 @@
+# Tikk Plonr (Panel)
+
+## Sent to the rules engine
+The sheet's engine computes the numbers. OUT OF DATE: SW5E's recorded calculation is for an older version of this character; record the case again (dev/regress-record.js) for dev/engine-check.js.
+tweaks.abilityScores.Dexterity.savingThrowModifier.bonus = 1
+tweaks.abilityScores.Intelligence.score.bonus = 1
+tweaks.abilityScores.Intelligence.skills.Investigation.bonus = 0
+tweaks.abilityScores.Intelligence.skills.Investigation.proficiency = "Proficient"
+tweaks.abilityScores.Intelligence.skills.Lore.bonus = 0
+tweaks.abilityScores.Intelligence.skills.Lore.proficiency = "Proficient"
+tweaks.abilityScores.Intelligence.skills.Nature.bonus = 0
+tweaks.abilityScores.Intelligence.skills.Nature.proficiency = "Proficient"
+tweaks.abilityScores.Intelligence.skills.Piloting.bonus = 0
+tweaks.abilityScores.Intelligence.skills.Piloting.proficiency = "Proficient"
+tweaks.abilityScores.Intelligence.skills.Technology.bonus = 0
+tweaks.abilityScores.Intelligence.skills.Technology.proficiency = "Expertise"
+tweaks.abilityScores.Wisdom.skills.Medicine.bonus = 0
+tweaks.abilityScores.Wisdom.skills.Medicine.proficiency = "Proficient"
+tweaks.armorClass.bonus = 8
+tweaks.speed.base.bonus = -5
+equipment[1 Blaster pistol].tweaks.damage.bonus = 1
+equipment[1 Blaster pistol].tweaks.toHit.bonus = 1
+equipment[1 Blaster pistol].tweaks.toHit.proficiency = "proficient"
+equipment[4 Vibrodagger].tweaks.toHit.bonus = 0
+equipment[4 Vibrodagger].tweaks.toHit.proficiency = "proficient"
+equipped = [Blaster pistol, Droid Dura Plating Mk I, Celerity Leg Prosthesis, Darkvision Goggles]
+
+## Numbers (the rules engine, with the sheet's edits)
+currentLevel = 4
+classText = "Engineer (Armstech Engineering) 4"
+proficiencyBonus = 2
+initiative = 1
+armorClass = 19
+armorList = []
+passivePerception = 11
+vision = "normal"
+speed.base = "25 ft"
+speed.day = "20 miles"
+speed.hour = "2.5 miles"
+speed.special = ""
+hitPoints.hitDice[0].maximum = 4
+hitPoints.hitDice[0].size = "d8"
+hitPoints.maximum = 31
+abilityScores.Charisma.modifier = 0
+abilityScores.Charisma.savingThrow.modifier = 0
+abilityScores.Charisma.savingThrow.proficiency = "none"
+abilityScores.Charisma.skills[Deception].modifier = 0
+abilityScores.Charisma.skills[Deception].proficiency = "none"
+abilityScores.Charisma.skills[Intimidation].modifier = 0
+abilityScores.Charisma.skills[Intimidation].proficiency = "none"
+abilityScores.Charisma.skills[Performance].modifier = 0
+abilityScores.Charisma.skills[Performance].proficiency = "none"
+abilityScores.Charisma.skills[Persuasion].modifier = 0
+abilityScores.Charisma.skills[Persuasion].proficiency = "none"
+abilityScores.Charisma.value = 10
+abilityScores.Constitution.modifier = 2
+abilityScores.Constitution.savingThrow.modifier = 4
+abilityScores.Constitution.savingThrow.proficiency = "proficient"
+abilityScores.Constitution.skills = []
+abilityScores.Constitution.value = 14
+abilityScores.Dexterity.modifier = 1
+abilityScores.Dexterity.savingThrow.modifier = 2
+abilityScores.Dexterity.savingThrow.proficiency = "none"
+abilityScores.Dexterity.skills[Acrobatics].modifier = 1
+abilityScores.Dexterity.skills[Acrobatics].proficiency = "none"
+abilityScores.Dexterity.skills[Sleight of Hand].modifier = 1
+abilityScores.Dexterity.skills[Sleight of Hand].proficiency = "none"
+abilityScores.Dexterity.skills[Stealth].modifier = 1
+abilityScores.Dexterity.skills[Stealth].proficiency = "none"
+abilityScores.Dexterity.value = 13
+abilityScores.Intelligence.modifier = 5
+abilityScores.Intelligence.savingThrow.modifier = 7
+abilityScores.Intelligence.savingThrow.proficiency = "proficient"
+abilityScores.Intelligence.skills[Investigation].modifier = 7
+abilityScores.Intelligence.skills[Investigation].proficiency = "proficient"
+abilityScores.Intelligence.skills[Lore].modifier = 7
+abilityScores.Intelligence.skills[Lore].proficiency = "proficient"
+abilityScores.Intelligence.skills[Nature].modifier = 7
+abilityScores.Intelligence.skills[Nature].proficiency = "proficient"
+abilityScores.Intelligence.skills[Piloting].modifier = 7
+abilityScores.Intelligence.skills[Piloting].proficiency = "proficient"
+abilityScores.Intelligence.skills[Technology].modifier = 9
+abilityScores.Intelligence.skills[Technology].proficiency = "expertise"
+abilityScores.Intelligence.value = 20
+abilityScores.Strength.modifier = -1
+abilityScores.Strength.savingThrow.modifier = -1
+abilityScores.Strength.savingThrow.proficiency = "none"
+abilityScores.Strength.skills[Athletics].modifier = -1
+abilityScores.Strength.skills[Athletics].proficiency = "none"
+abilityScores.Strength.value = 8
+abilityScores.Wisdom.modifier = 1
+abilityScores.Wisdom.savingThrow.modifier = 1
+abilityScores.Wisdom.savingThrow.proficiency = "none"
+abilityScores.Wisdom.skills[Animal Handling].modifier = 1
+abilityScores.Wisdom.skills[Animal Handling].proficiency = "none"
+abilityScores.Wisdom.skills[Insight].modifier = 1
+abilityScores.Wisdom.skills[Insight].proficiency = "none"
+abilityScores.Wisdom.skills[Medicine].modifier = 3
+abilityScores.Wisdom.skills[Medicine].proficiency = "proficient"
+abilityScores.Wisdom.skills[Perception].modifier = 1
+abilityScores.Wisdom.skills[Perception].proficiency = "none"
+abilityScores.Wisdom.skills[Survival].modifier = 1
+abilityScores.Wisdom.skills[Survival].proficiency = "none"
+abilityScores.Wisdom.value = 12
+weapons[Blaster pistol].ability = "Dexterity"
+weapons[Blaster pistol].attackBonus = 4
+weapons[Blaster pistol].damageBonus = 2
+weapons[Blaster pistol].damageDieModifier = 0
+weapons[Blaster pistol].damageDieType = 6
+weapons[Blaster pistol].damageNumberOfDice = 1
+weapons[Blaster pistol].damageType = "Energy"
+weapons[Blaster pistol].equipped = true
+weapons[Blaster pistol].index = 1
+weapons[Blaster pistol].isCustom = false
+weapons[Blaster pistol].properties = ["Power cell (range 50/200)", "reload 16"]
+weapons[Blaster pistol].quantity = 1
+weapons[Blaster pistol].tweaks.damage.bonus = 1
+weapons[Blaster pistol].tweaks.toHit.bonus = 1
+weapons[Blaster pistol].tweaks.toHit.proficiency = "proficient"
+weapons[Blaster pistol].weaponClassification = "SimpleBlaster"
+weapons[Unarmed Strike].ability = "Strength"
+weapons[Unarmed Strike].attackBonus = 1
+weapons[Unarmed Strike].damageBonus = 0
+weapons[Unarmed Strike].damageDieType = 0
+weapons[Unarmed Strike].damageNumberOfDice = 1
+weapons[Unarmed Strike].damageType = "Kinetic"
+weapons[Unarmed Strike].equipped = true
+weapons[Unarmed Strike].index = -1
+weapons[Unarmed Strike].isCustom = false
+weapons[Unarmed Strike].properties = []
+weapons[Unarmed Strike].quantity = 0
+weapons[Unarmed Strike].weaponClassification = "Unarmed"
+attunement.hasAttunable = false
+attunement.maximum = 2
+carryingCapacity.encumbered = 40
+carryingCapacity.heavilyEncumbered = 80
+carryingCapacity.maxCapacity = 120
+carryingCapacity.pushDragLift = 240
+superiority = false
+techCasting.attackModifier = 7
+techCasting.maxPoints = 13
+techCasting.maxPowerLevel = 2
+techCasting.pointsUsed = 0
+techCasting.saveDC = 15
+forceCasting = false
+proficiencies[Simple blasters].type = "weapon"
+proficiencies[simple vibroweapons].type = "weapon"
+proficiencies[Light armor].type = "armor"
+proficiencies[One of your choice].type = "tool"
+skillAndSaveProficiencies = ["Investigation", "Lore", "Nature", "Piloting", "Technology", "Medicine", "Constitution Saving Throws", "Intelligence Saving Throws"]
+languages = ["Galactic Basic"]
+experiencePoints.isCorrect = true
+experiencePoints.nextLevel = 6500
+experiencePoints.previousLevel = 2700
+conditions = []
+exhaustion = 0
+techCasting.powersKnown = [Ion Blast, Electroshock, Mending, Target Lock, Kolto Pack, Energy Shield, Homing Rockets, Shocking Ray, Paralyze Humanoid, Detonator]
+
+## Effects and tweaks
+effect: Techie feat: Int +1 (SW5E doesn't apply it) · tweak
+effect: Sullustan: Pilot · tweak
+effect: Engineer skill (3 of 6) · tweak
+effect: Engineer skill (3 of 6) · tweak
+effect: Scientist background skill · tweak
+effect: Scientist skill + Techie (already proficient -> expertise) · tweak
+effect: Engineer skill (3 of 6) · tweak
+effect: Engineer weapon proficiencies · feature
+effect: Bonus Proficiencies · feature
+effect: Techie · feature
+effect: Techie · feature
+effect: Speed · feature
+effect: Droid Resistances · feature
+effect: Droid Vulnerabilities · feature
+effect: Knowledge Protocol · feature
+effect: Droid Dura Plating Mk I · item
+effect: Celerity Leg Prosthesis · item
+effect: Darkvision Goggles · item
+effect: Infuse Item: Blaster pistol · temporary · infuse · until the end of your next long rest
+tweak: abilityScores.Intelligence.skills.Piloting +0 {"proficiency":"Proficient"} · Sullustan: Pilot
+tweak: abilityScores.Intelligence.skills.Investigation +0 {"proficiency":"Proficient"} · Engineer skill (3 of 6)
+tweak: abilityScores.Intelligence.skills.Nature +0 {"proficiency":"Proficient"} · Engineer skill (3 of 6)
+tweak: abilityScores.Intelligence.skills.Lore +0 {"proficiency":"Proficient"} · Scientist background skill
+tweak: abilityScores.Intelligence.skills.Technology +0 {"proficiency":"Expertise"} · Scientist skill + Techie (already proficient -> expertise)
+tweak: abilityScores.Wisdom.skills.Medicine +0 {"proficiency":"Proficient"} · Engineer skill (3 of 6)
+tweak: abilityScores.Intelligence.score +1 · Techie
+tweak: abilityScores.Intelligence.skills.Technology +0 {"proficiency":"Expertise"} · Techie
+tweak: speed.base -5 · Speed
+tweak: armorClass +8 · Droid Dura Plating Mk I
+tweak: abilityScores.Dexterity.savingThrowModifier +1 · Celerity Leg Prosthesis
+weapon tweak: #1 toHit +1 · Infuse Item: Blaster pistol
+weapon tweak: #1 damage +1 · Infuse Item: Blaster pistol
+weapon tweak: #1 toHit +0 · Engineer weapon proficiencies
+weapon tweak: #4 toHit +0 · Engineer weapon proficiencies
+
+## Rolls
+init: Initiative: d20 +1 · = +1 modifier
+death: Death saving throw: d20 +0
+hitdie|d8: Hit die (d8): d8 +2 · = +2 per die
+dice|1d4: 1d4: d4 +0
+check|Strength: Strength check: d20 −1 · = −1 modifier
+save|Strength: Strength saving throw: d20 −1 · = −1 modifier
+skill|Strength|0: Athletics (STR): d20 −1 · = −1 modifier
+check|Dexterity: Dexterity check: d20 +1 · = +1 modifier
+save|Dexterity: Dexterity saving throw: d20 +2 · = +2 modifier
+skill|Dexterity|0: Acrobatics (DEX): d20 +1 · = +1 modifier
+skill|Dexterity|1: Sleight of Hand (DEX): d20 +1 · = +1 modifier
+skill|Dexterity|2: Stealth (DEX): d20 +1 · = +1 modifier
+check|Constitution: Constitution check: d20 +2 · = +2 modifier
+save|Constitution: Constitution saving throw: d20 +4 · = +4 modifier
+check|Intelligence: Intelligence check: d20 +5 · = +5 modifier
+save|Intelligence: Intelligence saving throw: d20 +7 · = +7 modifier
+skill|Intelligence|0: Investigation (INT): d20 +7 · = +7 modifier
+skill|Intelligence|1: Lore (INT): d20 +7 · = +7 modifier
+skill|Intelligence|2: Nature (INT): d20 +7 · = +7 modifier
+skill|Intelligence|3: Piloting (INT): d20 +7 · = +7 modifier
+skill|Intelligence|4: Technology (INT): d20 +9 · = +9 modifier
+check|Wisdom: Wisdom check: d20 +1 · = +1 modifier
+save|Wisdom: Wisdom saving throw: d20 +1 · = +1 modifier
+skill|Wisdom|0: Animal Handling (WIS): d20 +1 · = +1 modifier
+skill|Wisdom|1: Insight (WIS): d20 +1 · = +1 modifier
+skill|Wisdom|2: Medicine (WIS): d20 +3 · = +3 modifier
+skill|Wisdom|3: Perception (WIS): d20 +1 · = +1 modifier
+skill|Wisdom|4: Survival (WIS): d20 +1 · = +1 modifier
+check|Charisma: Charisma check: d20 +0 · = +0 modifier
+save|Charisma: Charisma saving throw: d20 +0 · = +0 modifier
+skill|Charisma|0: Deception (CHA): d20 +0 · = +0 modifier
+skill|Charisma|1: Intimidation (CHA): d20 +0 · = +0 modifier
+skill|Charisma|2: Performance (CHA): d20 +0 · = +0 modifier
+skill|Charisma|3: Persuasion (CHA): d20 +0 · = +0 modifier
+attack|0: Blaster pistol attack: d20 +4 · = +4 modifier · option: Close Call +1d4 (after a miss) +1d4
+damage|0: Blaster pistol damage: d6 +2 · = +1 DEX modifier +1 Infuse Item: Blaster pistol · Energy · note: Celerity Oscillator: Once per turn, when you deal damage with your modified weapon, your walking speed increases by 10 feet until the start of your next turn, and the damaged creature can't make opportunity attacks against you for the rest of your turn.
+attack|1: Unarmed Strike attack: d20 +1 · = +1 modifier
+damage|1: Unarmed Strike damage: no dice +0 · = +1 unarmed strike −1 STR modifier · Kinetic
+tech: Tech attack: d20 +7 · = +7 modifier
+pdmg|tech|Detonator|0|0|Intelligence: Detonator: fire damage: d6 +0 · fire
+pdmg|tech|Detonator|0|1|Intelligence: Detonator: fire damage: d4 +0 · fire
+pdmg|tech|Electroshock|0|0|Intelligence: Electroshock: lightning damage: d8 +0 · lightning
+pdmg|tech|Ion Blast|0|0|Intelligence: Ion Blast: ion damage: d4 +0 · ion
+pdmg|tech|Kolto Pack|1|0|Intelligence: Kolto Pack: healing: d4 +5 · = +5 INT modifier
+pdmg|tech|Repair Droid|1|0|Intelligence: Repair Droid: healing: d8 +5 · = +5 INT modifier
+pdmg|tech|Shocking Ray|2|0|Intelligence: Shocking Ray: ion damage: d4 d4 +0 · ion
+tool|One of your choice|proficient: One of your choice check: d20 +7 · = +5 INT modifier +2 proficiency
+tool|armstech's implements|proficient: armstech's implements check: d20 +7 · = +5 INT modifier +2 proficiency
+damage|0|crit: Blaster pistol damage (critical): d6 d6 +2 · = +1 DEX modifier +1 Infuse Item: Blaster pistol · Energy · critical · note: Celerity Oscillator: Once per turn, when you deal damage with your modified weapon, your walking speed increases by 10 feet until the start of your next turn, and the damaged creature can't make opportunity attacks against you for the rest of your turn.
+damage|1|crit: Unarmed Strike damage (critical): no dice +0 · = +1 unarmed strike −1 STR modifier · Kinetic · critical
+
+## Sheet: Overview
+Tikk Plonr (Panel)
+Droid, Class I · Engineer (Armstech Engineering) 4
+Level 4 Background: Scientist Neutral Light Proficiency +2 [Add a picture]
+2,700 XP level 5 at 6,500 (3,800 to go)
+Still to choose (9): Engineer skills (3 more) · Engineer tool · Armstech Modifications (2 more) · background skills (2 more) · background tool · background lang… [267 chars #ee7dcc2d]
+
+## Sheet: Combat & Vitals
+Armor Class
+19
+  ↳ hover armorClass: Without tweaks or effects: 11 → now 19 / +8 AC 19 (base) (capped from +0) · Droid Dura Plating Mk I while installed
+Unarmored
+Hit Points
+31 / 31
+No temporary HP
+Initiative
++1
+Speed
+25 ft
+  ↳ hover speed.base: Without tweaks or effects: 30 ft → now 25 ft / −5 Walking speed · Speed Droid, Class I trait
+2.5 miles/hour · 20 miles/day
+Proficiency
++2
+Passive Perception
+11
+Hit Dice
+4/4d8
++2 per die spent (Con)
+Vision
+Darkvision 60 ft
+Play tracker
+[] [untyped ▾] [Damage] [Heal] [Temp HP]
+Death saves ✓ [] [] [] ✗ [] [] [] [Roll]
+Tech points 13 / 13 [−] [+]
+Hit dice (d8) roll d8 +2, then Heal 4 / 4 [−] [+]
+Potent Aptitude short rest 2 / 2 [−] [+]
+Infuse Item long rest 0 / 1 [−] [+]
+Repair Droid (Feat: Techie) long rest 1 / 1 [−] [+]
+Conditions None [Add a condition… ▾]
+Combat [Start combat]
+[☆ Inspiration] Exhaustion [−] 0 [+]
+[Short rest] [Long rest]
+Class dice
+Potent Aptitude 1d4
+Defenses & senses
+Resistances Resistance to necrotic, poison, and psychic damage
+Immunities Immune to poison and disease
+Vulnerabilities Vulnerable to ion damage
+Disadvantages Disadvantage on saving throws against effects that would deal ion or lightning damage
+Senses Darkvision 60 ft
+Effects
+From class features, feats and species traits (8)
+Engineer weapon proficiencies Proficient: Simple blasters Proficient: simple vibroweapons Engineer proficiencies
+Bonus Proficiencies Proficient: martial blasters Proficient: martial vibroweapons armstech's implements: proficient Proficient: medium armor Armstech Engineering feature
+Techie INT +1 feat (background feat)
+Techie Technology: expertise (already proficient) feat
+Speed Walking speed 25 ft Droid, Class I trait
+Droid Resistances Resistance to necrotic, poison, and psychic damage Immune to poison and disease Droid, Class I trait
+Droid Vulnerabilities Vulnerable to ion damage Disadvantage on saving throws against effects that would deal ion or lightning damage Droid, Class I trait
+Knowledge Protocol Choose two Intelligence, Wisdom, or Charisma skills of your choice Droid, Class I trait
+From equipment
+Droid Dura Plating Mk I AC 19 (base) (+8) while installed
+Celerity Leg Prosthesis AC as DEX 15: no effect (Dexterity 15 or more, or an AC without Dexterity) DEX saves as DEX 15 (+1) while installed
+Side Effect: When you roll a 1 an ability check, attack roll, or saving throw using Dexterity that involves these legs, they seize up, reducing your speed to 0 until the start of your next turn.
+Darkvision Goggles while equipped
+While wearing these goggles, you have darkvision to a range of 60 feet.
+If you already have darkvision, these goggles increase its range by 30 feet.
+Temporary
+Infuse Item: Blaster pistol Attack +1 Damage +1 on [Blaster pistol ▾] started, lasts until the end of your next long rest, since Sat 21:22 [End]
+[]
+Your own effect (something the sheet doesn't know)…
+[] [] [No number (a reminder) ▾] [] [Add]
+It's applied like any effect (a dice bonus like Bless's d4 isn't a number: add it in the roller), and ends with End, a rest or Next round when it has run out.
+1 item with effects not in use
+Armor (Fine) AC +1 needs to be equipped
+Bonuses are applied to the sheet's numbers in this browser only (not saved to SW5E); changed numbers are underlined: hover or tap them for details. Conditional … [256 chars #e163e104]
+Conditions
+None active (from SW5E)
+Carrying capacity
+Carried
+40.5 lb
+Encumbered (variant rule)
+Encumbered at
+40 lb
+Heavily enc. at
+80 lb
+Max capacity
+120 lb
+Push / drag / lift
+240 lb
+
+## Sheet: Abilities & Saving Throws
+STR
+Strength
+−1
+8
+(Not proficient) Saving throw−1
+(Not proficient) Athletics−1
+base 8
+DEX
+Dexterity
++1
+13
+(Not proficient) Saving throw+2
+  ↳ hover abilityScores.Dexterity.savingThrow.modifier: Without tweaks or effects: 1 → now 2 / +1 DEX saves as DEX (capped from +0) · Celerity Leg Prosthesis while installed
+(Not proficient) Acrobatics+1
+(Not proficient) Sleight of Hand+1
+(Not proficient) Stealth+1
+base 13
+CON
+Constitution
++2
+14
+(Proficient) Saving throw+4
+base 14
+INT
+Intelligence
++5
+  ↳ hover abilityScores.Intelligence.modifier: Without tweaks or effects: 4 → now 5 / +1 INT · Techie feat (background feat)
+20
+  ↳ hover abilityScores.Intelligence.value: Without tweaks or effects: 19 → now 20 / +1 INT · Techie feat (background feat)
+(Proficient) Saving throw+7
+  ↳ hover abilityScores.Intelligence.savingThrow.modifier: Without tweaks or effects: 6 → now 7 / +1 INT · Techie feat (background feat)
+(Proficient) Investigation+7
+  ↳ hover abilityScores.Intelligence.skills.0.modifier: Without tweaks or effects: 4 → now 7 / +1 INT · Techie feat (background feat) / Proficient Investigation · Engineer skill (3 of 6) tweak
+(Proficient) Lore+7
+  ↳ hover abilityScores.Intelligence.skills.1.modifier: Without tweaks or effects: 4 → now 7 / +1 INT · Techie feat (background feat) / Proficient Lore · Scientist background skill tweak
+(Proficient) Nature+7
+  ↳ hover abilityScores.Intelligence.skills.2.modifier: Without tweaks or effects: 4 → now 7 / +1 INT · Techie feat (background feat) / Proficient Nature · Engineer skill (3 of 6) tweak
+(Proficient) Piloting+7
+  ↳ hover abilityScores.Intelligence.skills.3.modifier: Without tweaks or effects: 4 → now 7 / +1 INT · Techie feat (background feat) / Proficient Piloting · Sullustan: Pilot tweak
+(Expertise) Technology+9
+  ↳ hover abilityScores.Intelligence.skills.4.modifier: Without tweaks or effects: 4 → now 9 / +1 INT · Techie feat (background feat) / Expertise Technology · Scien… [288 chars #5e37b24b]
+base 15 · +2 Droid, Class I · +2 ASI (Engineer 4) · +1 from Techie (feat)
+WIS
+Wisdom
++1
+12
+(Not proficient) Saving throw+1
+(Not proficient) Animal Handling+1
+(Not proficient) Insight+1
+(Proficient) Medicine+3
+  ↳ hover abilityScores.Wisdom.skills.2.modifier: Without tweaks or effects: 1 → now 3 / Proficient Medicine · Engineer skill (3 of 6) tweak
+(Not proficient) Perception+1
+(Not proficient) Survival+1
+base 12
+CHA
+Charisma
++0
+10
+(Not proficient) Saving throw+0
+(Not proficient) Deception+0
+(Not proficient) Intimidation+0
+(Not proficient) Performance+0
+(Not proficient) Persuasion+0
+base 10
+not proficient proficient expertise
+
+## Sheet: Skills
+Skill | Ability | Bonus | Passive | Proficiency |
+(Not proficient) Acrobatics | DEX | +1 | 11 | — |
+(Not proficient) Animal Handling | WIS | +1 | 11 | — |
+(Not proficient) Athletics | STR | −1 | 9 | — |
+(Not proficient) Deception | CHA | +0 | 10 | — |
+(Not proficient) Insight | WIS | +1 | 11 | — |
+(Not proficient) Intimidation | CHA | +0 | 10 | — |
+(Proficient) Investigation | INT | +7 | 17 | Proficient |
+  ↳ hover abilityScores.Intelligence.skills.0.modifier: Without tweaks or effects: 4 → now 7 / +1 INT · Techie feat (background feat) / Proficient Investigation · Engineer skill (3 of 6) tweak
+  ↳ hover abilityScores.Intelligence.skills.0.modifier: Without tweaks or effects: 4 → now 7 / +1 INT · Techie feat (background feat) / Proficient Investigation · Engineer skill (3 of 6) tweak
+(Proficient) Lore | INT | +7 | 17 | Proficient |
+  ↳ hover abilityScores.Intelligence.skills.1.modifier: Without tweaks or effects: 4 → now 7 / +1 INT · Techie feat (background feat) / Proficient Lore · Scientist background skill tweak
+  ↳ hover abilityScores.Intelligence.skills.1.modifier: Without tweaks or effects: 4 → now 7 / +1 INT · Techie feat (background feat) / Proficient Lore · Scientist background skill tweak
+(Proficient) Medicine | WIS | +3 | 13 | Proficient |
+  ↳ hover abilityScores.Wisdom.skills.2.modifier: Without tweaks or effects: 1 → now 3 / Proficient Medicine · Engineer skill (3 of 6) tweak
+  ↳ hover abilityScores.Wisdom.skills.2.modifier: Without tweaks or effects: 1 → now 3 / Proficient Medicine · Engineer skill (3 of 6) tweak
+(Proficient) Nature | INT | +7 | 17 | Proficient |
+  ↳ hover abilityScores.Intelligence.skills.2.modifier: Without tweaks or effects: 4 → now 7 / +1 INT · Techie feat (background feat) / Proficient Nature · Engineer skill (3 of 6) tweak
+  ↳ hover abilityScores.Intelligence.skills.2.modifier: Without tweaks or effects: 4 → now 7 / +1 INT · Techie feat (background feat) / Proficient Nature · Engineer skill (3 of 6) tweak
+(Not proficient) Perception | WIS | +1 | 11 | — |
+(Not proficient) Performance | CHA | +0 | 10 | — |
+(Not proficient) Persuasion | CHA | +0 | 10 | — |
+(Proficient) Piloting | INT | +7 | 17 | Proficient |
+  ↳ hover abilityScores.Intelligence.skills.3.modifier: Without tweaks or effects: 4 → now 7 / +1 INT · Techie feat (background feat) / Proficient Piloting · Sullustan: Pilot tweak
+  ↳ hover abilityScores.Intelligence.skills.3.modifier: Without tweaks or effects: 4 → now 7 / +1 INT · Techie feat (background feat) / Proficient Piloting · Sullustan: Pilot tweak
+(Not proficient) Sleight of Hand | DEX | +1 | 11 | — |
+(Not proficient) Stealth | DEX | +1 | 11 | — |
+(Not proficient) Survival | WIS | +1 | 11 | — |
+(Expertise) Technology | INT | +9 | 19 | Expertise |
+  ↳ hover abilityScores.Intelligence.skills.4.modifier: Without tweaks or effects: 4 → now 9 / +1 INT · Techie feat (background feat) / Expertise Technology · Scien… [288 chars #5e37b24b]
+  ↳ hover abilityScores.Intelligence.skills.4.modifier: Without tweaks or effects: 4 → now 9 / +1 INT · Techie feat (background feat) / Expertise Technology · Scien… [288 chars #5e37b24b]
+
+## Sheet: Weapons & Attacks
+Weapon | To hit | Damage | Ability | Type | Properties |
+Blaster pistol modified
+Power cell (range 50/200), reload 16
+Modified Weaponry · attuned · 2 mods
+Celerity Oscillator: Once per turn, when you deal damage with your modified weapon, your walking speed increases by 10 feet until the start of your next turn, a… [253 chars #fb67d3db]
+Expanded Magazine: Your modified weapon can be more efficiently reloaded. You can reload your modified weapon once without using an action. You can't use this feature again until you reload the weapon with an action.
+Shots 16/16 [−1] [Reload] 17 Power cells
+| +4 | 1d6+2 Energy | Dexterity | Simple Blaster | Power cell (range 50/200), reload 16 |
+  ↳ hover weapons.0.attackBonus: Without tweaks or effects: 3 → now 4 / +1 Attack · Infuse Item: Blaster pistol started, lasts until the end of your next long rest,… [272 chars #9b1854a2]
+  ↳ hover weapons.0.damageBonus: Without tweaks or effects: 1 → now 2 / +1 Damage · Infuse Item: Blaster pistol started, lasts until the end of your next long rest, since Sat 21:22
+Unarmed Strike
+| +1 | 0 Kinetic | Strength | Unarmed | — |
+
+## Sheet: Tech Casting
+Tech points
+13 / 13
+  ↳ hover techCasting.maxPoints: Without tweaks or effects: 12 → now 13 / +1 INT · Techie feat (background feat)
+Max power level
+2
+Save DC
+15
+  ↳ hover techCasting.saveDC: Without tweaks or effects: 14 → now 15 / +1 INT · Techie feat (background feat)
+Attack
++7
+  ↳ hover techCasting.attackModifier: Without tweaks or effects: 6 → now 7 / +1 INT · Techie feat (background feat)
+At-will powers (4)
+Detonator Engineer
+[Cast]
+Attack +7 · Dexterity save DC 15 · Damage 1d6 fire · Damage 1d4 fire
+Casting 1 action Range 60 feet Duration Instantaneous Source EC
+You launch a detonator at a creature. Make a ranged tech attack against a creature you can see within range. On a hit, the target takes 1d6 fire damage, and eac… [258 chars #7afe78c6]
+This power's damage increases by one die when you reach 5th level (2d6/2d4), 11th level (3d6/3d4), and 17th level (4d6/4d4).
+Electroshock Engineer
+[Cast]
+Attack +7 · Damage 1d8 lightning
+Casting 1 action Range Touch Duration Instantaneous Source PHB
+Lightning springs from you to deliver a shock to a creature you try to touch. Make a melee tech attack against the target. You have advantage on the attack roll… [325 chars #e0570e87]
+This power's damage increases by 1d8 when you reach 5th level (2d8), 11th level (3d8), and 17th level (4d8).
+Ion Blast Engineer
+[Cast]
+Dexterity save DC 15 · Damage 1d4 ion
+Casting 1 action Range 60 feet Duration Instantaneous Source PHB
+You create a blast of ion energy. Choose one creature within range that you can see, or choose two creatures within range that are within 5 feet of each other t… [250 chars #d3100fc0]
+This power's damage increases by 1d4 when you reach 5th level (2d4), 11th level (3d4), and 17th level (4d4).
+Mending Engineer
+Casting 1 minute Range Touch Duration Instantaneous Source PHB
+This ability repairs a single break or tear in an object you touch, such as broken chain link, two halves of a broken key, a torn strap, or a leaking cup. As lo… [410 chars #f9c73b09]
+1st-level powers (5)
+Energy Shield Engineer
+[1st level · 2 points ▾] [Cast]
+Casting 1 reaction, which you take when you are hit by an attack Range Self Duration 1 round Source PHB
+You quickly create an energy shield. Until the start of your next turn, you have a +5 bonus to AC. This includes the triggering attack.
+Homing Rockets Engineer
+[1st level · 2 points ▾] [Cast]
+Casting 1 action Range 120 feet Duration Instantaneous Source PHB
+You lock on to one or more targets within range and expel a series of three small explosives. Each explosive hits a creature of your choice that you can see wit… [322 chars #9f39ad2a]
+Overcharge Tech. When you cast this power using a tech slot of 2nd level or higher, the power creates one more explosive for each slot level above 1st.
+Kolto Pack Engineer
+[1st level · 2 points ▾] [Cast]
+Healing 1d4+5
+Casting 1 bonus action Range 60 feet Duration Instantaneous Source PHB
+A creature of your choice that you can see within range regains hit points equal to 1d4 + your techcasting ability modifier. This power has no effect on droids or constructs.
+Overcharge Tech. When you cast this power using a tech slot of 2nd level or higher, the healing increases by 1d4 for each slot level above 1st.
+Repair Droid Feat: Techie (Background (Scientist)) Once per long rest
+[1st level · 2 points ▾] [Cast]
+[Cast at 1st level (available)]
+Healing 1d8+5
+Casting 1 action Range Touch Duration Instantaneous Source PHB
+A droid or construct you touch regains a number of hit points equal to 1d8 + your techcasting ability modifier.
+Overcharge Tech. When you cast this power using a tech slot of 2nd level or higher, the healing increases by 1d8 for each slot level above 1st.
+Target Lock Concentration Engineer
+[1st level · 2 points ▾] [Cast]
+Casting 1 bonus action Range 90 feet Duration up to 1 hour Source PHB
+You choose a creature you can see within range and mark it as your quarry. Until the power ends, you deal an extra 1d6 damage to the target whenever you hit it … [482 chars #9b74e641]
+Overcharge Tech. When you cast this power using a tech slot of 3rd or 4th level, you can maintain your concentration on the power for up to 8 hours. When you us… [266 chars #de5549b2]
+2nd-level powers (2)
+Paralyze Humanoid Concentration Engineer
+[2nd level · 3 points ▾] [Cast]
+Constitution save DC 15
+Casting 1 action Range 60 feet Duration up to 1 minute Source PHB
+You emit a paralyzing dart at a humanoid that you can see within range. The target must succeed on a Constitution saving throw or be poisoned for the duration. … [344 chars #ecc30efd]
+Overcharge Tech. When you cast this power using a tech slot of 3rd level or higher, you can target one additional humanoid for each slot level above 2nd. The hu… [226 chars #dc16e778]
+Shocking Ray Engineer
+[2nd level · 3 points ▾] [Cast]
+Attack +7 · Damage 2d4 ion
+Casting 1 action Range 120 feet Duration Instantaneous Source PHB
+You create three ionic rays and hurl them at targets within range. You can hurl them at one target or several. Make a ranged tech attack for each ray. On a hit, the target takes 2d4 ion damage.
+Overcharge Tech. When you cast this power using a tech slot of 3rd level or higher, you create one additional ray for each slot level above 2nd.
+
+## Sheet: Class Features
+Engineer (6)
+Potent Aptitude Level 1
+Uses (back on a short or long rest) 2 / 2 [−] [+]
+Engineer: 1st level
+Your technological experience lends you an uncommon insight that you can use to bolster your allies. To do so, you use a bonus action on your turn to choose one… [388 chars #b7fc5b55]
+Once within the next 10 minutes, the creature can roll the die and add the number rolled to one ability check, attack roll, or saving throw it makes. Once the Potent Aptitude die is rolled, it is lost.
+A creature can have only one Potent Aptitude die at a time.
+You can use this feature twice. You gain an additional use at 5th, 9th, 13th, and 17th level. You regain any expended uses when you finish a short or long rest.
+Your choices []
+Techcasting Level 1
+Engineer: 1st level
+During your training you have derived powers from schematics with the aid of your wristpad. See chapter 10 for the general rules of techcasting and chapter 12 for the tech powers list.
+Tech Powers Known
+You learn 6 tech powers of your choice, and you learn more at higher levels, as shown in the Tech Powers Known column of the engineer table. You may not learn a tech power of a level higher than your Max Power Level.
+Tech Points
+You have a number of tech points equal to your engineer level x 2, as shown in the Tech Points column of the engineer table, + your Intelligence modifier. You u… [275 chars #c9972ec6]
+Max Power Level
+Many tech powers can be overcharged, consuming more tech points to create a greater effect. You can overcharge these powers to a maximum level, which increases … [239 chars #bb0ee539]
+You may only cast tech powers at 6th, 7th, 8th, and 9th-level once. You regain the ability to do so after a long rest.
+Techcasting Ability
+Intelligence is your techcasting ability for your tech powers. You use your Intelligence whenever a power refers to your techcasting ability. Additionally, you … [290 chars #25c52137]
+Tech save DC = 8 + your proficiency bonus + your Intelligence modifier
+Tech attack modifier = your proficiency bonus + your Intelligence modifier
+Techcasting Focus
+You use a wristpad (found in chapter 5) or the tools in which you are granted proficiency by this class as a tech focus for your tech powers.
+Your choices []
+Infuse Item Level 2
+Uses (back on a long rest) 0 / 1 [−] [+]
+Infuse Item: Blaster pistol · until the end of your next long rest [End]
+Engineer: 2nd level
+You gain the ability to temporarily enhance a weapon or armor. At the end of a long rest, you can touch one unenhanced object that is a suit of armor, a shield,… [394 chars #dfc18efa]
+Once you've used this feature, you can't use it again until you finish a long rest.
+This bonus increases to +2 at 10th level and +3 at 15th level.
+Notes []
+Tool Expertise Level 2
+Engineer: 2nd level
+You gain expertise in any tool proficiencies you gain from this class.
+Notes []
+Engineering Discipline Level 3
+Engineer: 3rd, 6th, 14th, and 18th level
+You begin to focus on a specific engineering discipline, which is detailed at the end of the class description.
+Chosen: Armstech Engineering · change it in Classes & Progression
+Notes []
+Ability Score Improvement Level 4
+Engineer: 4th, 8th, 12th, 16th, and 19th level
+You can increase one ability score by 2, or you can increase two ability scores by 1. You can't increase an ability score above 20 using this feature.
+Notes []
+Armstech Engineering (archetype) (3)
+Bonus Proficiencies Level 3
+Armstech Engineering: 3rd level
+You gain proficiency in armstech's implements, medium armor, martial blasters, and martial vibroweapons. Additionally, when you engage in crafting with armstech's implements, the rate at which you craft doubles.
+Notes []
+Close Call Level 3
+Armstech Engineering: 3rd level
+When you make an attack roll with your modified weapon and miss, you can expend one use of your Potent Aptitude to attempt to turn that miss into a hit. Roll the die and add it to the attack roll.
+Notes []
+Modified Weaponry Level 3
+Armstech Engineering: 3rd level
+You learn to modify one unenhanced weapon with which you are proficient utilizing your armstech experience. Over the course of a long rest, you can modify the w… [256 chars #d8b2328b]
+Your modified weapon is enhanced, requires attunement, can only be used by you, and counts as a tech focus for your tech powers while you are attuned to it. You… [559 chars #66e3b1df]
+Some modification effects require saving throws. When you use such an effect from this class, the DC equals your tech save DC.
+At 9th level, you can maintain two modified weapons. Each modified weapon has modification slots as shown in the Modification Slots column of the engineer table.
+Notes []
+Engineer: Armstech Modifications (2)
+Celerity Oscillator
+Once per turn, when you deal damage with your modified weapon, your walking speed increases by 10 feet until the start of your next turn, and the damaged creatu… [232 chars #c387e987]
+Expanded Magazine
+Your modified weapon can be more efficiently reloaded. You can reload your modified weapon once without using an action. You can't use this feature again until you reload the weapon with an action.
+
+## Sheet: Feats
+Choices from your feats
+Power given 1 / 1 Feat: Techie (Background (Scientist))
+Repair Droid from the feature
+A droid or construct you touch regains a number of hit points equal to 1d8 + your techcasting ability modifier.
+Overcharge Tech. When you cast this power using a tech slot of 2nd level or higher, the healing increases by 1d8 for each slot level above 1st.
+Power given, once per long rest 1 / 1 Feat: Techie (Background (Scientist))
+Repair Droid from the feature
+A droid or construct you touch regains a number of hit points equal to 1d8 + your techcasting ability modifier.
+Overcharge Tech. When you cast this power using a tech slot of 2nd level or higher, the healing increases by 1d8 for each slot level above 1st.
+Techie Background (Scientist)+ Intelligence
+You master the theory and practice of technology, gaining the following benefits:
+Increase your Intelligence score by 1, to a maximum of 20.
+You gain proficiency in the Technology skill. If you are already proficient in it, you instead gain expertise in it.
+You learn the repair droid tech power. You can cast it once, using supplies scavenged around you, without the use of a wristpad and without spending tech points… [226 chars #d0ad715a]
+Notes []
+
+## Sheet: Classes & Progression
+[Level up]
+Engineer 4 Armstech Engineering Starting class Tech caster
+Hit die d8 Primary Intelligence Saves Constitution, Intelligence HP by level 8 (max), 5, 5, 5
+Tech caster who enhances items to benefit allies
+Ability score improvements
+Ability Score Improvement: Intelligence +2
+Skill proficiencies 0 / 3 Choose three from Investigation, Lore, Medicine, Nature, Piloting, and Technology
+None chosen yet.
+[Choose a skill… ▾]
+Tool proficiency 0 / 1 Tinker's implements, one of your choice
+None chosen yet.
+[Choose a tool… ▾]
+Archetype [Armstech Engineering ▾]
+Read the options (14)
+Tech powers 10 / 10 Engineer table · max power level 2
+Detonator at-will [×]
+You launch a detonator at a creature. Make a ranged tech attack against a creature you can see within range. On a hit, the target takes 1d6 fire damage, and eac… [258 chars #7afe78c6]
+This power's damage increases by one die when you reach 5th level (2d6/2d4), 11th level (3d6/3d4), and 17th level (4d6/4d4).
+Electroshock at-will [×]
+Lightning springs from you to deliver a shock to a creature you try to touch. Make a melee tech attack against the target. You have advantage on the attack roll… [325 chars #e0570e87]
+This power's damage increases by 1d8 when you reach 5th level (2d8), 11th level (3d8), and 17th level (4d8).
+Ion Blast at-will [×]
+You create a blast of ion energy. Choose one creature within range that you can see, or choose two creatures within range that are within 5 feet of each other t… [250 chars #d3100fc0]
+This power's damage increases by 1d4 when you reach 5th level (2d4), 11th level (3d4), and 17th level (4d4).
+Mending at-will [×]
+This ability repairs a single break or tear in an object you touch, such as broken chain link, two halves of a broken key, a torn strap, or a leaking cup. As lo… [410 chars #f9c73b09]
+Energy Shield 1st level [×]
+You quickly create an energy shield. Until the start of your next turn, you have a +5 bonus to AC. This includes the triggering attack.
+Homing Rockets 1st level [×]
+You lock on to one or more targets within range and expel a series of three small explosives. Each explosive hits a creature of your choice that you can see wit… [322 chars #9f39ad2a]
+Overcharge Tech. When you cast this power using a tech slot of 2nd level or higher, the power creates one more explosive for each slot level above 1st.
+Kolto Pack 1st level [×]
+A creature of your choice that you can see within range regains hit points equal to 1d4 + your techcasting ability modifier. This power has no effect on droids or constructs.
+Overcharge Tech. When you cast this power using a tech slot of 2nd level or higher, the healing increases by 1d4 for each slot level above 1st.
+Target Lock 1st level [×]
+You choose a creature you can see within range and mark it as your quarry. Until the power ends, you deal an extra 1d6 damage to the target whenever you hit it … [482 chars #9b74e641]
+Overcharge Tech. When you cast this power using a tech slot of 3rd or 4th level, you can maintain your concentration on the power for up to 8 hours. When you us… [266 chars #de5549b2]
+Paralyze Humanoid 2nd level [×]
+You emit a paralyzing dart at a humanoid that you can see within range. The target must succeed on a Constitution saving throw or be poisoned for the duration. … [344 chars #ecc30efd]
+Overcharge Tech. When you cast this power using a tech slot of 3rd level or higher, you can target one additional humanoid for each slot level above 2nd. The hu… [226 chars #dc16e778]
+Shocking Ray 2nd level [×]
+You create three ionic rays and hurl them at targets within range. You can hurl them at one target or several. Make a ranged tech attack for each ray. On a hit, the target takes 2d4 ion damage.
+Overcharge Tech. When you cast this power using a tech slot of 3rd level or higher, you create one additional ray for each slot level above 2nd.
+[Learn a tech power… ▾]
+Read the options (132)
+Armstech Modifications 2 / 4 Armstech Engineering, 3rd level · can be changed on a rest
+Modified Weaponry [Blaster pistol ▾] 4 slots
+Celerity Oscillator Armstech Engineering [×]
+Once per turn, when you deal damage with your modified weapon, your walking speed increases by 10 feet until the start of your next turn, and the damaged creatu… [232 chars #c387e987]
+Expanded Magazine Armstech Engineering [×]
+Prerequisite: Blaster
+Your modified weapon can be more efficiently reloaded. You can reload your modified weapon once without using an action. You can't use this feature again until you reload the weapon with an action.
+[Add from Armstech Modifications… ▾]
+Read the options (30)
+Class table
+Proficiency Bonus
++2 → +3 at 5
+Features
+Ability Score Improvement → — at 5
+Tech Powers Known
+10 → 12 at 5
+Tech Points
+8 → 10 at 5
+Max Power Level
+2nd → 3rd at 5
+Potent Aptitude
+d4 → d6 at 5
+Modification Slots
+4 → 5 at 5
+| Proficiency Bonus | Features | Tech Powers Known | Tech Points | Max Power Level | Potent Aptitude | Modification Slots |
+Now (4) | +2 | Ability Score Improvement | 10 | 8 | 2nd | d4 | 4 |
+Next (5) | +3 | — | 12 | 10 | 3rd | d6 | 5 |
+Armor Light armor Weapons Simple blasters, simple vibroweapons Tools Tinker's implements, one of your choice
+
+## Sheet: Species
+Size
+Medium
+Language
+Varies based on location
+Average height
+4'5 +2d10"
+Average weight
+115 lb. x(2d4) lb.
+Distinctions
+Human-like size, slow speed, specialized knowledge
+Traits (15)
+Ability Score Increase
+Your Intelligence score increases by 2, and your Wisdom or Charisma score increases by 1.
+Notes []
+Age
+Droids don't age, though they require maintenance to retain functionality.
+Notes []
+Alignment
+Droids tend toward no particular alignment. The best and worst are found among them.
+Notes []
+Armor Integration
+You can not wear armor, but you can have the armor professionally integrated into your chassis over the course of a long rest. This work must be done by someone… [264 chars #2f07eac6]
+Notes []
+Droid Resistances
+You are resistant to necrotic, poison, and psychic damage, and are immune to poison and disease.
+Notes []
+Droid Systems
+You do not need to eat, drink, or breathe. Additionally, you no longer require a tech focus to cast tech powers.
+Notes []
+Droid Vulnerabilities
+You are vulnerable to ion damage. Additionally, you have disadvantage on saving throws against effects that would deal ion or lightning damage.
+Notes []
+Force-Insensitive
+While droids can be manipulated by many force powers, they can not sense the Force. You can not use force powers or take levels in forcecasting classes.
+Notes []
+Knowledge Protocol
+You have proficiency in two Intelligence, Wisdom, or Charisma skills of your choice.
+Skill proficiency 0 / 2
+None chosen yet.
+[Choose a skill… ▾]
+Notes []
+Languages
+You can speak, read, and write Galactic Basic and one language of your choice. You can understand spoken and written Binary, but you can not speak it.
+Your choices []
+Maintenance Mode
+Rather than sleep, you must spend 3 hours performing routine maintenance during a long rest to gain its benefits, during which you have disadvantage on Wisdom (… [299 chars #0e11ab3e]
+Notes []
+Rapid Reconstruction
+You are built with internal repair mechanisms. As a bonus action, you can choose to spend one of your Hit Dice to recover hit points.
+Your choices []
+Size
+Class I droids stand between 5 and 6 feet tall and weigh about 170 lbs. Regardless of your position in that range, your size is Medium.
+Notes []
+Speed
+Your base walking speed is 25 feet.
+Notes []
+Type
+Your creature type is droid.
+Notes []
+Ability score +1 0 / 1 Your Intelligence score increases by 2, and your Wisdom or Charisma score increases by 1.
+None chosen yet.
+[Choose an ability… ▾]
+Languages 0 / 1 You can speak, read, and write Galactic Basic and one language of your choice. You can understand spoken and written Binary, but you can not speak it.
+None chosen yet.
+[Choose a language… ▾]
+
+## Sheet: Background
+Skill proficiencies
+Choose two from Lore, Medicine, Nature, and Technology
+Tool proficiencies
+One of your choice
+Languages
+One of your choice
+Starting equipment
+A set of common clothes, a datapad, a book on your field of research, a pouch containing 100 cr
+Background feat
+Techie
+Field of Research
+While scientist's are widely knowledgeable, they also choose a focus for their studies. Choose an option or roll on the table below to define your field of research.
+d8 | Field of Research |
+1 | Biology |
+2 | Artificial Intelligence |
+3 | Chemistry |
+4 | Geology |
+d8 | Field of Research |
+5 | Physics |
+6 | the Force |
+7 | Astrogation |
+8 | Medicine |
+Feature: Scientific Method Background feature
+You are well acquainted with your field of research from having read numerous journals or having attended scientific conferences. Concepts that are complicated,… [515 chars #41ecb162]
+About this background
+Nothing excites you more than pushing the boundaries of scientific knowledge. Most of your time is spent in a lab performing experiments to further your interes… [361 chars #6d4c121d]
+What is your scientific field of interest? Is it your insatiable curiousity, or a personal goal that drives you? Did you leave your lab voluntarily, or were you… [264 chars #6adaecfb]
+Your choices
+Skill proficiencies 0 / 2 Choose two from Lore, Medicine, Nature, and Technology
+None chosen yet.
+[Choose a skill… ▾]
+Tool proficiency 0 / 1 One of your choice
+None chosen yet.
+[Choose a tool… ▾]
+Languages 0 / 1 One of your choice
+None chosen yet.
+[Choose a language… ▾]
+
+## Sheet: Proficiencies & Languages
+Armor
+Light armor medium armor · Bonus Proficiencies
+Weapon
+Simple blasters simple vibroweapons martial blasters · Bonus Proficiencies martial vibroweapons · Bonus Proficiencies
+Tool
+One of your choice armstech's implements · Bonus Proficiencies
+Skills & saves
+Investigation Lore Nature Piloting Technology Medicine Constitution Saving Throws Intelligence Saving Throws
+Languages
+Galactic Basic
+✎ = custom proficiency added on the character.
+
+## Sheet: Equipment & Inventory
+Add an item
+[All items ▾] []
+Qty [1] [Add]
+2425 items from SW5E (data version 199). [Check for a newer list]
+Credits
+450 cr
+[] [] [Apply]
+Total weight
+40.5 lb
+of 120 lb max
+Attunement
+1 / 2
+incl. Blaster pistol (modified weaponry)
+Items
+12
+Weapon (2)
+Item | Qty & actions | Weight | Cost | Source |
+Blaster pistol
+1d6 Energy · Power cell (range 50/200), reload 16
+| [−] 1 [+] [Equipped] [✎] [Sell] [×] | 2.5 lb | 175 cr | PHB |
+Vibrodagger
+1d4 Kinetic · Finesse, light, thrown (range 20/60)
+| [−] 1 [+] [Equip] [✎] [Sell] [×] | 0.5 lb | 50 cr | PHB |
+Ammunition (1)
+Item | Qty & actions | Weight | Cost | Source |
+Power cell
+Description
+Weapons with this property are fueled by power cells, which must be loaded in order to fire the weapon. A power cell fuels a number of attacks equal to the weapon's reload number.
+| [−] 17 [+] [Use] [✎] [Sell] [×] | 17 lb | 10 cr | PHB |
+Clothing (1)
+Item | Qty & actions | Weight | Cost | Source |
+Clothes, common
+| [−] 1 [+] [✎] [Sell] [×] | 3 lb | 5 cr | PHB |
+Data Recording And Storage (2)
+Item | Qty & actions | Weight | Cost | Source |
+Wristpad
+Description
+A wristpad is a harness with an integrated datapad and holoprojector interface that fits on the forearm and includes self-charging battery packs.
+| [−] 1 [+] [✎] [Sell] [×] | 2 lb | 600 cr | PHB |
+Datapad
+Description
+A datapad is a small electronic device used for the input, storage and displaying of information. It features a holoprojective surface for 3D viewing.
+| [−] 1 [+] [✎] [Sell] [×] | 0.5 lb | 100 cr | PHB |
+Enhanced: Adventuring Gear (1)
+Item | Qty & actions | Weight | Cost | Source |
+Darkvision Goggles
+Premium (uncommon)
+Description
+While wearing these goggles, you have darkvision to a range of 60 feet. If you already have darkvision, these goggles increase its range by 30 feet.
+| [−] 1 [+] [Equipped] [✎] [Sell] [×] | — | — | WH |
+Enhanced: Armor (1)
+Item | Qty & actions | Weight | Cost | Source |
+Armor (Fine)
+Premium (uncommon)
+On a Combat suit: AC 11 + Dex modifier · 10 lb [change]
+Description
+You have a +1 bonus to AC while wearing this armor.
+| [−] 1 [+] [Equip] [✎] [Sell] [×] | 10 lb | 100 cr | WH |
+Enhanced: Cybernetic Augmentation (1)
+Item | Qty & actions | Weight | Cost | Source |
+Celerity Leg Prosthesis
+Standard (common)
+Description
+This augmentation replaces both legs.
+When determining your bonus to AC and saving throws from Dexterity, your Dexterity score is treated as 15. Additionally, you can substitute this score for your … [323 chars #4d9597e1]
+Side Effect: When you roll a 1 an ability check, attack roll, or saving throw using Dexterity that involves these legs, they seize up, reducing your speed to 0 until the start of your next turn.
+This leg replacement is common for those travelers interested in making a quick getaway.
+| [−] 1 [+] [Installed] [✎] [Sell] [×] | — | — | WH |
+Enhanced: Droid Customization (1)
+Item | Qty & actions | Weight | Cost | Source |
+Droid Dura Plating Mk I
+Prototype (rare)
+Description
+Your base AC becomes 19.
+Originally used on starship hulls, durasteel is the most cost-effective way to prevent the destruction of your droids.
+| [−] 1 [+] [Installed] [✎] [Sell] [×] | — | — | WH |
+Storage (1)
+Item | Qty & actions | Weight | Cost | Source |
+Backpack
+Description
+A backpack stores 30 lb., not exceeding 1 cubic foot.
+| [−] 1 [+] [✎] [Sell] [×] | 5 lb | 50 cr | PHB |
+Tool (1)
+Item | Qty & actions | Weight | Cost | Source |
+Tinker's implements
+| [−] 1 [+] [✎] [Sell] [×] | — | 500 cr | PHB |
+
+## Sheet: Personality & Appearance
+Personality Traits
+I take apart anything that beeps, then explain it to whoever is nearby, whether they asked or not.
+Ideal
+Knowledge. Every machine has a story; I want to read all of them.
+Bond
+My Warren-clan on Sullust funded my studies; I owe them a share of every credit.
+Flaw
+I can't resist a good deal, even mid-firefight.
+Details
+Alignment
+Neutral Light
+Gender
+Male
+Place of Birth
+Sullust
+Age
+27
+Height
+4'10"
+Weight
+—
+Hair
+—
+Eyes
+Black
+Skin
+Gray, tattooed scalp (circuit pattern)
+
+## Sheet: Backstory
+No backstory yet.
+
+## Sheet: Notes
+Not in the sheet (no way to add):
+Tools: Tinker's implements (Engineer), Slicer's kit (Engineer choice), Chemist's kit (Scientist choice)
+Languages: Sullestese, Bothese (Sullustan extra), Binary (Scientist)
+Explorer's pack (rest of it), a book on droid cybernetics
+Field of research: Artificial Intelligence
+Story items:
+Coded datapad with the smuggler's coordinates (loot, Ord Mantell docks)
+Debts:
+Owe Kessa (Kessa's Outfitters) 420 cr: 2 medpacs + 5 power cells at 20% off, paid 100 of 520
+
+## Sheet: Settings, Tweaks & Data
+Tweaks (manual adjustments) 7 · 1 tweak left out (the sheet applies it by itself)
+From sw5e.com's editor or added here. Give each a reason (kept in this viewer and in backups); hovering or tapping a number they change shows it.
+Stat | Adjustment | Reason | |
+Intelligence score
+not applied The sheet applies Techie (background feat) by itself now: with this tweak it would count twice, so the tweak is left out. Remove it (×), or [apply it anyway] if it's for something else.
+| [add ▾] [1] | [Techie feat: Int +1 (SW5E doesn't apply it)] | [×] |
+Piloting | Proficiency [Proficient ▾] [add ▾] [0] | [Sullustan: Pilot] | [×] |
+Investigation | Proficiency [Proficient ▾] [add ▾] [0] | [Engineer skill (3 of 6)] | [×] |
+Nature | Proficiency [Proficient ▾] [add ▾] [0] | [Engineer skill (3 of 6)] | [×] |
+Lore | Proficiency [Proficient ▾] [add ▾] [0] | [Scientist background skill] | [×] |
+Technology | Proficiency [Expertise ▾] [add ▾] [0] | [Scientist skill + Techie (already proficient -> expertise)] | [×] |
+Medicine | Proficiency [Proficient ▾] [add ▾] [0] | [Engineer skill (3 of 6)] | [×] |
+[Add a tweak to… ▾] [add (+/−) ▾] [] [] [Add]
+Builder settings
+Is Enforcing Force Prerequisites
+true
+Is Fixed Hit Points
+false
+Ability Score Method
+Standard Array
+Record
+Source
+sw5e.com
+Loaded
+10/17/2026, 11:59:22 PM
+Last changed on SW5E
+10/17/2026, 4:39:03 PM
+Created
+10/17/2026, 12:27:52 PM
+Builder version
+0.7.6
+Validation
+All checks passed
+Character id
+00000000-0000-4000-8000-000009000001 ↗
+Local version history 3 / 25
+SW5E can lose saved characters, so every version seen here is kept in this browser. Compare a version with the character as it is now, or restore it (Undo puts it back).
+Backups (files you keep): this character never · [Back up this character]
+all characters never · [Back up all characters]
+10/17/2026, 4:39:05 PM latest
+Synced to SW5E · changed on SW5E 10/17/2026, 4:39:03 PM [Compare] [Restore] [Export]
+10/17/2026, 4:37:57 PM
+Loaded from SW5E · changed on SW5E 10/17/2026, 4:37:31 PM [Compare] [Restore] [Export]
+10/17/2026, 4:35:37 PM
+Synced to SW5E · changed on SW5E 10/17/2026, 4:35:35 PM [Compare] [Restore] [Export]
+Rules engine
+The sheet computes the numbers itself, with SW5E's rules. Check with sw5e.com compares them with sw5e.com’s own calculation of this character (it also happens on each Load from SW5E).
+SW5E's rules and item data: version 199, as it comes with the sheet. SW5E is the work of Galiphile and the SW5E contributors: credits · the books.
+[Check with sw5e.com]
+Raw SW5E character JSON
+{ "name": "Tikk Plonr (Panel)", "id": "00000000-0000-4000-8000-000009000001", "userId": "00000000-0000-4000-8000-000009000002", "builderVersion": "0.7.6", "imag… [4661 chars #984b3624]
+Computed character JSON (the sheet's rules engine)
+{ "name": "Tikk Plonr (Panel)", "builderVersion": "0.7.6", "image": "", "characteristics": { "alignment": "Neutral Light", "Personality Traits": "I take apart a… [36189 chars #ce51642a]

@@ -1,14 +1,14 @@
 # Thirza Vitchess (Panel)
 
 ## Sent to the rules engine
-The sheet's engine computes the numbers. SW5E's recorded calculation is for this same character.
+The sheet's engine computes the numbers. OUT OF DATE: SW5E's recorded calculation is for an older version of this character; record the case again (dev/regress-record.js) for dev/engine-check.js.
 tweaks.abilityScores.Charisma.skills.Persuasion.bonus = 0
 tweaks.abilityScores.Charisma.skills.Persuasion.proficiency = "Proficient"
 tweaks.abilityScores.Intelligence.skills.Lore.bonus = 0
 tweaks.abilityScores.Intelligence.skills.Lore.proficiency = "Proficient"
 tweaks.abilityScores.Wisdom.score.bonus = 1
 tweaks.abilityScores.Wisdom.skills.Insight.bonus = 0
-tweaks.abilityScores.Wisdom.skills.Insight.proficiency = "Proficient"
+tweaks.abilityScores.Wisdom.skills.Insight.proficiency = "Expertise"
 tweaks.abilityScores.Wisdom.skills.Medicine.bonus = 0
 tweaks.abilityScores.Wisdom.skills.Medicine.proficiency = "Proficient"
 tweaks.abilityScores.Wisdom.skills.Perception.bonus = 0
@@ -88,8 +88,8 @@ abilityScores.Wisdom.savingThrow.modifier = 6
 abilityScores.Wisdom.savingThrow.proficiency = "proficient"
 abilityScores.Wisdom.skills[Animal Handling].modifier = 4
 abilityScores.Wisdom.skills[Animal Handling].proficiency = "none"
-abilityScores.Wisdom.skills[Insight].modifier = 6
-abilityScores.Wisdom.skills[Insight].proficiency = "proficient"
+abilityScores.Wisdom.skills[Insight].modifier = 8
+abilityScores.Wisdom.skills[Insight].proficiency = "expertise"
 abilityScores.Wisdom.skills[Medicine].modifier = 6
 abilityScores.Wisdom.skills[Medicine].proficiency = "proficient"
 abilityScores.Wisdom.skills[Perception].modifier = 6
@@ -164,6 +164,8 @@ effect: Force Adept background skill · tweak
 effect: Consular weapon proficiencies · feature
 effect: Empathic · feature
 effect: Empathic · feature
+effect: Darkvision · feature
+effect: Life in the Void · feature
 effect: Focus Generator (Fine) · item
 tweak: abilityScores.Intelligence.skills.Lore +0 {"proficiency":"Proficient"} · Consular class skill (chosen at 1st level)
 tweak: abilityScores.Wisdom.skills.Medicine +0 {"proficiency":"Proficient"} · Consular class skill (chosen at 1st level)
@@ -171,7 +173,7 @@ tweak: abilityScores.Wisdom.skills.Perception +0 {"proficiency":"Proficient"} ·
 tweak: abilityScores.Wisdom.skills.Insight +0 {"proficiency":"Proficient"} · Empathic feat (Force Adept background): Insight proficiency, not applied by SW5E
 tweak: abilityScores.Charisma.skills.Persuasion +0 {"proficiency":"Proficient"} · Force Adept background skill
 tweak: abilityScores.Wisdom.score +1 · Empathic
-tweak: abilityScores.Wisdom.skills.Insight +0 {"proficiency":"Proficient"} · Empathic
+tweak: abilityScores.Wisdom.skills.Insight +0 {"proficiency":"Expertise"} · Empathic
 tweak: forceCasting.lightAttackModifier +1 · Focus Generator (Fine)
 tweak: forceCasting.darkAttackModifier +1 · Focus Generator (Fine)
 tweak: forceCasting.universalAttackModifier +1 · Focus Generator (Fine)
@@ -201,7 +203,7 @@ skill|Intelligence|4: Technology (INT): d20 +0 · = +0 modifier
 check|Wisdom: Wisdom check: d20 +4 · = +4 modifier
 save|Wisdom: Wisdom saving throw: d20 +6 · = +6 modifier
 skill|Wisdom|0: Animal Handling (WIS): d20 +4 · = +4 modifier
-skill|Wisdom|1: Insight (WIS): d20 +6 · = +6 modifier
+skill|Wisdom|1: Insight (WIS): d20 +8 · = +8 modifier
 skill|Wisdom|2: Medicine (WIS): d20 +6 · = +6 modifier
 skill|Wisdom|3: Perception (WIS): d20 +6 · = +6 modifier
 skill|Wisdom|4: Survival (WIS): d20 +4 · = +4 modifier
@@ -275,10 +277,12 @@ Defenses & senses
 Resistances Resistance to necrotic damage
 Senses Darkvision 60 ft
 Effects
-From class features and feats (3)
+From class features, feats and species traits (5)
 Consular weapon proficiencies Proficient: Simple lightweapons Proficient: simple vibroweapons Consular proficiencies
 Empathic WIS +1 feat (background feat)
-Empathic Insight: proficient feat
+Empathic Insight: expertise (already proficient) feat
+Darkvision Darkvision 60 ft Kel Dor trait
+Life in the Void Resistance to necrotic damage Kel Dor trait
 From equipment
 Focus Generator (Fine) Light force attack +1 Dark force attack +1 Universal force attack +1 while attuned
 Temporary
@@ -348,8 +352,8 @@ Wisdom
   ↳ hover abilityScores.Wisdom.savingThrow.modifier: Without tweaks or effects: 5 → now 6 / +1 WIS · Empathic feat (background feat)
 (Not proficient) Animal Handling+4
   ↳ hover abilityScores.Wisdom.skills.0.modifier: Without tweaks or effects: 3 → now 4 / +1 WIS · Empathic feat (background feat)
-(Proficient) Insight+6
-  ↳ hover abilityScores.Wisdom.skills.1.modifier: Without tweaks or effects: 3 → now 6 / +1 WIS · Empathic feat (background feat) / Proficient Insight · Empathic fe… [284 chars #2c472238]
+(Expertise) Insight+8
+  ↳ hover abilityScores.Wisdom.skills.1.modifier: Without tweaks or effects: 3 → now 8 / +1 WIS · Empathic feat (background feat) / Proficient Insight · Empathic fe… [303 chars #09921bf8]
 (Proficient) Medicine+6
   ↳ hover abilityScores.Wisdom.skills.2.modifier: Without tweaks or effects: 3 → now 6 / +1 WIS · Empathic feat (background feat) / Proficient Medicine · Consular class skill (chosen at 1st level) tweak
 (Proficient) Perception+6
@@ -378,9 +382,9 @@ Skill | Ability | Bonus | Passive | Proficiency |
   ↳ hover abilityScores.Wisdom.skills.0.modifier: Without tweaks or effects: 3 → now 4 / +1 WIS · Empathic feat (background feat)
 (Not proficient) Athletics | STR | −1 | 9 | — |
 (Not proficient) Deception | CHA | +1 | 11 | — |
-(Proficient) Insight | WIS | +6 | 16 | Proficient |
-  ↳ hover abilityScores.Wisdom.skills.1.modifier: Without tweaks or effects: 3 → now 6 / +1 WIS · Empathic feat (background feat) / Proficient Insight · Empathic fe… [284 chars #2c472238]
-  ↳ hover abilityScores.Wisdom.skills.1.modifier: Without tweaks or effects: 3 → now 6 / +1 WIS · Empathic feat (background feat) / Proficient Insight · Empathic fe… [284 chars #2c472238]
+(Expertise) Insight | WIS | +8 | 18 | Expertise |
+  ↳ hover abilityScores.Wisdom.skills.1.modifier: Without tweaks or effects: 3 → now 8 / +1 WIS · Empathic feat (background feat) / Proficient Insight · Empathic fe… [303 chars #09921bf8]
+  ↳ hover abilityScores.Wisdom.skills.1.modifier: Without tweaks or effects: 3 → now 8 / +1 WIS · Empathic feat (background feat) / Proficient Insight · Empathic fe… [303 chars #09921bf8]
 (Not proficient) Intimidation | CHA | +1 | 11 | — |
 (Not proficient) Investigation | INT | +0 | 10 | — |
 (Proficient) Lore | INT | +2 | 12 | Proficient |
@@ -392,7 +396,7 @@ Skill | Ability | Bonus | Passive | Proficiency |
 (Not proficient) Nature | INT | +0 | 10 | — |
 (Proficient) Perception | WIS | +6 | 16 | Proficient |
   ↳ hover abilityScores.Wisdom.skills.3.modifier: Without tweaks or effects: 3 → now 6 / +1 WIS · Empathic feat (background feat) / Proficient Perception · Force Adept background skill tweak
-  ↳ hover abilityScores.Wisdom.skills.3.modifier: Without tweaks or effects: 3 → now 6 / +1 WIS · Empathic feat (background feat) / Proficient Perception · Force Adept background skill tweak
+  ↳ hover passivePerception: Without tweaks or effects: 13 → now 16 / Proficient Perception · Force Adept background skill tweak / +1 WIS · Empathic feat (background feat)
 (Not proficient) Performance | CHA | +1 | 11 | — |
 (Proficient) Persuasion | CHA | +3 | 13 | Proficient |
   ↳ hover abilityScores.Charisma.skills.3.modifier: Without tweaks or effects: 1 → now 3 / Proficient Persuasion · Force Adept background skill tweak
@@ -593,11 +597,13 @@ War Caster Consular ASI #1 Prereq: 4th level, the ability to cast force or tech 
 You've practiced casting powers in the midst of combat, learning techniques that grant you the following benefits:
 You have advantage on Constitution saving throws that you make to maintain your concentration on a power when you take damage.
 Once per round, when a hostile creature provokes an opportunity attack from you, you can use your reaction to cast a power at the creature, rather than making a… [264 chars #c2019a30]
+Notes []
 Empathic Background (Force Adept)+ Wisdom
 You possess keen insight into how other people think and feel. You gain the following benefits:
 Increase your Wisdom score by 1, to a maximum of 20.
 You gain proficiency in the Insight skill. If you are already proficient in it, you instead gain expertise in it.
 You can use your action to try to get uncanny insight about one humanoid you can see within 30 feet of you. Make a Wisdom (Insight) check contested by the targe… [311 chars #b10d5812]
+Notes []
 
 ## Sheet: Classes & Progression
 [Level up]
@@ -927,4 +933,4 @@ SW5E's rules and item data: version 199, as it comes with the sheet. SW5E is the
 Raw SW5E character JSON
 { "name": "Thirza Vitchess (Panel)", "id": "00000000-0000-4000-8000-000007000001", "userId": "00000000-0000-4000-8000-000007000002", "builderVersion": "0.7.6", … [4436 chars #63b9c9ba]
 Computed character JSON (the sheet's rules engine)
-{ "name": "Thirza Vitchess (Panel)", "builderVersion": "0.7.6", "image": "", "characteristics": { "Age": "34", "Appearance": "Antiox breath mask and protective … [36544 chars #c9b6f4ae]
+{ "name": "Thirza Vitchess (Panel)", "builderVersion": "0.7.6", "image": "", "characteristics": { "Age": "34", "Appearance": "Antiox breath mask and protective … [36542 chars #25c0d9e9]

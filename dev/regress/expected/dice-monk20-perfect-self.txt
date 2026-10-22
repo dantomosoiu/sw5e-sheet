@@ -2,10 +2,22 @@
 
 ## Sent to the rules engine
 The sheet's engine computes the numbers. OUT OF DATE: SW5E's recorded calculation is for an older version of this character; record the case again (dev/regress-record.js) for dev/engine-check.js.
+tweaks.abilityScores.Charisma.savingThrowModifier.bonus = 0
+tweaks.abilityScores.Charisma.savingThrowModifier.proficiency = "Proficient"
 tweaks.abilityScores.Charisma.score.bonus = 1
 tweaks.abilityScores.Charisma.skills.Deception.bonus = 0
 tweaks.abilityScores.Charisma.skills.Deception.proficiency = "Proficient"
+tweaks.abilityScores.Constitution.savingThrowModifier.bonus = 0
+tweaks.abilityScores.Constitution.savingThrowModifier.proficiency = "Proficient"
+tweaks.abilityScores.Dexterity.savingThrowModifier.bonus = 0
+tweaks.abilityScores.Dexterity.savingThrowModifier.proficiency = "Proficient"
 tweaks.abilityScores.Dexterity.score.bonus = 2
+tweaks.abilityScores.Intelligence.savingThrowModifier.bonus = 0
+tweaks.abilityScores.Intelligence.savingThrowModifier.proficiency = "Proficient"
+tweaks.abilityScores.Strength.savingThrowModifier.bonus = 0
+tweaks.abilityScores.Strength.savingThrowModifier.proficiency = "Proficient"
+tweaks.abilityScores.Wisdom.savingThrowModifier.bonus = 0
+tweaks.abilityScores.Wisdom.savingThrowModifier.proficiency = "Proficient"
 tweaks.abilityScores.Wisdom.score.bonus = 2
 tweaks.armorClass.bonus = 6
 tweaks.speed.base.bonus = 30
@@ -32,8 +44,8 @@ hitPoints.hitDice[0].maximum = 20
 hitPoints.hitDice[0].size = "d8"
 hitPoints.maximum = 143
 abilityScores.Charisma.modifier = -1
-abilityScores.Charisma.savingThrow.modifier = -1
-abilityScores.Charisma.savingThrow.proficiency = "none"
+abilityScores.Charisma.savingThrow.modifier = 5
+abilityScores.Charisma.savingThrow.proficiency = "proficient"
 abilityScores.Charisma.skills[Deception].modifier = 5
 abilityScores.Charisma.skills[Deception].proficiency = "proficient"
 abilityScores.Charisma.skills[Intimidation].modifier = -1
@@ -44,8 +56,8 @@ abilityScores.Charisma.skills[Persuasion].modifier = -1
 abilityScores.Charisma.skills[Persuasion].proficiency = "none"
 abilityScores.Charisma.value = 9
 abilityScores.Constitution.modifier = 2
-abilityScores.Constitution.savingThrow.modifier = 2
-abilityScores.Constitution.savingThrow.proficiency = "none"
+abilityScores.Constitution.savingThrow.modifier = 8
+abilityScores.Constitution.savingThrow.proficiency = "proficient"
 abilityScores.Constitution.skills = []
 abilityScores.Constitution.value = 14
 abilityScores.Dexterity.modifier = 6
@@ -59,8 +71,8 @@ abilityScores.Dexterity.skills[Stealth].modifier = 6
 abilityScores.Dexterity.skills[Stealth].proficiency = "none"
 abilityScores.Dexterity.value = 22
 abilityScores.Intelligence.modifier = 2
-abilityScores.Intelligence.savingThrow.modifier = 2
-abilityScores.Intelligence.savingThrow.proficiency = "none"
+abilityScores.Intelligence.savingThrow.modifier = 8
+abilityScores.Intelligence.savingThrow.proficiency = "proficient"
 abilityScores.Intelligence.skills[Investigation].modifier = 2
 abilityScores.Intelligence.skills[Investigation].proficiency = "none"
 abilityScores.Intelligence.skills[Lore].modifier = 2
@@ -79,8 +91,8 @@ abilityScores.Strength.skills[Athletics].modifier = 0
 abilityScores.Strength.skills[Athletics].proficiency = "none"
 abilityScores.Strength.value = 10
 abilityScores.Wisdom.modifier = 6
-abilityScores.Wisdom.savingThrow.modifier = 6
-abilityScores.Wisdom.savingThrow.proficiency = "none"
+abilityScores.Wisdom.savingThrow.modifier = 12
+abilityScores.Wisdom.savingThrow.proficiency = "proficient"
 abilityScores.Wisdom.skills[Animal Handling].modifier = 6
 abilityScores.Wisdom.skills[Animal Handling].proficiency = "none"
 abilityScores.Wisdom.skills[Insight].modifier = 6
@@ -129,7 +141,7 @@ proficiencies[special].type = "weapon"
 proficiencies[and two-handed properties].type = "weapon"
 proficiencies[None].type = "armor"
 proficiencies[One type of gaming set].type = "tool"
-skillAndSaveProficiencies = ["Deception", "Strength Saving Throws", "Dexterity Saving Throws"]
+skillAndSaveProficiencies = ["Deception", "Strength Saving Throws", "Dexterity Saving Throws", "Strength Saving Throws", "Dexterity Saving Throws", "Constitution Saving Throws", "Intelligence Saving Throws", "Wisdom Saving Throws", "Charisma Saving Throws"]
 languages = ["Galactic Basic", "Galactic Basic"]
 experiencePoints.isCorrect = false
 experiencePoints.nextLevel = 355000
@@ -143,7 +155,7 @@ effect: Monk weapon proficiencies · feature
 effect: Unarmored Defense · feature
 effect: Unarmored Movement · feature
 effect: Purity of Body · feature
-effect: Empty Body · feature
+effect: Diamond Soul · feature
 effect: Perfect Self · feature
 effect: Silver-Tongued · feature
 effect: Silver-Tongued · feature
@@ -151,6 +163,12 @@ effect: Human Versatility · feature
 effect: Martial Arts · feature
 tweak: armorClass +6 · Unarmored Defense
 tweak: speed.base +30 · Unarmored Movement
+tweak: abilityScores.Strength.savingThrowModifier +0 {"proficiency":"Proficient"} · Diamond Soul
+tweak: abilityScores.Dexterity.savingThrowModifier +0 {"proficiency":"Proficient"} · Diamond Soul
+tweak: abilityScores.Constitution.savingThrowModifier +0 {"proficiency":"Proficient"} · Diamond Soul
+tweak: abilityScores.Intelligence.savingThrowModifier +0 {"proficiency":"Proficient"} · Diamond Soul
+tweak: abilityScores.Wisdom.savingThrowModifier +0 {"proficiency":"Proficient"} · Diamond Soul
+tweak: abilityScores.Charisma.savingThrowModifier +0 {"proficiency":"Proficient"} · Diamond Soul
 tweak: abilityScores.Dexterity.score +2 · Perfect Self
 tweak: abilityScores.Wisdom.score +2 · Perfect Self
 tweak: abilityScores.Charisma.score +1 · Silver-Tongued
@@ -173,23 +191,23 @@ skill|Dexterity|0: Acrobatics (DEX): d20 +6 · = +6 modifier
 skill|Dexterity|1: Sleight of Hand (DEX): d20 +6 · = +6 modifier
 skill|Dexterity|2: Stealth (DEX): d20 +6 · = +6 modifier
 check|Constitution: Constitution check: d20 +2 · = +2 modifier
-save|Constitution: Constitution saving throw: d20 +2 · = +2 modifier
+save|Constitution: Constitution saving throw: d20 +8 · = +8 modifier
 check|Intelligence: Intelligence check: d20 +2 · = +2 modifier
-save|Intelligence: Intelligence saving throw: d20 +2 · = +2 modifier
+save|Intelligence: Intelligence saving throw: d20 +8 · = +8 modifier
 skill|Intelligence|0: Investigation (INT): d20 +2 · = +2 modifier
 skill|Intelligence|1: Lore (INT): d20 +2 · = +2 modifier
 skill|Intelligence|2: Nature (INT): d20 +2 · = +2 modifier
 skill|Intelligence|3: Piloting (INT): d20 +2 · = +2 modifier
 skill|Intelligence|4: Technology (INT): d20 +2 · = +2 modifier
 check|Wisdom: Wisdom check: d20 +6 · = +6 modifier
-save|Wisdom: Wisdom saving throw: d20 +6 · = +6 modifier
+save|Wisdom: Wisdom saving throw: d20 +12 · = +12 modifier
 skill|Wisdom|0: Animal Handling (WIS): d20 +6 · = +6 modifier
 skill|Wisdom|1: Insight (WIS): d20 +6 · = +6 modifier
 skill|Wisdom|2: Medicine (WIS): d20 +6 · = +6 modifier
 skill|Wisdom|3: Perception (WIS): d20 +6 · = +6 modifier
 skill|Wisdom|4: Survival (WIS): d20 +6 · = +6 modifier
 check|Charisma: Charisma check: d20 −1 · = −1 modifier
-save|Charisma: Charisma saving throw: d20 −1 · = −1 modifier
+save|Charisma: Charisma saving throw: d20 +5 · = +5 modifier
 skill|Charisma|0: Deception (CHA): d20 +5 · = +5 modifier
 skill|Charisma|1: Intimidation (CHA): d20 −1 · = −1 modifier
 skill|Charisma|2: Performance (CHA): d20 −1 · = −1 modifier
@@ -206,7 +224,7 @@ Human · Monk (Rakatan Order) 20
 Level 20 Background: Noble Lawful Light Proficiency +6 [Add a picture]
 6,500 XP highest level
 Level 20 usually needs 355,000 XP (you have 6,500).
-Still to choose (13): Monk skills (2 more) · Monk 8th level: ability score improvement or feat · Monk 10th level: ability score improvement or feat · Monk 12th … [548 chars #abe7e53d]
+Still to choose (18): Monk skills (2 more) · Monk 8th level: ability score improvement or feat · Monk 10th level: ability score improvement or feat · Monk 12th … [728 chars #7ca7ae97]
 
 ## Sheet: Combat & Vitals
 Armor Class
@@ -250,19 +268,19 @@ Combat [Start combat]
 Class dice
 Martial Arts 1d12
 Defenses & senses
-Resistances Resistance to all damage
-Immunities Immune to disease and poison and resistant to poison damage
+Resistances Resistance to poison damage
+Immunities Immune to disease and poison
 Effects
 From class features, feats and species traits (10)
 Monk weapon proficiencies Proficient: Simple blasters Proficient: simple vibroweapons Proficient: martial vibroweapons that lack the dexterity, heavy, special, and two-handed properties Monk proficiencies
 Unarmored Defense AC + WIS/CHA Monk feature
 Unarmored Movement Speed +30 ft Monk feature
-Purity of Body Immune to disease and poison and resistant to poison damage Monk feature
-Empty Body Resistance to all damage Monk feature
+Purity of Body Immune to disease and poison Resistance to poison damage Monk feature
+Diamond Soul Strength saves: proficient Dexterity saves: proficient Constitution saves: proficient Intelligence saves: proficient Wisdom saves: proficient Charisma saves: proficient Monk feature
 Perfect Self DEX +2 WIS +2 Monk feature
 Silver-Tongued CHA +1 feat (background feat)
 Silver-Tongued Deception: proficient feat
-Human Versatility Choose the skill/tool proficiencies Human trait
+Human Versatility Choose one skill Choose one tool Choose one weapon of your choice Human trait
 Martial Arts Monk feature
 Temporary
 No temporary effects.
@@ -301,7 +319,7 @@ Dexterity
 22
   ↳ hover abilityScores.Dexterity.value: Without tweaks or effects: 20 → now 22 / +2 DEX · Perfect Self Monk feature
 (Proficient) Saving throw+12
-  ↳ hover abilityScores.Dexterity.savingThrow.modifier: Without tweaks or effects: 11 → now 12 / +2 DEX · Perfect Self Monk feature
+  ↳ hover abilityScores.Dexterity.savingThrow.modifier: Without tweaks or effects: 11 → now 12 / +2 DEX · Perfect Self Monk feature / proficient Dexterity saves: proficient · Diamond Soul Monk feature
 (Not proficient) Acrobatics+6
   ↳ hover abilityScores.Dexterity.skills.0.modifier: Without tweaks or effects: 5 → now 6 / +2 DEX · Perfect Self Monk feature
 (Not proficient) Sleight of Hand+6
@@ -313,13 +331,15 @@ CON
 Constitution
 +2
 14
-(Not proficient) Saving throw+2
+(Proficient) Saving throw+8
+  ↳ hover abilityScores.Constitution.savingThrow.modifier: Without tweaks or effects: 2 → now 8 / proficient Constitution saves: proficient · Diamond Soul Monk feature
 base 14
 INT
 Intelligence
 +2
 14
-(Not proficient) Saving throw+2
+(Proficient) Saving throw+8
+  ↳ hover abilityScores.Intelligence.savingThrow.modifier: Without tweaks or effects: 2 → now 8 / proficient Intelligence saves: proficient · Diamond Soul Monk feature
 (Not proficient) Investigation+2
 (Not proficient) Lore+2
 (Not proficient) Nature+2
@@ -332,8 +352,8 @@ Wisdom
   ↳ hover abilityScores.Wisdom.modifier: Without tweaks or effects: 5 → now 6 / +2 WIS · Perfect Self Monk feature
 22
   ↳ hover abilityScores.Wisdom.value: Without tweaks or effects: 20 → now 22 / +2 WIS · Perfect Self Monk feature
-(Not proficient) Saving throw+6
-  ↳ hover abilityScores.Wisdom.savingThrow.modifier: Without tweaks or effects: 5 → now 6 / +2 WIS · Perfect Self Monk feature
+(Proficient) Saving throw+12
+  ↳ hover abilityScores.Wisdom.savingThrow.modifier: Without tweaks or effects: 5 → now 12 / +2 WIS · Perfect Self Monk feature / proficient Wisdom saves: proficient · Diamond Soul Monk feature
 (Not proficient) Animal Handling+6
   ↳ hover abilityScores.Wisdom.skills.0.modifier: Without tweaks or effects: 5 → now 6 / +2 WIS · Perfect Self Monk feature
 (Not proficient) Insight+6
@@ -350,7 +370,8 @@ Charisma
 −1
 9
   ↳ hover abilityScores.Charisma.value: Without tweaks or effects: 8 → now 9 / +1 CHA · Silver-Tongued feat (background feat)
-(Not proficient) Saving throw−1
+(Proficient) Saving throw+5
+  ↳ hover abilityScores.Charisma.savingThrow.modifier: Without tweaks or effects: -1 → now 5 / proficient Charisma saves: proficient · Diamond Soul Monk feature
 (Proficient) Deception+5
   ↳ hover abilityScores.Charisma.skills.0.modifier: Without tweaks or effects: -1 → now 5 / proficient Deception: proficient · Silver-Tongued feat
 (Not proficient) Intimidation−1
@@ -383,7 +404,7 @@ Skill | Ability | Bonus | Passive | Proficiency |
 (Not proficient) Nature | INT | +2 | 12 | — |
 (Not proficient) Perception | WIS | +6 | 16 | — |
   ↳ hover abilityScores.Wisdom.skills.3.modifier: Without tweaks or effects: 5 → now 6 / +2 WIS · Perfect Self Monk feature
-  ↳ hover abilityScores.Wisdom.skills.3.modifier: Without tweaks or effects: 5 → now 6 / +2 WIS · Perfect Self Monk feature
+  ↳ hover passivePerception: Without tweaks or effects: 15 → now 16 / +2 WIS · Perfect Self Monk feature
 (Not proficient) Performance | CHA | −1 | 9 | — |
 (Not proficient) Persuasion | CHA | −1 | 9 | — |
 (Not proficient) Piloting | INT | +2 | 12 | — |
@@ -622,8 +643,10 @@ You develop your conversational skill to better deceive others. You gain the fol
 Increase your Charisma score by 1, to a maximum of 20.
 You gain proficiency in the Deception skill. If you are already proficient in it, you instead gain expertise in it.
 When you take the Attack action, you can replace one attack with an attempt to deceive one humanoid you can see within 30 feet of you that can see and hear you.… [568 chars #4907558c]
+Notes []
 Multiclass Improvement Prereq: 4th level
 You've learned to blend the skills of your different classes. Choose two of the multiclass improvement options, detailed later in this chapter. You can take this feat multiple times.
+Notes []
 
 ## Sheet: Classes & Progression
 Monk 20 Rakatan Order Starting class
@@ -712,10 +735,10 @@ You gain proficiency in one skill, one tool, and one weapon of your choice.
 Skill proficiency 0 / 1
 None chosen yet.
 [Choose a skill… ▾]
-Tool proficiency 0 / 1
+Tool proficiency 0 / 1 one tool
 None chosen yet.
 [Choose a tool… ▾]
-Weapon proficiency 0 / 1
+Weapon proficiency 0 / 1 one weapon of your choice
 None chosen yet.
 [Choose a weapon… ▾]
 Notes []
@@ -731,6 +754,12 @@ Notes []
 Speed
 Your base walking speed is 30 feet.
 Notes []
+Ability score +2 0 / 1 One ability score of your choice increases by 2, and two other ability scores of your choice increase by 1. Alternatively, four ability scores of your choice each increase by 1.
+None chosen yet.
+[Choose an ability… ▾]
+Ability score +1 0 / 2 One ability score of your choice increases by 2, and two other ability scores of your choice increase by 1. Alternatively, four ability scores of your choice each increase by 1.
+None chosen yet.
+[Choose an ability… ▾]
 
 ## Sheet: Background
 Skill proficiencies
@@ -770,7 +799,7 @@ Simple blasters simple vibroweapons martial vibroweapons that lack the dexterity
 Tool
 One type of gaming set
 Skills & saves
-Deception Strength Saving Throws Dexterity Saving Throws
+Deception Strength Saving Throws Dexterity Saving Throws Strength Saving Throws Dexterity Saving Throws Constitution Saving Throws Intelligence Saving Throws Wisdom Saving Throws Charisma Saving Throws
 Languages
 Galactic Basic
 ✎ = custom proficiency added on the character.
@@ -860,4 +889,4 @@ SW5E's rules and item data: version 199, as it comes with the sheet. SW5E is the
 Raw SW5E character JSON
 { "name": "Rakatan Test (local)", "builderVersion": "0.7.6", "image": "", "experiencePoints": 6500, "species": { "name": "Human", "abilityScoreImprovementSelect… [1520 chars #a66a66be]
 Computed character JSON (the sheet's rules engine)
-{ "name": "Rakatan Test (local)", "builderVersion": "0.7.6", "image": "", "characteristics": { "alignment": "Lawful Light" }, "tweaks": { "abilityScores": { "Ch… [25544 chars #06bfcb92]
+{ "name": "Rakatan Test (local)", "builderVersion": "0.7.6", "image": "", "characteristics": { "alignment": "Lawful Light" }, "tweaks": { "abilityScores": { "Ch… [26195 chars #0eff06b5]

@@ -59,6 +59,35 @@ function sw5eEquipmentPacks(md) {
   return [...sec.matchAll(/^#{4,}\s*(.+?)\s*\n+([^\n#]+)/gm)].map((m) => ({ name: m[1].trim(), text: m[2].trim() }));
 }
 
+/**
+ * The options of species traits that SW5E's data cuts off after their intro ("Kiffar Heritage: … You choose one of the
+ * following heritages:", Nikto's Adaptation, Theelin's Mutation), from the species chapters of the books (`md`): the
+ * bullets under the trait in "### <Species> Traits" ("- **Paladin.** You have proficiency with…"), added to the trait as
+ * options: [{ name, text }]. The trait's own description stays as SW5E gives it.
+ */
+function sw5eSpeciesOptions(species, md) {
+  const text = String(md || '').replace(/\r/g, '');
+  for (const sp of species || []) {
+    const at = text.indexOf(`### ${sp.name} Traits`);
+    if (at < 0) continue;
+    const end = text.indexOf('\n> ## ', at);
+    const lines = text.slice(at, end > 0 ? end : undefined).split('\n');
+    for (const tr of sp.traits || []) {
+      if (!/\bchoose one of the following [\w ]+[:.]\s*$/i.test(tr.description || '')) continue;
+      const i = lines.findIndex((l) => l.startsWith(`***${tr.name}.***`));
+      if (i < 0) continue;
+      const options = [];
+      for (const l of lines.slice(i + 1)) {
+        const m = /^- \*\*(.+?)\*\*\s*(.*)$/.exec(l.trim());
+        if (m) { options.push({ name: m[1].replace(/\.$/, '').trim(), text: m[2].trim() }); continue; }
+        if (options.length && l.trim()) break; // the bullets end at the next paragraph or rule ("___")
+      }
+      if (options.length) tr.options = options;
+    }
+  }
+  return species;
+}
+
 /** One answer of SW5E's data service (`fetchFn`: the page's fetch, or Node's). */
 async function sw5eFetch(path, { fetchFn = fetch, text = false } = {}) {
   const res = await fetchFn(SW5E_API + path);
@@ -78,8 +107,10 @@ async function sw5eFetchRulesAndCatalog(opts = {}) {
     sw5eFetch('PlayerHandbookRule/Equipment.json', opts),
     Promise.all(SW5E_ITEM_ENDPOINTS.map((ep) => sw5eFetch(ep, opts))),
   ]);
+  const speciesBooks = await Promise.all(['PlayerHandbookRule/Species.json', 'ExpandedContent/Species.json'].map((p) => sw5eFetch(p, opts)));
   const modules = Object.fromEntries(Object.keys(SW5E_RULES_ENDPOINTS).map((m, i) => [m, sw5eSlimRules(lists[i])]));
   modules.equipmentPacks = sw5eEquipmentPacks(handbook && handbook.contentMarkdown);
+  sw5eSpeciesOptions(modules.species, speciesBooks.map((b) => (b && b.contentMarkdown) || '').join('\n'));
   const fetchedAt = Date.now();
   return {
     rules: { dataVersion, fetchedAt, source: SW5E_API, modules },
@@ -114,7 +145,7 @@ function sw5eBundled(name) {
 
 if (typeof module !== 'undefined') {
   module.exports = {
-    SW5E_API, SW5E_RULES_ENDPOINTS, SW5E_ITEM_ENDPOINTS, SW5E_BOOKS, sw5eSlimRules, sw5eSlimItem, sw5eEquipmentPacks,
+    SW5E_API, SW5E_RULES_ENDPOINTS, SW5E_ITEM_ENDPOINTS, SW5E_BOOKS, sw5eSlimRules, sw5eSlimItem, sw5eEquipmentPacks, sw5eSpeciesOptions,
     sw5eFetch, sw5eFetchDataVersion, sw5eFetchRulesAndCatalog, sw5eFetchBooks,
   };
 }

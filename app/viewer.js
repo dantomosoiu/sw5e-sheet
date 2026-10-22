@@ -873,8 +873,15 @@ function buildModel(snap) {
   m.t = has ? buildTracker(snap, c, superiorityInfo(m), m.textUses, state.rules && choiceInfo(m) ? choiceInfo(m).superiority : [], highRules, ownCastingPoints(m, casters), supTweaks(m)) : null;
   return m;
 }
-/** The superiority tweaks with effects merged ({ maxDice, physicalSaveDC, physicalModifier, … }), as sent to the engine. */
-const supTweaks = (m) => (m.fx && m.fx.raw && m.fx.raw.tweaks && m.fx.raw.tweaks.superiority) || {};
+/**
+ * The superiority tweaks with effects merged ({ maxDice, physicalSaveDC, physicalModifier, … }), as sent to the engine;
+ * maxDice without a class augment's die, which the sheet's own reading has already (it boosts the class's table row).
+ */
+function supTweaks(m) {
+  const all = (m.fx && m.fx.raw && m.fx.raw.tweaks && m.fx.raw.tweaks.superiority) || {};
+  const aug = arr(m.fx && m.fx.tweaks).filter((t) => t.path === 'superiority.maxDice' && t.mod && t.mod.forClass).reduce((s, t) => s + num(t.bonus), 0);
+  return aug && all.maxDice ? { ...all, maxDice: engHasOverride(all.maxDice) ? { ...all.maxDice, override: num(all.maxDice.override) - aug } : { ...all.maxDice, bonus: num(all.maxDice.bonus) - aug } } : all;
+}
 
 // ------------------------------------------------------------- small render helpers
 /** A card: title line (click or Enter/Space to collapse), `lead` (counters and buttons, always shown), facts and text. */
@@ -1646,25 +1653,127 @@ function itemEffects(key, editedRaw, complete) {
     const linked = invBaseIndex(equipment, i);
     const ck = copyKey(equipment, i);
     const weaponName = fx.target === 'weapon' ? (linked >= 0 ? equipment[linked].name : itemTargets(key)[ck] || null) : null;
+    // "…by an amount equal to your level, and it increases by 1 every time you gain a level": at the current level.
+    const level = arr(editedRaw.classes).reduce((t, k) => t + num(k.levels), 0);
+    const weaponIndex = linked >= 0 && fx.target === 'weapon' ? linked : weaponIndexByName(editedRaw, weaponName);
+    // A weapon that gains finesse (or a blaster mighty) uses the better of Strength and Dexterity: from the one it uses.
+    const w = weaponIndex != null ? arr(complete && complete.weapons).find((x) => x.index === weaponIndex) : null;
+    const swapFrom = (prop) => (w && prop === 'finesse' && w.ability === 'Strength' ? 'Strength' : w && prop === 'mighty' && w.ability === 'Dexterity' ? 'Dexterity' : null);
+    // Proficiency steps and half proficiency start from the proficiency SW5E gives (classes, background, tweaks).
+    const sc = (complete && complete.abilityScores) || {};
+    const rankOf = (path) => {
+      const x = /^abilityScores\.(\w+)\.(?:skills\.(.+)|savingThrowModifier)$/.exec(path) || [];
+      const a = sc[x[1]] || {};
+      return x[2] ? (arr(a.skills).find((k) => k.name === x[2]) || {}).proficiency : (a.savingThrow || {}).proficiency;
+    };
+    const mods = arr(fx.mods).map((x) => (x.perLevel ? { ...x, bonus: x.perLevel * level, label: x.label.replace(/\+(\d+) per level$/, (p) => `+${x.perLevel * level} (${p})`) }
+      : x.property && swapFrom(x.property) ? { ...x, swap: { from: swapFrom(x.property), to: swapFrom(x.property) === 'Strength' ? 'Dexterity' : 'Strength' } }
+        : x.profSteps ? { ...x, baseRank: rankOf(x.path) }
+          : x.halfProf ? { ...x, baseRank: rankOf(x.path), bonus: Math.floor(num(complete && complete.proficiencyBonus) / 2) } : x));
+    // A set's bonuses ("While wearing and attuned to this armor and Jensaarai Cloak, …") hold with the other pieces
+    // attuned too; the ones still missing are listed (setPending).
+    const setMet = (names) => arr(names).every((n) => equipment.some((x) => x.attuned && invSameName(x.name, n)));
+    const setPending = mods.filter((x) => x.requires && !setMet(x.requires));
+    for (const x of setPending) mods.splice(mods.indexOf(x), 1);
+    // A class augment's numbers are for its class only ("Fighter Offensive Augment"'s superiority die).
+    for (const x of mods.filter((y) => y.forClass && !arr(editedRaw.classes).some((kk) => kk.name === y.forClass))) mods.splice(mods.indexOf(x), 1);
+    const kc = fx.classBoosts && arr(editedRaw.classes).find((kk) => kk.name === fx.classBoosts.cls);
+    const classChanges = kc ? itemBoostChanges(chClassRow(editedRaw, kc, (state.rules && state.rules.modules) || {}), fx.classBoosts.boosts) : [];
+    // "One ability score other than Charisma (chosen by the GM) decreases by 1": the score the item's note names.
+    const needs = [];
+    if (fx.sideEffect) {
+      const a = clsNoteNames(it.notes).abilities.find((x) => x !== fx.sideEffect.except);
+      if (a) mods.push({ path: `abilityScores.${a}.score`, bonus: -fx.sideEffect.by, label: `${a.slice(0, 3).toUpperCase()} −${fx.sideEffect.by} (side effect)` });
+      else needs.push(`the score the GM lowers by ${fx.sideEffect.by} (not ${fx.sideEffect.except})`);
+    }
+    // "You have resistance to one type of damage while you wear this armor. The DM chooses the type" (Adapted Armor).
+    if (/\bresistance to one type of damage\b/i.test(ref.text || '') && !new RegExp(`\\b(?:${PL_DAMAGE_TYPES.join('|')})\\b`, 'i').test(it.notes || '')) needs.push('the damage type the GM chose (resistance)');
+    // Proficiencies and always-on advantages in the item's text, read as a feature's are (classes.js), with a choice it
+    // asks for ("proficiency in one blaster or vibroweapon of your choice") written in the item's note.
+    const fe = itemFeatureEffects(ref, it.notes);
+    if (fe) {
+      for (const a of fe.profs.saves) mods.push({ path: `abilityScores.${a}.savingThrowModifier`, bonus: 0, fields: { proficiency: 'Proficient' }, label: `${a} saves: proficient` });
+      for (const k of fe.profs.skills) mods.push({ path: `abilityScores.${FX_SKILLS[k.name]}.skills.${k.name}`, bonus: 0, fields: { proficiency: k.level }, label: `${k.name}: ${String(k.level).toLowerCase()}` });
+    }
+    // Keen: the weapon's own keen number (its base item's), raised as the modification says, widens its critical range.
+    let keen = null;
+    if (fx.keen && weaponIndex != null) {
+      const ref0 = catalogIndex && catalogIndex.get(equipment[weaponIndex].name);
+      const own = num((/^keen (\d+)/i.exec(arr(ref0 && ref0.properties).find((p) => /^keen \d/i.test(p)) || '') || [])[1]);
+      keen = !own ? fx.keen.gain : fx.keen.to ? Math.max(own, fx.keen.to) : fx.keen.by ? Math.min(fx.keen.max || 99, own + fx.keen.by) : Math.max(own, fx.keen.gain);
+    }
     out.push({
-      ...fx, id: 'item:' + ck, kind: 'item', name: it.name, index: i, active,
+      ...fx, mods, id: 'item:' + ck, kind: 'item', name: it.name, index: i, active,
       why: fx.activation === 'carry' ? 'when you fire it' : fx.activation === 'attune' ? (active ? 'while attuned' : 'needs attunement') : (active ? `while ${how}` : `needs to be ${how}`),
-      weaponName, weaponIndex: linked >= 0 && fx.target === 'weapon' ? linked : weaponIndexByName(editedRaw, weaponName), linked: linked >= 0,
+      weaponName, weaponIndex, linked: linked >= 0,
+      ...(keen ? { critRange: keen, critWeapons: [weaponIndex] } : {}),
+      ...(fe ? { weapons: fe.profs.weapons, tools: fe.profs.tools, armor: fe.profs.armor, advantage: fe.advantage } : {}),
+      needsChoice: (fe ? fe.needsChoice : []).concat(needs),
+      setPending, freeAttune: !!fx.freeAttune && !!it.attuned && setMet(fx.freeAttune), classChanges,
     });
   });
   return out;
 }
 
+/** One item named in another's text ("Jensaraai Armor" is SW5E's typo for Jensaarai Armor): letters only, one off. */
+function invSameName(a, b) {
+  const x = String(a).toLowerCase().replace(/[^a-z]/g, '');
+  const y = String(b).toLowerCase().replace(/[^a-z]/g, '');
+  if (x === y) return true;
+  if (Math.abs(x.length - y.length) > 1 || x.slice(0, 4) !== y.slice(0, 4) || x.slice(-4) !== y.slice(-4)) return false;
+  let i = 0;
+  while (i < x.length && x[i] === y[i]) i++;
+  const tail = (s) => s.slice(i + 1);
+  return tail(x) === tail(y) || tail(x) === y.slice(i) || x.slice(i) === tail(y) || tail(x).split('').reverse().join('') === tail(y).split('').reverse().join('');
+}
+/** What classes.js reads in an item's text (proficiencies, advantages, choices), or null when it finds none. */
+const itemFeCache = new Map();
+function itemFeatureEffects(ref, note) {
+  if (!ref || typeof clsFeatureEffects !== 'function' || ref.type === 'Consumable') return null;
+  const key = `${ref.name}\n${note || ''}`;
+  if (!itemFeCache.has(key)) {
+    const fe = clsFeatureEffects(ref.text || ref.description || '', note || '', { level: 0, isWeapon: isWeaponName });
+    const p = fe.profs;
+    itemFeCache.set(key, p.saves.length || p.skills.length || p.tools.length || p.weapons.length || p.armor.length || fe.advantage.length || fe.needsChoice.length ? fe : null);
+  }
+  return itemFeCache.get(key);
+}
+/**
+ * Dice an item adds to a weapon's damage on every hit ("deal an additional 1d10 damage with this enhanced weapon",
+ * Ostrine Edge's 1d6 of a type the GM chose): [{ dice, type, from }]. The weapons table shows them in the damage, the
+ * dice card rolls them with the weapon's.
+ */
+function weaponExtraDice(m, w) {
+  const unarmed = w.name === 'Unarmed Strike';
+  return arr(m.fx && m.fx.dice).filter((d) => (unarmed ? d.unarmed : !d.unarmed && d.weaponIndex != null && d.weaponIndex === w.index))
+    .map((d) => ({ dice: d.dice, type: d.type || '', from: d.effect.name }));
+}
+/** A weapon's damage as the weapons table shows it, with the dice items add ("1d8+1d10+5 Kinetic"). */
+function weaponDamageText(m, w) {
+  const extra = weaponExtraDice(m, w);
+  const s = damageText(w);
+  if (!extra.length) return s;
+  const more = extra.map((x) => `+${x.dice}`).join(''); // its own damage type: on the dice card
+  return num(w.damageDieType) > 0 && num(w.damageNumberOfDice) > 0 ? s.replace(/^(\d+d\d+)/, `$1${more}`) : `${more.slice(1)}+${s}`;
+}
+
 // ------------------------------------------------------------- tweaks
 // The character's tweaks (manual adjustments: raw.tweaks, and per-weapon equipment[i].tweaks),
 // whether set in sw5e.com's editor or here, are effects too, with an optional (but asked-for)
-// reason kept in this viewer (itemState.reasons, keyed by tweak path / "item:<name>.<path>").
+// reason kept in this viewer (itemState.reasons, keyed by tweak path / "item:<name>.<path>"; a second weapon of the
+// same name "item:<name>#2.<path>", so each keeps its own reason).
 const reasonsOf = (key) => (state.itemState[key] && state.itemState[key].reasons) || {};
+/** A weapon tweak's reason key: by name, numbered from the second entry of that name. */
+function weaponTweakKey(items, i, sub) {
+  const it = items[i] || {};
+  const k = items.slice(0, i).filter((x) => x && x.name === it.name).length;
+  return `item:${it.name}${k ? `#${k + 1}` : ''}.${sub}`;
+}
 /** The character's tweaks as rows: { rkey, path (effect path), value, name, where, index?, sub? }. */
 function tweakRows(editedRaw) {
   const rows = fxTweakLeaves(editedRaw.tweaks).map((l) => ({ rkey: l.path, path: l.path, value: l.value, name: fxTweakName(l.path), where: 'tweaks' }));
   arr(editedRaw.equipment).forEach((it, i) => fxTweakLeaves(it.tweaks).forEach((l) => rows.push({
-    rkey: `item:${it.name}.${l.path}`, path: `weapon.${l.path}`, sub: l.path, index: i, value: l.value,
+    rkey: weaponTweakKey(arr(editedRaw.equipment), i, l.path), path: `weapon.${l.path}`, sub: l.path, index: i, value: l.value,
     name: `${it.name}: ${TWEAK_NAMES[l.path] || l.path}`, where: 'equipment',
   })));
   return rows;
@@ -1703,12 +1812,81 @@ function featureEffects(key, editedRaw, complete) {
   const sig = canonical([editedRaw.classes, editedRaw.featureNotes || null, editedRaw.featureChoices || null, editedRaw.background || null,
     editedRaw.customFeats || null, editedRaw.species || null, arr(editedRaw.equipment).map((it) => it.name), castingLevels(complete, editedRaw),
     num(complete && complete.proficiencyBonus), // choice slots' "5 x your proficiency bonus"
+    editedRaw.tweaks || null, editedRaw.customProficiencies || null, arr(complete && complete.proficiencies).length, // "if you are already proficient"
     catalogIndex ? catalogIndex.size : 0]); // weapons are found through the catalog
   if (featureFxCache && featureFxCache.rules === state.rules && featureFxCache.sig === sig) return featureFxCache.out;
   const own = featureEffectsUncached(editedRaw);
-  const out = own.concat(choiceEffects(editedRaw, complete, own));
+  const out = proficiencyRules(editedRaw, complete, own.concat(choiceEffects(editedRaw, complete, own)));
   featureFxCache = { rules: state.rules, sig, out };
   return out;
+}
+/** A skill or saving throw proficiency as a mod: { path, fields: { proficiency }, label }. */
+function profMod(kind, name, level, extra = {}) {
+  const path = kind === 'save' ? `abilityScores.${name}.savingThrowModifier` : `abilityScores.${FX_SKILLS[name]}.skills.${name}`;
+  return { path, bonus: 0, fields: { proficiency: level }, label: `${kind === 'save' ? `${name} saves` : name}: ${String(level).toLowerCase()}`, ...extra };
+}
+/**
+ * "If you are already proficient…" (classes.js profs.upgrades and profs.chains): a grant that becomes expertise when the
+ * character already has it (Brawny's Athletics, Titan's Power's Strength saves, Specialist's kit), and grants that need
+ * another proficiency first (Armor Expert's medium armor; Resilient Retainer's Intelligence or Charisma saves when it
+ * already had Wisdom's). "Already": from anything but the feature itself — the classes and background, the player's
+ * tweaks and custom proficiencies, the other features, feats and traits. Chains met are marked (chainsMet) for pickers.
+ */
+function proficiencyRules(editedRaw, complete, effects) {
+  if (!effects.some((e) => arr(e.chains).length || arr(e.mods).some((x) => x.orExpertise) || arr(e.tools).some((t) => t.orExpertise))) return effects;
+  const has = new Map(); // "skill:athletics" → who gives it ('base', or effect ids)
+  const key = (kind, name) => `${kind}:${String(name).toLowerCase()}`;
+  const give = (k, who) => { if (!has.has(k)) has.set(k, new Set()); has.get(k).add(who); };
+  const hasOther = (k, who) => [...(has.get(k) || [])].some((x) => x !== who);
+  const ofMod = (path) => { const sk = /\.skills\.(.+)$/.exec(path); const sv = /^abilityScores\.(\w+)\.savingThrowModifier$/.exec(path); return sk ? key('skill', sk[1]) : sv ? key('save', sv[1]) : null; };
+  for (const k of arr(editedRaw.classes)) for (const s of arr(k.skills).concat(arr(k.expertise))) give(key('skill', s), 'base');
+  for (const s of arr(editedRaw.background && editedRaw.background.skills)) give(key('skill', s), 'base');
+  arr(editedRaw.classes).forEach((k, i) => {
+    const cref = rulesModule('classes').find((x) => x.name === k.name);
+    if (!cref) return;
+    if (i === 0) for (const a of arr(cref.savingThrows)) give(key('save', a), 'base');
+    // The first class's armor ("All armor": light, medium and heavy); another class's multiclass list.
+    for (const a of i === 0 ? arr(cref.armorProficiencies) : arr(cref.multiClassProficiencies)) {
+      const s = String(a).toLowerCase();
+      for (const n of /^all armor$/.test(s) ? ['light armor', 'medium armor', 'heavy armor'] : s.match(/\b(?:light|medium|heavy) armor\b|\bshields?\b/g) || []) give(key('armor', n), 'base');
+    }
+  });
+  for (const p of arr(complete && complete.proficiencies)) if (p.type === 'tool') give(key('tool', p.name), 'base');
+  for (const p of arr(editedRaw.customProficiencies)) if (['tool', 'armor', 'skill'].includes(String(p.type).toLowerCase())) give(key(String(p.type).toLowerCase(), p.name), 'base');
+  for (const l of fxTweakLeaves(editedRaw.tweaks)) if (l.value && l.value.proficiency && ofMod(l.path)) give(ofMod(l.path), 'base');
+  for (const e of effects) {
+    for (const x of arr(e.mods)) if (x.fields && x.fields.proficiency && !x.orExpertise && ofMod(x.path)) give(ofMod(x.path), e.id);
+    for (const t of arr(e.tools)) if (!t.orExpertise) give(key('tool', t.name), e.id);
+    for (const a of arr(e.armor)) give(key('armor', a), e.id);
+  }
+  return effects.map((e) => {
+    if (!arr(e.chains).length && !arr(e.mods).some((x) => x.orExpertise) && !arr(e.tools).some((t) => t.orExpertise)) return e;
+    const mods = arr(e.mods).map((x) => {
+      if (!x.orExpertise) return x;
+      const k = ofMod(x.path);
+      const already = hasOther(k, e.id);
+      give(k, e.id);
+      return already ? { ...x, fields: { proficiency: 'Expertise' }, label: x.label.replace(/: proficient$/, ': expertise (already proficient)') } : x;
+    });
+    const tools = arr(e.tools).map((t) => {
+      if (!t.orExpertise) return t;
+      const already = hasOther(key('tool', t.name), e.id);
+      give(key('tool', t.name), e.id);
+      return already ? { ...t, level: 'expertise' } : t;
+    });
+    const weapons = arr(e.weapons).slice();
+    const armor = arr(e.armor).slice();
+    const chainsMet = arr(e.chains).map((c) => {
+      if (!c.ifHas.every((h) => hasOther(key(h.kind, h.name), e.id))) return false;
+      for (const a of c.saves) { mods.push(profMod('save', a, 'Proficient')); give(key('save', a), e.id); }
+      for (const sk of c.skills) { mods.push(profMod('skill', sk.name, sk.level)); give(key('skill', sk.name), e.id); }
+      for (const t of c.tools) { tools.push(t); give(key('tool', t.name), e.id); }
+      for (const a of c.armor) { armor.push(a); give(key('armor', a), e.id); }
+      weapons.push(...c.weapons);
+      return true;
+    });
+    return { ...e, mods, tools, weapons, armor, chainsMet };
+  });
 }
 /**
  * A feature-effect entry from clsFeatureEffects' result (null when it changes nothing). origin: what gives it, for
@@ -1716,12 +1894,17 @@ function featureEffects(key, editedRaw, complete) {
  */
 function featureEffectEntry(id, name, why, fe, origin = 'class feature') {
   const mods = fe.mods.slice();
-  for (const a of fe.profs.saves) mods.push({ path: `abilityScores.${a}.savingThrowModifier`, bonus: 0, fields: { proficiency: 'Proficient' }, label: `${a} saves: proficient` });
-  for (const sk of fe.profs.skills) mods.push({ path: `abilityScores.${FX_SKILLS[sk.name]}.skills.${sk.name}`, bonus: 0, fields: { proficiency: sk.level }, label: `${sk.name}: ${sk.level.toLowerCase()}` });
-  const other = fe.advantage.length || fe.defenses.length || fe.critRange || fe.halfProf || fe.unarmedStep || fe.unarmedDie;
-  if (!mods.length && !fe.profs.tools.length && !fe.profs.weapons.length && !fe.needsChoice.length && !other) return null;
+  // "If you are already proficient in it, you instead gain expertise in it": marked, resolved by proficiencyRules.
+  const up = (kind, n) => arr(fe.profs.upgrades).some((u) => u.kind === kind && u.name === n) ? { orExpertise: true } : {};
+  for (const a of fe.profs.saves) mods.push(profMod('save', a, 'Proficient', up('save', a)));
+  for (const sk of fe.profs.skills) mods.push(profMod('skill', sk.name, sk.level, up('skill', sk.name)));
+  const tools = fe.profs.tools.map((t) => ({ ...t, ...up('tool', t.name) }));
+  const chains = arr(fe.profs.chains);
+  const passives = fe.passives || {};
+  const other = fe.advantage.length || fe.defenses.length || fe.critRange || fe.halfProf || fe.unarmedStep || fe.unarmedDie || Object.keys(passives).length;
+  if (!mods.length && !tools.length && !fe.profs.weapons.length && !fe.profs.armor.length && !chains.length && !fe.needsChoice.length && !other) return null;
   return {
-    id, kind: 'feature', origin, name, why, mods, notes: [], needsChoice: fe.needsChoice, weapons: fe.profs.weapons, tools: fe.profs.tools, armor: fe.profs.armor, target: 'self',
+    id, kind: 'feature', origin, name, why, mods, notes: [], needsChoice: fe.needsChoice, weapons: fe.profs.weapons, tools, armor: fe.profs.armor, chains, passives, target: 'self',
     advantage: fe.advantage, defenses: fe.defenses, critRange: fe.critRange, halfProf: fe.halfProf, unarmedStep: fe.unarmedStep,
     unarmedDie: fe.unarmedDie || 0, unarmedFinesse: !!fe.unarmedFinesse,
   };
@@ -1778,12 +1961,13 @@ function featureEffectsUncached(editedRaw) {
     const cref = rulesModule('classes').find((x) => x.name === k.name);
     if (!cref || !parsed) return;
     const level = num(k.levels);
-    const ctx = { level, row: classRow(editedRaw, k), isWeapon: isWeaponName };
+    // charLevel: the character's ("your hit point maximum increases by a number equal to your level").
+    const ctx = { level, row: classRow(editedRaw, k), isWeapon: isWeaponName, charLevel: arr(editedRaw.classes).reduce((t, x) => t + num(x.levels), 0) };
     const aref = k.archetype && k.archetype.name ? rulesModule('archetypes').find((x) => x.name === k.archetype.name) : null;
     const items = clsTextFeatures(cref.classFeatureText, k.name, 'Class')
       .concat(aref ? clsTextFeatures(aref.text, aref.name, 'Archetype') : [])
       .filter((f) => f.level <= level)
-      .map((f) => ({ name: f.name, text: f.text, note: featureNoteOf(editedRaw, f.name), source: f.sourceName }));
+      .map((f) => ({ name: f.name, text: f.text, note: featureNoteOf(editedRaw, f.name), source: f.sourceName, level: f.level }));
     const cls = parsed.classes[k.name];
     const arch = aref ? parsed.archetypes[aref.name] : null;
     for (const [listKey, picks] of Object.entries(k.options || {})) {
@@ -1838,11 +2022,12 @@ function featureEffectsUncached(editedRaw) {
     for (const it of items) {
       const id = `feature:${it.source}:${it.name}${it.note ? `:${it.note}` : ''}`;
       if (out.some((x) => x.id === id)) continue;
-      const e = featureEffectEntry(id, it.name, `${it.source} feature`, clsFeatureEffects(it.text, it.note, ctx));
+      // featureLevel: the class level it came at ("…increases by 1 again whenever you gain a level in this class").
+      const e = featureEffectEntry(id, it.name, `${it.source} feature`, clsFeatureEffects(it.text, it.note, { ...ctx, featureLevel: it.level }));
       if (e) out.push(e);
     }
   });
-  out.push(...bdFeatIncreaseEffects(editedRaw));
+  out.push(...bdFeatIncreaseEffects(editedRaw), ...bdSpeciesIncreaseEffects(editedRaw));
   // Feats' proficiencies and numbers ("You gain proficiency in the Insight skill", "Your speed increases by 10 feet"):
   // the engine applies none. Their ability increase is a pick (background.feat.abilityScoreImprovements, which the
   // engine applies, or bdFeatIncreaseEffects), so it's left out here.
@@ -1851,29 +2036,32 @@ function featureEffectsUncached(editedRaw) {
     .filter(Boolean);
   for (const name of [...new Set(featNames)]) {
     const ref = rulesModule('feats').find((f) => f.name === name);
-    if (!ref) continue;
+    if (!ref || !prIsFeat(ref)) continue; // a rules note picked as a feat ("Class Proficiencies") gives nothing
     const note = featureNoteOf(editedRaw, name);
     const fe = clsFeatureEffects(ref.text || '', note, { level: arr(editedRaw.classes).reduce((t, k) => t + num(k.levels), 0), isWeapon: isWeaponName });
     fe.mods = fe.mods.filter((x) => !/^abilityScores\.\w+\.score$/.test(x.path));
     const e = featureEffectEntry(`feat:${name}${note ? `:${note}` : ''}`, name, 'feat', fe, 'feat');
     if (e) out.push(e);
   }
-  // Species traits' proficiencies ("You have proficiency in the Survival skill"; Coercive's "Persuasion or Intimidation
-  // (your choice)" from the trait's notes): SW5E's engine applies none. Their other numbers (Wookiee Hide's AC,
-  // Toughness) aren't applied here yet; defenses and senses are listed from the text (defensesOf).
-  const sp = editedRaw.species && editedRaw.species.name ? rulesModule('species').find((x) => x.name === editedRaw.species.name) : null;
-  for (const tr of arr(sp && sp.traits)) {
-    if (/^(?:Ability Score Increase|Age|Alignment|Size|Speed|Languages?)$/i.test(tr.name)) continue;
+  // Species traits: their proficiencies ("You have proficiency in the Survival skill"; Coercive's "Persuasion or
+  // Intimidation (your choice)" from the trait's notes), numbers ("You have a +1 bonus to AC"; "you can't add more than
+  // +3"), advantages (on the dice card), defenses and senses; SW5E's engine applies none of them. And the ones only a
+  // species has, below: its walking speed, a hide's or carapace's AC, natural weapons (Toughness is read like Durable).
+  const sp = editedRaw.species && editedRaw.species.name && state.rules ? bdSpeciesRef(editedRaw) : null; // a half-human's: with its other half's traits
+  for (let tr of arr(sp && sp.traits)) {
+    if (/^(?:Ability Score Increase|Age|Alignment|Size|Languages?)$/i.test(tr.name)) continue;
     const note = featureNoteOf(editedRaw, tr.name);
-    const fe = clsFeatureEffects(tr.description || '', note, { level: arr(editedRaw.classes).reduce((t, k) => t + num(k.levels), 0), isWeapon: isWeaponName });
-    const profs ={ ...fe, mods: [], advantage: [], defenses: [], critRange: 0, halfProf: false, unarmedStep: 0, unarmedDie: 0, unarmedFinesse: false };
-    // "Your hit point maximum increases by 1, and it increases by 1 every time you gain a level" (Zabrak Toughness).
-    const tough = /hit point maximum increases by (\d+),? and it increases by (\d+) every time you gain a level/i.exec(tr.description || '');
-    if (tough) {
-      const lvl = Math.max(1, arr(editedRaw.classes).reduce((t, k) => t + num(k.levels), 0));
-      const n = num(tough[1]) + num(tough[2]) * (lvl - 1);
-      profs.mods.push({ path: 'hitPoints.maximum', bonus: n, label: `HP maximum +${n}` });
-    }
+    // A trait with options (Nikto's Adaptation): clsFeatureEffects reads the chosen one; the rest below reads its text.
+    const fe = clsFeatureEffects(bdTraitFullText(tr), note, { level: arr(editedRaw.classes).reduce((t, k) => t + num(k.levels), 0), isWeapon: isWeaponName });
+    tr = { ...tr, description: bdTraitText(editedRaw, tr) };
+    const profs = { ...fe, mods: fe.mods.slice(), critRange: 0, halfProf: false, unarmedStep: 0, unarmedDie: 0, unarmedFinesse: false };
+    // "Your base walking speed is 25 feet": SW5E's engine gives everyone 30. (A half-human's: its other half's.)
+    const walk = /\byour base walking speed is (\d+)/i.exec(tr.description || '');
+    if (walk && num(walk[1]) !== 30) profs.mods.push({ path: 'speed.base', bonus: num(walk[1]) - 30, label: `Walking speed ${walk[1]} ft` });
+    // "It gives you a base AC of 17 (your Dexterity modifier doesn't affect this number). You gain no benefit from wearing
+    // armor, but if you are using a shield, you can apply the shield's bonus as normal" (Colicoid): resolved in applyEffects.
+    const fixed = /\bbase AC of (\d+) \(your Dexterity modifier doesn't affect this number\)/i.exec(tr.description || '');
+    if (fixed) profs.mods.push({ path: 'armorClass', bonus: 0, acFixed: num(fixed[1]), acFormula: true, label: `AC ${fixed[1]} (${tr.name})` });
     // "While you are unarmored or wearing light armor, your AC is 13 + your Dexterity modifier" (Wookiee Hide).
     const hide = /\b(While you are unarmored(?: or wearing light armor)?|When you aren't wearing armor|While you aren't wearing armor), your (?:AC|Armor Class) (?:is|equals|becomes) (\d+) \+ your Dexterity modifier/i.exec(tr.description || '');
     if (hide) {
@@ -1930,14 +2118,15 @@ function acSetByTweak(raw) {
   return tw && tw.override != null && tw.override !== '' ? num(tw.override) : null;
 }
 const handsWarning = (h) => `${h.weapons.join(' and ')} ${h.weapons.length > 1 ? 'are' : 'is'} two-handed and the ${h.shield} takes a hand: you can't attack with ${h.weapons.length > 1 ? 'them' : 'it'} while the shield is equipped.`;
-const armorAllows = (when, st) => !when || ((!when.noArmor || !st.armor || (when.orLight && st.light)) && (!when.noShield || !st.shield) && (!when.noHeavy || !st.heavy));
+const armorAllows = (when, st) => !when || ((!when.noArmor || !st.armor || (when.orLight && st.light)) && (!when.noShield || !st.shield) && (!when.noHeavy || !st.heavy)
+  && (!when.armor || st.armor)); // `armor`: only while wearing armor (an armor modification's agile property)
 
 /** The character with no tweaks at all: the baseline that every adjustment is explained against. */
 // SW5E's engine adds the species' language only when the character records it, which its builder doesn't: fill it in.
 function withSpeciesLanguage(raw) {
   const sp = raw.species;
   if (!sp || !sp.name || sp.language || !state.rules) return raw;
-  const l = String((rulesModule('species').find((x) => x.name === sp.name) || {}).language || '');
+  const l = String((bdSpeciesRef(raw) || {}).language || ''); // a half-human: its non-human half's
   return l && !/varies|non-verbal/i.test(l) ? { ...raw, species: { ...sp, language: l } } : raw;
 }
 const stripTweaks = (raw) => ({ ...withSpeciesLanguage(raw), tweaks: {}, equipment: arr(raw.equipment).map(({ tweaks, ...it }) => it) });
@@ -2006,7 +2195,14 @@ function applyEffects(key, editedRaw, complete) {
   // "AC equals 10 + your Dexterity modifier + your Wisdom or Charisma modifier": the modifier of the final score, after
   // items, Perfect Self and temporary effects (fxResolve only knows the scores of the effects before it). The best AC
   // formula is picked again with them.
+  // "A base AC of 17 (your Dexterity modifier doesn't affect this number). You gain no benefit from wearing armor, but…
+  // a shield's bonus as normal" (a Colicoid's carapace): 17 and the shield, in place of what armor or Dexterity give.
+  const shieldBonus = arr(editedRaw.equipment).filter((it) => it.equipped).map((it) => catalogIndex && catalogIndex.get(it.name))
+    .filter((r) => r && r.equipmentCategory === 'Armor' && /shield/i.test(r.armorClassification || '')).reduce((t, r) => t + num(String(r.ac || '').replace(/[^\d-]/g, '')), 0);
   const withMod = (t) => {
+    // "You can't add more than +3 … from your Dexterity": what the final modifier adds over the cap.
+    if (t.mod.capAbility) return { ...t, bonus: -Math.max(0, modOf(t.mod.capAbility) - num(t.mod.capAt)) };
+    if (t.mod.acFixed && base) return { ...t, bonus: num(t.mod.acFixed) - (num(base.armorClass) - shieldBonus) };
     if (!t.mod.abilityMod) return t;
     let b = (t.mod.lowest ? Math.min : Math.max)(...[].concat(t.mod.abilityMod).map(modOf));
     if (t.mod.min != null) b = Math.max(b, t.mod.min);
@@ -2014,7 +2210,9 @@ function applyEffects(key, editedRaw, complete) {
   };
   const formulas = res.tweaks.filter((t) => t.mod.acFormula).concat(arr(res.acAlternatives)).map(withMod);
   const bestAc = formulas.reduce((a, b) => (!a || b.bonus > a.bonus ? b : a), null);
-  res.tweaks = res.tweaks.map((t) => (t.mod.acFormula ? bestAc : withMod(t)));
+  const takesOff = (t) => !t.mod.capAbility || t.bonus;
+  res.tweaks = res.tweaks.map((t) => (t.mod.acFormula ? bestAc : withMod(t))).filter(takesOff);
+  res.weaponTweaks = res.weaponTweaks.map((t) => (t.mod.capAbility ? withMod(t) : t)).filter(takesOff);
   res.acAlternatives = formulas.filter((t) => t !== bestAc);
   // "You have a number of tech points equal to half of your berserker level, as shown in the Tech Points column of the
   // Industrial Approach Techcasting table, + your Intelligence modifier": SW5E's engine reads an archetype's points only
@@ -2141,12 +2339,15 @@ function applyEffects(key, editedRaw, complete) {
   }
   // "Add half your proficiency bonus to any ability check that doesn't already include it": skills
   // without proficiency and initiative (plain ability checks get it in the roller).
-  const half = effects.find((x) => x.halfProf);
-  if (half) {
+  // Some give it on checks of some abilities only (halfProf lists them: Remarkable Athlete, Cunning Intellect).
+  const halfFor = (a) => effects.find((x) => x.halfProf === true || (Array.isArray(x.halfProf) && x.halfProf.includes(a)));
+  if (effects.some((x) => x.halfProf)) {
     const n = Math.floor(num(complete && complete.proficiencyBonus) / 2);
     const label = `Half proficiency ${signedLabel(n)}`;
-    if (n) res.tweaks.push({ path: 'initiative', bonus: n, fields: null, effect: half, mod: { path: 'initiative', label } });
+    if (n && halfFor('Dexterity')) res.tweaks.push({ path: 'initiative', bonus: n, fields: null, effect: halfFor('Dexterity'), mod: { path: 'initiative', label } });
     for (const a of ABILITIES) {
+      const half = halfFor(a);
+      if (!half) continue;
       for (const sk of arr((((complete && complete.abilityScores) || {})[a] || {}).skills)) {
         const path = `abilityScores.${a}.skills.${sk.name}`;
         const profd = PROF_RANK(sk.proficiency) > 0 || res.tweaks.some((t) => t.path === path && t.fields && PROF_RANK(t.fields.proficiency) > 0);
@@ -2167,8 +2368,7 @@ function applyEffects(key, editedRaw, complete) {
   res.tweaks = res.tweaks.filter((t) => !res.setByTweak.includes(t));
   if (acSet) res.acAlternatives = [];
   for (const t of res.tweaks) {
-    // Bonuses to power damage and healing rolls are the dice card's (powerRollParts): the engine has no such number.
-    if (/^(?:force|tech)Powers\./.test(t.path)) continue;
+    if (/^(?:force|tech)Powers\./.test(t.path)) continue; // power damage/healing bonuses: the dice card adds them
     const cur = getPath(out.tweaks, t.path) || {};
     const fields = { ...(t.fields || {}) };
     // Proficiency never goes down (a feature's "proficient" doesn't undo a tweak's "expertise").
@@ -2879,11 +3079,15 @@ const CONSUMABLE_CATS = ['Explosive', 'Ammunition', 'Spice', 'AlcoholicBeverage'
  * How an item is used: consumable? charges ("has five charges", "three uses"; some regain
  * them)? its effect on whoever it's used on (effects.js)? healing to roll? Null if it has no use.
  */
-function itemUse(ref) {
+function itemUse(ref, raw) {
   if (!ref) return null;
   const text = String(ref.text || ref.description || '').replace(/\s+/g, ' ');
   const ch = /\b(?:has|with) (\w+) (?:charges|uses)\b/i.exec(text);
-  const charges = ch && fxNum(ch[1]) ? { max: fxNum(ch[1]), recharges: /regains? [^.]*charges/i.test(text) } : null;
+  // The class items: "This item can hold a number of charges equal to half your fighter level (rounded up)".
+  const cl = /\bcan hold a number of charges equal to half your (\w+) level \(rounded up\)/i.exec(text);
+  const clsLevel = cl && raw ? num((arr(raw.classes).find((k) => String(k.name).toLowerCase() === cl[1].toLowerCase()) || {}).levels) : 0;
+  const charges = ch && fxNum(ch[1]) ? { max: fxNum(ch[1]), recharges: /regains? [^.]*charges/i.test(text) }
+    : clsLevel ? { max: Math.ceil(clsLevel / 2), recharges: true } : null;
   const consumable = ref.type === 'Consumable' || CONSUMABLE_CATS.includes(ref.equipmentCategory) || /^(medpac|poison|emergency rations)/i.test(ref.name || '');
   if (!consumable && !charges) return null;
   const fx = itemEffectOf(ref);
@@ -2905,6 +3109,8 @@ function makeEffect(ref, fx, source, weaponName) {
     id: Date.now().toString(36) + Math.random().toString(36).slice(2, 6), kind: 'temporary', name: ref.name, source,
     startedAt: Date.now(), duration: fx.duration, group: fx.group, mods: fx.mods, notes: fx.notes,
     target: fx.target, weaponName: weaponName || null, text: ref.text || ref.description || '',
+    // A spice's high: a die the dice card offers on some rolls while it lasts.
+    ...(fx.riders ? { riders: fx.riders } : {}),
   };
 }
 /** Start an effect; "only one stimpac/adrenal at a time" replaces the older one. Returns those replaced. */
@@ -2933,7 +3139,7 @@ async function useItem(arg) {
   const items = shownItems(snap, list);
   const it = items[Number(idx)];
   const entry = list === 'equipment' ? arr(m.c.equipment).find((e) => e.index === Number(idx) && e.isFound) : it;
-  const info = itemUse(entry || (catalogIndex && catalogIndex.get(it && it.name)));
+  const info = itemUse(entry || (catalogIndex && catalogIndex.get(it && it.name)), m.raw);
   if (!it || !info) return;
   const st = itemStateOf(snap.key);
   let unitGone = !info.charges;
@@ -3107,13 +3313,41 @@ function effectRow(m, e) {
     if (mod.cond) return chip(`${mod.label} ${mod.cond}${mod.extraDamage ? `, +${mod.extraDamage} damage` : ''}`, e.kind === 'item' && !e.active ? '' : 'blue');
     const got = applied.filter((t) => t.mod === mod || (t.mod.path === mod.path && t.mod.label === mod.label));
     if (!e.active && e.kind === 'item') return chip(mod.label);
+    // Extra damage dice: on the weapon chosen (shown in its damage and rolled with it).
+    if (mod.dice) return arr(m.fx.dice).some((d) => d.effect.id === e.id && d.mod.path === mod.path) ? chip(mod.label, 'good') : chip(`${mod.label}: choose a weapon`, 'warn');
+    // "+2 proficiency steps": the level it comes to ("mastery" counts as expertise, the highest the engine knows).
+    if (mod.profSteps) {
+      const lv = got.find((t) => t.level);
+      return lv ? chip(`${mod.label.replace(/:.*$/, '')}: ${lv.level}${/mastery/.test(lv.level) ? ' (counted as expertise)' : ''}`, 'good')
+        : chip(`${mod.label}: trained (a level the sheet doesn't count)`);
+    }
+    if (mod.halfProf && !got.length) return '';
+    if (!got.length && mod.property) return chip(`${mod.label}: no change (it already uses the better one, or no weapon chosen)`);
+    if (!got.length && mod.scoreAs) return chip(`${mod.label}: no effect (${mod.scoreAs.ability} ${mod.scoreAs.score} or more${mod.path === 'armorClass' ? `, or an AC without ${mod.scoreAs.ability}` : ''})`);
     if (!got.length && mod.when && !armorAllows(mod.when, armorState(m.raw))) return chip(`${mod.label}: not with armor on`);
     if (!got.length && arr(m.fx.setByTweak).some((t) => t.effect.id === e.id && t.mod.path === mod.path)) return chip(`${mod.label}: AC is set by a tweak`);
     if (!got.length && mod.acFormula) return chip(`${mod.label}: another AC formula is better`);
     if (!got.length) return chip(`${mod.label}: no effect`, 'warn');
     const b = got.reduce((s, t) => s + t.bonus, 0);
-    return chip(b === mod.bonus || mod.bonus == null ? (mod.set != null ? `${mod.label} (${signedLabel(b)})` : mod.label) : `${mod.label} → ${signedLabel(b)} (cap)`, 'good');
+    // Worked out from the scores ("AC 19 (base)", "AC as DEX 15"): the bonus it comes to.
+    const worked = mod.set != null || mod.scoreAs || mod.acFlat != null || mod.abilityMod;
+    return chip(worked ? `${mod.label} (${signedLabel(b)})` : b === mod.bonus || mod.bonus == null ? mod.label : `${mod.label} → ${signedLabel(b)} (cap)`, 'good');
   });
+  // Proficiencies, advantages and choices the item's text gives (as a feature's), and half proficiency on checks.
+  if (e.kind === 'item') {
+    const on = e.active ? 'good' : '';
+    chips.push(...arr(e.weapons).map((w) => chip(`Proficient: ${w}`, on)), ...arr(e.armor).map((a) => chip(`Proficient: ${a}`, on)),
+      ...arr(e.tools).map((t) => chip(`${t.name}: ${t.level}`, on)), ...arr(e.advantage).map((a) => chip(ADV_TEXT(a), on)),
+      ...arr(e.halfProfChecks).map((a) => chip(`Half proficiency on ${a} checks without it`, on)), ...(e.unarmedDie ? [chip(`Unarmed strikes: d${e.unarmedDie}`, on)] : []),
+      ...arr(e.needsChoice).map((c) => `<span class="chip warn" title="Write your choice in the item's note (✎ under Equipment)">Choose ${esc(c)}</span>`));
+  }
+  // A set's bonuses still to come ("AC +1 (with Jensaarai Cloak)"), and a piece that takes no attunement slot.
+  if (e.kind === 'item') chips.push(...arr(e.setPending).map((x) => chip(`${x.label}: not yet`)), ...(e.freeAttune ? [chip('takes no attunement slot (set)', 'good')] : []));
+  // A class augment: the class table numbers it changes ("Rage Damage +2 → +3").
+  if (e.kind === 'item') chips.push(...arr(e.classChanges).map((x) => chip(`${x.col} ${x.from} → ${x.to}`, e.active ? 'good' : '')),
+    ...(e.classBoosts && !arr(e.classChanges).length ? [chip(`for a ${e.classBoosts.cls}: no change here`)] : []));
+  // A keen modification: the weapon's critical range (the dice card's attack rolls use it).
+  if (e.kind === 'item' && e.keen) chips.push(e.critRange ? chip(`Keen ${e.critRange}: critical range +${e.critRange}`, e.active ? 'good' : '') : chip(`Keen ${e.keen.gain}: choose a weapon`, 'warn'));
   const weapons = ownWeapons(m.raw);
   const weaponPick = e.target === 'weapon' && e.linked ? `<span class="faint">on its ${esc(e.weaponName)}</span>` : e.target === 'weapon' ? `<label class="fx-weapon">on <select data-fxweapon="${esc(e.id)}">
       <option value="">choose a weapon…</option>${weapons.map((w) => `<option${w.it.name === e.weaponName ? ' selected' : ''}>${esc(w.it.name)}</option>`).join('')}</select></label>` : '';
@@ -3153,7 +3387,7 @@ function renderEffects(m) {
       ${arr(e.mods).map((x) => chip(x.label, 'good')).join('')}${arr(e.weapons).map((w) => chip(`Proficient: ${w}`, 'good')).join('')}
       ${arr(e.tools).map((t) => chip(`${t.name}: ${t.level}`, 'good')).join('')}${arr(e.armor).map((a) => chip(`Proficient: ${a}`)).join('')}
       ${arr(e.advantage).map((a) => chip(ADV_TEXT(a), 'good')).join('')}${e.critRange ? chip(`Critical on ${20 - e.critRange}–20`, 'good') : ''}
-      ${e.halfProf ? chip('Half proficiency on checks', 'good') : ''}${e.unarmedStep ? chip('Unarmed die +1 step', 'good') : ''}
+      ${e.halfProf ? chip(`Half proficiency on ${halfProfWhich(e)}checks`, 'good') : ''}${e.unarmedStep ? chip('Unarmed die +1 step', 'good') : ''}
       ${arr(e.defenses).map((d) => chip(d.text)).join('')}
       ${arr(e.needsChoice).map((c) => `<span class="chip warn" title="${esc(e.origin === 'feat' ? "Choose it on the feat's card (Feats)" : e.origin === 'species trait' ? "Choose it on the trait's card (Species)" : "Choose it on the feature's card (Class Features)")}">Choose ${esc(c)}</span>`).join('')}
       <span class="faint">${esc(e.why)}</span></div></div>`;
@@ -4156,6 +4390,8 @@ function renderCombat(m) {
 // ------------------------------------------------------------- defenses & senses
 // Resistances, immunities, advantages on saves, senses and other speeds, read from the text of class
 // features (and states that are on), species traits and feats. SW5E's data has none of these.
+/** "Strength/Dexterity/Constitution " when half proficiency is on some abilities' checks only, '' for every check. */
+const halfProfWhich = (e) => (Array.isArray(e.halfProf) ? `${e.halfProf.join('/')} ` : '');
 const ADV_TEXT = (a) => (a.kind === 'init' ? 'Advantage on initiative' : a.kind === 'skill' ? `Advantage on ${a.skill} checks`
   : a.kind === 'attack' ? `Advantage on ${a.melee ? 'melee ' : ''}weapon attacks${a.ability ? ` using ${a.ability}` : ''}`
   : `Advantage on ${a.ability} ${a.kind === 'save' ? 'saving throws' : 'checks'}`);
@@ -4169,15 +4405,15 @@ function defensesOf(m) {
     add(e.defenses, e.name, e.kind);
     add(arr(e.advantage).map((a) => ({ kind: 'advantage', text: ADV_TEXT(a) })), e.name, e.kind);
     if (e.critRange) add([{ kind: 'other', text: `Critical hit on ${20 - e.critRange}–20 with ${e.critWeapons ? e.weaponName || 'the chosen weapon' : 'weapons'}` }], e.name, e.kind);
-    if (e.halfProf) add([{ kind: 'other', text: 'Half proficiency on checks without it' }], e.name, e.kind);
+    if (e.halfProf) add([{ kind: 'other', text: `Half proficiency on ${halfProfWhich(e)}checks without it` }], e.name, e.kind);
   }
   const fromText = (text, from) => {
     const fe = clsFeatureEffects(text || '', '', { level: 0 });
     add(fe.defenses, from);
     add(fe.advantage.map((a) => ({ kind: 'advantage', text: ADV_TEXT(a) })), from);
   };
-  const sp = m.raw.species && m.raw.species.name ? rulesModule('species').find((x) => x.name === m.raw.species.name) : null;
-  const traits = sp && arr(sp.traits).length ? sp.traits.map((t) => ({ name: t.name, text: t.description })) : arr(m.speciesFeatures);
+  const sp = m.raw.species && m.raw.species.name && state.rules ? bdSpeciesRef(m.raw) : null;
+  const traits = sp && arr(sp.traits).length ? sp.traits.map((t) => ({ name: t.name, text: bdTraitText(m.raw, t) })) : arr(m.speciesFeatures);
   for (const f of traits.concat(arr(m.feats))) fromText(f.text || f.description, f.name);
   // Equipment: enhanced items in use, worn weapons/armor, and other gear carried (a jetpack's flying
   // speed); not consumables, whose effects come from using them.
@@ -4185,18 +4421,73 @@ function defensesOf(m) {
     const ref = catalogIndex && catalogIndex.get(it.name);
     if (!ref || qtyOf(it) <= 0) continue;
     if (it.category === 'EnhancedItem') {
-      if (!m.effects.some((e) => e.kind === 'item' && e.name === it.name)) continue;
+      // In use: attuned, equipped or installed (whether or not it has numbers: Matrix Armor's text alone).
+      if (ref.type === 'Consumable' || !(ref.requiresAttunement ? it.attuned : canEquip({ ...ref, isFound: true }, false) ? it.equipped : true)) continue;
     } else if (['Weapon', 'Armor'].includes(ref.equipmentCategory) ? !it.equipped
       : /Consumable|Explosive|Ammunition|Spice|AlcoholicBeverage|Medical/i.test(`${ref.equipmentCategory} ${ref.type}`)) continue;
-    fromText(ref.text || ref.description, it.name);
+    const text = itemDefenseText(ref.text || ref.description, it.notes);
+    fromText(text, it.name);
+    add(itemDefenses(text, num(m.c.proficiencyBonus)), it.name);
+  }
+  // "If you already have darkvision, these goggles increase its range by 30 feet": the longest darkvision from
+  // something else, longer (the goggles' own 60 feet otherwise).
+  const ft = (d) => num((/^Darkvision (\d+) ft/.exec(d.text) || [])[1]);
+  for (const e of m.effects.filter((x) => x.kind === 'item' && x.darkvisionPlus)) {
+    const own = out.filter((d) => d.kind === 'sense' && ft(d) && d.from !== e.name);
+    const best = own.reduce((a, d) => (ft(d) > ft(a || {}) ? d : a), null);
+    if (!best) continue;
+    for (let i = out.length - 1; i >= 0; i--) if (out[i].kind === 'sense' && ft(out[i])) out.splice(i, 1);
+    out.push({ kind: 'sense', text: `Darkvision ${ft(best) + e.darkvisionPlus} ft`, from: `${best.from} +${e.darkvisionPlus} ft ${e.name}` });
   }
   return out.filter((d, i) => out.findIndex((x) => x.text.toLowerCase() === d.text.toLowerCase()) === i);
+}
+/**
+ * An item's text as defenses are read from it: the modes and options to pick from ("choosing one of the following
+ * options: - …", "activate one of the below modes") and what it does for someone else ("give them advantage on saving
+ * throws against poison") left out, and a set's bonuses (they need the other pieces); "you are resistant to" and the
+ * "resistence" typo read as "you have resistance to"; "resistance to one type of damage" (the GM's choice) as the type
+ * the item's note names.
+ */
+function itemDefenseText(text, note) {
+  let t = String(text || '').replace(/\r\n?/g, '\n').replace(/\bresistence\b/gi, 'resistance').replace(/\byou are resistant to\b/gi, 'you have resistance to')
+    // "You can activate or deactivate this implant as a bonus action. While active, you gain darkvision…": switched on
+    // and off, as classes.js reads a jetpack ("… (when switched on)").
+    .replace(/\byou can activate or deactivate (this [a-z ]+?) as an? (bonus )?action\. While active, /gi, (x, what, bonus) => `Activating or deactivating ${what} requires a ${bonus || ''}action and, while active, `)
+    // The item is in use: "While wearing it, …", "… while you wear this armor" always hold.
+    .replace(/\b(?:while|when) (?:you are )?wearing (?:it|this [a-z ]+?|these [a-z ]+?),\s*/gi, '').replace(/,? while you wear (?:it|this [a-z]+|these [a-z]+)(?=[.,])/gi, '');
+  t = t.replace(/[^.\n]*\b(?:one of the following(?: options)?|one of the below modes|the following modes)\b[^\n]*(?:\n+\s*(?:_{3,}|-[^\n]*))+/gi, '');
+  const types = String(note || '').toLowerCase().match(new RegExp(`\\b(?:${PL_DAMAGE_TYPES.map((x) => x.toLowerCase()).join('|')})\\b`, 'g'));
+  if (types) t = t.replace(/\bresistance to one type of damage\b/gi, `resistance to ${[...new Set(types)].join(' and ')} damage`);
+  let set = false;
+  return t.split(/(?<=[.!?])\s+/).filter((s) => {
+    if (/^while wearing and attuned to (?:this|these) \w+,? (?:and )?[A-Z]/i.test(s.replace(/^[*_]+[^*_]+[*_]+\s*/, ''))) { set = true; return false; }
+    if (set && /^additionally\b/i.test(s)) return false;
+    set = false;
+    return !/\b(?:a target|give them|another creature|an ally|allies)\b/i.test(s);
+  }).join(' ');
+}
+/**
+ * Defenses an item's text gives that classes.js doesn't read (yet): "damage you take is reduced by 2" (Armor
+ * (Champion)), "kinetic and energy damage that you take from unenhanced weapons is reduced by an amount equal to your
+ * proficiency bonus" (Jensaarai Headgear), "any critical hit against you becomes a normal hit" (Matrix Armor).
+ */
+function itemDefenses(text, pb) {
+  const out = [];
+  let x;
+  const T = `(?:${PL_DAMAGE_TYPES.join('|')})`;
+  if ((x = new RegExp(`\\b((?:${T}(?:,? and |, ))*${T} )?damage (?:that )?you take(?: from ([^.]*?))? is reduced by (\\d+|an amount equal to your proficiency bonus)`, 'i').exec(text))) {
+    const n = /^\d+$/.test(x[3]) ? Number(x[3]) : pb;
+    out.push({ kind: 'other', text: `${x[1] ? `${x[1][0].toUpperCase()}${x[1].slice(1)}damage` : 'Damage'} you take${x[2] ? ` from ${x[2]}` : ''} reduced by ${n || 'your proficiency bonus'}` });
+  }
+  if (/\bany critical hit against you becomes a normal hit\b/i.test(text)) out.push({ kind: 'immunity', text: 'Critical hits against you are normal hits' });
+  return out;
 }
 function renderDefenses(m) {
   if (!state.rules) return '';
   const defs = defensesOf(m);
   if (!defs.length) return '';
-  const GROUPS = [['resistance', 'Resistances'], ['immunity', 'Immunities'], ['advantage', 'Advantages'], ['sense', 'Senses'], ['speed', 'Speeds'], ['other', 'Other']];
+  const GROUPS = [['resistance', 'Resistances'], ['immunity', 'Immunities'], ['vulnerability', 'Vulnerabilities'], ['advantage', 'Advantages'], ['disadvantage', 'Disadvantages'],
+    ['sense', 'Senses'], ['speed', 'Speeds'], ['other', 'Other']];
   return `<h3>Defenses &amp; senses</h3><div class="defs">${GROUPS.map(([k, label]) => {
     const list = defs.filter((d) => d.kind === k);
     // "…checks you make with them": say which feature "them" is in.
@@ -4335,11 +4626,21 @@ function renderSkills(m) {
     arr(((m.c.abilityScores || {})[a] || {}).skills).forEach((k, i) => rows.push({ ...k, ability: a, idx: i, path: `abilityScores.${a}.skills.${i}.modifier` }));
   }
   rows.sort((x, y) => x.name.localeCompare(y.name));
+  // Passive scores: 10 + the skill's bonus, and what effects add to a passive only (Observant: +5, as with advantage);
+  // Perception's is the engine's (passivePerception, with its own tweaks and effects).
+  const passiveFx = (name) => arr(m.effects).filter((e) => num((e.passives || {})[name])).map((e) => ({ e, n: num(e.passives[name]) }));
+  const passive = (k) => {
+    if (k.name === 'Perception' && m.c.passivePerception != null) return bump(m, 'passivePerception', esc(m.c.passivePerception));
+    const fx = passiveFx(k.name);
+    const n = 10 + num(k.modifier) + fx.reduce((t, x) => t + x.n, 0);
+    const shown = bump(m, k.path, String(n), null, { noAlts: true });
+    return fx.length ? `<span title="${esc(fx.map((x) => `${signedLabel(x.n)} ${x.e.name}`).join(', '))}">${shown}</span>` : shown;
+  };
   return `<div class="table-wrap"><table>
     <thead><tr><th>Skill</th><th>Ability</th><th class="num">Bonus</th><th class="num">Passive</th><th class="col-prof">Proficiency</th></tr></thead>
     <tbody>${rows.map((k) => `<tr class="${k.proficiency && k.proficiency !== 'none' ? 'prof' : ''}">
       <td class="skill-name">${profPip(k.proficiency)}${esc(k.name)}</td><td class="muted">${ABBR[k.ability]}</td>
-      <td class="num"><b>${rollable(`skill|${k.ability}|${k.idx}`, bump(m, k.path, signed(k.modifier)), `Roll ${k.name}`)}</b></td><td class="num muted">${bump(m, k.path, String(10 + num(k.modifier)), null, { noAlts: true })}</td>
+      <td class="num"><b>${rollable(`skill|${k.ability}|${k.idx}`, bump(m, k.path, signed(k.modifier)), `Roll ${k.name}`)}</b></td><td class="num muted">${passive(k)}</td>
       <td class="col-prof">${k.proficiency && k.proficiency !== 'none' ? esc(titleCase(k.proficiency)) : '<span class="faint">—</span>'}</td></tr>`).join('')}</tbody>
   </table></div>`;
 }
@@ -4371,7 +4672,7 @@ function renderAttacks(m) {
           <button class="btn sm" data-act="reload" data-arg="${wi}" ${sh.used ? '' : 'disabled'} title="Uses one ${esc(sh.ammo.toLowerCase())} from your inventory">Reload</button>
           <span class="faint">${sh.cells} ${esc(sh.cellName)}${sh.cells === 1 ? '' : 's'}</span></div>` : ''}</div></div></td>
       <td class="num"><b>${rollable(`attack|${wi}`, bump(m, `weapons.${wi}.attackBonus`, signed(w.attackBonus)), `Roll an attack with the ${w.name}`)}</b></td>
-      <td>${rollable(`damage|${wi}`, bump(m, `weapons.${wi}.damageBonus`, esc(damageText(w))), `Roll ${w.name} damage`)}</td>
+      <td>${rollable(`damage|${wi}`, bump(m, `weapons.${wi}.damageBonus`, esc(weaponDamageText(m, w))), `Roll ${w.name} damage`)}</td>
       <td class="muted col-ability">${esc((w.name === 'Unarmed Strike' ? m.fx.tweaks.some((t) => t.mod && t.mod.finesse) : m.fx.weaponTweaks.some((t) => t.index === w.index && t.mod && t.mod.finesse)) ? 'Dexterity (finesse)' : w.ability || '')}</td>
       <td class="muted col-type">${esc(titleCase(w.weaponClassification || ''))}</td>
       <td class="col-props">${propsHtml(w.properties) || '<span class="faint">—</span>'}</td></tr>
@@ -4457,7 +4758,7 @@ const classCasting = (m) => (state.rules ? arr(m.raw.classes).flatMap((k, idx) =
 /** A species trait that rules out a kind of powers: { force: 'Force-Insensitive' | false, tech: … }. */
 function speciesCannot(m) {
   const out = { force: false, tech: false };
-  const sp = m.raw.species && rulesModule('species').find((x) => x.name === m.raw.species.name);
+  const sp = m.raw.species && state.rules ? bdSpeciesRef(m.raw) : null;
   for (const tr of arr(sp && sp.traits)) {
     const mm = /\byou can ?not use (force|tech) powers\b/i.exec(tr.description || '');
     if (mm) out[mm[1].toLowerCase()] = tr.name;
@@ -4632,7 +4933,9 @@ function knownPowers(m, kind) {
       }
     }
   }
-  return out;
+  // A power you can't cast with points but can another way (Naturalist: "You can cast it once… without spending tech
+  // points"): only that way, not also "Not castable".
+  return out.filter((x) => !(x.mode === 'points' && x.invalid && out.some((y) => y !== x && y.name === x.name && y.mode !== 'points' && !y.invalid)));
 }
 /** Once-per-rest casts: one per power, or one for the feature when it gives several ("Once you've cast a power using this feature…"). */
 const powerUseName = (power, slot) => (slot.castOnly && slot.count > 1 && slot.useFeature !== false ? `${String(slot.from).replace(/\s*\(.*$/, '')} (cast)` : `${power} (${String(slot.from).replace(/\s*\(.*$/, '')})`);
@@ -5469,7 +5772,8 @@ function featureNoteOf(raw, name) {
 function chosenInPicker(m, f) {
   const base = clsBaseName(f.name).toLowerCase();
   const res = state.rules ? choiceInfo(m) : null;
-  const slots = res ? res.slots.filter((s) => (s.feature && s.feature.toLowerCase() === base) || (s.species && String(s.from).toLowerCase().endsWith(`: ${base}`))) : [];
+  // A trait's given powers (Kiffar Heritage's Sage: telemetry) aren't a pick: its own choice stays in its card.
+  const slots = res ? res.slots.filter((s) => (s.feature && s.feature.toLowerCase() === base) || (s.species && !s.given && String(s.from).toLowerCase().endsWith(`: ${base}`))) : [];
   if (slots.length) return slots.flatMap((s) => s.picks.map((p) => p.name));
   for (const k of arr(m.raw.classes)) {
     if (base === archetypeFeature(k.name)) return k.archetype && k.archetype.name ? [k.archetype.name] : [];
@@ -5489,10 +5793,17 @@ function featureAsks(m, f) {
   if (!state.rules || !text) return [];
   if (f.source === 'Species' && (/^(?:Ability Score Increase|Languages?)$/i.test(f.name)
     || !bdSpeciesTraitFeatures(m).some((t) => t.name === f.name))) return [];
+  // A trait with options (Kiffar Heritage): the options come with the rules' trait (SW5E's feature text stops at its intro).
+  const trait = f.source === 'Species' ? arr((bdSpeciesRef(m.raw) || {}).traits).find((t) => t.name === f.name && arr(t.options).length) : null;
+  if (trait) f = { ...f, text: bdTraitFullText(trait) }; // eslint-disable-line no-param-reassign
   const k = arr(m.raw.classes).find((x) => x.name === f.sourceName || (x.archetype && x.archetype.name === f.sourceName));
-  return clsFeatureEffects(text, featureNoteOf(m.raw, f.name), {
+  const asks = clsFeatureEffects(f.text || text, featureNoteOf(m.raw, f.name), {
     level: k ? num(k.levels) : charLevel(m), pb: num(m.c.proficiencyBonus), row: k ? classRow(m.raw, k) : {}, isWeapon: isWeaponName,
   }).asks;
+  // A choice that only comes with "If you already have this proficiency…" (Resilient Retainer): when that holds.
+  const fx = arr(m.effects).find((e) => e.kind === 'feature' && e.name === f.name && arr(e.chains).length);
+  const met = (a) => !!fx && fx.chains.some((c, i) => arr(fx.chainsMet)[i] && canonical(c.ifHas) === canonical(a.ifHas));
+  return asks.filter((a) => !a.ifHas || met(a));
 }
 const ASK_WORDS = { option: 'one', ability: 'an ability', skill: 'a skill', tool: 'a tool', weapon: 'a weapon', skilltool: 'a skill or tool', expertise: 'a proficiency', damage: 'a damage type' };
 /** The tools the character is proficient with (SW5E's list, custom ones, features'). */
@@ -5533,10 +5844,14 @@ function catalogByName(name) {
 }
 const isWeaponName = (name) => { const r = catalogByName(name); return !!r && r.equipmentCategory === 'Weapon'; };
 
-function featureNoteBox(m, f) {
+/**
+ * A feature's pickers (what it asks) and notes box. opts.picked: what's chosen in a picker elsewhere (null: none);
+ * opts.choiceText: the text left to choose from in the notes (a feat's, without what other pickers make).
+ */
+function featureNoteBox(m, f, opts = {}) {
   const key = featureNoteKey(f);
   const note = (m.raw.featureNotes || {})[key] || '';
-  const picked = chosenInPicker(m, f);
+  const picked = 'picked' in opts ? opts.picked : chosenInPicker(m, f);
   const asks = picked == null ? featureAsks(m, f) : [];
   // What the pickers chose are words of the note (classes.js reads them there); the box shows the rest.
   const lc = (s) => String(s).toLowerCase();
@@ -5544,7 +5859,7 @@ function featureNoteBox(m, f) {
   const tokens = clsNoteTokens(note);
   const keep = tokens.filter((t) => managed.has(lc(t))).join(', ');
   const rest = keep ? tokens.filter((t) => !managed.has(lc(t))).join(', ') : note;
-  const free = picked == null && !asks.length && /\b(?:choose|choice|of your choice|select)\b/i.test(f.text || f.description || '');
+  const free = picked == null && !asks.length && /\b(?:choose|choice|of your choice|select)\b/i.test(opts.choiceText != null ? opts.choiceText : f.text || f.description || '');
   const chosen = picked == null ? '' : `<div class="feat-chosen">${picked.length ? `Chosen: <b>${esc(picked.join(', '))}</b>` : '<span class="warn-text">Not chosen yet</span>'} · <a href="#sec-classes">${picked.length ? 'change' : 'choose'} it in Classes &amp; Progression</a></div>`;
   const pickers = asks.map((a) => bdPickList({
     title: a.label, from: ['tool', 'weapon'].includes(a.kind) && /\s/.test(a.of) ? a.of : '', count: a.count, chosen: a.chosen, options: askOptions(m, a), kind: 'fnote', arg: key, word: ASK_WORDS[a.kind] || 'one',
@@ -5607,11 +5922,20 @@ function renderFeats(m) {
   const slotsHtml = featSlots.length ? `<div class="cls-choices feat-choices"><h3>Choices from your feats</h3>${featSlots.map((s) => renderSlot(m, s)).join('')}</div>` : '';
   return `${slotsHtml}${bdFeatPicks(m)}<div class="grid cards">${m.feats.map((f) => {
     const ref = featRefs[f.name] || {};
+    const rules = state.rules ? rulesModule('feats').find((x) => x.name === f.name) : null;
+    const text = f.text || ref.text || '';
+    // The +1's abilities as the text gives them (SW5E's attributesIncreased can leave one out: Heat Shielded).
+    const inc = rules ? prFeatAbilities(rules) : arr(f.attributesIncreased || ref.attributesIncreased);
+    const rulesNote = rules && !prIsFeat(rules);
     return card({
       title: f.name,
-      chips: [origin[f.name] ? chip(origin[f.name], 'accent') : '', ...(arr(f.attributesIncreased || ref.attributesIncreased).map((a) => chip('+ ' + a))),
-        (f.prerequisite || ref.prerequisite) ? chip('Prereq: ' + (f.prerequisite || ref.prerequisite), 'warn') : ''].filter(Boolean),
-      body: md(f.text || ref.text || ''),
+      chips: [origin[f.name] ? chip(origin[f.name], 'accent') : '', ...(inc.length === 6 ? [chip('+1 to any ability')] : inc.map((a) => chip('+ ' + a))),
+        (f.prerequisite || ref.prerequisite) ? chip('Prereq: ' + (f.prerequisite || ref.prerequisite), 'warn') : '',
+        rulesNote ? `<span class="chip warn" title="SW5E's feats list holds this rules note from its books: it isn't a feat and gives nothing">Not a feat: a rules note</span>` : ''].filter(Boolean),
+      // A feat's own choices (classes.js asks: skills, tools, a damage type…), the languages it teaches, and its notes.
+      body: md(text) + (state.rules && !rulesNote ? bdFeatLanguagePicks(m, f.name) + featureNoteBox(m, { ...f, text, source: 'Feat' }, {
+        picked: null, choiceText: featSlots.some((s) => s.feat && s.feat.name === f.name) ? '' : bdFeatChoiceText({ text }),
+      }) : ''),
     });
   }).join('')}</div>`;
 }
@@ -5677,9 +6001,14 @@ function modifiedItemsOf(m) {
   }
   return out;
 }
-/** Attunement slots in use: attuned items, plus modified items that require attunement (they're attuned to you). */
+/**
+ * Attunement slots in use: attuned items, plus modified items that require attunement (they're attuned to you), less
+ * a set's pieces that "no longer count towards your maximum attunement" (Jensaarai Headgear with the armor).
+ */
 function attunementUsed(m) {
-  return num((m.c.attunement || {}).current) + modifiedItemsOf(m).filter((x) => x.attune).length;
+  const free = arr(m.effects).filter((e, i, all) => e.kind === 'item' && e.freeAttune && all.findIndex((x) => x.id === e.id) === i)
+    .reduce((t, e) => t + attuneCost((catalogIndex && catalogIndex.get(e.name)) || {}), 0);
+  return num((m.c.attunement || {}).current) + modifiedItemsOf(m).filter((x) => x.attune).length - free;
 }
 /** What a modified weapon's mods do when it hits: "Celerity Oscillator: Once per turn, when you deal damage…". */
 function modHitNotes(m, w) {
@@ -5707,7 +6036,48 @@ function modifiableItems(m, kind) {
 
 /** Multiclass improvements and the class-table row they change (choices.js). */
 const multiclassBoosts = (raw, k) => chMulticlassBoosts(raw, k, (state.rules && state.rules.modules) || {});
-const classRow = (raw, k) => chClassRow(raw, k, (state.rules && state.rules.modules) || {});
+const classRow = (raw, k) => itemClassRow(raw, k, chClassRow(raw, k, (state.rules && state.rules.modules) || {}));
+/** The class augments installed ("Berserker Offensive Augment"): [{ name, cls, boosts }] (effects.js classBoosts). */
+function itemClassBoosts(raw) {
+  return arr(raw.equipment).filter((it) => it.category === 'EnhancedItem').map((it) => {
+    const fx = itemEffectOf(catalogIndex && catalogIndex.get(it.name));
+    const on = fx && fx.classBoosts && (fx.activation === 'attune' ? it.attuned : it.equipped);
+    return on ? { name: it.name, ...fx.classBoosts } : null;
+  }).filter(Boolean);
+}
+/**
+ * What an augment changes in its class's table row: the column its words name ("Rage damage" → Rage Damage +2 → +3,
+ * "Sneak Attack" 3d6 → 3d8, "maneuver" → Maneuvers Known, "Guardian Auras radius" → Aura Radius 5 ft. → 10 ft.), each
+ * column once. [{ col, from, to }]. A boost no column matches (Potent Aptitude's uses) changes nothing.
+ */
+function itemBoostChanges(row, boosts) {
+  const STOP = new Set(['your', 'the', 'use', 'uses', 'additional', 'option', 'options', 'feature', 'features', 'die']);
+  const stems = (s) => String(s).toLowerCase().split(/[^a-z]+/).filter((w) => w.length >= 3 && !STOP.has(w));
+  const same = (a, b) => a.startsWith(b) || b.startsWith(a) || (a.length > 4 && b.length > 4 && a.slice(0, 5) === b.slice(0, 5));
+  const fits = { add: (v) => /^\+?\d+$/.test(String(v).trim()), step: (v) => /^\d*d(?:4|6|8|10)$/i.test(String(v).trim()), feet: (v) => /^\d+ ?ft\.?$/i.test(String(v).trim()) };
+  const out = [];
+  for (const b of boosts) {
+    const words = stems(b.phrase);
+    const best = Object.keys(row).filter((c) => !['Level', 'Features', 'Proficiency Bonus'].includes(c) && fits[b.kind](row[c]) && !out.some((x) => x.col === c))
+      .map((c) => ({ c, score: stems(c).filter((w) => words.some((x) => same(w, x))).length }))
+      .filter((x) => x.score > 0).sort((x, y) => y.score - x.score)[0];
+    if (!best) continue;
+    const v = String(row[best.c]).trim();
+    const to = b.kind === 'step' ? v.replace(/d(\d+)$/i, (x, n) => `d${Math.min(12, Number(n) + 2)}`)
+      : b.kind === 'feet' ? v.replace(/^\d+/, (n) => String(Number(n) + b.n))
+        : `${v.startsWith('+') ? '+' : ''}${num(v) + b.n}`;
+    out.push({ col: best.c, from: v, to });
+  }
+  return out;
+}
+/** A class's table row with its installed augments' changes. */
+function itemClassRow(raw, k, row) {
+  const mine = catalogIndex ? itemClassBoosts(raw).filter((b) => b.cls === k.name) : [];
+  if (!mine.length) return row;
+  const out = { ...row };
+  for (const b of mine) for (const x of itemBoostChanges(out, b.boosts)) out[x.col] = x.to;
+  return out;
+}
 /** The highest power level the classes let the character cast, by kind (0: at-will only, -1: none); choices.js adds feat powers. */
 function castingLevels(c, raw) {
   const lvl = (cast) => (cast && typeof cast === 'object' && (num(cast.maxPoints) || arr(cast.powersKnown).length) ? num(cast.maxPowerLevel) : -1);
@@ -5721,7 +6091,9 @@ function choiceInfoFor(raw, complete) {
   const casting = castingLevels(complete, raw);
   const pb = num(complete && complete.proficiencyBonus);
   const skillSig = ABILITIES.flatMap((a) => arr((((complete && complete.abilityScores) || {})[a] || {}).skills)).map((x) => x.name + x.proficiency).join();
-  const sig = canonical([raw.classes, raw.featureChoices || null, raw.featureNotes || null, raw.background || null, raw.customFeats || null, raw.species || null, casting, pb, skillSig]);
+  // Ability scores, for feat prerequisites ("Strength 13").
+  const scores = complete && complete.abilityScores ? Object.fromEntries(ABILITIES.map((a) => [a, num((complete.abilityScores[a] || {}).value)])) : null;
+  const sig = canonical([raw.classes, raw.featureChoices || null, raw.featureNotes || null, raw.background || null, raw.customFeats || null, raw.species || null, casting, pb, skillSig, scores]);
   const hit = choiceCache.get(sig);
   if (hit && hit.rules === state.rules) return hit.res;
   const modules = state.rules.modules || {};
@@ -5733,7 +6105,7 @@ function choiceInfoFor(raw, complete) {
   const res = choiceSlots(raw, {
     modules, parsed, casting, notes: raw.featureNotes || {}, pb, rowOf,
     classManeuvers: cm.names.length, classManeuverMax: cm.max, classManeuverNames: cm.names, classDice: chClassSupDice(raw, modules), classPowerNames,
-    skills: complete && complete.abilityScores ? skills : null,
+    skills: complete && complete.abilityScores ? skills : null, scores,
   });
   if (choiceCache.size > 6) choiceCache.delete(choiceCache.keys().next().value);
   choiceCache.set(sig, { rules: state.rules, res });
@@ -5748,6 +6120,11 @@ const slotManeuvers = (m) => {
 
 /** One slot's editor: what's chosen (with notes, weapons and problems) and a list to add from. */
 function renderSlot(m, s) {
+  // A feat that grants no picks, only problems (Tough without Durable): the problems, without an empty pick row.
+  if (s.kind === 'feat') {
+    return `<div class="cls-list slot"><div class="cls-head"><b>${esc(s.title)}</b> <span class="faint">${esc(s.label || s.from)}</span></div>
+      ${s.problems.map((p) => `<div class="slot-problem">${esc(p)}</div>`).join('')}</div>`;
+  }
   const kind = CH_KINDS[s.kind] || {};
   const chosen = new Set(s.picks.map((p) => p.name));
   // Things of this kind chosen elsewhere can't be chosen again (styles, forms, maneuvers, powers).
@@ -6156,15 +6533,21 @@ function renderSpecies(m) {
   const name = m.raw.species.name;
   const ref = (m.refs.species || {})[name] || {};
   const img = arr(ref.imageUrls)[0];
+  const eff = state.rules ? bdSpeciesRef(m.raw) : null; // a half-human's: with its non-human half's
+  // A trait with options SW5E's feature text leaves out (Nikto's Adaptation): the card shows them.
+  const withOptions = (f) => { const t = arr(ref.traits).concat(arr(eff && eff.traits)).find((x) => x.name === f.name && arr(x.options).length); return t ? { ...f, text: bdTraitFullText(t) } : f; };
+  // A half-human's traits from its non-human half (SW5E lists Half-human's own only).
+  const inherited = eff && eff.halfOf ? arr(eff.traits).filter((t) => !/^(?:Ability Score Increase|Age|Alignment|Size|Speed|Languages?)$/i.test(t.name) && !m.speciesFeatures.some((f) => f.name === t.name))
+    .map((t) => featureCard({ name: t.name, text: bdTraitFullText(t), source: 'Species', sourceName: eff.halfOf }, m)) : [];
   const traits = m.speciesFeatures.length
-    ? m.speciesFeatures.map((f) => featureCard(f, m))
+    ? m.speciesFeatures.map((f) => featureCard(withOptions(f), m)).concat(inherited)
     : arr(ref.traits).map((t) => card({ title: t.name, body: md(t.description) }));
   const asi = m.raw.species.abilityScoreImprovement;
   const asiText = asi && typeof asi === 'object' && Object.keys(asi).length ? Object.entries(asi).map(([a, n]) => `${a} ${signed(n)}`).join(', ') : '';
   return `<div class="hero" style="margin-bottom:12px">
       ${img ? `<div class="portrait"><img data-src="${esc(img)}" alt=""></div>` : ''}
       <dl class="kv">
-        ${[['Size', ref.size], ['Homeworld', ref.homeworld], ['Language', ref.language], ['Average height', ref.heightAverage && `${ref.heightAverage} ${ref.heightRollMod || ''}`],
+        ${[['Non-human half', eff && eff.halfOf], ['Size', (eff && eff.halfOf && eff.size) || ref.size], ['Homeworld', ref.homeworld], ['Language', (eff && eff.halfOf && eff.language) || ref.language], ['Average height', ref.heightAverage && `${ref.heightAverage} ${ref.heightRollMod || ''}`],
           ['Average weight', ref.weightAverage && `${ref.weightAverage} ${ref.weightRollMod || ''}`], ['Skin', ref.skinColorOptions], ['Hair', ref.hairColorOptions], ['Eyes', ref.eyeColorOptions],
           ['Distinctions', ref.distinctions], ['Chosen increase', asiText]]
           .filter(([, v]) => nonEmpty(v)).map(([k, v]) => `<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join('') || '<dt>Species</dt><dd>' + esc(name) + '</dd>'}
@@ -6255,7 +6638,7 @@ function itemControls(m, e, list, i) {
 
 /** "Use" for consumables and items with charges: asks "on me / on someone else" when it has an effect. */
 function useControls(m, e, arg, info) {
-  const u = itemUse(info);
+  const u = itemUse(info, m.raw);
   if (!u) return '';
   const used = num((state.itemState[m.snap.key] || { charges: {} }).charges[e.name]);
   const left = u.charges ? u.charges.max - used : null;
@@ -6563,7 +6946,7 @@ async function addTweak() {
   const raw = withEdits(snap.raw, editedFields(snap.key));
   const w = /^weapon@(\d+)\.(\w+)$/.exec(d.path);
   const row = w
-    ? { where: 'equipment', index: Number(w[1]), sub: w[2], rkey: `item:${arr(raw.equipment)[w[1]].name}.${w[2]}` }
+    ? { where: 'equipment', index: Number(w[1]), sub: w[2], rkey: weaponTweakKey(arr(raw.equipment), Number(w[1]), w[2]) }
     : { where: 'tweaks', path: d.path, rkey: d.path };
   const cur = (w ? getPath((arr(raw.equipment)[w[1]] || {}).tweaks, w[2]) : getPath(raw.tweaks, d.path)) || {};
   // Set and add exclude each other (SW5E ignores the added amount while a value is set): adding to a set value adds to it.

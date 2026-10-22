@@ -129,6 +129,7 @@ forceCasting.powersKnown = [Saber Throw, Force Push/Pull, Battle Precognition, F
 effect: Consular weapon proficiencies · feature
 effect: Force Affinity · feature
 effect: Fundamentals of Mechu-deru · feature
+effect: Tech Resistance · feature
 effect: Tech Savant · feature
 tweak: abilityScores.Intelligence.skills.Technology +0 {"proficiency":"Proficient"} · Fundamentals of Mechu-deru
 tweak: abilityScores.Intelligence.skills.Technology +0 {"proficiency":"Proficient"} · Tech Savant
@@ -225,11 +226,14 @@ Conditions None [Add a condition… ▾]
 Combat [Start combat]
 [☆ Inspiration] Exhaustion [−] 0 [+]
 [Short rest] [Long rest] HP and uses: saved here, not on sw5e.com yet. [Use sw5e.com's values]
+Defenses & senses
+Advantages Advantage on Dexterity and Intelligence saving throws against tech powers
 Effects
-From class features and species traits (4)
+From class features and species traits (5)
 Consular weapon proficiencies Proficient: Simple lightweapons Proficient: simple vibroweapons Consular proficiencies
 Force Affinity Choose one of Ashla, Bendu, Bogan Consular feature
-Fundamentals of Mechu-deru Technology: proficient Way of Technology feature
+Fundamentals of Mechu-deru Technology: proficient Proficient: simple blasters Way of Technology feature
+Tech Resistance Advantage on Dexterity and Intelligence saving throws against tech powers Anomid trait
 Tech Savant Technology: proficient Anomid trait
 Temporary
 No temporary effects.
@@ -515,6 +519,7 @@ If an object is held, worn, or integrated, and a creature takes the damage from 
 Overcharge Tech. When you cast this power using a tech slot of 3rd level or higher, the damage increases by 1d8 for each slot level above 2nd.
 Tech Dabbler Background (Noble)
 You know two at-will tech powers. When you reach 3rd level, you learn and can cast one 1st-level tech power once per long rest. When you reach 5th level, you le… [382 chars #b0d200c1]
+Notes []
 
 ## Sheet: Classes & Progression
 [Level up]
@@ -607,7 +612,6 @@ Your base walking speed is 30 feet.
 Notes []
 Tech Dabbler
 You know the minor hologram at-will tech power. When you reach 3rd level, you learn and can cast the repair droid tech power once per long rest. When you reach … [329 chars #7050f724]
-Chosen: Minor Hologram, Repair Droid, Hold Droid · change it in Classes & Progression
 Notes []
 Tech Resistance
 Growing up around technology leaves an impact on anomid. You have advantage on Dexterity and Intelligence saving throws against tech powers.
@@ -675,7 +679,7 @@ None chosen yet.
 Armor
 None
 Weapon
-Simple lightweapons simple vibroweapons
+Simple lightweapons simple vibroweapons simple blasters · Fundamentals of Mechu-deru
 Tool
 One type of gaming set
 Skills & saves

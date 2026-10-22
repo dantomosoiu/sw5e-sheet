@@ -216,7 +216,7 @@ Berserker Test (Claude)
 Human · Berserker (Brawling Approach) 5
 Level 5 Background: Soldier Balanced Neutral Proficiency +3 [Add a picture]
 6,500 XP level 6 at 14,000 (7,500 to go)
-Still to choose (5): Berserker 4th level: ability score improvement or feat · Berserker Instincts (2 more) · background skills (2 more) · background tool · background languages
+Still to choose (10): Berserker 4th level: ability score improvement or feat · Berserker Instincts (2 more) · background skills (2 more) · background tool · bac… [357 chars #c1a416f6]
 
 ## Sheet: Combat & Vitals
 Armor Class
@@ -264,7 +264,7 @@ Berserker weapon proficiencies Proficient: All vibroweapons Proficient: simple b
 Unarmored Defense AC + CON Berserker feature
 Danger Sense Advantage on Dexterity saving throws against effects that you can see, such as traps and powers Berserker feature
 Fists of Fury Unarmed die +1 step Brawling Approach feature
-Human Versatility Choose the skill/tool proficiencies Human trait
+Human Versatility Choose one skill Choose one tool Choose one weapon of your choice Human trait
 Temporary
 No temporary effects.
 []
@@ -522,10 +522,10 @@ You gain proficiency in one skill, one tool, and one weapon of your choice.
 Skill proficiency 0 / 1
 None chosen yet.
 [Choose a skill… ▾]
-Tool proficiency 0 / 1
+Tool proficiency 0 / 1 one tool
 None chosen yet.
 [Choose a tool… ▾]
-Weapon proficiency 0 / 1
+Weapon proficiency 0 / 1 one weapon of your choice
 None chosen yet.
 [Choose a weapon… ▾]
 Notes []
@@ -541,6 +541,12 @@ Notes []
 Speed
 Your base walking speed is 30 feet.
 Notes []
+Ability score +2 0 / 1 One ability score of your choice increases by 2, and two other ability scores of your choice increase by 1. Alternatively, four ability scores of your choice each increase by 1.
+None chosen yet.
+[Choose an ability… ▾]
+Ability score +1 0 / 2 One ability score of your choice increases by 2, and two other ability scores of your choice increase by 1. Alternatively, four ability scores of your choice each increase by 1.
+None chosen yet.
+[Choose an ability… ▾]
 
 ## Sheet: Background
 Skill proficiencies

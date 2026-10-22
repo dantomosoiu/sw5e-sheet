@@ -140,7 +140,9 @@ effect: Consular weapon proficiencies · feature
 effect: Force Affinity · feature
 effect: Fundamentals of Mechu-deru · feature
 effect: Cat's Claws · feature
+effect: Darkvision · feature
 effect: Silent Step · feature
+effect: Treeclimber · feature
 tweak: abilityScores.Intelligence.skills.Technology +0 {"proficiency":"Proficient"} · Fundamentals of Mechu-deru
 tweak: abilityScores.Dexterity.skills.Stealth +0 {"proficiency":"Proficient"} · Silent Step
 tweak: unarmed.damageDice +0 {"dieSize":6} · Cat's Claws
@@ -241,12 +243,14 @@ Advantages Advantage on Strength saving throws and Strength (Athletics) checks t
 Senses Darkvision 60 ft
 Speeds Climbing speed 30 ft
 Effects
-From class features and species traits (5)
+From class features and species traits (7)
 Consular weapon proficiencies Proficient: Simple lightweapons Proficient: simple vibroweapons Consular proficiencies
 Force Affinity Choose one of Ashla, Bendu, Bogan Consular feature
-Fundamentals of Mechu-deru Technology: proficient Way of Technology feature
+Fundamentals of Mechu-deru Technology: proficient Proficient: simple blasters Way of Technology feature
 Cat's Claws Cathar trait
+Darkvision Darkvision 60 ft Cathar trait
 Silent Step Stealth: proficient Cathar trait
+Treeclimber Climbing speed 30 ft Advantage on Strength saving throws and Strength (Athletics) checks that involve climbing Cathar trait
 Temporary
 No temporary effects.
 []
@@ -513,6 +517,7 @@ If an object is held, worn, or integrated, and a creature takes the damage from 
 Overcharge Tech. When you cast this power using a tech slot of 3rd level or higher, the damage increases by 1d8 for each slot level above 2nd.
 Tech Dabbler Background (Noble)
 You know two at-will tech powers. When you reach 3rd level, you learn and can cast one 1st-level tech power once per long rest. When you reach 5th level, you le… [382 chars #b0d200c1]
+Notes []
 
 ## Sheet: Classes & Progression
 [Level up]
@@ -653,7 +658,7 @@ None chosen yet.
 Armor
 None
 Weapon
-Simple lightweapons simple vibroweapons
+Simple lightweapons simple vibroweapons simple blasters · Fundamentals of Mechu-deru
 Tool
 One type of gaming set
 Skills & saves

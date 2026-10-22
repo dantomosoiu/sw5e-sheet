@@ -4,7 +4,7 @@
 The sheet's engine computes the numbers. OUT OF DATE: SW5E's recorded calculation is for an older version of this character; record the case again (dev/regress-record.js) for dev/engine-check.js.
 tweaks.abilityScores.Strength.score.bonus = 1
 tweaks.abilityScores.Strength.skills.Athletics.bonus = 0
-tweaks.abilityScores.Strength.skills.Athletics.proficiency = "Proficient"
+tweaks.abilityScores.Strength.skills.Athletics.proficiency = "Expertise"
 tweaks.armorClass.bonus = 3
 equipment[0 Dire vibroblade].tweaks.toHit.bonus = 0
 equipment[0 Dire vibroblade].tweaks.toHit.proficiency = "proficient"
@@ -72,8 +72,8 @@ abilityScores.Intelligence.value = 8
 abilityScores.Strength.modifier = 3
 abilityScores.Strength.savingThrow.modifier = 6
 abilityScores.Strength.savingThrow.proficiency = "proficient"
-abilityScores.Strength.skills[Athletics].modifier = 6
-abilityScores.Strength.skills[Athletics].proficiency = "proficient"
+abilityScores.Strength.skills[Athletics].modifier = 9
+abilityScores.Strength.skills[Athletics].proficiency = "expertise"
 abilityScores.Strength.value = 17
 abilityScores.Wisdom.modifier = 1
 abilityScores.Wisdom.savingThrow.modifier = 1
@@ -162,7 +162,7 @@ effect: Brawny · feature
 effect: Human Versatility · feature
 tweak: armorClass +3 · Unarmored Defense
 tweak: abilityScores.Strength.score +1 · Brawny
-tweak: abilityScores.Strength.skills.Athletics +0 {"proficiency":"Proficient"} · Brawny
+tweak: abilityScores.Strength.skills.Athletics +0 {"proficiency":"Expertise"} · Brawny
 weapon tweak: #0 toHit +0 · Berserker weapon proficiencies
 weapon tweak: #3 toHit +0 · Berserker weapon proficiencies
 
@@ -172,7 +172,7 @@ death: Death saving throw: d20 +0
 hitdie|d12: Hit die (d12): d12 +3 · = +3 per die
 check|Strength: Strength check: d20 +3 · = +3 modifier
 save|Strength: Strength saving throw: d20 +6 · = +6 modifier
-skill|Strength|0: Athletics (STR): d20 +6 · = +6 modifier
+skill|Strength|0: Athletics (STR): d20 +9 · = +9 modifier
 check|Dexterity: Dexterity check: d20 +2 · = +2 modifier
 save|Dexterity: Dexterity saving throw: d20 +2 · = +2 modifier
 skill|Dexterity|0: Acrobatics (DEX): d20 +2 · = +2 modifier
@@ -217,7 +217,7 @@ Berserker Test (Claude)
 Human · Berserker 5
 Level 5 Background: Soldier Balanced Neutral Proficiency +3 [Add a picture]
 6,500 XP level 6 at 14,000 (7,500 to go)
-Still to choose (6): Berserker 4th level: ability score improvement or feat · Berserker approach · Berserker Instincts (2 more) · background skills (2 more) · background tool · background languages
+Still to choose (11): Berserker 4th level: ability score improvement or feat · Berserker approach · Berserker Instincts (2 more) · background skills (2 more) · … [378 chars #3889a340]
 
 ## Sheet: Combat & Vitals
 Armor Class
@@ -264,8 +264,8 @@ Berserker weapon proficiencies Proficient: All vibroweapons Proficient: simple b
 Unarmored Defense AC + CON Berserker feature
 Danger Sense Advantage on Dexterity saving throws against effects that you can see, such as traps and powers Berserker feature
 Brawny STR +1 feat (added by hand)
-Brawny Athletics: proficient feat
-Human Versatility Choose the skill/tool proficiencies Human trait
+Brawny Athletics: expertise (already proficient) feat
+Human Versatility Choose one skill Choose one tool Choose one weapon of your choice Human trait
 Temporary
 No temporary effects.
 []
@@ -299,7 +299,8 @@ Strength
 17
   ↳ hover abilityScores.Strength.value: Without tweaks or effects: 16 → now 17 / +1 STR · Brawny feat (added by hand)
 (Proficient) Saving throw+6
-(Proficient) Athletics+6
+(Expertise) Athletics+9
+  ↳ hover abilityScores.Strength.skills.0.modifier: Without tweaks or effects: 6 → now 9 / expertise Athletics: expertise (already proficient) · Brawny feat
 base 16 · +1 from Brawny (feat)
 DEX
 Dexterity
@@ -354,7 +355,9 @@ not proficient proficient expertise
 Skill | Ability | Bonus | Passive | Proficiency |
 (Not proficient) Acrobatics | DEX | +2 | 12 | — |
 (Not proficient) Animal Handling | WIS | +1 | 11 | — |
-(Proficient) Athletics | STR | +6 | 16 | Proficient |
+(Expertise) Athletics | STR | +9 | 19 | Expertise |
+  ↳ hover abilityScores.Strength.skills.0.modifier: Without tweaks or effects: 6 → now 9 / expertise Athletics: expertise (already proficient) · Brawny feat
+  ↳ hover abilityScores.Strength.skills.0.modifier: Without tweaks or effects: 6 → now 9 / expertise Athletics: expertise (already proficient) · Brawny feat
 (Not proficient) Deception | CHA | +0 | 10 | — |
 (Not proficient) Insight | WIS | +1 | 11 | — |
 (Proficient) Intimidation | CHA | +3 | 13 | Proficient |
@@ -436,6 +439,7 @@ You become stronger, gaining the following benefits:
 Increase your Strength score by 1, to a maximum of 20.
 You gain proficiency in the Athletics skill. If you are already proficient in it, you instead gain expertise in it.
 Your carrying capacity and the weight you can push, drag, or lift doubles. If it would already double, it instead triples.
+Notes []
 
 ## Sheet: Classes & Progression
 [Level up]
@@ -504,10 +508,10 @@ You gain proficiency in one skill, one tool, and one weapon of your choice.
 Skill proficiency 0 / 1
 None chosen yet.
 [Choose a skill… ▾]
-Tool proficiency 0 / 1
+Tool proficiency 0 / 1 one tool
 None chosen yet.
 [Choose a tool… ▾]
-Weapon proficiency 0 / 1
+Weapon proficiency 0 / 1 one weapon of your choice
 None chosen yet.
 [Choose a weapon… ▾]
 Notes []
@@ -523,6 +527,12 @@ Notes []
 Speed
 Your base walking speed is 30 feet.
 Notes []
+Ability score +2 0 / 1 One ability score of your choice increases by 2, and two other ability scores of your choice increase by 1. Alternatively, four ability scores of your choice each increase by 1.
+None chosen yet.
+[Choose an ability… ▾]
+Ability score +1 0 / 2 One ability score of your choice increases by 2, and two other ability scores of your choice increase by 1. Alternatively, four ability scores of your choice each increase by 1.
+None chosen yet.
+[Choose an ability… ▾]
 
 ## Sheet: Background
 Skill proficiencies
@@ -684,4 +694,4 @@ SW5E's rules and item data: version 199, as it comes with the sheet. SW5E is the
 Raw SW5E character JSON
 { "name": "Berserker Test (Claude)", "image": "", "experiencePoints": 6500, "species": { "name": "Human", "abilityScoreImprovementSelectedOption": 0, "abilitySc… [2137 chars #5fb89d30]
 Computed character JSON (the sheet's rules engine)
-{ "name": "Berserker Test (Claude)", "builderVersion": "0.7.6", "image": "", "characteristics": { "Age": "", "Appearance": "", "Backstory": "", "Bond": "", "Eye… [16459 chars #297e44d8]
+{ "name": "Berserker Test (Claude)", "builderVersion": "0.7.6", "image": "", "characteristics": { "Age": "", "Appearance": "", "Backstory": "", "Bond": "", "Eye… [16457 chars #0be93251]

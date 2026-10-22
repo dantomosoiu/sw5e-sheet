@@ -240,7 +240,7 @@ Human · Monk (Rakatan Order) 8, Operative (Maverick Practice) 3
 Level 11 Background: Noble Lawful Light Proficiency +4 [Add a picture]
 6,500 XP level 12 at 100,000 (93,500 to go)
 Level 11 usually needs 85,000 XP (you have 6,500).
-Still to choose (13): Monk skills (2 more) · Monk 8th level: ability score improvement or feat · Monastic Vows (3 more) · Rakatan Order tech powers (6 more) · O… [431 chars #5e9140ac]
+Still to choose (18): Monk skills (2 more) · Monk 8th level: ability score improvement or feat · Monastic Vows (3 more) · Rakatan Order tech powers (6 more) · O… [611 chars #6f221dd3]
 
 ## Sheet: Combat & Vitals
 Armor Class
@@ -293,7 +293,7 @@ Expertise Choose the skills/tools for expertise Operative feature
 Know a Bit Half proficiency on checks Maverick Practice feature
 Silver-Tongued CHA +1 feat (background feat)
 Silver-Tongued Deception: proficient feat
-Human Versatility Choose the skill/tool proficiencies Human trait
+Human Versatility Choose one skill Choose one tool Choose one weapon of your choice Human trait
 Martial Arts Monk feature
 Temporary
 No temporary effects.
@@ -427,7 +427,7 @@ Skill | Ability | Bonus | Passive | Proficiency |
   ↳ hover abilityScores.Intelligence.skills.2.modifier: Without tweaks or effects: 2 → now 4 / +2 Half proficiency · Know a Bit Maverick Practice feature
 (Not proficient) Perception | WIS | +5 | 15 | — |
   ↳ hover abilityScores.Wisdom.skills.3.modifier: Without tweaks or effects: 3 → now 5 / +2 Half proficiency · Know a Bit Maverick Practice feature
-  ↳ hover abilityScores.Wisdom.skills.3.modifier: Without tweaks or effects: 3 → now 5 / +2 Half proficiency · Know a Bit Maverick Practice feature
+  ↳ hover passivePerception: Without tweaks or effects: 13 → now 15 / +2 Half proficiency · Know a Bit Maverick Practice feature
 (Not proficient) Performance | CHA | +1 | 11 | — |
   ↳ hover abilityScores.Charisma.skills.2.modifier: Without tweaks or effects: -1 → now 1 / +2 Half proficiency · Know a Bit Maverick Practice feature
   ↳ hover abilityScores.Charisma.skills.2.modifier: Without tweaks or effects: -1 → now 1 / +2 Half proficiency · Know a Bit Maverick Practice feature
@@ -680,8 +680,10 @@ You develop your conversational skill to better deceive others. You gain the fol
 Increase your Charisma score by 1, to a maximum of 20.
 You gain proficiency in the Deception skill. If you are already proficient in it, you instead gain expertise in it.
 When you take the Attack action, you can replace one attack with an attempt to deceive one humanoid you can see within 30 feet of you that can see and hear you.… [568 chars #4907558c]
+Notes []
 Multiclass Improvement Prereq: 4th level
 You've learned to blend the skills of your different classes. Choose two of the multiclass improvement options, detailed later in this chapter. You can take this feat multiple times.
+Notes []
 
 ## Sheet: Classes & Progression
 [Level up]
@@ -799,10 +801,10 @@ You gain proficiency in one skill, one tool, and one weapon of your choice.
 Skill proficiency 0 / 1
 None chosen yet.
 [Choose a skill… ▾]
-Tool proficiency 0 / 1
+Tool proficiency 0 / 1 one tool
 None chosen yet.
 [Choose a tool… ▾]
-Weapon proficiency 0 / 1
+Weapon proficiency 0 / 1 one weapon of your choice
 None chosen yet.
 [Choose a weapon… ▾]
 Notes []
@@ -818,6 +820,12 @@ Notes []
 Speed
 Your base walking speed is 30 feet.
 Notes []
+Ability score +2 0 / 1 One ability score of your choice increases by 2, and two other ability scores of your choice increase by 1. Alternatively, four ability scores of your choice each increase by 1.
+None chosen yet.
+[Choose an ability… ▾]
+Ability score +1 0 / 2 One ability score of your choice increases by 2, and two other ability scores of your choice increase by 1. Alternatively, four ability scores of your choice each increase by 1.
+None chosen yet.
+[Choose an ability… ▾]
 
 ## Sheet: Background
 Skill proficiencies

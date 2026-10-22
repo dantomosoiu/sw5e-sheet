@@ -12,7 +12,7 @@
  *     target: 'self' | 'weapon' | 'unarmed',  who/what the mods apply to
  *     duration, group         timed effects ("1 hour"); "only one stimpac at a time"
  *   }
- *   mod = { path, bonus | set, cap?, label, cond?, ammo?, fields? }
+ *   mod = { path, bonus | set, cap?, label, cond?, ammo?, fields?, dice?, perLevel?, scoreAs?, acFlat? }
  *     path: a SW5E tweak path (abilityScores.Strength.score, armorClass, speed.base, initiative,
  *           passivePerception, hitPoints.maximum, abilityScores.X.savingThrowModifier,
  *           abilityScores.X.skills.Y, techCasting.saveDC|attackModifier|maxPoints,
@@ -23,6 +23,14 @@
  *     cond: the bonus only applies sometimes ("vs melee", "ranged tech attacks", "with Cryo
  *           Cell (Average)"); it isn't applied, but shown next to the stat as an alternative
  *           value. ammo: for "with <ammunition>", what it's fired from (matched to weapons).
+ *     dice: extra damage dice on every hit (path weapon.extraDice / unarmed.extraDice: "deal an
+ *           additional 1d10 damage with this enhanced weapon"), with `type` when it has its own.
+ *     perLevel: the bonus is this many times the character's level ("equal to your level").
+ *     scoreAs: { ability, score }: the number uses the ability as if it were that score, when it's
+ *           lower ("your Dexterity score is treated as 15").
+ *     acFlat: AC becomes this number, without Dexterity ("Your base AC becomes 19").
+ *     Power bonuses (paths forcePowers.damage|healing, techPowers.damage|healing) aren't sent to
+ *           the engine: the dice card adds them to power rolls.
  *
  * Mods are applied by adding tweak bonuses to the copy of the character the sheet is computed
  * from, so every number that depends on them (modifiers, saves, skills, attacks, carrying
@@ -48,7 +56,13 @@ const signedLabel = (n) => (n >= 0 ? '+' + n : '−' + Math.abs(n));
 // Clauses that only say when an item works ("while wearing this armor"): its activation, not a condition.
 const ACTIVATION_CLAUSE = /,?\s*\b(?:when you (?:administer|apply|use|consume|drink|inject|eat) (?:this|these|it)[^,.;]*,?|(?:while|whilst) (?:(?:you are |you're )?(?:wearing|wielding|holding|attuned to|using) (?:this|these|the) [^,.;]*|you (?:wear|wield|hold) (?:this|these|it)[^,.;]*|this (?:item|armor|shield|weapon) is (?:worn|equipped|installed)[^,.;]*))/gi;
 // Words that make a bonus conditional (applies only sometimes): kept as a note, not applied.
-const CONDITIONAL = /\b(?:against|that require|which require|when you|when the|if you|if the|once|until|for the next|melee tech|ranged tech|melee force|ranged force|melee attacks?\b|ranged attacks?\b|made with this enhanced (?!weapon\b)|fired by|grenades?|ammunition|cartridges?|cells?\b|darts?\b|rounds?\b|of powers)/i;
+const CONDITIONAL = /\b(?:against|that require|which require|when you|when the|if you|if the|once|until|for the next|melee tech|ranged tech|melee force|ranged force|melee attacks?\b|ranged attacks?\b|made with this enhanced (?!weapon\b)|fired by|grenades?|ammunition|cartridges?|cells?\b|darts?\b|rounds?\b|(?<!focus )generators?\b|of powers)/i;
+// Levels of proficiency, in steps ("increases by two steps"). SW5E's engine (and the sheet's) knows proficient and
+// expertise; trained, and the masteries above expertise, aren't numbers it has.
+const FX_PROF_LADDER = ['none', 'trained', 'proficient', 'expertise', 'mastery', 'high mastery', 'grand mastery'];
+const fxProfRank = (p) => { const s = String(p || '').toLowerCase(); return s.startsWith('exp') ? 2 : s.startsWith('prof') ? 1 : 0; };
+// What ammunition is called ("this enhanced power cell"): its bonuses are the ammunition's, not a weapon's.
+const FX_AMMO = /\b(?:cells?|cartridges?|darts?|ammunition|rockets?|missiles?|torpedo(?:es)?|(?<!focus )generators?|grenades?|rounds?)\b/i;
 // Sentences worth keeping as notes even when they carry no number we can apply.
 // Stats of the object itself ("binders have an AC of 10 and 5 hit points"), not of the character.
 const OBJECT_STATS = /\b(?:has|have) an ac of \d+|\bit has a speed of\b/i;
@@ -89,20 +103,33 @@ function fxBonusMods(n, phrase, ctx) {
     (m[1] ? [m[1].trim()] : ['light', 'dark', 'universal']).forEach((k) => add(`forceCasting.${k}AttackModifier`, `${k[0].toUpperCase() + k.slice(1)} force attack`));
   } else if ((m = /^(light |dark |universal )?force save dcs?$/.exec(p))) {
     (m[1] ? [m[1].trim()] : ['light', 'dark', 'universal']).forEach((k) => add(`forceCasting.${k}SaveDC`, `${k[0].toUpperCase() + k.slice(1)} force save DC`));
-  } else if ((m = /^(attack and damage|attack|damage) rolls (?:made )?with (?:this|these) (?:enhanced )?(?:weapon|handwraps|gauntlets?|blade|saber|lightweapon|vibroweapon)s?$/.exec(p)) && ctx.weaponItem) {
+  } else if ((m = /^(attack and damage|attack|damage) rolls (?:made )?with (?:this|these) (?:enhanced )?([a-z' -]+?)$/.exec(p)) && ctx.weaponItem && !FX_AMMO.test(m[2])) {
+    // "…made with this enhanced weapon / lightsaber / shoulder cannon / shotgun": the item is the weapon.
+    if (m[1] !== 'damage') add('weapon.toHit', 'Attack');
+    if (m[1] !== 'attack') add('weapon.damage', 'Damage');
+    ctx.target = 'weapon';
+  } else if ((m = /^(attack and damage|attack|damage) rolls$/.exec(p)) && ctx.weaponMod) {
+    // A weapon modification's "Additionally, you gain a +2 bonus to attack rolls" (Multispectral Optics): with that weapon.
     if (m[1] !== 'damage') add('weapon.toHit', 'Attack');
     if (m[1] !== 'attack') add('weapon.damage', 'Damage');
     ctx.target = 'weapon';
   } else if ((m = /^(attack and damage|attack|damage) rolls (?:made )?with your unarmed strikes$/.exec(p))) {
     if (m[1] !== 'damage') add('unarmed.toHit', 'Unarmed attack');
     if (m[1] !== 'attack') add('unarmed.damage', 'Unarmed damage');
-  } else if ((m = /^attack rolls and deal an additional (\d+d\d+) (?:\w+ )?damage with (this enhanced weapon|your unarmed strikes)$/.exec(p)) && (m[2] !== 'this enhanced weapon' || ctx.weaponItem)) {
-    if (m[2] === 'this enhanced weapon') { add('weapon.toHit', 'Attack'); ctx.target = 'weapon'; } else add('unarmed.toHit', 'Unarmed attack');
-    ctx.notes.push(`Extra ${m[1]} damage on a hit with ${m[2] === 'this enhanced weapon' ? 'this weapon' : 'unarmed strikes'}.`);
+  } else if ((m = /^attack rolls and deal an additional (\d+d\d+) (?:\w+ )?damage with (this (?:enhanced )?([a-z' -]+?)|your unarmed strikes)$/.exec(p))
+    && (!m[3] || (ctx.weaponItem && !FX_AMMO.test(m[3])))) {
+    // "a +3 bonus to attack rolls and deal an additional 1d10 damage with this enhanced weapon": the dice on every hit.
+    if (m[3]) { add('weapon.toHit', 'Attack'); ctx.target = 'weapon'; } else add('unarmed.toHit', 'Unarmed attack');
+    mods.push({ path: m[3] ? 'weapon.extraDice' : 'unarmed.extraDice', dice: m[1], label: `Damage +${m[1]}` });
   } else if ((m = /^damage rolls (?:made )?with weapons(?: and (force|tech) powers)?$/.exec(p))) {
     add('weapon.damage', 'Weapon damage');
     add('unarmed.damage', 'Unarmed damage');
-    if (m[1]) ctx.notes.push(`${signedLabel(n)} to damage rolls with ${m[1]} powers.`);
+    if (m[1]) add(`${m[1]}Powers.damage`, `${m[1] === 'force' ? 'Force' : 'Tech'} power damage`);
+  } else if ((m = /^(damage and healing|damage|healing) rolls (?:you make )?with (force|tech) powers(?: when using this [\w ]+ as your focus)?$/.exec(p))) {
+    // "a +1 bonus to its damage and healing rolls with force powers" (Sorcerer's Adrenal): the dice card adds it.
+    const K = m[2] === 'force' ? 'Force' : 'Tech';
+    if (m[1] !== 'healing') add(`${m[2]}Powers.damage`, `${K} power damage`);
+    if (m[1] !== 'damage') add(`${m[2]}Powers.healing`, `${K} power healing`);
   } else if ((m = /^(?:the )?(tech|force) (?:power )?attack rolls for (?:tech |force )?powers you cast through this [\w ]+$/.exec(p))) {
     if (m[1] === 'tech') add('techCasting.attackModifier', 'Tech attack');
     else ['light', 'dark', 'universal'].forEach((k) => add(`forceCasting.${k}AttackModifier`, `${k[0].toUpperCase() + k.slice(1)} force attack`));
@@ -152,6 +179,13 @@ function fxListMods(n, list) {
   const l = list.toLowerCase();
   if (/tech attack rolls/.test(l)) mods.push({ path: 'techCasting.attackModifier', bonus: n, label: `Tech attack ${signedLabel(n)}` });
   if (/tech save dc/.test(l)) mods.push({ path: 'techCasting.saveDC', bonus: n, label: `Tech save DC ${signedLabel(n)}` });
+  // "…, and damage and healing rolls with tech powers" (Machinist's Catalyzer): the dice card adds it.
+  const pw = /\b(damage and healing|damage|healing) rolls with (force|tech) powers/.exec(l);
+  if (pw) {
+    const K = pw[2] === 'force' ? 'Force' : 'Tech';
+    if (pw[1] !== 'healing') mods.push({ path: `${pw[2]}Powers.damage`, bonus: n, label: `${K} power damage ${signedLabel(n)}` });
+    if (pw[1] !== 'damage') mods.push({ path: `${pw[2]}Powers.healing`, bonus: n, label: `${K} power healing ${signedLabel(n)}` });
+  }
   for (const k of ['light', 'dark', 'universal']) {
     if (new RegExp(`(?:${k} |\\b)force attack rolls`).test(l) && (l.includes(k) || !/light|dark|universal/.test(l))) {
       mods.push({ path: `forceCasting.${k}AttackModifier`, bonus: n, label: `${k[0].toUpperCase() + k.slice(1)} force attack ${signedLabel(n)}` });
@@ -176,18 +210,41 @@ function parseItemEffect(item) {
     || /^(medpac|poison|emergency rations)/i.test(item.name || '');
   const ctx = {
     weaponItem: item.type === 'Weapon' || item.type === 'ItemModification' || item.equipmentCategory === 'Weapon' || /\b(?:handwraps|gauntlets?)\b/i.test(item.name || ''),
+    // A modification for a weapon (its "attack rolls" are that weapon's).
+    weaponMod: item.type === 'ItemModification' && /^(?:blaster|lightweapon|vibroweapon)$/i.test(item.subtype || ''),
     target: 'self',
     notes: [],
   };
   const mods = [];
   const notes = [];
+  const riders = [];
   let duration = '';
   let group = null;
+  let darkvisionPlus = 0;
   let m;
   let options = false; // after "choose from the following": modes to pick from, not always on
+  let requires = null; // a set bonus's other pieces ("While wearing and attuned to this armor and Jensaarai Cloak, …")
+  let freeAttune = null;
   for (const raw of fxSentences(text)) {
-    const s = raw.replace(ACTIVATION_CLAUSE, '');
+    let s = raw.replace(ACTIVATION_CLAUSE, '');
     let used = false;
+    // Set bonuses (Jensaarai Regalia, Mandalorian Vestments): "While wearing and attuned to this armor, Jensaarai Cloak,
+    // and Jensaarai Headgear, this armor now grants a +3 bonus to AC, instead of +2." What the sentence (and the ones
+    // after it, until the next set) gives holds only with those items attuned too (`requires`, checked by itemEffects).
+    const setM = /^while wearing and attuned to (?:this|these) [a-z]+((?:,? (?:and )?[A-Z][\w'’]*(?: [A-Z][\w'’]*)*)+),\s*(.*)$/.exec(s.replace(/^While/, 'while'));
+    if (setM) {
+      requires = setM[1].split(/,\s*(?:and\s+)?|\s+and\s+/).map((x) => x.trim()).filter(Boolean);
+      s = setM[2];
+    } else if (/^[A-Z][\w' ]+ (?:Regalia|Vestments)\.$/.test(s)) continue;
+    const before = mods.length;
+    // "…this armor now grants a +2 bonus to AC, instead of +1": the difference, with the other pieces.
+    if (requires && (m = /\bnow grants? a \+(\d+) bonus to (?:AC|armor class), instead of \+(\d+)/i.exec(s))) {
+      const n = Number(m[1]) - Number(m[2]);
+      mods.push({ path: 'armorClass', bonus: n, requires, label: `AC +${n} (with ${requires.join(' and ')})` });
+      continue;
+    }
+    // "…this headgear no longer count towards your maximum attunement".
+    if (requires && /\bno longer counts? towards your maximum attunement\b/i.test(s)) { freeAttune = requires; continue; }
     if (options) { if (TRAIT.test(s)) notes.push(raw); continue; }
     if (/choose (?:one )?(?:from|of) the following/i.test(s)) {
       options = true;
@@ -195,9 +252,18 @@ function parseItemEffect(item) {
       continue;
     }
     // Duration and "only one X at a time".
-    if (!duration && (m = /(?:lasts? (?:for )?|for the next |for )(\d+|an?|one|ten) (round|minute|hour|day)s?\b/i.exec(s))) {
-      const n = fxNum(m[1]);
-      duration = `${n} ${m[2].toLowerCase()}${n === 1 ? '' : 's'}`;
+    // "For the next minute, the creature experiences a high…" (no number: one), before the low's "lasts 1 hour".
+    if (!duration && (m = /(?:lasts? (?:for )?|for (?:the next )?)(\d+|an?|one|ten) (round|minute|hour|day)s?\b|\bfor the next (round|minute|hour|day)\b/i.exec(s))) {
+      const n = m[1] ? fxNum(m[1]) : 1;
+      duration = `${n} ${(m[2] || m[3]).toLowerCase()}${n === 1 ? '' : 's'}`;
+    }
+    // A spice's or drink's high: "allows them to roll an additional d4 when making an ability check, attack roll, or
+    // saving throw using Wisdom": a die the dice card offers on those rolls while it lasts.
+    if ((m = new RegExp(`\\ba high that allows them to roll an additional (\\d*)d(\\d+) when making ([^.]+?) using ${ABIL_RE}`, 'i').exec(s))) {
+      const a = fxAbility(m[4]);
+      const on = [/ability check/i.test(m[3]) ? `check:${a}` : '', /saving throw/i.test(m[3]) ? `save:${a}` : '', /attack roll/i.test(m[3]) ? `attack:${a}` : ''].filter(Boolean);
+      riders.push({ on, dice: `${m[1] || 1}d${m[2]}`, once: false });
+      ctx.notes.push(`+${m[1] || 1}d${m[2]} on ${m[3].replace(/,? or /, ' or ')} using ${a} (offered on the dice card).`);
     }
     if ((m = /only one (\w+?) at a time/i.exec(s))) { group = m[1].toLowerCase(); used = true; }
     if (OBJECT_STATS.test(s)) continue;
@@ -208,7 +274,116 @@ function parseItemEffect(item) {
       if (m[3] !== 'attack') mods.push({ path: 'weapon.damage', bonus: n, label: `Damage +${n}` });
       ctx.target = 'weapon';
       ctx.weaponKind = m[1].trim();
-      if ((m = /dealing an additional (\d+d\d+)/i.exec(s))) ctx.notes.push(`Extra ${m[1]} damage on a hit with that weapon.`);
+      if ((m = /dealing an additional (\d+d\d+)/i.exec(s))) mods.push({ path: 'weapon.extraDice', dice: m[1], label: `Damage +${m[1]}` });
+      continue;
+    }
+    // "When you deal damage with this weapon, you deal an additional 1d6 acid, cold, … damage (chosen by the GM when
+    // generating this item)" (Ostrine Edge) / "…, you can roll a d4 and add the result to the total" (Damind Crystal):
+    // dice on every hit.
+    if (ctx.weaponItem && (m = /^when you deal damage with this weapon, you (?:deal an additional (\d*d\d+) ([^.]*?) ?damage|can roll an? (\d*d\d+) and add the result to the total)/i.exec(s))) {
+      const dice = (m[1] || m[3]).replace(/^d/, '1d');
+      const type = m[2] ? m[2].replace(/,? or /, ' or ') + (/chosen by the gm/i.test(s) ? ' (the GM chooses)' : '') : '';
+      mods.push({ path: 'weapon.extraDice', dice, type, label: `Damage +${dice}${type ? ` ${type}` : ''}` });
+      ctx.target = 'weapon';
+      continue;
+    }
+    // Properties a modification gives the armor or weapon it's installed in, the ones that change numbers. Agile: "While
+    // wearing armor … with this property, your Dexterity score becomes equal to the agile number" (powered: Strength).
+    if ((m = /\bthis armor gains the (agile|powered) (\d+) property/i.exec(s))) {
+      const a = m[1].toLowerCase() === 'agile' ? 'Dexterity' : 'Strength';
+      mods.push({ path: `abilityScores.${a}.score`, set: Number(m[2]), when: { armor: true }, label: `${FX_ABBR[a]} ${m[2]} (${m[1].toLowerCase()} ${m[2]})` });
+      continue;
+    }
+    if (/^if it already has the (?:agile|powered) property/i.test(s)) continue; // base armor never has them
+    // Keen: "the critical hit range increases by an amount equal to the keen number". "This weapon gains the keen 1
+    // property. If it already has the keen property, its keen number increases by 1, to a maximum of 3 / increases to 3."
+    if ((m = /\bthis weapon gains the keen (\d+) property/i.exec(s))) {
+      ctx.keen = { ...(ctx.keen || {}), gain: Number(m[1]) };
+      ctx.target = 'weapon';
+      continue;
+    }
+    if ((m = /^if it already has the keen property, its keen number increases (?:by (\d+), to a maximum of (\d+)|to (\d+))/i.exec(s))) {
+      ctx.keen = { ...(ctx.keen || {}), ...(m[3] ? { to: Number(m[3]) } : { by: Number(m[1]), max: Number(m[2]) }) };
+      continue;
+    }
+    // Finesse ("you use your choice of your Strength or Dexterity modifier for the attack and damage rolls"), and a
+    // blaster's mighty (the same): the better one, worked out on the weapon (itemEffects, fxResolve).
+    if ((m = /\bthis weapon gains the (finesse|mighty) property\b/i.exec(s))) {
+      const prop = m[1].toLowerCase();
+      for (const path of ['weapon.toHit', 'weapon.damage']) mods.push({ path, bonus: 0, property: prop, label: `${prop[0].toUpperCase()}${prop.slice(1)}: ${path === 'weapon.toHit' ? 'attack' : 'damage'} with the better of STR and DEX` });
+      ctx.target = 'weapon';
+      continue;
+    }
+    // "Your level of proficiency in Investigation increases by two steps (to proficient, from trained to expertise, …)" /
+    // "…in Dexterity saving throws…" / "You gain grand mastery in Investigation": worked out from the proficiency the
+    // character has (fxResolve). "These tools" (a tool kit) names no tool: it stays the item's text.
+    if ((m = /\byour level of proficiency in (.+?) increases by (one|two|three|four|five|six) steps?\b|\byou (?:gain|have) (grand mastery) in (.+?)(?:\.|$)/i.exec(s))) {
+      const what = (m[1] || m[4]).trim();
+      const steps = m[3] ? FX_PROF_LADDER.length - 1 : fxNum(m[2]);
+      const sk = Object.keys(FX_SKILLS).find((k) => k.toLowerCase() === what.toLowerCase());
+      const sv = new RegExp(`^${ABIL_RE} saving throws$`, 'i').exec(what);
+      const path = sk ? `abilityScores.${FX_SKILLS[sk]}.skills.${sk}` : sv ? `abilityScores.${fxAbility(sv[1])}.savingThrowModifier` : null;
+      if (path) {
+        mods.push({ path, bonus: 0, profSteps: steps, label: `${sk || `${FX_ABBR[fxAbility(sv[1])]} saves`}: ${m[3] ? 'grand mastery' : `+${steps} proficiency step${steps === 1 ? '' : 's'}`}` });
+        continue;
+      }
+    }
+    // "…you can add half your proficiency bonus (rounded down) to any Intelligence check you make that doesn't already
+    // include your proficiency bonus" (Intuitive Facial Prosthesis): its skills without proficiency (fxResolve), and
+    // plain Intelligence checks on the dice card (halfProfChecks).
+    if ((m = new RegExp(`\\badd half your proficiency bonus(?: \\(rounded down\\))? to any ${ABIL_RE} check you make that doesn(?:'|’)t already include your proficiency bonus`, 'i').exec(s))) {
+      const a = fxAbility(m[1]);
+      ctx.halfProfChecks = [a];
+      for (const sk of Object.keys(FX_SKILLS).filter((k) => FX_SKILLS[k] === a)) mods.push({ path: `abilityScores.${a}.skills.${sk}`, bonus: 0, halfProf: true, label: `${sk}: half proficiency` });
+    }
+    // "Your unarmed strikes with this arm deal 1d4 ion damage" (Iridonian Grav-lev Arm): the unarmed die, as a species'
+    // natural weapons give it (the strike's damage type stays SW5E's: the note says which).
+    if ((m = /\byour unarmed strikes(?: with this \w+)? deal (\d+)d(\d+) (\w+) damage/i.exec(s))) {
+      ctx.unarmedDie = Number(m[2]);
+      ctx.notes.push(`Unarmed strikes${/with this/i.test(m[0]) ? ' with it' : ''}: ${m[1]}d${m[2]} ${m[3].toLowerCase()} damage.`);
+    }
+    // "One ability score other than Charisma (chosen by the GM) decreases by 1" (enhancements, augments, packages): the
+    // GM's pick is asked for (itemEffects reads it from the item's note).
+    if ((m = new RegExp(`\\bone ability score \\(?other than ${ABIL_RE}\\)? (?:\\(chosen by the [GD]M\\)|that is chosen by the [GD]M[^.]*?) decreases by (\\d+)`, 'i').exec(s))) {
+      ctx.sideEffect = { except: fxAbility(m[1]), by: Number(m[2]) };
+      continue;
+    }
+    // A class augment ("Fighter Offensive Augment") changes its class's table: "Your Rage damage bonus increases by 1",
+    // "Your Sneak Attack damage die increases by one step", "you gain one additional superiority die", "You learn an
+    // additional maneuver / Berserker Instinct option", "the radius of your Guardian Auras increases by 5 feet". The
+    // column each means is found in the class's table (itemClassRow); only for that class.
+    const augClass = (/^(\w+) (?:Offensive|Defensive) Augment$/.exec(item.name || '') || [])[1];
+    if (augClass) {
+      const boosts = [];
+      for (const c of s.split(/,\s*and\s+|;\s*/)) {
+        if ((m = /\byour ([\w' -]+?) damage bonus increases by (\d+)/i.exec(c))) boosts.push({ phrase: `${m[1]} damage`, kind: 'add', n: Number(m[2]) });
+        else if ((m = /\bthe damage die for your ([\w' -]+?) (?:die )?and ([\w' -]+?) features? increases by one step/i.exec(c))) boosts.push({ phrase: m[1], kind: 'step' }, { phrase: m[2], kind: 'step' });
+        else if ((m = /\byour ([\w' -]+?) damage die increases by one step/i.exec(c))) boosts.push({ phrase: m[1], kind: 'step' });
+        else if (/\bgain one additional superiority die\b/i.test(c)) {
+          boosts.push({ phrase: 'superiority dice quantity', kind: 'add', n: 1 });
+          // SW5E's engine counts superiority dice itself when it knows the class's: its tweak too.
+          mods.push({ path: 'superiority.maxDice', bonus: 1, forClass: augClass, label: 'Superiority dice +1' });
+        } else if ((m = /\bthe radius of your ([\w' -]+?) increases by (\d+) feet/i.exec(c))) boosts.push({ phrase: `${m[1]} radius`, kind: 'feet', n: Number(m[2]) });
+        else if ((m = /\byou (?:learn an additional|gain one|gain an additional) ([\w' -]+?)(?: option)?\s*$/i.exec(c.replace(/\.$/, '')))) boosts.push({ phrase: m[1], kind: 'add', n: 1 });
+      }
+      if (boosts.length) {
+        ctx.classBoosts = { cls: augClass, boosts: (ctx.classBoosts ? ctx.classBoosts.boosts : []).concat(boosts) };
+        used = true;
+        notes.push(raw);
+        continue;
+      }
+    }
+    // Extra dice a weapon deals only sometimes: "Once per turn when you hit … you can expend a charge to have the weapon
+    // deal an additional 1d8 kinetic damage" (Hewey), "on a hit, if the target is wearing heavy armor, it deals an
+    // additional 1d6 lightning damage" (Charric Pistol), "The first time you hit a creature … each round, the creature
+    // takes an additional 1d4 damage" (Flashy): an option on the weapon's damage roll, off until ticked.
+    if (ctx.weaponItem && !isConsumable && (m = /\b(?:deals?|takes?) an (?:additional|extra) (\d*d\d+)(?: ([a-z]+))? damage\b(?! for each)/i.exec(s))
+      && /\bonce per turn\b|\bthe first time\b|\bif the target\b|\broll a 20\b/i.test(s)) {
+      const why = /heavy armor/i.test(s) ? 'vs heavy armor' : /first time/i.test(s) ? 'first hit each round' : /roll a 20/i.test(s) ? 'on a 20, or a creature yet to act'
+        : `once per turn${/expend a charge/i.test(s) ? ', a charge' : ''}`;
+      riders.push({ on: ['weapon-damage'], dice: m[1].replace(/^d/, '1d'), type: m[2] || '', optional: true, weapon: true, why });
+      ctx.target = 'weapon';
+      ctx.notes.push(raw);
       continue;
     }
     // Ability scores: "your/the target's Strength score increases by 2, to a maximum of 20" /
@@ -233,32 +408,65 @@ function parseItemEffect(item) {
       mods.push({ path: 'speed.base', bonus: -Number(m[1]), label: `Speed −${m[1]} ft` });
       used = true;
     }
-    // Unarmored AC formula: "When you aren't wearing armor, your AC becomes 13 + your Dexterity modifier"
+    // Unarmored AC formula: "When you aren't wearing armor, your AC becomes 13 + your Dexterity modifier", a droid's
+    // "When you don't have armor integrated, your AC is 13 + your Dexterity modifier" (Reinforced Chassis)
     // (SW5E's unarmored AC is 10 + Dexterity; only the best such formula counts, see fxResolve).
-    if ((m = /\b(?:when|while) you (?:aren't|are not) wearing (?:any )?armor, your (?:AC|armor class) (?:becomes|equals|is) (\d+) \+ your Dexterity modifier/i.exec(s))) {
+    if ((m = /\b(?:when|while) you (?:aren't|are not|don't|do not) (?:wearing (?:any )?armor|have (?:any )?armor integrated), your (?:AC|armor class) (?:becomes|equals|is) (\d+) \+ your Dexterity modifier/i.exec(s))) {
       mods.push({ path: 'armorClass', bonus: Number(m[1]) - 10, acFormula: true, when: { noArmor: true }, label: `AC ${m[1]} + DEX (no armor)` });
       used = true;
     }
-    // Hit point maximum.
-    if ((m = /(?:hit point maximum (?:increases|is increased)|(?:current and )?maximum hit points (?:increase|are increased)) by (\d+)\b(?! times| for each| per)/i.exec(s))) {
-      mods.push({ path: 'hitPoints.maximum', bonus: Number(m[1]), label: `HP max +${m[1]}` });
+    // "Your base AC becomes 19" (Droid Dura Plating): 19 instead of 10 + Dexterity, without armor.
+    if ((m = /\byour base (?:AC|armor class) becomes (\d+)\b/i.exec(s))) {
+      mods.push({ path: 'armorClass', bonus: 0, acFlat: Number(m[1]), acFormula: true, when: { noArmor: true }, label: `AC ${m[1]} (base)` });
       used = true;
     }
+    // "When determining your bonus to AC and saving throws from Dexterity, your Dexterity score is treated as 15"
+    // (Celerity Leg Prosthesis): the difference, when the score is lower ("If your Dexterity score is already equal to
+    // or greater than 15, it has no effect on you"). Heavy armor adds no Dexterity to AC.
+    if ((m = new RegExp(`\\bbonus to AC and saving throws from ${ABIL_RE}, your \\1 score is treated as (\\d+)`, 'i').exec(s))) {
+      const a = fxAbility(m[1]);
+      const scoreAs = { ability: a, score: Number(m[2]) };
+      if (a === 'Dexterity') mods.push({ path: 'armorClass', bonus: 0, scoreAs, when: { noHeavy: true }, label: `AC as ${FX_ABBR[a]} ${m[2]}` });
+      mods.push({ path: `abilityScores.${a}.savingThrowModifier`, bonus: 0, scoreAs, label: `${FX_ABBR[a]} saves as ${FX_ABBR[a]} ${m[2]}` });
+      used = true;
+    }
+    // Hit point maximum.
+    if ((m = /(?:hit point maximum (?:increases|is increased)|(?:current and )?maximum hit points (?:increase|are increased)) by (\d+)\b(?! times| for each| per| every)/i.exec(s))) {
+      mods.push({ path: 'hitPoints.maximum', bonus: Number(m[1]), label: `HP max +${m[1]}` });
+      used = true;
+    } else if ((m = /\bhit point maximum increases by an amount equal to (?:(twice|three times|four times) )?your level, and it increases by (\d+) every time you gain a level/i.exec(s))) {
+      // "…by an amount equal to twice your level, and it increases by 2 every time you gain a level" (Bioenhancement Matrix).
+      const k = Number(m[2]);
+      mods.push({ path: 'hitPoints.maximum', bonus: 0, perLevel: k, label: `HP max +${k} per level` });
+      used = true;
+    }
+    // "If you already have darkvision, these goggles increase its range by 30 feet."
+    if ((m = /\bif you already have darkvision, [^.]*?increases? its range by (\d+) feet/i.exec(s))) darkvisionPlus = Number(m[1]);
     // Tech/force point maximums.
     if ((m = /(?:maximum number of |number of )?(tech|force) points? (?:maximum )?(?:increases|is increased) by (\d+)/i.exec(s))) {
       mods.push({ path: `${m[1].toLowerCase()}Casting.maxPoints`, bonus: Number(m[2]), label: `${m[1][0].toUpperCase()}${m[1].slice(1).toLowerCase()} points +${m[2]}` });
       used = true;
     }
     // "+N bonus to X" / "-N penalty to Y" (possibly both in one sentence).
-    const clauses = [...s.matchAll(/([+\-−])(\d+) (bonus|penalty) to ([^.;]+?)(?=(?:,? and (?:a|an) [+\-−]\d+ (?:bonus|penalty))|[.;]|$)/gi)];
+    // ("You have a +1 to damage rolls made with this shotgun": no "bonus".)
+    const clauses = [...s.matchAll(/([+\-−])(\d+) (?:(bonus|penalty) )?to ([^.;]+?)(?=(?:,? and (?:a|an) [+\-−]\d+ (?:bonus|penalty))|[.;]|$)/gi)];
     // "a +1 bonus to attack rolls and a -1 penalty to damage rolls made with this weapon": the
     // ending ("made with this weapon") belongs to every clause.
     const ending = clauses.length > 1 && (/ rolls ((?:made )?with [^.;]+)$/i.exec(clauses[clauses.length - 1][4]) || [])[1];
     for (const cm of clauses) {
-      const n = Number(cm[2]) * (cm[3].toLowerCase() === 'penalty' || cm[1] !== '+' ? -1 : 1);
+      const n = Number(cm[2]) * (String(cm[3]).toLowerCase() === 'penalty' || cm[1] !== '+' ? -1 : 1);
+      if (!cm[3] && !/^(?:attack|damage|attack and damage) rolls\b/i.test(cm[4])) continue; // "+1 to" without "bonus": only rolls
       if (ending && /^(?:attack|damage|attack and damage) rolls$/i.test(cm[4].trim())) cm[4] = `${cm[4].trim()} ${ending}`;
+      // "…with this enhanced weapon, and when you hit a creature… takes an extra 1d4" (Torchy) / "…with this weapon,
+      // when you attack a creature with it, the creature can't take reactions" (Ghostfire Crystal): the bonus is
+      // unconditional, what follows is another effect.
+      cm[4] = cm[4].replace(/,\s+(?:and\s+)?when you (?:hit|attack) a creature\b.*$/i, '');
+      // "…with this enhanced shoulder cannon, which has the smart (18, +4) property": what the weapon is like.
+      if (ctx.weaponItem && !isConsumable) cm[4] = cm[4].replace(/,\s+which\b.*$/i, '');
       const phrase = cm[4].replace(/\s*\(.*$/, (x) => (/^\s*\((?:strength|dexterity|constitution|intelligence|wisdom|charisma)\)?/i.test(x) ? x : '')).trim();
-      if (CONDITIONAL.test(phrase)) {
+      // An enhanced weapon's "made with this enhanced lightsaber" is the weapon itself, not a condition.
+      const condText = ctx.weaponItem && !isConsumable ? phrase.replace(/\bmade with (?:this|these) enhanced [a-z' -]+$/i, (x) => (FX_AMMO.test(x) ? x : 'made with this weapon')) : phrase;
+      if (CONDITIONAL.test(condText)) {
         const cond = fxCondMods(n, cm[4], item);
         if (cond) {
           mods.push(...cond);
@@ -271,15 +479,19 @@ function parseItemEffect(item) {
       const got = list && list.length ? list : fxBonusMods(n, phrase, ctx);
       if (got && got.length) { mods.push(...got); used = true; }
     }
+    if (requires) for (const x of mods.slice(before)) x.requires = requires;
     if (!used && TRAIT.test(s)) notes.push(raw);
   }
   notes.push(...ctx.notes);
   // Ammunition's bonuses apply while it's carried (and fired); other consumables' when used.
   const activation = ctx.ammo ? 'carry' : isConsumable ? 'use' : item.requiresAttunement ? 'attune' : 'equip';
-  if (!mods.length && !notes.length && !(isConsumable && duration)) return null;
+  if (!mods.length && !notes.length && !riders.length && !darkvisionPlus && !ctx.keen && !freeAttune && !(isConsumable && duration)) return null;
   return {
     mods, notes, target: ctx.target, weaponKind: ctx.weaponKind || null, duration, group, activation,
     heals: /regains? [^.]*hit points|temporary hit points/i.test(text),
+    ...(riders.length ? { riders } : {}), ...(darkvisionPlus ? { darkvisionPlus } : {}), ...(ctx.keen ? { keen: ctx.keen } : {}),
+    ...(ctx.halfProfChecks ? { halfProfChecks: ctx.halfProfChecks } : {}), ...(ctx.unarmedDie ? { unarmedDie: ctx.unarmedDie } : {}),
+    ...(freeAttune ? { freeAttune } : {}), ...(ctx.sideEffect ? { sideEffect: ctx.sideEffect } : {}), ...(ctx.classBoosts ? { classBoosts: ctx.classBoosts } : {}),
   };
 }
 
@@ -353,15 +565,19 @@ function fxEquipLabel(item) {
  * Conditional mods aren't applied: they're returned in `conds`, for showing as alternatives.
  * Returns { tweaks: [{ path, bonus, effect, mod }], weaponTweaks: [{ index, path, bonus, effect, mod }],
  *           conds: [{ path, bonus, cond, ammo, weaponIndex, effect, mod }], acAlternatives,
+ *           dice: [{ dice, type, unarmed, weaponIndex, effect, mod }] (extra damage dice on every hit),
  *           twins: tweaks left out because the sheet applies what they were made for (fxTweakTwins) }.
  */
 function fxResolve(effects, baseScores) {
   // fields (override, proficiency, dieSize) are set as they are; bonuses add up.
   const scores = { ...baseScores };
-  const tweaks = [];
+  let tweaks = [];
   const weaponTweaks = [];
   const conds = [];
+  const dice = [];
+  const later = [];
   const twins = fxTweakTwins(effects);
+  const modOf = (a) => Math.floor(((Number(scores[a]) || 10) - 10) / 2);
   for (const eff of effects) {
     if (twins.some((t) => t.effect === eff)) continue;
     for (const mod of eff.mods || []) {
@@ -370,17 +586,36 @@ function fxResolve(effects, baseScores) {
           weaponIndex: eff.target === 'weapon' ? eff.weaponIndex : null, effect: eff, mod });
         continue;
       }
-      const fields = mod.fields || null;
-      if (eff.target === 'weapon') {
-        if (eff.weaponIndex == null) continue;
-        weaponTweaks.push({ index: eff.weaponIndex, path: mod.path.replace(/^weapon\./, ''), bonus: mod.bonus || 0, fields, effect: eff, mod });
+      // Extra damage dice on every hit: not a number the engine knows; the weapons table and the dice card add them.
+      if (mod.dice) {
+        if (eff.target !== 'weapon' || eff.weaponIndex != null) {
+          dice.push({ dice: mod.dice, type: mod.type || '', unarmed: /^unarmed\./.test(mod.path), weaponIndex: eff.target === 'weapon' ? eff.weaponIndex : null, effect: eff, mod });
+        }
         continue;
       }
-      let bonus = mod.bonus || 0;
+      // Proficiency steps and half proficiency: once every other effect's proficiency is known (below).
+      if (mod.profSteps || mod.halfProf) { later.push({ eff, mod }); continue; }
+      const fields = mod.fields || null;
+      // "You can't add more than +3 … from your Dexterity": what the modifier adds over the cap, taken off.
+      const capped = mod.capAbility ? -Math.max(0, modOf(mod.capAbility) - Number(mod.capAt)) : null;
+      // A weapon's effect can also change the character ("…, and a +2 bonus to damage rolls with force powers").
+      if (eff.target === 'weapon' && /^weapon\./.test(mod.path)) {
+        if (eff.weaponIndex == null) continue;
+        // A weapon that gained finesse: the better modifier instead of the one it used (`swap`, set by itemEffects).
+        const wb = capped != null ? capped : mod.swap ? Math.max(0, modOf(mod.swap.to) - modOf(mod.swap.from)) : mod.bonus || 0;
+        if (mod.property && !wb) continue;
+        weaponTweaks.push({ index: eff.weaponIndex, path: mod.path.replace(/^weapon\./, ''), bonus: wb, fields, effect: eff, mod });
+        continue;
+      }
+      let bonus = capped != null ? capped : mod.bonus || 0;
       // "AC equals 10 + Dex + your Constitution modifier": the modifier as it stands after earlier effects
       // (a choice of abilities that isn't made yet uses the best of them; `lowest`: the other one, Bendu's "both").
       if (mod.abilityMod) bonus = (mod.lowest ? Math.min : Math.max)(...[].concat(mod.abilityMod).map((a) => Math.floor(((Number(scores[a]) || 10) - 10) / 2)));
       if (mod.min != null) bonus = Math.max(bonus, mod.min); // "(minimum of +1)"
+      // "Your Dexterity score is treated as 15" for AC and saves: what that modifier adds over the score's own.
+      if (mod.scoreAs) bonus = Math.max(0, Math.floor((mod.scoreAs.score - 10) / 2) - modOf(mod.scoreAs.ability));
+      // "Your base AC becomes 19": over SW5E's 10 + Dexterity.
+      if (mod.acFlat != null) bonus = mod.acFlat - 10 - modOf('Dexterity');
       const ab = /^abilityScores\.(\w+)\.score$/.exec(mod.path);
       if (ab) {
         const cur = Number(scores[ab[1]]) || 0;
@@ -391,14 +626,30 @@ function fxResolve(effects, baseScores) {
           scores[ab[1]] = cur + bonus;
         }
       }
-      if (bonus || fields) tweaks.push({ path: mod.path, bonus, fields, effect: eff, mod });
+      // A cap that takes nothing off yet, or a fixed AC (a carapace's 17), is kept: the sheet works them out once it has the
+      // final scores and AC without effects (viewer.js applyEffects).
+      if (bonus || fields || mod.capAbility || mod.acFixed) tweaks.push({ path: mod.path, bonus, fields, effect: eff, mod });
     }
   }
+  // The proficiency a skill or save has: SW5E's (`baseRank`, from the character's classes, background and tweaks) or
+  // what an effect gives it. "Increases by two steps": from none to proficient, from proficient to mastery, which
+  // counts as expertise (the highest the engine knows); "to trained" changes no number. Half proficiency only where
+  // there's none.
+  const rankAt = (path, base) => Math.max(fxProfRank(base), ...tweaks.filter((t) => t.path === path && t.fields && t.fields.proficiency).map((t) => fxProfRank(t.fields.proficiency)));
+  for (const { eff, mod } of later.filter((x) => x.mod.profSteps)) {
+    const from = [0, 2, 3][rankAt(mod.path, mod.baseRank)];
+    const level = FX_PROF_LADDER[Math.min(FX_PROF_LADDER.length - 1, from + mod.profSteps)];
+    if (FX_PROF_LADDER.indexOf(level) < 2) continue; // trained
+    tweaks.push({ path: mod.path, bonus: 0, fields: { proficiency: level === 'proficient' ? 'Proficient' : 'Expertise' }, level, effect: eff, mod });
+  }
+  for (const { eff, mod } of later.filter((x) => x.mod.halfProf)) if (mod.bonus && !rankAt(mod.path, mod.baseRank)) tweaks.push({ path: mod.path, bonus: mod.bonus, fields: null, effect: eff, mod });
   // Alternative AC formulas (Unarmored Defense, subdermal armor, a species' hide…): only the best one applies; the
   // others are returned as acAlternatives (for saying which one was used).
   const formulas = tweaks.filter((t) => t.mod.acFormula);
   const best = formulas.reduce((a, b) => (!a || b.bonus > a.bonus ? b : a), null);
-  return { tweaks: tweaks.filter((t) => !t.mod.acFormula || t === best), weaponTweaks, conds, acAlternatives: formulas.filter((t) => t !== best), twins };
+  // A base AC without Dexterity (Droid Dura Plating) leaves nothing for "your Dexterity is treated as 15" to raise.
+  if (best && best.mod.acFlat != null) tweaks = tweaks.filter((t) => !(t.path === 'armorClass' && t.mod.scoreAs));
+  return { tweaks: tweaks.filter((t) => !t.mod.acFormula || t === best), weaponTweaks, conds, acAlternatives: formulas.filter((t) => t !== best), twins, dice };
 }
 
 /**

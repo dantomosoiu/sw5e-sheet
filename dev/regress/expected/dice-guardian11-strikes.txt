@@ -170,7 +170,9 @@ effect: Guardian class skill (1 of 2) · tweak
 effect: Jedi background skill (2 of 2) · tweak
 effect: Guardian weapon proficiencies · feature
 effect: Force Purity · feature
+effect: Bonus Proficiencies · feature
 effect: Aura of Presence · feature
+effect: Montral Reception · feature
 effect: Wild Hunters · feature
 effect: Defense Style · feature
 effect: Jensaarai Armor · item
@@ -299,17 +301,17 @@ Immunities Immune to poison and disease
 Advantages Advantage on Strength checks and Strength saving throws to avoid being moved
 Senses Tremorsense 30 ft
 Effects
-From class features and species traits (5)
+From class features and species traits (7)
 Guardian weapon proficiencies Proficient: All lightweapons Proficient: all vibroweapons Guardian proficiencies
 Force Purity Immune to poison and disease Guardian feature
+Bonus Proficiencies Proficient: heavy armor Soresu Form feature
 Aura of Presence STR save + WIS DEX save + WIS CON save + WIS INT save + WIS WIS save + WIS CHA save + WIS Guardian Auras feature
+Montral Reception Tremorsense 30 ft Togruta trait
 Wild Hunters Survival: proficient Togruta trait
 Defense Style Advantage on Strength checks and Strength saving throws to avoid being moved Fighting style
 From equipment
-Jensaarai Armor AC +1 while attuned
+Jensaarai Armor AC +1 AC +1 (with Jensaarai Cloak): not yet AC +1 (with Jensaarai Cloak and Jensaarai Headgear): not yet while attuned
 While wearing this armor, you are considered proficient regardless of whether or not you have proficiency in medium armor.
-Additionally, this armor now grants a +2 bonus to AC, instead of +1.
-While wearing and attuned to this armor, Jensaarai Cloak, and Jensaarai Headgear, this armor now grants a +3 bonus to AC, instead of +2.
 Temporary
 No temporary effects.
 []
@@ -426,7 +428,7 @@ Skill | Ability | Bonus | Passive | Proficiency |
 (Not proficient) Nature | INT | −1 | 9 | — |
 (Proficient) Perception | WIS | +7 | 17 | Proficient |
   ↳ hover abilityScores.Wisdom.skills.3.modifier: Without tweaks or effects: 2 → now 7 / +1 Wisdom score · Formfighting Dabbler (Jedi background feat): +1 to an abi… [245 chars #1ac7347e]
-  ↳ hover abilityScores.Wisdom.skills.3.modifier: Without tweaks or effects: 2 → now 7 / +1 Wisdom score · Formfighting Dabbler (Jedi background feat): +1 to an abi… [245 chars #1ac7347e]
+  ↳ hover passivePerception: Without tweaks or effects: 12 → now 17 / +1 Wisdom score · Formfighting Dabbler (Jedi background feat): +1 to an ability of my choice t… [226 chars #deee2079]
 (Not proficient) Performance | CHA | +0 | 10 | — |
 (Proficient) Persuasion | CHA | +4 | 14 | Proficient |
   ↳ hover abilityScores.Charisma.skills.3.modifier: Without tweaks or effects: 0 → now 4 / Proficient Persuasion · Jedi background skill (2 of 2) tweak
@@ -644,10 +646,11 @@ Lightsaber forms (PHB chapter 6): each form you know can be adopted on your turn
 Soresu Form [×]
 []
 The first time you take kinetic, energy, or ion damage from a weapon before the end of your next turn, that damage is reduced by half.
-Formfighting Dabbler Background (Jedi)+ Any Prereq: The ability to cast force powers
+Formfighting Dabbler Background (Jedi)+1 to any ability Prereq: The ability to cast force powers
 You've dabbled in the basics of the known forms of lightsaber combat. You gain the following benefits:
 Increase an ability score of your choice by 1, to a maximum of 20.
 You learn one lightsaber form, detailed later in this chapter. If you already know at least one lightsaber form, you instead learn three lightsaber forms. If yo… [339 chars #b47641a0]
+Notes []
 
 ## Sheet: Classes & Progression
 [Level up]
@@ -785,6 +788,8 @@ Notes []
 Wild Hunters
 You have proficiency in the Survival skill.
 Notes []
+Ability score +1 1 / 1 Your Wisdom score increases by 2, and your Strength or Dexterity score increases by 1.
+Strength [×]
 
 ## Sheet: Background
 Skill proficiencies
@@ -820,7 +825,7 @@ None chosen yet.
 
 ## Sheet: Proficiencies & Languages
 Armor
-Light armor medium armor
+Light armor medium armor heavy armor · Bonus Proficiencies
 Weapon
 All lightweapons all vibroweapons
 Tool

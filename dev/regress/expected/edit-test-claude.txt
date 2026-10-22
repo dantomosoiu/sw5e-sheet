@@ -6,6 +6,8 @@ tweaks.abilityScores.Charisma.score.bonus = 3
 tweaks.abilityScores.Charisma.skills.Deception.bonus = 0
 tweaks.abilityScores.Charisma.skills.Deception.proficiency = "Expertise"
 tweaks.abilityScores.Strength.score.bonus = 6
+tweaks.abilityScores.Wisdom.skills.Insight.bonus = 0
+tweaks.abilityScores.Wisdom.skills.Insight.proficiency = "Proficient"
 tweaks.armorClass.bonus = 1
 tweaks.unarmed.damage.bonus = 1
 tweaks.unarmed.toHit.bonus = 1
@@ -84,8 +86,8 @@ abilityScores.Wisdom.savingThrow.modifier = 0
 abilityScores.Wisdom.savingThrow.proficiency = "none"
 abilityScores.Wisdom.skills[Animal Handling].modifier = 0
 abilityScores.Wisdom.skills[Animal Handling].proficiency = "none"
-abilityScores.Wisdom.skills[Insight].modifier = 0
-abilityScores.Wisdom.skills[Insight].proficiency = "none"
+abilityScores.Wisdom.skills[Insight].modifier = 3
+abilityScores.Wisdom.skills[Insight].proficiency = "proficient"
 abilityScores.Wisdom.skills[Medicine].modifier = 0
 abilityScores.Wisdom.skills[Medicine].proficiency = "none"
 abilityScores.Wisdom.skills[Perception].modifier = 0
@@ -141,7 +143,7 @@ proficiencies[all vibroweapons].type = "weapon"
 proficiencies[All armor].type = "armor"
 proficiencies[Light armor].type = "other"
 proficiencies[One type of gaming set].type = "tool"
-skillAndSaveProficiencies = ["Deception", "Strength Saving Throws", "Constitution Saving Throws"]
+skillAndSaveProficiencies = ["Insight", "Deception", "Strength Saving Throws", "Constitution Saving Throws"]
 languages = ["Galactic Basic", "Bothese"]
 experiencePoints.isCorrect = true
 experiencePoints.nextLevel = 34000
@@ -158,6 +160,7 @@ effect: Fighter weapon proficiencies · feature
 effect: Bonus Proficiencies · feature
 effect: Silver-Tongued · feature
 effect: Silver-Tongued · feature
+effect: Shrewd · feature
 effect: Aratech Echo Belt · item
 effect: Shield (Fine) · item
 effect: Strength Enhancer · item
@@ -170,7 +173,9 @@ effect: Cryo Cell (Average) · item · 1 hour
 tweak: abilityScores.Charisma.score +2 · Test character setup: +1 CHA
 tweak: abilityScores.Charisma.skills.Deception +0 {"proficiency":"Expertise"} · Deception
 tweak: abilityScores.Charisma.score +1 · Silver-Tongued
-tweak: abilityScores.Charisma.skills.Deception +0 {"proficiency":"Proficient"} · Silver-Tongued
+tweak: abilityScores.Charisma.skills.Deception +0 {"proficiency":"Expertise"} · Silver-Tongued
+tweak: abilityScores.Wisdom.skills.Insight +0 {"proficiency":"Proficient"} · Shrewd
+tweak: abilityScores.Charisma.skills.Deception +0 {"proficiency":"Proficient"} · Shrewd
 tweak: armorClass +1 · Shield (Fine)
 tweak: abilityScores.Strength.score +6 · Strength Enhancer
 tweak: unarmed.toHit +1 · Handwraps (Fine)
@@ -216,7 +221,7 @@ skill|Intelligence|4: Technology (INT): d20 +2 · = +2 modifier
 check|Wisdom: Wisdom check: d20 +0 · = +0 modifier
 save|Wisdom: Wisdom saving throw: d20 +0 · = +0 modifier
 skill|Wisdom|0: Animal Handling (WIS): d20 +0 · = +0 modifier
-skill|Wisdom|1: Insight (WIS): d20 +0 · = +0 modifier
+skill|Wisdom|1: Insight (WIS): d20 +3 · = +3 modifier
 skill|Wisdom|2: Medicine (WIS): d20 +0 · = +0 modifier
 skill|Wisdom|3: Perception (WIS): d20 +0 · = +0 modifier
 skill|Wisdom|4: Survival (WIS): d20 +0 · = +0 modifier
@@ -282,11 +287,12 @@ Combat [Start combat]
 Class dice
 Superiority Dice Size 1d6 Potent Aptitude 1d4
 Effects
-From class features and feats (4)
+From class features, feats and species traits (5)
 Fighter weapon proficiencies Proficient: All blasters Proficient: all vibroweapons Fighter proficiencies
 Bonus Proficiencies Choose artisan's implements Tactical Specialist feature
 Silver-Tongued CHA +1 feat (background feat)
-Silver-Tongued Deception: proficient feat
+Silver-Tongued Deception: expertise (already proficient) feat
+Shrewd Insight: proficient Deception: proficient Bothan trait
 From equipment
 Aratech Echo Belt while attuned
 While you wear this belt with its field on, Wisdom (Perception) checks made to see you have disadvantage, and you have advantage on Dexterity (Stealth) checks made to hide, as the belt funnels light around you.
@@ -369,7 +375,8 @@ Wisdom
 10
 (Not proficient) Saving throw+0
 (Not proficient) Animal Handling+0
-(Not proficient) Insight+0
+(Proficient) Insight+3
+  ↳ hover abilityScores.Wisdom.skills.1.modifier: Without tweaks or effects: 0 → now 3 / proficient Insight: proficient · Shrewd Bothan trait
 (Not proficient) Medicine+0
 (Not proficient) Perception+0
 (Not proficient) Survival+0
@@ -383,7 +390,7 @@ Charisma
 (Not proficient) Saving throw+0
   ↳ hover abilityScores.Charisma.savingThrow.modifier: Without tweaks or effects: -1 → now 0 / +2 Charisma score · Test character setup: +1 CHA tweak / +1 CHA · Silver-Tongued feat (background feat)
 (Expertise) Deception+6
-  ↳ hover abilityScores.Charisma.skills.0.modifier: Without tweaks or effects: -1 → now 6 / +2 Charisma score · Test character setup: +1 CHA tweak / +1 CHA · Silver… [294 chars #955be9f4]
+  ↳ hover abilityScores.Charisma.skills.0.modifier: Without tweaks or effects: -1 → now 6 / +2 Charisma score · Test character setup: +1 CHA tweak / +1 CHA · Silver… [370 chars #0a9959b9]
 (Not proficient) Intimidation+0
   ↳ hover abilityScores.Charisma.skills.1.modifier: Without tweaks or effects: -1 → now 0 / +2 Charisma score · Test character setup: +1 CHA tweak / +1 CHA · Silver-Tongued feat (background feat)
 (Not proficient) Performance+0
@@ -401,9 +408,11 @@ Skill | Ability | Bonus | Passive | Proficiency |
   ↳ hover abilityScores.Strength.skills.0.modifier: Without tweaks or effects: 2 → now 5 / +6 STR (the item sets it to 21) · Strength Enhancer while attuned
   ↳ hover abilityScores.Strength.skills.0.modifier: Without tweaks or effects: 2 → now 5 / +6 STR (the item sets it to 21) · Strength Enhancer while attuned
 (Expertise) Deception | CHA | +6 | 16 | Expertise |
-  ↳ hover abilityScores.Charisma.skills.0.modifier: Without tweaks or effects: -1 → now 6 / +2 Charisma score · Test character setup: +1 CHA tweak / +1 CHA · Silver… [294 chars #955be9f4]
-  ↳ hover abilityScores.Charisma.skills.0.modifier: Without tweaks or effects: -1 → now 6 / +2 Charisma score · Test character setup: +1 CHA tweak / +1 CHA · Silver… [294 chars #955be9f4]
-(Not proficient) Insight | WIS | +0 | 10 | — |
+  ↳ hover abilityScores.Charisma.skills.0.modifier: Without tweaks or effects: -1 → now 6 / +2 Charisma score · Test character setup: +1 CHA tweak / +1 CHA · Silver… [370 chars #0a9959b9]
+  ↳ hover abilityScores.Charisma.skills.0.modifier: Without tweaks or effects: -1 → now 6 / +2 Charisma score · Test character setup: +1 CHA tweak / +1 CHA · Silver… [370 chars #0a9959b9]
+(Proficient) Insight | WIS | +3 | 13 | Proficient |
+  ↳ hover abilityScores.Wisdom.skills.1.modifier: Without tweaks or effects: 0 → now 3 / proficient Insight: proficient · Shrewd Bothan trait
+  ↳ hover abilityScores.Wisdom.skills.1.modifier: Without tweaks or effects: 0 → now 3 / proficient Insight: proficient · Shrewd Bothan trait
 (Not proficient) Intimidation | CHA | +0 | 10 | — |
   ↳ hover abilityScores.Charisma.skills.1.modifier: Without tweaks or effects: -1 → now 0 / +2 Charisma score · Test character setup: +1 CHA tweak / +1 CHA · Silver-Tongued feat (background feat)
   ↳ hover abilityScores.Charisma.skills.1.modifier: Without tweaks or effects: -1 → now 0 / +2 Charisma score · Test character setup: +1 CHA tweak / +1 CHA · Silver-Tongued feat (background feat)
@@ -573,6 +582,7 @@ You develop your conversational skill to better deceive others. You gain the fol
 Increase your Charisma score by 1, to a maximum of 20.
 You gain proficiency in the Deception skill. If you are already proficient in it, you instead gain expertise in it.
 When you take the Attack action, you can replace one attack with an attempt to deceive one humanoid you can see within 30 feet of you that can see and hear you.… [568 chars #4907558c]
+Notes []
 
 ## Sheet: Classes & Progression
 [Level up]
@@ -741,7 +751,7 @@ One type of gaming set
 Other
 Light armor
 Skills & saves
-Deception Strength Saving Throws Constitution Saving Throws
+Insight Deception Strength Saving Throws Constitution Saving Throws
 Languages
 Galactic Basic Bothese
 ✎ = custom proficiency added on the character.
@@ -930,4 +940,4 @@ SW5E's rules and item data: version 199, as it comes with the sheet. SW5E is the
 Raw SW5E character JSON
 { "name": "Edit Test (Claude)", "image": "", "experiencePoints": 24000, "species": { "name": "Bothan", "abilityScoreImprovementSelectedOption": 0, "abilityScore… [3455 chars #bd4ad58f]
 Computed character JSON (the sheet's rules engine)
-{ "name": "Edit Test (Claude)", "builderVersion": "0.7.6", "image": "", "characteristics": { "Age": "30", "Appearance": "", "Backstory": "Viewer version of the … [30116 chars #18b18062]
+{ "name": "Edit Test (Claude)", "builderVersion": "0.7.6", "image": "", "characteristics": { "Age": "30", "Appearance": "", "Backstory": "Viewer version of the … [30217 chars #7b066400]

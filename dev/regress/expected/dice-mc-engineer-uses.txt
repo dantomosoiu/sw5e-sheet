@@ -204,7 +204,7 @@ Human · Monk 5, Engineer 3
 Level 8 Background: Noble Lawful Light Proficiency +3 [Add a picture]
 6,500 XP level 9 at 48,000 (41,500 to go)
 Level 8 usually needs 34,000 XP (you have 6,500).
-Still to choose (12): Monk skills (2 more) · Monk 4th level: ability score improvement or feat · Monk order · Monastic Vows (2 more) · Engineer multiclass skill… [367 chars #c42fc230]
+Still to choose (17): Monk skills (2 more) · Monk 4th level: ability score improvement or feat · Monk order · Monastic Vows (2 more) · Engineer multiclass skill… [547 chars #7cf7ae49]
 
 ## Sheet: Combat & Vitals
 Armor Class
@@ -252,7 +252,7 @@ Unarmored Movement Speed +15 ft Monk feature
 Multiclass Improvement (Engineer) Tech points +2 Monk levels
 Silver-Tongued CHA +1 feat (background feat)
 Silver-Tongued Deception: proficient feat
-Human Versatility Choose the skill/tool proficiencies Human trait
+Human Versatility Choose one skill Choose one tool Choose one weapon of your choice Human trait
 Martial Arts Monk feature
 Temporary
 No temporary effects.
@@ -509,8 +509,10 @@ You develop your conversational skill to better deceive others. You gain the fol
 Increase your Charisma score by 1, to a maximum of 20.
 You gain proficiency in the Deception skill. If you are already proficient in it, you instead gain expertise in it.
 When you take the Attack action, you can replace one attack with an attempt to deceive one humanoid you can see within 30 feet of you that can see and hear you.… [568 chars #4907558c]
+Notes []
 Multiclass Improvement Prereq: 4th level
 You've learned to blend the skills of your different classes. Choose two of the multiclass improvement options, detailed later in this chapter. You can take this feat multiple times.
+Notes []
 
 ## Sheet: Classes & Progression
 [Level up]
@@ -616,10 +618,10 @@ You gain proficiency in one skill, one tool, and one weapon of your choice.
 Skill proficiency 0 / 1
 None chosen yet.
 [Choose a skill… ▾]
-Tool proficiency 0 / 1
+Tool proficiency 0 / 1 one tool
 None chosen yet.
 [Choose a tool… ▾]
-Weapon proficiency 0 / 1
+Weapon proficiency 0 / 1 one weapon of your choice
 None chosen yet.
 [Choose a weapon… ▾]
 Notes []
@@ -635,6 +637,12 @@ Notes []
 Speed
 Your base walking speed is 30 feet.
 Notes []
+Ability score +2 0 / 1 One ability score of your choice increases by 2, and two other ability scores of your choice increase by 1. Alternatively, four ability scores of your choice each increase by 1.
+None chosen yet.
+[Choose an ability… ▾]
+Ability score +1 0 / 2 One ability score of your choice increases by 2, and two other ability scores of your choice increase by 1. Alternatively, four ability scores of your choice each increase by 1.
+None chosen yet.
+[Choose an ability… ▾]
 
 ## Sheet: Background
 Skill proficiencies

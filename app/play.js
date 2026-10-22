@@ -26,11 +26,16 @@ const PL_CONDITION_NOTES = {
   Blinded: 'and fails ability checks that need sight',
 };
 
-/** The kinds a roll spec counts as: ['attack'], ['check'], ['save', 'save:Dexterity'], ['save'] (a death save). */
+/**
+ * The kinds a roll spec counts as: ['attack'], ['check', 'check:Wisdom'], ['save', 'save:Dexterity'], ['save'] (a death
+ * save). A check names its ability when the spec does (a skill's, initiative's Dexterity).
+ */
 function plRollKinds(spec) {
   const [k, a] = String(spec).split('|');
   if (['attack', 'tech', 'force', 'maneuver', 'pattack'].includes(k)) return ['attack'];
-  if (['check', 'skill', 'init', 'tool'].includes(k)) return ['check'];
+  if (['check', 'skill'].includes(k) && a) return ['check', `check:${a}`];
+  if (k === 'init') return ['check', 'check:Dexterity'];
+  if (['check', 'skill', 'tool'].includes(k)) return ['check'];
   if (k === 'save') return ['save', `save:${a}`];
   if (k === 'conc') return ['save', 'save:Constitution'];
   if (k === 'death') return ['save'];
