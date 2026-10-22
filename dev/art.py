@@ -96,12 +96,12 @@ def check_file(path):
 
 def pictures():
     """[(file, symbol id)]: the general pictures (i-<name>) and the item pictures (i-eq-<name>)."""
-    # ART_ONLY_REVIEWED=1: leave out item pictures not committed yet (git ls-files), to release while others are drawn.
-    eq = sorted(EQUIP.glob('*.svg'))
+    # ART_ONLY_REVIEWED=1: leave out pictures not committed or staged yet (git ls-files), to release while others are drawn.
+    items, eq = sorted(ITEMS.glob('*.svg')), sorted(EQUIP.glob('*.svg'))
     if os.environ.get('ART_ONLY_REVIEWED'):
-        tracked = set(subprocess.run(['git', 'ls-files', 'art/equipment'], cwd=ROOT, capture_output=True, text=True).stdout.split())
-        eq = [p for p in eq if p.relative_to(ROOT).as_posix() in tracked]
-    return [(p, 'i-' + p.stem) for p in sorted(ITEMS.glob('*.svg'))] + [(p, 'i-eq-' + p.stem) for p in eq]
+        tracked = set(subprocess.run(['git', 'ls-files', 'art'], cwd=ROOT, capture_output=True, text=True).stdout.split())
+        items, eq = ([p for p in ps if p.relative_to(ROOT).as_posix() in tracked] for ps in (items, eq))
+    return [(p, 'i-' + p.stem) for p in items] + [(p, 'i-eq-' + p.stem) for p in eq]
 
 
 def check(quiet=False):

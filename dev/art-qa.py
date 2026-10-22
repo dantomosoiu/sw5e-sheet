@@ -46,7 +46,7 @@ SYMMETRIC = re.compile(r'(armor|armour|-suit\b|suit$|exoskeleton|exo$|shield(?!-
                        r'vest|tunic|clothes|jetpack|rocketpack|propulsion-pack|repulsor-pack|gloves|greaves|handwraps$|amulet|necklace|'
                        r'beskargam|crushgaunts|circlet|headgear|droid-protocol|chassis$)')
 # … except these, which are lopsided on purpose (half-built chassis, single shoulder pieces, side views, worn on one side).
-NOT_SYMMETRIC = re.compile(r'(cloak-chassis|pants-chassis|tunic-chassis|handwraps-chassis|blaster-chassis|vibroweapon-chassis|lightweapon-chassis|eq-handwraps$|ship-armor|implements$|-kit$|pauldron|'
+NOT_SYMMETRIC = re.compile(r'(^mod-|^mark-|cloak-chassis|pants-chassis|tunic-chassis|handwraps-chassis|blaster-chassis|vibroweapon-chassis|lightweapon-chassis|eq-handwraps$|ship-armor|implements$|-kit$|pauldron|'
                            r'shield-generator|vibroshield|bone-light-shield|crystadium|ship-shield|shoulder|wrist|bracer|vambraces|boots)')
 
 
