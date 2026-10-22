@@ -1996,6 +1996,35 @@ function applyEffects(key, editedRaw, complete) {
   const bestAc = formulas.reduce((a, b) => (!a || b.bonus > a.bonus ? b : a), null);
   res.tweaks = res.tweaks.map((t) => (t.mod.acFormula ? bestAc : withMod(t)));
   res.acAlternatives = formulas.filter((t) => t !== bestAc);
+  // "You have a number of tech points equal to half of your berserker level, as shown in the Tech Points column of the
+  // Industrial Approach Techcasting table, + your Intelligence modifier": SW5E's engine reads an archetype's points only
+  // for third-casters, so a sixth-caster's (Industrial Approach) are added here, with SW5E's "at least 1 point".
+  for (const kind of ['force', 'tech']) {
+    const cast = complete && complete[`${kind}Casting`];
+    if (!cast || typeof cast !== 'object') continue;
+    const Word = kind === 'force' ? 'Force' : 'Tech';
+    let table = 0;
+    const dropped = [];
+    for (const k of arr(editedRaw.classes)) {
+      const lv = num(k.levels);
+      const cref = rulesModule('classes').find((x) => x.name === k.name);
+      if (cref && cref.casterType === Word && num(cref.casterRatio) > 0) table += num(((cref.levelChanges || {})[String(Math.max(1, Math.min(20, lv)))] || {})[`${Word} Points`]);
+      const aref = k.archetype && k.archetype.name ? rulesModule('archetypes').find((x) => x.name === k.archetype.name) : null;
+      if (!aref || aref.casterType !== Word || !(num(aref.casterRatio) > 0)) continue;
+      const pts = num(engArchetypeRow(aref, lv)[`${Word} Points`]);
+      if (Math.abs(num(aref.casterRatio) - 1 / 3) < 0.01) table += pts;
+      else if (pts) dropped.push({ name: aref.name, pts });
+    }
+    if (!dropped.length) continue;
+    const m0 = kind === 'tech' ? modOf('Intelligence') : Math.max(modOf('Wisdom'), modOf('Charisma'));
+    const all = dropped.reduce((t, d) => t + d.pts, 0);
+    const g = Math.max(1, table + all + m0) - Math.max(1, table + m0);
+    if (g <= 0) continue;
+    const mod = { path: `${kind}Casting.maxPoints`, bonus: g, label: `${Word} points from the ${dropped.map((d) => d.name).join(' and ')} table +${g}` };
+    const e = { id: `archpoints:${kind}`, kind: 'feature', origin: 'class feature', name: dropped.map((d) => d.name).join(', '), why: `${Word.toLowerCase()} points (SW5E's engine leaves them out)`, target: 'self', notes: [], mods: [mod] };
+    effects.push(e);
+    res.tweaks.push({ path: mod.path, bonus: g, fields: null, effect: e, mod });
+  }
   // Feats that change the casting ability (castingSwaps): what SW5E's numbers gain with it, from the final scores. "You
   // can use Intelligence instead of the chosen ability": the better of the two, for the powers and points that use it.
   for (const sw of castingSwaps(editedRaw)) {
