@@ -2389,8 +2389,11 @@ function applyEffects(key, editedRaw, complete) {
   const martial = martialArtsOf(editedRaw).filter((x) => (lifted(x.name) ? armorAllows(lifted(x.name).when, armor)
     : !(x.ma.noArmor && armor.armor) && !(x.ma.noShield && armor.shield))).map((x) => {
     const size = num(String((x.ma.column && classRow(editedRaw, x.k)[x.ma.column]) || x.ma.die).replace(/^\d*d/i, ''));
-    const e = { id: x.id, kind: 'feature', name: x.name, why: `${x.from || x.k.name} feature`, target: 'self', mods: [], notes: [], unarmedDie: size, unarmedFinesse: x.ma.finesse };
-    effects.push(e);
+    // The feature's own effect when it has one (Ideal of the Contender: its unarmed die step), else a new one.
+    const at = effects.findIndex((y) => y.kind === 'feature' && y.name === x.name && y.target === 'self' && !y.unarmedDie);
+    const e = at >= 0 ? { ...effects[at], unarmedDie: size, unarmedFinesse: x.ma.finesse }
+      : { id: x.id, kind: 'feature', origin: 'class feature', name: x.name, why: `${x.from || x.k.name} feature`, target: 'self', mods: [], notes: [], unarmedDie: size, unarmedFinesse: x.ma.finesse };
+    if (at >= 0) effects[at] = e; else effects.push(e);
     return { ...x, e, size };
   });
   // The final scores, as the engine will have them: a tweak's "set to" is the score (the effects on it are kept aside, and

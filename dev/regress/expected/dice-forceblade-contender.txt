@@ -182,7 +182,6 @@ effect: Ideal of the Contender · feature
 effect: Silver-Tongued · feature
 effect: Silver-Tongued · feature
 effect: Human Versatility · feature
-effect: Ideal of the Contender · feature
 effect: Forceblade Bond · feature
 tweak: abilityScores.Charisma.score +1 · Silver-Tongued
 tweak: abilityScores.Charisma.skills.Deception +0 {"proficiency":"Proficient"} · Silver-Tongued
@@ -305,14 +304,13 @@ Defenses & senses
 Speeds Climbing speed equal to walking speed Swimming speed equal to walking speed
 Other Half proficiency on checks without it (Led by the Force)
 Effects
-From class features, feats and species traits (8)
+From class features, feats and species traits (7)
 Sentinel weapon proficiencies Proficient: Simple lightweapons Proficient: simple vibroweapons Proficient: martial lightweapons with the finesse property Profici… [234 chars #541e941a]
 Led by the Force Half proficiency on checks Sentinel feature
 Ideal of the Agile Climbing speed equal to walking speed Swimming speed equal to walking speed Sentinel Ideals feature
 Ideal of the Contender Unarmed die +1 step Sentinel Ideals feature
 Silver-Tongued CHA +1 Deception: proficient feat (background feat)
 Human Versatility Stealth: proficient Choose one tool Choose one weapon of your choice Human trait
-Ideal of the Contender Sentinel Ideals feature
 Forceblade Bond Path of the Forceblade feature
 Temporary
 No temporary effects.
