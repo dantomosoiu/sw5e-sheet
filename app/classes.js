@@ -687,6 +687,28 @@ function clsFeatureEffects(text, note, ctx) {
   let m;
   // "Choose one from force- or tech-casting" (Casting Specialist), "Choose one from Wisdom or Charisma" (Cunning
   // Forcecaster, Spiritual Techcaster): the pick, for what follows ("+1 bonus to your force or tech save DC…").
+  // "You use your choice of Wisdom or Charisma for your focus ability" (Monk's Focus): which one.
+  if ((m = new RegExp(`\\byou use your choice of ${CLS_ABIL_RE} or ${CLS_ABIL_RE} for your (\\w+) ability`, 'i').exec(t))) {
+    const opts = [m[1], m[2]].map(clsAbility);
+    ask('ability', `${m[3][0].toUpperCase()}${m[3].slice(1)} ability`, opts, 1, picks.abilities.filter((a) => opts.includes(a)).slice(0, 1));
+  }
+  // Levels that add one more ("You can choose another maneuver at 5th, 9th, 13th, and 17th level"): how many reached.
+  const moreAt = (re) => { const x = re.exec(t); return x ? (x[1].match(/\d+/g) || []).filter((l) => level >= Number(l)).length : 0; };
+  // "Choose two types of weapons to be your Echani weapons: one vibroweapon and one blaster… When you reach 6th, 11th, and
+  // 17th level in this class, you can choose another type of weapon": the weapons, which you're proficient with.
+  if ((m = /\bchoose (\w+) types of weapons to be your ([\w' ]+?) weapons: one vibroweapon and one blaster\b/i.exec(t))) {
+    const n = clsCount(m[1]) + moreAt(/\bwhen you reach ((?:\d+(?:st|nd|rd|th),? (?:and )?)+)level in this class, you can choose another type of weapon/i);
+    const w = picks.others.filter(isWeapon).slice(0, n);
+    ask('weapon', `${m[2]} weapons`, null, n, w, 'vibroweapons or blasters that lack the special property');
+    w.forEach((x) => out.profs.weapons.push(x));
+  }
+  // "choose two maneuvers you know… You can choose another maneuver at 5th, 9th, 13th, and 17th level" (Maneuver
+  // Versatility); "Choose a lightsaber form you know" (Kinetic Mastery): from what the character knows (the sheet lists them).
+  if ((m = /\bchoose (\w+) maneuvers you know\b/i.exec(t))) {
+    const n = clsCount(m[1]) + moreAt(/\bchoose another maneuver at ((?:\d+(?:st|nd|rd|th),? (?:and )?)+)level/i);
+    ask('maneuver', 'Maneuvers', null, n, picks.others.filter((x) => !isWeapon(x)).slice(0, n));
+  }
+  if (/\bchoose a lightsaber form you know\b/i.test(t)) ask('form', 'Lightsaber form', null, 1, picks.others.filter((x) => !isWeapon(x)).slice(0, 1));
   const fromChoice = /\bchoose one from ([\w-]+)(?: or |, )([\w-]+)\b/i.exec(t);
   let castingPick = null;
   if (fromChoice) {

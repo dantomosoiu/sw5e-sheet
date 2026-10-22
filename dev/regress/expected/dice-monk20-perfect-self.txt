@@ -224,7 +224,7 @@ Human · Monk (Rakatan Order) 20
 Level 20 Background: Noble Lawful Light Proficiency +6 [Add a picture]
 6,500 XP highest level
 Level 20 usually needs 355,000 XP (you have 6,500).
-Still to choose (19): Monk skills (2 more) · Monk 8th level: ability score improvement or feat · Monk 10th level: ability score improvement or feat · Monk 12th … [757 chars #f0af2ae9]
+Still to choose (20): Monk skills (2 more) · Monk 8th level: ability score improvement or feat · Monk 10th level: ability score improvement or feat · Monk 12th … [780 chars #ac20e78f]
 
 ## Sheet: Combat & Vitals
 Armor Class
@@ -536,7 +536,11 @@ Patient Defense
 When you use your bonus action to Disengage, you can spend 1 focus point to also Dodge (no action required). At 11th level, you can instead spend 2 focus points… [236 chars #52380f7b]
 Step of the Wind
 When you use your bonus action to Dash, you can spend 1 focus point to double your jump distance for the turn. At 11th level, you can instead spend 2 focus poin… [329 chars #e4f69d49]
-Your choices []
+Focus ability 0 / 1
+None chosen yet.
+[Choose an ability… ▾]
+Add a note
+Notes []
 Purity of Body Level 13
 Monk: 13th level
 You are immune to disease and poison and resistant to poison damage.

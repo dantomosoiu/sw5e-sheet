@@ -198,7 +198,7 @@ Human · Monk (Nightsister Order) 5, Operative 2
 Level 7 Background: Noble Lawful Light Proficiency +3 [Add a picture]
 6,500 XP level 8 at 34,000 (27,500 to go)
 Level 7 usually needs 23,000 XP (you have 6,500).
-Still to choose (16): Monk skills (2 more) · Monastic Vows (2 more) · Operative multiclass skill · Operative multiclass tool · Operative Expertise (2 more) · Op… [520 chars #7d5d3920]
+Still to choose (17): Monk skills (2 more) · Monastic Vows (2 more) · Operative multiclass skill · Operative multiclass tool · Operative Expertise (2 more) · Op… [543 chars #cbb26306]
 
 ## Sheet: Combat & Vitals
 Armor Class
@@ -404,7 +404,11 @@ Patient Defense
 When you use your bonus action to Disengage, you can spend 1 focus point to also Dodge (no action required). At 11th level, you can instead spend 2 focus points… [236 chars #52380f7b]
 Step of the Wind
 When you use your bonus action to Dash, you can spend 1 focus point to double your jump distance for the turn. At 11th level, you can instead spend 2 focus poin… [329 chars #e4f69d49]
-Your choices []
+Focus ability 0 / 1
+None chosen yet.
+[Choose an ability… ▾]
+Add a note
+Notes []
 Deflect Missiles Level 3
 Monk: 3rd level
 You can use your reaction to deflect a projectile when you are dealt damage by a ranged weapon attack. When you do so, the damage you take from the attack is reduced by 1d10 + your Dexterity modifier + your monk level.

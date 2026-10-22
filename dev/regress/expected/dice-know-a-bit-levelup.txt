@@ -240,7 +240,7 @@ Human · Monk (Rakatan Order) 8, Operative (Maverick Practice) 3
 Level 11 Background: Noble Lawful Light Proficiency +4 [Add a picture]
 6,500 XP level 12 at 100,000 (93,500 to go)
 Level 11 usually needs 85,000 XP (you have 6,500).
-Still to choose (19): Monk skills (2 more) · Monk 8th level: ability score improvement or feat · Monastic Vows (3 more) · Rakatan Order tech powers (6 more) · O… [640 chars #fa253252]
+Still to choose (20): Monk skills (2 more) · Monk 8th level: ability score improvement or feat · Monastic Vows (3 more) · Rakatan Order tech powers (6 more) · O… [663 chars #3ddb9139]
 
 ## Sheet: Combat & Vitals
 Armor Class
@@ -518,7 +518,11 @@ Patient Defense
 When you use your bonus action to Disengage, you can spend 1 focus point to also Dodge (no action required). At 11th level, you can instead spend 2 focus points… [236 chars #52380f7b]
 Step of the Wind
 When you use your bonus action to Dash, you can spend 1 focus point to double your jump distance for the turn. At 11th level, you can instead spend 2 focus poin… [329 chars #e4f69d49]
-Your choices []
+Focus ability 0 / 1
+None chosen yet.
+[Choose an ability… ▾]
+Add a note
+Notes []
 Deflect Missiles Level 3
 Monk: 3rd level
 You can use your reaction to deflect a projectile when you are dealt damage by a ranged weapon attack. When you do so, the damage you take from the attack is reduced by 1d10 + your Dexterity modifier + your monk level.

@@ -6628,6 +6628,9 @@ function askOptions(m, a) {
       return all.filter((w) => descs.some((d) => clsWeaponMatches(d, w)) && weaponFitsProps(a.of, w)).map((w) => w.name).sort();
     }
     case 'skilltool': return prSkillList().sort().concat(tools);
+    // "two maneuvers you know", "a lightsaber form you know".
+    case 'maneuver': return [...new Set(arr(m.maneuverNames).map((x) => (typeof x === 'string' ? x : x && x.name)).filter(Boolean))].sort();
+    case 'form': return [...new Set(slotPickFeatures(m).filter((x) => x.form).map((x) => x.name))].sort();
     case 'expertise': return [...new Set(bdSkillsKnown(m).concat(toolProficiencies(m), a.chosen))].sort();
     default: return arr(a.options);
   }
