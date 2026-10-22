@@ -15,7 +15,8 @@
  *                            classes, equipment, species, customFeats, tweaks… — with the fields the sheet has edited
  *                            in their place), `edits`, `itemState` (the sheet's own stored data for it), `catalog` (SW5E's
  *                            items) and the helpers addFeat(name, classIndex), addItem(name, { equipped, attuned }).
- * Options: --full prints both reports whole (to dist/bump-check/), not only the lines that changed.
+ * Options: --full prints both reports whole (to dist/bump-check/, or the folder after --out), not only the lines that
+ *   changed. Several checks at once each need their own --out folder.
  *          --save NAME keeps the changed character as a regression case (dev/regress/cases/NAME.json); accept its
  *          output with `node dev/regress.js --update NAME` once it's right, so a fixed bug stays fixed.
  */
@@ -27,7 +28,7 @@ const { report, diffLines } = require('./regress');
 
 const CASES = path.join(__dirname, 'regress', 'cases');
 const CATALOG = path.join(__dirname, '..', 'app', 'data', 'sw5e', 'catalog.json');
-const OUT = path.join(__dirname, '..', 'dist', 'bump-check');
+const OUT_DEFAULT = path.join(__dirname, '..', 'dist', 'bump-check');
 
 function usage(msg) {
   if (msg) console.error(msg);
@@ -62,7 +63,7 @@ function changesFrom(args, catalog) {
     else if (a === '--js') {
       const code = val();
       steps.push((h) => new Function('raw', 'edits', 'itemState', 'catalog', 'addFeat', 'addItem', code)(h.raw, h.edits, h.itemState, catalog, h.addFeat, h.addItem));
-    } else if (a === '--save') val();
+    } else if (a === '--save' || a === '--out') val();
     else if (a !== '--full') usage(`Unknown option ${a}`);
   }
   return steps;
@@ -133,11 +134,12 @@ async function main() {
   if (args.includes('--save')) {
     const name = args[args.indexOf('--save') + 1];
     const file = path.join(CASES, `${name}.json`);
-    const changes = args.slice(1).filter((x, i, all) => x !== '--save' && all[i - 1] !== '--save' && x !== '--full');
+    const changes = args.slice(1).filter((x, i, all) => !['--save', '--out', '--full'].includes(x) && !['--save', '--out'].includes(all[i - 1]));
     fs.writeFileSync(file, JSON.stringify({ ...c, name, from: { case: args[0], changes }, storage: changed }, null, 1) + '\n');
     console.log(`Saved as ${path.relative(process.cwd(), file)}; accept it with: node dev/regress.js --update ${name}`);
   }
   if (args.includes('--full')) {
+    const OUT = args.includes('--out') ? path.resolve(args[args.indexOf('--out') + 1]) : OUT_DEFAULT;
     fs.mkdirSync(OUT, { recursive: true });
     fs.writeFileSync(path.join(OUT, 'before.txt'), before.text);
     fs.writeFileSync(path.join(OUT, 'after.txt'), after.text);

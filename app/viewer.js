@@ -979,10 +979,24 @@ function featureUses(m) {
   const seen = new Set();
   const add = (name, text, k) => {
     if (!k || seen.has(name)) return;
+    // Two benefits with uses of their own ("- When you make an attack roll using your Strength… You can use this feature a
+    // number of times equal to your proficiency bonus… - When an effect you control would call for a Strength saving
+    // throw… a number of times…": Adaptable Fading): a counter each, named by what it's for.
+    const USES = /\byou can use this (?:feature|benefit|ability) (?:a number of times|once|twice|\w+ times)\b/i;
+    const pools = String(text || '').split('\n').filter((l) => /^\s*- /.test(l) && USES.test(l));
+    if (pools.length > 1) {
+      seen.add(name);
+      pools.forEach((l, i) => {
+        const u = clsUsage(l.replace(/^\s*- /, ''), ctxFor(k, name));
+        const what = /\battack rolls?\b/i.test(l) ? 'attack rolls' : /\bsaving throws?\b/i.test(l) ? 'saving throws' : /\bability checks?\b/i.test(l) ? 'ability checks' : /\bdamage\b/i.test(l) ? 'damage' : String(i + 1);
+        if (u) out.push({ name: `${name}: ${what}`, ...u, via: [] });
+      });
+      return;
+    }
     const u = clsUsage(text, ctxFor(k, name));
     if (!u) return;
     seen.add(name);
-    out.push({ name, ...u });
+    out.push({ name, ...u, via: clsChosenText(text, featureNoteOf(m.raw, name)).chosen });
   };
   for (const f of m.allFeatures) if (f.source !== 'Species') add(f.name, f.text || f.description || '', classOf(f));
   // Picks made in choice slots, counted at the character's level (splash improvements have no class of their own).
@@ -997,7 +1011,22 @@ function featureUses(m) {
       if (o) add(p.name, o.text, k);
     }
   }
-  return out;
+  // More uses from another feature ("Your maximum focus increases by…half your Wisdom or Charisma modifier": Vow of
+  // Serenity): the ability noted for it, else the better one.
+  for (const e of arr(m.effects).filter((x) => x.usesPlus)) {
+    const u = out.find((x) => x.name.toLowerCase() === String(e.usesPlus.name).toLowerCase());
+    if (!u || !Number.isFinite(u.maximum)) continue;
+    const note = String(featureNoteOf(m.raw, e.name) || '').toLowerCase();
+    const picked = e.usesPlus.abilities.filter((a) => note.includes(a.toLowerCase()));
+    const best = Math.max(...(picked.length ? picked : e.usesPlus.abilities).map((a) => mods[a]));
+    const n = Math.max(e.usesPlus.min, e.usesPlus.half ? Math.floor(best / 2) : best);
+    u.maximum += n;
+    u.basis = `${u.basis ? `${u.basis} ` : ''}+${n} (${e.name})`;
+  }
+  // A feature whose uses are its chosen option's ("Vengeance": Their Power, My Strength's five), when the option has its
+  // own counter: that one only.
+  const names = new Set(out.map((u) => u.name));
+  return out.filter((u) => !arr(u.via).some((n) => n !== u.name && names.has(n))).map(({ via, ...u }) => u);
 }
 
 /**
@@ -2052,13 +2081,13 @@ function featureEffectEntry(id, name, why, fe, origin = 'class feature') {
   const tools = fe.profs.tools.map((t) => ({ ...t, ...up('tool', t.name) }));
   const chains = arr(fe.profs.chains);
   const passives = fe.passives || {};
-  const other = fe.advantage.length || fe.defenses.length || fe.critRange || fe.halfProf || fe.unarmedStep || fe.unarmedDie || Object.keys(passives).length || fe.substitute || fe.armorAllows || fe.ignoreArmorStrength;
+  const other = fe.advantage.length || fe.defenses.length || fe.critRange || fe.halfProf || fe.unarmedStep || fe.unarmedDie || Object.keys(passives).length || fe.substitute || fe.armorAllows || fe.ignoreArmorStrength || fe.usesPlus || fe.darkvisionPlus;
   if (!mods.length && !tools.length && !fe.profs.weapons.length && !fe.profs.armor.length && !chains.length && !fe.needsChoice.length && !other) return null;
   return {
     id, kind: 'feature', origin, name, why, mods, notes: [], needsChoice: fe.needsChoice, weapons: fe.profs.weapons, tools, armor: fe.profs.armor, chains, passives, target: 'self',
     advantage: fe.advantage, defenses: fe.defenses, critRange: fe.critRange, halfProf: fe.halfProf, unarmedStep: fe.unarmedStep,
     unarmedDie: fe.unarmedDie || 0, unarmedFinesse: !!fe.unarmedFinesse, ...(fe.critOn === 'unarmed' ? { critWeapons: ['unarmed'] } : fe.critOn ? { critOn: fe.critOn } : {}),
-    ...(fe.darkvisionPlus ? { darkvisionPlus: fe.darkvisionPlus } : {}), ...(fe.substitute ? { substitute: fe.substitute } : {}), ...(fe.armorAllows ? { armorAllows: fe.armorAllows } : {}),
+    ...(fe.darkvisionPlus ? { darkvisionPlus: fe.darkvisionPlus } : {}), ...(fe.usesPlus ? { usesPlus: fe.usesPlus } : {}), ...(fe.substitute ? { substitute: fe.substitute } : {}), ...(fe.armorAllows ? { armorAllows: fe.armorAllows } : {}),
     ...(fe.ignoreArmorStrength ? { ignoreArmorStrength: true } : {}),
   };
 }
@@ -6085,14 +6114,15 @@ function featureNumberChips(m, f) {
   const k = arr(m.raw.classes).find((x) => x.name === f.sourceName || (x.archetype && x.archetype.name === f.sourceName));
   const mods = Object.fromEntries(ABILITIES.map((a) => [a, num(((m.c.abilityScores || {})[a] || {}).modifier)]));
   const scores = Object.fromEntries(ABILITIES.map((a) => [a, num(((m.c.abilityScores || {})[a] || {}).value)]));
-  const n = clsFeatureNumbers(f.text || f.description || '', { level: k ? num(k.levels) : charLevel(m), pb: num(m.c.proficiencyBonus), mods, scores });
+  const n = clsFeatureNumbers(f.text || f.description || '', { level: k ? num(k.levels) : charLevel(m), pb: num(m.c.proficiencyBonus), mods, scores, note: featureNoteOf(m.raw, f.name) });
   if (!n) return [];
   return [n.dc ? `<span class="chip accent" title="${n.dc.score ? `${esc(n.dc.ability)} score + proficiency bonus` : `8 + proficiency bonus + ${esc(n.dc.ability)} modifier`}">DC ${n.dc.value}${n.dc.save ? ` ${esc(n.dc.save)} save` : ''}</span>` : '',
     n.damage ? `<span class="chip accent" title="At your level">${esc(n.damage.dice)} ${esc(n.damage.type)}</span>` : ''];
 }
 function featureCard(f, m) {
   const lvl = f.levels && f.levels.length > 1 ? `Levels ${f.levels.join(', ')}` : f.level != null ? `Level ${f.level}` : '';
-  const uses = m && m.t && m.t.lim.features.some((u) => u.name === f.name) ? live('uses:' + f.name, m, 'div', 'trk-rows') : '';
+  // (Its own counter, or one per benefit: "Adaptable Fading: attack rolls".)
+  const uses = m && m.t ? m.t.lim.features.filter((u) => u.name === f.name || u.name.startsWith(`${f.name}: `)).map((u) => live('uses:' + u.name, m, 'div', 'trk-rows')).join('') : '';
   const meta = f.metadata ? (() => { try { return typeof f.metadata === 'string' ? JSON.parse(f.metadata) : f.metadata; } catch (e) { return null; } })() : null;
   const usage = meta && (meta.fe || meta.usage || meta);
   const usageFacts = usage && typeof usage === 'object'
