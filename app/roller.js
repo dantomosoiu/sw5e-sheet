@@ -616,7 +616,7 @@ function buildRoll(m, spec, opts = {}) {
         // unarmed strike's "1 + your Strength modifier" is already in it (as the weapons table shows it).
         base: typeof damageParts === 'function' ? damageParts(m, w) : [{ label: 'damage bonus', value: num(w.damageBonus) + num(w.damageDieModifier) }],
         conds,
-        damageType: w.damageType && w.damageType !== 'Unknown' ? w.damageType : '',
+        damageType: typeof weaponDamageType === 'function' ? weaponDamageType(m, w) : w.damageType && w.damageType !== 'Unknown' ? w.damageType : '',
         minTotal: 0, // a penalty can't make damage negative
         dmgAdv,
         // What the weapon's modifications do when it deals damage (Celerity Oscillator); the dice items add.

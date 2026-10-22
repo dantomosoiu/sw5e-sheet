@@ -1782,10 +1782,20 @@ function weaponExtraDice(m, w) {
   return arr(m.fx && m.fx.dice).filter((d) => (unarmed ? d.unarmed : !d.unarmed && d.weaponIndex != null && d.weaponIndex === w.index))
     .map((d) => ({ dice: d.dice, type: d.type || '', from: d.effect.name }));
 }
+/**
+ * A weapon's damage type, or what an item makes it: "Your unarmed strikes with this arm deal 1d4 ion damage"
+ * (Iridonian Grav-lev Arm), when the arm's die is the one the strikes use.
+ */
+function weaponDamageType(m, w) {
+  const t = w.damageType && w.damageType !== 'Unknown' ? w.damageType : '';
+  if (w.name !== 'Unarmed Strike') return t;
+  const arm = arr(m.effects).find((e) => e.kind === 'item' && e.active && e.unarmedType && num(e.unarmedDie) >= num(w.damageDieType));
+  return arm ? titleCase(arm.unarmedType) : t;
+}
 /** A weapon's damage as the weapons table shows it, with the dice items add ("1d8+1d10+5 Kinetic"). */
 function weaponDamageText(m, w) {
   const extra = weaponExtraDice(m, w);
-  const s = damageText(w);
+  const s = damageText({ ...w, damageType: weaponDamageType(m, w) });
   if (!extra.length) return s;
   const more = extra.map((x) => `+${x.dice}`).join(''); // its own damage type: on the dice card
   return num(w.damageDieType) > 0 && num(w.damageNumberOfDice) > 0 ? s.replace(/^(\d+d\d+)/, `$1${more}`) : `${more.slice(1)}+${s}`;
@@ -3325,9 +3335,16 @@ function itemUse(ref, raw) {
 
 /** A temporary effect from an item (bonuses are resolved, and capped, when applied). */
 function makeEffect(ref, fx, source, weaponName) {
+  // "…increases their current and maximum tech points by 2d4": rolled now, kept for as long as it lasts.
+  const mods = arr(fx.mods).map((x) => {
+    const p = x.rollBonus && parseDice(x.rollBonus);
+    if (!p) return x;
+    const n = p.dice.reduce((s, d) => s + d.sign * rollDie(d.sides), 0) + p.mod;
+    return { ...x, bonus: n, label: `${x.label.replace(/\s*\+\d*d\d+.*$/, '')} +${n} (${x.rollBonus} rolled)` };
+  });
   return {
     id: Date.now().toString(36) + Math.random().toString(36).slice(2, 6), kind: 'temporary', name: ref.name, source,
-    startedAt: Date.now(), duration: fx.duration, group: fx.group, mods: fx.mods, notes: fx.notes,
+    startedAt: Date.now(), duration: fx.duration, group: fx.group, mods, notes: fx.notes,
     target: fx.target, weaponName: weaponName || null, text: ref.text || ref.description || '',
     // A spice's high: a die the dice card offers on some rolls while it lasts.
     ...(fx.riders ? { riders: fx.riders } : {}),
@@ -3558,7 +3575,7 @@ function effectRow(m, e) {
     const on = e.active ? 'good' : '';
     chips.push(...arr(e.weapons).map((w) => chip(`Proficient: ${w}`, on)), ...arr(e.armor).map((a) => chip(`Proficient: ${a}`, on)),
       ...arr(e.tools).map((t) => chip(`${t.name}: ${t.level}`, on)), ...arr(e.advantage).map((a) => chip(ADV_TEXT(a), on)),
-      ...arr(e.halfProfChecks).map((a) => chip(`Half proficiency on ${a} checks without it`, on)), ...(e.unarmedDie ? [chip(`Unarmed strikes: d${e.unarmedDie}`, on)] : []),
+      ...arr(e.halfProfChecks).map((a) => chip(`Half proficiency on ${a} checks without it`, on)), ...(e.unarmedDie ? [chip(`Unarmed strikes: d${e.unarmedDie}${e.unarmedType ? ` ${e.unarmedType}` : ''}`, on)] : []),
       ...arr(e.needsChoice).map((c) => `<span class="chip warn" title="Write your choice in the item's note (✎ under Equipment)">Choose ${esc(c)}</span>`));
   }
   // A set's bonuses still to come ("AC +1 (with Jensaarai Cloak)"), and a piece that takes no attunement slot.
@@ -4678,7 +4695,9 @@ function itemDefenseText(text, note) {
     .replace(/\b(?:while|when) (?:you are )?wearing (?:it|this [a-z ]+?|these [a-z ]+?),\s*/gi, '').replace(/,? while you wear (?:it|this [a-z]+|these [a-z]+)(?=[.,])/gi, '');
   t = t.replace(/[^.\n]*\b(?:one of the following(?: options)?|one of the below modes|the following modes)\b[^\n]*(?:\n+\s*(?:_{3,}|-[^\n]*))+/gi, '');
   const types = String(note || '').toLowerCase().match(new RegExp(`\\b(?:${PL_DAMAGE_TYPES.map((x) => x.toLowerCase()).join('|')})\\b`, 'g'));
-  if (types) t = t.replace(/\bresistance to one type of damage\b/gi, `resistance to ${[...new Set(types)].join(' and ')} damage`);
+  // Until the type is noted, no resistance is listed (the item asks for it).
+  t = types ? t.replace(/\bresistance to one type of damage\b/gi, `resistance to ${[...new Set(types)].join(' and ')} damage`)
+    : t.replace(/[^.\n]*\bresistance to one type of damage\b[^.\n]*\.?/gi, '');
   let set = false;
   return t.split(/(?<=[.!?])\s+/).filter((s) => {
     if (/^while wearing and attuned to (?:this|these) \w+,? (?:and )?[A-Z]/i.test(s.replace(/^[*_]+[^*_]+[*_]+\s*/, ''))) { set = true; return false; }
@@ -6857,8 +6876,12 @@ function renderProficiencies(m) {
   const byType = {};
   // Tools are rollable (a check with the ability chosen in the roll card).
   const toolChip = (name, level, label) => rollable(`tool|${name}|${level || 'proficient'}`, chip(label), `Roll a ${name} check`);
-  for (const p of arr(c.proficiencies)) (byType[p.type || 'other'] = byType[p.type || 'other'] || []).push(p.type === 'tool' ? { html: toolChip(p.name, 'proficient', p.name) } : p.name);
   const raisedBy = (name) => arr(m.fx && m.fx.tools).find((t) => t.level === 'expertise' && t.name.toLowerCase() === String(name).toLowerCase());
+  // A tool a feature raises to expertise is shown once, at expertise (below), whatever its letter case.
+  for (const p of arr(c.proficiencies)) {
+    if (p.type === 'tool' && raisedBy(p.name)) continue;
+    (byType[p.type || 'other'] = byType[p.type || 'other'] || []).push(p.type === 'tool' ? { html: toolChip(p.name, 'proficient', p.name) } : p.name);
+  }
   for (const p of arr(raw.customProficiencies)) {
     if (p.type === 'tool' && raisedBy(p.name) && p.proficiencyLevel !== 'expertise') continue; // shown below, as expertise
     const label = `${p.name}${p.proficiencyLevel && p.proficiencyLevel !== 'proficient' ? ` (${p.proficiencyLevel})` : ''} ✎`;

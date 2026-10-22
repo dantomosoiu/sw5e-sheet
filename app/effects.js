@@ -337,10 +337,17 @@ function parseItemEffect(item) {
       for (const sk of Object.keys(FX_SKILLS).filter((k) => FX_SKILLS[k] === a)) mods.push({ path: `abilityScores.${a}.skills.${sk}`, bonus: 0, halfProf: true, label: `${sk}: half proficiency` });
     }
     // "Your unarmed strikes with this arm deal 1d4 ion damage" (Iridonian Grav-lev Arm): the unarmed die, as a species'
-    // natural weapons give it (the strike's damage type stays SW5E's: the note says which).
+    // natural weapons give it, and its damage type (weaponDamageType).
     if ((m = /\byour unarmed strikes(?: with this \w+)? deal (\d+)d(\d+) (\w+) damage/i.exec(s))) {
       ctx.unarmedDie = Number(m[2]);
-      ctx.notes.push(`Unarmed strikes${/with this/i.test(m[0]) ? ' with it' : ''}: ${m[1]}d${m[2]} ${m[3].toLowerCase()} damage.`);
+      ctx.unarmedType = m[3].toLowerCase();
+    }
+    // A spice's high: "increases their current and maximum tech points by 2d4" (Muon Gold; Spicebrew: force points):
+    // rolled when it's used (makeEffect), the maximum goes up by the roll and the current with it.
+    if ((m = /\bincreases their current and maximum (tech|force) points by (\d*d\d+)/i.exec(s))) {
+      const k = m[1].toLowerCase();
+      mods.push({ path: `${k}Casting.maxPoints`, bonus: 0, rollBonus: m[2], label: `${k === 'tech' ? 'Tech' : 'Force'} points +${m[2]}` });
+      used = true;
     }
     // "One ability score other than Charisma (chosen by the GM) decreases by 1" (enhancements, augments, packages): the
     // GM's pick is asked for (itemEffects reads it from the item's note).
@@ -485,12 +492,12 @@ function parseItemEffect(item) {
   notes.push(...ctx.notes);
   // Ammunition's bonuses apply while it's carried (and fired); other consumables' when used.
   const activation = ctx.ammo ? 'carry' : isConsumable ? 'use' : item.requiresAttunement ? 'attune' : 'equip';
-  if (!mods.length && !notes.length && !riders.length && !darkvisionPlus && !ctx.keen && !freeAttune && !(isConsumable && duration)) return null;
+  if (!mods.length && !notes.length && !riders.length && !darkvisionPlus && !ctx.keen && !freeAttune && !ctx.unarmedDie && !(isConsumable && duration)) return null;
   return {
     mods, notes, target: ctx.target, weaponKind: ctx.weaponKind || null, duration, group, activation,
     heals: /regains? [^.]*hit points|temporary hit points/i.test(text),
     ...(riders.length ? { riders } : {}), ...(darkvisionPlus ? { darkvisionPlus } : {}), ...(ctx.keen ? { keen: ctx.keen } : {}),
-    ...(ctx.halfProfChecks ? { halfProfChecks: ctx.halfProfChecks } : {}), ...(ctx.unarmedDie ? { unarmedDie: ctx.unarmedDie } : {}),
+    ...(ctx.halfProfChecks ? { halfProfChecks: ctx.halfProfChecks } : {}), ...(ctx.unarmedDie ? { unarmedDie: ctx.unarmedDie, unarmedType: ctx.unarmedType } : {}),
     ...(freeAttune ? { freeAttune } : {}), ...(ctx.sideEffect ? { sideEffect: ctx.sideEffect } : {}), ...(ctx.classBoosts ? { classBoosts: ctx.classBoosts } : {}),
   };
 }
