@@ -4896,7 +4896,7 @@ function renderConditions(m) {
   const desc = (n) => String((rulesModule('conditions').find((c) => c.name === n) || {}).description || '').replace(/\\r\\n|\r?\n/g, ' ').replace(/\s*-\s+/g, ' ').trim();
   const does = (n) => {
     const r = PL_CONDITION_ROLLS[n] || {};
-    const bits = Object.entries(r).map(([k, v]) => `${v === 'fail' ? 'fails' : v === 'adv' ? 'advantage on' : 'disadvantage on'} ${k.replace(/^save:/, '').replace(/^check$/, 'ability checks').replace(/^attack$/, 'attack rolls')}${/^save:/.test(k) ? ' saves' : ''}`);
+    const bits = Object.entries(r).map(([k, v]) => `${v === 'fail' ? 'fails' : v === 'adv' ? 'advantage on' : 'disadvantage on'} ${k.replace(/^save:/, '').replace(/^check$/, 'ability checks').replace(/^attack$/, 'attack rolls').replace(/^attack:melee$/, 'melee attack rolls')}${/^save:/.test(k) ? ' saves' : ''}`);
     if (PL_CONDITION_SPEED[n] != null) bits.push(PL_CONDITION_SPEED[n] ? 'speed halved' : 'speed 0');
     return bits.join(', ');
   };
