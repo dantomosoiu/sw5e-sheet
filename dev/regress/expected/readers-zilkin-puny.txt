@@ -153,7 +153,7 @@ init: Initiative: d20 +3 · = +3 modifier
 death: Death saving throw: d20 +0
 hitdie|d6: Hit die (d6): d6 +2 · = +2 per die
 check|Strength: Strength check: d20 +4 · = +4 modifier
-save|Strength: Strength saving throw: d20 +4 · = +4 modifier
+save|Strength: Strength saving throw: d20 d20 +4 · = +4 modifier · mode dis · Disadvantage from Puny
 skill|Strength|0: Athletics (STR): d20 +4 · = +4 modifier
 check|Dexterity: Dexterity check: d20 +3 · = +3 modifier
 save|Dexterity: Dexterity saving throw: d20 d20 +3 · = +3 modifier · mode adv · Advantage from Small and Nimble

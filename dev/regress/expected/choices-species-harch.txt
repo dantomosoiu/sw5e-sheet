@@ -5,6 +5,7 @@ The sheet's engine computes the numbers. OUT OF DATE: SW5E's recorded calculatio
 tweaks.abilityScores.Constitution.score.bonus = 1
 tweaks.abilityScores.Intelligence.skills.Technology.bonus = 0
 tweaks.abilityScores.Intelligence.skills.Technology.proficiency = "Proficient"
+tweaks.unarmed.damage.bonus = -1
 tweaks.unarmed.damageDice.bonus = 0
 tweaks.unarmed.damageDice.dieSize = 4
 equipped = []
@@ -88,7 +89,7 @@ abilityScores.Wisdom.skills[Survival].proficiency = "none"
 abilityScores.Wisdom.value = 16
 weapons[Unarmed Strike].ability = "Strength"
 weapons[Unarmed Strike].attackBonus = 2
-weapons[Unarmed Strike].damageBonus = 0
+weapons[Unarmed Strike].damageBonus = -1
 weapons[Unarmed Strike].damageDieType = 4
 weapons[Unarmed Strike].damageNumberOfDice = 1
 weapons[Unarmed Strike].damageType = "Kinetic"
@@ -97,6 +98,7 @@ weapons[Unarmed Strike].index = -1
 weapons[Unarmed Strike].isCustom = false
 weapons[Unarmed Strike].properties = []
 weapons[Unarmed Strike].quantity = 0
+weapons[Unarmed Strike].tweaks.damage.bonus = -1
 weapons[Unarmed Strike].tweaks.damageDice.bonus = 0
 weapons[Unarmed Strike].tweaks.damageDice.dieSize = 4
 weapons[Unarmed Strike].weaponClassification = "Unarmed"
@@ -141,6 +143,7 @@ effect: Spider Climb · feature
 tweak: abilityScores.Intelligence.skills.Technology +0 {"proficiency":"Proficient"} · Fundamentals of Mechu-deru
 tweak: abilityScores.Constitution.score +1 · Ability Score Increase
 tweak: unarmed.damageDice +0 {"dieSize":4} · Bite
+tweak: unarmed.damage -1 · STR modifier
 
 ## Rolls
 init: Initiative: d20 +2 · = +2 modifier
@@ -177,7 +180,7 @@ skill|Charisma|1: Intimidation (CHA): d20 +2 · = +2 modifier
 skill|Charisma|2: Performance (CHA): d20 +2 · = +2 modifier
 skill|Charisma|3: Persuasion (CHA): d20 +2 · = +2 modifier
 attack|0: Unarmed Strike attack: d20 +2 · = +2 modifier
-damage|0: Unarmed Strike damage: d4 +0 · Kinetic
+damage|0: Unarmed Strike damage: d4 −1 · = −1 STR modifier · Kinetic
 force|light: Light force attack: d20 +6 · = +6 modifier
 force|dark: Dark force attack: d20 +5 · = +5 modifier
 force|universal: Universal force attack: d20 +6 · = +6 modifier
@@ -185,7 +188,7 @@ pdmg|force|Force Push/Pull|0|0|Wisdom: Force Push/Pull: kinetic damage: d4 d4 +0
 pdmg|tech|Ion Blast|0|0|Intelligence: Ion Blast: ion damage: d4 d4 +0 · ion
 pdmg|tech|Overheat|2|0|Intelligence: Overheat: fire damage: d8 d8 +0 · fire
 tool|One type of gaming set|proficient: One type of gaming set check: d20 +3 · = +0 INT modifier +3 proficiency
-damage|0|crit: Unarmed Strike damage (critical): d4 d4 +0 · Kinetic · critical
+damage|0|crit: Unarmed Strike damage (critical): d4 d4 −1 · = −1 STR modifier · Kinetic · critical
 
 ## Sheet: Overview
 Consular Test (local)
@@ -352,7 +355,8 @@ Skill | Ability | Bonus | Passive | Proficiency |
 ## Sheet: Weapons & Attacks
 Weapon | To hit | Damage | Ability | Type | Properties |
 Unarmed Strike
-| +2 | 1d4 Kinetic | Strength | Unarmed | — |
+| +2 | 1d4−1 Kinetic | Strength | Unarmed | — |
+  ↳ hover weapons.0.damageBonus: Without tweaks or effects: 0 → now -1 / d4 Unarmed damage die (1 → d4) · Bite Harch trait / −1 STR modifier with a damage die · STR modifier with a damage die (rules)
 
 ## Sheet: Force Casting
 Force points
@@ -773,4 +777,4 @@ SW5E's rules and item data: version 199, as it comes with the sheet. SW5E is the
 Raw SW5E character JSON
 { "name": "Consular Test (local)", "builderVersion": "0.7.6", "image": "", "experiencePoints": 6500, "species": { "name": "Harch", "abilityScoreImprovementSelec… [1614 chars #a7b5089b]
 Computed character JSON (the sheet's rules engine)
-{ "name": "Consular Test (local)", "builderVersion": "0.7.6", "image": "", "characteristics": { "alignment": "Lawful Light" }, "tweaks": { "abilityScores": { "C… [19591 chars #c355682c]
+{ "name": "Consular Test (local)", "builderVersion": "0.7.6", "image": "", "characteristics": { "alignment": "Lawful Light" }, "tweaks": { "abilityScores": { "C… [19646 chars #59007b3f]

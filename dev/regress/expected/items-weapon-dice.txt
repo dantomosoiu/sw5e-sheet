@@ -274,7 +274,7 @@ damage|0: Blaster rifle damage: d8 +7 · = +3 DEX modifier +2 Brute Force +1 Xer
 attack|1: Vibrorapier attack: d20 +8 · = +8 modifier · critical on 19–20 (Improved Critical) · option: Precision Attack +d4 +1d4
 damage|1: Vibrorapier damage: d8 d10 d6 +5 · = +3 DEX modifier +2 Brute Force · Kinetic · option: Sneak Attack +1d6 · option: Return Fire +d4 +1d4 · damage advantage: Weapon Expert · note: Weapon (Champion): +1d10 damage (rolled) · note: Ostrine Edge (Lethal): +1d6 acid, cold, fire, lightning, poison or sonic (the GM chooses) damage (rolled)
 attack|2: Unarmed Strike attack: d20 +5 · = +5 modifier · critical on 19–20 (Improved Critical) · option: Precision Attack +d4 +1d4
-damage|2: Unarmed Strike damage: d4 +5 · = +2 Brute Force +3 Unarmed Combatant · Kinetic · option: Sneak Attack +1d6 · option: Return Fire +d4 +1d4
+damage|2: Unarmed Strike damage: d4 +5 · = +3 DEX modifier (Unarmed Combatant) +2 Brute Force · Kinetic · option: Sneak Attack +1d6 · option: Return Fire +d4 +1d4
 supdie: Superiority die: d4 +0
 maneuver|Physical|Dexterity: Physical maneuver attack: d20 +5 · = +5 modifier
 maneuver|Mental|Wisdom: Mental maneuver attack: d20 +3 · = +3 modifier
@@ -283,7 +283,7 @@ tool|One type of gaming set|proficient: One type of gaming set check: d20 +2 · 
 tool|Tinker's implements|proficient: Tinker's implements check: d20 +2 · = +0 INT modifier +2 proficiency
 damage|0|crit: Blaster rifle damage (critical): d8 d8 +7 · = +3 DEX modifier +2 Brute Force +1 Xerrol Nightstinger Rifle +1 Torchy · Energy · critical · option: Sneak Attack +1d6 · option: Return Fire +d4 +1d4 · damage advantage: Weapon Expert
 damage|1|crit: Vibrorapier damage (critical): d8 d10 d6 d8 d10 d6 +5 · = +3 DEX modifier +2 Brute Force · Kinetic · critical · option: Sneak Attack +1d6 · option: Return Fire +d4 +1d4 · damage advantage: Weapon Expert · note: Weapon (Champion): +1d10 damage (rolled) · note: Ostrine Edge (Lethal): +1d6 acid, cold, fire, lightning, poison or sonic (the GM chooses) damage (rolled)
-damage|2|crit: Unarmed Strike damage (critical): d4 d4 +5 · = +2 Brute Force +3 Unarmed Combatant · Kinetic · critical · option: Sneak Attack +1d6 · option: Return Fire +d4 +1d4
+damage|2|crit: Unarmed Strike damage (critical): d4 d4 +5 · = +3 DEX modifier (Unarmed Combatant) +2 Brute Force · Kinetic · critical · option: Sneak Attack +1d6 · option: Return Fire +d4 +1d4
 
 ## Sheet: Overview
 Kadro Vos (Panel)
@@ -474,12 +474,12 @@ Torchy (Blaster rifle)
 Power cell (range 105/420), reload 12, two-handed
 Shots 11/12 [−1] [Reload] 13 Power cells
 | +6 | 1d8+7 Energy | Dexterity | Martial Blaster | Power cell (range 105/420), reload 12, two-handed |
-  ↳ hover weapons.0.attackBonus: Without tweaks or effects: 5 → now 6 / +1 Attack · Torchy while equipped / proficient Proficient: All blasters · Fighter weapon proficiencies Fighter proficiencies
+  ↳ hover weapons.0.attackBonus: Without tweaks or effects: 5 → now 6 / +1 Attack · Torchy while equipped
   ↳ hover weapons.0.damageBonus: Without tweaks or effects: 3 → now 7 / +2 Weapon damage · Brute Force Assault Specialist feature / +1 Damage · Xerrol Nightstinger Rifle while equipped / +1 Damage · Torchy while equipped
 Weapon (Champion) (Vibrorapier)
 Finesse
 | +8 | 1d8+1d10+1d6+5 Kinetic | Dexterity | Martial Vibroweapon | Finesse |
-  ↳ hover weapons.1.attackBonus: Without tweaks or effects: 5 → now 8 / +3 Attack · Weapon (Champion) while equipped / proficient Proficient: all vibroweapons · Fighter weapon proficiencies Fighter proficiencies
+  ↳ hover weapons.1.attackBonus: Without tweaks or effects: 5 → now 8 / +3 Attack · Weapon (Champion) while equipped
   ↳ hover weapons.1.damageBonus: Without tweaks or effects: 3 → now 5 / +2 Weapon damage · Brute Force Assault Specialist feature
 Unarmed Strike
 | +5 | 1d4+5 Kinetic | Dexterity (finesse) | Unarmed | — |

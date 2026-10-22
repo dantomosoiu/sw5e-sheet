@@ -185,7 +185,7 @@ weapon tweak: #3 toHit +0 · Berserker weapon proficiencies
 ## Rolls
 init: Initiative: d20 +2 · = +2 modifier
 death: Death saving throw: d20 +0
-hitdie|d12: Hit die (d12): d12 +3 · = +3 per die
+hitdie|d12: Hit die (d12), at least 6 (Durable): d12 +3 · = +3 per die
 check|Strength: Strength check: d20 +3 · = +3 modifier
 save|Strength: Strength saving throw: d20 +6 · = +6 modifier
 skill|Strength|0: Athletics (STR): d20 +6 · = +6 modifier

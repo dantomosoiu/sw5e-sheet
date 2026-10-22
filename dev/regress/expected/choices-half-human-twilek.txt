@@ -184,7 +184,7 @@ skill|Charisma|1: Intimidation (CHA): d20 +3 · = +3 modifier
 skill|Charisma|2: Performance (CHA): d20 +6 · = +6 modifier
 skill|Charisma|3: Persuasion (CHA): d20 +3 · = +3 modifier
 attack|0: Unarmed Strike attack: d20 +5 · = +5 modifier
-damage|0: Unarmed Strike damage: d4 +2 · = +2 Unarmed Combatant · Kinetic
+damage|0: Unarmed Strike damage: d4 +2 · = +2 DEX modifier (Unarmed Combatant) · Kinetic
 force|light: Light force attack: d20 +6 · = +6 modifier
 force|dark: Dark force attack: d20 +6 · = +6 modifier
 force|universal: Universal force attack: d20 +6 · = +6 modifier
@@ -192,7 +192,7 @@ pdmg|force|Force Push/Pull|0|0|Wisdom: Force Push/Pull: kinetic damage: d4 d4 +0
 pdmg|tech|Ion Blast|0|0|Intelligence: Ion Blast: ion damage: d4 d4 +0 · ion
 pdmg|tech|Overheat|2|0|Intelligence: Overheat: fire damage: d8 d8 +0 · fire
 tool|One type of gaming set|proficient: One type of gaming set check: d20 +3 · = +0 INT modifier +3 proficiency
-damage|0|crit: Unarmed Strike damage (critical): d4 d4 +2 · = +2 Unarmed Combatant · Kinetic · critical
+damage|0|crit: Unarmed Strike damage (critical): d4 d4 +2 · = +2 DEX modifier (Unarmed Combatant) · Kinetic · critical
 
 ## Sheet: Overview
 Consular Test (local)

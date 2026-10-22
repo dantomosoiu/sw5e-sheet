@@ -201,7 +201,7 @@ skill|Charisma|3: Persuasion (CHA): d20 +0 · = +0 modifier
 attack|0: Vibrodagger attack: d20 +4 · = +4 modifier
 damage|0: Vibrodagger damage: d4 +2 · = +2 DEX modifier · Kinetic
 attack|1: Unarmed Strike attack: d20 +4 · = +4 modifier
-damage|1: Unarmed Strike damage: d4 +2 · = +2 Unarmed Combatant · Kinetic
+damage|1: Unarmed Strike damage: d4 +2 · = +2 DEX modifier (Unarmed Combatant) · Kinetic
 tech: Tech attack: d20 +6 · = +6 modifier
 pdmg|tech|Repair Droid|1|0|Intelligence: Repair Droid: healing: d8 +4 · = +4 INT modifier
 tool|One of your choice|proficient: One of your choice check: d20 +6 · = +4 INT modifier +2 proficiency
@@ -209,7 +209,7 @@ tool|Slicer's kit|proficient: Slicer's kit check: d20 +6 · = +4 INT modifier +2
 tool|armstech's implements|proficient: armstech's implements check: d20 +6 · = +4 INT modifier +2 proficiency
 tool|Tinker's implements|expertise: Tinker's implements check: d20 +8 · = +4 INT modifier +4 proficiency ×2
 damage|0|crit: Vibrodagger damage (critical): d4 d4 +2 · = +2 DEX modifier · Kinetic · critical
-damage|1|crit: Unarmed Strike damage (critical): d4 d4 +2 · = +2 Unarmed Combatant · Kinetic · critical
+damage|1|crit: Unarmed Strike damage (critical): d4 d4 +2 · = +2 DEX modifier (Unarmed Combatant) · Kinetic · critical
 
 ## Sheet: Overview
 Wizard Check (local)

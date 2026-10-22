@@ -1,0 +1,4334 @@
+{
+ "format": "sw5e-sheet-regress-case",
+ "name": "dice-unnatural-weaponry",
+ "key": "id:00000000-0000-4000-8000-000002000001",
+ "recordedAt": 1792289049607,
+ "rules": {
+  "dataVersion": 199,
+  "fetchedAt": 1792273029637
+ },
+ "catalog": {
+  "dataVersion": 199,
+  "fetchedAt": 1792170265673,
+  "count": 2425
+ },
+ "storage": {
+  "snapshots": {
+   "id:00000000-0000-4000-8000-000002000001": {
+    "format": "sw5e-sheet-snapshot",
+    "version": 1,
+    "key": "id:00000000-0000-4000-8000-000002000001",
+    "raw": {
+     "name": "Scholar Test (Claude)",
+     "image": "",
+     "experiencePoints": 900,
+     "species": {
+      "name": "Bothan",
+      "abilityScoreImprovementSelectedOption": 0,
+      "abilityScoreImprovement": {}
+     },
+     "classes": [
+      {
+       "name": "Scholar",
+       "levels": 3,
+       "hitPoints": [
+        5,
+        5
+       ],
+       "abilityScoreImprovements": [],
+       "maneuvers": [
+        "Tyrannical Strike",
+        "Disarming Blow",
+        "Rampage",
+        "Shadow Puppetry",
+        "Dark Transference",
+        "Body Over Bother"
+       ],
+       "options": {
+        "Discoveries": [
+         {
+          "name": "Unnatural Weaponry"
+         }
+        ]
+       },
+       "archetype": {
+        "name": "Geneticist Pursuit"
+       }
+      }
+     ],
+     "baseAbilityScores": {
+      "Strength": 12,
+      "Dexterity": 15,
+      "Constitution": 13,
+      "Intelligence": 18,
+      "Wisdom": 13,
+      "Charisma": 11
+     },
+     "background": {
+      "name": "Noble",
+      "feat": {
+       "name": "Silver-Tongued",
+       "type": "Feat"
+      },
+      "feature": ""
+     },
+     "characteristics": {
+      "alignment": "Balanced Neutral",
+      "Personality Traits": "",
+      "Ideal": "",
+      "Bond": "",
+      "Flaw": "",
+      "Gender": "",
+      "Place of Birth": "",
+      "Age": "",
+      "Height": "",
+      "Weight": "",
+      "Hair": "",
+      "Eyes": "",
+      "Skin": "",
+      "Appearance": "",
+      "Backstory": "Copy of a real character, for testing the SW5E Sheet extension. Safe to delete."
+     },
+     "credits": 351,
+     "equipment": [
+      {
+       "name": "Fiber armor",
+       "quantity": 1,
+       "category": "Equipment",
+       "equipped": true
+      },
+      {
+       "name": "Chakram",
+       "quantity": 1,
+       "category": "Equipment",
+       "equipped": true
+      },
+      {
+       "name": "Vibrobaton",
+       "quantity": 1,
+       "category": "Equipment",
+       "equipped": true
+      },
+      {
+       "name": "Forgery kit",
+       "quantity": 1,
+       "category": "Equipment"
+      },
+      {
+       "name": "Pazaak deck",
+       "quantity": 1,
+       "category": "Equipment"
+      }
+     ],
+     "currentStats": {
+      "hitPointsLost": 0,
+      "temporaryHitPoints": 0,
+      "techPointsUsed": 0,
+      "forcePointsUsed": 0,
+      "superiorityDiceUsed": 0,
+      "hitDiceUsed": {
+       "d8": 0
+      },
+      "deathSaves": {
+       "successes": 0,
+       "failures": 0
+      },
+      "hasInspiration": false,
+      "featuresTimesUsed": {},
+      "conditions": [],
+      "exhaustion": 0,
+      "highLevelCasting": {
+       "level6": false,
+       "level7": false,
+       "level8": false,
+       "level9": false
+      }
+     },
+     "tweaks": {
+      "abilityScores": {
+       "Charisma": {
+        "skills": {
+         "Deception": {
+          "proficiency": "Expertise"
+         },
+         "Persuasion": {
+          "proficiency": "Expertise"
+         }
+        },
+        "score": {
+         "bonus": 1,
+         "override": null
+        }
+       },
+       "Wisdom": {
+        "skills": {
+         "Insight": {
+          "proficiency": "Proficient"
+         }
+        }
+       },
+       "Dexterity": {
+        "skills": {
+         "Sleight of Hand": {
+          "proficiency": "Proficient"
+         }
+        }
+       }
+      }
+     },
+     "customProficiencies": [
+      {
+       "name": "Pazaak deck",
+       "type": "tool",
+       "proficiencyLevel": "proficient"
+      },
+      {
+       "name": "Forgery kit",
+       "type": "tool",
+       "proficiencyLevel": "expertise"
+      }
+     ],
+     "customLanguages": [
+      "Bothese"
+     ],
+     "customFeatures": [],
+     "customFeats": [],
+     "customTechPowers": [],
+     "customForcePowers": [],
+     "customEquipment": [],
+     "settings": {
+      "isEnforcingForcePrerequisites": true,
+      "isFixedHitPoints": false,
+      "abilityScoreMethod": "Manual"
+     },
+     "notes": "Test character (a copy of a Scholar) for the SW5E Sheet extension. Safe to delete.",
+     "localId": "temp-q3e9pgja5",
+     "createdAt": 1792176000991,
+     "builderVersion": "0.7.6",
+     "changedAt": 1792176215087,
+     "id": "00000000-0000-4000-8000-000002000001",
+     "userId": "00000000-0000-4000-8000-000002000002",
+     "featureNotes": {
+      "expertise": "Persuasion + Forgery Kit",
+      "gambler's aptitude": "Pazaak, Sleight of Hand."
+     }
+    },
+    "complete": {
+     "name": "Scholar Test (Claude)",
+     "builderVersion": "0.7.6",
+     "image": "",
+     "characteristics": {
+      "alignment": "Balanced Neutral",
+      "Personality Traits": "",
+      "Ideal": "",
+      "Bond": "",
+      "Flaw": "",
+      "Gender": "",
+      "Place of Birth": "",
+      "Age": "",
+      "Height": "",
+      "Weight": "",
+      "Hair": "",
+      "Eyes": "",
+      "Skin": "",
+      "Appearance": "",
+      "Backstory": "Copy of a real character, for testing the SW5E Sheet extension. Safe to delete."
+     },
+     "tweaks": {
+      "abilityScores": {
+       "Charisma": {
+        "skills": {
+         "Deception": {
+          "proficiency": "Expertise"
+         },
+         "Persuasion": {
+          "proficiency": "Expertise"
+         }
+        },
+        "score": {
+         "bonus": 1,
+         "override": null
+        }
+       },
+       "Wisdom": {
+        "skills": {
+         "Insight": {
+          "proficiency": "Proficient"
+         }
+        }
+       },
+       "Dexterity": {
+        "skills": {
+         "Sleight of Hand": {
+          "proficiency": "Proficient"
+         }
+        }
+       }
+      }
+     },
+     "customProficiencies": [
+      {
+       "name": "Pazaak deck",
+       "type": "tool",
+       "proficiencyLevel": "proficient"
+      },
+      {
+       "name": "Forgery kit",
+       "type": "tool",
+       "proficiencyLevel": "expertise"
+      }
+     ],
+     "customLanguages": [
+      "Bothese"
+     ],
+     "customFeatures": [],
+     "customTechPowers": [],
+     "customForcePowers": [],
+     "customEquipment": [],
+     "numCustomFeats": 0,
+     "currentLevel": 3,
+     "classText": "Scholar (Gambler Pursuit) 3",
+     "alignment": "Balanced Neutral",
+     "species": "Bothan",
+     "background": "Noble",
+     "experiencePoints": {
+      "previousLevel": 900,
+      "current": 900,
+      "nextLevel": 2700,
+      "isCorrect": true,
+      "errorMessage": ""
+     },
+     "abilityScores": {
+      "Strength": {
+       "value": 12,
+       "modifier": 1,
+       "savingThrow": {
+        "modifier": 1,
+        "proficiency": "none"
+       },
+       "skills": [
+        {
+         "name": "Athletics",
+         "modifier": 1,
+         "proficiency": "none"
+        }
+       ]
+      },
+      "Dexterity": {
+       "value": 16,
+       "modifier": 3,
+       "savingThrow": {
+        "modifier": 3,
+        "proficiency": "none"
+       },
+       "skills": [
+        {
+         "name": "Acrobatics",
+         "modifier": 3,
+         "proficiency": "none"
+        },
+        {
+         "name": "Sleight of Hand",
+         "modifier": 5,
+         "proficiency": "proficient"
+        },
+        {
+         "name": "Stealth",
+         "modifier": 3,
+         "proficiency": "none"
+        }
+       ]
+      },
+      "Constitution": {
+       "value": 13,
+       "modifier": 1,
+       "savingThrow": {
+        "modifier": 1,
+        "proficiency": "none"
+       },
+       "skills": []
+      },
+      "Intelligence": {
+       "value": 18,
+       "modifier": 4,
+       "savingThrow": {
+        "modifier": 6,
+        "proficiency": "proficient"
+       },
+       "skills": [
+        {
+         "name": "Investigation",
+         "modifier": 4,
+         "proficiency": "none"
+        },
+        {
+         "name": "Lore",
+         "modifier": 4,
+         "proficiency": "none"
+        },
+        {
+         "name": "Nature",
+         "modifier": 4,
+         "proficiency": "none"
+        },
+        {
+         "name": "Piloting",
+         "modifier": 4,
+         "proficiency": "none"
+        },
+        {
+         "name": "Technology",
+         "modifier": 4,
+         "proficiency": "none"
+        }
+       ]
+      },
+      "Wisdom": {
+       "value": 13,
+       "modifier": 1,
+       "savingThrow": {
+        "modifier": 3,
+        "proficiency": "proficient"
+       },
+       "skills": [
+        {
+         "name": "Animal Handling",
+         "modifier": 1,
+         "proficiency": "none"
+        },
+        {
+         "name": "Insight",
+         "modifier": 3,
+         "proficiency": "proficient"
+        },
+        {
+         "name": "Medicine",
+         "modifier": 1,
+         "proficiency": "none"
+        },
+        {
+         "name": "Perception",
+         "modifier": 1,
+         "proficiency": "none"
+        },
+        {
+         "name": "Survival",
+         "modifier": 1,
+         "proficiency": "none"
+        }
+       ]
+      },
+      "Charisma": {
+       "value": 12,
+       "modifier": 1,
+       "savingThrow": {
+        "modifier": 1,
+        "proficiency": "none"
+       },
+       "skills": [
+        {
+         "name": "Deception",
+         "modifier": 5,
+         "proficiency": "expertise"
+        },
+        {
+         "name": "Intimidation",
+         "modifier": 1,
+         "proficiency": "none"
+        },
+        {
+         "name": "Performance",
+         "modifier": 1,
+         "proficiency": "none"
+        },
+        {
+         "name": "Persuasion",
+         "modifier": 5,
+         "proficiency": "expertise"
+        }
+       ]
+      }
+     },
+     "proficiencyBonus": 2,
+     "initiative": 3,
+     "armorClass": 15,
+     "armorList": [
+      "Fiber armor"
+     ],
+     "passivePerception": 11,
+     "inspiration": false,
+     "vision": "normal",
+     "speed": {
+      "base": "30 ft",
+      "hour": "3 miles",
+      "day": "24 miles",
+      "special": ""
+     },
+     "hitPoints": {
+      "current": 21,
+      "temporary": 0,
+      "maximum": 21,
+      "hitDice": [
+       {
+        "size": "d8",
+        "current": 3,
+        "maximum": 3
+       }
+      ],
+      "deathSaves": {
+       "successes": 0,
+       "failures": 0
+      },
+      "resting": {
+       "hitDieBonus": 1,
+       "numHitDiceUsed": 0,
+       "hitDiceRestored": [],
+       "techPointsUsed": 0,
+       "forcePointsUsed": 0,
+       "highLevelCasting": {
+        "level6": false,
+        "level7": false,
+        "level8": false,
+        "level9": false
+       },
+       "shortRestFeatures": [],
+       "longRestFeatures": []
+      }
+     },
+     "conditions": [],
+     "exhaustion": 0,
+     "proficiencies": [
+      {
+       "name": "Simple blasters",
+       "type": "weapon"
+      },
+      {
+       "name": "simple vibroweapons",
+       "type": "weapon"
+      },
+      {
+       "name": "martial vibroweapons with the finesse property",
+       "type": "weapon"
+      },
+      {
+       "name": "Light armor",
+       "type": "armor"
+      },
+      {
+       "name": "One type of gaming set",
+       "type": "tool"
+      }
+     ],
+     "skillAndSaveProficiencies": [
+      "Sleight of Hand",
+      "Insight",
+      "Deception",
+      "Persuasion",
+      "Intelligence Saving Throws",
+      "Wisdom Saving Throws"
+     ],
+     "languages": [
+      "Galactic Basic"
+     ],
+     "equipment": [
+      {
+       "name": "Fiber armor",
+       "description": "Fiber armor is a type of armor that offers more protection than the lighter combat suit. Fiber armor is heavier overall than combat suits, and not quite as flexible, but many consider the trade-offs worthwhile. It is a good source of defense from physical attacks and light blaster fire.",
+       "cost": 450,
+       "weight": "13",
+       "equipmentCategoryEnum": 4,
+       "equipmentCategory": "Armor",
+       "damageNumberOfDice": 0,
+       "damageTypeEnum": 0,
+       "damageType": "Unknown",
+       "damageDieModifier": 0,
+       "weaponClassificationEnum": 0,
+       "weaponClassification": "Unknown",
+       "armorClassificationEnum": 1,
+       "armorClassification": "Light",
+       "damageDiceDieTypeEnum": 0,
+       "damageDieType": 0,
+       "properties": [],
+       "propertiesJson": "[]",
+       "propertiesMap": {},
+       "propertiesMapJson": "{}",
+       "modes": [],
+       "modesJson": "[]",
+       "ac": "12 + Dex modifier",
+       "strengthRequirement": "",
+       "stealthDisadvantage": false,
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Fiber armor",
+       "timestamp": "2023-05-30T20:15:38.6892471+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A38.6892471Z'\"",
+       "equipped": true,
+       "quantity": 1,
+       "index": 0,
+       "isFound": true
+      },
+      {
+       "name": "Chakram",
+       "description": null,
+       "cost": 175,
+       "weight": "3",
+       "equipmentCategoryEnum": 3,
+       "equipmentCategory": "Weapon",
+       "damageNumberOfDice": 1,
+       "damageTypeEnum": 7,
+       "damageType": "Kinetic",
+       "damageDieModifier": 0,
+       "weaponClassificationEnum": 4,
+       "weaponClassification": "MartialVibroweapon",
+       "armorClassificationEnum": 0,
+       "armorClassification": "Unknown",
+       "damageDiceDieTypeEnum": 6,
+       "damageDieType": 6,
+       "properties": [
+        "Finesse",
+        "returning",
+        "thrown (range 30/90)"
+       ],
+       "propertiesJson": "[\"Finesse\",\"returning\",\"thrown (range 30/90)\"]",
+       "propertiesMap": {
+        "Finesse": "Finesse",
+        "Returning": "returning",
+        "Range": "thrown (range 30/90)"
+       },
+       "propertiesMapJson": "{\"Finesse\":\"Finesse\",\"Returning\":\"returning\",\"Range\":\"thrown (range 30/90)\"}",
+       "modes": [],
+       "modesJson": "[]",
+       "ac": null,
+       "strengthRequirement": null,
+       "stealthDisadvantage": false,
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Chakram",
+       "timestamp": "2023-05-30T20:15:38.6842512+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A38.6842512Z'\"",
+       "attackBonus": 3,
+       "damageBonus": 3,
+       "ability": "Dexterity",
+       "isCustom": false,
+       "equipped": true,
+       "quantity": 1,
+       "index": 1,
+       "tweaks": {},
+       "isFound": true
+      },
+      {
+       "name": "Vibrobaton",
+       "description": null,
+       "cost": 250,
+       "weight": "4",
+       "equipmentCategoryEnum": 3,
+       "equipmentCategory": "Weapon",
+       "damageNumberOfDice": 2,
+       "damageTypeEnum": 7,
+       "damageType": "Kinetic",
+       "damageDieModifier": 0,
+       "weaponClassificationEnum": 4,
+       "weaponClassification": "MartialVibroweapon",
+       "armorClassificationEnum": 0,
+       "armorClassification": "Unknown",
+       "damageDiceDieTypeEnum": 4,
+       "damageDieType": 4,
+       "properties": [
+        "—"
+       ],
+       "propertiesJson": "[\"—\"]",
+       "propertiesMap": {
+        "": "—"
+       },
+       "propertiesMapJson": "{\"\":\"—\"}",
+       "modes": [],
+       "modesJson": "[]",
+       "ac": null,
+       "strengthRequirement": null,
+       "stealthDisadvantage": false,
+       "contentTypeEnum": 2,
+       "contentType": "ExpandedContent",
+       "contentSourceEnum": 5,
+       "contentSource": "EC",
+       "partitionKey": "ExpandedContent",
+       "rowKey": "Vibrobaton",
+       "timestamp": "2023-05-30T20:15:25.5757257+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A25.5757257Z'\"",
+       "attackBonus": 1,
+       "damageBonus": 1,
+       "ability": "Strength",
+       "isCustom": false,
+       "equipped": true,
+       "quantity": 1,
+       "index": 2,
+       "tweaks": {},
+       "isFound": true
+      },
+      {
+       "name": "Forgery kit",
+       "description": null,
+       "cost": 150,
+       "weight": "5",
+       "equipmentCategoryEnum": 21,
+       "equipmentCategory": "Kit",
+       "damageNumberOfDice": 0,
+       "damageTypeEnum": 0,
+       "damageType": "Unknown",
+       "damageDieModifier": 0,
+       "weaponClassificationEnum": 0,
+       "weaponClassification": "Unknown",
+       "armorClassificationEnum": 0,
+       "armorClassification": "Unknown",
+       "damageDiceDieTypeEnum": 0,
+       "damageDieType": 0,
+       "properties": null,
+       "propertiesJson": "",
+       "propertiesMap": null,
+       "propertiesMapJson": "",
+       "modes": [],
+       "modesJson": "[]",
+       "ac": null,
+       "strengthRequirement": null,
+       "stealthDisadvantage": false,
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Forgery kit",
+       "timestamp": "2023-05-30T20:15:38.9590936+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A38.9590936Z'\"",
+       "quantity": 1,
+       "index": 3,
+       "isFound": true
+      },
+      {
+       "name": "Pazaak deck",
+       "description": null,
+       "cost": 100,
+       "weight": "0",
+       "equipmentCategoryEnum": 17,
+       "equipmentCategory": "GamingSet",
+       "damageNumberOfDice": 0,
+       "damageTypeEnum": 0,
+       "damageType": "Unknown",
+       "damageDieModifier": 0,
+       "weaponClassificationEnum": 0,
+       "weaponClassification": "Unknown",
+       "armorClassificationEnum": 0,
+       "armorClassification": "Unknown",
+       "damageDiceDieTypeEnum": 0,
+       "damageDieType": 0,
+       "properties": null,
+       "propertiesJson": "",
+       "propertiesMap": null,
+       "propertiesMapJson": "",
+       "modes": [],
+       "modesJson": "[]",
+       "ac": null,
+       "strengthRequirement": null,
+       "stealthDisadvantage": false,
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Pazaak deck",
+       "timestamp": "2023-05-30T20:15:38.6942443+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A38.6942443Z'\"",
+       "quantity": 1,
+       "index": 4,
+       "isFound": true
+      }
+     ],
+     "attunement": {
+      "current": 0,
+      "maximum": 2,
+      "hasAttunable": false
+     },
+     "weapons": [
+      {
+       "name": "Chakram",
+       "description": null,
+       "cost": 175,
+       "weight": "3",
+       "equipmentCategoryEnum": 3,
+       "equipmentCategory": "Weapon",
+       "damageNumberOfDice": 1,
+       "damageTypeEnum": 7,
+       "damageType": "Kinetic",
+       "damageDieModifier": 0,
+       "weaponClassificationEnum": 4,
+       "weaponClassification": "MartialVibroweapon",
+       "armorClassificationEnum": 0,
+       "armorClassification": "Unknown",
+       "damageDiceDieTypeEnum": 6,
+       "damageDieType": 6,
+       "properties": [
+        "Finesse",
+        "returning",
+        "thrown (range 30/90)"
+       ],
+       "propertiesJson": "[\"Finesse\",\"returning\",\"thrown (range 30/90)\"]",
+       "propertiesMap": {
+        "Finesse": "Finesse",
+        "Returning": "returning",
+        "Range": "thrown (range 30/90)"
+       },
+       "propertiesMapJson": "{\"Finesse\":\"Finesse\",\"Returning\":\"returning\",\"Range\":\"thrown (range 30/90)\"}",
+       "modes": [],
+       "modesJson": "[]",
+       "ac": null,
+       "strengthRequirement": null,
+       "stealthDisadvantage": false,
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Chakram",
+       "timestamp": "2023-05-30T20:15:38.6842512+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A38.6842512Z'\"",
+       "attackBonus": 3,
+       "damageBonus": 3,
+       "ability": "Dexterity",
+       "isCustom": false,
+       "equipped": true,
+       "quantity": 1,
+       "index": 1,
+       "tweaks": {},
+       "isFound": true
+      },
+      {
+       "name": "Vibrobaton",
+       "description": null,
+       "cost": 250,
+       "weight": "4",
+       "equipmentCategoryEnum": 3,
+       "equipmentCategory": "Weapon",
+       "damageNumberOfDice": 2,
+       "damageTypeEnum": 7,
+       "damageType": "Kinetic",
+       "damageDieModifier": 0,
+       "weaponClassificationEnum": 4,
+       "weaponClassification": "MartialVibroweapon",
+       "armorClassificationEnum": 0,
+       "armorClassification": "Unknown",
+       "damageDiceDieTypeEnum": 4,
+       "damageDieType": 4,
+       "properties": [
+        "—"
+       ],
+       "propertiesJson": "[\"—\"]",
+       "propertiesMap": {
+        "": "—"
+       },
+       "propertiesMapJson": "{\"\":\"—\"}",
+       "modes": [],
+       "modesJson": "[]",
+       "ac": null,
+       "strengthRequirement": null,
+       "stealthDisadvantage": false,
+       "contentTypeEnum": 2,
+       "contentType": "ExpandedContent",
+       "contentSourceEnum": 5,
+       "contentSource": "EC",
+       "partitionKey": "ExpandedContent",
+       "rowKey": "Vibrobaton",
+       "timestamp": "2023-05-30T20:15:25.5757257+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A25.5757257Z'\"",
+       "attackBonus": 1,
+       "damageBonus": 1,
+       "ability": "Strength",
+       "isCustom": false,
+       "equipped": true,
+       "quantity": 1,
+       "index": 2,
+       "tweaks": {},
+       "isFound": true
+      },
+      {
+       "name": "Unarmed Strike",
+       "description": null,
+       "cost": 0,
+       "weight": "0",
+       "equipmentCategory": "Weapon",
+       "contentType": "Core",
+       "contentSource": "PHB",
+       "damageNumberOfDice": 1,
+       "damageType": "Kinetic",
+       "weaponClassification": "Unarmed",
+       "damageDieType": 0,
+       "properties": [],
+       "propertiesMap": {},
+       "modes": [],
+       "quantity": 0,
+       "index": -1,
+       "isFound": true,
+       "equipped": true,
+       "attackBonus": 3,
+       "damageBonus": 2,
+       "ability": "Strength",
+       "isCustom": false,
+       "tweaks": {}
+      }
+     ],
+     "credits": 351,
+     "carryingCapacity": {
+      "encumbered": 60,
+      "heavilyEncumbered": 120,
+      "maxCapacity": 180,
+      "pushDragLift": 360
+     },
+     "superiority": false,
+     "highLevelCasting": {
+      "level6": false,
+      "level7": false,
+      "level8": false,
+      "level9": false
+     },
+     "techCasting": false,
+     "forceCasting": false,
+     "allForcePowers": [],
+     "combatFeatures": [
+      {
+       "name": "Academic Superiority",
+       "text": "_**Scholar:** 1st level_\r\nYou learn maneuvers that are fueled by special dice called superiority dice. See chapter 13 for the maneuvers list.\r\n#### Maneuvers Known\r\nYou learn one maneuver of your choice, and you earn more at higher levels, as shown in the Maneuvers Known column of the scholar table. Many maneuvers enhance an attack in some way. You can use only one maneuver per attack, and you may only use each maneuver once per turn.\r\nEach time you learn new maneuvers, you can also replace one maneuver you know with a different one.\r\n#### Superiority Dice\r\nYou have three superiority dice, which are d4s, and you earn more at higher levels, as shown in the Superiority Dice Quantity column of the scholar table. This die changes as you gain scholar levels, as shown in the Superiority Dice Size column of the scholar table. A superiority die is expended when you use it. \r\nYou regain all of your expended superiority dice when you finish a short or long rest.\r\n#### Maneuver Ability\r\nYour maneuver ability varies based on the type of the maneuver you use. You use Strength, Dexterity, or Constitution for physical maneuvers (your choice), Intelligence, Wisdom, or Charisma for mental maneuvers (your choice), and an ability of your choice for general maneuvers. You use this ability whenever a maneuver refers to your maneuver ability. Additionally, you use this ability modifier when setting the saving throw DC for a maneuver you use.\r\n___\r\n**Maneuver save DC** = 8 + your proficiency bonus + your maneuver ability modifier\r\n___",
+       "level": 1,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Scholar",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Scholar-Academic Superiority-1",
+       "timestamp": "2023-05-30T20:15:43.4405383+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.4405383Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Critical Analysis",
+       "text": "_**Scholar:** 1st level_\r\nYou are able to analyze a creature, develop a plan on how to best overcome any potential obstacle, and execute that plan with ruthless efficiency. As a bonus action on your turn, you can analyze a creature you can see within 60 feet of you. For the next minute, or until you analyze another target, you gain the following benefits:\r\n- When you analyze a hostile creature, your attack and damage rolls made with weapons with the finesse property or blaster weapons against that target may use your Critical Analysis ability modifier, which is Intelligence, instead of Strength or Dexterity. You must use the same modifier for both rolls.\r\n- When you analyze a friendly creature, the target can end your Critical Analysis on them (no action required) to add your Critical Analysis ability modifier, which is Intelligence, to one attack roll, ability check, or saving throw. Once a friendly creature has benefited from this ability, they can not do so again until they complete a short or long rest.",
+       "level": 1,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Scholar",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Scholar-Critical Analysis-1",
+       "timestamp": "2023-05-30T20:15:43.4415384+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.4415384Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Discovery",
+       "text": "_**Scholar:** 2nd level_\r\nAs you adventure, your studies have helped you discover new practices you can apply to your skills. You master two discoveries of your choice. Your discovery options are detailed at the end of the class description. When you gain certain scholar levels, you gain additional discoveries of your choice, as shown in the Discoveries column of the scholar table.\r\nAdditionally, when you gain a level in this class, you can choose one of the discoveries you know and replace it with another discovery that you could learn at that level.",
+       "level": 2,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Scholar",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Scholar-Discovery-2",
+       "timestamp": "2023-05-30T20:15:43.4415384+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.4415384Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Gambler's Aptitude",
+       "text": "_**Gambler Pursuit:** 3rd level_\r\nYou gain proficiency with your choice of gaming set and your choice of the Insight, Deception, Persuasion, or Sleight of Hand skills. Additionally, you can't have disadvantage on checks you make with them.",
+       "level": 3,
+       "sourceEnum": 1,
+       "source": "Archetype",
+       "sourceName": "Gambler Pursuit",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Archetype-Gambler Pursuit-Gambler's Aptitude-3",
+       "timestamp": "2023-05-30T20:15:42.7899092+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A42.7899092Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Risk versus Reward",
+       "text": "_**Gambler Pursuit:** 3rd, 9th, 13th, and 17th level_\r\nWhen you make your first attack on your turn against the target of your Critical Analysis feature, you can decide to gamble by rolling a d6. On a roll of 4 or higher, you have advantage on attack rolls against that creature until the start of your next turn. On a roll of 3 or lower, that creature instead has advantage on attack rolls against you until the start of your next turn.\r\nThis die increases to d8 at 9th level, d10 at 13th level, and d12 at 17th level.",
+       "level": 3,
+       "sourceEnum": 1,
+       "source": "Archetype",
+       "sourceName": "Gambler Pursuit",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Archetype-Gambler Pursuit-Risk versus Reward-3",
+       "timestamp": "2023-05-30T20:15:42.7899092+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A42.7899092Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Academic Pursuit",
+       "text": "_**Scholar:** 3rd, 6th, 9th, and 17th level_\r\nYou dedicate your studies towards a pursuit, which is detailed at the end of the class description. ",
+       "level": 3,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Scholar",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Scholar-Academic Pursuit-3",
+       "timestamp": "2023-05-30T20:15:43.4415384+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.4415384Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Ability Score Increase",
+       "text": "Your Intelligence score increases by 2, and your Dexterity score increases by 1.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Bothan",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Bothan-Ability Score Increase",
+       "timestamp": "2023-05-30T20:15:40.7660622+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.7660622Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Age",
+       "text": "Bothans reach adulthood in their late teens and live less than a century.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Bothan",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Bothan-Age",
+       "timestamp": "2023-05-30T20:15:40.7660622+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.7660622Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Alignment",
+       "text": "Bothans' duplicitous nature causes them to tend toward the dark side, though there are exceptions.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Bothan",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Bothan-Alignment",
+       "timestamp": "2023-05-30T20:15:40.7660622+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.7660622Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Languages",
+       "text": "You can speak, read, and write Galactic Basic and Bothese. Bothese had a great influence on the forming of Galactic Basic; the two languages share many cognates.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Bothan",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Bothan-Languages",
+       "timestamp": "2023-05-30T20:15:40.7670629+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.7670629Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Naturally Stealthy",
+       "text": "You can attempt to hide even when you are obscured only by a creature that is your size or larger than you.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Bothan",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Bothan-Naturally Stealthy",
+       "timestamp": "2023-05-30T20:15:40.7670629+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.7670629Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Nimble Escape",
+       "text": "You can take the Disengage or Hide action as a bonus action on each of your turns.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Bothan",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Bothan-Nimble Escape",
+       "timestamp": "2023-05-30T20:15:40.7670629+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.7670629Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Shrewd",
+       "text": "You are proficient in the Insight and Deception skills.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Bothan",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Bothan-Shrewd",
+       "timestamp": "2023-05-30T20:15:40.7670629+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.7670629Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Size",
+       "text": "Bothans stand 4-5 feet tall and weigh under 100 pounds. Regardless of your position in that range, your size is Medium.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Bothan",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Bothan-Size",
+       "timestamp": "2023-05-30T20:15:40.7670629+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.7670629Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Speed",
+       "text": "Your base walking speed is 30 feet.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Bothan",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Bothan-Speed",
+       "timestamp": "2023-05-30T20:15:40.7670629+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.7670629Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Silver-Tongued",
+       "prerequisite": null,
+       "text": "You develop your conversational skill to better deceive others. You gain the following benefits: \r\n- Increase your Charisma score by 1, to a maximum of 20. \r\n- You gain proficiency in the Deception skill. If you are already proficient in it, you instead gain expertise in it. \r\n- When you take the Attack action, you can replace one attack with an attempt to deceive one humanoid you can see within 30 feet of you that can see and hear you. Make a Charisma (Deception) check contested by the target's Wisdom (Insight) check. If your check succeeds, your movement doesn't provoke opportunity attacks from the target and your attack rolls against it have advantage; both benefits last until the end of your next turn or until you use this ability on a different target. If your check fails, the target can't be deceived by you in this way for 1 hour.\r\n",
+       "attributesIncreased": [
+        "Charisma"
+       ],
+       "attributesIncreasedJson": "[\"Charisma\"]",
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Silver-Tongued",
+       "timestamp": "2023-05-30T20:15:09.5558628+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A09.5558628Z'\"",
+       "customIndex": -1,
+       "combat": true
+      }
+     ],
+     "nonCombatFeatures": [],
+     "backgroundFeature": {
+      "name": "Position of Privilege",
+      "combat": false,
+      "text": "Thanks to your noble birth, people are inclined to think the best of you. You are welcome in high society, and people assume you have the right to be wherever you are. The common folk make every effort to accommodate you and avoid your displeasure, and other people of high birth treat you as a member of the same social sphere. You can secure an audience with a local noble if you need to.\r\n"
+     },
+     "settings": {
+      "isEnforcingForcePrerequisites": true,
+      "isFixedHitPoints": false,
+      "abilityScoreMethod": "Manual"
+     },
+     "notes": "Test character (a copy of a Scholar) for the SW5E Sheet extension. Safe to delete."
+    },
+    "refs": {
+     "classes": {
+      "Scholar": {
+       "name": "Scholar",
+       "summary": "Academic who uses wits and allies to control the battlefield",
+       "primaryAbility": "Intelligence",
+       "hitDiceDieType": 8,
+       "hitPointsAtFirstLevel": "8 + your Constitution modifier",
+       "hitPointsAtHigherLevels": "1d8 (or 5) + your Constitution modifier per scholar level after 1st",
+       "armorProficiencies": [
+        "Light armor"
+       ],
+       "weaponProficiencies": [
+        "Simple blasters",
+        "simple vibroweapons",
+        "martial vibroweapons with the finesse property"
+       ],
+       "toolProficiencies": [
+        "Any one"
+       ],
+       "savingThrows": [
+        "Intelligence",
+        "Wisdom"
+       ],
+       "skillChoices": "Choose three from Deception, Insight, Intimidation, Investigation, Lore, Medicine, Nature, Persuasion, and Survival",
+       "levelChanges": {
+        "1": {
+         "Level": "1st",
+         "Proficiency Bonus": "+2",
+         "Features": "Academic Superiority, Critical Analysis",
+         "Maneuvers Known": "1",
+         "Superiority Dice Quantity": "3",
+         "Superiority Dice Size": "d4",
+         "Discoveries": "�"
+        },
+        "2": {
+         "Level": "2nd",
+         "Proficiency Bonus": "+2",
+         "Features": "Discovery, Sage Advice (long rest)",
+         "Maneuvers Known": "2",
+         "Superiority Dice Quantity": "3",
+         "Superiority Dice Size": "d4",
+         "Discoveries": "2"
+        },
+        "3": {
+         "Level": "3rd",
+         "Proficiency Bonus": "+2",
+         "Features": "Expertise, Academic Pursuit",
+         "Maneuvers Known": "4",
+         "Superiority Dice Quantity": "4",
+         "Superiority Dice Size": "d4",
+         "Discoveries": "4"
+        },
+        "4": {
+         "Level": "4th",
+         "Proficiency Bonus": "+2",
+         "Features": "Ability Score Improvement",
+         "Maneuvers Known": "5",
+         "Superiority Dice Quantity": "4",
+         "Superiority Dice Size": "d4",
+         "Discoveries": "4"
+        },
+        "5": {
+         "Level": "5th",
+         "Proficiency Bonus": "+3",
+         "Features": "Multitasker",
+         "Maneuvers Known": "6",
+         "Superiority Dice Quantity": "5",
+         "Superiority Dice Size": "d6",
+         "Discoveries": "5"
+        },
+        "6": {
+         "Level": "6th",
+         "Proficiency Bonus": "+3",
+         "Features": "Pursuit feature",
+         "Maneuvers Known": "7",
+         "Superiority Dice Quantity": "5",
+         "Superiority Dice Size": "d6",
+         "Discoveries": "5"
+        },
+        "7": {
+         "Level": "7th",
+         "Proficiency Bonus": "+3",
+         "Features": "�",
+         "Maneuvers Known": "9",
+         "Superiority Dice Quantity": "6",
+         "Superiority Dice Size": "d6",
+         "Discoveries": "5"
+        },
+        "8": {
+         "Level": "8th",
+         "Proficiency Bonus": "+3",
+         "Features": "Ability Score Improvement",
+         "Maneuvers Known": "10",
+         "Superiority Dice Quantity": "6",
+         "Superiority Dice Size": "d6",
+         "Discoveries": "5"
+        },
+        "9": {
+         "Level": "9th",
+         "Proficiency Bonus": "+4",
+         "Features": "Pursuit feature",
+         "Maneuvers Known": "11",
+         "Superiority Dice Quantity": "7",
+         "Superiority Dice Size": "d8",
+         "Discoveries": "6"
+        },
+        "10": {
+         "Level": "10th",
+         "Proficiency Bonus": "+4",
+         "Features": "Expertise",
+         "Maneuvers Known": "12",
+         "Superiority Dice Quantity": "7",
+         "Superiority Dice Size": "d8",
+         "Discoveries": "6"
+        },
+        "11": {
+         "Level": "11th",
+         "Proficiency Bonus": "+4",
+         "Features": "�",
+         "Maneuvers Known": "14",
+         "Superiority Dice Quantity": "8",
+         "Superiority Dice Size": "d8",
+         "Discoveries": "7"
+        },
+        "12": {
+         "Level": "12th",
+         "Proficiency Bonus": "+4",
+         "Features": "Ability Score Improvement",
+         "Maneuvers Known": "15",
+         "Superiority Dice Quantity": "8",
+         "Superiority Dice Size": "d8",
+         "Discoveries": "7"
+        },
+        "13": {
+         "Level": "13th",
+         "Proficiency Bonus": "+5",
+         "Features": "Sage Advice (short rest)",
+         "Maneuvers Known": "16",
+         "Superiority Dice Quantity": "9",
+         "Superiority Dice Size": "d10",
+         "Discoveries": "8"
+        },
+        "14": {
+         "Level": "14th",
+         "Proficiency Bonus": "+5",
+         "Features": "Calm and Collected",
+         "Maneuvers Known": "17",
+         "Superiority Dice Quantity": "9",
+         "Superiority Dice Size": "d10",
+         "Discoveries": "8"
+        },
+        "15": {
+         "Level": "15th",
+         "Proficiency Bonus": "+5",
+         "Features": "�",
+         "Maneuvers Known": "19",
+         "Superiority Dice Quantity": "10",
+         "Superiority Dice Size": "d10",
+         "Discoveries": "8"
+        },
+        "16": {
+         "Level": "16th",
+         "Proficiency Bonus": "+5",
+         "Features": "Ability Score Improvement",
+         "Maneuvers Known": "20",
+         "Superiority Dice Quantity": "10",
+         "Superiority Dice Size": "d10",
+         "Discoveries": "8"
+        },
+        "17": {
+         "Level": "17th",
+         "Proficiency Bonus": "+6",
+         "Features": "Pursuit feature",
+         "Maneuvers Known": "21",
+         "Superiority Dice Quantity": "11",
+         "Superiority Dice Size": "d12",
+         "Discoveries": "9"
+        },
+        "18": {
+         "Level": "18th",
+         "Proficiency Bonus": "+6",
+         "Features": "Adaptable Intellectual",
+         "Maneuvers Known": "22",
+         "Superiority Dice Quantity": "11",
+         "Superiority Dice Size": "d12",
+         "Discoveries": "9"
+        },
+        "19": {
+         "Level": "19th",
+         "Proficiency Bonus": "+6",
+         "Features": "Ability Score Improvement",
+         "Maneuvers Known": "23",
+         "Superiority Dice Quantity": "12",
+         "Superiority Dice Size": "d12",
+         "Discoveries": "9"
+        },
+        "20": {
+         "Level": "20th",
+         "Proficiency Bonus": "+6",
+         "Features": "Knowledge Unbound",
+         "Maneuvers Known": "24",
+         "Superiority Dice Quantity": "12",
+         "Superiority Dice Size": "d12",
+         "Discoveries": "9"
+        }
+       },
+       "casterType": "None",
+       "casterRatio": 0,
+       "multiClassProficiencies": [
+        "Light armor"
+       ],
+       "archetypeFlavorName": "Academic Pursuits"
+      }
+     },
+     "archetypes": {
+      "Gambler Pursuit": {
+       "name": "Gambler Pursuit",
+       "className": "Scholar",
+       "casterType": "None",
+       "casterRatio": 0,
+       "leveledTable": null
+      }
+     },
+     "species": {
+      "Bothan": {
+       "name": "Bothan",
+       "size": "Medium",
+       "homeworld": "Bothawui",
+       "language": "Bothese",
+       "distinctions": "Diminutive stature, mood-sensitive fur",
+       "skinColorOptions": "Brown",
+       "hairColorOptions": "Black, brown, or gray (with age)",
+       "eyeColorOptions": "Brown or green",
+       "heightAverage": "4'3\"",
+       "heightRollMod": "+2d4\"",
+       "weightAverage": "60 lb.",
+       "weightRollMod": "x(2d4) lb.",
+       "traits": [
+        {
+         "name": "Ability Score Increase",
+         "description": "Your Intelligence score increases by 2, and your Dexterity score increases by 1."
+        },
+        {
+         "name": "Age",
+         "description": "Bothans reach adulthood in their late teens and live less than a century."
+        },
+        {
+         "name": "Alignment",
+         "description": "Bothans' duplicitous nature causes them to tend toward the dark side, though there are exceptions."
+        },
+        {
+         "name": "Size",
+         "description": "Bothans stand 4-5 feet tall and weigh under 100 pounds. Regardless of your position in that range, your size is Medium."
+        },
+        {
+         "name": "Speed",
+         "description": "Your base walking speed is 30 feet."
+        },
+        {
+         "name": "Naturally Stealthy",
+         "description": "You can attempt to hide even when you are obscured only by a creature that is your size or larger than you."
+        },
+        {
+         "name": "Nimble Escape",
+         "description": "You can take the Disengage or Hide action as a bonus action on each of your turns."
+        },
+        {
+         "name": "Shrewd",
+         "description": "You are proficient in the Insight and Deception skills."
+        },
+        {
+         "name": "Languages",
+         "description": "You can speak, read, and write Galactic Basic and Bothese. Bothese had a great influence on the forming of Galactic Basic; the two languages share many cognates."
+        }
+       ],
+       "imageUrls": [
+        "https://starwars5ecentral.blob.core.windows.net/site-images/species/species_bothan.png"
+       ]
+      }
+     },
+     "backgrounds": {
+      "Noble": {
+       "name": "Noble",
+       "flavorText": "You understand wealth, power, and privilege. You carry a noble title, and your family owns land, collects taxes, and wields significant political influence. You might be a pampered aristocrat unfamiliar with manual labor, a former merchant just elevated to the nobility, or an honest, hard-working landowner who cares deeply about the people who live and work on your land.\r\n\r\nWork with your GM to come up with an appropriate title and determine how much authority that title carries, as well as your family and their influence on you. Is your family old and established, or was your title only recently bestowed? How much influence do they wield, how do people regard them?\r\n\r\nWhat's your position in the family? Are you the heir to the head of the family or the head itself? Are you far down the line of succession? How does the head of your family feel about your adventuring career? Are you in your family's good graces? \r\n\r\nDoes your family have a coat of arms you might wear, a signet ring, or particular colors? \r\n\r\nThese details help establish your family and your title as features of the world of the campaign.\r\n",
+       "skillProficiencies": "Choose two from Deception, Insight, Lore, and Persuasion",
+       "toolProficiencies": "One type of gaming set",
+       "languages": "One of your choice",
+       "equipment": "A set of fine clothes, a signet ring, a letter of pedigree, and a purse containing 250 cr",
+       "featureName": "Position of Privilege",
+       "featureText": "Thanks to your noble birth, people are inclined to think the best of you. You are welcome in high society, and people assume you have the right to be wherever you are. The common folk make every effort to accommodate you and avoid your displeasure, and other people of high birth treat you as a member of the same social sphere. You can secure an audience with a local noble if you need to.\r\n",
+       "flavorName": null,
+       "flavorDescription": null
+      }
+     },
+     "feats": {
+      "Silver-Tongued": {
+       "name": "Silver-Tongued",
+       "prerequisite": null,
+       "text": "You develop your conversational skill to better deceive others. You gain the following benefits: \r\n- Increase your Charisma score by 1, to a maximum of 20. \r\n- You gain proficiency in the Deception skill. If you are already proficient in it, you instead gain expertise in it. \r\n- When you take the Attack action, you can replace one attack with an attempt to deceive one humanoid you can see within 30 feet of you that can see and hear you. Make a Charisma (Deception) check contested by the target's Wisdom (Insight) check. If your check succeeds, your movement doesn't provoke opportunity attacks from the target and your attack rolls against it have advantage; both benefits last until the end of your next turn or until you use this ability on a different target. If your check fails, the target can't be deceived by you in this way for 1 hour.\r\n",
+       "attributesIncreased": [
+        "Charisma"
+       ],
+       "contentType": "Core",
+       "contentSource": "PHB"
+      }
+     },
+     "maneuvers": {
+      "Tyrannical Strike": {
+       "name": "Tyrannical Strike",
+       "description": "When you hit a creature with a weapon attack, you can expend one superiority die and use your reaction to issue a one-word command to a creature who can see or hear you. You add the superiority die to the attack's damage roll, and the target must succeed on a Wisdom saving throw. On a failed save, the target must follow the command on its next turn. \r\n\r\nThe target automatically succeeds if it is immune to charm, it doesn't understand your language, or if your command is directly harmful to it.",
+       "metadata": null,
+       "prerequisite": "Proficiency with Intimidation",
+       "type": "Mental",
+       "contentType": "Core",
+       "contentSource": "PHB"
+      },
+      "Disarming Blow": {
+       "name": "Disarming Blow",
+       "description": "When you hit a creature with a weapon attack, you can expend one superiority die to attempt to disarm the target, forcing it to drop one item of your choice that it's holding. You add the superiority die to the attack's damage roll, and the target must make a Strength saving throw. On a failed save, it drops the object you choose. If you have a free hand and are within 5 feet of the creature, you can catch the item. Otherwise, the object lands at the creature's feet.",
+       "metadata": null,
+       "prerequisite": null,
+       "type": "Physical",
+       "contentType": "Core",
+       "contentSource": "PHB"
+      },
+      "Rampage": {
+       "name": "Rampage",
+       "description": "When you reduce a creature to 0 hit points, you can use your bonus action to expend a superiority die and move up to half your speed. If you end this movement within 5 feet of a creature, you can make a single melee weapon attack against that creature, adding the result of the superiority die roll to the attack roll.",
+       "metadata": null,
+       "prerequisite": null,
+       "type": "Physical",
+       "contentType": "Core",
+       "contentSource": "PHB"
+      },
+      "Shadow Puppetry": {
+       "name": "Shadow Puppetry",
+       "description": "When a creature you can see within 30 feet of you is reduced to 0 hit points, you can use your reaction and expend a superiority die to give that creature a final act of aggression. That creature can immediately move a number of feet equal to 5 times the result of the die and make a single weapon attack against a target of your choice within its attack range, adding the die to the attack roll.",
+       "metadata": null,
+       "prerequisite": null,
+       "type": "Mental",
+       "contentType": "ExpandedContent",
+       "contentSource": "EC"
+      },
+      "Dark Transference": {
+       "name": "Dark Transference",
+       "description": "When you hit a creature with an attack, you can expend a superiority die and roll it to attempt to siphon life from it. The target must make a Constitution saving throw. On a failed save, add the result to the damage roll, and you regain one expended Hit Die.",
+       "metadata": null,
+       "prerequisite": null,
+       "type": "Mental",
+       "contentType": "ExpandedContent",
+       "contentSource": "EC"
+      },
+      "Body Over Bother": {
+       "name": "Body Over Bother",
+       "description": "When you are forced to make an Strength, Dexterity, or Constitution saving throw, you can expend a superiority die to change the saving throw ability to your maneuver ability modifier.",
+       "metadata": null,
+       "prerequisite": null,
+       "type": "Physical",
+       "contentType": "Core",
+       "contentSource": "PHB"
+      }
+     },
+     "choices": {},
+     "conditions": [
+      {
+       "name": "Blinded",
+       "description": "A blinded creature can't see and automatically fails any ability check that requires sight.\\r\\n- Attack rolls against the creature have advantage, and the creature's attack rolls have disadvantage."
+      },
+      {
+       "name": "Charmed",
+       "description": "A charmed creature can't attack the charmer or target the charmer with harmful abilities or enhanced effects.\\r\\n- The charmer has advantage on any ability check to interact socially with the creature."
+      },
+      {
+       "name": "Deafened",
+       "description": "A deafened creature can't hear and automatically fails any ability check that requires hearing."
+      },
+      {
+       "name": "Exhaustion",
+       "description": "Some special abilities and environmental hazards, such as and the long-term effects of freezing or scorching temperatures, can lead to a special condition called exhaustion. Exhaustion is measured in six levels. An effect can give a creature one or more levels of exhaustion, as specified in the effect's description. Exhaustion Level\\r\\n\\r\\n|Level|Effect|\\r\\n|:--:|:--|\\r\\n|1|Disadvantage on ability checks|\\r\\n|2|Speed halved|\\r\\n|3|Disadvantage on attack rolls and saving throws|\\r\\n|4|Hit point maximum halved|\\r\\n|5|Speed reduced to 0|\\r\\n|6|Death|\\r\\n\\r\\nIf an already exhausted creature suffers another effect that causes exhaustion, its current level of exhaustion increases by the amount specified in the effect's description.\\r\\n\\r\\nA creature suffers the effect of its current level of exhaustion as well as all lower levels. For example, a creature suffering level 2 exhaustion has its speed halved and has disadvantage on ability checks.\\r\\n\\r\\nAn effect that removes exhaustion reduces its level as specified in the effect's description, with all exhaustion effects ending if a creature's exhaustion level is reduced below 1.\\r\\n\\r\\nFinishing a long rest reduces a creature's exhaustion level by 1, provided that the creature has also ingested some food and drink."
+      },
+      {
+       "name": "Frightened",
+       "description": "A frightened creature has disadvantage on ability checks and attack rolls while the source of its fear is within line of sight.\\r\\n- The creature can't willingly move closer to the source of its fear."
+      },
+      {
+       "name": "Grappled",
+       "description": "A grappled creature's speed becomes 0, and it can't benefit from any bonus to its speed.\\r\\n- The condition ends if the grappler is incapacitated (see the condition).\\r\\n- The condition also ends if an effect removes the grappled creature from the reach of the grappler or grappling effect."
+      },
+      {
+       "name": "Incapacitated",
+       "description": "An incapacitated creature can't take actions or reactions."
+      },
+      {
+       "name": "Invisible",
+       "description": "An invisible creature is impossible to see without the aid of powers or a special sense. For the purpose of hiding, the creature is heavily obscured. The creature's location can be detected by any noise it makes or any tracks it leaves.\\r\\n- Attack rolls against the creature have disadvantage, and the creature's attack rolls have advantage."
+      },
+      {
+       "name": "Paralyzed",
+       "description": "A paralyzed creature is incapacitated (see the condition) and can't move or speak.\\r\\n- The creature automatically fails Strength and Dexterity saving throws. Attack rolls against the creature have advantage.\\r\\n- Any attack that hits the creature is a critical hit if the attacker is within 5 feet of the creature."
+      },
+      {
+       "name": "Petrified",
+       "description": "A petrified creature is transformed, along with any object it is wearing or carrying, into a solid inanimate substance (usually stone). Its weight increases by a factor of ten, and it ceases aging.\\r\\n- The creature is incapacitated (see the condition), can't move or speak, and is unaware of its surroundings.\\r\\n- Attack rolls against the creature have advantage. \\r\\n- The creature automatically fails Strength and Dexterity saving throws.\\r\\n- The creature has resistance to all damage.\\r\\n- The creature is immune to poison and disease, although a poison or disease already in its system is suspended, not neutralized."
+      },
+      {
+       "name": "Poisoned",
+       "description": "A poisoned creature has disadvantage on attack rolls and ability checks."
+      },
+      {
+       "name": "Prone",
+       "description": "A prone creature's only movement option is to crawl, unless it stands up and thereby ends the condition. \\r\\n- The creature has disadvantage on melee attack rolls.\\r\\n- The creature has disadvantage on ranged attack rolls against targets within 30 feet.\\r\\n- An attack roll against the creature has advantage if the attacker is within 5 feet of the creature. Otherwise, the attack roll has disadvantage."
+      },
+      {
+       "name": "Restrained",
+       "description": "A restrained creature's speed becomes 0, and it can't benefit from any bonus to its speed.\\r\\n- Attack rolls against the creature have advantage, and the creature's attack rolls have disadvantage.\\r\\n- The creature has disadvantage on Dexterity saving throws."
+      },
+      {
+       "name": "Shocked",
+       "description": "A shocked creature's speed is reduced by half.\\r\\n- The creature can't take reactions."
+      },
+      {
+       "name": "Stunned",
+       "description": "A stunned creature is incapacitated (see the condition), can't move, and can speak only falteringly.\\r\\n- The creature automatically fails Strength and Dexterity saving throws.\\r\\n- Attack rolls against the creature have advantage."
+      },
+      {
+       "name": "Unconscious",
+       "description": "An unconscious creature is incapacitated (see the condition), can't move or speak, and is unaware of its surroundings\\r\\n- The creature drops whatever it's holding and falls prone.\\r\\n- The creature automatically fails Strength and Dexterity saving throws.\\r\\n- Attack rolls against the creature have advantage.\\r\\n- Any attack that hits the creature is a critical hit if the attacker is within 5 feet of the creature."
+      }
+     ]
+    },
+    "validation": {
+     "code": 0,
+     "message": "All checks passed",
+     "isValid": true
+    },
+    "error": null,
+    "source": "sw5e",
+    "loadedAt": 1792281562507,
+    "meta": {
+     "bridge": 14,
+     "dataVersion": 199,
+     "loggedIn": true,
+     "sourceUrl": "https://sw5e.com/tools/mycharacters",
+     "extractedAt": 1792281562248
+    }
+   }
+  },
+  "derived": {
+   "id:00000000-0000-4000-8000-000002000001": {
+    "basis": "{\"background\":{\"feat\":{\"name\":\"Silver-Tongued\",\"type\":\"Feat\"},\"feature\":\"\",\"name\":\"Noble\"},\"baseAbilityScores\":{\"Charisma\":11,\"Constitution\":13,\"Dexterity\":15,\"Intelligence\":16,\"Strength\":12,\"Wisdom\":13},\"builderVersion\":\"0.7.6\",\"changedAt\":1792176215087,\"characteristics\":null,\"classes\":[{\"abilityScoreImprovements\":[],\"archetype\":{\"name\":\"Gambler Pursuit\"},\"hitPoints\":[5,5],\"levels\":3,\"maneuvers\":[\"Tyrannical Strike\",\"Disarming Blow\",\"Rampage\",\"Shadow Puppetry\",\"Dark Transference\",\"Body Over Bother\"],\"name\":\"Scholar\",\"options\":{\"Discoveries\":[{\"name\":\"Malleable Maneuvering\"},{\"name\":\"Lifelong Learning\",\"note\":\"Persuasion + Forgery kit.\"},{\"name\":\"Calculated Bluff\"},{\"name\":\"Running on Fumes\"}]}}],\"createdAt\":1792176000991,\"credits\":null,\"currentStats\":{\"conditions\":[],\"deathSaves\":{\"failures\":0,\"successes\":0},\"exhaustion\":0,\"featuresTimesUsed\":{},\"forcePointsUsed\":0,\"hasInspiration\":false,\"highLevelCasting\":{\"level6\":false,\"level7\":false,\"level8\":false,\"level9\":false},\"hitDiceUsed\":{\"d8\":0},\"hitPointsLost\":0,\"superiorityDiceUsed\":0,\"techPointsUsed\":0,\"temporaryHitPoints\":0},\"customEquipment\":[],\"customFeats\":[],\"customFeatures\":[],\"customForcePowers\":[],\"customLanguages\":[\"Bothese\"],\"customProficiencies\":[{\"name\":\"Pazaak deck\",\"proficiencyLevel\":\"proficient\",\"type\":\"tool\"},{\"name\":\"Forgery kit\",\"proficiencyLevel\":\"expertise\",\"type\":\"tool\"}],\"customTechPowers\":[],\"equipment\":[{\"category\":\"Equipment\",\"equipped\":true,\"name\":\"Fiber armor\",\"quantity\":1},{\"category\":\"Equipment\",\"equipped\":true,\"name\":\"Chakram\",\"quantity\":1,\"tweaks\":{\"toHit\":{\"bonus\":0,\"proficiency\":\"proficient\"}}},{\"category\":\"Equipment\",\"equipped\":true,\"name\":\"Vibrobaton\",\"quantity\":1},{\"category\":\"Equipment\",\"name\":\"Forgery kit\",\"quantity\":1},{\"category\":\"Equipment\",\"name\":\"Pazaak deck\",\"quantity\":1}],\"experiencePoints\":900,\"featureNotes\":null,\"id\":\"00000000-0000-4000-8000-000002000001\",\"image\":\"\",\"localId\":\"temp-q3e9pgja5\",\"name\":\"Scholar Test (Claude)\",\"notes\":null,\"settings\":{\"abilityScoreMethod\":\"Manual\",\"isEnforcingForcePrerequisites\":true,\"isFixedHitPoints\":false},\"species\":{\"abilityScoreImprovement\":{},\"abilityScoreImprovementSelectedOption\":0,\"language\":\"Bothese\",\"name\":\"Bothan\"},\"tweaks\":{\"abilityScores\":{\"Charisma\":{\"score\":{\"bonus\":1},\"skills\":{\"Deception\":{\"bonus\":0,\"proficiency\":\"Expertise\"},\"Persuasion\":{\"bonus\":0,\"proficiency\":\"Expertise\"}}},\"Dexterity\":{\"skills\":{\"Sleight of Hand\":{\"bonus\":0,\"proficiency\":\"Proficient\"}}},\"Wisdom\":{\"skills\":{\"Insight\":{\"bonus\":0,\"proficiency\":\"Proficient\"}}}}},\"userId\":\"00000000-0000-4000-8000-000002000002\"}",
+    "complete": {
+     "name": "Scholar Test (Claude)",
+     "builderVersion": "0.7.6",
+     "image": "",
+     "characteristics": {
+      "alignment": "Balanced Neutral",
+      "Personality Traits": "",
+      "Ideal": "",
+      "Bond": "",
+      "Flaw": "",
+      "Gender": "",
+      "Place of Birth": "",
+      "Age": "",
+      "Height": "",
+      "Weight": "",
+      "Hair": "",
+      "Eyes": "",
+      "Skin": "",
+      "Appearance": "",
+      "Backstory": "Copy of a real character, for testing the SW5E Sheet extension. Safe to delete."
+     },
+     "tweaks": {
+      "abilityScores": {
+       "Charisma": {
+        "skills": {
+         "Deception": {
+          "proficiency": "Expertise",
+          "bonus": 0
+         },
+         "Persuasion": {
+          "proficiency": "Expertise",
+          "bonus": 0
+         }
+        },
+        "score": {
+         "bonus": 1
+        }
+       },
+       "Wisdom": {
+        "skills": {
+         "Insight": {
+          "proficiency": "Proficient",
+          "bonus": 0
+         }
+        }
+       },
+       "Dexterity": {
+        "skills": {
+         "Sleight of Hand": {
+          "proficiency": "Proficient",
+          "bonus": 0
+         }
+        }
+       }
+      }
+     },
+     "customProficiencies": [
+      {
+       "name": "Pazaak deck",
+       "type": "tool",
+       "proficiencyLevel": "proficient"
+      },
+      {
+       "name": "Forgery kit",
+       "type": "tool",
+       "proficiencyLevel": "expertise"
+      }
+     ],
+     "customLanguages": [
+      "Bothese"
+     ],
+     "customFeatures": [],
+     "customTechPowers": [],
+     "customForcePowers": [],
+     "customEquipment": [],
+     "numCustomFeats": 0,
+     "currentLevel": 3,
+     "classText": "Scholar (Gambler Pursuit) 3",
+     "alignment": "Balanced Neutral",
+     "species": "Bothan",
+     "background": "Noble",
+     "experiencePoints": {
+      "previousLevel": 900,
+      "current": 900,
+      "nextLevel": 2700,
+      "isCorrect": true,
+      "errorMessage": ""
+     },
+     "abilityScores": {
+      "Strength": {
+       "value": 12,
+       "modifier": 1,
+       "savingThrow": {
+        "modifier": 1,
+        "proficiency": "none"
+       },
+       "skills": [
+        {
+         "name": "Athletics",
+         "modifier": 1,
+         "proficiency": "none"
+        }
+       ]
+      },
+      "Dexterity": {
+       "value": 16,
+       "modifier": 3,
+       "savingThrow": {
+        "modifier": 3,
+        "proficiency": "none"
+       },
+       "skills": [
+        {
+         "name": "Acrobatics",
+         "modifier": 3,
+         "proficiency": "none"
+        },
+        {
+         "name": "Sleight of Hand",
+         "modifier": 5,
+         "proficiency": "proficient"
+        },
+        {
+         "name": "Stealth",
+         "modifier": 3,
+         "proficiency": "none"
+        }
+       ]
+      },
+      "Constitution": {
+       "value": 13,
+       "modifier": 1,
+       "savingThrow": {
+        "modifier": 1,
+        "proficiency": "none"
+       },
+       "skills": []
+      },
+      "Intelligence": {
+       "value": 18,
+       "modifier": 4,
+       "savingThrow": {
+        "modifier": 6,
+        "proficiency": "proficient"
+       },
+       "skills": [
+        {
+         "name": "Investigation",
+         "modifier": 4,
+         "proficiency": "none"
+        },
+        {
+         "name": "Lore",
+         "modifier": 4,
+         "proficiency": "none"
+        },
+        {
+         "name": "Nature",
+         "modifier": 4,
+         "proficiency": "none"
+        },
+        {
+         "name": "Piloting",
+         "modifier": 4,
+         "proficiency": "none"
+        },
+        {
+         "name": "Technology",
+         "modifier": 4,
+         "proficiency": "none"
+        }
+       ]
+      },
+      "Wisdom": {
+       "value": 13,
+       "modifier": 1,
+       "savingThrow": {
+        "modifier": 3,
+        "proficiency": "proficient"
+       },
+       "skills": [
+        {
+         "name": "Animal Handling",
+         "modifier": 1,
+         "proficiency": "none"
+        },
+        {
+         "name": "Insight",
+         "modifier": 3,
+         "proficiency": "proficient"
+        },
+        {
+         "name": "Medicine",
+         "modifier": 1,
+         "proficiency": "none"
+        },
+        {
+         "name": "Perception",
+         "modifier": 1,
+         "proficiency": "none"
+        },
+        {
+         "name": "Survival",
+         "modifier": 1,
+         "proficiency": "none"
+        }
+       ]
+      },
+      "Charisma": {
+       "value": 12,
+       "modifier": 1,
+       "savingThrow": {
+        "modifier": 1,
+        "proficiency": "none"
+       },
+       "skills": [
+        {
+         "name": "Deception",
+         "modifier": 5,
+         "proficiency": "expertise"
+        },
+        {
+         "name": "Intimidation",
+         "modifier": 1,
+         "proficiency": "none"
+        },
+        {
+         "name": "Performance",
+         "modifier": 1,
+         "proficiency": "none"
+        },
+        {
+         "name": "Persuasion",
+         "modifier": 5,
+         "proficiency": "expertise"
+        }
+       ]
+      }
+     },
+     "proficiencyBonus": 2,
+     "initiative": 3,
+     "armorClass": 15,
+     "armorList": [
+      "Fiber armor"
+     ],
+     "passivePerception": 11,
+     "inspiration": false,
+     "vision": "normal",
+     "speed": {
+      "base": "30 ft",
+      "hour": "3 miles",
+      "day": "24 miles",
+      "special": ""
+     },
+     "hitPoints": {
+      "current": 21,
+      "temporary": 0,
+      "maximum": 21,
+      "hitDice": [
+       {
+        "size": "d8",
+        "current": 3,
+        "maximum": 3
+       }
+      ],
+      "deathSaves": {
+       "successes": 0,
+       "failures": 0
+      },
+      "resting": {
+       "hitDieBonus": 1,
+       "numHitDiceUsed": 0,
+       "hitDiceRestored": [],
+       "techPointsUsed": 0,
+       "forcePointsUsed": 0,
+       "highLevelCasting": {
+        "level6": false,
+        "level7": false,
+        "level8": false,
+        "level9": false
+       },
+       "shortRestFeatures": [],
+       "longRestFeatures": []
+      }
+     },
+     "conditions": [],
+     "exhaustion": 0,
+     "proficiencies": [
+      {
+       "name": "Simple blasters",
+       "type": "weapon"
+      },
+      {
+       "name": "simple vibroweapons",
+       "type": "weapon"
+      },
+      {
+       "name": "martial vibroweapons with the finesse property",
+       "type": "weapon"
+      },
+      {
+       "name": "Light armor",
+       "type": "armor"
+      },
+      {
+       "name": "One type of gaming set",
+       "type": "tool"
+      }
+     ],
+     "skillAndSaveProficiencies": [
+      "Sleight of Hand",
+      "Insight",
+      "Deception",
+      "Persuasion",
+      "Intelligence Saving Throws",
+      "Wisdom Saving Throws"
+     ],
+     "languages": [
+      "Galactic Basic",
+      "Bothese"
+     ],
+     "equipment": [
+      {
+       "name": "Fiber armor",
+       "description": "Fiber armor is a type of armor that offers more protection than the lighter combat suit. Fiber armor is heavier overall than combat suits, and not quite as flexible, but many consider the trade-offs worthwhile. It is a good source of defense from physical attacks and light blaster fire.",
+       "cost": 450,
+       "weight": "13",
+       "equipmentCategoryEnum": 4,
+       "equipmentCategory": "Armor",
+       "damageNumberOfDice": 0,
+       "damageTypeEnum": 0,
+       "damageType": "Unknown",
+       "damageDieModifier": 0,
+       "weaponClassificationEnum": 0,
+       "weaponClassification": "Unknown",
+       "armorClassificationEnum": 1,
+       "armorClassification": "Light",
+       "damageDiceDieTypeEnum": 0,
+       "damageDieType": 0,
+       "properties": [],
+       "propertiesJson": "[]",
+       "propertiesMap": {},
+       "propertiesMapJson": "{}",
+       "modes": [],
+       "modesJson": "[]",
+       "ac": "12 + Dex modifier",
+       "strengthRequirement": "",
+       "stealthDisadvantage": false,
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Fiber armor",
+       "timestamp": "2023-05-30T20:15:38.6892471+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A38.6892471Z'\"",
+       "equipped": true,
+       "quantity": 1,
+       "index": 0,
+       "isFound": true
+      },
+      {
+       "name": "Chakram",
+       "description": null,
+       "cost": 175,
+       "weight": "3",
+       "equipmentCategoryEnum": 3,
+       "equipmentCategory": "Weapon",
+       "damageNumberOfDice": 1,
+       "damageTypeEnum": 7,
+       "damageType": "Kinetic",
+       "damageDieModifier": 0,
+       "weaponClassificationEnum": 4,
+       "weaponClassification": "MartialVibroweapon",
+       "armorClassificationEnum": 0,
+       "armorClassification": "Unknown",
+       "damageDiceDieTypeEnum": 6,
+       "damageDieType": 6,
+       "properties": [
+        "Finesse",
+        "returning",
+        "thrown (range 30/90)"
+       ],
+       "propertiesJson": "[\"Finesse\",\"returning\",\"thrown (range 30/90)\"]",
+       "propertiesMap": {
+        "Finesse": "Finesse",
+        "Returning": "returning",
+        "Range": "thrown (range 30/90)"
+       },
+       "propertiesMapJson": "{\"Finesse\":\"Finesse\",\"Returning\":\"returning\",\"Range\":\"thrown (range 30/90)\"}",
+       "modes": [],
+       "modesJson": "[]",
+       "ac": null,
+       "strengthRequirement": null,
+       "stealthDisadvantage": false,
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Chakram",
+       "timestamp": "2023-05-30T20:15:38.6842512+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A38.6842512Z'\"",
+       "attackBonus": 5,
+       "damageBonus": 3,
+       "ability": "Dexterity",
+       "isCustom": false,
+       "equipped": true,
+       "quantity": 1,
+       "index": 1,
+       "tweaks": {
+        "toHit": {
+         "proficiency": "proficient",
+         "bonus": 0
+        }
+       },
+       "isFound": true
+      },
+      {
+       "name": "Vibrobaton",
+       "description": null,
+       "cost": 250,
+       "weight": "4",
+       "equipmentCategoryEnum": 3,
+       "equipmentCategory": "Weapon",
+       "damageNumberOfDice": 2,
+       "damageTypeEnum": 7,
+       "damageType": "Kinetic",
+       "damageDieModifier": 0,
+       "weaponClassificationEnum": 4,
+       "weaponClassification": "MartialVibroweapon",
+       "armorClassificationEnum": 0,
+       "armorClassification": "Unknown",
+       "damageDiceDieTypeEnum": 4,
+       "damageDieType": 4,
+       "properties": [
+        "—"
+       ],
+       "propertiesJson": "[\"—\"]",
+       "propertiesMap": {
+        "": "—"
+       },
+       "propertiesMapJson": "{\"\":\"—\"}",
+       "modes": [],
+       "modesJson": "[]",
+       "ac": null,
+       "strengthRequirement": null,
+       "stealthDisadvantage": false,
+       "contentTypeEnum": 2,
+       "contentType": "ExpandedContent",
+       "contentSourceEnum": 5,
+       "contentSource": "EC",
+       "partitionKey": "ExpandedContent",
+       "rowKey": "Vibrobaton",
+       "timestamp": "2023-05-30T20:15:25.5757257+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A25.5757257Z'\"",
+       "attackBonus": 1,
+       "damageBonus": 1,
+       "ability": "Strength",
+       "isCustom": false,
+       "equipped": true,
+       "quantity": 1,
+       "index": 2,
+       "tweaks": {},
+       "isFound": true
+      },
+      {
+       "name": "Forgery kit",
+       "description": null,
+       "cost": 150,
+       "weight": "5",
+       "equipmentCategoryEnum": 21,
+       "equipmentCategory": "Kit",
+       "damageNumberOfDice": 0,
+       "damageTypeEnum": 0,
+       "damageType": "Unknown",
+       "damageDieModifier": 0,
+       "weaponClassificationEnum": 0,
+       "weaponClassification": "Unknown",
+       "armorClassificationEnum": 0,
+       "armorClassification": "Unknown",
+       "damageDiceDieTypeEnum": 0,
+       "damageDieType": 0,
+       "properties": null,
+       "propertiesJson": "",
+       "propertiesMap": null,
+       "propertiesMapJson": "",
+       "modes": [],
+       "modesJson": "[]",
+       "ac": null,
+       "strengthRequirement": null,
+       "stealthDisadvantage": false,
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Forgery kit",
+       "timestamp": "2023-05-30T20:15:38.9590936+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A38.9590936Z'\"",
+       "quantity": 1,
+       "index": 3,
+       "isFound": true
+      },
+      {
+       "name": "Pazaak deck",
+       "description": null,
+       "cost": 100,
+       "weight": "0",
+       "equipmentCategoryEnum": 17,
+       "equipmentCategory": "GamingSet",
+       "damageNumberOfDice": 0,
+       "damageTypeEnum": 0,
+       "damageType": "Unknown",
+       "damageDieModifier": 0,
+       "weaponClassificationEnum": 0,
+       "weaponClassification": "Unknown",
+       "armorClassificationEnum": 0,
+       "armorClassification": "Unknown",
+       "damageDiceDieTypeEnum": 0,
+       "damageDieType": 0,
+       "properties": null,
+       "propertiesJson": "",
+       "propertiesMap": null,
+       "propertiesMapJson": "",
+       "modes": [],
+       "modesJson": "[]",
+       "ac": null,
+       "strengthRequirement": null,
+       "stealthDisadvantage": false,
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Pazaak deck",
+       "timestamp": "2023-05-30T20:15:38.6942443+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A38.6942443Z'\"",
+       "quantity": 1,
+       "index": 4,
+       "isFound": true
+      }
+     ],
+     "attunement": {
+      "current": 0,
+      "maximum": 2,
+      "hasAttunable": false
+     },
+     "weapons": [
+      {
+       "name": "Chakram",
+       "description": null,
+       "cost": 175,
+       "weight": "3",
+       "equipmentCategoryEnum": 3,
+       "equipmentCategory": "Weapon",
+       "damageNumberOfDice": 1,
+       "damageTypeEnum": 7,
+       "damageType": "Kinetic",
+       "damageDieModifier": 0,
+       "weaponClassificationEnum": 4,
+       "weaponClassification": "MartialVibroweapon",
+       "armorClassificationEnum": 0,
+       "armorClassification": "Unknown",
+       "damageDiceDieTypeEnum": 6,
+       "damageDieType": 6,
+       "properties": [
+        "Finesse",
+        "returning",
+        "thrown (range 30/90)"
+       ],
+       "propertiesJson": "[\"Finesse\",\"returning\",\"thrown (range 30/90)\"]",
+       "propertiesMap": {
+        "Finesse": "Finesse",
+        "Returning": "returning",
+        "Range": "thrown (range 30/90)"
+       },
+       "propertiesMapJson": "{\"Finesse\":\"Finesse\",\"Returning\":\"returning\",\"Range\":\"thrown (range 30/90)\"}",
+       "modes": [],
+       "modesJson": "[]",
+       "ac": null,
+       "strengthRequirement": null,
+       "stealthDisadvantage": false,
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Chakram",
+       "timestamp": "2023-05-30T20:15:38.6842512+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A38.6842512Z'\"",
+       "attackBonus": 5,
+       "damageBonus": 3,
+       "ability": "Dexterity",
+       "isCustom": false,
+       "equipped": true,
+       "quantity": 1,
+       "index": 1,
+       "tweaks": {
+        "toHit": {
+         "proficiency": "proficient",
+         "bonus": 0
+        }
+       },
+       "isFound": true
+      },
+      {
+       "name": "Vibrobaton",
+       "description": null,
+       "cost": 250,
+       "weight": "4",
+       "equipmentCategoryEnum": 3,
+       "equipmentCategory": "Weapon",
+       "damageNumberOfDice": 2,
+       "damageTypeEnum": 7,
+       "damageType": "Kinetic",
+       "damageDieModifier": 0,
+       "weaponClassificationEnum": 4,
+       "weaponClassification": "MartialVibroweapon",
+       "armorClassificationEnum": 0,
+       "armorClassification": "Unknown",
+       "damageDiceDieTypeEnum": 4,
+       "damageDieType": 4,
+       "properties": [
+        "—"
+       ],
+       "propertiesJson": "[\"—\"]",
+       "propertiesMap": {
+        "": "—"
+       },
+       "propertiesMapJson": "{\"\":\"—\"}",
+       "modes": [],
+       "modesJson": "[]",
+       "ac": null,
+       "strengthRequirement": null,
+       "stealthDisadvantage": false,
+       "contentTypeEnum": 2,
+       "contentType": "ExpandedContent",
+       "contentSourceEnum": 5,
+       "contentSource": "EC",
+       "partitionKey": "ExpandedContent",
+       "rowKey": "Vibrobaton",
+       "timestamp": "2023-05-30T20:15:25.5757257+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A25.5757257Z'\"",
+       "attackBonus": 1,
+       "damageBonus": 1,
+       "ability": "Strength",
+       "isCustom": false,
+       "equipped": true,
+       "quantity": 1,
+       "index": 2,
+       "tweaks": {},
+       "isFound": true
+      },
+      {
+       "name": "Unarmed Strike",
+       "description": null,
+       "cost": 0,
+       "weight": "0",
+       "equipmentCategory": "Weapon",
+       "contentType": "Core",
+       "contentSource": "PHB",
+       "damageNumberOfDice": 1,
+       "damageType": "Kinetic",
+       "weaponClassification": "Unarmed",
+       "damageDieType": 0,
+       "properties": [],
+       "propertiesMap": {},
+       "modes": [],
+       "quantity": 0,
+       "index": -1,
+       "isFound": true,
+       "equipped": true,
+       "attackBonus": 3,
+       "damageBonus": 2,
+       "ability": "Strength",
+       "isCustom": false,
+       "tweaks": {}
+      }
+     ],
+     "credits": 351,
+     "carryingCapacity": {
+      "encumbered": 60,
+      "heavilyEncumbered": 120,
+      "maxCapacity": 180,
+      "pushDragLift": 360
+     },
+     "superiority": false,
+     "highLevelCasting": {
+      "level6": false,
+      "level7": false,
+      "level8": false,
+      "level9": false
+     },
+     "techCasting": false,
+     "forceCasting": false,
+     "allForcePowers": [],
+     "combatFeatures": [
+      {
+       "name": "Academic Superiority",
+       "text": "_**Scholar:** 1st level_\r\nYou learn maneuvers that are fueled by special dice called superiority dice. See chapter 13 for the maneuvers list.\r\n#### Maneuvers Known\r\nYou learn one maneuver of your choice, and you earn more at higher levels, as shown in the Maneuvers Known column of the scholar table. Many maneuvers enhance an attack in some way. You can use only one maneuver per attack, and you may only use each maneuver once per turn.\r\nEach time you learn new maneuvers, you can also replace one maneuver you know with a different one.\r\n#### Superiority Dice\r\nYou have three superiority dice, which are d4s, and you earn more at higher levels, as shown in the Superiority Dice Quantity column of the scholar table. This die changes as you gain scholar levels, as shown in the Superiority Dice Size column of the scholar table. A superiority die is expended when you use it. \r\nYou regain all of your expended superiority dice when you finish a short or long rest.\r\n#### Maneuver Ability\r\nYour maneuver ability varies based on the type of the maneuver you use. You use Strength, Dexterity, or Constitution for physical maneuvers (your choice), Intelligence, Wisdom, or Charisma for mental maneuvers (your choice), and an ability of your choice for general maneuvers. You use this ability whenever a maneuver refers to your maneuver ability. Additionally, you use this ability modifier when setting the saving throw DC for a maneuver you use.\r\n___\r\n**Maneuver save DC** = 8 + your proficiency bonus + your maneuver ability modifier\r\n___",
+       "level": 1,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Scholar",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Scholar-Academic Superiority-1",
+       "timestamp": "2023-05-30T20:15:43.4405383+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.4405383Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Critical Analysis",
+       "text": "_**Scholar:** 1st level_\r\nYou are able to analyze a creature, develop a plan on how to best overcome any potential obstacle, and execute that plan with ruthless efficiency. As a bonus action on your turn, you can analyze a creature you can see within 60 feet of you. For the next minute, or until you analyze another target, you gain the following benefits:\r\n- When you analyze a hostile creature, your attack and damage rolls made with weapons with the finesse property or blaster weapons against that target may use your Critical Analysis ability modifier, which is Intelligence, instead of Strength or Dexterity. You must use the same modifier for both rolls.\r\n- When you analyze a friendly creature, the target can end your Critical Analysis on them (no action required) to add your Critical Analysis ability modifier, which is Intelligence, to one attack roll, ability check, or saving throw. Once a friendly creature has benefited from this ability, they can not do so again until they complete a short or long rest.",
+       "level": 1,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Scholar",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Scholar-Critical Analysis-1",
+       "timestamp": "2023-05-30T20:15:43.4415384+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.4415384Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Discovery",
+       "text": "_**Scholar:** 2nd level_\r\nAs you adventure, your studies have helped you discover new practices you can apply to your skills. You master two discoveries of your choice. Your discovery options are detailed at the end of the class description. When you gain certain scholar levels, you gain additional discoveries of your choice, as shown in the Discoveries column of the scholar table.\r\nAdditionally, when you gain a level in this class, you can choose one of the discoveries you know and replace it with another discovery that you could learn at that level.",
+       "level": 2,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Scholar",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Scholar-Discovery-2",
+       "timestamp": "2023-05-30T20:15:43.4415384+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.4415384Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Gambler's Aptitude",
+       "text": "_**Gambler Pursuit:** 3rd level_\r\nYou gain proficiency with your choice of gaming set and your choice of the Insight, Deception, Persuasion, or Sleight of Hand skills. Additionally, you can't have disadvantage on checks you make with them.",
+       "level": 3,
+       "sourceEnum": 1,
+       "source": "Archetype",
+       "sourceName": "Gambler Pursuit",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Archetype-Gambler Pursuit-Gambler's Aptitude-3",
+       "timestamp": "2023-05-30T20:15:42.7899092+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A42.7899092Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Risk versus Reward",
+       "text": "_**Gambler Pursuit:** 3rd, 9th, 13th, and 17th level_\r\nWhen you make your first attack on your turn against the target of your Critical Analysis feature, you can decide to gamble by rolling a d6. On a roll of 4 or higher, you have advantage on attack rolls against that creature until the start of your next turn. On a roll of 3 or lower, that creature instead has advantage on attack rolls against you until the start of your next turn.\r\nThis die increases to d8 at 9th level, d10 at 13th level, and d12 at 17th level.",
+       "level": 3,
+       "sourceEnum": 1,
+       "source": "Archetype",
+       "sourceName": "Gambler Pursuit",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Archetype-Gambler Pursuit-Risk versus Reward-3",
+       "timestamp": "2023-05-30T20:15:42.7899092+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A42.7899092Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Academic Pursuit",
+       "text": "_**Scholar:** 3rd, 6th, 9th, and 17th level_\r\nYou dedicate your studies towards a pursuit, which is detailed at the end of the class description. ",
+       "level": 3,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Scholar",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Scholar-Academic Pursuit-3",
+       "timestamp": "2023-05-30T20:15:43.4415384+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.4415384Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Ability Score Increase",
+       "text": "Your Intelligence score increases by 2, and your Dexterity score increases by 1.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Bothan",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Bothan-Ability Score Increase",
+       "timestamp": "2023-05-30T20:15:40.7660622+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.7660622Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Age",
+       "text": "Bothans reach adulthood in their late teens and live less than a century.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Bothan",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Bothan-Age",
+       "timestamp": "2023-05-30T20:15:40.7660622+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.7660622Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Alignment",
+       "text": "Bothans' duplicitous nature causes them to tend toward the dark side, though there are exceptions.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Bothan",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Bothan-Alignment",
+       "timestamp": "2023-05-30T20:15:40.7660622+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.7660622Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Languages",
+       "text": "You can speak, read, and write Galactic Basic and Bothese. Bothese had a great influence on the forming of Galactic Basic; the two languages share many cognates.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Bothan",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Bothan-Languages",
+       "timestamp": "2023-05-30T20:15:40.7670629+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.7670629Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Naturally Stealthy",
+       "text": "You can attempt to hide even when you are obscured only by a creature that is your size or larger than you.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Bothan",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Bothan-Naturally Stealthy",
+       "timestamp": "2023-05-30T20:15:40.7670629+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.7670629Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Nimble Escape",
+       "text": "You can take the Disengage or Hide action as a bonus action on each of your turns.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Bothan",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Bothan-Nimble Escape",
+       "timestamp": "2023-05-30T20:15:40.7670629+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.7670629Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Shrewd",
+       "text": "You are proficient in the Insight and Deception skills.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Bothan",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Bothan-Shrewd",
+       "timestamp": "2023-05-30T20:15:40.7670629+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.7670629Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Size",
+       "text": "Bothans stand 4-5 feet tall and weigh under 100 pounds. Regardless of your position in that range, your size is Medium.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Bothan",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Bothan-Size",
+       "timestamp": "2023-05-30T20:15:40.7670629+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.7670629Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Speed",
+       "text": "Your base walking speed is 30 feet.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Bothan",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Bothan-Speed",
+       "timestamp": "2023-05-30T20:15:40.7670629+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.7670629Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Silver-Tongued",
+       "prerequisite": null,
+       "text": "You develop your conversational skill to better deceive others. You gain the following benefits: \r\n- Increase your Charisma score by 1, to a maximum of 20. \r\n- You gain proficiency in the Deception skill. If you are already proficient in it, you instead gain expertise in it. \r\n- When you take the Attack action, you can replace one attack with an attempt to deceive one humanoid you can see within 30 feet of you that can see and hear you. Make a Charisma (Deception) check contested by the target's Wisdom (Insight) check. If your check succeeds, your movement doesn't provoke opportunity attacks from the target and your attack rolls against it have advantage; both benefits last until the end of your next turn or until you use this ability on a different target. If your check fails, the target can't be deceived by you in this way for 1 hour.\r\n",
+       "attributesIncreased": [
+        "Charisma"
+       ],
+       "attributesIncreasedJson": "[\"Charisma\"]",
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Silver-Tongued",
+       "timestamp": "2023-05-30T20:15:09.5558628+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A09.5558628Z'\"",
+       "customIndex": -1,
+       "combat": true
+      }
+     ],
+     "nonCombatFeatures": [],
+     "backgroundFeature": {
+      "name": "Position of Privilege",
+      "combat": false,
+      "text": "Thanks to your noble birth, people are inclined to think the best of you. You are welcome in high society, and people assume you have the right to be wherever you are. The common folk make every effort to accommodate you and avoid your displeasure, and other people of high birth treat you as a member of the same social sphere. You can secure an audience with a local noble if you need to.\r\n"
+     },
+     "settings": {
+      "isEnforcingForcePrerequisites": true,
+      "isFixedHitPoints": false,
+      "abilityScoreMethod": "Manual"
+     },
+     "notes": "Test character (a copy of a Scholar) for the SW5E Sheet extension. Safe to delete."
+    },
+    "base": {
+     "name": "Scholar Test (Claude)",
+     "builderVersion": "0.7.6",
+     "image": "",
+     "characteristics": {
+      "alignment": "Balanced Neutral",
+      "Personality Traits": "",
+      "Ideal": "",
+      "Bond": "",
+      "Flaw": "",
+      "Gender": "",
+      "Place of Birth": "",
+      "Age": "",
+      "Height": "",
+      "Weight": "",
+      "Hair": "",
+      "Eyes": "",
+      "Skin": "",
+      "Appearance": "",
+      "Backstory": "Copy of a real character, for testing the SW5E Sheet extension. Safe to delete."
+     },
+     "tweaks": {},
+     "customProficiencies": [
+      {
+       "name": "Pazaak deck",
+       "type": "tool",
+       "proficiencyLevel": "proficient"
+      },
+      {
+       "name": "Forgery kit",
+       "type": "tool",
+       "proficiencyLevel": "expertise"
+      }
+     ],
+     "customLanguages": [
+      "Bothese"
+     ],
+     "customFeatures": [],
+     "customTechPowers": [],
+     "customForcePowers": [],
+     "customEquipment": [],
+     "numCustomFeats": 0,
+     "currentLevel": 3,
+     "classText": "Scholar (Gambler Pursuit) 3",
+     "alignment": "Balanced Neutral",
+     "species": "Bothan",
+     "background": "Noble",
+     "experiencePoints": {
+      "previousLevel": 900,
+      "current": 900,
+      "nextLevel": 2700,
+      "isCorrect": true,
+      "errorMessage": ""
+     },
+     "abilityScores": {
+      "Strength": {
+       "value": 12,
+       "modifier": 1,
+       "savingThrow": {
+        "modifier": 1,
+        "proficiency": "none"
+       },
+       "skills": [
+        {
+         "name": "Athletics",
+         "modifier": 1,
+         "proficiency": "none"
+        }
+       ]
+      },
+      "Dexterity": {
+       "value": 16,
+       "modifier": 3,
+       "savingThrow": {
+        "modifier": 3,
+        "proficiency": "none"
+       },
+       "skills": [
+        {
+         "name": "Acrobatics",
+         "modifier": 3,
+         "proficiency": "none"
+        },
+        {
+         "name": "Sleight of Hand",
+         "modifier": 3,
+         "proficiency": "none"
+        },
+        {
+         "name": "Stealth",
+         "modifier": 3,
+         "proficiency": "none"
+        }
+       ]
+      },
+      "Constitution": {
+       "value": 13,
+       "modifier": 1,
+       "savingThrow": {
+        "modifier": 1,
+        "proficiency": "none"
+       },
+       "skills": []
+      },
+      "Intelligence": {
+       "value": 18,
+       "modifier": 4,
+       "savingThrow": {
+        "modifier": 6,
+        "proficiency": "proficient"
+       },
+       "skills": [
+        {
+         "name": "Investigation",
+         "modifier": 4,
+         "proficiency": "none"
+        },
+        {
+         "name": "Lore",
+         "modifier": 4,
+         "proficiency": "none"
+        },
+        {
+         "name": "Nature",
+         "modifier": 4,
+         "proficiency": "none"
+        },
+        {
+         "name": "Piloting",
+         "modifier": 4,
+         "proficiency": "none"
+        },
+        {
+         "name": "Technology",
+         "modifier": 4,
+         "proficiency": "none"
+        }
+       ]
+      },
+      "Wisdom": {
+       "value": 13,
+       "modifier": 1,
+       "savingThrow": {
+        "modifier": 3,
+        "proficiency": "proficient"
+       },
+       "skills": [
+        {
+         "name": "Animal Handling",
+         "modifier": 1,
+         "proficiency": "none"
+        },
+        {
+         "name": "Insight",
+         "modifier": 1,
+         "proficiency": "none"
+        },
+        {
+         "name": "Medicine",
+         "modifier": 1,
+         "proficiency": "none"
+        },
+        {
+         "name": "Perception",
+         "modifier": 1,
+         "proficiency": "none"
+        },
+        {
+         "name": "Survival",
+         "modifier": 1,
+         "proficiency": "none"
+        }
+       ]
+      },
+      "Charisma": {
+       "value": 11,
+       "modifier": 0,
+       "savingThrow": {
+        "modifier": 0,
+        "proficiency": "none"
+       },
+       "skills": [
+        {
+         "name": "Deception",
+         "modifier": 0,
+         "proficiency": "none"
+        },
+        {
+         "name": "Intimidation",
+         "modifier": 0,
+         "proficiency": "none"
+        },
+        {
+         "name": "Performance",
+         "modifier": 0,
+         "proficiency": "none"
+        },
+        {
+         "name": "Persuasion",
+         "modifier": 0,
+         "proficiency": "none"
+        }
+       ]
+      }
+     },
+     "proficiencyBonus": 2,
+     "initiative": 3,
+     "armorClass": 15,
+     "armorList": [
+      "Fiber armor"
+     ],
+     "passivePerception": 11,
+     "inspiration": false,
+     "vision": "normal",
+     "speed": {
+      "base": "30 ft",
+      "hour": "3 miles",
+      "day": "24 miles",
+      "special": ""
+     },
+     "hitPoints": {
+      "current": 21,
+      "temporary": 0,
+      "maximum": 21,
+      "hitDice": [
+       {
+        "size": "d8",
+        "current": 3,
+        "maximum": 3
+       }
+      ],
+      "deathSaves": {
+       "successes": 0,
+       "failures": 0
+      },
+      "resting": {
+       "hitDieBonus": 1,
+       "numHitDiceUsed": 0,
+       "hitDiceRestored": [],
+       "techPointsUsed": 0,
+       "forcePointsUsed": 0,
+       "highLevelCasting": {
+        "level6": false,
+        "level7": false,
+        "level8": false,
+        "level9": false
+       },
+       "shortRestFeatures": [],
+       "longRestFeatures": []
+      }
+     },
+     "conditions": [],
+     "exhaustion": 0,
+     "proficiencies": [
+      {
+       "name": "Simple blasters",
+       "type": "weapon"
+      },
+      {
+       "name": "simple vibroweapons",
+       "type": "weapon"
+      },
+      {
+       "name": "martial vibroweapons with the finesse property",
+       "type": "weapon"
+      },
+      {
+       "name": "Light armor",
+       "type": "armor"
+      },
+      {
+       "name": "One type of gaming set",
+       "type": "tool"
+      }
+     ],
+     "skillAndSaveProficiencies": [
+      "Intelligence Saving Throws",
+      "Wisdom Saving Throws"
+     ],
+     "languages": [
+      "Galactic Basic",
+      "Bothese"
+     ],
+     "equipment": [
+      {
+       "name": "Fiber armor",
+       "description": "Fiber armor is a type of armor that offers more protection than the lighter combat suit. Fiber armor is heavier overall than combat suits, and not quite as flexible, but many consider the trade-offs worthwhile. It is a good source of defense from physical attacks and light blaster fire.",
+       "cost": 450,
+       "weight": "13",
+       "equipmentCategoryEnum": 4,
+       "equipmentCategory": "Armor",
+       "damageNumberOfDice": 0,
+       "damageTypeEnum": 0,
+       "damageType": "Unknown",
+       "damageDieModifier": 0,
+       "weaponClassificationEnum": 0,
+       "weaponClassification": "Unknown",
+       "armorClassificationEnum": 1,
+       "armorClassification": "Light",
+       "damageDiceDieTypeEnum": 0,
+       "damageDieType": 0,
+       "properties": [],
+       "propertiesJson": "[]",
+       "propertiesMap": {},
+       "propertiesMapJson": "{}",
+       "modes": [],
+       "modesJson": "[]",
+       "ac": "12 + Dex modifier",
+       "strengthRequirement": "",
+       "stealthDisadvantage": false,
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Fiber armor",
+       "timestamp": "2023-05-30T20:15:38.6892471+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A38.6892471Z'\"",
+       "equipped": true,
+       "quantity": 1,
+       "index": 0,
+       "isFound": true
+      },
+      {
+       "name": "Chakram",
+       "description": null,
+       "cost": 175,
+       "weight": "3",
+       "equipmentCategoryEnum": 3,
+       "equipmentCategory": "Weapon",
+       "damageNumberOfDice": 1,
+       "damageTypeEnum": 7,
+       "damageType": "Kinetic",
+       "damageDieModifier": 0,
+       "weaponClassificationEnum": 4,
+       "weaponClassification": "MartialVibroweapon",
+       "armorClassificationEnum": 0,
+       "armorClassification": "Unknown",
+       "damageDiceDieTypeEnum": 6,
+       "damageDieType": 6,
+       "properties": [
+        "Finesse",
+        "returning",
+        "thrown (range 30/90)"
+       ],
+       "propertiesJson": "[\"Finesse\",\"returning\",\"thrown (range 30/90)\"]",
+       "propertiesMap": {
+        "Finesse": "Finesse",
+        "Returning": "returning",
+        "Range": "thrown (range 30/90)"
+       },
+       "propertiesMapJson": "{\"Finesse\":\"Finesse\",\"Returning\":\"returning\",\"Range\":\"thrown (range 30/90)\"}",
+       "modes": [],
+       "modesJson": "[]",
+       "ac": null,
+       "strengthRequirement": null,
+       "stealthDisadvantage": false,
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Chakram",
+       "timestamp": "2023-05-30T20:15:38.6842512+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A38.6842512Z'\"",
+       "attackBonus": 3,
+       "damageBonus": 3,
+       "ability": "Dexterity",
+       "isCustom": false,
+       "equipped": true,
+       "quantity": 1,
+       "index": 1,
+       "tweaks": {},
+       "isFound": true
+      },
+      {
+       "name": "Vibrobaton",
+       "description": null,
+       "cost": 250,
+       "weight": "4",
+       "equipmentCategoryEnum": 3,
+       "equipmentCategory": "Weapon",
+       "damageNumberOfDice": 2,
+       "damageTypeEnum": 7,
+       "damageType": "Kinetic",
+       "damageDieModifier": 0,
+       "weaponClassificationEnum": 4,
+       "weaponClassification": "MartialVibroweapon",
+       "armorClassificationEnum": 0,
+       "armorClassification": "Unknown",
+       "damageDiceDieTypeEnum": 4,
+       "damageDieType": 4,
+       "properties": [
+        "—"
+       ],
+       "propertiesJson": "[\"—\"]",
+       "propertiesMap": {
+        "": "—"
+       },
+       "propertiesMapJson": "{\"\":\"—\"}",
+       "modes": [],
+       "modesJson": "[]",
+       "ac": null,
+       "strengthRequirement": null,
+       "stealthDisadvantage": false,
+       "contentTypeEnum": 2,
+       "contentType": "ExpandedContent",
+       "contentSourceEnum": 5,
+       "contentSource": "EC",
+       "partitionKey": "ExpandedContent",
+       "rowKey": "Vibrobaton",
+       "timestamp": "2023-05-30T20:15:25.5757257+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A25.5757257Z'\"",
+       "attackBonus": 1,
+       "damageBonus": 1,
+       "ability": "Strength",
+       "isCustom": false,
+       "equipped": true,
+       "quantity": 1,
+       "index": 2,
+       "tweaks": {},
+       "isFound": true
+      },
+      {
+       "name": "Forgery kit",
+       "description": null,
+       "cost": 150,
+       "weight": "5",
+       "equipmentCategoryEnum": 21,
+       "equipmentCategory": "Kit",
+       "damageNumberOfDice": 0,
+       "damageTypeEnum": 0,
+       "damageType": "Unknown",
+       "damageDieModifier": 0,
+       "weaponClassificationEnum": 0,
+       "weaponClassification": "Unknown",
+       "armorClassificationEnum": 0,
+       "armorClassification": "Unknown",
+       "damageDiceDieTypeEnum": 0,
+       "damageDieType": 0,
+       "properties": null,
+       "propertiesJson": "",
+       "propertiesMap": null,
+       "propertiesMapJson": "",
+       "modes": [],
+       "modesJson": "[]",
+       "ac": null,
+       "strengthRequirement": null,
+       "stealthDisadvantage": false,
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Forgery kit",
+       "timestamp": "2023-05-30T20:15:38.9590936+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A38.9590936Z'\"",
+       "quantity": 1,
+       "index": 3,
+       "isFound": true
+      },
+      {
+       "name": "Pazaak deck",
+       "description": null,
+       "cost": 100,
+       "weight": "0",
+       "equipmentCategoryEnum": 17,
+       "equipmentCategory": "GamingSet",
+       "damageNumberOfDice": 0,
+       "damageTypeEnum": 0,
+       "damageType": "Unknown",
+       "damageDieModifier": 0,
+       "weaponClassificationEnum": 0,
+       "weaponClassification": "Unknown",
+       "armorClassificationEnum": 0,
+       "armorClassification": "Unknown",
+       "damageDiceDieTypeEnum": 0,
+       "damageDieType": 0,
+       "properties": null,
+       "propertiesJson": "",
+       "propertiesMap": null,
+       "propertiesMapJson": "",
+       "modes": [],
+       "modesJson": "[]",
+       "ac": null,
+       "strengthRequirement": null,
+       "stealthDisadvantage": false,
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Pazaak deck",
+       "timestamp": "2023-05-30T20:15:38.6942443+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A38.6942443Z'\"",
+       "quantity": 1,
+       "index": 4,
+       "isFound": true
+      }
+     ],
+     "attunement": {
+      "current": 0,
+      "maximum": 2,
+      "hasAttunable": false
+     },
+     "weapons": [
+      {
+       "name": "Chakram",
+       "description": null,
+       "cost": 175,
+       "weight": "3",
+       "equipmentCategoryEnum": 3,
+       "equipmentCategory": "Weapon",
+       "damageNumberOfDice": 1,
+       "damageTypeEnum": 7,
+       "damageType": "Kinetic",
+       "damageDieModifier": 0,
+       "weaponClassificationEnum": 4,
+       "weaponClassification": "MartialVibroweapon",
+       "armorClassificationEnum": 0,
+       "armorClassification": "Unknown",
+       "damageDiceDieTypeEnum": 6,
+       "damageDieType": 6,
+       "properties": [
+        "Finesse",
+        "returning",
+        "thrown (range 30/90)"
+       ],
+       "propertiesJson": "[\"Finesse\",\"returning\",\"thrown (range 30/90)\"]",
+       "propertiesMap": {
+        "Finesse": "Finesse",
+        "Returning": "returning",
+        "Range": "thrown (range 30/90)"
+       },
+       "propertiesMapJson": "{\"Finesse\":\"Finesse\",\"Returning\":\"returning\",\"Range\":\"thrown (range 30/90)\"}",
+       "modes": [],
+       "modesJson": "[]",
+       "ac": null,
+       "strengthRequirement": null,
+       "stealthDisadvantage": false,
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Chakram",
+       "timestamp": "2023-05-30T20:15:38.6842512+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A38.6842512Z'\"",
+       "attackBonus": 3,
+       "damageBonus": 3,
+       "ability": "Dexterity",
+       "isCustom": false,
+       "equipped": true,
+       "quantity": 1,
+       "index": 1,
+       "tweaks": {},
+       "isFound": true
+      },
+      {
+       "name": "Vibrobaton",
+       "description": null,
+       "cost": 250,
+       "weight": "4",
+       "equipmentCategoryEnum": 3,
+       "equipmentCategory": "Weapon",
+       "damageNumberOfDice": 2,
+       "damageTypeEnum": 7,
+       "damageType": "Kinetic",
+       "damageDieModifier": 0,
+       "weaponClassificationEnum": 4,
+       "weaponClassification": "MartialVibroweapon",
+       "armorClassificationEnum": 0,
+       "armorClassification": "Unknown",
+       "damageDiceDieTypeEnum": 4,
+       "damageDieType": 4,
+       "properties": [
+        "—"
+       ],
+       "propertiesJson": "[\"—\"]",
+       "propertiesMap": {
+        "": "—"
+       },
+       "propertiesMapJson": "{\"\":\"—\"}",
+       "modes": [],
+       "modesJson": "[]",
+       "ac": null,
+       "strengthRequirement": null,
+       "stealthDisadvantage": false,
+       "contentTypeEnum": 2,
+       "contentType": "ExpandedContent",
+       "contentSourceEnum": 5,
+       "contentSource": "EC",
+       "partitionKey": "ExpandedContent",
+       "rowKey": "Vibrobaton",
+       "timestamp": "2023-05-30T20:15:25.5757257+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A25.5757257Z'\"",
+       "attackBonus": 1,
+       "damageBonus": 1,
+       "ability": "Strength",
+       "isCustom": false,
+       "equipped": true,
+       "quantity": 1,
+       "index": 2,
+       "tweaks": {},
+       "isFound": true
+      },
+      {
+       "name": "Unarmed Strike",
+       "description": null,
+       "cost": 0,
+       "weight": "0",
+       "equipmentCategory": "Weapon",
+       "contentType": "Core",
+       "contentSource": "PHB",
+       "damageNumberOfDice": 1,
+       "damageType": "Kinetic",
+       "weaponClassification": "Unarmed",
+       "damageDieType": 0,
+       "properties": [],
+       "propertiesMap": {},
+       "modes": [],
+       "quantity": 0,
+       "index": -1,
+       "isFound": true,
+       "equipped": true,
+       "attackBonus": 3,
+       "damageBonus": 2,
+       "ability": "Strength",
+       "isCustom": false,
+       "tweaks": {}
+      }
+     ],
+     "credits": 351,
+     "carryingCapacity": {
+      "encumbered": 60,
+      "heavilyEncumbered": 120,
+      "maxCapacity": 180,
+      "pushDragLift": 360
+     },
+     "superiority": false,
+     "highLevelCasting": {
+      "level6": false,
+      "level7": false,
+      "level8": false,
+      "level9": false
+     },
+     "techCasting": false,
+     "forceCasting": false,
+     "allForcePowers": [],
+     "combatFeatures": [
+      {
+       "name": "Academic Superiority",
+       "text": "_**Scholar:** 1st level_\r\nYou learn maneuvers that are fueled by special dice called superiority dice. See chapter 13 for the maneuvers list.\r\n#### Maneuvers Known\r\nYou learn one maneuver of your choice, and you earn more at higher levels, as shown in the Maneuvers Known column of the scholar table. Many maneuvers enhance an attack in some way. You can use only one maneuver per attack, and you may only use each maneuver once per turn.\r\nEach time you learn new maneuvers, you can also replace one maneuver you know with a different one.\r\n#### Superiority Dice\r\nYou have three superiority dice, which are d4s, and you earn more at higher levels, as shown in the Superiority Dice Quantity column of the scholar table. This die changes as you gain scholar levels, as shown in the Superiority Dice Size column of the scholar table. A superiority die is expended when you use it. \r\nYou regain all of your expended superiority dice when you finish a short or long rest.\r\n#### Maneuver Ability\r\nYour maneuver ability varies based on the type of the maneuver you use. You use Strength, Dexterity, or Constitution for physical maneuvers (your choice), Intelligence, Wisdom, or Charisma for mental maneuvers (your choice), and an ability of your choice for general maneuvers. You use this ability whenever a maneuver refers to your maneuver ability. Additionally, you use this ability modifier when setting the saving throw DC for a maneuver you use.\r\n___\r\n**Maneuver save DC** = 8 + your proficiency bonus + your maneuver ability modifier\r\n___",
+       "level": 1,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Scholar",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Scholar-Academic Superiority-1",
+       "timestamp": "2023-05-30T20:15:43.4405383+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.4405383Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Critical Analysis",
+       "text": "_**Scholar:** 1st level_\r\nYou are able to analyze a creature, develop a plan on how to best overcome any potential obstacle, and execute that plan with ruthless efficiency. As a bonus action on your turn, you can analyze a creature you can see within 60 feet of you. For the next minute, or until you analyze another target, you gain the following benefits:\r\n- When you analyze a hostile creature, your attack and damage rolls made with weapons with the finesse property or blaster weapons against that target may use your Critical Analysis ability modifier, which is Intelligence, instead of Strength or Dexterity. You must use the same modifier for both rolls.\r\n- When you analyze a friendly creature, the target can end your Critical Analysis on them (no action required) to add your Critical Analysis ability modifier, which is Intelligence, to one attack roll, ability check, or saving throw. Once a friendly creature has benefited from this ability, they can not do so again until they complete a short or long rest.",
+       "level": 1,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Scholar",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Scholar-Critical Analysis-1",
+       "timestamp": "2023-05-30T20:15:43.4415384+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.4415384Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Discovery",
+       "text": "_**Scholar:** 2nd level_\r\nAs you adventure, your studies have helped you discover new practices you can apply to your skills. You master two discoveries of your choice. Your discovery options are detailed at the end of the class description. When you gain certain scholar levels, you gain additional discoveries of your choice, as shown in the Discoveries column of the scholar table.\r\nAdditionally, when you gain a level in this class, you can choose one of the discoveries you know and replace it with another discovery that you could learn at that level.",
+       "level": 2,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Scholar",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Scholar-Discovery-2",
+       "timestamp": "2023-05-30T20:15:43.4415384+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.4415384Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Gambler's Aptitude",
+       "text": "_**Gambler Pursuit:** 3rd level_\r\nYou gain proficiency with your choice of gaming set and your choice of the Insight, Deception, Persuasion, or Sleight of Hand skills. Additionally, you can't have disadvantage on checks you make with them.",
+       "level": 3,
+       "sourceEnum": 1,
+       "source": "Archetype",
+       "sourceName": "Gambler Pursuit",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Archetype-Gambler Pursuit-Gambler's Aptitude-3",
+       "timestamp": "2023-05-30T20:15:42.7899092+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A42.7899092Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Risk versus Reward",
+       "text": "_**Gambler Pursuit:** 3rd, 9th, 13th, and 17th level_\r\nWhen you make your first attack on your turn against the target of your Critical Analysis feature, you can decide to gamble by rolling a d6. On a roll of 4 or higher, you have advantage on attack rolls against that creature until the start of your next turn. On a roll of 3 or lower, that creature instead has advantage on attack rolls against you until the start of your next turn.\r\nThis die increases to d8 at 9th level, d10 at 13th level, and d12 at 17th level.",
+       "level": 3,
+       "sourceEnum": 1,
+       "source": "Archetype",
+       "sourceName": "Gambler Pursuit",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Archetype-Gambler Pursuit-Risk versus Reward-3",
+       "timestamp": "2023-05-30T20:15:42.7899092+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A42.7899092Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Academic Pursuit",
+       "text": "_**Scholar:** 3rd, 6th, 9th, and 17th level_\r\nYou dedicate your studies towards a pursuit, which is detailed at the end of the class description. ",
+       "level": 3,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Scholar",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Scholar-Academic Pursuit-3",
+       "timestamp": "2023-05-30T20:15:43.4415384+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.4415384Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Ability Score Increase",
+       "text": "Your Intelligence score increases by 2, and your Dexterity score increases by 1.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Bothan",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Bothan-Ability Score Increase",
+       "timestamp": "2023-05-30T20:15:40.7660622+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.7660622Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Age",
+       "text": "Bothans reach adulthood in their late teens and live less than a century.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Bothan",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Bothan-Age",
+       "timestamp": "2023-05-30T20:15:40.7660622+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.7660622Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Alignment",
+       "text": "Bothans' duplicitous nature causes them to tend toward the dark side, though there are exceptions.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Bothan",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Bothan-Alignment",
+       "timestamp": "2023-05-30T20:15:40.7660622+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.7660622Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Languages",
+       "text": "You can speak, read, and write Galactic Basic and Bothese. Bothese had a great influence on the forming of Galactic Basic; the two languages share many cognates.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Bothan",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Bothan-Languages",
+       "timestamp": "2023-05-30T20:15:40.7670629+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.7670629Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Naturally Stealthy",
+       "text": "You can attempt to hide even when you are obscured only by a creature that is your size or larger than you.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Bothan",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Bothan-Naturally Stealthy",
+       "timestamp": "2023-05-30T20:15:40.7670629+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.7670629Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Nimble Escape",
+       "text": "You can take the Disengage or Hide action as a bonus action on each of your turns.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Bothan",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Bothan-Nimble Escape",
+       "timestamp": "2023-05-30T20:15:40.7670629+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.7670629Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Shrewd",
+       "text": "You are proficient in the Insight and Deception skills.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Bothan",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Bothan-Shrewd",
+       "timestamp": "2023-05-30T20:15:40.7670629+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.7670629Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Size",
+       "text": "Bothans stand 4-5 feet tall and weigh under 100 pounds. Regardless of your position in that range, your size is Medium.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Bothan",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Bothan-Size",
+       "timestamp": "2023-05-30T20:15:40.7670629+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.7670629Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Speed",
+       "text": "Your base walking speed is 30 feet.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Bothan",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Bothan-Speed",
+       "timestamp": "2023-05-30T20:15:40.7670629+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.7670629Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Silver-Tongued",
+       "prerequisite": null,
+       "text": "You develop your conversational skill to better deceive others. You gain the following benefits: \r\n- Increase your Charisma score by 1, to a maximum of 20. \r\n- You gain proficiency in the Deception skill. If you are already proficient in it, you instead gain expertise in it. \r\n- When you take the Attack action, you can replace one attack with an attempt to deceive one humanoid you can see within 30 feet of you that can see and hear you. Make a Charisma (Deception) check contested by the target's Wisdom (Insight) check. If your check succeeds, your movement doesn't provoke opportunity attacks from the target and your attack rolls against it have advantage; both benefits last until the end of your next turn or until you use this ability on a different target. If your check fails, the target can't be deceived by you in this way for 1 hour.\r\n",
+       "attributesIncreased": [
+        "Charisma"
+       ],
+       "attributesIncreasedJson": "[\"Charisma\"]",
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Silver-Tongued",
+       "timestamp": "2023-05-30T20:15:09.5558628+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A09.5558628Z'\"",
+       "customIndex": -1,
+       "combat": true
+      }
+     ],
+     "nonCombatFeatures": [],
+     "backgroundFeature": {
+      "name": "Position of Privilege",
+      "combat": false,
+      "text": "Thanks to your noble birth, people are inclined to think the best of you. You are welcome in high society, and people assume you have the right to be wherever you are. The common folk make every effort to accommodate you and avoid your displeasure, and other people of high birth treat you as a member of the same social sphere. You can secure an audience with a local noble if you need to.\r\n"
+     },
+     "settings": {
+      "isEnforcingForcePrerequisites": true,
+      "isFixedHitPoints": false,
+      "abilityScoreMethod": "Manual"
+     },
+     "notes": "Test character (a copy of a Scholar) for the SW5E Sheet extension. Safe to delete."
+    },
+    "refs": {
+     "classes": {
+      "Scholar": {
+       "name": "Scholar",
+       "summary": "Academic who uses wits and allies to control the battlefield",
+       "primaryAbility": "Intelligence",
+       "hitDiceDieType": 8,
+       "hitPointsAtFirstLevel": "8 + your Constitution modifier",
+       "hitPointsAtHigherLevels": "1d8 (or 5) + your Constitution modifier per scholar level after 1st",
+       "armorProficiencies": [
+        "Light armor"
+       ],
+       "weaponProficiencies": [
+        "Simple blasters",
+        "simple vibroweapons",
+        "martial vibroweapons with the finesse property"
+       ],
+       "toolProficiencies": [
+        "Any one"
+       ],
+       "savingThrows": [
+        "Intelligence",
+        "Wisdom"
+       ],
+       "skillChoices": "Choose three from Deception, Insight, Intimidation, Investigation, Lore, Medicine, Nature, Persuasion, and Survival",
+       "levelChanges": {
+        "1": {
+         "Level": "1st",
+         "Proficiency Bonus": "+2",
+         "Features": "Academic Superiority, Critical Analysis",
+         "Maneuvers Known": "1",
+         "Superiority Dice Quantity": "3",
+         "Superiority Dice Size": "d4",
+         "Discoveries": "�"
+        },
+        "2": {
+         "Level": "2nd",
+         "Proficiency Bonus": "+2",
+         "Features": "Discovery, Sage Advice (long rest)",
+         "Maneuvers Known": "2",
+         "Superiority Dice Quantity": "3",
+         "Superiority Dice Size": "d4",
+         "Discoveries": "2"
+        },
+        "3": {
+         "Level": "3rd",
+         "Proficiency Bonus": "+2",
+         "Features": "Expertise, Academic Pursuit",
+         "Maneuvers Known": "4",
+         "Superiority Dice Quantity": "4",
+         "Superiority Dice Size": "d4",
+         "Discoveries": "4"
+        },
+        "4": {
+         "Level": "4th",
+         "Proficiency Bonus": "+2",
+         "Features": "Ability Score Improvement",
+         "Maneuvers Known": "5",
+         "Superiority Dice Quantity": "4",
+         "Superiority Dice Size": "d4",
+         "Discoveries": "4"
+        },
+        "5": {
+         "Level": "5th",
+         "Proficiency Bonus": "+3",
+         "Features": "Multitasker",
+         "Maneuvers Known": "6",
+         "Superiority Dice Quantity": "5",
+         "Superiority Dice Size": "d6",
+         "Discoveries": "5"
+        },
+        "6": {
+         "Level": "6th",
+         "Proficiency Bonus": "+3",
+         "Features": "Pursuit feature",
+         "Maneuvers Known": "7",
+         "Superiority Dice Quantity": "5",
+         "Superiority Dice Size": "d6",
+         "Discoveries": "5"
+        },
+        "7": {
+         "Level": "7th",
+         "Proficiency Bonus": "+3",
+         "Features": "�",
+         "Maneuvers Known": "9",
+         "Superiority Dice Quantity": "6",
+         "Superiority Dice Size": "d6",
+         "Discoveries": "5"
+        },
+        "8": {
+         "Level": "8th",
+         "Proficiency Bonus": "+3",
+         "Features": "Ability Score Improvement",
+         "Maneuvers Known": "10",
+         "Superiority Dice Quantity": "6",
+         "Superiority Dice Size": "d6",
+         "Discoveries": "5"
+        },
+        "9": {
+         "Level": "9th",
+         "Proficiency Bonus": "+4",
+         "Features": "Pursuit feature",
+         "Maneuvers Known": "11",
+         "Superiority Dice Quantity": "7",
+         "Superiority Dice Size": "d8",
+         "Discoveries": "6"
+        },
+        "10": {
+         "Level": "10th",
+         "Proficiency Bonus": "+4",
+         "Features": "Expertise",
+         "Maneuvers Known": "12",
+         "Superiority Dice Quantity": "7",
+         "Superiority Dice Size": "d8",
+         "Discoveries": "6"
+        },
+        "11": {
+         "Level": "11th",
+         "Proficiency Bonus": "+4",
+         "Features": "�",
+         "Maneuvers Known": "14",
+         "Superiority Dice Quantity": "8",
+         "Superiority Dice Size": "d8",
+         "Discoveries": "7"
+        },
+        "12": {
+         "Level": "12th",
+         "Proficiency Bonus": "+4",
+         "Features": "Ability Score Improvement",
+         "Maneuvers Known": "15",
+         "Superiority Dice Quantity": "8",
+         "Superiority Dice Size": "d8",
+         "Discoveries": "7"
+        },
+        "13": {
+         "Level": "13th",
+         "Proficiency Bonus": "+5",
+         "Features": "Sage Advice (short rest)",
+         "Maneuvers Known": "16",
+         "Superiority Dice Quantity": "9",
+         "Superiority Dice Size": "d10",
+         "Discoveries": "8"
+        },
+        "14": {
+         "Level": "14th",
+         "Proficiency Bonus": "+5",
+         "Features": "Calm and Collected",
+         "Maneuvers Known": "17",
+         "Superiority Dice Quantity": "9",
+         "Superiority Dice Size": "d10",
+         "Discoveries": "8"
+        },
+        "15": {
+         "Level": "15th",
+         "Proficiency Bonus": "+5",
+         "Features": "�",
+         "Maneuvers Known": "19",
+         "Superiority Dice Quantity": "10",
+         "Superiority Dice Size": "d10",
+         "Discoveries": "8"
+        },
+        "16": {
+         "Level": "16th",
+         "Proficiency Bonus": "+5",
+         "Features": "Ability Score Improvement",
+         "Maneuvers Known": "20",
+         "Superiority Dice Quantity": "10",
+         "Superiority Dice Size": "d10",
+         "Discoveries": "8"
+        },
+        "17": {
+         "Level": "17th",
+         "Proficiency Bonus": "+6",
+         "Features": "Pursuit feature",
+         "Maneuvers Known": "21",
+         "Superiority Dice Quantity": "11",
+         "Superiority Dice Size": "d12",
+         "Discoveries": "9"
+        },
+        "18": {
+         "Level": "18th",
+         "Proficiency Bonus": "+6",
+         "Features": "Adaptable Intellectual",
+         "Maneuvers Known": "22",
+         "Superiority Dice Quantity": "11",
+         "Superiority Dice Size": "d12",
+         "Discoveries": "9"
+        },
+        "19": {
+         "Level": "19th",
+         "Proficiency Bonus": "+6",
+         "Features": "Ability Score Improvement",
+         "Maneuvers Known": "23",
+         "Superiority Dice Quantity": "12",
+         "Superiority Dice Size": "d12",
+         "Discoveries": "9"
+        },
+        "20": {
+         "Level": "20th",
+         "Proficiency Bonus": "+6",
+         "Features": "Knowledge Unbound",
+         "Maneuvers Known": "24",
+         "Superiority Dice Quantity": "12",
+         "Superiority Dice Size": "d12",
+         "Discoveries": "9"
+        }
+       },
+       "casterType": "None",
+       "casterRatio": 0,
+       "multiClassProficiencies": [
+        "Light armor"
+       ],
+       "archetypeFlavorName": "Academic Pursuits"
+      }
+     },
+     "archetypes": {
+      "Gambler Pursuit": {
+       "name": "Gambler Pursuit",
+       "className": "Scholar",
+       "casterType": "None",
+       "casterRatio": 0,
+       "leveledTable": null
+      }
+     },
+     "species": {
+      "Bothan": {
+       "name": "Bothan",
+       "size": "Medium",
+       "homeworld": "Bothawui",
+       "language": "Bothese",
+       "distinctions": "Diminutive stature, mood-sensitive fur",
+       "skinColorOptions": "Brown",
+       "hairColorOptions": "Black, brown, or gray (with age)",
+       "eyeColorOptions": "Brown or green",
+       "heightAverage": "4'3\"",
+       "heightRollMod": "+2d4\"",
+       "weightAverage": "60 lb.",
+       "weightRollMod": "x(2d4) lb.",
+       "traits": [
+        {
+         "name": "Ability Score Increase",
+         "description": "Your Intelligence score increases by 2, and your Dexterity score increases by 1."
+        },
+        {
+         "name": "Age",
+         "description": "Bothans reach adulthood in their late teens and live less than a century."
+        },
+        {
+         "name": "Alignment",
+         "description": "Bothans' duplicitous nature causes them to tend toward the dark side, though there are exceptions."
+        },
+        {
+         "name": "Size",
+         "description": "Bothans stand 4-5 feet tall and weigh under 100 pounds. Regardless of your position in that range, your size is Medium."
+        },
+        {
+         "name": "Speed",
+         "description": "Your base walking speed is 30 feet."
+        },
+        {
+         "name": "Naturally Stealthy",
+         "description": "You can attempt to hide even when you are obscured only by a creature that is your size or larger than you."
+        },
+        {
+         "name": "Nimble Escape",
+         "description": "You can take the Disengage or Hide action as a bonus action on each of your turns."
+        },
+        {
+         "name": "Shrewd",
+         "description": "You are proficient in the Insight and Deception skills."
+        },
+        {
+         "name": "Languages",
+         "description": "You can speak, read, and write Galactic Basic and Bothese. Bothese had a great influence on the forming of Galactic Basic; the two languages share many cognates."
+        }
+       ],
+       "imageUrls": [
+        "https://starwars5ecentral.blob.core.windows.net/site-images/species/species_bothan.png"
+       ]
+      }
+     },
+     "backgrounds": {
+      "Noble": {
+       "name": "Noble",
+       "flavorText": "You understand wealth, power, and privilege. You carry a noble title, and your family owns land, collects taxes, and wields significant political influence. You might be a pampered aristocrat unfamiliar with manual labor, a former merchant just elevated to the nobility, or an honest, hard-working landowner who cares deeply about the people who live and work on your land.\r\n\r\nWork with your GM to come up with an appropriate title and determine how much authority that title carries, as well as your family and their influence on you. Is your family old and established, or was your title only recently bestowed? How much influence do they wield, how do people regard them?\r\n\r\nWhat's your position in the family? Are you the heir to the head of the family or the head itself? Are you far down the line of succession? How does the head of your family feel about your adventuring career? Are you in your family's good graces? \r\n\r\nDoes your family have a coat of arms you might wear, a signet ring, or particular colors? \r\n\r\nThese details help establish your family and your title as features of the world of the campaign.\r\n",
+       "skillProficiencies": "Choose two from Deception, Insight, Lore, and Persuasion",
+       "toolProficiencies": "One type of gaming set",
+       "languages": "One of your choice",
+       "equipment": "A set of fine clothes, a signet ring, a letter of pedigree, and a purse containing 250 cr",
+       "featureName": "Position of Privilege",
+       "featureText": "Thanks to your noble birth, people are inclined to think the best of you. You are welcome in high society, and people assume you have the right to be wherever you are. The common folk make every effort to accommodate you and avoid your displeasure, and other people of high birth treat you as a member of the same social sphere. You can secure an audience with a local noble if you need to.\r\n",
+       "flavorName": null,
+       "flavorDescription": null
+      }
+     },
+     "feats": {
+      "Silver-Tongued": {
+       "name": "Silver-Tongued",
+       "prerequisite": null,
+       "text": "You develop your conversational skill to better deceive others. You gain the following benefits: \r\n- Increase your Charisma score by 1, to a maximum of 20. \r\n- You gain proficiency in the Deception skill. If you are already proficient in it, you instead gain expertise in it. \r\n- When you take the Attack action, you can replace one attack with an attempt to deceive one humanoid you can see within 30 feet of you that can see and hear you. Make a Charisma (Deception) check contested by the target's Wisdom (Insight) check. If your check succeeds, your movement doesn't provoke opportunity attacks from the target and your attack rolls against it have advantage; both benefits last until the end of your next turn or until you use this ability on a different target. If your check fails, the target can't be deceived by you in this way for 1 hour.\r\n",
+       "attributesIncreased": [
+        "Charisma"
+       ],
+       "contentType": "Core",
+       "contentSource": "PHB"
+      }
+     },
+     "maneuvers": {
+      "Tyrannical Strike": {
+       "name": "Tyrannical Strike",
+       "description": "When you hit a creature with a weapon attack, you can expend one superiority die and use your reaction to issue a one-word command to a creature who can see or hear you. You add the superiority die to the attack's damage roll, and the target must succeed on a Wisdom saving throw. On a failed save, the target must follow the command on its next turn. \r\n\r\nThe target automatically succeeds if it is immune to charm, it doesn't understand your language, or if your command is directly harmful to it.",
+       "metadata": null,
+       "prerequisite": "Proficiency with Intimidation",
+       "type": "Mental",
+       "contentType": "Core",
+       "contentSource": "PHB"
+      },
+      "Disarming Blow": {
+       "name": "Disarming Blow",
+       "description": "When you hit a creature with a weapon attack, you can expend one superiority die to attempt to disarm the target, forcing it to drop one item of your choice that it's holding. You add the superiority die to the attack's damage roll, and the target must make a Strength saving throw. On a failed save, it drops the object you choose. If you have a free hand and are within 5 feet of the creature, you can catch the item. Otherwise, the object lands at the creature's feet.",
+       "metadata": null,
+       "prerequisite": null,
+       "type": "Physical",
+       "contentType": "Core",
+       "contentSource": "PHB"
+      },
+      "Rampage": {
+       "name": "Rampage",
+       "description": "When you reduce a creature to 0 hit points, you can use your bonus action to expend a superiority die and move up to half your speed. If you end this movement within 5 feet of a creature, you can make a single melee weapon attack against that creature, adding the result of the superiority die roll to the attack roll.",
+       "metadata": null,
+       "prerequisite": null,
+       "type": "Physical",
+       "contentType": "Core",
+       "contentSource": "PHB"
+      },
+      "Shadow Puppetry": {
+       "name": "Shadow Puppetry",
+       "description": "When a creature you can see within 30 feet of you is reduced to 0 hit points, you can use your reaction and expend a superiority die to give that creature a final act of aggression. That creature can immediately move a number of feet equal to 5 times the result of the die and make a single weapon attack against a target of your choice within its attack range, adding the die to the attack roll.",
+       "metadata": null,
+       "prerequisite": null,
+       "type": "Mental",
+       "contentType": "ExpandedContent",
+       "contentSource": "EC"
+      },
+      "Dark Transference": {
+       "name": "Dark Transference",
+       "description": "When you hit a creature with an attack, you can expend a superiority die and roll it to attempt to siphon life from it. The target must make a Constitution saving throw. On a failed save, add the result to the damage roll, and you regain one expended Hit Die.",
+       "metadata": null,
+       "prerequisite": null,
+       "type": "Mental",
+       "contentType": "ExpandedContent",
+       "contentSource": "EC"
+      },
+      "Body Over Bother": {
+       "name": "Body Over Bother",
+       "description": "When you are forced to make an Strength, Dexterity, or Constitution saving throw, you can expend a superiority die to change the saving throw ability to your maneuver ability modifier.",
+       "metadata": null,
+       "prerequisite": null,
+       "type": "Physical",
+       "contentType": "Core",
+       "contentSource": "PHB"
+      }
+     },
+     "choices": {},
+     "conditions": [
+      {
+       "name": "Blinded",
+       "description": "A blinded creature can't see and automatically fails any ability check that requires sight.\\r\\n- Attack rolls against the creature have advantage, and the creature's attack rolls have disadvantage."
+      },
+      {
+       "name": "Charmed",
+       "description": "A charmed creature can't attack the charmer or target the charmer with harmful abilities or enhanced effects.\\r\\n- The charmer has advantage on any ability check to interact socially with the creature."
+      },
+      {
+       "name": "Deafened",
+       "description": "A deafened creature can't hear and automatically fails any ability check that requires hearing."
+      },
+      {
+       "name": "Exhaustion",
+       "description": "Some special abilities and environmental hazards, such as and the long-term effects of freezing or scorching temperatures, can lead to a special condition called exhaustion. Exhaustion is measured in six levels. An effect can give a creature one or more levels of exhaustion, as specified in the effect's description. Exhaustion Level\\r\\n\\r\\n|Level|Effect|\\r\\n|:--:|:--|\\r\\n|1|Disadvantage on ability checks|\\r\\n|2|Speed halved|\\r\\n|3|Disadvantage on attack rolls and saving throws|\\r\\n|4|Hit point maximum halved|\\r\\n|5|Speed reduced to 0|\\r\\n|6|Death|\\r\\n\\r\\nIf an already exhausted creature suffers another effect that causes exhaustion, its current level of exhaustion increases by the amount specified in the effect's description.\\r\\n\\r\\nA creature suffers the effect of its current level of exhaustion as well as all lower levels. For example, a creature suffering level 2 exhaustion has its speed halved and has disadvantage on ability checks.\\r\\n\\r\\nAn effect that removes exhaustion reduces its level as specified in the effect's description, with all exhaustion effects ending if a creature's exhaustion level is reduced below 1.\\r\\n\\r\\nFinishing a long rest reduces a creature's exhaustion level by 1, provided that the creature has also ingested some food and drink."
+      },
+      {
+       "name": "Frightened",
+       "description": "A frightened creature has disadvantage on ability checks and attack rolls while the source of its fear is within line of sight.\\r\\n- The creature can't willingly move closer to the source of its fear."
+      },
+      {
+       "name": "Grappled",
+       "description": "A grappled creature's speed becomes 0, and it can't benefit from any bonus to its speed.\\r\\n- The condition ends if the grappler is incapacitated (see the condition).\\r\\n- The condition also ends if an effect removes the grappled creature from the reach of the grappler or grappling effect."
+      },
+      {
+       "name": "Incapacitated",
+       "description": "An incapacitated creature can't take actions or reactions."
+      },
+      {
+       "name": "Invisible",
+       "description": "An invisible creature is impossible to see without the aid of powers or a special sense. For the purpose of hiding, the creature is heavily obscured. The creature's location can be detected by any noise it makes or any tracks it leaves.\\r\\n- Attack rolls against the creature have disadvantage, and the creature's attack rolls have advantage."
+      },
+      {
+       "name": "Paralyzed",
+       "description": "A paralyzed creature is incapacitated (see the condition) and can't move or speak.\\r\\n- The creature automatically fails Strength and Dexterity saving throws. Attack rolls against the creature have advantage.\\r\\n- Any attack that hits the creature is a critical hit if the attacker is within 5 feet of the creature."
+      },
+      {
+       "name": "Petrified",
+       "description": "A petrified creature is transformed, along with any object it is wearing or carrying, into a solid inanimate substance (usually stone). Its weight increases by a factor of ten, and it ceases aging.\\r\\n- The creature is incapacitated (see the condition), can't move or speak, and is unaware of its surroundings.\\r\\n- Attack rolls against the creature have advantage. \\r\\n- The creature automatically fails Strength and Dexterity saving throws.\\r\\n- The creature has resistance to all damage.\\r\\n- The creature is immune to poison and disease, although a poison or disease already in its system is suspended, not neutralized."
+      },
+      {
+       "name": "Poisoned",
+       "description": "A poisoned creature has disadvantage on attack rolls and ability checks."
+      },
+      {
+       "name": "Prone",
+       "description": "A prone creature's only movement option is to crawl, unless it stands up and thereby ends the condition. \\r\\n- The creature has disadvantage on melee attack rolls.\\r\\n- The creature has disadvantage on ranged attack rolls against targets within 30 feet.\\r\\n- An attack roll against the creature has advantage if the attacker is within 5 feet of the creature. Otherwise, the attack roll has disadvantage."
+      },
+      {
+       "name": "Restrained",
+       "description": "A restrained creature's speed becomes 0, and it can't benefit from any bonus to its speed.\\r\\n- Attack rolls against the creature have advantage, and the creature's attack rolls have disadvantage.\\r\\n- The creature has disadvantage on Dexterity saving throws."
+      },
+      {
+       "name": "Shocked",
+       "description": "A shocked creature's speed is reduced by half.\\r\\n- The creature can't take reactions."
+      },
+      {
+       "name": "Stunned",
+       "description": "A stunned creature is incapacitated (see the condition), can't move, and can speak only falteringly.\\r\\n- The creature automatically fails Strength and Dexterity saving throws.\\r\\n- Attack rolls against the creature have advantage."
+      },
+      {
+       "name": "Unconscious",
+       "description": "An unconscious creature is incapacitated (see the condition), can't move or speak, and is unaware of its surroundings\\r\\n- The creature drops whatever it's holding and falls prone.\\r\\n- The creature automatically fails Strength and Dexterity saving throws.\\r\\n- Attack rolls against the creature have advantage.\\r\\n- Any attack that hits the creature is a critical hit if the attacker is within 5 feet of the creature."
+      }
+     ]
+    },
+    "validation": {
+     "code": 0,
+     "message": "All checks passed",
+     "isValid": true
+    },
+    "error": null,
+    "at": 1792289036724
+   }
+  },
+  "edits": {
+   "id:00000000-0000-4000-8000-000002000001": {}
+  },
+  "itemState": {
+   "id:00000000-0000-4000-8000-000002000001": {}
+  },
+  "trackers": {},
+  "history": {
+   "id:00000000-0000-4000-8000-000002000001": [
+    {
+     "at": 1792176016131,
+     "reason": "Loaded from SW5E",
+     "changedAt": 1792176000991,
+     "raw": {
+      "name": "Scholar Test (Claude)",
+      "image": "",
+      "experiencePoints": 900,
+      "species": {
+       "name": "Bothan",
+       "abilityScoreImprovementSelectedOption": 0,
+       "abilityScoreImprovement": {}
+      },
+      "classes": [
+       {
+        "name": "Scholar",
+        "levels": 3,
+        "hitPoints": [
+         5,
+         5
+        ],
+        "abilityScoreImprovements": [],
+        "maneuvers": [
+         "Tyrannical Strike",
+         "Disarming Blow",
+         "Rampage",
+         "Shadow Puppetry",
+         "Dark Transference",
+         "Body Over Bother"
+        ]
+       }
+      ],
+      "baseAbilityScores": {
+       "Strength": 12,
+       "Dexterity": 15,
+       "Constitution": 13,
+       "Intelligence": 16,
+       "Wisdom": 13,
+       "Charisma": 11
+      },
+      "background": {
+       "name": "Noble",
+       "feat": {
+        "name": "Silver-Tongued",
+        "type": "Feat"
+       },
+       "feature": ""
+      },
+      "characteristics": {
+       "alignment": "Balanced Neutral",
+       "Personality Traits": "",
+       "Ideal": "",
+       "Bond": "",
+       "Flaw": "",
+       "Gender": "",
+       "Place of Birth": "",
+       "Age": "",
+       "Height": "",
+       "Weight": "",
+       "Hair": "",
+       "Eyes": "",
+       "Skin": "",
+       "Appearance": "",
+       "Backstory": "Copy of a real character, for testing the SW5E Sheet extension. Safe to delete."
+      },
+      "credits": 351,
+      "equipment": [
+       {
+        "name": "Fiber armor",
+        "quantity": 1,
+        "category": "Equipment",
+        "equipped": true
+       },
+       {
+        "name": "Chakram",
+        "quantity": 1,
+        "category": "Equipment",
+        "equipped": true
+       },
+       {
+        "name": "Vibrobaton",
+        "quantity": 1,
+        "category": "Equipment",
+        "equipped": true
+       },
+       {
+        "name": "Forgery kit",
+        "quantity": 1,
+        "category": "Equipment"
+       },
+       {
+        "name": "Pazaak deck",
+        "quantity": 1,
+        "category": "Equipment"
+       }
+      ],
+      "currentStats": {
+       "hitPointsLost": 0,
+       "temporaryHitPoints": 0,
+       "techPointsUsed": 0,
+       "forcePointsUsed": 0,
+       "superiorityDiceUsed": 0,
+       "hitDiceUsed": {
+        "d8": 0
+       },
+       "deathSaves": {
+        "successes": 0,
+        "failures": 0
+       },
+       "hasInspiration": false,
+       "featuresTimesUsed": {},
+       "conditions": [],
+       "exhaustion": 0,
+       "highLevelCasting": {
+        "level6": false,
+        "level7": false,
+        "level8": false,
+        "level9": false
+       }
+      },
+      "tweaks": {
+       "abilityScores": {
+        "Charisma": {
+         "skills": {
+          "Deception": {
+           "proficiency": "Expertise"
+          },
+          "Persuasion": {
+           "proficiency": "Expertise"
+          }
+         },
+         "score": {
+          "bonus": 1,
+          "override": null
+         }
+        },
+        "Wisdom": {
+         "skills": {
+          "Insight": {
+           "proficiency": "Proficient"
+          }
+         }
+        },
+        "Dexterity": {
+         "skills": {
+          "Sleight of Hand": {
+           "proficiency": "Proficient"
+          }
+         }
+        }
+       }
+      },
+      "customProficiencies": [
+       {
+        "name": "Pazaak deck",
+        "type": "tool",
+        "proficiencyLevel": "proficient"
+       },
+       {
+        "name": "Forgery kit",
+        "type": "tool",
+        "proficiencyLevel": "expertise"
+       }
+      ],
+      "customLanguages": [
+       "Bothese"
+      ],
+      "customFeatures": [
+       {
+        "name": "Sage Advice (C)",
+        "content": "You can spend 1 minute spreading your knowledge and experience, advising those around you."
+       },
+       {
+        "name": "Malleable Maneuvering (Disc)",
+        "content": "You learn two additional maneuvers. When you complete a short rest, you can replace one of these maneuvers with another one. When you complete a long rest, you can replace both of these maneuvers with other ones."
+       },
+       {
+        "name": "Lifelong Learning (Disc)",
+        "content": "You gain proficiency in a skill and a tool, or two tools.\nPersuasion + Forgery kit."
+       },
+       {
+        "name": "Expertise (3rd level)",
+        "content": "Scholar: 3rd level\nChoose two of your skill proficiencies, or one of skill proficiencies and one of your tool proficiencies, or two of your tool proficiencies. You gain expertise in those skills or tools.\nPersuasion + Forgery Kit"
+       },
+       {
+        "name": "Gambler’s Aptitude",
+        "content": "Gambler Pursuit: 3rd level\nYou gain proficiency with your choice of gaming set and your choice of the Insight, Deception, Persuasion, or Sleight of Hand skills.\nPazaak, Sleight of Hand."
+       },
+       {
+        "name": "Risk versus Reward",
+        "content": "Gambler Pursuit: 3rd, 9th, 13th, and 17th level\nWhen you make your first attack on your turn against the target of your Critical Analysis feature, you can decide to gamble by rolling a d6."
+       },
+       {
+        "name": "Calculated Bluff (G Disc)",
+        "content": "When you make an ability check using Charisma, you can choose to instead make the check using your Intelligence or Wisdom modifier (your choice)."
+       },
+       {
+        "name": "Running on Fumes (Disc)",
+        "content": "You only need 3 hours of sleep during a long rest to gain its benefits, instead of 6."
+       }
+      ],
+      "customFeats": [],
+      "customTechPowers": [],
+      "customForcePowers": [],
+      "customEquipment": [],
+      "settings": {
+       "isEnforcingForcePrerequisites": true,
+       "isFixedHitPoints": false,
+       "abilityScoreMethod": "Manual"
+      },
+      "notes": "Test character (a copy of a Scholar) for the SW5E Sheet extension. Safe to delete.",
+      "localId": "temp-q3e9pgja5",
+      "createdAt": 1792176000991,
+      "builderVersion": "0.7.6",
+      "changedAt": 1792176000991,
+      "id": "00000000-0000-4000-8000-000002000001",
+      "userId": "00000000-0000-4000-8000-000002000002"
+     }
+    },
+    {
+     "at": 1792176217004,
+     "reason": "Synced to SW5E",
+     "changedAt": 1792176215087,
+     "raw": {
+      "name": "Scholar Test (Claude)",
+      "image": "",
+      "experiencePoints": 900,
+      "species": {
+       "name": "Bothan",
+       "abilityScoreImprovementSelectedOption": 0,
+       "abilityScoreImprovement": {}
+      },
+      "classes": [
+       {
+        "name": "Scholar",
+        "levels": 3,
+        "hitPoints": [
+         5,
+         5
+        ],
+        "abilityScoreImprovements": [],
+        "maneuvers": [
+         "Tyrannical Strike",
+         "Disarming Blow",
+         "Rampage",
+         "Shadow Puppetry",
+         "Dark Transference",
+         "Body Over Bother"
+        ],
+        "options": {
+         "Discoveries": [
+          {
+           "name": "Malleable Maneuvering"
+          },
+          {
+           "name": "Lifelong Learning",
+           "note": "Persuasion + Forgery kit."
+          },
+          {
+           "name": "Calculated Bluff"
+          },
+          {
+           "name": "Running on Fumes"
+          }
+         ]
+        },
+        "archetype": {
+         "name": "Gambler Pursuit"
+        }
+       }
+      ],
+      "baseAbilityScores": {
+       "Strength": 12,
+       "Dexterity": 15,
+       "Constitution": 13,
+       "Intelligence": 16,
+       "Wisdom": 13,
+       "Charisma": 11
+      },
+      "background": {
+       "name": "Noble",
+       "feat": {
+        "name": "Silver-Tongued",
+        "type": "Feat"
+       },
+       "feature": ""
+      },
+      "characteristics": {
+       "alignment": "Balanced Neutral",
+       "Personality Traits": "",
+       "Ideal": "",
+       "Bond": "",
+       "Flaw": "",
+       "Gender": "",
+       "Place of Birth": "",
+       "Age": "",
+       "Height": "",
+       "Weight": "",
+       "Hair": "",
+       "Eyes": "",
+       "Skin": "",
+       "Appearance": "",
+       "Backstory": "Copy of a real character, for testing the SW5E Sheet extension. Safe to delete."
+      },
+      "credits": 351,
+      "equipment": [
+       {
+        "name": "Fiber armor",
+        "quantity": 1,
+        "category": "Equipment",
+        "equipped": true
+       },
+       {
+        "name": "Chakram",
+        "quantity": 1,
+        "category": "Equipment",
+        "equipped": true
+       },
+       {
+        "name": "Vibrobaton",
+        "quantity": 1,
+        "category": "Equipment",
+        "equipped": true
+       },
+       {
+        "name": "Forgery kit",
+        "quantity": 1,
+        "category": "Equipment"
+       },
+       {
+        "name": "Pazaak deck",
+        "quantity": 1,
+        "category": "Equipment"
+       }
+      ],
+      "currentStats": {
+       "hitPointsLost": 0,
+       "temporaryHitPoints": 0,
+       "techPointsUsed": 0,
+       "forcePointsUsed": 0,
+       "superiorityDiceUsed": 0,
+       "hitDiceUsed": {
+        "d8": 0
+       },
+       "deathSaves": {
+        "successes": 0,
+        "failures": 0
+       },
+       "hasInspiration": false,
+       "featuresTimesUsed": {},
+       "conditions": [],
+       "exhaustion": 0,
+       "highLevelCasting": {
+        "level6": false,
+        "level7": false,
+        "level8": false,
+        "level9": false
+       }
+      },
+      "tweaks": {
+       "abilityScores": {
+        "Charisma": {
+         "skills": {
+          "Deception": {
+           "proficiency": "Expertise"
+          },
+          "Persuasion": {
+           "proficiency": "Expertise"
+          }
+         },
+         "score": {
+          "bonus": 1,
+          "override": null
+         }
+        },
+        "Wisdom": {
+         "skills": {
+          "Insight": {
+           "proficiency": "Proficient"
+          }
+         }
+        },
+        "Dexterity": {
+         "skills": {
+          "Sleight of Hand": {
+           "proficiency": "Proficient"
+          }
+         }
+        }
+       }
+      },
+      "customProficiencies": [
+       {
+        "name": "Pazaak deck",
+        "type": "tool",
+        "proficiencyLevel": "proficient"
+       },
+       {
+        "name": "Forgery kit",
+        "type": "tool",
+        "proficiencyLevel": "expertise"
+       }
+      ],
+      "customLanguages": [
+       "Bothese"
+      ],
+      "customFeatures": [],
+      "customFeats": [],
+      "customTechPowers": [],
+      "customForcePowers": [],
+      "customEquipment": [],
+      "settings": {
+       "isEnforcingForcePrerequisites": true,
+       "isFixedHitPoints": false,
+       "abilityScoreMethod": "Manual"
+      },
+      "notes": "Test character (a copy of a Scholar) for the SW5E Sheet extension. Safe to delete.",
+      "localId": "temp-q3e9pgja5",
+      "createdAt": 1792176000991,
+      "builderVersion": "0.7.6",
+      "changedAt": 1792176215087,
+      "id": "00000000-0000-4000-8000-000002000001",
+      "userId": "00000000-0000-4000-8000-000002000002",
+      "featureNotes": {
+       "expertise": "Persuasion + Forgery Kit",
+       "gambler's aptitude": "Pazaak, Sleight of Hand."
+      }
+     }
+    }
+   ]
+  },
+  "rolls": [],
+  "rollSettings": {
+   "critMode": "max"
+  },
+  "rulesInfo": {
+   "dataVersion": 199,
+   "fetchedAt": 1792273029637
+  },
+  "catalogInfo": {
+   "dataVersion": 199,
+   "fetchedAt": 1792170265673,
+   "count": 2425
+  },
+  "backupInfo": {
+   "count": null,
+   "characters": {}
+  },
+  "lastCharacter": "id:00000000-0000-4000-8000-000002000001"
+ },
+ "from": {
+  "case": "scholar-test-claude",
+  "changes": [
+   "--js",
+   "raw.classes[0].archetype={name:'Geneticist Pursuit'}; raw.classes[0].options={Discoveries:[{name:'Unnatural Weaponry'}]}; raw.baseAbilityScores.Intelligence=18"
+  ]
+ }
+}

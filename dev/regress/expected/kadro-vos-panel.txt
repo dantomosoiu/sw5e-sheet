@@ -265,7 +265,7 @@ damage|0: Blaster rifle damage: d8 +6 · = +3 DEX modifier +2 Brute Force +1 Xer
 attack|1: Vibrorapier attack: d20 +5 · = +5 modifier · critical on 19–20 (Improved Critical) · option: Precision Attack +d4 +1d4
 damage|1: Vibrorapier damage: d8 +5 · = +3 DEX modifier +2 Brute Force · Kinetic · option: Sneak Attack +1d6 · option: Return Fire +d4 +1d4 · damage advantage: Weapon Expert
 attack|2: Unarmed Strike attack: d20 +5 · = +5 modifier · critical on 19–20 (Improved Critical) · option: Precision Attack +d4 +1d4
-damage|2: Unarmed Strike damage: d4 +5 · = +2 Brute Force +3 Unarmed Combatant · Kinetic · option: Sneak Attack +1d6 · option: Return Fire +d4 +1d4
+damage|2: Unarmed Strike damage: d4 +5 · = +3 DEX modifier (Unarmed Combatant) +2 Brute Force · Kinetic · option: Sneak Attack +1d6 · option: Return Fire +d4 +1d4
 supdie: Superiority die: d4 +0
 maneuver|Physical|Dexterity: Physical maneuver attack: d20 +5 · = +5 modifier
 maneuver|Mental|Wisdom: Mental maneuver attack: d20 +3 · = +3 modifier
@@ -274,7 +274,7 @@ tool|One type of gaming set|proficient: One type of gaming set check: d20 +2 · 
 tool|Tinker's implements|proficient: Tinker's implements check: d20 +2 · = +0 INT modifier +2 proficiency
 damage|0|crit: Blaster rifle damage (critical): d8 d8 +6 · = +3 DEX modifier +2 Brute Force +1 Xerrol Nightstinger Rifle · Energy · critical · option: Sneak Attack +1d6 · option: Return Fire +d4 +1d4 · damage advantage: Weapon Expert
 damage|1|crit: Vibrorapier damage (critical): d8 d8 +5 · = +3 DEX modifier +2 Brute Force · Kinetic · critical · option: Sneak Attack +1d6 · option: Return Fire +d4 +1d4 · damage advantage: Weapon Expert
-damage|2|crit: Unarmed Strike damage (critical): d4 d4 +5 · = +2 Brute Force +3 Unarmed Combatant · Kinetic · critical · option: Sneak Attack +1d6 · option: Return Fire +d4 +1d4
+damage|2|crit: Unarmed Strike damage (critical): d4 d4 +5 · = +3 DEX modifier (Unarmed Combatant) +2 Brute Force · Kinetic · critical · option: Sneak Attack +1d6 · option: Return Fire +d4 +1d4
 
 ## Sheet: Overview
 Kadro Vos (Panel)

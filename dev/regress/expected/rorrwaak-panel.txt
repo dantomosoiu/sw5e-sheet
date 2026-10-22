@@ -253,7 +253,7 @@ Initiative
 +1
 Speed
 40 ft
-  ↳ hover speed.base: Without tweaks or effects: 30 ft → now 40 ft / +10 Speed · Predator's Instinct Berserker Instincts feature / +1 STR · Brawny feat (background feat)
+  ↳ hover speed.base: Without tweaks or effects: 30 ft → now 40 ft / +10 Speed · Predator's Instinct Berserker Instincts feature
 4 miles/hour · 32 miles/day
 Proficiency
 +2
@@ -424,7 +424,7 @@ Weapon | To hit | Damage | Ability | Type | Properties |
 Vibroaxe
 Dexterity 11, heavy, two-handed
 | +8 | 1d12+6 Kinetic | Strength | Martial Vibroweapon | Dexterity 11, heavy, two-handed |
-  ↳ hover weapons.0.attackBonus: Without tweaks or effects: 6 → now 8 / +1 Attack · Weapon (Fine) while equipped / proficient Proficient: All vibroweapons · Berserk… [248 chars #d6be91f3]
+  ↳ hover weapons.0.attackBonus: Without tweaks or effects: 6 → now 8 / +1 Attack · Weapon (Fine) while equipped / +1 STR · Brawny feat (background feat)
   ↳ hover weapons.0.damageBonus: Without tweaks or effects: 4 → now 6 / +1 Damage · Weapon (Fine) while equipped / +1 STR · Brawny feat (background feat)
 Unarmed Strike
 | +7 | 1d4+5 Kinetic | Strength | Unarmed | — |

@@ -12,7 +12,7 @@ tweaks.abilityScores.Dexterity.skills.Stealth.proficiency = "Proficient"
 tweaks.abilityScores.Intelligence.skills.Piloting.bonus = 0
 tweaks.abilityScores.Intelligence.skills.Piloting.proficiency = "Proficient"
 tweaks.abilityScores.Strength.score.bonus = 0
-tweaks.abilityScores.Strength.score.override = 18
+tweaks.abilityScores.Strength.score.override = 16
 tweaks.abilityScores.Wisdom.skills.Insight.bonus = 0
 tweaks.abilityScores.Wisdom.skills.Insight.proficiency = "Proficient"
 tweaks.abilityScores.Wisdom.skills.Perception.bonus = 0
@@ -94,12 +94,12 @@ abilityScores.Intelligence.skills[Piloting].proficiency = "proficient"
 abilityScores.Intelligence.skills[Technology].modifier = 0
 abilityScores.Intelligence.skills[Technology].proficiency = "none"
 abilityScores.Intelligence.value = 10
-abilityScores.Strength.modifier = 4
-abilityScores.Strength.savingThrow.modifier = 6
+abilityScores.Strength.modifier = 3
+abilityScores.Strength.savingThrow.modifier = 5
 abilityScores.Strength.savingThrow.proficiency = "proficient"
-abilityScores.Strength.skills[Athletics].modifier = 4
+abilityScores.Strength.skills[Athletics].modifier = 3
 abilityScores.Strength.skills[Athletics].proficiency = "none"
-abilityScores.Strength.value = 18
+abilityScores.Strength.value = 16
 abilityScores.Wisdom.modifier = 1
 abilityScores.Wisdom.savingThrow.modifier = 1
 abilityScores.Wisdom.savingThrow.proficiency = "none"
@@ -131,8 +131,8 @@ weapons[Blaster rifle].tweaks.toHit.bonus = 0
 weapons[Blaster rifle].tweaks.toHit.proficiency = "proficient"
 weapons[Blaster rifle].weaponClassification = "MartialBlaster"
 weapons[Vibrorapier].ability = "Strength"
-weapons[Vibrorapier].attackBonus = 6
-weapons[Vibrorapier].damageBonus = 6
+weapons[Vibrorapier].attackBonus = 5
+weapons[Vibrorapier].damageBonus = 5
 weapons[Vibrorapier].damageDieModifier = 0
 weapons[Vibrorapier].damageDieType = 8
 weapons[Vibrorapier].damageNumberOfDice = 1
@@ -146,8 +146,8 @@ weapons[Vibrorapier].tweaks.toHit.bonus = 0
 weapons[Vibrorapier].tweaks.toHit.proficiency = "proficient"
 weapons[Vibrorapier].weaponClassification = "MartialVibroweapon"
 weapons[Unarmed Strike].ability = "Strength"
-weapons[Unarmed Strike].attackBonus = 6
-weapons[Unarmed Strike].damageBonus = 6
+weapons[Unarmed Strike].attackBonus = 5
+weapons[Unarmed Strike].damageBonus = 5
 weapons[Unarmed Strike].damageDieType = 4
 weapons[Unarmed Strike].damageNumberOfDice = 1
 weapons[Unarmed Strike].damageType = "Kinetic"
@@ -162,10 +162,10 @@ weapons[Unarmed Strike].tweaks.damageDice.dieSize = 4
 weapons[Unarmed Strike].weaponClassification = "Unarmed"
 attunement.hasAttunable = false
 attunement.maximum = 2
-carryingCapacity.encumbered = 90
-carryingCapacity.heavilyEncumbered = 180
-carryingCapacity.maxCapacity = 270
-carryingCapacity.pushDragLift = 540
+carryingCapacity.encumbered = 80
+carryingCapacity.heavilyEncumbered = 160
+carryingCapacity.maxCapacity = 240
+carryingCapacity.pushDragLift = 480
 superiority = false
 techCasting = false
 forceCasting = false
@@ -218,7 +218,6 @@ tweak: weapon.damage +2 · Brute Force
 tweak: unarmed.damage +2 · Brute Force
 tweak: abilityScores.Charisma.skills.Persuasion +0 {"proficiency":"Proficient"} · Coercive
 tweak: hitPoints.maximum +4 · Toughness
-tweak: abilityScores.Strength.score +2 · Strength Stim (Fine)
 tweak: unarmed.damageDice +0 {"dieSize":4} · Unarmed Combatant
 weapon tweak: #1 damage +1 · Xerrol Nightstinger Rifle
 weapon tweak: #1 toHit +0 · Fighter weapon proficiencies
@@ -234,9 +233,9 @@ hitdie|d10: Hit die (d10): d10 +3 · = +3 per die
 featheal|Second Wind|1d10|3|Fighter level: Second Wind: healing: d10 +3 · = +3 Fighter level
 dice|1d4: 1d4: d4 +0
 dice|1d6: 1d6: d6 +0
-check|Strength: Strength check: d20 +4 · = +4 modifier
-save|Strength: Strength saving throw: d20 +6 · = +6 modifier
-skill|Strength|0: Athletics (STR): d20 +4 · = +4 modifier
+check|Strength: Strength check: d20 +3 · = +3 modifier
+save|Strength: Strength saving throw: d20 +5 · = +5 modifier
+skill|Strength|0: Athletics (STR): d20 +3 · = +3 modifier
 check|Dexterity: Dexterity check: d20 +3 · = +3 modifier
 save|Dexterity: Dexterity saving throw: d20 +3 · = +3 modifier
 skill|Dexterity|0: Acrobatics (DEX): d20 +3 · = +3 modifier
@@ -266,19 +265,19 @@ skill|Charisma|2: Performance (CHA): d20 +1 · = +1 modifier
 skill|Charisma|3: Persuasion (CHA): d20 +3 · = +3 modifier
 attack|0: Blaster rifle attack: d20 +5 · = +5 modifier · critical on 19–20 (Improved Critical) · option: Precision Attack +d4 +1d4
 damage|0: Blaster rifle damage: d8 +6 · = +3 DEX modifier +2 Brute Force +1 Xerrol Nightstinger Rifle · Energy · option: Sneak Attack +1d6 · option: Return Fire +d4 +1d4 · damage advantage: Weapon Expert
-attack|1: Vibrorapier attack: d20 +6 · = +6 modifier · critical on 19–20 (Improved Critical) · option: Precision Attack +d4 +1d4
-damage|1: Vibrorapier damage: d8 +6 · = +4 STR modifier +2 Brute Force · Kinetic · option: Sneak Attack +1d6 · option: Return Fire +d4 +1d4 · damage advantage: Weapon Expert
-attack|2: Unarmed Strike attack: d20 +6 · = +6 modifier · critical on 19–20 (Improved Critical) · option: Precision Attack +d4 +1d4
-damage|2: Unarmed Strike damage: d4 +6 · = +4 STR modifier +2 Brute Force · Kinetic · option: Sneak Attack +1d6 · option: Return Fire +d4 +1d4
+attack|1: Vibrorapier attack: d20 +5 · = +5 modifier · critical on 19–20 (Improved Critical) · option: Precision Attack +d4 +1d4
+damage|1: Vibrorapier damage: d8 +5 · = +3 STR modifier +2 Brute Force · Kinetic · option: Sneak Attack +1d6 · option: Return Fire +d4 +1d4 · damage advantage: Weapon Expert
+attack|2: Unarmed Strike attack: d20 +5 · = +5 modifier · critical on 19–20 (Improved Critical) · option: Precision Attack +d4 +1d4
+damage|2: Unarmed Strike damage: d4 +5 · = +3 STR modifier +2 Brute Force · Kinetic · option: Sneak Attack +1d6 · option: Return Fire +d4 +1d4
 supdie: Superiority die: d4 +0
-maneuver|Physical|Strength: Physical maneuver attack: d20 +6 · = +6 modifier
+maneuver|Physical|Strength: Physical maneuver attack: d20 +5 · = +5 modifier
 maneuver|Mental|Wisdom: Mental maneuver attack: d20 +3 · = +3 modifier
-maneuver|General|Strength: General maneuver attack: d20 +6 · = +6 modifier
+maneuver|General|Strength: General maneuver attack: d20 +5 · = +5 modifier
 tool|One type of gaming set|proficient: One type of gaming set check: d20 +2 · = +0 INT modifier +2 proficiency
 tool|Tinker's implements|proficient: Tinker's implements check: d20 +2 · = +0 INT modifier +2 proficiency
 damage|0|crit: Blaster rifle damage (critical): d8 d8 +6 · = +3 DEX modifier +2 Brute Force +1 Xerrol Nightstinger Rifle · Energy · critical · option: Sneak Attack +1d6 · option: Return Fire +d4 +1d4 · damage advantage: Weapon Expert
-damage|1|crit: Vibrorapier damage (critical): d8 d8 +6 · = +4 STR modifier +2 Brute Force · Kinetic · critical · option: Sneak Attack +1d6 · option: Return Fire +d4 +1d4 · damage advantage: Weapon Expert
-damage|2|crit: Unarmed Strike damage (critical): d4 d4 +6 · = +4 STR modifier +2 Brute Force · Kinetic · critical · option: Sneak Attack +1d6 · option: Return Fire +d4 +1d4
+damage|1|crit: Vibrorapier damage (critical): d8 d8 +5 · = +3 STR modifier +2 Brute Force · Kinetic · critical · option: Sneak Attack +1d6 · option: Return Fire +d4 +1d4 · damage advantage: Weapon Expert
+damage|2|crit: Unarmed Strike damage (critical): d4 d4 +5 · = +3 STR modifier +2 Brute Force · Kinetic · critical · option: Sneak Attack +1d6 · option: Return Fire +d4 +1d4
 
 ## Sheet: Overview
 Kadro Vos (Panel)
@@ -290,7 +289,7 @@ Still to choose (7): Fighter skills (2 more) · Operative multiclass skill · Op
 ## Sheet: Combat & Vitals
 Armor Class
 18
-  ↳ hover armorClass: Without tweaks or effects: 15 → now 18 / = 18 AC · no reason given tweak
+  ↳ hover armorClass: Without tweaks or effects: 15 → now 18 / = 18 AC · no reason given tweak / +1 AC · Armor (Fine): not applied, a tweak sets this number
 Mesh armor · set to 18 by a tweak
 Hit Points
 41 / 43
@@ -343,9 +342,9 @@ Unarmed Combatant Unarmed strike d4, finesse Zabrak trait
 From equipment
 Xerrol Nightstinger Rifle Damage +1 on [Blaster rifle ▾] while equipped
 Additionally, when you make the Dexterity (Stealth) check to remain hidden as a part of the weapon's silent property, you have advantage on the check.
-Armor (Fine) AC +1: AC is set by a tweak while equipped
+Armor (Fine) AC +1: set by a tweak while equipped
 Temporary
-Strength Stim (Fine) STR +2 used, lasts 1 hour, since Thu 00:00 [End]
+Strength Stim (Fine) STR +2: set by a tweak used, lasts 1 hour, since Thu 00:00 [End]
 []
 Your own effect (something the sheet doesn't know)…
 [] [] [No number (a reminder) ▾] [] [Add]
@@ -358,30 +357,30 @@ Carried
 76.5 lb
 Unencumbered (variant rule)
 Encumbered at
-90 lb
-  ↳ hover carryingCapacity.encumbered: Without tweaks or effects: 40 → now 90 / = 16 Strength score · no reason given tweak / +2 STR · Strength Stim (Fine) used, lasts 1 hour, since Thu 00:00
+80 lb
+  ↳ hover carryingCapacity.encumbered: Without tweaks or effects: 40 → now 80 / = 16 Strength score · no reason given tweak / +2 STR · Strength Stim (Fine): not applied, a tweak sets this number
 Heavily enc. at
-180 lb
-  ↳ hover carryingCapacity.heavilyEncumbered: Without tweaks or effects: 80 → now 180 / = 16 Strength score · no reason given tweak / +2 STR · Strength Stim (Fine) used, lasts 1 hour, since Thu 00:00
+160 lb
+  ↳ hover carryingCapacity.heavilyEncumbered: Without tweaks or effects: 80 → now 160 / = 16 Strength score · no reason given tweak / +2 STR · Strength Stim (Fine): not applied, a tweak sets this number
 Max capacity
-270 lb
-  ↳ hover carryingCapacity.maxCapacity: Without tweaks or effects: 120 → now 270 / = 16 Strength score · no reason given tweak / +2 STR · Strength Stim (Fine) used, lasts 1 hour, since Thu 00:00
+240 lb
+  ↳ hover carryingCapacity.maxCapacity: Without tweaks or effects: 120 → now 240 / = 16 Strength score · no reason given tweak / +2 STR · Strength Stim (Fine): not applied, a tweak sets this number
 Push / drag / lift
-540 lb
-  ↳ hover carryingCapacity.pushDragLift: Without tweaks or effects: 240 → now 540 / = 16 Strength score · no reason given tweak / +2 STR · Strength Stim (Fine) used, lasts 1 hour, since Thu 00:00
+480 lb
+  ↳ hover carryingCapacity.pushDragLift: Without tweaks or effects: 240 → now 480 / = 16 Strength score · no reason given tweak / +2 STR · Strength Stim (Fine): not applied, a tweak sets this number
 
 ## Sheet: Abilities & Saving Throws
 STR
 Strength
-+4
-  ↳ hover abilityScores.Strength.modifier: Without tweaks or effects: -1 → now 4 / = 16 Strength score · no reason given tweak / +2 STR · Strength Stim (Fine) used, lasts 1 hour, since Thu 00:00
-18
-  ↳ hover abilityScores.Strength.value: Without tweaks or effects: 8 → now 18 / = 16 Strength score · no reason given tweak / +2 STR · Strength Stim (Fine) used, lasts 1 hour, since Thu 00:00
-(Proficient) Saving throw+6
-  ↳ hover abilityScores.Strength.savingThrow.modifier: Without tweaks or effects: 1 → now 6 / = 16 Strength score · no reason given tweak / +2 STR · Strength Stim (Fine) used, lasts 1 hour, since Thu 00:00
-(Not proficient) Athletics+4
-  ↳ hover abilityScores.Strength.skills.0.modifier: Without tweaks or effects: -1 → now 4 / = 16 Strength score · no reason given tweak / +2 STR · Strength Stim (Fine) used, lasts 1 hour, since Thu 00:00
-base 8 · +8 other · +0 from Strength score (tweak) · +2 from Strength Stim (Fine) (temporary) · override 16
++3
+  ↳ hover abilityScores.Strength.modifier: Without tweaks or effects: -1 → now 3 / = 16 Strength score · no reason given tweak / +2 STR · Strength Stim (Fine): not applied, a tweak sets this number
+16
+  ↳ hover abilityScores.Strength.value: Without tweaks or effects: 8 → now 16 / = 16 Strength score · no reason given tweak / +2 STR · Strength Stim (Fine): not applied, a tweak sets this number
+(Proficient) Saving throw+5
+  ↳ hover abilityScores.Strength.savingThrow.modifier: Without tweaks or effects: 1 → now 5 / = 16 Strength score · no reason given tweak / +2 STR · Strength Stim (Fine): not applied, a tweak sets this number
+(Not proficient) Athletics+3
+  ↳ hover abilityScores.Strength.skills.0.modifier: Without tweaks or effects: -1 → now 3 / = 16 Strength score · no reason given tweak / +2 STR · Strength Stim (Fine): not applied, a tweak sets this number
+base 8 · set to 16 by a tweak · +2 from Strength Stim (Fine) (temporary): not applied
 DEX
 Dexterity
 +3
@@ -440,9 +439,9 @@ not proficient proficient expertise
 Skill | Ability | Bonus | Passive | Proficiency |
 (Not proficient) Acrobatics | DEX | +3 | 13 | — |
 (Not proficient) Animal Handling | WIS | +1 | 11 | — |
-(Not proficient) Athletics | STR | +4 | 14 | — |
-  ↳ hover abilityScores.Strength.skills.0.modifier: Without tweaks or effects: -1 → now 4 / = 16 Strength score · no reason given tweak / +2 STR · Strength Stim (Fine) used, lasts 1 hour, since Thu 00:00
-  ↳ hover abilityScores.Strength.skills.0.modifier: Without tweaks or effects: -1 → now 4 / = 16 Strength score · no reason given tweak / +2 STR · Strength Stim (Fine) used, lasts 1 hour, since Thu 00:00
+(Not proficient) Athletics | STR | +3 | 13 | — |
+  ↳ hover abilityScores.Strength.skills.0.modifier: Without tweaks or effects: -1 → now 3 / = 16 Strength score · no reason given tweak / +2 STR · Strength Stim (Fine): not applied, a tweak sets this number
+  ↳ hover abilityScores.Strength.skills.0.modifier: Without tweaks or effects: -1 → now 3 / = 16 Strength score · no reason given tweak / +2 STR · Strength Stim (Fine): not applied, a tweak sets this number
 (Not proficient) Deception | CHA | +1 | 11 | — |
 (Proficient) Insight | WIS | +3 | 13 | Proficient |
   ↳ hover abilityScores.Wisdom.skills.1.modifier: Without tweaks or effects: 1 → now 3 / Proficient Insight · Fighter class skill (chosen at 1st level) tweak
@@ -476,13 +475,12 @@ Shots 11/12 [−1] [Reload] 13 Power cells
   ↳ hover weapons.0.damageBonus: Without tweaks or effects: 3 → now 6 / +2 Weapon damage · Brute Force Assault Specialist feature / +1 Damage · Xerrol Nightstinger Rifle while equipped
 Vibrorapier
 Finesse
-| +6 | 1d8+6 Kinetic | Strength | Martial Vibroweapon | Finesse |
-  ↳ hover weapons.1.attackBonus: Without tweaks or effects: 5 → now 6 / proficient Proficient: all vibroweapons · Fighter weapon proficiencies Fighter proficiencies… [274 chars #6affb494]
-  ↳ hover weapons.1.damageBonus: Without tweaks or effects: 3 → now 6 / +2 Weapon damage · Brute Force Assault Specialist feature / = 16 Strength score · no reason … [239 chars #778d151e]
+| +5 | 1d8+5 Kinetic | Strength | Martial Vibroweapon | Finesse |
+  ↳ hover weapons.1.damageBonus: Without tweaks or effects: 3 → now 5 / +2 Weapon damage · Brute Force Assault Specialist feature / = 16 Strength score · no reason … [242 chars #eeffbf24]
 Unarmed Strike
-| +6 | 1d4+6 Kinetic | Strength | Unarmed | — |
-  ↳ hover weapons.2.attackBonus: Without tweaks or effects: 1 → now 6 / = 16 Strength score · no reason given tweak / +2 STR · Strength Stim (Fine) used, lasts 1 hour, since Thu 00:00
-  ↳ hover weapons.2.damageBonus: Without tweaks or effects: 0 → now 6 / +2 Unarmed damage · Brute Force Assault Specialist feature / d4 Unarmed damage die (1 → d4) … [306 chars #868ff822]
+| +5 | 1d4+5 Kinetic | Strength | Unarmed | — |
+  ↳ hover weapons.2.attackBonus: Without tweaks or effects: 1 → now 5 / = 16 Strength score · no reason given tweak / +2 STR · Strength Stim (Fine): not applied, a tweak sets this number
+  ↳ hover weapons.2.damageBonus: Without tweaks or effects: 0 → now 5 / +2 Unarmed damage · Brute Force Assault Specialist feature / d4 Unarmed damage die (1 → d4) … [309 chars #bf488030]
 
 ## Sheet: Superiority & Maneuvers
 Maneuvers Known
@@ -492,18 +490,18 @@ Superiority Dice Quantity
 Superiority Dice Size
 d4
 Physical maneuver DC
-14
-  ↳ hover maneuver.Physical.Strength.dc: Without tweaks or effects: 9 → now 14 / = 16 Strength score · no reason given tweak / +2 STR · Strength Stim (Fine) used, lasts 1 hour, since Thu 00:00
-STR · attack +6
-  ↳ hover maneuver.Physical.Strength.attack: Without tweaks or effects: +1 → now +6 / = 16 Strength score · no reason given tweak / +2 STR · Strength Stim (Fine) used, lasts 1 hour, since Thu 00:00
+13
+  ↳ hover maneuver.Physical.Strength.dc: Without tweaks or effects: 9 → now 13 / = 16 Strength score · no reason given tweak / +2 STR · Strength Stim (Fine): not applied, a tweak sets this number
+STR · attack +5
+  ↳ hover maneuver.Physical.Strength.attack: Without tweaks or effects: +1 → now +5 / = 16 Strength score · no reason given tweak / +2 STR · Strength Stim (Fine): not applied, a tweak sets this number
 Mental maneuver DC
 11
 WIS · attack +3
 General maneuver DC
-14
-  ↳ hover maneuver.General.Strength.dc: Without tweaks or effects: 9 → now 14 / = 16 Strength score · no reason given tweak / +2 STR · Strength Stim (Fine) used, lasts 1 hour, since Thu 00:00
-STR · attack +6
-  ↳ hover maneuver.General.Strength.attack: Without tweaks or effects: +1 → now +6 / = 16 Strength score · no reason given tweak / +2 STR · Strength Stim (Fine) used, lasts 1 hour, since Thu 00:00
+13
+  ↳ hover maneuver.General.Strength.dc: Without tweaks or effects: 9 → now 13 / = 16 Strength score · no reason given tweak / +2 STR · Strength Stim (Fine): not applied, a tweak sets this number
+STR · attack +5
+  ↳ hover maneuver.General.Strength.attack: Without tweaks or effects: +1 → now +5 / = 16 Strength score · no reason given tweak / +2 STR · Strength Stim (Fine): not applied, a tweak sets this number
 Dice come from the class table at your level; save DCs are calculated here as 8 + proficiency + your best eligible ability modifier (SW5E's site does not compute superiority).
 General maneuvers (1)
 Precision Attack PHB
@@ -850,7 +848,7 @@ Credits
 [] [] [Apply]
 Total weight
 76.5 lb
-of 270 lb max
+of 240 lb max
 Attunement
 0 / 2
 Items
@@ -1060,4 +1058,4 @@ SW5E's rules and item data: version 199, as it comes with the sheet. SW5E is the
 Raw SW5E character JSON
 { "name": "Kadro Vos (Panel)", "id": "00000000-0000-4000-8000-000008000001", "userId": "00000000-0000-4000-8000-000008000002", "builderVersion": "0.7.6", "image… [7905 chars #f6966d00]
 Computed character JSON (the sheet's rules engine)
-{ "name": "Kadro Vos (Panel)", "builderVersion": "0.7.6", "image": "", "characteristics": { "Age": "29", "Appearance": "", "Backstory": "", "Bond": "My old squa… [29712 chars #6765158f]
+{ "name": "Kadro Vos (Panel)", "builderVersion": "0.7.6", "image": "", "characteristics": { "Age": "29", "Appearance": "", "Backstory": "", "Bond": "My old squa… [29712 chars #3d547746]
