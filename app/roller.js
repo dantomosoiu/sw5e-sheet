@@ -218,10 +218,16 @@ function buildRoll(m, spec, opts = {}) {
         .filter((d) => !(raging && !m.stale && /rage damage/i.test(d.column)))
         .map((d) => ({ label: d.column, bonus: d.bonus || 0, extra: d.dice ? [d.dice] : [], on: !!(raging && m.stale && meleeStr && /rage damage/i.test(d.column)) }));
       const conds = condsAt(`weapons.${a1}.damageBonus`).concat(riders, resourceConds(m, 'damage', w));
-      // Weapon Expert: "once per turn when you would roll weapon damage using a blaster, you can choose to have advantage".
+      // Weapon Expert: "You gain proficiency with all blasters. If you are already proficient with all blasters, instead
+      // once per turn when you would roll weapon damage using a blaster, you can choose to have advantage." Already: by
+      // the class, species or another feature (all of the kind, or its simple and martial ones), or the feat taken twice.
       const we = arr(m.feats).concat(arr(m.allFeatures)).find((f) => /when you would roll weapon damage using an? (blaster|lightweapon|vibroweapon)s?, you can choose to have advantage/i.test(f.text || f.description || ''));
       const weKinds = we ? [...String(we.text || we.description).matchAll(/roll weapon damage using an? (blaster|lightweapon|vibroweapon)/gi)].map((x) => x[1].toLowerCase()) : [];
-      const dmgAdv = weKinds.some((k) => new RegExp(k, 'i').test(w.weaponClassification || '')) ? we.name : '';
+      const profNames = arr(c.proficiencies).filter((p) => p && /weapon|other/.test(p.type || '')).map((p) => p.name)
+        .concat(arr(m.effects).filter((e) => !we || e.name !== we.name).flatMap((e) => arr(e.weapons))).map((p) => String(p).toLowerCase().trim());
+      const twice = we && typeof featNamesOf === 'function' && m.raw ? featNamesOf(m.raw, true).filter((n) => n === we.name).length > 1 : false;
+      const allOf = (k) => twice || profNames.includes(`all ${k}s`) || (profNames.includes(`simple ${k}s`) && profNames.includes(`martial ${k}s`));
+      const dmgAdv = weKinds.some((k) => new RegExp(k, 'i').test(w.weaponClassification || '') && allOf(k)) ? we.name : '';
       return {
         kind: 'dice', label: `${w.name} damage${vers ? ' (two-handed)' : ''}${crit ? ' (critical)' : ''}`, spec, crit,
         diceSpec: die > 0 ? Array.from({ length: n }, () => die) : [],

@@ -1,0 +1,741 @@
+# Berserker Test (Claude)
+
+## Sent to the rules engine
+The sheet's engine computes the numbers. OUT OF DATE: SW5E's recorded calculation is for an older version of this character; record the case again (dev/regress-record.js) for dev/engine-check.js.
+tweaks.armorClass.bonus = 3
+equipment[0 Dire vibroblade].tweaks.toHit.bonus = 0
+equipment[0 Dire vibroblade].tweaks.toHit.proficiency = "proficient"
+equipment[3 Blaster pistol].tweaks.toHit.bonus = 0
+equipment[3 Blaster pistol].tweaks.toHit.proficiency = "proficient"
+equipment[4 Lightsaber].tweaks.toHit.bonus = 0
+equipment[4 Lightsaber].tweaks.toHit.proficiency = "proficient"
+equipment[5 Blaster rifle].tweaks.toHit.bonus = 0
+equipment[5 Blaster rifle].tweaks.toHit.proficiency = "proficient"
+equipped = [Dire vibroblade, Medium physical shield, Blaster pistol, Lightsaber, Blaster rifle]
+
+## Numbers (the rules engine, with the sheet's edits)
+currentLevel = 5
+classText = "Berserker 5"
+proficiencyBonus = 3
+initiative = 2
+armorClass = 17
+armorList = ["Medium physical shield"]
+passivePerception = 11
+vision = "normal"
+speed.base = "30 ft"
+speed.day = "24 miles"
+speed.hour = "3 miles"
+speed.special = ""
+hitPoints.hitDice[0].maximum = 5
+hitPoints.hitDice[0].size = "d12"
+hitPoints.maximum = 55
+abilityScores.Charisma.modifier = 0
+abilityScores.Charisma.savingThrow.modifier = 0
+abilityScores.Charisma.savingThrow.proficiency = "none"
+abilityScores.Charisma.skills[Deception].modifier = 0
+abilityScores.Charisma.skills[Deception].proficiency = "none"
+abilityScores.Charisma.skills[Intimidation].modifier = 3
+abilityScores.Charisma.skills[Intimidation].proficiency = "proficient"
+abilityScores.Charisma.skills[Performance].modifier = 0
+abilityScores.Charisma.skills[Performance].proficiency = "none"
+abilityScores.Charisma.skills[Persuasion].modifier = 0
+abilityScores.Charisma.skills[Persuasion].proficiency = "none"
+abilityScores.Charisma.value = 10
+abilityScores.Constitution.modifier = 3
+abilityScores.Constitution.savingThrow.modifier = 6
+abilityScores.Constitution.savingThrow.proficiency = "proficient"
+abilityScores.Constitution.skills = []
+abilityScores.Constitution.value = 16
+abilityScores.Dexterity.modifier = 2
+abilityScores.Dexterity.savingThrow.modifier = 2
+abilityScores.Dexterity.savingThrow.proficiency = "none"
+abilityScores.Dexterity.skills[Acrobatics].modifier = 2
+abilityScores.Dexterity.skills[Acrobatics].proficiency = "none"
+abilityScores.Dexterity.skills[Sleight of Hand].modifier = 2
+abilityScores.Dexterity.skills[Sleight of Hand].proficiency = "none"
+abilityScores.Dexterity.skills[Stealth].modifier = 2
+abilityScores.Dexterity.skills[Stealth].proficiency = "none"
+abilityScores.Dexterity.value = 14
+abilityScores.Intelligence.modifier = -1
+abilityScores.Intelligence.savingThrow.modifier = -1
+abilityScores.Intelligence.savingThrow.proficiency = "none"
+abilityScores.Intelligence.skills[Investigation].modifier = -1
+abilityScores.Intelligence.skills[Investigation].proficiency = "none"
+abilityScores.Intelligence.skills[Lore].modifier = -1
+abilityScores.Intelligence.skills[Lore].proficiency = "none"
+abilityScores.Intelligence.skills[Nature].modifier = -1
+abilityScores.Intelligence.skills[Nature].proficiency = "none"
+abilityScores.Intelligence.skills[Piloting].modifier = -1
+abilityScores.Intelligence.skills[Piloting].proficiency = "none"
+abilityScores.Intelligence.skills[Technology].modifier = -1
+abilityScores.Intelligence.skills[Technology].proficiency = "none"
+abilityScores.Intelligence.value = 8
+abilityScores.Strength.modifier = 3
+abilityScores.Strength.savingThrow.modifier = 6
+abilityScores.Strength.savingThrow.proficiency = "proficient"
+abilityScores.Strength.skills[Athletics].modifier = 6
+abilityScores.Strength.skills[Athletics].proficiency = "proficient"
+abilityScores.Strength.value = 16
+abilityScores.Wisdom.modifier = 1
+abilityScores.Wisdom.savingThrow.modifier = 1
+abilityScores.Wisdom.savingThrow.proficiency = "none"
+abilityScores.Wisdom.skills[Animal Handling].modifier = 1
+abilityScores.Wisdom.skills[Animal Handling].proficiency = "none"
+abilityScores.Wisdom.skills[Insight].modifier = 1
+abilityScores.Wisdom.skills[Insight].proficiency = "none"
+abilityScores.Wisdom.skills[Medicine].modifier = 1
+abilityScores.Wisdom.skills[Medicine].proficiency = "none"
+abilityScores.Wisdom.skills[Perception].modifier = 1
+abilityScores.Wisdom.skills[Perception].proficiency = "none"
+abilityScores.Wisdom.skills[Survival].modifier = 1
+abilityScores.Wisdom.skills[Survival].proficiency = "none"
+abilityScores.Wisdom.value = 12
+weapons[Dire vibroblade].ability = "Strength"
+weapons[Dire vibroblade].attackBonus = 6
+weapons[Dire vibroblade].damageBonus = 3
+weapons[Dire vibroblade].damageDieModifier = 0
+weapons[Dire vibroblade].damageDieType = 8
+weapons[Dire vibroblade].damageNumberOfDice = 1
+weapons[Dire vibroblade].damageType = "Kinetic"
+weapons[Dire vibroblade].equipped = true
+weapons[Dire vibroblade].index = 0
+weapons[Dire vibroblade].isCustom = false
+weapons[Dire vibroblade].properties = ["Dexterity 13", "dire 1", "versatile (1d10)"]
+weapons[Dire vibroblade].quantity = 1
+weapons[Dire vibroblade].tweaks.toHit.bonus = 0
+weapons[Dire vibroblade].tweaks.toHit.proficiency = "proficient"
+weapons[Dire vibroblade].weaponClassification = "MartialVibroweapon"
+weapons[Blaster pistol].ability = "Dexterity"
+weapons[Blaster pistol].attackBonus = 5
+weapons[Blaster pistol].damageBonus = 2
+weapons[Blaster pistol].damageDieModifier = 0
+weapons[Blaster pistol].damageDieType = 6
+weapons[Blaster pistol].damageNumberOfDice = 1
+weapons[Blaster pistol].damageType = "Energy"
+weapons[Blaster pistol].equipped = true
+weapons[Blaster pistol].index = 3
+weapons[Blaster pistol].isCustom = false
+weapons[Blaster pistol].properties = ["Power cell (range 50/200)", "reload 16"]
+weapons[Blaster pistol].quantity = 1
+weapons[Blaster pistol].tweaks.toHit.bonus = 0
+weapons[Blaster pistol].tweaks.toHit.proficiency = "proficient"
+weapons[Blaster pistol].weaponClassification = "SimpleBlaster"
+weapons[Lightsaber].ability = "Strength"
+weapons[Lightsaber].attackBonus = 6
+weapons[Lightsaber].damageBonus = 3
+weapons[Lightsaber].damageDieModifier = 0
+weapons[Lightsaber].damageDieType = 6
+weapons[Lightsaber].damageNumberOfDice = 1
+weapons[Lightsaber].damageType = "Energy"
+weapons[Lightsaber].equipped = true
+weapons[Lightsaber].index = 4
+weapons[Lightsaber].isCustom = false
+weapons[Lightsaber].properties = ["Hidden", "luminous", "versatile (2d4)"]
+weapons[Lightsaber].quantity = 1
+weapons[Lightsaber].tweaks.toHit.bonus = 0
+weapons[Lightsaber].tweaks.toHit.proficiency = "proficient"
+weapons[Lightsaber].weaponClassification = "SimpleLightweapon"
+weapons[Blaster rifle].ability = "Dexterity"
+weapons[Blaster rifle].attackBonus = 5
+weapons[Blaster rifle].damageBonus = 2
+weapons[Blaster rifle].damageDieModifier = 0
+weapons[Blaster rifle].damageDieType = 8
+weapons[Blaster rifle].damageNumberOfDice = 1
+weapons[Blaster rifle].damageType = "Energy"
+weapons[Blaster rifle].equipped = true
+weapons[Blaster rifle].index = 5
+weapons[Blaster rifle].isCustom = false
+weapons[Blaster rifle].properties = ["Power cell (range 105/420)", "reload 12", "two-handed"]
+weapons[Blaster rifle].quantity = 1
+weapons[Blaster rifle].tweaks.toHit.bonus = 0
+weapons[Blaster rifle].tweaks.toHit.proficiency = "proficient"
+weapons[Blaster rifle].weaponClassification = "MartialBlaster"
+weapons[Unarmed Strike].ability = "Strength"
+weapons[Unarmed Strike].attackBonus = 6
+weapons[Unarmed Strike].damageBonus = 4
+weapons[Unarmed Strike].damageDieType = 0
+weapons[Unarmed Strike].damageNumberOfDice = 1
+weapons[Unarmed Strike].damageType = "Kinetic"
+weapons[Unarmed Strike].equipped = true
+weapons[Unarmed Strike].index = -1
+weapons[Unarmed Strike].isCustom = false
+weapons[Unarmed Strike].properties = []
+weapons[Unarmed Strike].quantity = 0
+weapons[Unarmed Strike].weaponClassification = "Unarmed"
+attunement.hasAttunable = false
+attunement.maximum = 3
+carryingCapacity.encumbered = 80
+carryingCapacity.heavilyEncumbered = 160
+carryingCapacity.maxCapacity = 240
+carryingCapacity.pushDragLift = 480
+superiority = false
+techCasting = false
+forceCasting = false
+proficiencies[All vibroweapons].type = "weapon"
+proficiencies[simple blasters].type = "weapon"
+proficiencies[Light armor].type = "armor"
+proficiencies[medium armor].type = "armor"
+proficiencies[One type of gaming set].type = "tool"
+skillAndSaveProficiencies = ["Athletics", "Intimidation", "Strength Saving Throws", "Constitution Saving Throws"]
+languages = ["Galactic Basic", "Galactic Basic"]
+experiencePoints.isCorrect = true
+experiencePoints.nextLevel = 14000
+experiencePoints.previousLevel = 6500
+conditions = []
+exhaustion = 0
+
+## Effects and tweaks
+effect: Berserker weapon proficiencies · feature
+effect: Unarmored Defense · feature
+effect: Danger Sense · feature
+effect: Weapon Expert · feature
+effect: Human Versatility · feature
+tweak: armorClass +3 · Unarmored Defense
+weapon tweak: #0 toHit +0 · Berserker weapon proficiencies
+weapon tweak: #3 toHit +0 · Berserker weapon proficiencies
+weapon tweak: #5 toHit +0 · Weapon Expert
+weapon tweak: #4 toHit +0 · Weapon Expert
+
+## Rolls
+init: Initiative: d20 +2 · = +2 modifier
+death: Death saving throw: d20 +0
+hitdie|d12: Hit die (d12): d12 +3 · = +3 per die
+check|Strength: Strength check: d20 +3 · = +3 modifier
+save|Strength: Strength saving throw: d20 +6 · = +6 modifier
+skill|Strength|0: Athletics (STR): d20 +6 · = +6 modifier
+check|Dexterity: Dexterity check: d20 +2 · = +2 modifier
+save|Dexterity: Dexterity saving throw: d20 +2 · = +2 modifier
+skill|Dexterity|0: Acrobatics (DEX): d20 +2 · = +2 modifier
+skill|Dexterity|1: Sleight of Hand (DEX): d20 +2 · = +2 modifier
+skill|Dexterity|2: Stealth (DEX): d20 +2 · = +2 modifier
+check|Constitution: Constitution check: d20 +3 · = +3 modifier
+save|Constitution: Constitution saving throw: d20 +6 · = +6 modifier
+check|Intelligence: Intelligence check: d20 −1 · = −1 modifier
+save|Intelligence: Intelligence saving throw: d20 −1 · = −1 modifier
+skill|Intelligence|0: Investigation (INT): d20 −1 · = −1 modifier
+skill|Intelligence|1: Lore (INT): d20 −1 · = −1 modifier
+skill|Intelligence|2: Nature (INT): d20 −1 · = −1 modifier
+skill|Intelligence|3: Piloting (INT): d20 −1 · = −1 modifier
+skill|Intelligence|4: Technology (INT): d20 −1 · = −1 modifier
+check|Wisdom: Wisdom check: d20 +1 · = +1 modifier
+save|Wisdom: Wisdom saving throw: d20 +1 · = +1 modifier
+skill|Wisdom|0: Animal Handling (WIS): d20 +1 · = +1 modifier
+skill|Wisdom|1: Insight (WIS): d20 +1 · = +1 modifier
+skill|Wisdom|2: Medicine (WIS): d20 +1 · = +1 modifier
+skill|Wisdom|3: Perception (WIS): d20 +1 · = +1 modifier
+skill|Wisdom|4: Survival (WIS): d20 +1 · = +1 modifier
+check|Charisma: Charisma check: d20 +0 · = +0 modifier
+save|Charisma: Charisma saving throw: d20 +0 · = +0 modifier
+skill|Charisma|0: Deception (CHA): d20 +0 · = +0 modifier
+skill|Charisma|1: Intimidation (CHA): d20 +3 · = +3 modifier
+skill|Charisma|2: Performance (CHA): d20 +0 · = +0 modifier
+skill|Charisma|3: Persuasion (CHA): d20 +0 · = +0 modifier
+attack|0: Dire vibroblade attack: d20 +6 · = +6 modifier · two-handed: 1d10
+damage|0: Dire vibroblade damage: d8 +3 · = +3 STR modifier · Kinetic · option: Rage Damage +2 · damage advantage: Weapon Expert
+attack|1: Blaster pistol attack: d20 +5 · = +5 modifier
+damage|1: Blaster pistol damage: d6 +2 · = +2 DEX modifier · Energy · option: Rage Damage +2
+attack|2: Lightsaber attack: d20 +6 · = +6 modifier · two-handed: 2d4
+damage|2: Lightsaber damage: d6 +3 · = +3 STR modifier · Energy · option: Rage Damage +2
+attack|3: Blaster rifle attack: d20 +5 · = +5 modifier · warning: Blaster rifle is two-handed and the Medium physical shield takes a hand: you can't attack with it while the shield is equipped.
+damage|3: Blaster rifle damage: d8 +2 · = +2 DEX modifier · Energy · option: Rage Damage +2
+attack|4: Unarmed Strike attack: d20 +6 · = +6 modifier
+damage|4: Unarmed Strike damage: no dice +4 · = +1 unarmed strike +3 STR modifier · Kinetic · option: Rage Damage +2
+tool|One type of gaming set|proficient: One type of gaming set check: d20 +2 · = −1 INT modifier +3 proficiency
+damage|0|crit: Dire vibroblade damage (critical): d8 d8 +3 · = +3 STR modifier · Kinetic · critical · option: Rage Damage +2 · damage advantage: Weapon Expert
+damage|1|crit: Blaster pistol damage (critical): d6 d6 +2 · = +2 DEX modifier · Energy · critical · option: Rage Damage +2
+damage|2|crit: Lightsaber damage (critical): d6 d6 +3 · = +3 STR modifier · Energy · critical · option: Rage Damage +2
+damage|3|crit: Blaster rifle damage (critical): d8 d8 +2 · = +2 DEX modifier · Energy · critical · option: Rage Damage +2
+damage|4|crit: Unarmed Strike damage (critical): no dice +4 · = +1 unarmed strike +3 STR modifier · Kinetic · critical · option: Rage Damage +2
+damage|0||two: Dire vibroblade damage (two-handed): d10 +3 · = +3 STR modifier · Kinetic · option: Rage Damage +2 · damage advantage: Weapon Expert
+damage|2||two: Lightsaber damage (two-handed): d4 d4 +3 · = +3 STR modifier · Energy · option: Rage Damage +2
+
+## Sheet: Overview
+Berserker Test (Claude)
+Human · Berserker 5
+Level 5 Background: Soldier Balanced Neutral Proficiency +3 [Add a picture]
+6,500 XP level 6 at 14,000 (7,500 to go)
+Still to choose (6): Berserker approach · Berserker Instincts (2 more) · background skills (2 more) · background tool · background languages · Weapon Expert: +1
+
+## Sheet: Combat & Vitals
+Armor Class
+17
+  ↳ hover armorClass: Without tweaks or effects: 14 → now 17 / +3 AC + CON · Unarmored Defense Berserker feature
+Medium physical shield
+Hit Points
+55 / 55
+No temporary HP
+Initiative
++2
+Speed
+30 ft
+3 miles/hour · 24 miles/day
+Proficiency
++3
+Passive Perception
+11
+Hit Dice
+5/5d12
++3 per die spent (Con)
+Vision
+Normal
+Play tracker
+[] [untyped ▾] [Damage] [Heal] [Temp HP]
+Death saves ✓ [] [] [] ✗ [] [] [] [Roll]
+Hit dice (d12) roll d12 +3, then Heal 5 / 5 [−] [+]
+Rage long rest 3 / 3 [−] [+]
+Defiant short rest 1 / 1 [−] [+]
+Start or end
+[Start Rage]
+[Attack recklessly]
+Conditions None [Add a condition… ▾]
+Combat [Start combat]
+[☆ Inspiration] Exhaustion [−] 0 [+]
+[Short rest] [Long rest]
+Class dice
+Rage Damage +2
+Defenses & senses
+Advantages Advantage on Dexterity saving throws against effects that you can see, such as traps and powers
+Effects
+From class features, feats and species traits (5)
+Berserker weapon proficiencies Proficient: All vibroweapons Proficient: simple blasters Berserker proficiencies
+Unarmored Defense AC + CON Berserker feature
+Danger Sense Advantage on Dexterity saving throws against effects that you can see, such as traps and powers Berserker feature
+Weapon Expert Proficient: all blasters Proficient: all lightweapons Proficient: all vibroweapons feat
+Human Versatility Choose the skill/tool proficiencies Human trait
+Temporary
+No temporary effects.
+[]
+Your own effect (something the sheet doesn't know)…
+[] [] [No number (a reminder) ▾] [] [Add]
+It's applied like any effect (a dice bonus like Bless's d4 isn't a number: add it in the roller), and ends with End, a rest or Next round when it has run out.
+Bonuses are applied to the sheet's numbers in this browser only (not saved to SW5E); changed numbers are underlined: hover or tap them for details. Conditional … [256 chars #e163e104]
+Conditions
+None active (from SW5E)
+Carrying capacity
+Carried
+47.25 lb
+Unencumbered (variant rule)
+Encumbered at
+80 lb
+Heavily enc. at
+160 lb
+Max capacity
+240 lb
+Push / drag / lift
+480 lb
+
+## Sheet: Abilities & Saving Throws
+STR
+Strength
++3
+16
+(Proficient) Saving throw+6
+(Proficient) Athletics+6
+base 16
+DEX
+Dexterity
++2
+14
+(Not proficient) Saving throw+2
+(Not proficient) Acrobatics+2
+(Not proficient) Sleight of Hand+2
+(Not proficient) Stealth+2
+base 14
+CON
+Constitution
++3
+16
+(Proficient) Saving throw+6
+base 16
+INT
+Intelligence
+−1
+8
+(Not proficient) Saving throw−1
+(Not proficient) Investigation−1
+(Not proficient) Lore−1
+(Not proficient) Nature−1
+(Not proficient) Piloting−1
+(Not proficient) Technology−1
+base 8
+WIS
+Wisdom
++1
+12
+(Not proficient) Saving throw+1
+(Not proficient) Animal Handling+1
+(Not proficient) Insight+1
+(Not proficient) Medicine+1
+(Not proficient) Perception+1
+(Not proficient) Survival+1
+base 12
+CHA
+Charisma
++0
+10
+(Not proficient) Saving throw+0
+(Not proficient) Deception+0
+(Proficient) Intimidation+3
+(Not proficient) Performance+0
+(Not proficient) Persuasion+0
+base 10
+not proficient proficient expertise
+
+## Sheet: Skills
+Skill | Ability | Bonus | Passive | Proficiency |
+(Not proficient) Acrobatics | DEX | +2 | 12 | — |
+(Not proficient) Animal Handling | WIS | +1 | 11 | — |
+(Proficient) Athletics | STR | +6 | 16 | Proficient |
+(Not proficient) Deception | CHA | +0 | 10 | — |
+(Not proficient) Insight | WIS | +1 | 11 | — |
+(Proficient) Intimidation | CHA | +3 | 13 | Proficient |
+(Not proficient) Investigation | INT | −1 | 9 | — |
+(Not proficient) Lore | INT | −1 | 9 | — |
+(Not proficient) Medicine | WIS | +1 | 11 | — |
+(Not proficient) Nature | INT | −1 | 9 | — |
+(Not proficient) Perception | WIS | +1 | 11 | — |
+(Not proficient) Performance | CHA | +0 | 10 | — |
+(Not proficient) Persuasion | CHA | +0 | 10 | — |
+(Not proficient) Piloting | INT | −1 | 9 | — |
+(Not proficient) Sleight of Hand | DEX | +2 | 12 | — |
+(Not proficient) Stealth | DEX | +2 | 12 | — |
+(Not proficient) Survival | WIS | +1 | 11 | — |
+(Not proficient) Technology | INT | −1 | 9 | — |
+
+## Sheet: Weapons & Attacks
+Weapon | To hit | Damage | Ability | Type | Properties |
+Dire vibroblade
+Dexterity 13, dire 1, versatile (1d10)
+| +6 | 1d8+3 Kinetic | Strength | Martial Vibroweapon | Dexterity 13, dire 1, versatile (1d10) |
+Blaster pistol
+Power cell (range 50/200), reload 16
+Shots 16/16 [−1] [Reload] 0 Power cells
+| +5 | 1d6+2 Energy | Dexterity | Simple Blaster | Power cell (range 50/200), reload 16 |
+Lightsaber
+Hidden, luminous, versatile (2d4)
+| +6 | 1d6+3 Energy | Strength | Simple Lightweapon | Hidden, luminous, versatile (2d4) |
+  ↳ hover weapons.2.attackBonus: Without tweaks or effects: 3 → now 6 / proficient Proficient: all lightweapons · Weapon Expert feat
+Blaster rifle two-handed + shield
+Power cell (range 105/420), reload 12, two-handed
+Shots 12/12 [−1] [Reload] 0 Power cells
+| +5 | 1d8+2 Energy | Dexterity | Martial Blaster | Power cell (range 105/420), reload 12, two-handed |
+  ↳ hover weapons.3.attackBonus: Without tweaks or effects: 2 → now 5 / proficient Proficient: all blasters · Weapon Expert feat
+Unarmed Strike
+| +6 | 4 Kinetic | Strength | Unarmed | — |
+
+## Sheet: Class Features
+Berserker (8)
+Rage Level 1
+Uses (back on a long rest) Rages column 3 / 3 [−] [+]
+[Start Rage]
+Berserker: 1st level
+In battle, you fight with primal ferocity. On your turn, you can enter a rage as a bonus action if you aren't wearing heavy armor.
+While raging, you gain the following benefits:
+You have advantage on Strength checks and Strength saving throws.
+When you make a melee weapon attack using Strength, you gain a bonus to the damage roll that increases as you gain levels as a berserker, as shown in the Rage Damage column of the berserker table.
+You have resistance to kinetic and energy damage.
+If you are able to cast powers, you can't cast them or concentrate on them while raging.
+Your rage lasts for 1 minute. It ends early if you are knocked unconscious, you don heavy armor, or if your turn ends and you haven't taken a hostile action or … [253 chars #364a649e]
+You can enter a rage a number of times as shown in the Rages column of the berserker table. You regain all expended uses when you complete a long rest.
+Notes []
+Unarmored Defense Level 1
+Berserker: 1st level
+While you are not wearing any armor, your Armor Class equals 10 + your Dexterity modifier + your Constitution modifier. You can use a shield and still gain this benefit.
+Notes []
+Berserker Instincts Level 2
+Berserker: 2nd level
+You've honed two instincts, as detailed at the end of the class description, and you hone more at higher levels, as shown in the Berserker Instincts column of the berserker table.
+Not chosen yet · choose it in Classes & Progression
+Notes []
+Reckless Attack Level 2
+[Attack recklessly]
+Berserker: 2nd level
+You can throw aside all concern for defense to attack with fierce desperation. When you make your first attack on your turn, you can decide to attack recklessly… [318 chars #8b69b91c]
+Notes []
+Berserker Approach Level 3
+Berserker: 3rd, 6th, 10th, and 14th level
+You choose an approach that shapes the nature of your rage which is detailed at the end of the class description.
+Not chosen yet · choose it in Classes & Progression
+Notes []
+Danger Sense Level 3
+Berserker: 3rd level
+You gain an uncanny sense of when things nearby aren't as they should be, giving you an edge when you dodge away from danger. You have advantage on Dexterity sa… [303 chars #88442cb9]
+Notes []
+Ability Score Improvement Level 4
+Berserker: 4th, 8th, 12th, 16th, and 19th level
+You can increase one ability score by 2, or you can increase two ability scores by 1. You can't increase an ability score above 20 using this feature.
+Notes []
+Extra Attack Level 5
+Berserker: 5th level
+You can attack twice, instead of once, whenever you take the Attack action on your turn.
+Notes []
+
+## Sheet: Feats
+Feat ability increases
+Weapon Expert: +1 to 0 / 1 Berserker ASI #1
+None chosen yet.
+[Choose an ability… ▾]
+Weapon Expert Berserker ASI #1+ Strength+ Dexterity+ Constitution
+You have practiced extensively with a variety of weapons, gaining the following benefits:
+Increase your Strength, Dexterity, or Constitution score by 1, to a maximum of 20.
+You gain proficiency with all blasters. If you are already proficient with all blasters, instead once per turn when you would roll weapon damage using a blaster, you can choose to have advantage.
+You gain proficiency with all lightweapons. If you are already proficient with all lightweapons, instead once per turn when you would roll weapon damage using a lightweapon, you can choose to have advantage.
+You gain proficiency with all vibroweapons. If you are already proficient with all vibroweapons, instead once per turn when you would roll weapon damage using a vibroweapon, you can choose to have advantage.
+You can take this feat twice.
+
+## Sheet: Classes & Progression
+[Level up]
+Berserker 5 Starting class
+Hit die d12 Primary Strength Saves Strength, Constitution HP by level 12 (max), 7, 7, 7, 7
+Melee combatant who utilizes rage to increase prowess
+Ability score improvements
+Feat: Weapon Expert
+Skill proficiencies 2 / 2 Choose two from Animal Handling, Athletics, Intimidation, Nature, Perception, Survival
+Athletics [×] Intimidation [×]
+Archetype [— none — ▾]
+Read the options (15)
+Berserker Instincts 0 / 2 from the Berserker table (“Berserker Instincts”)
+None chosen yet.
+[Add from Berserker Instincts… ▾]
+Read the options (17)
+Class table
+Proficiency Bonus
++3 → +3 at 6th
+Features
+Extra Attack → Approach feature at 6th
+Rages
+3 → 4 at 6th
+Rage Damage
++2 → +2 at 6th
+Berserker Instincts
+2 → 2 at 6th
+| Proficiency Bonus | Features | Rages | Rage Damage | Berserker Instincts |
+Now (5th) | +3 | Extra Attack | 3 | +2 | 2 |
+Next (6th) | +3 | Approach feature | 4 | +2 | 2 |
+Armor Light armor, medium armor Weapons All vibroweapons, simple blasters Tools None
+
+## Sheet: Species
+Size
+Medium
+Homeworld
+Coruscant
+Language
+Galactic Basic
+Average height
+4'8" +2d10"
+Average weight
+110 lb. x(2d4) lb.
+Skin
+Light to dark tones
+Hair
+Black, blond, orange, brown, gray to white (usually with age)
+Eyes
+Amber, blue, brown, gray, green, hazel, purple, or red
+Distinctions
+Biped with bilateral symmetry, opposable thumbs
+Traits (9)
+Ability Score Increase
+One ability score of your choice increases by 2, and two other ability scores of your choice increase by 1. Alternatively, four ability scores of your choice each increase by 1.
+Your choices []
+Age
+Humans reach adulthood in their late teens and live less than a century.
+Notes []
+Alignment
+Humans tend toward no particular alignment. The best and worst are found among them.
+Notes []
+Defiant
+Uses (back on a short or long rest) 1 / 1 [−] [+]
+Humans are known to be stubborn and often refuse to give up, even against the worst odds. When you or a creature you can see that can see and understand you mak… [374 chars #6fad59d8]
+Notes []
+Human Versatility
+You gain proficiency in one skill, one tool, and one weapon of your choice.
+Skill proficiency 0 / 1
+None chosen yet.
+[Choose a skill… ▾]
+Tool proficiency 0 / 1
+None chosen yet.
+[Choose a tool… ▾]
+Weapon proficiency 0 / 1
+None chosen yet.
+[Choose a weapon… ▾]
+Notes []
+Languages
+You can speak, read, and write Galactic Basic and one extra language of your choice. Humans typically learn the languages of other peoples they deal with, inclu… [346 chars #ff842958]
+Your choices []
+Proficiency
+You gain proficiency in one skill, one tool, and one weapon of your choice.
+Your choices []
+Size
+Humans vary widely in height and build, from barely 5 feet to well over 6 feet tall. Regardless of your position in that range, your size is Medium.
+Notes []
+Speed
+Your base walking speed is 30 feet.
+Notes []
+
+## Sheet: Background
+Skill proficiencies
+Choose two from Athletics, Intimidation, Persuasion, and Piloting
+Tool proficiencies
+One type of gaming set
+Languages
+One of your choice
+Starting equipment
+An insignia of rank, a trophy taken from a fallen enemy, a gaming set (one of your choice), a set of common clothes, and a belt pouch containing 100 cr
+Specialty
+During your time as a soldier, you had a specific role to play in your unit or army. Roll a d8 or choose from the options in the table below to determine your role:
+d8 | Specialty |
+1 | Officer |
+2 | Scout |
+3 | Infantry |
+4 | Medic |
+d8 | Specialty |
+5 | Quartermaster |
+6 | Pilot |
+7 | Artisan |
+8 | Support Staff |
+Feature: Military Rank Background feature
+You have a military rank from your career as a soldier. Soldiers loyal to your former military organization still recognize your authority and influence, and th… [417 chars #07d82bc5]
+About this background
+War has been your life for as long as you care to remember. You trained as a youth, studied the use of weapons and armor, learned basic survival techniques, inc… [362 chars #b05030ad]
+When you choose this background, work with your GM to determine which military organization you were a part of, how far through its ranks you progressed, and wh… [306 chars #85e13a8a]
+Your choices
+Skill proficiencies 0 / 2 Choose two from Athletics, Intimidation, Persuasion, and Piloting
+None chosen yet.
+[Choose a skill… ▾]
+Tool proficiency 0 / 1 One type of gaming set
+None chosen yet.
+[Choose a tool… ▾]
+Languages 0 / 1 One of your choice
+None chosen yet.
+[Choose a language… ▾]
+
+## Sheet: Proficiencies & Languages
+Armor
+Light armor medium armor
+Weapon
+All vibroweapons simple blasters all blasters · Weapon Expert all lightweapons · Weapon Expert all vibroweapons · Weapon Expert
+Tool
+One type of gaming set
+Skills & saves
+Athletics Intimidation Strength Saving Throws Constitution Saving Throws
+Languages
+Galactic Basic
+✎ = custom proficiency added on the character.
+
+## Sheet: Equipment & Inventory
+Add an item
+[All items ▾] []
+Qty [1] [Add]
+2425 items from SW5E (data version 199). [Check for a newer list]
+Credits
+100 cr
+[] [] [Apply]
+Total weight
+47.25 lb
+of 240 lb max
+Attunement
+0 / 3
+Items
+6
+Weapon (4)
+Item | Qty & actions | Weight | Cost | Source |
+Dire vibroblade
+1d8 Kinetic · Dexterity 13, dire 1, versatile (1d10)
+| [−] 1 [+] [Equipped] [✎] [Sell] [×] | 7 lb | 550 cr | WH |
+Blaster pistol
+1d6 Energy · Power cell (range 50/200), reload 16
+| [−] 1 [+] [Equipped] [✎] [Sell] [×] | 2.5 lb | 175 cr | PHB |
+Lightsaber
+1d6 Energy · Hidden, luminous, versatile (2d4)
+| [−] 1 [+] [Equipped] [✎] [Sell] [×] | 2.25 lb | 450 cr | PHB |
+Blaster rifle
+1d8 Energy · Power cell (range 105/420), reload 12, two-handed
+| [−] 1 [+] [Equipped] [✎] [Sell] [×] | 7.5 lb | 525 cr | PHB |
+Armor (2)
+Item | Qty & actions | Weight | Cost | Source |
+Medium physical shield
+AC +2 · Shield · Strength 13
+| [−] 1 [+] [Equipped] [✎] [Sell] [×] | 18 lb | 150 cr | PHB |
+Combat suit
+AC 11 + Dex modifier · Light
+Description
+Combat suits are seen all over the galaxy, and can be found for sale by almost any merchant who dealt in weapons and armor. Many such suits are used by military… [290 chars #9b071874]
+The suit itself offers decent protection from most types of attacks while maintaining maximum flexibility and minimum weight. However this armor is only recommended for light skirmishes.
+| [−] 1 [+] [Equip] [✎] [Sell] [×] | 10 lb | 100 cr | PHB |
+
+## Sheet: Personality & Appearance
+Personality Traits
+—
+Ideal
+—
+Bond
+—
+Flaw
+—
+Details
+Alignment
+Balanced Neutral
+Gender
+—
+Place of Birth
+—
+Age
+—
+Height
+—
+Weight
+—
+Hair
+—
+Eyes
+—
+Skin
+—
+
+## Sheet: Backstory
+No backstory yet.
+
+## Sheet: Notes
+Test character for the SW5E Sheet extension. Safe to delete.
+
+## Sheet: Settings, Tweaks & Data
+Tweaks (manual adjustments) 0
+From sw5e.com's editor or added here. Give each a reason (kept in this viewer and in backups); hovering or tapping a number they change shows it.
+No tweaks.
+[Add a tweak to… ▾] [add (+/−) ▾] [] [] [Add]
+Builder settings
+Is Enforcing Force Prerequisites
+true
+Is Fixed Hit Points
+false
+Ability Score Method
+Manual
+Record
+Source
+sw5e.com
+Loaded
+10/17/2026, 11:59:22 PM
+Last changed on SW5E
+10/16/2026, 7:20:02 PM
+Created
+10/16/2026, 7:20:02 PM
+Builder version
+0.7.6
+Validation
+All checks passed
+Character id
+00000000-0000-4000-8000-000003000001 ↗
+Local version history 1 / 25
+SW5E can lose saved characters, so every version seen here is kept in this browser. Compare a version with the character as it is now, or restore it (Undo puts it back).
+Backups (files you keep): this character never · [Back up this character]
+all characters never · [Back up all characters]
+10/16/2026, 7:20:20 PM latest
+Loaded from SW5E · changed on SW5E 10/16/2026, 7:20:02 PM [Compare] [Restore] [Export]
+Rules engine
+The sheet computes the numbers itself, with SW5E's rules. Check with sw5e.com compares them with sw5e.com’s own calculation of this character (it also happens on each Load from SW5E).
+SW5E's rules and item data: version 199, as it comes with the sheet. SW5E is the work of Galiphile and the SW5E contributors: credits · the books.
+[Check with sw5e.com]
+Raw SW5E character JSON
+{ "name": "Berserker Test (Claude)", "image": "", "experiencePoints": 6500, "species": { "name": "Human", "abilityScoreImprovementSelectedOption": 0, "abilitySc… [2343 chars #29711f8f]
+Computed character JSON (the sheet's rules engine)
+{ "name": "Berserker Test (Claude)", "builderVersion": "0.7.6", "image": "", "characteristics": { "Age": "", "Appearance": "", "Backstory": "", "Bond": "", "Eye… [19588 chars #c939c6be]

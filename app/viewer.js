@@ -4606,14 +4606,18 @@ function engCastAbility(m, kind, k) {
  * techcasting ability…" (Spiritual Techcaster). The chosen ability: the feat's notes, else its ability increase when
  * that is one of the choices. [{ name, kind, from, to, points, chosen, options }]; chosen false: not chosen yet.
  */
-function castingSwaps(raw) {
-  if (!state.rules) return [];
-  const A = '(Strength|Dexterity|Constitution|Intelligence|Wisdom|Charisma|the chosen ability)';
+/** The character's feats by name: the background's, those taken at improvements, the ones added by hand (all: repeats kept). */
+function featNamesOf(raw, all = false) {
   const names = [raw.background && raw.background.feat && raw.background.feat.name]
     .concat(arr(raw.classes).flatMap((k) => arr(k.abilityScoreImprovements).filter((a) => a && a.type === 'Feat').map((a) => a.name)), arr(raw.customFeats).map((f) => (typeof f === 'string' ? f : f && f.name)))
     .filter(Boolean);
+  return all ? names : [...new Set(names)];
+}
+function castingSwaps(raw) {
+  if (!state.rules) return [];
+  const A = '(Strength|Dexterity|Constitution|Intelligence|Wisdom|Charisma|the chosen ability)';
   const out = [];
-  for (const name of [...new Set(names)]) {
+  for (const name of featNamesOf(raw)) {
     const t = String((rulesModule('feats').find((f) => f.name === name) || {}).text || '').replace(/\s+/g, ' ');
     const x = new RegExp(`You can use ${A} instead of ${A} as your (force|tech)casting ability`, 'i').exec(t);
     if (!x) continue;
