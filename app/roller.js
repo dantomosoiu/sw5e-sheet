@@ -149,7 +149,7 @@ function parseDice(expr) {
  *   itemheal|count|Item (a medpac or repair kit: dice the size of your Hit Die + Constitution modifier, at least 1)
  */
 function buildRoll(m, spec, opts = {}) {
-  const [kind, a1, a2, a3, a4] = spec.split('|');
+  const [kind, a1, a2, a3, a4, a5] = spec.split('|');
   const c = m.c || {};
   const sc = c.abilityScores || {};
   const pb = num(c.proficiencyBonus);
@@ -255,14 +255,15 @@ function buildRoll(m, spec, opts = {}) {
       return { kind: 'dice', label: `Hit die (${a1})`, spec, diceSpec: [size], base: [{ label: 'per die', value: num(m.t && m.t.lim.hitDieBonus) }], conds: [] };
     }
     case 'death': return { kind: 'd20', label: 'Death saving throw', spec, base: [], conds: [] };
-    case 'pdmg': { // pdmg|force|Heal|2|0: a power's roll (damage, healing, reduction) at a level
+    case 'pdmg': { // pdmg|force|Heal|2|0|Wisdom: a power's roll (damage, healing, reduction) at a level, with its casting ability
       const p = rulesPower(a2);
       const g = p && plPowerRolls(p, num(a3), charLevel(m))[num(a4)];
       if (!g) return null;
-      const castMod = g.mod ? powerNumbers(m, a1, p, {}).attack - pb : 0;
+      // The casting ability the power's card used (a roll from before it was in the spec: SW5E's for the power).
+      const ability = ABBR[a5] ? a5 : powerNumbers(m, a1, p, {}).ability;
       return {
         kind: 'dice', label: `${p.name}: ${g.label}${num(a3) > num(p.level) ? ` (${ordinal(num(a3))} level)` : ''}`, spec, diceSpec: Array.from({ length: g.n }, () => g.die),
-        base: castMod ? [{ label: 'casting modifier', value: castMod }] : [], conds: [], damageType: g.type || '', minTotal: 0, heal: !!g.heal,
+        base: powerRollParts(m, a1, p, g, ability), conds: powerRollConds(m, a1, g), damageType: g.type || '', minTotal: 0, heal: !!g.heal,
       };
     }
     case 'conc': { // conc|DC: the Constitution save to keep concentrating after damage

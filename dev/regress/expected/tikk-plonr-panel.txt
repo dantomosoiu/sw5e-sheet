@@ -224,13 +224,13 @@ damage|0: Blaster pistol damage: d6 +3 · = +2 DEX modifier +1 Infuse Item: Blas
 attack|1: Unarmed Strike attack: d20 +1 · = +1 modifier
 damage|1: Unarmed Strike damage: no dice +0 · = +1 unarmed strike −1 STR modifier · Kinetic
 tech: Tech attack: d20 +7 · = +7 modifier
-pdmg|tech|Detonator|0|0: Detonator: fire damage: d6 +0 · fire
-pdmg|tech|Detonator|0|1: Detonator: fire damage: d4 +0 · fire
-pdmg|tech|Electroshock|0|0: Electroshock: lightning damage: d8 +0 · lightning
-pdmg|tech|Ion Blast|0|0: Ion Blast: ion damage: d4 +0 · ion
-pdmg|tech|Kolto Pack|1|0: Kolto Pack: healing: d4 +5 · = +5 casting modifier
-pdmg|tech|Repair Droid|1|0: Repair Droid: healing: d8 +5 · = +5 casting modifier
-pdmg|tech|Shocking Ray|2|0: Shocking Ray: ion damage: d4 d4 +0 · ion
+pdmg|tech|Detonator|0|0|Intelligence: Detonator: fire damage: d6 +0 · fire
+pdmg|tech|Detonator|0|1|Intelligence: Detonator: fire damage: d4 +0 · fire
+pdmg|tech|Electroshock|0|0|Intelligence: Electroshock: lightning damage: d8 +0 · lightning
+pdmg|tech|Ion Blast|0|0|Intelligence: Ion Blast: ion damage: d4 +0 · ion
+pdmg|tech|Kolto Pack|1|0|Intelligence: Kolto Pack: healing: d4 +5 · = +5 INT modifier
+pdmg|tech|Repair Droid|1|0|Intelligence: Repair Droid: healing: d8 +5 · = +5 INT modifier
+pdmg|tech|Shocking Ray|2|0|Intelligence: Shocking Ray: ion damage: d4 d4 +0 · ion
 tool|One of your choice|proficient: One of your choice check: d20 +7 · = +5 INT modifier +2 proficiency
 tool|armstech's implements|proficient: armstech's implements check: d20 +7 · = +5 INT modifier +2 proficiency
 damage|0|crit: Blaster pistol damage (critical): d6 d6 +3 · = +2 DEX modifier +1 Infuse Item: Blaster pistol · Energy · critical · note: Celerity Oscillator: Once per turn, when you deal damage with your modified weapon, your walking speed increases by 10 feet until the start of your next turn, and the damaged creature can't make opportunity attacks against you for the rest of your turn.

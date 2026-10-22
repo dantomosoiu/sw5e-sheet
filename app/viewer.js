@@ -2068,6 +2068,8 @@ function applyEffects(key, editedRaw, complete) {
   res.tweaks = res.tweaks.filter((t) => !res.setByTweak.includes(t));
   if (acSet) res.acAlternatives = [];
   for (const t of res.tweaks) {
+    // Bonuses to power damage and healing rolls are the dice card's (powerRollParts): the engine has no such number.
+    if (/^(?:force|tech)Powers\./.test(t.path)) continue;
     const cur = getPath(out.tweaks, t.path) || {};
     const fields = { ...(t.fields || {}) };
     // Proficiency never goes down (a feature's "proficient" doesn't undo a tweak's "expertise").
@@ -4484,13 +4486,50 @@ function powerNumbers(m, kind, p, x = {}) {
   const cast = kind === 'force' ? m.c.forceCasting : m.c.techCasting;
   if (kind === 'force') {
     const k = /light/i.test(p.forceAlignment) ? 'light' : /dark/i.test(p.forceAlignment) ? 'dark' : 'universal';
-    if (cast && typeof cast === 'object') return { dc: num(cast[k + 'SaveDC']), attack: num(cast[k + 'AttackModifier']), spec: `force|${k}` };
+    // SW5E's numbers: Wisdom for light side powers, Charisma for dark side, the better of the two for universal ones.
+    const engAbility = k === 'light' ? 'Wisdom' : k === 'dark' ? 'Charisma' : mod('Charisma') > mod('Wisdom') ? 'Charisma' : 'Wisdom';
+    if (cast && typeof cast === 'object') return { dc: num(cast[k + 'SaveDC']), attack: num(cast[k + 'AttackModifier']), spec: `force|${k}`, ability: engAbility };
     const best = pwAbilities(p).reduce((b, a) => (mod(a) > mod(b) ? a : b));
     return { dc: 8 + pb + mod(best), attack: pb + mod(best), spec: null, ability: best };
   }
-  if (cast && typeof cast === 'object') return { dc: num(cast.saveDC), attack: num(cast.attackModifier), spec: 'tech' };
+  if (cast && typeof cast === 'object') return { dc: num(cast.saveDC), attack: num(cast.attackModifier), spec: 'tech', ability: 'Intelligence' };
   return { dc: 8 + pb + mod('Intelligence'), attack: pb + mod('Intelligence'), spec: null, ability: 'Intelligence' };
 }
+/** A power's casting ability modifier ("temporary hit points equal to your forcecasting ability modifier"). */
+const powerCastMod = (m, ability) => num((((m.c.abilityScores || {})[ability]) || {}).modifier);
+/** Does a power call for a force/tech attack or a saving throw? */
+const powerNeedsRoll = (p) => /\b(?:force|tech|power) attack\b|\bmake a (?:melee|ranged) (?:force |tech |power )?attack\b|\bsaving throw\b/i.test(String(p.description || ''));
+/**
+ * What a power's damage, healing or reduction roll adds, by source: [{ label, value }].
+ * - "+ your forcecasting ability modifier": the casting ability's modifier. Not the attack bonus less proficiency: an
+ *   item's "+1 bonus to the force attack rolls" (Focus Generator) isn't in the damage.
+ * - Bonuses to damage or healing rolls with powers of the kind ("a +1 bonus to its damage and healing rolls with force
+ *   powers", Sorcerer's Adrenal): effects on forcePowers.damage / forcePowers.healing, techPowers.damage / techPowers.healing.
+ * - "While raging, you add your rage damage to damage rolls from force powers you cast that require a force attack or
+ *   saving throw" (Furious Force, Industrious Tech): Rage Damage, while raging.
+ * Conditional bonuses (cond) on those paths are offered on the roll instead (powerRollConds).
+ */
+function powerRollParts(m, kind, p, g, ability) {
+  const parts = [];
+  if (g.mod && ability) parts.push({ label: `${ABBR[ability]} modifier`, value: powerCastMod(m, ability) });
+  if (g.reduce) return parts;
+  const path = `${kind}Powers.${g.heal ? 'healing' : 'damage'}`;
+  for (const t of arr(m.fx && m.fx.tweaks).filter((x) => x.path === path)) parts.push({ label: t.effect.kind === 'tweak' ? 'tweak' : t.effect.name, value: num(t.bonus) });
+  if (!g.heal && m.snap && tempEffects(m.snap.key).some((e) => e.group === 'state:raging') && powerNeedsRoll(p)) {
+    const word = kind === 'force' ? 'force' : 'tech';
+    const f = arr(m.allFeatures).find((x) => new RegExp(`while raging, you add your rage damage to damage rolls from ${word} powers you cast`, 'i').test(x.text || x.description || ''));
+    const rage = f && arr(m.classDice).find((d) => d.bonus && /rage damage/i.test(d.column));
+    if (rage) parts.push({ label: `Rage Damage (${f.name})`, value: num(rage.bonus) });
+  }
+  return parts.filter((x) => x.value);
+}
+/** Conditional bonuses to a power's damage or healing ("when using this weapon as your focus"), offered unticked. */
+function powerRollConds(m, kind, g) {
+  if (g.reduce) return [];
+  const path = `${kind}Powers.${g.heal ? 'healing' : 'damage'}`;
+  return arr(m.fx && m.fx.conds).filter((cd) => cd.path === path).map((cd) => ({ label: `${cd.cond} (${cd.effect.name})`, bonus: num(cd.bonus), extra: [], on: false }));
+}
+const powerRollBonus = (m, kind, p, g, ability) => powerRollParts(m, kind, p, g, ability).reduce((t, x) => t + x.value, 0);
 
 /** A power that calls for a force/tech attack: its attack roll (and the save DC for one that calls for a save). */
 function powerRoll(m, kind, p, x) {
@@ -4504,8 +4543,8 @@ function powerRoll(m, kind, p, x) {
   if (save) bits.push(`${save[1]} save DC ${n.dc}`);
   const lvl = charLevel(m);
   plPowerRolls(p, num(p.level), lvl).forEach((g, i) => {
-    const mod = g.mod ? n.attack - num(m.c.proficiencyBonus) : 0;
-    bits.push(`${titleCase(g.heal ? 'Healing' : g.reduce ? 'Reduction' : 'Damage')} ${rollable(`pdmg|${kind}|${p.name}|${num(p.level)}|${i}`, `${g.n}d${g.die}${mod ? signed(mod) : ''}`, `Roll ${p.name}'s ${g.label}`)}${g.type ? ` ${esc(g.type)}` : ''}`);
+    const mod = powerRollBonus(m, kind, p, g, n.ability);
+    bits.push(`${titleCase(g.heal ? 'Healing' : g.reduce ? 'Reduction' : 'Damage')} ${rollable(`pdmg|${kind}|${p.name}|${num(p.level)}|${i}|${n.ability || ''}`, `${g.n}d${g.die}${mod ? signed(mod) : ''}`, `Roll ${p.name}'s ${g.label}`)}${g.type ? ` ${esc(g.type)}` : ''}`);
   });
   return bits.length ? `<div class="pw-roll">${bits.join(' · ')}</div>` : '';
 }
@@ -4632,7 +4671,8 @@ async function castPower(arg) {
   const pfx = plPowerEffect(p, charLevel(m));
   const hasFx = pfx.mods.length || pfx.defenses.length || pfx.riders.length || pfx.tempHp;
   const own = hasFx && !pfx.forTarget ? { mods: pfx.mods, defenses: pfx.defenses, riders: pfx.riders } : {};
-  const castMod = powerNumbers(m, kind, p, x).attack - num(m.c.proficiencyBonus);
+  const castAbility = powerNumbers(m, kind, p, x).ability;
+  const castMod = powerCastMod(m, castAbility);
   // Concentration: a new concentration power ends the one before (not on yourself where the feature says so).
   let note = '';
   if (p.concentration && extra !== 'self') {
@@ -4660,7 +4700,10 @@ async function castPower(arg) {
   if (Object.keys(own).length) scheduleRecompute(snap.key);
   renderAll(); // the cast buttons show what's left
   // Next steps: its rolls at this level, "On me" for a power whose benefits go to its target, Ashla's hit points.
-  const buttons = plPowerRolls(p, level, charLevel(m)).map((g, i) => ({ act: 'roll', arg: `pdmg|${kind}|${name}|${level}|${i}`, label: `Roll ${g.label} (${g.n}d${g.die}${g.mod ? signed(castMod) : ''})` }));
+  const buttons = plPowerRolls(p, level, charLevel(m)).map((g, i) => {
+    const b = powerRollBonus(m, kind, p, g, castAbility);
+    return { act: 'roll', arg: `pdmg|${kind}|${name}|${level}|${i}|${castAbility || ''}`, label: `Roll ${g.label} (${g.n}d${g.die}${b ? signed(b) : ''})` };
+  });
   const effectNow = tempEffects(snap.key).find((e) => e.power === name);
   if (hasFx && pfx.forTarget && effectNow) buttons.push({ act: 'pw-onme', arg: effectNow.id, label: 'It\'s on me: apply it' });
   if (pfx.tempHp && !pfx.forTarget && castMod > 0) buttons.push({ act: 'pw-temp', arg: String(castMod), label: `Temp HP ${castMod}` });
