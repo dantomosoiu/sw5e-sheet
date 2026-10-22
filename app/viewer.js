@@ -870,9 +870,11 @@ function buildModel(snap) {
   m.classDice = classDice(m);
   const casters = classCasting(m);
   const highRules = ['force', 'tech'].flatMap((kind) => highLevelRules(m, kind));
-  m.t = has ? buildTracker(snap, c, superiorityInfo(m), m.textUses, state.rules && choiceInfo(m) ? choiceInfo(m).superiority : [], highRules, ownCastingPoints(m, casters)) : null;
+  m.t = has ? buildTracker(snap, c, superiorityInfo(m), m.textUses, state.rules && choiceInfo(m) ? choiceInfo(m).superiority : [], highRules, ownCastingPoints(m, casters), supTweaks(m)) : null;
   return m;
 }
+/** The superiority tweaks with effects merged ({ maxDice, physicalSaveDC, physicalModifier, … }), as sent to the engine. */
+const supTweaks = (m) => (m.fx && m.fx.raw && m.fx.raw.tweaks && m.fx.raw.tweaks.superiority) || {};
 
 // ------------------------------------------------------------- small render helpers
 /** A card: title line (click or Enter/Space to collapse), `lead` (counters and buttons, always shown), facts and text. */
@@ -1011,7 +1013,7 @@ function classDice(m) {
   return out;
 }
 
-function buildTracker(snap, c, refsInfo, textUses = [], extraDice = [], highRules = null, ownPoints = {}) {
+function buildTracker(snap, c, refsInfo, textUses = [], extraDice = [], highRules = null, ownPoints = {}, supTw = {}) {
   const local = state.trackers[snap.key];
   const s = local ? local.stats : sw5eStats(snap.raw);
   const hp = c.hitPoints || {};
@@ -1028,9 +1030,12 @@ function buildTracker(snap, c, refsInfo, textUses = [], extraDice = [], highRule
     hpMax,
     hitDice: arr(hp.hitDice).map((d) => ({ size: d.size, maximum: num(d.maximum) })),
     hitDieBonus: num(hp.resting && hp.resting.hitDieBonus),
-    // Fighting styles and masteries add dice to the pool (Superiority Style: one, d4 → d12 by level).
-    supMax: (sup ? num(sup.maxDice) : supQty) + extraDice.reduce((t, d) => t + num(d.count), 0),
-    supSize: [sup ? sup.diceSize : supSizeRow ? supSizeRow[1] : '', ...extraDice.map((d) => d.size)]
+    // The dice from the class or archetype table as the sheet reads them (superiorityInfo), with the superiority tweaks:
+    // SW5E's engine (and ours, which mirrors it) misreads an archetype's level table (its second column as the count,
+    // size 0 without a size column: Deadeye d6, Adept Specialist 20 dice of size 0), so its numbers count only where
+    // the sheet reads none. Fighting styles and masteries add dice to the pool (Superiority Style: one, d4 → d12 by level).
+    supMax: (supQty > 0 ? engTweaked(supQty, supTw.maxDice || {}) : sup ? num(sup.maxDice) : 0) + extraDice.reduce((t, d) => t + num(d.count), 0),
+    supSize: [supSizeRow ? supSizeRow[1] : supQty > 0 ? '' : sup && num(sup.diceSize) ? `d${num(String(sup.diceSize).replace(/\D/g, ''))}` : '', ...extraDice.map((d) => d.size)]
       .filter(Boolean).sort((a, b) => num(String(b).replace(/\D/g, '')) - num(String(a).replace(/\D/g, '')))[0] || '',
     // Points from SW5E's computation, or (casters its engine doesn't know, e.g. Rakatan Order) from the table.
     force: ownPoints.force != null ? num(ownPoints.force) : c.forceCasting ? num(c.forceCasting.maxPoints) : 0,
@@ -2302,6 +2307,15 @@ function diffStats(a, b) {
   return out;
 }
 
+/**
+ * The abilities a casting number uses (field: lightSaveDC, maxPoints, attackModifier…): Wisdom for light side, Charisma
+ * for dark side, both for universal powers and force points, Intelligence for tech; a feat's swap adds its ability.
+ */
+function castingAbilities(m, kind, field) {
+  const k = kind === 'tech' ? 'tech' : /^light/.test(field) ? 'light' : /^dark/.test(field) ? 'dark' : 'universal';
+  const list = k === 'light' ? ['Wisdom'] : k === 'dark' ? ['Charisma'] : k === 'universal' ? ['Wisdom', 'Charisma'] : ['Intelligence'];
+  return [...new Set(list.concat(castingSwaps(m.raw).filter((s) => s.kind === kind && s.chosen && list.includes(s.from)).map((s) => s.to)))];
+}
 /** The applied tweaks that can have changed the number at `path`. */
 function bumpSources(m, path) {
   const tw = m.fx.tweaks.concat(m.fx.weaponTweaks.map((t) => ({ ...t, path: `weapon@${t.index}.${t.path}` })));
@@ -2322,12 +2336,19 @@ function bumpSources(m, path) {
     const own = (w.name === 'Unarmed Strike' ? tw.filter((t) => t.path.startsWith('unarmed.'))
       : tw.filter((t) => t.path.startsWith('weapon.') || t.path.startsWith(`weapon@${w.index}.`)))
       .filter((t) => !part || t.path.endsWith('.' + part));
-    return own.concat(w.ability ? score(w.ability) : []);
+    // A finesse unarmed strike (Unarmed Combatant) goes by Dexterity: an item's Dexterity counts there too.
+    const finesse = own.some((t) => t.mod && t.mod.finesse) ? score('Dexterity') : [];
+    return own.concat(w.ability ? score(w.ability) : [], finesse);
   }
+  // Casting numbers: the tweaks on that very number (a save DC tweak doesn't explain the points), and the abilities it
+  // uses (castingAbilities).
+  if ((x = /^(force|tech)Casting\.(\w+)$/.exec(path))) return tw.filter((t) => t.path === path).concat(...castingAbilities(m, x[1], x[2]).map(score));
+  // A maneuver DC or attack worked out on the sheet (maneuver.Physical.Dexterity.dc): its superiority tweak and the ability.
+  if ((x = /^maneuver\.(\w+)\.(\w+)\.(dc|attack)$/.exec(path))) return tw.filter((t) => t.path === `superiority.${x[1].toLowerCase()}${x[3] === 'dc' ? 'SaveDC' : 'Modifier'}`).concat(score(x[2]));
   const rel = {
     armorClass: ['armorClass', 'Dexterity'], initiative: ['initiative', 'Dexterity'], passivePerception: ['passivePerception', 'Wisdom', 'abilityScores.Wisdom.skills.Perception'],
     hitPoints: ['hitPoints', 'Constitution'], speed: ['speed', 'Strength'], carryingCapacity: ['Strength'],
-    techCasting: ['techCasting', '*'], forceCasting: ['forceCasting', '*'], proficiencyBonus: [],
+    proficiencyBonus: [],
   }[path.split('.')[0]] || ['*'];
   // Carrying capacity and speed (heavy armor's Strength) go by the score itself; the rest by the modifier.
   const byScore = ['carryingCapacity', 'speed'].includes(path.split('.')[0]);
@@ -4281,8 +4302,12 @@ function renderSuperiority(m) {
     ['Mental', best(['Intelligence', 'Wisdom', 'Charisma'])],
     ['General', best(ABILITIES)],
   ];
-  const sup = c.superiority && typeof c.superiority === 'object' ? c.superiority : null;
+  // Superiority tweaks (physicalSaveDC, physicalModifier…) apply to the DCs and attacks worked out here.
+  const tw = supTweaks(m);
+  const dcOf = (t, a, md) => engTweaked(8 + pb + md(a), tw[`${t.toLowerCase()}SaveDC`] || {});
+  const atkOf = (t, a, md) => pb + engTweaked(md(a), tw[`${t.toLowerCase()}Modifier`] || {});
   const info = superiorityInfo(m);
+  const qtyShown = info.reduce((t, i) => t + i.rows.filter(([k]) => /quantity|^superiority dice$/i.test(k)).reduce((s, [, v]) => s + num(v), 0), 0);
   const byType = {};
   const refs = m.refs.maneuvers || {};
   for (const n of m.maneuverNames) {
@@ -4290,12 +4315,12 @@ function renderSuperiority(m) {
     (byType[r.type || 'Other'] = byType[r.type || 'Other'] || []).push(r);
   }
   return `
-    ${sup ? `<div class="grid auto">${Object.entries(sup).filter(([, v]) => typeof v !== 'object').map(([k, v]) => stat(titleCase(k), esc(v))).join('')}</div>` : ''}
     <div class="grid auto">
+      ${m.t && m.t.lim.supMax && m.t.lim.supMax !== qtyShown ? stat('Superiority dice', esc(m.t.lim.supMax), 'with styles, masteries and tweaks') : ''}
       ${info.flatMap((i) => i.rows.map(([k, v]) => stat(`${info.length > 1 ? `${i.cls.name}: ` : ''}${k}`,
         /size/i.test(k) && m.t && String(v) === String(m.t.lim.supSize) ? rollable('supdie', esc(v), 'Roll a superiority die') : esc(v)))).join('')}
-      ${dcs.map(([t, a]) => stat(`${t} maneuver DC`, bump(m, `abilityScores.${a}.modifier`, String(8 + pb + mod(a)), { from: 8 + pb + baseMod(a), to: 8 + pb + mod(a) }, { noAlts: true }),
-        `${ABBR[a]} · attack ${rollable(`maneuver|${t}|${a}`, bump(m, `abilityScores.${a}.modifier`, signed(pb + mod(a)), { from: signed(pb + baseMod(a)), to: signed(pb + mod(a)) }, { noAlts: true }), `Roll a ${t.toLowerCase()} maneuver attack`)}`)).join('')}
+      ${dcs.map(([t, a]) => stat(`${t} maneuver DC`, bump(m, `maneuver.${t}.${a}.dc`, String(dcOf(t, a, mod)), { from: 8 + pb + baseMod(a), to: dcOf(t, a, mod) }, { noAlts: true }),
+        `${ABBR[a]} · attack ${rollable(`maneuver|${t}|${a}`, bump(m, `maneuver.${t}.${a}.attack`, signed(atkOf(t, a, mod)), { from: signed(pb + baseMod(a)), to: signed(atkOf(t, a, mod)) }, { noAlts: true }), `Roll a ${t.toLowerCase()} maneuver attack`)}`)).join('')}
       ${m.t && m.t.lim.supSize && !info.some((i) => i.rows.some(([k, v]) => /size/i.test(k) && String(v) === String(m.t.lim.supSize)))
         ? stat('Superiority die', rollable('supdie', esc(m.t.lim.supSize), 'Roll a superiority die')) : ''}
     </div>

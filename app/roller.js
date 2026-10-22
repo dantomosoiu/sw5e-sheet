@@ -244,7 +244,10 @@ function buildRoll(m, spec, opts = {}) {
       const f = c.forceCasting || {};
       return d20(`${titleCase(a1)} force attack`, num(f[`${a1}AttackModifier`]), `forceCasting.${a1}AttackModifier`);
     }
-    case 'maneuver': return d20(`${a1} maneuver attack`, pb + num((sc[a2] || {}).modifier), null);
+    case 'maneuver': { // maneuver|Physical|Strength: with a superiority tweak to that kind's modifier
+      const tw = (typeof supTweaks === 'function' ? supTweaks(m) : {})[`${String(a1).toLowerCase()}Modifier`] || {};
+      return d20(`${a1} maneuver attack`, pb + engTweaked(num((sc[a2] || {}).modifier), tw), null);
+    }
     case 'pattack': return d20(`${a1} attack`, num(a2), null); // a power cast without SW5E's casting numbers
     case 'supdie': {
       const size = num(String(a1 || (m.t && m.t.lim.supSize) || '').replace(/\D/g, ''));

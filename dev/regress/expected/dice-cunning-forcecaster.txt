@@ -356,22 +356,22 @@ Unarmed Strike
 ## Sheet: Force Casting
 Force points
 21 / 24
-  ↳ hover forceCasting.maxPoints: Without tweaks or effects: 23 → now 24 / +1 Light force attack, INT instead of WIS · Cunning Forcecaster feat (casting ability) / … [517 chars #a04ace7e]
+  ↳ hover forceCasting.maxPoints: Without tweaks or effects: 23 → now 24 / +1 Force points, INT instead of WIS · Cunning Forcecaster feat (casting ability)
 Max power level
 3
 Light side
 DC 15
-  ↳ hover forceCasting.lightSaveDC: Without tweaks or effects: 14 → now 15 / +1 Light force attack, INT instead of WIS · Cunning Forcecaster feat (casting ability) … [519 chars #b5fc4715]
+  ↳ hover forceCasting.lightSaveDC: Without tweaks or effects: 14 → now 15 / +1 Light force save DC, INT instead of WIS · Cunning Forcecaster feat (casting ability)
 attack +7
-  ↳ hover forceCasting.lightAttackModifier: Without tweaks or effects: 6 → now 7 / +1 Light force attack, INT instead of WIS · Cunning Forcecaster feat (casting abi… [525 chars #2b1ef141]
+  ↳ hover forceCasting.lightAttackModifier: Without tweaks or effects: 6 → now 7 / +1 Light force attack, INT instead of WIS · Cunning Forcecaster feat (casting ability)
 Dark side
 DC 13
 attack +5
 Universal
 DC 15
-  ↳ hover forceCasting.universalSaveDC: Without tweaks or effects: 14 → now 15 / +1 Light force attack, INT instead of WIS · Cunning Forcecaster feat (casting abili… [523 chars #5c3ddfd8]
+  ↳ hover forceCasting.universalSaveDC: Without tweaks or effects: 14 → now 15 / +1 Universal force save DC, INT instead of WIS · Cunning Forcecaster feat (casting ability)
 attack +7
-  ↳ hover forceCasting.universalAttackModifier: Without tweaks or effects: 6 → now 7 / +1 Light force attack, INT instead of WIS · Cunning Forcecaster feat (casting… [529 chars #a21f81e0]
+  ↳ hover forceCasting.universalAttackModifier: Without tweaks or effects: 6 → now 7 / +1 Universal force attack, INT instead of WIS · Cunning Forcecaster feat (casting ability)
 At-will powers (3)
 Force Disarm Universal Consular
 Dexterity save DC 15

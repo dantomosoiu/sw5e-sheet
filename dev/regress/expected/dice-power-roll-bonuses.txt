@@ -419,23 +419,23 @@ Unarmed Strike
 ## Sheet: Force Casting
 Force points
 20 / 20
-  ↳ hover forceCasting.maxPoints: Without tweaks or effects: 19 → now 20 / +1 WIS · Empathic feat (background feat) / +1 Light force attack · Focus Generator (Fine)… [303 chars #cedccb01]
+  ↳ hover forceCasting.maxPoints: Without tweaks or effects: 19 → now 20 / +1 WIS · Empathic feat (background feat)
 Max power level
 2
 Light side
 DC 14
-  ↳ hover forceCasting.lightSaveDC: Without tweaks or effects: 13 → now 14 / +1 WIS · Empathic feat (background feat) / +1 Light force attack · Focus Generator (Fin… [305 chars #c7a5114a]
+  ↳ hover forceCasting.lightSaveDC: Without tweaks or effects: 13 → now 14 / +1 WIS · Empathic feat (background feat)
 attack +7
-  ↳ hover forceCasting.lightAttackModifier: Without tweaks or effects: 5 → now 7 / +1 WIS · Empathic feat (background feat) / +1 Light force attack · Focus Generato… [311 chars #7eb70786]
+  ↳ hover forceCasting.lightAttackModifier: Without tweaks or effects: 5 → now 7 / +1 Light force attack · Focus Generator (Fine) while attuned / +1 WIS · Empathic feat (background feat)
 Dark side
 DC 11
 attack +4
-  ↳ hover forceCasting.darkAttackModifier: Without tweaks or effects: 3 → now 4 / +1 WIS · Empathic feat (background feat) / +1 Light force attack · Focus Generator… [310 chars #54411fb5]
+  ↳ hover forceCasting.darkAttackModifier: Without tweaks or effects: 3 → now 4 / +1 Dark force attack · Focus Generator (Fine) while attuned
 Universal
 DC 14
-  ↳ hover forceCasting.universalSaveDC: Without tweaks or effects: 13 → now 14 / +1 WIS · Empathic feat (background feat) / +1 Light force attack · Focus Generator … [309 chars #52fe21e5]
+  ↳ hover forceCasting.universalSaveDC: Without tweaks or effects: 13 → now 14 / +1 WIS · Empathic feat (background feat)
 attack +7
-  ↳ hover forceCasting.universalAttackModifier: Without tweaks or effects: 5 → now 7 / +1 WIS · Empathic feat (background feat) / +1 Light force attack · Focus Gene… [315 chars #652f6d07]
+  ↳ hover forceCasting.universalAttackModifier: Without tweaks or effects: 5 → now 7 / +1 Universal force attack · Focus Generator (Fine) while attuned / +1 WIS · Empathic feat (background feat)
 At-will powers (5)
 Force Push/Pull Universal Consular
 [Cast] [No casting option ▾]

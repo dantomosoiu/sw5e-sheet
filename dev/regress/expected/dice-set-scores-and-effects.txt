@@ -493,17 +493,17 @@ Superiority Dice Size
 d4
 Physical maneuver DC
 14
-  ↳ hover abilityScores.Strength.modifier: Without tweaks or effects: 9 → now 14 / = 16 Strength score · no reason given tweak / +2 STR · Strength Stim (Fine) used, lasts 1 hour, since Thu 00:00
+  ↳ hover maneuver.Physical.Strength.dc: Without tweaks or effects: 9 → now 14 / = 16 Strength score · no reason given tweak / +2 STR · Strength Stim (Fine) used, lasts 1 hour, since Thu 00:00
 STR · attack +6
-  ↳ hover abilityScores.Strength.modifier: Without tweaks or effects: +1 → now +6 / = 16 Strength score · no reason given tweak / +2 STR · Strength Stim (Fine) used, lasts 1 hour, since Thu 00:00
+  ↳ hover maneuver.Physical.Strength.attack: Without tweaks or effects: +1 → now +6 / = 16 Strength score · no reason given tweak / +2 STR · Strength Stim (Fine) used, lasts 1 hour, since Thu 00:00
 Mental maneuver DC
 11
 WIS · attack +3
 General maneuver DC
 14
-  ↳ hover abilityScores.Strength.modifier: Without tweaks or effects: 9 → now 14 / = 16 Strength score · no reason given tweak / +2 STR · Strength Stim (Fine) used, lasts 1 hour, since Thu 00:00
+  ↳ hover maneuver.General.Strength.dc: Without tweaks or effects: 9 → now 14 / = 16 Strength score · no reason given tweak / +2 STR · Strength Stim (Fine) used, lasts 1 hour, since Thu 00:00
 STR · attack +6
-  ↳ hover abilityScores.Strength.modifier: Without tweaks or effects: +1 → now +6 / = 16 Strength score · no reason given tweak / +2 STR · Strength Stim (Fine) used, lasts 1 hour, since Thu 00:00
+  ↳ hover maneuver.General.Strength.attack: Without tweaks or effects: +1 → now +6 / = 16 Strength score · no reason given tweak / +2 STR · Strength Stim (Fine) used, lasts 1 hour, since Thu 00:00
 Dice come from the class table at your level; save DCs are calculated here as 8 + proficiency + your best eligible ability modifier (SW5E's site does not compute superiority).
 General maneuvers (1)
 Precision Attack PHB
