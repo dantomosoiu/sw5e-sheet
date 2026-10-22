@@ -661,7 +661,8 @@ Rally the Troops Level 7
 Fireteam Specialist: 7th level
 When you use your Second Wind feature, you can choose up to three allies within 60 feet of you that can see or hear you. Each ally gains temporary hit points equal to your fighter level.
 You can choose an additional ally at 9th, 13th, and 17th level.
-Your choices []
+Add a note
+Notes []
 On Your Six Level 10
 Uses (back on a long rest) 1 / 1 [−] [+]
 Fireteam Specialist: 10th level
@@ -696,7 +697,8 @@ Fireteam Specialist: 15th level
 Over the course of one minute, you can share knowledge with up to five allies. For the next hour, the chosen creatures gain all of your weapon and armor proficiencies, and a single use of your Indomitable feature.
 You can choose an additional ally at 17th level.
 Once you've used this feature, you can't use it again until you complete a long rest.
-Your choices []
+Add a note
+Notes []
 No Soldier Left Behind Level 18 from class text
 While under the effects of On Your Six, if either you or your ally are reduced to 0 hit points, you can end On Your Six to have them drop to 1 hit point instead… [247 chars #2e23b3c7]
 Add a note

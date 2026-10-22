@@ -661,7 +661,7 @@ Way of the Seer (archetype) (1)
 Force Visions Level 3
 Way of the Seer: 3rd level
 Glimpses of the future begin to press in on your awareness. When you finish a long rest, roll two d20s and record the numbers rolled. You can replace any attack… [491 chars #ffa65078]
-Your choices [Foretelling rolls: 1, 9]
+Notes [Foretelling rolls: 1, 9]
 Consular: Force-Empowered Castings (2)
 Twinned Power
 When you cast a power that can only have one target and doesn't have a range of self, you can spend a number of additional force points equal to the power's lev… [258 chars #29c61106]

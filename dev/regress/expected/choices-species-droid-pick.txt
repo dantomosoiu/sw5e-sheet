@@ -637,7 +637,8 @@ Add a note
 Notes []
 Languages
 You can speak, read, and write Galactic Basic and one language of your choice. You can understand spoken and written Binary, but you can not speak it.
-Your choices []
+Add a note
+Notes []
 Maintenance Mode
 Rather than sleep, you must spend 3 hours performing routine maintenance during a long rest to gain its benefits, during which you have disadvantage on Wisdom (… [299 chars #0e11ab3e]
 Add a note

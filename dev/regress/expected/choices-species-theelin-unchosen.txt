@@ -600,7 +600,8 @@ Small horns, pale skin, colorful hair
 Traits (10)
 Ability Score Increase
 Your Charisma score increases by 2, and two other ability scores of your choice increase by 1.
-Your choices []
+Add a note
+Notes []
 Age
 Theelin reach adulthood in their late teens and live for about 70 years.
 Add a note
@@ -618,7 +619,8 @@ Add a note
 Notes []
 Languages
 You can speak, read, and write Galactic Basic and one extra language of your choice.
-Your choices []
+Add a note
+Notes []
 Mutation
 Theelin gain unique mutations, a result of cross-breeding with other humanoids. Choose one of the following mutations.
 Balanced Hooves

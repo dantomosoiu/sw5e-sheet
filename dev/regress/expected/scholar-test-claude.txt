@@ -518,7 +518,8 @@ Sage Advice Levels 2, 13 from class text
 Uses (back on a long rest) 1 / 1 [−] [+]
 You can spend 1 minute spreading your knowledge and experience, advising those around you. When you do so, choose a skill or tool you are proficient with and a … [698 chars #f0a568cc]
 Once you've used this feature, you can't use it again until you finish a long rest. Starting at 13th level, you regain the ability to use it after you complete a short or long rest.
-Your choices []
+Add a note
+Notes []
 Academic Pursuit Level 3
 Scholar: 3rd, 6th, 9th, and 17th level
 You dedicate your studies towards a pursuit, which is detailed at the end of the class description.

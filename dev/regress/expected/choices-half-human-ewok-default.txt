@@ -624,7 +624,8 @@ Ewokese
 Traits (13)
 Ability Score Increase
 Half-humans gain the ability score increases of their non-human half, but they can choose any ability score for one of the options, instead of the given option.… [264 chars #100396a6]
-Your choices []
+Add a note
+Notes []
 Age
 Half-humans live around the average of the two species' lifespans.
 Add a note

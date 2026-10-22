@@ -695,7 +695,8 @@ Increase an ability score of your choice by 1, to a maximum of 20.
 Your maximum attunement increases by 1.
 You have advantage on ability checks made to identify items.
 Once per long rest, you can choose one object that you must touch for 10 minutes. If it is an enhanced or modified item, you learn its properties and how to use… [383 chars #5a8976c4]
-Your choices []
+Add a note
+Notes []
 Formfighting Dabbler Background (Jedi)+1 to any ability Prereq: The ability to cast force powers
 You've dabbled in the basics of the known forms of lightsaber combat. You gain the following benefits:
 Increase an ability score of your choice by 1, to a maximum of 20.

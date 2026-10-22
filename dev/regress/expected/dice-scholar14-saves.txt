@@ -548,7 +548,8 @@ Uses (back on a short or long rest) 1 / 1 [−] [+]
 Scholar: 2nd and 13th level
 You can spend 1 minute spreading your knowledge and experience, advising those around you. When you do so, choose a skill or tool you are proficient with and a … [698 chars #f0a568cc]
 Once you've used this feature, you can't use it again until you finish a long rest. Starting at 13th level, you regain the ability to use it after you complete a short or long rest.
-Your choices []
+Add a note
+Notes []
 Calm and Collected Levels 14, 17 from class text
 Uses (back on a long rest) 5 / 5 [−] [+]
 When you make a saving throw caused by an effect you can see, you may gain a bonus to the saving throw equal to your Intelligence modifier.

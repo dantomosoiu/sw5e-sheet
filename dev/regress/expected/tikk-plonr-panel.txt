@@ -763,7 +763,8 @@ Add a note
 Notes []
 Languages
 You can speak, read, and write Galactic Basic, Sullestese, and one more language of your choice. Sullestese is characterized as a robust language in business, and as such is commonly learned by professional merchants.
-Your choices []
+Add a note
+Notes []
 Mercantile
 Whenever you make a Charisma (Persuasion) check related to conducting business, you are considered to have expertise in the Persuasion skill.
 Add a note

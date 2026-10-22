@@ -601,7 +601,8 @@ Leathery skin, subspecies
 Traits (15)
 Ability Score Increase
 Your Constitution score increases by 2, and one other ability score of your choice increases by 1.
-Your choices []
+Add a note
+Notes []
 Adaptation
 The frequent radiation bursts from the nearby dying star caused the nikto to mutate and adapt into different subspecies over time, specialized for different environments. Choose one of the following adaptations:
 Esral'sa'Nikto (Mountain)

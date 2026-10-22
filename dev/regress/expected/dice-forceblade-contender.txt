@@ -536,7 +536,8 @@ Double Strike
 When you hit a creature with a weapon attack, you can roll a Kinetic Combat die and deal additional damage of the same type equal to the amount rolled.
 Slow Time
 When you move on your turn, you can roll a Kinetic Combat die to increase your speed by 5 x the amount rolled until the end of your turn.
-Your choices []
+Add a note
+Notes []
 Extra Attack Level 5
 Sentinel: 5th level
 You can attack twice, instead of once, whenever you take the Attack action on your turn.
@@ -709,7 +710,8 @@ Biped with bilateral symmetry, opposable thumbs
 Traits (9)
 Ability Score Increase
 One ability score of your choice increases by 2, and two other ability scores of your choice increase by 1. Alternatively, four ability scores of your choice each increase by 1.
-Your choices []
+Add a note
+Notes []
 Age
 Humans reach adulthood in their late teens and live less than a century.
 Add a note
@@ -737,10 +739,12 @@ Add a note
 Notes []
 Languages
 You can speak, read, and write Galactic Basic and one extra language of your choice. Humans typically learn the languages of other peoples they deal with, inclu… [346 chars #ff842958]
-Your choices []
+Add a note
+Notes []
 Proficiency
 You gain proficiency in one skill, one tool, and one weapon of your choice.
-Your choices []
+Add a note
+Notes []
 Size
 Humans vary widely in height and build, from barely 5 feet to well over 6 feet tall. Regardless of your position in that range, your size is Medium.
 Add a note

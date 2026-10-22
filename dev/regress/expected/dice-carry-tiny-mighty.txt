@@ -617,7 +617,8 @@ Four-fingered hands, three-toed feet, stalk eyes
 Traits (14)
 Ability Score Increase
 Your Dexterity score increases by 2, and two other ability scores of your choice increase by 1.
-Your choices []
+Add a note
+Notes []
 Age
 Zilkin are considered adults at 4 years old, and rarely live to be over 12.
 Add a note
