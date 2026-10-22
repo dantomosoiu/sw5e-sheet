@@ -2504,6 +2504,14 @@ function applyEffects(key, editedRaw, complete) {
     const label = `${best.finesse ? 'Finesse: ' : ''}${ABBR[best.a]} ${signed(mod(best.a))} instead of ${ab.slice(0, 3).toUpperCase()} ${signed(mod(ab))}`;
     if (best.e) for (const path of Object.keys(gain)) if (gain[path] > 0) res.tweaks.push({ path, bonus: gain[path], fields: null, effect: best.e, mod: { path, label, finesse: !!best.finesse, ability: best.a } });
   }
+  // With a damage die the unarmed strike deals "the die + your Strength modifier": SW5E's engine (which ours mirrors)
+  // drops a negative modifier there (its floor at 0 suits the dieless 1 + Strength). The sheet puts it back.
+  const dieNow = res.tweaks.filter((t) => t.path === 'unarmed.damageDice' && t.fields && t.fields.dieSize).reduce((d, t) => Math.max(d, num(t.fields.dieSize)), 0);
+  const ownAb = (unarmed && unarmed.ability) || 'Strength';
+  if (unarmed && dieNow && modOf(ownAb) < 0 && !res.tweaks.some((t) => t.path === 'unarmed.damage' && t.mod && (t.mod.finesse || t.mod.ability))) {
+    const e = { id: 'unarmed:negative', kind: 'feature', name: `${ABBR[ownAb]} modifier`, why: 'with a damage die (rules)', target: 'self', mods: [], notes: [] };
+    res.tweaks.push({ path: 'unarmed.damage', bonus: modOf(ownAb), fields: null, effect: e, mod: { path: 'unarmed.damage', label: `${ABBR[ownAb]} modifier with a damage die` } });
+  }
   // "Add half your proficiency bonus to any ability check that doesn't already include it": skills
   // without proficiency and initiative (plain ability checks get it in the roller).
   // Some give it on checks of some abilities only (halfProf lists them: Remarkable Athlete, Cunning Intellect).

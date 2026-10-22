@@ -224,7 +224,7 @@ function d20Options(m, kind, ctx = {}) {
       const spend = (/\bspend (\d+) force points?\b/i.exec(s) || [])[1];
       let x;
       if (kind === 'save') {
-        if ((x = /\byou (?:may|can)(?: spend \d+ force points? to)? (?:gain a bonus to the saving throw equal to|add) your ((?:Strength|Dexterity|Constitution|Intelligence|Wisdom|Charisma)(?: or (?:Strength|Dexterity|Constitution|Intelligence|Wisdom|Charisma))?) modifier( \((?:your choice, )?minimum of (?:one|\+?1)\))?(?: to the (?:roll|saving throw))?/i.exec(s)) && /saving throw/i.test(s)) {
+        if ((x = /\byou (?:may|can)(?: spend \d+ force points? to)? (?:gain a bonus to the saving throw equal to|add) your ((?:Strength|Dexterity|Constitution|Intelligence|Wisdom|Charisma)(?: or (?:Strength|Dexterity|Constitution|Intelligence|Wisdom|Charisma))?) modifier( \((?:your choice, )?minimum of (?:one|\+?1)\))?(?: to the (?:roll|saving throw))?/i.exec(s)) && /saving throw/i.test(s) && !/death saving throw/i.test(s)) {
           const cond = (/^When you make a saving throw ((?:caused by|to resist|against)[^,]+),/i.exec(s) || [])[1];
           const b = x[2] ? Math.max(1, mod(abil(x[1]))) : mod(abil(x[1]));
           if (b) out.push({ label: `${cond ? `${cond}: ` : ''}${label}${spend ? ` (${spend} force points)` : ''}`, bonus: b, extra: [], on: false, ...(spend ? { spend: { op: 'force', arg: spend, what: `${spend} force points` } } : {}) });
@@ -245,7 +245,8 @@ function d20Options(m, kind, ctx = {}) {
         } else if (kind === 'skill' && (x = /proficiency in (\w+), and you can use your (\w+) modifier instead of your (\w+) modifier for checks made with it/i.exec(s)) && x[1] === ctx.skill && ABBR[x[2]] && x[3] === ctx.ability) {
           out.push({ label: `${ABBR[x[2]]} instead of ${ABBR[x[3]]} (${label})`, bonus: mod([x[2]]) - mod([x[3]]), extra: [], on: false });
         } else if (kind === 'skill' && /When you make an ability check with the chosen skill or tool, you can add half your Wisdom or Charisma modifier/i.test(s)
-          && new RegExp(`\\b${ctx.skill}\\b`, 'i').test(typeof featureNoteOf === 'function' && m.raw ? featureNoteOf(m.raw, t.name) : '')) {
+          && new RegExp(`\\b${ctx.skill}\\b`, 'i').test(typeof featureNoteOf === 'function' && m.raw ? featureNoteOf(m.raw, t.name) : '')
+          && !arr(m.fx && m.fx.tweaks).some((x) => x.effect && x.effect.name === t.name && x.path.endsWith(`.skills.${ctx.skill}`))) {
           // "… add half your Wisdom or Charisma modifier (your choice, minimum of one)" (Force Guidance; its notes name the skill).
           out.push({ label, bonus: Math.max(1, Math.floor(mod(['Wisdom', 'Charisma']) / 2)), extra: [], on: false });
         // "When you make an ability check using Charisma, you can choose to instead make the check using your Intelligence or
@@ -739,6 +740,14 @@ function startRoll(spec, opts = {}) {
     const src = m.t ? plRollSources(spec, m.t.s.conditions, m.t.s.exhaustion) : { adv: [], dis: [], fail: [] };
     adv.push(...src.adv);
     const dis = src.dis;
+    // A trait's plain "disadvantage on Strength saving throws" (Zilkin's Puny, a Hutt's Dexterity saves): not one with a
+    // condition after it ("… against effects that would deal sonic damage").
+    for (const e of arr(m.effects)) {
+      for (const d of arr(e.defenses).filter((x) => x.kind === 'disadvantage')) {
+        const x = /^(?:Disadvantage on )?(Strength|Dexterity|Constitution|Intelligence|Wisdom|Charisma) (saving throws|checks)$/i.exec(String(d.what || d.text || '').trim());
+        if (x && ab === titleCase(x[1].toLowerCase()) && (/saving/i.test(x[2]) ? kind === 'save' : kind === 'check' || kind === 'skill') && !dis.includes(e.name)) dis.push(e.name);
+      }
+    }
     // Armor that's hard to sneak in (Bulky, Obtrusive): disadvantage on Stealth.
     if (skill === 'Stealth' && typeof armorEffectsOf === 'function') dis.push(...armorEffectsOf(m).stealth);
     if (adv.length || dis.length) {
