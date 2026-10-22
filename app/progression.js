@@ -204,6 +204,15 @@ function prFeatAbilities(featRef) {
   if (!a.length || !/increase (?:your|an|one)[^.]*?score[^.]*?by 1/i.test(t)) return [];
   return a.some((x) => /^any$/i.test(x)) ? PR_ABILITIES.slice() : a.filter((x) => PR_ABILITIES.includes(x));
 }
+/**
+ * Is an entry of SW5E's feats list a feat? The list also holds rules notes from the books ("Class Proficiencies":
+ * "Certain classes, such as fighters or guardians, gain proficiency in all weapons within a specific category…";
+ * "Fighting Styles and Masteries": "You'll want to extend the benefits of certain Fighting Styles…"). A feat says what
+ * it gives you: "you gain", "you can", "you have", "you learn", "you know", "Increase your…".
+ */
+function prIsFeat(featRef) {
+  return !!featRef && /\byou (?:gain|can|have|learn|know)\b|\bincrease\b/i.test(String(featRef.text || ''));
+}
 /** What else follows a feat's chosen ability: "You gain proficiency in saving throws using the chosen ability" → { save: true }. */
 function prFeatChosenAbilityUse(featRef) {
   const t = String((featRef && featRef.text) || '').replace(/\s+/g, ' ');
@@ -338,7 +347,7 @@ function prCharacteristics(bgRef) {
 if (typeof module !== 'undefined') {
   module.exports = {
     PR_ABILITIES, PR_STANDARD_ARRAY, PR_POINT_COST, PR_POINTS, prSkillChoice, prMulticlassRules, prMulticlassUnmet, prToolChoices,
-    prLanguageChoices, prLanguages, prXpTable, prAsiLevels, prTableFeatures, prAddLevel, prAsiSlots, prAsiIncreases, prFeatAbilities, prFeatChosenAbilityUse,
+    prLanguageChoices, prLanguages, prXpTable, prAsiLevels, prTableFeatures, prAddLevel, prAsiSlots, prAsiIncreases, prFeatAbilities, prFeatChosenAbilityUse, prIsFeat,
     prPointBuyCost, prSpeciesIncreases, prList, prEquipmentOptions, prEquipmentItems, prResolveEquipment, prCharacteristics,
     prPackContents, prPackCost,
   };

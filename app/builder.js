@@ -10,6 +10,8 @@
 
 const bdModules = () => (state.rules && state.rules.modules) || {};
 const bdClassRef = (name) => arr(bdModules().classes).find((c) => c.name === name) || null;
+/** The feats one can take: SW5E's feats list without its rules notes (prIsFeat), each name once. */
+const bdFeatList = () => arr(bdModules().feats).filter((f, i, all) => prIsFeat(f) && all.findIndex((x) => x.name === f.name) === i);
 const BD_TOOL_CATS = ['Kit', 'Tool', 'GamingSet', 'MusicalInstrument'];
 const bdTools = () => (state.catalog ? state.catalog.items.filter((i) => BD_TOOL_CATS.includes(i.equipmentCategory)) : []);
 /** Skills picked by the classes (all but class `exceptClass`) and, unless `exceptBg`, the background: a skill is learnt once. */
@@ -274,6 +276,43 @@ function bdFeatIncreases(raw) {
   return out;
 }
 
+/** The character's feats, each name once: the background feat, the ones taken at an ASI, the ones added by hand. */
+function bdFeatNames(raw) {
+  const bg = raw.background || {};
+  return [...new Set([bg.feat && bg.feat.name].concat(arr(raw.classes).flatMap((k) => arr(k.abilityScoreImprovements).filter((a) => a && a.type === 'Feat').map((a) => a.name)),
+    bdCustomFeats(raw).map((f) => f.name)).filter(Boolean))];
+}
+/**
+ * Languages feats teach: "You learn three languages of your choice" (Linguist) → [{ name, from, count, options, chosen }],
+ * kept like the species' (customLanguages, with languageChoices['Feat: Linguist']).
+ */
+function bdFeatLanguages(raw) {
+  const out = [];
+  for (const name of bdFeatNames(raw)) {
+    const ref = bdFeatList().find((f) => f.name === name);
+    const sentence = ref && (/[^.\n]*\blanguages?\b[^.\n]*\bof your choice\b[^.\n]*/i.exec(ref.text || '') || [])[0];
+    const lc = sentence && prLanguageChoices(sentence);
+    if (lc) out.push({ name, from: `Feat: ${name}`, sentence: sentence.replace(/^\s*-\s*/, '').trim(), count: lc.count, options: lc.options || prLanguages(bdModules()), chosen: BD_KINDS.lang.get(raw, `Feat: ${name}`) });
+  }
+  return out;
+}
+/** A feat's language picker, for its card. */
+function bdFeatLanguagePicks(m, name) {
+  const x = bdFeatLanguages(m.raw).find((l) => l.name === name);
+  return x ? `<div class="cls-choices feat-asks">${bdPickList({ title: 'Languages', from: x.sentence, count: x.count, chosen: x.chosen, options: x.options, kind: 'lang', arg: x.from, word: 'a language' })}</div>` : '';
+}
+/**
+ * A feat's text without the choices the builder's pickers make (its +1, "Choose one ability score" for the chosen
+ * ability's +1, the languages it teaches): what's left to write in its notes ('' when nothing: "you can choose to have
+ * advantage" is a choice made at the table).
+ */
+function bdFeatChoiceText(ref) {
+  let t = String((ref && ref.text) || '').replace(/[^.\n]*\bincrease (?:your|an|one|the chosen)\b[^.\n]*\bby 1\b[^.\n]*/gi, '');
+  if (/\bincrease the chosen ability score\b/i.test((ref && ref.text) || '')) t = t.replace(/\bchoose one (?:ability score|from [^.]+)\./gi, '');
+  t = t.replace(/[^.\n]*\blanguages?\b[^.\n]*\bof your choice\b[^.\n]*/gi, '');
+  return /\b(?:choose|select) (?:one|two|three|a|an|any)\b|\bof your choice\b/i.test(t) ? t : '';
+}
+
 /** The +1 pickers of feats taken at an ASI or added by hand (the background feat's is under Background). */
 function bdFeatPicks(m) {
   if (!state.rules) return '';
@@ -374,7 +413,7 @@ function bdLevelUpPanel(m) {
   const abilitySelect = (field, plus) => `<select data-lvl="${field}" aria-label="Ability"><option value="">Ability…</option>${ABILITIES.map((a) => `<option value="${a}"${L[field] === a ? ' selected' : ''}${scores[a] + plus > 20 ? ' disabled' : ''}>${a} (${scores[a]})</option>`).join('')}</select>`;
   const taken = new Set(arr(m.raw.classes).flatMap((x) => arr(x.abilityScoreImprovements)).filter((a) => a && a.type === 'Feat').map((a) => a.name)
     .concat(m.raw.background && m.raw.background.feat ? [m.raw.background.feat.name] : []));
-  const feats = arr(bdModules().feats).filter((f) => !taken.has(f.name)).sort((a, b) => a.name.localeCompare(b.name));
+  const feats = bdFeatList().filter((f) => !taken.has(f.name)).sort((a, b) => a.name.localeCompare(b.name));
   const featRef = feats.find((f) => f.name === L.feat);
   const asiBlock = !asi ? '' : `<fieldset class="lvl-set"><legend>Ability Score Improvement (${esc(target)} ${ordinal(newLevel)} level)</legend>
       <div class="lvl-row">${radio('asi', 'two', '+2 to one ability')}${radio('asi', 'split', '+1 to two')}${radio('asi', 'feat', 'A feat')}</div>
@@ -645,7 +684,7 @@ function bdCreateStep(C) {
         ${lc ? bdPickList({ title: 'Languages', from: ref.languages, count: lc.count, chosen: arr(raw.background.languages), options: lc.options || prLanguages(mods), kind: 'crblang', arg: '', word: 'a language' }) : ref.languages ? `<p class="faint">Languages: ${esc(ref.languages)}</p>` : ''}
         <fieldset class="lvl-set"><legend>Background feat</legend>
           ${featOpts.length ? `<div class="lvl-row">${featOpts.map((f) => `<label class="lvl-opt"><input type="radio" name="cr-feat" data-cr="feat" value="${esc(f.name)}"${f.name === (raw.background.feat || {}).name ? ' checked' : ''}> ${f.roll ? `${f.roll}. ` : ''}${esc(f.name)}</label>`).join('')}</div>
-            <button class="btn sm" data-act="cr-feat-roll">Roll d${featOpts.length}</button>` : `<select data-cr="feat"><option value="">Choose…</option>${arr(mods.feats).map((f) => bdOpt(f.name, f.name, (raw.background.feat || {}).name)).join('')}</select>`}
+            <button class="btn sm" data-act="cr-feat-roll">Roll d${featOpts.length}</button>` : `<select data-cr="feat"><option value="">Choose…</option>${bdFeatList().map((f) => bdOpt(f.name, f.name, (raw.background.feat || {}).name)).join('')}</select>`}
           ${featRef ? `<div class="desc lvl-feat">${md(featRef.text || '')}</div>` : ''}
           ${inc.length > 1 ? bdPickList({ title: `${featRef.name}: +1 to`, count: 1, chosen: Object.keys(raw.background.feat.abilityScoreImprovements || {}), options: inc, kind: 'crfeatinc', arg: '', word: 'an ability' }) : ''}
           <p class="faint">Choices the feat gives (a form, powers…) are made in the sheet once the character exists.</p></fieldset>
@@ -998,6 +1037,13 @@ function bdOpenChoices(m) {
   }
   // Feats' +1 where the feat lets you choose (a +1 to one ability only applies as is).
   for (const x of bdFeatIncreases(raw)) if (!x.chosen.length) add(x.arg === 'bg' ? 'background' : 'feats', `${x.name}: +1`);
+  // What else feats ask (classes.js asks: skills, tools, a damage type…; the languages they teach).
+  for (const name of bdFeatNames(raw)) {
+    const ref = bdFeatList().find((f) => f.name === name);
+    if (!ref) continue;
+    for (const a of featureAsks(m, { name, text: ref.text || '', source: 'Feat' })) if (a.chosen.length < a.count) add('feats', `${name}: ${a.label.toLowerCase()}${more(a.count - a.chosen.length)}`);
+  }
+  for (const x of bdFeatLanguages(raw)) if (x.chosen.length < x.count) add('feats', `${x.name}: languages${more(x.count - x.chosen.length)}`);
   const sp = arr(mods.species).find((s) => s.name === (raw.species || {}).name);
   const tr = sp && arr(sp.traits).find((t) => /^Languages?$/i.test(t.name));
   const lc = tr && prLanguageChoices(tr.description);

@@ -593,11 +593,13 @@ War Caster Consular ASI #1 Prereq: 4th level, the ability to cast force or tech 
 You've practiced casting powers in the midst of combat, learning techniques that grant you the following benefits:
 You have advantage on Constitution saving throws that you make to maintain your concentration on a power when you take damage.
 Once per round, when a hostile creature provokes an opportunity attack from you, you can use your reaction to cast a power at the creature, rather than making a… [264 chars #c2019a30]
+Notes []
 Empathic Background (Force Adept)+ Wisdom
 You possess keen insight into how other people think and feel. You gain the following benefits:
 Increase your Wisdom score by 1, to a maximum of 20.
 You gain proficiency in the Insight skill. If you are already proficient in it, you instead gain expertise in it.
 You can use your action to try to get uncanny insight about one humanoid you can see within 30 feet of you. Make a Wisdom (Insight) check contested by the targe… [311 chars #b10d5812]
+Notes []
 
 ## Sheet: Classes & Progression
 [Level up]

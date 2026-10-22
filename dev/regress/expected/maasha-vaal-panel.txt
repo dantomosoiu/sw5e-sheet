@@ -621,10 +621,11 @@ Lightsaber forms (PHB chapter 6): each form you know can be adopted on your turn
 Soresu Form [×]
 []
 The first time you take kinetic, energy, or ion damage from a weapon before the end of your next turn, that damage is reduced by half.
-Formfighting Dabbler Background (Jedi)+ Any Prereq: The ability to cast force powers
+Formfighting Dabbler Background (Jedi)+1 to any ability Prereq: The ability to cast force powers
 You've dabbled in the basics of the known forms of lightsaber combat. You gain the following benefits:
 Increase an ability score of your choice by 1, to a maximum of 20.
 You learn one lightsaber form, detailed later in this chapter. If you already know at least one lightsaber form, you instead learn three lightsaber forms. If yo… [339 chars #b47641a0]
+Notes []
 
 ## Sheet: Classes & Progression
 [Level up]

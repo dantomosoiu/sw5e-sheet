@@ -523,8 +523,10 @@ When you score a critical hit with the weapon, you can roll one additional weapo
 When you take the Attack action, you can choose to forgo one or more attacks to scramble. For each attack you forgo, you can move up to 10 feet without provoking opportunity attacks.
 Weapon Focused Consular ASI #2 Prereq: 4th level
 You adopt a particular type of weapon as your focus. Choose one of the weapon focus options, detailed later in this chapter. You can take this feat multiple times.
+Notes []
 Tech Dabbler Background (Noble)
 You know two at-will tech powers. When you reach 3rd level, you learn and can cast one 1st-level tech power once per long rest. When you reach 5th level, you le… [382 chars #b0d200c1]
+Notes []
 
 ## Sheet: Classes & Progression
 [Level up]

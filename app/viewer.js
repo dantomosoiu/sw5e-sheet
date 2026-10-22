@@ -1839,7 +1839,7 @@ function featureEffectsUncached(editedRaw) {
     .filter(Boolean);
   for (const name of [...new Set(featNames)]) {
     const ref = rulesModule('feats').find((f) => f.name === name);
-    if (!ref) continue;
+    if (!ref || !prIsFeat(ref)) continue; // a rules note picked as a feat ("Class Proficiencies") gives nothing
     const note = featureNoteOf(editedRaw, name);
     const fe = clsFeatureEffects(ref.text || '', note, { level: arr(editedRaw.classes).reduce((t, k) => t + num(k.levels), 0), isWeapon: isWeaponName });
     fe.mods = fe.mods.filter((x) => !/^abilityScores\.\w+\.score$/.test(x.path));
@@ -5230,10 +5230,14 @@ function catalogByName(name) {
 }
 const isWeaponName = (name) => { const r = catalogByName(name); return !!r && r.equipmentCategory === 'Weapon'; };
 
-function featureNoteBox(m, f) {
+/**
+ * A feature's pickers (what it asks) and notes box. opts.picked: what's chosen in a picker elsewhere (null: none);
+ * opts.choiceText: the text left to choose from in the notes (a feat's, without what other pickers make).
+ */
+function featureNoteBox(m, f, opts = {}) {
   const key = featureNoteKey(f);
   const note = (m.raw.featureNotes || {})[key] || '';
-  const picked = chosenInPicker(m, f);
+  const picked = 'picked' in opts ? opts.picked : chosenInPicker(m, f);
   const asks = picked == null ? featureAsks(m, f) : [];
   // What the pickers chose are words of the note (classes.js reads them there); the box shows the rest.
   const lc = (s) => String(s).toLowerCase();
@@ -5241,7 +5245,7 @@ function featureNoteBox(m, f) {
   const tokens = clsNoteTokens(note);
   const keep = tokens.filter((t) => managed.has(lc(t))).join(', ');
   const rest = keep ? tokens.filter((t) => !managed.has(lc(t))).join(', ') : note;
-  const free = picked == null && !asks.length && /\b(?:choose|choice|of your choice|select)\b/i.test(f.text || f.description || '');
+  const free = picked == null && !asks.length && /\b(?:choose|choice|of your choice|select)\b/i.test(opts.choiceText != null ? opts.choiceText : f.text || f.description || '');
   const chosen = picked == null ? '' : `<div class="feat-chosen">${picked.length ? `Chosen: <b>${esc(picked.join(', '))}</b>` : '<span class="warn-text">Not chosen yet</span>'} · <a href="#sec-classes">${picked.length ? 'change' : 'choose'} it in Classes &amp; Progression</a></div>`;
   const pickers = asks.map((a) => bdPickList({
     title: a.label, from: ['tool', 'weapon'].includes(a.kind) && /\s/.test(a.of) ? a.of : '', count: a.count, chosen: a.chosen, options: askOptions(m, a), kind: 'fnote', arg: key, word: ASK_WORDS[a.kind] || 'one',
@@ -5304,11 +5308,20 @@ function renderFeats(m) {
   const slotsHtml = featSlots.length ? `<div class="cls-choices feat-choices"><h3>Choices from your feats</h3>${featSlots.map((s) => renderSlot(m, s)).join('')}</div>` : '';
   return `${slotsHtml}${bdFeatPicks(m)}<div class="grid cards">${m.feats.map((f) => {
     const ref = featRefs[f.name] || {};
+    const rules = state.rules ? rulesModule('feats').find((x) => x.name === f.name) : null;
+    const text = f.text || ref.text || '';
+    // The +1's abilities as the text gives them (SW5E's attributesIncreased can leave one out: Heat Shielded).
+    const inc = rules ? prFeatAbilities(rules) : arr(f.attributesIncreased || ref.attributesIncreased);
+    const rulesNote = rules && !prIsFeat(rules);
     return card({
       title: f.name,
-      chips: [origin[f.name] ? chip(origin[f.name], 'accent') : '', ...(arr(f.attributesIncreased || ref.attributesIncreased).map((a) => chip('+ ' + a))),
-        (f.prerequisite || ref.prerequisite) ? chip('Prereq: ' + (f.prerequisite || ref.prerequisite), 'warn') : ''].filter(Boolean),
-      body: md(f.text || ref.text || ''),
+      chips: [origin[f.name] ? chip(origin[f.name], 'accent') : '', ...(inc.length === 6 ? [chip('+1 to any ability')] : inc.map((a) => chip('+ ' + a))),
+        (f.prerequisite || ref.prerequisite) ? chip('Prereq: ' + (f.prerequisite || ref.prerequisite), 'warn') : '',
+        rulesNote ? `<span class="chip warn" title="SW5E's feats list holds this rules note from its books: it isn't a feat and gives nothing">Not a feat: a rules note</span>` : ''].filter(Boolean),
+      // A feat's own choices (classes.js asks: skills, tools, a damage type…), the languages it teaches, and its notes.
+      body: md(text) + (state.rules && !rulesNote ? bdFeatLanguagePicks(m, f.name) + featureNoteBox(m, { ...f, text, source: 'Feat' }, {
+        picked: null, choiceText: featSlots.some((s) => s.feat && s.feat.name === f.name) ? '' : bdFeatChoiceText({ text }),
+      }) : ''),
     });
   }).join('')}</div>`;
 }

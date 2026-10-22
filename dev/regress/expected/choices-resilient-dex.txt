@@ -499,12 +499,14 @@ Overcharge Tech. When you cast this power using a tech slot of 3rd level or high
 Feat ability increases
 Resilient: +1 to 1 / 1 Consular ASI #1
 Dexterity [×]
-Resilient Consular ASI #1 Prereq: 4th level
+Resilient Consular ASI #1+1 to any ability Prereq: 4th level
 Choose one ability score. You gain the following benefits:
 Increase the chosen ability score by 1, to a maximum of 20.
 You gain proficiency in saving throws using the chosen ability.
+Notes []
 Tech Dabbler Background (Noble)
 You know two at-will tech powers. When you reach 3rd level, you learn and can cast one 1st-level tech power once per long rest. When you reach 5th level, you le… [382 chars #b0d200c1]
+Notes []
 
 ## Sheet: Classes & Progression
 [Level up]

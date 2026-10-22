@@ -598,6 +598,7 @@ You gain proficiency with all blasters. If you are already proficient with all b
 You gain proficiency with all lightweapons. If you are already proficient with all lightweapons, instead once per turn when you would roll weapon damage using a lightweapon, you can choose to have advantage.
 You gain proficiency with all vibroweapons. If you are already proficient with all vibroweapons, instead once per turn when you would roll weapon damage using a vibroweapon, you can choose to have advantage.
 You can take this feat twice.
+Notes []
 
 ## Sheet: Classes & Progression
 [Level up]
