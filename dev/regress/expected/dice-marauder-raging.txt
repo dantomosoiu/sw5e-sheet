@@ -232,7 +232,7 @@ Berserker Test (Claude)
 Human · Berserker (Marauder Approach) 5
 Level 5 Background: Soldier Balanced Neutral Proficiency +3 [Upload a picture] [Picture link…]
 6,500 XP level 6 at 14,000 (7,500 to go)
-Still to choose (11): Berserker 4th level: ability score improvement or feat · Berserker Instincts (2 more) · Marauder Approach force powers (7 more) · backgrou… [399 chars #00e06600]
+Still to choose (12): Berserker 4th level: ability score improvement or feat · Berserker Instincts (2 more) · Marauder Approach force powers (7 more) · backgrou… [444 chars #e8701dfe]
 
 ## Sheet: Combat & Vitals
 Armor Class
@@ -579,6 +579,9 @@ Force powers 0 / 7 Marauder Approach table · max power level 1
 None chosen yet.
 [Learn a force power… ▾]
 Read the options (83)
+Ability it uses 0 / 1 your choice of Wisdom or Charisma (until you choose: the best one)
+None chosen yet.
+[Choose an ability… ▾]
 Add a note
 Notes []
 Furious Force Level 3

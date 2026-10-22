@@ -281,7 +281,7 @@ Scholar Test (Claude)
 Bothan · Scholar (Archaeologist Pursuit) 3
 Level 3 Background: Noble Balanced Neutral Proficiency +2 [Upload a picture] [Picture link…]
 900 XP level 4 at 2,700 (1,800 to go)
-Still to choose (6): Scholar skills (3 more) · Scholar tool · Archaeologist Pursuit force powers (2 more) · background skills (2 more) · background tool · background languages
+Still to choose (7): Scholar skills (3 more) · Scholar tool · Archaeologist Pursuit force powers (2 more) · background skills (2 more) · background tool · backg… [236 chars #5c275e42]
 
 ## Sheet: Combat & Vitals
 Armor Class
@@ -773,6 +773,9 @@ This power can hit multiple targets when you reach higher levels: two targets at
 Force Push [×]
 [Learn a force power… ▾]
 Read the options (83)
+Ability it uses 0 / 1 your choice of Intelligence or Wisdom or Charisma (until you choose: the best one)
+None chosen yet.
+[Choose an ability… ▾]
 Add a note
 Notes []
 Studious Excavator Level 3

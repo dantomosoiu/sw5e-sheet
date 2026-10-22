@@ -262,7 +262,7 @@ Human · Sentinel (Path of the Forceblade) 9
 Level 9 Background: Noble Lawful Light Proficiency +4 [Upload a picture] [Picture link…]
 6,500 XP level 10 at 64,000 (57,500 to go)
 Level 9 usually needs 48,000 XP (you have 6,500).
-Still to choose (14): Sentinel skills (3 more) · Sentinel tool · Sentinel 4th level: ability score improvement or feat · Sentinel 8th level: ability score impro… [493 chars #d2f304a7]
+Still to choose (15): Sentinel skills (3 more) · Sentinel tool · Sentinel 4th level: ability score improvement or feat · Sentinel 8th level: ability score impro… [541 chars #0290e4cc]
 
 ## Sheet: Combat & Vitals
 Armor Class
@@ -670,6 +670,9 @@ You can't be disarmed of that weapon while you are conscious.
 If the weapon is within 60 feet of you and you can see it, you can summon that weapon as a bonus action on your turn, causing it to travel instantly to you. If … [237 chars #d27ad052]
 You can use Wisdom or Charisma instead of Strength or Dexterity for the attack and damage rolls.
 You can have two weapons bonded to you in this way at a time, and you can summon both of them to you with the same bonus action.
+Ability it uses 0 / 1 your choice of Wisdom or Charisma (until you choose: the best one)
+None chosen yet.
+[Choose an ability… ▾]
 Notes [Vibrorapier]
 Phasethrow Level 3
 Path of the Forceblade: 3rd level

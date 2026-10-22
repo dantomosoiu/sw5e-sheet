@@ -224,7 +224,7 @@ Human · Monk (Rakatan Order) 20
 Level 20 Background: Noble Lawful Light Proficiency +6 [Upload a picture] [Picture link…]
 6,500 XP highest level
 Level 20 usually needs 355,000 XP (you have 6,500).
-Still to choose (20): Monk skills (2 more) · Monk 8th level: ability score improvement or feat · Monk 10th level: ability score improvement or feat · Monk 12th … [780 chars #ac20e78f]
+Still to choose (21): Monk skills (2 more) · Monk 8th level: ability score improvement or feat · Monk 10th level: ability score improvement or feat · Monk 12th … [840 chars #2a5bad44]
 
 ## Sheet: Combat & Vitals
 Armor Class
@@ -696,6 +696,9 @@ The power captures some of the incoming energy, lessening its effect on you and 
 Overcharge Tech. When you cast this power using a power slot of 2nd level or higher, the extra damage increases by 1d6 for each slot level above 1st.
 [Learn a tech power… ▾]
 Read the options (184)
+Ability it uses 0 / 1 your choice of Intelligence or Wisdom or Charisma (until you choose: the best one)
+None chosen yet.
+[Choose an ability… ▾]
 Add a note
 Notes []
 Focused Tech Level 6
