@@ -11,8 +11,9 @@
  *   --feat NAME              a feat taken at the first class's next improvement (SW5E's {type: 'Feat', name})
  *   --item NAME              an item from SW5E's catalog, carried; add --equip or --attune right after it
  *   --species NAME           another species
- *   --js CODE                JavaScript with `raw` (SW5E's character JSON: classes, equipment, species, customFeats,
- *                            tweaks…), `edits`, `itemState` (the sheet's own stored data for it), `catalog` (SW5E's
+ *   --js CODE                JavaScript with `raw` (the character as the sheet shows it: SW5E's character JSON —
+ *                            classes, equipment, species, customFeats, tweaks… — with the fields the sheet has edited
+ *                            in their place), `edits`, `itemState` (the sheet's own stored data for it), `catalog` (SW5E's
  *                            items) and the helpers addFeat(name, classIndex), addItem(name, { equipped, attuned }).
  * Options: --full prints both reports whole (to dist/bump-check/), not only the lines that changed.
  *          --save NAME keeps the changed character as a regression case (dev/regress/cases/NAME.json); accept its
@@ -69,12 +70,19 @@ function changesFrom(args, catalog) {
 
 function applyChanges(storage, key, steps, catalog) {
   const snap = storage.snapshots[key];
-  const raw = snap.raw;
   storage.edits = storage.edits || {};
   storage.itemState = storage.itemState || {};
+  const edits = (storage.edits[key] = storage.edits[key] || {});
+  // The character as the sheet shows it: a field the sheet has edited (edits.fields.classes…) replaces SW5E's, so
+  // reads and writes go to the edited copy when there is one.
+  const fields = edits.fields || null;
+  const raw = new Proxy(snap.raw, {
+    get: (t, k) => (fields && k in fields ? fields[k] : t[k]),
+    set: (t, k, v) => { if (fields && k in fields) fields[k] = v; else t[k] = v; return true; },
+  });
   const h = {
     raw,
-    edits: (storage.edits[key] = storage.edits[key] || {}),
+    edits,
     itemState: (storage.itemState[key] = storage.itemState[key] || {}),
     addFeat(name, classIndex = 0) {
       const cls = raw.classes[classIndex];
