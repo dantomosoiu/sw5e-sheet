@@ -242,6 +242,16 @@ hitdie|d10: Hit die (d10): d10 +3 · = +3 per die
 featheal|Second Wind|1d10|3|Fighter level: Second Wind: healing: d10 +3 · = +3 Fighter level
 dice|1d4: 1d4: d4 +0
 dice|1d6: 1d6: d6 +0
+attack|0: Blaster rifle attack: d20 +9 · = +9 modifier · critical on 19–20 (Improved Critical) · option: Precision Attack +d4 +1d4
+damage|0: Blaster rifle damage: d8 +7 · = +3 DEX modifier +2 Brute Force +1 Xerrol Nightstinger Rifle +1 Weapon (Fine) · Energy · option: Sneak Attack +1d6 · option: Return Fire +d4 +1d4 · damage advantage: Weapon Expert
+attack|1: Vibrorapier attack: d20 +9 · = +9 modifier · critical on 19–20 (Improved Critical) · option: Precision Attack +d4 +1d4
+damage|1: Vibrorapier damage: d8 +6 · = +3 DEX modifier +2 Brute Force +1 Weapon (Fine) · Kinetic · option: Sneak Attack +1d6 · option: Return Fire +d4 +1d4 · damage advantage: Weapon Expert
+attack|2: Unarmed Strike attack: d20 +5 · = +5 modifier · critical on 19–20 (Improved Critical) · option: Precision Attack +d4 +1d4
+damage|2: Unarmed Strike damage: d4 +5 · = +3 DEX modifier (Unarmed Combatant) +2 Brute Force · Kinetic · option: Sneak Attack +1d6 · option: Return Fire +d4 +1d4
+supdie: Superiority die: d4 +0
+maneuver|Physical|Dexterity: Physical maneuver attack: d20 +5 · = +5 modifier
+maneuver|Mental|Wisdom: Mental maneuver attack: d20 +3 · = +3 modifier
+maneuver|General|Dexterity: General maneuver attack: d20 +5 · = +5 modifier
 check|Strength: Strength check: d20 −1 · = −1 modifier
 save|Strength: Strength saving throw: d20 +1 · = +1 modifier
 skill|Strength|0: Athletics (STR): d20 −1 · = −1 modifier
@@ -272,16 +282,6 @@ skill|Charisma|0: Deception (CHA): d20 +1 · = +1 modifier
 skill|Charisma|1: Intimidation (CHA): d20 +3 · = +3 modifier
 skill|Charisma|2: Performance (CHA): d20 +1 · = +1 modifier
 skill|Charisma|3: Persuasion (CHA): d20 +3 · = +3 modifier
-attack|0: Blaster rifle attack: d20 +9 · = +9 modifier · critical on 19–20 (Improved Critical) · option: Precision Attack +d4 +1d4
-damage|0: Blaster rifle damage: d8 +7 · = +3 DEX modifier +2 Brute Force +1 Xerrol Nightstinger Rifle +1 Weapon (Fine) · Energy · option: Sneak Attack +1d6 · option: Return Fire +d4 +1d4 · damage advantage: Weapon Expert
-attack|1: Vibrorapier attack: d20 +9 · = +9 modifier · critical on 19–20 (Improved Critical) · option: Precision Attack +d4 +1d4
-damage|1: Vibrorapier damage: d8 +6 · = +3 DEX modifier +2 Brute Force +1 Weapon (Fine) · Kinetic · option: Sneak Attack +1d6 · option: Return Fire +d4 +1d4 · damage advantage: Weapon Expert
-attack|2: Unarmed Strike attack: d20 +5 · = +5 modifier · critical on 19–20 (Improved Critical) · option: Precision Attack +d4 +1d4
-damage|2: Unarmed Strike damage: d4 +5 · = +3 DEX modifier (Unarmed Combatant) +2 Brute Force · Kinetic · option: Sneak Attack +1d6 · option: Return Fire +d4 +1d4
-supdie: Superiority die: d4 +0
-maneuver|Physical|Dexterity: Physical maneuver attack: d20 +5 · = +5 modifier
-maneuver|Mental|Wisdom: Mental maneuver attack: d20 +3 · = +3 modifier
-maneuver|General|Dexterity: General maneuver attack: d20 +5 · = +5 modifier
 tool|One type of gaming set|proficient: One type of gaming set check: d20 +2 · = +0 INT modifier +2 proficiency
 tool|Tinker's implements|proficient: Tinker's implements check: d20 +2 · = +0 INT modifier +2 proficiency
 damage|0|crit: Blaster rifle damage (critical): d8 d8 +7 · = +3 DEX modifier +2 Brute Force +1 Xerrol Nightstinger Rifle +1 Weapon (Fine) · Energy · critical · option: Sneak Attack +1d6 · option: Return Fire +d4 +1d4 · damage advantage: Weapon Expert
@@ -291,7 +291,7 @@ damage|2|crit: Unarmed Strike damage (critical): d4 d4 +5 · = +3 DEX modifier (
 ## Sheet: Overview
 Kadro Vos (Panel)
 Zabrak · Fighter (Assault Specialist) 3, Operative 1
-Level 4 Background: Soldier Chaotic Balanced Proficiency +2 [Add a picture]
+Level 4 Background: Soldier Chaotic Balanced Proficiency +2 [Upload a picture] [Picture link…]
 2,700 XP level 5 at 6,500 (3,800 to go)
 Still to choose (7): Fighter skills (2 more) · Operative multiclass skill · Operative multiclass tool · background skills (2 more) · background tool · background languages · Weapon Expert: +1
 
@@ -319,6 +319,7 @@ Vision
 Normal
 Play tracker
 [] [untyped ▾] [Damage] [Heal] [Temp HP]
+Enter: Damage · Shift + Enter: Heal
 Death saves ✓ [] [] [] ✗ [] [] [] [Roll]
 Superiority dice d4 2 / 2 [−] [+]
 Hit dice (d8) roll d8 +3, then Heal 1 / 1 [−] [+]
@@ -375,6 +376,48 @@ Max capacity
 120 lb
 Push / drag / lift
 240 lb
+
+## Sheet: Weapons & Attacks
+Weapon | To hit | Damage | Ability | Type | Properties |
+Weapon (Fine) (Blaster rifle)
+Power cell (range 105/420), reload 12, two-handed
+Shots 11/12 [−1] [Reload] 13 Power cells
+| +9 | 1d8+7 Energy | Dexterity | Martial Blaster | Power cell (range 105/420), reload 12, two-handed |
+  ↳ hover weapons.0.attackBonus: Without tweaks or effects: 5 → now 9 / +1 Attack · Weapon (Fine) while equipped / +3 Attack · Accuracy Focus Mk IV while installed
+  ↳ hover weapons.0.damageBonus: Without tweaks or effects: 3 → now 7 / +2 Weapon damage · Brute Force Assault Specialist feature / +1 Damage · Xerrol Nightstinger … [223 chars #a21702fe]
+Weapon (Fine) (Vibrorapier)
+Finesse
+| +9 | 1d8+6 Kinetic | Dexterity | Martial Vibroweapon | Finesse |
+  ↳ hover weapons.1.attackBonus: Without tweaks or effects: 5 → now 9 / +1 Attack · Weapon (Fine) while equipped / +3 Attack · Accuracy Focus Mk IV while installed
+  ↳ hover weapons.1.damageBonus: Without tweaks or effects: 3 → now 6 / +2 Weapon damage · Brute Force Assault Specialist feature / +1 Damage · Weapon (Fine) while equipped
+Unarmed Strike
+| +5 | 1d4+5 Kinetic | Dexterity (finesse) | Unarmed | — |
+  ↳ hover weapons.2.attackBonus: Without tweaks or effects: 1 → now 5 / +4 Finesse: DEX +3 instead of STR · Unarmed Combatant Zabrak trait
+  ↳ hover weapons.2.damageBonus: Without tweaks or effects: 0 → now 5 / = 4, d4 Unarmed: damage die · Zabrak Unarmed Combatant: 1d4, finesse tweak / +2 Unarmed dama… [272 chars #298a42aa]
+
+## Sheet: Superiority & Maneuvers
+Maneuvers Known
+2
+Superiority Dice Quantity
+2
+Superiority Dice Size
+d4
+Physical maneuver DC
+13
+DEX · attack +5
+Mental maneuver DC
+11
+WIS · attack +3
+General maneuver DC
+13
+DEX · attack +5
+Dice come from the class table at your level; save DCs are calculated here as 8 + proficiency + your best eligible ability modifier (SW5E's site does not compute superiority).
+General maneuvers (1)
+Precision Attack PHB
+When you make a weapon attack roll against a creature, you can expend one superiority die to add it to the roll. You can use this maneuver before or after makin… [228 chars #f67ac2fb]
+Physical maneuvers (1)
+Return Fire PHB
+When a creature misses you with a ranged attack, you can use your reaction and expend one superiority die to make a ranged weapon attack against the creature. I… [227 chars #fd83d733]
 
 ## Sheet: Abilities & Saving Throws
 STR
@@ -466,361 +509,6 @@ Skill | Ability | Bonus | Passive | Proficiency |
 (Expertise) Stealth | DEX | +7 | 17 | Expertise |
 (Not proficient) Survival | WIS | +1 | 11 | — |
 (Not proficient) Technology | INT | +0 | 10 | — |
-
-## Sheet: Weapons & Attacks
-Weapon | To hit | Damage | Ability | Type | Properties |
-Weapon (Fine) (Blaster rifle)
-Power cell (range 105/420), reload 12, two-handed
-Shots 11/12 [−1] [Reload] 13 Power cells
-| +9 | 1d8+7 Energy | Dexterity | Martial Blaster | Power cell (range 105/420), reload 12, two-handed |
-  ↳ hover weapons.0.attackBonus: Without tweaks or effects: 5 → now 9 / +1 Attack · Weapon (Fine) while equipped / +3 Attack · Accuracy Focus Mk IV while installed
-  ↳ hover weapons.0.damageBonus: Without tweaks or effects: 3 → now 7 / +2 Weapon damage · Brute Force Assault Specialist feature / +1 Damage · Xerrol Nightstinger … [223 chars #a21702fe]
-Weapon (Fine) (Vibrorapier)
-Finesse
-| +9 | 1d8+6 Kinetic | Dexterity | Martial Vibroweapon | Finesse |
-  ↳ hover weapons.1.attackBonus: Without tweaks or effects: 5 → now 9 / +1 Attack · Weapon (Fine) while equipped / +3 Attack · Accuracy Focus Mk IV while installed
-  ↳ hover weapons.1.damageBonus: Without tweaks or effects: 3 → now 6 / +2 Weapon damage · Brute Force Assault Specialist feature / +1 Damage · Weapon (Fine) while equipped
-Unarmed Strike
-| +5 | 1d4+5 Kinetic | Dexterity (finesse) | Unarmed | — |
-  ↳ hover weapons.2.attackBonus: Without tweaks or effects: 1 → now 5 / +4 Finesse: DEX +3 instead of STR · Unarmed Combatant Zabrak trait
-  ↳ hover weapons.2.damageBonus: Without tweaks or effects: 0 → now 5 / = 4, d4 Unarmed: damage die · Zabrak Unarmed Combatant: 1d4, finesse tweak / +2 Unarmed dama… [272 chars #298a42aa]
-
-## Sheet: Superiority & Maneuvers
-Maneuvers Known
-2
-Superiority Dice Quantity
-2
-Superiority Dice Size
-d4
-Physical maneuver DC
-13
-DEX · attack +5
-Mental maneuver DC
-11
-WIS · attack +3
-General maneuver DC
-13
-DEX · attack +5
-Dice come from the class table at your level; save DCs are calculated here as 8 + proficiency + your best eligible ability modifier (SW5E's site does not compute superiority).
-General maneuvers (1)
-Precision Attack PHB
-When you make a weapon attack roll against a creature, you can expend one superiority die to add it to the roll. You can use this maneuver before or after makin… [228 chars #f67ac2fb]
-Physical maneuvers (1)
-Return Fire PHB
-When a creature misses you with a ranged attack, you can use your reaction and expend one superiority die to make a ranged weapon attack against the creature. I… [227 chars #fd83d733]
-
-## Sheet: Class Features
-Fighter (6)
-Fighting Style Level 1
-Fighter: 1st level
-You adopt a particular style of fighting as your specialty. Choose one of the fighting style options, detailed in Chapter 6.
-Fighting style 1 / 1 Fighter: Fighting Style
-Sharpshooter Style [×]
-[]
-You are skilled with firing at distant targets. You gain the following benefits:
-You can use your bonus action to mark a target greater than 30 feet from you that you can see. If you do so, and that target moves at least 5 feet before the st… [318 chars #24994812]
-Your ranged weapon attacks reduce partial cover by one step (from three-quarters to half or half to one-quarter) against targets greater than 30 feet from you. If the target has one-quarter cover, you ignore it entirely.
-Grasping a two-handed weapon you are wielding in only one hand with your other hand no longer requires your object interaction.
-Add a note
-Notes []
-Second Wind Level 1
-Uses (back on a short or long rest) roll 1d10 + 3, then Heal 1 / 1 [−] [+]
-Fighter: 1st level
-You have a limited well of stamina that you can draw on to protect yourself from harm. On your turn, you can use a bonus action to regain hit points equal to 1d10 + your fighter level.
-Once you've used this feature, you must finish a short or long rest before you can use it again.
-Add a note
-Notes []
-Action Surge Level 2
-Uses (back on a short or long rest) 1 / 1 [−] [+]
-Fighter: 2nd level
-You can push yourself beyond your normal limits for a moment. On your turn, you can take one additional action on top of your regular action.
-Once you've used this feature, you must finish a short or long rest before you can use it again. Starting at 17th level, you can use it twice before a rest, but only once on the same turn.
-Add a note
-Notes []
-Combat Superiority Level 2
-Fighter: 2nd level
-You learn maneuvers that are fueled by special dice called superiority dice. See chapter 13 for the maneuvers list.
-Maneuvers Known
-You learn one maneuver of your choice, and you earn more at higher levels, as shown in the Maneuvers Known column of the fighter table. Many maneuvers enhance a… [273 chars #2fe792f1]
-Each time you learn new maneuvers, you can also replace one maneuver you know with a different one.
-Superiority Dice
-You have two superiority dice, which are d4s, and you earn more at higher levels, as shown in the Superiority Dice Quantity column of the fighter table. This di… [311 chars #ac56cd20]
-You regain all of your expended superiority dice when you finish a short or long rest.
-Maneuver Ability
-Your maneuver ability varies based on the type of the maneuver you use. You use Strength, Dexterity, or Constitution for physical maneuvers (your choice), Intel… [452 chars #c8f71ca2]
-Maneuver save DC = 8 + your proficiency bonus + your maneuver ability modifier
-Maneuvers 2 / 2 2 from the Fighter table
-Precision Attack General [×]
-When you make a weapon attack roll against a creature, you can expend one superiority die to add it to the roll. You can use this maneuver before or after makin… [228 chars #f67ac2fb]
-Return Fire Physical [×]
-When a creature misses you with a ranged attack, you can use your reaction and expend one superiority die to make a ranged weapon attack against the creature. I… [227 chars #fd83d733]
-[Add a maneuver… ▾]
-Read the options
-Add a note
-Notes []
-Fighter Specialty Level 3
-Fighter: 3rd, 7th, 10th, 15th, and 18th level
-You choose a specialty that you strive to emulate in your combat styles and techniques, which is detailed at the end of the class description.
-Archetype [Assault Specialist ▾]
-Read the options (14)
-Add a note
-Notes []
-Fighter Strategies Level 3
-Fighter: 3rd level
-You've adopted a fighter strategy, as detailed at the end of the class description, and you adopt more at higher levels, as shown in the Strategies Known column of the fighter table.
-Fighter Strategies 1 / 1 from the Fighter table (“Strategies Known”)
-Cover Strategist [×]
-You treat partial cover as one step higher (from one-quarter to half or half to three-quarters). While in cover, your attacks reduce partial cover by one step (from three-quarters to half or half to one-quarter).
-[Add from Fighter Strategies… ▾]
-Read the options (7)
-Add a note
-Notes []
-Operative (2)
-Sneak Attack Level 1
-Operative: 1st level
-You know how to strike subtly and exploit a foe's distraction. Once per turn, you can deal an extra 1d6 damage to one creature you hit with a weapon attack if y… [299 chars #80e56766]
-You don't need advantage on the attack roll if another enemy of the target is within 5 feet of it, that enemy isn't incapacitated, and you don't have disadvantage on the attack roll.
-The amount of the extra damage increases as you gain levels in this class, as shown in the Sneak Attack column of the operative table.
-Add a note
-Notes []
-Expertise Levels 1, 6 from class text
-Choose two of your skill proficiencies, or one of skill proficiencies and one of your tool proficiencies, or two of your tool proficiencies. You gain expertise in those skills or tools.
-At 6th level, you can choose two more of your proficiencies (in skills or tools) to gain this benefit.
-Expertise 2 / 2 Operative 1st and 6th level
-Stealth [×] Perception [×]
-Add a note
-Notes []
-Assault Specialist (archetype) (3)
-Brute Force Level 3
-Assault Specialist: 3rd, 10th, and 16th level
-When you make a weapon attack, you gain a +2 bonus to the damage roll. This bonus increases to +3 at 10th level and +4 at 16th level.
-Add a note
-Notes []
-Improved Critical Level 3
-Assault Specialist: 3rd level
-Your critical hit range with weapons increases by 1.
-Add a note
-Notes []
-Remarkable Athlete Level 3
-Assault Specialist: 3rd level
-You can add half your proficiency bonus to any Strength, Dexterity, or Constitution check you make that doesn't already use your proficiency bonus.
-Add a note
-Notes []
-Fighter: Fighter Strategies (1)
-Cover Strategist
-You treat partial cover as one step higher (from one-quarter to half or half to three-quarters). While in cover, your attacks reduce partial cover by one step (from three-quarters to half or half to one-quarter).
-Fighting styles (1)
-Sharpshooter Style Fighter: Fighting Style
-[Mark a target (Sharpshooter)]
-You are skilled with firing at distant targets. You gain the following benefits:
-You can use your bonus action to mark a target greater than 30 feet from you that you can see. If you do so, and that target moves at least 5 feet before the st… [318 chars #24994812]
-Your ranged weapon attacks reduce partial cover by one step (from three-quarters to half or half to one-quarter) against targets greater than 30 feet from you. If the target has one-quarter cover, you ignore it entirely.
-Grasping a two-handed weapon you are wielding in only one hand with your other hand no longer requires your object interaction.
-
-## Sheet: Feats
-Weapon Expert Background (Soldier)+ Strength+ Dexterity+ Constitution
-You have practiced extensively with a variety of weapons, gaining the following benefits:
-Increase your Strength, Dexterity, or Constitution score by 1, to a maximum of 20.
-You gain proficiency with all blasters. If you are already proficient with all blasters, instead once per turn when you would roll weapon damage using a blaster, you can choose to have advantage.
-You gain proficiency with all lightweapons. If you are already proficient with all lightweapons, instead once per turn when you would roll weapon damage using a lightweapon, you can choose to have advantage.
-You gain proficiency with all vibroweapons. If you are already proficient with all vibroweapons, instead once per turn when you would roll weapon damage using a vibroweapon, you can choose to have advantage.
-You can take this feat twice.
-Add a note
-Notes []
-
-## Sheet: Classes & Progression
-[Level up]
-Fighter 3 Assault Specialist Starting class
-Hit die d10 Primary Strength Saves Strength, Constitution HP by level 10 (max), 6, 6
-Versatile combatant who excels at both range and in melee
-Skill proficiencies 0 / 2 Choose two skills from Acrobatics, Animal Handling, Athletics, Lore, Insight, Intimidation, Perception, and Survival
-None chosen yet.
-[Choose a skill… ▾]
-Archetype [Assault Specialist ▾]
-Read the options (14)
-Maneuvers 2 / 2 2 from the Fighter table
-Precision Attack General [×]
-When you make a weapon attack roll against a creature, you can expend one superiority die to add it to the roll. You can use this maneuver before or after makin… [228 chars #f67ac2fb]
-Return Fire Physical [×]
-When a creature misses you with a ranged attack, you can use your reaction and expend one superiority die to make a ranged weapon attack against the creature. I… [227 chars #fd83d733]
-[Add a maneuver… ▾]
-Read the options
-Fighter Strategies 1 / 1 from the Fighter table (“Strategies Known”)
-Cover Strategist [×]
-You treat partial cover as one step higher (from one-quarter to half or half to three-quarters). While in cover, your attacks reduce partial cover by one step (from three-quarters to half or half to one-quarter).
-[Add from Fighter Strategies… ▾]
-Read the options (7)
-Fighting style 1 / 1 Fighter: Fighting Style
-Sharpshooter Style [×]
-[]
-You are skilled with firing at distant targets. You gain the following benefits:
-You can use your bonus action to mark a target greater than 30 feet from you that you can see. If you do so, and that target moves at least 5 feet before the st… [318 chars #24994812]
-Your ranged weapon attacks reduce partial cover by one step (from three-quarters to half or half to one-quarter) against targets greater than 30 feet from you. If the target has one-quarter cover, you ignore it entirely.
-Grasping a two-handed weapon you are wielding in only one hand with your other hand no longer requires your object interaction.
-Class table
-Proficiency Bonus
-+2 → +2 at 4th
-Features
-Fighter Strategies, Fighter Specialty → Ability Score Improvement at 4th
-Maneuvers Known
-2 → 2 at 4th
-Superiority Dice Quantity
-2 → 2 at 4th
-Superiority Dice Size
-d4 → d4 at 4th
-Strategies Known
-1 → 1 at 4th
-| Proficiency Bonus | Features | Maneuvers Known | Superiority Dice Quantity | Superiority Dice Size | Strategies Known |
-Now (3rd) | +2 | Fighter Strategies, Fighter Specialty | 2 | 2 | d4 | 1 |
-Next (4th) | +2 | Ability Score Improvement | 2 | 2 | d4 | 1 |
-Armor All armor Weapons All blasters, all vibroweapons Tools None
-Operative 1 Multiclass
-Hit die d8 Primary Dexterity Saves Dexterity, Intelligence HP by level 5
-Controller who focuses on stealth and techniques
-Multiclass skill 0 / 1 any skill
-None chosen yet.
-[Choose a skill… ▾]
-Multiclass tool 0 / 1 from the class's list
-None chosen yet.
-[Choose a tool… ▾]
-Expertise 2 / 2 Operative 1st and 6th level
-Stealth [×] Perception [×]
-Archetype [— at 3rd level — ▾]
-Operative Exploits 0 / 0 from the Operative table (“Operative Exploits”)
-None chosen yet.
-[Add from Operative Exploits… ▾]
-Read the options (11)
-Class table
-Proficiency Bonus
-+2 → +2 at 2nd
-Features
-Expertise, Sneak Attack → Cunning Action, Operative Exploits at 2nd
-Sneak Attack
-1d6 → 1d6 at 2nd
-Operative Exploits
-— → 2 at 2nd
-| Proficiency Bonus | Features | Sneak Attack | Operative Exploits |
-Now (1st) | +2 | Expertise, Sneak Attack | 1d6 | — |
-Next (2nd) | +2 | Cunning Action, Operative Exploits | 1d6 | 2 |
-Armor Light armor Weapons Simple blasters, simple vibroweapons, martial blasters that lack the auto, special, strength, and two-handed properties, martial vibro… [265 chars #19162a6c]
-
-## Sheet: Species
-Size
-Medium
-Language
-Zabraki
-Average height
-5'1" +2d12"
-Average weight
-120 lb. x(2d4) lb.
-Skin
-Pale to dark brown, red, orange and yellow
-Hair
-Black, blonde, brown, red, or purple
-Eyes
-Yellow, green, orange, brown, blue, red, or purple
-Distinctions
-Horns, two hearts, facial tattoos
-Chosen increase
-Dexterity +1
-Traits (12)
-Ability Score Increase
-Your Constitution score increases by 2, and your Strength or Dexterity score increases by 1.
-Add a note
-Notes []
-Age
-Zabraks reach adulthood in their late teens and live less than a century.
-Add a note
-Notes []
-Alignment
-Zabraks tend toward no particular alignment. The best and worst are found among them.
-Add a note
-Notes []
-Coercive
-You have proficiency with Persuasion or Intimidation (your choice).
-Skill proficiency 1 / 1
-Persuasion [×]
-Add a note
-Notes []
-Crafters
-You have proficiency with one set of artisan’s implements of your choice.
-Tool proficiency 1 / 1 one set of artisan’s implements of your choice
-Tinker's implements [×]
-Add a note
-Notes []
-Darkvision
-Your vision can easily cut through darkness. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray.
-Add a note
-Notes []
-Languages
-You can speak, read, and write Galactic Basic and Zabraki.
-Add a note
-Notes []
-Second Heart
-Uses (back on a long rest) 1 / 1 [−] [+]
-When you are reduced to 0 hit points but not killed outright, you can drop to 1 hit point instead. You can’t use this feature again until you finish a long rest.
-Add a note
-Notes []
-Size
-Zabraks stand anywhere from 5 to 7 feet tall and weigh up to 300 lbs. Regardless of your position in that range, your size is Medium.
-Add a note
-Notes []
-Speed
-Your base walking speed is 30 feet.
-Add a note
-Notes []
-Toughness
-Your hit point maximum increases by 1, and it increases by 1 every time you gain a level.
-Add a note
-Notes []
-Unarmed Combatant
-Your unarmed strikes deal 1d4 kinetic damage and have the finesse property.
-Add a note
-Notes []
-Ability score +1 1 / 1 Your Constitution score increases by 2, and your Strength or Dexterity score increases by 1.
-Dexterity [×]
-
-## Sheet: Background
-Skill proficiencies
-Choose two from Athletics, Intimidation, Persuasion, and Piloting
-Tool proficiencies
-One type of gaming set
-Languages
-One of your choice
-Starting equipment
-An insignia of rank, a trophy taken from a fallen enemy, a gaming set (one of your choice), a set of common clothes, and a belt pouch containing 100 cr
-Background feat
-Weapon Expert
-Specialty
-During your time as a soldier, you had a specific role to play in your unit or army. Roll a d8 or choose from the options in the table below to determine your role:
-d8 | Specialty |
-1 | Officer |
-2 | Scout |
-3 | Infantry |
-4 | Medic |
-d8 | Specialty |
-5 | Quartermaster |
-6 | Pilot |
-7 | Artisan |
-8 | Support Staff |
-Feature: Military Rank Background feature
-You have a military rank from your career as a soldier. Soldiers loyal to your former military organization still recognize your authority and influence, and th… [417 chars #07d82bc5]
-About this background
-War has been your life for as long as you care to remember. You trained as a youth, studied the use of weapons and armor, learned basic survival techniques, inc… [362 chars #b05030ad]
-When you choose this background, work with your GM to determine which military organization you were a part of, how far through its ranks you progressed, and wh… [306 chars #85e13a8a]
-Your choices
-Skill proficiencies 0 / 2 Choose two from Athletics, Intimidation, Persuasion, and Piloting
-None chosen yet.
-[Choose a skill… ▾]
-Tool proficiency 0 / 1 One type of gaming set
-None chosen yet.
-[Choose a tool… ▾]
-Languages 0 / 1 One of your choice
-None chosen yet.
-[Choose a language… ▾]
-Weapon Expert: +1 to 0 / 1 background feat
-None chosen yet.
-[Choose an ability… ▾]
 
 ## Sheet: Proficiencies & Languages
 Armor
@@ -950,6 +638,319 @@ Coded datapad (smuggler's coordinates) custom
 Description
 Loot from the dock ambush (Session 1). Encrypted; holds the smuggler's coordinates.
 | [−] 1 [+] [✎] [Sell] [×] | 0.5 lb | — | |
+
+## Sheet: Classes & Progression
+[Level up]
+Fighter 3 Assault Specialist Starting class
+Hit die d10 Primary Strength Saves Strength, Constitution HP by level 10 (max), 6, 6
+Versatile combatant who excels at both range and in melee
+Skill proficiencies 0 / 2 Choose two skills from Acrobatics, Animal Handling, Athletics, Lore, Insight, Intimidation, Perception, and Survival
+None chosen yet.
+[Choose a skill… ▾]
+Archetype [Assault Specialist ▾]
+Read the options (14)
+Maneuvers 2 / 2 2 from the Fighter table
+Precision Attack General [×]
+When you make a weapon attack roll against a creature, you can expend one superiority die to add it to the roll. You can use this maneuver before or after makin… [228 chars #f67ac2fb]
+Return Fire Physical [×]
+When a creature misses you with a ranged attack, you can use your reaction and expend one superiority die to make a ranged weapon attack against the creature. I… [227 chars #fd83d733]
+[Add a maneuver… ▾]
+Read the options
+Fighter Strategies 1 / 1 from the Fighter table (“Strategies Known”)
+Cover Strategist [×]
+You treat partial cover as one step higher (from one-quarter to half or half to three-quarters). While in cover, your attacks reduce partial cover by one step (from three-quarters to half or half to one-quarter).
+[Add from Fighter Strategies… ▾]
+Read the options (7)
+Fighting style 1 / 1 Fighter: Fighting Style
+Sharpshooter Style [×]
+[]
+You are skilled with firing at distant targets. You gain the following benefits:
+You can use your bonus action to mark a target greater than 30 feet from you that you can see. If you do so, and that target moves at least 5 feet before the st… [318 chars #24994812]
+Your ranged weapon attacks reduce partial cover by one step (from three-quarters to half or half to one-quarter) against targets greater than 30 feet from you. If the target has one-quarter cover, you ignore it entirely.
+Grasping a two-handed weapon you are wielding in only one hand with your other hand no longer requires your object interaction.
+Class table
+Proficiency Bonus
++2 → +2 at 4th
+Features
+Fighter Strategies, Fighter Specialty → Ability Score Improvement at 4th
+Maneuvers Known
+2 → 2 at 4th
+Superiority Dice Quantity
+2 → 2 at 4th
+Superiority Dice Size
+d4 → d4 at 4th
+Strategies Known
+1 → 1 at 4th
+| Proficiency Bonus | Features | Maneuvers Known | Superiority Dice Quantity | Superiority Dice Size | Strategies Known |
+Now (3rd) | +2 | Fighter Strategies, Fighter Specialty | 2 | 2 | d4 | 1 |
+Next (4th) | +2 | Ability Score Improvement | 2 | 2 | d4 | 1 |
+Armor All armor Weapons All blasters, all vibroweapons Tools None
+Operative 1 Multiclass
+Hit die d8 Primary Dexterity Saves Dexterity, Intelligence HP by level 5
+Controller who focuses on stealth and techniques
+Multiclass skill 0 / 1 any skill
+None chosen yet.
+[Choose a skill… ▾]
+Multiclass tool 0 / 1 from the class's list
+None chosen yet.
+[Choose a tool… ▾]
+Expertise 2 / 2 Operative 1st and 6th level
+Stealth [×] Perception [×]
+Archetype [— at 3rd level — ▾]
+Operative Exploits 0 / 0 from the Operative table (“Operative Exploits”)
+None chosen yet.
+[Add from Operative Exploits… ▾]
+Read the options (11)
+Class table
+Proficiency Bonus
++2 → +2 at 2nd
+Features
+Expertise, Sneak Attack → Cunning Action, Operative Exploits at 2nd
+Sneak Attack
+1d6 → 1d6 at 2nd
+Operative Exploits
+— → 2 at 2nd
+| Proficiency Bonus | Features | Sneak Attack | Operative Exploits |
+Now (1st) | +2 | Expertise, Sneak Attack | 1d6 | — |
+Next (2nd) | +2 | Cunning Action, Operative Exploits | 1d6 | 2 |
+Armor Light armor Weapons Simple blasters, simple vibroweapons, martial blasters that lack the auto, special, strength, and two-handed properties, martial vibro… [265 chars #19162a6c]
+
+## Sheet: Class Features
+Fighter (6)
+Fighting Style Level 1
+Fighter: 1st level
+You adopt a particular style of fighting as your specialty. Choose one of the fighting style options, detailed in Chapter 6.
+Fighting style 1 / 1 Fighter: Fighting Style
+Sharpshooter Style [×]
+[]
+You are skilled with firing at distant targets. You gain the following benefits:
+You can use your bonus action to mark a target greater than 30 feet from you that you can see. If you do so, and that target moves at least 5 feet before the st… [318 chars #24994812]
+Your ranged weapon attacks reduce partial cover by one step (from three-quarters to half or half to one-quarter) against targets greater than 30 feet from you. If the target has one-quarter cover, you ignore it entirely.
+Grasping a two-handed weapon you are wielding in only one hand with your other hand no longer requires your object interaction.
+Add a note
+Notes []
+Second Wind Level 1
+Uses (back on a short or long rest) roll 1d10 + 3, then Heal 1 / 1 [−] [+]
+Fighter: 1st level
+You have a limited well of stamina that you can draw on to protect yourself from harm. On your turn, you can use a bonus action to regain hit points equal to 1d10 + your fighter level.
+Once you've used this feature, you must finish a short or long rest before you can use it again.
+Add a note
+Notes []
+Action Surge Level 2
+Uses (back on a short or long rest) 1 / 1 [−] [+]
+Fighter: 2nd level
+You can push yourself beyond your normal limits for a moment. On your turn, you can take one additional action on top of your regular action.
+Once you've used this feature, you must finish a short or long rest before you can use it again. Starting at 17th level, you can use it twice before a rest, but only once on the same turn.
+Add a note
+Notes []
+Combat Superiority Level 2
+Fighter: 2nd level
+You learn maneuvers that are fueled by special dice called superiority dice. See chapter 13 for the maneuvers list.
+Maneuvers Known
+You learn one maneuver of your choice, and you earn more at higher levels, as shown in the Maneuvers Known column of the fighter table. Many maneuvers enhance a… [273 chars #2fe792f1]
+Each time you learn new maneuvers, you can also replace one maneuver you know with a different one.
+Superiority Dice
+You have two superiority dice, which are d4s, and you earn more at higher levels, as shown in the Superiority Dice Quantity column of the fighter table. This di… [311 chars #ac56cd20]
+You regain all of your expended superiority dice when you finish a short or long rest.
+Maneuver Ability
+Your maneuver ability varies based on the type of the maneuver you use. You use Strength, Dexterity, or Constitution for physical maneuvers (your choice), Intel… [452 chars #c8f71ca2]
+Maneuver save DC = 8 + your proficiency bonus + your maneuver ability modifier
+Maneuvers 2 / 2 2 from the Fighter table
+Precision Attack General [×]
+When you make a weapon attack roll against a creature, you can expend one superiority die to add it to the roll. You can use this maneuver before or after makin… [228 chars #f67ac2fb]
+Return Fire Physical [×]
+When a creature misses you with a ranged attack, you can use your reaction and expend one superiority die to make a ranged weapon attack against the creature. I… [227 chars #fd83d733]
+[Add a maneuver… ▾]
+Read the options
+Add a note
+Notes []
+Fighter Specialty Level 3
+Fighter: 3rd, 7th, 10th, 15th, and 18th level
+You choose a specialty that you strive to emulate in your combat styles and techniques, which is detailed at the end of the class description.
+Archetype [Assault Specialist ▾]
+Read the options (14)
+Add a note
+Notes []
+Fighter Strategies Level 3
+Fighter: 3rd level
+You've adopted a fighter strategy, as detailed at the end of the class description, and you adopt more at higher levels, as shown in the Strategies Known column of the fighter table.
+Fighter Strategies 1 / 1 from the Fighter table (“Strategies Known”)
+Cover Strategist [×]
+You treat partial cover as one step higher (from one-quarter to half or half to three-quarters). While in cover, your attacks reduce partial cover by one step (from three-quarters to half or half to one-quarter).
+[Add from Fighter Strategies… ▾]
+Read the options (7)
+Add a note
+Notes []
+Operative (2)
+Sneak Attack Level 1
+Operative: 1st level
+You know how to strike subtly and exploit a foe's distraction. Once per turn, you can deal an extra 1d6 damage to one creature you hit with a weapon attack if y… [299 chars #80e56766]
+You don't need advantage on the attack roll if another enemy of the target is within 5 feet of it, that enemy isn't incapacitated, and you don't have disadvantage on the attack roll.
+The amount of the extra damage increases as you gain levels in this class, as shown in the Sneak Attack column of the operative table.
+Add a note
+Notes []
+Expertise Levels 1, 6 from class text
+Choose two of your skill proficiencies, or one of skill proficiencies and one of your tool proficiencies, or two of your tool proficiencies. You gain expertise in those skills or tools.
+At 6th level, you can choose two more of your proficiencies (in skills or tools) to gain this benefit.
+Expertise 2 / 2 Operative 1st and 6th level
+Stealth [×] Perception [×]
+Add a note
+Notes []
+Assault Specialist (archetype) (3)
+Brute Force Level 3
+Assault Specialist: 3rd, 10th, and 16th level
+When you make a weapon attack, you gain a +2 bonus to the damage roll. This bonus increases to +3 at 10th level and +4 at 16th level.
+Add a note
+Notes []
+Improved Critical Level 3
+Assault Specialist: 3rd level
+Your critical hit range with weapons increases by 1.
+Add a note
+Notes []
+Remarkable Athlete Level 3
+Assault Specialist: 3rd level
+You can add half your proficiency bonus to any Strength, Dexterity, or Constitution check you make that doesn't already use your proficiency bonus.
+Add a note
+Notes []
+Fighter: Fighter Strategies (1)
+Cover Strategist
+You treat partial cover as one step higher (from one-quarter to half or half to three-quarters). While in cover, your attacks reduce partial cover by one step (from three-quarters to half or half to one-quarter).
+Fighting styles (1)
+Sharpshooter Style Fighter: Fighting Style
+[Mark a target (Sharpshooter)]
+You are skilled with firing at distant targets. You gain the following benefits:
+You can use your bonus action to mark a target greater than 30 feet from you that you can see. If you do so, and that target moves at least 5 feet before the st… [318 chars #24994812]
+Your ranged weapon attacks reduce partial cover by one step (from three-quarters to half or half to one-quarter) against targets greater than 30 feet from you. If the target has one-quarter cover, you ignore it entirely.
+Grasping a two-handed weapon you are wielding in only one hand with your other hand no longer requires your object interaction.
+
+## Sheet: Feats
+Weapon Expert Background (Soldier)+ Strength+ Dexterity+ Constitution
+You have practiced extensively with a variety of weapons, gaining the following benefits:
+Increase your Strength, Dexterity, or Constitution score by 1, to a maximum of 20.
+You gain proficiency with all blasters. If you are already proficient with all blasters, instead once per turn when you would roll weapon damage using a blaster, you can choose to have advantage.
+You gain proficiency with all lightweapons. If you are already proficient with all lightweapons, instead once per turn when you would roll weapon damage using a lightweapon, you can choose to have advantage.
+You gain proficiency with all vibroweapons. If you are already proficient with all vibroweapons, instead once per turn when you would roll weapon damage using a vibroweapon, you can choose to have advantage.
+You can take this feat twice.
+Add a note
+Notes []
+
+## Sheet: Species
+Size
+Medium
+Language
+Zabraki
+Average height
+5'1" +2d12"
+Average weight
+120 lb. x(2d4) lb.
+Skin
+Pale to dark brown, red, orange and yellow
+Hair
+Black, blonde, brown, red, or purple
+Eyes
+Yellow, green, orange, brown, blue, red, or purple
+Distinctions
+Horns, two hearts, facial tattoos
+Chosen increase
+Dexterity +1
+Traits (12)
+Ability Score Increase
+Your Constitution score increases by 2, and your Strength or Dexterity score increases by 1.
+Add a note
+Notes []
+Age
+Zabraks reach adulthood in their late teens and live less than a century.
+Add a note
+Notes []
+Alignment
+Zabraks tend toward no particular alignment. The best and worst are found among them.
+Add a note
+Notes []
+Coercive
+You have proficiency with Persuasion or Intimidation (your choice).
+Skill proficiency 1 / 1
+Persuasion [×]
+Add a note
+Notes []
+Crafters
+You have proficiency with one set of artisan’s implements of your choice.
+Tool proficiency 1 / 1 one set of artisan’s implements of your choice
+Tinker's implements [×]
+Add a note
+Notes []
+Darkvision
+Your vision can easily cut through darkness. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray.
+Add a note
+Notes []
+Languages
+You can speak, read, and write Galactic Basic and Zabraki.
+Add a note
+Notes []
+Second Heart
+Uses (back on a long rest) 1 / 1 [−] [+]
+When you are reduced to 0 hit points but not killed outright, you can drop to 1 hit point instead. You can’t use this feature again until you finish a long rest.
+Add a note
+Notes []
+Size
+Zabraks stand anywhere from 5 to 7 feet tall and weigh up to 300 lbs. Regardless of your position in that range, your size is Medium.
+Add a note
+Notes []
+Speed
+Your base walking speed is 30 feet.
+Add a note
+Notes []
+Toughness
+Your hit point maximum increases by 1, and it increases by 1 every time you gain a level.
+Add a note
+Notes []
+Unarmed Combatant
+Your unarmed strikes deal 1d4 kinetic damage and have the finesse property.
+Add a note
+Notes []
+Ability score +1 1 / 1 Your Constitution score increases by 2, and your Strength or Dexterity score increases by 1.
+Dexterity [×]
+
+## Sheet: Background
+Skill proficiencies
+Choose two from Athletics, Intimidation, Persuasion, and Piloting
+Tool proficiencies
+One type of gaming set
+Languages
+One of your choice
+Starting equipment
+An insignia of rank, a trophy taken from a fallen enemy, a gaming set (one of your choice), a set of common clothes, and a belt pouch containing 100 cr
+Background feat
+Weapon Expert
+Specialty
+During your time as a soldier, you had a specific role to play in your unit or army. Roll a d8 or choose from the options in the table below to determine your role:
+d8 | Specialty |
+1 | Officer |
+2 | Scout |
+3 | Infantry |
+4 | Medic |
+d8 | Specialty |
+5 | Quartermaster |
+6 | Pilot |
+7 | Artisan |
+8 | Support Staff |
+Feature: Military Rank Background feature
+You have a military rank from your career as a soldier. Soldiers loyal to your former military organization still recognize your authority and influence, and th… [417 chars #07d82bc5]
+About this background
+War has been your life for as long as you care to remember. You trained as a youth, studied the use of weapons and armor, learned basic survival techniques, inc… [362 chars #b05030ad]
+When you choose this background, work with your GM to determine which military organization you were a part of, how far through its ranks you progressed, and wh… [306 chars #85e13a8a]
+Your choices
+Skill proficiencies 0 / 2 Choose two from Athletics, Intimidation, Persuasion, and Piloting
+None chosen yet.
+[Choose a skill… ▾]
+Tool proficiency 0 / 1 One type of gaming set
+None chosen yet.
+[Choose a tool… ▾]
+Languages 0 / 1 One of your choice
+None chosen yet.
+[Choose a language… ▾]
+Weapon Expert: +1 to 0 / 1 background feat
+None chosen yet.
+[Choose an ability… ▾]
 
 ## Sheet: Personality & Appearance
 Personality Traits

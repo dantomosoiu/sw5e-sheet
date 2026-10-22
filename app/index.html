@@ -27,7 +27,6 @@
     <div class="actions">
       <button id="btnLoad" class="btn primary needs-sw5e" title="Load all your characters from sw5e.com">Load from SW5E</button>
       <button id="btnImport" class="btn" title="Import a character JSON file (SW5E export or a sheet snapshot)">Import file…</button>
-      <button id="dicebtn" class="btn" data-dice-toggle title="Dice roller (or click any number on the sheet)">🎲 Dice</button>
       <input id="fileInput" type="file" accept=".json,application/json" hidden multiple>
       <div class="menu">
         <button id="btnMore" class="btn" aria-haspopup="true" aria-expanded="false" aria-controls="moreMenu" title="More actions">More ▾</button>
@@ -50,8 +49,6 @@
           <button data-act="expand-all">Expand all cards</button>
           <button data-act="collapse-all">Collapse all cards</button>
           <button data-act="toggle-compact" id="compactItem" aria-pressed="false" title="Show only card titles, counters and buttons; tap a card to read it">Compact cards</button>
-          <button data-act="theme">Switch light / dark</button>
-          <button data-act="themes" title="Light or dark, and a style: standard, or one for each class (by default your character's)">Theme…</button>
           <hr>
           <button data-act="remove" class="danger" id="removeItem">Remove from this viewer</button>
         </div>
@@ -64,6 +61,7 @@
     <aside class="sidebar" id="sidebar" aria-label="Summary and sections"></aside>
     <main id="sheet" class="sheet" tabindex="-1"></main>
   </div>
+  <button id="dicebtn" class="dice-fab" data-dice-toggle aria-expanded="false" aria-keyshortcuts="Shift+D" title="Dice roller (Shift + D), or click any number on the sheet"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="3.5"/><circle cx="8.6" cy="8.6" r=".9"/><circle cx="15.4" cy="8.6" r=".9"/><circle cx="12" cy="12" r=".9"/><circle cx="8.6" cy="15.4" r=".9"/><circle cx="15.4" cy="15.4" r=".9"/></svg><span class="sr-only">Dice roller</span></button>
 
   <!-- Storage and sw5e.com: the web version; the browser extension puts its own in place (dev/build.py). -->
   <script src="platform.js"></script>
@@ -83,7 +81,9 @@
   <script src="builder.js"></script>
   <script src="art/names.js"></script>
   <script src="art.js"></script>
+  <script src="icons.js"></script>
   <script src="viewer.js"></script>
+  <script src="shortcuts.js"></script>
   <script src="info.js"></script>
   <script src="pwa.js"></script>
 </body>

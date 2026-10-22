@@ -39,6 +39,9 @@ const RULES_KEY = 'rules'; // { dataVersion, fetchedAt, modules: { classes, arch
 const RULES_INFO_KEY = 'rulesInfo'; // { dataVersion, fetchedAt }: small, read at startup
 const ITEMSTATE_KEY = 'itemState'; // key -> { charges: { itemName: used }, effects: [effect], updatedAt }
 const DERIVED_KEY = 'derived'; // key -> { basis, complete, refs, validation, error }
+// key -> { data: a data: URL (resized, see uploadPortrait), w, h, name, at }: a picture uploaded from this device. Kept
+// only here (and in backups): sw5e.com's "image" is a link, and Sync leaves it alone.
+const PORTRAITS_KEY = 'portraits';
 // Every write carries this page's id so the storage listener can skip our own writes
 // (platform.storage.onChanged also fires in the tab that wrote) and only react to other tabs.
 const WRITER_KEY = 'lastWriter';
@@ -65,6 +68,7 @@ const state = {
   rulesError: null,
   addDraft: null, // the "Add an item" form (see renderAddItem)
   itemState: {}, // see ITEMSTATE_KEY
+  portraits: {}, // see PORTRAITS_KEY
   derived: {}, // see DERIVED_KEY
   useMenu: null, // "list|index" of the item whose Use menu (on me / on someone else) is open
   effDraft: null, // the "Add an effect" search
@@ -149,7 +153,7 @@ function showMessages() {
 /** "First session": the few things a new player does at the table, in the order they come up (W-157). */
 const GUIDE_STEPS = [
   ['Get your character', 'Load from SW5E brings in your sw5e.com characters; New character… (More ▾) builds one here.'],
-  ['Roll', 'Click any number: a skill, a save, Initiative. The dice open at the bottom: press Roll (or Enter). Shift-click rolls at once.'],
+  ['Roll', 'Click any number: a skill, a save, Initiative. The dice open at the bottom: press Roll (or Enter). Shift-click rolls at once. The round dice button (bottom right) opens them for plain dice.'],
   ['Attack', 'Weapons & Attacks: click the to-hit number, roll, then Hit: roll damage (or Critical damage).'],
   ['Take damage or heal', 'Combat & Vitals: type the amount, then Damage, Heal or Temp HP. At 0 HP the death saves appear there.'],
   ['Use a feature', "Class Features: Start (Rage, a stance, a form) or Use; it's listed under Effects until you End it. Uses come back on rests."],
@@ -185,8 +189,9 @@ function keyFor(raw, source) {
 
 // ------------------------------------------------------------- persistence
 async function loadStore() {
-  const data = await platform.storage.get([STORE_KEY, LAST_KEY, TRACKER_KEY, HISTORY_KEY, BACKUP_KEY, BACKUP_INFO_KEY, EDITS_KEY, CATALOG_INFO_KEY, RULES_INFO_KEY, ITEMSTATE_KEY, DERIVED_KEY]);
+  const data = await platform.storage.get([STORE_KEY, LAST_KEY, TRACKER_KEY, HISTORY_KEY, BACKUP_KEY, BACKUP_INFO_KEY, EDITS_KEY, CATALOG_INFO_KEY, RULES_INFO_KEY, ITEMSTATE_KEY, DERIVED_KEY, PORTRAITS_KEY]);
   state.itemState = data[ITEMSTATE_KEY] || {};
+  state.portraits = data[PORTRAITS_KEY] || {};
   state.derived = data[DERIVED_KEY] || {};
   state.catalogInfo = data[CATALOG_INFO_KEY] || null;
   state.rulesInfo = data[RULES_INFO_KEY] || null;
@@ -216,6 +221,9 @@ async function saveItemState() {
 }
 async function saveDerived() {
   await platform.storage.set({ [DERIVED_KEY]: state.derived, [WRITER_KEY]: writerStamp() });
+}
+async function savePortraits() {
+  await platform.storage.set({ [PORTRAITS_KEY]: state.portraits, [WRITER_KEY]: writerStamp() });
 }
 
 // Version history. sw5e.com is the source of truth but not a backup (its storage can lose
@@ -271,6 +279,7 @@ async function exportBackup(onlyKey) {
   download(onlyKey ? `${fileSafe(name || 'character')} backup ${localStamp(stamp)}.json` : `sw5e-sheet-backup-${localStamp(stamp)}.json`, {
     format: 'sw5e-sheet-backup', version: 1, exportedAt: stamp.getTime(),
     snapshots: snaps, trackers: pick(state.trackers), edits: pick(state.edits), itemState: pick(state.itemState), history: pick(state.history),
+    portraits: pick(state.portraits || {}),
     rolls: rollState.log.filter((x) => (onlyKey ? x.key === onlyKey : true)),
   });
   if (onlyKey) state.charBackups = { ...(state.charBackups || {}), [onlyKey]: stamp.getTime() };
@@ -324,6 +333,10 @@ function mergeBackup(b) {
   for (const [key, st] of Object.entries(b.itemState || {})) {
     const mine = state.itemState[key];
     if (!mine || num(st.updatedAt) > num(mine.updatedAt)) state.itemState[key] = st;
+  }
+  for (const [key, pic] of Object.entries(b.portraits || {})) {
+    const mine = state.portraits[key];
+    if (pic && /^data:image\//.test(pic.data || '') && (!mine || num(pic.at) > num(mine.at))) state.portraits[key] = pic;
   }
   if (arr(b.rolls).length) { rollState.log = mergeRolls(b.rolls); saveRollLog(); }
   for (const [key, list] of Object.entries(b.history || {})) {
@@ -464,7 +477,7 @@ async function importFiles(files) {
   }
   let keys = [];
   for (const b of backups) keys = keys.concat(mergeBackup(b));
-  if (backups.length) { await saveTrackers(); await saveEdits(); await saveItemState(); }
+  if (backups.length) { await saveTrackers(); await saveEdits(); await saveItemState(); await savePortraits(); }
   if (snaps.length) keys = keys.concat(addSnapshots(snaps, 'file'));
   if (raws.length) {
     setStatus(engineCtx() ? 'Computing the imported character…' : 'Computing imported character with the SW5E rules engine…');
@@ -611,6 +624,8 @@ function renderAllInner(opts) {
            <button class="btn primary no-sw5e" data-act="from-sw5e">Get my characters from sw5e.com</button>
            <button class="btn" data-act="cr-new">Create a new character</button>
            <button class="btn" data-act="import">Import a character file…</button></p>
+        <p class="welcome-look"><button class="btn theme-btn" data-act="theme" title="Switch light / dark"><span class="when-dark">${uiIcon('sun')}Light</span><span class="when-light">${uiIcon('moon')}Dark</span></button>
+           <button class="btn" data-act="themes" title="Theme: light or dark, a style and screen effects">${uiIcon('palette')}Style</button></p>
         <p class="faint"><span class="needs-sw5e">Loading uses your existing sw5e.com session (an open sw5e.com tab is used if there is one; otherwise one is opened briefly in the background).</span>
         Imports accept the JSON from SW5E's character export, a backup from this sheet, or a snapshot exported from it.</p>
       </div>`;
@@ -4354,7 +4369,8 @@ function renderEditor(m, section) {
     const numeric = NUMBER_FIELDS.includes(f.path);
     if (f.url) {
       return `<input ${attrs} type="url" value="${esc(v)}" autocomplete="off" placeholder="https://…/picture.jpg">
-        <small class="faint">The picture itself, not a page showing it: open the picture, then right-click (or long-press) it → Copy image address. Leave empty for none.</small>`;
+        <small class="faint">The picture itself, not a page showing it: open the picture, then right-click (or long-press) it → Copy image address. Leave empty for none.
+          Or <button type="button" class="linklike" data-act="portrait-upload">upload a picture from this device</button> (kept in this browser only).</small>`;
     }
     return `<input ${attrs} type="text" value="${esc(v)}" autocomplete="off"${numeric ? ' inputmode="numeric" placeholder="e.g. 250, +50 or -80"' : ''}${f.list ? ` list="${id}-list"` : ''}>`
       + (f.list ? `<datalist id="${id}-list">${f.list.map((o) => `<option value="${esc(o)}">`).join('')}</datalist>` : '');
@@ -4442,7 +4458,7 @@ async function createOnAccount() {
     const res = await createOnSw5e(raw, { onStatus: (msg) => setStatus(msg) });
     const [nk] = addSnapshots(res.characters, 'sw5e', res.meta, 'Saved to SW5E as a new character');
     if (!nk || nk === key) throw new Error('sw5e.com returned no id for it');
-    for (const k of ['itemState', 'derived']) if (state[k][key]) { state[k][nk] = state[k][key]; delete state[k][key]; }
+    for (const k of ['itemState', 'derived', 'portraits']) if (state[k][key]) { state[k][nk] = state[k][key]; delete state[k][key]; }
     state.history[nk] = arr(state.history[key]).concat(arr(state.history[nk])).slice(-HISTORY_LIMIT);
     delete state.history[key];
     delete state.trackers[key];
@@ -4455,6 +4471,7 @@ async function createOnAccount() {
     await saveEdits();
     await saveItemState();
     await saveDerived();
+    await savePortraits();
     // It was already on the account (an earlier try got there first): nothing new was made, and what changed here
     // since goes on as local changes to that copy.
     if (res.save && res.save.existing) {
@@ -4568,27 +4585,37 @@ async function saveChangesToSw5e() {
 }
 
 // ------------------------------------------------------------- sections
+// In the order they're used: what a turn needs (Combat & Vitals beside the attacks, maneuvers and powers), then the
+// character's checks, the gear, how the character is built, its story, and the sheet's own settings. `group` names
+// the nav's headings (SECTION_GROUPS); `key` is the section's fixed shortcut, Shift + that key (shortcuts.js).
+const SECTION_GROUPS = { play: 'Play', checks: 'Checks', gear: 'Gear', build: 'Build', story: 'Story', sheet: 'Sheet' };
 const SECTIONS = [
-  { id: 'overview', title: 'Overview', when: () => true, render: renderOverview, editor: true },
-  { id: 'combat', short: 'Combat', title: 'Combat & Vitals', when: (m) => m.has, render: renderCombat },
-  { id: 'abilities', short: 'Abilities', title: 'Abilities & Saving Throws', when: (m) => m.has, render: renderAbilities },
-  { id: 'skills', title: 'Skills', when: (m) => m.has, render: renderSkills, count: () => 18 },
-  { id: 'attacks', short: 'Attacks', title: 'Weapons & Attacks', when: (m) => m.has, render: renderAttacks, count: (m) => arr(m.c.weapons).length },
-  { id: 'superiority', short: 'Maneuvers', title: 'Superiority & Maneuvers', when: (m) => m.maneuverNames.length || m.c.superiority, render: renderSuperiority, count: (m) => m.maneuverNames.length },
-  { id: 'force', short: 'Force', title: 'Force Casting', when: (m) => m.c.forceCasting || knownPowers(m, 'force').length, render: (m) => renderCasting(m, 'force'), count: (m) => knownPowers(m, 'force').length },
-  { id: 'tech', short: 'Tech', title: 'Tech Casting', when: (m) => m.c.techCasting || knownPowers(m, 'tech').length, render: (m) => renderCasting(m, 'tech'), count: (m) => knownPowers(m, 'tech').length },
-  { id: 'features', short: 'Features', title: 'Class Features', when: (m) => m.has, render: renderClassFeatures, count: (m) => m.classFeatures.length },
-  { id: 'feats', title: 'Feats', when: (m) => m.has, render: renderFeats, count: (m) => m.feats.length },
-  { id: 'custom', short: 'Custom', title: 'Custom Features', when: (m) => arr(m.raw.customFeatures).length, render: renderCustomFeatures, count: (m) => arr(m.raw.customFeatures).length },
-  { id: 'classes', short: 'Classes', title: 'Classes & Progression', when: (m) => arr(m.raw.classes).length, render: renderClasses, count: (m) => arr(m.raw.classes).length },
-  { id: 'species', title: 'Species', when: (m) => m.raw.species && m.raw.species.name, render: renderSpecies, sub: (m) => m.raw.species.name },
-  { id: 'background', title: 'Background', when: (m) => m.raw.background && m.raw.background.name, render: renderBackground, sub: (m) => m.raw.background.name },
-  { id: 'proficiencies', short: 'Proficiencies', title: 'Proficiencies & Languages', when: (m) => m.has, render: renderProficiencies },
-  { id: 'equipment', short: 'Equipment', title: 'Equipment & Inventory', when: () => true, render: renderEquipment, count: (m) => arr(m.raw.equipment).length + arr(m.raw.customEquipment).length },
-  { id: 'personality', short: 'Personality', title: 'Personality & Appearance', when: () => true, render: renderPersonality, editor: true, replace: true },
-  { id: 'backstory', title: 'Backstory', when: () => true, render: renderBackstory, editor: true, replace: true },
-  { id: 'notes', title: 'Notes', when: () => true, render: renderNotes, editor: true, replace: true },
-  { id: 'data', short: 'Settings', title: 'Settings, Tweaks & Data', when: () => true, render: renderData },
+  // play
+  { id: 'overview', group: 'play', key: 'Digit1', title: 'Overview', when: () => true, render: renderOverview, editor: true },
+  { id: 'combat', group: 'play', key: 'Digit2', short: 'Combat', title: 'Combat & Vitals', when: (m) => m.has, render: renderCombat },
+  { id: 'attacks', group: 'play', key: 'Digit3', short: 'Attacks', title: 'Weapons & Attacks', when: (m) => m.has, render: renderAttacks, count: (m) => arr(m.c.weapons).length },
+  { id: 'superiority', group: 'play', key: 'Digit4', short: 'Maneuvers', title: 'Superiority & Maneuvers', when: (m) => m.maneuverNames.length || m.c.superiority, render: renderSuperiority, count: (m) => m.maneuverNames.length },
+  { id: 'force', group: 'play', key: 'Digit5', short: 'Force', title: 'Force Casting', when: (m) => m.c.forceCasting || knownPowers(m, 'force').length, render: (m) => renderCasting(m, 'force'), count: (m) => knownPowers(m, 'force').length },
+  { id: 'tech', group: 'play', key: 'Digit6', short: 'Tech', title: 'Tech Casting', when: (m) => m.c.techCasting || knownPowers(m, 'tech').length, render: (m) => renderCasting(m, 'tech'), count: (m) => knownPowers(m, 'tech').length },
+  // character
+  { id: 'abilities', group: 'checks', key: 'Digit7', short: 'Abilities', title: 'Abilities & Saving Throws', when: (m) => m.has, render: renderAbilities },
+  { id: 'skills', group: 'checks', key: 'Digit8', title: 'Skills', when: (m) => m.has, render: renderSkills, count: () => 18 },
+  { id: 'proficiencies', group: 'checks', key: 'Digit9', short: 'Proficiencies', title: 'Proficiencies & Languages', when: (m) => m.has, render: renderProficiencies },
+  // gear
+  { id: 'equipment', group: 'gear', key: 'Digit0', short: 'Equipment', title: 'Equipment & Inventory', when: () => true, render: renderEquipment, count: (m) => arr(m.raw.equipment).length + arr(m.raw.customEquipment).length },
+  // build
+  { id: 'classes', group: 'build', key: 'KeyQ', short: 'Classes', title: 'Classes & Progression', when: (m) => arr(m.raw.classes).length, render: renderClasses, count: (m) => arr(m.raw.classes).length },
+  { id: 'features', group: 'build', key: 'KeyW', short: 'Features', title: 'Class Features', when: (m) => m.has, render: renderClassFeatures, count: (m) => m.classFeatures.length },
+  { id: 'feats', group: 'build', key: 'KeyE', title: 'Feats', when: (m) => m.has, render: renderFeats, count: (m) => m.feats.length },
+  { id: 'custom', group: 'build', key: 'KeyR', short: 'Custom', title: 'Custom Features', when: (m) => arr(m.raw.customFeatures).length, render: renderCustomFeatures, count: (m) => arr(m.raw.customFeatures).length },
+  { id: 'species', group: 'build', key: 'KeyT', title: 'Species', when: (m) => m.raw.species && m.raw.species.name, render: renderSpecies, sub: (m) => m.raw.species.name },
+  { id: 'background', group: 'build', key: 'KeyY', title: 'Background', when: (m) => m.raw.background && m.raw.background.name, render: renderBackground, sub: (m) => m.raw.background.name },
+  // story
+  { id: 'personality', group: 'story', key: 'KeyU', short: 'Personality', title: 'Personality & Appearance', when: () => true, render: renderPersonality, editor: true, replace: true },
+  { id: 'backstory', group: 'story', key: 'KeyI', title: 'Backstory', when: () => true, render: renderBackstory, editor: true, replace: true },
+  { id: 'notes', group: 'story', key: 'KeyO', title: 'Notes', when: () => true, render: renderNotes, editor: true, replace: true },
+  // sheet
+  { id: 'data', group: 'sheet', key: 'KeyP', short: 'Settings', title: 'Settings, Tweaks & Data', when: () => true, render: renderData },
 ];
 
 // XP needed for each level (index 0 = level 1): SW5E's table, or the same numbers if the rules aren't loaded yet.
@@ -4620,12 +4647,14 @@ function renderOverview(m) {
   const xp = c.experiencePoints || {};
   const cur = num(xp.current != null ? xp.current : raw.experiencePoints);
   const xi = xpInfo(m, cur);
-  const img = raw.image && /^https?:/.test(raw.image) ? raw.image : '';
+  const link = raw.image && /^https?:/.test(raw.image) ? raw.image : '';
+  const upload = portraitOf(m.snap.key);
+  const img = upload ? upload.data : link;
   const hidden = img && portraitHidden();
   const classText = c.classText || arr(raw.classes).map((k) => `${k.name}${k.archetype && k.archetype.name ? ` (${k.archetype.name})` : ''} ${k.levels}`).join(', ');
   return `<div class="hero${img && !hidden ? '' : ' no-portrait'}">
     ${img && !hidden ? `<div class="portrait mine"><img data-src="${esc(img)}" data-mine="1" alt="${esc(raw.name || 'Portrait')}">
-      <button class="portrait-hide" data-act="portrait-toggle" title="Hide the picture (More ▾ or the chip below shows it again)" aria-label="Hide the picture">–</button></div>` : ''}
+      <button class="portrait-hide" data-act="portrait-toggle" title="Hide the picture (the chip below shows it again)" aria-label="Hide the picture">–</button></div>` : ''}
     <div>
       <h1>${esc(raw.name || 'Unnamed character')}</h1>
       <div class="line">${esc([c.species || (raw.species && raw.species.name), classText].filter(Boolean).join(' · '))}</div>
@@ -4636,8 +4665,10 @@ function renderOverview(m) {
         ${c.proficiencyBonus ? chip('Proficiency ' + signed(c.proficiencyBonus)) : ''}
         ${live('insp', m, 'span')}
         ${hidden ? '<button class="chip" data-act="portrait-toggle" title="Show the picture again">Show picture</button>' : ''}
-        ${img ? `<a class="chip blue" href="${esc(img)}" target="_blank" rel="noopener">Portrait link ↗</a>` : ''}
-        <button class="chip" data-act="edit-image" title="Add or change the picture: a link to a picture file">${img ? 'Change picture' : 'Add a picture'}</button>
+        ${link && !upload ? `<a class="chip blue" href="${esc(link)}" target="_blank" rel="noopener">Portrait link ↗</a>` : ''}
+        <button class="chip pic-chip" data-act="portrait-upload" title="Pick a picture on this device. It is made smaller and kept in this browser only (and in its backups): Sync to SW5E doesn't send it.">${uiIcon('upload')}${upload ? 'Change picture' : 'Upload a picture'}</button>
+        ${upload ? `<button class="chip" data-act="portrait-remove" title="Remove the uploaded picture${link ? ' (the picture link shows again)' : ''}">Remove picture</button>`
+          : `<button class="chip" data-act="edit-image" title="A link to a picture on the web (also kept on sw5e.com when you sync)">${link ? 'Change picture link' : 'Picture link…'}</button>`}
       </div>
       ${loadoutStrip(m)}
       <div class="xp">
@@ -4906,10 +4937,11 @@ function renderTracker(m) {
     <div class="trk-top">
       <div class="trk-hp">
         <div class="trk-amount">
-          <input id="trackAmount" type="number" min="0" step="1" inputmode="numeric" placeholder="Amount" aria-label="Amount of damage or healing">
+          <input id="trackAmount" type="number" min="0" step="1" inputmode="numeric" placeholder="Amount" aria-label="Amount of damage or healing" aria-describedby="trackHint" title="Enter: take it as damage · Shift + Enter: heal it">
           <select id="trackType" aria-label="Damage type" title="Damage type: resistances and immunities apply"><option value="">untyped</option>${PL_DAMAGE_TYPES.map((d) => `<option>${d}</option>`).join('')}</select>
           <button class="btn sm" data-track="damage" title="Take the amount as damage: temporary hit points go first, resistances of the chosen type apply, and at 0 hit points death saves begin">Damage</button><button class="btn sm" data-track="heal" title="Regain the amount in hit points, up to your maximum (at 0 hit points this ends dying)">Heal</button><button class="btn sm" data-track="temp" title="Gain the amount as temporary hit points; they don't stack: the higher amount stays">Temp HP</button>
         </div>
+        <span class="faint hint-kbd trk-hint" id="trackHint">Enter: Damage · Shift + Enter: Heal</span>
       </div>
       <div class="trk-ds"><span class="trk-label">Death saves</span>
         <span class="ds-pair"><span class="ds-lbl good" title="Successes" aria-hidden="true">✓</span><span class="dots" role="group" aria-label="Successes">${dsDots('successes', 'good')}</span></span>
@@ -8040,29 +8072,99 @@ function renderSidebar(m, sections) {
     <div class="side-card side-nav${state.searching ? ' searching' : ''}">
       <select class="mbar-only mbar-btn sec-jump" data-jump aria-label="Go to a section, or more actions">
         <option value="" selected>☰</option>
-        <optgroup label="Sections">${sections.map((s) => `<option value="sec:sec-${s.id}">${esc(s.title)}</option>`).join('')}</optgroup>
+        ${sectionGroups(sections).map(([g, list]) => `<optgroup label="${esc(SECTION_GROUPS[g] || 'Sections')}">${list.map((s) => `<option value="sec:sec-${s.id}">${esc(s.title)}</option>`).join('')}</optgroup>`).join('')}
         <optgroup label="More">${[['load', 'Load from SW5E'], ['import', 'Import file…'], ['cr-new', 'New character…'], ['messages', 'Recent messages'], ['guide', 'First session guide'], ['export-character', 'Back up this character'], ['export-backup', 'Back up all characters'], ['toggle-compact', 'Compact cards on/off'], ['theme', 'Switch light / dark'], ['themes', 'Theme…']]
           .map(([a, t]) => `<option value="act:${a}">${esc(t)}</option>`).join('')}</optgroup>
       </select>
       ${m.t ? live('mvitals', m, 'span', 'mvitals mbar-only') : ''}
       <input id="filterBox" class="filter-box" type="search" placeholder="Filter cards & rows…  ( / )" autocomplete="off" aria-label="Filter the sheet" value="${esc(state.filter || '')}">
-      <ul class="nav" aria-label="Sections">${sections.map((s) => {
+      <ul class="nav" aria-label="Sections">${sectionGroups(sections).map(([g, list]) => `<li class="nav-group" aria-hidden="true">${esc(SECTION_GROUPS[g] || '')}</li>${list.map((s) => {
         const n = s.count ? s.count(m) : null;
-        return `<li><a href="#sec-${s.id}" data-sec="sec-${s.id}"${s.short ? ` title="${esc(s.title)}"` : ''}><span class="nav-full">${esc(s.title)}</span>${s.short ? `<span class="nav-short">${esc(s.short)}</span>` : ''}${n != null ? `<span class="count">${n}</span>` : ''}</a></li>`;
-      }).join('')}</ul>
+        const k = shortcutName(s.key);
+        return `<li><a href="#sec-${s.id}" data-sec="sec-${s.id}" title="${esc(s.title)}${k ? ` (${k})` : ''}"${k ? ` aria-keyshortcuts="Shift+${esc(k.replace(/^Shift \+ /, ''))}"` : ''}><span class="nav-ico">${uiIcon(s.id)}</span><span class="nav-full">${esc(s.title)}</span>${s.short ? `<span class="nav-short">${esc(s.short)}</span>` : ''}${n != null ? `<span class="count">${n}</span>` : ''}${k ? `<kbd class="nav-key" aria-hidden="true">${esc(k.replace(/^Shift \+ /, ''))}</kbd>` : ''}</a></li>`;
+      }).join('')}`).join('')}</ul>
       <div class="side-tools">
-        <button class="btn" data-act="expand-all">Expand all</button>
-        <button class="btn" data-act="collapse-all">Collapse all</button>
-        <button class="btn" data-act="top">Top ↑</button>
+        <button class="btn" data-act="expand-all" title="Open every card">${uiIcon('expand')}Expand all</button>
+        <button class="btn" data-act="collapse-all" title="Close every card">${uiIcon('collapse')}Collapse all</button>
+        <button class="btn" data-act="top" title="Back to the top">${uiIcon('up')}Top</button>
+      </div>
+      <div class="side-look" role="group" aria-label="Look and keys">
+        <button class="btn theme-btn" data-act="theme" title="Switch light / dark"><span class="when-dark">${uiIcon('sun')}Light</span><span class="when-light">${uiIcon('moon')}Dark</span></button>
+        <button class="btn" data-act="themes" title="Theme: light or dark, a style (standard or one per class) and screen effects">${uiIcon('palette')}Style</button>
+        <button class="btn keys-btn" data-act="shortcuts" title="Keyboard shortcuts (?)" aria-keyshortcuts="?">${uiIcon('keyboard')}Keys</button>
       </div>
       <button class="btn mbar-only mbar-btn" data-act="explain" aria-pressed="${document.documentElement.dataset.explain === 'on'}" aria-label="Explain mode: tap anything to see what it is" title="Explain mode: tap anything to see what it is and why">ⓘ</button>
       <button class="btn mbar-only mbar-btn" data-act="search-toggle" aria-pressed="${!!state.searching}" aria-label="Filter the sheet" title="${state.searching ? 'Close the filter' : 'Filter the sheet'}">${state.searching ? '✕' : '🔍'}</button>
-      <button class="btn mbar-only mbar-btn${typeof rollState !== 'undefined' && rollState.open ? ' on' : ''}" data-dice-toggle title="Dice roller" aria-label="Dice roller">🎲</button>
     </div>`;
 }
+/** The sections in their groups, in order: [[group, [section…]]…]. */
+function sectionGroups(sections) {
+  const out = [];
+  for (const s of sections) {
+    const last = out[out.length - 1];
+    if (last && last[0] === (s.group || '')) last[1].push(s);
+    else out.push([s.group || '', [s]]);
+  }
+  return out;
+}
+/** A shortcut's name as shown: "Shift + 1", "Shift + Q" (from KeyboardEvent.code, so any layout works). */
+const shortcutName = (code) => (code ? `Shift + ${code.replace(/^(Digit|Key)/, '')}` : '');
 
 // ------------------------------------------------------------- behaviours
 const portraitHidden = () => { try { return localStorage.getItem('portrait') === 'hidden'; } catch (e) { return false; } };
+/** The picture uploaded for a character on this device, or null. */
+const portraitOf = (key) => {
+  const p = key && state.portraits && state.portraits[key];
+  return p && typeof p.data === 'string' && /^data:image\//.test(p.data) ? p : null;
+};
+const PORTRAIT_MAX = 720; // longest side in pixels: sharp at twice the size the overview shows it
+/** Open the device's file picker for a character's picture. */
+function pickPortrait(key) {
+  const input = Object.assign(document.createElement('input'), { type: 'file', accept: 'image/*' });
+  input.addEventListener('change', () => { if (input.files && input.files[0]) uploadPortrait(key, input.files[0]); }, { once: true });
+  input.click();
+}
+/**
+ * Keep a picture file as a character's portrait: drawn again at most PORTRAIT_MAX pixels on its longest side and
+ * saved as WebP (JPEG where the browser can't make WebP; PNG when small, which keeps transparency), so a phone photo of
+ * several megabytes becomes about 50–150 KB in this browser's storage.
+ */
+async function uploadPortrait(key, file) {
+  if (!/^image\//.test(file.type || '')) return setStatus(`${file.name} isn't a picture.`, 'error');
+  if (file.size > 40e6) return setStatus(`${file.name} is too big (over 40 MB).`, 'error');
+  setStatus('Preparing the picture…');
+  const url = URL.createObjectURL(file);
+  try {
+    const img = await new Promise((resolve, reject) => {
+      const el = new Image();
+      el.onload = () => resolve(el);
+      el.onerror = () => reject(new Error('the browser could not open it as a picture'));
+      el.src = url;
+    });
+    const w0 = img.naturalWidth || PORTRAIT_MAX, h0 = img.naturalHeight || PORTRAIT_MAX;
+    const scale = Math.min(1, PORTRAIT_MAX / Math.max(w0, h0));
+    const w = Math.max(1, Math.round(w0 * scale)), h = Math.max(1, Math.round(h0 * scale));
+    const canvas = Object.assign(document.createElement('canvas'), { width: w, height: h });
+    const g = canvas.getContext('2d');
+    g.imageSmoothingQuality = 'high';
+    g.drawImage(img, 0, 0, w, h);
+    let data = canvas.toDataURL('image/webp', 0.86);
+    if (!/^data:image\/webp/.test(data)) {
+      const png = canvas.toDataURL('image/png');
+      data = png.length < 300e3 ? png : canvas.toDataURL('image/jpeg', 0.86);
+    }
+    state.portraits[key] = { data, w, h, name: file.name, at: Date.now() };
+    await savePortraits();
+    try { localStorage.setItem('portrait', 'shown'); } catch (e) { /* ignore */ }
+    if (state.current === key) renderAll({ keepTyping: true });
+    setStatus(`Picture saved in this browser (${w}×${h}, ${Math.round(data.length * 0.75 / 1024)} KB). It stays here: Sync to SW5E doesn't send it; backups keep it.`);
+  } catch (e) {
+    setStatus(`Could not use ${file.name}: ${e.message}`, 'error');
+  } finally {
+    URL.revokeObjectURL(url);
+  }
+  return undefined;
+}
 function wireImages(root) {
   root.querySelectorAll('img[data-src]').forEach((img) => {
     img.addEventListener('error', () => {
@@ -8223,7 +8325,7 @@ function applyStyle() {
   const meta = document.querySelector('meta[name="theme-color"]');
   if (meta && typeof getComputedStyle === 'function') meta.content = getComputedStyle(root).getPropertyValue('--bg').trim() || meta.content;
 }
-/** More ▾ → Theme…: light or dark, and the style. */
+/** Style (under the section list, or ☰ on phones): light or dark, and the style. */
 function showThemes(redraw) {
   let pop = document.getElementById('msgLog');
   const was = pop && pop.dataset.kind;
@@ -8434,6 +8536,14 @@ async function handleAction(act, arg) {
       if (el) { el.focus({ preventScroll: true }); el.select(); }
       return;
     }
+    case 'portrait-upload': return snap ? pickPortrait(snap.key) : undefined;
+    case 'portrait-remove':
+      if (!snap || !state.portraits[snap.key]) return undefined;
+      delete state.portraits[snap.key];
+      await savePortraits();
+      renderAll({ keepTyping: true });
+      return setStatus('Removed the uploaded picture.');
+    case 'shortcuts': return typeof showShortcuts === 'function' ? showShortcuts() : undefined;
     case 'portrait-toggle':
       try { localStorage.setItem('portrait', portraitHidden() ? 'shown' : 'hidden'); } catch (e) { /* ignore */ }
       return renderAll({ keepTyping: true });
@@ -8510,6 +8620,10 @@ async function handleAction(act, arg) {
       if (state.itemState[state.current]) {
         delete state.itemState[state.current];
         await saveItemState();
+      }
+      if (state.portraits[state.current]) {
+        delete state.portraits[state.current];
+        await savePortraits();
       }
       state.current = Object.keys(state.snapshots)[0] || null;
       await saveStore();
@@ -8868,6 +8982,7 @@ function wireUi() {
     if (changes[EDITS_KEY]) state.edits = changes[EDITS_KEY].newValue || {};
     if (changes[ITEMSTATE_KEY]) state.itemState = changes[ITEMSTATE_KEY].newValue || {};
     if (changes[DERIVED_KEY]) state.derived = changes[DERIVED_KEY].newValue || {};
+    if (changes[PORTRAITS_KEY]) state.portraits = changes[PORTRAITS_KEY].newValue || {};
     if (changes[CATALOG_INFO_KEY] || changes[RULES_INFO_KEY]) {
       // Another tab fetched SW5E's newer data: use it here too.
       if (changes[CATALOG_INFO_KEY]) state.catalogInfo = changes[CATALOG_INFO_KEY].newValue || null;

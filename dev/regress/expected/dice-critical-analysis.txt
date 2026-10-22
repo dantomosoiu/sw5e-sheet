@@ -187,6 +187,16 @@ init: Initiative: d20 +3 · = +3 modifier
 death: Death saving throw: d20 +0
 hitdie|d8: Hit die (d8): d8 +1 · = +1 per die
 dice|1d4: 1d4: d4 +0
+attack|0: Chakram attack: d20 +5 · = +5 modifier · option: vs that target (INT, Critical Analysis) +3
+damage|0: Chakram damage: d6 +3 · = +3 DEX modifier · Kinetic · option: Tyrannical Strike +d4 +1d4 · option: Disarming Blow +d4 +1d4 · option: vs that target (INT, Critical Analysis) +3
+attack|1: Vibrobaton attack: d20 +1 · = +1 modifier
+damage|1: Vibrobaton damage: d4 d4 +1 · = +1 STR modifier · Kinetic · option: Tyrannical Strike +d4 +1d4 · option: Disarming Blow +d4 +1d4
+attack|2: Unarmed Strike attack: d20 +3 · = +3 modifier
+damage|2: Unarmed Strike damage: no dice +2 · = +1 unarmed strike +1 STR modifier · Kinetic · option: Tyrannical Strike +d4 +1d4 · option: Disarming Blow +d4 +1d4
+supdie: Superiority die: d4 +0
+maneuver|Physical|Dexterity: Physical maneuver attack: d20 +5 · = +5 modifier
+maneuver|Mental|Intelligence: Mental maneuver attack: d20 +8 · = +8 modifier
+maneuver|General|Intelligence: General maneuver attack: d20 +8 · = +8 modifier
 check|Strength: Strength check: d20 +1 · = +1 modifier
 save|Strength: Strength saving throw: d20 +1 · = +1 modifier
 skill|Strength|0: Athletics (STR): d20 +1 · = +1 modifier
@@ -217,16 +227,6 @@ skill|Charisma|0: Deception (CHA): d20 +5 · = +5 modifier · option: INT instea
 skill|Charisma|1: Intimidation (CHA): d20 +1 · = +1 modifier · option: INT instead of CHA (Calculated Bluff) +5
 skill|Charisma|2: Performance (CHA): d20 +1 · = +1 modifier · option: INT instead of CHA (Calculated Bluff) +5
 skill|Charisma|3: Persuasion (CHA): d20 +5 · = +5 modifier · option: INT instead of CHA (Calculated Bluff) +5
-attack|0: Chakram attack: d20 +5 · = +5 modifier · option: vs that target (INT, Critical Analysis) +3
-damage|0: Chakram damage: d6 +3 · = +3 DEX modifier · Kinetic · option: Tyrannical Strike +d4 +1d4 · option: Disarming Blow +d4 +1d4 · option: vs that target (INT, Critical Analysis) +3
-attack|1: Vibrobaton attack: d20 +1 · = +1 modifier
-damage|1: Vibrobaton damage: d4 d4 +1 · = +1 STR modifier · Kinetic · option: Tyrannical Strike +d4 +1d4 · option: Disarming Blow +d4 +1d4
-attack|2: Unarmed Strike attack: d20 +3 · = +3 modifier
-damage|2: Unarmed Strike damage: no dice +2 · = +1 unarmed strike +1 STR modifier · Kinetic · option: Tyrannical Strike +d4 +1d4 · option: Disarming Blow +d4 +1d4
-supdie: Superiority die: d4 +0
-maneuver|Physical|Dexterity: Physical maneuver attack: d20 +5 · = +5 modifier
-maneuver|Mental|Intelligence: Mental maneuver attack: d20 +8 · = +8 modifier
-maneuver|General|Intelligence: General maneuver attack: d20 +8 · = +8 modifier
 tool|One type of gaming set|proficient: One type of gaming set check: d20 +8 · = +6 INT modifier +2 proficiency
 tool|Pazaak deck|proficient: Pazaak deck check: d20 +8 · = +6 INT modifier +2 proficiency
 tool|Forgery kit|expertise: Forgery kit check: d20 +10 · = +6 INT modifier +4 proficiency ×2
@@ -237,7 +237,7 @@ damage|2|crit: Unarmed Strike damage (critical): no dice +2 · = +1 unarmed stri
 ## Sheet: Overview
 Scholar Test (Claude)
 Bothan · Scholar (Gambler Pursuit) 4
-Level 4 Background: Noble Balanced Neutral Proficiency +2 [Add a picture]
+Level 4 Background: Noble Balanced Neutral Proficiency +2 [Upload a picture] [Picture link…]
 900 XP level 5 at 6,500 (5,600 to go)
 Level 4 usually needs 2,700 XP (you have 900).
 Still to choose (7): Scholar skills (3 more) · Scholar tool · Scholar 4th level: ability score improvement or feat · Scholar maneuvers · background skills (2 more) · background tool · background languages
@@ -265,6 +265,7 @@ Vision
 Normal
 Play tracker
 [] [untyped ▾] [Damage] [Heal] [Temp HP]
+Enter: Damage · Shift + Enter: Heal
 Death saves ✓ [] [] [] ✗ [] [] [] [Roll]
 Superiority dice d4 4 / 4 [−] [+]
 Hit dice (d8) roll d8 +1, then Heal 4 / 4 [−] [+]
@@ -310,6 +311,50 @@ Max capacity
 180 lb
 Push / drag / lift
 360 lb
+
+## Sheet: Weapons & Attacks
+Weapon | To hit | Damage | Ability | Type | Properties |
+Chakram
+Finesse, returning, thrown (range 30/90)
+| +5 | 1d6+3 Kinetic | Dexterity | Martial Vibroweapon | Finesse, returning, thrown (range 30/90) |
+  ↳ hover weapons.0.attackBonus: Without tweaks or effects: 3 → now 5 / proficient Proficient: martial vibroweapons with the finesse property · Scholar weapon proficiencies Scholar proficiencies
+Vibrobaton
+| +1 | 2d4+1 Kinetic | Strength | Martial Vibroweapon | — |
+Unarmed Strike
+| +3 | 2 Kinetic | Strength | Unarmed | — |
+
+## Sheet: Superiority & Maneuvers
+Maneuvers Known
+5
+Superiority Dice Quantity
+4
+Superiority Dice Size
+d4
+Physical maneuver DC
+13
+DEX · attack +5
+Mental maneuver DC
+16
+INT · attack +8
+General maneuver DC
+16
+INT · attack +8
+Dice come from the class table at your level; save DCs are calculated here as 8 + proficiency + your best eligible ability modifier (SW5E's site does not compute superiority).
+Mental maneuvers (3)
+Tyrannical Strike Prereq: Proficiency with Intimidation PHB
+When you hit a creature with a weapon attack, you can expend one superiority die and use your reaction to issue a one-word command to a creature who can see or … [351 chars #04553101]
+The target automatically succeeds if it is immune to charm, it doesn't understand your language, or if your command is directly harmful to it.
+Shadow Puppetry EC
+When a creature you can see within 30 feet of you is reduced to 0 hit points, you can use your reaction and expend a superiority die to give that creature a fin… [396 chars #3b6e2227]
+Dark Transference EC
+When you hit a creature with an attack, you can expend a superiority die and roll it to attempt to siphon life from it. The target must make a Constitution savi… [259 chars #d9345573]
+Physical maneuvers (3)
+Disarming Blow PHB
+When you hit a creature with a weapon attack, you can expend one superiority die to attempt to disarm the target, forcing it to drop one item of your choice tha… [471 chars #3160ec29]
+Rampage PHB
+When you reduce a creature to 0 hit points, you can use your bonus action to expend a superiority die and move up to half your speed. If you end this movement w… [318 chars #a1b65abc]
+Body Over Bother PHB
+When you are forced to make an Strength, Dexterity, or Constitution saving throw, you can expend a superiority die to change the saving throw ability to your maneuver ability modifier.
 
 ## Sheet: Abilities & Saving Throws
 STR
@@ -410,49 +455,121 @@ Skill | Ability | Bonus | Passive | Proficiency |
 (Not proficient) Survival | WIS | +1 | 11 | — |
 (Not proficient) Technology | INT | +6 | 16 | — |
 
-## Sheet: Weapons & Attacks
-Weapon | To hit | Damage | Ability | Type | Properties |
-Chakram
-Finesse, returning, thrown (range 30/90)
-| +5 | 1d6+3 Kinetic | Dexterity | Martial Vibroweapon | Finesse, returning, thrown (range 30/90) |
-  ↳ hover weapons.0.attackBonus: Without tweaks or effects: 3 → now 5 / proficient Proficient: martial vibroweapons with the finesse property · Scholar weapon proficiencies Scholar proficiencies
-Vibrobaton
-| +1 | 2d4+1 Kinetic | Strength | Martial Vibroweapon | — |
-Unarmed Strike
-| +3 | 2 Kinetic | Strength | Unarmed | — |
+## Sheet: Proficiencies & Languages
+Armor
+Light armor
+Weapon
+Simple blasters simple vibroweapons martial vibroweapons with the finesse property
+Tool
+One type of gaming set Pazaak deck ✎Forgery kit (expertise) ✎
+Skills & saves
+Sleight of Hand Insight Deception Persuasion Intelligence Saving Throws Wisdom Saving Throws
+Languages
+Galactic Basic Bothese
+✎ = custom proficiency added on the character.
 
-## Sheet: Superiority & Maneuvers
-Maneuvers Known
+## Sheet: Equipment & Inventory
+Add an item
+[All items ▾] []
+Qty [1] [Add]
+2425 items from SW5E (data version 199). [Check for a newer list]
+Credits
+351 cr
+[] [] [Apply]
+Total weight
+25 lb
+of 180 lb max
+Attunement
+0 / 2
+Items
 5
-Superiority Dice Quantity
-4
-Superiority Dice Size
-d4
-Physical maneuver DC
-13
-DEX · attack +5
-Mental maneuver DC
-16
-INT · attack +8
-General maneuver DC
-16
-INT · attack +8
-Dice come from the class table at your level; save DCs are calculated here as 8 + proficiency + your best eligible ability modifier (SW5E's site does not compute superiority).
-Mental maneuvers (3)
-Tyrannical Strike Prereq: Proficiency with Intimidation PHB
+Weapon (2)
+Item | Qty & actions | Weight | Cost | Source |
+Chakram
+1d6 Kinetic · Finesse, returning, thrown (range 30/90)
+| [−] 1 [+] [Equipped] [✎] [Sell] [×] | 3 lb | 175 cr | PHB |
+Vibrobaton
+2d4 Kinetic
+| [−] 1 [+] [Equipped] [✎] [Sell] [×] | 4 lb | 250 cr | EC |
+Armor (1)
+Item | Qty & actions | Weight | Cost | Source |
+Fiber armor
+AC 12 + Dex modifier · Light
+Description
+Fiber armor is a type of armor that offers more protection than the lighter combat suit. Fiber armor is heavier overall than combat suits, and not quite as flex… [287 chars #295e4c98]
+| [−] 1 [+] [Equipped] [✎] [Sell] [×] | 13 lb | 450 cr | PHB |
+Gaming Set (1)
+Item | Qty & actions | Weight | Cost | Source |
+Pazaak deck
+| [−] 1 [+] [✎] [Sell] [×] | — | 100 cr | PHB |
+Kit (1)
+Item | Qty & actions | Weight | Cost | Source |
+Forgery kit
+| [−] 1 [+] [✎] [Sell] [×] | 5 lb | 150 cr | PHB |
+
+## Sheet: Classes & Progression
+[Level up]
+Scholar 4 Gambler Pursuit Starting class
+Hit die d8 Primary Intelligence Saves Intelligence, Wisdom HP by level 8 (max), 5, 5, 5
+Academic who uses wits and allies to control the battlefield
+Skill proficiencies 0 / 3 Choose three from Deception, Insight, Intimidation, Investigation, Lore, Medicine, Nature, Persuasion, and Survival
+None chosen yet.
+[Choose a skill… ▾]
+Tool proficiency 0 / 1 Any one
+None chosen yet.
+[Choose a tool… ▾]
+Expertise 2 / 2 Scholar 3rd and 10th level
+Persuasion [×] Forgery Kit [×]
+Archetype [Gambler Pursuit ▾]
+Read the options (12)
+Maneuvers 6 / 7 5 from the Scholar table + 2 from Malleable Maneuvering
+Tyrannical Strike Mental [×]
+Prerequisite: Proficiency with Intimidation
 When you hit a creature with a weapon attack, you can expend one superiority die and use your reaction to issue a one-word command to a creature who can see or … [351 chars #04553101]
 The target automatically succeeds if it is immune to charm, it doesn't understand your language, or if your command is directly harmful to it.
-Shadow Puppetry EC
-When a creature you can see within 30 feet of you is reduced to 0 hit points, you can use your reaction and expend a superiority die to give that creature a fin… [396 chars #3b6e2227]
-Dark Transference EC
-When you hit a creature with an attack, you can expend a superiority die and roll it to attempt to siphon life from it. The target must make a Constitution savi… [259 chars #d9345573]
-Physical maneuvers (3)
-Disarming Blow PHB
+Disarming Blow Physical [×]
 When you hit a creature with a weapon attack, you can expend one superiority die to attempt to disarm the target, forcing it to drop one item of your choice tha… [471 chars #3160ec29]
-Rampage PHB
+Rampage Physical [×]
 When you reduce a creature to 0 hit points, you can use your bonus action to expend a superiority die and move up to half your speed. If you end this movement w… [318 chars #a1b65abc]
-Body Over Bother PHB
+Shadow Puppetry Mental [×]
+When a creature you can see within 30 feet of you is reduced to 0 hit points, you can use your reaction and expend a superiority die to give that creature a fin… [396 chars #3b6e2227]
+Dark Transference Mental [×]
+When you hit a creature with an attack, you can expend a superiority die and roll it to attempt to siphon life from it. The target must make a Constitution savi… [259 chars #d9345573]
+Body Over Bother Physical [×]
 When you are forced to make an Strength, Dexterity, or Constitution saving throw, you can expend a superiority die to change the saving throw ability to your maneuver ability modifier.
+[Add a maneuver… ▾]
+Read the options
+Discoveries 4 / 4 from the Scholar table (“Discoveries”)
+Malleable Maneuvering [×]
+You learn two additional maneuvers. When you complete a short rest, you can replace one of these maneuvers with another one. When you complete a long rest, you can replace both of these maneuvers with other ones.
+Lifelong Learning [×]
+[Persuasion + Forgery kit.]
+You gain proficiency in a skill and a tool, or two tools.
+You can select this discovery multiple times, each time choosing a new skill and a tool, or two new tools.
+Calculated Bluff Gambler Pursuit [×]
+[]
+When you make an ability check using Charisma, you can choose to instead make the check using your Intelligence or Wisdom modifier (your choice).
+Running on Fumes [×]
+You only need 3 hours of sleep during a long rest to gain its benefits, instead of 6. Additionally, if your long rest would be interrupted, you only need to com… [290 chars #859f0674]
+[Add from Discoveries… ▾]
+Read the options (28)
+Class table
+Proficiency Bonus
++2 → +3 at 5th
+Features
+Ability Score Improvement → Multitasker at 5th
+Maneuvers Known
+5 → 6 at 5th
+Superiority Dice Quantity
+4 → 5 at 5th
+Superiority Dice Size
+d4 → d6 at 5th
+Discoveries
+4 → 5 at 5th
+| Proficiency Bonus | Features | Maneuvers Known | Superiority Dice Quantity | Superiority Dice Size | Discoveries |
+Now (4th) | +2 | Ability Score Improvement | 5 | 4 | d4 | 4 |
+Next (5th) | +3 | Multitasker | 6 | 5 | d6 | 5 |
+Armor Light armor Weapons Simple blasters, simple vibroweapons, martial vibroweapons with the finesse property Tools Any one
 
 ## Sheet: Class Features
 Scholar (7)
@@ -576,70 +693,6 @@ When you take the Attack action, you can replace one attack with an attempt to d
 Add a note
 Notes []
 
-## Sheet: Classes & Progression
-[Level up]
-Scholar 4 Gambler Pursuit Starting class
-Hit die d8 Primary Intelligence Saves Intelligence, Wisdom HP by level 8 (max), 5, 5, 5
-Academic who uses wits and allies to control the battlefield
-Skill proficiencies 0 / 3 Choose three from Deception, Insight, Intimidation, Investigation, Lore, Medicine, Nature, Persuasion, and Survival
-None chosen yet.
-[Choose a skill… ▾]
-Tool proficiency 0 / 1 Any one
-None chosen yet.
-[Choose a tool… ▾]
-Expertise 2 / 2 Scholar 3rd and 10th level
-Persuasion [×] Forgery Kit [×]
-Archetype [Gambler Pursuit ▾]
-Read the options (12)
-Maneuvers 6 / 7 5 from the Scholar table + 2 from Malleable Maneuvering
-Tyrannical Strike Mental [×]
-Prerequisite: Proficiency with Intimidation
-When you hit a creature with a weapon attack, you can expend one superiority die and use your reaction to issue a one-word command to a creature who can see or … [351 chars #04553101]
-The target automatically succeeds if it is immune to charm, it doesn't understand your language, or if your command is directly harmful to it.
-Disarming Blow Physical [×]
-When you hit a creature with a weapon attack, you can expend one superiority die to attempt to disarm the target, forcing it to drop one item of your choice tha… [471 chars #3160ec29]
-Rampage Physical [×]
-When you reduce a creature to 0 hit points, you can use your bonus action to expend a superiority die and move up to half your speed. If you end this movement w… [318 chars #a1b65abc]
-Shadow Puppetry Mental [×]
-When a creature you can see within 30 feet of you is reduced to 0 hit points, you can use your reaction and expend a superiority die to give that creature a fin… [396 chars #3b6e2227]
-Dark Transference Mental [×]
-When you hit a creature with an attack, you can expend a superiority die and roll it to attempt to siphon life from it. The target must make a Constitution savi… [259 chars #d9345573]
-Body Over Bother Physical [×]
-When you are forced to make an Strength, Dexterity, or Constitution saving throw, you can expend a superiority die to change the saving throw ability to your maneuver ability modifier.
-[Add a maneuver… ▾]
-Read the options
-Discoveries 4 / 4 from the Scholar table (“Discoveries”)
-Malleable Maneuvering [×]
-You learn two additional maneuvers. When you complete a short rest, you can replace one of these maneuvers with another one. When you complete a long rest, you can replace both of these maneuvers with other ones.
-Lifelong Learning [×]
-[Persuasion + Forgery kit.]
-You gain proficiency in a skill and a tool, or two tools.
-You can select this discovery multiple times, each time choosing a new skill and a tool, or two new tools.
-Calculated Bluff Gambler Pursuit [×]
-[]
-When you make an ability check using Charisma, you can choose to instead make the check using your Intelligence or Wisdom modifier (your choice).
-Running on Fumes [×]
-You only need 3 hours of sleep during a long rest to gain its benefits, instead of 6. Additionally, if your long rest would be interrupted, you only need to com… [290 chars #859f0674]
-[Add from Discoveries… ▾]
-Read the options (28)
-Class table
-Proficiency Bonus
-+2 → +3 at 5th
-Features
-Ability Score Improvement → Multitasker at 5th
-Maneuvers Known
-5 → 6 at 5th
-Superiority Dice Quantity
-4 → 5 at 5th
-Superiority Dice Size
-d4 → d6 at 5th
-Discoveries
-4 → 5 at 5th
-| Proficiency Bonus | Features | Maneuvers Known | Superiority Dice Quantity | Superiority Dice Size | Discoveries |
-Now (4th) | +2 | Ability Score Improvement | 5 | 4 | d4 | 4 |
-Next (5th) | +3 | Multitasker | 6 | 5 | d6 | 5 |
-Armor Light armor Weapons Simple blasters, simple vibroweapons, martial vibroweapons with the finesse property Tools Any one
-
 ## Sheet: Species
 Size
 Medium
@@ -726,58 +779,6 @@ None chosen yet.
 Languages 0 / 1 One of your choice
 None chosen yet.
 [Choose a language… ▾]
-
-## Sheet: Proficiencies & Languages
-Armor
-Light armor
-Weapon
-Simple blasters simple vibroweapons martial vibroweapons with the finesse property
-Tool
-One type of gaming set Pazaak deck ✎Forgery kit (expertise) ✎
-Skills & saves
-Sleight of Hand Insight Deception Persuasion Intelligence Saving Throws Wisdom Saving Throws
-Languages
-Galactic Basic Bothese
-✎ = custom proficiency added on the character.
-
-## Sheet: Equipment & Inventory
-Add an item
-[All items ▾] []
-Qty [1] [Add]
-2425 items from SW5E (data version 199). [Check for a newer list]
-Credits
-351 cr
-[] [] [Apply]
-Total weight
-25 lb
-of 180 lb max
-Attunement
-0 / 2
-Items
-5
-Weapon (2)
-Item | Qty & actions | Weight | Cost | Source |
-Chakram
-1d6 Kinetic · Finesse, returning, thrown (range 30/90)
-| [−] 1 [+] [Equipped] [✎] [Sell] [×] | 3 lb | 175 cr | PHB |
-Vibrobaton
-2d4 Kinetic
-| [−] 1 [+] [Equipped] [✎] [Sell] [×] | 4 lb | 250 cr | EC |
-Armor (1)
-Item | Qty & actions | Weight | Cost | Source |
-Fiber armor
-AC 12 + Dex modifier · Light
-Description
-Fiber armor is a type of armor that offers more protection than the lighter combat suit. Fiber armor is heavier overall than combat suits, and not quite as flex… [287 chars #295e4c98]
-| [−] 1 [+] [Equipped] [✎] [Sell] [×] | 13 lb | 450 cr | PHB |
-Gaming Set (1)
-Item | Qty & actions | Weight | Cost | Source |
-Pazaak deck
-| [−] 1 [+] [✎] [Sell] [×] | — | 100 cr | PHB |
-Kit (1)
-Item | Qty & actions | Weight | Cost | Source |
-Forgery kit
-| [−] 1 [+] [✎] [Sell] [×] | 5 lb | 150 cr | PHB |
 
 ## Sheet: Personality & Appearance
 Personality Traits

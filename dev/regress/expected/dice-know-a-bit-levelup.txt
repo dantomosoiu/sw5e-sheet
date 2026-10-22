@@ -197,6 +197,9 @@ death: Death saving throw: d20 +0
 hitdie|d8: Hit die (d8): d8 +2 · = +2 per die
 dice|1d6: 1d6: d6 +0
 dice|4d6: 4d6: d6 d6 d6 d6 +0
+attack|0: Unarmed Strike attack: d20 +7 · = +7 modifier
+damage|0: Unarmed Strike damage: d6 +3 · = +3 DEX modifier (Martial Arts) · Kinetic · option: Sneak Attack +4d6
+pattack|Tech|7: Tech attack: d20 +7 · = +7 modifier
 check|Strength: Strength check: d20 +2 · = +0 modifier +2 half proficiency (Know a Bit)
 save|Strength: Strength saving throw: d20 +4 · = +4 modifier
 skill|Strength|0: Athletics (STR): d20 +2 · = +2 modifier
@@ -227,17 +230,14 @@ skill|Charisma|0: Deception (CHA): d20 +3 · = +3 modifier
 skill|Charisma|1: Intimidation (CHA): d20 +1 · = +1 modifier
 skill|Charisma|2: Performance (CHA): d20 +1 · = +1 modifier
 skill|Charisma|3: Persuasion (CHA): d20 +1 · = +1 modifier
-attack|0: Unarmed Strike attack: d20 +7 · = +7 modifier
-damage|0: Unarmed Strike damage: d6 +3 · = +3 DEX modifier (Martial Arts) · Kinetic · option: Sneak Attack +4d6
-pattack|Tech|7: Tech attack: d20 +7 · = +7 modifier
-dice|2d6: 2d6: d6 d6 +0
 tool|One type of gaming set|proficient: One type of gaming set check: d20 +6 · = +2 INT modifier +4 proficiency
+dice|2d6: 2d6: d6 d6 +0
 damage|0|crit: Unarmed Strike damage (critical): d6 d6 +3 · = +3 DEX modifier (Martial Arts) · Kinetic · critical · option: Sneak Attack +4d6
 
 ## Sheet: Overview
 Rakatan Test (local)
 Human · Monk (Rakatan Order) 8, Operative (Maverick Practice) 3
-Level 11 Background: Noble Lawful Light Proficiency +4 [Add a picture]
+Level 11 Background: Noble Lawful Light Proficiency +4 [Upload a picture] [Picture link…]
 6,500 XP level 12 at 100,000 (93,500 to go)
 Level 11 usually needs 85,000 XP (you have 6,500).
 Still to choose (20): Monk skills (2 more) · Monk 8th level: ability score improvement or feat · Monastic Vows (3 more) · Rakatan Order tech powers (6 more) · O… [663 chars #3ddb9139]
@@ -269,6 +269,7 @@ Vision
 Normal
 Play tracker
 [] [untyped ▾] [Damage] [Heal] [Temp HP]
+Enter: Damage · Shift + Enter: Heal
 Death saves ✓ [] [] [] ✗ [] [] [] [Roll]
 Superiority dice d4 2 / 2 [−] [+]
 Tech points 7 / 7 [−] [+]
@@ -315,6 +316,38 @@ Max capacity
 150 lb
 Push / drag / lift
 300 lb
+
+## Sheet: Weapons & Attacks
+Weapon | To hit | Damage | Ability | Type | Properties |
+Unarmed Strike
+| +7 | 1d6+3 Kinetic | Dexterity (finesse) | Unarmed | — |
+  ↳ hover weapons.0.attackBonus: Without tweaks or effects: 4 → now 7 / +3 Finesse: DEX +3 instead of STR · Martial Arts Monk feature
+  ↳ hover weapons.0.damageBonus: Without tweaks or effects: 1 → now 3 / d6 Unarmed damage die (1 → d6) · Martial Arts Monk feature / +3 Finesse: DEX +3 instead of STR · Martial Arts Monk feature
+
+## Sheet: Tech Casting
+Tech points
+7 / 7
+Max power level
+2
+Save DC
+15
+WIS
+Attack
++7
+WIS
+Rakatan Order: SW5E's numbers don't follow the rules here, so points (table + the best of Intelligence/Wisdom/Charisma), DC and attack are worked out on this sheet.
+At-will powers (1)
+Encrypted Message Rakatan Order
+[Cast]
+Casting 1 action Range 120 feet Duration 1 round DC / attack 15 / +7 (WIS) Source PHB
+You point your finger toward a creature within range that possesses a commlink and whisper a message. The target (and only the target) hears the message and can… [279 chars #d9647152]
+You can cast this power through solid objects if you are familiar with the target and know it is beyond the barrier. 1 foot of stone, 1 inch of common metal, a … [322 chars #97726ed9]
+1st-level powers (1)
+Absorb Energy Rakatan Order
+[1st level · 2 points ▾] [Cast]
+Casting 1 reaction, which you take when you take acid, cold, energy, fire, ion, kinetic, lightning, or sonic damage Range Self Duration 1 round DC / attack 15 / +7 (WIS) Source PHB
+The power captures some of the incoming energy, lessening its effect on you and storing it for your next melee attack. You have resistance to the triggering dam… [352 chars #7492347e]
+Overcharge Tech. When you cast this power using a power slot of 2nd level or higher, the extra damage increases by 1d6 for each slot level above 1st.
 
 ## Sheet: Abilities & Saving Throws
 STR
@@ -449,37 +482,115 @@ Skill | Ability | Bonus | Passive | Proficiency |
   ↳ hover abilityScores.Intelligence.skills.4.modifier: Without tweaks or effects: 2 → now 4 / +2 Half proficiency · Know a Bit Maverick Practice feature
   ↳ hover abilityScores.Intelligence.skills.4.modifier: Without tweaks or effects: 2 → now 4 / +2 Half proficiency · Know a Bit Maverick Practice feature
 
-## Sheet: Weapons & Attacks
-Weapon | To hit | Damage | Ability | Type | Properties |
-Unarmed Strike
-| +7 | 1d6+3 Kinetic | Dexterity (finesse) | Unarmed | — |
-  ↳ hover weapons.0.attackBonus: Without tweaks or effects: 4 → now 7 / +3 Finesse: DEX +3 instead of STR · Martial Arts Monk feature
-  ↳ hover weapons.0.damageBonus: Without tweaks or effects: 1 → now 3 / d6 Unarmed damage die (1 → d6) · Martial Arts Monk feature / +3 Finesse: DEX +3 instead of STR · Martial Arts Monk feature
+## Sheet: Proficiencies & Languages
+Armor
+None
+Weapon
+Simple blasters simple vibroweapons martial vibroweapons that lack the dexterity heavy special and two-handed properties
+Tool
+One type of gaming set
+Other
+Light armor
+Skills & saves
+Deception Strength Saving Throws Dexterity Saving Throws
+Languages
+Galactic Basic
+✎ = custom proficiency added on the character.
 
-## Sheet: Tech Casting
-Tech points
-7 / 7
-Max power level
-2
-Save DC
-15
-WIS
-Attack
-+7
-WIS
-Rakatan Order: SW5E's numbers don't follow the rules here, so points (table + the best of Intelligence/Wisdom/Charisma), DC and attack are worked out on this sheet.
-At-will powers (1)
-Encrypted Message Rakatan Order
-[Cast]
-Casting 1 action Range 120 feet Duration 1 round DC / attack 15 / +7 (WIS) Source PHB
+## Sheet: Equipment & Inventory
+Add an item
+[All items ▾] []
+Qty [1] [Add]
+2425 items from SW5E (data version 199). [Check for a newer list]
+Credits
+0 cr
+[] [] [Apply]
+Total weight
+0 lb
+of 150 lb max
+Attunement
+0 / 4
+Items
+0
+No equipment.
+
+## Sheet: Classes & Progression
+[Level up]
+Monk 8 Rakatan Order Starting class
+Hit die d8 Primary Dexterity Saves Strength, Dexterity HP by level 8 (max), 5, 5, 5, 5, 5, 5, 5
+Unarmed combatant who uses focus to fuel abilities
+Ability score improvements
+ASI: Dexterity +2
+Skill proficiencies 0 / 2 Choose two from Acrobatics, Athletics, Insight, Lore, Perception, and Stealth
+None chosen yet.
+[Choose a skill… ▾]
+Archetype [Rakatan Order ▾]
+Read the options (13)
+Tech powers 2 / 8 Rakatan Order table · max power level 2
+Encrypted Message at-will [×]
 You point your finger toward a creature within range that possesses a commlink and whisper a message. The target (and only the target) hears the message and can… [279 chars #d9647152]
 You can cast this power through solid objects if you are familiar with the target and know it is beyond the barrier. 1 foot of stone, 1 inch of common metal, a … [322 chars #97726ed9]
-1st-level powers (1)
-Absorb Energy Rakatan Order
-[1st level · 2 points ▾] [Cast]
-Casting 1 reaction, which you take when you take acid, cold, energy, fire, ion, kinetic, lightning, or sonic damage Range Self Duration 1 round DC / attack 15 / +7 (WIS) Source PHB
+Absorb Energy 1st level [×]
 The power captures some of the incoming energy, lessening its effect on you and storing it for your next melee attack. You have resistance to the triggering dam… [352 chars #7492347e]
 Overcharge Tech. When you cast this power using a power slot of 2nd level or higher, the extra damage increases by 1d6 for each slot level above 1st.
+[Learn a tech power… ▾]
+Read the options (141)
+Monastic Vows 0 / 3 from the Monk table (“Monastic Vows”)
+None chosen yet.
+[Add from Monastic Vows… ▾]
+Read the options (18)
+Class table
+Proficiency Bonus
++3 → +4 at 9th
+Features
+Ability Score Improvement → Unarmored Movement Improvement at 9th
+Martial Arts
+d6 → d8 at 9th
+Focus Points
+8 → 9 at 9th
+Monastic Vows
+3 → 3 at 9th
+Unarmored Movement
++15 ft. → +20 ft. at 9th
+| Proficiency Bonus | Features | Martial Arts | Focus Points | Monastic Vows | Unarmored Movement |
+Now (8th) | +3 | Ability Score Improvement | d6 | 8 | 3 | +15 ft. |
+Next (9th) | +4 | Unarmored Movement Improvement | d8 | 9 | 3 | +20 ft. |
+Armor None Weapons Simple blasters, simple vibroweapons, martial vibroweapons that lack the dexterity, heavy, special, and two-handed properties Tools None
+Operative 3 Maverick Practice Multiclass
+Hit die d8 Primary Dexterity Saves Dexterity, Intelligence HP by level 5, 5, 5
+Controller who focuses on stealth and techniques
+Multiclass skill 0 / 1 any skill
+None chosen yet.
+[Choose a skill… ▾]
+Multiclass tool 0 / 1 from the class's list
+None chosen yet.
+[Choose a tool… ▾]
+Expertise 0 / 2 Operative 1st and 6th level
+None chosen yet.
+[Choose a skill or tool you know… ▾]
+Archetype [Maverick Practice ▾]
+Read the options (15)
+Maneuvers 0 / 2 2 from Maverick Practice
+None chosen yet.
+[Add a maneuver… ▾]
+Read the options
+Operative Exploits 0 / 2 from the Operative table (“Operative Exploits”)
+None chosen yet.
+[Add from Operative Exploits… ▾]
+Read the options (11)
+Class table
+Proficiency Bonus
++2 → +2 at 4th
+Features
+Bad Feeling, Operative Practice → Ability Score Improvement at 4th
+Sneak Attack
+2d6 → 2d6 at 4th
+Operative Exploits
+2 → 2 at 4th
+| Proficiency Bonus | Features | Sneak Attack | Operative Exploits |
+Now (3rd) | +2 | Bad Feeling, Operative Practice | 2d6 | 2 |
+Next (4th) | +2 | Ability Score Improvement | 2d6 | 2 |
+Armor Light armor Weapons Simple blasters, simple vibroweapons, martial blasters that lack the auto, special, strength, and two-handed properties, martial vibro… [265 chars #19162a6c]
 
 ## Sheet: Class Features
 Monk (14)
@@ -736,84 +847,6 @@ You've learned to blend the skills of your different classes. Choose two of the 
 Add a note
 Notes []
 
-## Sheet: Classes & Progression
-[Level up]
-Monk 8 Rakatan Order Starting class
-Hit die d8 Primary Dexterity Saves Strength, Dexterity HP by level 8 (max), 5, 5, 5, 5, 5, 5, 5
-Unarmed combatant who uses focus to fuel abilities
-Ability score improvements
-ASI: Dexterity +2
-Skill proficiencies 0 / 2 Choose two from Acrobatics, Athletics, Insight, Lore, Perception, and Stealth
-None chosen yet.
-[Choose a skill… ▾]
-Archetype [Rakatan Order ▾]
-Read the options (13)
-Tech powers 2 / 8 Rakatan Order table · max power level 2
-Encrypted Message at-will [×]
-You point your finger toward a creature within range that possesses a commlink and whisper a message. The target (and only the target) hears the message and can… [279 chars #d9647152]
-You can cast this power through solid objects if you are familiar with the target and know it is beyond the barrier. 1 foot of stone, 1 inch of common metal, a … [322 chars #97726ed9]
-Absorb Energy 1st level [×]
-The power captures some of the incoming energy, lessening its effect on you and storing it for your next melee attack. You have resistance to the triggering dam… [352 chars #7492347e]
-Overcharge Tech. When you cast this power using a power slot of 2nd level or higher, the extra damage increases by 1d6 for each slot level above 1st.
-[Learn a tech power… ▾]
-Read the options (141)
-Monastic Vows 0 / 3 from the Monk table (“Monastic Vows”)
-None chosen yet.
-[Add from Monastic Vows… ▾]
-Read the options (18)
-Class table
-Proficiency Bonus
-+3 → +4 at 9th
-Features
-Ability Score Improvement → Unarmored Movement Improvement at 9th
-Martial Arts
-d6 → d8 at 9th
-Focus Points
-8 → 9 at 9th
-Monastic Vows
-3 → 3 at 9th
-Unarmored Movement
-+15 ft. → +20 ft. at 9th
-| Proficiency Bonus | Features | Martial Arts | Focus Points | Monastic Vows | Unarmored Movement |
-Now (8th) | +3 | Ability Score Improvement | d6 | 8 | 3 | +15 ft. |
-Next (9th) | +4 | Unarmored Movement Improvement | d8 | 9 | 3 | +20 ft. |
-Armor None Weapons Simple blasters, simple vibroweapons, martial vibroweapons that lack the dexterity, heavy, special, and two-handed properties Tools None
-Operative 3 Maverick Practice Multiclass
-Hit die d8 Primary Dexterity Saves Dexterity, Intelligence HP by level 5, 5, 5
-Controller who focuses on stealth and techniques
-Multiclass skill 0 / 1 any skill
-None chosen yet.
-[Choose a skill… ▾]
-Multiclass tool 0 / 1 from the class's list
-None chosen yet.
-[Choose a tool… ▾]
-Expertise 0 / 2 Operative 1st and 6th level
-None chosen yet.
-[Choose a skill or tool you know… ▾]
-Archetype [Maverick Practice ▾]
-Read the options (15)
-Maneuvers 0 / 2 2 from Maverick Practice
-None chosen yet.
-[Add a maneuver… ▾]
-Read the options
-Operative Exploits 0 / 2 from the Operative table (“Operative Exploits”)
-None chosen yet.
-[Add from Operative Exploits… ▾]
-Read the options (11)
-Class table
-Proficiency Bonus
-+2 → +2 at 4th
-Features
-Bad Feeling, Operative Practice → Ability Score Improvement at 4th
-Sneak Attack
-2d6 → 2d6 at 4th
-Operative Exploits
-2 → 2 at 4th
-| Proficiency Bonus | Features | Sneak Attack | Operative Exploits |
-Now (3rd) | +2 | Bad Feeling, Operative Practice | 2d6 | 2 |
-Next (4th) | +2 | Ability Score Improvement | 2d6 | 2 |
-Armor Light armor Weapons Simple blasters, simple vibroweapons, martial blasters that lack the auto, special, strength, and two-handed properties, martial vibro… [265 chars #19162a6c]
-
 ## Sheet: Species
 Size
 Medium
@@ -916,38 +949,6 @@ None chosen yet.
 Languages 0 / 1 One of your choice
 None chosen yet.
 [Choose a language… ▾]
-
-## Sheet: Proficiencies & Languages
-Armor
-None
-Weapon
-Simple blasters simple vibroweapons martial vibroweapons that lack the dexterity heavy special and two-handed properties
-Tool
-One type of gaming set
-Other
-Light armor
-Skills & saves
-Deception Strength Saving Throws Dexterity Saving Throws
-Languages
-Galactic Basic
-✎ = custom proficiency added on the character.
-
-## Sheet: Equipment & Inventory
-Add an item
-[All items ▾] []
-Qty [1] [Add]
-2425 items from SW5E (data version 199). [Check for a newer list]
-Credits
-0 cr
-[] [] [Apply]
-Total weight
-0 lb
-of 150 lb max
-Attunement
-0 / 4
-Items
-0
-No equipment.
 
 ## Sheet: Personality & Appearance
 Personality Traits

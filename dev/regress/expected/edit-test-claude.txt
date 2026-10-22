@@ -201,6 +201,11 @@ hitdie|d10: Hit die (d10): d10 +2 · = +2 per die
 featheal|Second Wind|1d10|5|Fighter level: Second Wind: healing: d10 +5 · = +5 Fighter level
 dice|1d6: 1d6: d6 +0
 dice|1d4: 1d4: d4 +0
+attack|0: Blaster pistol attack: d20 +6 · = +6 modifier · option: with Cryo Cell (Average) +1
+damage|0: Blaster pistol damage: d6 +4 · = +2 DEX modifier +1 tweak (Custom barrel) +1 Weapon (Fine) · Energy · option: with Cryo Cell (Average) +1
+attack|1: Unarmed Strike attack: d20 +9 · = +9 modifier
+damage|1: Unarmed Strike damage: no dice +7 · = +1 unarmed strike +5 STR modifier +1 Handwraps (Fine) · Kinetic
+tech: Tech attack: d20 +5 · = +5 modifier · option: melee tech attacks +1 · option: ranged tech attacks −1
 check|Strength: Strength check: d20 +5 · = +5 modifier
 save|Strength: Strength saving throw: d20 +8 · = +8 modifier
 skill|Strength|0: Athletics (STR): d20 +5 · = +5 modifier
@@ -231,11 +236,6 @@ skill|Charisma|0: Deception (CHA): d20 +6 · = +6 modifier
 skill|Charisma|1: Intimidation (CHA): d20 +0 · = +0 modifier
 skill|Charisma|2: Performance (CHA): d20 +0 · = +0 modifier
 skill|Charisma|3: Persuasion (CHA): d20 +0 · = +0 modifier
-attack|0: Blaster pistol attack: d20 +6 · = +6 modifier · option: with Cryo Cell (Average) +1
-damage|0: Blaster pistol damage: d6 +4 · = +2 DEX modifier +1 tweak (Custom barrel) +1 Weapon (Fine) · Energy · option: with Cryo Cell (Average) +1
-attack|1: Unarmed Strike attack: d20 +9 · = +9 modifier
-damage|1: Unarmed Strike damage: no dice +7 · = +1 unarmed strike +5 STR modifier +1 Handwraps (Fine) · Kinetic
-tech: Tech attack: d20 +5 · = +5 modifier · option: melee tech attacks +1 · option: ranged tech attacks −1
 tool|One type of gaming set|proficient: One type of gaming set check: d20 +5 · = +2 INT modifier +3 proficiency
 damage|0|crit: Blaster pistol damage (critical): d6 d6 +4 · = +2 DEX modifier +1 tweak (Custom barrel) +1 Weapon (Fine) · Energy · critical · option: with Cryo Cell (Average) +1
 damage|1|crit: Unarmed Strike damage (critical): no dice +7 · = +1 unarmed strike +5 STR modifier +1 Handwraps (Fine) · Kinetic · critical
@@ -243,7 +243,7 @@ damage|1|crit: Unarmed Strike damage (critical): no dice +7 · = +1 unarmed stri
 ## Sheet: Overview
 Edit Test (Claude)
 Bothan · Fighter (Tactical Specialist) 5, Engineer 2
-Level 7 Background: Noble Lawful Light Proficiency +3 [Add a picture]
+Level 7 Background: Noble Lawful Light Proficiency +3 [Upload a picture] [Picture link…]
 24,000 XP level 8 at 34,000 (10,000 to go)
 Still to choose (13): Fighter skills (2 more) · Fighter 4th level: ability score improvement or feat · Fighter Strategies · Fighter maneuvers (6 more) · Enginee… [421 chars #268c872b]
 
@@ -271,6 +271,7 @@ Vision
 Normal
 Play tracker
 [] [untyped ▾] [Damage] [Heal] [Temp HP]
+Enter: Damage · Shift + Enter: Heal
 Death saves ✓ [] [] [] ✗ [] [] [] [Roll]
 Superiority dice d6 6 / 6 [−] [+]
 Tech points 6 / 6 [−] [+]
@@ -329,6 +330,30 @@ Max capacity
 Push / drag / lift
 630 lb
   ↳ hover carryingCapacity.pushDragLift: Without tweaks or effects: 450 → now 630 / +6 STR (the item sets it to 21) · Strength Enhancer while attuned
+
+## Sheet: Weapons & Attacks
+Weapon | To hit | Damage | Ability | Type | Properties |
+Blaster pistol
+Power cell (range 50/200), reload 16
+Shots 16/16 [−1] [Reload] 0 Power cells
+| +6 · +7 with Cryo Cell (Average) | 1d6+4 Energy · 1d6+5 Energy with Cryo Cell (Average) | Dexterity | Simple Blaster | Power cell (range 50/200), reload 16 |
+  ↳ hover weapons.0.attackBonus: Without tweaks or effects: 5 → now 6 / +1 Attack · Weapon (Fine) while equipped / Only sometimes: / +7 with Cryo Cell (Average): +1 · Cryo Cell (Average) when you fire it
+  ↳ hover weapons.0.damageBonus: Without tweaks or effects: 2 → now 4 / +1 Blaster pistol: damage · Custom barrel tweak / +1 Damage · Weapon (Fine) while equipped /… [259 chars #5d4d5b3b]
+Unarmed Strike
+| +9 | 7 Kinetic | Strength | Unarmed | — |
+  ↳ hover weapons.1.attackBonus: Without tweaks or effects: 5 → now 9 / +1 Unarmed attack · Handwraps (Fine) while equipped / +3 STR modifier (+6 score) (the item sets it to 21) · Strength Enhancer while attuned
+  ↳ hover weapons.1.damageBonus: Without tweaks or effects: 3 → now 7 / +1 Unarmed damage · Handwraps (Fine) while equipped / +3 STR modifier (+6 score) (the item sets it to 21) · Strength Enhancer while attuned
+
+## Sheet: Tech Casting
+Tech points
+6 / 6
+Max power level
+1
+Save DC
+13 · 14 powers with STR/CON saves · 12 powers with DEX/INT saves
+Attack
++5 · +6 melee tech attacks · +4 ranged tech attacks
+No powers known.
 
 ## Sheet: Abilities & Saving Throws
 STR
@@ -432,29 +457,200 @@ Skill | Ability | Bonus | Passive | Proficiency |
 (Not proficient) Survival | WIS | +0 | 10 | — |
 (Not proficient) Technology | INT | +2 | 12 | — |
 
-## Sheet: Weapons & Attacks
-Weapon | To hit | Damage | Ability | Type | Properties |
-Blaster pistol
-Power cell (range 50/200), reload 16
-Shots 16/16 [−1] [Reload] 0 Power cells
-| +6 · +7 with Cryo Cell (Average) | 1d6+4 Energy · 1d6+5 Energy with Cryo Cell (Average) | Dexterity | Simple Blaster | Power cell (range 50/200), reload 16 |
-  ↳ hover weapons.0.attackBonus: Without tweaks or effects: 5 → now 6 / +1 Attack · Weapon (Fine) while equipped / Only sometimes: / +7 with Cryo Cell (Average): +1 · Cryo Cell (Average) when you fire it
-  ↳ hover weapons.0.damageBonus: Without tweaks or effects: 2 → now 4 / +1 Blaster pistol: damage · Custom barrel tweak / +1 Damage · Weapon (Fine) while equipped /… [259 chars #5d4d5b3b]
-Unarmed Strike
-| +9 | 7 Kinetic | Strength | Unarmed | — |
-  ↳ hover weapons.1.attackBonus: Without tweaks or effects: 5 → now 9 / +1 Unarmed attack · Handwraps (Fine) while equipped / +3 STR modifier (+6 score) (the item sets it to 21) · Strength Enhancer while attuned
-  ↳ hover weapons.1.damageBonus: Without tweaks or effects: 3 → now 7 / +1 Unarmed damage · Handwraps (Fine) while equipped / +3 STR modifier (+6 score) (the item sets it to 21) · Strength Enhancer while attuned
+## Sheet: Proficiencies & Languages
+Armor
+All armor
+Weapon
+All blasters all vibroweapons
+Tool
+One type of gaming set
+Other
+Light armor
+Skills & saves
+Insight Deception Strength Saving Throws Constitution Saving Throws
+Languages
+Galactic Basic Bothese
+✎ = custom proficiency added on the character.
 
-## Sheet: Tech Casting
-Tech points
-6 / 6
-Max power level
-1
-Save DC
-13 · 14 powers with STR/CON saves · 12 powers with DEX/INT saves
-Attack
-+5 · +6 melee tech attacks · +4 ranged tech attacks
-No powers known.
+## Sheet: Equipment & Inventory
+Add an item
+[All items ▾] []
+Qty [1] [Add]
+2425 items from SW5E (data version 199). [Check for a newer list]
+Credits
+575 cr
+[] [] [Apply]
+Total weight
+26.5 lb
+of 315 lb max
+Attunement
+2 / 3
+Items
+13
+Weapon (1)
+Item | Qty & actions | Weight | Cost | Source |
+Blaster pistol
+1d6 Energy · Power cell (range 50/200), reload 16
+| [−] 1 [+] [Equipped] [✎] [Sell] [×] | 2.5 lb | 175 cr | PHB |
+Armor (1)
+Item | Qty & actions | Weight | Cost | Source |
+Fiber armor
+AC 12 + Dex modifier · Light
+Description
+Fiber armor is a type of armor that offers more protection than the lighter combat suit. Fiber armor is heavier overall than combat suits, and not quite as flex… [287 chars #295e4c98]
+| [−] 1 [+] [Equip] [✎] [Sell] [×] | 13 lb | 450 cr | PHB |
+Enhanced: Adventuring Gear (3)
+Item | Qty & actions | Weight | Cost | Source |
+Aratech Echo Belt
+Premium (uncommon) · Requires attunement · Attuned
+Description
+Requires attunement
+While you wear this belt with its field on, Wisdom (Perception) checks made to see you have disadvantage, and you have advantage on Dexterity (Stealth) checks m… [263 chars #07c2b764]
+The success of this high-end stealth field generator emboldened Aratech to branch out into other hardware.
+| [−] 1 [+] [Attuned] [✎] [Sell] [×] | — | — | WH |
+Strength Enhancer
+Prototype (rare) · Requires attunement · Attuned
+Description
+Requires attunement
+While wearing this belt, your Strength score becomes 21. If your Strength is already equal to or greater than 21, it has no effect on you.
+This belt increases a users physical power with pneumaticized assistance joists that provide support and leverage in a minimal form-factor.
+| [−] 1 [+] [Attuned] [✎] [Sell] [×] | — | — | WH |
+Handwraps (Fine)
+Premium (uncommon)
+Description
+While wearing these handwraps, you have a +1 bonus to attack and damage rolls made with your unarmed strikes.
+| [−] 1 [+] [Equipped] [✎] [Sell] [×] | — | — | WH |
+Enhanced: Consumable (1)
+Item | Qty & actions | Weight | Cost | Source |
+Cryo Cell (Average)
+Premium (uncommon)
+Description
+You have a +1 bonus to attack and damage rolls made with this enhanced cryo cell. This bonus is in addition to any bonuses granted by the weapon. Once the cryo … [656 chars #29c7a15d]
+| [−] 1 [+] [Use] [✎] [Sell] [×] | — | — | EC |
+Enhanced: Item Modification (3)
+Item | Qty & actions | Weight | Cost | Source |
+Bonded Plates Mk I
+Standard (common)
+Description
+You gain a +1 bonus to AC against melee attacks and a -1 penalty to AC against ranged attacks while wearing this armor or wielding this shield.
+| [−] 1 [+] [Installed] [✎] [Sell] [×] | — | — | WH |
+Oscillating Amplifier Mk I
+Standard (common)
+Description
+While using this item as your focus, you gain a +1 bonus to melee tech attacks and a -1 penalty to ranged tech attacks.
+| [−] 1 [+] [Installed] [✎] [Sell] [×] | — | — | WH |
+Fadecasting Core (Training)
+Standard (common)
+Description
+While using this item as your focus, you gain a +1 bonus to the tech save DC of powers that require a Strength or Constitution saving throw and a -1 penalty to … [241 chars #10072127]
+| [−] 1 [+] [Installed] [✎] [Sell] [×] | — | — | WH |
+Enhanced: Shield (1)
+Item | Qty & actions | Weight | Cost | Source |
+Shield (Fine)
+Premium (uncommon)
+Base item [choose… (its damage, AC and weight) ▾]
+Description
+You have a +1 bonus to AC while wielding this shield.
+| [−] 1 [+] [Equipped] [✎] [Sell] [×] | — | — | WH |
+Enhanced: Weapon (1)
+Item | Qty & actions | Weight | Cost | Source |
+Weapon (Fine)
+Premium (uncommon)
+Base item [choose… (its damage, AC and weight) ▾]
+Description
+You have a +1 bonus to attack and damage rolls made with this enhanced weapon.
+| [−] 1 [+] [Equipped] [✎] [Sell] [×] | — | — | WH |
+Medical (1)
+Item | Qty & actions | Weight | Cost | Source |
+Medpac
+Description
+A medpac is a quick-acting syringe filled with a concentrated dose of kolto. As an action, you can use this medpac to restore hit points to a beast or humanoid … [443 chars #b7607503]
+| [−] 2 [+] [Use] [✎] [Sell] [×] | 1 lb | 300 cr | PHB |
+Storage (1)
+Item | Qty & actions | Weight | Cost | Source |
+Backpack
+Description
+A backpack stores 30 lb., not exceeding 1 cubic foot.
+| [−] 2 [+] [✎] [Sell] [×] | 10 lb | 50 cr | PHB |
+
+## Sheet: Classes & Progression
+[Level up]
+Fighter 5 Tactical Specialist Starting class
+Hit die d10 Primary Strength Saves Strength, Constitution HP by level 10 (max), 6, 6, 6, 6
+Versatile combatant who excels at both range and in melee
+Skill proficiencies 0 / 2 Choose two skills from Acrobatics, Animal Handling, Athletics, Lore, Insight, Intimidation, Perception, and Survival
+None chosen yet.
+[Choose a skill… ▾]
+Archetype [Tactical Specialist ▾]
+Read the options (14)
+Maneuvers 0 / 6 6 from Tactical Specialist
+None chosen yet.
+[Add a maneuver… ▾]
+Read the options
+Fighter Strategies 0 / 1 from the Fighter table (“Strategies Known”)
+None chosen yet.
+[Add from Fighter Strategies… ▾]
+Read the options (8)
+Fighting style 1 / 1 Fighter: Fighting Style
+Superiority Style [×]
+[]
+You are skilled at utilizing maneuvers to enhance your skills on the battlefield. You gain the following benefits:
+You learn one maneuver, detailed in Chapter 13. Your maneuver ability is Strength, Dexterity, or Constitution for physical maneuvers (your choice), Intelligence… [270 chars #da72aa1c]
+You gain one superiority die, which is a d4. This die changes as you gain levels: to d6 at 5th level, to d8 at 9th level, to d10 at 13th level, and to d12 at 17… [303 chars #032e0bd7]
+Maneuver 0 / 1 Superiority Style (Fighter Fighting Style)
+None chosen yet.
+[Choose a maneuver… ▾]
+Read the options (119)
+Class table
+Proficiency Bonus
++3 → +3 at 6th
+Features
+Extra Attack → Ability Score Improvement at 6th
+Maneuvers Known
+4 → 4 at 6th
+Superiority Dice Quantity
+3 → 3 at 6th
+Superiority Dice Size
+d6 → d6 at 6th
+Strategies Known
+1 → 1 at 6th
+| Proficiency Bonus | Features | Maneuvers Known | Superiority Dice Quantity | Superiority Dice Size | Strategies Known |
+Now (5th) | +3 | Extra Attack | 4 | 3 | d6 | 1 |
+Next (6th) | +3 | Ability Score Improvement | 4 | 3 | d6 | 1 |
+Armor All armor Weapons All blasters, all vibroweapons Tools None
+Engineer 2 Multiclass Tech caster
+Hit die d8 Primary Intelligence Saves Constitution, Intelligence HP by level 5, 5
+Tech caster who enhances items to benefit allies
+Multiclass skill 0 / 1 from the class's skill list
+None chosen yet.
+[Choose a skill… ▾]
+Multiclass tool 0 / 1 from the class's list
+None chosen yet.
+[Choose a tool… ▾]
+Archetype [— at 3rd level — ▾]
+Tech powers 0 / 7 Engineer table · max power level 1
+None chosen yet.
+[Learn a tech power… ▾]
+Read the options (99)
+Class table
+Proficiency Bonus
++2 → +2 at 3
+Features
+Infuse Item (+1), Tool Expertise → Engineering Discipline at 3
+Tech Powers Known
+7 → 9 at 3
+Tech Points
+4 → 6 at 3
+Max Power Level
+1st → 2nd at 3
+Potent Aptitude
+d4 → d4 at 3
+Modification Slots
+— → 4 at 3
+| Proficiency Bonus | Features | Tech Powers Known | Tech Points | Max Power Level | Potent Aptitude | Modification Slots |
+Now (2) | +2 | Infuse Item (+1), Tool Expertise | 7 | 4 | 1st | d4 | — |
+Next (3) | +2 | Engineering Discipline | 9 | 6 | 2nd | d4 | 4 |
+Armor Light armor Weapons Simple blasters, simple vibroweapons Tools Tinker's implements, one of your choice Multiclass grants Light armor
 
 ## Sheet: Class Features
 Engineer (4)
@@ -622,85 +818,6 @@ When you take the Attack action, you can replace one attack with an attempt to d
 Add a note
 Notes []
 
-## Sheet: Classes & Progression
-[Level up]
-Fighter 5 Tactical Specialist Starting class
-Hit die d10 Primary Strength Saves Strength, Constitution HP by level 10 (max), 6, 6, 6, 6
-Versatile combatant who excels at both range and in melee
-Skill proficiencies 0 / 2 Choose two skills from Acrobatics, Animal Handling, Athletics, Lore, Insight, Intimidation, Perception, and Survival
-None chosen yet.
-[Choose a skill… ▾]
-Archetype [Tactical Specialist ▾]
-Read the options (14)
-Maneuvers 0 / 6 6 from Tactical Specialist
-None chosen yet.
-[Add a maneuver… ▾]
-Read the options
-Fighter Strategies 0 / 1 from the Fighter table (“Strategies Known”)
-None chosen yet.
-[Add from Fighter Strategies… ▾]
-Read the options (8)
-Fighting style 1 / 1 Fighter: Fighting Style
-Superiority Style [×]
-[]
-You are skilled at utilizing maneuvers to enhance your skills on the battlefield. You gain the following benefits:
-You learn one maneuver, detailed in Chapter 13. Your maneuver ability is Strength, Dexterity, or Constitution for physical maneuvers (your choice), Intelligence… [270 chars #da72aa1c]
-You gain one superiority die, which is a d4. This die changes as you gain levels: to d6 at 5th level, to d8 at 9th level, to d10 at 13th level, and to d12 at 17… [303 chars #032e0bd7]
-Maneuver 0 / 1 Superiority Style (Fighter Fighting Style)
-None chosen yet.
-[Choose a maneuver… ▾]
-Read the options (119)
-Class table
-Proficiency Bonus
-+3 → +3 at 6th
-Features
-Extra Attack → Ability Score Improvement at 6th
-Maneuvers Known
-4 → 4 at 6th
-Superiority Dice Quantity
-3 → 3 at 6th
-Superiority Dice Size
-d6 → d6 at 6th
-Strategies Known
-1 → 1 at 6th
-| Proficiency Bonus | Features | Maneuvers Known | Superiority Dice Quantity | Superiority Dice Size | Strategies Known |
-Now (5th) | +3 | Extra Attack | 4 | 3 | d6 | 1 |
-Next (6th) | +3 | Ability Score Improvement | 4 | 3 | d6 | 1 |
-Armor All armor Weapons All blasters, all vibroweapons Tools None
-Engineer 2 Multiclass Tech caster
-Hit die d8 Primary Intelligence Saves Constitution, Intelligence HP by level 5, 5
-Tech caster who enhances items to benefit allies
-Multiclass skill 0 / 1 from the class's skill list
-None chosen yet.
-[Choose a skill… ▾]
-Multiclass tool 0 / 1 from the class's list
-None chosen yet.
-[Choose a tool… ▾]
-Archetype [— at 3rd level — ▾]
-Tech powers 0 / 7 Engineer table · max power level 1
-None chosen yet.
-[Learn a tech power… ▾]
-Read the options (99)
-Class table
-Proficiency Bonus
-+2 → +2 at 3
-Features
-Infuse Item (+1), Tool Expertise → Engineering Discipline at 3
-Tech Powers Known
-7 → 9 at 3
-Tech Points
-4 → 6 at 3
-Max Power Level
-1st → 2nd at 3
-Potent Aptitude
-d4 → d4 at 3
-Modification Slots
-— → 4 at 3
-| Proficiency Bonus | Features | Tech Powers Known | Tech Points | Max Power Level | Potent Aptitude | Modification Slots |
-Now (2) | +2 | Infuse Item (+1), Tool Expertise | 7 | 4 | 1st | d4 | — |
-Next (3) | +2 | Engineering Discipline | 9 | 6 | 2nd | d4 | 4 |
-Armor Light armor Weapons Simple blasters, simple vibroweapons Tools Tinker's implements, one of your choice Multiclass grants Light armor
-
 ## Sheet: Species
 Size
 Medium
@@ -787,122 +904,6 @@ None chosen yet.
 Languages 0 / 1 One of your choice
 None chosen yet.
 [Choose a language… ▾]
-
-## Sheet: Proficiencies & Languages
-Armor
-All armor
-Weapon
-All blasters all vibroweapons
-Tool
-One type of gaming set
-Other
-Light armor
-Skills & saves
-Insight Deception Strength Saving Throws Constitution Saving Throws
-Languages
-Galactic Basic Bothese
-✎ = custom proficiency added on the character.
-
-## Sheet: Equipment & Inventory
-Add an item
-[All items ▾] []
-Qty [1] [Add]
-2425 items from SW5E (data version 199). [Check for a newer list]
-Credits
-575 cr
-[] [] [Apply]
-Total weight
-26.5 lb
-of 315 lb max
-Attunement
-2 / 3
-Items
-13
-Weapon (1)
-Item | Qty & actions | Weight | Cost | Source |
-Blaster pistol
-1d6 Energy · Power cell (range 50/200), reload 16
-| [−] 1 [+] [Equipped] [✎] [Sell] [×] | 2.5 lb | 175 cr | PHB |
-Armor (1)
-Item | Qty & actions | Weight | Cost | Source |
-Fiber armor
-AC 12 + Dex modifier · Light
-Description
-Fiber armor is a type of armor that offers more protection than the lighter combat suit. Fiber armor is heavier overall than combat suits, and not quite as flex… [287 chars #295e4c98]
-| [−] 1 [+] [Equip] [✎] [Sell] [×] | 13 lb | 450 cr | PHB |
-Enhanced: Adventuring Gear (3)
-Item | Qty & actions | Weight | Cost | Source |
-Aratech Echo Belt
-Premium (uncommon) · Requires attunement · Attuned
-Description
-Requires attunement
-While you wear this belt with its field on, Wisdom (Perception) checks made to see you have disadvantage, and you have advantage on Dexterity (Stealth) checks m… [263 chars #07c2b764]
-The success of this high-end stealth field generator emboldened Aratech to branch out into other hardware.
-| [−] 1 [+] [Attuned] [✎] [Sell] [×] | — | — | WH |
-Strength Enhancer
-Prototype (rare) · Requires attunement · Attuned
-Description
-Requires attunement
-While wearing this belt, your Strength score becomes 21. If your Strength is already equal to or greater than 21, it has no effect on you.
-This belt increases a users physical power with pneumaticized assistance joists that provide support and leverage in a minimal form-factor.
-| [−] 1 [+] [Attuned] [✎] [Sell] [×] | — | — | WH |
-Handwraps (Fine)
-Premium (uncommon)
-Description
-While wearing these handwraps, you have a +1 bonus to attack and damage rolls made with your unarmed strikes.
-| [−] 1 [+] [Equipped] [✎] [Sell] [×] | — | — | WH |
-Enhanced: Consumable (1)
-Item | Qty & actions | Weight | Cost | Source |
-Cryo Cell (Average)
-Premium (uncommon)
-Description
-You have a +1 bonus to attack and damage rolls made with this enhanced cryo cell. This bonus is in addition to any bonuses granted by the weapon. Once the cryo … [656 chars #29c7a15d]
-| [−] 1 [+] [Use] [✎] [Sell] [×] | — | — | EC |
-Enhanced: Item Modification (3)
-Item | Qty & actions | Weight | Cost | Source |
-Bonded Plates Mk I
-Standard (common)
-Description
-You gain a +1 bonus to AC against melee attacks and a -1 penalty to AC against ranged attacks while wearing this armor or wielding this shield.
-| [−] 1 [+] [Installed] [✎] [Sell] [×] | — | — | WH |
-Oscillating Amplifier Mk I
-Standard (common)
-Description
-While using this item as your focus, you gain a +1 bonus to melee tech attacks and a -1 penalty to ranged tech attacks.
-| [−] 1 [+] [Installed] [✎] [Sell] [×] | — | — | WH |
-Fadecasting Core (Training)
-Standard (common)
-Description
-While using this item as your focus, you gain a +1 bonus to the tech save DC of powers that require a Strength or Constitution saving throw and a -1 penalty to … [241 chars #10072127]
-| [−] 1 [+] [Installed] [✎] [Sell] [×] | — | — | WH |
-Enhanced: Shield (1)
-Item | Qty & actions | Weight | Cost | Source |
-Shield (Fine)
-Premium (uncommon)
-Base item [choose… (its damage, AC and weight) ▾]
-Description
-You have a +1 bonus to AC while wielding this shield.
-| [−] 1 [+] [Equipped] [✎] [Sell] [×] | — | — | WH |
-Enhanced: Weapon (1)
-Item | Qty & actions | Weight | Cost | Source |
-Weapon (Fine)
-Premium (uncommon)
-Base item [choose… (its damage, AC and weight) ▾]
-Description
-You have a +1 bonus to attack and damage rolls made with this enhanced weapon.
-| [−] 1 [+] [Equipped] [✎] [Sell] [×] | — | — | WH |
-Medical (1)
-Item | Qty & actions | Weight | Cost | Source |
-Medpac
-Description
-A medpac is a quick-acting syringe filled with a concentrated dose of kolto. As an action, you can use this medpac to restore hit points to a beast or humanoid … [443 chars #b7607503]
-| [−] 2 [+] [Use] [✎] [Sell] [×] | 1 lb | 300 cr | PHB |
-Storage (1)
-Item | Qty & actions | Weight | Cost | Source |
-Backpack
-Description
-A backpack stores 30 lb., not exceeding 1 cubic foot.
-| [−] 2 [+] [✎] [Sell] [×] | 10 lb | 50 cr | PHB |
 
 ## Sheet: Personality & Appearance
 Personality Traits

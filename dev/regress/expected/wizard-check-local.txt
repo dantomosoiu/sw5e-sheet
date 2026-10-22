@@ -168,6 +168,12 @@ init: Initiative: d20 +2 · = +2 modifier
 death: Death saving throw: d20 +0
 hitdie|d8: Hit die (d8): d8 +3 · = +3 per die
 dice|1d4: 1d4: d4 +0
+attack|0: Vibrodagger attack: d20 +4 · = +4 modifier
+damage|0: Vibrodagger damage: d4 +2 · = +2 DEX modifier · Kinetic
+attack|1: Unarmed Strike attack: d20 +4 · = +4 modifier
+damage|1: Unarmed Strike damage: d4 +2 · = +2 DEX modifier (Unarmed Combatant) · Kinetic
+tech: Tech attack: d20 +6 · = +6 modifier
+pdmg|tech|Repair Droid|1|0|Intelligence: Repair Droid: healing: d8 +4 · = +4 INT modifier
 check|Strength: Strength check: d20 −1 · = −1 modifier
 save|Strength: Strength saving throw: d20 −1 · = −1 modifier
 skill|Strength|0: Athletics (STR): d20 −1 · = −1 modifier
@@ -198,12 +204,6 @@ skill|Charisma|0: Deception (CHA): d20 +0 · = +0 modifier
 skill|Charisma|1: Intimidation (CHA): d20 +0 · = +0 modifier
 skill|Charisma|2: Performance (CHA): d20 +0 · = +0 modifier
 skill|Charisma|3: Persuasion (CHA): d20 +0 · = +0 modifier
-attack|0: Vibrodagger attack: d20 +4 · = +4 modifier
-damage|0: Vibrodagger damage: d4 +2 · = +2 DEX modifier · Kinetic
-attack|1: Unarmed Strike attack: d20 +4 · = +4 modifier
-damage|1: Unarmed Strike damage: d4 +2 · = +2 DEX modifier (Unarmed Combatant) · Kinetic
-tech: Tech attack: d20 +6 · = +6 modifier
-pdmg|tech|Repair Droid|1|0|Intelligence: Repair Droid: healing: d8 +4 · = +4 INT modifier
 tool|One of your choice|proficient: One of your choice check: d20 +6 · = +4 INT modifier +2 proficiency
 tool|Slicer's kit|proficient: Slicer's kit check: d20 +6 · = +4 INT modifier +2 proficiency
 tool|armstech's implements|proficient: armstech's implements check: d20 +6 · = +4 INT modifier +2 proficiency
@@ -214,7 +214,7 @@ damage|1|crit: Unarmed Strike damage (critical): d4 d4 +2 · = +2 DEX modifier (
 ## Sheet: Overview
 Wizard Check (local)
 Zabrak · Engineer (Armstech Engineering) 4
-Level 4 Background: Scientist Proficiency +2 [Add a picture]
+Level 4 Background: Scientist Proficiency +2 [Upload a picture] [Picture link…]
 2,700 XP level 5 at 6,500 (3,800 to go)
 Still to choose (6): Armstech Modifications (4 more) · Engineer tech powers (10 more) · background skills · background tool · Coercive: skill proficiency · Crafters: tool proficiency
 
@@ -242,6 +242,7 @@ Vision
 Normal
 Play tracker
 [] [untyped ▾] [Damage] [Heal] [Temp HP]
+Enter: Damage · Shift + Enter: Heal
 Death saves ✓ [] [] [] ✗ [] [] [] [Roll]
 Tech points 12 / 12 [−] [+]
 Hit dice (d8) roll d8 +3, then Heal 4 / 4 [−] [+]
@@ -286,6 +287,34 @@ Max capacity
 120 lb
 Push / drag / lift
 240 lb
+
+## Sheet: Weapons & Attacks
+Weapon | To hit | Damage | Ability | Type | Properties |
+Vibrodagger
+Finesse, light, thrown (range 20/60)
+| +4 | 1d4+2 Kinetic | Dexterity | Simple Vibroweapon | Finesse, light, thrown (range 20/60) |
+Unarmed Strike
+| +4 | 1d4+2 Kinetic | Dexterity (finesse) | Unarmed | — |
+  ↳ hover weapons.1.attackBonus: Without tweaks or effects: 1 → now 4 / +3 Finesse: DEX +2 instead of STR · Unarmed Combatant Zabrak trait
+  ↳ hover weapons.1.damageBonus: Without tweaks or effects: 0 → now 2 / d4 Unarmed damage die (1 → d4) · Unarmed Combatant Zabrak trait / +2 Finesse: DEX +2 instead of STR · Unarmed Combatant Zabrak trait
+
+## Sheet: Tech Casting
+Tech points
+12 / 12
+Max power level
+2
+Save DC
+14
+Attack
++6
+1st-level powers (1)
+Repair Droid Feat: Techie (Background (Scientist)) Once per long rest
+[1st level · 2 points ▾] [Cast]
+[Cast at 1st level (available)]
+Healing 1d8+4
+Casting 1 action Range Touch Duration Instantaneous Source PHB
+A droid or construct you touch regains a number of hit points equal to 1d8 + your techcasting ability modifier.
+Overcharge Tech. When you cast this power using a tech slot of 2nd level or higher, the healing increases by 1d8 for each slot level above 1st.
 
 ## Sheet: Abilities & Saving Throws
 STR
@@ -368,33 +397,123 @@ Skill | Ability | Bonus | Passive | Proficiency |
   ↳ hover abilityScores.Intelligence.skills.4.modifier: Without tweaks or effects: 6 → now 8 / expertise Technology: expertise (already proficient) · Techie feat
   ↳ hover abilityScores.Intelligence.skills.4.modifier: Without tweaks or effects: 6 → now 8 / expertise Technology: expertise (already proficient) · Techie feat
 
-## Sheet: Weapons & Attacks
-Weapon | To hit | Damage | Ability | Type | Properties |
-Vibrodagger
-Finesse, light, thrown (range 20/60)
-| +4 | 1d4+2 Kinetic | Dexterity | Simple Vibroweapon | Finesse, light, thrown (range 20/60) |
-Unarmed Strike
-| +4 | 1d4+2 Kinetic | Dexterity (finesse) | Unarmed | — |
-  ↳ hover weapons.1.attackBonus: Without tweaks or effects: 1 → now 4 / +3 Finesse: DEX +2 instead of STR · Unarmed Combatant Zabrak trait
-  ↳ hover weapons.1.damageBonus: Without tweaks or effects: 0 → now 2 / d4 Unarmed damage die (1 → d4) · Unarmed Combatant Zabrak trait / +2 Finesse: DEX +2 instead of STR · Unarmed Combatant Zabrak trait
+## Sheet: Proficiencies & Languages
+Armor
+Light armor medium armor · Bonus Proficiencies
+Weapon
+Simple blasters simple vibroweapons martial blasters · Bonus Proficiencies martial vibroweapons · Bonus Proficiencies
+Tool
+One of your choice Slicer's kit ✎armstech's implements · Bonus Proficiencies Tinker's implements (expertise) · Tool Expertise
+Skills & saves
+Investigation Lore Technology Medicine Constitution Saving Throws Intelligence Saving Throws
+Languages
+Galactic Basic Zabraki Sullustese
+✎ = custom proficiency added on the character.
 
-## Sheet: Tech Casting
-Tech points
-12 / 12
-Max power level
-2
-Save DC
-14
-Attack
-+6
-1st-level powers (1)
-Repair Droid Feat: Techie (Background (Scientist)) Once per long rest
-[1st level · 2 points ▾] [Cast]
-[Cast at 1st level (available)]
-Healing 1d8+4
-Casting 1 action Range Touch Duration Instantaneous Source PHB
-A droid or construct you touch regains a number of hit points equal to 1d8 + your techcasting ability modifier.
-Overcharge Tech. When you cast this power using a tech slot of 2nd level or higher, the healing increases by 1d8 for each slot level above 1st.
+## Sheet: Equipment & Inventory
+Add an item
+[All items ▾] []
+Qty [1] [Add]
+2425 items from SW5E (data version 199). [Check for a newer list]
+Credits
+100 cr
+[] [] [Apply]
+Total weight
+17 lb
+of 120 lb max
+Attunement
+0 / 2
+Items
+9
+Weapon (1)
+Item | Qty & actions | Weight | Cost | Source |
+Vibrodagger
+1d4 Kinetic · Finesse, light, thrown (range 20/60)
+| [−] 1 [+] [Equipped] [✎] [Sell] [×] | 0.5 lb | 50 cr | PHB |
+Armor (1)
+Item | Qty & actions | Weight | Cost | Source |
+Combat suit
+AC 11 + Dex modifier · Light
+Description
+Combat suits are seen all over the galaxy, and can be found for sale by almost any merchant who dealt in weapons and armor. Many such suits are used by military… [290 chars #9b071874]
+The suit itself offers decent protection from most types of attacks while maintaining maximum flexibility and minimum weight. However this armor is only recommended for light skirmishes.
+| [−] 1 [+] [Equipped] [✎] [Sell] [×] | 10 lb | 100 cr | PHB |
+Clothing (1)
+Item | Qty & actions | Weight | Cost | Source |
+Clothes, common
+| [−] 1 [+] [✎] [Sell] [×] | 3 lb | 5 cr | PHB |
+Data Recording And Storage (2)
+Item | Qty & actions | Weight | Cost | Source |
+Wristpad
+Description
+A wristpad is a harness with an integrated datapad and holoprojector interface that fits on the forearm and includes self-charging battery packs.
+| [−] 1 [+] [✎] [Sell] [×] | 2 lb | 600 cr | PHB |
+Datapad
+Description
+A datapad is a small electronic device used for the input, storage and displaying of information. It features a holoprojective surface for 3D viewing.
+| [−] 1 [+] [✎] [Sell] [×] | 0.5 lb | 100 cr | PHB |
+Storage (1)
+Item | Qty & actions | Weight | Cost | Source |
+Pouch
+Description
+A pouch stores 6.00 lb., not exceeding 1/5 cubic foot.
+| [−] 1 [+] [✎] [Sell] [×] | 1 lb | 5 cr | PHB |
+Tool (1)
+Item | Qty & actions | Weight | Cost | Source |
+Tinker's implements
+| [−] 1 [+] [✎] [Sell] [×] | — | 500 cr | PHB |
+Custom items (2)
+Item | Qty & actions | Weight | Cost | Source |
+Dungeoneer's pack custom
+Description
+Starting equipment.
+| [−] 1 [+] [Unpack] [✎] [Sell] [×] | — | — | |
+Book on your field of research custom
+Description
+Starting equipment.
+| [−] 1 [+] [✎] [Sell] [×] | — | — | |
+
+## Sheet: Classes & Progression
+[Level up]
+Engineer 4 Armstech Engineering Starting class Tech caster
+Hit die d8 Primary Intelligence Saves Constitution, Intelligence HP by level 8 (max), 5, 6, 5
+Tech caster who enhances items to benefit allies
+Ability score improvements
+Ability Score Improvement: Intelligence +2
+Skill proficiencies 3 / 3 Choose three from Investigation, Lore, Medicine, Nature, Piloting, and Technology
+Technology [×] Lore [×] Investigation [×]
+Tool proficiency 1 / 1 Tinker's implements, one of your choice
+Slicer's kit [×]
+Archetype [Armstech Engineering ▾]
+Read the options (14)
+Tech powers 0 / 10 Engineer table · max power level 2
+None chosen yet.
+[Learn a tech power… ▾]
+Read the options (142)
+Armstech Modifications 0 / 4 Armstech Engineering, 3rd level · can be changed on a rest
+Modified Weaponry [— choose from your inventory — ▾] 4 slots
+None chosen yet.
+[Add from Armstech Modifications… ▾]
+Read the options (32)
+Class table
+Proficiency Bonus
++2 → +3 at 5
+Features
+Ability Score Improvement → — at 5
+Tech Powers Known
+10 → 12 at 5
+Tech Points
+8 → 10 at 5
+Max Power Level
+2nd → 3rd at 5
+Potent Aptitude
+d4 → d6 at 5
+Modification Slots
+4 → 5 at 5
+| Proficiency Bonus | Features | Tech Powers Known | Tech Points | Max Power Level | Potent Aptitude | Modification Slots |
+Now (4) | +2 | Ability Score Improvement | 10 | 8 | 2nd | d4 | 4 |
+Next (5) | +3 | — | 12 | 10 | 3rd | d6 | 5 |
+Armor Light armor Weapons Simple blasters, simple vibroweapons Tools Tinker's implements, one of your choice
 
 ## Sheet: Class Features
 Engineer (6)
@@ -497,48 +616,6 @@ You gain proficiency in the Technology skill. If you are already proficient in i
 You learn the repair droid tech power. You can cast it once, using supplies scavenged around you, without the use of a wristpad and without spending tech points… [226 chars #d0ad715a]
 Add a note
 Notes []
-
-## Sheet: Classes & Progression
-[Level up]
-Engineer 4 Armstech Engineering Starting class Tech caster
-Hit die d8 Primary Intelligence Saves Constitution, Intelligence HP by level 8 (max), 5, 6, 5
-Tech caster who enhances items to benefit allies
-Ability score improvements
-Ability Score Improvement: Intelligence +2
-Skill proficiencies 3 / 3 Choose three from Investigation, Lore, Medicine, Nature, Piloting, and Technology
-Technology [×] Lore [×] Investigation [×]
-Tool proficiency 1 / 1 Tinker's implements, one of your choice
-Slicer's kit [×]
-Archetype [Armstech Engineering ▾]
-Read the options (14)
-Tech powers 0 / 10 Engineer table · max power level 2
-None chosen yet.
-[Learn a tech power… ▾]
-Read the options (142)
-Armstech Modifications 0 / 4 Armstech Engineering, 3rd level · can be changed on a rest
-Modified Weaponry [— choose from your inventory — ▾] 4 slots
-None chosen yet.
-[Add from Armstech Modifications… ▾]
-Read the options (32)
-Class table
-Proficiency Bonus
-+2 → +3 at 5
-Features
-Ability Score Improvement → — at 5
-Tech Powers Known
-10 → 12 at 5
-Tech Points
-8 → 10 at 5
-Max Power Level
-2nd → 3rd at 5
-Potent Aptitude
-d4 → d6 at 5
-Modification Slots
-4 → 5 at 5
-| Proficiency Bonus | Features | Tech Powers Known | Tech Points | Max Power Level | Potent Aptitude | Modification Slots |
-Now (4) | +2 | Ability Score Improvement | 10 | 8 | 2nd | d4 | 4 |
-Next (5) | +3 | — | 12 | 10 | 3rd | d6 | 5 |
-Armor Light armor Weapons Simple blasters, simple vibroweapons Tools Tinker's implements, one of your choice
 
 ## Sheet: Species
 Size
@@ -655,82 +732,6 @@ None chosen yet.
 [Choose a tool… ▾]
 Languages 1 / 1 One of your choice
 Sullustese [×]
-
-## Sheet: Proficiencies & Languages
-Armor
-Light armor medium armor · Bonus Proficiencies
-Weapon
-Simple blasters simple vibroweapons martial blasters · Bonus Proficiencies martial vibroweapons · Bonus Proficiencies
-Tool
-One of your choice Slicer's kit ✎armstech's implements · Bonus Proficiencies Tinker's implements (expertise) · Tool Expertise
-Skills & saves
-Investigation Lore Technology Medicine Constitution Saving Throws Intelligence Saving Throws
-Languages
-Galactic Basic Zabraki Sullustese
-✎ = custom proficiency added on the character.
-
-## Sheet: Equipment & Inventory
-Add an item
-[All items ▾] []
-Qty [1] [Add]
-2425 items from SW5E (data version 199). [Check for a newer list]
-Credits
-100 cr
-[] [] [Apply]
-Total weight
-17 lb
-of 120 lb max
-Attunement
-0 / 2
-Items
-9
-Weapon (1)
-Item | Qty & actions | Weight | Cost | Source |
-Vibrodagger
-1d4 Kinetic · Finesse, light, thrown (range 20/60)
-| [−] 1 [+] [Equipped] [✎] [Sell] [×] | 0.5 lb | 50 cr | PHB |
-Armor (1)
-Item | Qty & actions | Weight | Cost | Source |
-Combat suit
-AC 11 + Dex modifier · Light
-Description
-Combat suits are seen all over the galaxy, and can be found for sale by almost any merchant who dealt in weapons and armor. Many such suits are used by military… [290 chars #9b071874]
-The suit itself offers decent protection from most types of attacks while maintaining maximum flexibility and minimum weight. However this armor is only recommended for light skirmishes.
-| [−] 1 [+] [Equipped] [✎] [Sell] [×] | 10 lb | 100 cr | PHB |
-Clothing (1)
-Item | Qty & actions | Weight | Cost | Source |
-Clothes, common
-| [−] 1 [+] [✎] [Sell] [×] | 3 lb | 5 cr | PHB |
-Data Recording And Storage (2)
-Item | Qty & actions | Weight | Cost | Source |
-Wristpad
-Description
-A wristpad is a harness with an integrated datapad and holoprojector interface that fits on the forearm and includes self-charging battery packs.
-| [−] 1 [+] [✎] [Sell] [×] | 2 lb | 600 cr | PHB |
-Datapad
-Description
-A datapad is a small electronic device used for the input, storage and displaying of information. It features a holoprojective surface for 3D viewing.
-| [−] 1 [+] [✎] [Sell] [×] | 0.5 lb | 100 cr | PHB |
-Storage (1)
-Item | Qty & actions | Weight | Cost | Source |
-Pouch
-Description
-A pouch stores 6.00 lb., not exceeding 1/5 cubic foot.
-| [−] 1 [+] [✎] [Sell] [×] | 1 lb | 5 cr | PHB |
-Tool (1)
-Item | Qty & actions | Weight | Cost | Source |
-Tinker's implements
-| [−] 1 [+] [✎] [Sell] [×] | — | 500 cr | PHB |
-Custom items (2)
-Item | Qty & actions | Weight | Cost | Source |
-Dungeoneer's pack custom
-Description
-Starting equipment.
-| [−] 1 [+] [Unpack] [✎] [Sell] [×] | — | — | |
-Book on your field of research custom
-Description
-Starting equipment.
-| [−] 1 [+] [✎] [Sell] [×] | — | — | |
 
 ## Sheet: Personality & Appearance
 Personality Traits

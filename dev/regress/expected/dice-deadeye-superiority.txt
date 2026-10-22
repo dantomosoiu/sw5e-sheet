@@ -149,6 +149,13 @@ init: Initiative: d20 +3 · = +3 modifier
 death: Death saving throw: d20 +0
 hitdie|d10: Hit die (d10): d10 +2 · = +2 per die
 dice|1d8: 1d8: d8 +0
+attack|0: Unarmed Strike attack: d20 +4 · = +4 modifier
+damage|0: Unarmed Strike damage: no dice +1 · = +1 unarmed strike · Kinetic · option: Ranger's Quarry +1d8
+supdie: Superiority die: d8 +0
+maneuver|Physical|Dexterity: Physical maneuver attack: d20 +7 · = +7 modifier
+maneuver|Mental|Wisdom: Mental maneuver attack: d20 +7 · = +7 modifier
+maneuver|General|Dexterity: General maneuver attack: d20 +7 · = +7 modifier
+tech: Tech attack: d20 +6 · = +6 modifier
 check|Strength: Strength check: d20 +0 · = +0 modifier
 save|Strength: Strength saving throw: d20 +4 · = +4 modifier
 skill|Strength|0: Athletics (STR): d20 +0 · = +0 modifier
@@ -179,20 +186,13 @@ skill|Charisma|0: Deception (CHA): d20 +3 · = +3 modifier
 skill|Charisma|1: Intimidation (CHA): d20 −1 · = −1 modifier
 skill|Charisma|2: Performance (CHA): d20 −1 · = −1 modifier
 skill|Charisma|3: Persuasion (CHA): d20 −1 · = −1 modifier
-attack|0: Unarmed Strike attack: d20 +4 · = +4 modifier
-damage|0: Unarmed Strike damage: no dice +1 · = +1 unarmed strike · Kinetic · option: Ranger's Quarry +1d8
-supdie: Superiority die: d8 +0
-maneuver|Physical|Dexterity: Physical maneuver attack: d20 +7 · = +7 modifier
-maneuver|Mental|Wisdom: Mental maneuver attack: d20 +7 · = +7 modifier
-maneuver|General|Dexterity: General maneuver attack: d20 +7 · = +7 modifier
-tech: Tech attack: d20 +6 · = +6 modifier
 tool|One type of gaming set|proficient: One type of gaming set check: d20 +6 · = +2 INT modifier +4 proficiency
 damage|0|crit: Unarmed Strike damage (critical): no dice +1 · = +1 unarmed strike · Kinetic · critical · option: Ranger's Quarry +1d8
 
 ## Sheet: Overview
 Rakatan Test (local)
 Human · Scout (Deadeye Technique) 9
-Level 9 Background: Noble Lawful Light Proficiency +4 [Add a picture]
+Level 9 Background: Noble Lawful Light Proficiency +4 [Upload a picture] [Picture link…]
 6,500 XP level 10 at 64,000 (57,500 to go)
 Level 9 usually needs 48,000 XP (you have 6,500).
 Still to choose (14): Scout skills (3 more) · Scout Expertise (2 more) · Scout Routines (2 more) · Scout maneuvers (6 more) · Scout tech powers (12 more) · Figh… [461 chars #1a666256]
@@ -220,6 +220,7 @@ Vision
 Normal
 Play tracker
 [] [untyped ▾] [Damage] [Heal] [Temp HP]
+Enter: Damage · Shift + Enter: Heal
 Death saves ✓ [] [] [] ✗ [] [] [] [Roll]
 Superiority dice d8 4 / 4 [−] [+]
 Tech points 11 / 11 [−] [+]
@@ -260,6 +261,40 @@ Max capacity
 150 lb
 Push / drag / lift
 300 lb
+
+## Sheet: Weapons & Attacks
+Weapon | To hit | Damage | Ability | Type | Properties |
+Unarmed Strike
+| +4 | 1 Kinetic | Strength | Unarmed | — |
+
+## Sheet: Superiority & Maneuvers
+Maneuvers Known
+6
+Superiority Dice Quantity
+4
+Superiority Dice Size
+d8
+Physical maneuver DC
+15
+DEX · attack +7
+Mental maneuver DC
+15
+WIS · attack +7
+General maneuver DC
+15
+DEX · attack +7
+Dice come from the class table at your level; save DCs are calculated here as 8 + proficiency + your best eligible ability modifier (SW5E's site does not compute superiority).
+
+## Sheet: Tech Casting
+Tech points
+11 / 11
+Max power level
+3
+Save DC
+14
+Attack
++6
+No powers known.
 
 ## Sheet: Abilities & Saving Throws
 STR
@@ -346,39 +381,88 @@ Skill | Ability | Bonus | Passive | Proficiency |
 (Not proficient) Survival | WIS | +3 | 13 | — |
 (Not proficient) Technology | INT | +2 | 12 | — |
 
-## Sheet: Weapons & Attacks
-Weapon | To hit | Damage | Ability | Type | Properties |
-Unarmed Strike
-| +4 | 1 Kinetic | Strength | Unarmed | — |
+## Sheet: Proficiencies & Languages
+Armor
+Light armor medium armor
+Weapon
+All blasters all vibroweapons
+Tool
+One type of gaming set
+Skills & saves
+Stealth Deception Strength Saving Throws Dexterity Saving Throws
+Languages
+Galactic Basic
+✎ = custom proficiency added on the character.
 
-## Sheet: Superiority & Maneuvers
-Maneuvers Known
-6
-Superiority Dice Quantity
-4
-Superiority Dice Size
-d8
-Physical maneuver DC
-15
-DEX · attack +7
-Mental maneuver DC
-15
-WIS · attack +7
-General maneuver DC
-15
-DEX · attack +7
-Dice come from the class table at your level; save DCs are calculated here as 8 + proficiency + your best eligible ability modifier (SW5E's site does not compute superiority).
+## Sheet: Equipment & Inventory
+Add an item
+[All items ▾] []
+Qty [1] [Add]
+2425 items from SW5E (data version 199). [Check for a newer list]
+Credits
+0 cr
+[] [] [Apply]
+Total weight
+0 lb
+of 150 lb max
+Attunement
+0 / 4
+Items
+0
+No equipment.
 
-## Sheet: Tech Casting
-Tech points
-11 / 11
-Max power level
-3
-Save DC
-14
-Attack
-+6
-No powers known.
+## Sheet: Classes & Progression
+[Level up]
+Scout 9 Deadeye Technique Starting class Tech caster
+Hit die d10 Primary Dexterity Saves Strength, Dexterity HP by level 10 (max), 6, 6, 6, 6, 6, 6, 6, 6
+Versatile combatant who blends tech powers with weapons
+Ability score improvements
+ASI: Dexterity +2 ASI: Intelligence +2
+Skill proficiencies 0 / 3 Choose three from Animal Handling, Athletics, Insight, Investigation, Perception, Piloting, Stealth, Survival, and Technology
+None chosen yet.
+[Choose a skill… ▾]
+Expertise 0 / 2 Scout 6th and 14th level
+None chosen yet.
+[Choose a skill or tool you know… ▾]
+Archetype [Deadeye Technique ▾]
+Read the options (15)
+Maneuvers 0 / 6 6 from Deadeye Technique
+None chosen yet.
+[Add a maneuver… ▾]
+Read the options
+Tech powers 0 / 12 Scout table · max power level 3
+None chosen yet.
+[Learn a tech power… ▾]
+Read the options (170)
+Scout Routines 0 / 2 from the Scout table (“Routines Known”)
+None chosen yet.
+[Add from Scout Routines… ▾]
+Read the options (8)
+Fighting style 0 / 1 Scout: Fighting Style
+None chosen yet.
+[Choose a fighting style… ▾]
+Read the options (32)
+Class table
+Proficiency Bonus
++4 → +4 at 10th
+Features
+— → Commando at 10th
+Ranger's Quarry
+d8 → d8 at 10th
+Tech Powers Known
+12 → 13 at 10th
+Tech Points
+9 → 10 at 10th
+Max Power Level
+3rd → 3rd at 10th
+Routines Known
+2 → 2 at 10th
+Routine Radius
+15 ft. → 15 ft. at 10th
+| Proficiency Bonus | Features | Ranger's Quarry | Tech Powers Known | Tech Points | Max Power Level | Routines Known | Routine Radius |
+Now (9th) | +4 | — | d8 | 12 | 9 | 3rd | 2 | 15 ft. |
+Next (10th) | +4 | Commando | d8 | 13 | 10 | 3rd | 2 | 15 ft. |
+Armor Light armor, medium armor Weapons All blasters, all vibroweapons Tools None
 
 ## Sheet: Class Features
 Scout (9)
@@ -566,59 +650,6 @@ You've learned to blend the skills of your different classes. Choose two of the 
 Add a note
 Notes []
 
-## Sheet: Classes & Progression
-[Level up]
-Scout 9 Deadeye Technique Starting class Tech caster
-Hit die d10 Primary Dexterity Saves Strength, Dexterity HP by level 10 (max), 6, 6, 6, 6, 6, 6, 6, 6
-Versatile combatant who blends tech powers with weapons
-Ability score improvements
-ASI: Dexterity +2 ASI: Intelligence +2
-Skill proficiencies 0 / 3 Choose three from Animal Handling, Athletics, Insight, Investigation, Perception, Piloting, Stealth, Survival, and Technology
-None chosen yet.
-[Choose a skill… ▾]
-Expertise 0 / 2 Scout 6th and 14th level
-None chosen yet.
-[Choose a skill or tool you know… ▾]
-Archetype [Deadeye Technique ▾]
-Read the options (15)
-Maneuvers 0 / 6 6 from Deadeye Technique
-None chosen yet.
-[Add a maneuver… ▾]
-Read the options
-Tech powers 0 / 12 Scout table · max power level 3
-None chosen yet.
-[Learn a tech power… ▾]
-Read the options (170)
-Scout Routines 0 / 2 from the Scout table (“Routines Known”)
-None chosen yet.
-[Add from Scout Routines… ▾]
-Read the options (8)
-Fighting style 0 / 1 Scout: Fighting Style
-None chosen yet.
-[Choose a fighting style… ▾]
-Read the options (32)
-Class table
-Proficiency Bonus
-+4 → +4 at 10th
-Features
-— → Commando at 10th
-Ranger's Quarry
-d8 → d8 at 10th
-Tech Powers Known
-12 → 13 at 10th
-Tech Points
-9 → 10 at 10th
-Max Power Level
-3rd → 3rd at 10th
-Routines Known
-2 → 2 at 10th
-Routine Radius
-15 ft. → 15 ft. at 10th
-| Proficiency Bonus | Features | Ranger's Quarry | Tech Powers Known | Tech Points | Max Power Level | Routines Known | Routine Radius |
-Now (9th) | +4 | — | d8 | 12 | 9 | 3rd | 2 | 15 ft. |
-Next (10th) | +4 | Commando | d8 | 13 | 10 | 3rd | 2 | 15 ft. |
-Armor Light armor, medium armor Weapons All blasters, all vibroweapons Tools None
-
 ## Sheet: Species
 Size
 Medium
@@ -720,36 +751,6 @@ None chosen yet.
 Languages 0 / 1 One of your choice
 None chosen yet.
 [Choose a language… ▾]
-
-## Sheet: Proficiencies & Languages
-Armor
-Light armor medium armor
-Weapon
-All blasters all vibroweapons
-Tool
-One type of gaming set
-Skills & saves
-Stealth Deception Strength Saving Throws Dexterity Saving Throws
-Languages
-Galactic Basic
-✎ = custom proficiency added on the character.
-
-## Sheet: Equipment & Inventory
-Add an item
-[All items ▾] []
-Qty [1] [Add]
-2425 items from SW5E (data version 199). [Check for a newer list]
-Credits
-0 cr
-[] [] [Apply]
-Total weight
-0 lb
-of 150 lb max
-Attunement
-0 / 4
-Items
-0
-No equipment.
 
 ## Sheet: Personality & Appearance
 Personality Traits

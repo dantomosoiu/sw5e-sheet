@@ -182,6 +182,9 @@ init: Initiative: d20 +6 · = +6 modifier
 death: Death saving throw: d20 +0
 hitdie|d8: Hit die (d8): d8 +2 · = +2 per die
 dice|1d12: 1d12: d12 +0
+attack|0: Unarmed Strike attack: d20 +12 · = +12 modifier
+damage|0: Unarmed Strike damage: d12 +6 · = +6 DEX modifier (Martial Arts) · Kinetic
+pattack|Tech|12: Tech attack: d20 +12 · = +12 modifier
 check|Strength: Strength check: d20 +0 · = +0 modifier
 save|Strength: Strength saving throw: d20 +6 · = +6 modifier
 skill|Strength|0: Athletics (STR): d20 +0 · = +0 modifier
@@ -212,16 +215,13 @@ skill|Charisma|0: Deception (CHA): d20 +5 · = +5 modifier
 skill|Charisma|1: Intimidation (CHA): d20 −1 · = −1 modifier
 skill|Charisma|2: Performance (CHA): d20 −1 · = −1 modifier
 skill|Charisma|3: Persuasion (CHA): d20 −1 · = −1 modifier
-attack|0: Unarmed Strike attack: d20 +12 · = +12 modifier
-damage|0: Unarmed Strike damage: d12 +6 · = +6 DEX modifier (Martial Arts) · Kinetic
-pattack|Tech|12: Tech attack: d20 +12 · = +12 modifier
 tool|One type of gaming set|proficient: One type of gaming set check: d20 +8 · = +2 INT modifier +6 proficiency
 damage|0|crit: Unarmed Strike damage (critical): d12 d12 +6 · = +6 DEX modifier (Martial Arts) · Kinetic · critical
 
 ## Sheet: Overview
 Rakatan Test (local)
 Human · Monk (Rakatan Order) 20
-Level 20 Background: Noble Lawful Light Proficiency +6 [Add a picture]
+Level 20 Background: Noble Lawful Light Proficiency +6 [Upload a picture] [Picture link…]
 6,500 XP highest level
 Level 20 usually needs 355,000 XP (you have 6,500).
 Still to choose (20): Monk skills (2 more) · Monk 8th level: ability score improvement or feat · Monk 10th level: ability score improvement or feat · Monk 12th … [780 chars #ac20e78f]
@@ -253,6 +253,7 @@ Vision
 Normal
 Play tracker
 [] [untyped ▾] [Damage] [Heal] [Temp HP]
+Enter: Damage · Shift + Enter: Heal
 Death saves ✓ [] [] [] ✗ [] [] [] [Roll]
 Tech points 16 / 16 [−] [+]
 Hit dice (d8) roll d8 +2, then Heal 20 / 20 [−] [+]
@@ -302,6 +303,44 @@ Max capacity
 150 lb
 Push / drag / lift
 300 lb
+
+## Sheet: Weapons & Attacks
+Weapon | To hit | Damage | Ability | Type | Properties |
+Unarmed Strike
+| +12 | 1d12+6 Kinetic | Dexterity (finesse) | Unarmed | — |
+  ↳ hover weapons.0.attackBonus: Without tweaks or effects: 6 → now 12 / +6 Finesse: DEX +6 instead of STR · Martial Arts Monk feature / +1 DEX modifier (+2 score) · Perfect Self Monk feature
+  ↳ hover weapons.0.damageBonus: Without tweaks or effects: 1 → now 6 / d12 Unarmed damage die (1 → d12) · Martial Arts Monk feature / +6 Finesse: DEX +6 instead of… [249 chars #209a5fb5]
+
+## Sheet: Tech Casting
+Tech points
+16 / 16
+Max power level
+4
+Save DC
+20
+WIS
+Attack
++12
+WIS
+4th-level: available
+Rakatan Order: SW5E's numbers don't follow the rules here, so points (table + the best of Intelligence/Wisdom/Charisma), DC and attack are worked out on this sheet.
+At-will powers (1)
+Encrypted Message Rakatan Order
+[Cast]
+Casting 1 action Range 120 feet Duration 1 round DC / attack 20 / +12 (WIS) Source PHB
+You point your finger toward a creature within range that possesses a commlink and whisper a message. The target (and only the target) hears the message and can… [279 chars #d9647152]
+You can cast this power through solid objects if you are familiar with the target and know it is beyond the barrier. 1 foot of stone, 1 inch of common metal, a … [322 chars #97726ed9]
+1st-level powers (2)
+Absorb Energy Rakatan Order
+[1st level · 2 points ▾] [Cast]
+Casting 1 reaction, which you take when you take acid, cold, energy, fire, ion, kinetic, lightning, or sonic damage Range Self Duration 1 round DC / attack 20 / +12 (WIS) Source PHB
+The power captures some of the incoming energy, lessening its effect on you and storing it for your next melee attack. You have resistance to the triggering dam… [352 chars #7492347e]
+Overcharge Tech. When you cast this power using a power slot of 2nd level or higher, the extra damage increases by 1d6 for each slot level above 1st.
+Analyze Rakatan Order Harmonious Rakatan Uses Harmonious Rakatan cast only
+[Cast at 1st level] 1/1 Harmonious Rakatan uses left
+Casting 1 minute Range Touch Duration Instantaneous DC / attack 20 / +12 (WIS) Source PHB
+You choose one object that you must touch throughout the casting of the power. If it is an enhanced or modified item, you learn its properties and how to use th… [380 chars #f07ac2a0]
+If you instead touch a creature throughout the casting, you learn what tech powers, if any, are currently affecting it.
 
 ## Sheet: Abilities & Saving Throws
 STR
@@ -418,43 +457,84 @@ Skill | Ability | Bonus | Passive | Proficiency |
   ↳ hover abilityScores.Wisdom.skills.4.modifier: Without tweaks or effects: 5 → now 6 / +1 WIS modifier (+2 score) · Perfect Self Monk feature
 (Not proficient) Technology | INT | +2 | 12 | — |
 
-## Sheet: Weapons & Attacks
-Weapon | To hit | Damage | Ability | Type | Properties |
-Unarmed Strike
-| +12 | 1d12+6 Kinetic | Dexterity (finesse) | Unarmed | — |
-  ↳ hover weapons.0.attackBonus: Without tweaks or effects: 6 → now 12 / +6 Finesse: DEX +6 instead of STR · Martial Arts Monk feature / +1 DEX modifier (+2 score) · Perfect Self Monk feature
-  ↳ hover weapons.0.damageBonus: Without tweaks or effects: 1 → now 6 / d12 Unarmed damage die (1 → d12) · Martial Arts Monk feature / +6 Finesse: DEX +6 instead of… [249 chars #209a5fb5]
+## Sheet: Proficiencies & Languages
+Armor
+None
+Weapon
+Simple blasters simple vibroweapons martial vibroweapons that lack the dexterity heavy special and two-handed properties
+Tool
+One type of gaming set
+Skills & saves
+Deception Strength Saving Throws Dexterity Saving Throws Strength Saving Throws Dexterity Saving Throws Constitution Saving Throws Intelligence Saving Throws Wisdom Saving Throws Charisma Saving Throws
+Languages
+Galactic Basic
+✎ = custom proficiency added on the character.
 
-## Sheet: Tech Casting
-Tech points
-16 / 16
-Max power level
-4
-Save DC
-20
-WIS
-Attack
-+12
-WIS
-4th-level: available
-Rakatan Order: SW5E's numbers don't follow the rules here, so points (table + the best of Intelligence/Wisdom/Charisma), DC and attack are worked out on this sheet.
-At-will powers (1)
-Encrypted Message Rakatan Order
-[Cast]
-Casting 1 action Range 120 feet Duration 1 round DC / attack 20 / +12 (WIS) Source PHB
+## Sheet: Equipment & Inventory
+Add an item
+[All items ▾] []
+Qty [1] [Add]
+2425 items from SW5E (data version 199). [Check for a newer list]
+Credits
+0 cr
+[] [] [Apply]
+Total weight
+0 lb
+of 150 lb max
+Attunement
+0 / 6
+Items
+0
+No equipment.
+
+## Sheet: Classes & Progression
+Monk 20 Rakatan Order Starting class
+Hit die d8 Primary Dexterity Saves Strength, Dexterity HP by level 8 (max), 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5
+Unarmed combatant who uses focus to fuel abilities
+Ability score improvements
+ASI: Dexterity +2
+Skill proficiencies 0 / 2 Choose two from Acrobatics, Athletics, Insight, Lore, Perception, and Stealth
+None chosen yet.
+[Choose a skill… ▾]
+Archetype [Rakatan Order ▾]
+Read the options (13)
+Tech powers 2 / 20 Rakatan Order table · max power level 4
+Encrypted Message at-will [×]
 You point your finger toward a creature within range that possesses a commlink and whisper a message. The target (and only the target) hears the message and can… [279 chars #d9647152]
 You can cast this power through solid objects if you are familiar with the target and know it is beyond the barrier. 1 foot of stone, 1 inch of common metal, a … [322 chars #97726ed9]
-1st-level powers (2)
-Absorb Energy Rakatan Order
-[1st level · 2 points ▾] [Cast]
-Casting 1 reaction, which you take when you take acid, cold, energy, fire, ion, kinetic, lightning, or sonic damage Range Self Duration 1 round DC / attack 20 / +12 (WIS) Source PHB
+Absorb Energy 1st level [×]
 The power captures some of the incoming energy, lessening its effect on you and storing it for your next melee attack. You have resistance to the triggering dam… [352 chars #7492347e]
 Overcharge Tech. When you cast this power using a power slot of 2nd level or higher, the extra damage increases by 1d6 for each slot level above 1st.
-Analyze Rakatan Order Harmonious Rakatan Uses Harmonious Rakatan cast only
-[Cast at 1st level] 1/1 Harmonious Rakatan uses left
-Casting 1 minute Range Touch Duration Instantaneous DC / attack 20 / +12 (WIS) Source PHB
+[Learn a tech power… ▾]
+Read the options (184)
+Monastic Vows 0 / 5 from the Monk table (“Monastic Vows”)
+None chosen yet.
+[Add from Monastic Vows… ▾]
+Read the options (18)
+Power given, once per long rest 1 / 1 Rakatan Order: Harmonious Rakatan
+Analyze from the feature
 You choose one object that you must touch throughout the casting of the power. If it is an enhanced or modified item, you learn its properties and how to use th… [380 chars #f07ac2a0]
 If you instead touch a creature throughout the casting, you learn what tech powers, if any, are currently affecting it.
+5th-level tech power (once per long rest) 0 / 1 Rakatan Order: Tech Mastery
+None chosen yet.
+[Choose a tech power… ▾]
+Read the options (15)
+Class table
+Proficiency Bonus
++6
+Features
+Perfect Self
+Martial Arts
+d12
+Focus Points
+20
+Monastic Vows
+5
+Unarmored Movement
++30 ft.
+| Proficiency Bonus | Features | Martial Arts | Focus Points | Monastic Vows | Unarmored Movement |
+Now (20th) | +6 | Perfect Self | d12 | 20 | 5 | +30 ft. |
+Armor None Weapons Simple blasters, simple vibroweapons, martial vibroweapons that lack the dexterity, heavy, special, and two-handed properties Tools None
 
 ## Sheet: Class Features
 Monk (19)
@@ -695,55 +775,6 @@ You've learned to blend the skills of your different classes. Choose two of the 
 Add a note
 Notes []
 
-## Sheet: Classes & Progression
-Monk 20 Rakatan Order Starting class
-Hit die d8 Primary Dexterity Saves Strength, Dexterity HP by level 8 (max), 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5
-Unarmed combatant who uses focus to fuel abilities
-Ability score improvements
-ASI: Dexterity +2
-Skill proficiencies 0 / 2 Choose two from Acrobatics, Athletics, Insight, Lore, Perception, and Stealth
-None chosen yet.
-[Choose a skill… ▾]
-Archetype [Rakatan Order ▾]
-Read the options (13)
-Tech powers 2 / 20 Rakatan Order table · max power level 4
-Encrypted Message at-will [×]
-You point your finger toward a creature within range that possesses a commlink and whisper a message. The target (and only the target) hears the message and can… [279 chars #d9647152]
-You can cast this power through solid objects if you are familiar with the target and know it is beyond the barrier. 1 foot of stone, 1 inch of common metal, a … [322 chars #97726ed9]
-Absorb Energy 1st level [×]
-The power captures some of the incoming energy, lessening its effect on you and storing it for your next melee attack. You have resistance to the triggering dam… [352 chars #7492347e]
-Overcharge Tech. When you cast this power using a power slot of 2nd level or higher, the extra damage increases by 1d6 for each slot level above 1st.
-[Learn a tech power… ▾]
-Read the options (184)
-Monastic Vows 0 / 5 from the Monk table (“Monastic Vows”)
-None chosen yet.
-[Add from Monastic Vows… ▾]
-Read the options (18)
-Power given, once per long rest 1 / 1 Rakatan Order: Harmonious Rakatan
-Analyze from the feature
-You choose one object that you must touch throughout the casting of the power. If it is an enhanced or modified item, you learn its properties and how to use th… [380 chars #f07ac2a0]
-If you instead touch a creature throughout the casting, you learn what tech powers, if any, are currently affecting it.
-5th-level tech power (once per long rest) 0 / 1 Rakatan Order: Tech Mastery
-None chosen yet.
-[Choose a tech power… ▾]
-Read the options (15)
-Class table
-Proficiency Bonus
-+6
-Features
-Perfect Self
-Martial Arts
-d12
-Focus Points
-20
-Monastic Vows
-5
-Unarmored Movement
-+30 ft.
-| Proficiency Bonus | Features | Martial Arts | Focus Points | Monastic Vows | Unarmored Movement |
-Now (20th) | +6 | Perfect Self | d12 | 20 | 5 | +30 ft. |
-Armor None Weapons Simple blasters, simple vibroweapons, martial vibroweapons that lack the dexterity, heavy, special, and two-handed properties Tools None
-
 ## Sheet: Species
 Size
 Medium
@@ -846,36 +877,6 @@ None chosen yet.
 Languages 0 / 1 One of your choice
 None chosen yet.
 [Choose a language… ▾]
-
-## Sheet: Proficiencies & Languages
-Armor
-None
-Weapon
-Simple blasters simple vibroweapons martial vibroweapons that lack the dexterity heavy special and two-handed properties
-Tool
-One type of gaming set
-Skills & saves
-Deception Strength Saving Throws Dexterity Saving Throws Strength Saving Throws Dexterity Saving Throws Constitution Saving Throws Intelligence Saving Throws Wisdom Saving Throws Charisma Saving Throws
-Languages
-Galactic Basic
-✎ = custom proficiency added on the character.
-
-## Sheet: Equipment & Inventory
-Add an item
-[All items ▾] []
-Qty [1] [Add]
-2425 items from SW5E (data version 199). [Check for a newer list]
-Credits
-0 cr
-[] [] [Apply]
-Total weight
-0 lb
-of 150 lb max
-Attunement
-0 / 6
-Items
-0
-No equipment.
 
 ## Sheet: Personality & Appearance
 Personality Traits
