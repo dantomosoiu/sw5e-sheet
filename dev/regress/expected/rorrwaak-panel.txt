@@ -175,13 +175,13 @@ effect: Hide · feature
 effect: Menacing · feature
 effect: Weapon (Fine) · item
 tweak: abilityScores.Strength.skills.Athletics +0 {"proficiency":"Expertise"} · Berserker class skill + Brawny feat (already proficient, so expertise)
-tweak: abilityScores.Strength.score +1 · Brawny feat: +1 Strength (not applied by SW5E)
 tweak: abilityScores.Wisdom.skills.Perception +0 {"proficiency":"Proficient"} · Berserker class skill (chosen at 1st level)
 tweak: abilityScores.Charisma.skills.Persuasion +0 {"proficiency":"Proficient"} · Mercenary background skill
 tweak: abilityScores.Charisma.skills.Intimidation +0 {"proficiency":"Proficient"} · Wookiee Menacing trait (not applied by SW5E)
 tweak: abilityScores.Intelligence.skills.Piloting +0 {"proficiency":"Proficient"} · Mercenary background skill
 tweak: unarmed.damageDice +0 {"override":4,"dieSize":4} · Wookiee Claws: unarmed strikes deal 1d4 (not applied by SW5E)
 tweak: speed.base +10 · Predator's Instinct
+tweak: abilityScores.Strength.score +1 · Brawny
 tweak: abilityScores.Strength.skills.Athletics +0 {"proficiency":"Proficient"} · Brawny
 tweak: armorClass +3 · Hide
 tweak: abilityScores.Charisma.skills.Intimidation +0 {"proficiency":"Proficient"} · Menacing
@@ -251,7 +251,7 @@ Initiative
 +1
 Speed
 40 ft
-  ↳ hover speed.base: Without tweaks or effects: 30 ft → now 40 ft / +1 Strength score · Brawny feat: +1 Strength (not applied by SW5E) tweak (not synced to SW5E ye… [224 chars #f84635d6]
+  ↳ hover speed.base: Without tweaks or effects: 30 ft → now 40 ft / +10 Speed · Predator's Instinct Berserker Instincts feature / +1 STR · Brawny feat (background feat)
 4 miles/hour · 32 miles/day
 Proficiency
 +2
@@ -309,29 +309,29 @@ Carried
 Unencumbered (variant rule)
 Encumbered at
 100 lb
-  ↳ hover carryingCapacity.encumbered: Without tweaks or effects: 95 → now 100 / +1 Strength score · Brawny feat: +1 Strength (not applied by SW5E) tweak (not synced to SW5E yet)
+  ↳ hover carryingCapacity.encumbered: Without tweaks or effects: 95 → now 100 / +1 STR · Brawny feat (background feat)
 Heavily enc. at
 200 lb
-  ↳ hover carryingCapacity.heavilyEncumbered: Without tweaks or effects: 190 → now 200 / +1 Strength score · Brawny feat: +1 Strength (not applied by SW5E) tweak (not synced to SW5E yet)
+  ↳ hover carryingCapacity.heavilyEncumbered: Without tweaks or effects: 190 → now 200 / +1 STR · Brawny feat (background feat)
 Max capacity
 900 lb ×3 (Brawny, Powerful Build)
-  ↳ hover carryingCapacity.maxCapacity: Without tweaks or effects: 285 → now 300 / +1 Strength score · Brawny feat: +1 Strength (not applied by SW5E) tweak (not synced to SW5E yet)
+  ↳ hover carryingCapacity.maxCapacity: Without tweaks or effects: 285 → now 300 / +1 STR · Brawny feat (background feat)
 Push / drag / lift
 1800 lb ×3 (Brawny, Powerful Build)
-  ↳ hover carryingCapacity.pushDragLift: Without tweaks or effects: 570 → now 600 / +1 Strength score · Brawny feat: +1 Strength (not applied by SW5E) tweak (not synced to SW5E yet)
+  ↳ hover carryingCapacity.pushDragLift: Without tweaks or effects: 570 → now 600 / +1 STR · Brawny feat (background feat)
 
 ## Sheet: Abilities & Saving Throws
 STR
 Strength
 +5
-  ↳ hover abilityScores.Strength.modifier: Without tweaks or effects: 4 → now 5 / +1 Strength score · Brawny feat: +1 Strength (not applied by SW5E) tweak (not synced to SW5E yet)
+  ↳ hover abilityScores.Strength.modifier: Without tweaks or effects: 4 → now 5 / +1 STR · Brawny feat (background feat)
 20
-  ↳ hover abilityScores.Strength.value: Without tweaks or effects: 19 → now 20 / +1 Strength score · Brawny feat: +1 Strength (not applied by SW5E) tweak (not synced to SW5E yet)
+  ↳ hover abilityScores.Strength.value: Without tweaks or effects: 19 → now 20 / +1 STR · Brawny feat (background feat)
 (Proficient) Saving throw+7
-  ↳ hover abilityScores.Strength.savingThrow.modifier: Without tweaks or effects: 6 → now 7 / +1 Strength score · Brawny feat: +1 Strength (not applied by SW5E) tweak (not synced to SW5E yet)
+  ↳ hover abilityScores.Strength.savingThrow.modifier: Without tweaks or effects: 6 → now 7 / +1 STR · Brawny feat (background feat)
 (Expertise) Athletics+9
-  ↳ hover abilityScores.Strength.skills.0.modifier: Without tweaks or effects: 4 → now 9 / +1 Strength score · Brawny feat: +1 Strength (not applied by SW5E) tweak … [359 chars #031ef20a]
-base 15 · +2 Wookiee · +2 ASI (Berserker 4) · +1 from Brawny feat: +1 Strength (not applied by SW5E) (tweak)
+  ↳ hover abilityScores.Strength.skills.0.modifier: Without tweaks or effects: 4 → now 9 / +1 STR · Brawny feat (background feat) / Expertise Athletics · Berserker … [300 chars #d91fa75b]
+base 15 · +2 Wookiee · +2 ASI (Berserker 4) · +1 from Brawny (feat)
 DEX
 Dexterity
 +1
@@ -390,8 +390,8 @@ Skill | Ability | Bonus | Passive | Proficiency |
 (Not proficient) Acrobatics | DEX | +1 | 11 | — |
 (Not proficient) Animal Handling | WIS | +1 | 11 | — |
 (Expertise) Athletics | STR | +9 | 19 | Expertise |
-  ↳ hover abilityScores.Strength.skills.0.modifier: Without tweaks or effects: 4 → now 9 / +1 Strength score · Brawny feat: +1 Strength (not applied by SW5E) tweak … [359 chars #031ef20a]
-  ↳ hover abilityScores.Strength.skills.0.modifier: Without tweaks or effects: 4 → now 9 / +1 Strength score · Brawny feat: +1 Strength (not applied by SW5E) tweak … [359 chars #031ef20a]
+  ↳ hover abilityScores.Strength.skills.0.modifier: Without tweaks or effects: 4 → now 9 / +1 STR · Brawny feat (background feat) / Expertise Athletics · Berserker … [300 chars #d91fa75b]
+  ↳ hover abilityScores.Strength.skills.0.modifier: Without tweaks or effects: 4 → now 9 / +1 STR · Brawny feat (background feat) / Expertise Athletics · Berserker … [300 chars #d91fa75b]
 (Not proficient) Deception | CHA | +0 | 10 | — |
 (Not proficient) Insight | WIS | +1 | 11 | — |
 (Proficient) Intimidation | CHA | +2 | 12 | Proficient |
@@ -421,11 +421,11 @@ Weapon | To hit | Damage | Ability | Type | Properties |
 Vibroaxe
 Dexterity 11, heavy, two-handed
 | +8 | 1d12+6 Kinetic | Strength | Martial Vibroweapon | Dexterity 11, heavy, two-handed |
-  ↳ hover weapons.0.attackBonus: Without tweaks or effects: 6 → now 8 / +1 Attack · Weapon (Fine) while equipped / proficient Proficient: All vibroweapons · Berserk… [307 chars #abc91c56]
-  ↳ hover weapons.0.damageBonus: Without tweaks or effects: 4 → now 6 / +1 Damage · Weapon (Fine) while equipped / +1 Strength score · Brawny feat: +1 Strength (not applied by SW5E) tweak (not synced to SW5E yet)
+  ↳ hover weapons.0.attackBonus: Without tweaks or effects: 6 → now 8 / +1 Attack · Weapon (Fine) while equipped / proficient Proficient: All vibroweapons · Berserk… [248 chars #d6be91f3]
+  ↳ hover weapons.0.damageBonus: Without tweaks or effects: 4 → now 6 / +1 Damage · Weapon (Fine) while equipped / +1 STR · Brawny feat (background feat)
 Unarmed Strike
 | +7 | 1d4+5 Kinetic | Strength | Unarmed | — |
-  ↳ hover weapons.1.attackBonus: Without tweaks or effects: 6 → now 7 / +1 Strength score · Brawny feat: +1 Strength (not applied by SW5E) tweak (not synced to SW5E yet)
+  ↳ hover weapons.1.attackBonus: Without tweaks or effects: 6 → now 7 / +1 STR · Brawny feat (background feat)
 
 ## Sheet: Class Features
 Berserker (7)
@@ -746,18 +746,20 @@ Inspiration from the GM, spent on Stealth (10).
 Long rest. 300 XP (level 2 reached).
 
 ## Sheet: Settings, Tweaks & Data
-Tweaks (manual adjustments) 8 · 1 tweak left out (the sheet applies it by itself)
+Tweaks (manual adjustments) 8 · 2 tweaks left out (the sheet applies them by itself)
 From sw5e.com's editor or added here. Give each a reason (kept in this viewer and in backups); hovering or tapping a number they change shows it.
 Stat | Adjustment | Reason | |
-Athletics | Proficiency [Expertise ▾] Bonus [] | [Berserker class skill + Brawny feat (already proficient, so expertise)] | [×] |
-Strength score | Bonus [1] Set to [] | [Brawny feat: +1 Strength (not applied by SW5E)] | [×] |
-Perception | Proficiency [Proficient ▾] Bonus [] | [Berserker class skill (chosen at 1st level)] | [×] |
-Persuasion | Proficiency [Proficient ▾] Bonus [] | [Mercenary background skill] | [×] |
-Intimidation | Proficiency [Proficient ▾] Bonus [] | [Wookiee Menacing trait (not applied by SW5E)] | [×] |
-Piloting | Proficiency [Proficient ▾] Bonus [] | [Mercenary background skill] | [×] |
+Athletics | Proficiency [Expertise ▾] [add ▾] [0] | [Berserker class skill + Brawny feat (already proficient, so expertise)] | [×] |
+Strength score
+not applied The sheet applies Brawny (background feat) by itself now: with this tweak it would count twice, so the tweak is left out. Remove it (×), or [apply it anyway] if it's for something else.
+| [add ▾] [1] | [Brawny feat: +1 Strength (not applied by SW5E)] | [×] |
+Perception | Proficiency [Proficient ▾] [add ▾] [0] | [Berserker class skill (chosen at 1st level)] | [×] |
+Persuasion | Proficiency [Proficient ▾] [add ▾] [0] | [Mercenary background skill] | [×] |
+Intimidation | Proficiency [Proficient ▾] [add ▾] [0] | [Wookiee Menacing trait (not applied by SW5E)] | [×] |
+Piloting | Proficiency [Proficient ▾] [add ▾] [0] | [Mercenary background skill] | [×] |
 AC
 not applied The sheet applies Unarmored Defense (Berserker feature) and Hide (Wookiee trait) by itself now: with this tweak it would count twice, so the tweak i… [235 chars #9bc2620f]
-| Bonus [1] Set to [] | [Wookiee Hide (13 + Dex) is 1 better than Unarmored Defense (10 + Dex + Con)] | [×] |
+| [add ▾] [1] | [Wookiee Hide (13 + Dex) is 1 better than Unarmored Defense (10 + Dex + Con)] | [×] |
 Unarmed: damage die | Die [4] | [Wookiee Claws: unarmed strikes deal 1d4 (not applied by SW5E)] | [×] |
 [Add a tweak to… ▾] [add (+/−) ▾] [] [] [Add]
 Builder settings

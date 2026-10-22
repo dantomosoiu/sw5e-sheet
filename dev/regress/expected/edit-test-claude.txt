@@ -887,9 +887,9 @@ Session 1: found a holocron.
 Tweaks (manual adjustments) 3 · 1 tweak without a reason
 From sw5e.com's editor or added here. Give each a reason (kept in this viewer and in backups); hovering or tapping a number they change shows it.
 Stat | Adjustment | Reason | |
-Charisma score | Bonus [2] Set to [] | [Test character setup: +1 CHA] | [×] |
-Deception | Proficiency [Expertise ▾] Bonus [] | [] | [×] |
-Blaster pistol: damage | Bonus [1] Set to [] | [Custom barrel] | [×] |
+Charisma score | [add ▾] [2] | [Test character setup: +1 CHA] | [×] |
+Deception | Proficiency [Expertise ▾] [add ▾] [0] | [] | [×] |
+Blaster pistol: damage | [add ▾] [1] | [Custom barrel] | [×] |
 [Add a tweak to… ▾] [add (+/−) ▾] [] [] [Add]
 Builder settings
 Is Enforcing Force Prerequisites

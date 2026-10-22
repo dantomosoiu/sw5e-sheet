@@ -757,11 +757,11 @@ Test character (a copy of a Scholar) for the SW5E Sheet extension. Safe to delet
 Tweaks (manual adjustments) 5 · 5 tweaks without a reason
 From sw5e.com's editor or added here. Give each a reason (kept in this viewer and in backups); hovering or tapping a number they change shows it.
 Stat | Adjustment | Reason | |
-Deception | Proficiency [Expertise ▾] Bonus [] | [] | [×] |
-Persuasion | Proficiency [Expertise ▾] Bonus [] | [] | [×] |
-Charisma score | Bonus [1] Set to [] | [] | [×] |
-Insight | Proficiency [Proficient ▾] Bonus [] | [] | [×] |
-Sleight of Hand | Proficiency [Proficient ▾] Bonus [] | [] | [×] |
+Deception | Proficiency [Expertise ▾] [add ▾] [0] | [] | [×] |
+Persuasion | Proficiency [Expertise ▾] [add ▾] [0] | [] | [×] |
+Charisma score | [add ▾] [1] | [] | [×] |
+Insight | Proficiency [Proficient ▾] [add ▾] [0] | [] | [×] |
+Sleight of Hand | Proficiency [Proficient ▾] [add ▾] [0] | [] | [×] |
 [Add a tweak to… ▾] [add (+/−) ▾] [] [] [Add]
 Builder settings
 Is Enforcing Force Prerequisites

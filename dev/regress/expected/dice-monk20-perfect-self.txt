@@ -2,6 +2,7 @@
 
 ## Sent to the rules engine
 The sheet's engine computes the numbers. OUT OF DATE: SW5E's recorded calculation is for an older version of this character; record the case again (dev/regress-record.js) for dev/engine-check.js.
+tweaks.abilityScores.Charisma.score.bonus = 1
 tweaks.abilityScores.Charisma.skills.Deception.bonus = 0
 tweaks.abilityScores.Charisma.skills.Deception.proficiency = "Proficient"
 tweaks.abilityScores.Dexterity.score.bonus = 2
@@ -37,7 +38,7 @@ abilityScores.Charisma.skills[Performance].modifier = -1
 abilityScores.Charisma.skills[Performance].proficiency = "none"
 abilityScores.Charisma.skills[Persuasion].modifier = -1
 abilityScores.Charisma.skills[Persuasion].proficiency = "none"
-abilityScores.Charisma.value = 8
+abilityScores.Charisma.value = 9
 abilityScores.Constitution.modifier = 2
 abilityScores.Constitution.savingThrow.modifier = 2
 abilityScores.Constitution.savingThrow.proficiency = "none"
@@ -137,11 +138,13 @@ effect: Purity of Body · feature
 effect: Empty Body · feature
 effect: Perfect Self · feature
 effect: Silver-Tongued · feature
+effect: Silver-Tongued · feature
 effect: Human Versatility · feature
 tweak: armorClass +6 · Unarmored Defense
 tweak: speed.base +30 · Unarmored Movement
 tweak: abilityScores.Dexterity.score +2 · Perfect Self
 tweak: abilityScores.Wisdom.score +2 · Perfect Self
+tweak: abilityScores.Charisma.score +1 · Silver-Tongued
 tweak: abilityScores.Charisma.skills.Deception +0 {"proficiency":"Proficient"} · Silver-Tongued
 
 ## Rolls
@@ -191,7 +194,7 @@ Human · Monk (Rakatan Order) 20
 Level 20 Background: Noble Lawful Light Proficiency +6 [Add a picture]
 6,500 XP highest level
 Level 20 usually needs 355,000 XP (you have 6,500).
-Still to choose (14): Monk skills (2 more) · Monk 8th level: ability score improvement or feat · Monk 10th level: ability score improvement or feat · Monk 12th … [569 chars #cb1156ac]
+Still to choose (13): Monk skills (2 more) · Monk 8th level: ability score improvement or feat · Monk 10th level: ability score improvement or feat · Monk 12th … [548 chars #abe7e53d]
 
 ## Sheet: Combat & Vitals
 Armor Class
@@ -238,13 +241,14 @@ Defenses & senses
 Resistances Resistance to all damage
 Immunities Immune to disease and poison and resistant to poison damage
 Effects
-From class features (8)
+From class features, feats and species traits (9)
 Monk weapon proficiencies Proficient: Simple blasters Proficient: simple vibroweapons Proficient: martial vibroweapons that lack the dexterity, heavy, special, and two-handed properties Monk proficiencies
 Unarmored Defense AC + WIS/CHA Monk feature
 Unarmored Movement Speed +30 ft Monk feature
 Purity of Body Immune to disease and poison and resistant to poison damage Monk feature
 Empty Body Resistance to all damage Monk feature
 Perfect Self DEX +2 WIS +2 Monk feature
+Silver-Tongued CHA +1 feat (background feat)
 Silver-Tongued Deception: proficient feat
 Human Versatility Choose the skill/tool proficiencies Human trait
 Temporary
@@ -331,14 +335,15 @@ base 20 · +2 from Perfect Self (class feature)
 CHA
 Charisma
 −1
-8
+9
+  ↳ hover abilityScores.Charisma.value: Without tweaks or effects: 8 → now 9 / +1 CHA · Silver-Tongued feat (background feat)
 (Not proficient) Saving throw−1
 (Proficient) Deception+5
   ↳ hover abilityScores.Charisma.skills.0.modifier: Without tweaks or effects: -1 → now 5 / proficient Deception: proficient · Silver-Tongued feat
 (Not proficient) Intimidation−1
 (Not proficient) Performance−1
 (Not proficient) Persuasion−1
-base 8
+base 8 · +1 from Silver-Tongued (feat)
 not proficient proficient expertise
 
 ## Sheet: Skills
@@ -741,9 +746,6 @@ None chosen yet.
 Languages 0 / 1 One of your choice
 None chosen yet.
 [Choose a language… ▾]
-Silver-Tongued: +1 to 0 / 1 background feat
-None chosen yet.
-[Choose an ability… ▾]
 
 ## Sheet: Proficiencies & Languages
 Armor
@@ -843,4 +845,4 @@ SW5E's rules and item data: version 199, as it comes with the sheet. SW5E is the
 Raw SW5E character JSON
 { "name": "Rakatan Test (local)", "builderVersion": "0.7.6", "image": "", "experiencePoints": 6500, "species": { "name": "Human", "abilityScoreImprovementSelect… [1520 chars #a66a66be]
 Computed character JSON (the sheet's rules engine)
-{ "name": "Rakatan Test (local)", "builderVersion": "0.7.6", "image": "", "characteristics": { "alignment": "Lawful Light" }, "tweaks": { "abilityScores": { "Ch… [25310 chars #0dd0173b]
+{ "name": "Rakatan Test (local)", "builderVersion": "0.7.6", "image": "", "characteristics": { "alignment": "Lawful Light" }, "tweaks": { "abilityScores": { "Ch… [25335 chars #5ec65627]

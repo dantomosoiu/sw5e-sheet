@@ -139,6 +139,16 @@ any JavaScript on the stored character), draws it again and prints the lines of 
 numbers, the effects and tweaks, the rolls and the hover explanation of each changed number. It is how to check that
 a feat, feature or item raises what it should, and nothing else, with the right reason. `--save NAME` keeps the
 changed character as a case, so a fixed bug stays fixed (`node dev/regress.js --update NAME` accepts its output).
+dev/engine-check.js doesn't compare such a case with SW5E's stored calculation, which is the original character's.
+
+### What the text readers make of every source
+```
+node dev/readers.js --out before.txt          # every feat, species trait, class/archetype feature, option…
+node dev/readers.js --only species --grep "proficien"
+```
+Prints, for each SW5E source, what the sheet reads from its text (app/classes.js): numbers, proficiencies, advantages,
+defenses, choices it asks for, states and uses. Save it before changing a reader and diff after
+(`git diff --no-index before.txt after.txt`): every source whose reading changed shows up, not only the one meant.
 
 ## The rules engine
 `app/engine.js` computes a character from SW5E's character data and rules the way SW5E's engine does, quirks

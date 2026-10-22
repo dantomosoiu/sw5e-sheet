@@ -2,6 +2,7 @@
 
 ## Sent to the rules engine
 The sheet's engine computes the numbers. OUT OF DATE: SW5E's recorded calculation is for an older version of this character; record the case again (dev/regress-record.js) for dev/engine-check.js.
+tweaks.abilityScores.Charisma.score.bonus = 1
 tweaks.abilityScores.Charisma.skills.Deception.bonus = 0
 tweaks.abilityScores.Charisma.skills.Deception.proficiency = "Proficient"
 tweaks.abilityScores.Charisma.skills.Intimidation.bonus = 2
@@ -53,7 +54,7 @@ abilityScores.Charisma.skills[Performance].modifier = 1
 abilityScores.Charisma.skills[Performance].proficiency = "none"
 abilityScores.Charisma.skills[Persuasion].modifier = 1
 abilityScores.Charisma.skills[Persuasion].proficiency = "none"
-abilityScores.Charisma.value = 8
+abilityScores.Charisma.value = 9
 abilityScores.Constitution.modifier = 2
 abilityScores.Constitution.savingThrow.modifier = 2
 abilityScores.Constitution.savingThrow.proficiency = "none"
@@ -153,9 +154,11 @@ effect: Unarmored Movement · feature
 effect: Expertise · feature
 effect: Know a Bit · feature
 effect: Silver-Tongued · feature
+effect: Silver-Tongued · feature
 effect: Human Versatility · feature
 tweak: armorClass +3 · Unarmored Defense
 tweak: speed.base +15 · Unarmored Movement
+tweak: abilityScores.Charisma.score +1 · Silver-Tongued
 tweak: abilityScores.Charisma.skills.Deception +0 {"proficiency":"Proficient"} · Silver-Tongued
 tweak: initiative +2 · Know a Bit
 tweak: abilityScores.Strength.skills.Athletics +2 · Know a Bit
@@ -225,7 +228,7 @@ Human · Monk (Rakatan Order) 8, Operative (Maverick Practice) 3
 Level 11 Background: Noble Lawful Light Proficiency +4 [Add a picture]
 6,500 XP level 12 at 100,000 (93,500 to go)
 Level 11 usually needs 85,000 XP (you have 6,500).
-Still to choose (14): Monk skills (2 more) · Monk 8th level: ability score improvement or feat · Monastic Vows (3 more) · Rakatan Order tech powers (6 more) · O… [452 chars #ffc0abc2]
+Still to choose (13): Monk skills (2 more) · Monk 8th level: ability score improvement or feat · Monastic Vows (3 more) · Rakatan Order tech powers (6 more) · O… [431 chars #5e9140ac]
 
 ## Sheet: Combat & Vitals
 Armor Class
@@ -270,12 +273,13 @@ Martial Arts 1d6 Sneak Attack 4d6
 Defenses & senses
 Other Half proficiency on checks without it (Know a Bit)
 Effects
-From class features (7)
+From class features, feats and species traits (8)
 Monk weapon proficiencies Proficient: Simple blasters Proficient: simple vibroweapons Proficient: martial vibroweapons that lack the dexterity, heavy, special, and two-handed properties Monk proficiencies
 Unarmored Defense AC + WIS/CHA Monk feature
 Unarmored Movement Speed +15 ft Monk feature
 Expertise Choose the skills/tools for expertise Operative feature
 Know a Bit Half proficiency on checks Maverick Practice feature
+Silver-Tongued CHA +1 feat (background feat)
 Silver-Tongued Deception: proficient feat
 Human Versatility Choose the skill/tool proficiencies Human trait
 Temporary
@@ -362,7 +366,8 @@ base 16
 CHA
 Charisma
 −1
-8
+9
+  ↳ hover abilityScores.Charisma.value: Without tweaks or effects: 8 → now 9 / +1 CHA · Silver-Tongued feat (background feat)
 (Not proficient) Saving throw−1
 (Proficient) Deception+3
   ↳ hover abilityScores.Charisma.skills.0.modifier: Without tweaks or effects: -1 → now 3 / proficient Deception: proficient · Silver-Tongued feat
@@ -372,7 +377,7 @@ Charisma
   ↳ hover abilityScores.Charisma.skills.2.modifier: Without tweaks or effects: -1 → now 1 / +2 Half proficiency · Know a Bit Maverick Practice feature
 (Not proficient) Persuasion+1
   ↳ hover abilityScores.Charisma.skills.3.modifier: Without tweaks or effects: -1 → now 1 / +2 Half proficiency · Know a Bit Maverick Practice feature
-base 8
+base 8 · +1 from Silver-Tongued (feat)
 not proficient proficient expertise
 
 ## Sheet: Skills
@@ -828,9 +833,6 @@ None chosen yet.
 Languages 0 / 1 One of your choice
 None chosen yet.
 [Choose a language… ▾]
-Silver-Tongued: +1 to 0 / 1 background feat
-None chosen yet.
-[Choose an ability… ▾]
 
 ## Sheet: Proficiencies & Languages
 Armor
@@ -932,4 +934,4 @@ SW5E's rules and item data: version 199, as it comes with the sheet. SW5E is the
 Raw SW5E character JSON
 { "name": "Rakatan Test (local)", "builderVersion": "0.7.6", "image": "", "experiencePoints": 6500, "species": { "name": "Human", "abilityScoreImprovementSelect… [1579 chars #c2eac24f]
 Computed character JSON (the sheet's rules engine)
-{ "name": "Rakatan Test (local)", "builderVersion": "0.7.6", "image": "", "characteristics": { "alignment": "Lawful Light" }, "tweaks": { "abilityScores": { "Ch… [25151 chars #31e1c427]
+{ "name": "Rakatan Test (local)", "builderVersion": "0.7.6", "image": "", "characteristics": { "alignment": "Lawful Light" }, "tweaks": { "abilityScores": { "Ch… [25176 chars #168e38ad]

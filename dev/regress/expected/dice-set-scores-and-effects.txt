@@ -19,7 +19,7 @@ tweaks.abilityScores.Wisdom.skills.Perception.bonus = 0
 tweaks.abilityScores.Wisdom.skills.Perception.proficiency = "Proficient"
 tweaks.armorClass.bonus = 0
 tweaks.armorClass.override = 18
-tweaks.hitPoints.maximum.bonus = 8
+tweaks.hitPoints.maximum.bonus = 4
 tweaks.unarmed.damage.bonus = 2
 tweaks.unarmed.damageDice.bonus = 0
 tweaks.unarmed.damageDice.dieSize = 4
@@ -52,7 +52,7 @@ hitPoints.hitDice[0].maximum = 1
 hitPoints.hitDice[0].size = "d8"
 hitPoints.hitDice[1].maximum = 3
 hitPoints.hitDice[1].size = "d10"
-hitPoints.maximum = 47
+hitPoints.maximum = 43
 abilityScores.Charisma.modifier = 1
 abilityScores.Charisma.savingThrow.modifier = 1
 abilityScores.Charisma.savingThrow.proficiency = "none"
@@ -213,7 +213,6 @@ tweak: abilityScores.Intelligence.skills.Piloting +0 {"proficiency":"Proficient"
 tweak: abilityScores.Dexterity.score +1 · Weapon Expert feat: +1 Dexterity (builder has no choice for it)
 tweak: abilityScores.Dexterity.skills.Stealth +0 {"proficiency":"Proficient"} · Operative multiclass: any one skill (SW5E multiclassing table)
 tweak: abilityScores.Strength.score +0 {"override":16} · Strength score
-tweak: hitPoints.maximum +4 · Zabrak Toughness: +1 HP per level (not applied by SW5E)
 tweak: armorClass +0 {"override":18} · AC
 tweak: weapon.damage +2 · Brute Force
 tweak: unarmed.damage +2 · Brute Force
@@ -291,11 +290,11 @@ Still to choose (7): Fighter skills (2 more) · Operative multiclass skill · Op
 ## Sheet: Combat & Vitals
 Armor Class
 18
-  ↳ hover armorClass: Without tweaks or effects: 15 → now 18 / +1 Dexterity score · Weapon Expert feat: +1 Dexterity (builder has no choice for it) tweak / = 18 AC · no reason given tweak
+  ↳ hover armorClass: Without tweaks or effects: 15 → now 18 / = 18 AC · no reason given tweak
 Mesh armor · set to 18 by a tweak
 Hit Points
-45 / 47
-  ↳ hover hitPoints.maximum: Without tweaks or effects: 39 → now 47 / +4 HP maximum · Zabrak Toughness: +1 HP per level (not applied by SW5E) tweak / +4 HP maximum · Toughness Zabrak trait
+41 / 43
+  ↳ hover hitPoints.maximum: Without tweaks or effects: 39 → now 43 / +4 HP maximum · Toughness Zabrak trait
 No temporary HP
 Initiative
 +3
@@ -331,7 +330,7 @@ Superiority Dice Size 1d4 Sneak Attack 1d6
 Defenses & senses
 Other Critical hit on 19–20 with weapons
 Effects
-From class features (9)
+From class features, feats and species traits (9)
 Fighter weapon proficiencies Proficient: All blasters Proficient: all vibroweapons Fighter proficiencies
 Brute Force Weapon damage +2 Unarmed damage +2 Assault Specialist feature
 Improved Critical Critical on 19–20 Assault Specialist feature
@@ -474,7 +473,7 @@ Blaster rifle
 Power cell (range 105/420), reload 12, two-handed
 Shots 11/12 [−1] [Reload] 13 Power cells
 | +5 | 1d8+6 Energy | Dexterity | Martial Blaster | Power cell (range 105/420), reload 12, two-handed |
-  ↳ hover weapons.0.damageBonus: Without tweaks or effects: 3 → now 6 / +2 Weapon damage · Brute Force Assault Specialist feature / +1 Damage · Xerrol Nightstinger … [273 chars #636e20b1]
+  ↳ hover weapons.0.damageBonus: Without tweaks or effects: 3 → now 6 / +2 Weapon damage · Brute Force Assault Specialist feature / +1 Damage · Xerrol Nightstinger Rifle while equipped
 Vibrorapier
 Finesse
 | +6 | 1d8+6 Kinetic | Strength | Martial Vibroweapon | Finesse |
@@ -960,21 +959,21 @@ Remarkable Athlete not applied by the sheet: initiative should be +4.
 Next level-up: SYNC TO SW5E FIRST, or the builder's new level is ignored on Load.
 
 ## Sheet: Settings, Tweaks & Data
-Tweaks (manual adjustments) 10 · 2 tweaks without a reason · 1 tweak may count twice
+Tweaks (manual adjustments) 10 · 2 tweaks without a reason · 1 tweak left out (the sheet applies it by itself)
 From sw5e.com's editor or added here. Give each a reason (kept in this viewer and in backups); hovering or tapping a number they change shows it.
 Stat | Adjustment | Reason | |
-Persuasion | Proficiency [Proficient ▾] Bonus [] | [Zabrak Coercive (chose Persuasion)] | [×] |
-Intimidation | Proficiency [Proficient ▾] Bonus [] | [Soldier background skill] | [×] |
-Insight | Proficiency [Proficient ▾] Bonus [] | [Fighter class skill (chosen at 1st level)] | [×] |
-Perception | Proficiency [Proficient ▾] Bonus [] | [Fighter class skill (chosen at 1st level)] | [×] |
-Piloting | Proficiency [Proficient ▾] Bonus [] | [Soldier background skill] | [×] |
-Dexterity score | Bonus [1] Set to [] | [Weapon Expert feat: +1 Dexterity (builder has no choice for it)] | [×] |
-Stealth | Proficiency [Proficient ▾] Bonus [] | [Operative multiclass: any one skill (SW5E multiclassing table)] | [×] |
-Strength score | Bonus [] Set to [16] | [] | [×] |
+Persuasion | Proficiency [Proficient ▾] [add ▾] [0] | [Zabrak Coercive (chose Persuasion)] | [×] |
+Intimidation | Proficiency [Proficient ▾] [add ▾] [0] | [Soldier background skill] | [×] |
+Insight | Proficiency [Proficient ▾] [add ▾] [0] | [Fighter class skill (chosen at 1st level)] | [×] |
+Perception | Proficiency [Proficient ▾] [add ▾] [0] | [Fighter class skill (chosen at 1st level)] | [×] |
+Piloting | Proficiency [Proficient ▾] [add ▾] [0] | [Soldier background skill] | [×] |
+Dexterity score | [add ▾] [1] | [Weapon Expert feat: +1 Dexterity (builder has no choice for it)] | [×] |
+Stealth | Proficiency [Proficient ▾] [add ▾] [0] | [Operative multiclass: any one skill (SW5E multiclassing table)] | [×] |
+Strength score | [set to ▾] [16] | [] | [×] |
 HP maximum
-The sheet applies Toughness by itself now: with this tweak it counts twice. Remove the tweak (×) unless it's for something else.
-| Bonus [4] Set to [] | [Zabrak Toughness: +1 HP per level (not applied by SW5E)] | [×] |
-AC | Bonus [] Set to [18] | [] | [×] |
+not applied The sheet applies Toughness (Zabrak trait) by itself now: with this tweak it would count twice, so the tweak is left out. Remove it (×), or [apply it anyway] if it's for something else.
+| [add ▾] [4] | [Zabrak Toughness: +1 HP per level (not applied by SW5E)] | [×] |
+AC | [set to ▾] [18] | [] | [×] |
 [Add a tweak to… ▾] [add (+/−) ▾] [] [] [Add]
 Builder settings
 Is Enforcing Force Prerequisites
@@ -1015,4 +1014,4 @@ SW5E's rules and item data: version 199, as it comes with the sheet. SW5E is the
 Raw SW5E character JSON
 { "name": "Kadro Vos (Panel)", "id": "00000000-0000-4000-8000-000008000001", "userId": "00000000-0000-4000-8000-000008000002", "builderVersion": "0.7.6", "image… [7905 chars #f6966d00]
 Computed character JSON (the sheet's rules engine)
-{ "name": "Kadro Vos (Panel)", "builderVersion": "0.7.6", "image": "", "characteristics": { "Age": "29", "Appearance": "", "Backstory": "", "Bond": "My old squa… [29712 chars #9753ce52]
+{ "name": "Kadro Vos (Panel)", "builderVersion": "0.7.6", "image": "", "characteristics": { "Age": "29", "Appearance": "", "Backstory": "", "Bond": "My old squa… [29712 chars #6765158f]

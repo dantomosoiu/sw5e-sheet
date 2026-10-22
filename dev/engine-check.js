@@ -90,7 +90,9 @@ async function casePairs(data) {
     const state = sheet.get('state');
     const snap = state.snapshots[c.key];
     const full = (complete, validation) => (project === everything ? project(complete) : withValidation(project(complete), validation));
-    if (snap.complete) pairs.push({ label: `${c.name}: stored`, raw: snap.raw, sw5e: full(snap.complete, snap.validation) });
+    // A case made by dev/bump-check.js (c.from) is a recorded character changed afterwards: SW5E's stored calculation is
+    // the original's, not this one's.
+    if (snap.complete && !c.from) pairs.push({ label: `${c.name}: stored`, raw: snap.raw, sw5e: full(snap.complete, snap.validation) });
     const d = state.derived[c.key];
     if (d && sheet.get('needsDerived')(c.key)) {
       const { fx } = sheet.get('derivedInputs')(c.key);

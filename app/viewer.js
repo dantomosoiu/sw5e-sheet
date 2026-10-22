@@ -4092,7 +4092,9 @@ function abilitySources(m, a) {
   const bf = raw.background && raw.background.feat;
   if (bf && num((bf.abilityScoreImprovements || {})[a])) out.push({ n: num(bf.abilityScoreImprovements[a]), label: `${bf.name} (background feat)` });
   const tw = getPath(raw.tweaks || {}, `abilityScores.${a}.score`);
-  if (tw && num(tw.bonus) && !m.fx.tweaks.some((t) => t.path === `abilityScores.${a}.score` && t.effect.kind === 'tweak')) out.push({ n: num(tw.bonus), label: 'tweak' });
+  // A tweak the sheet leaves out (it repeats what the sheet applies by itself) adds nothing.
+  const leftOut = arr(m.fx.twins).some((x) => x.effect.rkey === `abilityScores.${a}.score`);
+  if (tw && num(tw.bonus) && !leftOut && !m.fx.tweaks.some((t) => t.path === `abilityScores.${a}.score` && t.effect.kind === 'tweak')) out.push({ n: num(tw.bonus), label: 'tweak' });
   return out;
 }
 
@@ -6100,7 +6102,9 @@ const tweakTargetOptions = (list, selected = '') => [...new Set(list.map((x) => 
  * unless the player keeps it. { what ("Hide (Wookiee trait) and Unarmored Defense (Berserker feature)"), kept } or null.
  */
 function tweakTwin(m, r) {
-  const what = (t) => t.by.map((e) => `${e.name}${e.why ? ` (${e.why})` : ''}`).join(' and ');
+  // "Brawny (background feat)", "Tough (feat, Berserker ASI #1)": no parentheses inside parentheses.
+  const why = (w) => String(w).replace(/^feat \((background feat)\)$/, '$1').replace(/ \((.+)\)$/, ', $1');
+  const what = (t) => t.by.map((e) => `${e.name}${e.why ? ` (${why(e.why)})` : ''}`).join(' and ');
   const t = arr(m.fx.twins).find((x) => x.effect.rkey === r.rkey);
   if (t) return { what: what(t), kept: false };
   const e = m.fx.effects.find((x) => x.kind === 'tweak' && x.rkey === r.rkey && x.keep);
@@ -6130,6 +6134,14 @@ function renderTweaks(m) {
   const twins = rows.filter((r) => fxTweakActive(r.value) && tweakTwin(m, r) && !tweakTwin(m, r).kept).length;
   const isProf = (p) => /\.skills\.|savingThrowModifier$/.test(p);
   const num_ = (r, f, label, title) => `<label title="${esc(title)}">${label} <input data-tw="${esc(r.rkey)}" data-twf="${f}" type="number" step="1" value="${esc(r.value[f] ?? '')}"></label>`;
+  // Each tweak either sets the value or adds to it (a negative amount subtracts); SW5E ignores the added amount while a
+  // value is set, so a row from sw5e.com with both shows what's ignored.
+  const amount = (r) => {
+    const set = r.value.override != null && r.value.override !== '';
+    const n = set ? r.value.override : num(r.value.bonus);
+    return `<select data-tw="${esc(r.rkey)}" data-twf="mode" aria-label="Add or set">${[['bonus', 'add'], ['override', 'set to']].map(([v, l]) => `<option value="${v}"${(set ? 'override' : 'bonus') === v ? ' selected' : ''}>${l}</option>`).join('')}</select>
+      <input data-tw="${esc(r.rkey)}" data-twf="amount" type="number" step="1" value="${esc(n)}" title="${set ? 'The value, whatever the sheet computes' : 'Added to the value; a negative number subtracts'}" aria-label="Amount">${set && num(r.value.bonus) ? ` <span class="faint">(${esc(signedLabel(num(r.value.bonus)))} ignored while it's set)</span>` : ''}`;
+  };
   const d = state.tweakDraft || {};
   return `<div class="card no-toggle tweaks-card"><div class="card-head"><span class="title">Tweaks (manual adjustments)</span>
       <span class="meta">${rows.length}${missing ? ` · <span class="warn-text">${plural(missing, 'tweak')} without a reason</span>` : ''}${twins ? ` · <span class="warn-text">${plural(twins, 'tweak')} left out (the sheet applies ${twins > 1 ? 'them' : 'it'} by itself)</span>` : ''}</span></div>
@@ -6144,9 +6156,9 @@ function renderTweaks(m) {
           : `<div class="warn-text tw-twin"><span class="chip warn">not applied</span> The sheet applies ${what} by itself now: with this tweak it would count twice, so the tweak is left out. Remove it (×), or <button class="linklike" data-act="tweak-keep" data-arg="${esc(r.rkey)}">apply it anyway</button> if it's for something else.</div>`;
       })()}</td>
       <td class="tw-vals">${isProf(r.path)
-        ? `<label>Proficiency <select data-tw="${esc(r.rkey)}" data-twf="proficiency">${['', 'Proficient', 'Expertise'].map((o) => `<option value="${o}"${String(r.value.proficiency || '') === o ? ' selected' : ''}>${o || '—'}</option>`).join('')}</select></label>${num_(r, 'bonus', 'Bonus', 'Added to the roll')}`
+        ? `<label>Proficiency <select data-tw="${esc(r.rkey)}" data-twf="proficiency">${['', 'Proficient', 'Expertise'].map((o) => `<option value="${o}"${String(r.value.proficiency || '') === o ? ' selected' : ''}>${o || '—'}</option>`).join('')}</select></label> ${amount(r)}`
         : /damageDice$/.test(r.path) ? num_(r, 'dieSize', 'Die', 'Damage die size, e.g. 6 for d6')
-          : `${num_(r, 'bonus', 'Bonus', 'Added to the value')}${num_(r, 'override', 'Set to', 'Replaces the value (leave empty to compute it)')}`}</td>
+          : amount(r)}</td>
       <td><input class="tw-reason${reasons[r.rkey] ? '' : ' missing'}" data-tw-reason="${esc(r.rkey)}" value="${esc(reasons[r.rkey] || '')}" placeholder="Why? e.g. species bonus, DM award…" aria-label="Reason for this tweak"></td>
       <td><button class="btn sm" data-act="tweak-remove" data-arg="${esc(r.rkey)}" title="Remove this tweak">×</button></td></tr>`).join('')}</tbody></table></div>` : '<p class="empty">No tweaks.</p>'}
     <div class="tw-add">
@@ -6192,10 +6204,20 @@ async function updateTweak(rkey, field, val) {
   const row = snap && currentTweakRow(snap, rkey);
   if (!row) return;
   const value = { ...row.value };
+  const setMode = value.override != null && value.override !== '';
+  const typed = String(val).trim().replace(/^[−–]/, '-');
   if (field === 'proficiency') { if (val) value.proficiency = val; else delete value.proficiency; }
-  else if (String(val).trim() === '') value[field] = field === 'bonus' ? 0 : null;
-  else if (!Number.isFinite(Number(val))) return setStatus('Enter a whole number.', 'error');
-  else value[field] = Math.trunc(Number(val));
+  else if (field === 'mode') {
+    // The same number, now set or added: "set to 16" becomes "add 16" (and back).
+    const n = setMode ? num(value.override) : num(value.bonus);
+    if (val === 'override') { value.override = n; value.bonus = 0; } else { value.bonus = n; value.override = null; }
+  } else if (field === 'amount') {
+    if (typed !== '' && !Number.isFinite(Number(typed))) return setStatus('Enter a whole number (a negative one subtracts).', 'error');
+    if (setMode) value.override = typed === '' ? null : Math.trunc(Number(typed));
+    else value.bonus = typed === '' ? 0 : Math.trunc(Number(typed));
+  } else if (typed === '') value[field] = field === 'bonus' ? 0 : null;
+  else if (!Number.isFinite(Number(typed))) return setStatus('Enter a whole number.', 'error');
+  else value[field] = Math.trunc(Number(typed));
   await writeTweak(snap, row, value);
   setStatus(`${row.name}: ${fxTweakValueText(value)}. Not synced to SW5E yet.`);
 }
@@ -6241,7 +6263,10 @@ async function addTweak() {
     ? { where: 'equipment', index: Number(w[1]), sub: w[2], rkey: `item:${arr(raw.equipment)[w[1]].name}.${w[2]}` }
     : { where: 'tweaks', path: d.path, rkey: d.path };
   const cur = (w ? getPath((arr(raw.equipment)[w[1]] || {}).tweaks, w[2]) : getPath(raw.tweaks, d.path)) || {};
-  const value = die ? { ...cur, dieSize } : prof ? { ...cur, proficiency: kind } : kind === 'override' ? { ...cur, override: n } : { ...cur, bonus: num(cur.bonus) + n };
+  // Set and add exclude each other (SW5E ignores the added amount while a value is set): adding to a set value adds to it.
+  const setNow = cur.override != null && cur.override !== '';
+  const value = die ? { ...cur, dieSize } : prof ? { ...cur, proficiency: kind } : kind === 'override' ? { ...cur, override: n, bonus: 0 }
+    : setNow ? { ...cur, override: num(cur.override) + n, bonus: 0 } : { ...cur, bonus: num(cur.bonus) + n, override: null };
   if (String(d.reason || '').trim()) {
     const st = itemStateOf(snap.key);
     st.reasons = { ...(st.reasons || {}), [row.rkey]: String(d.reason).trim() };

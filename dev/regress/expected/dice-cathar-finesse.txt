@@ -241,7 +241,7 @@ Advantages Advantage on Strength saving throws and Strength (Athletics) checks t
 Senses Darkvision 60 ft
 Speeds Climbing speed 30 ft
 Effects
-From class features (5)
+From class features and species traits (5)
 Consular weapon proficiencies Proficient: Simple lightweapons Proficient: simple vibroweapons Consular proficiencies
 Force Affinity Choose one of Ashla, Bendu, Bogan Consular feature
 Fundamentals of Mechu-deru Technology: proficient Way of Technology feature

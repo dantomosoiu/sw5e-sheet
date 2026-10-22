@@ -1,12 +1,12 @@
 # Thirza Vitchess (Panel)
 
 ## Sent to the rules engine
-The sheet's engine computes the numbers. OUT OF DATE: SW5E's recorded calculation is for an older version of this character; record the case again (dev/regress-record.js) for dev/engine-check.js.
+The sheet's engine computes the numbers. SW5E's recorded calculation is for this same character.
 tweaks.abilityScores.Charisma.skills.Persuasion.bonus = 0
 tweaks.abilityScores.Charisma.skills.Persuasion.proficiency = "Proficient"
 tweaks.abilityScores.Intelligence.skills.Lore.bonus = 0
 tweaks.abilityScores.Intelligence.skills.Lore.proficiency = "Proficient"
-tweaks.abilityScores.Wisdom.score.bonus = 2
+tweaks.abilityScores.Wisdom.score.bonus = 1
 tweaks.abilityScores.Wisdom.skills.Insight.bonus = 0
 tweaks.abilityScores.Wisdom.skills.Insight.proficiency = "Proficient"
 tweaks.abilityScores.Wisdom.skills.Medicine.bonus = 0
@@ -96,7 +96,7 @@ abilityScores.Wisdom.skills[Perception].modifier = 6
 abilityScores.Wisdom.skills[Perception].proficiency = "proficient"
 abilityScores.Wisdom.skills[Survival].modifier = 4
 abilityScores.Wisdom.skills[Survival].proficiency = "none"
-abilityScores.Wisdom.value = 19
+abilityScores.Wisdom.value = 18
 weapons[Vibrostaff].ability = "Strength"
 weapons[Vibrostaff].attackBonus = 1
 weapons[Vibrostaff].damageBonus = -1
@@ -169,7 +169,6 @@ tweak: abilityScores.Intelligence.skills.Lore +0 {"proficiency":"Proficient"} ·
 tweak: abilityScores.Wisdom.skills.Medicine +0 {"proficiency":"Proficient"} · Consular class skill (chosen at 1st level)
 tweak: abilityScores.Wisdom.skills.Perception +0 {"proficiency":"Proficient"} · Force Adept background skill
 tweak: abilityScores.Wisdom.skills.Insight +0 {"proficiency":"Proficient"} · Empathic feat (Force Adept background): Insight proficiency, not applied by SW5E
-tweak: abilityScores.Wisdom.score +1 · Empathic feat: +1 Wisdom, not applied by SW5E
 tweak: abilityScores.Charisma.skills.Persuasion +0 {"proficiency":"Proficient"} · Force Adept background skill
 tweak: abilityScores.Wisdom.score +1 · Empathic
 tweak: abilityScores.Wisdom.skills.Insight +0 {"proficiency":"Proficient"} · Empathic
@@ -252,7 +251,7 @@ Proficiency
 +2
 Passive Perception
 16
-  ↳ hover passivePerception: Without tweaks or effects: 13 → now 16 / Proficient Perception · Force Adept background skill tweak / +1 Wisdom score · Empathic feat: … [239 chars #36894e6d]
+  ↳ hover passivePerception: Without tweaks or effects: 13 → now 16 / Proficient Perception · Force Adept background skill tweak / +1 WIS · Empathic feat (background feat)
 Hit Dice
 4/4d6
 +1 per die spent (Con)
@@ -342,22 +341,22 @@ base 10
 WIS
 Wisdom
 +4
-  ↳ hover abilityScores.Wisdom.modifier: Without tweaks or effects: 3 → now 4 / +1 Wisdom score · Empathic feat: +1 Wisdom, not applied by SW5E tweak / +1 WIS · Empathic feat (background feat)
-19
-  ↳ hover abilityScores.Wisdom.value: Without tweaks or effects: 17 → now 19 / +1 Wisdom score · Empathic feat: +1 Wisdom, not applied by SW5E tweak / +1 WIS · Empathic feat (background feat)
+  ↳ hover abilityScores.Wisdom.modifier: Without tweaks or effects: 3 → now 4 / +1 WIS · Empathic feat (background feat)
+18
+  ↳ hover abilityScores.Wisdom.value: Without tweaks or effects: 17 → now 18 / +1 WIS · Empathic feat (background feat)
 (Proficient) Saving throw+6
-  ↳ hover abilityScores.Wisdom.savingThrow.modifier: Without tweaks or effects: 5 → now 6 / +1 Wisdom score · Empathic feat: +1 Wisdom, not applied by SW5E tweak / +1 WIS · Empathic feat (background feat)
+  ↳ hover abilityScores.Wisdom.savingThrow.modifier: Without tweaks or effects: 5 → now 6 / +1 WIS · Empathic feat (background feat)
 (Not proficient) Animal Handling+4
-  ↳ hover abilityScores.Wisdom.skills.0.modifier: Without tweaks or effects: 3 → now 4 / +1 Wisdom score · Empathic feat: +1 Wisdom, not applied by SW5E tweak / +1 WIS · Empathic feat (background feat)
+  ↳ hover abilityScores.Wisdom.skills.0.modifier: Without tweaks or effects: 3 → now 4 / +1 WIS · Empathic feat (background feat)
 (Proficient) Insight+6
-  ↳ hover abilityScores.Wisdom.skills.1.modifier: Without tweaks or effects: 3 → now 6 / +1 Wisdom score · Empathic feat: +1 Wisdom, not applied by SW5E tweak / +1 … [356 chars #9abd9f2d]
+  ↳ hover abilityScores.Wisdom.skills.1.modifier: Without tweaks or effects: 3 → now 6 / +1 WIS · Empathic feat (background feat) / Proficient Insight · Empathic fe… [284 chars #2c472238]
 (Proficient) Medicine+6
-  ↳ hover abilityScores.Wisdom.skills.2.modifier: Without tweaks or effects: 3 → now 6 / +1 Wisdom score · Empathic feat: +1 Wisdom, not applied by SW5E tweak / +1 … [270 chars #de8927fa]
+  ↳ hover abilityScores.Wisdom.skills.2.modifier: Without tweaks or effects: 3 → now 6 / +1 WIS · Empathic feat (background feat) / Proficient Medicine · Consular class skill (chosen at 1st level) tweak
 (Proficient) Perception+6
-  ↳ hover abilityScores.Wisdom.skills.3.modifier: Without tweaks or effects: 3 → now 6 / +1 Wisdom score · Empathic feat: +1 Wisdom, not applied by SW5E tweak / +1 … [258 chars #998615dc]
+  ↳ hover abilityScores.Wisdom.skills.3.modifier: Without tweaks or effects: 3 → now 6 / +1 WIS · Empathic feat (background feat) / Proficient Perception · Force Adept background skill tweak
 (Not proficient) Survival+4
-  ↳ hover abilityScores.Wisdom.skills.4.modifier: Without tweaks or effects: 3 → now 4 / +1 Wisdom score · Empathic feat: +1 Wisdom, not applied by SW5E tweak / +1 WIS · Empathic feat (background feat)
-base 15 · +2 Kel Dor · +1 from Empathic feat: +1 Wisdom, not applied by SW5E (tweak) · +1 from Empathic (feat)
+  ↳ hover abilityScores.Wisdom.skills.4.modifier: Without tweaks or effects: 3 → now 4 / +1 WIS · Empathic feat (background feat)
+base 15 · +2 Kel Dor · +1 from Empathic (feat)
 CHA
 Charisma
 +1
@@ -375,25 +374,25 @@ not proficient proficient expertise
 Skill | Ability | Bonus | Passive | Proficiency |
 (Not proficient) Acrobatics | DEX | +2 | 12 | — |
 (Not proficient) Animal Handling | WIS | +4 | 14 | — |
-  ↳ hover abilityScores.Wisdom.skills.0.modifier: Without tweaks or effects: 3 → now 4 / +1 Wisdom score · Empathic feat: +1 Wisdom, not applied by SW5E tweak / +1 WIS · Empathic feat (background feat)
-  ↳ hover abilityScores.Wisdom.skills.0.modifier: Without tweaks or effects: 3 → now 4 / +1 Wisdom score · Empathic feat: +1 Wisdom, not applied by SW5E tweak / +1 WIS · Empathic feat (background feat)
+  ↳ hover abilityScores.Wisdom.skills.0.modifier: Without tweaks or effects: 3 → now 4 / +1 WIS · Empathic feat (background feat)
+  ↳ hover abilityScores.Wisdom.skills.0.modifier: Without tweaks or effects: 3 → now 4 / +1 WIS · Empathic feat (background feat)
 (Not proficient) Athletics | STR | −1 | 9 | — |
 (Not proficient) Deception | CHA | +1 | 11 | — |
 (Proficient) Insight | WIS | +6 | 16 | Proficient |
-  ↳ hover abilityScores.Wisdom.skills.1.modifier: Without tweaks or effects: 3 → now 6 / +1 Wisdom score · Empathic feat: +1 Wisdom, not applied by SW5E tweak / +1 … [356 chars #9abd9f2d]
-  ↳ hover abilityScores.Wisdom.skills.1.modifier: Without tweaks or effects: 3 → now 6 / +1 Wisdom score · Empathic feat: +1 Wisdom, not applied by SW5E tweak / +1 … [356 chars #9abd9f2d]
+  ↳ hover abilityScores.Wisdom.skills.1.modifier: Without tweaks or effects: 3 → now 6 / +1 WIS · Empathic feat (background feat) / Proficient Insight · Empathic fe… [284 chars #2c472238]
+  ↳ hover abilityScores.Wisdom.skills.1.modifier: Without tweaks or effects: 3 → now 6 / +1 WIS · Empathic feat (background feat) / Proficient Insight · Empathic fe… [284 chars #2c472238]
 (Not proficient) Intimidation | CHA | +1 | 11 | — |
 (Not proficient) Investigation | INT | +0 | 10 | — |
 (Proficient) Lore | INT | +2 | 12 | Proficient |
   ↳ hover abilityScores.Intelligence.skills.1.modifier: Without tweaks or effects: 0 → now 2 / Proficient Lore · Consular class skill (chosen at 1st level) tweak
   ↳ hover abilityScores.Intelligence.skills.1.modifier: Without tweaks or effects: 0 → now 2 / Proficient Lore · Consular class skill (chosen at 1st level) tweak
 (Proficient) Medicine | WIS | +6 | 16 | Proficient |
-  ↳ hover abilityScores.Wisdom.skills.2.modifier: Without tweaks or effects: 3 → now 6 / +1 Wisdom score · Empathic feat: +1 Wisdom, not applied by SW5E tweak / +1 … [270 chars #de8927fa]
-  ↳ hover abilityScores.Wisdom.skills.2.modifier: Without tweaks or effects: 3 → now 6 / +1 Wisdom score · Empathic feat: +1 Wisdom, not applied by SW5E tweak / +1 … [270 chars #de8927fa]
+  ↳ hover abilityScores.Wisdom.skills.2.modifier: Without tweaks or effects: 3 → now 6 / +1 WIS · Empathic feat (background feat) / Proficient Medicine · Consular class skill (chosen at 1st level) tweak
+  ↳ hover abilityScores.Wisdom.skills.2.modifier: Without tweaks or effects: 3 → now 6 / +1 WIS · Empathic feat (background feat) / Proficient Medicine · Consular class skill (chosen at 1st level) tweak
 (Not proficient) Nature | INT | +0 | 10 | — |
 (Proficient) Perception | WIS | +6 | 16 | Proficient |
-  ↳ hover abilityScores.Wisdom.skills.3.modifier: Without tweaks or effects: 3 → now 6 / +1 Wisdom score · Empathic feat: +1 Wisdom, not applied by SW5E tweak / +1 … [258 chars #998615dc]
-  ↳ hover abilityScores.Wisdom.skills.3.modifier: Without tweaks or effects: 3 → now 6 / +1 Wisdom score · Empathic feat: +1 Wisdom, not applied by SW5E tweak / +1 … [258 chars #998615dc]
+  ↳ hover abilityScores.Wisdom.skills.3.modifier: Without tweaks or effects: 3 → now 6 / +1 WIS · Empathic feat (background feat) / Proficient Perception · Force Adept background skill tweak
+  ↳ hover abilityScores.Wisdom.skills.3.modifier: Without tweaks or effects: 3 → now 6 / +1 WIS · Empathic feat (background feat) / Proficient Perception · Force Adept background skill tweak
 (Not proficient) Performance | CHA | +1 | 11 | — |
 (Proficient) Persuasion | CHA | +3 | 13 | Proficient |
   ↳ hover abilityScores.Charisma.skills.3.modifier: Without tweaks or effects: 1 → now 3 / Proficient Persuasion · Force Adept background skill tweak
@@ -402,8 +401,8 @@ Skill | Ability | Bonus | Passive | Proficiency |
 (Not proficient) Sleight of Hand | DEX | +2 | 12 | — |
 (Not proficient) Stealth | DEX | +2 | 12 | — |
 (Not proficient) Survival | WIS | +4 | 14 | — |
-  ↳ hover abilityScores.Wisdom.skills.4.modifier: Without tweaks or effects: 3 → now 4 / +1 Wisdom score · Empathic feat: +1 Wisdom, not applied by SW5E tweak / +1 WIS · Empathic feat (background feat)
-  ↳ hover abilityScores.Wisdom.skills.4.modifier: Without tweaks or effects: 3 → now 4 / +1 Wisdom score · Empathic feat: +1 Wisdom, not applied by SW5E tweak / +1 WIS · Empathic feat (background feat)
+  ↳ hover abilityScores.Wisdom.skills.4.modifier: Without tweaks or effects: 3 → now 4 / +1 WIS · Empathic feat (background feat)
+  ↳ hover abilityScores.Wisdom.skills.4.modifier: Without tweaks or effects: 3 → now 4 / +1 WIS · Empathic feat (background feat)
 (Not proficient) Technology | INT | +0 | 10 | — |
 
 ## Sheet: Weapons & Attacks
@@ -417,23 +416,23 @@ Unarmed Strike
 ## Sheet: Force Casting
 Force points
 20 / 20
-  ↳ hover forceCasting.maxPoints: Without tweaks or effects: 19 → now 20 / +1 Wisdom score · Empathic feat: +1 Wisdom, not applied by SW5E tweak / +1 WIS · Empathic… [375 chars #53810e4d]
+  ↳ hover forceCasting.maxPoints: Without tweaks or effects: 19 → now 20 / +1 WIS · Empathic feat (background feat) / +1 Light force attack · Focus Generator (Fine)… [303 chars #cedccb01]
 Max power level
 2
 Light side
 DC 14
-  ↳ hover forceCasting.lightSaveDC: Without tweaks or effects: 13 → now 14 / +1 Wisdom score · Empathic feat: +1 Wisdom, not applied by SW5E tweak / +1 WIS · Empath… [377 chars #81fbfc09]
+  ↳ hover forceCasting.lightSaveDC: Without tweaks or effects: 13 → now 14 / +1 WIS · Empathic feat (background feat) / +1 Light force attack · Focus Generator (Fin… [305 chars #c7a5114a]
 attack +7
-  ↳ hover forceCasting.lightAttackModifier: Without tweaks or effects: 5 → now 7 / +1 Wisdom score · Empathic feat: +1 Wisdom, not applied by SW5E tweak / +1 WIS · … [383 chars #1bef73df]
+  ↳ hover forceCasting.lightAttackModifier: Without tweaks or effects: 5 → now 7 / +1 WIS · Empathic feat (background feat) / +1 Light force attack · Focus Generato… [311 chars #7eb70786]
 Dark side
 DC 11
 attack +4
-  ↳ hover forceCasting.darkAttackModifier: Without tweaks or effects: 3 → now 4 / +1 Wisdom score · Empathic feat: +1 Wisdom, not applied by SW5E tweak / +1 WIS · E… [382 chars #b56a68f2]
+  ↳ hover forceCasting.darkAttackModifier: Without tweaks or effects: 3 → now 4 / +1 WIS · Empathic feat (background feat) / +1 Light force attack · Focus Generator… [310 chars #54411fb5]
 Universal
 DC 14
-  ↳ hover forceCasting.universalSaveDC: Without tweaks or effects: 13 → now 14 / +1 Wisdom score · Empathic feat: +1 Wisdom, not applied by SW5E tweak / +1 WIS · Em… [381 chars #732fa894]
+  ↳ hover forceCasting.universalSaveDC: Without tweaks or effects: 13 → now 14 / +1 WIS · Empathic feat (background feat) / +1 Light force attack · Focus Generator … [309 chars #52fe21e5]
 attack +7
-  ↳ hover forceCasting.universalAttackModifier: Without tweaks or effects: 5 → now 7 / +1 Wisdom score · Empathic feat: +1 Wisdom, not applied by SW5E tweak / +1 WI… [387 chars #070e650e]
+  ↳ hover forceCasting.universalAttackModifier: Without tweaks or effects: 5 → now 7 / +1 WIS · Empathic feat (background feat) / +1 Light force attack · Focus Gene… [315 chars #652f6d07]
 At-will powers (5)
 Force Push/Pull Universal Consular
 [Cast] [No casting option ▾]
@@ -877,17 +876,17 @@ Docks ambush: dropped to 0 (crit 13 would have been massive damage; GM said no).
 Loot: 150 cr, Strength Stim (Basic), the "Datapad" in my inventory is the coded datapad with the smuggler's coordinates (story item, can't be named on the sheet).
 
 ## Sheet: Settings, Tweaks & Data
-Tweaks (manual adjustments) 6 · 1 tweak may count twice
+Tweaks (manual adjustments) 6 · 1 tweak left out (the sheet applies it by itself)
 From sw5e.com's editor or added here. Give each a reason (kept in this viewer and in backups); hovering or tapping a number they change shows it.
 Stat | Adjustment | Reason | |
-Lore | Proficiency [Proficient ▾] Bonus [] | [Consular class skill (chosen at 1st level)] | [×] |
-Medicine | Proficiency [Proficient ▾] Bonus [] | [Consular class skill (chosen at 1st level)] | [×] |
-Perception | Proficiency [Proficient ▾] Bonus [] | [Force Adept background skill] | [×] |
-Insight | Proficiency [Proficient ▾] Bonus [] | [Empathic feat (Force Adept background): Insight proficiency, not applied by SW5E] | [×] |
+Lore | Proficiency [Proficient ▾] [add ▾] [0] | [Consular class skill (chosen at 1st level)] | [×] |
+Medicine | Proficiency [Proficient ▾] [add ▾] [0] | [Consular class skill (chosen at 1st level)] | [×] |
+Perception | Proficiency [Proficient ▾] [add ▾] [0] | [Force Adept background skill] | [×] |
+Insight | Proficiency [Proficient ▾] [add ▾] [0] | [Empathic feat (Force Adept background): Insight proficiency, not applied by SW5E] | [×] |
 Wisdom score
-The sheet applies Empathic by itself now: with this tweak it counts twice. Remove the tweak (×) unless it's for something else.
-| Bonus [1] Set to [] | [Empathic feat: +1 Wisdom, not applied by SW5E] | [×] |
-Persuasion | Proficiency [Proficient ▾] Bonus [] | [Force Adept background skill] | [×] |
+not applied The sheet applies Empathic (background feat) by itself now: with this tweak it would count twice, so the tweak is left out. Remove it (×), or [apply it anyway] if it's for something else.
+| [add ▾] [1] | [Empathic feat: +1 Wisdom, not applied by SW5E] | [×] |
+Persuasion | Proficiency [Proficient ▾] [add ▾] [0] | [Force Adept background skill] | [×] |
 [Add a tweak to… ▾] [add (+/−) ▾] [] [] [Add]
 Builder settings
 Is Enforcing Force Prerequisites
@@ -928,4 +927,4 @@ SW5E's rules and item data: version 199, as it comes with the sheet. SW5E is the
 Raw SW5E character JSON
 { "name": "Thirza Vitchess (Panel)", "id": "00000000-0000-4000-8000-000007000001", "userId": "00000000-0000-4000-8000-000007000002", "builderVersion": "0.7.6", … [4436 chars #63b9c9ba]
 Computed character JSON (the sheet's rules engine)
-{ "name": "Thirza Vitchess (Panel)", "builderVersion": "0.7.6", "image": "", "characteristics": { "Age": "34", "Appearance": "Antiox breath mask and protective … [36544 chars #7fbf0749]
+{ "name": "Thirza Vitchess (Panel)", "builderVersion": "0.7.6", "image": "", "characteristics": { "Age": "34", "Appearance": "Antiox breath mask and protective … [36544 chars #c9b6f4ae]

@@ -957,16 +957,16 @@ Next level-up: SYNC TO SW5E FIRST, or the builder's new level is ignored on Load
 Tweaks (manual adjustments) 9 · 1 tweak left out (the sheet applies it by itself)
 From sw5e.com's editor or added here. Give each a reason (kept in this viewer and in backups); hovering or tapping a number they change shows it.
 Stat | Adjustment | Reason | |
-Persuasion | Proficiency [Proficient ▾] Bonus [] | [Zabrak Coercive (chose Persuasion)] | [×] |
-Intimidation | Proficiency [Proficient ▾] Bonus [] | [Soldier background skill] | [×] |
-Insight | Proficiency [Proficient ▾] Bonus [] | [Fighter class skill (chosen at 1st level)] | [×] |
-Perception | Proficiency [Proficient ▾] Bonus [] | [Fighter class skill (chosen at 1st level)] | [×] |
-Piloting | Proficiency [Proficient ▾] Bonus [] | [Soldier background skill] | [×] |
-Dexterity score | Bonus [1] Set to [] | [Weapon Expert feat: +1 Dexterity (builder has no choice for it)] | [×] |
-Stealth | Proficiency [Proficient ▾] Bonus [] | [Operative multiclass: any one skill (SW5E multiclassing table)] | [×] |
+Persuasion | Proficiency [Proficient ▾] [add ▾] [0] | [Zabrak Coercive (chose Persuasion)] | [×] |
+Intimidation | Proficiency [Proficient ▾] [add ▾] [0] | [Soldier background skill] | [×] |
+Insight | Proficiency [Proficient ▾] [add ▾] [0] | [Fighter class skill (chosen at 1st level)] | [×] |
+Perception | Proficiency [Proficient ▾] [add ▾] [0] | [Fighter class skill (chosen at 1st level)] | [×] |
+Piloting | Proficiency [Proficient ▾] [add ▾] [0] | [Soldier background skill] | [×] |
+Dexterity score | [add ▾] [1] | [Weapon Expert feat: +1 Dexterity (builder has no choice for it)] | [×] |
+Stealth | Proficiency [Proficient ▾] [add ▾] [0] | [Operative multiclass: any one skill (SW5E multiclassing table)] | [×] |
 HP maximum
 not applied The sheet applies Toughness (Zabrak trait) by itself now: with this tweak it would count twice, so the tweak is left out. Remove it (×), or [apply it anyway] if it's for something else.
-| Bonus [4] Set to [] | [Zabrak Toughness: +1 HP per level (not applied by SW5E)] | [×] |
+| [add ▾] [4] | [Zabrak Toughness: +1 HP per level (not applied by SW5E)] | [×] |
 Unarmed: damage die | Die [4] | [Zabrak Unarmed Combatant: 1d4, finesse] | [×] |
 [Add a tweak to… ▾] [add (+/−) ▾] [] [] [Add]
 Builder settings

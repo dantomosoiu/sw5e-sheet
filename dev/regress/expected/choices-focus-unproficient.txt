@@ -182,7 +182,7 @@ skill|Charisma|3: Persuasion (CHA): d20 +2 · = +2 modifier
 attack|0: Blaster rifle attack: d20 +2 · = +2 modifier
 damage|0: Blaster rifle damage: d8 +2 · = +2 DEX modifier · Energy
 attack|1: Unarmed Strike attack: d20 +2 · = +2 modifier
-damage|1: Unarmed Strike damage: no dice +1 · = +1 flat damage · Kinetic
+damage|1: Unarmed Strike damage: no dice +0 · = +1 unarmed strike −1 STR modifier · Kinetic
 force|light: Light force attack: d20 +6 · = +6 modifier
 force|dark: Dark force attack: d20 +5 · = +5 modifier
 force|universal: Universal force attack: d20 +6 · = +6 modifier
@@ -191,7 +191,7 @@ pdmg|tech|Ion Blast|0|0: Ion Blast: ion damage: d4 d4 +0 · ion
 pdmg|tech|Overheat|2|0: Overheat: fire damage: d8 d8 +0 · fire
 tool|One type of gaming set|proficient: One type of gaming set check: d20 +3 · = +0 INT modifier +3 proficiency
 damage|0|crit: Blaster rifle damage (critical): d8 d8 +2 · = +2 DEX modifier · Energy · critical
-damage|1|crit: Unarmed Strike damage (critical): no dice +1 · = +1 flat damage · Kinetic · critical
+damage|1|crit: Unarmed Strike damage (critical): no dice +0 · = +1 unarmed strike −1 STR modifier · Kinetic · critical
 
 ## Sheet: Overview
 Consular Test (local)
