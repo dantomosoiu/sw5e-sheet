@@ -977,9 +977,12 @@ Perception | Proficiency [Proficient ▾] [add ▾] [0] | [Force Adept backgroun
 Insight | Proficiency [Proficient ▾] [add ▾] [0] | [Empathic feat (Force Adept background): Insight proficiency, not applied by SW5E] | [×] |
 Wisdom score
 not applied The sheet applies Empathic (background feat) by itself now: with this tweak it would count twice, so the tweak is left out. Remove it (×), or [apply it anyway] if it's for something else.
-| [add ▾] [1] | [Empathic feat: +1 Wisdom, not applied by SW5E] | [×] |
+| [add ▾] [1]
+Add: adds 1 (a negative number subtracts) on top of everything else
+| [Empathic feat: +1 Wisdom, not applied by SW5E] | [×] |
 Persuasion | Proficiency [Proficient ▾] [add ▾] [0] | [Force Adept background skill] | [×] |
 [Add a tweak to… ▾] [add (+/−) ▾] [] [] [Add]
+Add: adds N (a negative number subtracts) on top of everything else
 Builder settings
 Is Enforcing Force Prerequisites
 true

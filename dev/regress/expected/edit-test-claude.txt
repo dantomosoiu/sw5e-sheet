@@ -945,10 +945,15 @@ Session 1: found a holocron.
 Tweaks (manual adjustments) 3 · 1 tweak without a reason
 From sw5e.com's editor or added here. Give each a reason (kept in this viewer and in backups); hovering or tapping a number they change shows it.
 Stat | Adjustment | Reason | |
-Charisma score | [add ▾] [2] | [Test character setup: +1 CHA] | [×] |
+Charisma score | [add ▾] [2]
+Add: adds 2 (a negative number subtracts) on top of everything else
+| [Test character setup: +1 CHA] | [×] |
 Deception | Proficiency [Expertise ▾] [add ▾] [0] | [] | [×] |
-Blaster pistol: damage | [add ▾] [1] | [Custom barrel] | [×] |
+Blaster pistol: damage | [add ▾] [1]
+Add: adds 1 (a negative number subtracts) on top of everything else
+| [Custom barrel] | [×] |
 [Add a tweak to… ▾] [add (+/−) ▾] [] [] [Add]
+Add: adds N (a negative number subtracts) on top of everything else
 Builder settings
 Is Enforcing Force Prerequisites
 true

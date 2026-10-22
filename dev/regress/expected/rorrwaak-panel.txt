@@ -787,16 +787,21 @@ Stat | Adjustment | Reason | |
 Athletics | Proficiency [Expertise ▾] [add ▾] [0] | [Berserker class skill + Brawny feat (already proficient, so expertise)] | [×] |
 Strength score
 not applied The sheet applies Brawny (background feat) by itself now: with this tweak it would count twice, so the tweak is left out. Remove it (×), or [apply it anyway] if it's for something else.
-| [add ▾] [1] | [Brawny feat: +1 Strength (not applied by SW5E)] | [×] |
+| [add ▾] [1]
+Add: adds 1 (a negative number subtracts) on top of everything else
+| [Brawny feat: +1 Strength (not applied by SW5E)] | [×] |
 Perception | Proficiency [Proficient ▾] [add ▾] [0] | [Berserker class skill (chosen at 1st level)] | [×] |
 Persuasion | Proficiency [Proficient ▾] [add ▾] [0] | [Mercenary background skill] | [×] |
 Intimidation | Proficiency [Proficient ▾] [add ▾] [0] | [Wookiee Menacing trait (not applied by SW5E)] | [×] |
 Piloting | Proficiency [Proficient ▾] [add ▾] [0] | [Mercenary background skill] | [×] |
 AC
 not applied The sheet applies Unarmored Defense (Berserker feature) and Hide (Wookiee trait) by itself now: with this tweak it would count twice, so the tweak i… [235 chars #9bc2620f]
-| [add ▾] [1] | [Wookiee Hide (13 + Dex) is 1 better than Unarmored Defense (10 + Dex + Con)] | [×] |
+| [add ▾] [1]
+Add: adds 1 (a negative number subtracts) on top of everything else
+| [Wookiee Hide (13 + Dex) is 1 better than Unarmored Defense (10 + Dex + Con)] | [×] |
 Unarmed: damage die | Die [4] | [Wookiee Claws: unarmed strikes deal 1d4 (not applied by SW5E)] | [×] |
 [Add a tweak to… ▾] [add (+/−) ▾] [] [] [Add]
+Add: adds N (a negative number subtracts) on top of everything else
 Builder settings
 Is Enforcing Force Prerequisites
 true
