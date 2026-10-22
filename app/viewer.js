@@ -870,8 +870,17 @@ function buildModel(snap) {
   m.classDice = classDice(m);
   const casters = classCasting(m);
   const highRules = ['force', 'tech'].flatMap((kind) => highLevelRules(m, kind));
-  m.t = has ? buildTracker(snap, c, superiorityInfo(m), m.textUses, state.rules && choiceInfo(m) ? choiceInfo(m).superiority : [], highRules, ownCastingPoints(m, casters)) : null;
+  m.t = has ? buildTracker(snap, c, superiorityInfo(m), m.textUses, state.rules && choiceInfo(m) ? choiceInfo(m).superiority : [], highRules, ownCastingPoints(m, casters), supTweaks(m)) : null;
   return m;
+}
+/**
+ * The superiority tweaks with effects merged ({ maxDice, physicalSaveDC, physicalModifier, … }), as sent to the engine;
+ * maxDice without a class augment's die, which the sheet's own reading has already (it boosts the class's table row).
+ */
+function supTweaks(m) {
+  const all = (m.fx && m.fx.raw && m.fx.raw.tweaks && m.fx.raw.tweaks.superiority) || {};
+  const aug = arr(m.fx && m.fx.tweaks).filter((t) => t.path === 'superiority.maxDice' && t.mod && t.mod.forClass).reduce((s, t) => s + num(t.bonus), 0);
+  return aug && all.maxDice ? { ...all, maxDice: engHasOverride(all.maxDice) ? { ...all.maxDice, override: num(all.maxDice.override) - aug } : { ...all.maxDice, bonus: num(all.maxDice.bonus) - aug } } : all;
 }
 
 // ------------------------------------------------------------- small render helpers
@@ -958,12 +967,19 @@ function featureUses(m) {
   const pb = num(m.c.proficiencyBonus);
   const classOf = (f) => classes.find((k) => k.name === f.sourceName || (k.archetype && k.archetype.name === f.sourceName))
     || (classes.length === 1 ? classes[0] : null);
-  const ctxFor = (k) => ({ level: num(k.levels), pb, mods, row: k.name ? classRow(m.raw, k) : {} });
+  // Multiclass Improvement: "You can add your other chosen class's levels to your engineer levels when determining … the
+  // number of uses of your Potent Aptitude feature" (half of them: Guardian's Channel the Force): that feature's uses
+  // go by the boosted level.
+  const boost = (k, name) => (k.name ? multiclassBoosts(m.raw, k) : []).filter((b) => {
+    const t = String((rulesModule('multiclassImprovements').find((x) => x.name === k.name) || {}).description || '');
+    return new RegExp(`\\buses of (?:your )?${name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'i').test(t);
+  }).reduce((s, b) => s + num(b.add), 0);
+  const ctxFor = (k, name) => ({ level: Math.min(20, num(k.levels) + (name ? boost(k, name) : 0)), pb, mods, row: k.name ? classRow(m.raw, k) : {} });
   const out = [];
   const seen = new Set();
   const add = (name, text, k) => {
     if (!k || seen.has(name)) return;
-    const u = clsUsage(text, ctxFor(k));
+    const u = clsUsage(text, ctxFor(k, name));
     if (!u) return;
     seen.add(name);
     out.push({ name, ...u });
@@ -1011,7 +1027,7 @@ function classDice(m) {
   return out;
 }
 
-function buildTracker(snap, c, refsInfo, textUses = [], extraDice = [], highRules = null, ownPoints = {}) {
+function buildTracker(snap, c, refsInfo, textUses = [], extraDice = [], highRules = null, ownPoints = {}, supTw = {}) {
   const local = state.trackers[snap.key];
   const s = local ? local.stats : sw5eStats(snap.raw);
   const hp = c.hitPoints || {};
@@ -1028,9 +1044,12 @@ function buildTracker(snap, c, refsInfo, textUses = [], extraDice = [], highRule
     hpMax,
     hitDice: arr(hp.hitDice).map((d) => ({ size: d.size, maximum: num(d.maximum) })),
     hitDieBonus: num(hp.resting && hp.resting.hitDieBonus),
-    // Fighting styles and masteries add dice to the pool (Superiority Style: one, d4 → d12 by level).
-    supMax: (sup ? num(sup.maxDice) : supQty) + extraDice.reduce((t, d) => t + num(d.count), 0),
-    supSize: [sup ? sup.diceSize : supSizeRow ? supSizeRow[1] : '', ...extraDice.map((d) => d.size)]
+    // The dice from the class or archetype table as the sheet reads them (superiorityInfo), with the superiority tweaks:
+    // SW5E's engine (and ours, which mirrors it) misreads an archetype's level table (its second column as the count,
+    // size 0 without a size column: Deadeye d6, Adept Specialist 20 dice of size 0), so its numbers count only where
+    // the sheet reads none. Fighting styles and masteries add dice to the pool (Superiority Style: one, d4 → d12 by level).
+    supMax: (supQty > 0 ? engTweaked(supQty, supTw.maxDice || {}) : sup ? num(sup.maxDice) : 0) + extraDice.reduce((t, d) => t + num(d.count), 0),
+    supSize: [supSizeRow ? supSizeRow[1] : supQty > 0 ? '' : sup && num(sup.diceSize) ? `d${num(String(sup.diceSize).replace(/\D/g, ''))}` : '', ...extraDice.map((d) => d.size)]
       .filter(Boolean).sort((a, b) => num(String(b).replace(/\D/g, '')) - num(String(a).replace(/\D/g, '')))[0] || '',
     // Points from SW5E's computation, or (casters its engine doesn't know, e.g. Rakatan Order) from the table.
     force: ownPoints.force != null ? num(ownPoints.force) : c.forceCasting ? num(c.forceCasting.maxPoints) : 0,
@@ -2219,6 +2238,14 @@ function applyEffects(key, editedRaw, complete) {
     return [a, num((((complete && complete.abilityScores) || {})[a] || {}).value) - num(tw.bonus)];
   }));
   const res = fxResolve(effects, scores);
+  // Martial Arts (martialArtsOf): the unarmed strike's die and finesse like a species' natural weapons, while the armor
+  // and shield allow it; the monk weapons' come after the weapon proficiencies, below.
+  const martial = martialArtsOf(editedRaw).filter((x) => !(x.ma.noArmor && armor.armor) && !(x.ma.noShield && armor.shield)).map((x) => {
+    const size = num(String((x.ma.column && classRow(editedRaw, x.k)[x.ma.column]) || x.ma.die).replace(/^\d*d/i, ''));
+    const e = { id: x.id, kind: 'feature', name: x.name, why: `${x.k.name} feature`, target: 'self', mods: [], notes: [], unarmedDie: size, unarmedFinesse: x.ma.finesse };
+    effects.push(e);
+    return { ...x, e, size };
+  });
   // The final scores, as the engine will have them: a tweak's "set to" sets the score and effects add on top of it (a
   // Strength stim on a Strength set by a tweak); the tweak's own bonus doesn't count then (SW5E ignores it).
   const final = { ...scores };
@@ -2272,6 +2299,63 @@ function applyEffects(key, editedRaw, complete) {
     });
     if (tooStrong) res.tweaks.push({ path: 'speed.base', bonus: 10, fields: null, effect: ignores, mod: { path: 'speed.base', label: 'Speed +10 ft (ignores heavy armor\'s Strength)' } });
   }
+  // "You have a number of tech points equal to half of your berserker level, as shown in the Tech Points column of the
+  // Industrial Approach Techcasting table, + your Intelligence modifier": SW5E's engine reads an archetype's points only
+  // for third-casters, so a sixth-caster's (Industrial Approach) are added here, with SW5E's "at least 1 point".
+  for (const kind of ['force', 'tech']) {
+    const cast = complete && complete[`${kind}Casting`];
+    if (!cast || typeof cast !== 'object') continue;
+    const Word = kind === 'force' ? 'Force' : 'Tech';
+    let table = 0;
+    const dropped = [];
+    for (const k of arr(editedRaw.classes)) {
+      const lv = num(k.levels);
+      const cref = rulesModule('classes').find((x) => x.name === k.name);
+      if (cref && cref.casterType === Word && num(cref.casterRatio) > 0) table += num(((cref.levelChanges || {})[String(Math.max(1, Math.min(20, lv)))] || {})[`${Word} Points`]);
+      const aref = k.archetype && k.archetype.name ? rulesModule('archetypes').find((x) => x.name === k.archetype.name) : null;
+      if (!aref || aref.casterType !== Word || !(num(aref.casterRatio) > 0)) continue;
+      const pts = num(engArchetypeRow(aref, lv)[`${Word} Points`]);
+      if (Math.abs(num(aref.casterRatio) - 1 / 3) < 0.01) table += pts;
+      else if (pts) dropped.push({ name: aref.name, pts });
+    }
+    if (!dropped.length) continue;
+    const m0 = kind === 'tech' ? modOf('Intelligence') : Math.max(modOf('Wisdom'), modOf('Charisma'));
+    const all = dropped.reduce((t, d) => t + d.pts, 0);
+    const g = Math.max(1, table + all + m0) - Math.max(1, table + m0);
+    if (g <= 0) continue;
+    const mod = { path: `${kind}Casting.maxPoints`, bonus: g, label: `${Word} points from the ${dropped.map((d) => d.name).join(' and ')} table +${g}` };
+    const e = { id: `archpoints:${kind}`, kind: 'feature', origin: 'class feature', name: dropped.map((d) => d.name).join(', '), why: `${Word.toLowerCase()} points (SW5E's engine leaves them out)`, target: 'self', notes: [], mods: [mod] };
+    effects.push(e);
+    res.tweaks.push({ path: mod.path, bonus: g, fields: null, effect: e, mod });
+  }
+  // Feats that change the casting ability (castingSwaps): what SW5E's numbers gain with it, from the final scores. "You
+  // can use Intelligence instead of the chosen ability": the better of the two, for the powers and points that use it.
+  for (const sw of castingSwaps(editedRaw)) {
+    const cast = complete && complete[`${sw.kind}Casting`];
+    if (!cast || typeof cast !== 'object') continue;
+    const e = { id: `castswap:${sw.name}`, kind: 'feature', origin: 'feat', name: sw.name, why: 'feat (casting ability)', target: 'self', notes: [], mods: [],
+      needsChoice: sw.chosen ? [] : [`one of ${sw.options.join(', ')} (the casting ability it replaces)`] };
+    effects.push(e);
+    if (!sw.chosen) continue;
+    const bestMod = (list) => Math.max(...list.map(modOf));
+    const keys = sw.kind === 'tech' ? { tech: ['Intelligence'] } : { light: ['Wisdom'], dark: ['Charisma'], universal: ['Wisdom', 'Charisma'] };
+    const gainOf = (list) => (list.includes(sw.from) ? bestMod(list.concat(sw.to)) - bestMod(list) : 0);
+    const word = sw.kind === 'tech' ? 'Tech' : 'Force';
+    const add = (path, g, what) => {
+      if (g <= 0) return;
+      const mod = { path, bonus: g, label: `${what}, ${ABBR[sw.to]} instead of ${ABBR[sw.from]} +${g}` };
+      e.mods.push(mod);
+      res.tweaks.push({ path, bonus: g, fields: null, effect: e, mod });
+    };
+    for (const [k, list] of Object.entries(keys)) {
+      const g = gainOf(list);
+      const pre = sw.kind === 'tech' ? 'techCasting.' : `forceCasting.${k}`;
+      const name = sw.kind === 'tech' ? 'Tech' : `${titleCase(k)} force`;
+      add(sw.kind === 'tech' ? `${pre}attackModifier` : `${pre}AttackModifier`, g, `${name} attack`);
+      add(sw.kind === 'tech' ? `${pre}saveDC` : `${pre}SaveDC`, g, `${name} save DC`);
+    }
+    if (sw.points) add(`${sw.kind}Casting.maxPoints`, gainOf(sw.kind === 'tech' ? ['Intelligence'] : ['Wisdom', 'Charisma']), `${word} points`);
+  }
   // Weapon proficiencies from class lists and features: each carried weapon they describe.
   for (const e of effects) {
     for (const desc of arr(e.weapons)) {
@@ -2282,6 +2366,79 @@ function applyEffects(key, editedRaw, complete) {
         }
       });
     }
+  }
+  // Martial Arts on monk weapons ("vibroweapons with which you are proficient that lack the dexterity, heavy, special,
+  // and two-handed properties"): its die in place of a smaller one, and Dexterity where it's better (finesse).
+  const abilityFor = {}; // weapon index → [{ a: ability it can use, e: the effect, finesse }]
+  // Monk weapons a feature names (weaponKindsOf: Echani, Whills weapons) count while Martial Arts does (its armor
+  // condition); proficiency comes with them ("You gain proficiency with these weapons").
+  const kinds = martial.length ? weaponKindsOf(editedRaw) : [];
+  const ofKind = (it) => kinds.filter((x) => x.names.some((n) => invSameName(n, it.name) || invSameName(n, it.label || '') || invSameName(n.replace(/s$/, ''), it.name)));
+  for (const x of martial.filter((y) => y.ma.weapons)) {
+    const profs = arr(complete && complete.proficiencies).filter((p) => p && /weapon|other/.test(p.type || '')).map((p) => p.name)
+      .concat(effects.flatMap((e) => arr(e.weapons)));
+    arr(editedRaw.equipment).forEach((it, i) => {
+      const ref = it.category === 'Equipment' && catalogIndex && catalogIndex.get(it.name);
+      const named = ofKind(it);
+      if (!ref || ref.equipmentCategory !== 'Weapon' || !(clsWeaponMatches(x.ma.weapons.desc, ref) || named.some((k) => k.monk))) return;
+      if (named.some((k) => k.prof) && !res.weaponTweaks.some((t) => t.index === i && t.fields && t.fields.proficiency)) {
+        const k = named.find((y) => y.prof);
+        res.weaponTweaks.push({ index: i, path: 'toHit', bonus: 0, fields: { proficiency: 'proficient' }, effect: x.e, mod: { path: 'weapon.toHit', label: `Proficient: ${k.kind} weapon (${k.name})` } });
+      }
+      const proficient = profs.some((d) => clsWeaponMatches(d, ref)) || res.weaponTweaks.some((t) => t.index === i && t.fields && t.fields.proficiency);
+      if (!proficient) return;
+      if (num(ref.damageNumberOfDice) <= 1 && x.size > num(ref.damageDieType) && !res.weaponTweaks.some((t) => t.index === i && t.path === 'damageDice')) {
+        res.weaponTweaks.push({ index: i, path: 'damageDice', bonus: 0, fields: { dieSize: x.size }, effect: x.e, mod: { path: 'weapon.damageDice', label: `${x.name} die (in place of d${num(ref.damageDieType)})` } });
+      }
+      if (x.ma.finesse) (abilityFor[i] = abilityFor[i] || []).push({ a: 'Dexterity', e: x.e, finesse: true });
+    });
+  }
+  // Attacks that can use another ability (attackGrantsOf): "Weapons that lack the two-handed or special properties are
+  // considered to have the finesse property for you" (Blinding Agility), "You can use your choice of Wisdom or Charisma
+  // instead of Strength or Dexterity for the attack and damage rolls of your unarmed strikes and monk weapons" (Vow of
+  // Spirit), "… for the attack and damage rolls" of a bonded weapon named in the notes (Forceblade Bond).
+  const grants = attackGrantsOf(editedRaw).map((g) => {
+    const e = { id: g.id, kind: 'feature', name: g.name, why: g.why, target: 'self', mods: [], notes: [] };
+    effects.push(e);
+    return { ...g, e };
+  });
+  const monkDesc = martial.map((x) => x.ma.weapons && x.ma.weapons.desc).filter(Boolean);
+  arr(editedRaw.equipment).forEach((it, i) => {
+    const ref = it.category === 'Equipment' && catalogIndex && catalogIndex.get(it.name);
+    if (!ref || ref.equipmentCategory !== 'Weapon') return;
+    const ranged = /blaster/i.test(ref.weaponClassification || '') || arr(ref.properties).some((p) => /\(range /i.test(p) && !/^thrown/i.test(p));
+    for (const g of grants) {
+      const t = g.target;
+      const fits = (t.lacking && clsWeaponMatches(`weapons that lack the ${t.lacking} properties`, ref)) || (t.melee && !ranged)
+        || (t.monk && (monkDesc.some((d) => clsWeaponMatches(d, ref)) || ofKind(it).some((k) => k.monk))) || arr(t.names).some((n) => invSameName(n, it.name) || invSameName(n, it.label || ''));
+      if (fits) for (const a of g.abilities) (abilityFor[i] = abilityFor[i] || []).push({ a, e: g.e, finesse: g.finesse });
+    }
+  });
+  // "You gain a +2 bonus to AC until the start of your next turn, while the weapon is in your hand" (Agile Parry): shown
+  // next to AC as an alternative, not applied.
+  for (const f of featureTextsOf(editedRaw)) {
+    let sub = ''; // the option it's under ("#### Agile Parry If you make an unarmed strike …")
+    for (const s0 of String(f.text).replace(/\s+/g, ' ').split(/(?<=\.)\s+(?=[-A-Z_*#])/)) {
+      if (/^#{4,}\s/.test(s0) && typeof headingOf === 'function') sub = headingOf(s0);
+      // "While you are concentrating on a Force power, you have a +2 bonus to your AC and all saving throws" (Enduring Focus).
+      const w = /^(?:[-#*_ ]*[A-Z][\w'’ -]+?\s+)?While you are ([^,]+), you have a \+(\d+) bonus to your AC\b/.exec(s0);
+      const x = w ? [w[0], w[2]] : /^(?:[^.]*?\s)?You gain a \+(\d+) bonus to AC until the start of your next turn\b/.exec(s0);
+      if (!x || /\bfor each\b/i.test(s0)) continue;
+      const name = sub || f.name;
+      const cond = w ? `while ${w[1].replace(/ on an? (?:Force|force|tech) power$/, '')}` : name;
+      const e = { id: `ac-alt:${name}`, kind: 'feature', name, why: f.k ? `${f.k.name} feature` : 'feat', target: 'self', mods: [], notes: [] };
+      res.conds.push({ path: 'armorClass', bonus: num(x[1]), cond, ammo: null, weaponIndex: null, effect: e, mod: { path: 'armorClass', bonus: num(x[1]), label: `AC +${x[1]}`, cond } });
+    }
+  }
+  // Each weapon with the best of them, where better than the ability SW5E uses: the difference on attack and damage.
+  for (const [i, list] of Object.entries(abilityFor)) {
+    const w = arr(complete && complete.weapons).find((y) => y.index === Number(i));
+    if (!w || !w.ability) continue;
+    const best = list.reduce((b, x) => (modOf(x.a) > modOf(b.a) ? x : b), { a: w.ability });
+    const gain = modOf(best.a) - modOf(w.ability);
+    if (!best.e || gain <= 0) continue;
+    const label = `${best.finesse ? 'Finesse: ' : ''}${ABBR[best.a]} ${signed(modOf(best.a))} instead of ${ABBR[w.ability]} ${signed(modOf(w.ability))}`;
+    for (const path of ['toHit', 'damage']) res.weaponTweaks.push({ index: Number(i), path, bonus: gain, fields: null, effect: best.e, mod: { path: `weapon.${path}`, label, finesse: !!best.finesse, ability: best.a } });
   }
   // Tool proficiencies from features (with "choose" picks from notes).
   res.tools = effects.flatMap((e) => arr(e.tools).map((t) => ({ ...t, effect: e })));
@@ -2301,20 +2458,25 @@ function applyEffects(key, editedRaw, complete) {
   if (stepping.length) {
     const cur = Math.max(0, steps.indexOf(Math.max(tweakDie, natDie)));
     const die = steps[Math.min(steps.length - 1, cur + stepping.reduce((t, e) => t + num(e.unarmedStep), 0))];
-    for (const e of stepping) res.tweaks.push({ path: 'unarmed.damageDice', bonus: 0, fields: { dieSize: die }, effect: e, mod: { path: 'unarmed.damageDice', label: `Unarmed die d${die}` } });
+    const was = steps[cur] ? `d${steps[cur]}` : '1';
+    for (const e of stepping) res.tweaks.push({ path: 'unarmed.damageDice', bonus: 0, fields: { dieSize: die }, effect: e, mod: { path: 'unarmed.damageDice', label: `Unarmed damage up a step (${was} → d${die})` } });
   } else if (natDie > tweakDie) {
     const e = natural.find((x) => num(x.unarmedDie) === natDie);
-    res.tweaks.push({ path: 'unarmed.damageDice', bonus: 0, fields: { dieSize: natDie }, effect: e, mod: { path: 'unarmed.damageDice', label: `Unarmed die d${natDie}` } });
+    res.tweaks.push({ path: 'unarmed.damageDice', bonus: 0, fields: { dieSize: natDie }, effect: e, mod: { path: 'unarmed.damageDice', label: `Unarmed damage die (${tweakDie ? `d${tweakDie}` : '1'} → d${natDie})` } });
   }
-  const fin = natural.find((x) => x.unarmedFinesse);
-  if (fin && unarmed && unarmed.ability !== 'Dexterity') {
+  // The unarmed strike's ability: Dexterity with finesse (a species' natural weapons, Martial Arts, Ideal of the
+  // Contender), the abilities features allow (Vow of Spirit's Wisdom or Charisma), the best of them over SW5E's Strength.
+  const unarmedCan = effects.filter((x) => x.unarmedFinesse).map((e) => ({ a: 'Dexterity', e, finesse: true }))
+    .concat(grants.filter((g) => g.target.unarmed || g.target.melee).flatMap((g) => g.abilities.map((a) => ({ a, e: g.e, finesse: g.finesse }))));
+  if (unarmedCan.length && unarmed) {
     // From the final scores (a belt that makes Strength 21 ends the gain), not the last calculation.
     const mod = modOf;
     const ab = unarmed.ability || 'Strength';
+    const best = unarmedCan.reduce((b, x) => (mod(x.a) > mod(b.a) ? x : b), { a: ab });
     // SW5E's engine adds no negative modifier to unarmed damage (Strength −1: d4 + 0), but does to the attack.
-    const gain = { 'unarmed.toHit': mod('Dexterity') - mod(ab), 'unarmed.damage': mod('Dexterity') - Math.max(0, mod(ab)) };
-    const label = `Finesse: DEX ${signed(mod('Dexterity'))} instead of ${ab.slice(0, 3).toUpperCase()} ${signed(mod(ab))}`;
-    for (const path of Object.keys(gain)) if (gain[path] > 0) res.tweaks.push({ path, bonus: gain[path], fields: null, effect: fin, mod: { path, label, finesse: true } });
+    const gain = { 'unarmed.toHit': mod(best.a) - mod(ab), 'unarmed.damage': mod(best.a) - Math.max(0, mod(ab)) };
+    const label = `${best.finesse ? 'Finesse: ' : ''}${ABBR[best.a]} ${signed(mod(best.a))} instead of ${ab.slice(0, 3).toUpperCase()} ${signed(mod(ab))}`;
+    if (best.e) for (const path of Object.keys(gain)) if (gain[path] > 0) res.tweaks.push({ path, bonus: gain[path], fields: null, effect: best.e, mod: { path, label, finesse: !!best.finesse, ability: best.a } });
   }
   // "Add half your proficiency bonus to any ability check that doesn't already include it": skills
   // without proficiency and initiative (plain ability checks get it in the roller).
@@ -2418,6 +2580,105 @@ function engineCheckOf(raw, sw5eComplete, ctx) {
   return { at: Date.now(), compared: r.compared, differences: r.differences.slice(0, 50), more: Math.max(0, r.differences.length - 50) };
 }
 
+/**
+ * Class and archetype features (and picked class options) with Martial Arts' wording (clsMartialArts), for the levels
+ * reached: [{ id, name, k (the class), ma }]. Cached for the same classes.
+ */
+function martialArtsOf(editedRaw) {
+  if (typeof clsMartialArts !== 'function') return [];
+  return featureTextsOf(editedRaw).filter((f) => f.k).map((f) => ({ id: `martial:${f.k.name}:${f.name}`, name: f.name, k: f.k, ma: clsMartialArts(f.text) })).filter((x) => x.ma);
+}
+/**
+ * The texts of the character's class and archetype features (the levels reached), picked class options and feats:
+ * [{ name, text, k (the class; none for a feat), note }]. Cached for the same classes, feats and notes.
+ */
+function featureTextsOf(editedRaw) {
+  if (!state.rules) return [];
+  const sig = canonical([arr(editedRaw.classes).map((k) => [k.name, k.levels, k.archetype && k.archetype.name, k.options || null]), featNamesOf(editedRaw), editedRaw.featureNotes || null]);
+  if (featureTextsOf.cache && featureTextsOf.cache.rules === state.rules && featureTextsOf.cache.sig === sig) return featureTextsOf.cache.out;
+  const out = [];
+  const parsed = classRules();
+  for (const k of arr(editedRaw.classes)) {
+    const cref = rulesModule('classes').find((x) => x.name === k.name);
+    if (!cref) continue;
+    const aref = k.archetype && k.archetype.name ? rulesModule('archetypes').find((x) => x.name === k.archetype.name) : null;
+    const items = clsTextFeatures(cref.classFeatureText, k.name, 'Class').concat(aref ? clsTextFeatures(aref.text, aref.name, 'Archetype') : [])
+      .filter((f) => f.level <= num(k.levels));
+    // Picked options ("Ideal of the Contender: your unarmed strikes gain the finesse property").
+    const cls = parsed && parsed.classes[k.name];
+    for (const [key, picks] of Object.entries(k.options || {})) {
+      const list = cls && cls.lists.find((l) => l.key === key);
+      for (const p of arr(picks)) { const o = list && list.options.find((x) => x.name === p.name); if (o) items.push({ name: o.name, text: o.text, note: p.note || '' }); }
+    }
+    for (const f of items) out.push({ name: f.name, text: f.text, k, note: f.note || featureNoteOf(editedRaw, f.name) });
+  }
+  for (const name of featNamesOf(editedRaw)) {
+    const ref = rulesModule('feats').find((f) => f.name === name);
+    if (ref) out.push({ name, text: ref.text || '', k: null, note: featureNoteOf(editedRaw, name) });
+  }
+  featureTextsOf.cache = { rules: state.rules, sig, out };
+  return out;
+}
+/**
+ * Weapons a feature makes the character's own kind: "Choose two types of weapons to be your Echani weapons … You gain
+ * proficiency with these weapons … Weapons of the chosen types are monk weapons for you" (the notes name them), "You gain
+ * proficiency in blaster pistols, blaster rifles, ion pistols, ion rifles, and the lightbow, which are your Whills weapons
+ * and are monk weapons for you". [{ name, kind, names, monk, prof }]
+ */
+function weaponKindsOf(editedRaw) {
+  const out = [];
+  for (const f of featureTextsOf(editedRaw)) {
+    const t = String(f.text).replace(/\s+/g, ' ');
+    let x;
+    if ((x = /\bto be your (\w+) weapons\b/.exec(t)) && /\bWeapons of the chosen types are monk weapons for you\b/.test(t)) {
+      const names = String(f.note || featureNoteOf(editedRaw, `${x[1]} Weapons`) || '').split(/\s*[,;]\s*|\s+and\s+/).map((n) => n.trim()).filter(Boolean);
+      out.push({ name: f.name, kind: x[1], names, monk: true, prof: /\bYou gain proficiency with these weapons\b/.test(t) });
+    } else if ((x = /\bYou gain proficiency in ([^.]+?), which are your (\w+) weapons and are monk weapons for you\b/.exec(t))) {
+      out.push({ name: f.name, kind: x[2], names: x[1].split(/,\s*(?:and\s+)?|\s+and\s+/).map((n) => n.replace(/^the\s+/i, '').trim()).filter(Boolean), monk: true, prof: true });
+    }
+  }
+  return out;
+}
+/**
+ * Attacks that can use another ability, for good (not a stance's or a state's "for the duration"):
+ * - "Weapons that lack the two-handed or special properties are considered to have the finesse property for you"
+ *   (Blinding Agility): Dexterity for them;
+ * - "You can use your choice of Wisdom or Charisma instead of Strength or Dexterity for the attack and damage rolls of your
+ *   unarmed strikes and monk weapons" (Vow of Spirit; "of your melee weapon attacks"); without the attacks named, the
+ *   weapons the feature's notes name ("You can use Wisdom or Charisma instead of Strength or Dexterity for the attack and
+ *   damage rolls", Forceblade Bond's bonded weapons). "Your choice": the one the notes name, else either.
+ * [{ id, name, why, abilities, finesse, target: { lacking, unarmed, melee, monk, names } }]
+ */
+function attackGrantsOf(editedRaw) {
+  const out = [];
+  const A = '(?:Strength|Dexterity|Constitution|Intelligence|Wisdom|Charisma)';
+  for (const f of featureTextsOf(editedRaw)) {
+    const why = f.k ? `${f.k.name} feature` : 'feat';
+    const sentences = String(f.text).replace(/\s+/g, ' ').split(/(?<=\.)\s+(?=[-A-Z_*#])/);
+    sentences.forEach((s0, i) => {
+      const s = s0.replace(/^[-#*_ ]+/, '');
+      // A state's ("for the duration", "until the end of your next turn", "while in this stance"): not for good.
+      const lead = sentences.slice(Math.max(0, i - 3), i + 1).join(' ');
+      if (/\bfor the duration\b|until the (?:start|end) of your next turn|while in this stance|for (?:1|one) minute/i.test(lead)) return;
+      let x;
+      if ((x = /\b(?:Weapons|weapons) that lack the ([\w ,-]+?) properties are considered to have the finesse property for you/.exec(s))) {
+        out.push({ id: `grant:${f.name}`, name: f.name, why, abilities: ['Dexterity'], finesse: true, target: { lacking: x[1] } });
+        return;
+      }
+      x = new RegExp(`\\bYou can use (?:your choice of )?(${A}(?: or ${A})?)(?: modifier)? instead of (?:Strength|Dexterity)(?: or (?:Strength|Dexterity))? for the attack and damage rolls(?: (?:of|made with) ([^.]+?))?\\.`).exec(s);
+      if (!x) return;
+      const what = String(x[2] || '');
+      if (/\bagainst\b|\bas a part of\b/i.test(what)) return; // against a target, or a power's attack: an option on the roll
+      let abilities = x[1].split(/ or /);
+      const chosen = abilities.filter((a) => new RegExp(`\\b(?:${a}|${ABBR[a]})\\b`, 'i').test(f.note || ''));
+      if (chosen.length === 1) abilities = chosen;
+      const target = what ? { unarmed: /unarmed strikes?/i.test(what), monk: /monk weapons/i.test(what), melee: /melee weapon attacks/i.test(what) }
+        : { names: String(f.note || '').split(/\s*[,;]\s*|\s+and\s+/).map((n) => n.trim()).filter(Boolean) };
+      out.push({ id: `grant:${f.name}`, name: f.name, why, abilities, finesse: false, target });
+    });
+  }
+  return out;
+}
 /**
  * The calculation effects are worked out against (proficiency bonus, skills, weapons): the engine's, of the character as
  * edited now, when it has the data. SW5E's stored one (from the last Load) misses the sheet's own edits (a level added
@@ -2524,6 +2785,15 @@ function diffStats(a, b) {
   return out;
 }
 
+/**
+ * The abilities a casting number uses (field: lightSaveDC, maxPoints, attackModifier…): Wisdom for light side, Charisma
+ * for dark side, both for universal powers and force points, Intelligence for tech; a feat's swap adds its ability.
+ */
+function castingAbilities(m, kind, field) {
+  const k = kind === 'tech' ? 'tech' : /^light/.test(field) ? 'light' : /^dark/.test(field) ? 'dark' : 'universal';
+  const list = k === 'light' ? ['Wisdom'] : k === 'dark' ? ['Charisma'] : k === 'universal' ? ['Wisdom', 'Charisma'] : ['Intelligence'];
+  return [...new Set(list.concat(castingSwaps(m.raw).filter((s) => s.kind === kind && s.chosen && list.includes(s.from)).map((s) => s.to)))];
+}
 /** The applied tweaks that can have changed the number at `path`. */
 function bumpSources(m, path) {
   const tw = m.fx.tweaks.concat(m.fx.weaponTweaks.map((t) => ({ ...t, path: `weapon@${t.index}.${t.path}` })));
@@ -2543,13 +2813,21 @@ function bumpSources(m, path) {
     const part = /attackBonus$/.test(path) ? 'toHit' : /damage/i.test(path) ? 'damage' : null;
     const own = (w.name === 'Unarmed Strike' ? tw.filter((t) => t.path.startsWith('unarmed.'))
       : tw.filter((t) => t.path.startsWith('weapon.') || t.path.startsWith(`weapon@${w.index}.`)))
-      .filter((t) => !part || t.path.endsWith('.' + part));
-    return own.concat(w.ability ? score(w.ability) : []);
+      // The damage die counts for the damage (an unarmed strike's "1" becomes d4: its damage bonus loses the 1).
+      .filter((t) => !part || t.path.endsWith('.' + part) || (part === 'damage' && t.path.endsWith('.damageDice')));
+    // A finesse unarmed strike (Unarmed Combatant) goes by Dexterity: an item's Dexterity counts there too.
+    const finesse = own.some((t) => t.mod && t.mod.finesse) ? score('Dexterity') : [];
+    return own.concat(w.ability ? score(w.ability) : [], finesse);
   }
+  // Casting numbers: the tweaks on that very number (a save DC tweak doesn't explain the points), and the abilities it
+  // uses (castingAbilities).
+  if ((x = /^(force|tech)Casting\.(\w+)$/.exec(path))) return tw.filter((t) => t.path === path).concat(...castingAbilities(m, x[1], x[2]).map(score));
+  // A maneuver DC or attack worked out on the sheet (maneuver.Physical.Dexterity.dc): its superiority tweak and the ability.
+  if ((x = /^maneuver\.(\w+)\.(\w+)\.(dc|attack)$/.exec(path))) return tw.filter((t) => t.path === `superiority.${x[1].toLowerCase()}${x[3] === 'dc' ? 'SaveDC' : 'Modifier'}`).concat(score(x[2]));
   const rel = {
     armorClass: ['armorClass', 'Dexterity'], initiative: ['initiative', 'Dexterity'], passivePerception: ['passivePerception', 'Wisdom', 'abilityScores.Wisdom.skills.Perception'],
     hitPoints: ['hitPoints', 'Constitution'], speed: ['speed', 'Strength'], carryingCapacity: ['Strength'],
-    techCasting: ['techCasting', '*'], forceCasting: ['forceCasting', '*'], proficiencyBonus: [], attunement: ['attunement'],
+    proficiencyBonus: [], attunement: ['attunement'],
   }[path.split('.')[0]] || ['*'];
   // Carrying capacity and speed (heavy armor's Strength) go by the score itself; the rest by the modifier.
   const byScore = ['carryingCapacity', 'speed'].includes(path.split('.')[0]);
@@ -2636,7 +2914,7 @@ function bumpTip(m, path, d) {
   const tweakLine = (t) => `<li><b>${esc(fxTweakValueText({ ...(t.fields || {}), bonus: t.bonus }))}</b> ${esc(t.effect.tweakName)}
       · ${t.effect.reason ? esc(t.effect.reason) : '<span class="warn-text">no reason given</span>'} <span class="faint">${esc(effectWhen(t.effect))}</span></li>`;
   return `<div class="tip-head">Without tweaks or effects: <b>${fmt(d.from ?? '—')}</b> → now <b>${fmt(d.to)}</b></div>
-    ${src.length ? `<ul>${src.map((t) => (t.effect.kind === 'tweak' ? tweakLine(t) : `<li><b>${esc(!t.bonus && t.fields && t.fields.proficiency ? String(t.fields.proficiency).toLowerCase() : signedLabel(t.bonus))}</b> ${esc(t.mod.label.replace(/\s*[+\-−]?\d+( ft)?$/, ''))}${t.mod.set != null ? ` <span class="faint">(the item sets it to ${t.mod.set})</span>`
+    ${src.length || carryLines(m, path) ? `<ul>${carryLines(m, path)}${src.map((t) => (t.effect.kind === 'tweak' ? tweakLine(t) : `<li><b>${esc(!t.bonus && t.fields && t.fields.proficiency ? String(t.fields.proficiency).toLowerCase() : !t.bonus && t.fields && t.fields.dieSize ? `d${t.fields.dieSize}` : signedLabel(t.bonus))}</b> ${esc(t.mod.label.replace(/\s*[+\-−]?\d+( ft)?$/, ''))}${t.mod.set != null ? ` <span class="faint">(the item sets it to ${t.mod.set})</span>`
       : typeof t.mod.bonus === 'number' && t.bonus !== t.mod.bonus && !t.mod.abilityMod ? ` <span class="faint">(capped from ${esc(signedLabel(t.mod.bonus))})</span>` : ''}
       · ${esc(t.effect.name)} <span class="faint">${esc(effectWhen(t.effect))}</span></li>`)).join('')}</ul>`
       : '<div class="faint">Changed by the tweaks or effects listed under Settings, Tweaks &amp; Data and Combat &amp; Vitals → Effects.</div>'}${condHtml}${acOthers(m, path)}`;
@@ -4298,8 +4576,12 @@ function renderCombat(m) {
       ${(() => {
         const sp = m.t ? plSpeed(m.t.s.conditions, m.t.s.exhaustion) : { factor: 1, why: [] };
         const ae = armorEffectsOf(m);
-        const now = sp.factor === 1 && !ae.speed ? '' : ` · <b class="bad-text">now ${Math.max(0, Math.floor((num(String(speed.base || '').replace(/\D/g, '')) + ae.speed) * sp.factor))} ft</b> (${esc(sp.why.concat(ae.speedWhy).join(', '))})`;
-        return stat('Speed', bump(m, 'speed.base', esc(speed.base || '—')) + now, esc([speed.hour && `${speed.hour}/hour`, speed.day && `${speed.day}/day`].filter(Boolean).join(' · ')));
+        // "Your speed is reduced by 10 unless your Strength score meets or exceeds the strength number": SW5E's speed has
+        // it already (engSpeed), so it's named, not taken off again; Cumbersome and conditions come on top.
+        const strWhy = ae.speedWhy.filter((w) => /Strength \d+$/.test(w));
+        const extra = ae.speed + (strWhy.length ? 10 : 0);
+        const now = sp.factor === 1 && !extra ? '' : ` · <b class="bad-text">now ${Math.max(0, Math.floor((num(String(speed.base || '').replace(/\D/g, '')) + extra) * sp.factor))} ft</b> (${esc(sp.why.concat(ae.speedWhy.filter((w) => !strWhy.includes(w))).join(', '))})`;
+        return stat('Speed', bump(m, 'speed.base', esc(speed.base || '—')) + now, esc([strWhy.length ? `−10 ft (${strWhy.join(', ')})` : '', speed.hour && `${speed.hour}/hour`, speed.day && `${speed.day}/day`].filter(Boolean).join(' · ')));
       })()}
       ${stat('Proficiency', signed(c.proficiencyBonus))}
       ${stat('Passive Perception', bump(m, 'passivePerception', esc(c.passivePerception)))}
@@ -4437,24 +4719,69 @@ function renderDefenses(m) {
 
 function renderCarry(m) {
   const cc0 = m.c.carryingCapacity || {};
+  const base = (m.base && m.base.carryingCapacity) || cc0;
   const cf = carryFactor(m);
-  const cc = cf.factor > 1 ? { ...cc0, maxCapacity: num(cc0.maxCapacity) * cf.factor, pushDragLift: num(cc0.pushDragLift) * cf.factor } : cc0;
+  const cc = cf.factor !== 1 ? { ...cc0, maxCapacity: num(cc0.maxCapacity) * cf.factor, pushDragLift: num(cc0.pushDragLift) * cf.factor } : cc0;
   const w = totalWeight(m);
-  const why = cf.factor > 1 ? ` <span class="faint" title="SW5E's numbers ${esc(cc0.maxCapacity)} / ${esc(cc0.pushDragLift)} lb, ×${cf.factor}">×${cf.factor} (${esc(cf.from.join(', '))})</span>` : '';
+  const why = cf.factor !== 1 || cf.from.length ? ` <span class="faint" title="SW5E's numbers ${esc(cc0.maxCapacity)} / ${esc(cc0.pushDragLift)} lb, ×${esc(cf.text)}">×${esc(cf.text)} (${esc(cf.from.concat(cf.size ? [cf.size] : []).join(', '))})</span>` : '';
+  // The hover explains the number shown (×2 included), from the number without tweaks or effects.
+  const calc = (k) => (cf.factor !== 1 ? { from: num(base[k]), to: cc[k] } : undefined);
   return `<div class="grid auto">
     ${stat('Carried', `${fmtNum(w)} lb`, `<span title="Variant encumbrance, if your GM uses it: encumbered, speed −10 ft; heavily encumbered, speed −20 ft and disadvantage on ability checks, attack rolls and saving throws that use Strength, Dexterity or Constitution">${w > num(cc.heavilyEncumbered) ? 'Heavily encumbered' : w > num(cc.encumbered) ? 'Encumbered' : 'Unencumbered'} (variant rule)</span>`)}
     ${stat('Encumbered at', bump(m, 'carryingCapacity.encumbered', `${esc(cc.encumbered ?? '—')} lb`))}
     ${stat('Heavily enc. at', bump(m, 'carryingCapacity.heavilyEncumbered', `${esc(cc.heavilyEncumbered ?? '—')} lb`))}
-    ${stat('Max capacity', bump(m, 'carryingCapacity.maxCapacity', `${esc(cc.maxCapacity ?? '—')} lb`) + why)}
-    ${stat('Push / drag / lift', bump(m, 'carryingCapacity.pushDragLift', `${esc(cc.pushDragLift ?? '—')} lb`) + why)}
+    ${stat('Max capacity', bump(m, 'carryingCapacity.maxCapacity', `${esc(cc.maxCapacity ?? '—')} lb`, calc('maxCapacity')) + why)}
+    ${stat('Push / drag / lift', bump(m, 'carryingCapacity.pushDragLift', `${esc(cc.pushDragLift ?? '—')} lb`, calc('pushDragLift')) + why)}
   </div>`;
 }
 
-/** Powerful Build and Brawny: "your carrying capacity … doubles. If it would already double, it instead triples." */
+/**
+ * What multiplies the carrying capacity and the weight you can push, drag, or lift: "Your carrying capacity and the
+ * weight you can push, drag, or lift doubles. If it would already double, it instead triples." (Powerful Build, Brawny,
+ * Bantha's Instinct, Mighty Build, an Iridonian Grav-lev Arm…: ×2, two or more ×3), and size: "For a Tiny creature,
+ * halve these weights" (PHB, Size and Strength). From a feature's state ("you can gain the following benefits for 1
+ * minute: … doubles", Totemic Might; "While anchored", Heavy Suit) only while that state is on. { factor, text, from, size }.
+ */
 function carryFactor(m) {
-  const from = [...new Set(arr(m.feats).concat(arr(m.allFeatures), state.rules ? bdSpeciesTraitFeatures(m) : [])
-    .filter((f) => /carrying capacity and the weight you can push, drag, or lift doubles/i.test(f.text || f.description || '')).map((f) => f.name))];
-  return { factor: from.length >= 2 ? 3 : from.length ? 2 : 1, from };
+  const DOUBLES = /carrying capacity and the weight you can push, drag, or lift doubles/i;
+  const temps = m.snap ? tempEffects(m.snap.key) : [];
+  const on = (name) => temps.some((e) => e.name === name || String(e.group || '').toLowerCase() === `state:${String(name).toLowerCase()}`);
+  const texts = arr(m.feats).concat(arr(m.allFeatures), state.rules && m.raw ? bdSpeciesTraitFeatures(m) : [], typeof slotPickFeatures === 'function' && state.rules ? slotPickFeatures(m) : [])
+    .map((f) => ({ name: f.name, text: f.text || f.description || '' }));
+  // Picked class options (Berserker Instincts: Bantha's Instinct).
+  if (state.rules) {
+    for (const k of arr(m.raw && m.raw.classes)) {
+      const info = classChoiceInfo(m, k);
+      for (const l of (info ? info.lists : [])) for (const p of l.chosen) { const o = l.options.find((x) => x.name === p.name); if (o) texts.push({ name: o.name, text: o.text || '' }); }
+    }
+  }
+  // Enhanced items in use: equipped (installed), or attuned when they need it (Mighty Build, an Iridonian Grav-lev Arm).
+  for (const it of arr(m.raw && m.raw.equipment)) {
+    const ref = it.category === 'EnhancedItem' && catalogIndex && catalogIndex.get(it.name);
+    if (ref && (ref.requiresAttunement ? it.attuned : it.equipped)) texts.push({ name: it.name, text: ref.text || ref.description || '' });
+  }
+  const from = [];
+  for (const t of texts) {
+    const sentences = String(t.text).replace(/\s+/g, ' ').split(/(?<=\.)\s+(?=[-A-Z_*#])/);
+    const i = sentences.findIndex((s) => DOUBLES.test(s));
+    if (i < 0 || from.includes(t.name)) continue;
+    const lead = sentences.slice(Math.max(0, i - 2), i + 1).join(' ');
+    const state = /\bwhile [a-z]+(?:ed|ing)\b|\bfor (?:1|one|10|ten) minutes?\b|\bfollowing benefits\b/i.test(lead);
+    if (!state || on(t.name)) from.push(t.name);
+  }
+  const sp = state.rules && m.raw && m.raw.species ? rulesModule('species').find((x) => x.name === m.raw.species.name) : null;
+  const tiny = !!sp && /^tiny$/i.test(String(sp.size || ''));
+  const mult = from.length >= 2 ? 3 : from.length ? 2 : 1;
+  const factor = mult * (tiny ? 0.5 : 1);
+  return { factor, text: factor === 0.5 ? '½' : String(factor), from, size: tiny ? 'Tiny: halved' : '' };
+}
+/** The carrying-capacity hover's multipliers ("×2 Brawny feat", "×½ Tiny"): list items, or ''. */
+function carryLines(m, path) {
+  if (!/^carryingCapacity\.(?:maxCapacity|pushDragLift)$/.test(path)) return '';
+  const cf = carryFactor(m);
+  if (cf.factor === 1 && !cf.from.length) return '';
+  return cf.from.map((n, i) => `<li><b>${i === 0 ? '×2' : i === 1 ? '×3 instead' : '(no more)'}</b> ${esc(n)} <span class="faint">"doubles; if it would already double, it instead triples"</span></li>`).join('')
+    + (cf.size ? '<li><b>×½</b> Tiny <span class="faint">"For a Tiny creature, halve these weights"</span></li>' : '');
 }
 /** An ability score's increases the engine applies, each named: [{ n, label }]. */
 function abilitySources(m, a) {
@@ -4567,13 +4894,44 @@ function renderAttacks(m) {
           <span class="faint">${sh.cells} ${esc(sh.cellName)}${sh.cells === 1 ? '' : 's'}</span></div>` : ''}</div></div></td>
       <td class="num"><b>${rollable(`attack|${wi}`, bump(m, `weapons.${wi}.attackBonus`, signed(w.attackBonus)), `Roll an attack with the ${w.name}`)}</b></td>
       <td>${rollable(`damage|${wi}`, bump(m, `weapons.${wi}.damageBonus`, esc(weaponDamageText(m, w))), `Roll ${w.name} damage`)}</td>
-      <td class="muted col-ability">${esc(w.name === 'Unarmed Strike' && m.fx.tweaks.some((t) => t.mod && t.mod.finesse) ? 'Dexterity (finesse)' : w.ability || '')}</td>
+      <td class="muted col-ability">${esc(((t) => (t ? `${t.mod.ability || 'Dexterity'} (${t.mod.finesse ? 'finesse' : t.effect.name})` : w.ability || ''))(
+        (w.name === 'Unarmed Strike' ? m.fx.tweaks.filter((t) => /^unarmed\./.test(t.path)) : m.fx.weaponTweaks.filter((t) => t.index === w.index)).find((t) => t.mod && (t.mod.finesse || t.mod.ability))))}</td>
       <td class="muted col-type">${esc(titleCase(w.weaponClassification || ''))}</td>
       <td class="col-props">${propsHtml(w.properties) || '<span class="faint">—</span>'}</td></tr>
       ${arr(w.modes).length ? `<tr class="dim"><td colspan="6">Modes: ${arr(w.modes).map((md_) => esc(md_.name || JSON.stringify(md_))).join(' · ')}</td></tr>` : ''}`;
-    }).join('')}</tbody>
+    }).join('')}${specialAttacks(m).map((s) => `<tr>
+      <td><div class="inv-item"><div class="inv-what"><b>${esc(s.name)}</b> <span class="chip" title="${esc(s.from)}">special attack</span><div class="m-props">${esc(s.props)}</div></div></div></td>
+      <td class="num"><b>${rollable(`pattack|${s.name}|${s.attack}`, signed(s.attack), `Roll ${s.name}'s attack`)}</b></td>
+      <td>${rollable(`dice|${s.dice}${s.bonus ? signed(s.bonus) : ''}`, esc(`${s.dice}${s.bonus ? signed(s.bonus) : ''} ${titleCase(s.type)}`), `Roll ${s.name}'s damage`)}</td>
+      <td class="muted col-ability">${esc(s.ability)}</td><td class="muted col-type">${esc(titleCase(s.kind))}</td><td class="col-props"><span class="faint">${esc(s.props)}</span></td></tr>`).join('')}</tbody>
   </table></div>
   ${ws.some((w) => w.description) ? `<h3>Weapon notes</h3><div class="grid cards">${ws.filter((w) => w.description).map((w) => card({ title: w.name, body: md(w.description) })).join('')}</div>` : ''}`;
+}
+
+/**
+ * Attacks a feature gives besides the weapons: "This special attack is a ranged focus attack with a range of 30 feet. You
+ * are proficient with it, and you add your focus ability modifier to its attack and damage rolls. Its damage is necrotic,
+ * … and it uses your Martial Arts die for its damage die" (Ichor Lightning). [{ name, from, attack, dice, bonus, type,
+ * ability, kind, props }]
+ */
+function specialAttacks(m) {
+  const out = [];
+  const sc = m.c.abilityScores || {};
+  const mod = (a) => num((sc[a] || {}).modifier);
+  const pb = num(m.c.proficiencyBonus);
+  for (const f of arr(m.allFeatures)) {
+    const t = String(f.text || f.description || '').replace(/\s+/g, ' ');
+    const x = /This special attack is a (ranged|melee) (\w+) attack with a range of (\d+) feet\. You are proficient with it, and you add your ([\w ]+?) modifier to its attack and damage rolls\. Its damage is (\w+)[^.]*?\buses your ([\w' ]+?) die for its damage die/i.exec(t);
+    if (!x || out.some((s) => s.name === f.name)) continue;
+    // "your focus ability modifier": the monk's, Wisdom or Charisma (the better one); else the ability named.
+    const abilities = /focus ability/i.test(x[4]) ? ['Wisdom', 'Charisma'] : ABILITIES.filter((a) => new RegExp(`^${a}$`, 'i').test(x[4]));
+    if (!abilities.length) continue;
+    const a = abilities.reduce((b, c) => (mod(c) > mod(b) ? c : b));
+    const col = arr(m.classDice).find((d) => d.dice && d.column.toLowerCase() === x[6].toLowerCase());
+    if (!col) continue;
+    out.push({ name: f.name, from: f.sourceName || f.name, attack: pb + mod(a), dice: col.dice, bonus: mod(a), type: x[5], ability: a, kind: `${x[1]} ${x[2]} attack`, props: `range ${x[3]} ft` });
+  }
+  return out;
 }
 
 function superiorityInfo(m) {
@@ -4610,8 +4968,12 @@ function renderSuperiority(m) {
     ['Mental', best(['Intelligence', 'Wisdom', 'Charisma'])],
     ['General', best(ABILITIES)],
   ];
-  const sup = c.superiority && typeof c.superiority === 'object' ? c.superiority : null;
+  // Superiority tweaks (physicalSaveDC, physicalModifier…) apply to the DCs and attacks worked out here.
+  const tw = supTweaks(m);
+  const dcOf = (t, a, md) => engTweaked(8 + pb + md(a), tw[`${t.toLowerCase()}SaveDC`] || {});
+  const atkOf = (t, a, md) => pb + engTweaked(md(a), tw[`${t.toLowerCase()}Modifier`] || {});
   const info = superiorityInfo(m);
+  const qtyShown = info.reduce((t, i) => t + i.rows.filter(([k]) => /quantity|^superiority dice$/i.test(k)).reduce((s, [, v]) => s + num(v), 0), 0);
   const byType = {};
   const refs = m.refs.maneuvers || {};
   for (const n of m.maneuverNames) {
@@ -4619,12 +4981,12 @@ function renderSuperiority(m) {
     (byType[r.type || 'Other'] = byType[r.type || 'Other'] || []).push(r);
   }
   return `
-    ${sup ? `<div class="grid auto">${Object.entries(sup).filter(([, v]) => typeof v !== 'object').map(([k, v]) => stat(titleCase(k), esc(v))).join('')}</div>` : ''}
     <div class="grid auto">
+      ${m.t && m.t.lim.supMax && m.t.lim.supMax !== qtyShown ? stat('Superiority dice', esc(m.t.lim.supMax), 'with styles, masteries and tweaks') : ''}
       ${info.flatMap((i) => i.rows.map(([k, v]) => stat(`${info.length > 1 ? `${i.cls.name}: ` : ''}${k}`,
         /size/i.test(k) && m.t && String(v) === String(m.t.lim.supSize) ? rollable('supdie', esc(v), 'Roll a superiority die') : esc(v)))).join('')}
-      ${dcs.map(([t, a]) => stat(`${t} maneuver DC`, bump(m, `abilityScores.${a}.modifier`, String(8 + pb + mod(a)), { from: 8 + pb + baseMod(a), to: 8 + pb + mod(a) }, { noAlts: true }),
-        `${ABBR[a]} · attack ${rollable(`maneuver|${t}|${a}`, bump(m, `abilityScores.${a}.modifier`, signed(pb + mod(a)), { from: signed(pb + baseMod(a)), to: signed(pb + mod(a)) }, { noAlts: true }), `Roll a ${t.toLowerCase()} maneuver attack`)}`)).join('')}
+      ${dcs.map(([t, a]) => stat(`${t} maneuver DC`, bump(m, `maneuver.${t}.${a}.dc`, String(dcOf(t, a, mod)), { from: 8 + pb + baseMod(a), to: dcOf(t, a, mod) }, { noAlts: true }),
+        `${ABBR[a]} · attack ${rollable(`maneuver|${t}|${a}`, bump(m, `maneuver.${t}.${a}.attack`, signed(atkOf(t, a, mod)), { from: signed(pb + baseMod(a)), to: signed(atkOf(t, a, mod)) }, { noAlts: true }), `Roll a ${t.toLowerCase()} maneuver attack`)}`)).join('')}
       ${m.t && m.t.lim.supSize && !info.some((i) => i.rows.some(([k, v]) => /size/i.test(k) && String(v) === String(m.t.lim.supSize)))
         ? stat('Superiority die', rollable('supdie', esc(m.t.lim.supSize), 'Roll a superiority die')) : ''}
     </div>
@@ -4706,13 +5068,21 @@ function ownCasting(m, kind, casters = classCasting(m)) {
   const points = engineKnows
     ? num(cast.maxPoints) + own.filter(blindSource).reduce((t, c) => t + c.points, 0) + Math.max(0, own.some((c) => !blindSource(c)) ? mod(ability) - Math.max(...usual.map(mod)) : 0)
     : mine.reduce((t, c) => t + c.points, 0) + mod(ability);
-  // Numbers for a power, by its alignment and the abilities the source allows.
+  // Numbers for a power, by its alignment and the abilities the source allows. Where SW5E computes the kind's casting
+  // too, what tweaks and effects add to its numbers counts here as well (a focus generator's "+1 bonus to the force
+  // attack rolls"): SW5E's number less its own 8 + proficiency + ability.
   const numbers = (p) => {
     const ab = Object.assign({}, ...own.map((c) => sourceAbilities(c) || {}));
     const k = kind === 'tech' ? 'tech' : /light/i.test(p.forceAlignment) ? 'light' : /dark/i.test(p.forceAlignment) ? 'dark' : 'universal';
     const list = ab[k] || (kind === 'tech' ? ab.tech || ab.points : null) || pwAbilities(p);
     const a = best(list);
-    return { dc: 8 + pb + mod(a), attack: pb + mod(a), ability: a };
+    const extra = { dc: 0, attack: 0 };
+    if (engineKnows) {
+      const e = mod(engCastAbility(m, kind, k));
+      extra.dc = num(cast[kind === 'tech' ? 'saveDC' : `${k}SaveDC`]) - (8 + pb + e);
+      extra.attack = num(cast[kind === 'tech' ? 'attackModifier' : `${k}AttackModifier`]) - (pb + e);
+    }
+    return { dc: 8 + pb + mod(a) + extra.dc, attack: pb + mod(a) + extra.attack, ability: a };
   };
   return { points, abilities: pointAbilities, ability, numbers, sources: own.map((c) => c.from), partial: !!engineKnows, ...numbers({ forceAlignment: 'Universal', powerType: kind === 'tech' ? 'Tech' : 'Force' }) };
 }
@@ -4878,13 +5248,96 @@ function powerNumbers(m, kind, p, x = {}) {
   const cast = kind === 'force' ? m.c.forceCasting : m.c.techCasting;
   if (kind === 'force') {
     const k = /light/i.test(p.forceAlignment) ? 'light' : /dark/i.test(p.forceAlignment) ? 'dark' : 'universal';
-    if (cast && typeof cast === 'object') return { dc: num(cast[k + 'SaveDC']), attack: num(cast[k + 'AttackModifier']), spec: `force|${k}` };
+    if (cast && typeof cast === 'object') return { dc: num(cast[k + 'SaveDC']), attack: num(cast[k + 'AttackModifier']), spec: `force|${k}`, ability: engCastAbility(m, kind, k) };
     const best = pwAbilities(p).reduce((b, a) => (mod(a) > mod(b) ? a : b));
     return { dc: 8 + pb + mod(best), attack: pb + mod(best), spec: null, ability: best };
   }
-  if (cast && typeof cast === 'object') return { dc: num(cast.saveDC), attack: num(cast.attackModifier), spec: 'tech' };
+  if (cast && typeof cast === 'object') return { dc: num(cast.saveDC), attack: num(cast.attackModifier), spec: 'tech', ability: engCastAbility(m, kind, 'tech') };
   return { dc: 8 + pb + mod('Intelligence'), attack: pb + mod('Intelligence'), spec: null, ability: 'Intelligence' };
 }
+/**
+ * The ability behind SW5E's casting numbers of a kind ('light', 'dark', 'universal', 'tech'): Wisdom for light side
+ * powers, Charisma for dark side, the better of the two for universal ones, Intelligence for tech; a feat's swap
+ * (castingSwaps) adds its ability where it replaces one. The best of them, by the character's modifiers.
+ */
+function engCastAbility(m, kind, k) {
+  const sc = m.c.abilityScores || {};
+  const mod = (a) => num((sc[a] || {}).modifier);
+  let list = k === 'light' ? ['Wisdom'] : k === 'dark' ? ['Charisma'] : k === 'universal' ? ['Wisdom', 'Charisma'] : ['Intelligence'];
+  for (const s of castingSwaps(m.raw)) if (s.kind === kind && s.chosen && list.includes(s.from)) list = list.concat(s.to);
+  return list.reduce((b, a) => (mod(a) > mod(b) ? a : b));
+}
+/**
+ * Feats that change the casting ability: "Choose one from Wisdom or Charisma. … You can use Intelligence instead of the
+ * chosen ability as your forcecasting ability. You can add Intelligence instead of the chosen ability when determining
+ * your maximum force points" (Cunning Forcecaster); "You can use the chosen ability instead of Intelligence as your
+ * techcasting ability…" (Spiritual Techcaster). The chosen ability: the feat's notes, else its ability increase when
+ * that is one of the choices. [{ name, kind, from, to, points, chosen, options }]; chosen false: not chosen yet.
+ */
+/** The character's feats by name: the background's, those taken at improvements, the ones added by hand (all: repeats kept). */
+function featNamesOf(raw, all = false) {
+  const names = [raw.background && raw.background.feat && raw.background.feat.name]
+    .concat(arr(raw.classes).flatMap((k) => arr(k.abilityScoreImprovements).filter((a) => a && a.type === 'Feat').map((a) => a.name)), arr(raw.customFeats).map((f) => (typeof f === 'string' ? f : f && f.name)))
+    .filter(Boolean);
+  return all ? names : [...new Set(names)];
+}
+function castingSwaps(raw) {
+  if (!state.rules) return [];
+  const A = '(Strength|Dexterity|Constitution|Intelligence|Wisdom|Charisma|the chosen ability)';
+  const out = [];
+  for (const name of featNamesOf(raw)) {
+    const t = String((rulesModule('feats').find((f) => f.name === name) || {}).text || '').replace(/\s+/g, ' ');
+    const x = new RegExp(`You can use ${A} instead of ${A} as your (force|tech)casting ability`, 'i').exec(t);
+    if (!x) continue;
+    const choice = /Choose one from ((?:\w+)(?:,? (?:or )?\w+)*)/i.exec(t);
+    const options = choice ? choice[1].split(/,? (?:or )?/).filter((a) => ABILITIES.includes(a)) : [];
+    const note = featureNoteOf(raw, name);
+    const inc = typeof bdFeatIncreases === 'function' ? bdFeatIncreases(raw).find((y) => y.name === name) : null;
+    const chosen = options.find((a) => new RegExp(`\\b(?:${a}|${ABBR[a]})\\b`, 'i').test(note)) || (inc ? arr(inc.chosen).find((a) => options.includes(a)) : null) || null;
+    const pick = (s) => (/chosen/i.test(s) ? chosen : titleCase(s));
+    const kind = x[3].toLowerCase();
+    out.push({
+      name, kind, from: pick(x[2]), to: pick(x[1]), options, chosen: !!chosen,
+      points: new RegExp(`You can add ${A} instead of ${A} when determining your maximum ${kind} points`, 'i').test(t),
+    });
+  }
+  return out;
+}
+/** A power's casting ability modifier ("temporary hit points equal to your forcecasting ability modifier"). */
+const powerCastMod = (m, ability) => num((((m.c.abilityScores || {})[ability]) || {}).modifier);
+/** Does a power call for a force/tech attack or a saving throw? */
+const powerNeedsRoll = (p) => /\b(?:force|tech|power) attack\b|\bmake a (?:melee|ranged) (?:force |tech |power )?attack\b|\bsaving throw\b/i.test(String(p.description || ''));
+/**
+ * What a power's damage, healing or reduction roll adds, by source: [{ label, value }].
+ * - "+ your forcecasting ability modifier": the casting ability's modifier. Not the attack bonus less proficiency: an
+ *   item's "+1 bonus to the force attack rolls" (Focus Generator) isn't in the damage.
+ * - Bonuses to damage or healing rolls with powers of the kind ("a +1 bonus to its damage and healing rolls with force
+ *   powers", Sorcerer's Adrenal): effects on forcePowers.damage / forcePowers.healing, techPowers.damage / techPowers.healing.
+ * - "While raging, you add your rage damage to damage rolls from force powers you cast that require a force attack or
+ *   saving throw" (Furious Force, Industrious Tech): Rage Damage, while raging.
+ * Conditional bonuses (cond) on those paths are offered on the roll instead (powerRollConds).
+ */
+function powerRollParts(m, kind, p, g, ability) {
+  const parts = [];
+  if (g.mod && ability) parts.push({ label: `${ABBR[ability]} modifier`, value: powerCastMod(m, ability) });
+  if (g.reduce) return parts;
+  const path = `${kind}Powers.${g.heal ? 'healing' : 'damage'}`;
+  for (const t of arr(m.fx && m.fx.tweaks).filter((x) => x.path === path)) parts.push({ label: t.effect.kind === 'tweak' ? 'tweak' : t.effect.name, value: num(t.bonus) });
+  if (!g.heal && m.snap && tempEffects(m.snap.key).some((e) => e.group === 'state:raging') && powerNeedsRoll(p)) {
+    const word = kind === 'force' ? 'force' : 'tech';
+    const f = arr(m.allFeatures).find((x) => new RegExp(`while raging, you add your rage damage to damage rolls from ${word} powers you cast`, 'i').test(x.text || x.description || ''));
+    const rage = f && arr(m.classDice).find((d) => d.bonus && /rage damage/i.test(d.column));
+    if (rage) parts.push({ label: `Rage Damage (${f.name})`, value: num(rage.bonus) });
+  }
+  return parts.filter((x) => x.value);
+}
+/** Conditional bonuses to a power's damage or healing ("when using this weapon as your focus"), offered unticked. */
+function powerRollConds(m, kind, g) {
+  if (g.reduce) return [];
+  const path = `${kind}Powers.${g.heal ? 'healing' : 'damage'}`;
+  return arr(m.fx && m.fx.conds).filter((cd) => cd.path === path).map((cd) => ({ label: `${cd.cond} (${cd.effect.name})`, bonus: num(cd.bonus), extra: [], on: false }));
+}
+const powerRollBonus = (m, kind, p, g, ability) => powerRollParts(m, kind, p, g, ability).reduce((t, x) => t + x.value, 0);
 
 /** A power that calls for a force/tech attack: its attack roll (and the save DC for one that calls for a save). */
 function powerRoll(m, kind, p, x) {
@@ -4898,8 +5351,8 @@ function powerRoll(m, kind, p, x) {
   if (save) bits.push(`${save[1]} save DC ${n.dc}`);
   const lvl = charLevel(m);
   plPowerRolls(p, num(p.level), lvl).forEach((g, i) => {
-    const mod = g.mod ? n.attack - num(m.c.proficiencyBonus) : 0;
-    bits.push(`${titleCase(g.heal ? 'Healing' : g.reduce ? 'Reduction' : 'Damage')} ${rollable(`pdmg|${kind}|${p.name}|${num(p.level)}|${i}`, `${g.n}d${g.die}${mod ? signed(mod) : ''}`, `Roll ${p.name}'s ${g.label}`)}${g.type ? ` ${esc(g.type)}` : ''}`);
+    const mod = powerRollBonus(m, kind, p, g, n.ability);
+    bits.push(`${titleCase(g.heal ? 'Healing' : g.reduce ? 'Reduction' : 'Damage')} ${rollable(`pdmg|${kind}|${p.name}|${num(p.level)}|${i}|${n.ability || ''}`, `${g.n}d${g.die}${mod ? signed(mod) : ''}`, `Roll ${p.name}'s ${g.label}`)}${g.type ? ` ${esc(g.type)}` : ''}`);
   });
   return bits.length ? `<div class="pw-roll">${bits.join(' · ')}</div>` : '';
 }
@@ -5026,7 +5479,8 @@ async function castPower(arg) {
   const pfx = plPowerEffect(p, charLevel(m));
   const hasFx = pfx.mods.length || pfx.defenses.length || pfx.riders.length || pfx.tempHp;
   const own = hasFx && !pfx.forTarget ? { mods: pfx.mods, defenses: pfx.defenses, riders: pfx.riders } : {};
-  const castMod = powerNumbers(m, kind, p, x).attack - num(m.c.proficiencyBonus);
+  const castAbility = powerNumbers(m, kind, p, x).ability;
+  const castMod = powerCastMod(m, castAbility);
   // Concentration: a new concentration power ends the one before (not on yourself where the feature says so).
   let note = '';
   if (p.concentration && extra !== 'self') {
@@ -5054,7 +5508,10 @@ async function castPower(arg) {
   if (Object.keys(own).length) scheduleRecompute(snap.key);
   renderAll(); // the cast buttons show what's left
   // Next steps: its rolls at this level, "On me" for a power whose benefits go to its target, Ashla's hit points.
-  const buttons = plPowerRolls(p, level, charLevel(m)).map((g, i) => ({ act: 'roll', arg: `pdmg|${kind}|${name}|${level}|${i}`, label: `Roll ${g.label} (${g.n}d${g.die}${g.mod ? signed(castMod) : ''})` }));
+  const buttons = plPowerRolls(p, level, charLevel(m)).map((g, i) => {
+    const b = powerRollBonus(m, kind, p, g, castAbility);
+    return { act: 'roll', arg: `pdmg|${kind}|${name}|${level}|${i}|${castAbility || ''}`, label: `Roll ${g.label} (${g.n}d${g.die}${b ? signed(b) : ''})` };
+  });
   const effectNow = tempEffects(snap.key).find((e) => e.power === name);
   if (hasFx && pfx.forTarget && effectNow) buttons.push({ act: 'pw-onme', arg: effectNow.id, label: 'It\'s on me: apply it' });
   if (pfx.tempHp && !pfx.forTarget && castMod > 0) buttons.push({ act: 'pw-temp', arg: String(castMod), label: `Temp HP ${castMod}` });
@@ -5100,7 +5557,10 @@ async function ashlaBoost(level) {
 function renderCasting(m, kind) {
   const own = ownCasting(m, kind);
   const cast = kind === 'force' ? m.c.forceCasting : m.c.techCasting;
-  const has = cast && typeof cast === 'object' && !(own && !own.partial);
+  // Every caster of the kind works out its own numbers (Archaeologist: Intelligence): SW5E's light, dark and universal
+  // numbers belong to none of its powers, so the card shows the sheet's.
+  const allOwn = !!own && own.partial && classCasting(m).filter((c) => c.type === kind).every((c) => own.sources.includes(c.from));
+  const has = cast && typeof cast === 'object' && !(own && !own.partial) && !allOwn;
   const max = castMaxLevel(m, kind);
   const multi = state.rules ? pwMulticlassMax(m.raw, state.rules.modules || {})[kind] != null : false;
   const statsHtml = [
@@ -5110,7 +5570,11 @@ function renderCasting(m, kind) {
       ? (has ? ['light', 'dark', 'universal'].map((k) => stat(k === 'universal' ? 'Universal' : `${titleCase(k)} side`,
         `DC ${bump(m, `forceCasting.${k}SaveDC`, esc(cast[k + 'SaveDC']))}`, `attack ${rollable(`force|${k}`, bump(m, `forceCasting.${k}AttackModifier`, signed(cast[k + 'AttackModifier'])), `Roll a ${k} force attack`)}`)) : [])
       : (has ? [stat('Save DC', bump(m, 'techCasting.saveDC', esc(cast.saveDC))), stat('Attack', rollable('tech', bump(m, 'techCasting.attackModifier', signed(cast.attackModifier)), 'Roll a tech attack'))] : [])),
-    ...(own && !own.partial ? [stat('Save DC', esc(own.dc), ABBR[own.ability]), stat('Attack', rollable(`pattack|${kind === 'force' ? 'Force' : 'Tech'}|${own.attack}`, signed(own.attack), `Roll a ${kind} attack`), ABBR[own.ability])] : []),
+    ...(own && allOwn && kind === 'force' ? ['Light', 'Dark', 'Universal'].map((al) => {
+      const n = own.numbers({ forceAlignment: al });
+      return stat(al === 'Universal' ? al : `${al} side`, `DC ${esc(n.dc)}`, `attack ${rollable(`pattack|${al} force|${n.attack}`, signed(n.attack), `Roll a ${al.toLowerCase()} force attack`)} (${ABBR[n.ability]})`);
+    }) : []),
+    ...(own && (!own.partial || (allOwn && kind === 'tech')) ? [stat('Save DC', esc(own.dc), ABBR[own.ability]), stat('Attack', rollable(`pattack|${kind === 'force' ? 'Force' : 'Tech'}|${own.attack}`, signed(own.attack), `Roll a ${kind} attack`), ABBR[own.ability])] : []),
   ].filter(Boolean);
   const powers = [];
   const srcOf = (x) => String(x.source).replace(/\s*\(.*$/, '');

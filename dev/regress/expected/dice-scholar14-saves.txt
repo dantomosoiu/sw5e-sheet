@@ -1,0 +1,837 @@
+# Scholar Test (Claude)
+
+## Sent to the rules engine
+The sheet's engine computes the numbers. OUT OF DATE: SW5E's recorded calculation is for an older version of this character; record the case again (dev/regress-record.js) for dev/engine-check.js.
+tweaks.abilityScores.Charisma.score.bonus = 2
+tweaks.abilityScores.Charisma.skills.Deception.bonus = 0
+tweaks.abilityScores.Charisma.skills.Deception.proficiency = "Expertise"
+tweaks.abilityScores.Charisma.skills.Persuasion.bonus = 0
+tweaks.abilityScores.Charisma.skills.Persuasion.proficiency = "Expertise"
+tweaks.abilityScores.Dexterity.skills.Sleight of Hand.bonus = 0
+tweaks.abilityScores.Dexterity.skills.Sleight of Hand.proficiency = "Proficient"
+tweaks.abilityScores.Wisdom.skills.Insight.bonus = 0
+tweaks.abilityScores.Wisdom.skills.Insight.proficiency = "Proficient"
+equipment[1 Chakram].tweaks.toHit.bonus = 0
+equipment[1 Chakram].tweaks.toHit.proficiency = "proficient"
+equipped = [Fiber armor, Chakram, Vibrobaton]
+
+## Numbers (the rules engine, with the sheet's edits)
+currentLevel = 14
+classText = "Scholar (Gambler Pursuit) 14"
+proficiencyBonus = 5
+initiative = 3
+armorClass = 15
+armorList = ["Fiber armor"]
+passivePerception = 11
+vision = "normal"
+speed.base = "30 ft"
+speed.day = "24 miles"
+speed.hour = "3 miles"
+speed.special = ""
+hitPoints.hitDice[0].maximum = 14
+hitPoints.hitDice[0].size = "d8"
+hitPoints.maximum = 87
+abilityScores.Charisma.modifier = 1
+abilityScores.Charisma.savingThrow.modifier = 1
+abilityScores.Charisma.savingThrow.proficiency = "none"
+abilityScores.Charisma.skills[Deception].modifier = 11
+abilityScores.Charisma.skills[Deception].proficiency = "expertise"
+abilityScores.Charisma.skills[Intimidation].modifier = 1
+abilityScores.Charisma.skills[Intimidation].proficiency = "none"
+abilityScores.Charisma.skills[Performance].modifier = 1
+abilityScores.Charisma.skills[Performance].proficiency = "none"
+abilityScores.Charisma.skills[Persuasion].modifier = 11
+abilityScores.Charisma.skills[Persuasion].proficiency = "expertise"
+abilityScores.Charisma.value = 13
+abilityScores.Constitution.modifier = 1
+abilityScores.Constitution.savingThrow.modifier = 1
+abilityScores.Constitution.savingThrow.proficiency = "none"
+abilityScores.Constitution.skills = []
+abilityScores.Constitution.value = 13
+abilityScores.Dexterity.modifier = 3
+abilityScores.Dexterity.savingThrow.modifier = 3
+abilityScores.Dexterity.savingThrow.proficiency = "none"
+abilityScores.Dexterity.skills[Acrobatics].modifier = 3
+abilityScores.Dexterity.skills[Acrobatics].proficiency = "none"
+abilityScores.Dexterity.skills[Sleight of Hand].modifier = 8
+abilityScores.Dexterity.skills[Sleight of Hand].proficiency = "proficient"
+abilityScores.Dexterity.skills[Stealth].modifier = 3
+abilityScores.Dexterity.skills[Stealth].proficiency = "none"
+abilityScores.Dexterity.value = 16
+abilityScores.Intelligence.modifier = 4
+abilityScores.Intelligence.savingThrow.modifier = 9
+abilityScores.Intelligence.savingThrow.proficiency = "proficient"
+abilityScores.Intelligence.skills[Investigation].modifier = 4
+abilityScores.Intelligence.skills[Investigation].proficiency = "none"
+abilityScores.Intelligence.skills[Lore].modifier = 4
+abilityScores.Intelligence.skills[Lore].proficiency = "none"
+abilityScores.Intelligence.skills[Nature].modifier = 4
+abilityScores.Intelligence.skills[Nature].proficiency = "none"
+abilityScores.Intelligence.skills[Piloting].modifier = 4
+abilityScores.Intelligence.skills[Piloting].proficiency = "none"
+abilityScores.Intelligence.skills[Technology].modifier = 4
+abilityScores.Intelligence.skills[Technology].proficiency = "none"
+abilityScores.Intelligence.value = 18
+abilityScores.Strength.modifier = 1
+abilityScores.Strength.savingThrow.modifier = 1
+abilityScores.Strength.savingThrow.proficiency = "none"
+abilityScores.Strength.skills[Athletics].modifier = 1
+abilityScores.Strength.skills[Athletics].proficiency = "none"
+abilityScores.Strength.value = 12
+abilityScores.Wisdom.modifier = 1
+abilityScores.Wisdom.savingThrow.modifier = 6
+abilityScores.Wisdom.savingThrow.proficiency = "proficient"
+abilityScores.Wisdom.skills[Animal Handling].modifier = 1
+abilityScores.Wisdom.skills[Animal Handling].proficiency = "none"
+abilityScores.Wisdom.skills[Insight].modifier = 6
+abilityScores.Wisdom.skills[Insight].proficiency = "proficient"
+abilityScores.Wisdom.skills[Medicine].modifier = 1
+abilityScores.Wisdom.skills[Medicine].proficiency = "none"
+abilityScores.Wisdom.skills[Perception].modifier = 1
+abilityScores.Wisdom.skills[Perception].proficiency = "none"
+abilityScores.Wisdom.skills[Survival].modifier = 1
+abilityScores.Wisdom.skills[Survival].proficiency = "none"
+abilityScores.Wisdom.value = 13
+weapons[Chakram].ability = "Dexterity"
+weapons[Chakram].attackBonus = 8
+weapons[Chakram].damageBonus = 3
+weapons[Chakram].damageDieModifier = 0
+weapons[Chakram].damageDieType = 6
+weapons[Chakram].damageNumberOfDice = 1
+weapons[Chakram].damageType = "Kinetic"
+weapons[Chakram].equipped = true
+weapons[Chakram].index = 1
+weapons[Chakram].isCustom = false
+weapons[Chakram].properties = ["Finesse", "returning", "thrown (range 30/90)"]
+weapons[Chakram].quantity = 1
+weapons[Chakram].tweaks.toHit.bonus = 0
+weapons[Chakram].tweaks.toHit.proficiency = "proficient"
+weapons[Chakram].weaponClassification = "MartialVibroweapon"
+weapons[Vibrobaton].ability = "Strength"
+weapons[Vibrobaton].attackBonus = 1
+weapons[Vibrobaton].damageBonus = 1
+weapons[Vibrobaton].damageDieModifier = 0
+weapons[Vibrobaton].damageDieType = 4
+weapons[Vibrobaton].damageNumberOfDice = 2
+weapons[Vibrobaton].damageType = "Kinetic"
+weapons[Vibrobaton].equipped = true
+weapons[Vibrobaton].index = 2
+weapons[Vibrobaton].isCustom = false
+weapons[Vibrobaton].properties = ["—"]
+weapons[Vibrobaton].quantity = 1
+weapons[Vibrobaton].weaponClassification = "MartialVibroweapon"
+weapons[Unarmed Strike].ability = "Strength"
+weapons[Unarmed Strike].attackBonus = 6
+weapons[Unarmed Strike].damageBonus = 2
+weapons[Unarmed Strike].damageDieType = 0
+weapons[Unarmed Strike].damageNumberOfDice = 1
+weapons[Unarmed Strike].damageType = "Kinetic"
+weapons[Unarmed Strike].equipped = true
+weapons[Unarmed Strike].index = -1
+weapons[Unarmed Strike].isCustom = false
+weapons[Unarmed Strike].properties = []
+weapons[Unarmed Strike].quantity = 0
+weapons[Unarmed Strike].weaponClassification = "Unarmed"
+attunement.hasAttunable = false
+attunement.maximum = 5
+carryingCapacity.encumbered = 60
+carryingCapacity.heavilyEncumbered = 120
+carryingCapacity.maxCapacity = 180
+carryingCapacity.pushDragLift = 360
+superiority = false
+techCasting = false
+forceCasting = false
+proficiencies[Simple blasters].type = "weapon"
+proficiencies[simple vibroweapons].type = "weapon"
+proficiencies[martial vibroweapons with the finesse property].type = "weapon"
+proficiencies[Light armor].type = "armor"
+proficiencies[One type of gaming set].type = "tool"
+skillAndSaveProficiencies = ["Sleight of Hand", "Insight", "Deception", "Persuasion", "Intelligence Saving Throws", "Wisdom Saving Throws"]
+languages = ["Galactic Basic", "Bothese"]
+experiencePoints.isCorrect = false
+experiencePoints.nextLevel = 165000
+experiencePoints.previousLevel = 140000
+conditions = []
+exhaustion = 0
+
+## Effects and tweaks
+effect: Deception · tweak
+effect: Persuasion · tweak
+effect: Charisma score · tweak
+effect: Insight · tweak
+effect: Sleight of Hand · tweak
+effect: Scholar weapon proficiencies · feature
+effect: Expertise · feature
+effect: Gambler's Aptitude · feature
+effect: Lifelong Learning · feature
+effect: Running on Fumes · feature
+effect: Silver-Tongued · feature
+effect: Silver-Tongued · feature
+effect: Shrewd · feature
+tweak: abilityScores.Charisma.skills.Deception +0 {"proficiency":"Expertise"} · Deception
+tweak: abilityScores.Charisma.skills.Persuasion +0 {"proficiency":"Expertise"} · Persuasion
+tweak: abilityScores.Charisma.score +1 · Charisma score
+tweak: abilityScores.Wisdom.skills.Insight +0 {"proficiency":"Proficient"} · Insight
+tweak: abilityScores.Dexterity.skills.Sleight of Hand +0 {"proficiency":"Proficient"} · Sleight of Hand
+tweak: abilityScores.Charisma.skills.Persuasion +0 {"proficiency":"Expertise"} · Expertise
+tweak: abilityScores.Dexterity.skills.Sleight of Hand +0 {"proficiency":"Proficient"} · Gambler's Aptitude
+tweak: abilityScores.Charisma.skills.Persuasion +0 {"proficiency":"Proficient"} · Lifelong Learning
+tweak: abilityScores.Charisma.score +1 · Silver-Tongued
+tweak: abilityScores.Charisma.skills.Deception +0 {"proficiency":"Expertise"} · Silver-Tongued
+tweak: abilityScores.Wisdom.skills.Insight +0 {"proficiency":"Proficient"} · Shrewd
+tweak: abilityScores.Charisma.skills.Deception +0 {"proficiency":"Proficient"} · Shrewd
+weapon tweak: #1 toHit +0 · Scholar weapon proficiencies
+
+## Rolls
+init: Initiative: d20 +3 · = +3 modifier
+death: Death saving throw: d20 +0
+hitdie|d8: Hit die (d8): d8 +1 · = +1 per die
+dice|1d10: 1d10: d10 +0
+check|Strength: Strength check: d20 +1 · = +1 modifier
+save|Strength: Strength saving throw: d20 +1 · = +1 modifier · option: caused by an effect you can see: Calm and Collected +4
+skill|Strength|0: Athletics (STR): d20 +1 · = +1 modifier
+check|Dexterity: Dexterity check: d20 +3 · = +3 modifier
+save|Dexterity: Dexterity saving throw: d20 +3 · = +3 modifier · option: caused by an effect you can see: Calm and Collected +4
+skill|Dexterity|0: Acrobatics (DEX): d20 +3 · = +3 modifier
+skill|Dexterity|1: Sleight of Hand (DEX): d20 +8 · = +8 modifier
+skill|Dexterity|2: Stealth (DEX): d20 +3 · = +3 modifier
+check|Constitution: Constitution check: d20 +1 · = +1 modifier
+save|Constitution: Constitution saving throw: d20 +1 · = +1 modifier · option: caused by an effect you can see: Calm and Collected +4
+check|Intelligence: Intelligence check: d20 +4 · = +4 modifier
+save|Intelligence: Intelligence saving throw: d20 +9 · = +9 modifier · option: caused by an effect you can see: Calm and Collected +4
+skill|Intelligence|0: Investigation (INT): d20 +4 · = +4 modifier
+skill|Intelligence|1: Lore (INT): d20 +4 · = +4 modifier
+skill|Intelligence|2: Nature (INT): d20 +4 · = +4 modifier
+skill|Intelligence|3: Piloting (INT): d20 +4 · = +4 modifier
+skill|Intelligence|4: Technology (INT): d20 +4 · = +4 modifier
+check|Wisdom: Wisdom check: d20 +1 · = +1 modifier
+save|Wisdom: Wisdom saving throw: d20 +6 · = +6 modifier · option: caused by an effect you can see: Calm and Collected +4
+skill|Wisdom|0: Animal Handling (WIS): d20 +1 · = +1 modifier
+skill|Wisdom|1: Insight (WIS): d20 +6 · = +6 modifier
+skill|Wisdom|2: Medicine (WIS): d20 +1 · = +1 modifier
+skill|Wisdom|3: Perception (WIS): d20 +1 · = +1 modifier
+skill|Wisdom|4: Survival (WIS): d20 +1 · = +1 modifier
+check|Charisma: Charisma check: d20 +1 · = +1 modifier · option: INT instead of CHA (Calculated Bluff) +3
+save|Charisma: Charisma saving throw: d20 +1 · = +1 modifier · option: caused by an effect you can see: Calm and Collected +4
+skill|Charisma|0: Deception (CHA): d20 +11 · = +11 modifier · option: INT instead of CHA (Calculated Bluff) +3
+skill|Charisma|1: Intimidation (CHA): d20 +1 · = +1 modifier · option: INT instead of CHA (Calculated Bluff) +3
+skill|Charisma|2: Performance (CHA): d20 +1 · = +1 modifier · option: INT instead of CHA (Calculated Bluff) +3
+skill|Charisma|3: Persuasion (CHA): d20 +11 · = +11 modifier · option: INT instead of CHA (Calculated Bluff) +3
+attack|0: Chakram attack: d20 +8 · = +8 modifier · option: vs that target (INT, Critical Analysis) +1
+damage|0: Chakram damage: d6 +3 · = +3 DEX modifier · Kinetic · option: Tyrannical Strike +d10 +1d10 · option: Disarming Blow +d10 +1d10 · option: vs that target (INT, Critical Analysis) +1
+attack|1: Vibrobaton attack: d20 +1 · = +1 modifier
+damage|1: Vibrobaton damage: d4 d4 +1 · = +1 STR modifier · Kinetic · option: Tyrannical Strike +d10 +1d10 · option: Disarming Blow +d10 +1d10
+attack|2: Unarmed Strike attack: d20 +6 · = +6 modifier
+damage|2: Unarmed Strike damage: no dice +2 · = +1 unarmed strike +1 STR modifier · Kinetic · option: Tyrannical Strike +d10 +1d10 · option: Disarming Blow +d10 +1d10
+supdie: Superiority die: d10 +0
+maneuver|Physical|Dexterity: Physical maneuver attack: d20 +8 · = +8 modifier
+maneuver|Mental|Intelligence: Mental maneuver attack: d20 +9 · = +9 modifier
+maneuver|General|Intelligence: General maneuver attack: d20 +9 · = +9 modifier
+tool|One type of gaming set|proficient: One type of gaming set check: d20 +9 · = +4 INT modifier +5 proficiency
+tool|Pazaak deck|proficient: Pazaak deck check: d20 +9 · = +4 INT modifier +5 proficiency
+tool|Forgery kit|expertise: Forgery kit check: d20 +14 · = +4 INT modifier +10 proficiency ×2
+damage|0|crit: Chakram damage (critical): d6 d6 +3 · = +3 DEX modifier · Kinetic · critical · option: Tyrannical Strike +d10 +1d10 · option: Disarming Blow +d10 +1d10 · option: vs that target (INT, Critical Analysis) +1
+damage|1|crit: Vibrobaton damage (critical): d4 d4 d4 d4 +1 · = +1 STR modifier · Kinetic · critical · option: Tyrannical Strike +d10 +1d10 · option: Disarming Blow +d10 +1d10
+damage|2|crit: Unarmed Strike damage (critical): no dice +2 · = +1 unarmed strike +1 STR modifier · Kinetic · critical · option: Tyrannical Strike +d10 +1d10 · option: Disarming Blow +d10 +1d10
+
+## Sheet: Overview
+Scholar Test (Claude)
+Bothan · Scholar (Gambler Pursuit) 14
+Level 14 Background: Noble Balanced Neutral Proficiency +5 [Add a picture]
+900 XP level 15 at 165,000 (164,100 to go)
+Level 14 usually needs 140,000 XP (you have 900).
+Still to choose (10): Scholar skills (3 more) · Scholar tool · Scholar 4th level: ability score improvement or feat · Scholar 8th level: ability score improveme… [349 chars #d595526f]
+
+## Sheet: Combat & Vitals
+Armor Class
+15
+Fiber armor
+Hit Points
+87 / 87
+No temporary HP
+Initiative
++3
+Speed
+30 ft
+3 miles/hour · 24 miles/day
+Proficiency
++5
+Passive Perception
+11
+Hit Dice
+14/14d8
++1 per die spent (Con)
+Vision
+Normal
+Play tracker
+[] [untyped ▾] [Damage] [Heal] [Temp HP]
+Death saves ✓ [] [] [] ✗ [] [] [] [Roll]
+Superiority dice d10 9 / 9 [−] [+]
+Hit dice (d8) roll d8 +1, then Heal 14 / 14 [−] [+]
+Sage Advice short rest 1 / 1 [−] [+]
+Calm and Collected long rest 5 / 5 [−] [+]
+Start or end
+[Start Critical Analysis]
+Conditions None [Add a condition… ▾]
+Combat [Start combat]
+[☆ Inspiration] Exhaustion [−] 0 [+]
+[Short rest] [Long rest]
+Class dice
+Superiority Dice Size 1d10
+Defenses & senses
+Advantages Advantage on saving throws against exhaustion
+Other Can't have disadvantage on checks you make with them (Gambler's Aptitude)
+Effects
+From class features, feats and species traits (8)
+Scholar weapon proficiencies Proficient: Simple blasters Proficient: simple vibroweapons Proficient: martial vibroweapons with the finesse property Scholar proficiencies
+Expertise Persuasion: expertise Forgery Kit: expertise Scholar feature
+Gambler's Aptitude Sleight of Hand: proficient Pazaak: proficient Can't have disadvantage on checks you make with them Gambler Pursuit feature
+Lifelong Learning Persuasion: proficient Forgery kit: proficient Discoveries feature
+Running on Fumes Advantage on saving throws against exhaustion Discoveries feature
+Silver-Tongued CHA +1 feat (background feat)
+Silver-Tongued Deception: expertise (already proficient) feat
+Shrewd Insight: proficient Deception: proficient Bothan trait
+Temporary
+No temporary effects.
+[]
+Your own effect (something the sheet doesn't know)…
+[] [] [No number (a reminder) ▾] [] [Add]
+It's applied like any effect (a dice bonus like Bless's d4 isn't a number: add it in the roller), and ends with End, a rest or Next round when it has run out.
+Bonuses are applied to the sheet's numbers in this browser only (not saved to SW5E); changed numbers are underlined: hover or tap them for details. Conditional … [256 chars #e163e104]
+Conditions
+None active (from SW5E)
+Carrying capacity
+Carried
+25 lb
+Unencumbered (variant rule)
+Encumbered at
+60 lb
+Heavily enc. at
+120 lb
+Max capacity
+180 lb
+Push / drag / lift
+360 lb
+
+## Sheet: Abilities & Saving Throws
+STR
+Strength
++1
+12
+(Not proficient) Saving throw+1
+(Not proficient) Athletics+1
+base 12
+DEX
+Dexterity
++3
+16
+(Not proficient) Saving throw+3
+(Not proficient) Acrobatics+3
+(Proficient) Sleight of Hand+8
+  ↳ hover abilityScores.Dexterity.skills.1.modifier: Without tweaks or effects: 3 → now 8 / Proficient Sleight of Hand · no reason given tweak / proficient Sleight … [224 chars #eb67592f]
+(Not proficient) Stealth+3
+base 15 · +1 Bothan
+CON
+Constitution
++1
+13
+(Not proficient) Saving throw+1
+base 13
+INT
+Intelligence
++4
+18
+(Proficient) Saving throw+9
+(Not proficient) Investigation+4
+(Not proficient) Lore+4
+(Not proficient) Nature+4
+(Not proficient) Piloting+4
+(Not proficient) Technology+4
+base 16 · +2 Bothan
+WIS
+Wisdom
++1
+13
+(Proficient) Saving throw+6
+(Not proficient) Animal Handling+1
+(Proficient) Insight+6
+  ↳ hover abilityScores.Wisdom.skills.1.modifier: Without tweaks or effects: 1 → now 6 / Proficient Insight · no reason given tweak / proficient Insight: proficient · Shrewd Bothan trait
+(Not proficient) Medicine+1
+(Not proficient) Perception+1
+(Not proficient) Survival+1
+base 13
+CHA
+Charisma
++1
+  ↳ hover abilityScores.Charisma.modifier: Without tweaks or effects: 0 → now 1 / +1 Charisma score · no reason given tweak / +1 CHA · Silver-Tongued feat (background feat)
+13
+  ↳ hover abilityScores.Charisma.value: Without tweaks or effects: 11 → now 13 / +1 Charisma score · no reason given tweak / +1 CHA · Silver-Tongued feat (background feat)
+(Not proficient) Saving throw+1
+  ↳ hover abilityScores.Charisma.savingThrow.modifier: Without tweaks or effects: 0 → now 1 / +1 Charisma score · no reason given tweak / +1 CHA · Silver-Tongued feat (background feat)
+(Expertise) Deception+11
+  ↳ hover abilityScores.Charisma.skills.0.modifier: Without tweaks or effects: 0 → now 11 / +1 Charisma score · no reason given tweak / +1 CHA · Silver-Tongued feat… [357 chars #b611e718]
+(Not proficient) Intimidation+1
+  ↳ hover abilityScores.Charisma.skills.1.modifier: Without tweaks or effects: 0 → now 1 / +1 Charisma score · no reason given tweak / +1 CHA · Silver-Tongued feat (background feat)
+(Not proficient) Performance+1
+  ↳ hover abilityScores.Charisma.skills.2.modifier: Without tweaks or effects: 0 → now 1 / +1 Charisma score · no reason given tweak / +1 CHA · Silver-Tongued feat (background feat)
+(Expertise) Persuasion+11
+  ↳ hover abilityScores.Charisma.skills.3.modifier: Without tweaks or effects: 0 → now 11 / +1 Charisma score · no reason given tweak / +1 CHA · Silver-Tongued feat… [363 chars #47ade8d9]
+base 11 · +1 from Charisma score (tweak) · +1 from Silver-Tongued (feat)
+not proficient proficient expertise
+
+## Sheet: Skills
+Skill | Ability | Bonus | Passive | Proficiency |
+(Not proficient) Acrobatics | DEX | +3 | 13 | — |
+(Not proficient) Animal Handling | WIS | +1 | 11 | — |
+(Not proficient) Athletics | STR | +1 | 11 | — |
+(Expertise) Deception | CHA | +11 | 21 | Expertise |
+  ↳ hover abilityScores.Charisma.skills.0.modifier: Without tweaks or effects: 0 → now 11 / +1 Charisma score · no reason given tweak / +1 CHA · Silver-Tongued feat… [357 chars #b611e718]
+  ↳ hover abilityScores.Charisma.skills.0.modifier: Without tweaks or effects: 0 → now 11 / +1 Charisma score · no reason given tweak / +1 CHA · Silver-Tongued feat… [357 chars #b611e718]
+(Proficient) Insight | WIS | +6 | 16 | Proficient |
+  ↳ hover abilityScores.Wisdom.skills.1.modifier: Without tweaks or effects: 1 → now 6 / Proficient Insight · no reason given tweak / proficient Insight: proficient · Shrewd Bothan trait
+  ↳ hover abilityScores.Wisdom.skills.1.modifier: Without tweaks or effects: 1 → now 6 / Proficient Insight · no reason given tweak / proficient Insight: proficient · Shrewd Bothan trait
+(Not proficient) Intimidation | CHA | +1 | 11 | — |
+  ↳ hover abilityScores.Charisma.skills.1.modifier: Without tweaks or effects: 0 → now 1 / +1 Charisma score · no reason given tweak / +1 CHA · Silver-Tongued feat (background feat)
+  ↳ hover abilityScores.Charisma.skills.1.modifier: Without tweaks or effects: 0 → now 1 / +1 Charisma score · no reason given tweak / +1 CHA · Silver-Tongued feat (background feat)
+(Not proficient) Investigation | INT | +4 | 14 | — |
+(Not proficient) Lore | INT | +4 | 14 | — |
+(Not proficient) Medicine | WIS | +1 | 11 | — |
+(Not proficient) Nature | INT | +4 | 14 | — |
+(Not proficient) Perception | WIS | +1 | 11 | — |
+(Not proficient) Performance | CHA | +1 | 11 | — |
+  ↳ hover abilityScores.Charisma.skills.2.modifier: Without tweaks or effects: 0 → now 1 / +1 Charisma score · no reason given tweak / +1 CHA · Silver-Tongued feat (background feat)
+  ↳ hover abilityScores.Charisma.skills.2.modifier: Without tweaks or effects: 0 → now 1 / +1 Charisma score · no reason given tweak / +1 CHA · Silver-Tongued feat (background feat)
+(Expertise) Persuasion | CHA | +11 | 21 | Expertise |
+  ↳ hover abilityScores.Charisma.skills.3.modifier: Without tweaks or effects: 0 → now 11 / +1 Charisma score · no reason given tweak / +1 CHA · Silver-Tongued feat… [363 chars #47ade8d9]
+  ↳ hover abilityScores.Charisma.skills.3.modifier: Without tweaks or effects: 0 → now 11 / +1 Charisma score · no reason given tweak / +1 CHA · Silver-Tongued feat… [363 chars #47ade8d9]
+(Not proficient) Piloting | INT | +4 | 14 | — |
+(Proficient) Sleight of Hand | DEX | +8 | 18 | Proficient |
+  ↳ hover abilityScores.Dexterity.skills.1.modifier: Without tweaks or effects: 3 → now 8 / Proficient Sleight of Hand · no reason given tweak / proficient Sleight … [224 chars #eb67592f]
+  ↳ hover abilityScores.Dexterity.skills.1.modifier: Without tweaks or effects: 3 → now 8 / Proficient Sleight of Hand · no reason given tweak / proficient Sleight … [224 chars #eb67592f]
+(Not proficient) Stealth | DEX | +3 | 13 | — |
+(Not proficient) Survival | WIS | +1 | 11 | — |
+(Not proficient) Technology | INT | +4 | 14 | — |
+
+## Sheet: Weapons & Attacks
+Weapon | To hit | Damage | Ability | Type | Properties |
+Chakram
+Finesse, returning, thrown (range 30/90)
+| +8 | 1d6+3 Kinetic | Dexterity | Martial Vibroweapon | Finesse, returning, thrown (range 30/90) |
+  ↳ hover weapons.0.attackBonus: Without tweaks or effects: 3 → now 8 / proficient Proficient: martial vibroweapons with the finesse property · Scholar weapon proficiencies Scholar proficiencies
+Vibrobaton
+| +1 | 2d4+1 Kinetic | Strength | Martial Vibroweapon | — |
+Unarmed Strike
+| +6 | 2 Kinetic | Strength | Unarmed | — |
+
+## Sheet: Superiority & Maneuvers
+Maneuvers Known
+17
+Superiority Dice Quantity
+9
+Superiority Dice Size
+d10
+Physical maneuver DC
+16
+DEX · attack +8
+Mental maneuver DC
+17
+INT · attack +9
+General maneuver DC
+17
+INT · attack +9
+Dice come from the class table at your level; save DCs are calculated here as 8 + proficiency + your best eligible ability modifier (SW5E's site does not compute superiority).
+Mental maneuvers (3)
+Tyrannical Strike Prereq: Proficiency with Intimidation PHB
+When you hit a creature with a weapon attack, you can expend one superiority die and use your reaction to issue a one-word command to a creature who can see or … [351 chars #04553101]
+The target automatically succeeds if it is immune to charm, it doesn't understand your language, or if your command is directly harmful to it.
+Shadow Puppetry EC
+When a creature you can see within 30 feet of you is reduced to 0 hit points, you can use your reaction and expend a superiority die to give that creature a fin… [396 chars #3b6e2227]
+Dark Transference EC
+When you hit a creature with an attack, you can expend a superiority die and roll it to attempt to siphon life from it. The target must make a Constitution savi… [259 chars #d9345573]
+Physical maneuvers (3)
+Disarming Blow PHB
+When you hit a creature with a weapon attack, you can expend one superiority die to attempt to disarm the target, forcing it to drop one item of your choice tha… [471 chars #3160ec29]
+Rampage PHB
+When you reduce a creature to 0 hit points, you can use your bonus action to expend a superiority die and move up to half your speed. If you end this movement w… [318 chars #a1b65abc]
+Body Over Bother PHB
+When you are forced to make an Strength, Dexterity, or Constitution saving throw, you can expend a superiority die to change the saving throw ability to your maneuver ability modifier.
+
+## Sheet: Class Features
+Scholar (9)
+Academic Superiority Level 1
+Scholar: 1st level
+You learn maneuvers that are fueled by special dice called superiority dice. See chapter 13 for the maneuvers list.
+Maneuvers Known
+You learn one maneuver of your choice, and you earn more at higher levels, as shown in the Maneuvers Known column of the scholar table. Many maneuvers enhance a… [273 chars #165d9a50]
+Each time you learn new maneuvers, you can also replace one maneuver you know with a different one.
+Superiority Dice
+You have three superiority dice, which are d4s, and you earn more at higher levels, as shown in the Superiority Dice Quantity column of the scholar table. This … [313 chars #d7d3867e]
+You regain all of your expended superiority dice when you finish a short or long rest.
+Maneuver Ability
+Your maneuver ability varies based on the type of the maneuver you use. You use Strength, Dexterity, or Constitution for physical maneuvers (your choice), Intel… [452 chars #c8f71ca2]
+Maneuver save DC = 8 + your proficiency bonus + your maneuver ability modifier
+Your choices []
+Critical Analysis Level 1
+[Start Critical Analysis]
+Scholar: 1st level
+You are able to analyze a creature, develop a plan on how to best overcome any potential obstacle, and execute that plan with ruthless efficiency. As a bonus ac… [331 chars #1dbb52a5]
+When you analyze a hostile creature, your attack and damage rolls made with weapons with the finesse property or blaster weapons against that target may use you… [301 chars #6802069d]
+When you analyze a friendly creature, the target can end your Critical Analysis on them (no action required) to add your Critical Analysis ability modifier, whi… [356 chars #03d003d4]
+Notes []
+Discovery Level 2
+Scholar: 2nd level
+As you adventure, your studies have helped you discover new practices you can apply to your skills. You master two discoveries of your choice. Your discovery op… [358 chars #213ee526]
+Additionally, when you gain a level in this class, you can choose one of the discoveries you know and replace it with another discovery that you could learn at that level.
+Your choices []
+Multitasker Level 5
+Scholar: 5th level
+You can take a second reaction each round.
+Additionally, when a friendly creature you can see that can hear you is forced to make a saving throw, you can use your reaction to target them with your Critical Analysis feature.
+Notes []
+Academic Pursuit Level 9
+Scholar: 3rd, 6th, 9th, and 17th level
+You dedicate your studies towards a pursuit, which is detailed at the end of the class description.
+Chosen: Gambler Pursuit · change it in Classes & Progression
+Notes []
+Expertise Level 10
+Scholar: 3rd and 10th level
+Choose two of your skill proficiencies, or one of skill proficiencies and one of your tool proficiencies, or two of your tool proficiencies. You gain expertise in those skills or tools.
+At 10th level, you can choose another two proficiencies (in skills or tools) to gain this benefit.
+Chosen: Persuasion, Forgery Kit · change it in Classes & Progression
+Notes []
+Ability Score Improvement Level 12
+Scholar: 4th, 8th, 12th, 16th, and 19th level
+You can increase one ability score by 2, or you can increase two ability scores by 1. You can't increase an ability score above 20 using this feature.
+Notes []
+Sage Advice Level 13
+Uses (back on a short or long rest) 1 / 1 [−] [+]
+Scholar: 2nd and 13th level
+You can spend 1 minute spreading your knowledge and experience, advising those around you. When you do so, choose a skill or tool you are proficient with and a … [698 chars #f0a568cc]
+Once you've used this feature, you can't use it again until you finish a long rest. Starting at 13th level, you regain the ability to use it after you complete a short or long rest.
+Your choices []
+Calm and Collected Levels 14, 17 from class text
+Uses (back on a long rest) 5 / 5 [−] [+]
+When you make a saving throw caused by an effect you can see, you may gain a bonus to the saving throw equal to your Intelligence modifier.
+You can use this feature five times. You gain an additional use at 17th level. You regain all expended uses when you complete a long rest.
+Notes []
+Gambler Pursuit (archetype) (4)
+Gambler's Aptitude Level 3
+Gambler Pursuit: 3rd level
+You gain proficiency with your choice of gaming set and your choice of the Insight, Deception, Persuasion, or Sleight of Hand skills. Additionally, you can't have disadvantage on checks you make with them.
+Tool proficiency 1 / 1 gaming set
+Pazaak [×]
+Skill proficiency 1 / 1
+Sleight of Hand [×]
+Notes [Sleight of Hand.]
+Lucky Number 7 Level 6
+Gambler Pursuit: 6th level
+Whenever you roll a 7 on an attack roll against the target of your Critical Analysis feature, the attack automatically hits and you regain an expended superiority die.
+When attacking with advantage or disadvantage, this effect applies if either roll is a 7. If both rolls are a 7, the attack is a critical hit.
+Notes []
+Risk versus Reward Level 13
+Gambler Pursuit: 3rd, 9th, 13th, and 17th level
+When you make your first attack on your turn against the target of your Critical Analysis feature, you can decide to gamble by rolling a d6. On a roll of 4 or h… [382 chars #b0c77b76]
+This die increases to d8 at 9th level, d10 at 13th level, and d12 at 17th level.
+Notes []
+Tell Me the Odds Level 13
+Gambler Pursuit: 9th, 13th, and 17th level
+If the target of your Critical Analysis hits you with a weapon attack roll, you can use your reaction to roll a d8. On a 4 or higher, you impose disadvantage on… [271 chars #aee2ac5e]
+This die increases to d10 at 13th level and d12 at 17th level.
+Your choices []
+Scholar: Discoveries (4)
+Malleable Maneuvering
+You learn two additional maneuvers. When you complete a short rest, you can replace one of these maneuvers with another one. When you complete a long rest, you can replace both of these maneuvers with other ones.
+Lifelong Learning (Persuasion + Forgery kit.)
+You gain proficiency in a skill and a tool, or two tools.
+You can select this discovery multiple times, each time choosing a new skill and a tool, or two new tools.
+Calculated Bluff
+When you make an ability check using Charisma, you can choose to instead make the check using your Intelligence or Wisdom modifier (your choice).
+Running on Fumes
+You only need 3 hours of sleep during a long rest to gain its benefits, instead of 6. Additionally, if your long rest would be interrupted, you only need to com… [290 chars #859f0674]
+
+## Sheet: Feats
+Silver-Tongued Background (Noble)+ Charisma
+You develop your conversational skill to better deceive others. You gain the following benefits:
+Increase your Charisma score by 1, to a maximum of 20.
+You gain proficiency in the Deception skill. If you are already proficient in it, you instead gain expertise in it.
+When you take the Attack action, you can replace one attack with an attempt to deceive one humanoid you can see within 30 feet of you that can see and hear you.… [568 chars #4907558c]
+Notes []
+
+## Sheet: Classes & Progression
+[Level up]
+Scholar 14 Gambler Pursuit Starting class
+Hit die d8 Primary Intelligence Saves Intelligence, Wisdom HP by level 8 (max), 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5
+Academic who uses wits and allies to control the battlefield
+Skill proficiencies 0 / 3 Choose three from Deception, Insight, Intimidation, Investigation, Lore, Medicine, Nature, Persuasion, and Survival
+None chosen yet.
+[Choose a skill… ▾]
+Tool proficiency 0 / 1 Any one
+None chosen yet.
+[Choose a tool… ▾]
+Expertise 2 / 4 Scholar 3rd and 10th level
+Persuasion [×] Forgery Kit [×]
+[Choose a skill or tool you know… ▾]
+Archetype [Gambler Pursuit ▾]
+Read the options (12)
+Maneuvers 6 / 19 17 from the Scholar table + 2 from Malleable Maneuvering
+Tyrannical Strike Mental [×]
+Prerequisite: Proficiency with Intimidation
+When you hit a creature with a weapon attack, you can expend one superiority die and use your reaction to issue a one-word command to a creature who can see or … [351 chars #04553101]
+The target automatically succeeds if it is immune to charm, it doesn't understand your language, or if your command is directly harmful to it.
+Disarming Blow Physical [×]
+When you hit a creature with a weapon attack, you can expend one superiority die to attempt to disarm the target, forcing it to drop one item of your choice tha… [471 chars #3160ec29]
+Rampage Physical [×]
+When you reduce a creature to 0 hit points, you can use your bonus action to expend a superiority die and move up to half your speed. If you end this movement w… [318 chars #a1b65abc]
+Shadow Puppetry Mental [×]
+When a creature you can see within 30 feet of you is reduced to 0 hit points, you can use your reaction and expend a superiority die to give that creature a fin… [396 chars #3b6e2227]
+Dark Transference Mental [×]
+When you hit a creature with an attack, you can expend a superiority die and roll it to attempt to siphon life from it. The target must make a Constitution savi… [259 chars #d9345573]
+Body Over Bother Physical [×]
+When you are forced to make an Strength, Dexterity, or Constitution saving throw, you can expend a superiority die to change the saving throw ability to your maneuver ability modifier.
+[Add a maneuver… ▾]
+Read the options
+Discoveries 4 / 8 from the Scholar table (“Discoveries”)
+Malleable Maneuvering [×]
+You learn two additional maneuvers. When you complete a short rest, you can replace one of these maneuvers with another one. When you complete a long rest, you can replace both of these maneuvers with other ones.
+Lifelong Learning [×]
+[Persuasion + Forgery kit.]
+You gain proficiency in a skill and a tool, or two tools.
+You can select this discovery multiple times, each time choosing a new skill and a tool, or two new tools.
+Calculated Bluff Gambler Pursuit [×]
+[]
+When you make an ability check using Charisma, you can choose to instead make the check using your Intelligence or Wisdom modifier (your choice).
+Running on Fumes [×]
+You only need 3 hours of sleep during a long rest to gain its benefits, instead of 6. Additionally, if your long rest would be interrupted, you only need to com… [290 chars #859f0674]
+[Add from Discoveries… ▾]
+Read the options (28)
+Class table
+Proficiency Bonus
++5 → +5 at 15th
+Features
+Calm and Collected → — at 15th
+Maneuvers Known
+17 → 19 at 15th
+Superiority Dice Quantity
+9 → 10 at 15th
+Superiority Dice Size
+d10 → d10 at 15th
+Discoveries
+8 → 8 at 15th
+| Proficiency Bonus | Features | Maneuvers Known | Superiority Dice Quantity | Superiority Dice Size | Discoveries |
+Now (14th) | +5 | Calm and Collected | 17 | 9 | d10 | 8 |
+Next (15th) | +5 | — | 19 | 10 | d10 | 8 |
+Armor Light armor Weapons Simple blasters, simple vibroweapons, martial vibroweapons with the finesse property Tools Any one
+
+## Sheet: Species
+Size
+Medium
+Homeworld
+Bothawui
+Language
+Bothese
+Average height
+4'3" +2d4"
+Average weight
+60 lb. x(2d4) lb.
+Skin
+Brown
+Hair
+Black, brown, or gray (with age)
+Eyes
+Brown or green
+Distinctions
+Diminutive stature, mood-sensitive fur
+Traits (9)
+Ability Score Increase
+Your Intelligence score increases by 2, and your Dexterity score increases by 1.
+Notes []
+Age
+Bothans reach adulthood in their late teens and live less than a century.
+Notes []
+Alignment
+Bothans' duplicitous nature causes them to tend toward the dark side, though there are exceptions.
+Notes []
+Languages
+You can speak, read, and write Galactic Basic and Bothese. Bothese had a great influence on the forming of Galactic Basic; the two languages share many cognates.
+Notes []
+Naturally Stealthy
+You can attempt to hide even when you are obscured only by a creature that is your size or larger than you.
+Notes []
+Nimble Escape
+You can take the Disengage or Hide action as a bonus action on each of your turns.
+Notes []
+Shrewd
+You are proficient in the Insight and Deception skills.
+Notes []
+Size
+Bothans stand 4-5 feet tall and weigh under 100 pounds. Regardless of your position in that range, your size is Medium.
+Notes []
+Speed
+Your base walking speed is 30 feet.
+Notes []
+
+## Sheet: Background
+Skill proficiencies
+Choose two from Deception, Insight, Lore, and Persuasion
+Tool proficiencies
+One type of gaming set
+Languages
+One of your choice
+Starting equipment
+A set of fine clothes, a signet ring, a letter of pedigree, and a purse containing 250 cr
+Background feat
+Silver-Tongued
+Feature: Position of Privilege Background feature
+Thanks to your noble birth, people are inclined to think the best of you. You are welcome in high society, and people assume you have the right to be wherever y… [390 chars #064df76c]
+About this background
+You understand wealth, power, and privilege. You carry a noble title, and your family owns land, collects taxes, and wields significant political influence. You… [373 chars #12c34b19]
+Work with your GM to come up with an appropriate title and determine how much authority that title carries, as well as your family and their influence on you. I… [297 chars #a939cd75]
+What's your position in the family? Are you the heir to the head of the family or the head itself? Are you far down the line of succession? How does the head of… [246 chars #f0d70c9c]
+Does your family have a coat of arms you might wear, a signet ring, or particular colors?
+These details help establish your family and your title as features of the world of the campaign.
+Your choices
+Skill proficiencies 0 / 2 Choose two from Deception, Insight, Lore, and Persuasion
+None chosen yet.
+[Choose a skill… ▾]
+Tool proficiency 0 / 1 One type of gaming set
+None chosen yet.
+[Choose a tool… ▾]
+Languages 0 / 1 One of your choice
+None chosen yet.
+[Choose a language… ▾]
+
+## Sheet: Proficiencies & Languages
+Armor
+Light armor
+Weapon
+Simple blasters simple vibroweapons martial vibroweapons with the finesse property
+Tool
+One type of gaming set Pazaak deck ✎Forgery kit (expertise) ✎
+Skills & saves
+Sleight of Hand Insight Deception Persuasion Intelligence Saving Throws Wisdom Saving Throws
+Languages
+Galactic Basic Bothese
+✎ = custom proficiency added on the character.
+
+## Sheet: Equipment & Inventory
+Add an item
+[All items ▾] []
+Qty [1] [Add]
+2425 items from SW5E (data version 199). [Check for a newer list]
+Credits
+351 cr
+[] [] [Apply]
+Total weight
+25 lb
+of 180 lb max
+Attunement
+0 / 5
+Items
+5
+Weapon (2)
+Item | Qty & actions | Weight | Cost | Source |
+Chakram
+1d6 Kinetic · Finesse, returning, thrown (range 30/90)
+| [−] 1 [+] [Equipped] [✎] [Sell] [×] | 3 lb | 175 cr | PHB |
+Vibrobaton
+2d4 Kinetic
+| [−] 1 [+] [Equipped] [✎] [Sell] [×] | 4 lb | 250 cr | EC |
+Armor (1)
+Item | Qty & actions | Weight | Cost | Source |
+Fiber armor
+AC 12 + Dex modifier · Light
+Description
+Fiber armor is a type of armor that offers more protection than the lighter combat suit. Fiber armor is heavier overall than combat suits, and not quite as flex… [287 chars #295e4c98]
+| [−] 1 [+] [Equipped] [✎] [Sell] [×] | 13 lb | 450 cr | PHB |
+Gaming Set (1)
+Item | Qty & actions | Weight | Cost | Source |
+Pazaak deck
+| [−] 1 [+] [✎] [Sell] [×] | — | 100 cr | PHB |
+Kit (1)
+Item | Qty & actions | Weight | Cost | Source |
+Forgery kit
+| [−] 1 [+] [✎] [Sell] [×] | 5 lb | 150 cr | PHB |
+
+## Sheet: Personality & Appearance
+Personality Traits
+—
+Ideal
+—
+Bond
+—
+Flaw
+—
+Details
+Alignment
+Balanced Neutral
+Gender
+—
+Place of Birth
+—
+Age
+—
+Height
+—
+Weight
+—
+Hair
+—
+Eyes
+—
+Skin
+—
+
+## Sheet: Backstory
+Copy of a real character, for testing the SW5E Sheet extension. Safe to delete.
+
+## Sheet: Notes
+Test character (a copy of a Scholar) for the SW5E Sheet extension. Safe to delete.
+
+## Sheet: Settings, Tweaks & Data
+Tweaks (manual adjustments) 5 · 5 tweaks without a reason
+From sw5e.com's editor or added here. Give each a reason (kept in this viewer and in backups); hovering or tapping a number they change shows it.
+Stat | Adjustment | Reason | |
+Deception | Proficiency [Expertise ▾] [add ▾] [0] | [] | [×] |
+Persuasion | Proficiency [Expertise ▾] [add ▾] [0] | [] | [×] |
+Charisma score | [add ▾] [1] | [] | [×] |
+Insight | Proficiency [Proficient ▾] [add ▾] [0] | [] | [×] |
+Sleight of Hand | Proficiency [Proficient ▾] [add ▾] [0] | [] | [×] |
+[Add a tweak to… ▾] [add (+/−) ▾] [] [] [Add]
+Builder settings
+Is Enforcing Force Prerequisites
+true
+Is Fixed Hit Points
+false
+Ability Score Method
+Manual
+Record
+Source
+sw5e.com
+Loaded
+10/17/2026, 11:59:22 PM
+Last changed on SW5E
+10/16/2026, 6:43:35 PM
+Created
+10/16/2026, 6:40:00 PM
+Builder version
+0.7.6
+Validation
+All checks passed
+Character id
+00000000-0000-4000-8000-000002000001 ↗
+Local version history 2 / 25
+SW5E can lose saved characters, so every version seen here is kept in this browser. Compare a version with the character as it is now, or restore it (Undo puts it back).
+Backups (files you keep): this character never · [Back up this character]
+all characters never · [Back up all characters]
+10/16/2026, 6:43:37 PM latest
+Synced to SW5E · changed on SW5E 10/16/2026, 6:43:35 PM [Compare] [Restore] [Export]
+10/16/2026, 6:40:16 PM
+Loaded from SW5E · changed on SW5E 10/16/2026, 6:40:00 PM [Compare] [Restore] [Export]
+Rules engine
+The sheet computes the numbers itself, with SW5E's rules. Check with sw5e.com compares them with sw5e.com’s own calculation of this character (it also happens on each Load from SW5E).
+SW5E's rules and item data: version 199, as it comes with the sheet. SW5E is the work of Galiphile and the SW5E contributors: credits · the books.
+[Check with sw5e.com]
+Raw SW5E character JSON
+{ "name": "Scholar Test (Claude)", "image": "", "experiencePoints": 900, "species": { "name": "Bothan", "abilityScoreImprovementSelectedOption": 0, "abilityScor… [3287 chars #3ccb2dc1]
+Computed character JSON (the sheet's rules engine)
+{ "name": "Scholar Test (Claude)", "builderVersion": "0.7.6", "image": "", "characteristics": { "Age": "", "Appearance": "", "Backstory": "Copy of a real charac… [21479 chars #213a99bf]

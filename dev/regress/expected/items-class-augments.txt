@@ -474,7 +474,7 @@ Finesse
 Unarmed Strike
 | +5 | 1d4+5 Kinetic | Dexterity (finesse) | Unarmed | — |
   ↳ hover weapons.2.attackBonus: Without tweaks or effects: 1 → now 5 / +4 Finesse: DEX +3 instead of STR · Unarmed Combatant Zabrak trait
-  ↳ hover weapons.2.damageBonus: Without tweaks or effects: 0 → now 5 / +2 Unarmed damage · Brute Force Assault Specialist feature / +3 Finesse: DEX +3 instead of STR · Unarmed Combatant Zabrak trait
+  ↳ hover weapons.2.damageBonus: Without tweaks or effects: 0 → now 5 / = 4, d4 Unarmed: damage die · Zabrak Unarmed Combatant: 1d4, finesse tweak / +2 Unarmed dama… [272 chars #298a42aa]
 
 ## Sheet: Superiority & Maneuvers
 Maneuvers Known

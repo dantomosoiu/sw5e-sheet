@@ -222,11 +222,11 @@ damage|1: Unarmed Strike damage: no dice +0 · = +1 unarmed strike −1 STR modi
 force|light: Light force attack: d20 +7 · = +7 modifier
 force|dark: Dark force attack: d20 +4 · = +4 modifier
 force|universal: Universal force attack: d20 +7 · = +7 modifier
-pdmg|force|Force Push/Pull|0|0: Force Push/Pull: kinetic damage: d4 +0 · kinetic
-pdmg|force|Turbulence|0|0: Turbulence: force damage: d6 +0 · force
-pdmg|force|Force Propel|1|0: Force Propel: kinetic damage: d8 d8 d8 +0 · kinetic
-pdmg|force|Heal|1|0: Heal: healing: d8 +5 · = +5 casting modifier
-pdmg|force|Force Throw|2|0: Force Throw: force damage: d8 d8 +0 · force
+pdmg|force|Force Push/Pull|0|0|Wisdom: Force Push/Pull: kinetic damage: d4 +0 · kinetic
+pdmg|force|Turbulence|0|0|Wisdom: Turbulence: force damage: d6 +0 · force
+pdmg|force|Force Propel|1|0|Wisdom: Force Propel: kinetic damage: d8 d8 d8 +0 · kinetic
+pdmg|force|Heal|1|0|Wisdom: Heal: healing: d8 +4 · = +4 WIS modifier
+pdmg|force|Force Throw|2|0|Wisdom: Force Throw: force damage: d8 d8 +0 · force
 tool|Two of your choice of artisan's implements, gaming sets, or musical instruments|proficient: Two of your choice of artisan's implements, gaming sets, or musical instruments check: d20 +2 · = +0 INT modifier +2 proficiency
 damage|0|crit: Vibrostaff damage (critical): d6 d6 −1 · = −1 STR modifier · Kinetic · critical
 damage|1|crit: Unarmed Strike damage (critical): no dice +0 · = +1 unarmed strike −1 STR modifier · Kinetic · critical
@@ -425,23 +425,23 @@ Unarmed Strike
 ## Sheet: Force Casting
 Force points
 20 / 20
-  ↳ hover forceCasting.maxPoints: Without tweaks or effects: 19 → now 20 / +1 WIS · Empathic feat (background feat) / +1 Light force attack · Focus Generator (Fine)… [303 chars #cedccb01]
+  ↳ hover forceCasting.maxPoints: Without tweaks or effects: 19 → now 20 / +1 WIS · Empathic feat (background feat)
 Max power level
 2
 Light side
 DC 14
-  ↳ hover forceCasting.lightSaveDC: Without tweaks or effects: 13 → now 14 / +1 WIS · Empathic feat (background feat) / +1 Light force attack · Focus Generator (Fin… [305 chars #c7a5114a]
+  ↳ hover forceCasting.lightSaveDC: Without tweaks or effects: 13 → now 14 / +1 WIS · Empathic feat (background feat)
 attack +7
-  ↳ hover forceCasting.lightAttackModifier: Without tweaks or effects: 5 → now 7 / +1 WIS · Empathic feat (background feat) / +1 Light force attack · Focus Generato… [311 chars #7eb70786]
+  ↳ hover forceCasting.lightAttackModifier: Without tweaks or effects: 5 → now 7 / +1 Light force attack · Focus Generator (Fine) while attuned / +1 WIS · Empathic feat (background feat)
 Dark side
 DC 11
 attack +4
-  ↳ hover forceCasting.darkAttackModifier: Without tweaks or effects: 3 → now 4 / +1 WIS · Empathic feat (background feat) / +1 Light force attack · Focus Generator… [310 chars #54411fb5]
+  ↳ hover forceCasting.darkAttackModifier: Without tweaks or effects: 3 → now 4 / +1 Dark force attack · Focus Generator (Fine) while attuned
 Universal
 DC 14
-  ↳ hover forceCasting.universalSaveDC: Without tweaks or effects: 13 → now 14 / +1 WIS · Empathic feat (background feat) / +1 Light force attack · Focus Generator … [309 chars #52fe21e5]
+  ↳ hover forceCasting.universalSaveDC: Without tweaks or effects: 13 → now 14 / +1 WIS · Empathic feat (background feat)
 attack +7
-  ↳ hover forceCasting.universalAttackModifier: Without tweaks or effects: 5 → now 7 / +1 WIS · Empathic feat (background feat) / +1 Light force attack · Focus Gene… [315 chars #652f6d07]
+  ↳ hover forceCasting.universalAttackModifier: Without tweaks or effects: 5 → now 7 / +1 Universal force attack · Focus Generator (Fine) while attuned / +1 WIS · Empathic feat (background feat)
 At-will powers (5)
 Force Push/Pull Universal Consular
 [Cast] [No casting option ▾]
@@ -491,7 +491,7 @@ Choose one or more creatures or objects not being worn or carried within 60 feet
 Force Potency. When you cast this power using a force slot of 2nd level or higher, the maximum weight increases by 15 pounds and the damage increases by 1d8 for each slot level above 1st.
 Heal Light Consular
 [1st level · 2 points ▾] [No casting option ▾] [Cast]
-Healing 1d8+5
+Healing 1d8+4
 Casting 1 action Range Touch Duration Instantaneous Source PHB
 A creature you touch regains a number of hit points equal to 1d8 + your forcecasting ability modifier. This power has no effect on droids or constructs.
 Force Potency. When you cast this power using a force slot of 2nd level or higher, the healing increases by 1d8 for each slot level above 1st.

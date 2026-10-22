@@ -203,7 +203,7 @@ damage|0: Vibrodagger damage: d4 +2 · = +2 DEX modifier · Kinetic
 attack|1: Unarmed Strike attack: d20 +4 · = +4 modifier
 damage|1: Unarmed Strike damage: d4 +2 · = +2 Unarmed Combatant · Kinetic
 tech: Tech attack: d20 +6 · = +6 modifier
-pdmg|tech|Repair Droid|1|0: Repair Droid: healing: d8 +4 · = +4 casting modifier
+pdmg|tech|Repair Droid|1|0|Intelligence: Repair Droid: healing: d8 +4 · = +4 INT modifier
 tool|One of your choice|proficient: One of your choice check: d20 +6 · = +4 INT modifier +2 proficiency
 tool|Slicer's kit|proficient: Slicer's kit check: d20 +6 · = +4 INT modifier +2 proficiency
 tool|armstech's implements|proficient: armstech's implements check: d20 +6 · = +4 INT modifier +2 proficiency
@@ -376,7 +376,7 @@ Finesse, light, thrown (range 20/60)
 Unarmed Strike
 | +4 | 1d4+2 Kinetic | Dexterity (finesse) | Unarmed | — |
   ↳ hover weapons.1.attackBonus: Without tweaks or effects: 1 → now 4 / +3 Finesse: DEX +2 instead of STR · Unarmed Combatant Zabrak trait
-  ↳ hover weapons.1.damageBonus: Without tweaks or effects: 0 → now 2 / +2 Finesse: DEX +2 instead of STR · Unarmed Combatant Zabrak trait
+  ↳ hover weapons.1.damageBonus: Without tweaks or effects: 0 → now 2 / d4 Unarmed damage die (1 → d4) · Unarmed Combatant Zabrak trait / +2 Finesse: DEX +2 instead of STR · Unarmed Combatant Zabrak trait
 
 ## Sheet: Tech Casting
 Tech points

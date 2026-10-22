@@ -234,8 +234,8 @@ damage|1: Unarmed Strike damage: no dice +5 · = +1 unarmed strike +4 STR modifi
 force|light: Light force attack: d20 +5 · = +5 modifier
 force|dark: Dark force attack: d20 +2 · = +2 modifier
 force|universal: Universal force attack: d20 +5 · = +5 modifier
-pdmg|force|Saber Reflect|0|0: Saber Reflect: damage reduction: d6 +0
-pdmg|force|Heal|1|0: Heal: healing: d8 +3 · = +3 casting modifier
+pdmg|force|Saber Reflect|0|0|Wisdom: Saber Reflect: damage reduction: d6 +0
+pdmg|force|Heal|1|0|Wisdom: Heal: healing: d8 +3 · = +3 WIS modifier
 tool|Artificer's tools|proficient: Artificer's tools check: d20 +1 · = −1 INT modifier +2 proficiency
 damage|0|crit: Lightsaber damage (critical): d6 d6 +4 · = +4 STR modifier · Energy · critical · option: Force-Empowered Strikes +1d8 +1d8 · option: Force-Empowered Strikes +2d8 +2d8
 damage|1|crit: Unarmed Strike damage (critical): no dice +5 · = +1 unarmed strike +4 STR modifier · Kinetic · critical · option: Force-Empowered Strikes +1d8 +1d8 · option: Force-Empowered Strikes +2d8 +2d8

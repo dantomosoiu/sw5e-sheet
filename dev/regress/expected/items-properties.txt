@@ -496,7 +496,7 @@ Finesse
 Unarmed Strike
 | +7 | 1d4+7 Kinetic | Strength | Unarmed | — |
   ↳ hover weapons.2.attackBonus: Without tweaks or effects: 1 → now 7 / +13 STR 21 (powered 21) (the item sets it to 21) · Powered Armoring Mk VI while installed
-  ↳ hover weapons.2.damageBonus: Without tweaks or effects: 0 → now 7 / +2 Unarmed damage · Brute Force Assault Specialist feature / +13 STR 21 (powered 21) (the item sets it to 21) · Powered Armoring Mk VI while installed
+  ↳ hover weapons.2.damageBonus: Without tweaks or effects: 0 → now 7 / = 4, d4 Unarmed: damage die · Zabrak Unarmed Combatant: 1d4, finesse tweak / +2 Unarmed dama… [295 chars #8f968146]
 
 ## Sheet: Superiority & Maneuvers
 Maneuvers Known
@@ -507,17 +507,17 @@ Superiority Dice Size
 d4
 Physical maneuver DC
 15
-  ↳ hover abilityScores.Strength.modifier: Without tweaks or effects: 9 → now 15 / +13 STR 21 (powered 21) (the item sets it to 21) · Powered Armoring Mk VI while installed
+  ↳ hover maneuver.Physical.Strength.dc: Without tweaks or effects: 9 → now 15 / +13 STR 21 (powered 21) (the item sets it to 21) · Powered Armoring Mk VI while installed
 STR · attack +7
-  ↳ hover abilityScores.Strength.modifier: Without tweaks or effects: +1 → now +7 / +13 STR 21 (powered 21) (the item sets it to 21) · Powered Armoring Mk VI while installed
+  ↳ hover maneuver.Physical.Strength.attack: Without tweaks or effects: +1 → now +7 / +13 STR 21 (powered 21) (the item sets it to 21) · Powered Armoring Mk VI while installed
 Mental maneuver DC
 11
 WIS · attack +3
 General maneuver DC
 15
-  ↳ hover abilityScores.Strength.modifier: Without tweaks or effects: 9 → now 15 / +13 STR 21 (powered 21) (the item sets it to 21) · Powered Armoring Mk VI while installed
+  ↳ hover maneuver.General.Strength.dc: Without tweaks or effects: 9 → now 15 / +13 STR 21 (powered 21) (the item sets it to 21) · Powered Armoring Mk VI while installed
 STR · attack +7
-  ↳ hover abilityScores.Strength.modifier: Without tweaks or effects: +1 → now +7 / +13 STR 21 (powered 21) (the item sets it to 21) · Powered Armoring Mk VI while installed
+  ↳ hover maneuver.General.Strength.attack: Without tweaks or effects: +1 → now +7 / +13 STR 21 (powered 21) (the item sets it to 21) · Powered Armoring Mk VI while installed
 Dice come from the class table at your level; save DCs are calculated here as 8 + proficiency + your best eligible ability modifier (SW5E's site does not compute superiority).
 General maneuvers (1)
 Precision Attack PHB

@@ -304,7 +304,7 @@ damage|1: Vibrorapier damage: d8 +5 · = +3 DEX modifier +2 Brute Force · Kinet
 attack|2: Vibrostiletto attack: d20 +5 · = +5 modifier · critical on 16–20 (Improved Critical + Keen Oscillator (Devastating)) · option: Precision Attack +d4 +1d4
 damage|2: Vibrostiletto damage: d4 +5 · = +3 DEX modifier +2 Brute Force · Kinetic · option: Sneak Attack +1d6 · option: Return Fire +d4 +1d4 · damage advantage: Weapon Expert
 attack|3: Sith saber attack: d20 +1 · = +1 modifier · critical on 18–20 (Improved Critical + keen 1) · option: Precision Attack +d4 +1d4 · two-handed: 1d10
-damage|3: Sith saber damage: d4 d4 +1 · = −1 STR modifier +2 Brute Force · Energy · option: Sneak Attack +1d6 · option: Return Fire +d4 +1d4 · damage advantage: Weapon Expert
+damage|3: Sith saber damage: d4 d4 +1 · = −1 STR modifier +2 Brute Force · Energy · option: Return Fire +d4 +1d4
 attack|4: Unarmed Strike attack: d20 +5 · = +5 modifier · critical on 19–20 (Improved Critical) · option: Precision Attack +d4 +1d4
 damage|4: Unarmed Strike damage: d4 +5 · = +2 Brute Force +3 Unarmed Combatant · Kinetic · option: Sneak Attack +1d6 · option: Return Fire +d4 +1d4
 supdie: Superiority die: d4 +0
@@ -316,9 +316,9 @@ tool|Tinker's implements|proficient: Tinker's implements check: d20 +2 · = +0 I
 damage|0|crit: Blaster rifle damage (critical): d8 d8 +6 · = +3 DEX modifier +2 Brute Force +1 Xerrol Nightstinger Rifle · Energy · critical · option: Sneak Attack +1d6 · option: Return Fire +d4 +1d4 · damage advantage: Weapon Expert
 damage|1|crit: Vibrorapier damage (critical): d8 d8 +5 · = +3 DEX modifier +2 Brute Force · Kinetic · critical · option: Sneak Attack +1d6 · option: Return Fire +d4 +1d4 · damage advantage: Weapon Expert
 damage|2|crit: Vibrostiletto damage (critical): d4 d4 +5 · = +3 DEX modifier +2 Brute Force · Kinetic · critical · option: Sneak Attack +1d6 · option: Return Fire +d4 +1d4 · damage advantage: Weapon Expert
-damage|3|crit: Sith saber damage (critical): d4 d4 d4 d4 +1 · = −1 STR modifier +2 Brute Force · Energy · critical · option: Sneak Attack +1d6 · option: Return Fire +d4 +1d4 · damage advantage: Weapon Expert
+damage|3|crit: Sith saber damage (critical): d4 d4 d4 d4 +1 · = −1 STR modifier +2 Brute Force · Energy · critical · option: Return Fire +d4 +1d4
 damage|4|crit: Unarmed Strike damage (critical): d4 d4 +5 · = +2 Brute Force +3 Unarmed Combatant · Kinetic · critical · option: Sneak Attack +1d6 · option: Return Fire +d4 +1d4
-damage|3||two: Sith saber damage (two-handed): d10 +1 · = −1 STR modifier +2 Brute Force · Energy · option: Sneak Attack +1d6 · option: Return Fire +d4 +1d4 · damage advantage: Weapon Expert
+damage|3||two: Sith saber damage (two-handed): d10 +1 · = −1 STR modifier +2 Brute Force · Energy · option: Return Fire +d4 +1d4
 
 ## Sheet: Overview
 Kadro Vos (Panel)
@@ -519,7 +519,7 @@ Dexterity 11, hidden, keen 1, versatile (1d10)
 Unarmed Strike
 | +5 | 1d4+5 Kinetic | Dexterity (finesse) | Unarmed | — |
   ↳ hover weapons.4.attackBonus: Without tweaks or effects: 1 → now 5 / +4 Finesse: DEX +3 instead of STR · Unarmed Combatant Zabrak trait
-  ↳ hover weapons.4.damageBonus: Without tweaks or effects: 0 → now 5 / +2 Unarmed damage · Brute Force Assault Specialist feature / +3 Finesse: DEX +3 instead of STR · Unarmed Combatant Zabrak trait
+  ↳ hover weapons.4.damageBonus: Without tweaks or effects: 0 → now 5 / = 4, d4 Unarmed: damage die · Zabrak Unarmed Combatant: 1d4, finesse tweak / +2 Unarmed dama… [272 chars #a347f9ce]
 
 ## Sheet: Superiority & Maneuvers
 Maneuvers Known

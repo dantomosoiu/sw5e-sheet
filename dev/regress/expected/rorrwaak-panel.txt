@@ -319,10 +319,10 @@ Heavily enc. at
   ↳ hover carryingCapacity.heavilyEncumbered: Without tweaks or effects: 190 → now 200 / +1 STR · Brawny feat (background feat)
 Max capacity
 900 lb ×3 (Brawny, Powerful Build)
-  ↳ hover carryingCapacity.maxCapacity: Without tweaks or effects: 285 → now 300 / +1 STR · Brawny feat (background feat)
+  ↳ hover carryingCapacity.maxCapacity: Without tweaks or effects: 285 → now 900 / ×2 Brawny "doubles; if it would already double, it instead triples" / ×3 instead … [273 chars #ce59e279]
 Push / drag / lift
 1800 lb ×3 (Brawny, Powerful Build)
-  ↳ hover carryingCapacity.pushDragLift: Without tweaks or effects: 570 → now 600 / +1 STR · Brawny feat (background feat)
+  ↳ hover carryingCapacity.pushDragLift: Without tweaks or effects: 570 → now 1800 / ×2 Brawny "doubles; if it would already double, it instead triples" / ×3 instea… [275 chars #d1b730b6]
 
 ## Sheet: Abilities & Saving Throws
 STR

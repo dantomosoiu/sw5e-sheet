@@ -203,12 +203,12 @@ skill|Charisma|3: Persuasion (CHA): d20 +0 · = +0 modifier
 attack|0: Dire vibroblade attack: d20 +6 · = +6 modifier · two-handed: 1d10
 damage|0: Dire vibroblade damage: d8 +3 · = +3 STR modifier · Kinetic · option: Rage Damage +2
 attack|1: Blaster pistol attack: d20 +5 · = +5 modifier
-damage|1: Blaster pistol damage: d6 +2 · = +2 DEX modifier · Energy · option: Rage Damage +2
+damage|1: Blaster pistol damage: d6 +2 · = +2 DEX modifier · Energy
 attack|2: Unarmed Strike attack: d20 +6 · = +6 modifier
 damage|2: Unarmed Strike damage: no dice +4 · = +1 unarmed strike +3 STR modifier · Kinetic · option: Rage Damage +2
 tool|One type of gaming set|proficient: One type of gaming set check: d20 +2 · = −1 INT modifier +3 proficiency
 damage|0|crit: Dire vibroblade damage (critical): d8 d8 +3 · = +3 STR modifier · Kinetic · critical · option: Rage Damage +2
-damage|1|crit: Blaster pistol damage (critical): d6 d6 +2 · = +2 DEX modifier · Energy · critical · option: Rage Damage +2
+damage|1|crit: Blaster pistol damage (critical): d6 d6 +2 · = +2 DEX modifier · Energy · critical
 damage|2|crit: Unarmed Strike damage (critical): no dice +4 · = +1 unarmed strike +3 STR modifier · Kinetic · critical · option: Rage Damage +2
 damage|0||two: Dire vibroblade damage (two-handed): d10 +3 · = +3 STR modifier · Kinetic · option: Rage Damage +2
 
@@ -287,10 +287,10 @@ Heavily enc. at
   ↳ hover carryingCapacity.heavilyEncumbered: Without tweaks or effects: 160 → now 170 / +1 STR · Brawny feat (added by hand)
 Max capacity
 510 lb ×2 (Brawny)
-  ↳ hover carryingCapacity.maxCapacity: Without tweaks or effects: 240 → now 255 / +1 STR · Brawny feat (added by hand)
+  ↳ hover carryingCapacity.maxCapacity: Without tweaks or effects: 240 → now 510 / ×2 Brawny "doubles; if it would already double, it instead triples" / +1 STR · Brawny feat (added by hand)
 Push / drag / lift
 1020 lb ×2 (Brawny)
-  ↳ hover carryingCapacity.pushDragLift: Without tweaks or effects: 480 → now 510 / +1 STR · Brawny feat (added by hand)
+  ↳ hover carryingCapacity.pushDragLift: Without tweaks or effects: 480 → now 1020 / ×2 Brawny "doubles; if it would already double, it instead triples" / +1 STR · Brawny feat (added by hand)
 
 ## Sheet: Abilities & Saving Throws
 STR

@@ -1236,5 +1236,28 @@ function clsArchetypeTableAt(archetype, column, level) {
   return Number.isFinite(v) ? v : null;
 }
 
+/**
+ * Martial Arts and the like: "Your unarmed strikes and monk weapons gain the finesse property. You can roll a d4 in place
+ * of the normal damage of your unarmed strike or monk weapon. This die changes as you gain monk levels, as shown in the
+ * Martial Arts column of the monk table", with "monk weapons, which are vibroweapons with which you are proficient that
+ * lack the dexterity, heavy, special, and two-handed properties" and "while you … aren't wearing armor or wielding a
+ * shield". Returns { finesse, die ('d4'), column ('Martial Arts'), weapons: { name: 'monk weapons', desc: 'vibroweapons
+ * that lack the … properties' } | null, noArmor, noShield } or null when the text says none of it.
+ */
+function clsMartialArts(text) {
+  const t = String(text || '').replace(/\s+/g, ' ');
+  const fin = /\byour unarmed strikes(?: and ([\w ]+?))? gain the finesse property/i.exec(t);
+  const die = /\broll an? (d\d+) in place of the normal damage of your unarmed strike(?: or ([\w ]+?))?\./i.exec(t);
+  if (!fin && !die) return null;
+  const special = (fin && fin[1]) || (die && die[2]) || '';
+  // "monk weapons, which are vibroweapons with which you are proficient that lack the dexterity, heavy, … properties"
+  const def = special ? new RegExp(`${special.replace(/s$/, '')}s?, which are ((?:simple |martial )?(?:vibroweapons|blasters|lightweapons)) with which you are proficient( that lack the [\\w ,-]+? properties)?`, 'i').exec(t) : null;
+  return {
+    finesse: !!fin, die: die ? die[1] : '', column: (/as shown in the ([A-Z][\w' ]+?) column/.exec(t) || [])[1] || '',
+    weapons: def ? { name: special, desc: `${def[1]}${def[2] || ''}` } : null,
+    noArmor: /\baren't wearing armor\b|\bwearing no armor\b/i.test(t), noShield: /\bor wielding a shield\b|\bnot wielding a shield\b/i.test(t),
+  };
+}
+
 if (typeof module !== 'undefined') module.exports = { parseClassOptions, clsSections, clsCountAt, clsColumnFor, clsBaseName, clsArchetypeTableAt, clsArchetypeTableRaw, clsTextFeatures, clsUsage,
-  clsFeatureEffects, clsFeatureState, clsFeatureNumbers, clsWeaponMatches, clsJoinProfList, clsNoteNames, clsNoteTokens, clsScaleText, clsChosenText, CLS_DAMAGE_TYPES };
+  clsFeatureEffects, clsFeatureState, clsFeatureNumbers, clsWeaponMatches, clsJoinProfList, clsNoteNames, clsNoteTokens, clsScaleText, clsChosenText, CLS_DAMAGE_TYPES, clsMartialArts };

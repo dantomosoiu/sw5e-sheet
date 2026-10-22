@@ -392,9 +392,11 @@ Encumbered at
 Heavily enc. at
 80 lb
 Max capacity
-120 lb
+240 lb ×2 (Iridonian Grav-lev Arm)
+  ↳ hover carryingCapacity.maxCapacity: Without tweaks or effects: 120 → now 240 / ×2 Iridonian Grav-lev Arm "doubles; if it would already double, it instead triples"
 Push / drag / lift
-240 lb
+480 lb ×2 (Iridonian Grav-lev Arm)
+  ↳ hover carryingCapacity.pushDragLift: Without tweaks or effects: 240 → now 480 / ×2 Iridonian Grav-lev Arm "doubles; if it would already double, it instead triples"
 
 ## Sheet: Abilities & Saving Throws
 STR
@@ -518,7 +520,7 @@ Finesse
 Unarmed Strike
 | +5 | 1d4+5 Kinetic | Dexterity (finesse) | Unarmed | — |
   ↳ hover weapons.2.attackBonus: Without tweaks or effects: 1 → now 5 / +4 Finesse: DEX +3 instead of STR · Unarmed Combatant Zabrak trait
-  ↳ hover weapons.2.damageBonus: Without tweaks or effects: 0 → now 5 / +2 Unarmed damage · Brute Force Assault Specialist feature / +3 Finesse: DEX +3 instead of STR · Unarmed Combatant Zabrak trait
+  ↳ hover weapons.2.damageBonus: Without tweaks or effects: 0 → now 5 / = 4, d4 Unarmed: damage die · Zabrak Unarmed Combatant: 1d4, finesse tweak / +2 Unarmed dama… [272 chars #298a42aa]
 
 ## Sheet: Superiority & Maneuvers
 Maneuvers Known
@@ -532,9 +534,9 @@ Physical maneuver DC
 DEX · attack +5
 Mental maneuver DC
 11
-  ↳ hover abilityScores.Intelligence.modifier: Without tweaks or effects: 10 → now 11 / +3 INT (the item sets it to 13) · Intuitive Facial Prosthesis while installed
+  ↳ hover maneuver.Mental.Intelligence.dc: Without tweaks or effects: 10 → now 11 / +3 INT (the item sets it to 13) · Intuitive Facial Prosthesis while installed
 INT · attack +3
-  ↳ hover abilityScores.Intelligence.modifier: Without tweaks or effects: +2 → now +3 / +3 INT (the item sets it to 13) · Intuitive Facial Prosthesis while installed
+  ↳ hover maneuver.Mental.Intelligence.attack: Without tweaks or effects: +2 → now +3 / +3 INT (the item sets it to 13) · Intuitive Facial Prosthesis while installed
 General maneuver DC
 13
 DEX · attack +5
@@ -841,7 +843,7 @@ Credits
 [] [] [Apply]
 Total weight
 76.5 lb
-of 120 lb max
+of 240 lb max
 Attunement
 0 / 2
 Items
