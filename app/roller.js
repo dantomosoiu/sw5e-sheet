@@ -474,19 +474,24 @@ function weaponRiders(m, w, crit, die) {
     const res = choiceInfo(m);
     for (const p of res ? chPickTexts(res) : []) {
       if (!/When you score a critical hit with the weapon, you can roll one additional weapon damage die/i.test(p.text || '')) continue;
-      if (arr(p.weapons).some((n) => weaponIndexByName(m.raw, n) === w.index)) out.push({ label: p.name, bonus: 0, extra: [`1d${die}`], on: true, noDouble: true });
+      // "… while wielding any of these weapons, if you are proficient with it": the focus applies to this weapon (its
+      // other benefits are on it, which the sheet gives only with proficiency).
+      const applied = arr(m.fx && m.fx.weaponTweaks).some((t) => t.index === w.index && t.effect && t.effect.name === p.name);
+      if (applied && arr(p.weapons).some((n) => weaponIndexByName(m.raw, n) === w.index)) out.push({ label: p.name, bonus: 0, extra: [`1d${die}`], on: true, noDouble: true });
     }
   }
   // Rage Damage: "When you make a melee weapon attack using Strength, you gain a bonus to the damage roll"; also "to
   // damage rolls from ranged weapon attacks using Strength" (Ballistic Approach) and "when you make a melee weapon attack
-  // using Dexterity, you add your rage damage" (Precision Approach). While raging it's ticked, or already in the weapon's
-  // numbers where the rage effect puts it (melee Strength weapons, once the numbers are recalculated).
+  // using Dexterity, you add your rage damage" (Precision Approach). While raging it's ticked, unless the rage already put
+  // it in this weapon's numbers (a damage tweak from the raging state, once the numbers are recalculated).
   const rage = arr(m.classDice).find((d) => d.bonus && /rage damage/i.test(d.column));
   if (rage) {
     const raging = !!m.snap && tempEffects(m.snap.key).some((e) => e.group === 'state:raging');
     const fits = (melee && ability === 'Strength') || (!melee && ability === 'Strength' && /rage damage to damage rolls from ranged weapon attacks using Strength/i.test(all))
       || (melee && ability === 'Dexterity' && /melee weapon attack using Dexterity, you add your rage damage/i.test(all));
-    const inNumbers = raging && !m.stale && w.ability === 'Strength' && !/blaster/i.test(w.weaponClassification || '');
+    const byRage = (t) => t.effect && t.effect.group === 'state:raging' && num(t.bonus);
+    const inNumbers = raging && !m.stale && (unarmed ? arr(m.fx && m.fx.tweaks).some((t) => t.path === 'unarmed.damage' && byRage(t))
+      : arr(m.fx && m.fx.weaponTweaks).some((t) => t.index === w.index && t.path === 'damage' && byRage(t)) || arr(m.fx && m.fx.tweaks).some((t) => t.path === 'weapon.damage' && byRage(t)));
     if (fits && !inNumbers) out.push({ label: rage.column, bonus: rage.bonus, extra: [], on: raging });
   }
   // The same rider from two texts (a feature and its table): once.
