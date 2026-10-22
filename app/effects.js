@@ -264,6 +264,33 @@ function parseItemEffect(item) {
       ctx.target = 'weapon';
       continue;
     }
+    // Properties a modification gives the armor or weapon it's installed in, the ones that change numbers. Agile: "While
+    // wearing armor … with this property, your Dexterity score becomes equal to the agile number" (powered: Strength).
+    if ((m = /\bthis armor gains the (agile|powered) (\d+) property/i.exec(s))) {
+      const a = m[1].toLowerCase() === 'agile' ? 'Dexterity' : 'Strength';
+      mods.push({ path: `abilityScores.${a}.score`, set: Number(m[2]), when: { armor: true }, label: `${FX_ABBR[a]} ${m[2]} (${m[1].toLowerCase()} ${m[2]})` });
+      continue;
+    }
+    if (/^if it already has the (?:agile|powered) property/i.test(s)) continue; // base armor never has them
+    // Keen: "the critical hit range increases by an amount equal to the keen number". "This weapon gains the keen 1
+    // property. If it already has the keen property, its keen number increases by 1, to a maximum of 3 / increases to 3."
+    if ((m = /\bthis weapon gains the keen (\d+) property/i.exec(s))) {
+      ctx.keen = { ...(ctx.keen || {}), gain: Number(m[1]) };
+      ctx.target = 'weapon';
+      continue;
+    }
+    if ((m = /^if it already has the keen property, its keen number increases (?:by (\d+), to a maximum of (\d+)|to (\d+))/i.exec(s))) {
+      ctx.keen = { ...(ctx.keen || {}), ...(m[3] ? { to: Number(m[3]) } : { by: Number(m[1]), max: Number(m[2]) }) };
+      continue;
+    }
+    // Finesse ("you use your choice of your Strength or Dexterity modifier for the attack and damage rolls"), and a
+    // blaster's mighty (the same): the better one, worked out on the weapon (itemEffects, fxResolve).
+    if ((m = /\bthis weapon gains the (finesse|mighty) property\b/i.exec(s))) {
+      const prop = m[1].toLowerCase();
+      for (const path of ['weapon.toHit', 'weapon.damage']) mods.push({ path, bonus: 0, property: prop, label: `${prop[0].toUpperCase()}${prop.slice(1)}: ${path === 'weapon.toHit' ? 'attack' : 'damage'} with the better of STR and DEX` });
+      ctx.target = 'weapon';
+      continue;
+    }
     // Ability scores: "your/the target's Strength score increases by 2, to a maximum of 20" /
     // "…, and your maximum for this score increases by 2" / "your Strength score becomes 19".
     for (const am of s.matchAll(new RegExp(`\\b${ABIL_RE} score (?:increases|is increased) by (\\d+)(?:, to a maximum of (\\d+))?(,? and (?:your|its|their) maximum for this score (?:increases|is increased) by (\\d+))?`, 'gi'))) {
@@ -362,11 +389,11 @@ function parseItemEffect(item) {
   notes.push(...ctx.notes);
   // Ammunition's bonuses apply while it's carried (and fired); other consumables' when used.
   const activation = ctx.ammo ? 'carry' : isConsumable ? 'use' : item.requiresAttunement ? 'attune' : 'equip';
-  if (!mods.length && !notes.length && !riders.length && !darkvisionPlus && !(isConsumable && duration)) return null;
+  if (!mods.length && !notes.length && !riders.length && !darkvisionPlus && !ctx.keen && !(isConsumable && duration)) return null;
   return {
     mods, notes, target: ctx.target, weaponKind: ctx.weaponKind || null, duration, group, activation,
     heals: /regains? [^.]*hit points|temporary hit points/i.test(text),
-    ...(riders.length ? { riders } : {}), ...(darkvisionPlus ? { darkvisionPlus } : {}),
+    ...(riders.length ? { riders } : {}), ...(darkvisionPlus ? { darkvisionPlus } : {}), ...(ctx.keen ? { keen: ctx.keen } : {}),
   };
 }
 
@@ -471,7 +498,10 @@ function fxResolve(effects, baseScores) {
       // A weapon's effect can also change the character ("…, and a +2 bonus to damage rolls with force powers").
       if (eff.target === 'weapon' && /^weapon\./.test(mod.path)) {
         if (eff.weaponIndex == null) continue;
-        weaponTweaks.push({ index: eff.weaponIndex, path: mod.path.replace(/^weapon\./, ''), bonus: mod.bonus || 0, fields, effect: eff, mod });
+        // A weapon that gained finesse: the better modifier instead of the one it used (`swap`, set by itemEffects).
+        const wb = mod.swap ? Math.max(0, modOf(mod.swap.to) - modOf(mod.swap.from)) : mod.bonus || 0;
+        if (mod.property && !wb) continue;
+        weaponTweaks.push({ index: eff.weaponIndex, path: mod.path.replace(/^weapon\./, ''), bonus: wb, fields, effect: eff, mod });
         continue;
       }
       let bonus = mod.bonus || 0;

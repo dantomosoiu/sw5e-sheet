@@ -1636,11 +1636,24 @@ function itemEffects(key, editedRaw, complete) {
     const weaponName = fx.target === 'weapon' ? (linked >= 0 ? equipment[linked].name : itemTargets(key)[ck] || null) : null;
     // "…by an amount equal to your level, and it increases by 1 every time you gain a level": at the current level.
     const level = arr(editedRaw.classes).reduce((t, k) => t + num(k.levels), 0);
-    const mods = arr(fx.mods).map((x) => (x.perLevel ? { ...x, bonus: x.perLevel * level, label: x.label.replace(/\+(\d+) per level$/, (p) => `+${x.perLevel * level} (${p})`) } : x));
+    const weaponIndex = linked >= 0 && fx.target === 'weapon' ? linked : weaponIndexByName(editedRaw, weaponName);
+    // A weapon that gains finesse (or a blaster mighty) uses the better of Strength and Dexterity: from the one it uses.
+    const w = weaponIndex != null ? arr(complete && complete.weapons).find((x) => x.index === weaponIndex) : null;
+    const swapFrom = (prop) => (w && prop === 'finesse' && w.ability === 'Strength' ? 'Strength' : w && prop === 'mighty' && w.ability === 'Dexterity' ? 'Dexterity' : null);
+    const mods = arr(fx.mods).map((x) => (x.perLevel ? { ...x, bonus: x.perLevel * level, label: x.label.replace(/\+(\d+) per level$/, (p) => `+${x.perLevel * level} (${p})`) }
+      : x.property && swapFrom(x.property) ? { ...x, swap: { from: swapFrom(x.property), to: swapFrom(x.property) === 'Strength' ? 'Dexterity' : 'Strength' } } : x));
+    // Keen: the weapon's own keen number (its base item's), raised as the modification says, widens its critical range.
+    let keen = null;
+    if (fx.keen && weaponIndex != null) {
+      const ref0 = catalogIndex && catalogIndex.get(equipment[weaponIndex].name);
+      const own = num((/^keen (\d+)/i.exec(arr(ref0 && ref0.properties).find((p) => /^keen \d/i.test(p)) || '') || [])[1]);
+      keen = !own ? fx.keen.gain : fx.keen.to ? Math.max(own, fx.keen.to) : fx.keen.by ? Math.min(fx.keen.max || 99, own + fx.keen.by) : Math.max(own, fx.keen.gain);
+    }
     out.push({
       ...fx, mods, id: 'item:' + ck, kind: 'item', name: it.name, index: i, active,
       why: fx.activation === 'carry' ? 'when you fire it' : fx.activation === 'attune' ? (active ? 'while attuned' : 'needs attunement') : (active ? `while ${how}` : `needs to be ${how}`),
-      weaponName, weaponIndex: linked >= 0 && fx.target === 'weapon' ? linked : weaponIndexByName(editedRaw, weaponName), linked: linked >= 0,
+      weaponName, weaponIndex, linked: linked >= 0,
+      ...(keen ? { critRange: keen, critWeapons: [weaponIndex] } : {}),
     });
   });
   return out;
@@ -1940,7 +1953,8 @@ function acSetByTweak(raw) {
   return tw && tw.override != null && tw.override !== '' ? num(tw.override) : null;
 }
 const handsWarning = (h) => `${h.weapons.join(' and ')} ${h.weapons.length > 1 ? 'are' : 'is'} two-handed and the ${h.shield} takes a hand: you can't attack with ${h.weapons.length > 1 ? 'them' : 'it'} while the shield is equipped.`;
-const armorAllows = (when, st) => !when || ((!when.noArmor || !st.armor || (when.orLight && st.light)) && (!when.noShield || !st.shield) && (!when.noHeavy || !st.heavy));
+const armorAllows = (when, st) => !when || ((!when.noArmor || !st.armor || (when.orLight && st.light)) && (!when.noShield || !st.shield) && (!when.noHeavy || !st.heavy)
+  && (!when.armor || st.armor)); // `armor`: only while wearing armor (an armor modification's agile property)
 
 /** The character with no tweaks at all: the baseline that every adjustment is explained against. */
 // SW5E's engine adds the species' language only when the character records it, which its builder doesn't: fill it in.
@@ -2986,6 +3000,7 @@ function effectRow(m, e) {
     if (!e.active && e.kind === 'item') return chip(mod.label);
     // Extra damage dice: on the weapon chosen (shown in its damage and rolled with it).
     if (mod.dice) return arr(m.fx.dice).some((d) => d.effect.id === e.id && d.mod.path === mod.path) ? chip(mod.label, 'good') : chip(`${mod.label}: choose a weapon`, 'warn');
+    if (!got.length && mod.property) return chip(`${mod.label}: no change (it already uses the better one, or no weapon chosen)`);
     if (!got.length && mod.scoreAs) return chip(`${mod.label}: no effect (${mod.scoreAs.ability} ${mod.scoreAs.score} or more${mod.path === 'armorClass' ? `, or an AC without ${mod.scoreAs.ability}` : ''})`);
     if (!got.length && mod.when && !armorAllows(mod.when, armorState(m.raw))) return chip(`${mod.label}: not with armor on`);
     if (!got.length && arr(m.fx.setByTweak).some((t) => t.effect.id === e.id && t.mod.path === mod.path)) return chip(`${mod.label}: AC is set by a tweak`);
@@ -2996,6 +3011,8 @@ function effectRow(m, e) {
     const worked = mod.set != null || mod.scoreAs || mod.acFlat != null || mod.abilityMod;
     return chip(worked ? `${mod.label} (${signedLabel(b)})` : b === mod.bonus || mod.bonus == null ? mod.label : `${mod.label} → ${signedLabel(b)} (cap)`, 'good');
   });
+  // A keen modification: the weapon's critical range (the dice card's attack rolls use it).
+  if (e.kind === 'item' && e.keen) chips.push(e.critRange ? chip(`Keen ${e.critRange}: critical range +${e.critRange}`, e.active ? 'good' : '') : chip(`Keen ${e.keen.gain}: choose a weapon`, 'warn'));
   const weapons = ownWeapons(m.raw);
   const weaponPick = e.target === 'weapon' && e.linked ? `<span class="faint">on its ${esc(e.weaponName)}</span>` : e.target === 'weapon' ? `<label class="fx-weapon">on <select data-fxweapon="${esc(e.id)}">
       <option value="">choose a weapon…</option>${weapons.map((w) => `<option${w.it.name === e.weaponName ? ' selected' : ''}>${esc(w.it.name)}</option>`).join('')}</select></label>` : '';
