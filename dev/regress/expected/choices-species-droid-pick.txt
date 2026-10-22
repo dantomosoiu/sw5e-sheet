@@ -222,13 +222,16 @@ Combat [Start combat]
 [☆ Inspiration] Exhaustion [−] 0 [+]
 [Short rest] [Long rest] HP and uses: saved here, not on sw5e.com yet. [Use sw5e.com's values]
 Defenses & senses
+Resistances Resistance to necrotic, poison, and psychic damage
 Immunities Immune to poison and disease
+Vulnerabilities Vulnerable to ion damage
+Disadvantages Disadvantage on saving throws against effects that would deal ion or lightning damage
 Effects
 From class features and species traits (4)
 Consular weapon proficiencies Proficient: Simple lightweapons Proficient: simple vibroweapons Consular proficiencies
 Force Affinity Choose one of Ashla, Bendu, Bogan Consular feature
-Fundamentals of Mechu-deru Technology: proficient Way of Technology feature
-Knowledge Protocol Choose or Charisma skills of your choice Droid, Class I trait
+Fundamentals of Mechu-deru Technology: proficient Proficient: simple blasters Way of Technology feature
+Knowledge Protocol Choose two Intelligence, Wisdom, or Charisma skills of your choice Droid, Class I trait
 Temporary
 No temporary effects.
 []
@@ -581,7 +584,7 @@ While droids can be manipulated by many force powers, they can not sense the For
 Notes []
 Knowledge Protocol
 You have proficiency in two Intelligence, Wisdom, or Charisma skills of your choice.
-Skill proficiency 0 / 1
+Skill proficiency 0 / 2
 None chosen yet.
 [Choose a skill… ▾]
 Notes []
@@ -644,7 +647,7 @@ None chosen yet.
 Armor
 None
 Weapon
-Simple lightweapons simple vibroweapons
+Simple lightweapons simple vibroweapons simple blasters · Fundamentals of Mechu-deru
 Tool
 One type of gaming set
 Skills & saves

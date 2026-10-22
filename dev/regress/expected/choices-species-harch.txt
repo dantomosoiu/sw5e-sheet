@@ -238,7 +238,7 @@ Effects
 From class features and species traits (5)
 Consular weapon proficiencies Proficient: Simple lightweapons Proficient: simple vibroweapons Consular proficiencies
 Force Affinity Choose one of Ashla, Bendu, Bogan Consular feature
-Fundamentals of Mechu-deru Technology: proficient Way of Technology feature
+Fundamentals of Mechu-deru Technology: proficient Proficient: simple blasters Way of Technology feature
 Ability Score Increase CON +1 Harch trait
 Bite Harch trait
 Temporary
@@ -641,7 +641,7 @@ None chosen yet.
 Armor
 None
 Weapon
-Simple lightweapons simple vibroweapons
+Simple lightweapons simple vibroweapons simple blasters · Fundamentals of Mechu-deru
 Tool
 One type of gaming set
 Skills & saves

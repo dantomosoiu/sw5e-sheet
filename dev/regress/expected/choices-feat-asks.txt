@@ -215,7 +215,7 @@ Berserker Test (Claude)
 Human · Berserker 5
 Level 5 Background: Soldier Balanced Neutral Proficiency +3 [Add a picture]
 6,500 XP level 6 at 14,000 (7,500 to go)
-Still to choose (12): Berserker approach · Berserker Instincts (2 more) · background skills (2 more) · background tool · background languages · Practiced: +1 · … [350 chars #5b64a8da]
+Still to choose (11): Berserker approach · Berserker Instincts (2 more) · background skills (2 more) · background tool · background languages · Practiced: +1 · … [321 chars #2bd7f298]
 
 ## Sheet: Combat & Vitals
 Armor Class
@@ -255,7 +255,7 @@ Combat [Start combat]
 Class dice
 Rage Damage +2
 Defenses & senses
-Advantages Advantage on Dexterity saving throws against effects that you can see, such as traps and powers Advantage on Constitution saving throws made to avoid… [344 chars #3645956f]
+Advantages Advantage on Dexterity saving throws against effects that you can see, such as traps and powers Advantage on Constitution saving throws made to avoid… [244 chars #e223039e]
 Effects
 From class features, feats and species traits (7)
 Berserker weapon proficiencies Proficient: All vibroweapons Proficient: simple blasters Berserker proficiencies
@@ -263,8 +263,8 @@ Unarmored Defense AC + CON Berserker feature
 Danger Sense Advantage on Dexterity saving throws against effects that you can see, such as traps and powers Berserker feature
 Linguist INT +1 feat (Berserker ASI #1)
 Practiced Choose any combination of two skills or tools of your choice feat
-Heat Shielded Advantage on Constitution saving throws made to avoid exhaustion due to extreme heat, and you can use your bonus action to end the ignited conditi… [256 chars #06f4c9c2]
-Human Versatility Choose the skill/tool proficiencies Human trait
+Heat Shielded Advantage on Constitution saving throws made to avoid exhaustion due to extreme heat Advantage on saving throws made to avoid fire damage feat
+Human Versatility Choose one skill Choose one tool Choose one weapon of your choice Human trait
 Temporary
 No temporary effects.
 []
@@ -446,12 +446,9 @@ Practiced +1 to any ability
 You have acquired skills over your career, gaining the following benefits:
 Increase an ability score of your choice by 1, to a maximum of 20.
 You gain proficiency in any combination of two skills or tools of your choice.
-Skill proficiency 0 / 2
+Skill or tool proficiencies 0 / 2
 None chosen yet.
-[Choose a skill… ▾]
-Tool proficiency 0 / 2 any combination of two skills or tools of your choice
-None chosen yet.
-[Choose a tool… ▾]
+[Choose a skill or tool… ▾]
 Notes []
 Heat Shielded + Dexterity+ Constitution+ Intelligence
 You can tolerate extremely hot temperatures. You gain the following benefits:
@@ -529,10 +526,10 @@ You gain proficiency in one skill, one tool, and one weapon of your choice.
 Skill proficiency 0 / 1
 None chosen yet.
 [Choose a skill… ▾]
-Tool proficiency 0 / 1
+Tool proficiency 0 / 1 one tool
 None chosen yet.
 [Choose a tool… ▾]
-Weapon proficiency 0 / 1
+Weapon proficiency 0 / 1 one weapon of your choice
 None chosen yet.
 [Choose a weapon… ▾]
 Notes []
