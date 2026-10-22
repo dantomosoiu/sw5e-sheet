@@ -151,6 +151,7 @@ effect: Consular weapon proficiencies · feature
 effect: Force Affinity · feature
 effect: Fundamentals of Mechu-deru · feature
 effect: Animal Handler · feature
+effect: Desert Protection · feature
 effect: Survivors of the Sands · feature
 effect: Tusken Weaponry · feature
 tweak: abilityScores.Intelligence.skills.Technology +0 {"proficiency":"Proficient"} · Fundamentals of Mechu-deru
@@ -254,12 +255,13 @@ Combat [Start combat]
 Defenses & senses
 Advantages Advantage on saving throws against being blinded Advantage on Constitution saving throws made to avoid exhaustion due to extreme heat
 Effects
-From class features and species traits (6)
+From class features and species traits (7)
 Consular weapon proficiencies Proficient: Simple lightweapons Proficient: simple vibroweapons Consular proficiencies
 Force Affinity Choose one of Ashla, Bendu, Bogan Consular feature
 Fundamentals of Mechu-deru Technology: proficient Proficient: simple blasters Way of Technology feature
 Animal Handler Animal Handling: proficient Tusken trait
-Survivors of the Sands Survival: proficient Tusken trait
+Desert Protection Advantage on saving throws against being blinded Tusken trait
+Survivors of the Sands Survival: proficient Advantage on Constitution saving throws made to avoid exhaustion due to extreme heat Tusken trait
 Tusken Weaponry Proficient: cycler rifle Proficient: vibroaxe Tusken trait
 Temporary
 No temporary effects.

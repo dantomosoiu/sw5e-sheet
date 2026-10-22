@@ -371,12 +371,14 @@ function fxResolve(effects, baseScores) {
         continue;
       }
       const fields = mod.fields || null;
+      // "You can't add more than +3 … from your Dexterity": what the modifier adds over the cap, taken off.
+      const capped = mod.capAbility ? -Math.max(0, Math.floor(((Number(scores[mod.capAbility]) || 10) - 10) / 2) - Number(mod.capAt)) : null;
       if (eff.target === 'weapon') {
         if (eff.weaponIndex == null) continue;
-        weaponTweaks.push({ index: eff.weaponIndex, path: mod.path.replace(/^weapon\./, ''), bonus: mod.bonus || 0, fields, effect: eff, mod });
+        weaponTweaks.push({ index: eff.weaponIndex, path: mod.path.replace(/^weapon\./, ''), bonus: capped != null ? capped : mod.bonus || 0, fields, effect: eff, mod });
         continue;
       }
-      let bonus = mod.bonus || 0;
+      let bonus = capped != null ? capped : mod.bonus || 0;
       // "AC equals 10 + Dex + your Constitution modifier": the modifier as it stands after earlier effects
       // (a choice of abilities that isn't made yet uses the best of them; `lowest`: the other one, Bendu's "both").
       if (mod.abilityMod) bonus = (mod.lowest ? Math.min : Math.max)(...[].concat(mod.abilityMod).map((a) => Math.floor(((Number(scores[a]) || 10) - 10) / 2)));
@@ -391,7 +393,9 @@ function fxResolve(effects, baseScores) {
           scores[ab[1]] = cur + bonus;
         }
       }
-      if (bonus || fields) tweaks.push({ path: mod.path, bonus, fields, effect: eff, mod });
+      // A cap that takes nothing off yet, or a fixed AC (a carapace's 17), is kept: the sheet works them out once it has the
+      // final scores and AC without effects (viewer.js applyEffects).
+      if (bonus || fields || mod.capAbility || mod.acFixed) tweaks.push({ path: mod.path, bonus, fields, effect: eff, mod });
     }
   }
   // Alternative AC formulas (Unarmored Defense, subdermal armor, a species' hide…): only the best one applies; the

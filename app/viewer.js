@@ -1919,15 +1919,23 @@ function featureEffectsUncached(editedRaw) {
     const e = featureEffectEntry(`feat:${name}${note ? `:${note}` : ''}`, name, 'feat', fe, 'feat');
     if (e) out.push(e);
   }
-  // Species traits' proficiencies ("You have proficiency in the Survival skill"; Coercive's "Persuasion or Intimidation
-  // (your choice)" from the trait's notes): SW5E's engine applies none. Their other numbers (Wookiee Hide's AC,
-  // Toughness) aren't applied here yet; defenses and senses are listed from the text (defensesOf).
+  // Species traits: their proficiencies ("You have proficiency in the Survival skill"; Coercive's "Persuasion or
+  // Intimidation (your choice)" from the trait's notes), numbers ("You have a +1 bonus to AC"; "you can't add more than
+  // +3"), advantages (on the dice card), defenses and senses; SW5E's engine applies none of them. And the ones only a
+  // species has, below: its walking speed, Toughness, a hide's or carapace's AC, natural weapons.
   const sp = editedRaw.species && editedRaw.species.name ? rulesModule('species').find((x) => x.name === editedRaw.species.name) : null;
   for (const tr of arr(sp && sp.traits)) {
-    if (/^(?:Ability Score Increase|Age|Alignment|Size|Speed|Languages?)$/i.test(tr.name)) continue;
+    if (/^(?:Ability Score Increase|Age|Alignment|Size|Languages?)$/i.test(tr.name)) continue;
     const note = featureNoteOf(editedRaw, tr.name);
     const fe = clsFeatureEffects(tr.description || '', note, { level: arr(editedRaw.classes).reduce((t, k) => t + num(k.levels), 0), isWeapon: isWeaponName });
-    const profs ={ ...fe, mods: [], advantage: [], defenses: [], critRange: 0, halfProf: false, unarmedStep: 0, unarmedDie: 0, unarmedFinesse: false };
+    const profs = { ...fe, mods: fe.mods.slice(), critRange: 0, halfProf: false, unarmedStep: 0, unarmedDie: 0, unarmedFinesse: false };
+    // "Your base walking speed is 25 feet": SW5E's engine gives everyone 30.
+    const walk = /\byour base walking speed is (\d+)/i.exec(tr.description || '');
+    if (walk && num(walk[1]) !== 30) profs.mods.push({ path: 'speed.base', bonus: num(walk[1]) - 30, label: `Walking speed ${walk[1]} ft` });
+    // "It gives you a base AC of 17 (your Dexterity modifier doesn't affect this number). You gain no benefit from wearing
+    // armor, but if you are using a shield, you can apply the shield's bonus as normal" (Colicoid): resolved in applyEffects.
+    const fixed = /\bbase AC of (\d+) \(your Dexterity modifier doesn't affect this number\)/i.exec(tr.description || '');
+    if (fixed) profs.mods.push({ path: 'armorClass', bonus: 0, acFixed: num(fixed[1]), acFormula: true, label: `AC ${fixed[1]} (${tr.name})` });
     // "Your hit point maximum increases by 1, and it increases by 1 every time you gain a level" (Zabrak Toughness).
     const tough = /hit point maximum increases by (\d+),? and it increases by (\d+) every time you gain a level/i.exec(tr.description || '');
     if (tough) {
@@ -2059,7 +2067,14 @@ function applyEffects(key, editedRaw, complete) {
   // "AC equals 10 + your Dexterity modifier + your Wisdom or Charisma modifier": the modifier of the final score, after
   // items, Perfect Self and temporary effects (fxResolve only knows the scores of the effects before it). The best AC
   // formula is picked again with them.
+  // "A base AC of 17 (your Dexterity modifier doesn't affect this number). You gain no benefit from wearing armor, but…
+  // a shield's bonus as normal" (a Colicoid's carapace): 17 and the shield, in place of what armor or Dexterity give.
+  const shieldBonus = arr(editedRaw.equipment).filter((it) => it.equipped).map((it) => catalogIndex && catalogIndex.get(it.name))
+    .filter((r) => r && r.equipmentCategory === 'Armor' && /shield/i.test(r.armorClassification || '')).reduce((t, r) => t + num(String(r.ac || '').replace(/[^\d-]/g, '')), 0);
   const withMod = (t) => {
+    // "You can't add more than +3 … from your Dexterity": what the final modifier adds over the cap.
+    if (t.mod.capAbility) return { ...t, bonus: -Math.max(0, modOf(t.mod.capAbility) - num(t.mod.capAt)) };
+    if (t.mod.acFixed && base) return { ...t, bonus: num(t.mod.acFixed) - (num(base.armorClass) - shieldBonus) };
     if (!t.mod.abilityMod) return t;
     let b = (t.mod.lowest ? Math.min : Math.max)(...[].concat(t.mod.abilityMod).map(modOf));
     if (t.mod.min != null) b = Math.max(b, t.mod.min);
@@ -2067,7 +2082,9 @@ function applyEffects(key, editedRaw, complete) {
   };
   const formulas = res.tweaks.filter((t) => t.mod.acFormula).concat(arr(res.acAlternatives)).map(withMod);
   const bestAc = formulas.reduce((a, b) => (!a || b.bonus > a.bonus ? b : a), null);
-  res.tweaks = res.tweaks.map((t) => (t.mod.acFormula ? bestAc : withMod(t)));
+  const takesOff = (t) => !t.mod.capAbility || t.bonus;
+  res.tweaks = res.tweaks.map((t) => (t.mod.acFormula ? bestAc : withMod(t))).filter(takesOff);
+  res.weaponTweaks = res.weaponTweaks.map((t) => (t.mod.capAbility ? withMod(t) : t)).filter(takesOff);
   res.acAlternatives = formulas.filter((t) => t !== bestAc);
   // Weapon proficiencies from class lists and features: each carried weapon they describe.
   for (const e of effects) {

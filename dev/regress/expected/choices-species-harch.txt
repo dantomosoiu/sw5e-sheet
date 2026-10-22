@@ -135,7 +135,9 @@ effect: Consular weapon proficiencies · feature
 effect: Force Affinity · feature
 effect: Fundamentals of Mechu-deru · feature
 effect: Ability Score Increase · feature
+effect: Darkvision · feature
 effect: Bite · feature
+effect: Spider Climb · feature
 tweak: abilityScores.Intelligence.skills.Technology +0 {"proficiency":"Proficient"} · Fundamentals of Mechu-deru
 tweak: abilityScores.Constitution.score +1 · Ability Score Increase
 tweak: unarmed.damageDice +0 {"dieSize":4} · Bite
@@ -235,12 +237,14 @@ Advantages Advantage on Strength saving throws and Strength (Athletics) checks t
 Senses Darkvision 60 ft
 Speeds Climbing speed 30 ft
 Effects
-From class features and species traits (5)
+From class features and species traits (7)
 Consular weapon proficiencies Proficient: Simple lightweapons Proficient: simple vibroweapons Consular proficiencies
 Force Affinity Choose one of Ashla, Bendu, Bogan Consular feature
 Fundamentals of Mechu-deru Technology: proficient Proficient: simple blasters Way of Technology feature
 Ability Score Increase CON +1 Harch trait
+Darkvision Darkvision 60 ft Harch trait
 Bite Harch trait
+Spider Climb Climbing speed 30 ft Advantage on Strength saving throws and Strength (Athletics) checks that involve climbing Harch trait
 Temporary
 No temporary effects.
 []

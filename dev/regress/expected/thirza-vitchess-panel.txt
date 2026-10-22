@@ -164,6 +164,8 @@ effect: Force Adept background skill · tweak
 effect: Consular weapon proficiencies · feature
 effect: Empathic · feature
 effect: Empathic · feature
+effect: Darkvision · feature
+effect: Life in the Void · feature
 effect: Focus Generator (Fine) · item
 tweak: abilityScores.Intelligence.skills.Lore +0 {"proficiency":"Proficient"} · Consular class skill (chosen at 1st level)
 tweak: abilityScores.Wisdom.skills.Medicine +0 {"proficiency":"Proficient"} · Consular class skill (chosen at 1st level)
@@ -275,10 +277,12 @@ Defenses & senses
 Resistances Resistance to necrotic damage
 Senses Darkvision 60 ft
 Effects
-From class features and feats (3)
+From class features, feats and species traits (5)
 Consular weapon proficiencies Proficient: Simple lightweapons Proficient: simple vibroweapons Consular proficiencies
 Empathic WIS +1 feat (background feat)
 Empathic Insight: expertise (already proficient) feat
+Darkvision Darkvision 60 ft Kel Dor trait
+Life in the Void Resistance to necrotic damage Kel Dor trait
 From equipment
 Focus Generator (Fine) Light force attack +1 Dark force attack +1 Universal force attack +1 while attuned
 Temporary

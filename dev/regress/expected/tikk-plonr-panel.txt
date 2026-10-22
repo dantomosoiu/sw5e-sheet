@@ -166,6 +166,8 @@ effect: Engineer weapon proficiencies · feature
 effect: Bonus Proficiencies · feature
 effect: Techie · feature
 effect: Techie · feature
+effect: Darkvision · feature
+effect: Keen Hearing · feature
 effect: Pilot · feature
 effect: Armor (Fine) · item
 effect: Infuse Item: Blaster pistol · temporary · infuse · until the end of your next long rest
@@ -283,11 +285,13 @@ Defenses & senses
 Advantages Advantage on Perception checks that rely on hearing
 Senses Darkvision 60 ft
 Effects
-From class features, feats and species traits (5)
+From class features, feats and species traits (7)
 Engineer weapon proficiencies Proficient: Simple blasters Proficient: simple vibroweapons Engineer proficiencies
 Bonus Proficiencies Proficient: martial blasters Proficient: martial vibroweapons armstech's implements: proficient Proficient: medium armor Armstech Engineering feature
 Techie INT +1 feat (background feat)
 Techie Technology: expertise (already proficient) feat
+Darkvision Darkvision 60 ft Sullustan trait
+Keen Hearing Advantage on Perception checks that rely on hearing Sullustan trait
 Pilot Piloting: proficient Sullustan trait
 From equipment
 Armor (Fine) AC +1 while equipped

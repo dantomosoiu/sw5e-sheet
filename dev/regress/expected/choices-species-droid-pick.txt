@@ -4,6 +4,7 @@
 The sheet's engine computes the numbers. OUT OF DATE: SW5E's recorded calculation is for an older version of this character; record the case again (dev/regress-record.js) for dev/engine-check.js.
 tweaks.abilityScores.Intelligence.skills.Technology.bonus = 0
 tweaks.abilityScores.Intelligence.skills.Technology.proficiency = "Proficient"
+tweaks.speed.base.bonus = -5
 equipped = []
 
 ## Numbers (the rules engine, with the sheet's edits)
@@ -15,9 +16,9 @@ armorClass = 12
 armorList = []
 passivePerception = 13
 vision = "normal"
-speed.base = "30 ft"
-speed.day = "24 miles"
-speed.hour = "3 miles"
+speed.base = "25 ft"
+speed.day = "20 miles"
+speed.hour = "2.5 miles"
 speed.special = ""
 hitPoints.hitDice[0].maximum = 5
 hitPoints.hitDice[0].size = "d6"
@@ -129,8 +130,12 @@ forceCasting.powersKnown = [Saber Throw, Force Push/Pull, Battle Precognition, F
 effect: Consular weapon proficiencies · feature
 effect: Force Affinity · feature
 effect: Fundamentals of Mechu-deru · feature
+effect: Speed · feature
+effect: Droid Resistances · feature
+effect: Droid Vulnerabilities · feature
 effect: Knowledge Protocol · feature
 tweak: abilityScores.Intelligence.skills.Technology +0 {"proficiency":"Proficient"} · Fundamentals of Mechu-deru
+tweak: speed.base -5 · Speed
 
 ## Rolls
 init: Initiative: d20 +2 · = +2 modifier
@@ -194,8 +199,9 @@ No temporary HP
 Initiative
 +2
 Speed
-30 ft
-3 miles/hour · 24 miles/day
+25 ft
+  ↳ hover speed.base: Without tweaks or effects: 30 ft → now 25 ft / −5 Walking speed · Speed Droid, Class I trait
+2.5 miles/hour · 20 miles/day
 Proficiency
 +3
 Passive Perception
@@ -227,10 +233,13 @@ Immunities Immune to poison and disease
 Vulnerabilities Vulnerable to ion damage
 Disadvantages Disadvantage on saving throws against effects that would deal ion or lightning damage
 Effects
-From class features and species traits (4)
+From class features and species traits (7)
 Consular weapon proficiencies Proficient: Simple lightweapons Proficient: simple vibroweapons Consular proficiencies
 Force Affinity Choose one of Ashla, Bendu, Bogan Consular feature
 Fundamentals of Mechu-deru Technology: proficient Proficient: simple blasters Way of Technology feature
+Speed Walking speed 25 ft Droid, Class I trait
+Droid Resistances Resistance to necrotic, poison, and psychic damage Immune to poison and disease Droid, Class I trait
+Droid Vulnerabilities Vulnerable to ion damage Disadvantage on saving throws against effects that would deal ion or lightning damage Droid, Class I trait
 Knowledge Protocol Choose two Intelligence, Wisdom, or Charisma skills of your choice Droid, Class I trait
 Temporary
 No temporary effects.
@@ -737,4 +746,4 @@ SW5E's rules and item data: version 199, as it comes with the sheet. SW5E is the
 Raw SW5E character JSON
 { "name": "Consular Test (local)", "builderVersion": "0.7.6", "image": "", "experiencePoints": 6500, "species": { "name": "Droid, Class I", "abilityScoreImprove… [1608 chars #6a290c5f]
 Computed character JSON (the sheet's rules engine)
-{ "name": "Consular Test (local)", "builderVersion": "0.7.6", "image": "", "characteristics": { "alignment": "Lawful Light" }, "tweaks": { "abilityScores": { "I… [20337 chars #6b0a6395]
+{ "name": "Consular Test (local)", "builderVersion": "0.7.6", "image": "", "characteristics": { "alignment": "Lawful Light" }, "tweaks": { "abilityScores": { "I… [20377 chars #8921d1b5]

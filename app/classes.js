@@ -738,7 +738,8 @@ function clsFeatureEffects(text, note, ctx) {
     // the sentence takes away ("Traveling at a fast pace no longer imposes a -5 penalty to your passive Wisdom (Perception)").
     const removed = /\b(?:no longer|doesn't|does not|don't|do not|never) (?:impose|imposes|give|gives|grant|grants|suffer|take)\b/i.test(core);
     if (!removed && (!conditional || /\bto (?:the )?(?:melee|ranged) (?:tech|force)|save dc of powers/i.test(core))) {
-      for (const cm of core.matchAll(/([+\-−])(\d+) (bonus|penalty) to ([^.;]+?)(?=(?:,? and (?:a|an) [+\-−]\d+ (?:bonus|penalty))|[.;]|$)/gi)) {
+      // The phrase ends at the next clause: "You have a +1 bonus to AC, and you have advantage on…" (Small and Nimble).
+      for (const cm of core.matchAll(/([+\-−])(\d+) (bonus|penalty) to ([^.;]+?)(?=(?:,? and (?:a|an) [+\-−]\d+ (?:bonus|penalty))|,\s*and\s+you\b|[.;]|$)/gi)) {
         const n = Number(cm[2]) * (cm[3].toLowerCase() === 'penalty' || cm[1] !== '+' ? -1 : 1);
         const phrase = cm[4].trim();
         if (/^the damage roll/i.test(phrase)) continue; // Brute Force, above
@@ -837,6 +838,18 @@ function clsFeatureEffects(text, note, ctx) {
     }
     // Species Darkvision traits describe it without the word (and with an "as if"): "You can see in dim light within 60 feet of you as if it were bright light".
     if ((m = /\bsee in dim light within (\d+) feet of you as if it were bright light/i.exec(core)) && !out.defenses.some((d) => /^Darkvision/.test(d.text))) out.defenses.push({ kind: 'sense', text: `Darkvision ${m[1]} ft` });
+    // "You can't add more than +3 when determining your bonus to AC from your Dexterity" (Muscled Menace; a Hutt's Slow and
+    // Lethargic), "…to Dexterity saving throws from Dexterity", "…to attack and damage rolls for weapon attacks using
+    // Strength" (Puny, Fragile): what the modifier adds over that is taken off (capAbility; resolved with the final scores).
+    if ((m = /\bcan.?t add more than \+(\d+)/i.exec(s))) {
+      const at = Number(m[1]);
+      // AC: where it adds all of the Dexterity modifier (no armor or light armor; medium armor already stops at +2).
+      if (/\bbonus to AC from your Dexterity\b/i.test(s)) out.mods.push({ path: 'armorClass', capAbility: 'Dexterity', capAt: at, when: { noArmor: true, orLight: true }, label: `AC: Dexterity counts up to +${at}` });
+      if (/\bbonus to Dexterity saving throws from Dexterity\b/i.test(s)) out.mods.push({ path: 'abilityScores.Dexterity.savingThrowModifier', capAbility: 'Dexterity', capAt: at, label: `DEX saves: Dexterity counts up to +${at}` });
+      if (/\bbonus to attack and damage rolls for weapon attacks using Strength\b/i.test(s)) {
+        for (const p of ['weapon.toHit', 'weapon.damage']) out.mods.push({ path: p, capAbility: 'Strength', capAt: at, weaponFilter: { ability: 'Strength' }, label: `${p === 'weapon.toHit' ? 'Attack' : 'Damage'}: Strength counts up to +${at}` });
+      }
+    }
   }
   // De-duplicate.
   const uniq = (list, key) => list.filter((x, i) => list.findIndex((y) => key(y) === key(x)) === i);

@@ -171,8 +171,10 @@ effect: Predator's Instinct · feature
 effect: Brawny · feature
 effect: Brawny · feature
 effect: Claws · feature
+effect: Darkvision · feature
 effect: Hide · feature
 effect: Menacing · feature
+effect: Treeclimber · feature
 effect: Weapon (Fine) · item
 tweak: abilityScores.Strength.skills.Athletics +0 {"proficiency":"Expertise"} · Berserker class skill + Brawny feat (already proficient, so expertise)
 tweak: abilityScores.Wisdom.skills.Perception +0 {"proficiency":"Proficient"} · Berserker class skill (chosen at 1st level)
@@ -282,7 +284,7 @@ Advantages Advantage on Dexterity saving throws against effects that you can see
 Senses Darkvision 60 ft
 Speeds Climbing speed 30 ft
 Effects
-From class features, feats and species traits (9)
+From class features, feats and species traits (11)
 Berserker weapon proficiencies Proficient: All vibroweapons Proficient: simple blasters Berserker proficiencies
 Unarmored Defense AC + CON Berserker feature
 Danger Sense Advantage on Dexterity saving throws against effects that you can see, such as traps and powers Berserker feature
@@ -290,8 +292,10 @@ Predator's Instinct Speed +10 ft Berserker Instincts feature
 Brawny STR +1 feat (background feat)
 Brawny Athletics: expertise (already proficient) feat
 Claws Wookiee trait
-Hide AC 13 + DEX (Hide) Wookiee trait
+Darkvision Darkvision 60 ft Wookiee trait
+Hide AC 13 + DEX (Hide) Advantage on Constitution saving throws made to avoid exhaustion due to extreme cold Wookiee trait
 Menacing Intimidation: proficient Wookiee trait
+Treeclimber Climbing speed 30 ft Advantage on Strength saving throws and Strength (Athletics) checks that involve climbing Wookiee trait
 From equipment
 Weapon (Fine) Attack +1 Damage +1 on [Vibroaxe ▾] while equipped
 Temporary

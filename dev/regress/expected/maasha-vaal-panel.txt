@@ -171,6 +171,7 @@ effect: Jedi background skill (2 of 2) · tweak
 effect: Guardian weapon proficiencies · feature
 effect: Bonus Proficiencies · feature
 effect: Aura of Presence · feature
+effect: Montral Reception · feature
 effect: Wild Hunters · feature
 effect: Defense Style · feature
 effect: Jensaarai Armor · item
@@ -296,10 +297,11 @@ Defenses & senses
 Advantages Advantage on Strength checks and Strength saving throws to avoid being moved
 Senses Tremorsense 30 ft
 Effects
-From class features and species traits (5)
+From class features and species traits (6)
 Guardian weapon proficiencies Proficient: All lightweapons Proficient: all vibroweapons Guardian proficiencies
 Bonus Proficiencies Proficient: heavy armor Soresu Form feature
 Aura of Presence STR save + WIS DEX save + WIS CON save + WIS INT save + WIS WIS save + WIS CHA save + WIS Guardian Auras feature
+Montral Reception Tremorsense 30 ft Togruta trait
 Wild Hunters Survival: proficient Togruta trait
 Defense Style Advantage on Strength checks and Strength saving throws to avoid being moved Fighting style
 From equipment
