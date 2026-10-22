@@ -224,7 +224,7 @@ Armstech Test (local)
 Human · Engineer (Armstech Engineering) 9
 Level 9 Background: Soldier Balanced Neutral Proficiency +4 [Add a picture]
 48,000 XP level 10 at 64,000 (16,000 to go)
-Still to choose (12): Engineer skills (3 more) · Engineer tool · Armstech Modifications (9 more) · Engineer tech powers (18 more) · At-will tech power (2 more) … [409 chars #66637dd8]
+Still to choose (14): Engineer skills (3 more) · Engineer tool · Armstech Modifications (9 more) · Engineer tech powers (18 more) · At-will tech power (2 more) … [472 chars #1a814fd2]
 
 ## Sheet: Combat & Vitals
 Armor Class
@@ -669,6 +669,12 @@ Notes []
 Speed
 Your base walking speed is 30 feet.
 Notes []
+Ability score +2 0 / 1 One ability score of your choice increases by 2, and two other ability scores of your choice increase by 1. Alternatively, four ability scores of your choice each increase by 1.
+None chosen yet.
+[Choose an ability… ▾]
+Ability score +1 0 / 2 One ability score of your choice increases by 2, and two other ability scores of your choice increase by 1. Alternatively, four ability scores of your choice each increase by 1.
+None chosen yet.
+[Choose an ability… ▾]
 
 ## Sheet: Background
 Skill proficiencies

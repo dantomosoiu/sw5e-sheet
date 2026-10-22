@@ -1830,7 +1830,7 @@ function featureEffectsUncached(editedRaw) {
       if (e) out.push(e);
     }
   });
-  out.push(...bdFeatIncreaseEffects(editedRaw));
+  out.push(...bdFeatIncreaseEffects(editedRaw), ...bdSpeciesIncreaseEffects(editedRaw));
   // Feats' proficiencies and numbers ("You gain proficiency in the Insight skill", "Your speed increases by 10 feet"):
   // the engine applies none. Their ability increase is a pick (background.feat.abilityScoreImprovements, which the
   // engine applies, or bdFeatIncreaseEffects), so it's left out here.

@@ -763,6 +763,8 @@ Notes []
 Wild Hunters
 You have proficiency in the Survival skill.
 Notes []
+Ability score +1 1 / 1 Your Wisdom score increases by 2, and your Strength or Dexterity score increases by 1.
+Strength [×]
 
 ## Sheet: Background
 Skill proficiencies

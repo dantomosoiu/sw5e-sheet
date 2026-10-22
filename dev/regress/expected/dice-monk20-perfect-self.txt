@@ -194,7 +194,7 @@ Human · Monk (Rakatan Order) 20
 Level 20 Background: Noble Lawful Light Proficiency +6 [Add a picture]
 6,500 XP highest level
 Level 20 usually needs 355,000 XP (you have 6,500).
-Still to choose (13): Monk skills (2 more) · Monk 8th level: ability score improvement or feat · Monk 10th level: ability score improvement or feat · Monk 12th … [548 chars #abe7e53d]
+Still to choose (15): Monk skills (2 more) · Monk 8th level: ability score improvement or feat · Monk 10th level: ability score improvement or feat · Monk 12th … [611 chars #bd4fcef8]
 
 ## Sheet: Combat & Vitals
 Armor Class
@@ -718,6 +718,12 @@ Notes []
 Speed
 Your base walking speed is 30 feet.
 Notes []
+Ability score +2 0 / 1 One ability score of your choice increases by 2, and two other ability scores of your choice increase by 1. Alternatively, four ability scores of your choice each increase by 1.
+None chosen yet.
+[Choose an ability… ▾]
+Ability score +1 0 / 2 One ability score of your choice increases by 2, and two other ability scores of your choice increase by 1. Alternatively, four ability scores of your choice each increase by 1.
+None chosen yet.
+[Choose an ability… ▾]
 
 ## Sheet: Background
 Skill proficiencies

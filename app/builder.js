@@ -82,6 +82,11 @@ const BD_KINDS = {
       return { languageChoices: lc, customLanguages: arr(raw.customLanguages).filter((l) => !before.includes(l)).concat(list.filter((l) => !arr(raw.customLanguages).includes(l) || before.includes(l))) };
     },
   },
+  // The species' ability increases to choose: pick `arg` (its place in the selected option) of bdSpeciesIncrease.
+  spinc: {
+    get: (raw, i) => ((bdSpeciesIncrease(raw).picks.find((p) => p.i === num(i)) || {}).chosen || []),
+    set: (raw, i, list) => ({ species: { ...raw.species, abilityScoreImprovement: bdSpeciesWithPick(raw, i, list) } }),
+  },
   // What a feature card's pickers chose (Force Affinity's Bendu, a trait's "Persuasion or Intimidation"): words of the
   // feature's notes, featureNotes[arg], which classes.js reads. The note's other words stay.
   fnote: {
@@ -234,11 +239,21 @@ function bdBackgroundPicks(m) {
 function bdSpeciesPicks(m) {
   if (!state.rules) return '';
   const sp = arr(bdModules().species).find((s) => s.name === (m.raw.species || {}).name);
-  const tr = sp && arr(sp.traits).find((t) => /^Languages?$/i.test(t.name));
+  if (!sp) return '';
+  const out = [];
+  // The ability increases to choose ("your Wisdom or Charisma score increases by 1", "two other ability scores of your
+  // choice"): the same picks as when creating the character, kept in species.abilityScoreImprovement.
+  const inc = bdSpeciesIncrease(m.raw);
+  const asi = arr(sp.traits).find((t) => /^Ability Score Increase$/i.test(t.name));
+  for (const p of inc.picks) {
+    const others = inc.picks.filter((q) => q !== p).flatMap((q) => q.chosen).concat(Object.keys(inc.fixed), Object.keys(inc.all));
+    out.push(bdPickList({ title: `Ability score +${p.amount}`, from: asi ? asi.description : '', count: p.count, chosen: p.chosen, options: p.options.filter((a) => !others.includes(a)), kind: 'spinc', arg: p.i, word: 'an ability' }));
+  }
+  const tr = arr(sp.traits).find((t) => /^Languages?$/i.test(t.name));
   const lc = tr && prLanguageChoices(tr.description);
-  if (!lc) return '';
   const from = `Species: ${sp.name}`;
-  return `<div class="cls-choices bd-profs">${bdPickList({ title: 'Languages', from: tr.description, count: lc.count, chosen: BD_KINDS.lang.get(m.raw, from), options: lc.options || prLanguages(bdModules()), kind: 'lang', arg: from, word: 'a language' })}</div>`;
+  if (lc) out.push(bdPickList({ title: 'Languages', from: tr.description, count: lc.count, chosen: BD_KINDS.lang.get(m.raw, from), options: lc.options || prLanguages(bdModules()), kind: 'lang', arg: from, word: 'a language' }));
+  return out.length ? `<div class="cls-choices bd-profs">${out.join('')}</div>` : '';
 }
 
 // ------------------------------------------------------------- feats' +1
@@ -532,17 +547,32 @@ function bdCreateOpen() {
   window.scrollTo({ top: 0 });
 }
 
-/** The species' ability increases as chosen: { fixed: { Con: 2 }, picks: [{ i, count, options, amount, chosen: [...] }] }. */
+/**
+ * The species' ability increases as chosen: { fixed: { Con: 2 } (SW5E's engine applies them), picks: [{ i, count,
+ * options, amount, chosen: [...] }], all: { Str: 1, Con: 1 } (an entry SW5E reads as a pick but the text raises whole:
+ * kept with the picks in abilityScoreImprovement), missing: { Con: 1 } (the part of `all` not kept there: the sheet
+ * applies it) }.
+ */
 function bdSpeciesIncrease(raw) {
   const ref = arr(bdModules().species).find((s) => s.name === raw.species.name);
   const opts = prSpeciesIncreases(ref);
   const sel = opts[num(raw.species.abilityScoreImprovementSelectedOption)] || opts[0] || { picks: [] };
   const chosen = raw.species.abilityScoreImprovement || {};
   const fixed = {};
+  const all = {};
+  const missing = {};
   const picks = [];
   let rest = Object.entries(chosen);
+  for (const p of sel.picks.filter((x) => x.all)) {
+    for (const a of p.abilities) {
+      all[a] = p.amount;
+      if (num(chosen[a]) !== p.amount) missing[a] = p.amount;
+      rest = rest.filter(([b]) => b !== a);
+    }
+  }
   sel.picks.forEach((p, i) => {
     const any = /^any (\w+)$/i.exec(p.abilities[0] || '');
+    if (p.all) return;
     if (p.abilities.length === 1 && !any) { fixed[p.abilities[0]] = p.amount; return; }
     const count = any ? prNum(any[1]) || 1 : 1;
     const options = any ? PR_ABILITIES.slice() : p.abilities;
@@ -550,7 +580,26 @@ function bdSpeciesIncrease(raw) {
     rest = rest.filter(([a]) => !mine.includes(a));
     picks.push({ i, count, options, amount: p.amount, chosen: mine });
   });
-  return { options: opts, fixed, picks };
+  return { options: opts, fixed, picks, all, missing };
+}
+/** abilityScoreImprovement with pick `i`'s abilities set to `list` (the other picks and the whole entries kept). */
+function bdSpeciesWithPick(raw, i, list) {
+  const inc = bdSpeciesIncrease(raw);
+  const out = { ...inc.all };
+  for (const p of inc.picks) for (const a of (p.i === num(i) ? list : p.chosen)) if (a) out[a] = p.amount;
+  return out;
+}
+/**
+ * What the sheet applies of the species' increases that SW5E's engine doesn't (`missing`: "Your Strength, Constitution,
+ * and Intelligence scores increase by 1" with only one of Strength/Constitution kept): an effect like a trait's.
+ */
+function bdSpeciesIncreaseEffects(editedRaw) {
+  if (!editedRaw.species || !editedRaw.species.name) return [];
+  const miss = Object.entries(bdSpeciesIncrease(editedRaw).missing);
+  return miss.length ? [{
+    id: 'species:increase', kind: 'feature', origin: 'species trait', name: 'Ability Score Increase', why: `${editedRaw.species.name} trait`, target: 'self', notes: [],
+    mods: miss.map(([a, n]) => ({ path: `abilityScores.${a}.score`, bonus: n, label: `${a.slice(0, 3).toUpperCase()} +${n}` })),
+  }] : [];
 }
 /**
  * A background feat as SW5E stores it. A +1 that can go to one ability only (Tough: "Increase your Constitution score
@@ -621,7 +670,7 @@ function bdCreateStep(C) {
       return `${bdField('Name', `<input data-cr="name" value="${esc(raw.name)}" placeholder="Your character's name" autocomplete="off">`)}
         ${bdField('Species', `<select data-cr="species"><option value="">Choose…</option>${species.map((s) => bdOpt(s.name, s.name, raw.species.name)).join('')}</select>`)}
         ${inc && inc.options.length > 1 ? bdField('Ability score increase', `<select data-cr="spopt">${inc.options.map((o, i) => bdOpt(i, o.picks.map((p) => `${p.abilities.join(' or ')} +${p.amount}`).join(', '), raw.species.abilityScoreImprovementSelectedOption)).join('')}</select>`) : ''}
-        ${inc ? `<div class="cr-inc">${Object.entries(inc.fixed).map(([a, n]) => chip(`${a} +${n}`, 'accent')).join(' ')}
+        ${inc ? `<div class="cr-inc">${Object.entries({ ...inc.fixed, ...inc.all }).map(([a, n]) => chip(`${a} +${n}`, 'accent')).join(' ')}
           ${inc.picks.map((p) => Array.from({ length: p.count }, (_, j) => `<select data-cr="spinc" data-i="${p.i}" data-j="${j}" aria-label="+${p.amount} to"><option value="">+${p.amount} to…</option>${p.options.map((a) => bdOpt(a, `${a} +${p.amount}`, p.chosen[j] || '', p.chosen.includes(a) && p.chosen[j] !== a ? ' disabled' : '')).join('')}</select>`).join(' ')).join(' ')}</div>` : ''}
         ${ref ? `<div class="cr-about"><b>${esc(ref.name)}</b>${ref.size ? ` · ${esc(ref.size)}` : ''}${ref.language ? ` · speaks ${esc(ref.language)}` : ''}
           <div class="chips">${arr(ref.traits).filter((t) => !/^(Ability Score Increase|Age|Alignment|Size|Languages?)$/i.test(t.name)).map((t) => `<span class="chip" title="${esc(t.description)}">${esc(t.name)}</span>`).join('')}</div>
@@ -925,16 +974,15 @@ document.addEventListener('change', (e) => {
   const ds = e.target.dataset;
   switch (f) {
     case 'name': raw.name = v; break;
-    case 'species': raw.species = { name: v, abilityScoreImprovementSelectedOption: 0, abilityScoreImprovement: {} }; break;
-    case 'spopt': raw.species.abilityScoreImprovementSelectedOption = num(v); raw.species.abilityScoreImprovement = {}; break;
+    // An entry the text raises whole (Harch: Strength and Constitution) is recorded at once, so SW5E's engine applies it.
+    case 'species': raw.species = { name: v, abilityScoreImprovementSelectedOption: 0, abilityScoreImprovement: {} }; raw.species.abilityScoreImprovement = { ...bdSpeciesIncrease(raw).all }; break;
+    case 'spopt': raw.species.abilityScoreImprovementSelectedOption = num(v); raw.species.abilityScoreImprovement = {}; raw.species.abilityScoreImprovement = { ...bdSpeciesIncrease(raw).all }; break;
     case 'spinc': {
       const inc = bdSpeciesIncrease(raw);
       const p = inc.picks.find((x) => x.i === num(ds.i));
       const chosen = p.chosen.slice();
       chosen[num(ds.j)] = v;
-      const out = {};
-      for (const q of inc.picks) for (const a of (q === p ? chosen : q.chosen)) if (a) out[a] = q.amount;
-      raw.species.abilityScoreImprovement = out;
+      raw.species.abilityScoreImprovement = bdSpeciesWithPick(raw, p.i, chosen);
       break;
     }
     case 'class': {
@@ -1048,6 +1096,7 @@ function bdOpenChoices(m) {
   const tr = sp && arr(sp.traits).find((t) => /^Languages?$/i.test(t.name));
   const lc = tr && prLanguageChoices(tr.description);
   if (lc && BD_KINDS.lang.get(raw, `Species: ${sp.name}`).length < lc.count) add('species', 'species language');
+  if (sp) for (const p of bdSpeciesIncrease(raw).picks) if (p.chosen.length < p.count) add('species', `species +${p.amount}${more(p.count - p.chosen.length)} (${p.options.length < 6 ? p.options.join(' or ') : 'any ability'})`);
   return out;
 }
 function bdOpenChoicesHtml(m) {

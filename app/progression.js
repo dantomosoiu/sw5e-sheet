@@ -233,10 +233,24 @@ function prPointBuyCost(scores) {
   }
   return t;
 }
-/** A species' ability increases: its options ([{ text, picks: [{ abilities: [...], amount }] }]) from SW5E's data. */
+/**
+ * A species' ability increases: its options ([{ picks: [{ abilities: [...], amount, all }] }]) from SW5E's data. SW5E
+ * gives "Your Strength, Constitution, and Intelligence scores increase by 1" (Harch, Klatooinian, Tognath) as a pick of
+ * Strength or Constitution plus Intelligence; the text raises all three, so such an entry is `all` (each of its
+ * abilities), read from the Ability Score Increase trait: a list joined by "and", without "or".
+ */
 function prSpeciesIncreases(speciesRef) {
+  const tr = prArr(speciesRef && speciesRef.traits).find((t) => /^Ability Score Increase$/i.test(t.name));
+  const together = [];
+  for (const m of String((tr && tr.description) || '').matchAll(/\byour ([A-Za-z, ]+?) scores increase by (\d+)/gi)) {
+    if (!/\bor\b/i.test(m[1]) && /\band\b/i.test(m[1])) together.push({ abilities: prAbilitiesIn(m[1]), amount: Number(m[2]) });
+  }
   return prArr(speciesRef && speciesRef.abilitiesIncreased).map((opt) => ({
-    picks: prArr(opt).map((x) => ({ abilities: prArr(x.abilities), amount: Number(x.amount) || 0 })),
+    picks: prArr(opt).map((x) => {
+      const abilities = prArr(x.abilities);
+      const all = abilities.length > 1 && together.some((g) => g.amount === Number(x.amount) && abilities.every((a) => g.abilities.includes(a)));
+      return { abilities, amount: Number(x.amount) || 0, all };
+    }),
   }));
 }
 

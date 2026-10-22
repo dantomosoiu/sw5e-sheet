@@ -217,7 +217,7 @@ Berserker Test (Claude)
 Human · Berserker 5
 Level 5 Background: Soldier Balanced Neutral Proficiency +3 [Add a picture]
 6,500 XP level 6 at 14,000 (7,500 to go)
-Still to choose (5): Berserker approach · Berserker Instincts (2 more) · background skills (2 more) · background tool · background languages
+Still to choose (7): Berserker approach · Berserker Instincts (2 more) · background skills (2 more) · background tool · background languages · species +2 (any ability) · species +1 (2 more) (any ability)
 
 ## Sheet: Combat & Vitals
 Armor Class
@@ -541,6 +541,12 @@ Notes []
 Speed
 Your base walking speed is 30 feet.
 Notes []
+Ability score +2 0 / 1 One ability score of your choice increases by 2, and two other ability scores of your choice increase by 1. Alternatively, four ability scores of your choice each increase by 1.
+None chosen yet.
+[Choose an ability… ▾]
+Ability score +1 0 / 2 One ability score of your choice increases by 2, and two other ability scores of your choice increase by 1. Alternatively, four ability scores of your choice each increase by 1.
+None chosen yet.
+[Choose an ability… ▾]
 
 ## Sheet: Background
 Skill proficiencies

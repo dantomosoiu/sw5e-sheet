@@ -731,6 +731,8 @@ Notes []
 Unarmed Combatant
 Your unarmed strikes deal 1d4 kinetic damage and have the finesse property.
 Notes []
+Ability score +1 1 / 1 Your Constitution score increases by 2, and your Strength or Dexterity score increases by 1.
+Dexterity [×]
 
 ## Sheet: Background
 Skill proficiencies

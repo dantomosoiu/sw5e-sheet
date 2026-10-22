@@ -182,7 +182,7 @@ Consular Test (local)
 Human · Consular (Way of Technology) 5
 Level 5 Background: Noble Lawful Light Proficiency +3 [Add a picture]
 6,500 XP level 6 at 14,000 (7,500 to go)
-Still to choose (6): Consular skills (2 more) · Force-Empowered Castings (2 more) · Consular force powers (13 more) · background skills (2 more) · background tool · background languages
+Still to choose (8): Consular skills (2 more) · Force-Empowered Castings (2 more) · Consular force powers (13 more) · background skills (2 more) · background to… [248 chars #b7d5927d]
 
 ## Sheet: Combat & Vitals
 Armor Class
@@ -596,6 +596,12 @@ Notes []
 Speed
 Your base walking speed is 30 feet.
 Notes []
+Ability score +2 0 / 1 One ability score of your choice increases by 2, and two other ability scores of your choice increase by 1. Alternatively, four ability scores of your choice each increase by 1.
+None chosen yet.
+[Choose an ability… ▾]
+Ability score +1 0 / 2 One ability score of your choice increases by 2, and two other ability scores of your choice increase by 1. Alternatively, four ability scores of your choice each increase by 1.
+None chosen yet.
+[Choose an ability… ▾]
 
 ## Sheet: Background
 Skill proficiencies
