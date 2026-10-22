@@ -1583,11 +1583,46 @@ const weaponIndexByName = (editedRaw, name) => {
   return w ? w.i : null;
 };
 
+/**
+ * The entry an enhanced item at `items[i]` is built on (it carries `enhancedBy`, the enhanced item's name), or -1.
+ * Copies of one enhanced item (two Weapon (Fine)) each have their own: the pair shares a `baseLink` id (set when
+ * linking). Entries linked before there were ids: a copy that names its base (`baseItem`) takes the first one of
+ * that name, the others pair up in order.
+ */
+function invBaseIndex(items, i) {
+  const it = items[i];
+  if (!it || it.enhancedBy) return -1;
+  const at = (f) => items.map((x, j) => j).filter((j) => items[j] && f(items[j]));
+  const pair = (a, b) => !!a.baseLink && a.baseLink === b.baseLink;
+  const bases = at((x) => x.enhancedBy === it.name);
+  const copies = at((x) => x.name === it.name && !x.enhancedBy);
+  const own = bases.find((b) => pair(items[b], it));
+  if (own != null) return own;
+  const freeB = bases.filter((b) => !copies.some((c) => pair(items[b], items[c])));
+  const freeC = copies.filter((c) => !bases.some((b) => pair(items[b], items[c])));
+  const named = new Map(); // copy -> base
+  for (const c of freeC.filter((x) => items[x].baseItem)) {
+    const b = freeB.find((x) => items[x].name === items[c].baseItem && ![...named.values()].includes(x));
+    if (b != null) named.set(c, b);
+  }
+  if (named.has(i)) return named.get(i);
+  const restB = freeB.filter((b) => ![...named.values()].includes(b));
+  const k = freeC.filter((c) => !named.has(c)).indexOf(i);
+  return k >= 0 && k < restB.length ? restB[k] : -1;
+}
+/** Which copy of an item an entry is, as a key: its name for the first one carried, "Weapon (Fine)#2" for the next. */
+function copyKey(items, i) {
+  const it = items[i] || {};
+  const k = items.slice(0, i).filter((x) => x && x.name === it.name && !x.enhancedBy).length;
+  return k ? `${it.name}#${k + 1}` : it.name;
+}
+
 /** Effects of the enhanced items the character carries, whether active or not (and why). */
 function itemEffects(key, editedRaw, complete) {
   const out = [];
   const entries = arr(complete && complete.equipment);
-  arr(editedRaw.equipment).forEach((it, i) => {
+  const equipment = arr(editedRaw.equipment);
+  equipment.forEach((it, i) => {
     if (it.category !== 'EnhancedItem') return;
     const ref = entries.find((e) => e.index === i && e.name === it.name && e.isFound) || (catalogIndex && catalogIndex.get(it.name));
     const fx = itemEffectOf(ref);
@@ -1595,10 +1630,12 @@ function itemEffects(key, editedRaw, complete) {
     const how = fxEquipLabel(ref).toLowerCase();
     const active = fx.activation === 'carry' ? qtyOf(it) > 0 : fx.activation === 'attune' ? !!it.attuned : !!it.equipped;
     // An enhanced weapon built on a base weapon the character carries (its linked entry): the bonus goes there.
-    const linked = arr(editedRaw.equipment).findIndex((x) => x.enhancedBy === it.name);
-    const weaponName = fx.target === 'weapon' ? (linked >= 0 ? editedRaw.equipment[linked].name : itemTargets(key)[it.name] || null) : null;
+    // Each copy of an item is its own effect, on its own weapon.
+    const linked = invBaseIndex(equipment, i);
+    const ck = copyKey(equipment, i);
+    const weaponName = fx.target === 'weapon' ? (linked >= 0 ? equipment[linked].name : itemTargets(key)[ck] || null) : null;
     out.push({
-      ...fx, id: 'item:' + it.name, kind: 'item', name: it.name, index: i, active,
+      ...fx, id: 'item:' + ck, kind: 'item', name: it.name, index: i, active,
       why: fx.activation === 'carry' ? 'when you fire it' : fx.activation === 'attune' ? (active ? 'while attuned' : 'needs attunement') : (active ? `while ${how}` : `needs to be ${how}`),
       weaponName, weaponIndex: linked >= 0 && fx.target === 'weapon' ? linked : weaponIndexByName(editedRaw, weaponName), linked: linked >= 0,
     });
@@ -1624,6 +1661,8 @@ function tweakRows(editedRaw) {
 function tweakEffects(key, editedRaw) {
   const swRaw = state.snapshots[key].raw;
   const reasons = reasonsOf(key);
+  // Tweaks the player keeps although the sheet applies what they were made for (fxTweakTwins).
+  const keep = (state.itemState[key] && state.itemState[key].keepTweaks) || {};
   return tweakRows(editedRaw).filter((r) => fxTweakActive(r.value)).map((r) => {
     const orig = r.where === 'tweaks' ? getPath(swRaw.tweaks, r.path) : getPath(((arr(swRaw.equipment)[r.index]) || {}).tweaks, r.sub);
     const fromSw5e = !!orig && canonical(orig) === canonical(r.value);
@@ -1631,7 +1670,7 @@ function tweakEffects(key, editedRaw) {
     const fields = Object.fromEntries(Object.entries(rest).filter(([f, v]) => TWEAK_FIELDS.includes(f) && v != null && v !== ''));
     const reason = reasons[r.rkey] || '';
     return {
-      id: 'tweak:' + r.rkey, kind: 'tweak', name: reason || r.name, tweakName: r.name, reason, fromSw5e,
+      id: 'tweak:' + r.rkey, kind: 'tweak', name: reason || r.name, tweakName: r.name, reason, fromSw5e, rkey: r.rkey, keep: !!keep[r.rkey],
       why: fromSw5e ? 'tweak' : 'tweak (not synced to SW5E yet)',
       target: r.where === 'equipment' ? 'weapon' : 'self', weaponIndex: r.where === 'equipment' ? r.index : null,
       mods: [{ path: r.path, bonus: num(bonus), fields: Object.keys(fields).length ? fields : null, label: `${r.name} ${fxTweakValueText(r.value)}` }],
@@ -1821,7 +1860,7 @@ function featureEffectsUncached(editedRaw) {
 /** What armor and shield the character has equipped (for "while you are not wearing armor"). */
 function armorState(raw) {
   const st = { armor: false, heavy: false, shield: false, light: false, lightBase: 0 };
-  for (const it of arr(raw.equipment)) {
+  for (const [i, it] of arr(raw.equipment).entries()) {
     if (!it.equipped) continue;
     const ref = catalogIndex && catalogIndex.get(it.name);
     if (!ref) continue;
@@ -1833,7 +1872,7 @@ function armorState(raw) {
         // Light armor: its base AC ("11 + Dex modifier"), for "while unarmored or wearing light armor".
         if (/light/i.test(ref.armorClassification)) { st.light = true; st.lightBase = num(String(ref.ac || '').replace(/^\D*(\d+).*$/, '$1')); }
       }
-    } else if (arr(raw.equipment).some((x) => x.enhancedBy === it.name)) continue; // its base item says what it is
+    } else if (invBaseIndex(arr(raw.equipment), i) >= 0) continue; // its base item says what it is
     else if (ref.type === 'Armor') st.armor = true;
     else if (ref.type === 'Shield') st.shield = true;
   }
@@ -2342,7 +2381,7 @@ const attuneCost = (e) => (arr(e.rarityOptions).some((r) => /legendary|artifact/
 const qtyOf = (e) => (e.quantity == null || e.quantity === '' ? 1 : num(e.quantity));
 const RAW_ITEM_KEYS = ['quantity', 'equipped', 'attuned', 'index', 'tweaks', 'category', 'isFound', 'isCustom'];
 // The sheet's own fields on inventory entries: a name and a note of yours, what you paid, an enhanced item's base.
-const LOCAL_ITEM_KEYS = ['label', 'notes', 'paid', 'baseItem', 'enhancedBy', 'addedForBase', 'color'];
+const LOCAL_ITEM_KEYS = ['label', 'notes', 'paid', 'baseItem', 'enhancedBy', 'baseLink', 'addedForBase', 'color'];
 
 /** Inventory entries as the engine would show them: reference data + the character's own fields. */
 function mergeEquipment(list, prevComplete) {
@@ -2494,7 +2533,7 @@ async function inventoryAction(op, arg) {
   const raw = withEdits(snap.raw, editedFields(snap.key));
   const patch = {};
   let msg = '';
-  const linked = () => items.findIndex((x) => x.enhancedBy === it.name);
+  const linked = () => invBaseIndex(items, items.indexOf(it));
   if (op === 'qty') {
     const was = qtyOf(it);
     it.quantity = Math.max(1, was + Number(delta));
@@ -3126,12 +3165,14 @@ async function addItemFromCatalog(owe) {
  * enhanced item's), the enhanced one `baseItem`.
  */
 function linkBase(items, enh, pick) {
-  const old = items.findIndex((x) => x.enhancedBy === enh.name);
+  const old = invBaseIndex(items, items.indexOf(enh));
   if (old >= 0) {
     if (items[old].addedForBase) items.splice(old, 1);
-    else delete items[old].enhancedBy;
+    else { delete items[old].enhancedBy; delete items[old].baseLink; }
   }
   delete enh.baseItem;
+  // The pair's own id, so copies of one enhanced item each keep their base.
+  const link = enh.baseLink || (enh.baseLink = Date.now().toString(36) + Math.random().toString(36).slice(2, 6));
   const [how, val] = String(pick || '').split(/:(.*)/s);
   if (how === 'own') {
     const it = items.find((x, i) => String(i) === val || x === items[Number(val)]);
@@ -3139,11 +3180,11 @@ function linkBase(items, enh, pick) {
     if (!base || base === enh) return;
     if (qtyOf(base) > 1) { // one of a stack becomes the enhanced one's
       base.quantity = qtyOf(base) - 1;
-      items.push({ name: base.name, quantity: 1, category: base.category, equipped: !!enh.equipped, enhancedBy: enh.name });
-    } else Object.assign(base, { enhancedBy: enh.name, equipped: !!enh.equipped });
+      items.push({ name: base.name, quantity: 1, category: base.category, equipped: !!enh.equipped, enhancedBy: enh.name, baseLink: link });
+    } else Object.assign(base, { enhancedBy: enh.name, baseLink: link, equipped: !!enh.equipped });
     enh.baseItem = base.name;
   } else if (how === 'new' && val) {
-    items.push({ name: val, quantity: 1, category: 'Equipment', equipped: !!enh.equipped, enhancedBy: enh.name, addedForBase: true });
+    items.push({ name: val, quantity: 1, category: 'Equipment', equipped: !!enh.equipped, enhancedBy: enh.name, baseLink: link, addedForBase: true });
     enh.baseItem = val;
   }
 }
@@ -3600,9 +3641,9 @@ function renderOverview(m) {
 function loadoutStrip(m) {
   const raw = withEdits(m.snap.raw, editedFields(m.snap.key));
   const ref = (it) => (catalogIndex && catalogIndex.get(it.name)) || it;
-  const list = arr(raw.equipment).filter((it) => (it.equipped || it.attuned) && !it.enhancedBy)
-    .map((it) => {
-      const base = arr(raw.equipment).find((x) => x.enhancedBy === it.name);
+  const list = arr(raw.equipment).map((it, i) => ({ it, i })).filter(({ it }) => (it.equipped || it.attuned) && !it.enhancedBy)
+    .map(({ it, i }) => {
+      const base = arr(raw.equipment)[invBaseIndex(arr(raw.equipment), i)];
       return { it: { ...ref(base || it), ...(base ? { rarityText: invRarity(ref(it)) } : {}), color: it.color || (base && base.color) }, name: it.label || it.name };
     })
     .concat(arr(raw.customEquipment).filter((it) => it.equipped).map((it) => ({ it, name: it.name, custom: true })));
@@ -5916,7 +5957,8 @@ function renderEquipment(m) {
     const qty = qtyOf(e);
     const arg = `${isCustom ? 'customEquipment' : 'equipment'}|${e.index}`;
     // An enhanced weapon or armor: its base item's numbers (or the choice of one).
-    const baseE = !isCustom && isEnhanced(e) ? items.map((x) => own(x, false)).find((x) => x.enhancedBy === e.name) : null;
+    const bi = !isCustom && isEnhanced(e) ? invBaseIndex(arr(raw.equipment), e.index) : -1;
+    const baseE = bi >= 0 ? own(items.find((x) => x.index === bi) || { ...arr(raw.equipment)[bi], index: bi }, false) : null;
     const baseFacts = baseE ? [baseE.ac ? `AC ${baseE.ac}` : '', baseE.damageNumberOfDice && baseE.damageDieType ? damageText({ ...baseE, damageBonus: 0 }) : '', propsText(baseE.properties), baseE.weight ? `${baseE.weight} lb` : ''].filter(Boolean).join(' · ') : '';
     const enhRef = !isCustom && isEnhanced(e) ? (catalogIndex && catalogIndex.get(e.name)) : null;
     const baseLine = baseE ? `<div class="muted inv-base" style="font-size:12.5px">On a <b>${esc(baseE.name)}</b>${baseFacts ? `: ${esc(baseFacts)}` : ''} <button class="linklike" data-inv="base" data-arg="${esc(arg)}|" title="Untie it from its base item (to choose another)">change</button></div>`
@@ -6023,35 +6065,55 @@ function tweakTargets(m) {
 const tweakTargetOptions = (list, selected = '') => [...new Set(list.map((x) => x[2]))].map((g) => `<optgroup label="${esc(g)}">${list.filter((x) => x[2] === g)
   .map(([p, l]) => `<option value="${esc(p)}"${selected === p ? ' selected' : ''}>${esc(l)}</option>`).join('')}</optgroup>`).join('');
 
-/** Tweaks: every manual adjustment, with its value, reason, and a way to add more. */
 /**
- * A tweak made for something the sheet now applies by itself: its reason names a feature or trait whose effect
- * changes the same number ("Wookiee Hide…" on AC, "Zabrak Toughness…" on HP maximum). The name of that feature, or ''.
+ * A tweak made for something the sheet now applies by itself: its reason names a feature, trait or item whose effect
+ * changes the same number ("Wookiee Hide…" on AC, "Zabrak Toughness…" on HP maximum). It's left out (fxTweakTwins),
+ * unless the player keeps it. { what ("Hide (Wookiee trait) and Unarmored Defense (Berserker feature)"), kept } or null.
  */
-function tweakTwin(m, r, reason) {
-  // Only bonuses add up: a proficiency or a die size set twice is the same.
-  if (!reason || r.where !== 'tweaks' || !num(r.value.bonus)) return '';
-  const words = (s) => String(s).toLowerCase().match(/[a-z']{4,}/g) || [];
-  const said = new Set(words(reason));
-  const hit = m.fx.tweaks.concat(arr(m.fx.acAlternatives)).find((t) => t.path === r.path && t.effect.kind !== 'tweak' && num(t.bonus)
-    && words(t.effect.name).length && words(t.effect.name).every((w) => said.has(w)));
-  return hit ? hit.effect.name : '';
+function tweakTwin(m, r) {
+  const what = (t) => t.by.map((e) => `${e.name}${e.why ? ` (${e.why})` : ''}`).join(' and ');
+  const t = arr(m.fx.twins).find((x) => x.effect.rkey === r.rkey);
+  if (t) return { what: what(t), kept: false };
+  const e = m.fx.effects.find((x) => x.kind === 'tweak' && x.rkey === r.rkey && x.keep);
+  const again = e && fxTweakTwins([{ ...e, keep: false }].concat(m.fx.effects.filter((x) => x.kind !== 'tweak')))[0];
+  return again ? { what: what(again), kept: true } : null;
 }
+/** Apply a tweak although the sheet applies what it was made for (or stop applying it). */
+async function keepTweak(rkey) {
+  const snap = state.snapshots[state.current];
+  if (!snap) return;
+  const st = itemStateOf(snap.key);
+  st.keepTweaks = { ...(st.keepTweaks || {}) };
+  if (st.keepTweaks[rkey]) delete st.keepTweaks[rkey];
+  else st.keepTweaks[rkey] = true;
+  await saveItemStateFor(snap.key, st);
+  renderAll();
+  scheduleRecompute(snap.key);
+  setStatus(st.keepTweaks[rkey] ? 'The tweak is applied again, on top of what the sheet applies.' : 'The tweak is left out: the sheet applies it by itself.');
+}
+
+/** Tweaks: every manual adjustment, with its value, reason, and a way to add more. */
 
 function renderTweaks(m) {
   const reasons = reasonsOf(m.snap.key);
   const rows = tweakRows(m.raw);
   const missing = rows.filter((r) => fxTweakActive(r.value) && !reasons[r.rkey]).length;
-  const twins = rows.filter((r) => fxTweakActive(r.value) && tweakTwin(m, r, reasons[r.rkey])).length;
+  const twins = rows.filter((r) => fxTweakActive(r.value) && tweakTwin(m, r) && !tweakTwin(m, r).kept).length;
   const isProf = (p) => /\.skills\.|savingThrowModifier$/.test(p);
   const num_ = (r, f, label, title) => `<label title="${esc(title)}">${label} <input data-tw="${esc(r.rkey)}" data-twf="${f}" type="number" step="1" value="${esc(r.value[f] ?? '')}"></label>`;
   const d = state.tweakDraft || {};
   return `<div class="card no-toggle tweaks-card"><div class="card-head"><span class="title">Tweaks (manual adjustments)</span>
-      <span class="meta">${rows.length}${missing ? ` · <span class="warn-text">${plural(missing, 'tweak')} without a reason</span>` : ''}${twins ? ` · <span class="warn-text">${plural(twins, 'tweak')} may count twice</span>` : ''}</span></div>
+      <span class="meta">${rows.length}${missing ? ` · <span class="warn-text">${plural(missing, 'tweak')} without a reason</span>` : ''}${twins ? ` · <span class="warn-text">${plural(twins, 'tweak')} left out (the sheet applies ${twins > 1 ? 'them' : 'it'} by itself)</span>` : ''}</span></div>
     <p class="faint" style="font-size:12.5px;margin:6px 0 8px">From sw5e.com's editor or added here. Give each a reason (kept in this viewer and in backups); hovering or tapping a number they change shows it.</p>
     ${rows.length ? `<div class="table-wrap"><table class="tweaks"><thead><tr><th>Stat</th><th>Adjustment</th><th>Reason</th><th></th></tr></thead><tbody>${rows.map((r) => `<tr>
-      <td><b>${esc(r.name)}</b>${fxTweakActive(r.value) ? '' : ' <span class="chip">no change</span>'}${fxTweakActive(r.value) && tweakTwin(m, r, reasons[r.rkey])
-        ? `<div class="warn-text tw-twin">The sheet applies ${esc(tweakTwin(m, r, reasons[r.rkey]))} by itself now: with this tweak it counts twice. Remove the tweak (×) unless it's for something else.</div>` : ''}</td>
+      <td><b>${esc(r.name)}</b>${fxTweakActive(r.value) ? '' : ' <span class="chip">no change</span>'}${(() => {
+        const tw = fxTweakActive(r.value) && tweakTwin(m, r);
+        if (!tw) return '';
+        const what = esc(tw.what);
+        return tw.kept
+          ? `<div class="warn-text tw-twin">Applied as you chose, on top of ${what}, which the sheet applies by itself: it counts twice. <button class="linklike" data-act="tweak-keep" data-arg="${esc(r.rkey)}">Leave it out</button></div>`
+          : `<div class="warn-text tw-twin"><span class="chip warn">not applied</span> The sheet applies ${what} by itself now: with this tweak it would count twice, so the tweak is left out. Remove it (×), or <button class="linklike" data-act="tweak-keep" data-arg="${esc(r.rkey)}">apply it anyway</button> if it's for something else.</div>`;
+      })()}</td>
       <td class="tw-vals">${isProf(r.path)
         ? `<label>Proficiency <select data-tw="${esc(r.rkey)}" data-twf="proficiency">${['', 'Proficient', 'Expertise'].map((o) => `<option value="${o}"${String(r.value.proficiency || '') === o ? ' selected' : ''}>${o || '—'}</option>`).join('')}</select></label>${num_(r, 'bonus', 'Bonus', 'Added to the roll')}`
         : /damageDice$/.test(r.path) ? num_(r, 'dieSize', 'Die', 'Damage die size, e.g. 6 for d6')
@@ -6728,6 +6790,8 @@ async function handleAction(act, arg) {
       return convertCustomFeature(arg);
     case 'tweak-remove':
       return removeTweak(arg);
+    case 'tweak-keep':
+      return keepTweak(arg);
     case 'effect-end':
       return endEffect(arg);
     case 'catalog-refresh':

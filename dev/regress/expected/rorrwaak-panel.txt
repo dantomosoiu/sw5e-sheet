@@ -1,7 +1,7 @@
 # Rorrwaak (Panel)
 
 ## Sent to the rules engine
-The sheet's engine computes the numbers. SW5E's recorded calculation is for this same character.
+The sheet's engine computes the numbers. OUT OF DATE: SW5E's recorded calculation is for an older version of this character; record the case again (dev/regress-record.js) for dev/engine-check.js.
 tweaks.abilityScores.Charisma.skills.Intimidation.bonus = 0
 tweaks.abilityScores.Charisma.skills.Intimidation.proficiency = "Proficient"
 tweaks.abilityScores.Charisma.skills.Persuasion.bonus = 0
@@ -13,7 +13,7 @@ tweaks.abilityScores.Strength.skills.Athletics.bonus = 0
 tweaks.abilityScores.Strength.skills.Athletics.proficiency = "Expertise"
 tweaks.abilityScores.Wisdom.skills.Perception.bonus = 0
 tweaks.abilityScores.Wisdom.skills.Perception.proficiency = "Proficient"
-tweaks.armorClass.bonus = 4
+tweaks.armorClass.bonus = 3
 tweaks.speed.base.bonus = 10
 tweaks.unarmed.damageDice.bonus = 0
 tweaks.unarmed.damageDice.dieSize = 4
@@ -30,7 +30,7 @@ currentLevel = 4
 classText = "Berserker (Frenzied Approach) 4"
 proficiencyBonus = 2
 initiative = 1
-armorClass = 15
+armorClass = 14
 armorList = []
 passivePerception = 13
 vision = "normal"
@@ -179,7 +179,6 @@ tweak: abilityScores.Wisdom.skills.Perception +0 {"proficiency":"Proficient"} ·
 tweak: abilityScores.Charisma.skills.Persuasion +0 {"proficiency":"Proficient"} · Mercenary background skill
 tweak: abilityScores.Charisma.skills.Intimidation +0 {"proficiency":"Proficient"} · Wookiee Menacing trait (not applied by SW5E)
 tweak: abilityScores.Intelligence.skills.Piloting +0 {"proficiency":"Proficient"} · Mercenary background skill
-tweak: armorClass +1 · Wookiee Hide (13 + Dex) is 1 better than Unarmored Defense (10 + Dex + Con)
 tweak: unarmed.damageDice +0 {"override":4,"dieSize":4} · Wookiee Claws: unarmed strikes deal 1d4 (not applied by SW5E)
 tweak: speed.base +10 · Predator's Instinct
 tweak: abilityScores.Strength.skills.Athletics +0 {"proficiency":"Proficient"} · Brawny
@@ -241,8 +240,8 @@ Still to choose (5): Berserker skills (2 more) · background skills (2 more) · 
 
 ## Sheet: Combat & Vitals
 Armor Class
-15
-  ↳ hover armorClass: Without tweaks or effects: 11 → now 15 / +1 AC · Wookiee Hide (13 + Dex) is 1 better than Unarmored Defense (10 + Dex + Con) tweak (not synced… [294 chars #5339f592]
+14
+  ↳ hover armorClass: Without tweaks or effects: 11 → now 14 / +3 AC 13 + DEX (Hide) · Hide Wookiee trait / Not used (a better AC formula applies): / +2 AC + CON · Unarmored Defense
 Unarmored
 Hit Points
 39 / 41
@@ -748,7 +747,7 @@ Inspiration from the GM, spent on Stealth (10).
 Long rest. 300 XP (level 2 reached).
 
 ## Sheet: Settings, Tweaks & Data
-Tweaks (manual adjustments) 8 · 1 tweak may count twice
+Tweaks (manual adjustments) 8 · 1 tweak left out (the sheet applies it by itself)
 From sw5e.com's editor or added here. Give each a reason (kept in this viewer and in backups); hovering or tapping a number they change shows it.
 Stat | Adjustment | Reason | |
 Athletics | Proficiency [Expertise ▾] Bonus [] | [Berserker class skill + Brawny feat (already proficient, so expertise)] | [×] |
@@ -758,7 +757,7 @@ Persuasion | Proficiency [Proficient ▾] Bonus [] | [Mercenary background skill
 Intimidation | Proficiency [Proficient ▾] Bonus [] | [Wookiee Menacing trait (not applied by SW5E)] | [×] |
 Piloting | Proficiency [Proficient ▾] Bonus [] | [Mercenary background skill] | [×] |
 AC
-The sheet applies Hide by itself now: with this tweak it counts twice. Remove the tweak (×) unless it's for something else.
+not applied The sheet applies Unarmored Defense (Berserker feature) and Hide (Wookiee trait) by itself now: with this tweak it would count twice, so the tweak i… [235 chars #9bc2620f]
 | Bonus [1] Set to [] | [Wookiee Hide (13 + Dex) is 1 better than Unarmored Defense (10 + Dex + Con)] | [×] |
 Unarmed: damage die | Die [4] | [Wookiee Claws: unarmed strikes deal 1d4 (not applied by SW5E)] | [×] |
 [Add a tweak to… ▾] [add (+/−) ▾] [] [] [Add]
@@ -801,4 +800,4 @@ SW5E's rules and item data: version 199, as it comes with the sheet. SW5E is the
 Raw SW5E character JSON
 { "name": "Rorrwaak (Panel)", "id": "00000000-0000-4000-8000-000011000001", "userId": "00000000-0000-4000-8000-000011000002", "builderVersion": "0.7.6", "image"… [4855 chars #0bfb80a1]
 Computed character JSON (the sheet's rules engine)
-{ "name": "Rorrwaak (Panel)", "builderVersion": "0.7.6", "image": "", "characteristics": { "alignment": "Chaotic Light", "Personality Traits": "I face problems … [23543 chars #45cc89e1]
+{ "name": "Rorrwaak (Panel)", "builderVersion": "0.7.6", "image": "", "characteristics": { "alignment": "Chaotic Light", "Personality Traits": "I face problems … [23543 chars #fb2c7117]
