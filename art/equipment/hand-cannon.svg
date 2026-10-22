@@ -27,5 +27,5 @@
   <rect x="52.6" y="14.6" width="8.4" height="16.4" rx="1.6" fill="url(#a-sheen)"/>
   <path class="a-d" d="M54.6 16.6h1.6v5h-1.6zM57.6 16.6h1.6v5h-1.6zM54.6 24h1.6v5h-1.6zM57.6 24h1.6v5h-1.6z"/>
   <path class="a-m a-o" d="M47.4 17l.8-3h1.6l.4 3z"/>
-  <path class="a-l" d="M9.8 18.6H35M36 18.4h17M53.8 15.8h6"/>
+  <path class="a-l" d="M9.8 18.6H35M36 18.4h16M53.8 15.8h6"/>
 </svg>

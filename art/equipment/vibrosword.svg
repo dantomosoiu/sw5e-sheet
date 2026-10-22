@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <g transform="rotate(-45 32 32)">
+    <path class="a-b a-oo" d="M25.4 27.4h33.8L71 32l-11.8 4.6H25.4z"/>
+    <path d="M25.4 27.4h33.8L71 32l-11.8 4.6H25.4z" fill="url(#a-sheen)"/>
+    <path class="a-m" d="M25.8 32h43.6l-10.4 4.1H25.8z"/>
+    <path class="a-p" d="M25.6 32h44.6M27 29.2h32.4l8.8 2.8M27 34.8h32.4l8.8-2.8"/>
+    <rect class="a-d a-o" x="27.6" y="31" width="25" height="2" rx="1"/>
+    <path class="a-m a-oo" d="M-3.6 27.4H-6l-1.6 4.6 1.6 4.6h2.4z"/>
+    <path d="M-3.6 27.4H-6l-1.6 4.6 1.6 4.6h2.4z" fill="url(#a-sheen)"/>
+    <rect class="a-c a-oo" x="-4" y="28.8" width="18.8" height="6.4" rx=".8"/>
+    <path class="a-p" d="M-2.4 29l1.2 6M0 29l1.2 6M2.4 29l1.2 6M8.6 29l1.2 6M11 29l1.2 6"/>
+    <rect x="-4" y="28.8" width="18.8" height="6.4" rx=".8" fill="url(#a-shade)"/>
+    <rect class="a-m a-o" x="4.6" y="28.2" width="2.6" height="7.6" rx=".6"/>
+    <rect class="a-x a-o" x="5.4" y="28" width="1" height="8" rx=".3"/>
+    <path class="a-m a-oo" d="M14.4 27.4v-7.2l2.2-2.4 2.2 2.4v7.2zM14.4 36.6v7.2l2.2 2.4 2.2-2.4v-7.2z"/>
+    <path d="M14.4 27.4v-7.2l2.2-2.4 2.2 2.4v7.2z" fill="url(#a-sheen)"/>
+    <path d="M14.4 36.6v7.2l2.2 2.4 2.2-2.4v-7.2z" fill="url(#a-shade)"/>
+    <path class="a-p" d="M16.6 20.6v6M16.6 37.4v6"/>
+    <rect class="a-x a-oo" x="13.8" y="26.4" width="5.6" height="11.2" rx="1"/>
+    <rect x="13.8" y="26.4" width="5.6" height="11.2" rx="1" fill="url(#a-sheen)"/>
+    <path class="a-d a-o" d="M16.6 30l1.2 2-1.2 2-1.2-2z"/>
+    <rect class="a-b a-oo" x="19.2" y="27" width="6.8" height="10" rx="1"/>
+    <rect x="19.2" y="27" width="6.8" height="10" rx="1" fill="url(#a-sheen)"/>
+    <rect class="a-d a-o" x="20.4" y="28.8" width="4.4" height="6.4" rx=".6"/>
+    <path class="a-g" d="M21 29.2h.9v5.6H21zM22.3 29.2h.9v5.6h-.9zM23.6 29.2h.7v5.6h-.7z" filter="url(#a-glow)"/>
+    <path class="a-g" d="M21.2 29.6h.5v4.8h-.5zM22.5 29.6h.5v4.8h-.5zM23.8 29.6h.4v4.8h-.4z"/>
+    <path class="a-l" d="M-7 31.2l1.2-3M-3 29.8h7M8 29.8h6M15 20.4l1.6-1.8M14.6 27.4h4M20 28h5.2M27 28.4h32l9.6 3.8"/>
+  </g>
+</svg>

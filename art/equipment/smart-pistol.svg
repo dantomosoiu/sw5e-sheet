@@ -13,7 +13,6 @@
   <ellipse class="a-m a-oo" cx="44.6" cy="27.4" rx="2.6" ry="8"/>
   <ellipse class="a-d" cx="44.6" cy="27.4" rx="1" ry="5.6"/>
   <path class="a-b a-oo" d="M40.2 31.6l7.8-9.6 1.6 1.4-7.8 9.6z"/>
-  <circle class="a-g" cx="44.6" cy="19.6" r="1"/>
   <path class="a-b a-oo" d="M7 23c0-1.6 1-2.6 2.6-2.6H34l2 2v10.4H25.6L24 31H9.6C8 31 7 30 7 28.4z"/>
   <path d="M7 23c0-1.6 1-2.6 2.6-2.6H34l2 2v10.4H25.6L24 31H9.6C8 31 7 30 7 28.4z" fill="url(#a-sheen)"/>
   <path class="a-x" d="M7.6 26.6h28v2H7.6z"/>

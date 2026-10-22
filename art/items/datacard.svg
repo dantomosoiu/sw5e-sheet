@@ -1,20 +1,22 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <g transform="translate(29 25) rotate(-16)">
-    <path class="a-m a-oo" d="M-23-14H17l6 6v22h-46z"/>
-    <path d="M-23-14H17l6 6v22h-46z" fill="url(#a-sheen)"/>
-    <rect class="a-x a-o" x="-18" y="-9" width="9" height="7" rx="1.2"/>
-    <path class="a-l" d="M-21.5-12.6H16.5"/>
-  </g>
-  <g transform="translate(34 38) rotate(-4)">
-    <path class="a-b a-oo" d="M-23-14H17l6 6v22h-46z"/>
-    <path d="M-23-14H17l6 6v22h-46z" fill="url(#a-sheen)"/>
-    <path d="M-23-14H17l6 6v22h-46z" fill="url(#a-shade)"/>
-    <rect class="a-d" x="-22.4" y="5" width="44.8" height="4"/>
-    <rect class="a-x a-o" x="-18" y="-9" width="11" height="9" rx="1.5"/>
-    <path class="a-p" d="M-12.5-9v9M-18-4.5h11M-15.2-9v4.5M-9.8-4.5v4.5"/>
-    <path class="a-p" d="M-4-6h9l2.5 2.5h6M-4-2h5"/>
-    <circle class="a-g" cx="16" cy="-4" r="1.9" filter="url(#a-glow)"/>
-    <circle class="a-g" cx="16" cy="-4" r="1.1"/>
-    <path class="a-l" d="M-21.5-12.6H16.5"/>
+  <g transform="translate(1.7 1.8)">
+    <g transform="translate(29 25) rotate(-16)">
+      <path class="a-m a-oo" d="M-23-14H17l6 6v22h-46z"/>
+      <path d="M-23-14H17l6 6v22h-46z" fill="url(#a-sheen)"/>
+      <rect class="a-x a-o" x="-18" y="-9" width="9" height="7" rx="1.2"/>
+      <path class="a-l" d="M-21.5-12.6H16.5"/>
+    </g>
+    <g transform="translate(34 38) rotate(-4)">
+      <path class="a-b a-oo" d="M-23-14H17l6 6v22h-46z"/>
+      <path d="M-23-14H17l6 6v22h-46z" fill="url(#a-sheen)"/>
+      <path d="M-23-14H17l6 6v22h-46z" fill="url(#a-shade)"/>
+      <rect class="a-d" x="-22.4" y="5" width="44.8" height="4"/>
+      <rect class="a-x a-o" x="-18" y="-9" width="11" height="9" rx="1.5"/>
+      <path class="a-p" d="M-12.5-9v9M-18-4.5h11M-15.2-9v4.5M-9.8-4.5v4.5"/>
+      <path class="a-p" d="M-4-6h9l2.5 2.5h6M-4-2h5"/>
+      <circle class="a-g" cx="16" cy="-4" r="1.9" filter="url(#a-glow)"/>
+      <circle class="a-g" cx="16" cy="-4" r="1.1"/>
+      <path class="a-l" d="M-21.5-12.6H16.5"/>
+    </g>
   </g>
 </svg>

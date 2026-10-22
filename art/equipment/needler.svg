@@ -1,27 +1,29 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <path class="a-d a-oo" d="M12 30h10.6l-3 19c-.3 2-1.6 3.2-3.6 3.2h-4c-2.2 0-3.4-1.6-3-3.6z"/>
-  <path class="a-c" d="M13.6 32.6h7l-2.4 14.6c-.2 1-.8 1.6-1.8 1.6h-2.8c-1 0-1.6-.8-1.4-1.8z"/>
-  <path class="a-p" d="M13.2 36.4h6.8M12.6 40h6.8M12 43.6h6.8"/>
-  <path d="M12 30h10.6l-3 19c-.3 2-1.6 3.2-3.6 3.2h-4c-2.2 0-3.4-1.6-3-3.6z" fill="url(#a-shade)"/>
-  <path class="a-o" fill="none" d="M25.6 31c0 4.6 1.8 6.6 5 6.6h3.2V31"/>
-  <path class="a-d" d="M28.4 31.2c.6 2.2 1.4 3.2 2.8 3.6l.2-3.6z"/>
-  <path class="a-m a-o" d="M28 17.4h7.6c1.2 0 2 .8 2 2v1.4H28z"/>
-  <path class="a-b a-oo" d="M8 24.4c0-2.6 1.8-4.4 4.4-4.4h28L43.6 23v6.6H26.4l-1.6 1.8H12c-2.2 0-4-1.8-4-4z"/>
-  <path d="M8 24.4c0-2.6 1.8-4.4 4.4-4.4h28L43.6 23v6.6H26.4l-1.6 1.8H12c-2.2 0-4-1.8-4-4z" fill="url(#a-sheen)"/>
-  <rect class="a-d a-o" x="27.6" y="23" width="12" height="3.6" rx=".6"/>
-  <path class="a-w" d="M28.6 23.9h8.2l1.6.5-1.6.5h-8.2zM28.6 25.4h8.2l1.6.5-1.6.5h-8.2z"/>
-  <path class="a-p" d="M8.6 28.6h17.6M14.4 20.4V29"/>
-  <rect class="a-m a-oo" x="17.6" y="16.6" width="11" height="4.4" rx="1"/>
-  <rect class="a-s a-oo" x="19" y="5.6" width="8.2" height="12.2" rx="2.6"/>
-  <path class="a-x" d="M20.2 10.6h5.8v4.8c0 .8-.6 1.4-1.4 1.4h-3c-.8 0-1.4-.6-1.4-1.4z"/>
-  <circle class="a-w" cx="23.8" cy="12.6" r=".7"/>
-  <circle class="a-w" cx="22.2" cy="14.6" r=".5"/>
-  <path class="a-l" d="M20.8 7.6v8"/>
-  <rect class="a-m a-oo" x="18.2" y="3.4" width="9.8" height="3.2" rx="1"/>
-  <path class="a-d" d="M20.4 17.6h1.4v2.4h-1.4zM24.4 17.6h1.4v2.4h-1.4z"/>
-  <rect class="a-m a-oo" x="42.4" y="21.2" width="10.4" height="9.2" rx="2.4"/>
-  <rect x="42.4" y="21.2" width="10.4" height="9.2" rx="2.4" fill="url(#a-sheen)"/>
-  <path class="a-p" d="M45.2 21.6v8.4M47.6 21.6v8.4M50 21.6v8.4"/>
-  <path class="a-m a-oo" d="M52.6 23.4h3.6l5.6 2.4-5.6 2.4h-3.6z"/>
-  <path class="a-l" d="M10.8 21.6h6.4M29 21.6h10.4M43.6 22.6h8M53.4 24.4h3M19.2 4.6h7.4"/>
+  <g transform="translate(-2.83 4.17)">
+    <path class="a-d a-oo" d="M12 30h10.6l-3 19c-.3 2-1.6 3.2-3.6 3.2h-4c-2.2 0-3.4-1.6-3-3.6z"/>
+    <path class="a-c" d="M13.6 32.6h7l-2.4 14.6c-.2 1-.8 1.6-1.8 1.6h-2.8c-1 0-1.6-.8-1.4-1.8z"/>
+    <path class="a-p" d="M13.2 36.4h6.8M12.6 40h6.8M12 43.6h6.8"/>
+    <path d="M12 30h10.6l-3 19c-.3 2-1.6 3.2-3.6 3.2h-4c-2.2 0-3.4-1.6-3-3.6z" fill="url(#a-shade)"/>
+    <path class="a-o" fill="none" d="M25.6 31c0 4.6 1.8 6.6 5 6.6h3.2V31"/>
+    <path class="a-d" d="M28.4 31.2c.6 2.2 1.4 3.2 2.8 3.6l.2-3.6z"/>
+    <path class="a-m a-o" d="M28 17.4h7.6c1.2 0 2 .8 2 2v1.4H28z"/>
+    <path class="a-b a-oo" d="M8 24.4c0-2.6 1.8-4.4 4.4-4.4h28L43.6 23v6.6H26.4l-1.6 1.8H12c-2.2 0-4-1.8-4-4z"/>
+    <path d="M8 24.4c0-2.6 1.8-4.4 4.4-4.4h28L43.6 23v6.6H26.4l-1.6 1.8H12c-2.2 0-4-1.8-4-4z" fill="url(#a-sheen)"/>
+    <rect class="a-d a-o" x="27.6" y="23" width="12" height="3.6" rx=".6"/>
+    <path class="a-w" d="M28.6 23.9h8.2l1.6.5-1.6.5h-8.2zM28.6 25.4h8.2l1.6.5-1.6.5h-8.2z"/>
+    <path class="a-p" d="M8.6 28.6h17.6M14.4 20.4V29"/>
+    <rect class="a-m a-oo" x="17.6" y="16.6" width="11" height="4.4" rx="1"/>
+    <rect class="a-s a-oo" x="19" y="5.6" width="8.2" height="12.2" rx="2.6"/>
+    <path class="a-x" d="M20.2 10.6h5.8v4.8c0 .8-.6 1.4-1.4 1.4h-3c-.8 0-1.4-.6-1.4-1.4z"/>
+    <circle class="a-w" cx="23.8" cy="12.6" r=".7"/>
+    <circle class="a-w" cx="22.2" cy="14.6" r=".5"/>
+    <path class="a-l" d="M20.8 7.6v8"/>
+    <rect class="a-m a-oo" x="18.2" y="3.4" width="9.8" height="3.2" rx="1"/>
+    <path class="a-d" d="M20.4 17.6h1.4v2.4h-1.4zM24.4 17.6h1.4v2.4h-1.4z"/>
+    <rect class="a-m a-oo" x="42.4" y="21.2" width="10.4" height="9.2" rx="2.4"/>
+    <rect x="42.4" y="21.2" width="10.4" height="9.2" rx="2.4" fill="url(#a-sheen)"/>
+    <path class="a-p" d="M45.2 21.6v8.4M47.6 21.6v8.4M50 21.6v8.4"/>
+    <path class="a-m a-oo" d="M52.6 23.4h3.6l5.6 2.4-5.6 2.4h-3.6z"/>
+    <path class="a-l" d="M10.8 21.6h6.4M29 21.6h10.4M43.6 22.6h8M53.4 24.4h3M19.2 4.6h7.4"/>
+  </g>
 </svg>

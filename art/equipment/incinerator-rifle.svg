@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <g transform="rotate(-45 32 32) matrix(1 0 0 1.15 0 -4.8)">
+  <g transform="translate(-0.16 2.08) scale(0.96) rotate(-45 32 32) matrix(1 0 0 1.15 0 -4.8)">
     <path class="a-m a-oo" d="M17 25.4L4 27.2c-1.6.2-2.8 1.4-2.8 3v6.4c0 1.6 1.2 2.8 2.8 2.8h4.4L17 35.4z"/>
     <path d="M17 25.4L4 27.2c-1.6.2-2.8 1.4-2.8 3v6.4c0 1.6 1.2 2.8 2.8 2.8h4.4L17 35.4z" fill="url(#a-sheen)"/>
     <path class="a-c a-o" d="M5 26.4l9.4-1.2v3.2L5 29.4z"/>
@@ -7,7 +7,7 @@
     <path class="a-m a-oo" d="M19.6 34.4h7.4l-2.1 11.4c-.3 1.4-1.2 2.2-2.6 2.2h-3.2c-1.4 0-2.3-1-2-2.4z"/>
     <path class="a-c" d="M20.8 36.8h4.8l-1.7 8.8h-4.6z"/>
     <path class="a-p" d="M20.6 38l4.6 1.8M20.2 40.6l4.4 1.8M19.8 43.2l4.2 1.6"/>
-    <path class="a-o" fill="none" d="M27.6 35c0 4 1.4 5.4 3 5.4"/>
+    <path class="a-o" fill="none" d="M27.6 35c0 4 1.4 5.4 3 5.4h2.6v-5.2"/>
     <path class="a-m a-o" d="M44 32.6h3v1.6h-3zM54 35.8h7l1.4.6v1.2l-1.4.6h-7z"/>
     <rect class="a-x a-oo" x="37.4" y="33.6" width="17" height="7.2" rx="3.6"/>
     <rect x="37.4" y="33.6" width="17" height="7.2" rx="3.6" fill="url(#a-sheen)"/>

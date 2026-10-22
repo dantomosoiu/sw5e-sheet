@@ -14,15 +14,15 @@
   <rect class="a-s" x="40.8" y="20.4" width="1.2" height="2.2"/>
   <path class="a-x" d="M7.4 7.6a2 2 0 0 1 2-1.6h39.2a2 2 0 0 1 2 1.6z"/>
   <path class="a-l" d="M9.6 6.8h38.8"/>
-  <path class="a-m a-oo" d="M8.6 40.4h40.8l7 13.4a1.8 1.8 0 0 1-1.6 2.6H3.2a1.8 1.8 0 0 1-1.6-2.6z"/>
-  <path d="M8.6 40.4h40.8l7 13.4a1.8 1.8 0 0 1-1.6 2.6H3.2a1.8 1.8 0 0 1-1.6-2.6z" fill="url(#a-sheen)"/>
-  <path class="a-d" d="M10.8 42.6h36.4l.9 2H9.9zM9.4 46h39.2l1 2.2H8.4zM8 49.6h18l-.4 2.4H6.8zM28.4 49.6h21.6l1.2 2.4H28.2z"/>
+  <path class="a-m a-oo" d="M8.6 40.4h40.8l4.2 13.4a1.8 1.8 0 0 1-1.6 2.6H6a1.8 1.8 0 0 1-1.6-2.6z"/>
+  <path d="M8.6 40.4h40.8l4.2 13.4a1.8 1.8 0 0 1-1.6 2.6H6a1.8 1.8 0 0 1-1.6-2.6z" fill="url(#a-sheen)"/>
+  <path class="a-d" d="M10.5 42.6h37l.6 2H9.9zM9.4 46h39.2l.6 2.2H8.8zM8.3 49.6h17.7l-.4 2.4H7.6zM28.4 49.6h21.3l.7 2.4H28.2z"/>
   <path class="a-p" d="M16 42.8l-.4 1.6M22 42.8l-.2 1.6M28 42.8v1.6M34 42.8l.2 1.6M40 42.8l.4 1.6M14.6 46.2l-.4 1.8M21 46.2l-.2 1.8M27.4 46.2v1.8M34 46.2l.2 1.8M40.6 46.2l.4 1.8"/>
-  <path class="a-d" d="M2 54h53.8v.4a1.8 1.8 0 0 1-1.6 2H3.6a1.8 1.8 0 0 1-1.6-2z" opacity=".5"/>
+  <path class="a-d" d="M4.8 54h48.4v.4a1.8 1.8 0 0 1-1.6 2H6.4a1.8 1.8 0 0 1-1.6-2z" opacity=".5"/>
   <path class="a-l" d="M9.4 41.4h39.2"/>
-  <path class="a-oo" fill="none" d="M54.4 49c4.6-1 5.6-5 4.6-11.6"/>
-  <path class="a-l" d="M54.4 49c4.6-1 5.6-5 4.6-11.6" opacity=".4"/>
-  <g transform="rotate(-8 57 26)">
+  <path class="a-oo" fill="none" d="M52.6 49c4.4-1.2 5.2-5.2 4-11.4"/>
+  <path class="a-l" d="M52.6 49c4.4-1.2 5.2-5.2 4-11.4" opacity=".4"/>
+  <g transform="translate(-1.2 0) rotate(-3 57 26)">
     <path class="a-m a-o" d="M55.6 15.6l1.6-7.2l1.6 7.2z"/>
     <circle class="a-g" cx="57.2" cy="8.4" r="2" filter="url(#a-glow)"/>
     <circle class="a-w" cx="57.2" cy="8.6" r=".7"/>

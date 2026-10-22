@@ -9,11 +9,8 @@
   <path class="a-m a-o" d="M22 35c-8-5-11-17-5-27l2.6 1.4c-5 8.6-2.6 18.6 4 23.4z"/>
   <path class="a-m a-o" d="M42 35c8-5 11-17 5-27l-2.6 1.4c5 8.6 2.6 18.6-4 23.4z"/>
   <path class="a-d" d="M15.6 18.6a.8.8 0 1 0 1.6 0 .8.8 0 1 0-1.6 0zM15.9 22.4a.8.8 0 1 0 1.6 0 .8.8 0 1 0-1.6 0zM16.8 26.2a.8.8 0 1 0 1.6 0 .8.8 0 1 0-1.6 0zM46.8 18.6a.8.8 0 1 0 1.6 0 .8.8 0 1 0-1.6 0zM46.5 22.4a.8.8 0 1 0 1.6 0 .8.8 0 1 0-1.6 0zM45.6 26.2a.8.8 0 1 0 1.6 0 .8.8 0 1 0-1.6 0z"/>
-  <path class="a-oo" fill="none" style="stroke-width:2.2" d="M29.4 26.6c-3.4-2.2-6.6-5.6-7.4-10.2"/>
-  <path class="a-l" opacity=".45" d="M29.4 26.6c-3.4-2.2-6.6-5.6-7.4-10.2"/>
-  <path class="a-x a-o" d="M20.6 15.6l1.6-2.2 1.8 1.2-1.4 2.2z"/>
-  <path class="a-gl" filter="url(#a-glow)" opacity=".7" d="M34.8 26.4c3-2.6 5.4-6 6.4-10"/>
-  <path class="a-gl" style="stroke-width:.8" d="M34.8 26.4c3-2.6 5.4-6 6.4-10"/>
+  <path class="a-gl" filter="url(#a-glow)" opacity=".7" d="M34.8 26.4c3-2.6 5.4-6 6.4-10M29.2 26.4c-3-2.6-5.4-6-6.4-10"/>
+  <path class="a-gl" style="stroke-width:.8" d="M34.8 26.4c3-2.6 5.4-6 6.4-10M29.2 26.4c-3-2.6-5.4-6-6.4-10"/>
   <path class="a-b a-oo" d="M19 34h26l-4 7H23z"/>
   <path d="M19 34h26l-4 7H23z" fill="url(#a-sheen)"/>
   <rect class="a-d a-o" x="22" y="35.4" width="4.4" height="3" rx=".6"/>

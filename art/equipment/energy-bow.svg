@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <g transform="rotate(-45 32 32)">
+    <polyline class="a-gl" points="37.2,2 15.6,32 37.2,62" filter="url(#a-glow)" opacity=".8"/>
+    <polyline class="a-gl" points="37.2,2 15.6,32 37.2,62"/>
+    <path class="a-b a-oo" d="M44.4 21C43.6 13.6 40.8 8.4 37.6 5l.8-3.2-1.6-1-1.8 3.8C38.4 8.4 41.4 14 42.2 21zM44.4 43c-.8 7.4-3.6 12.6-6.8 16l.8 3.2-1.6 1-1.8-3.8C38.4 55.6 41.4 50 42.2 43z"/>
+    <path class="a-p" d="M42 16c-.8-2.6-2-5-3.4-7M42 48c-.8 2.6-2 5-3.4 7"/>
+    <circle class="a-g" cx="37.2" cy="2" r="1.8" filter="url(#a-glow)"/>
+    <circle class="a-w" cx="37.2" cy="2" r=".7"/>
+    <circle class="a-g" cx="37.2" cy="62" r="1.8" filter="url(#a-glow)"/>
+    <circle class="a-w" cx="37.2" cy="62" r=".7"/>
+    <path class="a-m a-oo" d="M41.4 19.6h4.4l1.2 3v18.8l-1.2 3h-4.4l.8-3V22.6z"/>
+    <path d="M41.4 19.6h4.4l1.2 3v18.8l-1.2 3h-4.4l.8-3V22.6z" fill="url(#a-sheen)"/>
+    <rect class="a-s" x="43.2" y="21.8" width="2.4" height="4.6" rx=".6"/>
+    <rect class="a-g" x="43.6" y="22.4" width="1.6" height="3.4" rx=".4"/>
+    <rect class="a-c a-o" x="42.4" y="34.2" width="4.6" height="7.6" rx="1.4"/>
+    <path class="a-p" d="M42.6 36.6h4.2M42.6 39.2h4.2"/>
+    <rect class="a-g" x="15.4" y="30.2" width="45.4" height="3.6" rx="1.8" filter="url(#a-glow-lg)" opacity=".85"/>
+    <path class="a-g" d="M16.6 31.1h39.6l4.6.9-4.6.9H16.6z"/>
+    <path class="a-w" d="M17.4 31.7h38l2.2.3-2.2.3h-38z"/>
+    <path class="a-m a-o" d="M14.2 30.6h3v2.8h-3z"/>
+    <path class="a-l" d="M42.2 20.6h3.2M43.4 20.4c-1-5.6-3-9.6-5.6-13"/>
+  </g>
+</svg>

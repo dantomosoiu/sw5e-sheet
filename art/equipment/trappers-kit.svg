@@ -4,9 +4,9 @@
   <rect class="a-b a-oo" x="2.4" y="30.6" width="5.4" height="10.8" rx="2.2"/>
   <rect class="a-b a-oo" x="56.2" y="30.6" width="5.4" height="10.8" rx="2.2"/>
   <path class="a-p" d="M3 33.8h4.2M3 36h4.2M3 38.2h4.2M56.8 33.8H61M56.8 36H61M56.8 38.2H61"/>
-  <circle class="a-g" cx="58.9" cy="28.4" r="1.6" filter="url(#a-glow)"/>
-  <circle class="a-g a-o" cx="58.9" cy="28.4" r="1"/>
-  <ellipse class="a-m a-o" cx="32" cy="50.6" rx="1.8" ry="2.6"/>
+  <circle class="a-g" cx="58.9" cy="30.2" r="1.6" filter="url(#a-glow)"/>
+  <circle class="a-g a-o" cx="58.9" cy="30.2" r="1"/>
+    <ellipse class="a-m a-o" cx="32" cy="50.6" rx="1.8" ry="2.6"/>
   <ellipse class="a-d" cx="32" cy="50.6" rx=".6" ry="1.4"/>
   <rect class="a-m a-o" x="31.1" y="52.2" width="1.8" height="5" rx=".9"/>
   <path class="a-m a-oo" d="M14 56.2h38.6l5 2.2-5 2.2H14z"/>

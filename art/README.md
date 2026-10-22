@@ -88,6 +88,15 @@ shares `jetpack.svg`, its tier shows as pips on the tile). Same rules and look a
 - **Chassis** (Blaster Chassis, Armor Chassis…) are unfinished frames for crafting: the item's skeleton, open panels,
   exposed wiring and mounting points, maybe a schematic glow.
 
+**Well built** (the user's own check, 2026-10-22): front-view things (armor, suits, clothes, shields, helmets, masks,
+robes, pairs) are symmetric left to right, with at most one deliberate one-sided feature that obviously makes sense;
+nothing sticks out without a purpose; no detached fragments except clear effects (sparks, glints, motion lines); no
+gaps where mirrored halves meet; sheen and shade overlays exactly on their shapes; nothing cut off by the canvas.
+`python dev/art-qa.py --only <names> --all-sheets` measures it (symmetry of outline and details, stray bits, edges) and
+draws review sheets in `dist/art/qa/<run>/` (red: outline parts with no mirror twin; orange: one-sided details). Run
+it before calling a picture done. A flag that is right on purpose (sparks at a tip, motion lines, the top-left light's
+glints) goes in `art/qa-accepted.txt` with the reason, one line per picture and check; every other flag gets fixed.
+
 Check them with `python dev/art.py preview --only eq-<prefix>* --scale 160` (item pictures are `eq-<slug>` in
 previews) and, as the sheet shows them, `python dev/art.py items --names "Cryo pistol;Ion pistol"`.
 

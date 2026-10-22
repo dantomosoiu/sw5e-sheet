@@ -222,7 +222,8 @@ function artGlow(it, icon, badge) {
   if (it && ART_COLORS.includes(it.color)) return it.color;
   const name = String((it && it.name) || '').toLowerCase();
   if (icon.startsWith('lightsaber') || ['lightwhip', 'lightaxe', 'lightfist', 'kyber-crystal'].includes(icon)) {
-    if (/sith|blight|dark|crimson|bleed/.test(name)) return 'red';
+    if (/darksaber/.test(name)) return 'white';
+    if (/sith|blight|dark|crimson|bleed|inquisitor/.test(name)) return 'red';
     if (/sun ?saber|sunsaber/.test(name)) return 'yellow';
     return ART_BLADES[artHash(name) % ART_BLADES.length];
   }
@@ -230,6 +231,8 @@ function artGlow(it, icon, badge) {
     stun: 'cyan', flash: 'white', panic: 'violet', frag: 'red' };
   if (badge && byBadge[badge]) return byBadge[badge];
   if (/radiation|radrifle/.test(name)) return 'yellow';
+  if (/heat generator/.test(name)) return 'orange';
+  if (/gravity generator/.test(name)) return 'violet';
   if (/vapor projector/.test(name)) return 'accent';
   if (/disruptor/.test(name)) return 'green';
   if (icon.startsWith('blaster') || ['wrist-blaster', 'bowcaster', 'launcher', 'grenade', 'mine', 'demo-charge', 'thermal-detonator'].includes(icon)) return 'red';
@@ -246,6 +249,8 @@ const ART_MOD_PAINT = { blaster: 'red', vibroweapon: 'gold', lightweapon: 'blue'
 const ART_PAINT_BY_NAME = [
   [/lightning|arc caster/, 'copper'], [/matrix armor/, 'purple'], [/beskar/, 'white'], [/chef/, 'gold'], [/bioanalysis/, 'green'],
   [/disguise kit/, 'red'], [/poisoner/, 'green'], [/brewer/, 'copper'], [/incinerator/, 'red'], [/orbalisk/, 'green'],
+  [/diving suit/, 'gold'], [/flame-proof/, 'white'], [/hazard suit/, 'hazard'], [/chemical suit/, 'white'], [/water suit/, 'blue'],
+  [/conductive suit/, 'copper'], [/dampening suit/, 'black'], [/emergency raft/, 'hazard'], [/fire extinguisher/, 'red'],
 ];
 function artPaint(icon, it) {
   if (icon === 'mod-chip') return ART_MOD_PAINT[String((it && it.subtype) || '').toLowerCase()] || 'accent';

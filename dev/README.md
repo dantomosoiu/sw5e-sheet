@@ -157,6 +157,11 @@ python dev/art.py preview --only lightsaber*,medpac --scale 160
 python dev/art.py preview --emblems
 python dev/art.py themes --styles engineer,scholar   # the sheet itself in those styles, dark and light
 ```
+`python dev/art-qa.py [--only …] [--all-sheets]` is the pictures' sanity check: symmetry of front-view items (outline
+and details), stray fragments, parts cut off by the canvas; a report and review sheets in `dist/art/qa/<run>/`. Flags
+kept on purpose are listed, with the reason, in `art/qa-accepted.txt`.
+`python dev/art-manifest.py` writes the drawing briefs (one picture per SW5E item), `python dev/art-release.py <batches>`
+stages reviewed batches and builds the sprite from reviewed pictures only.
 `themes` draws a saved copy of the dev page (`dev/dumps/mock.html`, git-ignored). To make one, open the dev page on a
 character and run in its console:
 `fetch('/dev/dump/mock.html', {method: 'POST', body: '<!doctype html>

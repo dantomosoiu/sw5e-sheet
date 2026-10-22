@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <g transform="rotate(-45 32 32)">
+    <path class="a-g" d="M24.6 26.4H61q7 .6 9.8 6.8-7.4 4.4-46.2 4.4z" filter="url(#a-glow-lg)" opacity=".75"/>
+    <path class="a-g" d="M25 27.6h36q6.2.4 9 5.6-7 3.2-45 3.2z" filter="url(#a-glow)"/>
+    <path class="a-w" d="M25.4 28.2H61q5.6.4 8.4 5-6 2.6-44 2.6z"/>
+    <path class="a-d" d="M26.2 29.2h34.6q4.2.4 6.4 3.8-5.4 1.8-41 1.8z"/>
+    <path class="a-g" d="M27 30.4h33.4l2.6 1H27z" opacity=".4"/>
+    <path class="a-m a-oo" d="M-2.4 28.6h-2.8L-7 30.4v3.2l1.8 1.8h2.8z"/>
+    <rect class="a-x a-o" x="-4.2" y="28.4" width="1.6" height="7.2" rx=".4"/>
+    <rect class="a-c a-oo" x="-2.8" y="28.8" width="13" height="6.4" rx=".8"/>
+    <path class="a-p" d="M-1 29l1.2 6M1.6 29l1.2 6M4.2 29l1.2 6M6.8 29l1.2 6"/>
+    <rect x="-2.8" y="28.8" width="13" height="6.4" rx=".8" fill="url(#a-shade)"/>
+    <rect class="a-x a-o" x="9.8" y="28" width="1.8" height="8" rx=".5"/>
+    <path class="a-b a-oo" d="M11.4 28.2h9.4l2.4 1.2v5.2l-2.4 1.2h-9.4z"/>
+    <path d="M11.4 28.2h9.4l2.4 1.2v5.2l-2.4 1.2h-9.4z" fill="url(#a-sheen)"/>
+    <rect class="a-s a-o" x="13" y="31.2" width="6.2" height="1.6" rx=".6"/>
+    <path class="a-p" d="M16.2 28.6v2.2M16.2 33.2v2.4"/>
+    <path class="a-m a-oo" d="M22.8 27.4h2.6v1h1v8.2h-1v1h-2.6z"/>
+    <path d="M22.8 27.4h2.6v1h1v8.2h-1v1h-2.6z" fill="url(#a-sheen)"/>
+    <rect class="a-d a-o" x="25.2" y="28.4" width="1.2" height="7.2" rx=".4"/>
+    <path class="a-l" d="M-5.6 30.4l1-1M-1.8 29.8h11M12.4 29.2h8M23.4 28.2h1.6"/>
+  </g>
+</svg>

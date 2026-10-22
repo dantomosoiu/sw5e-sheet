@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <g transform="rotate(-45 32 32)">
+  <g transform="translate(4.11 1.14) scale(0.94) rotate(-45 32 32)">
     <path class="a-b a-oo" d="M21 25.4h27.6l1.8 2h3.6l1.8-2H58c4 0 8 1.4 11.6 4l-3.2 4.4C62 38.2 56 39.8 49 39.8l-28-1.6z"/>
     <path d="M21 25.4h27.6l1.8 2h3.6l1.8-2H58c4 0 8 1.4 11.6 4l-3.2 4.4C62 38.2 56 39.8 49 39.8l-28-1.6z" fill="url(#a-sheen)"/>
     <path class="a-m" d="M21 34.4l28 1.4c6.6 0 12-1.6 16.6-4.8l.8 2.8C62 38.2 56 39.8 49 39.8l-28-1.6z"/>

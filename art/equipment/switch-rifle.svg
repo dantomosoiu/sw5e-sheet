@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <g transform="rotate(-45 32 32) matrix(1 0 0 1.15 0 -4.8)">
+  <g transform="translate(2.72 1.92) scale(0.96) rotate(-45 32 32) matrix(1 0 0 1.15 0 -4.8)">
     <path class="a-m a-oo" d="M16 25L5 26.4H2.6c-1.2 0-2 .8-2 2v8.6c0 1.2.8 2 2 2h4L16 35z"/>
     <path d="M16 25L5 26.4H2.6c-1.2 0-2 .8-2 2v8.6c0 1.2.8 2 2 2h4L16 35z" fill="url(#a-sheen)"/>
     <path class="a-c" d="M5.4 28.2l8.6-1v3.6l-8.6.6z"/>
@@ -27,7 +27,7 @@
     <circle class="a-m" cx="36" cy="30.2" r="1.1"/>
     <circle class="a-x a-oo" cx="26.8" cy="28.4" r="4"/>
     <circle cx="26.8" cy="28.4" r="4" fill="url(#a-sheen)"/>
-    <path class="a-m a-oo" d="M25.2 27.2l6.6-6.2 2.4 2.4-6.4 6.6z"/>
+    <path class="a-m a-oo" d="M25.2 27.2l5.2-4.8 2.4 2.4-5 5.2z"/>
     <circle class="a-m a-o" cx="26.8" cy="28.4" r="1.8"/>
     <path class="a-d a-o" d="M18.4 19.6h2.6v2.8h-2.6zM29.8 19.6h2.6v2.8h-2.6z"/>
     <rect class="a-m a-oo" x="15.4" y="15" width="21.6" height="5" rx="2.5"/>

@@ -1,13 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <g transform="rotate(-45 32 32) matrix(1 0 0 1.15 0 -4.8)">
+  <g transform="translate(1.45 3.17) scale(0.94) rotate(-45 32 32) matrix(1 0 0 1.15 0 -4.8)">
     <path class="a-m a-oo" fill-rule="evenodd" d="M17 25L4.4 26.6C2.2 26.8.8 28 .8 30v6.6c0 1.6 1.2 2.8 2.8 2.8h4.8L17 35.6zM6.4 30.8l7.8-.9v3l-7.8 1.8z"/>
-    <path d="M17 25L4.4 26.6C2.2 26.8.8 28 .8 30v6.6c0 1.6 1.2 2.8 2.8 2.8h4.8L17 35.6z" fill="url(#a-sheen)"/>
+    <path fill-rule="evenodd" d="M17 25L4.4 26.6C2.2 26.8.8 28 .8 30v6.6c0 1.6 1.2 2.8 2.8 2.8h4.8L17 35.6zM6.4 30.8l7.8-.9v3l-7.8 1.8z" fill="url(#a-sheen)"/>
     <path class="a-c a-o" d="M4.6 25.6l10-1.2.4 2.6-10 1.2z"/>
     <rect class="a-d a-o" x="-.2" y="27" width="2.6" height="12.6" rx="1"/>
     <path class="a-d a-oo" d="M19.6 34.4h7.4l-2.1 11.4c-.3 1.4-1.2 2.2-2.6 2.2h-3.2c-1.4 0-2.3-1-2-2.4z"/>
     <path class="a-c" d="M20.8 36.8h4.8l-1.7 8.8h-4.6z"/>
     <path class="a-p" d="M20.4 39.2h4.6M20 41.4h4.6M19.6 43.6h4.6"/>
-    <path class="a-o" fill="none" d="M27.6 35c0 4 1.4 5.4 3 5.4"/>
+    <path class="a-o" fill="none" d="M27.6 35c0 4 1.4 5.4 3 5.4h2.6v-5.4"/>
     <rect class="a-m a-oo" x="40.6" y="27.4" width="21" height="4.6" rx="1"/>
     <rect x="40.6" y="27.4" width="21" height="4.6" rx="1" fill="url(#a-sheen)"/>
     <rect class="a-m a-oo" x="45.4" y="23" width="14.2" height="13.4" rx="1.4"/>

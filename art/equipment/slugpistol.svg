@@ -21,6 +21,6 @@
   <rect class="a-m a-o" x="8.6" y="16" width="3.6" height="2.4" rx=".5"/>
   <rect class="a-m a-o" x="46.4" y="16.2" width="2" height="2.2" rx=".4"/>
   <rect class="a-x a-o" x="33" y="8.6" width="3.2" height="6.4" rx="1.2" transform="rotate(38 34.6 11.8)"/>
-  <path class="a-m" d="M37.2 12.6l1.4 1.1-1 1.3-1.4-1.1z"/>
+  <rect class="a-m" x="33.4" y="13" width="2.4" height="1.6" transform="rotate(38 34.6 11.8)"/>
   <path class="a-l" d="M8.4 19.4h1M17 19.4h11M38.4 19.4h11.6M51 22.2h5.2"/>
 </svg>

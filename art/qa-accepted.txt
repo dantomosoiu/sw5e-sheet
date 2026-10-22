@@ -1,0 +1,20 @@
+# Flags from dev/art-qa.py that a reviewer looked at and kept on purpose: <picture> <outline|detail|stray|edge>: <why>.
+# Anything flagged and not listed here is a problem to fix. The report says when a line here stops being needed.
+
+clothes detail: the wrap tunic's crossed front and its one hanging sash end
+goggles detail: lens glints from the top-left light
+eq-orbalisk-armor detail: a highlight on each creature from the top-left light
+eq-focus-generator-chassis outline: the one loose power lead every unfinished chassis has
+eq-focus-generator-chassis stray: a dash of the empty crystal slot's outline
+eq-shield-chassis outline: partly assembled; the loose cable hangs from the hub into a bay
+eq-shield-chassis detail: partly assembled; some bays hold plates or modules, others are empty slots
+eq-tunic-chassis stray: dashes of the unfinished half's outline
+eq-verpine-auto-shielding-unit outline: the rim highlight on the lit left side
+eq-verpine-auto-shielding-unit stray: a mirrored pair of hex-field lines showing between the wings
+eq-ship-shield stray: pieces of the hex field around the ship
+stealth-field stray: the field's shimmer lines
+fusion-cutter stray: spark dots at the cutting tip
+spice stray: a sparkle above the sack
+eq-spicers-kit stray: a sparkle over the glowing spice
+unarmed-horns stray: motion lines of the charge
+unarmed-martial stray: motion lines of the strike

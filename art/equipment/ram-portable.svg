@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <clipPath id="ram-portable-band"><rect x="34" y="24" width="7.4" height="16"/></clipPath>
+  <g transform="rotate(-45 32 32)">
+    <path class="a-x a-oo" fill-rule="evenodd" d="M14 25V15a3.4 3.4 0 0 1 3.4-3.4h4.4a3.4 3.4 0 0 1 3.4 3.4v10zM17.2 25v-9.4h4.8V25zM28 25V15a3.4 3.4 0 0 1 3.4-3.4h4.4a3.4 3.4 0 0 1 3.4 3.4v10zM31.2 25v-9.4h4.8V25z"/>
+    <path class="a-d a-o" d="M16.4 10.8h6.4v4h-6.4zM30.4 10.8h6.4v4h-6.4z"/>
+    <path class="a-m" d="M18.2 11.2h.8v3.2h-.8zM20.2 11.2h.8v3.2h-.8zM32.2 11.2h.8v3.2h-.8zM34.2 11.2h.8v3.2h-.8z"/>
+    <path class="a-l" d="M14.8 16.6c0-2 1-3.6 1.6-4M28.8 16.6c0-2 1-3.6 1.6-4"/>
+    <rect class="a-d a-oo" x="3.6" y="25.4" width="6" height="13.2" rx="2.6"/>
+    <rect class="a-b a-oo" x="7.6" y="24" width="36.4" height="16" rx="2"/>
+    <rect x="7.6" y="24" width="36.4" height="16" rx="2" fill="url(#a-sheen)"/>
+    <rect x="7.6" y="24" width="36.4" height="16" rx="2" fill="url(#a-shade)"/>
+    <path class="a-x" d="M34 24.4h7.4v15.2H34z"/>
+    <path class="a-d" clip-path="url(#ram-portable-band)" d="M31 41l5-18h2.6l-5 18zM36.6 41l5-18h2.6l-5 18z"/>
+    <path class="a-p" d="M11.6 24.4v15.2M26.4 24.4v15.2M34 24.4v15.2M10 36.4h22"/>
+    <path class="a-p" d="M15.6 38.6c1-1.4 2.6-1.6 3.6-.6M27.6 37.6c.6-.8 1.6-1 2.4-.4"/>
+    <rect class="a-m a-oo" x="41.6" y="21.6" width="4.4" height="20.8" rx="1"/>
+    <path class="a-m a-oo" d="M45.4 20h8.8l3.4 3.4v17.2L54.2 44h-8.8z"/>
+    <path d="M45.4 20h8.8l3.4 3.4v17.2L54.2 44h-8.8z" fill="url(#a-sheen)"/>
+    <path d="M45.4 20h8.8l3.4 3.4v17.2L54.2 44h-8.8z" fill="url(#a-shade)"/>
+    <path class="a-d a-o" d="M57.6 24.6h2.4v3.4h-2.4zM57.6 30.3h2.4v3.4h-2.4zM57.6 36h2.4v3.4h-2.4z"/>
+    <path class="a-p" d="M54.2 20.4v23.2M45.8 32h8"/>
+    <circle class="a-b a-o" cx="49" cy="24" r="1.2"/>
+    <circle class="a-b a-o" cx="49" cy="40" r="1.2"/>
+    <path class="a-p" d="M55.6 29.4l1.4 1.4M51 35.6l1.6-.6"/>
+    <path class="a-l" d="M9.2 25.4h23.4M46 21.4h7.8M42.4 23v4M5 27.4v6"/>
+  </g>
+</svg>

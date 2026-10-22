@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
   <g transform="rotate(-45 32 32)">
-    <polyline class="a-gl" points="41.4,12 26,24.6 41.4,49" filter="url(#a-glow)" opacity=".8"/>
-    <polyline class="a-gl" points="41.4,12 26,24.6 41.4,49"/>
+    <polyline class="a-gl" points="41.4,12 26,30.5 41.4,49" filter="url(#a-glow)" opacity=".8"/>
+    <polyline class="a-gl" points="41.4,12 26,30.5 41.4,49"/>
     <path class="a-c a-oo" d="M18 27L5 28.4c-1.4.2-2.4 1.2-2.4 2.6v6.6c0 1.4 1 2.4 2.4 2.4h3.6l9.4-4.6z"/>
     <path class="a-d" d="M8 29.6l3.4-.4v8.2L8 38.6zM13 29l2-.2v6.6l-2 1z"/>
     <path d="M18 27L5 28.4c-1.4.2-2.4 1.2-2.4 2.6v6.6c0 1.4 1 2.4 2.4 2.4h3.6l9.4-4.6z" fill="url(#a-shade)"/>

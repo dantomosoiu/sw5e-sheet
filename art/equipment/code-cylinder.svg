@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <g id="code-cylinder-c" transform="translate(32.6 25.4) rotate(-35)">
+    <rect class="a-d a-oo" x="-24.6" y="-3" width="6" height="6" rx="1"/>
+    <path class="a-m" d="M-23.4-3v1.6h1.2V-3zM-21-3v2.4h1.2V-3zM-23.4 3V1.4h1.2V3zM-21 3V.6h1.2V3z"/>
+    <circle class="a-g" cx="-24.8" cy="0" r="1.6" filter="url(#a-glow)"/>
+    <circle class="a-g" cx="-24.8" cy="0" r=".9"/>
+    <rect class="a-m a-oo" x="-19.6" y="-4.8" width="34" height="9.6" rx="2"/>
+    <rect x="-19.6" y="-4.8" width="34" height="9.6" rx="2" fill="url(#a-sheen)"/>
+    <rect x="-19.6" y="-4.8" width="34" height="9.6" rx="2" fill="url(#a-shade)"/>
+    <path class="a-x" d="M-15.6-4.7h1.4v9.4h-1.4zM-12.6-4.7h3v9.4h-3zM-7.8-4.7h.9v9.4h-.9zM-5.6-4.7h2v9.4h-2z"/>
+    <path class="a-d" d="M-1.6-4.7h1v9.4h-1z"/>
+    <rect class="a-b a-oo" x="11.4" y="-5.6" width="11.4" height="11.2" rx="2.8"/>
+    <rect x="11.4" y="-5.6" width="11.4" height="11.2" rx="2.8" fill="url(#a-sheen)"/>
+    <path class="a-p" d="M15 -5.6v11.2M17.4 -5.6v11.2M19.8 -5.6v11.2"/>
+    <path class="a-b a-o" d="M14.4-5.6v-2.2H.6C-.6-7.8-1.4-7-1.4-6v1.2h1.8v-1H12.4v1.2z"/>
+    <path class="a-l" d="M-18.4-3.6h29.6M12.6-4.4h8.8"/>
+  </g>
+  <use href="#code-cylinder-c" transform="translate(-.6 13.2)"/>
+</svg>

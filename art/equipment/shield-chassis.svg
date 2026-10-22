@@ -5,7 +5,7 @@
     <path class="a-b a-o" d="M10 6h20.4v14.6H10z"/>
     <path class="a-x" d="M10 17.4h20.4v3.2H10z"/>
     <path d="M10 6h20.4v14.6H10z" fill="url(#a-sheen)"/>
-    <path class="a-gl" style="stroke-width:.6" opacity=".8" stroke-dasharray="1.6 1.2" d="M13.6 25.6h14.8v7.6H13.6zM35.6 41h12.6c-1.6 3.6-5 6.6-12.6 10.6zM13.6 40.6h7.4"/>
+    <path class="a-gl" style="stroke-width:.6" opacity=".8" stroke-dasharray="1.6 1.2" d="M13.6 25.6h14.8v7.6H13.6zM35.6 41h12.6c-1.6 3.6-5 6.6-12.6 10.6zM28.4 41H15.8c1.6 3.6 5 6.6 12.6 10.6z"/>
   </g>
   <path class="a-m a-o" d="M30.4 7h3.2v49h-3.2zM11 20.6h42v3H11zM11 35h42v3H11z"/>
   <path class="a-d" d="M16 22.1a.8.8 0 1 0 1.6 0 .8.8 0 1 0-1.6 0zM22 22.1a.8.8 0 1 0 1.6 0 .8.8 0 1 0-1.6 0zM40.4 22.1a.8.8 0 1 0 1.6 0 .8.8 0 1 0-1.6 0zM46.4 22.1a.8.8 0 1 0 1.6 0 .8.8 0 1 0-1.6 0zM15.6 36.5a.8.8 0 1 0 1.6 0 .8.8 0 1 0-1.6 0zM46.8 36.5a.8.8 0 1 0 1.6 0 .8.8 0 1 0-1.6 0zM31.2 13a.8.8 0 1 0 1.6 0 .8.8 0 1 0-1.6 0zM31.2 28.6a.8.8 0 1 0 1.6 0 .8.8 0 1 0-1.6 0zM31.2 47a.8.8 0 1 0 1.6 0 .8.8 0 1 0-1.6 0z"/>
@@ -22,8 +22,8 @@
   <circle cx="32" cy="36.5" r="4.8" fill="url(#a-sheen)"/>
   <circle class="a-d a-o" cx="32" cy="36.5" r="2.6"/>
   <circle class="a-gl" style="stroke-width:.6" cx="32" cy="36.5" r="1.4" filter="url(#a-glow)"/>
-  <path class="a-oo" fill="none" style="stroke-width:2.4" d="M28.4 39.6c-5 2-8.6 6-7.6 10.6.8 3.6-1.4 6-4 8.4M27.6 38.4c-3.4.4-6 2.4-7.4 5"/>
-  <path class="a-l" opacity=".45" d="M28.4 39.6c-5 2-8.6 6-7.6 10.6.8 3.6-1.4 6-4 8.4"/>
-  <path class="a-x a-o" d="M15.4 57.4l2.6-2.4 1.6 1.6-2.6 2.4z"/>
+  <path class="a-oo" fill="none" style="stroke-width:2.4" d="M28.4 39.6c-3 1.2-4.6 3-4.4 5.4"/>
+  <path class="a-l" opacity=".45" d="M28.4 39.6c-3 1.2-4.6 3-4.4 5.4"/>
+  <path class="a-x a-o" d="M22.8 44.8h2.4v2.8h-2.4z"/>
   <path class="a-l" d="M12.6 5.7h39M9.2 9.4V36M11.6 21.6h18M34.6 21.6h17.4M31.2 8v12"/>
 </svg>

@@ -1,11 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <g transform="rotate(-45 32 32) matrix(1 0 0 1.15 0 -4.8)">
+  <g transform="translate(2.09 2.58) scale(0.97) rotate(-45 32 32) matrix(1 0 0 1.15 0 -4.8)">
     <path class="a-m a-oo" d="M15 25.6L5 26.4c-1.6.2-2.6 1.2-2.6 2.8v6.2c0 1.4 1 2.4 2.4 2.4h2.6L15 35z"/>
     <path d="M15 25.6L5 26.4c-1.6.2-2.6 1.2-2.6 2.8v6.2c0 1.4 1 2.4 2.4 2.4h2.6L15 35z" fill="url(#a-sheen)"/>
     <rect class="a-c a-o" x=".6" y="26" width="3" height="12.4" rx="1"/>
     <path class="a-d a-oo" d="M18 33.6h7.4l-2 11.2c-.3 1.4-1.2 2.2-2.6 2.2h-3c-1.4 0-2.2-1-2-2.4z"/>
     <path class="a-c" d="M19.2 36h4.8l-1.6 8.6h-4.6z"/>
-    <path class="a-o" fill="none" d="M26 34.2c0 4 1.4 5.4 3.4 5.4"/>
+    <path class="a-o" fill="none" d="M26 34.2c0 4 1.4 5.4 3.4 5.4h2.4v-5"/>
     <rect class="a-m a-oo" x="36" y="27" width="21" height="4.4" rx="1"/>
     <path class="a-p" d="M40 27.4v3.6M44 27.4v3.6"/>
     <rect class="a-c a-o" x="46.4" y="25.8" width="7.2" height="6.8" rx="1.4"/>

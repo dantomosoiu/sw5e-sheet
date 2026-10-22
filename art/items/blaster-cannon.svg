@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
   <path class="a-m a-o" d="M27.6 40L8.4 55.4l2 1.6 19.2-15zM34.4 40l19.2 15.4-2 1.6-19.2-15zM29.4 41h3.2l1.2 15h-5.6z"/>
-  <path class="a-d a-o" d="M6 54.6h6.6v3H6zM51.4 54.6H58v3h-6.6zM27.4 55.4h7.2v3h-7.2z"/>
+  <path class="a-d a-o" d="M6 54.6h6.6v3H6zM49.4 54.6H56v3h-6.6zM27.4 55.4h7.2v3h-7.2z"/>
   <rect class="a-m a-oo" x="27.2" y="33" width="7.6" height="10" rx="1.2"/>
   <rect x="27.2" y="33" width="7.6" height="10" rx="1.2" fill="url(#a-sheen)"/>
   <path class="a-oo" fill="none" d="M13.4 34.6c-1.6 6 4 9.4 14 6.8M17.4 35.2c0 4 4 5.2 10 4.4"/>

@@ -18,6 +18,6 @@
     <circle class="a-g" cx="17.4" cy="33.8" r=".8" filter="url(#a-glow)"/>
     <path class="a-l" d="M-5 30.4l1-1M-2 29.6h13M15 29.4h5.2M21 28l2.8-2.8q3.2-.8 5.6.6"/>
   </g>
-  <path class="a-g" d="M47.4 31.6q1.8 2.4 1.8 3.6a1.8 1.8 0 0 1-3.6 0q0-1.2 1.8-3.6z" filter="url(#a-glow)"/>
-  <path class="a-g" d="M47.4 32.6q1.3 1.8 1.3 2.6a1.3 1.3 0 0 1-2.6 0q0-.8 1.3-2.6z"/>
+  <path class="a-g" d="M45.3 28.8q1.8 2.4 1.8 3.6a1.8 1.8 0 0 1-3.6 0q0-1.2 1.8-3.6z" filter="url(#a-glow)"/>
+  <path class="a-g" d="M45.3 29.8q1.3 1.8 1.3 2.6a1.3 1.3 0 0 1-2.6 0q0-.8 1.3-2.6z"/>
 </svg>

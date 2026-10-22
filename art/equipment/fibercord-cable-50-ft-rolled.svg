@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <g id="fibercord-cable-50-ft-rolled-r">
+    <path class="a-x a-o" fill-rule="evenodd" d="M7 26a22 13.5 0 1 0 44 0a22 13.5 0 1 0-44 0zM10.4 26a18.6 10.1 0 1 0 37.2 0a18.6 10.1 0 1 0-37.2 0z"/>
+    <ellipse class="a-p" cx="29" cy="26" rx="20.3" ry="11.8" stroke-dasharray="1.1 1.3"/>
+  </g>
+  <use href="#fibercord-cable-50-ft-rolled-r" transform="translate(-1 2.4) rotate(-4 29 26)"/>
+  <use href="#fibercord-cable-50-ft-rolled-r" transform="translate(.6 4.8) rotate(3 29 26)"/>
+  <use href="#fibercord-cable-50-ft-rolled-r" transform="translate(-.4 7.2) rotate(-1.5 29 26)"/>
+  <path class="a-l" d="M12 27.4c1-6.6 8.6-10.4 17-10.6M9.4 30c-.4-8.2 8-14.6 19.6-14.8"/>
+  <path class="a-x a-o" d="M44.6 39.4c4.2.8 7.6 3.4 9.6 7.4l-3 1.4c-1.6-3.2-4.2-5.2-7.4-5.8z"/>
+  <path class="a-p" d="M45.2 41.2c2.8.6 5.2 2.4 6.8 5.4" stroke-dasharray="1.1 1.3"/>
+  <rect class="a-m a-o" x="-2.4" y="-3" width="4.8" height="6.4" rx=".8" transform="translate(53.6 49.6) rotate(-27)"/>
+  <path class="a-b a-o" fill-rule="evenodd" d="M53.6 52.6c2.6-1.2 5.2.2 5.6 2.8c.4 2.4-1.4 4.4-3.8 4.4c-2.6 0-4-2.2-3.4-4.6zM55 54.4c1.4-.6 2.6.2 2.8 1.2c.2 1.2-.6 2.2-1.6 2.2c-1.2 0-2-1-1.6-2.2z"/>
+  <path class="a-d a-o" d="M6.4 31.6h6.6v4.4H6.4zM45.4 32.2h6.8v4.4h-6.8zM26.2 35.6h4.6v13.4h-4.6z"/>
+  <path d="M6.4 31.6h6.6v4.4H6.4zM45.4 32.2h6.8v4.4h-6.8zM26.2 35.6h4.6v13.4h-4.6z" fill="url(#a-sheen)" opacity=".6"/>
+  <path class="a-m a-o" d="M27 40.4h3v3.6h-3z"/>
+</svg>

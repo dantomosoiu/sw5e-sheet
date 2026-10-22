@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <g transform="rotate(-45 32 32)">
+    <g id="echostaff-end">
+      <path class="a-gl" d="M59.4 30.8q1 1.2 0 2.4M62 30q1.6 2 0 4M67.6 28.4q2.6 3.6 0 7.2" filter="url(#a-glow)" opacity=".9"/>
+      <rect class="a-m a-oo" x="32" y="29.8" width="19" height="4.4" rx=".6"/>
+      <rect x="32" y="29.8" width="19" height="4.4" rx=".6" fill="url(#a-sheen)"/>
+      <rect class="a-c a-oo" x="35.6" y="29.2" width="7.4" height="5.6" rx=".8"/>
+      <path class="a-p" d="M37.4 29.4l1 5.2M39.6 29.4l1 5.2M41.8 29.4l1 5.2"/>
+      <rect x="35.6" y="29.2" width="7.4" height="5.6" rx=".8" fill="url(#a-shade)"/>
+      <rect class="a-b a-o" x="45.4" y="28.2" width="2.8" height="7.6" rx=".6"/>
+      <path class="a-b a-oo" d="M51.4 25.4h13.2l1.4 1.2v2H56.4v6.8H66v2l-1.4 1.2H51.4z"/>
+      <path d="M51.4 25.4h13.2l1.4 1.2v2H56.4v6.8H66v2l-1.4 1.2H51.4z" fill="url(#a-sheen)"/>
+      <path class="a-p" d="M57.6 27.4h7M57.6 36.6h7"/>
+      <path class="a-m a-oo" d="M49.4 27h4.4l.8 1v8l-.8 1h-4.4z"/>
+      <path d="M49.4 27h4.4l.8 1v8l-.8 1h-4.4z" fill="url(#a-sheen)"/>
+      <circle class="a-g" cx="57" cy="32" r="1.6" filter="url(#a-glow)"/>
+      <circle class="a-g" cx="57" cy="32" r="1.1"/>
+      <path class="a-gl" d="M59.4 30.8q1 1.2 0 2.4M62 30q1.6 2 0 4M67.6 28.4q2.6 3.6 0 7.2"/>
+      <circle class="a-w" cx="57" cy="32" r=".5"/>
+      <path class="a-l" d="M52.2 26.2h12M50 28v2M46 29v2M33 30.8h2.4"/>
+    </g>
+    <use href="#echostaff-end" transform="matrix(-1 0 0 1 64 0)"/>
+    <rect class="a-b a-oo" x="28.4" y="28.2" width="7.2" height="7.6" rx="1"/>
+    <rect x="28.4" y="28.2" width="7.2" height="7.6" rx="1" fill="url(#a-sheen)"/>
+    <rect class="a-x a-o" x="31.2" y="28" width="1.6" height="8" rx=".4"/>
+    <path class="a-l" d="M29.2 29.2h1.2"/>
+  </g>
+</svg>

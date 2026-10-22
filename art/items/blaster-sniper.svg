@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
   <g transform="rotate(-45 32 32) matrix(1 0 0 1.15 0 -4.8)">
-    <path class="a-m a-o" d="M46.4 31.4l-4.4 11.6h2.8l4.2-11.6zM49.4 31.4l3.6 11.6h-2.8l-3.4-11.6z"/>
-    <path class="a-d a-o" d="M40.6 42.6h5.4v2.4h-5.4zM49.4 42.6h5.4v2.4h-5.4z"/>
+    <path class="a-m a-o" d="M46.4 31.4l-4.4 11.6h2.8l4.2-11.6zM49.4 31.4l4.4 11.6h-2.8l-4.2-11.6z"/>
+    <path class="a-d a-o" d="M40.6 42.6h5.4v2.4h-5.4zM49.8 42.6h5.4v2.4h-5.4z"/>
     <path class="a-m a-oo" fill-rule="evenodd" d="M18 26L5 27.4H1.4c-1 0-1.8.8-1.8 1.8v6.6c0 1 .8 1.8 1.8 1.8H8l10-3zM7 30h7l-1 2.6H8z"/>
     <path class="a-c a-o" d="M5 25.2l8-.8.4 2.6-8.4.8z"/>
     <rect class="a-d a-o" x="-.8" y="27.2" width="2.6" height="10.6" rx="1"/>

@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <g transform="rotate(-45 32 32)">
+  <g transform="translate(-0.17 -0.53) rotate(-45 32 32)">
     <rect class="a-g" x="25.6" y="25" width="41" height="14" rx="4.2" filter="url(#a-glow-lg)" opacity=".9"/>
     <rect class="a-g" x="26.4" y="27.6" width="38.2" height="8.8" rx="2.2" filter="url(#a-glow)"/>
     <rect class="a-g" x="26.8" y="28" width="37.2" height="8" rx="1.8"/>

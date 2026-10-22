@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <g transform="rotate(-45 32 32)">
+    <path class="a-g" d="M24.2 28c-3.4-5.6-5.6-11.6-5.4-17.8 6.8-2.8 15.8-2.8 23 1.4-3 5-4.6 10-4.6 16.4z" filter="url(#a-glow-lg)" opacity=".9"/>
+    <rect class="a-g" x="33.8" y="27.2" width="31" height="9.6" rx="4.8" filter="url(#a-glow-lg)" opacity=".9"/>
+    <path class="a-g" d="M24.8 27.6c-3.2-5.4-5.2-11-5.2-16.6 6.4-2.6 14.8-2.6 21.4 1.2-3 4.6-4.4 9.4-4.4 15.4z" filter="url(#a-glow)"/>
+    <rect class="a-g" x="34.2" y="29.2" width="29.8" height="5.6" rx="2.8" filter="url(#a-glow)"/>
+    <path class="a-g" d="M25.4 27.4c-3-5.2-5-10.6-5-15.8 6-2.4 14-2.4 20.2 1-2.8 4.4-4 9-4 14.8z"/>
+    <rect class="a-g" x="34.6" y="29.6" width="29" height="4.8" rx="2.4"/>
+    <path class="a-w" d="M27.6 26.6c-2.2-4.2-3.6-8.4-3.8-12.4 4.4-1.4 9.6-1.4 13.8.2-2 3.8-2.8 7.6-2.8 12.2z"/>
+    <rect class="a-w" x="35.2" y="30.8" width="27.8" height="2.4" rx="1.2"/>
+    <path class="a-m a-oo" d="M0 29h-2.6l-2 2v2l2 2H0z"/>
+    <rect class="a-c a-oo" x="-.4" y="29" width="14.4" height="6" rx=".8"/>
+    <path class="a-p" d="M1.6 29.2l1.4 5.6M4.4 29.2l1.4 5.6M7.2 29.2l1.4 5.6M10 29.2l1.4 5.6"/>
+    <rect x="-.4" y="29" width="14.4" height="6" rx=".8" fill="url(#a-shade)"/>
+    <rect class="a-x a-o" x="13.6" y="28.4" width="2" height="7.2" rx=".5"/>
+    <path class="a-m a-oo" d="M23.6 28V25.4h10.8l1.2 1.4V28z"/>
+    <rect class="a-b a-oo" x="15.4" y="28" width="18.2" height="8" rx="1"/>
+    <rect x="15.4" y="28" width="18.2" height="8" rx="1" fill="url(#a-sheen)"/>
+    <path class="a-p" d="M22.6 28.4v7.2"/>
+    <rect class="a-s a-o" x="25" y="31.4" width="6" height="2.6" rx=".8"/>
+    <rect class="a-g" x="25.6" y="31.9" width="4.8" height="1.6" rx=".6"/>
+    <circle class="a-g" cx="18.8" cy="34" r="1" filter="url(#a-glow)"/>
+    <circle class="a-w" cx="18.8" cy="34" r=".45"/>
+    <rect class="a-d a-o" x="33.4" y="28" width="1.6" height="8" rx=".5"/>
+    <path class="a-l" d="M-3.8 30.6l1-1M.6 30.2h12.6M16.4 29.2h5.6M24.4 26.2h9.4"/>
+  </g>
+</svg>

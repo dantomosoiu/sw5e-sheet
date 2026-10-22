@@ -1,29 +1,31 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <g transform="rotate(-14 17.5 36)">
-    <path class="a-b a-oo" fill-rule="evenodd" d="M5 36a12.5 14.5 0 1 0 25 0a12.5 14.5 0 1 0-25 0zM10.2 36a7.3 9.3 0 1 0 14.6 0a7.3 9.3 0 1 0-14.6 0z"/>
-    <path class="a-d" d="M10.2 36a7.3 9.3 0 0 1 14.6 0a7.3 7.6 0 0 0-14.6 0z"/>
-    <path fill-rule="evenodd" d="M5 36a12.5 14.5 0 1 0 25 0a12.5 14.5 0 1 0-25 0zM10.2 36a7.3 9.3 0 1 0 14.6 0a7.3 9.3 0 1 0-14.6 0z" fill="url(#a-sheen)"/>
-    <path fill-rule="evenodd" d="M5 36a12.5 14.5 0 1 0 25 0a12.5 14.5 0 1 0-25 0zM10.2 36a7.3 9.3 0 1 0 14.6 0a7.3 9.3 0 1 0-14.6 0z" fill="url(#a-shade)"/>
-    <path class="a-p" d="M6 31.5l4.6 1.4M6.6 43.4l4.4-1.6M15.4 21.8l.8 4.8M15.4 50.2l.8-4.8"/>
-    <path class="a-l" d="M8.4 27.4a12 13 0 0 1 9-5.6"/>
+  <g transform="translate(0 -4)">
+    <g transform="rotate(-14 17.5 36)">
+      <path class="a-b a-oo" fill-rule="evenodd" d="M5 36a12.5 14.5 0 1 0 25 0a12.5 14.5 0 1 0-25 0zM10.2 36a7.3 9.3 0 1 0 14.6 0a7.3 9.3 0 1 0-14.6 0z"/>
+      <path class="a-d" d="M10.2 36a7.3 9.3 0 0 1 14.6 0a7.3 7.6 0 0 0-14.6 0z"/>
+      <path fill-rule="evenodd" d="M5 36a12.5 14.5 0 1 0 25 0a12.5 14.5 0 1 0-25 0zM10.2 36a7.3 9.3 0 1 0 14.6 0a7.3 9.3 0 1 0-14.6 0z" fill="url(#a-sheen)"/>
+      <path fill-rule="evenodd" d="M5 36a12.5 14.5 0 1 0 25 0a12.5 14.5 0 1 0-25 0zM10.2 36a7.3 9.3 0 1 0 14.6 0a7.3 9.3 0 1 0-14.6 0z" fill="url(#a-shade)"/>
+      <path class="a-p" d="M6 31.5l4.6 1.4M6.6 43.4l4.4-1.6M15.4 21.8l.8 4.8M15.4 50.2l.8-4.8"/>
+      <path class="a-l" d="M8.4 27.4a12 13 0 0 1 9-5.6"/>
+    </g>
+    <g transform="rotate(14 46.5 36)">
+      <path class="a-b a-oo" fill-rule="evenodd" d="M34 36a12.5 14.5 0 1 0 25 0a12.5 14.5 0 1 0-25 0zM39.2 36a7.3 9.3 0 1 0 14.6 0a7.3 9.3 0 1 0-14.6 0z"/>
+      <path class="a-d" d="M39.2 36a7.3 9.3 0 0 1 14.6 0a7.3 7.6 0 0 0-14.6 0z"/>
+      <path fill-rule="evenodd" d="M34 36a12.5 14.5 0 1 0 25 0a12.5 14.5 0 1 0-25 0zM39.2 36a7.3 9.3 0 1 0 14.6 0a7.3 9.3 0 1 0-14.6 0z" fill="url(#a-sheen)"/>
+      <path fill-rule="evenodd" d="M34 36a12.5 14.5 0 1 0 25 0a12.5 14.5 0 1 0-25 0zM39.2 36a7.3 9.3 0 1 0 14.6 0a7.3 9.3 0 1 0-14.6 0z" fill="url(#a-shade)"/>
+      <path class="a-p" d="M58 31.5l-4.6 1.4M57.4 43.4l-4.4-1.6M47.6 21.8l-.8 4.8M47.6 50.2l-.8-4.8"/>
+      <path class="a-l" d="M38 27.4a12 13 0 0 1 9-5.6"/>
+    </g>
+    <rect class="a-m a-oo" x="23.5" y="24.5" width="17" height="21" rx="3"/>
+    <rect x="23.5" y="24.5" width="17" height="21" rx="3" fill="url(#a-sheen)"/>
+    <rect x="23.5" y="24.5" width="17" height="21" rx="3" fill="url(#a-shade)"/>
+    <path class="a-x" d="M24 28.4h16v2.8H24z"/>
+    <rect class="a-s a-o" x="27" y="33" width="10" height="5.6" rx="1.4"/>
+    <circle class="a-g" cx="32" cy="35.8" r="2.4" filter="url(#a-glow)"/>
+    <circle class="a-g" cx="32" cy="35.8" r="1.6"/>
+    <circle class="a-w" cx="32" cy="35.8" r=".7"/>
+    <rect class="a-d" x="30.4" y="40.4" width="3.2" height="2.6" rx=".6"/>
+    <path class="a-d" d="M23.5 33h-1.8v5h1.8zM40.5 33h1.8v5h-1.8z"/>
+    <path class="a-l" d="M25 25.6h14"/>
   </g>
-  <g transform="rotate(14 46.5 36)">
-    <path class="a-b a-oo" fill-rule="evenodd" d="M34 36a12.5 14.5 0 1 0 25 0a12.5 14.5 0 1 0-25 0zM39.2 36a7.3 9.3 0 1 0 14.6 0a7.3 9.3 0 1 0-14.6 0z"/>
-    <path class="a-d" d="M39.2 36a7.3 9.3 0 0 1 14.6 0a7.3 7.6 0 0 0-14.6 0z"/>
-    <path fill-rule="evenodd" d="M34 36a12.5 14.5 0 1 0 25 0a12.5 14.5 0 1 0-25 0zM39.2 36a7.3 9.3 0 1 0 14.6 0a7.3 9.3 0 1 0-14.6 0z" fill="url(#a-sheen)"/>
-    <path fill-rule="evenodd" d="M34 36a12.5 14.5 0 1 0 25 0a12.5 14.5 0 1 0-25 0zM39.2 36a7.3 9.3 0 1 0 14.6 0a7.3 9.3 0 1 0-14.6 0z" fill="url(#a-shade)"/>
-    <path class="a-p" d="M58 31.5l-4.6 1.4M57.4 43.4l-4.4-1.6M47.6 21.8l-.8 4.8M47.6 50.2l-.8-4.8"/>
-    <path class="a-l" d="M38 27.4a12 13 0 0 1 9-5.6"/>
-  </g>
-  <rect class="a-m a-oo" x="23.5" y="24.5" width="17" height="21" rx="3"/>
-  <rect x="23.5" y="24.5" width="17" height="21" rx="3" fill="url(#a-sheen)"/>
-  <rect x="23.5" y="24.5" width="17" height="21" rx="3" fill="url(#a-shade)"/>
-  <path class="a-x" d="M24 28.4h16v2.8H24z"/>
-  <rect class="a-s a-o" x="27" y="33" width="10" height="5.6" rx="1.4"/>
-  <circle class="a-g" cx="32" cy="35.8" r="2.4" filter="url(#a-glow)"/>
-  <circle class="a-g" cx="32" cy="35.8" r="1.6"/>
-  <circle class="a-w" cx="32" cy="35.8" r=".7"/>
-  <rect class="a-d" x="30.4" y="40.4" width="3.2" height="2.6" rx=".6"/>
-  <path class="a-d" d="M23.5 33h-1.8v5h1.8zM40.5 33h1.8v5h-1.8z"/>
-  <path class="a-l" d="M25 25.6h14"/>
 </svg>

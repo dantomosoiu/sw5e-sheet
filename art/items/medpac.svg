@@ -7,7 +7,7 @@
   <rect x="7.5" y="17" width="49" height="37" rx="6" fill="url(#a-shade)"/>
   <path class="a-x" d="M8 22.5h48v3.6H8z"/>
   <path class="a-p" d="M8 27.6h48"/>
-  <path class="a-d" d="M7.5 23a5.5 5.5 0 0 1 5.5-6h2.5v6zM56.5 23a5.5 5.5 0 0 0-5.5-6h-2.5v6zM7.5 48a6 6 0 0 0 6 6H16v-6zM56.5 48a6 6 0 0 1-6 6H48v-6z"/>
+  <path class="a-d" d="M7.5 23a6 6 0 0 1 6-6h2v6zM56.5 23a6 6 0 0 0-6-6h-2v6zM7.5 48a6 6 0 0 0 6 6H16v-6zM56.5 48a6 6 0 0 1-6 6H48v-6z"/>
   <circle class="a-d a-o" cx="25" cy="40.5" r="9.6"/>
   <circle class="a-x a-o" cx="25" cy="40.5" r="8"/>
   <circle cx="25" cy="40.5" r="8" fill="url(#a-sheen)"/>

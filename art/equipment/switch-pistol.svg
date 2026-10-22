@@ -28,7 +28,7 @@
   <circle class="a-m" cx="26.4" cy="28.6" r="1.2"/>
   <circle class="a-x a-oo" cx="17.4" cy="26.4" r="4"/>
   <circle cx="17.4" cy="26.4" r="4" fill="url(#a-sheen)"/>
-  <path class="a-m a-oo" d="M15.8 25.2l6.6-6.4 2.4 2.4-6.4 6.8z"/>
+  <path class="a-m a-oo" d="M15.8 25.2l5.6-5.4 2.4 2.4-5.4 5.8z"/>
   <circle class="a-m a-o" cx="17.4" cy="26.4" r="1.8"/>
   <rect class="a-m a-o" x="12.4" y="15.2" width="13" height="3.8" rx="1.4"/>
   <path class="a-l" d="M10.4 20h17.4M34 19.4h12M13.6 16.2h10.6"/>

@@ -15,8 +15,8 @@
     <path d="M20.9 22c4.2 0 7.2 2.6 7.2 6s-3 6-7.2 6-7.2-2.6-7.2-6 3-6 7.2-6z" fill="url(#a-sheen)"/>
     <path class="a-p" d="M14.6 28.6c4 1.4 8.6 1.4 12.6 0"/>
     <path class="a-l" d="M13 5.2h15.4M15 23.6c1.6-.9 3.6-1.4 5.9-1.4M15.2 32.2l.8 14M19.8 43.4v11"/>
+    <circle class="a-g" cx="24.6" cy="16.6" r="1.4" filter="url(#a-glow)"/>
+    <circle class="a-w" cx="24.6" cy="16.6" r=".6"/>
   </g>
   <use href="#greaves-a" transform="matrix(-1 0 0 1 64 0)"/>
-  <circle class="a-g" cx="24.6" cy="16.6" r="1.4" filter="url(#a-glow)"/>
-  <circle class="a-w" cx="24.6" cy="16.6" r=".6"/>
 </svg>

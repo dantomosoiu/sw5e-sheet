@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <path class="a-d a-oo" d="M20.6 14.6L7 22.4l1.6 4.2 12.6-6.8zM43.4 14.6L57 22.4l-1.6 4.2-12.6-6.8zM19.4 29.4L8.6 27l-.6 4.4 11 3.2zM44.6 29.4L55.4 27l.6 4.4-11 3.2z"/>
+  <path class="a-m a-o" d="M12.4 18.4l2.4-1.4 1.6 2.8-2.4 1.4zM51.6 18.4l-2.4-1.4-1.6 2.8 2.4 1.4zM13.2 27.8l2.6.6-.8 3.2-2.6-.6zM50.8 27.8l-2.6.6.8 3.2 2.6-.6z"/>
+  <rect class="a-m a-oo" x="3.6" y="21.6" width="6" height="11" rx="1.6"/>
+  <rect class="a-m a-oo" x="54.4" y="21.6" width="6" height="11" rx="1.6"/>
+  <path class="a-x" d="M3.8 25.2h5.6v1.6H3.8zM54.6 25.2h5.6v1.6h-5.6z"/>
+  <path class="a-d" d="M5.6 28h2v3h-2zM56.4 28h2v3h-2z"/>
+  <path class="a-d a-oo" d="M32 5.6c7.2 0 11.6 4.4 13.8 11l3.2 11c1.1 4.4-1.1 8.8-5.5 12l-6.4 4.3c-2.9 1.8-7.3 1.8-10.2 0l-6.4-4.3c-4.4-3.2-6.6-7.6-5.5-12l3.2-11C20.4 10 24.8 5.6 32 5.6z"/>
+  <path class="a-b a-oo" d="M32 7c6.5 0 10.5 4 12.5 10l3 10.5c1 4-1 8-5 11l-6 4c-2.6 1.6-6.4 1.6-9 0l-6-4c-4-3-6-7-5-11l3-10.5C21.5 11 25.5 7 32 7z"/>
+  <path d="M32 7c6.5 0 10.5 4 12.5 10l3 10.5c1 4-1 8-5 11l-6 4c-2.6 1.6-6.4 1.6-9 0l-6-4c-4-3-6-7-5-11l3-10.5C21.5 11 25.5 7 32 7z" fill="url(#a-sheen)"/>
+  <path d="M32 7c6.5 0 10.5 4 12.5 10l3 10.5c1 4-1 8-5 11l-6 4c-2.6 1.6-6.4 1.6-9 0l-6-4c-4-3-6-7-5-11l3-10.5C21.5 11 25.5 7 32 7z" fill="url(#a-shade)"/>
+  <path class="a-p" d="M22.5 22c3 1.6 5.6 4.2 6.6 7.4M41.5 22c-3 1.6-5.6 4.2-6.6 7.4"/>
+  <path class="a-x a-o" d="M29.4 8.2h5.2l1.6 13.4-4.2 3-4.2-3z"/>
+  <path class="a-p" d="M30.4 11h3.2M30.2 14h3.6M30 17h4"/>
+  <rect class="a-m a-oo" x="24.5" y="26.5" width="15" height="13" rx="4"/>
+  <rect class="a-d a-o" x="26" y="28" width="12" height="10" rx="3"/>
+  <path class="a-g" d="M27 30.4c3.4-1.4 6.6-1.4 10 0v1.4c-3.4-1.4-6.6-1.4-10 0zM27 33.4c3.4-1.4 6.6-1.4 10 0v1.4c-3.4-1.4-6.6-1.4-10 0z" filter="url(#a-glow)" opacity=".8"/>
+  <path class="a-m" d="M27 30.4c3.4-1.4 6.6-1.4 10 0v1.2c-3.4-1.4-6.6-1.4-10 0zM27 33.4c3.4-1.4 6.6-1.4 10 0v1.2c-3.4-1.4-6.6-1.4-10 0zM27 36.4c3.4-1.4 6.6-1.4 10 0v1c-3.4-1.4-6.6-1.4-10 0z"/>
+  <g id="underwater-respirator-k" transform="translate(16.5 41) rotate(38)">
+    <rect class="a-m a-oo" x="-5.2" y="-8.5" width="10.4" height="17" rx="2.6"/>
+    <rect x="-5.2" y="-8.5" width="10.4" height="17" rx="2.6" fill="url(#a-sheen)"/>
+    <path class="a-x" d="M-5.1-6.6h10.2v2.2H-5.1z"/>
+    <rect class="a-d a-o" x="-3.6" y="-3.2" width="7.2" height="6.6" rx="1.4"/>
+    <rect class="a-g" x="-2.6" y="-2.2" width="5.2" height="4.6" rx=".8" filter="url(#a-glow)"/>
+    <rect class="a-g" x="-2.6" y="-2.2" width="5.2" height="4.6" rx=".8"/>
+    <rect class="a-w" x="-1.8" y="-1.4" width="1.2" height="3" rx=".5"/>
+    <path class="a-d" d="M-4.2 4.6h8.4v1.1h-8.4zM-4.2 6.6h8.4v1.1h-8.4z"/>
+    <path class="a-l" d="M-4 -7.4h6"/>
+  </g>
+  <use href="#underwater-respirator-k" transform="matrix(-1 0 0 1 64 0)"/>
+  <path class="a-l" d="M23 15c1.8-4 4.6-6.4 8.6-6.8M26 27.4h5"/>
+</svg>

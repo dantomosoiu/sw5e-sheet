@@ -2,29 +2,27 @@
   <path class="a-m a-oo" d="M3 23c9 4.5 19 6.5 29 6.5S52 27.5 61 23v12c-9 4.5-19 6.5-29 6.5S12 39.5 3 35z"/>
   <path class="a-p" d="M3.5 25.2c9 4.5 18.6 6.3 28.5 6.3s19.5-1.8 28.5-6.3M3.5 32.8c9 4.5 18.6 6.3 28.5 6.3s19.5-1.8 28.5-6.3"/>
   <path d="M3 23c9 4.5 19 6.5 29 6.5S52 27.5 61 23v12c-9 4.5-19 6.5-29 6.5S12 39.5 3 35z" fill="url(#a-shade)"/>
-  <rect class="a-c a-oo" x="5" y="24" width="13.5" height="24" rx="2"/>
-  <rect x="5" y="24" width="13.5" height="24" rx="2" fill="url(#a-shade)"/>
-  <path class="a-c a-o" d="M5 26c0-1.1.9-2 2-2h9.5c1.1 0 2 .9 2 2v7.4l-6.75 2-6.75-2z"/>
-  <path class="a-c a-oo" d="M19.2 29.6c0-1 .8-1.8 1.8-1.8h4.6c1 0 1.8.8 1.8 1.8v16c0 1-.8 1.8-1.8 1.8H21c-1 0-1.8-.8-1.8-1.8z"/>
-  <rect x="19.2" y="27.8" width="8.2" height="19.6" rx="1.8" fill="url(#a-shade)"/>
-  <path class="a-c a-oo" d="M38 29.6c0-1 .8-1.8 1.8-1.8h7.4c1 0 1.8.8 1.8 1.8v17.6c0 1-.8 1.8-1.8 1.8h-7.4c-1 0-1.8-.8-1.8-1.8z"/>
-  <rect x="38" y="27.8" width="11" height="21.2" rx="1.8" fill="url(#a-shade)"/>
-  <path class="a-c a-o" d="M38 29.6c0-1 .8-1.8 1.8-1.8h7.4c1 0 1.8.8 1.8 1.8v6H38z"/>
-  <path d="M5 26c0-1.1.9-2 2-2h9.5c1.1 0 2 .9 2 2v7.4l-6.75 2-6.75-2zM38 29.6c0-1 .8-1.8 1.8-1.8h7.4c1 0 1.8.8 1.8 1.8v6H38z" fill="url(#a-sheen)"/>
-  <circle class="a-m a-o" cx="11.75" cy="33" r="1.5"/>
-  <circle class="a-m a-o" cx="43.5" cy="33.4" r="1.3"/>
-  <rect class="a-m a-oo" x="50" y="19.5" width="8.5" height="30" rx="2.2"/>
-  <rect class="a-b a-o" x="49.4" y="22.4" width="9.7" height="3.4"/>
-  <rect class="a-b a-o" x="49.4" y="43.2" width="9.7" height="3.4"/>
-  <rect class="a-s a-o" x="52" y="27.6" width="4.6" height="14" rx="1.1"/>
-  <rect class="a-g" x="52.4" y="28.2" width="3.8" height="12.8" rx=".9" filter="url(#a-glow)"/>
-  <rect class="a-g" x="52.9" y="28.8" width="2.8" height="11.6" rx=".7"/>
-  <rect class="a-w" x="53.8" y="29.8" width="1" height="9.6" rx=".4"/>
+  <g id="belt-side">
+    <path class="a-c a-oo" d="M38 29.6c0-1 .8-1.8 1.8-1.8h7.4c1 0 1.8.8 1.8 1.8v17.6c0 1-.8 1.8-1.8 1.8h-7.4c-1 0-1.8-.8-1.8-1.8z"/>
+    <path d="M38 29.6c0-1 .8-1.8 1.8-1.8h7.4c1 0 1.8.8 1.8 1.8v17.6c0 1-.8 1.8-1.8 1.8h-7.4c-1 0-1.8-.8-1.8-1.8z" fill="url(#a-shade)"/>
+    <path class="a-c a-o" d="M38 29.6c0-1 .8-1.8 1.8-1.8h7.4c1 0 1.8.8 1.8 1.8v6H38z"/>
+    <path d="M38 29.6c0-1 .8-1.8 1.8-1.8h7.4c1 0 1.8.8 1.8 1.8v6H38z" fill="url(#a-sheen)"/>
+    <circle class="a-m a-o" cx="43.5" cy="33.4" r="1.3"/>
+    <rect class="a-m a-oo" x="50" y="19.5" width="8.5" height="30" rx="2.2"/>
+    <rect class="a-b a-o" x="49.4" y="22.4" width="9.7" height="3.4"/>
+    <rect class="a-b a-o" x="49.4" y="43.2" width="9.7" height="3.4"/>
+    <rect class="a-s a-o" x="52" y="27.6" width="4.6" height="14" rx="1.1"/>
+    <rect class="a-g" x="52.4" y="28.2" width="3.8" height="12.8" rx=".9" filter="url(#a-glow)"/>
+    <rect class="a-g" x="52.9" y="28.8" width="2.8" height="11.6" rx=".7"/>
+    <rect class="a-w" x="53.8" y="29.8" width="1" height="9.6" rx=".4"/>
+    <path class="a-l" d="M39.2 29h8.6M50.8 20.6h7"/>
+  </g>
+  <use href="#belt-side" transform="matrix(-1 0 0 1 64 0)"/>
   <rect class="a-b a-oo" x="24.5" y="25" width="15" height="17" rx="2.8"/>
   <rect x="24.5" y="25" width="15" height="17" rx="2.8" fill="url(#a-sheen)"/>
   <rect class="a-m a-o" x="27.4" y="28" width="9.2" height="11" rx="1.4"/>
   <circle class="a-g" cx="32" cy="33.5" r="2.8" filter="url(#a-glow)"/>
   <circle class="a-g" cx="32" cy="33.5" r="1.9"/>
   <circle class="a-w" cx="32" cy="33.5" r=".8"/>
-  <path class="a-l" d="M26 26.2h12M6.4 25.2h11M39.2 29h8.6M50.8 20.6h7M4.2 24.4c3 1.5 6 2.6 9 3.4"/>
+  <path class="a-l" d="M26 26.2h12"/>
 </svg>

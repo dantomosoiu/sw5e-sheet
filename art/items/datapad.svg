@@ -9,12 +9,12 @@
   <polyline class="a-gl" points="12.5,40 18,35 22.5,37 28,29.5 33,32 37.5,24.5 42,27" filter="url(#a-glow)" opacity=".8"/>
   <polyline class="a-gl" points="12.5,40 18,35 22.5,37 28,29.5 33,32 37.5,24.5 42,27"/>
   <circle class="a-w" cx="37.5" cy="24.5" r=".9"/>
-  <path class="a-d" d="M49.5 17.5h7v4h-7zM49.5 23.5h7v4h-7z"/>
+  <path class="a-d" d="M49.5 20.4h7v3.6h-7zM49.5 25.6h7v3.6h-7z"/>
   <circle class="a-m a-o" cx="53" cy="35.5" r="4.5"/>
   <circle cx="53" cy="35.5" r="4.5" fill="url(#a-sheen)"/>
   <circle class="a-d" cx="53" cy="35.5" r="1.6"/>
-  <circle class="a-g" cx="53" cy="45.5" r="1.6" filter="url(#a-glow)"/>
-  <circle class="a-g" cx="53" cy="45.5" r="1"/>
+  <circle class="a-g" cx="53" cy="43.6" r="1.6" filter="url(#a-glow)"/>
+  <circle class="a-g" cx="53" cy="43.6" r="1"/>
   <path class="a-d" d="M14 47.5h12v1.6H14zM28 47.5h4v1.6h-4z"/>
   <path class="a-l" d="M12 13.4h40M10 17.4h6"/>
 </svg>

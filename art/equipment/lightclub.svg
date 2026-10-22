@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <g transform="rotate(-45 32 32)">
+  <g transform="translate(-0.11 0.42) scale(0.99) rotate(-45 32 32)">
     <path class="a-g" d="M24 27L57 24.4Q69.4 24 69.4 32T57 39.6L24 37Z" filter="url(#a-glow-lg)" opacity=".9"/>
     <path class="a-g" d="M24.6 28.6L57 25.8Q68.6 25.2 68.6 32T57 38.2L24.6 35.4Z" filter="url(#a-glow)"/>
     <path class="a-g" d="M25 29L57 26.2Q68 25.6 68 32T57 37.8L25 35Z"/>

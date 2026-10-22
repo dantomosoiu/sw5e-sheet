@@ -1,10 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <g transform="translate(1.6 -.4) rotate(-28 32 32)">
+  <g transform="translate(1.6 -0.4) rotate(-28 32 32)">
     <rect class="a-c a-o" x="3.2" y="21.6" width="4.4" height="15.4" rx="1.6"/>
     <path class="a-d a-oo" d="M6.6 22.6l6.4-1.6v17.4l-6.4-1.6z"/>
     <path class="a-d a-oo" d="M17.6 37.4h7.6l-2.2 11c-.3 1.4-1.2 2.2-2.6 2.2h-3c-1.4 0-2.2-1-2-2.4z"/>
     <path class="a-m" d="M18.4 40h5.6l-.3 1.4h-5.6zM17.9 43h5.6l-.3 1.4h-5.6z"/>
-    <path class="a-o" fill="none" d="M25.6 38.2c0 3.4 1.2 4.6 3 4.6"/>
+    <path class="a-o" fill="none" d="M25.6 38.2c0 3.4 1.2 4.6 3 4.6h2v-5.2"/>
     <path class="a-d a-oo" d="M38.6 34.6h5.8l-.6 9.6c0 1-.8 1.6-1.8 1.6h-1.6c-1 0-1.6-.6-1.6-1.6z"/>
     <path class="a-m a-o" d="M33.4 37.2c2.4 0 3.6 1 4.4 2.6"/>
     <rect class="a-m a-oo" x="35.6" y="22.4" width="17" height="12.6" rx="1.6"/>

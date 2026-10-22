@@ -7,17 +7,16 @@
   <path d="M26 5h-7c.6 9-2.6 15-9 17.5V52l2.5 6.5H31V28zM38 5h7c-.6 9 2.6 15 9 17.5V52l-2.5 6.5H33V28z" fill="url(#a-sheen)"/>
   <path class="a-p" d="M24.5 6l5.6 21.4M39.5 6l-5.6 21.4M11.5 24c3-1.5 5.5-4 7-7.5M52.5 24c-3-1.5-5.5-4-7-7.5M10.5 33h20M33.5 33h20"/>
   <path class="a-m a-o" d="M10.2 31.6h20.6v3.2H10.2zM33.2 31.6h20.6v3.2H33.2z"/>
-  <path class="a-c a-o" d="M13 21.5h5.4v9h-5.4zM19 21.5h5.4v9H19zM12.4 37.5h16v13.5h-16zM35.6 37.5h16v13.5h-16z"/>
-  <path d="M13 21.5h5.4v9h-5.4zM19 21.5h5.4v9H19zM12.4 37.5h16v13.5h-16zM35.6 37.5h16v13.5h-16z" fill="url(#a-shade)"/>
-  <path class="a-c a-o" d="M12.6 20.8h6.2v3.8h-6.2zM18.6 20.8h6.2v3.8h-6.2zM12 37h16.8v5l-8.4 1.6L12 42zM35.2 37H52v5l-8.4 1.6-8.4-1.6z"/>
-  <path d="M12.6 20.8h6.2v3.8h-6.2zM18.6 20.8h6.2v3.8h-6.2zM12 37h16.8v5l-8.4 1.6L12 42zM35.2 37H52v5l-8.4 1.6-8.4-1.6z" fill="url(#a-sheen)"/>
+  <rect class="a-m a-o" x="42.6" y="12.8" width="1.4" height="5" rx=".6"/>
+  <rect class="a-m a-o" x="40.2" y="16.4" width="4.6" height="5.6" rx="1.2"/>
+  <circle class="a-g" cx="41.8" cy="18.4" r="1.2" filter="url(#a-glow)"/>
+  <circle class="a-g" cx="41.8" cy="18.4" r=".7"/>
+  <path class="a-c a-o" d="M13 21.5h5.4v9h-5.4zM19 21.5h5.4v9H19zM45.6 21.5h5.4v9h-5.4zM39.6 21.5h5.4v9h-5.4zM12.4 37.5h16v13.5h-16zM35.6 37.5h16v13.5h-16z"/>
+  <path d="M13 21.5h5.4v9h-5.4zM19 21.5h5.4v9H19zM45.6 21.5h5.4v9h-5.4zM39.6 21.5h5.4v9h-5.4zM12.4 37.5h16v13.5h-16zM35.6 37.5h16v13.5h-16z" fill="url(#a-shade)"/>
+  <path class="a-c a-o" d="M12.6 20.8h6.2v3.8h-6.2zM18.6 20.8h6.2v3.8h-6.2zM45.2 20.8h6.2v3.8h-6.2zM39.2 20.8h6.2v3.8h-6.2zM12 37h16.8v5l-8.4 1.6L12 42zM35.2 37H52v5l-8.4 1.6-8.4-1.6z"/>
+  <path d="M12.6 20.8h6.2v3.8h-6.2zM18.6 20.8h6.2v3.8h-6.2zM45.2 20.8h6.2v3.8h-6.2zM39.2 20.8h6.2v3.8h-6.2zM12 37h16.8v5l-8.4 1.6L12 42zM35.2 37H52v5l-8.4 1.6-8.4-1.6z" fill="url(#a-sheen)"/>
   <circle class="a-m a-o" cx="20.4" cy="41.4" r="1.1"/>
   <circle class="a-m a-o" cx="43.6" cy="41.4" r="1.1"/>
-  <rect class="a-m a-o" x="38.4" y="17" width="7" height="12" rx="1.4"/>
-  <rect class="a-d" x="40" y="22" width="3.8" height="5" rx=".6"/>
-  <rect class="a-m a-o" x="43" y="12.6" width="1.4" height="5" rx=".6"/>
-  <circle class="a-g" cx="40.6" cy="19.4" r="1.2" filter="url(#a-glow)"/>
-  <circle class="a-g" cx="40.6" cy="19.4" r=".7"/>
   <rect class="a-m a-o" x="19.4" y="7" width="6.6" height="3.4" rx=".8"/>
   <rect class="a-m a-o" x="38" y="7" width="6.6" height="3.4" rx=".8"/>
   <path class="a-l" d="M19.8 5.8h5.4M38.8 5.8h5.4M11 23.6c3.4-1.8 6-5 7.2-9.4M13.6 37.8h14.4"/>

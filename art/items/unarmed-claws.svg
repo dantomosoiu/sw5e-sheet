@@ -1,10 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <g class="a-w" opacity=".85" transform="translate(-1.6 0)">
+  <g class="a-w" opacity=".85" transform="translate(-7.1 -4.2)">
     <path d="M61 38.6q-4.4 10.4-13 17.4q6-8 9.6-18.4z"/>
     <path d="M55 43.6q-3.8 7.8-10.6 13q4.6-6.2 7.8-14z"/>
     <path d="M60.8 30.8q-2.8 5.6-7 9.4q3-4.4 4.6-10z"/>
   </g>
-  <g transform="rotate(20 30 34)">
+  <g transform="translate(-5.5 -4.2) rotate(20 30 34)">
     <use href="#unarmed-claws-f" transform="rotate(33 31.2 52)"/>
     <use href="#unarmed-claws-f" transform="rotate(11 31.2 52)"/>
     <use href="#unarmed-claws-f" transform="rotate(-11 31.2 52)"/>

@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <g transform="translate(2.2 -.6) rotate(-28 32 32)">
+  <g transform="translate(0.01 2.11) scale(0.951) rotate(-28 32 32)">
     <path class="a-m a-oo" d="M13.4 22.4H7.6c-1.6 0-2.8 1.2-2.8 2.8v9.6c0 1.6 1.2 2.8 2.8 2.8h5.8v-3.2H8.4V25.6h5z"/>
     <rect class="a-c a-o" x="3.4" y="25.6" width="3.6" height="8.8" rx="1.2"/>
     <path class="a-p" d="M3.8 27.8h2.8M3.8 30h2.8M3.8 32.2h2.8"/>

@@ -1,12 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <g transform="translate(1.6 -1.6) rotate(-28 32 32)">
+  <g transform="translate(2.32 2.3) scale(0.94) rotate(-28 32 32)">
     <rect class="a-c a-o" x="2.6" y="22.2" width="4.6" height="15.4" rx="1.6"/>
     <path class="a-m a-oo" d="M6.4 22h7.4v16H8.4c-1.2 0-2-.8-2-2z"/>
     <path class="a-d a-oo" d="M18.6 38h7.6l-2.2 11c-.3 1.4-1.2 2.2-2.6 2.2h-3c-1.4 0-2.2-1-2-2.4z"/>
     <path class="a-m" d="M18.6 40.8h6l-.3 1.4h-6zM18 43.8h6l-.3 1.4h-6z"/>
     <path class="a-d a-oo" d="M33 37.6h5.8l-.6 10c0 1-.8 1.6-1.8 1.6h-1.6c-1 0-1.6-.6-1.6-1.6z"/>
     <path class="a-c" d="M33.8 40h4.2l-.3 6.2h-3.6z"/>
-    <path class="a-o" fill="none" d="M26.6 38.6c0 3.4 1.2 4.8 3.4 4.8"/>
+    <path class="a-o" fill="none" d="M26.6 38.6c0 3.4 1.2 4.8 3.4 4.8h2v-5"/>
     <rect class="a-m a-oo" x="40.6" y="22.4" width="14" height="14.4" rx="2"/>
     <rect x="40.6" y="22.4" width="14" height="14.4" rx="2" fill="url(#a-sheen)"/>
     <rect x="40.6" y="22.4" width="14" height="14.4" rx="2" fill="url(#a-shade)"/>

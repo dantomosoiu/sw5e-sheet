@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <g transform="translate(0 -2.4)">
+  <g transform="translate(-2.83 -5.07)">
     <path class="a-d a-oo" d="M12.4 29.5h10l-2.6 20.6H9.8z"/>
     <path class="a-c" d="M14 32.4h6.6l-2 15H12z"/>
     <path class="a-p" d="M13.6 35.4h6.6M13.2 38.4h6.6M12.8 41.4h6.6M12.4 44.4h6.6"/>
@@ -24,6 +24,6 @@
     <path class="a-g" d="M60.6 24.8l-1.6 1.2 2 .6-1.6 1.2" filter="url(#a-glow-lg)"/>
     <path class="a-gl" d="M60.4 24.8L58.8 26l2 .6-1.6 1.2"/>
     <circle class="a-w" cx="57.8" cy="26.4" r=".8"/>
-    <path class="a-l" d="M9 23.8h25.6M36.8 25.2h14.4M55 22.4h5.2"/>
+    <path class="a-l" d="M9 23.8h25.6M36.8 25.2h.8M41 25.2h.8M45.2 25.2h.8M49.4 25.2h1.8M55 22.4h5.2"/>
   </g>
 </svg>

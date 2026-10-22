@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <g id="mind-shielding-suit-a">
+    <path class="a-d a-oo" d="M20.4 23c-3 .8-4.8 3-5.4 6.2l-2.2 11.4 5.4 1.2 2.6-10z"/>
+    <path class="a-gl" style="stroke-width:.7" d="M16.8 27.6l-2.2 11.6"/>
+    <path class="a-b a-oo" d="M24.4 22.2c-4.4-.4-8 1.4-9.4 5.4l-.4 1.6 5.6 1.4 1.4-3.2z"/>
+    <path d="M24.4 22.2c-4.4-.4-8 1.4-9.4 5.4l-.4 1.6 5.6 1.4 1.4-3.2z" fill="url(#a-sheen)"/>
+    <path class="a-m a-oo" d="M12.6 39.6l6 1.4-.8 4.8c-.2 1.4-1.4 2.2-2.8 2l-1.2-.2c-1.4-.2-2.4-1.4-2.2-2.8z"/>
+    <path class="a-d a-oo" d="M20.6 40.4h9.8l-.8 12h-8.2z"/>
+    <path class="a-gl" style="stroke-width:.7" d="M22.4 42l.4 9.6"/>
+    <path class="a-m a-oo" d="M20.8 51.6h8.8l.6 6.6c0 1-.8 1.8-1.8 1.8h-7c-1.6 0-2.4-1-2.2-2.4.4-2.6 1-4.6 1.6-6z"/>
+    <path d="M20.8 51.6h8.8l.6 6.6c0 1-.8 1.8-1.8 1.8h-7c-1.6 0-2.4-1-2.2-2.4.4-2.6 1-4.6 1.6-6z" fill="url(#a-sheen)"/>
+  </g>
+  <use href="#mind-shielding-suit-a" transform="matrix(-1 0 0 1 64 0)"/>
+  <path class="a-d a-oo" d="M24.4 21.6h15.2c2.8 0 4.6 1.8 5 4.6l1 14.8H18.4l1-14.8c.4-2.8 2.2-4.6 5-4.6z"/>
+  <path d="M24.4 21.6h15.2c2.8 0 4.6 1.8 5 4.6l1 14.8H18.4l1-14.8c.4-2.8 2.2-4.6 5-4.6z" fill="url(#a-sheen)"/>
+  <path class="a-b a-oo" d="M23.8 23.6h16.4l-1 9.4c-2.2 1.8-4.6 2.8-7.2 2.8s-5-1-7.2-2.8z"/>
+  <path d="M23.8 23.6h16.4l-1 9.4c-2.2 1.8-4.6 2.8-7.2 2.8s-5-1-7.2-2.8z" fill="url(#a-sheen)"/>
+  <path class="a-x a-o" d="M18.6 37.4h26.8l.2 3H18.4z"/>
+  <path class="a-gl" d="M32 23.6v5.2l-4.6 3.4M32 28.8l4.6 3.4M27.4 26.2l4.6 2.6 4.6-2.6" filter="url(#a-glow)" opacity=".7"/>
+  <path class="a-gl" style="stroke-width:.8" d="M32 23.6v5.2l-4.6 3.4M32 28.8l4.6 3.4M27.4 26.2l4.6 2.6 4.6-2.6"/>
+  <circle class="a-g" cx="32" cy="28.8" r="1.6" filter="url(#a-glow)"/>
+  <circle class="a-w" cx="32" cy="28.8" r=".8"/>
+  <path class="a-p" d="M32 35.8v5.2"/>
+  <ellipse class="a-m a-oo" cx="32" cy="21.6" rx="8.4" ry="2.6"/>
+  <path class="a-g" d="M24.6 21.6a.9.9 0 1 0 .1 0zM39.3 21.6a.9.9 0 1 0 .1 0zM28.4 23.4a.9.9 0 1 0 .1 0zM35.5 23.4a.9.9 0 1 0 .1 0z" filter="url(#a-glow)"/>
+  <path class="a-w" d="M24.6 21.9a.4.4 0 1 0 .1 0zM39.3 21.9a.4.4 0 1 0 .1 0zM28.4 23.7a.4.4 0 1 0 .1 0zM35.5 23.7a.4.4 0 1 0 .1 0z"/>
+  <circle class="a-g" cx="32" cy="11.4" r="10" opacity=".16"/>
+  <ellipse class="a-m a-oo" cx="32" cy="12.4" rx="5.8" ry="6.8"/>
+  <ellipse cx="32" cy="12.4" rx="5.8" ry="6.8" fill="url(#a-sheen)"/>
+  <path class="a-s a-o" d="M27.4 11.4h9.2l-.6 3.6c-1.2 1.4-2.6 2-4 2s-2.8-.6-4-2z"/>
+  <path class="a-gl" style="stroke-width:.7" d="M32 5.6v4.2M28 7.2l1.6 2.6M36 7.2l-1.6 2.6"/>
+  <circle class="a-gl" cx="32" cy="11.4" r="10" filter="url(#a-glow)" opacity=".8"/>
+  <circle class="a-gl" style="stroke-width:.8" cx="32" cy="11.4" r="10"/>
+  <path class="a-gl" style="stroke-width:.5" d="M22.6 8.4c6-1.6 12.8-1.6 18.8 0M22.4 14.8c6.2 1.4 13 1.4 19.2 0" opacity=".6"/>
+  <path class="a-l" d="M24.6 6.2c1.8-2 4.2-3.2 7-3.4M28.4 12.4h2.8M25 23.6l-1 8"/>
+  <circle class="a-w" cx="25.6" cy="5.4" r=".7"/>
+</svg>

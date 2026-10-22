@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <g transform="rotate(-45 32 32)">
+    <path class="a-b a-oo" d="M20.6 28.2H51.6Q59.6 28.6 59.4 25.6Q58.8 23.8 55.8 24.2L52.4 25.2L54.8 21.6Q62.6 19.8 65.4 25.2Q67.4 31.4 61.6 35.8H20.6z"/>
+    <path d="M20.6 28.2H51.6Q59.6 28.6 59.4 25.6Q58.8 23.8 55.8 24.2L52.4 25.2L54.8 21.6Q62.6 19.8 65.4 25.2Q67.4 31.4 61.6 35.8H20.6z" fill="url(#a-sheen)"/>
+    <path class="a-m" d="M21.2 32.3H60.8Q64.2 31.2 65.6 27.6Q66.4 32.6 61.4 35.2H21.2z"/>
+    <path class="a-p" d="M21 32.3H60.8Q64.2 31.2 65.6 27.6"/>
+    <rect class="a-d a-o" x="23.4" y="29.6" width="26" height="1.8" rx=".9"/>
+    <path class="a-g" d="M25 30.1h4.4v.8H25zM31.6 30.1H36v.8h-4.4zM38.2 30.1h4.4v.8h-4.4zM44.8 30.1h3v.8h-3z" filter="url(#a-glow)" opacity=".8"/>
+    <path class="a-g" d="M25 30.2h4.4v.6H25zM31.6 30.2H36v.6h-4.4zM38.2 30.2h4.4v.6h-4.4zM44.8 30.2h3v.6h-3z"/>
+    <path class="a-m a-oo" d="M-.6 28.2h-3.2q-2.8 0-2.8 3.8t2.8 3.8h3.2z"/>
+    <rect class="a-x a-o" x="-4.6" y="30.4" width="2" height="3.2" rx=".6"/>
+    <rect class="a-c a-oo" x="-1" y="28.8" width="11.4" height="6.4" rx=".8"/>
+    <path class="a-p" d="M.8 29l1.6 6M3.2 29l1.6 6M5.6 29l1.6 6M8 29l1.6 6"/>
+    <rect x="-1" y="28.8" width="11.4" height="6.4" rx=".8" fill="url(#a-shade)"/>
+    <path class="a-m a-oo" d="M9.6 23l2.6-.6 1.4 3.4v12.4l.6 2.4q4 .4 6.4 3.6l-1.6 1.4q-2.6-2.4-6.4-1.8l-3-.6z"/>
+    <path d="M9.6 23l2.6-.6 1.4 3.4v12.4l.6 2.4q4 .4 6.4 3.6l-1.6 1.4q-2.6-2.4-6.4-1.8l-3-.6z" fill="url(#a-sheen)"/>
+    <path class="a-x a-o" d="M10.4 25.2l2-.4v14.4l-2-.4z"/>
+    <rect class="a-b a-oo" x="13.2" y="26.6" width="8.4" height="10.8" rx="1.2"/>
+    <rect x="13.2" y="26.6" width="8.4" height="10.8" rx="1.2" fill="url(#a-sheen)"/>
+    <rect class="a-d a-o" x="14.6" y="28.6" width="5.6" height="6.8" rx=".8"/>
+    <path class="a-g" d="M15.4 29.2h1v5.6h-1zM17 29.2h1v5.6h-1zM18.6 29.2h1v5.6h-1z" filter="url(#a-glow)"/>
+    <path class="a-g" d="M15.6 29.6h.6v4.8h-.6zM17.2 29.6h.6v4.8h-.6zM18.8 29.6h.6v4.8h-.6z"/>
+    <path class="a-p" d="M13.6 36h7.6M53.2 24.6l7.4 6.4"/>
+    <path class="a-l" d="M-5 30.6q.6-1.4 1.6-1.4M14 27.6h6.8M10.4 23.6l1.6-.4M22 29.2h29.6M55.6 22.4q6-1.6 8.6 3.4M.2 29.8h9"/>
+  </g>
+</svg>

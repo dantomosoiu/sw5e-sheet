@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
   <path class="a-d a-o" d="M25 51c-2.5 3.6-6.5 5.6-10.5 6.4l.8 3c5-1.2 9.2-3.6 12.2-7.8z"/>
-  <path class="a-x a-o" d="M38 51c2.2 3.6 5.6 6 9.6 7l-.8 2.8c-5-1.2-8.8-4-11.2-8.2z"/>
+  <path class="a-x a-o" d="M39 51c2.5 3.6 6.5 5.6 10.5 6.4l-.8 3c-5-1.2-9.2-3.6-12.2-7.8z"/>
   <path class="a-m a-oo" d="M21 46h22l-3 8H24z"/>
   <path d="M21 46h22l-3 8H24z" fill="url(#a-shade)"/>
   <path class="a-p" d="M27 47l.6 6M32 47v6M37 47l-.6 6"/>
@@ -23,5 +23,5 @@
   <path class="a-d" d="M14 37.6h6v2.6h-6zM44 37.6h6v2.6h-6z"/>
   <rect class="a-m a-oo" x="8" y="42" width="48" height="5.5" rx="2"/>
   <rect x="8" y="42" width="48" height="5.5" rx="2" fill="url(#a-sheen)"/>
-  <path class="a-l" d="M13 22c3-5.6 9-9.2 16-9.8M10.5 43.2h43"/>
+  <path class="a-l" d="M14.6 22.6A21.6 22.6 0 0 1 29 13.6M10.5 43.2h43"/>
 </svg>

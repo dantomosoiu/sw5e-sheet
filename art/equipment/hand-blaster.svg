@@ -16,9 +16,11 @@
   <path class="a-x" d="M9 25.4c11-.2 23-1 37-2.4v2.4c-14 1.2-26 2.2-36.6 2.6z"/>
   <path class="a-p" d="M33 18.6V29M8.6 28.4h18.6"/>
   <rect class="a-m a-o" x="27.6" y="14.4" width="3" height="4" rx=".6"/>
-  <circle class="a-gl" cx="29.1" cy="10.6" r="3.4" fill="none" filter="url(#a-glow)" opacity=".7"/>
-  <circle class="a-gl" cx="29.1" cy="10.6" r="3.4" fill="none"/>
-  <circle class="a-w" cx="29.1" cy="10.6" r=".8"/>
+  <circle class="a-m a-oo" cx="29.1" cy="10.8" r="3.8"/>
+  <circle class="a-s" cx="29.1" cy="10.8" r="2.5"/>
+  <circle class="a-gl" cx="29.1" cy="10.8" r="2.2" fill="none" filter="url(#a-glow)" opacity=".7"/>
+  <circle class="a-gl" cx="29.1" cy="10.8" r="2.2" fill="none"/>
+  <circle class="a-w" cx="29.1" cy="10.8" r=".7"/>
   <circle class="a-g" cx="13.4" cy="23.4" r="1.4" filter="url(#a-glow)"/>
   <circle class="a-w" cx="13.4" cy="23.4" r=".6"/>
   <path class="a-l" d="M11 20.6c.8-.8 1.8-1.2 3-1.2h23.6M46.4 23.2h8.8"/>

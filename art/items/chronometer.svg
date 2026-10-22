@@ -7,9 +7,10 @@
   <rect class="a-d" x="30.6" y="54.6" width="2.8" height="1.8" rx=".9"/>
   <rect class="a-m a-o" x="20.5" y="14.5" width="23" height="4" rx="1.2"/>
   <rect class="a-m a-o" x="20.5" y="45.5" width="23" height="4" rx="1.2"/>
-  <rect class="a-m a-o" x="46.4" y="24" width="3.6" height="4.6" rx="1"/>
-  <rect class="a-m a-o" x="46.4" y="35.4" width="3.6" height="4.6" rx="1"/>
-  <rect class="a-x a-o" x="14" y="29.6" width="3.6" height="4.8" rx="1"/>
+  <rect class="a-m a-o" x="46.4" y="22.2" width="3.6" height="4.2" rx="1"/>
+  <rect class="a-m a-o" x="46.4" y="37.6" width="3.6" height="4.2" rx="1"/>
+  <rect class="a-x a-o" x="46.4" y="29.4" width="4.8" height="5.2" rx="1"/>
+  <path class="a-p" d="M49.2 30v4"/>
   <rect class="a-b a-oo" x="16.5" y="16.5" width="31" height="31" rx="8"/>
   <rect x="16.5" y="16.5" width="31" height="31" rx="8" fill="url(#a-sheen)"/>
   <rect x="16.5" y="16.5" width="31" height="31" rx="8" fill="url(#a-shade)"/>

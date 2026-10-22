@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <clipPath id="dampening-suit-c"><path d="M23.6 20h16.8c3.2 0 5.2 2 5.6 5.2l.8 15.4c.2 2-1.2 3.4-3.2 3.4H19.4c-2 0-3.4-1.4-3.2-3.4l.8-15.4c.4-3.2 2.4-5.2 5.6-5.2z"/></clipPath>
+  <g id="dampening-suit-a">
+    <path class="a-c a-oo" d="M18.4 21.4c-3.6.8-5.8 3.2-6.6 7l-2.6 11.2 6.8 1.6 2.8-10.6z"/>
+    <path d="M18.4 21.4c-3.6.8-5.8 3.2-6.6 7l-2.6 11.2 6.8 1.6 2.8-10.6z" fill="url(#a-shade)"/>
+    <path class="a-p" d="M11.6 30.4l6.4 1.4M10.6 35l6.6 1.6"/>
+    <path class="a-d a-oo" d="M8.6 39.2l7.6 1.8-.8 5c-.2 1.4-1.6 2.4-3 2.2l-2.4-.4c-1.6-.2-2.6-1.6-2.4-3.2z"/>
+    <path class="a-c a-oo" d="M19.6 43.2h11.2l-.6 9.6h-10z"/>
+    <path d="M19.6 43.2h11.2l-.6 9.6h-10z" fill="url(#a-shade)"/>
+    <path class="a-p" d="M20 46.4h10.8M20.2 49.6h10.4"/>
+    <path class="a-d a-oo" d="M19.4 52.2h11.4l.6 6.4c0 1-.8 1.6-1.8 1.6H18c-1.2 0-2-.8-2-1.8 0-2.6 1.2-4.8 3.4-6.2z"/>
+  </g>
+  <use href="#dampening-suit-a" transform="matrix(-1 0 0 1 64 0)"/>
+  <path class="a-c a-oo" d="M23.6 20h16.8c3.2 0 5.2 2 5.6 5.2l.8 15.4c.2 2-1.2 3.4-3.2 3.4H19.4c-2 0-3.4-1.4-3.2-3.4l.8-15.4c.4-3.2 2.4-5.2 5.6-5.2z"/>
+  <path class="a-p" clip-path="url(#dampening-suit-c)" d="M-8 20l24 24M-4 20l24 24M0 20l24 24M4 20l24 24M8 20l24 24M12 20l24 24M16 20l24 24M20 20l24 24M24 20l24 24M28 20l24 24M32 20l24 24M36 20l24 24M40 20l24 24M44 20l24 24M16 20l-24 24M20 20l-24 24M24 20l-24 24M28 20l-24 24M32 20l-24 24M36 20l-24 24M40 20l-24 24M44 20l-24 24M48 20l-24 24M52 20l-24 24M56 20l-24 24M60 20l-24 24M64 20l-24 24M68 20l-24 24"/>
+  <path d="M23.6 20h16.8c3.2 0 5.2 2 5.6 5.2l.8 15.4c.2 2-1.2 3.4-3.2 3.4H19.4c-2 0-3.4-1.4-3.2-3.4l.8-15.4c.4-3.2 2.4-5.2 5.6-5.2z" fill="url(#a-sheen)"/>
+  <path d="M23.6 20h16.8c3.2 0 5.2 2 5.6 5.2l.8 15.4c.2 2-1.2 3.4-3.2 3.4H19.4c-2 0-3.4-1.4-3.2-3.4l.8-15.4c.4-3.2 2.4-5.2 5.6-5.2z" fill="url(#a-shade)"/>
+  <rect class="a-d a-o" x="25" y="23.8" width="14" height="7.6" rx="1.2"/>
+  <path class="a-m" d="M26 27.2l1.2-2.2 1.2 2.2zM28.4 27.2l1.2-2.2 1.2 2.2zM30.8 27.2l1.2-2.2 1.2 2.2zM33.2 27.2l1.2-2.2 1.2 2.2zM35.6 27.2l1.2-2.2 1.2 2.2zM27.2 30l1.2-2.2 1.2 2.2zM29.6 30l1.2-2.2 1.2 2.2zM32 30l1.2-2.2 1.2 2.2zM34.4 30l1.2-2.2 1.2 2.2z"/>
+  <rect class="a-s a-o" x="25.6" y="33" width="12.8" height="4" rx="1"/>
+  <path class="a-gl" d="M26.8 35q.9-2.6 1.8 0t1.8 0q.6-1.2 1.2 0t1.2 0h5" filter="url(#a-glow)" opacity=".8"/>
+  <path class="a-gl" style="stroke-width:.8" d="M26.8 35q.9-2.6 1.8 0t1.8 0q.6-1.2 1.2 0t1.2 0h5"/>
+  <rect class="a-m a-o" x="17.4" y="39.6" width="29.2" height="3" rx="1"/>
+  <ellipse class="a-c a-oo" cx="32" cy="20.4" rx="9.4" ry="2.8"/>
+  <path class="a-p" d="M25 20.6h3M36 20.6h3"/>
+  <path class="a-m a-oo" d="M20.2 11.4c.6-5 5-8.2 11.8-8.2s11.2 3.2 11.8 8.2l-2.8.4c-.6-3.6-4-5.8-9-5.8s-8.4 2.2-9 5.8z"/>
+  <ellipse class="a-m a-oo" cx="32" cy="13" rx="7.8" ry="7.8"/>
+  <ellipse cx="32" cy="13" rx="7.8" ry="7.8" fill="url(#a-sheen)"/>
+  <ellipse cx="32" cy="13" rx="7.8" ry="7.8" fill="url(#a-shade)"/>
+  <rect class="a-s a-o" x="27.4" y="9.2" width="9.2" height="6.4" rx="2.4"/>
+  <path class="a-g" d="M28.4 13.6h7.2a1.6 1.6 0 0 1-1.4 1.2h-4.4a1.6 1.6 0 0 1-1.4-1.2z" opacity=".5"/>
+  <g id="dampening-suit-e">
+    <circle class="a-x a-oo" cx="22.2" cy="13.4" r="5"/>
+    <circle cx="22.2" cy="13.4" r="5" fill="url(#a-sheen)"/>
+    <circle class="a-d a-o" cx="22.2" cy="13.4" r="3.2"/>
+    <circle class="a-gl" cx="22.2" cy="13.4" r="1.8" filter="url(#a-glow)"/>
+    <circle class="a-gl" style="stroke-width:.7" cx="22.2" cy="13.4" r="1.8"/>
+    <circle class="a-w" cx="22.2" cy="13.4" r=".5"/>
+  </g>
+  <use href="#dampening-suit-e" transform="matrix(-1 0 0 1 64 0)"/>
+  <path class="a-l" d="M18.8 11c.4-1.4 1.4-2.4 2.8-2.8M22.4 7.4c1.8-2 4.6-3.2 8.2-3.4M28.6 10.4h3.4M24.4 21.2c-2.6.6-4.6 2-5.8 4.2"/>
+</svg>

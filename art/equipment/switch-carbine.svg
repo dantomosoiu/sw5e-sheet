@@ -29,7 +29,7 @@
     <circle class="a-m" cx="33.6" cy="29.8" r="1.1"/>
     <circle class="a-x a-oo" cx="24.6" cy="28" r="4"/>
     <circle cx="24.6" cy="28" r="4" fill="url(#a-sheen)"/>
-    <path class="a-m a-oo" d="M23 26.8l6.6-6.2 2.4 2.4-6.4 6.6z"/>
+    <path class="a-m a-oo" d="M23 26.8l5.4-5 2.4 2.4-5.2 5.4z"/>
     <circle class="a-m a-o" cx="24.6" cy="28" r="1.8"/>
     <rect class="a-m a-o" x="16" y="17.4" width="9.6" height="4.2" rx="1"/>
     <rect class="a-s" x="17.4" y="18.4" width="4.2" height="2.2" rx=".4"/>
