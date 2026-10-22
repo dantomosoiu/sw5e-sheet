@@ -6128,6 +6128,22 @@ function featurePickers(m, f) {
   });
   return html.length ? { html: html.join(''), chosen } : null;
 }
+/**
+ * The asks still open, for "Still to choose": [{ label, count, chosen }]. Alternatives (oneOf: Baragwin's "armstech's
+ * implements, munitions kits, or two weapons of your choice") are one choice: answered when any of them is, listed once.
+ */
+function openAsks(asks) {
+  const out = [];
+  for (const a of asks) {
+    const grp = a.oneOf ? asks.filter((x) => x.oneOf === a.oneOf) : [a];
+    if (grp[0] !== a) continue;
+    if (grp.length > 1) { if (!grp.some((x) => x.chosen.length)) out.push({ label: grp.map((x) => x.label.toLowerCase()).join(' or '), count: 1, chosen: [] }); continue; }
+    if (a.chosen.length < a.count) out.push(a);
+  }
+  return out;
+}
+/** Of alternatives (oneOf), the one answered: the others' pickers go once one is chosen. */
+const askShown = (a, asks) => !a.oneOf || a.chosen.length || !asks.some((x) => x !== a && x.oneOf === a.oneOf && x.chosen.length);
 /** What a feature asks the player to choose (classes.js asks: one of its options, an ability, skills, tools…). */
 function featureAsks(m, f) {
   const text = f.text || f.description || '';
@@ -6210,7 +6226,9 @@ function featureNoteBox(m, f, opts = {}) {
   const free = picked == null && !asks.length && /\b(?:choose|choice|of your choice|select)\b/i.test(choiceWords);
   const chosen = pk ? `<div class="cls-choices feat-pickers">${pk.html}</div>` : picked == null ? ''
     : `<div class="feat-chosen">${picked.length ? `Chosen: <b>${esc(picked.join(', '))}</b>` : '<span class="warn-text">Not chosen yet</span>'} · <a href="#sec-classes">${picked.length ? 'change' : 'choose'} it in Classes &amp; Progression</a></div>`;
-  const pickers = asks.map((a) => bdPickList({
+  // Languages a class feature teaches (Silver Tongue's two).
+  const langs = f.source === 'Class' || f.source === 'Archetype' ? bdFeatureLanguagePicks(m, f.name) : '';
+  const pickers = langs + asks.filter((a) => askShown(a, asks)).map((a) => bdPickList({
     title: a.label, from: ['tool', 'weapon'].includes(a.kind) && /\s/.test(a.of) ? a.of : '', count: a.count, chosen: a.chosen, options: askOptions(m, a), kind: 'fnote', arg: key, word: ASK_WORDS[a.kind] || 'one',
     hint: ['tool', 'weapon', 'skilltool'].includes(a.kind) && !state.catalog ? 'The list comes with SW5E\'s item list (Equipment → Add an item loads it).' : '',
   })).join('');

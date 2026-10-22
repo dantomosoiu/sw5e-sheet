@@ -357,6 +357,37 @@ function bdFeatLanguages(raw) {
   }
   return out;
 }
+/**
+ * Languages a class or archetype feature teaches at the class's level: "You learn your choice of two languages" (Silver
+ * Tongue), "You learn one language of your choice… You learn an additional language… at 11th level" (Mystical
+ * Erudition): [{ name (the feature), from ('Feature: Silver Tongue'), sentence, count, options, chosen }]. An
+ * "Alternatively, you learn one language" is a choice instead of something else: not asked.
+ */
+function bdFeatureLanguages(raw) {
+  const out = [];
+  for (const k of arr(raw.classes)) {
+    const cref = bdClassRef(k.name);
+    const aref = k.archetype && k.archetype.name ? arr(bdModules().archetypes).find((a) => a.name === k.archetype.name) : null;
+    const lv = num(k.levels);
+    const feats = (cref ? clsTextFeatures(cref.classFeatureText, k.name, 'Class') : []).concat(aref ? clsTextFeatures(aref.text, aref.name, 'Archetype') : []);
+    for (const f of feats.filter((x) => x.level <= lv)) {
+      const t = String(f.text || '').replace(/\s+/g, ' ');
+      const sentence = (/[^.]*\blanguages?\b[^.]*\b(?:of your choice|your choice of)\b[^.]*/i.exec(t) || [])[0];
+      if (!sentence || /^\s*alternatively\b/i.test(sentence)) continue;
+      const two = /\byour choice of (one|two|three|a) languages?\b/i.exec(sentence);
+      const lc = two ? { count: prNum(two[1]) || 1, options: null } : prLanguageChoices(sentence);
+      if (!lc) continue;
+      const more = [...t.matchAll(/\byou learn (?:an additional|another|one more) language\b[^.]*?\bat (\d+)(?:st|nd|rd|th) level/gi)].filter((x) => lv >= Number(x[1])).length;
+      out.push({ name: f.name, from: `Feature: ${f.name}`, sentence: sentence.trim(), count: lc.count + more, options: lc.options || prLanguages(bdModules()), chosen: BD_KINDS.lang.get(raw, `Feature: ${f.name}`) });
+    }
+  }
+  return out;
+}
+/** A class feature's language picker, for its card. */
+function bdFeatureLanguagePicks(m, name) {
+  const x = bdFeatureLanguages(m.raw).find((l) => l.name === name);
+  return x ? bdPickList({ title: 'Languages', from: x.sentence, count: x.count, chosen: x.chosen, options: x.options, kind: 'lang', arg: x.from, word: 'a language' }) : '';
+}
 /** A feat's language picker, for its card. */
 function bdFeatLanguagePicks(m, name) {
   const x = bdFeatLanguages(m.raw).find((l) => l.name === name);
@@ -1159,8 +1190,12 @@ function bdOpenChoices(m) {
   for (const name of bdFeatNames(raw)) {
     const ref = bdFeatList().find((f) => f.name === name);
     if (!ref) continue;
-    for (const a of featureAsks(m, { name, text: ref.text || '', source: 'Feat' })) if (a.chosen.length < a.count) add('feats', `${name}: ${a.label.toLowerCase()}${more(a.count - a.chosen.length)}`);
+    for (const a of openAsks(featureAsks(m, { name, text: ref.text || '', source: 'Feat' }))) add('feats', `${name}: ${a.label.toLowerCase()}${more(a.count - a.chosen.length)}`);
   }
+  // What the items in use ask (a side effect's score, Adapted Armor's damage type, a weapon of your choice): in the
+  // item's note.
+  for (const e of arr(m.effects).filter((x) => x.kind === 'item' && x.active)) for (const c of arr(e.needsChoice)) add('equipment', `${e.name}: ${c}`);
+  for (const x of bdFeatureLanguages(raw)) if (x.chosen.length < x.count) add('classes', `${x.name}: languages${more(x.count - x.chosen.length)}`);
   for (const x of bdFeatLanguages(raw)) if (x.chosen.length < x.count) add('feats', `${x.name}: languages${more(x.count - x.chosen.length)}`);
   const sp = bdSpeciesRef(raw);
   if (prIsHalfHuman(sp) && !sp.halfOf) add('species', 'non-human half');
@@ -1169,7 +1204,7 @@ function bdOpenChoices(m) {
   if (lc && BD_KINDS.lang.get(raw, `Species: ${sp.name}`).length < lc.count) add('species', 'species language');
   // What the species' traits ask (Theelin's Mutation, Kiffar Heritage, Human Versatility's skill, tool and weapon).
   for (const t of bdSpeciesTraitFeatures(m)) {
-    for (const a of featureAsks(m, t)) if (a.chosen.length < a.count) add('species', `${t.name}: ${a.label.toLowerCase()}${more(a.count - a.chosen.length)}`);
+    for (const a of openAsks(featureAsks(m, t))) add('species', `${t.name}: ${a.label.toLowerCase()}${more(a.count - a.chosen.length)}`);
   }
   if (sp) for (const p of bdSpeciesIncrease(raw).picks) if (p.chosen.length < p.count) add('species', `species +${p.amount}${more(p.count - p.chosen.length)} (${p.options.length < 6 ? p.options.join(' or ') : 'any ability'})`);
   return out;
