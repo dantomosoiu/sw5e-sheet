@@ -1,8 +1,8 @@
 """Builds the sheet's two releases from app/:
 
 dist/extension/  the browser extension: the sheet wrapped by extension/
-  app/**                  the sheet as it is, with SW5E's data (app/README.md, the user guide, and sw.js, the web
-                          version's offline worker, stay out)
+  app/**                  the sheet as it is, with SW5E's data (app/README.md, the user guide, and the web
+                          version's sw.js and sw5e-grab.js stay out)
   extension/*             the manifest, the background worker, the sw5e.com bridge and the extension's
                           platform.js, which takes the place of app/platform.js
   index.html              app/index.html, with bridge.js loaded just before platform.js
@@ -10,6 +10,8 @@ dist/extension/  the browser extension: the sheet wrapped by extension/
 dist/web/        the web version, for any static host (https): app/** as it is, except
   sw.js                   app/sw.js with VERSION (a hash of every other file) and FILES (all of them) filled in,
                           so it keeps them for offline use and a new build is noticed as a new version
+  sw5e-grab.js            app/sw5e-grab.js (the bookmark's script on sw5e.com) with sw5ePageExtract from
+                          extension/bridge.js, which reads the characters as the extension does
 
 Only changed files are written, and files no longer in the sources are removed, so Chrome can keep the
 extension folder loaded (Load unpacked) while it's rebuilt; a page reload then shows the change.
@@ -42,6 +44,7 @@ def sources():
     """The extension: { path in the build: source file } (index.html: its text, as built)."""
     files = app_files()
     files.pop('sw.js', None)
+    files.pop('sw5e-grab.js', None)
     for p in sorted(EXT.rglob('*')):
         rel = p.relative_to(EXT).as_posix()
         if p.is_file() and rel != 'README.md':
@@ -53,13 +56,30 @@ def sources():
     return files
 
 
+GRAB_MARK = '  // __SW5E_PAGE_EXTRACT__\n'
+
+
+def page_extract():
+    """sw5ePageExtract from extension/bridge.js: the code that reads characters inside a sw5e.com page."""
+    src = (EXT / 'bridge.js').read_text(encoding='utf-8')
+    m = re.search(r'async function sw5ePageExtract\(\w+\) \{.*?\n\}\n', src, re.S)
+    if not m:
+        raise RuntimeError('sw5ePageExtract not found in extension/bridge.js')
+    return m.group(0)
+
+
 def web_sources():
     """The web version: app/ as it is, with sw.js told which files to keep and which version they are."""
     files = app_files()
+    grab = (APP / 'sw5e-grab.js').read_text(encoding='utf-8')
+    if grab.count(GRAB_MARK) != 1:
+        raise RuntimeError('app/sw5e-grab.js needs the line ' + GRAB_MARK.strip())
+    files['sw5e-grab.js'] = grab.replace(GRAB_MARK, '  // From extension/bridge.js (dev/build.py):\n' + page_extract(), 1)
     kept = sorted(rel for rel in files if rel != 'sw.js')
     digest = hashlib.sha256()
     for rel in kept:
-        digest.update(rel.encode('utf-8') + b'\0' + files[rel].read_bytes() + b'\0')
+        src = files[rel]
+        digest.update(rel.encode('utf-8') + b'\0' + (src.encode('utf-8') if isinstance(src, str) else src.read_bytes()) + b'\0')
     sw = (APP / 'sw.js').read_text(encoding='utf-8')
     sw, n1 = re.subn(r"^const VERSION = '[^']*';$", f"const VERSION = '{digest.hexdigest()[:12]}';", sw, flags=re.M)
     sw, n2 = re.subn(r'^const FILES = \[\];$', 'const FILES = ' + json.dumps(['./'] + kept) + ';', sw, flags=re.M)

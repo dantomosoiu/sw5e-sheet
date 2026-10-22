@@ -52,8 +52,11 @@ fetched from SW5E's public data service), so it works offline.
 
 ## Next
 1. **Publish on GitHub Pages** (see "Hosting" below) and try it on a real phone.
-2. **Getting characters onto the phone:** the extension's **Back up all characters** file, imported on the phone,
-   works now. Syncing between devices is a separate decision: it needs a server and accounts, or sw5e.com.
+2. **Getting characters onto the phone:** done for loading (2026-10-22): a bookmark on sw5e.com reads the account's
+   characters in the player's own signed-in page and hands them to the sheet (or copies them for Paste), and the
+   installed app takes shared files (Android). Saving back to sw5e.com from the phone isn't there. A sign-in of the
+   sheet's own on SW5E's account service would need SW5E to register the sheet's address (their sign-in only
+   answers their own site): worth asking them.
 3. Option 1 only as a quick experiment, for someone who wants the extension on an Android phone now. Option 3
    isn't recommended.
 

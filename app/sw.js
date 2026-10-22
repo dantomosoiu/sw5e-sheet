@@ -6,12 +6,16 @@
  * version; pages and data are then answered from it, so the sheet opens without a connection. A new version
  * installs beside the old one and waits: the page offers "Reload" (pwa.js), which asks it to take over.
  *
+ * Files shared to the installed app (Android's share menu: manifest share_target) arrive as a POST to share-target:
+ * they're kept in the cache "sw5e-shared" and the sheet opens with ?shared, takes them and imports them (pwa.js).
+ *
  * Characters aren't here: they're in IndexedDB (platform.js), which a new version leaves alone. Requests to other
  * sites (SW5E's data service) go to the network as they are.
  */
 const VERSION = 'dev';
 const FILES = [];
 const CACHE = 'sw5e-sheet-' + VERSION;
+const SHARED = 'sw5e-shared';
 
 self.addEventListener('install', (event) => {
   // cache: 'reload' skips the browser's HTTP cache, so the files kept are this version's, not older copies.
@@ -31,6 +35,10 @@ self.addEventListener('message', (event) => {
 
 self.addEventListener('fetch', (event) => {
   const req = event.request;
+  if (req.method === 'POST' && new URL(req.url).pathname.endsWith('/share-target')) {
+    event.respondWith(receiveShared(req));
+    return;
+  }
   if (req.method !== 'GET' || new URL(req.url).origin !== self.location.origin) return;
   event.respondWith((async () => {
     const cache = await caches.open(CACHE);
@@ -40,3 +48,12 @@ self.addEventListener('fetch', (event) => {
     return hit || fetch(req);
   })());
 });
+
+async function receiveShared(req) {
+  const files = (await req.formData()).getAll('files').filter((f) => f && typeof f !== 'string');
+  await caches.delete(SHARED);
+  const cache = await caches.open(SHARED);
+  await Promise.all(files.map((f, i) => cache.put(`shared/${i}`,
+    new Response(f, { headers: { 'X-File-Name': encodeURIComponent(f.name || `shared-${i + 1}.json`) } }))));
+  return Response.redirect(new URL(`./?shared=${files.length}`, self.registration.scope).href, 303);
+}

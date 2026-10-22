@@ -38,4 +38,18 @@ function updateOfflineApp() {
   reg.waiting.postMessage({ type: 'take-over' });
 }
 
+/** Files shared to the installed app (sw.js keeps them in "sw5e-shared"): handed over once, then dropped. */
+async function takeSharedFiles() {
+  if (!('caches' in window)) return [];
+  const cache = await caches.open('sw5e-shared');
+  const files = [];
+  for (const req of await cache.keys()) {
+    const res = await cache.match(req);
+    const name = decodeURIComponent(res.headers.get('X-File-Name') || 'shared.json');
+    files.push(new File([await res.blob()], name, { type: 'application/json' }));
+  }
+  await caches.delete('sw5e-shared');
+  return files;
+}
+
 registerOfflineApp();

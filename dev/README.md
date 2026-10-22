@@ -9,7 +9,13 @@ python dev/build.py         # dist/extension/ = app/ + extension/; dist/web/ = t
 ```
 `dist/web/` is `app/` for a static host (https, or localhost): its `sw.js` gets the list of every file and a version
 (a hash of them all), so the installed app keeps them for offline use and notices a new build. `app/sw.js` itself has
-an empty list. `app/pwa.js` registers it only in the web version, never on the dev page. GitHub Pages publishes
+an empty list. `app/pwa.js` registers it only in the web version, never on the dev page.
+`dist/web/sw5e-grab.js` is `app/sw5e-grab.js`, the script the "Get characters from sw5e.com" bookmark loads into a
+sw5e.com page, with `sw5ePageExtract` from `extension/bridge.js` put in (the same reading as the extension's Load).
+It hands the characters to the sheet with postMessage (`awaitCharactersFromSw5e` in `app/sw5e.js` takes them only
+from sw5e.com and from the tab that opened it) or copies them for Paste. To try it locally, add a script element
+with `src` = `http://127.0.0.1:8765/dist/web/sw5e-grab.js` to a signed-in sw5e.com tab. Files shared to the
+installed app (Android) arrive at `share-target` (manifest `share_target`, handled in `sw.js`). GitHub Pages publishes
 `dist/web/` on every push to `main` (`.github/workflows/pages.yml`). The phone icons
 (`icon192`, `icon512`, `maskable512`) are drawn by `python dev/icons.py` (needs Pillow); the smaller ones are drawn
 by hand.

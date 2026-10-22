@@ -91,6 +91,7 @@ select, input, textarea { max-width: 100%; }
 .narrow-only, .mbar-only { display: none !important; }
 /* A plain web page can't reach sw5e.com (only the browser extension can): its buttons go. */
 html[data-sw5e="off"] .needs-sw5e { display: none !important; }
+html[data-sw5e="on"] .no-sw5e { display: none !important; }
 .menu-pop hr { border: 0; border-top: 1px solid var(--line); margin: 4px 0; }
 
 /* ---------- Layout ---------- */

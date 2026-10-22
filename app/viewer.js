@@ -336,12 +336,13 @@ function mergeBackup(b) {
 }
 
 // ------------------------------------------------------------- actions
-async function loadFromSw5e({ preferredTabId, selectId } = {}) {
+/** Load from SW5E: through the extension, or `result` handed over by the sheet's bookmark on sw5e.com. */
+async function loadFromSw5e({ preferredTabId, selectId, result } = {}) {
   const btn = $('#btnLoad');
   btn.disabled = true;
-  setStatus('Connecting to sw5e.com…');
+  if (!result) setStatus('Connecting to sw5e.com…');
   try {
-    const res = await fetchAllFromSw5e({ preferredTabId, onStatus: (m) => setStatus(m) });
+    const res = result || await fetchAllFromSw5e({ preferredTabId, onStatus: (m) => setStatus(m) });
     const before = Object.fromEntries(Object.entries(state.snapshots).map(([k, s]) => [k, s.raw]));
     const keys = addSnapshots(res.characters, 'sw5e', res.meta);
     if (!keys.length) {
@@ -395,6 +396,49 @@ async function loadFromSw5e({ preferredTabId, selectId } = {}) {
     setStatus('Could not load from sw5e.com: ' + e.message, 'error');
   } finally {
     btn.disabled = false;
+  }
+}
+
+/** "Get characters from sw5e.com" in the web version: the bookmark, how to use it, and Paste. */
+function showFromSw5e() {
+  let pop = document.getElementById('msgLog');
+  const was = pop && pop.dataset.kind;
+  if (pop) pop.remove();
+  if (was === 'from-sw5e') return;
+  pop = document.createElement('div');
+  pop.id = 'msgLog';
+  pop.dataset.kind = 'from-sw5e';
+  pop.className = 'msg-log guide';
+  pop.setAttribute('role', 'dialog');
+  pop.setAttribute('aria-label', 'Get characters from sw5e.com');
+  pop.innerHTML = `<div class="msg-head"><b>Get characters from sw5e.com</b><button class="btn sm" data-act="from-sw5e" aria-label="Close">✕</button></div>
+    <ol>
+      <li><b>Add the bookmark</b> (once). On a computer, drag <a class="btn sm" href="${esc(sw5eBookmarkCode())}" title="Drag to your bookmarks bar">SW5E to Sheet</a> to the bookmarks bar.
+        On a phone: <button class="btn sm" data-act="copy-bookmark">Copy the bookmark</button>, bookmark any page, then edit that bookmark: name it <i>SW5E to Sheet</i> and paste over its address.</li>
+      <li><b>Open sw5e.com</b>, signed in, and open the bookmark there. Chrome on a phone: type <i>SW5E to Sheet</i> in the address bar and tap the bookmark in the list. Safari: Bookmarks → <i>SW5E to Sheet</i>.</li>
+      <li><b>Send to the sheet</b>: the sheet opens with your characters. Or <b>Copy</b> there, come back here and <button class="btn sm" data-act="paste-sw5e">Paste</button>.</li>
+    </ol>
+    <p class="faint">The bookmark reads your characters on sw5e.com the way the browser extension does, using your own sign-in there, and gives them only to this sheet. On an iPhone, the sheet added to the home screen keeps its own storage: use Copy and Paste there.</p>`;
+  const bar = document.querySelector('.side-nav');
+  const narrow = window.matchMedia('(max-width: 900px)').matches;
+  pop.style.top = `${narrow && bar ? Math.max(8, Math.round(bar.getBoundingClientRect().bottom) + 8) : 56}px`;
+  document.body.appendChild(pop);
+}
+
+/** Paste: what the bookmark copied on sw5e.com, or any character file's text. */
+async function pasteFromSw5e() {
+  let text = '';
+  try { text = await navigator.clipboard.readText(); } catch (e) { setStatus('Could not read the clipboard: ' + e.message, 'error'); return; }
+  let data = null;
+  try { data = JSON.parse(text); } catch (e) { /* said below */ }
+  if (isFromSw5e(data)) {
+    const pop = document.getElementById('msgLog');
+    if (pop && pop.dataset.kind === 'from-sw5e') pop.remove();
+    await loadFromSw5e({ result: data.result });
+  } else if (data) {
+    await importFiles([new File([text], 'pasted.json', { type: 'application/json' })]);
+  } else {
+    setStatus("The clipboard has no characters: on sw5e.com, open the sheet's bookmark and press Copy first.", 'error');
   }
 }
 
@@ -563,6 +607,7 @@ function renderAllInner(opts) {
         <h1>SW5E Character Sheet</h1>
         <p class="muted">See everything about your character on one scrollable page.</p>
         <p><button class="btn primary needs-sw5e" data-act="load">Load my characters from sw5e.com</button>
+           <button class="btn primary no-sw5e" data-act="from-sw5e">Get my characters from sw5e.com</button>
            <button class="btn" data-act="cr-new">Create a new character</button>
            <button class="btn" data-act="import">Import a character file…</button></p>
         <p class="faint"><span class="needs-sw5e">Loading uses your existing sw5e.com session (an open sw5e.com tab is used if there is one; otherwise one is opened briefly in the background).</span>
@@ -6337,6 +6382,12 @@ async function handleAction(act, arg) {
       return trackerAction('relent', arg);
     case 'messages': return showMessages();
     case 'guide': return showGuide();
+    case 'from-sw5e': return showFromSw5e();
+    case 'paste-sw5e': return pasteFromSw5e();
+    case 'copy-bookmark':
+      return navigator.clipboard.writeText(sw5eBookmarkCode())
+        .then(() => setStatus('Bookmark copied: bookmark any page, edit it, and paste this as its address.'))
+        .catch((e) => setStatus('Could not copy: ' + e.message, 'error'));
     case 'pw-onme': return powerOnMe(arg);
     case 'pw-heal': return trackerAction('heal', '', num(arg));
     case 'reckless': return startShortState('reckless');
@@ -6882,6 +6933,17 @@ async function main() {
   try { await ensureSw5eData(); } catch (e) { console.error(e); setStatus("Could not load SW5E's rules data: " + e.message, 'error'); }
   try { renderAll(); } catch (e) { console.error(e); setStatus('Could not draw the sheet: ' + e.message, 'error'); }
   if (state.current) scheduleRecompute(state.current);
+  // Opened by the sheet's bookmark on sw5e.com, or by sharing files to the installed app.
+  if (params.get('from') === 'sw5e' || params.has('shared')) history.replaceState(null, '', location.pathname);
+  if (params.get('from') === 'sw5e') {
+    if (awaitCharactersFromSw5e((result) => loadFromSw5e({ result }))) setStatus('Getting your characters from sw5e.com…');
+    return;
+  }
+  if (params.has('shared') && typeof takeSharedFiles === 'function') {
+    const files = await takeSharedFiles();
+    if (files.length) await importFiles(files);
+    return;
+  }
   if ((tabId || wantId) && canReachSw5e()) {
     // Opened from a sw5e.com tab: refresh from it so the sheet is current.
     await loadFromSw5e({ preferredTabId: tabId, selectId: wantId });
