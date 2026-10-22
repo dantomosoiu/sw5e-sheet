@@ -4033,8 +4033,12 @@ function renderCombat(m) {
       ${(() => {
         const sp = m.t ? plSpeed(m.t.s.conditions, m.t.s.exhaustion) : { factor: 1, why: [] };
         const ae = armorEffectsOf(m);
-        const now = sp.factor === 1 && !ae.speed ? '' : ` · <b class="bad-text">now ${Math.max(0, Math.floor((num(String(speed.base || '').replace(/\D/g, '')) + ae.speed) * sp.factor))} ft</b> (${esc(sp.why.concat(ae.speedWhy).join(', '))})`;
-        return stat('Speed', bump(m, 'speed.base', esc(speed.base || '—')) + now, esc([speed.hour && `${speed.hour}/hour`, speed.day && `${speed.day}/day`].filter(Boolean).join(' · ')));
+        // "Your speed is reduced by 10 unless your Strength score meets or exceeds the strength number": SW5E's speed has
+        // it already (engSpeed), so it's named, not taken off again; Cumbersome and conditions come on top.
+        const strWhy = ae.speedWhy.filter((w) => /Strength \d+$/.test(w));
+        const extra = ae.speed + (strWhy.length ? 10 : 0);
+        const now = sp.factor === 1 && !extra ? '' : ` · <b class="bad-text">now ${Math.max(0, Math.floor((num(String(speed.base || '').replace(/\D/g, '')) + extra) * sp.factor))} ft</b> (${esc(sp.why.concat(ae.speedWhy.filter((w) => !strWhy.includes(w))).join(', '))})`;
+        return stat('Speed', bump(m, 'speed.base', esc(speed.base || '—')) + now, esc([strWhy.length ? `−10 ft (${strWhy.join(', ')})` : '', speed.hour && `${speed.hour}/hour`, speed.day && `${speed.day}/day`].filter(Boolean).join(' · ')));
       })()}
       ${stat('Proficiency', signed(c.proficiencyBonus))}
       ${stat('Passive Perception', bump(m, 'passivePerception', esc(c.passivePerception)))}
