@@ -540,7 +540,8 @@ Force Recovery Level 1
 Uses (back on a long rest) 1 / 1 [−] [+]
 Consular: 1st level
 You have learned to regain some of your energy by briefly meditating. When you finish a short rest, you can regain a number of force points equal to half your c… [329 chars #dd53f1aa]
-Your choices []
+Add a note
+Notes []
 Forcecasting Level 1
 Consular: 1st level
 In your meditations on the force, you have learned powers, fragments of knowledge that imbue you with an abiding force ability. See chapter 10 for the general r… [222 chars #4108bfc5]
@@ -555,23 +556,89 @@ Forcecasting Ability
 Your forcecasting ability varies based on the alignment of the powers you cast. You use Wisdom for light side powers, Charisma for dark side powers, and Wisdom … [427 chars #7389ec1d]
 Force save DC = 8 + your proficiency bonus + your forcecasting ability modifier
 Force attack modifier = your proficiency bonus + your forcecasting ability modifier
-Your choices []
+Force powers 15 / 15 Consular table · max power level 2
+Force Push/Pull at-will · Universal [×]
+You gain the minor ability to move or manipulate creatures and objects with the Force. You can exert fine control on objects with your telekinetic grip, such as… [380 chars #d4acff50]
+You use the Force to move a Medium or smaller creature or object not being worn or carried within range. The target must make a Strength saving throw. An object… [711 chars #708794cf]
+This power improves when you reach higher levels. At 5th level, you can move a Tiny creature or object up to 30 feet, a Small creature or object up to 20 feet, … [534 chars #d23711c1]
+Guidance at-will · Light [×]
+You touch one willing creature. Once before the power ends, the target can roll a d4 and add the number rolled to one ability check of its choice. The power then ends.
+This power's die increases at higher levels: to a d6 at 5th level, a d8 at 11th level, and a d10 at 17th level.
+Mind Trick at-will · Universal [×]
+Choose a target within range that isn't hostile toward you. The target must make a Wisdom saving throw. On a failed save, the target has disadvantage on Wisdom (Perception) and Intelligence (Investigation) checks.
+On a successful save, the creature realizes that you tried to use the Force to influence its awareness and becomes hostile toward you. A creature prone to viole… [364 chars #60273583]
+Spare the Dying at-will · Light [×]
+You touch a living creature that has 0 hit points. The creature becomes stable. This power has no effect on droids or constructs.
+Turbulence at-will · Light [×]
+Choose one creature, or choose two creatures that are within 5 feet of each other, within range. A target must succeed on a Dexterity saving throw or take 1d6 force damage.
+This power's damage increases by 1d6 when you reach 5th, 11th, and 17th level.
+Battle Precognition 1st level · Universal [×]
+Your attunement to the Force warns you when you are about to enter danger. Until the power ends, your base AC becomes 13 + your Dexterity modifier. This power has no effect if you are wearing armor.
+Cloud Mind 1st level · Light [×]
+Roll 5d8; the total is how many hit points of creatures this power can affect. Creatures within 20 feet of a point you choose are affected in order of their current hit points.
+Starting with the creature that has the lowest current hit points, each creature affected by this power falls unconscious. If the power ends, the sleeper takes … [232 chars #f805ae5d]
+Subtract each creature's hit points from the total before moving on to the creature with the next lowest hit points. A creature's hit points must be equal to or… [224 chars #9cee31d9]
+This power has no effect on droids or constructs.
+Force Potency. When you cast this power using a force slot of 2nd level or higher, you can roll an additional 2d8 for each slot level above 1st.
+Force Propel 1st level · Universal [×]
+Prerequisite: Force Push/Pull
+Choose one or more creatures or objects not being worn or carried within 60 feet that weigh up to a combined total of 15 pounds. The creatures or objects immedi… [601 chars #9581b5e9]
+Force Potency. When you cast this power using a force slot of 2nd level or higher, the maximum weight increases by 15 pounds and the damage increases by 1d8 for each slot level above 1st.
+Heal 1st level · Light [×]
+A creature you touch regains a number of hit points equal to 1d8 + your forcecasting ability modifier. This power has no effect on droids or constructs.
+Force Potency. When you cast this power using a force slot of 2nd level or higher, the healing increases by 1d8 for each slot level above 1st.
+Heroism 1st level · Light [×]
+A willing creature you touch is imbued with bravery. Until the power ends, the creature is immune to being frightened and gains temporary hit points equal to yo… [367 chars #1056666d]
+Force Potency. When you cast this power using a force slot of 2nd level or higher, you can target one additional creature for each slot level above 1st.
+Sanctuary 1st level · Light [×]
+Until the power ends, any creature who targets the warded creature with an attack, a harmful power, or a hostile action must first make a Wisdom saving throw. O… [309 chars #5be8bffc]
+If the warded creature makes an attack, casts a power that affects an enemy creature, or takes a hostile action this power ends.
+Sense Emotion 1st level · Universal [×]
+You attune your senses to pick up the emotions of others for the duration. When you cast the power, and as your action on each turn until the power ends, you ca… [515 chars #98fd74f0]
+Battle Meditation 2nd level · Universal [×]
+You exude an aura out to 5 feet that boosts the morale and overall battle prowess of you and your allies while simultaneously reducing the opposition's combat-effectiveness by eroding their will to fight.
+Whenever you or a friendly creature within your meditation makes an attack roll or a saving throw, they can roll a d4 and add the number rolled to the attack roll or saving throw.
+Whenever a hostile creature enters your meditation or starts its turn there, it must make a Charisma saving throw. On a failed save, it must roll a d4 and subtr… [322 chars #e43cced0]
+Force Barrier 2nd level · Light [×]
+This power bolsters your allies with toughness and resolve. Choose up to three creatures within range. Each target's hit point maximum and current hit points increase by 5 for the duration.
+Force Potency. When you cast this power using a force slot of 3rd level or higher, a target's hit points increase by an additional 5 for each slot level above 2nd.
+Force Throw 2nd level · Universal [×]
+Prerequisite: Force Push/Pull
+You use the Force to move a Large or smaller creature or object not being worn or carried within
+range. The target must make a Strength saving throw. An object automatically fails this saving throw. On a failed save, the creature or object moves a number of… [561 chars #e36ebd9f]
+Force Potency. When you cast this power using a force slot of 3rd level or higher, the range you can throw a creature or object increases by 10 feet, to a maximum of 90 feet, and the power's damage increases by 1d8.
+[Learn a force power… ▾]
+Read the options (107)
+Add a note
+Notes []
 Force Shield Level 2
 Uses (back on a long rest) 2 / 2 [−] [+]
 [Start Force Shield]
 Consular: 2nd level
 You learn how to defend yourself purely through your strength with the Force. When you are hit by an attack, you can use your reaction to shroud yourself in For… [337 chars #8cabfe38]
 You can use this feature twice. You gain an additional use at 5th, 9th, 13th, and 17th level. You regain all expended uses when you finish a long rest.
-Your choices []
+Add a note
+Notes []
 Force-Empowered Casting Level 2
 Consular: 2nd level
 You gain the ability to twist your powers to suit your needs. When you cast a force power, you can expend additional force points to modify the power. You gain … [349 chars #babe2f25]
 You can use only one Force-Empowered Casting option on a power when you cast it, unless otherwise noted.
+Force-Empowered Castings 2 / 2 from the Consular table (“Force-Empowered Casting Options”)
+Twinned Power [×]
+[]
+When you cast a power that can only have one target and doesn't have a range of self, you can spend a number of additional force points equal to the power's lev… [258 chars #29c61106]
+Quickened Power [×]
+When you cast a power that has a casting time of 1 action, you can spend 2 additional force points to change the casting time to 1 bonus action for this casting.
+[Add from Force-Empowered Castings… ▾]
+Read the options (9)
+Add a note
 Notes []
 Consular Tradition Level 3
 Consular: 3rd, 6th, 10th, 14th, and 18th level
 You choose a consular tradition, which is detailed at the end of the class description.
-Chosen: Way of the Seer · change it in Classes & Progression
+Archetype [Way of the Seer ▾]
+Read the options (12)
+Add a note
 Notes []
 Force Affinity Level 3
 Consular: 3rd level
@@ -584,10 +651,12 @@ Bogan
 Your dark side power damage rolls gain a minimum roll threshold, discussed in chapter 7.
 Choose one 1 / 1
 Ashla [×]
+Add a note
 Notes []
 Ability Score Improvement Level 4
 Consular: 4th, 8th, 12th, 16th, and 19th level
 You can increase one ability score by 2, or you can increase two ability scores by 1. You can't increase an ability score above 20 using this feature.
+Add a note
 Notes []
 Way of the Seer (archetype) (1)
 Force Visions Level 3
@@ -605,12 +674,14 @@ War Caster Consular ASI #1 Prereq: 4th level, the ability to cast force or tech 
 You've practiced casting powers in the midst of combat, learning techniques that grant you the following benefits:
 You have advantage on Constitution saving throws that you make to maintain your concentration on a power when you take damage.
 Once per round, when a hostile creature provokes an opportunity attack from you, you can use your reaction to cast a power at the creature, rather than making a… [264 chars #c2019a30]
+Add a note
 Notes []
 Empathic Background (Force Adept)+ Wisdom
 You possess keen insight into how other people think and feel. You gain the following benefits:
 Increase your Wisdom score by 1, to a maximum of 20.
 You gain proficiency in the Insight skill. If you are already proficient in it, you instead gain expertise in it.
 You can use your action to try to get uncanny insight about one humanoid you can see within 30 feet of you. Make a Wisdom (Insight) check contested by the targe… [311 chars #b10d5812]
+Add a note
 Notes []
 
 ## Sheet: Classes & Progression
@@ -726,33 +797,43 @@ Rebreathers to survive in oxygen environments
 Traits (10)
 Ability Score Increase
 Your Wisdom score increases by 2, and your Dexterity score increases by 1.
+Add a note
 Notes []
 Age
 Kel dor reach adulthood in their late teens and live less than a century.
+Add a note
 Notes []
 Alignment
 Kel dors' structured nature causes them to tend toward lawful balanced, though there are exceptions.
+Add a note
 Notes []
 Darkvision
 Your natural evolution allows you to see what others do not in dim and dark conditions. You can see in dim light within 60 feet of you as if it were bright ligh… [261 chars #279d6cc4]
+Add a note
 Notes []
 Foreign Biology
 You cannot breathe oxygen. The kel dors have created a breathing apparatus to negate the negative effects of living in an oxygen rich environment, but if your m… [236 chars #371f7352]
+Add a note
 Notes []
 Languages
 You can speak, read, and write Galactic Basic and Kel Dor.
+Add a note
 Notes []
 Life in the Void
 You have resistance to necrotic damage, and while exposed to the vacuum of space, you can survive for a number of hours equal to your Constitution modifier (minimum 1 hour), instead of a number of rounds.
+Add a note
 Notes []
 Size
 Kel dor typically stand around 6 feet tall and weigh about 160 lbs. Regardless of your position in that range, your size is Medium.
+Add a note
 Notes []
 Speed
 Your base walking speed is 30 feet.
+Add a note
 Notes []
 Telepathy
 You can communicate telepathically with creatures within 30 feet of you. You must share a language with the target in order to communicate in this way.
+Add a note
 Notes []
 
 ## Sheet: Background

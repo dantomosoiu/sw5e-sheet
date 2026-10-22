@@ -437,7 +437,8 @@ Force Recovery Level 1
 Uses (back on a long rest) 1 / 1 [−] [+]
 Consular: 1st level
 You have learned to regain some of your energy by briefly meditating. When you finish a short rest, you can regain a number of force points equal to half your c… [329 chars #dd53f1aa]
-Your choices []
+Add a note
+Notes []
 Forcecasting Level 1
 Consular: 1st level
 In your meditations on the force, you have learned powers, fragments of knowledge that imbue you with an abiding force ability. See chapter 10 for the general r… [222 chars #4108bfc5]
@@ -452,23 +453,46 @@ Forcecasting Ability
 Your forcecasting ability varies based on the alignment of the powers you cast. You use Wisdom for light side powers, Charisma for dark side powers, and Wisdom … [427 chars #7389ec1d]
 Force save DC = 8 + your proficiency bonus + your forcecasting ability modifier
 Force attack modifier = your proficiency bonus + your forcecasting ability modifier
-Your choices []
+Force powers 4 / 17 Consular table · max power level 3
+Force Disarm at-will · Universal [×]
+You select a weapon or object being worn or carried by a Large or smaller creature within range. The creature must make a Strength or Dexterity saving throw (th… [398 chars #c9871d69]
+Force Push/Pull at-will · Universal [×]
+You gain the minor ability to move or manipulate creatures and objects with the Force. You can exert fine control on objects with your telekinetic grip, such as… [380 chars #d4acff50]
+You use the Force to move a Medium or smaller creature or object not being worn or carried within range. The target must make a Strength saving throw. An object… [711 chars #708794cf]
+This power improves when you reach higher levels. At 5th level, you can move a Tiny creature or object up to 30 feet, a Small creature or object up to 20 feet, … [534 chars #d23711c1]
+Saber Throw at-will · Universal [×]
+As a part of the action used to cast this power, you must make a ranged force attack with a lightweapon or vibroweapon against one target within the power's ran… [319 chars #ce95991f]
+This power can hit multiple targets when you reach higher levels: two targets at 5th level, three targets at 11th level, and four targets at 17th level. Each ta… [385 chars #e441b97e]
+Battle Precognition 1st level · Universal [×]
+Your attunement to the Force warns you when you are about to enter danger. Until the power ends, your base AC becomes 13 + your Dexterity modifier. This power has no effect if you are wearing armor.
+[Learn a force power… ▾]
+Read the options (146)
+Add a note
+Notes []
 Force Shield Level 2
 Uses (back on a long rest) 3 / 3 [−] [+]
 [Start Force Shield]
 Consular: 2nd level
 You learn how to defend yourself purely through your strength with the Force. When you are hit by an attack, you can use your reaction to shroud yourself in For… [337 chars #8cabfe38]
 You can use this feature twice. You gain an additional use at 5th, 9th, 13th, and 17th level. You regain all expended uses when you finish a long rest.
-Your choices []
+Add a note
+Notes []
 Force-Empowered Casting Level 2
 Consular: 2nd level
 You gain the ability to twist your powers to suit your needs. When you cast a force power, you can expend additional force points to modify the power. You gain … [349 chars #babe2f25]
 You can use only one Force-Empowered Casting option on a power when you cast it, unless otherwise noted.
+Force-Empowered Castings 0 / 2 from the Consular table (“Force-Empowered Casting Options”)
+None chosen yet.
+[Add from Force-Empowered Castings… ▾]
+Read the options (11)
+Add a note
 Notes []
 Consular Tradition Level 3
 Consular: 3rd, 6th, 10th, 14th, and 18th level
 You choose a consular tradition, which is detailed at the end of the class description.
-Chosen: Way of Technology · change it in Classes & Progression
+Archetype [Way of Technology ▾]
+Read the options (12)
+Add a note
 Notes []
 Force Affinity Level 3
 Consular: 3rd level
@@ -482,10 +506,12 @@ Your dark side power damage rolls gain a minimum roll threshold, discussed in ch
 Choose one 0 / 1
 None chosen yet.
 [Choose one… ▾]
+Add a note
 Notes []
 Ability Score Improvement Level 4
 Consular: 4th, 8th, 12th, 16th, and 19th level
 You can increase one ability score by 2, or you can increase two ability scores by 1. You can't increase an ability score above 20 using this feature.
+Add a note
 Notes []
 Way of Technology (archetype) (1)
 Fundamentals of Mechu-deru Level 5
@@ -493,7 +519,8 @@ Uses (back on a long rest) 3 / 3 [−] [+]
 Way of Technology: 3rd, 5th, 9th, 13th, and 17th level
 You've dabbled in adapting your use of the Force, melding it with technology. You gain proficiency in the Technology skill, as well as simple blasters. When you… [324 chars #ce74f996]
 Additionally, you've learned to manipulate the Force to be able to manipulate technology when it couldn't previously. When you cast a force power that could not… [511 chars #e93d612a]
-Your choices []
+Add a note
+Notes []
 
 ## Sheet: Feats
 Choices from your feats
@@ -519,6 +546,7 @@ If an object is held, worn, or integrated, and a creature takes the damage from 
 Overcharge Tech. When you cast this power using a tech slot of 3rd level or higher, the damage increases by 1d8 for each slot level above 2nd.
 Tech Dabbler Background (Noble)
 You know two at-will tech powers. When you reach 3rd level, you learn and can cast one 1st-level tech power once per long rest. When you reach 5th level, you le… [382 chars #b0d200c1]
+Add a note
 Notes []
 
 ## Sheet: Classes & Progression
@@ -594,42 +622,55 @@ Your Dexterity score increases by 2, and two other ability scores of your choice
 Your choices []
 Age
 Zilkin are considered adults at 4 years old, and rarely live to be over 12.
+Add a note
 Notes []
 Alignment
 Zilkin have an outspoken but just nature that causes them to tend towards lawful light side, though there are exceptions.
+Add a note
 Notes []
 Amphibious
 You can breathe air and water.
+Add a note
 Notes []
 Darkvision
 Accustomed to life underwater, you have superior vision in low light conditions. You can see in dim light within 60 feet of you as if it were bright light, and … [254 chars #67965092]
+Add a note
 Notes []
 Languages
 You can speak, read, and write Galactic Basic and Zilkin. Zilkin is characterized by loud, croaking noises from the throat, supported by air stored in the chin.
+Add a note
 Notes []
 Pintsized
 Your tiny stature makes it hard for you to wield bigger weapons. You can't use medium or heavy shields. Additionally, you can't wield weapons with the two-hande… [276 chars #cc5f7cce]
+Add a note
 Notes []
 Puny
 Zilkin are too small to pack much of a punch. You have disadvantage on Strength saving throws, and when determining your bonus to attack and damage rolls for weapon attacks using Strength, you can't add more than +3.
+Add a note
 Notes []
 Quick Learner
 When using downtime for learning a new language or training with a set of tools, it takes half the amount of time and credits necessary to complete.
+Add a note
 Notes []
 Size
 Zilkin stand between 1 and 2 feet tall and weigh around 10 lbs. Regardless of your position in that range, your size is Tiny.
+Add a note
 Notes []
 Small and Nimble
 You are too small and fast to effectively target. You have a +1 bonus to AC, and you have advantage on Dexterity saving throws.
+Add a note
 Notes []
 Speed
 Your base walking speed is 20 feet.
+Add a note
 Notes []
 Strong-Legged
 When you make a long jump, you can cover a number of feet up to twice your Strength score. When you make a high jump, you can leap a number of feet up into the air equal to 3 + twice your Strength modifier.
+Add a note
 Notes []
 Swim
 You have a swimming speed of 20 feet.
+Add a note
 Notes []
 Ability score +1 0 / 2 Your Dexterity score increases by 2, and two other ability scores of your choice increase by 1.
 None chosen yet.

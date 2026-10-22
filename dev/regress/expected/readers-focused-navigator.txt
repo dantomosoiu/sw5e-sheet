@@ -480,19 +480,52 @@ You regain all of your expended superiority dice when you finish a short or long
 Maneuver Ability
 Your maneuver ability varies based on the type of the maneuver you use. You use Strength, Dexterity, or Constitution for physical maneuvers (your choice), Intel… [452 chars #c8f71ca2]
 Maneuver save DC = 8 + your proficiency bonus + your maneuver ability modifier
-Your choices []
+Maneuvers 6 / 6 4 from the Scholar table + 2 from Malleable Maneuvering
+Tyrannical Strike Mental [×]
+Prerequisite: Proficiency with Intimidation
+When you hit a creature with a weapon attack, you can expend one superiority die and use your reaction to issue a one-word command to a creature who can see or … [351 chars #04553101]
+The target automatically succeeds if it is immune to charm, it doesn't understand your language, or if your command is directly harmful to it.
+Disarming Blow Physical [×]
+When you hit a creature with a weapon attack, you can expend one superiority die to attempt to disarm the target, forcing it to drop one item of your choice tha… [471 chars #3160ec29]
+Rampage Physical [×]
+When you reduce a creature to 0 hit points, you can use your bonus action to expend a superiority die and move up to half your speed. If you end this movement w… [318 chars #a1b65abc]
+Shadow Puppetry Mental [×]
+When a creature you can see within 30 feet of you is reduced to 0 hit points, you can use your reaction and expend a superiority die to give that creature a fin… [396 chars #3b6e2227]
+Dark Transference Mental [×]
+When you hit a creature with an attack, you can expend a superiority die and roll it to attempt to siphon life from it. The target must make a Constitution savi… [259 chars #d9345573]
+Body Over Bother Physical [×]
+When you are forced to make an Strength, Dexterity, or Constitution saving throw, you can expend a superiority die to change the saving throw ability to your maneuver ability modifier.
+[Add a maneuver… ▾]
+Read the options
+Add a note
+Notes []
 Critical Analysis Level 1
 [Start Critical Analysis]
 Scholar: 1st level
 You are able to analyze a creature, develop a plan on how to best overcome any potential obstacle, and execute that plan with ruthless efficiency. As a bonus ac… [331 chars #1dbb52a5]
 When you analyze a hostile creature, your attack and damage rolls made with weapons with the finesse property or blaster weapons against that target may use you… [301 chars #6802069d]
 When you analyze a friendly creature, the target can end your Critical Analysis on them (no action required) to add your Critical Analysis ability modifier, whi… [356 chars #03d003d4]
+Add a note
 Notes []
 Discovery Level 2
 Scholar: 2nd level
 As you adventure, your studies have helped you discover new practices you can apply to your skills. You master two discoveries of your choice. Your discovery op… [358 chars #213ee526]
 Additionally, when you gain a level in this class, you can choose one of the discoveries you know and replace it with another discovery that you could learn at that level.
-Your choices []
+Discoveries 4 / 4 from the Scholar table (“Discoveries”)
+Malleable Maneuvering [×]
+You learn two additional maneuvers. When you complete a short rest, you can replace one of these maneuvers with another one. When you complete a long rest, you can replace both of these maneuvers with other ones.
+Lifelong Learning [×]
+[Persuasion + Forgery kit.]
+You gain proficiency in a skill and a tool, or two tools.
+You can select this discovery multiple times, each time choosing a new skill and a tool, or two new tools.
+Calculated Bluff not in SW5E data [×]
+[]
+Running on Fumes [×]
+You only need 3 hours of sleep during a long rest to gain its benefits, instead of 6. Additionally, if your long rest would be interrupted, you only need to com… [290 chars #859f0674]
+[Add from Discoveries… ▾]
+Read the options (28)
+Add a note
+Notes []
 Sage Advice Levels 2, 13 from class text
 Uses (back on a long rest) 1 / 1 [−] [+]
 You can spend 1 minute spreading your knowledge and experience, advising those around you. When you do so, choose a skill or tool you are proficient with and a … [698 chars #f0a568cc]
@@ -501,12 +534,16 @@ Your choices []
 Academic Pursuit Level 3
 Scholar: 3rd, 6th, 9th, and 17th level
 You dedicate your studies towards a pursuit, which is detailed at the end of the class description.
-Chosen: Explorer Pursuit · change it in Classes & Progression
+Archetype [Explorer Pursuit ▾]
+Read the options (12)
+Add a note
 Notes []
 Expertise Levels 3, 10 from class text
 Choose two of your skill proficiencies, or one of skill proficiencies and one of your tool proficiencies, or two of your tool proficiencies. You gain expertise in those skills or tools.
 At 10th level, you can choose another two proficiencies (in skills or tools) to gain this benefit.
-Chosen: Persuasion, Forgery Kit · change it in Classes & Progression
+Expertise 2 / 2 Scholar 3rd and 10th level
+Persuasion [×] Forgery Kit [×]
+Add a note
 Notes []
 Explorer Pursuit (archetype) (2)
 Focused Navigator Level 3
@@ -514,10 +551,12 @@ Explorer Pursuit: 3rd level
 You gain proficiency in two of the Perception, Piloting, Survival, and Acrobatics skills. Additionally, you can't have disadvantage on checks you make with them.
 Skill proficiency 2 / 2
 Perception [×] Acrobatics [×]
+Add a note
 Notes []
 Surveyed Area Level 3
 Explorer Pursuit: 3rd level
 You can now use your Critical Analysis feature on a 15-foot cube area within 60 feet of you that you can see. You can treat any creatures inside this cube as if… [355 chars #084cdb17]
+Add a note
 Notes []
 Scholar: Discoveries (4)
 Malleable Maneuvering
@@ -535,6 +574,7 @@ You develop your conversational skill to better deceive others. You gain the fol
 Increase your Charisma score by 1, to a maximum of 20.
 You gain proficiency in the Deception skill. If you are already proficient in it, you instead gain expertise in it.
 When you take the Attack action, you can replace one attack with an attempt to deceive one humanoid you can see within 30 feet of you that can see and hear you.… [568 chars #4907558c]
+Add a note
 Notes []
 
 ## Sheet: Classes & Progression
@@ -622,30 +662,39 @@ Diminutive stature, mood-sensitive fur
 Traits (9)
 Ability Score Increase
 Your Intelligence score increases by 2, and your Dexterity score increases by 1.
+Add a note
 Notes []
 Age
 Bothans reach adulthood in their late teens and live less than a century.
+Add a note
 Notes []
 Alignment
 Bothans' duplicitous nature causes them to tend toward the dark side, though there are exceptions.
+Add a note
 Notes []
 Languages
 You can speak, read, and write Galactic Basic and Bothese. Bothese had a great influence on the forming of Galactic Basic; the two languages share many cognates.
+Add a note
 Notes []
 Naturally Stealthy
 You can attempt to hide even when you are obscured only by a creature that is your size or larger than you.
+Add a note
 Notes []
 Nimble Escape
 You can take the Disengage or Hide action as a bonus action on each of your turns.
+Add a note
 Notes []
 Shrewd
 You are proficient in the Insight and Deception skills.
+Add a note
 Notes []
 Size
 Bothans stand 4-5 feet tall and weigh under 100 pounds. Regardless of your position in that range, your size is Medium.
+Add a note
 Notes []
 Speed
 Your base walking speed is 30 feet.
+Add a note
 Notes []
 
 ## Sheet: Background

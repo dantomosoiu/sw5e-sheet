@@ -537,7 +537,8 @@ Your technological experience lends you an uncommon insight that you can use to 
 Once within the next 10 minutes, the creature can roll the die and add the number rolled to one ability check, attack roll, or saving throw it makes. Once the Potent Aptitude die is rolled, it is lost.
 A creature can have only one Potent Aptitude die at a time.
 You can use this feature twice. You gain an additional use at 5th, 9th, 13th, and 17th level. You regain any expended uses when you finish a short or long rest.
-Your choices []
+Add a note
+Notes []
 Techcasting Level 1
 Engineer: 1st level
 During your training you have derived powers from schematics with the aid of your wristpad. See chapter 10 for the general rules of techcasting and chapter 12 for the tech powers list.
@@ -554,7 +555,39 @@ Tech save DC = 8 + your proficiency bonus + your Intelligence modifier
 Tech attack modifier = your proficiency bonus + your Intelligence modifier
 Techcasting Focus
 You use a wristpad (found in chapter 5) or the tools in which you are granted proficiency by this class as a tech focus for your tech powers.
-Your choices []
+Tech powers 10 / 10 Engineer table · max power level 2
+Detonator at-will [×]
+You launch a detonator at a creature. Make a ranged tech attack against a creature you can see within range. On a hit, the target takes 1d6 fire damage, and eac… [258 chars #7afe78c6]
+This power's damage increases by one die when you reach 5th level (2d6/2d4), 11th level (3d6/3d4), and 17th level (4d6/4d4).
+Electroshock at-will [×]
+Lightning springs from you to deliver a shock to a creature you try to touch. Make a melee tech attack against the target. You have advantage on the attack roll… [325 chars #e0570e87]
+This power's damage increases by 1d8 when you reach 5th level (2d8), 11th level (3d8), and 17th level (4d8).
+Ion Blast at-will [×]
+You create a blast of ion energy. Choose one creature within range that you can see, or choose two creatures within range that are within 5 feet of each other t… [250 chars #d3100fc0]
+This power's damage increases by 1d4 when you reach 5th level (2d4), 11th level (3d4), and 17th level (4d4).
+Mending at-will [×]
+This ability repairs a single break or tear in an object you touch, such as broken chain link, two halves of a broken key, a torn strap, or a leaking cup. As lo… [410 chars #f9c73b09]
+Energy Shield 1st level [×]
+You quickly create an energy shield. Until the start of your next turn, you have a +5 bonus to AC. This includes the triggering attack.
+Homing Rockets 1st level [×]
+You lock on to one or more targets within range and expel a series of three small explosives. Each explosive hits a creature of your choice that you can see wit… [322 chars #9f39ad2a]
+Overcharge Tech. When you cast this power using a tech slot of 2nd level or higher, the power creates one more explosive for each slot level above 1st.
+Kolto Pack 1st level [×]
+A creature of your choice that you can see within range regains hit points equal to 1d4 + your techcasting ability modifier. This power has no effect on droids or constructs.
+Overcharge Tech. When you cast this power using a tech slot of 2nd level or higher, the healing increases by 1d4 for each slot level above 1st.
+Target Lock 1st level [×]
+You choose a creature you can see within range and mark it as your quarry. Until the power ends, you deal an extra 1d6 damage to the target whenever you hit it … [482 chars #9b74e641]
+Overcharge Tech. When you cast this power using a tech slot of 3rd or 4th level, you can maintain your concentration on the power for up to 8 hours. When you us… [266 chars #de5549b2]
+Paralyze Humanoid 2nd level [×]
+You emit a paralyzing dart at a humanoid that you can see within range. The target must succeed on a Constitution saving throw or be poisoned for the duration. … [344 chars #ecc30efd]
+Overcharge Tech. When you cast this power using a tech slot of 3rd level or higher, you can target one additional humanoid for each slot level above 2nd. The hu… [226 chars #dc16e778]
+Shocking Ray 2nd level [×]
+You create three ionic rays and hurl them at targets within range. You can hurl them at one target or several. Make a ranged tech attack for each ray. On a hit, the target takes 2d4 ion damage.
+Overcharge Tech. When you cast this power using a tech slot of 3rd level or higher, you create one additional ray for each slot level above 2nd.
+[Learn a tech power… ▾]
+Read the options (132)
+Add a note
+Notes []
 Infuse Item Level 2
 Uses (back on a long rest) 0 / 1 [−] [+]
 Infuse Item: Blaster pistol · until the end of your next long rest [End]
@@ -562,28 +595,35 @@ Engineer: 2nd level
 You gain the ability to temporarily enhance a weapon or armor. At the end of a long rest, you can touch one unenhanced object that is a suit of armor, a shield,… [394 chars #dfc18efa]
 Once you've used this feature, you can't use it again until you finish a long rest.
 This bonus increases to +2 at 10th level and +3 at 15th level.
+Add a note
 Notes []
 Tool Expertise Level 2
 Engineer: 2nd level
 You gain expertise in any tool proficiencies you gain from this class.
+Add a note
 Notes []
 Engineering Discipline Level 3
 Engineer: 3rd, 6th, 14th, and 18th level
 You begin to focus on a specific engineering discipline, which is detailed at the end of the class description.
-Chosen: Armstech Engineering · change it in Classes & Progression
+Archetype [Armstech Engineering ▾]
+Read the options (14)
+Add a note
 Notes []
 Ability Score Improvement Level 4
 Engineer: 4th, 8th, 12th, 16th, and 19th level
 You can increase one ability score by 2, or you can increase two ability scores by 1. You can't increase an ability score above 20 using this feature.
+Add a note
 Notes []
 Armstech Engineering (archetype) (3)
 Bonus Proficiencies Level 3
 Armstech Engineering: 3rd level
 You gain proficiency in armstech's implements, medium armor, martial blasters, and martial vibroweapons. Additionally, when you engage in crafting with armstech's implements, the rate at which you craft doubles.
+Add a note
 Notes []
 Close Call Level 3
 Armstech Engineering: 3rd level
 When you make an attack roll with your modified weapon and miss, you can expend one use of your Potent Aptitude to attempt to turn that miss into a hit. Roll the die and add it to the attack roll.
+Add a note
 Notes []
 Modified Weaponry Level 3
 Armstech Engineering: 3rd level
@@ -591,6 +631,16 @@ You learn to modify one unenhanced weapon with which you are proficient utilizin
 Your modified weapon is enhanced, requires attunement, can only be used by you, and counts as a tech focus for your tech powers while you are attuned to it. You… [559 chars #66e3b1df]
 Some modification effects require saving throws. When you use such an effect from this class, the DC equals your tech save DC.
 At 9th level, you can maintain two modified weapons. Each modified weapon has modification slots as shown in the Modification Slots column of the engineer table.
+Armstech Modifications 2 / 4 Armstech Engineering, 3rd level · can be changed on a rest
+Modified Weaponry [Blaster pistol ▾] 4 slots
+Celerity Oscillator Armstech Engineering [×]
+Once per turn, when you deal damage with your modified weapon, your walking speed increases by 10 feet until the start of your next turn, and the damaged creatu… [232 chars #c387e987]
+Expanded Magazine Armstech Engineering [×]
+Prerequisite: Blaster
+Your modified weapon can be more efficiently reloaded. You can reload your modified weapon once without using an action. You can't use this feature again until you reload the weapon with an action.
+[Add from Armstech Modifications… ▾]
+Read the options (30)
+Add a note
 Notes []
 Engineer: Armstech Modifications (2)
 Celerity Oscillator
@@ -613,6 +663,7 @@ You master the theory and practice of technology, gaining the following benefits
 Increase your Intelligence score by 1, to a maximum of 20.
 You gain proficiency in the Technology skill. If you are already proficient in it, you instead gain expertise in it.
 You learn the repair droid tech power. You can cast it once, using supplies scavenged around you, without the use of a wristpad and without spending tech points… [226 chars #d0ad715a]
+Add a note
 Notes []
 
 ## Sheet: Classes & Progression
@@ -704,51 +755,65 @@ Human-like size, slow speed, specialized knowledge
 Traits (15)
 Ability Score Increase
 Your Intelligence score increases by 2, and your Wisdom or Charisma score increases by 1.
+Add a note
 Notes []
 Age
 Droids don't age, though they require maintenance to retain functionality.
+Add a note
 Notes []
 Alignment
 Droids tend toward no particular alignment. The best and worst are found among them.
+Add a note
 Notes []
 Armor Integration
 You can not wear armor, but you can have the armor professionally integrated into your chassis over the course of a long rest. This work must be done by someone… [264 chars #2f07eac6]
+Add a note
 Notes []
 Droid Resistances
 You are resistant to necrotic, poison, and psychic damage, and are immune to poison and disease.
+Add a note
 Notes []
 Droid Systems
 You do not need to eat, drink, or breathe. Additionally, you no longer require a tech focus to cast tech powers.
+Add a note
 Notes []
 Droid Vulnerabilities
 You are vulnerable to ion damage. Additionally, you have disadvantage on saving throws against effects that would deal ion or lightning damage.
+Add a note
 Notes []
 Force-Insensitive
 While droids can be manipulated by many force powers, they can not sense the Force. You can not use force powers or take levels in forcecasting classes.
+Add a note
 Notes []
 Knowledge Protocol
 You have proficiency in two Intelligence, Wisdom, or Charisma skills of your choice.
 Skill proficiency 0 / 2
 None chosen yet.
 [Choose a skill… ▾]
+Add a note
 Notes []
 Languages
 You can speak, read, and write Galactic Basic and one language of your choice. You can understand spoken and written Binary, but you can not speak it.
 Your choices []
 Maintenance Mode
 Rather than sleep, you must spend 3 hours performing routine maintenance during a long rest to gain its benefits, during which you have disadvantage on Wisdom (… [299 chars #0e11ab3e]
+Add a note
 Notes []
 Rapid Reconstruction
 You are built with internal repair mechanisms. As a bonus action, you can choose to spend one of your Hit Dice to recover hit points.
-Your choices []
+Add a note
+Notes []
 Size
 Class I droids stand between 5 and 6 feet tall and weigh about 170 lbs. Regardless of your position in that range, your size is Medium.
+Add a note
 Notes []
 Speed
 Your base walking speed is 25 feet.
+Add a note
 Notes []
 Type
 Your creature type is droid.
+Add a note
 Notes []
 Ability score +1 0 / 1 Your Intelligence score increases by 2, and your Wisdom or Charisma score increases by 1.
 None chosen yet.

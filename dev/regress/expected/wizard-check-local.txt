@@ -405,7 +405,8 @@ Your technological experience lends you an uncommon insight that you can use to 
 Once within the next 10 minutes, the creature can roll the die and add the number rolled to one ability check, attack roll, or saving throw it makes. Once the Potent Aptitude die is rolled, it is lost.
 A creature can have only one Potent Aptitude die at a time.
 You can use this feature twice. You gain an additional use at 5th, 9th, 13th, and 17th level. You regain any expended uses when you finish a short or long rest.
-Your choices []
+Add a note
+Notes []
 Techcasting Level 1
 Engineer: 1st level
 During your training you have derived powers from schematics with the aid of your wristpad. See chapter 10 for the general rules of techcasting and chapter 12 for the tech powers list.
@@ -422,7 +423,12 @@ Tech save DC = 8 + your proficiency bonus + your Intelligence modifier
 Tech attack modifier = your proficiency bonus + your Intelligence modifier
 Techcasting Focus
 You use a wristpad (found in chapter 5) or the tools in which you are granted proficiency by this class as a tech focus for your tech powers.
-Your choices []
+Tech powers 0 / 10 Engineer table · max power level 2
+None chosen yet.
+[Learn a tech power… ▾]
+Read the options (142)
+Add a note
+Notes []
 Infuse Item Level 2
 Uses (back on a long rest) 1 / 1 [−] [+]
 [Combat suit (AC +1) ▾] [Infuse]
@@ -430,28 +436,35 @@ Engineer: 2nd level
 You gain the ability to temporarily enhance a weapon or armor. At the end of a long rest, you can touch one unenhanced object that is a suit of armor, a shield,… [394 chars #dfc18efa]
 Once you've used this feature, you can't use it again until you finish a long rest.
 This bonus increases to +2 at 10th level and +3 at 15th level.
+Add a note
 Notes []
 Tool Expertise Level 2
 Engineer: 2nd level
 You gain expertise in any tool proficiencies you gain from this class.
+Add a note
 Notes []
 Engineering Discipline Level 3
 Engineer: 3rd, 6th, 14th, and 18th level
 You begin to focus on a specific engineering discipline, which is detailed at the end of the class description.
-Chosen: Armstech Engineering · change it in Classes & Progression
+Archetype [Armstech Engineering ▾]
+Read the options (14)
+Add a note
 Notes []
 Ability Score Improvement Level 4
 Engineer: 4th, 8th, 12th, 16th, and 19th level
 You can increase one ability score by 2, or you can increase two ability scores by 1. You can't increase an ability score above 20 using this feature.
+Add a note
 Notes []
 Armstech Engineering (archetype) (3)
 Bonus Proficiencies Level 3
 Armstech Engineering: 3rd level
 You gain proficiency in armstech's implements, medium armor, martial blasters, and martial vibroweapons. Additionally, when you engage in crafting with armstech's implements, the rate at which you craft doubles.
+Add a note
 Notes []
 Close Call Level 3
 Armstech Engineering: 3rd level
 When you make an attack roll with your modified weapon and miss, you can expend one use of your Potent Aptitude to attempt to turn that miss into a hit. Roll the die and add it to the attack roll.
+Add a note
 Notes []
 Modified Weaponry Level 3
 Armstech Engineering: 3rd level
@@ -459,6 +472,12 @@ You learn to modify one unenhanced weapon with which you are proficient utilizin
 Your modified weapon is enhanced, requires attunement, can only be used by you, and counts as a tech focus for your tech powers while you are attuned to it. You… [559 chars #66e3b1df]
 Some modification effects require saving throws. When you use such an effect from this class, the DC equals your tech save DC.
 At 9th level, you can maintain two modified weapons. Each modified weapon has modification slots as shown in the Modification Slots column of the engineer table.
+Armstech Modifications 0 / 4 Armstech Engineering, 3rd level · can be changed on a rest
+Modified Weaponry [— choose from your inventory — ▾] 4 slots
+None chosen yet.
+[Add from Armstech Modifications… ▾]
+Read the options (32)
+Add a note
 Notes []
 
 ## Sheet: Feats
@@ -476,6 +495,7 @@ You master the theory and practice of technology, gaining the following benefits
 Increase your Intelligence score by 1, to a maximum of 20.
 You gain proficiency in the Technology skill. If you are already proficient in it, you instead gain expertise in it.
 You learn the repair droid tech power. You can cast it once, using supplies scavenged around you, without the use of a wristpad and without spending tech points… [226 chars #d0ad715a]
+Add a note
 Notes []
 
 ## Sheet: Classes & Progression
@@ -542,46 +562,58 @@ Dexterity +1
 Traits (12)
 Ability Score Increase
 Your Constitution score increases by 2, and your Strength or Dexterity score increases by 1.
+Add a note
 Notes []
 Age
 Zabraks reach adulthood in their late teens and live less than a century.
+Add a note
 Notes []
 Alignment
 Zabraks tend toward no particular alignment. The best and worst are found among them.
+Add a note
 Notes []
 Coercive
 You have proficiency with Persuasion or Intimidation (your choice).
 Skill proficiency 0 / 1
 None chosen yet.
 [Choose a skill… ▾]
+Add a note
 Notes []
 Crafters
 You have proficiency with one set of artisan’s implements of your choice.
 Tool proficiency 0 / 1 one set of artisan’s implements of your choice
 None chosen yet.
 [Choose a tool… ▾]
+Add a note
 Notes []
 Darkvision
 Your vision can easily cut through darkness. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray.
+Add a note
 Notes []
 Languages
 You can speak, read, and write Galactic Basic and Zabraki.
+Add a note
 Notes []
 Second Heart
 Uses (back on a long rest) 1 / 1 [−] [+]
 When you are reduced to 0 hit points but not killed outright, you can drop to 1 hit point instead. You can’t use this feature again until you finish a long rest.
+Add a note
 Notes []
 Size
 Zabraks stand anywhere from 5 to 7 feet tall and weigh up to 300 lbs. Regardless of your position in that range, your size is Medium.
+Add a note
 Notes []
 Speed
 Your base walking speed is 30 feet.
+Add a note
 Notes []
 Toughness
 Your hit point maximum increases by 1, and it increases by 1 every time you gain a level.
+Add a note
 Notes []
 Unarmed Combatant
 Your unarmed strikes deal 1d4 kinetic damage and have the finesse property.
+Add a note
 Notes []
 Ability score +1 1 / 1 Your Constitution score increases by 2, and your Strength or Dexterity score increases by 1.
 Dexterity [×]

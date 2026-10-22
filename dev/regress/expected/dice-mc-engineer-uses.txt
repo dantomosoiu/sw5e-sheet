@@ -386,7 +386,8 @@ Your technological experience lends you an uncommon insight that you can use to 
 Once within the next 10 minutes, the creature can roll the die and add the number rolled to one ability check, attack roll, or saving throw it makes. Once the Potent Aptitude die is rolled, it is lost.
 A creature can have only one Potent Aptitude die at a time.
 You can use this feature twice. You gain an additional use at 5th, 9th, 13th, and 17th level. You regain any expended uses when you finish a short or long rest.
-Your choices []
+Add a note
+Notes []
 Techcasting Level 1
 Engineer: 1st level
 During your training you have derived powers from schematics with the aid of your wristpad. See chapter 10 for the general rules of techcasting and chapter 12 for the tech powers list.
@@ -403,22 +404,31 @@ Tech save DC = 8 + your proficiency bonus + your Intelligence modifier
 Tech attack modifier = your proficiency bonus + your Intelligence modifier
 Techcasting Focus
 You use a wristpad (found in chapter 5) or the tools in which you are granted proficiency by this class as a tech focus for your tech powers.
-Your choices []
+Tech powers 0 / 9 Engineer table · max power level 2
+None chosen yet.
+[Learn a tech power… ▾]
+Read the options (143)
+Add a note
+Notes []
 Infuse Item Level 2
 Uses (back on a long rest) 1 / 1 [−] [+]
 Engineer: 2nd level
 You gain the ability to temporarily enhance a weapon or armor. At the end of a long rest, you can touch one unenhanced object that is a suit of armor, a shield,… [394 chars #dfc18efa]
 Once you've used this feature, you can't use it again until you finish a long rest.
 This bonus increases to +2 at 10th level and +3 at 15th level.
+Add a note
 Notes []
 Tool Expertise Level 2
 Engineer: 2nd level
 You gain expertise in any tool proficiencies you gain from this class.
+Add a note
 Notes []
 Engineering Discipline Level 3
 Engineer: 3rd, 6th, 14th, and 18th level
 You begin to focus on a specific engineering discipline, which is detailed at the end of the class description.
-Not chosen yet · choose it in Classes & Progression
+Archetype [— none — ▾]
+Read the options (14)
+Add a note
 Notes []
 Monk (11)
 Martial Arts Level 1
@@ -432,6 +442,7 @@ When you use the Attack action with an unarmed strike or a monk weapon on your t
 You can take the Dash or Disengage actions as a bonus action.
 > ##### Variant: Monks with Lightweapons
 > If monks gain lightweapon proficiency, consider letting them use lightweapons as monk weapons, provided the weapon lacks the dexterity, heavy, special, and two-handed properties.
+Add a note
 Notes []
 Unarmored Defense Level 1
 Monk: 1st level
@@ -439,11 +450,16 @@ While you are wearing no armor and not wielding a shield, your AC equals 10 + yo
 AC adds 0 / 1
 None chosen yet.
 [Choose an ability… ▾]
+Add a note
 Notes []
 Monastic Vows Level 2
 Monk: 2nd level
 You've sworn two vows, as detailed at the end of the class description. You swear an additional vow at 7th, 13th, and 17th level.
-Not chosen yet · choose it in Classes & Progression
+Monastic Vows 0 / 2 from the Monk table (“Monastic Vows”)
+None chosen yet.
+[Add from Monastic Vows… ▾]
+Read the options (18)
+Add a note
 Notes []
 Focus Levels 2, 11 from class text
 Uses (back on a short or long rest) Focus Points column 5 / 5 [−] [+]
@@ -464,31 +480,39 @@ Deflect Missiles Level 3
 Monk: 3rd level
 You can use your reaction to deflect a projectile when you are dealt damage by a ranged weapon attack. When you do so, the damage you take from the attack is reduced by 1d10 + your Dexterity modifier + your monk level.
 If you reduce the damage to 0, and the damage is kinetic, energy, or ion, you can redirect it at another target if you have a weapon capable of doing so. You ca… [427 chars #563d979b]
+Add a note
 Notes []
 Monastic Order Level 3
 Monk: 3rd, 6th, 11th, and 17th level
 You commit yourself to one monastic order, which is detailed at the end of the class description.
-Not chosen yet · choose it in Classes & Progression
+Archetype [— none — ▾]
+Read the options (13)
+Add a note
 Notes []
 Unarmored Movement Levels 3, 9 from class text
 Your speed increases by 10 feet while you are not wearing armor or wielding a shield. This bonus increases when you reach certain monk levels, as shown in the Unarmored Movement column of the monk table.
 At 9th level, you gain the ability to move along vertical surfaces and across liquids on your turn without falling during the move.
+Add a note
 Notes []
 Ability Score Improvement Level 4
 Monk: 4th, 8th, 10th, 12th, 16th, and 19th level
 You can increase one ability score by 2, or you can increase two ability scores by 1. You can't increase an ability score above 20 using this feature.
+Add a note
 Notes []
 Slow Fall Level 4
 Monk: 4th level
 You can use your reaction when you fall to reduce any falling damage you take by an amount equal to five times your monk level.
+Add a note
 Notes []
 Extra Attack Level 5
 Monk: 5th level
 You can attack twice, instead of once, whenever you take the Attack action on your turn.
+Add a note
 Notes []
 Stunning Strike Level 5
 Monk: 5th level
 You can interfere with an opponent's body. When you hit another creature with a melee weapon attack, you can spend 1 focus point to attempt a stunning strike. T… [260 chars #691969a9]
+Add a note
 Notes []
 Improvements and other choices (1)
 Engineer Feat: Multiclass Improvement (Custom feat)
@@ -509,9 +533,11 @@ You develop your conversational skill to better deceive others. You gain the fol
 Increase your Charisma score by 1, to a maximum of 20.
 You gain proficiency in the Deception skill. If you are already proficient in it, you instead gain expertise in it.
 When you take the Attack action, you can replace one attack with an attempt to deceive one humanoid you can see within 30 feet of you that can see and hear you.… [568 chars #4907558c]
+Add a note
 Notes []
 Multiclass Improvement Prereq: 4th level
 You've learned to blend the skills of your different classes. Choose two of the multiclass improvement options, detailed later in this chapter. You can take this feat multiple times.
+Add a note
 Notes []
 
 ## Sheet: Classes & Progression
@@ -605,13 +631,16 @@ One ability score of your choice increases by 2, and two other ability scores of
 Your choices []
 Age
 Humans reach adulthood in their late teens and live less than a century.
+Add a note
 Notes []
 Alignment
 Humans tend toward no particular alignment. The best and worst are found among them.
+Add a note
 Notes []
 Defiant
 Uses (back on a short or long rest) 1 / 1 [−] [+]
 Humans are known to be stubborn and often refuse to give up, even against the worst odds. When you or a creature you can see that can see and understand you mak… [374 chars #6fad59d8]
+Add a note
 Notes []
 Human Versatility
 You gain proficiency in one skill, one tool, and one weapon of your choice.
@@ -624,6 +653,7 @@ None chosen yet.
 Weapon proficiency 0 / 1 one weapon of your choice
 None chosen yet.
 [Choose a weapon… ▾]
+Add a note
 Notes []
 Languages
 You can speak, read, and write Galactic Basic and one extra language of your choice. Humans typically learn the languages of other peoples they deal with, inclu… [346 chars #ff842958]
@@ -633,9 +663,11 @@ You gain proficiency in one skill, one tool, and one weapon of your choice.
 Your choices []
 Size
 Humans vary widely in height and build, from barely 5 feet to well over 6 feet tall. Regardless of your position in that range, your size is Medium.
+Add a note
 Notes []
 Speed
 Your base walking speed is 30 feet.
+Add a note
 Notes []
 Ability score +2 0 / 1 One ability score of your choice increases by 2, and two other ability scores of your choice increase by 1. Alternatively, four ability scores of your choice each increase by 1.
 None chosen yet.

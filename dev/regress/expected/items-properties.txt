@@ -531,19 +531,28 @@ Fighter (6)
 Fighting Style Level 1
 Fighter: 1st level
 You adopt a particular style of fighting as your specialty. Choose one of the fighting style options, detailed in Chapter 6.
-Chosen: Sharpshooter Style · change it in Classes & Progression
+Fighting style 1 / 1 Fighter: Fighting Style
+Sharpshooter Style [×]
+[]
+You are skilled with firing at distant targets. You gain the following benefits:
+You can use your bonus action to mark a target greater than 30 feet from you that you can see. If you do so, and that target moves at least 5 feet before the st… [318 chars #24994812]
+Your ranged weapon attacks reduce partial cover by one step (from three-quarters to half or half to one-quarter) against targets greater than 30 feet from you. If the target has one-quarter cover, you ignore it entirely.
+Grasping a two-handed weapon you are wielding in only one hand with your other hand no longer requires your object interaction.
+Add a note
 Notes []
 Second Wind Level 1
 Uses (back on a short or long rest) roll 1d10 + 3, then Heal 1 / 1 [−] [+]
 Fighter: 1st level
 You have a limited well of stamina that you can draw on to protect yourself from harm. On your turn, you can use a bonus action to regain hit points equal to 1d10 + your fighter level.
 Once you've used this feature, you must finish a short or long rest before you can use it again.
+Add a note
 Notes []
 Action Surge Level 2
 Uses (back on a short or long rest) 1 / 1 [−] [+]
 Fighter: 2nd level
 You can push yourself beyond your normal limits for a moment. On your turn, you can take one additional action on top of your regular action.
 Once you've used this feature, you must finish a short or long rest before you can use it again. Starting at 17th level, you can use it twice before a rest, but only once on the same turn.
+Add a note
 Notes []
 Combat Superiority Level 2
 Fighter: 2nd level
@@ -557,16 +566,31 @@ You regain all of your expended superiority dice when you finish a short or long
 Maneuver Ability
 Your maneuver ability varies based on the type of the maneuver you use. You use Strength, Dexterity, or Constitution for physical maneuvers (your choice), Intel… [452 chars #c8f71ca2]
 Maneuver save DC = 8 + your proficiency bonus + your maneuver ability modifier
-Your choices []
+Maneuvers 2 / 2 2 from the Fighter table
+Precision Attack General [×]
+When you make a weapon attack roll against a creature, you can expend one superiority die to add it to the roll. You can use this maneuver before or after makin… [228 chars #f67ac2fb]
+Return Fire Physical [×]
+When a creature misses you with a ranged attack, you can use your reaction and expend one superiority die to make a ranged weapon attack against the creature. I… [227 chars #fd83d733]
+[Add a maneuver… ▾]
+Read the options
+Add a note
+Notes []
 Fighter Specialty Level 3
 Fighter: 3rd, 7th, 10th, 15th, and 18th level
 You choose a specialty that you strive to emulate in your combat styles and techniques, which is detailed at the end of the class description.
-Chosen: Assault Specialist · change it in Classes & Progression
+Archetype [Assault Specialist ▾]
+Read the options (14)
+Add a note
 Notes []
 Fighter Strategies Level 3
 Fighter: 3rd level
 You've adopted a fighter strategy, as detailed at the end of the class description, and you adopt more at higher levels, as shown in the Strategies Known column of the fighter table.
-Chosen: Cover Strategist · change it in Classes & Progression
+Fighter Strategies 1 / 1 from the Fighter table (“Strategies Known”)
+Cover Strategist [×]
+You treat partial cover as one step higher (from one-quarter to half or half to three-quarters). While in cover, your attacks reduce partial cover by one step (from three-quarters to half or half to one-quarter).
+[Add from Fighter Strategies… ▾]
+Read the options (7)
+Add a note
 Notes []
 Operative (2)
 Sneak Attack Level 1
@@ -574,24 +598,30 @@ Operative: 1st level
 You know how to strike subtly and exploit a foe's distraction. Once per turn, you can deal an extra 1d6 damage to one creature you hit with a weapon attack if y… [299 chars #80e56766]
 You don't need advantage on the attack roll if another enemy of the target is within 5 feet of it, that enemy isn't incapacitated, and you don't have disadvantage on the attack roll.
 The amount of the extra damage increases as you gain levels in this class, as shown in the Sneak Attack column of the operative table.
+Add a note
 Notes []
 Expertise Levels 1, 6 from class text
 Choose two of your skill proficiencies, or one of skill proficiencies and one of your tool proficiencies, or two of your tool proficiencies. You gain expertise in those skills or tools.
 At 6th level, you can choose two more of your proficiencies (in skills or tools) to gain this benefit.
-Chosen: Stealth, Perception · change it in Classes & Progression
+Expertise 2 / 2 Operative 1st and 6th level
+Stealth [×] Perception [×]
+Add a note
 Notes []
 Assault Specialist (archetype) (3)
 Brute Force Level 3
 Assault Specialist: 3rd, 10th, and 16th level
 When you make a weapon attack, you gain a +2 bonus to the damage roll. This bonus increases to +3 at 10th level and +4 at 16th level.
+Add a note
 Notes []
 Improved Critical Level 3
 Assault Specialist: 3rd level
 Your critical hit range with weapons increases by 1.
+Add a note
 Notes []
 Remarkable Athlete Level 3
 Assault Specialist: 3rd level
 You can add half your proficiency bonus to any Strength, Dexterity, or Constitution check you make that doesn't already use your proficiency bonus.
+Add a note
 Notes []
 Fighter: Fighter Strategies (1)
 Cover Strategist
@@ -612,6 +642,7 @@ You gain proficiency with all blasters. If you are already proficient with all b
 You gain proficiency with all lightweapons. If you are already proficient with all lightweapons, instead once per turn when you would roll weapon damage using a lightweapon, you can choose to have advantage.
 You gain proficiency with all vibroweapons. If you are already proficient with all vibroweapons, instead once per turn when you would roll weapon damage using a vibroweapon, you can choose to have advantage.
 You can take this feat twice.
+Add a note
 Notes []
 
 ## Sheet: Classes & Progression
@@ -712,44 +743,56 @@ Dexterity +1
 Traits (12)
 Ability Score Increase
 Your Constitution score increases by 2, and your Strength or Dexterity score increases by 1.
+Add a note
 Notes []
 Age
 Zabraks reach adulthood in their late teens and live less than a century.
+Add a note
 Notes []
 Alignment
 Zabraks tend toward no particular alignment. The best and worst are found among them.
+Add a note
 Notes []
 Coercive
 You have proficiency with Persuasion or Intimidation (your choice).
 Skill proficiency 1 / 1
 Persuasion [×]
+Add a note
 Notes []
 Crafters
 You have proficiency with one set of artisan’s implements of your choice.
 Tool proficiency 1 / 1 one set of artisan’s implements of your choice
 Tinker's implements [×]
+Add a note
 Notes []
 Darkvision
 Your vision can easily cut through darkness. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray.
+Add a note
 Notes []
 Languages
 You can speak, read, and write Galactic Basic and Zabraki.
+Add a note
 Notes []
 Second Heart
 Uses (back on a long rest) 1 / 1 [−] [+]
 When you are reduced to 0 hit points but not killed outright, you can drop to 1 hit point instead. You can’t use this feature again until you finish a long rest.
+Add a note
 Notes []
 Size
 Zabraks stand anywhere from 5 to 7 feet tall and weigh up to 300 lbs. Regardless of your position in that range, your size is Medium.
+Add a note
 Notes []
 Speed
 Your base walking speed is 30 feet.
+Add a note
 Notes []
 Toughness
 Your hit point maximum increases by 1, and it increases by 1 every time you gain a level.
+Add a note
 Notes []
 Unarmed Combatant
 Your unarmed strikes deal 1d4 kinetic damage and have the finesse property.
+Add a note
 Notes []
 Ability score +1 1 / 1 Your Constitution score increases by 2, and your Strength or Dexterity score increases by 1.
 Dexterity [×]

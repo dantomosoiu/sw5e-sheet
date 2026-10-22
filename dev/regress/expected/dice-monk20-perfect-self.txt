@@ -470,6 +470,7 @@ When you use the Attack action with an unarmed strike or a monk weapon on your t
 You can take the Dash or Disengage actions as a bonus action.
 > ##### Variant: Monks with Lightweapons
 > If monks gain lightweapon proficiency, consider letting them use lightweapons as monk weapons, provided the weapon lacks the dexterity, heavy, special, and two-handed properties.
+Add a note
 Notes []
 Unarmored Defense Level 1
 Monk: 1st level
@@ -477,40 +478,49 @@ While you are wearing no armor and not wielding a shield, your AC equals 10 + yo
 AC adds 0 / 1
 None chosen yet.
 [Choose an ability… ▾]
+Add a note
 Notes []
 Deflect Missiles Level 3
 Monk: 3rd level
 You can use your reaction to deflect a projectile when you are dealt damage by a ranged weapon attack. When you do so, the damage you take from the attack is reduced by 1d10 + your Dexterity modifier + your monk level.
 If you reduce the damage to 0, and the damage is kinetic, energy, or ion, you can redirect it at another target if you have a weapon capable of doing so. You ca… [427 chars #563d979b]
+Add a note
 Notes []
 Slow Fall Level 4
 Monk: 4th level
 You can use your reaction when you fall to reduce any falling damage you take by an amount equal to five times your monk level.
+Add a note
 Notes []
 Extra Attack Level 5
 Monk: 5th level
 You can attack twice, instead of once, whenever you take the Attack action on your turn.
+Add a note
 Notes []
 Stunning Strike Level 5
 Monk: 5th level
 You can interfere with an opponent's body. When you hit another creature with a melee weapon attack, you can spend 1 focus point to attempt a stunning strike. T… [260 chars #691969a9]
+Add a note
 Notes []
 Enhanced Strikes Level 6
 Monk: 6th level
 Your unarmed strikes count as enhanced for the purpose of overcoming resistance and immunity to unenhanced attacks and damage.
+Add a note
 Notes []
 Evasion Level 7
 Monk: 7th level
 Your instinctive agility lets you dodge out of the way of certain area effects. When you are subjected to an effect that allows you to make a Dexterity saving t… [285 chars #20d6e8d7]
+Add a note
 Notes []
 Stillness of Mind Level 7
 Monk: 7th level
 You can use your action or bonus action to end one effect on yourself that is causing you to be charmed or frightened.
+Add a note
 Notes []
 Unarmored Movement Level 9
 Monk: 3rd and 9th level
 Your speed increases by 10 feet while you are not wearing armor or wielding a shield. This bonus increases when you reach certain monk levels, as shown in the Unarmored Movement column of the monk table.
 At 9th level, you gain the ability to move along vertical surfaces and across liquids on your turn without falling during the move.
+Add a note
 Notes []
 Focus Level 11
 Uses (back on a short or long rest) Focus Points column 20 / 20 [−] [+]
@@ -531,39 +541,51 @@ Your choices []
 Purity of Body Level 13
 Monk: 13th level
 You are immune to disease and poison and resistant to poison damage.
+Add a note
 Notes []
 Diamond Soul Level 14
 Monk: 14th level
 Your mastery of focus grants you proficiency in all saving throws, and when you fail a saving throw, you can spend 1 focus point to reroll it, taking the new roll.
+Add a note
 Notes []
 Timeless Vessel Level 15
 Monk: 15th level
 Your focus sustains you so that you suffer none of the frailty of old age, and you can't be aged abnormally. You can still die of old age, however. Additionally… [261 chars #5309e16d]
+Add a note
 Notes []
 Monastic Order Level 17
 Monk: 3rd, 6th, 11th, and 17th level
 You commit yourself to one monastic order, which is detailed at the end of the class description.
-Chosen: Rakatan Order · change it in Classes & Progression
+Archetype [Rakatan Order ▾]
+Read the options (13)
+Add a note
 Notes []
 Monastic Vows Level 17
 Monk: 2nd, 7th, 13th, and 17th level
 You've sworn two vows, as detailed at the end of the class description. You swear an additional vow at 7th, 13th, and 17th level.
-Not chosen yet · choose it in Classes & Progression
+Monastic Vows 0 / 5 from the Monk table (“Monastic Vows”)
+None chosen yet.
+[Add from Monastic Vows… ▾]
+Read the options (18)
+Add a note
 Notes []
 Empty Body Level 18
 [Start Empty Body]
 Monk: 18th level
 You can use your action to spend 4 focus points to become invisible for 1 minute. During that time, you also have resistance to all damage but force damage.
+Add a note
 Notes []
 Ability Score Improvement Level 19
 Monk: 4th, 8th, 10th, 12th, 16th, and 19th level
 You can increase one ability score by 2, or you can increase two ability scores by 1. You can't increase an ability score above 20 using this feature.
+Add a note
 Notes []
 Perfect Self Level 20
 Monk: 20th level
 You've gained perfect control over your body. Your Dexterity and Wisdom or Charisma scores (your choice) increase by 2. Your maximum for those scores increases … [287 chars #7f9253d6]
 +2 to 1 / 1
 Wisdom [×]
+Add a note
 Notes []
 Rakatan Order (archetype) (4)
 Techcasting Level 3
@@ -582,7 +604,17 @@ Tech save DC = 8 + your proficiency bonus + your techcasting ability modifer
 Tech attack modifier = your proficiency bonus + your techcasting ability modifer
 Techcasting Focus
 You use a wristpad (found in chapter 5) as a techcasting focus for your tech powers.
-Your choices []
+Tech powers 2 / 20 Rakatan Order table · max power level 4
+Encrypted Message at-will [×]
+You point your finger toward a creature within range that possesses a commlink and whisper a message. The target (and only the target) hears the message and can… [279 chars #d9647152]
+You can cast this power through solid objects if you are familiar with the target and know it is beyond the barrier. 1 foot of stone, 1 inch of common metal, a … [322 chars #97726ed9]
+Absorb Energy 1st level [×]
+The power captures some of the incoming energy, lessening its effect on you and storing it for your next melee attack. You have resistance to the triggering dam… [352 chars #7492347e]
+Overcharge Tech. When you cast this power using a power slot of 2nd level or higher, the extra damage increases by 1d6 for each slot level above 1st.
+[Learn a tech power… ▾]
+Read the options (184)
+Add a note
+Notes []
 Focused Tech Level 6
 Rakatan Order: 6th level
 You can cast your tech powers using your focus points. When you do so, your maximum focus points are reduced by 1 until you complete a long rest.
@@ -610,17 +642,26 @@ Level | Tech Powers Known | Tech Points | Max Power Level |
 20th | 20 | 10 | 4th |
 Patient Defense. While under the effects of your Patient Defense, when you are hit by an attack, you can use your reaction and roll your Martial Arts die to increase your AC against the attack.
 Step of the Wind. While under the effects of your Step of the Wind, you can become immune to the shocked condition, and have each slowed level only reduce your speed by 5 feet, unless it would reduce your speed to 0.
+Add a note
 Notes []
 Harmonious Rakatan Level 11
 Uses (back on a short or long rest) 1 / 1 [−] [+]
 Rakatan Order: 11th level
 You can use your Focus features using your tech points. When you do so, your maximum tech points are reduced by 1 until you complete a long rest.
 Additionally, you are constantly under the effects of the detect enhancement tech power. As an action, you can cast the analyze tech power without expending tec… [285 chars #659c5c06]
-Chosen: Analyze · change it in Classes & Progression
+Power given, once per long rest 1 / 1 Rakatan Order: Harmonious Rakatan
+Analyze from the feature
+You choose one object that you must touch throughout the casting of the power. If it is an enhanced or modified item, you learn its properties and how to use th… [380 chars #f07ac2a0]
+If you instead touch a creature throughout the casting, you learn what tech powers, if any, are currently affecting it.
+Add a note
 Notes []
 Tech Mastery Level 17 from class text
 You learn and can cast one 5th-level tech power once per long rest without expending tech points.
-Not chosen yet · choose it in Classes & Progression
+5th-level tech power (once per long rest) 0 / 1 Rakatan Order: Tech Mastery
+None chosen yet.
+[Choose a tech power… ▾]
+Read the options (15)
+Add a note
 Notes []
 Improvements and other choices (1)
 Operative Feat: Multiclass Improvement (Custom feat)
@@ -644,9 +685,11 @@ You develop your conversational skill to better deceive others. You gain the fol
 Increase your Charisma score by 1, to a maximum of 20.
 You gain proficiency in the Deception skill. If you are already proficient in it, you instead gain expertise in it.
 When you take the Attack action, you can replace one attack with an attempt to deceive one humanoid you can see within 30 feet of you that can see and hear you.… [568 chars #4907558c]
+Add a note
 Notes []
 Multiclass Improvement Prereq: 4th level
 You've learned to blend the skills of your different classes. Choose two of the multiclass improvement options, detailed later in this chapter. You can take this feat multiple times.
+Add a note
 Notes []
 
 ## Sheet: Classes & Progression
@@ -723,13 +766,16 @@ One ability score of your choice increases by 2, and two other ability scores of
 Your choices []
 Age
 Humans reach adulthood in their late teens and live less than a century.
+Add a note
 Notes []
 Alignment
 Humans tend toward no particular alignment. The best and worst are found among them.
+Add a note
 Notes []
 Defiant
 Uses (back on a short or long rest) 1 / 1 [−] [+]
 Humans are known to be stubborn and often refuse to give up, even against the worst odds. When you or a creature you can see that can see and understand you mak… [374 chars #6fad59d8]
+Add a note
 Notes []
 Human Versatility
 You gain proficiency in one skill, one tool, and one weapon of your choice.
@@ -742,6 +788,7 @@ None chosen yet.
 Weapon proficiency 0 / 1 one weapon of your choice
 None chosen yet.
 [Choose a weapon… ▾]
+Add a note
 Notes []
 Languages
 You can speak, read, and write Galactic Basic and one extra language of your choice. Humans typically learn the languages of other peoples they deal with, inclu… [346 chars #ff842958]
@@ -751,9 +798,11 @@ You gain proficiency in one skill, one tool, and one weapon of your choice.
 Your choices []
 Size
 Humans vary widely in height and build, from barely 5 feet to well over 6 feet tall. Regardless of your position in that range, your size is Medium.
+Add a note
 Notes []
 Speed
 Your base walking speed is 30 feet.
+Add a note
 Notes []
 Ability score +2 0 / 1 One ability score of your choice increases by 2, and two other ability scores of your choice increase by 1. Alternatively, four ability scores of your choice each increase by 1.
 None chosen yet.

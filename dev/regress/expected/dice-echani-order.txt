@@ -401,6 +401,7 @@ When you use the Attack action with an unarmed strike or a monk weapon on your t
 You can take the Dash or Disengage actions as a bonus action.
 > ##### Variant: Monks with Lightweapons
 > If monks gain lightweapon proficiency, consider letting them use lightweapons as monk weapons, provided the weapon lacks the dexterity, heavy, special, and two-handed properties.
+Add a note
 Notes []
 Unarmored Defense Level 1
 Monk: 1st level
@@ -408,49 +409,63 @@ While you are wearing no armor and not wielding a shield, your AC equals 10 + yo
 AC adds 0 / 1
 None chosen yet.
 [Choose an ability… ▾]
+Add a note
 Notes []
 Deflect Missiles Level 3
 Monk: 3rd level
 You can use your reaction to deflect a projectile when you are dealt damage by a ranged weapon attack. When you do so, the damage you take from the attack is reduced by 1d10 + your Dexterity modifier + your monk level.
 If you reduce the damage to 0, and the damage is kinetic, energy, or ion, you can redirect it at another target if you have a weapon capable of doing so. You ca… [427 chars #563d979b]
+Add a note
 Notes []
 Slow Fall Level 4
 Monk: 4th level
 You can use your reaction when you fall to reduce any falling damage you take by an amount equal to five times your monk level.
+Add a note
 Notes []
 Extra Attack Level 5
 Monk: 5th level
 You can attack twice, instead of once, whenever you take the Attack action on your turn.
+Add a note
 Notes []
 Stunning Strike Level 5
 Monk: 5th level
 You can interfere with an opponent's body. When you hit another creature with a melee weapon attack, you can spend 1 focus point to attempt a stunning strike. T… [260 chars #691969a9]
+Add a note
 Notes []
 Enhanced Strikes Level 6
 Monk: 6th level
 Your unarmed strikes count as enhanced for the purpose of overcoming resistance and immunity to unenhanced attacks and damage.
+Add a note
 Notes []
 Evasion Level 7
 Monk: 7th level
 Your instinctive agility lets you dodge out of the way of certain area effects. When you are subjected to an effect that allows you to make a Dexterity saving t… [285 chars #20d6e8d7]
+Add a note
 Notes []
 Monastic Vows Level 7
 Monk: 2nd, 7th, 13th, and 17th level
 You've sworn two vows, as detailed at the end of the class description. You swear an additional vow at 7th, 13th, and 17th level.
-Not chosen yet · choose it in Classes & Progression
+Monastic Vows 0 / 3 from the Monk table (“Monastic Vows”)
+None chosen yet.
+[Add from Monastic Vows… ▾]
+Read the options (18)
+Add a note
 Notes []
 Stillness of Mind Level 7
 Monk: 7th level
 You can use your action or bonus action to end one effect on yourself that is causing you to be charmed or frightened.
+Add a note
 Notes []
 Unarmored Movement Level 9
 Monk: 3rd and 9th level
 Your speed increases by 10 feet while you are not wearing armor or wielding a shield. This bonus increases when you reach certain monk levels, as shown in the Unarmored Movement column of the monk table.
 At 9th level, you gain the ability to move along vertical surfaces and across liquids on your turn without falling during the move.
+Add a note
 Notes []
 Ability Score Improvement Level 10
 Monk: 4th, 8th, 10th, 12th, 16th, and 19th level
 You can increase one ability score by 2, or you can increase two ability scores by 1. You can't increase an ability score above 20 using this feature.
+Add a note
 Notes []
 Focus Level 11
 Uses (back on a short or long rest) Focus Points column 11 / 11 [−] [+]
@@ -471,7 +486,9 @@ Your choices []
 Monastic Order Level 11
 Monk: 3rd, 6th, 11th, and 17th level
 You commit yourself to one monastic order, which is detailed at the end of the class description.
-Chosen: Echani Order · change it in Classes & Progression
+Archetype [Echani Order ▾]
+Read the options (13)
+Add a note
 Notes []
 Operative (4)
 Sneak Attack Level 1
@@ -479,20 +496,29 @@ Operative: 1st level
 You know how to strike subtly and exploit a foe's distraction. Once per turn, you can deal an extra 1d6 damage to one creature you hit with a weapon attack if y… [299 chars #80e56766]
 You don't need advantage on the attack roll if another enemy of the target is within 5 feet of it, that enemy isn't incapacitated, and you don't have disadvantage on the attack roll.
 The amount of the extra damage increases as you gain levels in this class, as shown in the Sneak Attack column of the operative table.
+Add a note
 Notes []
 Expertise Levels 1, 6 from class text
 Choose two of your skill proficiencies, or one of skill proficiencies and one of your tool proficiencies, or two of your tool proficiencies. You gain expertise in those skills or tools.
 At 6th level, you can choose two more of your proficiencies (in skills or tools) to gain this benefit.
-Not chosen yet · choose it in Classes & Progression
+Expertise 0 / 2 Operative 1st and 6th level
+None chosen yet.
+[Choose a skill or tool you know… ▾]
+Add a note
 Notes []
 Cunning Action Level 2
 Operative: 2nd level
 Your quick thinking and agility allow you to move and act quickly. You can take the Dash, Disengage, or Hide actions as a bonus action.
+Add a note
 Notes []
 Operative Exploits Level 2
 Operative: 2nd level
 You've adopted two exploits, as detailed at the end of the class description. You adopt an additional exploit at 7th, 13th, and 17th level.
-Not chosen yet · choose it in Classes & Progression
+Operative Exploits 0 / 2 from the Operative table (“Operative Exploits”)
+None chosen yet.
+[Add from Operative Exploits… ▾]
+Read the options (11)
+Add a note
 Notes []
 Echani Order (archetype) (3)
 Echani Weapons Level 3
@@ -511,11 +537,13 @@ Enhanced Echani Weapons
 Your attacks with your Echani weapons count as enhanced for the purpose of overcoming resistance and immunity to unenhanced attacks and damage.
 Deft Strike
 When you hit a target with an Echani weapon, you can spend 1 focus point to cause the weapon to deal extra damage to the target equal to your Martial Arts die. You can use this feature only once on each of your turns.
+Add a note
 Notes []
 Sharpen the Blade Level 11
 [Start Sharpen the Blade]
 Echani Order: 11th level
 You gain the ability to augment your weapons further with your focus. As a bonus action, you can expend up to 3 focus points to grant one Echani weapon you touc… [439 chars #a4d4121b]
+Add a note
 Notes []
 Improvements and other choices (1)
 Operative Feat: Multiclass Improvement (Custom feat)
@@ -537,9 +565,11 @@ You develop your conversational skill to better deceive others. You gain the fol
 Increase your Charisma score by 1, to a maximum of 20.
 You gain proficiency in the Deception skill. If you are already proficient in it, you instead gain expertise in it.
 When you take the Attack action, you can replace one attack with an attempt to deceive one humanoid you can see within 30 feet of you that can see and hear you.… [568 chars #4907558c]
+Add a note
 Notes []
 Multiclass Improvement Prereq: 4th level
 You've learned to blend the skills of your different classes. Choose two of the multiclass improvement options, detailed later in this chapter. You can take this feat multiple times.
+Add a note
 Notes []
 
 ## Sheet: Classes & Progression
@@ -631,13 +661,16 @@ One ability score of your choice increases by 2, and two other ability scores of
 Your choices []
 Age
 Humans reach adulthood in their late teens and live less than a century.
+Add a note
 Notes []
 Alignment
 Humans tend toward no particular alignment. The best and worst are found among them.
+Add a note
 Notes []
 Defiant
 Uses (back on a short or long rest) 1 / 1 [−] [+]
 Humans are known to be stubborn and often refuse to give up, even against the worst odds. When you or a creature you can see that can see and understand you mak… [374 chars #6fad59d8]
+Add a note
 Notes []
 Human Versatility
 You gain proficiency in one skill, one tool, and one weapon of your choice.
@@ -650,6 +683,7 @@ None chosen yet.
 Weapon proficiency 0 / 1 one weapon of your choice
 None chosen yet.
 [Choose a weapon… ▾]
+Add a note
 Notes []
 Languages
 You can speak, read, and write Galactic Basic and one extra language of your choice. Humans typically learn the languages of other peoples they deal with, inclu… [346 chars #ff842958]
@@ -659,9 +693,11 @@ You gain proficiency in one skill, one tool, and one weapon of your choice.
 Your choices []
 Size
 Humans vary widely in height and build, from barely 5 feet to well over 6 feet tall. Regardless of your position in that range, your size is Medium.
+Add a note
 Notes []
 Speed
 Your base walking speed is 30 feet.
+Add a note
 Notes []
 Ability score +2 0 / 1 One ability score of your choice increases by 2, and two other ability scores of your choice increase by 1. Alternatively, four ability scores of your choice each increase by 1.
 None chosen yet.

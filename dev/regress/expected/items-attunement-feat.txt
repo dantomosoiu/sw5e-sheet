@@ -535,6 +535,7 @@ Lend Aid
 As a bonus action, you can expend a use of your Channel the Force and touch a beast or humanoid within 5 feet of you. That creature regains hit points equal to … [474 chars #c83fcb87]
 Choose one 1 / 1
 Lend Aid [×]
+Add a note
 Notes []
 Forcecasting Level 1
 Guardian: 1st level
@@ -550,33 +551,83 @@ Forcecasting Ability
 Your forcecasting ability varies based on the alignment of the powers you cast. You use Wisdom for light side powers, Charisma for dark side powers, and Wisdom … [427 chars #7389ec1d]
 Force save DC = 8 + your proficiency bonus + your forcecasting ability modifier
 Force attack modifier = your proficiency bonus + your forcecasting ability modifier
-Your choices []
+Force powers 10 / 10 Guardian table · max power level 1
+Force Leap at-will · Universal [×]
+Until the end of your next turn, you can use your forcecasting ability score instead of your Strength score when you jump, and always count as having made a running start before jumping.
+Guidance at-will · Light [×]
+You touch one willing creature. Once before the power ends, the target can roll a d4 and add the number rolled to one ability check of its choice. The power then ends.
+This power's die increases at higher levels: to a d6 at 5th level, a d8 at 11th level, and a d10 at 17th level.
+Saber Reflect at-will · Universal [×]
+In response to being attacked, you raise your weapon to attempt to deflect. When you use this power, the damage you take from the attack is reduced by 1d6. If y… [535 chars #719c2600]
+The power's damage reduction increases by 1d6 when you reach 5th level (2d6), 11th level (3d6), and 17th level (4d6).
+Saber Throw at-will · Universal [×]
+As a part of the action used to cast this power, you must make a ranged force attack with a lightweapon or vibroweapon against one target within the power's ran… [319 chars #ce95991f]
+This power can hit multiple targets when you reach higher levels: two targets at 5th level, three targets at 11th level, and four targets at 17th level. Each ta… [385 chars #e441b97e]
+Saber Ward at-will · Universal [×]
+You take a defensive stance. Until the end of your next turn, you have resistance against kinetic, energy, and ion damage dealt by weapons.
+Burst of Speed 1st level · Universal [×]
+You touch a creature. The target's speed increases by 10 feet until the power ends.
+Force Potency. When you cast this power using a force slot of 2nd level or higher, you can target one additional creature for each slot level above 1st.
+Force Jump 1st level · Universal [×]
+Prerequisite: Force Leap
+Using the Force to augment the strength in your legs, you leap up to 30 feet to an unoccupied space you can see, provided you have a direct path to the space.
+Force Potency. When you cast this power using a force slot of 2nd level or higher, your jump distance increases by 5 feet for each slot level above 1st.
+Heal 1st level · Light [×]
+A creature you touch regains a number of hit points equal to 1d8 + your forcecasting ability modifier. This power has no effect on droids or constructs.
+Force Potency. When you cast this power using a force slot of 2nd level or higher, the healing increases by 1d8 for each slot level above 1st.
+Heroism 1st level · Light [×]
+A willing creature you touch is imbued with bravery. Until the power ends, the creature is immune to being frightened and gains temporary hit points equal to yo… [367 chars #1056666d]
+Force Potency. When you cast this power using a force slot of 2nd level or higher, you can target one additional creature for each slot level above 1st.
+Sanctuary 1st level · Light [×]
+Until the power ends, any creature who targets the warded creature with an attack, a harmful power, or a hostile action must first make a Wisdom saving throw. O… [309 chars #5be8bffc]
+If the warded creature makes an attack, casts a power that affects an enemy creature, or takes a hostile action this power ends.
+[Learn a force power… ▾]
+Read the options (74)
+Add a note
+Notes []
 Fighting Style Level 2
 Guardian: 2nd level
 You adopt a particular style of fighting as your specialty. Choose one of the fighting style options, detailed in Chapter 6.
-Chosen: Defense Style · change it in Classes & Progression
+Fighting style 1 / 1 Guardian: Fighting Style
+Defense Style [×]
+[]
+You are skilled at the art of defending yourself. You gain the following benefits:
+While you are wearing medium or heavy armor with which you are proficient, you can use your bonus action to mark a target within 30 feet that you can see until … [492 chars #19aa7073]
+You have advantage on Strength checks and Strength saving throws to avoid being moved.
+Add a note
 Notes []
 Force-Empowered Strikes Level 2
 Guardian: 2nd level
 When you hit a creature with a melee weapon attack, you can expend force points to deal additional damage to the target, which is the same type as the weapon's … [343 chars #717b2b93]
+Add a note
 Notes []
 Guardian Aura Level 3
 Guardian: 3rd level
 You gain an aura of your choice, as detailed at the end of the class description, and you gain more at higher levels, as shown in the Auras Known column of the … [301 chars #fca1850f]
-Your choices []
+Guardian Auras 1 / 1 from the Guardian table (“Auras Known”)
+Aura of Presence [×]
+Whenever you or a friendly creature within 5 feet of you must make a saving throw, the creature can add your Wisdom modifier to the saving throw.
+[Add from Guardian Auras… ▾]
+Read the options (6)
+Add a note
+Notes []
 Guardian Focus Level 3
 Guardian: 3rd, 7th, 15th, and 20th level
 You begin to focus your studies on a specific lightsaber form, which is detailed at the end of the class description.
-Chosen: Soresu Form · change it in Classes & Progression
+Archetype [Soresu Form ▾]
+Read the options (14)
+Add a note
 Notes []
 Ability Score Improvement Level 4
 Guardian: 4th, 8th, 12th, 16th, and 19th level
 You can increase one ability score by 2, or you can increase two ability scores by 1. You can't increase an ability score above 20 using this feature.
+Add a note
 Notes []
 Soresu Form (archetype) (4)
 Bonus Proficiencies Level 3
 Soresu Form: 3rd level
 You gain proficiency in heavy armor.
+Add a note
 Notes []
 Channel the Force Level 3
 Uses (back on a short or long rest) 1 / 2 [−] [+]
@@ -588,7 +639,13 @@ Notes [Lend Aid]
 Form Basics Level 3
 Soresu Form: 3rd level
 You gain the Soresu lightsaber form, detailed in Chapter 6. If you already know this form, you can instead choose another lightsaber form.
-Chosen: Shien Form · change it in Classes & Progression
+Lightsaber form 1 / 1 Soresu Form: Form Basics
+Form rules
+Lightsaber forms (PHB chapter 6): each form you know can be adopted on your turn by using your bonus action, and adopting one replaces the form you were in. Wha… [422 chars #a55c1a59]
+Shien Form [×]
+[]
+Before the end of your next turn, you can add half your Wisdom or Charisma modifier (your choice, minimum of +1) to your AC against one attack.
+Add a note
 Notes []
 The Way of the Mynock Level 3
 Uses (back on a long rest) 0 / 1 [−] [+]
@@ -596,6 +653,7 @@ Uses (back on a long rest) 0 / 1 [−] [+]
 Soresu Form: 3rd level
 As a bonus action, you can enter a defensive stance for one minute. As a part of this bonus action, and as a bonus action on each of your turns, you can cast th… [327 chars #0a66023f]
 This effect ends early if you are incapacitated or die. Once you've used this feature, you can't use it again until you finish a long rest.
+Add a note
 Notes []
 Guardian: Guardian Auras (1)
 Aura of Presence
@@ -641,6 +699,7 @@ Formfighting Dabbler Background (Jedi)+1 to any ability Prereq: The ability to c
 You've dabbled in the basics of the known forms of lightsaber combat. You gain the following benefits:
 Increase an ability score of your choice by 1, to a maximum of 20.
 You learn one lightsaber form, detailed later in this chapter. If you already know at least one lightsaber form, you instead learn three lightsaber forms. If yo… [339 chars #b47641a0]
+Add a note
 Notes []
 
 ## Sheet: Classes & Progression
@@ -751,33 +810,43 @@ Strength +1
 Traits (10)
 Ability Score Increase
 Your Wisdom score increases by 2, and your Strength or Dexterity score increases by 1.
+Add a note
 Notes []
 Age
 Togruta reach adulthood in their late teens and live less than a century.
+Add a note
 Notes []
 Alignment
 Togruta culture focuses on unity which causes them to tend toward the light side, though there are exceptions.
+Add a note
 Notes []
 Darkvision
 Your vision can easily cut through darkness. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray.
+Add a note
 Notes []
 Languages
 You can speak, read, and write Galactic Basic and Togruti. Togruti is an ornate language characterized by trills and long vowel sounds which are modified by sub… [361 chars #bc30a6fd]
+Add a note
 Notes []
 Mask of the Wild
 You can attempt to hide even when you are only lightly obscured by foliage, heavy rain, falling snow, mist, and other natural phenomena.
+Add a note
 Notes []
 Montral Reception
 You have tremorsense out to 30 feet. You can detect and pinpoint the origin of vibrations within a specific radius, provided that you and the source of the vibr… [285 chars #e806ea9c]
+Add a note
 Notes []
 Size
 Togruta typically stand between 5 and 6 feet tall and weigh 150 lbs. Regardless of your position in that range, your size is Medium.
+Add a note
 Notes []
 Speed
 Your base walking speed is 30 feet.
+Add a note
 Notes []
 Wild Hunters
 You have proficiency in the Survival skill.
+Add a note
 Notes []
 Ability score +1 1 / 1 Your Wisdom score increases by 2, and your Strength or Dexterity score increases by 1.
 Strength [×]

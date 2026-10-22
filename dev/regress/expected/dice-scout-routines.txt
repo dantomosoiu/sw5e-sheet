@@ -385,11 +385,16 @@ Even when you are engaged in another activity while traveling (such as foraging,
 If you are traveling alone, you can move stealthily at a normal pace.
 When you forage, you find twice as much food.
 You have advantage on Survival checks.
+Add a note
 Notes []
 Fighting Style Level 2
 Scout: 2nd level
 You adopt a particular style of fighting as your specialty. Choose one of the fighting style options, detailed in Chapter 6.
-Not chosen yet · choose it in Classes & Progression
+Fighting style 0 / 1 Scout: Fighting Style
+None chosen yet.
+[Choose a fighting style… ▾]
+Read the options (32)
+Add a note
 Notes []
 Techcasting Level 2
 Scout: 2nd level
@@ -408,24 +413,36 @@ Tech save DC = 8 + your proficiency bonus + your Intelligence modifier
 Tech attack modifier = your proficiency bonus + your Intelligence modifier
 Techcasting Focus
 You use a wristpad (found in chapter 5) as a tech focus for your tech powers.
-Your choices []
+Tech powers 0 / 12 Scout table · max power level 3
+None chosen yet.
+[Learn a tech power… ▾]
+Read the options (170)
+Add a note
+Notes []
 Extra Attack Level 5
 Scout: 5th level
 You can attack twice, instead of once, whenever you take the Attack action on your turn.
+Add a note
 Notes []
 Expertise Levels 6, 14 from class text
 Choose two of your skill proficiencies, or one of skill proficiencies and one of your tool proficiencies, or two of your tool proficiencies. You gain expertise in those skills or tools.
 At 14th level, you can choose another two proficiencies (in skills or tools) to gain this benefit.
-Not chosen yet · choose it in Classes & Progression
+Expertise 0 / 2 Scout 6th and 14th level
+None chosen yet.
+[Choose a skill or tool you know… ▾]
+Add a note
 Notes []
 Scout Technique Level 7
 Scout: 3rd, 7th, 11th, and 15th level
 You choose to focus on a specific scout technique, which is detailed at the end of the class description.
-Not chosen yet · choose it in Classes & Progression
+Archetype [— none — ▾]
+Read the options (15)
+Add a note
 Notes []
 Ability Score Improvement Level 8
 Scout: 4th, 8th, 12th, 16th, and 19th level
 You can increase one ability score by 2, or you can increase two ability scores by 1. You can't increase an ability score above 20 using this feature.
+Add a note
 Notes []
 Ranger's Quarry Level 9
 [Start Ranger's Quarry]
@@ -435,11 +452,22 @@ Once per turn, when you hit the target with a weapon attack, you can deal 1d4 ad
 You have advantage on any Wisdom (Perception) or Wisdom (Survival) check you make to find it while it's on the same planet as you.
 You can only have one creature marked in this way at a time. Beginning at 5th level, you can use your reaction to mark a creature when it enters your line of sight, provided it is within range of your Ranger's Quarry.
 The duration increases to 8 hours at 9th level and 24 hours at 17th level.
-Your choices []
+Add a note
+Notes []
 Scout Routine Level 9
 Scout: 3rd, 7th, 9th, 15th, and 17th level
 You've developed one routine, as detailed at the end of the class description. You develop an additional routine at 7th and 15th level.
 At 9th level, the range of your routines increases to 15 feet, and at 17th level, the range of these routines increases to 30 feet
+Scout Routines 2 / 2 from the Scout table (“Routines Known”)
+Responder's Routine [×]
+[]
+When you roll initiative, you can choose to add your proficiency bonus to the initiative check and have advantage on attack rolls against creatures that have no… [411 chars #aa4f2c32]
+Sharpshooter's Routine [×]
+[]
+At the start of each of your turns, you can choose to gain a bonus to the first weapon attack roll you make before the start of your next turn equal to your Int… [379 chars #8e567943]
+[Add from Scout Routines… ▾]
+Read the options (6)
+Add a note
 Notes []
 Scout: Scout Routines (2)
 Responder's Routine
@@ -468,9 +496,11 @@ You develop your conversational skill to better deceive others. You gain the fol
 Increase your Charisma score by 1, to a maximum of 20.
 You gain proficiency in the Deception skill. If you are already proficient in it, you instead gain expertise in it.
 When you take the Attack action, you can replace one attack with an attempt to deceive one humanoid you can see within 30 feet of you that can see and hear you.… [568 chars #4907558c]
+Add a note
 Notes []
 Multiclass Improvement Prereq: 4th level
 You've learned to blend the skills of your different classes. Choose two of the multiclass improvement options, detailed later in this chapter. You can take this feat multiple times.
+Add a note
 Notes []
 
 ## Sheet: Classes & Progression
@@ -552,13 +582,16 @@ One ability score of your choice increases by 2, and two other ability scores of
 Your choices []
 Age
 Humans reach adulthood in their late teens and live less than a century.
+Add a note
 Notes []
 Alignment
 Humans tend toward no particular alignment. The best and worst are found among them.
+Add a note
 Notes []
 Defiant
 Uses (back on a short or long rest) 1 / 1 [−] [+]
 Humans are known to be stubborn and often refuse to give up, even against the worst odds. When you or a creature you can see that can see and understand you mak… [374 chars #6fad59d8]
+Add a note
 Notes []
 Human Versatility
 You gain proficiency in one skill, one tool, and one weapon of your choice.
@@ -570,6 +603,7 @@ None chosen yet.
 Weapon proficiency 0 / 1 one weapon of your choice
 None chosen yet.
 [Choose a weapon… ▾]
+Add a note
 Notes []
 Languages
 You can speak, read, and write Galactic Basic and one extra language of your choice. Humans typically learn the languages of other peoples they deal with, inclu… [346 chars #ff842958]
@@ -579,9 +613,11 @@ You gain proficiency in one skill, one tool, and one weapon of your choice.
 Your choices []
 Size
 Humans vary widely in height and build, from barely 5 feet to well over 6 feet tall. Regardless of your position in that range, your size is Medium.
+Add a note
 Notes []
 Speed
 Your base walking speed is 30 feet.
+Add a note
 Notes []
 Ability score +2 0 / 1 One ability score of your choice increases by 2, and two other ability scores of your choice increase by 1. Alternatively, four ability scores of your choice each increase by 1.
 None chosen yet.

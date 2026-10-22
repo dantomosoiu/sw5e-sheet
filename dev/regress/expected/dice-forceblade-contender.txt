@@ -519,10 +519,16 @@ Forcecasting Ability
 Your forcecasting ability varies based on the alignment of the powers you cast. You use Wisdom for light side powers, Charisma for dark side powers, and Wisdom … [427 chars #7389ec1d]
 Force save DC = 8 + your proficiency bonus + your forcecasting ability modifier
 Force attack modifier = your proficiency bonus + your forcecasting ability modifier
-Your choices []
+Force powers 0 / 21 Sentinel table · max power level 4
+None chosen yet.
+[Learn a force power… ▾]
+Read the options (166)
+Add a note
+Notes []
 Led by the Force Level 1
 Sentinel: 1st level
 You can add half your proficiency bonus to any ability check you make that doesn't already include your proficiency bonus.
+Add a note
 Notes []
 Force-Empowered Self Level 2
 Sentinel: 2nd level
@@ -537,21 +543,36 @@ Your choices []
 Extra Attack Level 5
 Sentinel: 5th level
 You can attack twice, instead of once, whenever you take the Attack action on your turn.
+Add a note
 Notes []
 Sentinel Calling Level 7
 Sentinel: 3rd, 7th, 13th, and 18th level
 You choose a sentinel calling, which is detailed at the end of the class description.
-Chosen: Path of the Forceblade · change it in Classes & Progression
+Archetype [Path of the Forceblade ▾]
+Read the options (13)
+Add a note
 Notes []
 Ability Score Improvement Level 8
 Sentinel: 4th, 8th, 12th, 16th, and 19th level
 You can increase one ability score by 2, or you can increase two ability scores by 1. You can't increase an ability score above 20 using this feature.
+Add a note
 Notes []
 Sentinel Ideals Level 9
 Sentinel: 2nd, 6th, 9th, 11th, and 17th level
 You adopt ideals that exemplify your bond with the Force. You adopt two ideals of your choice, as detailed at the end of the class description. You adopt an additional ideal at 6th and 11th level.
 You can manifest your ideals a combined total of twice. You gain an additional use at 9th and 17th level. You regain all expended uses when you finish a long rest.
-Chosen: Ideal of the Agile, Ideal of the Contender · change it in Classes & Progression
+Sentinel Ideals 2 / 3 from the Sentinel table (“Ideals Known”)
+Ideal of the Agile [×]
+[]
+You gain a swimming speed and a climbing speed equal to your walking speed. When you make a long jump, you can cover a number of feet up to twice your Wisdom or… [330 chars #9edcc4f5]
+Additionally, as a bonus action, you can manifest this ideal in a brief surge of energy. For the next minute, opportunity attacks against you are made with disadvantage.
+Ideal of the Contender [×]
+[]
+Your unarmed strike damage increases by one step (from 1 to d4, d4 to d6, or d6 to d8), and your unarmed strikes gain the finesse property.
+Additionally, as a bonus action, you can manifest this ideal in a brief surge of energy. For the next minute, your unarmed strikes count as enhanced for the pur… [376 chars #e9898e34]
+[Add from Sentinel Ideals… ▾]
+Read the options (7)
+Add a note
 Notes []
 Path of the Forceblade (archetype) (3)
 Forceblade Bond Level 3
@@ -566,13 +587,18 @@ Notes [Vibrorapier]
 Phasethrow Level 3
 Path of the Forceblade: 3rd level
 You learn the saber throw force power, which does not count against your total powers known. Additionally, you no longer have disadvantage on the attack roll wi… [541 chars #513f47a4]
-Chosen: Saber Throw · change it in Classes & Progression
+Power given 1 / 1 Path of the Forceblade: Phasethrow
+Saber Throw from the feature
+As a part of the action used to cast this power, you must make a ranged force attack with a lightweapon or vibroweapon against one target within the power's ran… [319 chars #ce95991f]
+This power can hit multiple targets when you reach higher levels: two targets at 5th level, three targets at 11th level, and four targets at 17th level. Each ta… [385 chars #e441b97e]
+Add a note
 Notes []
 Twin Saber Throw Level 9
 Uses (back on a long rest) 4 / 4 [−] [+]
 Path of the Forceblade: 7th, 9th, 13th, and 17th level
 When you cast saber throw while wielding your forceblade, you can attack the same target multiple times.
 Additionally, when you deal damage to a creature within 30 feet of you with your forceblade, you can use your bonus action to teleport to within 5 feet of that … [455 chars #73157a02]
+Add a note
 Notes []
 Sentinel: Sentinel Ideals (2)
 Ideal of the Agile
@@ -603,9 +629,11 @@ You develop your conversational skill to better deceive others. You gain the fol
 Increase your Charisma score by 1, to a maximum of 20.
 You gain proficiency in the Deception skill. If you are already proficient in it, you instead gain expertise in it.
 When you take the Attack action, you can replace one attack with an attempt to deceive one humanoid you can see within 30 feet of you that can see and hear you.… [568 chars #4907558c]
+Add a note
 Notes []
 Multiclass Improvement Prereq: 4th level
 You've learned to blend the skills of your different classes. Choose two of the multiclass improvement options, detailed later in this chapter. You can take this feat multiple times.
+Add a note
 Notes []
 
 ## Sheet: Classes & Progression
@@ -687,13 +715,16 @@ One ability score of your choice increases by 2, and two other ability scores of
 Your choices []
 Age
 Humans reach adulthood in their late teens and live less than a century.
+Add a note
 Notes []
 Alignment
 Humans tend toward no particular alignment. The best and worst are found among them.
+Add a note
 Notes []
 Defiant
 Uses (back on a short or long rest) 1 / 1 [−] [+]
 Humans are known to be stubborn and often refuse to give up, even against the worst odds. When you or a creature you can see that can see and understand you mak… [374 chars #6fad59d8]
+Add a note
 Notes []
 Human Versatility
 You gain proficiency in one skill, one tool, and one weapon of your choice.
@@ -705,6 +736,7 @@ None chosen yet.
 Weapon proficiency 0 / 1 one weapon of your choice
 None chosen yet.
 [Choose a weapon… ▾]
+Add a note
 Notes []
 Languages
 You can speak, read, and write Galactic Basic and one extra language of your choice. Humans typically learn the languages of other peoples they deal with, inclu… [346 chars #ff842958]
@@ -714,9 +746,11 @@ You gain proficiency in one skill, one tool, and one weapon of your choice.
 Your choices []
 Size
 Humans vary widely in height and build, from barely 5 feet to well over 6 feet tall. Regardless of your position in that range, your size is Medium.
+Add a note
 Notes []
 Speed
 Your base walking speed is 30 feet.
+Add a note
 Notes []
 Ability score +2 0 / 1 One ability score of your choice increases by 2, and two other ability scores of your choice increase by 1. Alternatively, four ability scores of your choice each increase by 1.
 None chosen yet.

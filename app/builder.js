@@ -224,16 +224,20 @@ function bdClassProficiencies(m, k, idx) {
         options: opts.length ? opts : bdTools().map((x) => x.name), kind: 'tool', arg: `Class: ${k.name}`, word: 'a tool' }));
     }
   }
-  // Expertise ("Choose two of your skill proficiencies… At 6th level, you can choose two more"): in classes[i].expertise.
-  const exp = clsTextFeatures(ref.classFeatureText, k.name, 'Class').find((f) => /^Expertise$/i.test(f.name));
-  if (exp && exp.level <= num(k.levels)) {
-    const count = exp.levels.filter((l) => l <= num(k.levels)).length * 2;
-    const chosen = BD_KINDS.cexp.get(m.raw, idx);
-    const known = bdSkillsKnown(m).sort().concat(toolProficiencies(m).sort(), chosen);
-    out.push(bdPickList({ title: 'Expertise', from: `${k.name} ${exp.levels.map(ordinal).join(' and ')} level`, count, chosen, options: [...new Set(known)],
-      kind: 'cexp', arg: idx, word: 'a skill or tool you know' }));
-  }
+  const exp = bdExpertisePick(m, k, idx);
+  if (exp) out.push(exp);
   return out.length ? `<div class="cls-choices bd-profs">${out.join('')}</div>` : '';
+}
+/** A class's Expertise picker ("Choose two of your skill proficiencies… At 6th level, you can choose two more"): classes[i].expertise. */
+function bdExpertisePick(m, k, idx) {
+  const ref = bdClassRef(k.name);
+  const exp = ref && clsTextFeatures(ref.classFeatureText, k.name, 'Class').find((f) => /^Expertise$/i.test(f.name));
+  if (!exp || exp.level > num(k.levels)) return '';
+  const count = exp.levels.filter((l) => l <= num(k.levels)).length * 2;
+  const chosen = BD_KINDS.cexp.get(m.raw, idx);
+  const known = bdSkillsKnown(m).sort().concat(toolProficiencies(m).sort(), chosen);
+  return bdPickList({ title: 'Expertise', from: `${k.name} ${exp.levels.map(ordinal).join(' and ')} level`, count, chosen, options: [...new Set(known)],
+    kind: 'cexp', arg: idx, word: 'a skill or tool you know' });
 }
 
 // ------------------------------------------------------------- background: skills, tools, languages, feat increase

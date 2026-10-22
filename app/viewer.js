@@ -5613,12 +5613,13 @@ function renderCasting(m, kind) {
 }
 
 /** The class's powers-known picker (class casting and archetype casting), in its class card. */
-function renderPowerBlocks(m, k, idx) {
+/** A class's powers known, with the pickers (`onlyType`: 'force' or 'tech' only, for its Forcecasting/Techcasting card). */
+function renderPowerBlocks(m, k, idx, onlyType = null) {
   if (!state.rules) return '';
   // Powers the character knows (learned ones: not those a feature only lets you cast).
   const learned = new Set(['force', 'tech'].flatMap((kind) => knownPowers(m, kind).filter((x) => !x.castOnly).map((x) => x.name.toLowerCase())));
   const res = choiceInfo(m);
-  const sources = pwClassCasting(k, state.rules.modules || {});
+  const sources = pwClassCasting(k, state.rules.modules || {}).filter((c) => !onlyType || c.type === onlyType);
   const blocks = sources.map((c) => {
     const T = c.type === 'force' ? 'Force' : 'Tech';
     const chosen = c.chosen;
@@ -5661,6 +5662,7 @@ function renderPowerBlocks(m, k, idx) {
         }).join('')}</optgroup>`).join('')}</select>${bdBrowse(`pw|${idx}|${c.field}`, avail.length)}</div>`;
   });
   // Powers stored on a class (or archetype) that doesn't cast them: SW5E lists them, but no table allows them.
+  if (onlyType) return blocks.join('');
   for (const [field, T] of [['forcePowers', 'Force'], ['techPowers', 'Tech'], ['archetype.forcePowers', 'Force'], ['archetype.techPowers', 'Tech']]) {
     const list = field.startsWith('archetype.') ? arr(k.archetype && k.archetype[field.slice(10)]) : arr(k[field]);
     if (!list.length || sources.some((c) => c.field === field)) continue;
@@ -6058,6 +6060,63 @@ function chosenInPicker(m, f) {
   }
   return null;
 }
+/** A feature or list name to compare by: "Discovery" and "Discoveries", "Guardian Aura" and "Guardian Auras" are one. */
+const pickerKey = (s) => clsBaseName(s).toLowerCase().replace(/\b(?:known|options?)\b/g, ' ').split(/[^a-z']+/).filter(Boolean)
+  .map((w) => w.replace(/ies$/, 'y').replace(/(?<!s)s$/, '')).join(' ');
+// The feature that gives a class its maneuvers: "You learn maneuvers that are fueled by special dice called superiority
+// dice" (Combat Superiority, Academic Superiority), "You learn two maneuvers of your choice… as shown in the Maneuvers
+// Known column" (Champion Superiority, Deadeye Superiority…).
+const MANEUVER_FEATURE = /\byou learn maneuvers that are fueled by special dice called superiority dice\b|\byou (?:learn|know) \w+ maneuvers of your choice\b[^.]*\bManeuvers Known column\b/i;
+/**
+ * The pickers of Classes & Progression that a feature's choices are made with, for its card: the choice slots it gives
+ * (fighting style, forms, powers), its class's archetype, Expertise, the class or archetype list it names (Discovery →
+ * Discoveries), the maneuvers (Academic Superiority), the powers known (Forcecasting). { html, chosen: [names] } or null.
+ */
+function featurePickers(m, f) {
+  if (!state.rules) return null;
+  const base = clsBaseName(f.name).toLowerCase();
+  const key = pickerKey(f.name);
+  const html = [];
+  const chosen = [];
+  const res = choiceInfo(m);
+  // A trait's given powers (Kiffar Heritage's Sage: telemetry) aren't a pick: its own choice stays in its card.
+  for (const s of (res ? res.slots : []).filter((x) => (x.feature && x.feature.toLowerCase() === base) || (x.species && !x.given && String(x.from).toLowerCase().endsWith(`: ${base}`)))) {
+    html.push(renderSlot(m, s));
+    chosen.push(...s.picks.map((p) => p.name));
+  }
+  arr(m.raw.classes).forEach((k, idx) => {
+    // The feature is this class's, or its archetype's (or it doesn't say).
+    const own = !f.sourceName || f.sourceName === k.name || (k.archetype && k.archetype.name === f.sourceName);
+    if (!own) return;
+    const info = classChoiceInfo(m, k);
+    if (base === archetypeFeature(k.name) && info) {
+      html.push(`<div class="cls-list">${classArchetypeBlock(m, k, idx, info)}</div>`);
+      if (k.archetype && k.archetype.name) chosen.push(k.archetype.name);
+    }
+    if (base === 'expertise' && f.source !== 'Archetype') {
+      const pick = bdExpertisePick(m, k, idx);
+      if (pick) { html.push(pick); chosen.push(...BD_KINDS.cexp.get(m.raw, idx)); }
+    }
+    // The list the feature names (Discovery → Discoveries), the modifications of the item it describes (Modified
+    // Weaponry), or the list it counts in prose ("You know two ammunition enhancements of your choice": Special Ammunition).
+    const text = String(f.text || f.description || '').replace(/\s+/g, ' ');
+    const prose = (l) => { const noun = String(l.title).replace(/\s+options?$/i, '').replace(/s$/i, '').trim().replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); return noun && new RegExp(`\\byou (?:know|learn) (?:one|two|three|four|five) ${noun}s? of your choice\\b`, 'i').test(text); };
+    for (const l of (info ? info.lists : []).filter((x) => [x.title, x.key, x.column, x.mods && x.mods.what].some((t) => t && pickerKey(t) === key) || (x.source === 'archetype' && prose(x)))) {
+      html.push(classListBlock(m, k, idx, info, l));
+      chosen.push(...l.chosen.map((p) => p.name));
+    }
+    if (info && info.maneuvers && MANEUVER_FEATURE.test(String(f.text || f.description || '').replace(/\s+/g, ' '))) {
+      html.push(classManeuverBlock(m, k, idx, info));
+      chosen.push(...arr(info.maneuvers.chosen));
+    }
+    const casting = /^(force|tech)casting$/i.exec(base);
+    if (casting && pwClassCasting(k, state.rules.modules || {}).some((c) => c.type === casting[1])) {
+      html.push(renderPowerBlocks(m, k, idx, casting[1]));
+      chosen.push(...arr(k[`${casting[1]}Powers`]).concat(arr(k.archetype && k.archetype[`${casting[1]}Powers`])));
+    }
+  });
+  return html.length ? { html: html.join(''), chosen } : null;
+}
 /** What a feature asks the player to choose (classes.js asks: one of its options, an ability, skills, tools…). */
 function featureAsks(m, f) {
   const text = f.text || f.description || '';
@@ -6124,22 +6183,32 @@ const isWeaponName = (name) => { const r = catalogByName(name); return !!r && r.
 function featureNoteBox(m, f, opts = {}) {
   const key = featureNoteKey(f);
   const note = (m.raw.featureNotes || {})[key] || '';
-  const picked = 'picked' in opts ? opts.picked : chosenInPicker(m, f);
+  // The choices made in Classes & Progression (Discoveries, maneuvers, a fighting style…): the same pickers here.
+  const pk = 'picked' in opts ? null : featurePickers(m, f);
+  const picked = 'picked' in opts ? opts.picked : pk ? pk.chosen : null;
   const asks = picked == null ? featureAsks(m, f) : [];
   // What the pickers chose are words of the note (classes.js reads them there); the box shows the rest.
-  const lc = (s) => String(s).toLowerCase();
+  const lc = (s) => String(s).toLowerCase().replace(/[.;:]+$/, '');
   const managed = new Set(asks.flatMap((a) => a.chosen).concat(arr(picked)).map(lc)); // Expertise: tools are in the note
   const tokens = clsNoteTokens(note);
   const keep = tokens.filter((t) => managed.has(lc(t))).join(', ');
   const rest = keep ? tokens.filter((t) => !managed.has(lc(t))).join(', ') : note;
-  const free = picked == null && !asks.length && /\b(?:choose|choice|of your choice|select)\b/i.test(opts.choiceText != null ? opts.choiceText : f.text || f.description || '');
-  const chosen = picked == null ? '' : `<div class="feat-chosen">${picked.length ? `Chosen: <b>${esc(picked.join(', '))}</b>` : '<span class="warn-text">Not chosen yet</span>'} · <a href="#sec-classes">${picked.length ? 'change' : 'choose'} it in Classes &amp; Progression</a></div>`;
+  // A choice to write down, not one made at the table ("you can choose to", "choose a creature", "(your choice)").
+  const choiceWords = String(opts.choiceText != null ? opts.choiceText : f.text || f.description || '')
+    .replace(/\byou can (?:also )?choose to\b|\b(?:choose|select) (?:a|an|one|two|up to \w+|any number of)? ?(?:other )?(?:creatures?|targets?|all(?:y|ies)|points?|spaces?|numbers?|hostile|friendly|willing|enemies|enem(?:y|ies))\b|\((?:your choice|of your choice)[^)]*\)|\bat your choice\b/gi, '');
+  const free = picked == null && !asks.length && /\b(?:choose|choice|of your choice|select)\b/i.test(choiceWords);
+  const chosen = pk ? `<div class="cls-choices feat-pickers">${pk.html}</div>` : picked == null ? ''
+    : `<div class="feat-chosen">${picked.length ? `Chosen: <b>${esc(picked.join(', '))}</b>` : '<span class="warn-text">Not chosen yet</span>'} · <a href="#sec-classes">${picked.length ? 'change' : 'choose'} it in Classes &amp; Progression</a></div>`;
   const pickers = asks.map((a) => bdPickList({
     title: a.label, from: ['tool', 'weapon'].includes(a.kind) && /\s/.test(a.of) ? a.of : '', count: a.count, chosen: a.chosen, options: askOptions(m, a), kind: 'fnote', arg: key, word: ASK_WORDS[a.kind] || 'one',
     hint: ['tool', 'weapon', 'skilltool'].includes(a.kind) && !state.catalog ? 'The list comes with SW5E\'s item list (Equipment → Add an item loads it).' : '',
   })).join('');
-  return `${chosen}${pickers ? `<div class="cls-choices feat-asks">${pickers}</div>` : ''}<label class="feat-note${free && !note ? ' asks' : ''}"><span>${free ? 'Your choices' : 'Notes'}</span>
+  const box = `<label class="feat-note${free && !note ? ' asks' : ''}"><span>${free ? 'Your choices' : 'Notes'}</span>
     <textarea rows="1" data-feat-note="${esc(key)}" data-feat-keep="${esc(keep)}" placeholder="${free ? 'What you chose (e.g. Persuasion + Forgery kit)' : 'Anything to remember'}" aria-label="Notes for ${esc(f.name)}">${esc(rest)}</textarea></label>`;
+  // Choices all made with pickers, or nothing to choose: the notes box only when it holds something, else a small way
+  // to add a note.
+  const quiet = !free && !String(rest).trim();
+  return `${chosen}${pickers ? `<div class="cls-choices feat-asks">${pickers}</div>` : ''}${quiet ? `<details class="feat-note-more"><summary class="faint">Add a note</summary>${box}</details>` : box}`;
 }
 /** A feature's notes: `keep` is what its pickers chose (kept in front of the typed text). */
 async function setFeatureNote(key, text, keep = '') {
@@ -6493,6 +6562,66 @@ function slotPickFeatures(m) {
 const countChip = (have, max) => `<span class="chip ${have > max ? 'bad' : have === max ? 'good' : 'warn'}" title="${have > max ? 'More than the rules allow' : have < max ? `${max - have} still to choose` : 'All chosen'}">${have} / ${max}</span>`;
 
 /** The choices editor in a class's card. */
+/** The maneuvers a class knows, with the picker (class card, and the feature that gives them: Combat Superiority…). */
+function classManeuverBlock(m, k, idx, info) {
+  if (!info || !info.maneuvers) return '';
+  const known = new Set(arr(info.maneuvers.chosen));
+  const all = rulesModule('maneuvers').slice().sort((a, b) => a.name.localeCompare(b.name));
+  const byType = {};
+  for (const mv of all) if (!known.has(mv.name)) (byType[mv.type || 'Other'] = byType[mv.type || 'Other'] || []).push(mv);
+  return `<div class="cls-list"><div class="cls-head"><b>Maneuvers</b> ${countChip(known.size, info.maneuvers.max)}
+      <span class="faint">${esc(info.maneuvers.sources.join(' + '))}</span></div>
+    <div class="cls-picks">${[...known].map((n, i) => {
+      const mv = rulesManeuver(n);
+      const all = m.maneuverNames.map((x) => String(x).toLowerCase());
+      const needs = mv ? String(mv.prerequisite || '').split(/,\s*/).map((part) => (/^(.+?) maneuver$/i.exec(part.trim()) || [])[1]).filter((x) => x && x.toLowerCase() !== n.toLowerCase() && !all.includes(x.toLowerCase())) : [];
+      return `<details class="cls-pick"><summary><b>${esc(n)}</b>${mv ? ` <span class="faint">${esc(mv.type || '')}</span>` : ''}${needs.map((x) => ` <span class="chip warn">needs ${esc(x)}</span>`).join('')}
+        <button class="btn sm cls-x" data-act="cls-remove" data-arg="${idx}|__maneuvers|${i}" title="Forget this maneuver" aria-label="Forget ${esc(n)}">×</button></summary>
+        ${mv ? `${mv.prerequisite ? `<div class="faint">Prerequisite: ${esc(mv.prerequisite)}</div>` : ''}<div class="desc">${md(mv.description || '')}</div>` : ''}</details>`;
+    }).join('') || '<span class="faint">None chosen yet.</span>'}</div>
+    <select class="cls-add" data-cls-add="${idx}|__maneuvers" aria-label="Add a maneuver"><option value="">Add a maneuver…</option>
+      ${Object.keys(byType).sort().map((t) => `<optgroup label="${esc(t)}">${byType[t].map((mv) => `<option value="${esc(mv.name)}">${esc(mv.name)}${mv.prerequisite ? ` (needs ${esc(mv.prerequisite)})` : ''}</option>`).join('')}</optgroup>`).join('')}
+    </select>${bdBrowse(`man|${idx}`)}</div>`;
+}
+/** One of a class's option lists (Discoveries, an archetype's list…), with its picks and picker. */
+function classListBlock(m, k, idx, info, l) {
+  const chosenNames = l.chosen.map((p) => p.name);
+  const avail = l.options.filter((o) => o.repeatable || !chosenNames.includes(o.name));
+  const bySource = {};
+  for (const o of avail) (bySource[o.source] = bySource[o.source] || []).push(o);
+  const md_ = l.mods;
+  const pb = num(m.c.proficiencyBonus);
+  const modHead = md_ ? `<div class="mod-items">${md_.item ? Array.from({ length: md_.items }, (_, n) => {
+    const opts = modifiableItems(m, md_.item);
+    const cur = arr(k.modifiedItems)[n] || '';
+    return `<label>${esc(md_.what)}${md_.items > 1 ? ` ${n + 1}` : ''} <select data-cls-moditem="${idx}|${n}"><option value="">— choose from your inventory —</option>${opts.concat(cur && !opts.includes(cur) ? [cur] : []).map((o) => `<option${o === cur ? ' selected' : ''}>${esc(o)}</option>`).join('')}</select></label>`;
+  }).join('') : `<span class="faint">${esc(md_.what)}</span>`}
+    <span class="faint">${md_.perItem} slots${md_.items > 1 ? (md_.total > md_.perItem ? ' each' : ' in all') : ''}</span>
+    ${md_.penalty && l.chosen.length > pb ? `<span class="chip warn" title="For each modification installed in excess of your proficiency bonus, your tech point maximum is reduced by 1">Tech points −${l.chosen.length - pb}</span>` : ''}</div>` : '';
+  return `<div class="cls-list"><div class="cls-head"><b>${esc(l.title)}</b> ${countChip(l.chosen.length, l.max)}
+      <span class="faint">${l.source === 'archetype' ? `${esc(k.archetype.name)}, ${esc(ordinal(l.minLevel || 1))} level${l.swap ? ' · can be changed on a rest' : ''}` : `from the ${esc(k.name)} table (“${esc(l.column)}”)`}</span></div>
+    ${modHead}${arr(l.problems).map((p) => `<div class="slot-problem">${esc(p)}</div>`).join('')}${arr(l.hints).map((p) => `<div class="slot-hint">${esc(p)}</div>`).join('')}
+    <div class="cls-picks">${l.chosen.map((p, i) => {
+      const o = l.options.find((x) => x.name === p.name);
+      const tooLow = o && o.minLevel > info.level;
+      return `<details class="cls-pick"><summary><b>${esc(p.name)}</b>${o && o.source !== k.name ? ` <span class="chip">${esc(o.source)}</span>` : ''}
+          ${tooLow ? ` <span class="chip warn">needs ${esc(ordinal(o.minLevel))} level</span>` : ''}${!o ? ' <span class="chip warn">not in SW5E data</span>' : ''}
+          <button class="btn sm cls-x" data-act="cls-remove" data-arg="${idx}|${esc(l.key)}|${i}" title="Remove" aria-label="Remove ${esc(p.name)}">×</button></summary>
+        ${md_ && md_.items > 1 ? `<label class="faint">On <select data-cls-pickitem="${idx}|${esc(l.key)}|${i}">${Array.from({ length: md_.items }, (_, n) => `<option value="${n}"${(p.item || 0) === n ? ' selected' : ''}>${esc(arr(k.modifiedItems)[n] || `${md_.what} ${n + 1}`)}</option>`).join('')}</select></label>` : ''}
+        ${p.note || !o || /\b(?:choose|choice|of your choice|select)\b/i.test(o.text || '') ? `<input class="cls-note" data-cls-note="${idx}|${esc(l.key)}|${i}" value="${esc(p.note || '')}" placeholder="What you chose for it (e.g. Persuasion + Forgery kit)" aria-label="Choices for ${esc(p.name)}">` : ''}
+        ${o ? `${o.prerequisite ? `<div class="faint">Prerequisite: ${esc(o.prerequisite)}</div>` : ''}<div class="desc">${md(o.text)}</div>` : ''}</details>`;
+    }).join('') || '<span class="faint">None chosen yet.</span>'}</div>
+    <select class="cls-add" data-cls-add="${idx}|${esc(l.key)}" aria-label="Add from ${esc(l.title)}"><option value="">Add from ${esc(l.title)}…</option>
+      ${Object.entries(bySource).map(([src, opts]) => `<optgroup label="${esc(src)}">${opts.map((o) => `<option value="${esc(o.name)}"${o.minLevel > info.level ? ' disabled' : ''}>${esc(o.name)}${o.minLevel > info.level ? ` (${ordinal(o.minLevel)} level)` : o.prerequisite ? ` (needs ${esc(o.prerequisite)})` : ''}${o.repeatable ? ' (repeatable)' : ''}</option>`).join('')}</optgroup>`).join('')}
+    </select>${bdBrowse(`list|${idx}|${l.key}`, avail.length)}</div>`;
+}
+/** The class's archetype picker. */
+function classArchetypeBlock(m, k, idx, info) {
+  const archAt = archetypeLevel(k.name);
+  const early = num(k.levels) < archAt && !(k.archetype && k.archetype.name);
+  const archetype = `<label class="cls-arch">Archetype <select data-cls-arch="${idx}"${early ? ` disabled title="Chosen at ${esc(ordinal(archAt))} ${esc(k.name)} level"` : ''}><option value="">${early ? `— at ${esc(ordinal(archAt))} level —` : '— none —'}</option>${info.archetypes.slice().sort((a, b) => OLD_RULES.test(a) - OLD_RULES.test(b)).map((a) => `<option value="${esc(a)}"${k.archetype && k.archetype.name === a ? ' selected' : ''}>${esc(a)}${OLD_RULES.test(a) ? ' — older rules' : ''}</option>`).join('')}</select></label>${early ? '' : bdBrowse(`arch|${idx}`, info.archetypes.length)}`;
+  return archetype;
+}
 function renderClassChoices(m, k, idx) {
   if (!state.rules) {
     return `<div class="cls-choices"><p class="faint" style="margin:6px 0">${state.rulesError
@@ -6501,59 +6630,9 @@ function renderClassChoices(m, k, idx) {
   }
   const info = classChoiceInfo(m, k);
   if (!info) return '';
-  const known = new Set(arr(info.maneuvers && info.maneuvers.chosen));
-  const maneuverBlock = info.maneuvers ? (() => {
-    const all = rulesModule('maneuvers').slice().sort((a, b) => a.name.localeCompare(b.name));
-    const byType = {};
-    for (const mv of all) if (!known.has(mv.name)) (byType[mv.type || 'Other'] = byType[mv.type || 'Other'] || []).push(mv);
-    return `<div class="cls-list"><div class="cls-head"><b>Maneuvers</b> ${countChip(known.size, info.maneuvers.max)}
-        <span class="faint">${esc(info.maneuvers.sources.join(' + '))}</span></div>
-      <div class="cls-picks">${[...known].map((n, i) => {
-        const mv = rulesManeuver(n);
-        const all = m.maneuverNames.map((x) => String(x).toLowerCase());
-        const needs = mv ? String(mv.prerequisite || '').split(/,\s*/).map((part) => (/^(.+?) maneuver$/i.exec(part.trim()) || [])[1]).filter((x) => x && x.toLowerCase() !== n.toLowerCase() && !all.includes(x.toLowerCase())) : [];
-        return `<details class="cls-pick"><summary><b>${esc(n)}</b>${mv ? ` <span class="faint">${esc(mv.type || '')}</span>` : ''}${needs.map((x) => ` <span class="chip warn">needs ${esc(x)}</span>`).join('')}
-          <button class="btn sm cls-x" data-act="cls-remove" data-arg="${idx}|__maneuvers|${i}" title="Forget this maneuver" aria-label="Forget ${esc(n)}">×</button></summary>
-          ${mv ? `${mv.prerequisite ? `<div class="faint">Prerequisite: ${esc(mv.prerequisite)}</div>` : ''}<div class="desc">${md(mv.description || '')}</div>` : ''}</details>`;
-      }).join('') || '<span class="faint">None chosen yet.</span>'}</div>
-      <select class="cls-add" data-cls-add="${idx}|__maneuvers" aria-label="Add a maneuver"><option value="">Add a maneuver…</option>
-        ${Object.keys(byType).sort().map((t) => `<optgroup label="${esc(t)}">${byType[t].map((mv) => `<option value="${esc(mv.name)}">${esc(mv.name)}${mv.prerequisite ? ` (needs ${esc(mv.prerequisite)})` : ''}</option>`).join('')}</optgroup>`).join('')}
-      </select>${bdBrowse(`man|${idx}`)}</div>`;
-  })() : '';
-  const listBlocks = info.lists.map((l) => {
-    const chosenNames = l.chosen.map((p) => p.name);
-    const avail = l.options.filter((o) => o.repeatable || !chosenNames.includes(o.name));
-    const bySource = {};
-    for (const o of avail) (bySource[o.source] = bySource[o.source] || []).push(o);
-    const md_ = l.mods;
-    const pb = num(m.c.proficiencyBonus);
-    const modHead = md_ ? `<div class="mod-items">${md_.item ? Array.from({ length: md_.items }, (_, n) => {
-      const opts = modifiableItems(m, md_.item);
-      const cur = arr(k.modifiedItems)[n] || '';
-      return `<label>${esc(md_.what)}${md_.items > 1 ? ` ${n + 1}` : ''} <select data-cls-moditem="${idx}|${n}"><option value="">— choose from your inventory —</option>${opts.concat(cur && !opts.includes(cur) ? [cur] : []).map((o) => `<option${o === cur ? ' selected' : ''}>${esc(o)}</option>`).join('')}</select></label>`;
-    }).join('') : `<span class="faint">${esc(md_.what)}</span>`}
-      <span class="faint">${md_.perItem} slots${md_.items > 1 ? (md_.total > md_.perItem ? ' each' : ' in all') : ''}</span>
-      ${md_.penalty && l.chosen.length > pb ? `<span class="chip warn" title="For each modification installed in excess of your proficiency bonus, your tech point maximum is reduced by 1">Tech points −${l.chosen.length - pb}</span>` : ''}</div>` : '';
-    return `<div class="cls-list"><div class="cls-head"><b>${esc(l.title)}</b> ${countChip(l.chosen.length, l.max)}
-        <span class="faint">${l.source === 'archetype' ? `${esc(k.archetype.name)}, ${esc(ordinal(l.minLevel || 1))} level${l.swap ? ' · can be changed on a rest' : ''}` : `from the ${esc(k.name)} table (“${esc(l.column)}”)`}</span></div>
-      ${modHead}${arr(l.problems).map((p) => `<div class="slot-problem">${esc(p)}</div>`).join('')}${arr(l.hints).map((p) => `<div class="slot-hint">${esc(p)}</div>`).join('')}
-      <div class="cls-picks">${l.chosen.map((p, i) => {
-        const o = l.options.find((x) => x.name === p.name);
-        const tooLow = o && o.minLevel > info.level;
-        return `<details class="cls-pick"><summary><b>${esc(p.name)}</b>${o && o.source !== k.name ? ` <span class="chip">${esc(o.source)}</span>` : ''}
-            ${tooLow ? ` <span class="chip warn">needs ${esc(ordinal(o.minLevel))} level</span>` : ''}${!o ? ' <span class="chip warn">not in SW5E data</span>' : ''}
-            <button class="btn sm cls-x" data-act="cls-remove" data-arg="${idx}|${esc(l.key)}|${i}" title="Remove" aria-label="Remove ${esc(p.name)}">×</button></summary>
-          ${md_ && md_.items > 1 ? `<label class="faint">On <select data-cls-pickitem="${idx}|${esc(l.key)}|${i}">${Array.from({ length: md_.items }, (_, n) => `<option value="${n}"${(p.item || 0) === n ? ' selected' : ''}>${esc(arr(k.modifiedItems)[n] || `${md_.what} ${n + 1}`)}</option>`).join('')}</select></label>` : ''}
-          ${p.note || !o || /\b(?:choose|choice|of your choice|select)\b/i.test(o.text || '') ? `<input class="cls-note" data-cls-note="${idx}|${esc(l.key)}|${i}" value="${esc(p.note || '')}" placeholder="What you chose for it (e.g. Persuasion + Forgery kit)" aria-label="Choices for ${esc(p.name)}">` : ''}
-          ${o ? `${o.prerequisite ? `<div class="faint">Prerequisite: ${esc(o.prerequisite)}</div>` : ''}<div class="desc">${md(o.text)}</div>` : ''}</details>`;
-      }).join('') || '<span class="faint">None chosen yet.</span>'}</div>
-      <select class="cls-add" data-cls-add="${idx}|${esc(l.key)}" aria-label="Add from ${esc(l.title)}"><option value="">Add from ${esc(l.title)}…</option>
-        ${Object.entries(bySource).map(([src, opts]) => `<optgroup label="${esc(src)}">${opts.map((o) => `<option value="${esc(o.name)}"${o.minLevel > info.level ? ' disabled' : ''}>${esc(o.name)}${o.minLevel > info.level ? ` (${ordinal(o.minLevel)} level)` : o.prerequisite ? ` (needs ${esc(o.prerequisite)})` : ''}${o.repeatable ? ' (repeatable)' : ''}</option>`).join('')}</optgroup>`).join('')}
-      </select>${bdBrowse(`list|${idx}|${l.key}`, avail.length)}</div>`;
-  }).join('');
-  const archAt = archetypeLevel(k.name);
-  const early = num(k.levels) < archAt && !(k.archetype && k.archetype.name);
-  const archetype = `<label class="cls-arch">Archetype <select data-cls-arch="${idx}"${early ? ` disabled title="Chosen at ${esc(ordinal(archAt))} ${esc(k.name)} level"` : ''}><option value="">${early ? `— at ${esc(ordinal(archAt))} level —` : '— none —'}</option>${info.archetypes.slice().sort((a, b) => OLD_RULES.test(a) - OLD_RULES.test(b)).map((a) => `<option value="${esc(a)}"${k.archetype && k.archetype.name === a ? ' selected' : ''}>${esc(a)}${OLD_RULES.test(a) ? ' — older rules' : ''}</option>`).join('')}</select></label>${early ? '' : bdBrowse(`arch|${idx}`, info.archetypes.length)}`;
+  const maneuverBlock = classManeuverBlock(m, k, idx, info);
+  const listBlocks = info.lists.map((l) => classListBlock(m, k, idx, info, l)).join('');
+  const archetype = classArchetypeBlock(m, k, idx, info);
   // Guardian's "Shien/Djem So Form" archetypes aren't the lightsaber forms of chapter 6 (Shien, Djem So…), picked apart.
   const formArch = info.archetypes.some((a) => / Form$/.test(a)) ? `<div class="slot-hint">The ${esc(k.name)} archetypes named after forms ("Shien/Djem So Form") are ${esc(k.name.toLowerCase())} paths: they give their own features. The lightsaber forms you adopt in a fight (Djem So, Shien, Soresu… from chapter 6) are separate picks, where a feature or feat lets you learn them.</div>` : '';
   const res = choiceInfo(m);

@@ -389,37 +389,49 @@ You have resistance to kinetic and energy damage.
 If you are able to cast powers, you can't cast them or concentrate on them while raging.
 Your rage lasts for 1 minute. It ends early if you are knocked unconscious, you don heavy armor, or if your turn ends and you haven't taken a hostile action or … [253 chars #364a649e]
 You can enter a rage a number of times as shown in the Rages column of the berserker table. You regain all expended uses when you complete a long rest.
+Add a note
 Notes []
 Unarmored Defense Level 1
 Berserker: 1st level
 While you are not wearing any armor, your Armor Class equals 10 + your Dexterity modifier + your Constitution modifier. You can use a shield and still gain this benefit.
+Add a note
 Notes []
 Berserker Instincts Level 2
 Berserker: 2nd level
 You've honed two instincts, as detailed at the end of the class description, and you hone more at higher levels, as shown in the Berserker Instincts column of the berserker table.
-Not chosen yet · choose it in Classes & Progression
+Berserker Instincts 0 / 2 from the Berserker table (“Berserker Instincts”)
+None chosen yet.
+[Add from Berserker Instincts… ▾]
+Read the options (17)
+Add a note
 Notes []
 Reckless Attack Level 2
 [Attack recklessly]
 Berserker: 2nd level
 You can throw aside all concern for defense to attack with fierce desperation. When you make your first attack on your turn, you can decide to attack recklessly… [318 chars #8b69b91c]
+Add a note
 Notes []
 Berserker Approach Level 3
 Berserker: 3rd, 6th, 10th, and 14th level
 You choose an approach that shapes the nature of your rage which is detailed at the end of the class description.
-Not chosen yet · choose it in Classes & Progression
+Archetype [— none — ▾]
+Read the options (15)
+Add a note
 Notes []
 Danger Sense Level 3
 Berserker: 3rd level
 You gain an uncanny sense of when things nearby aren't as they should be, giving you an edge when you dodge away from danger. You have advantage on Dexterity sa… [303 chars #88442cb9]
+Add a note
 Notes []
 Ability Score Improvement Level 4
 Berserker: 4th, 8th, 12th, 16th, and 19th level
 You can increase one ability score by 2, or you can increase two ability scores by 1. You can't increase an ability score above 20 using this feature.
+Add a note
 Notes []
 Extra Attack Level 5
 Berserker: 5th level
 You can attack twice, instead of once, whenever you take the Attack action on your turn.
+Add a note
 Notes []
 
 ## Sheet: Feats
@@ -431,6 +443,7 @@ You have the fortitude often attributed to gods, granting the following benefits
 You gain proficiency in Constitution saving throws. If you are already proficient in them, you instead gain expertise in them.
 Enhanced effects, such as powers or medpacs, that would restore hit points to you can't restore an amount less than half your level + your Constitution modifier… [290 chars #712abde2]
 You can add your Constitution modifier to death saving throws you make.
+Add a note
 Notes []
 
 ## Sheet: Classes & Progression
@@ -489,13 +502,16 @@ One ability score of your choice increases by 2, and two other ability scores of
 Your choices []
 Age
 Humans reach adulthood in their late teens and live less than a century.
+Add a note
 Notes []
 Alignment
 Humans tend toward no particular alignment. The best and worst are found among them.
+Add a note
 Notes []
 Defiant
 Uses (back on a short or long rest) 1 / 1 [−] [+]
 Humans are known to be stubborn and often refuse to give up, even against the worst odds. When you or a creature you can see that can see and understand you mak… [374 chars #6fad59d8]
+Add a note
 Notes []
 Human Versatility
 You gain proficiency in one skill, one tool, and one weapon of your choice.
@@ -508,6 +524,7 @@ None chosen yet.
 Weapon proficiency 0 / 1 one weapon of your choice
 None chosen yet.
 [Choose a weapon… ▾]
+Add a note
 Notes []
 Languages
 You can speak, read, and write Galactic Basic and one extra language of your choice. Humans typically learn the languages of other peoples they deal with, inclu… [346 chars #ff842958]
@@ -517,9 +534,11 @@ You gain proficiency in one skill, one tool, and one weapon of your choice.
 Your choices []
 Size
 Humans vary widely in height and build, from barely 5 feet to well over 6 feet tall. Regardless of your position in that range, your size is Medium.
+Add a note
 Notes []
 Speed
 Your base walking speed is 30 feet.
+Add a note
 Notes []
 Ability score +2 0 / 1 One ability score of your choice increases by 2, and two other ability scores of your choice increase by 1. Alternatively, four ability scores of your choice each increase by 1.
 None chosen yet.

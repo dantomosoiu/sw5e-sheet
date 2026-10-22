@@ -396,37 +396,49 @@ You have resistance to kinetic and energy damage.
 If you are able to cast powers, you can't cast them or concentrate on them while raging.
 Your rage lasts for 1 minute. It ends early if you are knocked unconscious, you don heavy armor, or if your turn ends and you haven't taken a hostile action or … [253 chars #364a649e]
 You can enter a rage a number of times as shown in the Rages column of the berserker table. You regain all expended uses when you complete a long rest.
+Add a note
 Notes []
 Unarmored Defense Level 1
 Berserker: 1st level
 While you are not wearing any armor, your Armor Class equals 10 + your Dexterity modifier + your Constitution modifier. You can use a shield and still gain this benefit.
+Add a note
 Notes []
 Berserker Instincts Level 2
 Berserker: 2nd level
 You've honed two instincts, as detailed at the end of the class description, and you hone more at higher levels, as shown in the Berserker Instincts column of the berserker table.
-Not chosen yet · choose it in Classes & Progression
+Berserker Instincts 0 / 2 from the Berserker table (“Berserker Instincts”)
+None chosen yet.
+[Add from Berserker Instincts… ▾]
+Read the options (17)
+Add a note
 Notes []
 Reckless Attack Level 2
 [Attack recklessly]
 Berserker: 2nd level
 You can throw aside all concern for defense to attack with fierce desperation. When you make your first attack on your turn, you can decide to attack recklessly… [318 chars #8b69b91c]
+Add a note
 Notes []
 Berserker Approach Level 3
 Berserker: 3rd, 6th, 10th, and 14th level
 You choose an approach that shapes the nature of your rage which is detailed at the end of the class description.
-Not chosen yet · choose it in Classes & Progression
+Archetype [— none — ▾]
+Read the options (15)
+Add a note
 Notes []
 Danger Sense Level 3
 Berserker: 3rd level
 You gain an uncanny sense of when things nearby aren't as they should be, giving you an edge when you dodge away from danger. You have advantage on Dexterity sa… [303 chars #88442cb9]
+Add a note
 Notes []
 Ability Score Improvement Level 4
 Berserker: 4th, 8th, 12th, 16th, and 19th level
 You can increase one ability score by 2, or you can increase two ability scores by 1. You can't increase an ability score above 20 using this feature.
+Add a note
 Notes []
 Extra Attack Level 5
 Berserker: 5th level
 You can attack twice, instead of once, whenever you take the Attack action on your turn.
+Add a note
 Notes []
 
 ## Sheet: Feats
@@ -476,35 +488,45 @@ Half-humans gain the ability score increases of their non-human half, but they c
 Your choices []
 Age
 Half-humans live around the average of the two species' lifespans.
+Add a note
 Notes []
 Alignment
 Half-humans tend towards their non-human half's alignment.
+Add a note
 Notes []
 Defiant
 Uses (back on a short or long rest) 1 / 1 [−] [+]
 Half-humans are known to be stubborn and often refuse to give up, even against the worst odds. When you or a creature you can see that can see and understand yo… [471 chars #48bac459]
+Add a note
 Notes []
 Languages
 You can speak, read, and write Galactic Basic, regardless of whether or not the non-human half can speak it, and the language(s) associated with your non-human half.
+Add a note
 Notes []
 Size
 Half-humans stand and weigh around the average of the two species' height and weight. Regardless of your position in that range, your size is the size of your non-human half.
+Add a note
 Notes []
 Speed
 Your base walking speed is that of your non-human half.
+Add a note
 Notes []
 Darkvision
 You have a keen eyesight, especially in the dark. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim l… [223 chars #8b580192]
+Add a note
 Notes []
 Bite DC 14 Constitution save
 Uses (back on a short or long rest) 1 / 1 [−] [+]
 Your fangs are a natural weapon, which you can use to make unarmed strikes. Additionally, your unarmed strikes deal 1d4 kinetic damage. Lastly, as a bonus actio… [519 chars #61081491]
+Add a note
 Notes []
 Six-Armed
 Harch have six arms which they can use independently of one another. You can only gain the benefit of items held by two of your arms at any given time, and once… [242 chars #60191d3c]
+Add a note
 Notes []
 Spider Climb
 You have a climbing speed of 30 feet. You have advantage on Strength saving throws and Strength (Athletics) checks that involve climbing, and while climbing you always have two hands free.
+Add a note
 Notes []
 Non-human half 1 / 1 its ability score increases, size, speed, languages and special traits
 The Half-Human table: no Venomous Fangs (SW5E's Harch has no trait of that name: ask your GM).

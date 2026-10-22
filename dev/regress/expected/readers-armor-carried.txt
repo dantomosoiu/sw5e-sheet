@@ -388,7 +388,8 @@ Your technological experience lends you an uncommon insight that you can use to 
 Once within the next 10 minutes, the creature can roll the die and add the number rolled to one ability check, attack roll, or saving throw it makes. Once the Potent Aptitude die is rolled, it is lost.
 A creature can have only one Potent Aptitude die at a time.
 You can use this feature twice. You gain an additional use at 5th, 9th, 13th, and 17th level. You regain any expended uses when you finish a short or long rest.
-Your choices []
+Add a note
+Notes []
 Techcasting Level 1
 Engineer: 1st level
 During your training you have derived powers from schematics with the aid of your wristpad. See chapter 10 for the general rules of techcasting and chapter 12 for the tech powers list.
@@ -405,7 +406,12 @@ Tech save DC = 8 + your proficiency bonus + your Intelligence modifier
 Tech attack modifier = your proficiency bonus + your Intelligence modifier
 Techcasting Focus
 You use a wristpad (found in chapter 5) or the tools in which you are granted proficiency by this class as a tech focus for your tech powers.
-Your choices []
+Tech powers 0 / 18 Engineer table · max power level 5
+None chosen yet.
+[Learn a tech power… ▾]
+Read the options (201)
+Add a note
+Notes []
 Infuse Item Level 2
 Uses (back on a long rest) 1 / 1 [−] [+]
 [Blaster rifle (attack and damage +1) ▾] [Infuse]
@@ -413,28 +419,35 @@ Engineer: 2nd level
 You gain the ability to temporarily enhance a weapon or armor. At the end of a long rest, you can touch one unenhanced object that is a suit of armor, a shield,… [394 chars #dfc18efa]
 Once you've used this feature, you can't use it again until you finish a long rest.
 This bonus increases to +2 at 10th level and +3 at 15th level.
+Add a note
 Notes []
 Tool Expertise Level 2
 Engineer: 2nd level
 You gain expertise in any tool proficiencies you gain from this class.
+Add a note
 Notes []
 Engineering Discipline Level 6
 Engineer: 3rd, 6th, 14th, and 18th level
 You begin to focus on a specific engineering discipline, which is detailed at the end of the class description.
-Chosen: Armormech Engineering · change it in Classes & Progression
+Archetype [Armormech Engineering ▾]
+Read the options (14)
+Add a note
 Notes []
 Ability Score Improvement Level 8
 Engineer: 4th, 8th, 12th, 16th, and 19th level
 You can increase one ability score by 2, or you can increase two ability scores by 1. You can't increase an ability score above 20 using this feature.
+Add a note
 Notes []
 Armormech Engineering (archetype) (4)
 Bonus Proficiencies Level 3
 Armormech Engineering: 3rd level
 You gain proficiency in armormech's implements, medium armor, and heavy armor. Additionally, when you engage in crafting with armormech's implements, the rate at which you craft doubles.
+Add a note
 Notes []
 Damage Absorption Level 3
 Armormech Engineering: 3rd level
 When you take damage, you can use your reaction and expend one use of your Potent Aptitude to absorb some of that damage. When you do so, the damage you take fr… [357 chars #0e27c915]
+Add a note
 Notes []
 Modified Armor Level 3
 Armormech Engineering: 3rd level
@@ -442,10 +455,25 @@ You learn to modify one unenhanced suit of armor or shield utilizing your armorm
 Your modified armor or shield is enhanced, requires attunement, can only be used by you, and counts as a tech focus for your tech powers while you are attuned t… [567 chars #5ed9b9f3]
 Some modification effects require saving throws. When you use such an effect from this class, the DC equals your tech save DC.
 At 9th level, you can maintain both a modified suit of armor and shield. Each modified item has modification slots as shown in the Modification Slots column of the engineer table.
+Armormech Modifications 2 / 12 Armormech Engineering, 3rd level · can be changed on a rest
+Modified Armor 1 [Combat suit ▾] Modified Armor 2 [— choose from your inventory — ▾] 6 slots each
+Accelerated Movement Armormech Engineering [×]
+On [Combat suit ▾]
+Prerequisite: Armor
+You reduce the weight of your modified armor's bulk and increase the power to joints. If the armor has a Strength requirement, you ignore it. The modified armor… [329 chars #c6082afb]
+Power Fist Armormech Engineering [×]
+On [Combat suit ▾]
+Prerequisite: Armor
+You modify your modified armor gauntlet with increased reinforcement and weight. Your modified armor's unarmed strike deals 1d4 kinetic damage.
+Additionally, when you take the Attack action and make an unarmed strike, you can make an additional unarmed strike as a bonus action.
+[Add from Armormech Modifications… ▾]
+Read the options (24)
+Add a note
 Notes []
 Extra Attack Level 6
 Armormech Engineering: 6th level
 You can attack twice, instead of once, whenever you take the Attack action on your turn. You must be wearing your modified armor or wielding your modified shield to gain this benefit.
+Add a note
 Notes []
 Engineer: Armormech Modifications (2)
 Accelerated Movement
@@ -514,15 +542,18 @@ Until the start of your next turn, your critical hit range with weapons increase
 Read the options (19)
 Weapon Focused Engineer ASI #1 Prereq: 4th level
 You adopt a particular type of weapon as your focus. Choose one of the weapon focus options, detailed later in this chapter. You can take this feat multiple times.
+Add a note
 Notes []
 Tech Dabbler Engineer ASI #2
 You know two at-will tech powers. When you reach 3rd level, you learn and can cast one 1st-level tech power once per long rest. When you reach 5th level, you le… [382 chars #b0d200c1]
+Add a note
 Notes []
 Fighting Stylist Background (Soldier)+ Strength+ Dexterity+ Constitution Prereq: 4th level
 You adopt a particular style of fighting as your specialty, gaining the following benefits:
 Increase your Strength, Dexterity, or Constitution score by 1, to a maximum of 20.
 Choose one of the fighting style options, detailed later in this chapter.
 You can take this feat multiple times.
+Add a note
 Notes []
 
 ## Sheet: Classes & Progression
@@ -602,13 +633,16 @@ One ability score of your choice increases by 2, and two other ability scores of
 Your choices []
 Age
 Humans reach adulthood in their late teens and live less than a century.
+Add a note
 Notes []
 Alignment
 Humans tend toward no particular alignment. The best and worst are found among them.
+Add a note
 Notes []
 Defiant
 Uses (back on a short or long rest) 1 / 1 [−] [+]
 Humans are known to be stubborn and often refuse to give up, even against the worst odds. When you or a creature you can see that can see and understand you mak… [374 chars #6fad59d8]
+Add a note
 Notes []
 Human Versatility
 You gain proficiency in one skill, one tool, and one weapon of your choice.
@@ -621,6 +655,7 @@ None chosen yet.
 Weapon proficiency 0 / 1 one weapon of your choice
 None chosen yet.
 [Choose a weapon… ▾]
+Add a note
 Notes []
 Languages
 You can speak, read, and write Galactic Basic and one extra language of your choice. Humans typically learn the languages of other peoples they deal with, inclu… [346 chars #ff842958]
@@ -630,9 +665,11 @@ You gain proficiency in one skill, one tool, and one weapon of your choice.
 Your choices []
 Size
 Humans vary widely in height and build, from barely 5 feet to well over 6 feet tall. Regardless of your position in that range, your size is Medium.
+Add a note
 Notes []
 Speed
 Your base walking speed is 30 feet.
+Add a note
 Notes []
 Ability score +2 0 / 1 One ability score of your choice increases by 2, and two other ability scores of your choice increase by 1. Alternatively, four ability scores of your choice each increase by 1.
 None chosen yet.
