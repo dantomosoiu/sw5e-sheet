@@ -331,9 +331,9 @@ Strength
 20
   ↳ hover abilityScores.Strength.value: Without tweaks or effects: 19 → now 20 / +1 STR · Brawny feat (background feat)
 (Proficient) Saving throw+7
-  ↳ hover abilityScores.Strength.savingThrow.modifier: Without tweaks or effects: 6 → now 7 / +1 STR · Brawny feat (background feat)
+  ↳ hover abilityScores.Strength.savingThrow.modifier: Without tweaks or effects: 6 → now 7 / +1 STR modifier (+1 score) · Brawny feat (background feat)
 (Expertise) Athletics+9
-  ↳ hover abilityScores.Strength.skills.0.modifier: Without tweaks or effects: 4 → now 9 / +1 STR · Brawny feat (background feat) / Expertise Athletics · Berserker … [319 chars #aa73cf74]
+  ↳ hover abilityScores.Strength.skills.0.modifier: Without tweaks or effects: 4 → now 9 / +1 STR modifier (+1 score) · Brawny feat (background feat) / Expertise At… [339 chars #060dfdd0]
 base 15 · +2 Wookiee · +2 ASI (Berserker 4) · +1 from Brawny (feat)
 DEX
 Dexterity
@@ -393,8 +393,8 @@ Skill | Ability | Bonus | Passive | Proficiency |
 (Not proficient) Acrobatics | DEX | +1 | 11 | — |
 (Not proficient) Animal Handling | WIS | +1 | 11 | — |
 (Expertise) Athletics | STR | +9 | 19 | Expertise |
-  ↳ hover abilityScores.Strength.skills.0.modifier: Without tweaks or effects: 4 → now 9 / +1 STR · Brawny feat (background feat) / Expertise Athletics · Berserker … [319 chars #aa73cf74]
-  ↳ hover abilityScores.Strength.skills.0.modifier: Without tweaks or effects: 4 → now 9 / +1 STR · Brawny feat (background feat) / Expertise Athletics · Berserker … [319 chars #aa73cf74]
+  ↳ hover abilityScores.Strength.skills.0.modifier: Without tweaks or effects: 4 → now 9 / +1 STR modifier (+1 score) · Brawny feat (background feat) / Expertise At… [339 chars #060dfdd0]
+  ↳ hover abilityScores.Strength.skills.0.modifier: Without tweaks or effects: 4 → now 9 / +1 STR modifier (+1 score) · Brawny feat (background feat) / Expertise At… [339 chars #060dfdd0]
 (Not proficient) Deception | CHA | +0 | 10 | — |
 (Not proficient) Insight | WIS | +1 | 11 | — |
 (Proficient) Intimidation | CHA | +2 | 12 | Proficient |
@@ -424,11 +424,11 @@ Weapon | To hit | Damage | Ability | Type | Properties |
 Vibroaxe
 Dexterity 11, heavy, two-handed
 | +8 | 1d12+6 Kinetic | Strength | Martial Vibroweapon | Dexterity 11, heavy, two-handed |
-  ↳ hover weapons.0.attackBonus: Without tweaks or effects: 6 → now 8 / +1 Attack · Weapon (Fine) while equipped / +1 STR · Brawny feat (background feat)
-  ↳ hover weapons.0.damageBonus: Without tweaks or effects: 4 → now 6 / +1 Damage · Weapon (Fine) while equipped / +1 STR · Brawny feat (background feat)
+  ↳ hover weapons.0.attackBonus: Without tweaks or effects: 6 → now 8 / +1 Attack · Weapon (Fine) while equipped / +1 STR modifier (+1 score) · Brawny feat (background feat)
+  ↳ hover weapons.0.damageBonus: Without tweaks or effects: 4 → now 6 / +1 Damage · Weapon (Fine) while equipped / +1 STR modifier (+1 score) · Brawny feat (background feat)
 Unarmed Strike
 | +7 | 1d4+5 Kinetic | Strength | Unarmed | — |
-  ↳ hover weapons.1.attackBonus: Without tweaks or effects: 6 → now 7 / +1 STR · Brawny feat (background feat)
+  ↳ hover weapons.1.attackBonus: Without tweaks or effects: 6 → now 7 / +1 STR modifier (+1 score) · Brawny feat (background feat)
 
 ## Sheet: Class Features
 Berserker (7)

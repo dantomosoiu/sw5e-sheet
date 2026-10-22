@@ -266,7 +266,7 @@ skill|Charisma|1: Intimidation (CHA): d20 +3 · = +3 modifier
 skill|Charisma|2: Performance (CHA): d20 +1 · = +1 modifier
 skill|Charisma|3: Persuasion (CHA): d20 +3 · = +3 modifier
 attack|0: Blaster rifle attack: d20 +6 · = +6 modifier · critical on 19–20 (Improved Critical) · option: Precision Attack +d4 +1d4
-damage|0: Blaster rifle damage: d8 +7 · = +3 DEX modifier +2 Brute Force +1 Xerrol Nightstinger Rifle +1 Hewey · Energy · option: Sneak Attack +1d6 · option: Return Fire +d4 +1d4 · option: Hewey +1d8 (once per turn, a charge) +1d8 · damage advantage: Weapon Expert
+damage|0: Blaster rifle damage: d8 +7 · = +3 DEX modifier +2 Brute Force +1 Xerrol Nightstinger Rifle +1 Hewey · Energy · option: Sneak Attack +1d6 · option: Return Fire +d4 +1d4 · option: Hewey (once per turn, a charge) +1d8 · damage advantage: Weapon Expert
 attack|1: Vibrorapier attack: d20 +5 · = +5 modifier · critical on 19–20 (Improved Critical) · option: Precision Attack +d4 +1d4
 damage|1: Vibrorapier damage: d8 +5 · = +3 DEX modifier +2 Brute Force · Kinetic · option: Sneak Attack +1d6 · option: Return Fire +d4 +1d4 · damage advantage: Weapon Expert
 attack|2: Unarmed Strike attack: d20 +5 · = +5 modifier · critical on 19–20 (Improved Critical) · option: Precision Attack +d4 +1d4
@@ -277,7 +277,7 @@ maneuver|Mental|Wisdom: Mental maneuver attack: d20 +3 · = +3 modifier
 maneuver|General|Dexterity: General maneuver attack: d20 +5 · = +5 modifier
 tool|One type of gaming set|proficient: One type of gaming set check: d20 +2 · = +0 INT modifier +2 proficiency
 tool|Tinker's implements|proficient: Tinker's implements check: d20 +2 · = +0 INT modifier +2 proficiency
-damage|0|crit: Blaster rifle damage (critical): d8 d8 +7 · = +3 DEX modifier +2 Brute Force +1 Xerrol Nightstinger Rifle +1 Hewey · Energy · critical · option: Sneak Attack +1d6 · option: Return Fire +d4 +1d4 · option: Hewey +1d8 (once per turn, a charge) +1d8 · damage advantage: Weapon Expert
+damage|0|crit: Blaster rifle damage (critical): d8 d8 +7 · = +3 DEX modifier +2 Brute Force +1 Xerrol Nightstinger Rifle +1 Hewey · Energy · critical · option: Sneak Attack +1d6 · option: Return Fire +d4 +1d4 · option: Hewey (once per turn, a charge) +1d8 · damage advantage: Weapon Expert
 damage|1|crit: Vibrorapier damage (critical): d8 d8 +5 · = +3 DEX modifier +2 Brute Force · Kinetic · critical · option: Sneak Attack +1d6 · option: Return Fire +d4 +1d4 · damage advantage: Weapon Expert
 damage|2|crit: Unarmed Strike damage (critical): d4 d4 +5 · = +3 DEX modifier (Unarmed Combatant) +2 Brute Force · Kinetic · critical · option: Sneak Attack +1d6 · option: Return Fire +d4 +1d4
 

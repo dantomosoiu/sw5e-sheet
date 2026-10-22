@@ -204,14 +204,14 @@ Still to choose (8): Consular skills (2 more) · Force-Empowered Castings (2 mor
 ## Sheet: Combat & Vitals
 Armor Class
 13
-  ↳ hover armorClass: Without tweaks or effects: 12 → now 13 / +2 DEX · Ability Score Increase Half-human trait
+  ↳ hover armorClass: Without tweaks or effects: 12 → now 13 / +1 DEX modifier (+2 score) · Ability Score Increase Half-human trait
 Unarmored
 Hit Points
 32 / 32
 No temporary HP
 Initiative
 +3
-  ↳ hover initiative: Without tweaks or effects: 2 → now 3 / +2 DEX · Ability Score Increase Half-human trait
+  ↳ hover initiative: Without tweaks or effects: 2 → now 3 / +1 DEX modifier (+2 score) · Ability Score Increase Half-human trait
 Speed
 25 ft
   ↳ hover speed.base: Without tweaks or effects: 30 ft → now 25 ft / −5 Walking speed · Speed Half-human trait
@@ -293,13 +293,13 @@ Dexterity
 16
   ↳ hover abilityScores.Dexterity.value: Without tweaks or effects: 14 → now 16 / +2 DEX · Ability Score Increase Half-human trait
 (Not proficient) Saving throw+3
-  ↳ hover abilityScores.Dexterity.savingThrow.modifier: Without tweaks or effects: 2 → now 3 / +2 DEX · Ability Score Increase Half-human trait
+  ↳ hover abilityScores.Dexterity.savingThrow.modifier: Without tweaks or effects: 2 → now 3 / +1 DEX modifier (+2 score) · Ability Score Increase Half-human trait
 (Not proficient) Acrobatics+3
-  ↳ hover abilityScores.Dexterity.skills.0.modifier: Without tweaks or effects: 2 → now 3 / +2 DEX · Ability Score Increase Half-human trait
+  ↳ hover abilityScores.Dexterity.skills.0.modifier: Without tweaks or effects: 2 → now 3 / +1 DEX modifier (+2 score) · Ability Score Increase Half-human trait
 (Not proficient) Sleight of Hand+3
-  ↳ hover abilityScores.Dexterity.skills.1.modifier: Without tweaks or effects: 2 → now 3 / +2 DEX · Ability Score Increase Half-human trait
+  ↳ hover abilityScores.Dexterity.skills.1.modifier: Without tweaks or effects: 2 → now 3 / +1 DEX modifier (+2 score) · Ability Score Increase Half-human trait
 (Not proficient) Stealth+3
-  ↳ hover abilityScores.Dexterity.skills.2.modifier: Without tweaks or effects: 2 → now 3 / +2 DEX · Ability Score Increase Half-human trait
+  ↳ hover abilityScores.Dexterity.skills.2.modifier: Without tweaks or effects: 2 → now 3 / +1 DEX modifier (+2 score) · Ability Score Increase Half-human trait
 base 14 · +2 from Ability Score Increase (species trait)
 CON
 Constitution
@@ -348,8 +348,8 @@ not proficient proficient expertise
 ## Sheet: Skills
 Skill | Ability | Bonus | Passive | Proficiency |
 (Not proficient) Acrobatics | DEX | +3 | 13 | — |
-  ↳ hover abilityScores.Dexterity.skills.0.modifier: Without tweaks or effects: 2 → now 3 / +2 DEX · Ability Score Increase Half-human trait
-  ↳ hover abilityScores.Dexterity.skills.0.modifier: Without tweaks or effects: 2 → now 3 / +2 DEX · Ability Score Increase Half-human trait
+  ↳ hover abilityScores.Dexterity.skills.0.modifier: Without tweaks or effects: 2 → now 3 / +1 DEX modifier (+2 score) · Ability Score Increase Half-human trait
+  ↳ hover abilityScores.Dexterity.skills.0.modifier: Without tweaks or effects: 2 → now 3 / +1 DEX modifier (+2 score) · Ability Score Increase Half-human trait
 (Not proficient) Animal Handling | WIS | +3 | 13 | — |
 (Not proficient) Athletics | STR | −1 | 9 | — |
 (Not proficient) Deception | CHA | +2 | 12 | — |
@@ -366,11 +366,11 @@ Skill | Ability | Bonus | Passive | Proficiency |
 (Not proficient) Persuasion | CHA | +2 | 12 | — |
 (Not proficient) Piloting | INT | +0 | 10 | — |
 (Not proficient) Sleight of Hand | DEX | +3 | 13 | — |
-  ↳ hover abilityScores.Dexterity.skills.1.modifier: Without tweaks or effects: 2 → now 3 / +2 DEX · Ability Score Increase Half-human trait
-  ↳ hover abilityScores.Dexterity.skills.1.modifier: Without tweaks or effects: 2 → now 3 / +2 DEX · Ability Score Increase Half-human trait
+  ↳ hover abilityScores.Dexterity.skills.1.modifier: Without tweaks or effects: 2 → now 3 / +1 DEX modifier (+2 score) · Ability Score Increase Half-human trait
+  ↳ hover abilityScores.Dexterity.skills.1.modifier: Without tweaks or effects: 2 → now 3 / +1 DEX modifier (+2 score) · Ability Score Increase Half-human trait
 (Not proficient) Stealth | DEX | +3 | 13 | — |
-  ↳ hover abilityScores.Dexterity.skills.2.modifier: Without tweaks or effects: 2 → now 3 / +2 DEX · Ability Score Increase Half-human trait
-  ↳ hover abilityScores.Dexterity.skills.2.modifier: Without tweaks or effects: 2 → now 3 / +2 DEX · Ability Score Increase Half-human trait
+  ↳ hover abilityScores.Dexterity.skills.2.modifier: Without tweaks or effects: 2 → now 3 / +1 DEX modifier (+2 score) · Ability Score Increase Half-human trait
+  ↳ hover abilityScores.Dexterity.skills.2.modifier: Without tweaks or effects: 2 → now 3 / +1 DEX modifier (+2 score) · Ability Score Increase Half-human trait
 (Proficient) Survival | WIS | +6 | 16 | Proficient |
   ↳ hover abilityScores.Wisdom.skills.4.modifier: Without tweaks or effects: 3 → now 6 / proficient Survival: proficient · Natural Survivalist Half-human trait
   ↳ hover abilityScores.Wisdom.skills.4.modifier: Without tweaks or effects: 3 → now 6 / proficient Survival: proficient · Natural Survivalist Half-human trait

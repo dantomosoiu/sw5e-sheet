@@ -311,7 +311,7 @@ Armor Class
 Mesh armor
 Hit Points
 232 / 234
-  ↳ hover hitPoints.maximum: Without tweaks or effects: 192 → now 234 / +2 CON · Master of Combat Fighter feature / +21 HP maximum · Toughness Zabrak trait
+  ↳ hover hitPoints.maximum: Without tweaks or effects: 192 → now 234 / +1 CON modifier (+2 score) · Master of Combat Fighter feature / +21 HP maximum · Toughness Zabrak trait
 No temporary HP
 Initiative
 +3
@@ -407,7 +407,7 @@ Constitution
 18
   ↳ hover abilityScores.Constitution.value: Without tweaks or effects: 16 → now 18 / +2 CON · Master of Combat Fighter feature
 (Proficient) Saving throw+10
-  ↳ hover abilityScores.Constitution.savingThrow.modifier: Without tweaks or effects: 9 → now 10 / +2 CON · Master of Combat Fighter feature
+  ↳ hover abilityScores.Constitution.savingThrow.modifier: Without tweaks or effects: 9 → now 10 / +1 CON modifier (+2 score) · Master of Combat Fighter feature
 base 14 · +2 Zabrak · +2 from Master of Combat (class feature)
 INT
 Intelligence
@@ -503,17 +503,17 @@ Superiority Dice Size
 d12
 Physical maneuver DC
 19
-  ↳ hover maneuver.Physical.Constitution.dc: Without tweaks or effects: 17 → now 19 / +1 Physical maneuver DC · no reason given tweak / +2 CON · Master of Combat Fighter feature
+  ↳ hover maneuver.Physical.Constitution.dc: Without tweaks or effects: 17 → now 19 / +1 Physical maneuver DC · tweak / +1 CON modifier (+2 score) · Master of Combat Fighter feature
 CON · attack +11
-  ↳ hover maneuver.Physical.Constitution.attack: Without tweaks or effects: +9 → now +11 / +1 Physical maneuver attack · no reason given tweak / +2 CON · Master of Combat Fighter feature
+  ↳ hover maneuver.Physical.Constitution.attack: Without tweaks or effects: +9 → now +11 / +1 Physical maneuver attack · tweak / +1 CON modifier (+2 score) · Master of Combat Fighter feature
 Mental maneuver DC
 15
 WIS · attack +7
 General maneuver DC
 18
-  ↳ hover maneuver.General.Constitution.dc: Without tweaks or effects: 17 → now 18 / +2 CON · Master of Combat Fighter feature
+  ↳ hover maneuver.General.Constitution.dc: Without tweaks or effects: 17 → now 18 / +1 CON modifier (+2 score) · Master of Combat Fighter feature
 CON · attack +10
-  ↳ hover maneuver.General.Constitution.attack: Without tweaks or effects: +9 → now +10 / +2 CON · Master of Combat Fighter feature
+  ↳ hover maneuver.General.Constitution.attack: Without tweaks or effects: +9 → now +10 / +1 CON modifier (+2 score) · Master of Combat Fighter feature
 Dice come from the class table at your level; save DCs are calculated here as 8 + proficiency + your best eligible ability modifier (SW5E's site does not compute superiority).
 General maneuvers (1)
 Precision Attack PHB

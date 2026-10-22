@@ -229,14 +229,14 @@ Still to choose (19): Monk skills (2 more) · Monk 8th level: ability score impr
 ## Sheet: Combat & Vitals
 Armor Class
 22
-  ↳ hover armorClass: Without tweaks or effects: 15 → now 22 / +6 AC + WIS/CHA · Unarmored Defense Monk feature / +2 DEX · Perfect Self Monk feature
+  ↳ hover armorClass: Without tweaks or effects: 15 → now 22 / +6 AC + WIS/CHA · Unarmored Defense Monk feature / +1 DEX modifier (+2 score) · Perfect Self Monk feature
 Unarmored
 Hit Points
 143 / 143
 No temporary HP
 Initiative
 +6
-  ↳ hover initiative: Without tweaks or effects: 5 → now 6 / +2 DEX · Perfect Self Monk feature
+  ↳ hover initiative: Without tweaks or effects: 5 → now 6 / +1 DEX modifier (+2 score) · Perfect Self Monk feature
 Speed
 60 ft
   ↳ hover speed.base: Without tweaks or effects: 30 ft → now 60 ft / +30 Speed · Unarmored Movement Monk feature
@@ -245,7 +245,7 @@ Proficiency
 +6
 Passive Perception
 16
-  ↳ hover passivePerception: Without tweaks or effects: 15 → now 16 / +2 WIS · Perfect Self Monk feature
+  ↳ hover passivePerception: Without tweaks or effects: 15 → now 16 / +1 WIS modifier (+2 score) · Perfect Self Monk feature
 Hit Dice
 20/20d8
 +2 per die spent (Con)
@@ -318,13 +318,13 @@ Dexterity
 22
   ↳ hover abilityScores.Dexterity.value: Without tweaks or effects: 20 → now 22 / +2 DEX · Perfect Self Monk feature
 (Proficient) Saving throw+12
-  ↳ hover abilityScores.Dexterity.savingThrow.modifier: Without tweaks or effects: 11 → now 12 / +2 DEX · Perfect Self Monk feature / proficient Dexterity saves: proficient · Diamond Soul Monk feature
+  ↳ hover abilityScores.Dexterity.savingThrow.modifier: Without tweaks or effects: 11 → now 12 / +1 DEX modifier (+2 score) · Perfect Self Monk feature / proficient Dexterity saves: proficient · Diamond Soul Monk feature
 (Not proficient) Acrobatics+6
-  ↳ hover abilityScores.Dexterity.skills.0.modifier: Without tweaks or effects: 5 → now 6 / +2 DEX · Perfect Self Monk feature
+  ↳ hover abilityScores.Dexterity.skills.0.modifier: Without tweaks or effects: 5 → now 6 / +1 DEX modifier (+2 score) · Perfect Self Monk feature
 (Not proficient) Sleight of Hand+6
-  ↳ hover abilityScores.Dexterity.skills.1.modifier: Without tweaks or effects: 5 → now 6 / +2 DEX · Perfect Self Monk feature
+  ↳ hover abilityScores.Dexterity.skills.1.modifier: Without tweaks or effects: 5 → now 6 / +1 DEX modifier (+2 score) · Perfect Self Monk feature
 (Not proficient) Stealth+6
-  ↳ hover abilityScores.Dexterity.skills.2.modifier: Without tweaks or effects: 5 → now 6 / +2 DEX · Perfect Self Monk feature
+  ↳ hover abilityScores.Dexterity.skills.2.modifier: Without tweaks or effects: 5 → now 6 / +1 DEX modifier (+2 score) · Perfect Self Monk feature
 base 20 · +2 ASI (Monk 4) · −2 other · +2 from Perfect Self (class feature)
 CON
 Constitution
@@ -352,17 +352,17 @@ Wisdom
 22
   ↳ hover abilityScores.Wisdom.value: Without tweaks or effects: 20 → now 22 / +2 WIS · Perfect Self Monk feature
 (Proficient) Saving throw+12
-  ↳ hover abilityScores.Wisdom.savingThrow.modifier: Without tweaks or effects: 5 → now 12 / +2 WIS · Perfect Self Monk feature / proficient Wisdom saves: proficient · Diamond Soul Monk feature
+  ↳ hover abilityScores.Wisdom.savingThrow.modifier: Without tweaks or effects: 5 → now 12 / +1 WIS modifier (+2 score) · Perfect Self Monk feature / proficient Wisdom saves: proficient · Diamond Soul Monk feature
 (Not proficient) Animal Handling+6
-  ↳ hover abilityScores.Wisdom.skills.0.modifier: Without tweaks or effects: 5 → now 6 / +2 WIS · Perfect Self Monk feature
+  ↳ hover abilityScores.Wisdom.skills.0.modifier: Without tweaks or effects: 5 → now 6 / +1 WIS modifier (+2 score) · Perfect Self Monk feature
 (Not proficient) Insight+6
-  ↳ hover abilityScores.Wisdom.skills.1.modifier: Without tweaks or effects: 5 → now 6 / +2 WIS · Perfect Self Monk feature
+  ↳ hover abilityScores.Wisdom.skills.1.modifier: Without tweaks or effects: 5 → now 6 / +1 WIS modifier (+2 score) · Perfect Self Monk feature
 (Not proficient) Medicine+6
-  ↳ hover abilityScores.Wisdom.skills.2.modifier: Without tweaks or effects: 5 → now 6 / +2 WIS · Perfect Self Monk feature
+  ↳ hover abilityScores.Wisdom.skills.2.modifier: Without tweaks or effects: 5 → now 6 / +1 WIS modifier (+2 score) · Perfect Self Monk feature
 (Not proficient) Perception+6
-  ↳ hover abilityScores.Wisdom.skills.3.modifier: Without tweaks or effects: 5 → now 6 / +2 WIS · Perfect Self Monk feature
+  ↳ hover abilityScores.Wisdom.skills.3.modifier: Without tweaks or effects: 5 → now 6 / +1 WIS modifier (+2 score) · Perfect Self Monk feature
 (Not proficient) Survival+6
-  ↳ hover abilityScores.Wisdom.skills.4.modifier: Without tweaks or effects: 5 → now 6 / +2 WIS · Perfect Self Monk feature
+  ↳ hover abilityScores.Wisdom.skills.4.modifier: Without tweaks or effects: 5 → now 6 / +1 WIS modifier (+2 score) · Perfect Self Monk feature
 base 20 · +2 from Perfect Self (class feature)
 CHA
 Charisma
@@ -382,48 +382,48 @@ not proficient proficient expertise
 ## Sheet: Skills
 Skill | Ability | Bonus | Passive | Proficiency |
 (Not proficient) Acrobatics | DEX | +6 | 16 | — |
-  ↳ hover abilityScores.Dexterity.skills.0.modifier: Without tweaks or effects: 5 → now 6 / +2 DEX · Perfect Self Monk feature
-  ↳ hover abilityScores.Dexterity.skills.0.modifier: Without tweaks or effects: 5 → now 6 / +2 DEX · Perfect Self Monk feature
+  ↳ hover abilityScores.Dexterity.skills.0.modifier: Without tweaks or effects: 5 → now 6 / +1 DEX modifier (+2 score) · Perfect Self Monk feature
+  ↳ hover abilityScores.Dexterity.skills.0.modifier: Without tweaks or effects: 5 → now 6 / +1 DEX modifier (+2 score) · Perfect Self Monk feature
 (Not proficient) Animal Handling | WIS | +6 | 16 | — |
-  ↳ hover abilityScores.Wisdom.skills.0.modifier: Without tweaks or effects: 5 → now 6 / +2 WIS · Perfect Self Monk feature
-  ↳ hover abilityScores.Wisdom.skills.0.modifier: Without tweaks or effects: 5 → now 6 / +2 WIS · Perfect Self Monk feature
+  ↳ hover abilityScores.Wisdom.skills.0.modifier: Without tweaks or effects: 5 → now 6 / +1 WIS modifier (+2 score) · Perfect Self Monk feature
+  ↳ hover abilityScores.Wisdom.skills.0.modifier: Without tweaks or effects: 5 → now 6 / +1 WIS modifier (+2 score) · Perfect Self Monk feature
 (Not proficient) Athletics | STR | +0 | 10 | — |
 (Proficient) Deception | CHA | +5 | 15 | Proficient |
   ↳ hover abilityScores.Charisma.skills.0.modifier: Without tweaks or effects: -1 → now 5 / proficient Deception: proficient · Silver-Tongued feat
   ↳ hover abilityScores.Charisma.skills.0.modifier: Without tweaks or effects: -1 → now 5 / proficient Deception: proficient · Silver-Tongued feat
 (Not proficient) Insight | WIS | +6 | 16 | — |
-  ↳ hover abilityScores.Wisdom.skills.1.modifier: Without tweaks or effects: 5 → now 6 / +2 WIS · Perfect Self Monk feature
-  ↳ hover abilityScores.Wisdom.skills.1.modifier: Without tweaks or effects: 5 → now 6 / +2 WIS · Perfect Self Monk feature
+  ↳ hover abilityScores.Wisdom.skills.1.modifier: Without tweaks or effects: 5 → now 6 / +1 WIS modifier (+2 score) · Perfect Self Monk feature
+  ↳ hover abilityScores.Wisdom.skills.1.modifier: Without tweaks or effects: 5 → now 6 / +1 WIS modifier (+2 score) · Perfect Self Monk feature
 (Not proficient) Intimidation | CHA | −1 | 9 | — |
 (Not proficient) Investigation | INT | +2 | 12 | — |
 (Not proficient) Lore | INT | +2 | 12 | — |
 (Not proficient) Medicine | WIS | +6 | 16 | — |
-  ↳ hover abilityScores.Wisdom.skills.2.modifier: Without tweaks or effects: 5 → now 6 / +2 WIS · Perfect Self Monk feature
-  ↳ hover abilityScores.Wisdom.skills.2.modifier: Without tweaks or effects: 5 → now 6 / +2 WIS · Perfect Self Monk feature
+  ↳ hover abilityScores.Wisdom.skills.2.modifier: Without tweaks or effects: 5 → now 6 / +1 WIS modifier (+2 score) · Perfect Self Monk feature
+  ↳ hover abilityScores.Wisdom.skills.2.modifier: Without tweaks or effects: 5 → now 6 / +1 WIS modifier (+2 score) · Perfect Self Monk feature
 (Not proficient) Nature | INT | +2 | 12 | — |
 (Not proficient) Perception | WIS | +6 | 16 | — |
-  ↳ hover abilityScores.Wisdom.skills.3.modifier: Without tweaks or effects: 5 → now 6 / +2 WIS · Perfect Self Monk feature
-  ↳ hover passivePerception: Without tweaks or effects: 15 → now 16 / +2 WIS · Perfect Self Monk feature
+  ↳ hover abilityScores.Wisdom.skills.3.modifier: Without tweaks or effects: 5 → now 6 / +1 WIS modifier (+2 score) · Perfect Self Monk feature
+  ↳ hover passivePerception: Without tweaks or effects: 15 → now 16 / +1 WIS modifier (+2 score) · Perfect Self Monk feature
 (Not proficient) Performance | CHA | −1 | 9 | — |
 (Not proficient) Persuasion | CHA | −1 | 9 | — |
 (Not proficient) Piloting | INT | +2 | 12 | — |
 (Not proficient) Sleight of Hand | DEX | +6 | 16 | — |
-  ↳ hover abilityScores.Dexterity.skills.1.modifier: Without tweaks or effects: 5 → now 6 / +2 DEX · Perfect Self Monk feature
-  ↳ hover abilityScores.Dexterity.skills.1.modifier: Without tweaks or effects: 5 → now 6 / +2 DEX · Perfect Self Monk feature
+  ↳ hover abilityScores.Dexterity.skills.1.modifier: Without tweaks or effects: 5 → now 6 / +1 DEX modifier (+2 score) · Perfect Self Monk feature
+  ↳ hover abilityScores.Dexterity.skills.1.modifier: Without tweaks or effects: 5 → now 6 / +1 DEX modifier (+2 score) · Perfect Self Monk feature
 (Not proficient) Stealth | DEX | +6 | 16 | — |
-  ↳ hover abilityScores.Dexterity.skills.2.modifier: Without tweaks or effects: 5 → now 6 / +2 DEX · Perfect Self Monk feature
-  ↳ hover abilityScores.Dexterity.skills.2.modifier: Without tweaks or effects: 5 → now 6 / +2 DEX · Perfect Self Monk feature
+  ↳ hover abilityScores.Dexterity.skills.2.modifier: Without tweaks or effects: 5 → now 6 / +1 DEX modifier (+2 score) · Perfect Self Monk feature
+  ↳ hover abilityScores.Dexterity.skills.2.modifier: Without tweaks or effects: 5 → now 6 / +1 DEX modifier (+2 score) · Perfect Self Monk feature
 (Not proficient) Survival | WIS | +6 | 16 | — |
-  ↳ hover abilityScores.Wisdom.skills.4.modifier: Without tweaks or effects: 5 → now 6 / +2 WIS · Perfect Self Monk feature
-  ↳ hover abilityScores.Wisdom.skills.4.modifier: Without tweaks or effects: 5 → now 6 / +2 WIS · Perfect Self Monk feature
+  ↳ hover abilityScores.Wisdom.skills.4.modifier: Without tweaks or effects: 5 → now 6 / +1 WIS modifier (+2 score) · Perfect Self Monk feature
+  ↳ hover abilityScores.Wisdom.skills.4.modifier: Without tweaks or effects: 5 → now 6 / +1 WIS modifier (+2 score) · Perfect Self Monk feature
 (Not proficient) Technology | INT | +2 | 12 | — |
 
 ## Sheet: Weapons & Attacks
 Weapon | To hit | Damage | Ability | Type | Properties |
 Unarmed Strike
 | +12 | 1d12+6 Kinetic | Dexterity (finesse) | Unarmed | — |
-  ↳ hover weapons.0.attackBonus: Without tweaks or effects: 6 → now 12 / +6 Finesse: DEX +6 instead of STR · Martial Arts Monk feature / +2 DEX · Perfect Self Monk feature
-  ↳ hover weapons.0.damageBonus: Without tweaks or effects: 1 → now 6 / d12 Unarmed damage die (1 → d12) · Martial Arts Monk feature / +6 Finesse: DEX +6 instead of… [229 chars #14def2b5]
+  ↳ hover weapons.0.attackBonus: Without tweaks or effects: 6 → now 12 / +6 Finesse: DEX +6 instead of STR · Martial Arts Monk feature / +1 DEX modifier (+2 score) · Perfect Self Monk feature
+  ↳ hover weapons.0.damageBonus: Without tweaks or effects: 1 → now 6 / d12 Unarmed damage die (1 → d12) · Martial Arts Monk feature / +6 Finesse: DEX +6 instead of… [249 chars #209a5fb5]
 
 ## Sheet: Tech Casting
 Tech points

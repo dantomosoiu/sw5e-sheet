@@ -254,7 +254,7 @@ Proficiency
 +4
 Passive Perception
 15
-  ↳ hover passivePerception: Without tweaks or effects: 14 → now 15 / +1 WIS · Spiritual Techcaster feat (Engineer ASI #3)
+  ↳ hover passivePerception: Without tweaks or effects: 14 → now 15 / +1 WIS modifier (+1 score) · Spiritual Techcaster feat (Engineer ASI #3)
 Hit Dice
 9/9d8
 +2 per die spent (Con)
@@ -354,17 +354,17 @@ Wisdom
 20
   ↳ hover abilityScores.Wisdom.value: Without tweaks or effects: 19 → now 20 / +1 WIS · Spiritual Techcaster feat (Engineer ASI #3)
 (Not proficient) Saving throw+5
-  ↳ hover abilityScores.Wisdom.savingThrow.modifier: Without tweaks or effects: 4 → now 5 / +1 WIS · Spiritual Techcaster feat (Engineer ASI #3)
+  ↳ hover abilityScores.Wisdom.savingThrow.modifier: Without tweaks or effects: 4 → now 5 / +1 WIS modifier (+1 score) · Spiritual Techcaster feat (Engineer ASI #3)
 (Not proficient) Animal Handling+5
-  ↳ hover abilityScores.Wisdom.skills.0.modifier: Without tweaks or effects: 4 → now 5 / +1 WIS · Spiritual Techcaster feat (Engineer ASI #3)
+  ↳ hover abilityScores.Wisdom.skills.0.modifier: Without tweaks or effects: 4 → now 5 / +1 WIS modifier (+1 score) · Spiritual Techcaster feat (Engineer ASI #3)
 (Not proficient) Insight+5
-  ↳ hover abilityScores.Wisdom.skills.1.modifier: Without tweaks or effects: 4 → now 5 / +1 WIS · Spiritual Techcaster feat (Engineer ASI #3)
+  ↳ hover abilityScores.Wisdom.skills.1.modifier: Without tweaks or effects: 4 → now 5 / +1 WIS modifier (+1 score) · Spiritual Techcaster feat (Engineer ASI #3)
 (Not proficient) Medicine+5
-  ↳ hover abilityScores.Wisdom.skills.2.modifier: Without tweaks or effects: 4 → now 5 / +1 WIS · Spiritual Techcaster feat (Engineer ASI #3)
+  ↳ hover abilityScores.Wisdom.skills.2.modifier: Without tweaks or effects: 4 → now 5 / +1 WIS modifier (+1 score) · Spiritual Techcaster feat (Engineer ASI #3)
 (Not proficient) Perception+5
-  ↳ hover abilityScores.Wisdom.skills.3.modifier: Without tweaks or effects: 4 → now 5 / +1 WIS · Spiritual Techcaster feat (Engineer ASI #3)
+  ↳ hover abilityScores.Wisdom.skills.3.modifier: Without tweaks or effects: 4 → now 5 / +1 WIS modifier (+1 score) · Spiritual Techcaster feat (Engineer ASI #3)
 (Not proficient) Survival+5
-  ↳ hover abilityScores.Wisdom.skills.4.modifier: Without tweaks or effects: 4 → now 5 / +1 WIS · Spiritual Techcaster feat (Engineer ASI #3)
+  ↳ hover abilityScores.Wisdom.skills.4.modifier: Without tweaks or effects: 4 → now 5 / +1 WIS modifier (+1 score) · Spiritual Techcaster feat (Engineer ASI #3)
 base 19 · +1 from Spiritual Techcaster (feat)
 CHA
 Charisma
@@ -382,31 +382,31 @@ not proficient proficient expertise
 Skill | Ability | Bonus | Passive | Proficiency |
 (Not proficient) Acrobatics | DEX | +3 | 13 | — |
 (Not proficient) Animal Handling | WIS | +5 | 15 | — |
-  ↳ hover abilityScores.Wisdom.skills.0.modifier: Without tweaks or effects: 4 → now 5 / +1 WIS · Spiritual Techcaster feat (Engineer ASI #3)
-  ↳ hover abilityScores.Wisdom.skills.0.modifier: Without tweaks or effects: 4 → now 5 / +1 WIS · Spiritual Techcaster feat (Engineer ASI #3)
+  ↳ hover abilityScores.Wisdom.skills.0.modifier: Without tweaks or effects: 4 → now 5 / +1 WIS modifier (+1 score) · Spiritual Techcaster feat (Engineer ASI #3)
+  ↳ hover abilityScores.Wisdom.skills.0.modifier: Without tweaks or effects: 4 → now 5 / +1 WIS modifier (+1 score) · Spiritual Techcaster feat (Engineer ASI #3)
 (Not proficient) Athletics | STR | +0 | 10 | — |
 (Not proficient) Deception | CHA | −1 | 9 | — |
 (Not proficient) Insight | WIS | +5 | 15 | — |
-  ↳ hover abilityScores.Wisdom.skills.1.modifier: Without tweaks or effects: 4 → now 5 / +1 WIS · Spiritual Techcaster feat (Engineer ASI #3)
-  ↳ hover abilityScores.Wisdom.skills.1.modifier: Without tweaks or effects: 4 → now 5 / +1 WIS · Spiritual Techcaster feat (Engineer ASI #3)
+  ↳ hover abilityScores.Wisdom.skills.1.modifier: Without tweaks or effects: 4 → now 5 / +1 WIS modifier (+1 score) · Spiritual Techcaster feat (Engineer ASI #3)
+  ↳ hover abilityScores.Wisdom.skills.1.modifier: Without tweaks or effects: 4 → now 5 / +1 WIS modifier (+1 score) · Spiritual Techcaster feat (Engineer ASI #3)
 (Not proficient) Intimidation | CHA | −1 | 9 | — |
 (Not proficient) Investigation | INT | +3 | 13 | — |
 (Not proficient) Lore | INT | +3 | 13 | — |
 (Not proficient) Medicine | WIS | +5 | 15 | — |
-  ↳ hover abilityScores.Wisdom.skills.2.modifier: Without tweaks or effects: 4 → now 5 / +1 WIS · Spiritual Techcaster feat (Engineer ASI #3)
-  ↳ hover abilityScores.Wisdom.skills.2.modifier: Without tweaks or effects: 4 → now 5 / +1 WIS · Spiritual Techcaster feat (Engineer ASI #3)
+  ↳ hover abilityScores.Wisdom.skills.2.modifier: Without tweaks or effects: 4 → now 5 / +1 WIS modifier (+1 score) · Spiritual Techcaster feat (Engineer ASI #3)
+  ↳ hover abilityScores.Wisdom.skills.2.modifier: Without tweaks or effects: 4 → now 5 / +1 WIS modifier (+1 score) · Spiritual Techcaster feat (Engineer ASI #3)
 (Not proficient) Nature | INT | +3 | 13 | — |
 (Not proficient) Perception | WIS | +5 | 15 | — |
-  ↳ hover abilityScores.Wisdom.skills.3.modifier: Without tweaks or effects: 4 → now 5 / +1 WIS · Spiritual Techcaster feat (Engineer ASI #3)
-  ↳ hover passivePerception: Without tweaks or effects: 14 → now 15 / +1 WIS · Spiritual Techcaster feat (Engineer ASI #3)
+  ↳ hover abilityScores.Wisdom.skills.3.modifier: Without tweaks or effects: 4 → now 5 / +1 WIS modifier (+1 score) · Spiritual Techcaster feat (Engineer ASI #3)
+  ↳ hover passivePerception: Without tweaks or effects: 14 → now 15 / +1 WIS modifier (+1 score) · Spiritual Techcaster feat (Engineer ASI #3)
 (Not proficient) Performance | CHA | −1 | 9 | — |
 (Not proficient) Persuasion | CHA | −1 | 9 | — |
 (Not proficient) Piloting | INT | +3 | 13 | — |
 (Not proficient) Sleight of Hand | DEX | +3 | 13 | — |
 (Not proficient) Stealth | DEX | +3 | 13 | — |
 (Not proficient) Survival | WIS | +5 | 15 | — |
-  ↳ hover abilityScores.Wisdom.skills.4.modifier: Without tweaks or effects: 4 → now 5 / +1 WIS · Spiritual Techcaster feat (Engineer ASI #3)
-  ↳ hover abilityScores.Wisdom.skills.4.modifier: Without tweaks or effects: 4 → now 5 / +1 WIS · Spiritual Techcaster feat (Engineer ASI #3)
+  ↳ hover abilityScores.Wisdom.skills.4.modifier: Without tweaks or effects: 4 → now 5 / +1 WIS modifier (+1 score) · Spiritual Techcaster feat (Engineer ASI #3)
+  ↳ hover abilityScores.Wisdom.skills.4.modifier: Without tweaks or effects: 4 → now 5 / +1 WIS modifier (+1 score) · Spiritual Techcaster feat (Engineer ASI #3)
 (Not proficient) Technology | INT | +3 | 13 | — |
 
 ## Sheet: Weapons & Attacks
@@ -433,15 +433,15 @@ Unarmed Strike
 ## Sheet: Tech Casting
 Tech points
 23 / 23
-  ↳ hover techCasting.maxPoints: Without tweaks or effects: 21 → now 23 / +2 Tech points, WIS instead of INT · Spiritual Techcaster feat (casting ability) / +1 WIS · Spiritual Techcaster feat (Engineer ASI #3)
+  ↳ hover techCasting.maxPoints: Without tweaks or effects: 21 → now 23 / +2 Tech points, WIS instead of INT · Spiritual Techcaster feat (casting ability) / +1 WIS … [225 chars #da1ccec7]
 Max power level
 5
 Save DC
 17
-  ↳ hover techCasting.saveDC: Without tweaks or effects: 15 → now 17 / +2 Tech save DC, WIS instead of INT · Spiritual Techcaster feat (casting ability) / +1 WIS · Spiritual Techcaster feat (Engineer ASI #3)
+  ↳ hover techCasting.saveDC: Without tweaks or effects: 15 → now 17 / +2 Tech save DC, WIS instead of INT · Spiritual Techcaster feat (casting ability) / +1 WIS mo… [223 chars #f77a4736]
 Attack
 +9
-  ↳ hover techCasting.attackModifier: Without tweaks or effects: 7 → now 9 / +2 Tech attack, WIS instead of INT · Spiritual Techcaster feat (casting ability) / +1 WIS · Spiritual Techcaster feat (Engineer ASI #3)
+  ↳ hover techCasting.attackModifier: Without tweaks or effects: 7 → now 9 / +2 Tech attack, WIS instead of INT · Spiritual Techcaster feat (casting ability) / +1 W… [228 chars #f54374f7]
 No powers known.
 
 ## Sheet: Class Features

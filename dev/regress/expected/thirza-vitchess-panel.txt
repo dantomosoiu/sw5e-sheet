@@ -255,7 +255,7 @@ Proficiency
 +2
 Passive Perception
 16
-  ↳ hover passivePerception: Without tweaks or effects: 13 → now 16 / Proficient Perception · Force Adept background skill tweak / +1 WIS · Empathic feat (background feat)
+  ↳ hover passivePerception: Without tweaks or effects: 13 → now 16 / Proficient Perception · Force Adept background skill tweak / +1 WIS modifier (+1 score) · Empathic feat (background feat)
 Hit Dice
 4/4d6
 +1 per die spent (Con)
@@ -353,17 +353,17 @@ Wisdom
 18
   ↳ hover abilityScores.Wisdom.value: Without tweaks or effects: 17 → now 18 / +1 WIS · Empathic feat (background feat)
 (Proficient) Saving throw+6
-  ↳ hover abilityScores.Wisdom.savingThrow.modifier: Without tweaks or effects: 5 → now 6 / +1 WIS · Empathic feat (background feat)
+  ↳ hover abilityScores.Wisdom.savingThrow.modifier: Without tweaks or effects: 5 → now 6 / +1 WIS modifier (+1 score) · Empathic feat (background feat)
 (Not proficient) Animal Handling+4
-  ↳ hover abilityScores.Wisdom.skills.0.modifier: Without tweaks or effects: 3 → now 4 / +1 WIS · Empathic feat (background feat)
+  ↳ hover abilityScores.Wisdom.skills.0.modifier: Without tweaks or effects: 3 → now 4 / +1 WIS modifier (+1 score) · Empathic feat (background feat)
 (Expertise) Insight+8
-  ↳ hover abilityScores.Wisdom.skills.1.modifier: Without tweaks or effects: 3 → now 8 / +1 WIS · Empathic feat (background feat) / Proficient Insight · Empathic fe… [303 chars #09921bf8]
+  ↳ hover abilityScores.Wisdom.skills.1.modifier: Without tweaks or effects: 3 → now 8 / +1 WIS modifier (+1 score) · Empathic feat (background feat) / Proficient I… [323 chars #b52f103d]
 (Proficient) Medicine+6
-  ↳ hover abilityScores.Wisdom.skills.2.modifier: Without tweaks or effects: 3 → now 6 / +1 WIS · Empathic feat (background feat) / Proficient Medicine · Consular class skill (chosen at 1st level) tweak
+  ↳ hover abilityScores.Wisdom.skills.2.modifier: Without tweaks or effects: 3 → now 6 / +1 WIS modifier (+1 score) · Empathic feat (background feat) / Proficient Medicine · Consular class skill (chosen at 1st level) tweak
 (Proficient) Perception+6
-  ↳ hover abilityScores.Wisdom.skills.3.modifier: Without tweaks or effects: 3 → now 6 / +1 WIS · Empathic feat (background feat) / Proficient Perception · Force Adept background skill tweak
+  ↳ hover abilityScores.Wisdom.skills.3.modifier: Without tweaks or effects: 3 → now 6 / +1 WIS modifier (+1 score) · Empathic feat (background feat) / Proficient Perception · Force Adept background skill tweak
 (Not proficient) Survival+4
-  ↳ hover abilityScores.Wisdom.skills.4.modifier: Without tweaks or effects: 3 → now 4 / +1 WIS · Empathic feat (background feat)
+  ↳ hover abilityScores.Wisdom.skills.4.modifier: Without tweaks or effects: 3 → now 4 / +1 WIS modifier (+1 score) · Empathic feat (background feat)
 base 15 · +2 Kel Dor · +1 from Empathic (feat)
 CHA
 Charisma
@@ -382,25 +382,25 @@ not proficient proficient expertise
 Skill | Ability | Bonus | Passive | Proficiency |
 (Not proficient) Acrobatics | DEX | +2 | 12 | — |
 (Not proficient) Animal Handling | WIS | +4 | 14 | — |
-  ↳ hover abilityScores.Wisdom.skills.0.modifier: Without tweaks or effects: 3 → now 4 / +1 WIS · Empathic feat (background feat)
-  ↳ hover abilityScores.Wisdom.skills.0.modifier: Without tweaks or effects: 3 → now 4 / +1 WIS · Empathic feat (background feat)
+  ↳ hover abilityScores.Wisdom.skills.0.modifier: Without tweaks or effects: 3 → now 4 / +1 WIS modifier (+1 score) · Empathic feat (background feat)
+  ↳ hover abilityScores.Wisdom.skills.0.modifier: Without tweaks or effects: 3 → now 4 / +1 WIS modifier (+1 score) · Empathic feat (background feat)
 (Not proficient) Athletics | STR | −1 | 9 | — |
 (Not proficient) Deception | CHA | +1 | 11 | — |
 (Expertise) Insight | WIS | +8 | 18 | Expertise |
-  ↳ hover abilityScores.Wisdom.skills.1.modifier: Without tweaks or effects: 3 → now 8 / +1 WIS · Empathic feat (background feat) / Proficient Insight · Empathic fe… [303 chars #09921bf8]
-  ↳ hover abilityScores.Wisdom.skills.1.modifier: Without tweaks or effects: 3 → now 8 / +1 WIS · Empathic feat (background feat) / Proficient Insight · Empathic fe… [303 chars #09921bf8]
+  ↳ hover abilityScores.Wisdom.skills.1.modifier: Without tweaks or effects: 3 → now 8 / +1 WIS modifier (+1 score) · Empathic feat (background feat) / Proficient I… [323 chars #b52f103d]
+  ↳ hover abilityScores.Wisdom.skills.1.modifier: Without tweaks or effects: 3 → now 8 / +1 WIS modifier (+1 score) · Empathic feat (background feat) / Proficient I… [323 chars #b52f103d]
 (Not proficient) Intimidation | CHA | +1 | 11 | — |
 (Not proficient) Investigation | INT | +0 | 10 | — |
 (Proficient) Lore | INT | +2 | 12 | Proficient |
   ↳ hover abilityScores.Intelligence.skills.1.modifier: Without tweaks or effects: 0 → now 2 / Proficient Lore · Consular class skill (chosen at 1st level) tweak
   ↳ hover abilityScores.Intelligence.skills.1.modifier: Without tweaks or effects: 0 → now 2 / Proficient Lore · Consular class skill (chosen at 1st level) tweak
 (Proficient) Medicine | WIS | +6 | 16 | Proficient |
-  ↳ hover abilityScores.Wisdom.skills.2.modifier: Without tweaks or effects: 3 → now 6 / +1 WIS · Empathic feat (background feat) / Proficient Medicine · Consular class skill (chosen at 1st level) tweak
-  ↳ hover abilityScores.Wisdom.skills.2.modifier: Without tweaks or effects: 3 → now 6 / +1 WIS · Empathic feat (background feat) / Proficient Medicine · Consular class skill (chosen at 1st level) tweak
+  ↳ hover abilityScores.Wisdom.skills.2.modifier: Without tweaks or effects: 3 → now 6 / +1 WIS modifier (+1 score) · Empathic feat (background feat) / Proficient Medicine · Consular class skill (chosen at 1st level) tweak
+  ↳ hover abilityScores.Wisdom.skills.2.modifier: Without tweaks or effects: 3 → now 6 / +1 WIS modifier (+1 score) · Empathic feat (background feat) / Proficient Medicine · Consular class skill (chosen at 1st level) tweak
 (Not proficient) Nature | INT | +0 | 10 | — |
 (Proficient) Perception | WIS | +6 | 16 | Proficient |
-  ↳ hover abilityScores.Wisdom.skills.3.modifier: Without tweaks or effects: 3 → now 6 / +1 WIS · Empathic feat (background feat) / Proficient Perception · Force Adept background skill tweak
-  ↳ hover passivePerception: Without tweaks or effects: 13 → now 16 / Proficient Perception · Force Adept background skill tweak / +1 WIS · Empathic feat (background feat)
+  ↳ hover abilityScores.Wisdom.skills.3.modifier: Without tweaks or effects: 3 → now 6 / +1 WIS modifier (+1 score) · Empathic feat (background feat) / Proficient Perception · Force Adept background skill tweak
+  ↳ hover passivePerception: Without tweaks or effects: 13 → now 16 / Proficient Perception · Force Adept background skill tweak / +1 WIS modifier (+1 score) · Empathic feat (background feat)
 (Not proficient) Performance | CHA | +1 | 11 | — |
 (Proficient) Persuasion | CHA | +3 | 13 | Proficient |
   ↳ hover abilityScores.Charisma.skills.3.modifier: Without tweaks or effects: 1 → now 3 / Proficient Persuasion · Force Adept background skill tweak
@@ -409,8 +409,8 @@ Skill | Ability | Bonus | Passive | Proficiency |
 (Not proficient) Sleight of Hand | DEX | +2 | 12 | — |
 (Not proficient) Stealth | DEX | +2 | 12 | — |
 (Not proficient) Survival | WIS | +4 | 14 | — |
-  ↳ hover abilityScores.Wisdom.skills.4.modifier: Without tweaks or effects: 3 → now 4 / +1 WIS · Empathic feat (background feat)
-  ↳ hover abilityScores.Wisdom.skills.4.modifier: Without tweaks or effects: 3 → now 4 / +1 WIS · Empathic feat (background feat)
+  ↳ hover abilityScores.Wisdom.skills.4.modifier: Without tweaks or effects: 3 → now 4 / +1 WIS modifier (+1 score) · Empathic feat (background feat)
+  ↳ hover abilityScores.Wisdom.skills.4.modifier: Without tweaks or effects: 3 → now 4 / +1 WIS modifier (+1 score) · Empathic feat (background feat)
 (Not proficient) Technology | INT | +0 | 10 | — |
 
 ## Sheet: Weapons & Attacks
@@ -424,23 +424,23 @@ Unarmed Strike
 ## Sheet: Force Casting
 Force points
 20 / 20
-  ↳ hover forceCasting.maxPoints: Without tweaks or effects: 19 → now 20 / +1 WIS · Empathic feat (background feat)
+  ↳ hover forceCasting.maxPoints: Without tweaks or effects: 19 → now 20 / +1 WIS modifier (+1 score) · Empathic feat (background feat)
 Max power level
 2
 Light side
 DC 14
-  ↳ hover forceCasting.lightSaveDC: Without tweaks or effects: 13 → now 14 / +1 WIS · Empathic feat (background feat)
+  ↳ hover forceCasting.lightSaveDC: Without tweaks or effects: 13 → now 14 / +1 WIS modifier (+1 score) · Empathic feat (background feat)
 attack +7
-  ↳ hover forceCasting.lightAttackModifier: Without tweaks or effects: 5 → now 7 / +1 Light force attack · Focus Generator (Fine) while attuned / +1 WIS · Empathic feat (background feat)
+  ↳ hover forceCasting.lightAttackModifier: Without tweaks or effects: 5 → now 7 / +1 Light force attack · Focus Generator (Fine) while attuned / +1 WIS modifier (+1 score) · Empathic feat (background feat)
 Dark side
 DC 11
 attack +4
   ↳ hover forceCasting.darkAttackModifier: Without tweaks or effects: 3 → now 4 / +1 Dark force attack · Focus Generator (Fine) while attuned
 Universal
 DC 14
-  ↳ hover forceCasting.universalSaveDC: Without tweaks or effects: 13 → now 14 / +1 WIS · Empathic feat (background feat)
+  ↳ hover forceCasting.universalSaveDC: Without tweaks or effects: 13 → now 14 / +1 WIS modifier (+1 score) · Empathic feat (background feat)
 attack +7
-  ↳ hover forceCasting.universalAttackModifier: Without tweaks or effects: 5 → now 7 / +1 Universal force attack · Focus Generator (Fine) while attuned / +1 WIS · Empathic feat (background feat)
+  ↳ hover forceCasting.universalAttackModifier: Without tweaks or effects: 5 → now 7 / +1 Universal force attack · Focus Generator (Fine) while attuned / +1 WIS modifier (+1 score) · Empathic feat (background feat)
 At-will powers (5)
 Force Push/Pull Universal Consular
 [Cast] [No casting option ▾]

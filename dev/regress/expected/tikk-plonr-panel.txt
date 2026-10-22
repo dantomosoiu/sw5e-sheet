@@ -349,17 +349,17 @@ Intelligence
 20
   ↳ hover abilityScores.Intelligence.value: Without tweaks or effects: 19 → now 20 / +1 INT · Techie feat (background feat)
 (Proficient) Saving throw+7
-  ↳ hover abilityScores.Intelligence.savingThrow.modifier: Without tweaks or effects: 6 → now 7 / +1 INT · Techie feat (background feat)
+  ↳ hover abilityScores.Intelligence.savingThrow.modifier: Without tweaks or effects: 6 → now 7 / +1 INT modifier (+1 score) · Techie feat (background feat)
 (Proficient) Investigation+7
-  ↳ hover abilityScores.Intelligence.skills.0.modifier: Without tweaks or effects: 4 → now 7 / +1 INT · Techie feat (background feat) / Proficient Investigation · Engineer skill (3 of 6) tweak
+  ↳ hover abilityScores.Intelligence.skills.0.modifier: Without tweaks or effects: 4 → now 7 / +1 INT modifier (+1 score) · Techie feat (background feat) / Proficient Investigation · Engineer skill (3 of 6) tweak
 (Proficient) Lore+7
-  ↳ hover abilityScores.Intelligence.skills.1.modifier: Without tweaks or effects: 4 → now 7 / +1 INT · Techie feat (background feat) / Proficient Lore · Scientist background skill tweak
+  ↳ hover abilityScores.Intelligence.skills.1.modifier: Without tweaks or effects: 4 → now 7 / +1 INT modifier (+1 score) · Techie feat (background feat) / Proficient Lore · Scientist background skill tweak
 (Proficient) Nature+7
-  ↳ hover abilityScores.Intelligence.skills.2.modifier: Without tweaks or effects: 4 → now 7 / +1 INT · Techie feat (background feat) / Proficient Nature · Engineer skill (3 of 6) tweak
+  ↳ hover abilityScores.Intelligence.skills.2.modifier: Without tweaks or effects: 4 → now 7 / +1 INT modifier (+1 score) · Techie feat (background feat) / Proficient Nature · Engineer skill (3 of 6) tweak
 (Proficient) Piloting+7
-  ↳ hover abilityScores.Intelligence.skills.3.modifier: Without tweaks or effects: 4 → now 7 / +1 INT · Techie feat (background feat) / Proficient Piloting · Sullus… [234 chars #298967e9]
+  ↳ hover abilityScores.Intelligence.skills.3.modifier: Without tweaks or effects: 4 → now 7 / +1 INT modifier (+1 score) · Techie feat (background feat) / Proficie… [254 chars #cfec5d29]
 (Expertise) Technology+9
-  ↳ hover abilityScores.Intelligence.skills.4.modifier: Without tweaks or effects: 4 → now 9 / +1 INT · Techie feat (background feat) / Expertise Technology · Scien… [288 chars #5e37b24b]
+  ↳ hover abilityScores.Intelligence.skills.4.modifier: Without tweaks or effects: 4 → now 9 / +1 INT modifier (+1 score) · Techie feat (background feat) / Expertis… [308 chars #215c47a1]
 base 15 · +2 Sullustan · +2 ASI (Engineer 4) · +1 from Techie (feat)
 WIS
 Wisdom
@@ -394,29 +394,29 @@ Skill | Ability | Bonus | Passive | Proficiency |
 (Not proficient) Insight | WIS | +1 | 11 | — |
 (Not proficient) Intimidation | CHA | +0 | 10 | — |
 (Proficient) Investigation | INT | +7 | 17 | Proficient |
-  ↳ hover abilityScores.Intelligence.skills.0.modifier: Without tweaks or effects: 4 → now 7 / +1 INT · Techie feat (background feat) / Proficient Investigation · Engineer skill (3 of 6) tweak
-  ↳ hover abilityScores.Intelligence.skills.0.modifier: Without tweaks or effects: 4 → now 7 / +1 INT · Techie feat (background feat) / Proficient Investigation · Engineer skill (3 of 6) tweak
+  ↳ hover abilityScores.Intelligence.skills.0.modifier: Without tweaks or effects: 4 → now 7 / +1 INT modifier (+1 score) · Techie feat (background feat) / Proficient Investigation · Engineer skill (3 of 6) tweak
+  ↳ hover abilityScores.Intelligence.skills.0.modifier: Without tweaks or effects: 4 → now 7 / +1 INT modifier (+1 score) · Techie feat (background feat) / Proficient Investigation · Engineer skill (3 of 6) tweak
 (Proficient) Lore | INT | +7 | 17 | Proficient |
-  ↳ hover abilityScores.Intelligence.skills.1.modifier: Without tweaks or effects: 4 → now 7 / +1 INT · Techie feat (background feat) / Proficient Lore · Scientist background skill tweak
-  ↳ hover abilityScores.Intelligence.skills.1.modifier: Without tweaks or effects: 4 → now 7 / +1 INT · Techie feat (background feat) / Proficient Lore · Scientist background skill tweak
+  ↳ hover abilityScores.Intelligence.skills.1.modifier: Without tweaks or effects: 4 → now 7 / +1 INT modifier (+1 score) · Techie feat (background feat) / Proficient Lore · Scientist background skill tweak
+  ↳ hover abilityScores.Intelligence.skills.1.modifier: Without tweaks or effects: 4 → now 7 / +1 INT modifier (+1 score) · Techie feat (background feat) / Proficient Lore · Scientist background skill tweak
 (Proficient) Medicine | WIS | +3 | 13 | Proficient |
   ↳ hover abilityScores.Wisdom.skills.2.modifier: Without tweaks or effects: 1 → now 3 / Proficient Medicine · Engineer skill (3 of 6) tweak
   ↳ hover abilityScores.Wisdom.skills.2.modifier: Without tweaks or effects: 1 → now 3 / Proficient Medicine · Engineer skill (3 of 6) tweak
 (Proficient) Nature | INT | +7 | 17 | Proficient |
-  ↳ hover abilityScores.Intelligence.skills.2.modifier: Without tweaks or effects: 4 → now 7 / +1 INT · Techie feat (background feat) / Proficient Nature · Engineer skill (3 of 6) tweak
-  ↳ hover abilityScores.Intelligence.skills.2.modifier: Without tweaks or effects: 4 → now 7 / +1 INT · Techie feat (background feat) / Proficient Nature · Engineer skill (3 of 6) tweak
+  ↳ hover abilityScores.Intelligence.skills.2.modifier: Without tweaks or effects: 4 → now 7 / +1 INT modifier (+1 score) · Techie feat (background feat) / Proficient Nature · Engineer skill (3 of 6) tweak
+  ↳ hover abilityScores.Intelligence.skills.2.modifier: Without tweaks or effects: 4 → now 7 / +1 INT modifier (+1 score) · Techie feat (background feat) / Proficient Nature · Engineer skill (3 of 6) tweak
 (Not proficient) Perception | WIS | +1 | 11 | — |
 (Not proficient) Performance | CHA | +0 | 10 | — |
 (Not proficient) Persuasion | CHA | +0 | 10 | — |
 (Proficient) Piloting | INT | +7 | 17 | Proficient |
-  ↳ hover abilityScores.Intelligence.skills.3.modifier: Without tweaks or effects: 4 → now 7 / +1 INT · Techie feat (background feat) / Proficient Piloting · Sullus… [234 chars #298967e9]
-  ↳ hover abilityScores.Intelligence.skills.3.modifier: Without tweaks or effects: 4 → now 7 / +1 INT · Techie feat (background feat) / Proficient Piloting · Sullus… [234 chars #298967e9]
+  ↳ hover abilityScores.Intelligence.skills.3.modifier: Without tweaks or effects: 4 → now 7 / +1 INT modifier (+1 score) · Techie feat (background feat) / Proficie… [254 chars #cfec5d29]
+  ↳ hover abilityScores.Intelligence.skills.3.modifier: Without tweaks or effects: 4 → now 7 / +1 INT modifier (+1 score) · Techie feat (background feat) / Proficie… [254 chars #cfec5d29]
 (Not proficient) Sleight of Hand | DEX | +2 | 12 | — |
 (Not proficient) Stealth | DEX | +2 | 12 | — |
 (Not proficient) Survival | WIS | +1 | 11 | — |
 (Expertise) Technology | INT | +9 | 19 | Expertise |
-  ↳ hover abilityScores.Intelligence.skills.4.modifier: Without tweaks or effects: 4 → now 9 / +1 INT · Techie feat (background feat) / Expertise Technology · Scien… [288 chars #5e37b24b]
-  ↳ hover abilityScores.Intelligence.skills.4.modifier: Without tweaks or effects: 4 → now 9 / +1 INT · Techie feat (background feat) / Expertise Technology · Scien… [288 chars #5e37b24b]
+  ↳ hover abilityScores.Intelligence.skills.4.modifier: Without tweaks or effects: 4 → now 9 / +1 INT modifier (+1 score) · Techie feat (background feat) / Expertis… [308 chars #215c47a1]
+  ↳ hover abilityScores.Intelligence.skills.4.modifier: Without tweaks or effects: 4 → now 9 / +1 INT modifier (+1 score) · Techie feat (background feat) / Expertis… [308 chars #215c47a1]
 
 ## Sheet: Weapons & Attacks
 Weapon | To hit | Damage | Ability | Type | Properties |
@@ -435,15 +435,15 @@ Unarmed Strike
 ## Sheet: Tech Casting
 Tech points
 13 / 13
-  ↳ hover techCasting.maxPoints: Without tweaks or effects: 12 → now 13 / +1 INT · Techie feat (background feat)
+  ↳ hover techCasting.maxPoints: Without tweaks or effects: 12 → now 13 / +1 INT modifier (+1 score) · Techie feat (background feat)
 Max power level
 2
 Save DC
 15
-  ↳ hover techCasting.saveDC: Without tweaks or effects: 14 → now 15 / +1 INT · Techie feat (background feat)
+  ↳ hover techCasting.saveDC: Without tweaks or effects: 14 → now 15 / +1 INT modifier (+1 score) · Techie feat (background feat)
 Attack
 +7
-  ↳ hover techCasting.attackModifier: Without tweaks or effects: 6 → now 7 / +1 INT · Techie feat (background feat)
+  ↳ hover techCasting.attackModifier: Without tweaks or effects: 6 → now 7 / +1 INT modifier (+1 score) · Techie feat (background feat)
 At-will powers (4)
 Detonator Engineer
 [Cast]

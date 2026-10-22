@@ -230,7 +230,7 @@ Initiative
 +2
 Speed
 35 ft
-  ↳ hover speed.base: Without tweaks or effects: 30 ft → now 35 ft / +1 STR · Savage Shorty feat (Berserker ASI #1) / +5 Speed · Savage Shorty feat
+  ↳ hover speed.base: Without tweaks or effects: 30 ft → now 35 ft / +5 Speed · Savage Shorty feat
 3.5 miles/hour · 28 miles/day
 Proficiency
 +3

@@ -296,7 +296,7 @@ Hit Points
 No temporary HP
 Initiative
 +5
-  ↳ hover initiative: Without tweaks or effects: 3 → now 5 / +1 Dexterity score · Weapon Expert feat: +1 Dexterity (builder has no choice for it) tweak / +4 DEX 21 … [234 chars #6a0b8a29]
+  ↳ hover initiative: Without tweaks or effects: 3 → now 5 / +1 DEX score · Weapon Expert feat: +1 Dexterity (builder has no choice for it) tweak / +4 DEX score (the item sets it to 21) · Agile Armoring Mk VI while installed
 Speed
 30 ft
 3 miles/hour · 24 miles/day
@@ -380,9 +380,9 @@ Strength
 21
   ↳ hover abilityScores.Strength.value: Without tweaks or effects: 8 → now 21 / +13 STR 21 (powered 21) (the item sets it to 21) · Powered Armoring Mk VI while installed
 (Proficient) Saving throw+7
-  ↳ hover abilityScores.Strength.savingThrow.modifier: Without tweaks or effects: 1 → now 7 / +13 STR 21 (powered 21) (the item sets it to 21) · Powered Armoring Mk VI while installed
+  ↳ hover abilityScores.Strength.savingThrow.modifier: Without tweaks or effects: 1 → now 7 / +6 STR modifier (+13 score) (the item sets it to 21) · Powered Armoring Mk VI while installed
 (Not proficient) Athletics+5
-  ↳ hover abilityScores.Strength.skills.0.modifier: Without tweaks or effects: -1 → now 5 / +13 STR 21 (powered 21) (the item sets it to 21) · Powered Armoring Mk VI while installed
+  ↳ hover abilityScores.Strength.skills.0.modifier: Without tweaks or effects: -1 → now 5 / +6 STR modifier (+13 score) (the item sets it to 21) · Powered Armoring Mk VI while installed
 base 8 · +13 from Powered Armoring Mk VI
 DEX
 Dexterity
@@ -391,13 +391,13 @@ Dexterity
 21
   ↳ hover abilityScores.Dexterity.value: Without tweaks or effects: 16 → now 21 / +1 Dexterity score · Weapon Expert feat: +1 Dexterity (builder has no choice for i… [255 chars #38f15f8c]
 (Not proficient) Saving throw+5
-  ↳ hover abilityScores.Dexterity.savingThrow.modifier: Without tweaks or effects: 3 → now 5 / +1 Dexterity score · Weapon Expert feat: +1 Dexterity (builder has no… [268 chars #fd794fe9]
+  ↳ hover abilityScores.Dexterity.savingThrow.modifier: Without tweaks or effects: 3 → now 5 / +1 DEX score · Weapon Expert feat: +1 Dexterity (builder has no choic… [254 chars #616d4f8f]
 (Not proficient) Acrobatics+5
-  ↳ hover abilityScores.Dexterity.skills.0.modifier: Without tweaks or effects: 3 → now 5 / +1 Dexterity score · Weapon Expert feat: +1 Dexterity (builder has no ch… [265 chars #46fa8ff3]
+  ↳ hover abilityScores.Dexterity.skills.0.modifier: Without tweaks or effects: 3 → now 5 / +1 DEX score · Weapon Expert feat: +1 Dexterity (builder has no choice f… [251 chars #d2714cd5]
 (Not proficient) Sleight of Hand+5
-  ↳ hover abilityScores.Dexterity.skills.1.modifier: Without tweaks or effects: 3 → now 5 / +1 Dexterity score · Weapon Expert feat: +1 Dexterity (builder has no ch… [265 chars #a5a4fe73]
+  ↳ hover abilityScores.Dexterity.skills.1.modifier: Without tweaks or effects: 3 → now 5 / +1 DEX score · Weapon Expert feat: +1 Dexterity (builder has no choice f… [251 chars #842f72a6]
 (Expertise) Stealth+9
-  ↳ hover abilityScores.Dexterity.skills.2.modifier: Without tweaks or effects: 7 → now 9 / +1 Dexterity score · Weapon Expert feat: +1 Dexterity (builder has no ch… [357 chars #3a4cb28e]
+  ↳ hover abilityScores.Dexterity.skills.2.modifier: Without tweaks or effects: 7 → now 9 / +1 DEX score · Weapon Expert feat: +1 Dexterity (builder has no choice f… [343 chars #6b9a8070]
 base 15 · +1 Zabrak · +1 from Weapon Expert feat: +1 Dexterity (builder has no choice for it) (tweak) · +4 from Agile Armoring Mk VI
 CON
 Constitution
@@ -446,12 +446,12 @@ not proficient proficient expertise
 ## Sheet: Skills
 Skill | Ability | Bonus | Passive | Proficiency |
 (Not proficient) Acrobatics | DEX | +5 | 15 | — |
-  ↳ hover abilityScores.Dexterity.skills.0.modifier: Without tweaks or effects: 3 → now 5 / +1 Dexterity score · Weapon Expert feat: +1 Dexterity (builder has no ch… [265 chars #46fa8ff3]
-  ↳ hover abilityScores.Dexterity.skills.0.modifier: Without tweaks or effects: 3 → now 5 / +1 Dexterity score · Weapon Expert feat: +1 Dexterity (builder has no ch… [265 chars #46fa8ff3]
+  ↳ hover abilityScores.Dexterity.skills.0.modifier: Without tweaks or effects: 3 → now 5 / +1 DEX score · Weapon Expert feat: +1 Dexterity (builder has no choice f… [251 chars #d2714cd5]
+  ↳ hover abilityScores.Dexterity.skills.0.modifier: Without tweaks or effects: 3 → now 5 / +1 DEX score · Weapon Expert feat: +1 Dexterity (builder has no choice f… [251 chars #d2714cd5]
 (Not proficient) Animal Handling | WIS | +1 | 11 | — |
 (Not proficient) Athletics | STR | +5 | 15 | — |
-  ↳ hover abilityScores.Strength.skills.0.modifier: Without tweaks or effects: -1 → now 5 / +13 STR 21 (powered 21) (the item sets it to 21) · Powered Armoring Mk VI while installed
-  ↳ hover abilityScores.Strength.skills.0.modifier: Without tweaks or effects: -1 → now 5 / +13 STR 21 (powered 21) (the item sets it to 21) · Powered Armoring Mk VI while installed
+  ↳ hover abilityScores.Strength.skills.0.modifier: Without tweaks or effects: -1 → now 5 / +6 STR modifier (+13 score) (the item sets it to 21) · Powered Armoring Mk VI while installed
+  ↳ hover abilityScores.Strength.skills.0.modifier: Without tweaks or effects: -1 → now 5 / +6 STR modifier (+13 score) (the item sets it to 21) · Powered Armoring Mk VI while installed
 (Not proficient) Deception | CHA | +1 | 11 | — |
 (Proficient) Insight | WIS | +3 | 13 | Proficient |
   ↳ hover abilityScores.Wisdom.skills.1.modifier: Without tweaks or effects: 1 → now 3 / Proficient Insight · Fighter class skill (chosen at 1st level) tweak
@@ -472,11 +472,11 @@ Skill | Ability | Bonus | Passive | Proficiency |
   ↳ hover abilityScores.Intelligence.skills.3.modifier: Without tweaks or effects: 0 → now 2 / Proficient Piloting · Soldier background skill tweak
   ↳ hover abilityScores.Intelligence.skills.3.modifier: Without tweaks or effects: 0 → now 2 / Proficient Piloting · Soldier background skill tweak
 (Not proficient) Sleight of Hand | DEX | +5 | 15 | — |
-  ↳ hover abilityScores.Dexterity.skills.1.modifier: Without tweaks or effects: 3 → now 5 / +1 Dexterity score · Weapon Expert feat: +1 Dexterity (builder has no ch… [265 chars #a5a4fe73]
-  ↳ hover abilityScores.Dexterity.skills.1.modifier: Without tweaks or effects: 3 → now 5 / +1 Dexterity score · Weapon Expert feat: +1 Dexterity (builder has no ch… [265 chars #a5a4fe73]
+  ↳ hover abilityScores.Dexterity.skills.1.modifier: Without tweaks or effects: 3 → now 5 / +1 DEX score · Weapon Expert feat: +1 Dexterity (builder has no choice f… [251 chars #842f72a6]
+  ↳ hover abilityScores.Dexterity.skills.1.modifier: Without tweaks or effects: 3 → now 5 / +1 DEX score · Weapon Expert feat: +1 Dexterity (builder has no choice f… [251 chars #842f72a6]
 (Expertise) Stealth | DEX | +9 | 19 | Expertise |
-  ↳ hover abilityScores.Dexterity.skills.2.modifier: Without tweaks or effects: 7 → now 9 / +1 Dexterity score · Weapon Expert feat: +1 Dexterity (builder has no ch… [357 chars #3a4cb28e]
-  ↳ hover abilityScores.Dexterity.skills.2.modifier: Without tweaks or effects: 7 → now 9 / +1 Dexterity score · Weapon Expert feat: +1 Dexterity (builder has no ch… [357 chars #3a4cb28e]
+  ↳ hover abilityScores.Dexterity.skills.2.modifier: Without tweaks or effects: 7 → now 9 / +1 DEX score · Weapon Expert feat: +1 Dexterity (builder has no choice f… [343 chars #6b9a8070]
+  ↳ hover abilityScores.Dexterity.skills.2.modifier: Without tweaks or effects: 7 → now 9 / +1 DEX score · Weapon Expert feat: +1 Dexterity (builder has no choice f… [343 chars #6b9a8070]
 (Not proficient) Survival | WIS | +1 | 11 | — |
 (Not proficient) Technology | INT | +0 | 10 | — |
 
@@ -486,17 +486,17 @@ Blaster rifle
 Power cell (range 105/420), reload 12, two-handed
 Shots 11/12 [−1] [Reload] 13 Power cells
 | +7 | 1d8+8 Energy | Dexterity | Martial Blaster | Power cell (range 105/420), reload 12, two-handed |
-  ↳ hover weapons.0.attackBonus: Without tweaks or effects: 5 → now 7 / +1 Dexterity score · Weapon Expert feat: +1 Dexterity (builder has no choice for it) tweak /… [245 chars #bbacbf22]
-  ↳ hover weapons.0.damageBonus: Without tweaks or effects: 3 → now 8 / +2 Weapon damage · Brute Force Assault Specialist feature / +1 Damage · Xerrol Nightstinger … [360 chars #edc76570]
+  ↳ hover weapons.0.attackBonus: Without tweaks or effects: 5 → now 7 / +1 DEX score · Weapon Expert feat: +1 Dexterity (builder has no choice for it) tweak / +4 DE… [231 chars #50bc51cd]
+  ↳ hover weapons.0.damageBonus: Without tweaks or effects: 3 → now 8 / +2 Weapon damage · Brute Force Assault Specialist feature / +1 Damage · Xerrol Nightstinger … [346 chars #ef76571f]
 Vibrorapier
 Finesse
 | +7 | 1d8+7 Kinetic | Strength | Martial Vibroweapon | Finesse |
-  ↳ hover weapons.1.attackBonus: Without tweaks or effects: 5 → now 7 / +13 STR 21 (powered 21) (the item sets it to 21) · Powered Armoring Mk VI while installed
-  ↳ hover weapons.1.damageBonus: Without tweaks or effects: 3 → now 7 / +2 Weapon damage · Brute Force Assault Specialist feature / +13 STR 21 (powered 21) (the item sets it to 21) · Powered Armoring Mk VI while installed
+  ↳ hover weapons.1.attackBonus: Without tweaks or effects: 5 → now 7 / +6 STR modifier (+13 score) (the item sets it to 21) · Powered Armoring Mk VI while installed
+  ↳ hover weapons.1.damageBonus: Without tweaks or effects: 3 → now 7 / +2 Weapon damage · Brute Force Assault Specialist feature / +6 STR modifier (+13 score) (the… [221 chars #3435de89]
 Unarmed Strike
 | +7 | 1d4+7 Kinetic | Strength | Unarmed | — |
-  ↳ hover weapons.2.attackBonus: Without tweaks or effects: 1 → now 7 / +13 STR 21 (powered 21) (the item sets it to 21) · Powered Armoring Mk VI while installed
-  ↳ hover weapons.2.damageBonus: Without tweaks or effects: 0 → now 7 / = 4, d4 Unarmed: damage die · Zabrak Unarmed Combatant: 1d4, finesse tweak / +2 Unarmed dama… [295 chars #8f968146]
+  ↳ hover weapons.2.attackBonus: Without tweaks or effects: 1 → now 7 / +6 STR modifier (+13 score) (the item sets it to 21) · Powered Armoring Mk VI while installed
+  ↳ hover weapons.2.damageBonus: Without tweaks or effects: 0 → now 7 / = 4, d4 Unarmed: damage die · Zabrak Unarmed Combatant: 1d4, finesse tweak / +2 Unarmed dama… [299 chars #892faedf]
 
 ## Sheet: Superiority & Maneuvers
 Maneuvers Known
@@ -507,17 +507,17 @@ Superiority Dice Size
 d4
 Physical maneuver DC
 15
-  ↳ hover maneuver.Physical.Strength.dc: Without tweaks or effects: 9 → now 15 / +13 STR 21 (powered 21) (the item sets it to 21) · Powered Armoring Mk VI while installed
+  ↳ hover maneuver.Physical.Strength.dc: Without tweaks or effects: 9 → now 15 / +6 STR modifier (+13 score) (the item sets it to 21) · Powered Armoring Mk VI while installed
 STR · attack +7
-  ↳ hover maneuver.Physical.Strength.attack: Without tweaks or effects: +1 → now +7 / +13 STR 21 (powered 21) (the item sets it to 21) · Powered Armoring Mk VI while installed
+  ↳ hover maneuver.Physical.Strength.attack: Without tweaks or effects: +1 → now +7 / +6 STR modifier (+13 score) (the item sets it to 21) · Powered Armoring Mk VI while installed
 Mental maneuver DC
 11
 WIS · attack +3
 General maneuver DC
 15
-  ↳ hover maneuver.General.Strength.dc: Without tweaks or effects: 9 → now 15 / +13 STR 21 (powered 21) (the item sets it to 21) · Powered Armoring Mk VI while installed
+  ↳ hover maneuver.General.Strength.dc: Without tweaks or effects: 9 → now 15 / +6 STR modifier (+13 score) (the item sets it to 21) · Powered Armoring Mk VI while installed
 STR · attack +7
-  ↳ hover maneuver.General.Strength.attack: Without tweaks or effects: +1 → now +7 / +13 STR 21 (powered 21) (the item sets it to 21) · Powered Armoring Mk VI while installed
+  ↳ hover maneuver.General.Strength.attack: Without tweaks or effects: +1 → now +7 / +6 STR modifier (+13 score) (the item sets it to 21) · Powered Armoring Mk VI while installed
 Dice come from the class table at your level; save DCs are calculated here as 8 + proficiency + your best eligible ability modifier (SW5E's site does not compute superiority).
 General maneuvers (1)
 Precision Attack PHB

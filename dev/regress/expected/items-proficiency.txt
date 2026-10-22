@@ -429,17 +429,17 @@ Intelligence
 13
   ↳ hover abilityScores.Intelligence.value: Without tweaks or effects: 10 → now 13 / +3 INT (the item sets it to 13) · Intuitive Facial Prosthesis while installed
 (Not proficient) Saving throw+1
-  ↳ hover abilityScores.Intelligence.savingThrow.modifier: Without tweaks or effects: 0 → now 1 / +3 INT (the item sets it to 13) · Intuitive Facial Prosthesis while installed
+  ↳ hover abilityScores.Intelligence.savingThrow.modifier: Without tweaks or effects: 0 → now 1 / +1 INT modifier (+3 score) (the item sets it to 13) · Intuitive Facial Prosthesis while installed
 (Proficient) Investigation+3
-  ↳ hover abilityScores.Intelligence.skills.0.modifier: Without tweaks or effects: 0 → now 3 / +3 INT (the item sets it to 13) · Intuitive Facial Prosthesis while i… [265 chars #543defde]
+  ↳ hover abilityScores.Intelligence.skills.0.modifier: Without tweaks or effects: 0 → now 3 / +1 INT modifier (+3 score) (the item sets it to 13) · Intuitive Facia… [285 chars #bc32e571]
 (Not proficient) Lore+2
-  ↳ hover abilityScores.Intelligence.skills.1.modifier: Without tweaks or effects: 0 → now 2 / +3 INT (the item sets it to 13) · Intuitive Facial Prosthesis while i… [242 chars #fce786b9]
+  ↳ hover abilityScores.Intelligence.skills.1.modifier: Without tweaks or effects: 0 → now 2 / +1 INT modifier (+3 score) (the item sets it to 13) · Intuitive Facia… [262 chars #b16fbca7]
 (Not proficient) Nature+2
-  ↳ hover abilityScores.Intelligence.skills.2.modifier: Without tweaks or effects: 0 → now 2 / +3 INT (the item sets it to 13) · Intuitive Facial Prosthesis while i… [244 chars #9f50b469]
+  ↳ hover abilityScores.Intelligence.skills.2.modifier: Without tweaks or effects: 0 → now 2 / +1 INT modifier (+3 score) (the item sets it to 13) · Intuitive Facia… [264 chars #040c0cd5]
 (Proficient) Piloting+3
-  ↳ hover abilityScores.Intelligence.skills.3.modifier: Without tweaks or effects: 0 → now 3 / +3 INT (the item sets it to 13) · Intuitive Facial Prosthesis while i… [223 chars #740a4769]
+  ↳ hover abilityScores.Intelligence.skills.3.modifier: Without tweaks or effects: 0 → now 3 / +1 INT modifier (+3 score) (the item sets it to 13) · Intuitive Facia… [243 chars #f9a6dc26]
 (Not proficient) Technology+2
-  ↳ hover abilityScores.Intelligence.skills.4.modifier: Without tweaks or effects: 0 → now 2 / +3 INT (the item sets it to 13) · Intuitive Facial Prosthesis while i… [248 chars #c2da1c8c]
+  ↳ hover abilityScores.Intelligence.skills.4.modifier: Without tweaks or effects: 0 → now 2 / +1 INT modifier (+3 score) (the item sets it to 13) · Intuitive Facia… [268 chars #0848d7a2]
 base 10 · +3 from Intuitive Facial Prosthesis
 WIS
 Wisdom
@@ -481,29 +481,29 @@ Skill | Ability | Bonus | Passive | Proficiency |
   ↳ hover abilityScores.Charisma.skills.1.modifier: Without tweaks or effects: 1 → now 3 / Proficient Intimidation · Soldier background skill tweak
   ↳ hover abilityScores.Charisma.skills.1.modifier: Without tweaks or effects: 1 → now 3 / Proficient Intimidation · Soldier background skill tweak
 (Proficient) Investigation | INT | +3 | 13 | Proficient |
-  ↳ hover abilityScores.Intelligence.skills.0.modifier: Without tweaks or effects: 0 → now 3 / +3 INT (the item sets it to 13) · Intuitive Facial Prosthesis while i… [265 chars #543defde]
-  ↳ hover abilityScores.Intelligence.skills.0.modifier: Without tweaks or effects: 0 → now 3 / +3 INT (the item sets it to 13) · Intuitive Facial Prosthesis while i… [265 chars #543defde]
+  ↳ hover abilityScores.Intelligence.skills.0.modifier: Without tweaks or effects: 0 → now 3 / +1 INT modifier (+3 score) (the item sets it to 13) · Intuitive Facia… [285 chars #bc32e571]
+  ↳ hover abilityScores.Intelligence.skills.0.modifier: Without tweaks or effects: 0 → now 3 / +1 INT modifier (+3 score) (the item sets it to 13) · Intuitive Facia… [285 chars #bc32e571]
 (Not proficient) Lore | INT | +2 | 12 | — |
-  ↳ hover abilityScores.Intelligence.skills.1.modifier: Without tweaks or effects: 0 → now 2 / +3 INT (the item sets it to 13) · Intuitive Facial Prosthesis while i… [242 chars #fce786b9]
-  ↳ hover abilityScores.Intelligence.skills.1.modifier: Without tweaks or effects: 0 → now 2 / +3 INT (the item sets it to 13) · Intuitive Facial Prosthesis while i… [242 chars #fce786b9]
+  ↳ hover abilityScores.Intelligence.skills.1.modifier: Without tweaks or effects: 0 → now 2 / +1 INT modifier (+3 score) (the item sets it to 13) · Intuitive Facia… [262 chars #b16fbca7]
+  ↳ hover abilityScores.Intelligence.skills.1.modifier: Without tweaks or effects: 0 → now 2 / +1 INT modifier (+3 score) (the item sets it to 13) · Intuitive Facia… [262 chars #b16fbca7]
 (Not proficient) Medicine | WIS | +1 | 11 | — |
 (Not proficient) Nature | INT | +2 | 12 | — |
-  ↳ hover abilityScores.Intelligence.skills.2.modifier: Without tweaks or effects: 0 → now 2 / +3 INT (the item sets it to 13) · Intuitive Facial Prosthesis while i… [244 chars #9f50b469]
-  ↳ hover abilityScores.Intelligence.skills.2.modifier: Without tweaks or effects: 0 → now 2 / +3 INT (the item sets it to 13) · Intuitive Facial Prosthesis while i… [244 chars #9f50b469]
+  ↳ hover abilityScores.Intelligence.skills.2.modifier: Without tweaks or effects: 0 → now 2 / +1 INT modifier (+3 score) (the item sets it to 13) · Intuitive Facia… [264 chars #040c0cd5]
+  ↳ hover abilityScores.Intelligence.skills.2.modifier: Without tweaks or effects: 0 → now 2 / +1 INT modifier (+3 score) (the item sets it to 13) · Intuitive Facia… [264 chars #040c0cd5]
 (Expertise) Perception | WIS | +5 | 15 | Expertise |
 (Not proficient) Performance | CHA | +1 | 11 | — |
 (Proficient) Persuasion | CHA | +3 | 13 | Proficient |
   ↳ hover abilityScores.Charisma.skills.3.modifier: Without tweaks or effects: 1 → now 3 / Proficient Persuasion · Zabrak Coercive (chose Persuasion) tweak / proficient Persuasion: proficient · Coercive Zabrak trait
   ↳ hover abilityScores.Charisma.skills.3.modifier: Without tweaks or effects: 1 → now 3 / Proficient Persuasion · Zabrak Coercive (chose Persuasion) tweak / proficient Persuasion: proficient · Coercive Zabrak trait
 (Proficient) Piloting | INT | +3 | 13 | Proficient |
-  ↳ hover abilityScores.Intelligence.skills.3.modifier: Without tweaks or effects: 0 → now 3 / +3 INT (the item sets it to 13) · Intuitive Facial Prosthesis while i… [223 chars #740a4769]
-  ↳ hover abilityScores.Intelligence.skills.3.modifier: Without tweaks or effects: 0 → now 3 / +3 INT (the item sets it to 13) · Intuitive Facial Prosthesis while i… [223 chars #740a4769]
+  ↳ hover abilityScores.Intelligence.skills.3.modifier: Without tweaks or effects: 0 → now 3 / +1 INT modifier (+3 score) (the item sets it to 13) · Intuitive Facia… [243 chars #f9a6dc26]
+  ↳ hover abilityScores.Intelligence.skills.3.modifier: Without tweaks or effects: 0 → now 3 / +1 INT modifier (+3 score) (the item sets it to 13) · Intuitive Facia… [243 chars #f9a6dc26]
 (Not proficient) Sleight of Hand | DEX | +3 | 13 | — |
 (Expertise) Stealth | DEX | +7 | 17 | Expertise |
 (Not proficient) Survival | WIS | +1 | 11 | — |
 (Not proficient) Technology | INT | +2 | 12 | — |
-  ↳ hover abilityScores.Intelligence.skills.4.modifier: Without tweaks or effects: 0 → now 2 / +3 INT (the item sets it to 13) · Intuitive Facial Prosthesis while i… [248 chars #c2da1c8c]
-  ↳ hover abilityScores.Intelligence.skills.4.modifier: Without tweaks or effects: 0 → now 2 / +3 INT (the item sets it to 13) · Intuitive Facial Prosthesis while i… [248 chars #c2da1c8c]
+  ↳ hover abilityScores.Intelligence.skills.4.modifier: Without tweaks or effects: 0 → now 2 / +1 INT modifier (+3 score) (the item sets it to 13) · Intuitive Facia… [268 chars #0848d7a2]
+  ↳ hover abilityScores.Intelligence.skills.4.modifier: Without tweaks or effects: 0 → now 2 / +1 INT modifier (+3 score) (the item sets it to 13) · Intuitive Facia… [268 chars #0848d7a2]
 
 ## Sheet: Weapons & Attacks
 Weapon | To hit | Damage | Ability | Type | Properties |
@@ -533,9 +533,9 @@ Physical maneuver DC
 DEX · attack +5
 Mental maneuver DC
 11
-  ↳ hover maneuver.Mental.Intelligence.dc: Without tweaks or effects: 10 → now 11 / +3 INT (the item sets it to 13) · Intuitive Facial Prosthesis while installed
+  ↳ hover maneuver.Mental.Intelligence.dc: Without tweaks or effects: 10 → now 11 / +1 INT modifier (+3 score) (the item sets it to 13) · Intuitive Facial Prosthesis while installed
 INT · attack +3
-  ↳ hover maneuver.Mental.Intelligence.attack: Without tweaks or effects: +2 → now +3 / +3 INT (the item sets it to 13) · Intuitive Facial Prosthesis while installed
+  ↳ hover maneuver.Mental.Intelligence.attack: Without tweaks or effects: +2 → now +3 / +1 INT modifier (+3 score) (the item sets it to 13) · Intuitive Facial Prosthesis while installed
 General maneuver DC
 13
 DEX · attack +5
