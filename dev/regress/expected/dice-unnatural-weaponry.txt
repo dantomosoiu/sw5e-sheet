@@ -249,7 +249,7 @@ Scholar Test (Claude)
 Bothan · Scholar (Geneticist Pursuit) 3
 Level 3 Background: Noble Balanced Neutral Proficiency +2 [Add a picture]
 900 XP level 4 at 2,700 (1,800 to go)
-Still to choose (6): Scholar skills (3 more) · Scholar tool · Discoveries (3 more) · background skills (2 more) · background tool · background languages
+Still to choose (7): Scholar skills (3 more) · Scholar tool · Discoveries (3 more) · background skills (2 more) · background tool · background languages · Genesplicer's Methods: skill proficiency
 
 ## Sheet: Combat & Vitals
 Armor Class

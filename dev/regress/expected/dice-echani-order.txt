@@ -223,7 +223,7 @@ Human · Monk (Echani Order) 11, Operative 2
 Level 13 Background: Noble Lawful Light Proficiency +5 [Add a picture]
 6,500 XP level 14 at 140,000 (133,500 to go)
 Level 13 usually needs 120,000 XP (you have 6,500).
-Still to choose (17): Monk skills (2 more) · Monk 8th level: ability score improvement or feat · Monk 10th level: ability score improvement or feat · Monastic V… [596 chars #4ea3cd32]
+Still to choose (18): Monk skills (2 more) · Monk 8th level: ability score improvement or feat · Monk 10th level: ability score improvement or feat · Monastic V… [625 chars #c55c918a]
 
 ## Sheet: Combat & Vitals
 Armor Class

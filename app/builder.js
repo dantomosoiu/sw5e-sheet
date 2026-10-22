@@ -360,8 +360,9 @@ function bdFeatLanguages(raw) {
 /**
  * Languages a class or archetype feature teaches at the class's level: "You learn your choice of two languages" (Silver
  * Tongue), "You learn one language of your choice… You learn an additional language… at 11th level" (Mystical
- * Erudition): [{ name (the feature), from ('Feature: Silver Tongue'), sentence, count, options, chosen }]. An
- * "Alternatively, you learn one language" is a choice instead of something else: not asked.
+ * Erudition): [{ name (the feature), from ('Feature: Silver Tongue'), sentence, count, options, chosen, alt }]. "You gain
+ * proficiency in one of the following skills… Alternatively, you learn one language of your choice" (Praetorian's Bonus
+ * Proficiency): alt, the language instead of the feature's other choice (either one answers it).
  */
 function bdFeatureLanguages(raw) {
   const out = [];
@@ -373,12 +374,13 @@ function bdFeatureLanguages(raw) {
     for (const f of feats.filter((x) => x.level <= lv)) {
       const t = String(f.text || '').replace(/\s+/g, ' ');
       const sentence = (/[^.]*\blanguages?\b[^.]*\b(?:of your choice|your choice of)\b[^.]*/i.exec(t) || [])[0];
-      if (!sentence || /^\s*alternatively\b/i.test(sentence)) continue;
+      if (!sentence) continue;
+      const alt = /^\s*alternatively\b/i.test(sentence);
       const two = /\byour choice of (one|two|three|a) languages?\b/i.exec(sentence);
       const lc = two ? { count: prNum(two[1]) || 1, options: null } : prLanguageChoices(sentence);
       if (!lc) continue;
       const more = [...t.matchAll(/\byou learn (?:an additional|another|one more) language\b[^.]*?\bat (\d+)(?:st|nd|rd|th) level/gi)].filter((x) => lv >= Number(x[1])).length;
-      out.push({ name: f.name, from: `Feature: ${f.name}`, sentence: sentence.trim(), count: lc.count + more, options: lc.options || prLanguages(bdModules()), chosen: BD_KINDS.lang.get(raw, `Feature: ${f.name}`) });
+      out.push({ name: f.name, from: `Feature: ${f.name}`, sentence: sentence.trim(), count: lc.count + more, options: lc.options || prLanguages(bdModules()), chosen: BD_KINDS.lang.get(raw, `Feature: ${f.name}`), alt });
     }
   }
   return out;
@@ -388,10 +390,35 @@ function bdFeatureLanguages(raw) {
  * (Spiritual Techcaster) is the +1 picker's choice, so its ability ask isn't asked again.
  */
 const bdFeatAskFilter = (text) => (/\bincrease the chosen ability score\b/i.test(String(text || '')) ? (a) => !(a.options && a.options.length && a.options.every((o) => PR_ABILITIES.includes(o))) : null);
-/** A class feature's language picker, for its card. */
-function bdFeatureLanguagePicks(m, name) {
+/** A class feature's language picker, for its card (an alternative: only while the feature's other choice isn't made). */
+function bdFeatureLanguagePicks(m, name, asks = []) {
   const x = bdFeatureLanguages(m.raw).find((l) => l.name === name);
-  return x ? bdPickList({ title: 'Languages', from: x.sentence, count: x.count, chosen: x.chosen, options: x.options, kind: 'lang', arg: x.from, word: 'a language' }) : '';
+  if (!x || (x.alt && !x.chosen.length && asks.some((a) => a.chosen.length))) return '';
+  return bdPickList({ title: x.alt ? 'Or instead: a language' : 'Languages', from: x.sentence, count: x.count, chosen: x.chosen, options: x.options, kind: 'lang', arg: x.from, word: 'a language' });
+}
+/**
+ * What the class and archetype features still ask (classes.js asks: Silver Tongue's Charisma skill, a tool, weapons, a
+ * damage type, an ability), for "Still to choose": [{ name, text }]. A feature whose choices a Classes & Progression
+ * picker makes (a list, maneuvers, a slot, Expertise) is listed there already; an alternative language (Praetorian)
+ * answers the feature's other choice.
+ */
+function bdFeatureOpenAsks(m) {
+  const out = [];
+  const langs = bdFeatureLanguages(m.raw);
+  for (const k of arr(m.raw.classes)) {
+    const cref = bdClassRef(k.name);
+    const aref = k.archetype && k.archetype.name ? arr(bdModules().archetypes).find((a) => a.name === k.archetype.name) : null;
+    const feats = (cref ? clsTextFeatures(cref.classFeatureText, k.name, 'Class') : []).concat(aref ? clsTextFeatures(aref.text, aref.name, 'Archetype') : []);
+    for (const f of feats.filter((x) => x.level <= num(k.levels))) {
+      const card = { name: f.name, text: f.text, source: f.source, sourceName: f.sourceName };
+      if (featurePickers(m, card)) continue;
+      const lang = langs.find((l) => l.name === f.name && l.alt);
+      if (lang && lang.chosen.length) continue;
+      const open = openAsks(featureAsks(m, card));
+      for (const a of open) out.push({ name: f.name, text: `${a.label.replace(/^[A-Z](?=[a-z])/, (c) => c.toLowerCase())}${lang ? ' or a language' : ''}${a.count - a.chosen.length > 1 ? ` (${a.count - a.chosen.length} more)` : ''}` });
+    }
+  }
+  return out;
 }
 /** A feat's language picker, for its card. */
 function bdFeatLanguagePicks(m, name) {
@@ -1206,7 +1233,8 @@ function bdOpenChoices(m) {
   // What the items in use ask (a side effect's score, Adapted Armor's damage type, a weapon of your choice): in the
   // item's note.
   for (const e of arr(m.effects).filter((x) => x.kind === 'item' && x.active)) for (const c of arr(e.needsChoice)) add('equipment', `${e.name}: ${c}`);
-  for (const x of bdFeatureLanguages(raw)) if (x.chosen.length < x.count) add('classes', `${x.name}: languages${more(x.count - x.chosen.length)}`);
+  for (const x of bdFeatureLanguages(raw).filter((l) => !l.alt)) if (x.chosen.length < x.count) add('classes', `${x.name}: languages${more(x.count - x.chosen.length)}`);
+  for (const x of bdFeatureOpenAsks(m)) add('classes', `${x.name}: ${x.text}`);
   for (const x of bdFeatLanguages(raw)) if (x.chosen.length < x.count) add('feats', `${x.name}: languages${more(x.count - x.chosen.length)}`);
   const sp = bdSpeciesRef(raw);
   if (prIsHalfHuman(sp) && !sp.halfOf) add('species', 'non-human half');

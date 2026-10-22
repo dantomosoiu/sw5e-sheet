@@ -204,7 +204,7 @@ Human · Monk 5, Engineer 3
 Level 8 Background: Noble Lawful Light Proficiency +3 [Add a picture]
 6,500 XP level 9 at 48,000 (41,500 to go)
 Level 8 usually needs 34,000 XP (you have 6,500).
-Still to choose (17): Monk skills (2 more) · Monk 4th level: ability score improvement or feat · Monk order · Monastic Vows (2 more) · Engineer multiclass skill… [547 chars #7cf7ae49]
+Still to choose (18): Monk skills (2 more) · Monk 4th level: ability score improvement or feat · Monk order · Monastic Vows (2 more) · Engineer multiclass skill… [576 chars #c2e5f952]
 
 ## Sheet: Combat & Vitals
 Armor Class
