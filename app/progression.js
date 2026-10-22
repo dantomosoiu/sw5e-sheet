@@ -254,6 +254,58 @@ function prSpeciesIncreases(speciesRef) {
   }));
 }
 
+// ------------------------------------------------------------- half-human
+const prLetters = (s) => String(s || '').toLowerCase().replace(/[^a-z]/g, '');
+/** Edit distance of two short strings (SW5E's Half-Human table misspells some species: "Advosze", "Kalloran"). */
+function prDistance(a, b) {
+  const d = Array.from({ length: a.length + 1 }, (_, i) => [i, ...Array(b.length).fill(0)]);
+  for (let j = 1; j <= b.length; j++) d[0][j] = j;
+  for (let i = 1; i <= a.length; i++) for (let j = 1; j <= b.length; j++) d[i][j] = Math.min(d[i - 1][j] + 1, d[i][j - 1] + 1, d[i - 1][j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1));
+  return d[a.length][b.length];
+}
+/** A half-human: its entry holds the Half-Human table (every other species' holds an empty one). */
+const prIsHalfHuman = (ref) => !!ref && Object.keys(ref.halfHumanTableEntries || {}).length > 0;
+/** The species a half-human can have as the non-human half: every species but humans and droids. */
+const prHalfHumanHalves = (modules) => prArr(modules && modules.species).filter((s) => s.name && !/^(?:Human|Half-human)$/i.test(s.name) && !/^Droid\b/i.test(s.name));
+/**
+ * The traits a half-human doesn't get from `other` (the Half-Human table: "Arkanian: Darkvision Infrared Sight Sunlight
+ * Sensitivity"): { entry (the table's words), lost: [the other species' trait names it names] }. The table's species
+ * names have typos ("Ssi Ruu", "Ho'Din", "Sith" for Sith Pureblood): matched by letters, within two, or as the start of
+ * the name; its trait names too ("Naturally Stealth", "Carapace" for Hardened Carapace, "Darkvision" for Superior
+ * Darkvision). Some name a trait the species' data doesn't have (Muun: "Second Heart"; it has Three Hearts): lost [].
+ */
+function prHalfHumanLost(table, other) {
+  const want = prLetters(other && other.name);
+  const key = Object.keys(table || {}).find((k) => prLetters(k) === want)
+    || Object.keys(table || {}).find((k) => prDistance(prLetters(k), want) <= 2 || (prLetters(k).length >= 4 && want.startsWith(prLetters(k))));
+  const entry = key ? String(table[key]) : '';
+  const e = entry.toLowerCase();
+  const lost = !e ? [] : prArr(other && other.traits).map((t) => t.name)
+    .filter((n) => !/^(?:Ability Score Increase|Age|Alignment|Size|Speed|Languages?)$/i.test(n) && (e.includes(n.toLowerCase()) || n.toLowerCase().endsWith(e) || prDistance(prLetters(n), prLetters(e)) <= 2));
+  return { entry, lost };
+}
+/**
+ * The species as its traits apply. A half-human ("Half-humans gain the Defiant special trait from their human half.
+ * They also gain the special traits from their non-human half, except for those trait(s) mentioned in the Half-Human
+ * table"; size, speed and languages "of your non-human half") with its other half in species.halfHumanOf: Half-human's
+ * own rule traits and Defiant, the other half's Size and Speed, its traits but the lost ones; its size and language.
+ * Any other species: SW5E's entry as is.
+ */
+function prSpeciesOf(modules, species) {
+  const ref = prArr(modules && modules.species).find((s) => s.name === (species && species.name)) || null;
+  const other = prIsHalfHuman(ref) && species.halfHumanOf ? prHalfHumanHalves(modules).find((s) => s.name === species.halfHumanOf) : null;
+  if (!other) return ref;
+  const { entry, lost } = prHalfHumanLost(ref.halfHumanTableEntries, other);
+  const rule = /^(?:Ability Score Increase|Age|Alignment|Size|Speed|Languages?)$/i;
+  const own = (n) => prArr(ref.traits).filter((t) => new RegExp(`^(?:${n})$`, 'i').test(t.name));
+  const theirs = (n) => prArr(other.traits).filter((t) => new RegExp(`^(?:${n})$`, 'i').test(t.name));
+  return {
+    ...ref, size: other.size, language: other.language, halfOf: other.name, lost, lostEntry: entry,
+    traits: own('Ability Score Increase|Age|Alignment').concat(theirs('Size|Speed'), prArr(ref.traits).filter((t) => !rule.test(t.name)),
+      prArr(other.traits).filter((t) => !rule.test(t.name) && !lost.includes(t.name)), own('Languages?')),
+  };
+}
+
 // ------------------------------------------------------------- starting equipment
 /** A class equipment line "- *(a)* mesh armor or *(b)* a combat suit, …" → [{ label: 'a', text }] (one entry, label '', when it has no options). */
 function prEquipmentOptions(line) {
@@ -363,6 +415,6 @@ if (typeof module !== 'undefined') {
     PR_ABILITIES, PR_STANDARD_ARRAY, PR_POINT_COST, PR_POINTS, prSkillChoice, prMulticlassRules, prMulticlassUnmet, prToolChoices,
     prLanguageChoices, prLanguages, prXpTable, prAsiLevels, prTableFeatures, prAddLevel, prAsiSlots, prAsiIncreases, prFeatAbilities, prFeatChosenAbilityUse, prIsFeat,
     prPointBuyCost, prSpeciesIncreases, prList, prEquipmentOptions, prEquipmentItems, prResolveEquipment, prCharacteristics,
-    prPackContents, prPackCost,
+    prPackContents, prPackCost, prSpeciesOf, prHalfHumanLost, prHalfHumanHalves, prIsHalfHuman,
   };
 }

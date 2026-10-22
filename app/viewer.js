@@ -1922,7 +1922,7 @@ function featureEffectsUncached(editedRaw) {
   // Species traits' proficiencies ("You have proficiency in the Survival skill"; Coercive's "Persuasion or Intimidation
   // (your choice)" from the trait's notes): SW5E's engine applies none. Their other numbers (Wookiee Hide's AC,
   // Toughness) aren't applied here yet; defenses and senses are listed from the text (defensesOf).
-  const sp = editedRaw.species && editedRaw.species.name ? rulesModule('species').find((x) => x.name === editedRaw.species.name) : null;
+  const sp = editedRaw.species && editedRaw.species.name && state.rules ? bdSpeciesRef(editedRaw) : null; // a half-human's: with its other half's traits
   for (let tr of arr(sp && sp.traits)) {
     if (/^(?:Ability Score Increase|Age|Alignment|Size|Speed|Languages?)$/i.test(tr.name)) continue;
     const note = featureNoteOf(editedRaw, tr.name);
@@ -2000,7 +2000,7 @@ const armorAllows = (when, st) => !when || ((!when.noArmor || !st.armor || (when
 function withSpeciesLanguage(raw) {
   const sp = raw.species;
   if (!sp || !sp.name || sp.language || !state.rules) return raw;
-  const l = String((rulesModule('species').find((x) => x.name === sp.name) || {}).language || '');
+  const l = String((bdSpeciesRef(raw) || {}).language || ''); // a half-human: its non-human half's
   return l && !/varies|non-verbal/i.test(l) ? { ...raw, species: { ...sp, language: l } } : raw;
 }
 const stripTweaks = (raw) => ({ ...withSpeciesLanguage(raw), tweaks: {}, equipment: arr(raw.equipment).map(({ tweaks, ...it }) => it) });
@@ -4099,7 +4099,7 @@ function defensesOf(m) {
     add(fe.defenses, from);
     add(fe.advantage.map((a) => ({ kind: 'advantage', text: ADV_TEXT(a) })), from);
   };
-  const sp = m.raw.species && m.raw.species.name ? rulesModule('species').find((x) => x.name === m.raw.species.name) : null;
+  const sp = m.raw.species && m.raw.species.name && state.rules ? bdSpeciesRef(m.raw) : null;
   const traits = sp && arr(sp.traits).length ? sp.traits.map((t) => ({ name: t.name, text: bdTraitText(m.raw, t) })) : arr(m.speciesFeatures);
   for (const f of traits.concat(arr(m.feats))) fromText(f.text || f.description, f.name);
   // Equipment: enhanced items in use, worn weapons/armor, and other gear carried (a jetpack's flying
@@ -4332,7 +4332,7 @@ const classCasting = (m) => (state.rules ? arr(m.raw.classes).flatMap((k, idx) =
 /** A species trait that rules out a kind of powers: { force: 'Force-Insensitive' | false, tech: … }. */
 function speciesCannot(m) {
   const out = { force: false, tech: false };
-  const sp = m.raw.species && rulesModule('species').find((x) => x.name === m.raw.species.name);
+  const sp = m.raw.species && state.rules ? bdSpeciesRef(m.raw) : null;
   for (const tr of arr(sp && sp.traits)) {
     const mm = /\byou can ?not use (force|tech) powers\b/i.exec(tr.description || '');
     if (mm) out[mm[1].toLowerCase()] = tr.name;
@@ -5266,7 +5266,7 @@ function featureAsks(m, f) {
   if (f.source === 'Species' && (/^(?:Ability Score Increase|Languages?)$/i.test(f.name)
     || !bdSpeciesTraitFeatures(m).some((t) => t.name === f.name))) return [];
   // A trait with options (Kiffar Heritage): the options come with the rules' trait (SW5E's feature text stops at its intro).
-  const trait = f.source === 'Species' ? arr((arr(bdModules().species).find((s) => s.name === (m.raw.species || {}).name) || {}).traits).find((t) => t.name === f.name && arr(t.options).length) : null;
+  const trait = f.source === 'Species' ? arr((bdSpeciesRef(m.raw) || {}).traits).find((t) => t.name === f.name && arr(t.options).length) : null;
   if (trait) f = { ...f, text: bdTraitFullText(trait) }; // eslint-disable-line no-param-reassign
   const k = arr(m.raw.classes).find((x) => x.name === f.sourceName || (x.archetype && x.archetype.name === f.sourceName));
   const asks = clsFeatureEffects(f.text || text, featureNoteOf(m.raw, f.name), {
@@ -5959,17 +5959,21 @@ function renderSpecies(m) {
   const name = m.raw.species.name;
   const ref = (m.refs.species || {})[name] || {};
   const img = arr(ref.imageUrls)[0];
+  const eff = state.rules ? bdSpeciesRef(m.raw) : null; // a half-human's: with its non-human half's
   // A trait with options SW5E's feature text leaves out (Nikto's Adaptation): the card shows them.
-  const withOptions = (f) => { const t = arr(ref.traits).concat(arr((rulesModule('species').find((s) => s.name === name) || {}).traits)).find((x) => x.name === f.name && arr(x.options).length); return t ? { ...f, text: bdTraitFullText(t) } : f; };
+  const withOptions = (f) => { const t = arr(ref.traits).concat(arr(eff && eff.traits)).find((x) => x.name === f.name && arr(x.options).length); return t ? { ...f, text: bdTraitFullText(t) } : f; };
+  // A half-human's traits from its non-human half (SW5E lists Half-human's own only).
+  const inherited = eff && eff.halfOf ? arr(eff.traits).filter((t) => !/^(?:Ability Score Increase|Age|Alignment|Size|Speed|Languages?)$/i.test(t.name) && !m.speciesFeatures.some((f) => f.name === t.name))
+    .map((t) => featureCard({ name: t.name, text: bdTraitFullText(t), source: 'Species', sourceName: eff.halfOf }, m)) : [];
   const traits = m.speciesFeatures.length
-    ? m.speciesFeatures.map((f) => featureCard(withOptions(f), m))
+    ? m.speciesFeatures.map((f) => featureCard(withOptions(f), m)).concat(inherited)
     : arr(ref.traits).map((t) => card({ title: t.name, body: md(t.description) }));
   const asi = m.raw.species.abilityScoreImprovement;
   const asiText = asi && typeof asi === 'object' && Object.keys(asi).length ? Object.entries(asi).map(([a, n]) => `${a} ${signed(n)}`).join(', ') : '';
   return `<div class="hero" style="margin-bottom:12px">
       ${img ? `<div class="portrait"><img data-src="${esc(img)}" alt=""></div>` : ''}
       <dl class="kv">
-        ${[['Size', ref.size], ['Homeworld', ref.homeworld], ['Language', ref.language], ['Average height', ref.heightAverage && `${ref.heightAverage} ${ref.heightRollMod || ''}`],
+        ${[['Non-human half', eff && eff.halfOf], ['Size', (eff && eff.halfOf && eff.size) || ref.size], ['Homeworld', ref.homeworld], ['Language', (eff && eff.halfOf && eff.language) || ref.language], ['Average height', ref.heightAverage && `${ref.heightAverage} ${ref.heightRollMod || ''}`],
           ['Average weight', ref.weightAverage && `${ref.weightAverage} ${ref.weightRollMod || ''}`], ['Skin', ref.skinColorOptions], ['Hair', ref.hairColorOptions], ['Eyes', ref.eyeColorOptions],
           ['Distinctions', ref.distinctions], ['Chosen increase', asiText]]
           .filter(([, v]) => nonEmpty(v)).map(([k, v]) => `<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join('') || '<dt>Species</dt><dd>' + esc(name) + '</dd>'}

@@ -26,6 +26,9 @@ const chPw = {
   get pwMulticlassMax() { return typeof pwMulticlassMax !== 'undefined' ? pwMulticlassMax : require('./powers.js').pwMulticlassMax; }, // eslint-disable-line no-undef
 };
 
+// progression.js loads after this file too: a half-human's species with its non-human half's traits (prSpeciesOf).
+const chSpeciesOf = (modules, species) => (typeof prSpeciesOf !== 'undefined' ? prSpeciesOf : require('./progression.js').prSpeciesOf)(modules, species || {}); // eslint-disable-line no-undef
+
 /** What can be picked: SW5E module, words used in rule text, whether one pick may be taken twice. */
 const CH_KINDS = {
   fightingStyles: { module: 'fightingStyles', word: 'fighting style', title: 'Fighting style' },
@@ -221,7 +224,7 @@ function choiceSlots(raw, ctx) {
   const level = classes.reduce((t, k) => t + (Number(k.levels) || 0), 0);
   const baseCasting = ctx.casting || { force: -1, tech: -1 };
   // The species' size and creature type ("Your creature type is droid"; humanoid unless a Type trait says otherwise).
-  const spRef = raw.species && chArr(modules.species).find((x) => x.name === raw.species.name);
+  const spRef = raw.species && chSpeciesOf(modules, raw.species);
   const typeTrait = spRef && chArr(spRef.traits).find((t) => /^Type$/i.test(t.name));
   const pctx = {
     classes: Object.fromEntries(classes.map((k) => [k.name, Number(k.levels) || 0])), level, casting: baseCasting, scores: ctx.scores || null,
@@ -335,7 +338,7 @@ function choiceSlots(raw, ctx) {
 
   // 4. Species traits ("You know the *ion blast* at-will tech power"; "When you reach 3rd level, you learn and
   // can cast the *repair droid* tech power once per long rest").
-  const sp = raw.species && chArr(modules.species).find((x) => x.name === raw.species.name);
+  const sp = raw.species && chSpeciesOf(modules, raw.species);
   for (const tr of chArr(sp && sp.traits)) {
     // A trait with options (Kiffar Heritage's Sage: "You learn and can cast the *telemetry* force power once per long
     // rest"; sw5e-data.js adds them from the books): only the one chosen in its notes.
@@ -502,7 +505,7 @@ function choiceSlots(raw, ctx) {
   const maneuversKnown = new Set([...classManeuvers, ...slots.filter((s) => s.kind === 'maneuvers').flatMap((s) => s.picks.map((p) => p.name))]);
   const powersKnown = chArr(ctx.classPowerNames).concat(slots.filter((x) => /owers$/.test(x.kind) && !x.castOnly).flatMap((x) => x.picks.map((q) => q.name)));
   // "Force-Insensitive: You can not use force powers…" / "Tech-Impaired: You can not use tech powers…".
-  const sp0 = raw.species && chArr(modules.species).find((x) => x.name === raw.species.name);
+  const sp0 = raw.species && chSpeciesOf(modules, raw.species);
   const cannot = { force: false, tech: false };
   for (const tr of chArr(sp0 && sp0.traits)) {
     const mm = /\byou can ?not use (force|tech) powers\b/i.exec(tr.description || '');
