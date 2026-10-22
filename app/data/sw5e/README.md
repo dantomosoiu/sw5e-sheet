@@ -15,7 +15,9 @@ belongs to Lucasfilm. The sheet isn't affiliated with SW5E, Lucasfilm, Disney or
 - `rules.json`: classes, archetypes, features, maneuvers, feats, fighting styles and masteries, lightsaber forms,
   weapon focuses and supremacies, class/multiclass/splashclass improvements, character advancement, powers,
   conditions, skills, reference tables, backgrounds, species, weapon and armor properties, and the equipment packs
-  (read from the handbook's Equipment chapter).
+  (read from the handbook's Equipment chapter). Species traits whose options SW5E's data cuts off after "Choose one of
+  the following…" (Kiffar Heritage, Nikto's Adaptation, Theelin's Mutation) get them as `options`, read from the
+  books' Species chapters.
 - `catalog.json`: equipment and enhanced items.
 - `books/`: the Player's Handbook, Starships of the Galaxy, Wretched Hives, Expanded Content and Variant Rules,
   one markdown file per chapter (`books/index.json` lists them).

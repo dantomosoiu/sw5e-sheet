@@ -210,7 +210,7 @@ Berserker Test (Claude)
 Human · Berserker 5
 Level 5 Background: Soldier Balanced Neutral Proficiency +3 [Add a picture]
 6,500 XP level 6 at 14,000 (7,500 to go)
-Still to choose (8): Berserker 4th level: ability score improvement or feat · Berserker approach · Berserker Instincts (2 more) · background skills (2 more) · b… [260 chars #0cb85ebe]
+Still to choose (11): Berserker 4th level: ability score improvement or feat · Berserker approach · Berserker Instincts (2 more) · background skills (2 more) · … [378 chars #3889a340]
 
 ## Sheet: Combat & Vitals
 Armor Class

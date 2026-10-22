@@ -1923,10 +1923,12 @@ function featureEffectsUncached(editedRaw) {
   // (your choice)" from the trait's notes): SW5E's engine applies none. Their other numbers (Wookiee Hide's AC,
   // Toughness) aren't applied here yet; defenses and senses are listed from the text (defensesOf).
   const sp = editedRaw.species && editedRaw.species.name ? rulesModule('species').find((x) => x.name === editedRaw.species.name) : null;
-  for (const tr of arr(sp && sp.traits)) {
+  for (let tr of arr(sp && sp.traits)) {
     if (/^(?:Ability Score Increase|Age|Alignment|Size|Speed|Languages?)$/i.test(tr.name)) continue;
     const note = featureNoteOf(editedRaw, tr.name);
-    const fe = clsFeatureEffects(tr.description || '', note, { level: arr(editedRaw.classes).reduce((t, k) => t + num(k.levels), 0), isWeapon: isWeaponName });
+    // A trait with options (Nikto's Adaptation): clsFeatureEffects reads the chosen one; the rest below reads its text.
+    const fe = clsFeatureEffects(bdTraitFullText(tr), note, { level: arr(editedRaw.classes).reduce((t, k) => t + num(k.levels), 0), isWeapon: isWeaponName });
+    tr = { ...tr, description: bdTraitText(editedRaw, tr) };
     const profs ={ ...fe, mods: [], advantage: [], defenses: [], critRange: 0, halfProf: false, unarmedStep: 0, unarmedDie: 0, unarmedFinesse: false };
     // "Your hit point maximum increases by 1, and it increases by 1 every time you gain a level" (Zabrak Toughness).
     const tough = /hit point maximum increases by (\d+),? and it increases by (\d+) every time you gain a level/i.exec(tr.description || '');
@@ -4098,7 +4100,7 @@ function defensesOf(m) {
     add(fe.advantage.map((a) => ({ kind: 'advantage', text: ADV_TEXT(a) })), from);
   };
   const sp = m.raw.species && m.raw.species.name ? rulesModule('species').find((x) => x.name === m.raw.species.name) : null;
-  const traits = sp && arr(sp.traits).length ? sp.traits.map((t) => ({ name: t.name, text: t.description })) : arr(m.speciesFeatures);
+  const traits = sp && arr(sp.traits).length ? sp.traits.map((t) => ({ name: t.name, text: bdTraitText(m.raw, t) })) : arr(m.speciesFeatures);
   for (const f of traits.concat(arr(m.feats))) fromText(f.text || f.description, f.name);
   // Equipment: enhanced items in use, worn weapons/armor, and other gear carried (a jetpack's flying
   // speed); not consumables, whose effects come from using them.
@@ -5242,7 +5244,8 @@ function featureNoteOf(raw, name) {
 function chosenInPicker(m, f) {
   const base = clsBaseName(f.name).toLowerCase();
   const res = state.rules ? choiceInfo(m) : null;
-  const slots = res ? res.slots.filter((s) => (s.feature && s.feature.toLowerCase() === base) || (s.species && String(s.from).toLowerCase().endsWith(`: ${base}`))) : [];
+  // A trait's given powers (Kiffar Heritage's Sage: telemetry) aren't a pick: its own choice stays in its card.
+  const slots = res ? res.slots.filter((s) => (s.feature && s.feature.toLowerCase() === base) || (s.species && !s.given && String(s.from).toLowerCase().endsWith(`: ${base}`))) : [];
   if (slots.length) return slots.flatMap((s) => s.picks.map((p) => p.name));
   for (const k of arr(m.raw.classes)) {
     if (base === archetypeFeature(k.name)) return k.archetype && k.archetype.name ? [k.archetype.name] : [];
@@ -5262,8 +5265,11 @@ function featureAsks(m, f) {
   if (!state.rules || !text) return [];
   if (f.source === 'Species' && (/^(?:Ability Score Increase|Languages?)$/i.test(f.name)
     || !bdSpeciesTraitFeatures(m).some((t) => t.name === f.name))) return [];
+  // A trait with options (Kiffar Heritage): the options come with the rules' trait (SW5E's feature text stops at its intro).
+  const trait = f.source === 'Species' ? arr((arr(bdModules().species).find((s) => s.name === (m.raw.species || {}).name) || {}).traits).find((t) => t.name === f.name && arr(t.options).length) : null;
+  if (trait) f = { ...f, text: bdTraitFullText(trait) }; // eslint-disable-line no-param-reassign
   const k = arr(m.raw.classes).find((x) => x.name === f.sourceName || (x.archetype && x.archetype.name === f.sourceName));
-  const asks = clsFeatureEffects(text, featureNoteOf(m.raw, f.name), {
+  const asks = clsFeatureEffects(f.text || text, featureNoteOf(m.raw, f.name), {
     level: k ? num(k.levels) : charLevel(m), pb: num(m.c.proficiencyBonus), row: k ? classRow(m.raw, k) : {}, isWeapon: isWeaponName,
   }).asks;
   // A choice that only comes with "If you already have this proficiency…" (Resilient Retainer): when that holds.
@@ -5948,8 +5954,10 @@ function renderSpecies(m) {
   const name = m.raw.species.name;
   const ref = (m.refs.species || {})[name] || {};
   const img = arr(ref.imageUrls)[0];
+  // A trait with options SW5E's feature text leaves out (Nikto's Adaptation): the card shows them.
+  const withOptions = (f) => { const t = arr(ref.traits).concat(arr((rulesModule('species').find((s) => s.name === name) || {}).traits)).find((x) => x.name === f.name && arr(x.options).length); return t ? { ...f, text: bdTraitFullText(t) } : f; };
   const traits = m.speciesFeatures.length
-    ? m.speciesFeatures.map((f) => featureCard(f, m))
+    ? m.speciesFeatures.map((f) => featureCard(withOptions(f), m))
     : arr(ref.traits).map((t) => card({ title: t.name, body: md(t.description) }));
   const asi = m.raw.species.abilityScoreImprovement;
   const asiText = asi && typeof asi === 'object' && Object.keys(asi).length ? Object.entries(asi).map(([a, n]) => `${a} ${signed(n)}`).join(', ') : '';

@@ -214,7 +214,7 @@ Wizard Check (local)
 Zabrak · Engineer (Armstech Engineering) 4
 Level 4 Background: Scientist Proficiency +2 [Add a picture]
 2,700 XP level 5 at 6,500 (3,800 to go)
-Still to choose (4): Armstech Modifications (4 more) · Engineer tech powers (10 more) · background skills · background tool
+Still to choose (6): Armstech Modifications (4 more) · Engineer tech powers (10 more) · background skills · background tool · Coercive: skill proficiency · Crafters: tool proficiency
 
 ## Sheet: Combat & Vitals
 Armor Class

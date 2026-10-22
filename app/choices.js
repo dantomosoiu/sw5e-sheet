@@ -337,7 +337,15 @@ function choiceSlots(raw, ctx) {
   // can cast the *repair droid* tech power once per long rest").
   const sp = raw.species && chArr(modules.species).find((x) => x.name === raw.species.name);
   for (const tr of chArr(sp && sp.traits)) {
-    addGrants(tr.description, { key: `Species: ${tr.name}`, from: `${sp.name}: ${tr.name}`, owner: null, species: true, lv: level, order: 0 }, { maneuvers: false });
+    // A trait with options (Kiffar Heritage's Sage: "You learn and can cast the *telemetry* force power once per long
+    // rest"; sw5e-data.js adds them from the books): only the one chosen in its notes.
+    let text = tr.description || '';
+    if (chArr(tr.options).length) {
+      const full = [text, ...tr.options.map((o) => `#### ${o.name}\n${o.text}`)].join('\n');
+      const sub = chCls.clsChosenText(full, notes[chCls.clsBaseName(tr.name)] || '');
+      text = sub.choice ? sub.text : text;
+    }
+    addGrants(text, { key: `Species: ${tr.name}`, from: `${sp.name}: ${tr.name}`, owner: null, species: true, lv: level, order: 0 }, { maneuvers: false });
   }
 
   // Work through the grants; picks can grant more (Formfighting Style → three forms, Superiority Style → a maneuver).

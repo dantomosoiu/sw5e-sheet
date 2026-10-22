@@ -163,7 +163,19 @@ function bdPickList({ title, from = '', count, chosen, options, kind, arg, word 
 /** The species' traits as features ({ name, text }), without the ones every species has (age, size…). */
 function bdSpeciesTraitFeatures(m) {
   const sp = arr(bdModules().species).find((s) => s.name === (m.raw.species || {}).name);
-  return arr(sp && sp.traits).filter((t) => !/^(?:Ability Score Increase|Age|Alignment|Size|Speed|Languages?)$/i.test(t.name)).map((t) => ({ name: t.name, text: t.description || '', source: 'Species' }));
+  return arr(sp && sp.traits).filter((t) => !/^(?:Ability Score Increase|Age|Alignment|Size|Speed|Languages?)$/i.test(t.name)).map((t) => ({ name: t.name, text: bdTraitText(m.raw, t), source: 'Species' }));
+}
+/**
+ * A species trait's text with its options ("Kiffar Heritage: … You choose one of the following heritages:", whose
+ * options SW5E's data leaves out and sw5e-data.js adds from the books as traits[].options) as "#### Name" sub-options.
+ */
+const bdTraitFullText = (tr) => [String((tr && tr.description) || ''), ...arr(tr && tr.options).map((o) => `#### ${o.name}\n${o.text}`)].join('\n');
+/** What a species trait gives: with options, only the one chosen in its notes (none yet: the intro). */
+function bdTraitText(raw, tr) {
+  const full = bdTraitFullText(tr);
+  if (!arr(tr && tr.options).length) return full;
+  const sub = clsChosenText(full, (raw.featureNotes || {})[clsBaseName(tr.name)] || '');
+  return sub.choice ? sub.text : full.split(/^####\s/m)[0];
 }
 
 // ------------------------------------------------------------- class card: skills, Expertise, tools
@@ -1096,6 +1108,10 @@ function bdOpenChoices(m) {
   const tr = sp && arr(sp.traits).find((t) => /^Languages?$/i.test(t.name));
   const lc = tr && prLanguageChoices(tr.description);
   if (lc && BD_KINDS.lang.get(raw, `Species: ${sp.name}`).length < lc.count) add('species', 'species language');
+  // What the species' traits ask (Theelin's Mutation, Kiffar Heritage, Human Versatility's skill, tool and weapon).
+  for (const t of bdSpeciesTraitFeatures(m)) {
+    for (const a of featureAsks(m, t)) if (a.chosen.length < a.count) add('species', `${t.name}: ${a.label.toLowerCase()}${more(a.count - a.chosen.length)}`);
+  }
   if (sp) for (const p of bdSpeciesIncrease(raw).picks) if (p.chosen.length < p.count) add('species', `species +${p.amount}${more(p.count - p.chosen.length)} (${p.options.length < 6 ? p.options.join(' or ') : 'any ability'})`);
   return out;
 }

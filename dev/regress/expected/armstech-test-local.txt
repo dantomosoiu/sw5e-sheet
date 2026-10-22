@@ -224,7 +224,7 @@ Armstech Test (local)
 Human · Engineer (Armstech Engineering) 9
 Level 9 Background: Soldier Balanced Neutral Proficiency +4 [Add a picture]
 48,000 XP level 10 at 64,000 (16,000 to go)
-Still to choose (14): Engineer skills (3 more) · Engineer tool · Armstech Modifications (9 more) · Engineer tech powers (18 more) · At-will tech power (2 more) … [472 chars #1a814fd2]
+Still to choose (17): Engineer skills (3 more) · Engineer tool · Armstech Modifications (9 more) · Engineer tech powers (18 more) · At-will tech power (2 more) … [589 chars #6e708b7e]
 
 ## Sheet: Combat & Vitals
 Armor Class

@@ -1,0 +1,3102 @@
+{
+ "format": "sw5e-sheet-regress-case",
+ "name": "choices-species-theelin-unchosen",
+ "key": "file:consular-test-(local)",
+ "recordedAt": 1792289049607,
+ "rules": {
+  "dataVersion": 199,
+  "fetchedAt": 1792273029637
+ },
+ "catalog": {
+  "dataVersion": 199,
+  "fetchedAt": 1792170265673,
+  "count": 2425
+ },
+ "storage": {
+  "snapshots": {
+   "file:consular-test-(local)": {
+    "format": "sw5e-sheet-snapshot",
+    "version": 1,
+    "key": "file:consular-test-(local)",
+    "raw": {
+     "name": "Consular Test (local)",
+     "builderVersion": "0.7.6",
+     "image": "",
+     "experiencePoints": 6500,
+     "species": {
+      "name": "Theelin",
+      "abilityScoreImprovementSelectedOption": 0,
+      "abilityScoreImprovement": {}
+     },
+     "baseAbilityScores": {
+      "Strength": 8,
+      "Dexterity": 14,
+      "Constitution": 14,
+      "Intelligence": 10,
+      "Wisdom": 16,
+      "Charisma": 14
+     },
+     "background": {
+      "name": "Noble",
+      "feat": {
+       "name": "Tech Dabbler",
+       "type": "Feat"
+      },
+      "feature": ""
+     },
+     "characteristics": {
+      "alignment": "Lawful Light"
+     },
+     "credits": 0,
+     "equipment": [],
+     "currentStats": {
+      "hitPointsLost": 0,
+      "temporaryHitPoints": 0,
+      "techPointsUsed": 0,
+      "forcePointsUsed": 0,
+      "superiorityDiceUsed": 0,
+      "hitDiceUsed": {},
+      "deathSaves": {
+       "successes": 0,
+       "failures": 0
+      },
+      "hasInspiration": false,
+      "featuresTimesUsed": {},
+      "conditions": [],
+      "exhaustion": 0
+     },
+     "classes": [
+      {
+       "name": "Consular",
+       "levels": 5,
+       "hitPoints": [
+        4,
+        4,
+        4,
+        4
+       ],
+       "archetype": {
+        "name": "Way of Technology"
+       },
+       "abilityScoreImprovements": [
+        {
+         "type": "ASI",
+         "abilitiesIncreased": [
+          {
+           "name": "Wisdom",
+           "value": 2
+          }
+         ]
+        }
+       ],
+       "forcePowers": [
+        "Saber Throw",
+        "Force Push/Pull",
+        "Battle Precognition",
+        "Force Disarm"
+       ]
+      }
+     ],
+     "featureChoices": {
+      "Feat: Tech Dabbler (at-will tech power)": [
+       {
+        "name": "Ion Blast"
+       },
+       {
+        "name": "Mending"
+       }
+      ],
+      "Feat: Tech Dabbler (level 1 tech power)": [
+       {
+        "name": "Alarm"
+       }
+      ],
+      "Feat: Tech Dabbler (level 2 tech power)": [
+       {
+        "name": "Overheat"
+       }
+      ]
+     },
+     "tweaks": {},
+     "customProficiencies": [],
+     "customLanguages": [],
+     "customFeatures": [],
+     "customFeats": [],
+     "customTechPowers": [],
+     "customForcePowers": [],
+     "customEquipment": [],
+     "settings": {},
+     "notes": ""
+    },
+    "complete": {
+     "name": "Consular Test (local)",
+     "builderVersion": "0.7.6",
+     "image": "",
+     "characteristics": {
+      "alignment": "Lawful Light"
+     },
+     "tweaks": {},
+     "customProficiencies": [],
+     "customLanguages": [],
+     "customFeatures": [],
+     "customTechPowers": [],
+     "customForcePowers": [],
+     "customEquipment": [],
+     "numCustomFeats": 0,
+     "currentLevel": 5,
+     "classText": "Consular (Way of Technology) 5",
+     "alignment": "Lawful Light",
+     "species": "Human",
+     "background": "Noble",
+     "experiencePoints": {
+      "previousLevel": 6500,
+      "current": 6500,
+      "nextLevel": 14000,
+      "isCorrect": true,
+      "errorMessage": ""
+     },
+     "abilityScores": {
+      "Strength": {
+       "value": 8,
+       "modifier": -1,
+       "savingThrow": {
+        "modifier": -1,
+        "proficiency": "none"
+       },
+       "skills": [
+        {
+         "name": "Athletics",
+         "modifier": -1,
+         "proficiency": "none"
+        }
+       ]
+      },
+      "Dexterity": {
+       "value": 14,
+       "modifier": 2,
+       "savingThrow": {
+        "modifier": 2,
+        "proficiency": "none"
+       },
+       "skills": [
+        {
+         "name": "Acrobatics",
+         "modifier": 2,
+         "proficiency": "none"
+        },
+        {
+         "name": "Sleight of Hand",
+         "modifier": 2,
+         "proficiency": "none"
+        },
+        {
+         "name": "Stealth",
+         "modifier": 2,
+         "proficiency": "none"
+        }
+       ]
+      },
+      "Constitution": {
+       "value": 14,
+       "modifier": 2,
+       "savingThrow": {
+        "modifier": 2,
+        "proficiency": "none"
+       },
+       "skills": []
+      },
+      "Intelligence": {
+       "value": 10,
+       "modifier": 0,
+       "savingThrow": {
+        "modifier": 0,
+        "proficiency": "none"
+       },
+       "skills": [
+        {
+         "name": "Investigation",
+         "modifier": 0,
+         "proficiency": "none"
+        },
+        {
+         "name": "Lore",
+         "modifier": 0,
+         "proficiency": "none"
+        },
+        {
+         "name": "Nature",
+         "modifier": 0,
+         "proficiency": "none"
+        },
+        {
+         "name": "Piloting",
+         "modifier": 0,
+         "proficiency": "none"
+        },
+        {
+         "name": "Technology",
+         "modifier": 0,
+         "proficiency": "none"
+        }
+       ]
+      },
+      "Wisdom": {
+       "value": 16,
+       "modifier": 3,
+       "savingThrow": {
+        "modifier": 6,
+        "proficiency": "proficient"
+       },
+       "skills": [
+        {
+         "name": "Animal Handling",
+         "modifier": 3,
+         "proficiency": "none"
+        },
+        {
+         "name": "Insight",
+         "modifier": 3,
+         "proficiency": "none"
+        },
+        {
+         "name": "Medicine",
+         "modifier": 3,
+         "proficiency": "none"
+        },
+        {
+         "name": "Perception",
+         "modifier": 3,
+         "proficiency": "none"
+        },
+        {
+         "name": "Survival",
+         "modifier": 3,
+         "proficiency": "none"
+        }
+       ]
+      },
+      "Charisma": {
+       "value": 14,
+       "modifier": 2,
+       "savingThrow": {
+        "modifier": 5,
+        "proficiency": "proficient"
+       },
+       "skills": [
+        {
+         "name": "Deception",
+         "modifier": 2,
+         "proficiency": "none"
+        },
+        {
+         "name": "Intimidation",
+         "modifier": 2,
+         "proficiency": "none"
+        },
+        {
+         "name": "Performance",
+         "modifier": 2,
+         "proficiency": "none"
+        },
+        {
+         "name": "Persuasion",
+         "modifier": 2,
+         "proficiency": "none"
+        }
+       ]
+      }
+     },
+     "proficiencyBonus": 3,
+     "initiative": 2,
+     "armorClass": 12,
+     "armorList": [],
+     "passivePerception": 13,
+     "inspiration": false,
+     "vision": "normal",
+     "speed": {
+      "base": "30 ft",
+      "hour": "3 miles",
+      "day": "24 miles",
+      "special": ""
+     },
+     "hitPoints": {
+      "current": 32,
+      "temporary": 0,
+      "maximum": 32,
+      "hitDice": [
+       {
+        "size": "d6",
+        "current": 5,
+        "maximum": 5
+       }
+      ],
+      "deathSaves": {
+       "successes": 0,
+       "failures": 0
+      },
+      "resting": {
+       "hitDieBonus": 2,
+       "numHitDiceUsed": 0,
+       "hitDiceRestored": [],
+       "techPointsUsed": 0,
+       "forcePointsUsed": 0,
+       "shortRestFeatures": [],
+       "longRestFeatures": []
+      }
+     },
+     "conditions": [],
+     "exhaustion": 0,
+     "proficiencies": [
+      {
+       "name": "Simple lightweapons",
+       "type": "weapon"
+      },
+      {
+       "name": "simple vibroweapons",
+       "type": "weapon"
+      },
+      {
+       "name": "None",
+       "type": "armor"
+      },
+      {
+       "name": "One type of gaming set",
+       "type": "tool"
+      }
+     ],
+     "skillAndSaveProficiencies": [
+      "Wisdom Saving Throws",
+      "Charisma Saving Throws"
+     ],
+     "languages": [
+      "Galactic Basic"
+     ],
+     "equipment": [],
+     "attunement": {
+      "current": 0,
+      "maximum": 3,
+      "hasAttunable": false
+     },
+     "weapons": [
+      {
+       "name": "Unarmed Strike",
+       "description": null,
+       "cost": 0,
+       "weight": "0",
+       "equipmentCategory": "Weapon",
+       "contentType": "Core",
+       "contentSource": "PHB",
+       "damageNumberOfDice": 1,
+       "damageType": "Kinetic",
+       "weaponClassification": "Unarmed",
+       "damageDieType": 0,
+       "properties": [],
+       "propertiesMap": {},
+       "modes": [],
+       "quantity": 0,
+       "index": -1,
+       "isFound": true,
+       "equipped": true,
+       "attackBonus": 2,
+       "damageBonus": 0,
+       "ability": "Strength",
+       "isCustom": false,
+       "tweaks": {}
+      }
+     ],
+     "credits": 0,
+     "carryingCapacity": {
+      "encumbered": 40,
+      "heavilyEncumbered": 80,
+      "maxCapacity": 120,
+      "pushDragLift": 240
+     },
+     "superiority": false,
+     "techCasting": false,
+     "forceCasting": {
+      "pointsUsed": 0,
+      "maxPoints": 23,
+      "lightAttackModifier": 6,
+      "lightSaveDC": 14,
+      "darkAttackModifier": 5,
+      "darkSaveDC": 13,
+      "universalAttackModifier": 6,
+      "universalSaveDC": 14,
+      "maxPowerLevel": 3,
+      "powersKnown": [
+       {
+        "name": "Saber Throw",
+        "powerTypeEnum": 1,
+        "powerType": "Force",
+        "prerequisite": null,
+        "level": 0,
+        "castingPeriodEnum": 1,
+        "castingPeriod": "Action",
+        "castingPeriodText": "1 action",
+        "range": "30 feet",
+        "duration": "Instantaneous",
+        "concentration": false,
+        "forceAlignmentEnum": 1,
+        "forceAlignment": "Universal",
+        "description": "As a part of the action used to cast this power, you must make a ranged force attack with a lightweapon or vibroweapon against one target within the power's range, otherwise the power fails. On a hit, the target takes 1d8 damage of the same type as the weapon's damage. The weapon then immediately returns to your hand.\r\n\r\nThis power can hit multiple targets when you reach higher levels: two targets at 5th level, three targets at 11th level, and four targets at 17th level. Each target must be within 30 feet of the previous target, you must make a separate attack roll for each target, and the last target must be no further than 30 feet away from you. You can not hit the same target twice in succession.",
+        "higherLevelDescription": null,
+        "contentTypeEnum": 1,
+        "contentType": "Core",
+        "contentSourceEnum": 1,
+        "contentSource": "PHB",
+        "partitionKey": "Core",
+        "rowKey": "Saber Throw",
+        "timestamp": "2023-05-30T20:15:09.1211108+00:00",
+        "eTag": "W/\"datetime'2023-05-30T20%3A15%3A09.1211108Z'\""
+       },
+       {
+        "name": "Force Push/Pull",
+        "powerTypeEnum": 1,
+        "powerType": "Force",
+        "prerequisite": null,
+        "level": 0,
+        "castingPeriodEnum": 1,
+        "castingPeriod": "Action",
+        "castingPeriodText": "1 action",
+        "range": "60 feet",
+        "duration": "Instantaneous",
+        "concentration": false,
+        "forceAlignmentEnum": 1,
+        "forceAlignment": "Universal",
+        "description": "You gain the minor ability to move or manipulate creatures and objects with the Force. You can exert fine control on objects with your telekinetic grip, such as manipulating a simple tool, opening a door or a container, stowing or retrieving an item from an open container, or pouring the contents from a vial. Alternatively, you can push or pull a creature or object you can see. \r\n\r\nYou use the Force to move a Medium or smaller creature or object not being worn or carried within range. The target must make a Strength saving throw. An object automatically fails this saving throw. On a failed save, the creature or object moves a number of feet in a direction of your choice based on its size. A Tiny creature or object can be moved up to 20 feet, a Small creature or object can be moved up to 10 feet, and a Medium creature or object can be moved up to 5 feet. If at the end of this movement the creature or object strikes another creature or object, it must make a Dexterity saving throw. An object automatically fails this saving throw. On a failed save, they both take 1d4 kinetic damage.\r\n\r\nThis power improves when you reach higher levels. At 5th level, you can move a Tiny creature or object up to 30 feet, a Small creature or object up to 20 feet, a Medium creature or object up to 10 feet, and the power's damage increases to 2d4 kinetic damage. At 11th level, you can move a Small creature or object up to 30 feet, a Medium creature up to 20 feet, and the power's damage increases to 3d4 kinetic damage. At 17th level, you can move a Medium creature to up 30 feet, and the power's damage increases to 4d4 kinetic damage.",
+        "higherLevelDescription": null,
+        "contentTypeEnum": 1,
+        "contentType": "Core",
+        "contentSourceEnum": 1,
+        "contentSource": "PHB",
+        "partitionKey": "Core",
+        "rowKey": "Force PushPull",
+        "timestamp": "2023-05-30T20:15:09.0781337+00:00",
+        "eTag": "W/\"datetime'2023-05-30T20%3A15%3A09.0781337Z'\""
+       },
+       {
+        "name": "Battle Precognition",
+        "powerTypeEnum": 1,
+        "powerType": "Force",
+        "prerequisite": null,
+        "level": 1,
+        "castingPeriodEnum": 1,
+        "castingPeriod": "Action",
+        "castingPeriodText": "1 action",
+        "range": "Self",
+        "duration": "8 hours",
+        "concentration": false,
+        "forceAlignmentEnum": 1,
+        "forceAlignment": "Universal",
+        "description": "Your attunement to the Force warns you when you are about to enter danger. Until the power ends, your base AC becomes 13 + your Dexterity modifier. This power has no effect if you are wearing armor.",
+        "higherLevelDescription": null,
+        "contentTypeEnum": 1,
+        "contentType": "Core",
+        "contentSourceEnum": 1,
+        "contentSource": "PHB",
+        "partitionKey": "Core",
+        "rowKey": "Battle Precognition",
+        "timestamp": "2023-05-30T20:15:09.0711388+00:00",
+        "eTag": "W/\"datetime'2023-05-30T20%3A15%3A09.0711388Z'\""
+       },
+       {
+        "name": "Force Disarm",
+        "powerTypeEnum": 1,
+        "powerType": "Force",
+        "prerequisite": null,
+        "level": 0,
+        "castingPeriodEnum": 1,
+        "castingPeriod": "Action",
+        "castingPeriodText": "1 action",
+        "range": "30 feet",
+        "duration": "Instantaneous",
+        "concentration": false,
+        "forceAlignmentEnum": 1,
+        "forceAlignment": "Universal",
+        "description": "You select a weapon or object being worn or carried by a Large or smaller creature within range. The creature must make a Strength or Dexterity saving throw (the creature chooses the ability to use). If the item is being carried, this save is made with advantage. On a failed save, the item is pulled directly to you. If you have a free hand, you catch the weapon. Otherwise, it lands at your feet.",
+        "higherLevelDescription": null,
+        "contentTypeEnum": 1,
+        "contentType": "Core",
+        "contentSourceEnum": 1,
+        "contentSource": "PHB",
+        "partitionKey": "Core",
+        "rowKey": "Force Disarm",
+        "timestamp": "2023-05-30T20:15:09.0761349+00:00",
+        "eTag": "W/\"datetime'2023-05-30T20%3A15%3A09.0761349Z'\""
+       }
+      ]
+     },
+     "allForcePowers": [
+      "Saber Throw",
+      "Force Push/Pull",
+      "Battle Precognition",
+      "Force Disarm"
+     ],
+     "combatFeatures": [
+      {
+       "name": "Force Recovery",
+       "text": "_**Consular:** 1st level_\r\nYou have learned to regain some of your energy by briefly meditating. When you finish a short rest, you can regain a number of force points equal to half your consular level + your Wisdom or Charisma modifier (your choice, minimum of one). Once you've used this feature, you must complete a long rest before you can use it again.",
+       "level": 1,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Consular",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Consular-Force Recovery-1",
+       "timestamp": "2023-05-30T20:15:43.3915654+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.3915654Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Forcecasting",
+       "text": "_**Consular:** 1st level_\r\nIn your meditations on the force, you have learned powers, fragments of knowledge that imbue you with an abiding force ability. See chapter 10 for the general rules of forcecasting and chapter 11 for the force powers list.\r\n#### Force Powers Known\r\nYou learn 9 force powers of your choice, and you learn more at higher levels, as shown in the Force Powers Known column of the consular table. You may not learn a force power of a level higher than your Max Power Level, and you may learn a force power at the same time you learn its prerequisite.\r\n#### Force Points\r\nYou have a number of force points equal to your consular level x 4, as shown in the Force Points column of the consular table, + your Wisdom or Charisma modifier (your choice). You use these force points to cast force powers. You regain all expended force points when you finish a long rest.\r\n#### Max Power Level\r\nMany force powers can be overpowered, consuming more force points to create a greater effect. You can overpower these abilities to a maximum level, which increases at higher levels, as shown in the Max Power Level column of the consular table.\r\nYou may only cast force powers at 6th, 7th, 8th, and 9th-level once. You regain the ability to do so after a long rest.\r\n#### Forcecasting Ability\r\nYour forcecasting ability varies based on the alignment of the powers you cast. You use Wisdom for light side powers, Charisma for dark side powers, and Wisdom or Charisma for universal powers (your choice). You use this ability whenever a power refers to your forcecasting ability. Additionally, you use this ability modifier when setting the saving throw DC for a force power you cast and when making an attack roll with one.\r\n___\r\n**Force save DC** = 8 + your proficiency bonus + your forcecasting ability modifier\r\n___\r\n**Force attack modifier** = your proficiency bonus + your forcecasting ability modifier\r\n___",
+       "level": 1,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Consular",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Consular-Forcecasting-1",
+       "timestamp": "2023-05-30T20:15:43.3915654+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.3915654Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Force Shield",
+       "text": "_**Consular:** 2nd level_\r\nYou learn how to defend yourself purely through your strength with the Force. When you are hit by an attack, you can use your reaction to shroud yourself in Force energy. Until the start of your next turn, you have a bonus to AC equal to your Wisdom or Charisma modifier (your choice, minimum of +1). This includes the triggering attack.\r\nYou can use this feature twice. You gain an additional use at 5th, 9th, 13th, and 17th level. You regain all expended uses when you finish a long rest.",
+       "level": 2,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Consular",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Consular-Force Shield-2",
+       "timestamp": "2023-05-30T20:15:43.3915654+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.3915654Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Force-Empowered Casting",
+       "text": "_**Consular:** 2nd level_\r\nYou gain the ability to twist your powers to suit your needs. When you cast a force power, you can expend additional force points to modify the power. You gain two Force-Empowered Casting options, located at the end of the class description, and you learn more at higher levels, as shown in the Force-Empowered Casting Options of the cnosular table.\r\nYou can use only one Force-Empowered Casting option on a power when you cast it, unless otherwise noted.",
+       "level": 2,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Consular",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Consular-Force-Empowered Casting-2",
+       "timestamp": "2023-05-30T20:15:43.3915654+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.3915654Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Consular Tradition",
+       "text": "_**Consular:** 3rd, 6th, 10th, 14th, and 18th level_\r\nYou choose a consular tradition, which is detailed at the end of the class description. ",
+       "level": 3,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Consular",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Consular-Consular Tradition-3",
+       "timestamp": "2023-05-30T20:15:43.3925649+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.3925649Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Force Affinity",
+       "text": "_**Consular:** 3rd level_\r\nYou've developed an affinity for one of the three aspects of the Force: the Ashla, the Bendu, or the Bogan. Choose one from the following:\r\n#### Ashla\r\nWhen you successfully cast a light side power, either your or the target's (your choice) hit point maximum and current hit points increase by an amount equal to the power's level. This effect lasts for 1 minute. You can only have one instance of this effect active at a time.\r\n#### Bendu\r\nYou can add both your Wisdom and Charisma modifier to your maximum number of force points, instead of just one.\r\n#### Bogan\r\nYour dark side power damage rolls gain a minimum roll threshold, discussed in chapter 7.",
+       "level": 3,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Consular",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Consular-Force Affinity-3",
+       "timestamp": "2023-05-30T20:15:43.3915654+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.3915654Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Ability Score Improvement",
+       "text": "_**Consular:** 4th, 8th, 12th, 16th, and 19th level_\r\nYou can increase one ability score by 2, or you can increase two ability scores by 1. You can't increase an ability score above 20 using this feature.",
+       "level": 4,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Consular",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Consular-Ability Score Improvement-4",
+       "timestamp": "2023-05-30T20:15:43.3925649+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.3925649Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Fundamentals of Mechu-deru",
+       "text": "_**Way of Technology:** 3rd, 5th, 9th, 13th, and 17th level_\r\nYou've dabbled in adapting your use of the Force, melding it with technology. You gain proficiency in the Technology skill, as well as simple blasters. When you cast a force power that calls for a melee weapon attack, and you are wielding a blaster with which you are proficient, you can instead make a ranged weapon attack.\r\nAdditionally, you've learned to manipulate the Force to be able to manipulate technology when it couldn't previously. When you cast a force power that could not affect droids or constructs, you can choose to have it affect droids or constructs. If it would affect multiple targets, you must expend additional uses of this feature for each additional target. You can use this feature twice. You gain an additional use at 5th, 9th, 13th, and 17th level. You regain all expended uses when you complete a long rest.",
+       "level": 5,
+       "sourceEnum": 1,
+       "source": "Archetype",
+       "sourceName": "Way of Technology",
+       "metadata": null,
+       "partitionKey": "ExpandedContent",
+       "rowKey": "Archetype-Way of Technology-Fundamentals of Mechu-deru-5",
+       "timestamp": "2023-05-30T20:15:26.4202442+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A26.4202442Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Ability Score Increase",
+       "text": "One ability score of your choice increases by 2, and two other ability scores of your choice increase by 1. Alternatively, four ability scores of your choice each increase by 1.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Ability Score Increase",
+       "timestamp": "2023-05-30T20:15:40.8130359+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.8130359Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Age",
+       "text": "Humans reach adulthood in their late teens and live less than a century.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Age",
+       "timestamp": "2023-05-30T20:15:40.814035+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.814035Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Alignment",
+       "text": "Humans tend toward no particular alignment. The best and worst are found among them.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Alignment",
+       "timestamp": "2023-05-30T20:15:40.814035+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.814035Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Defiant",
+       "text": "Humans are known to be stubborn and often refuse to give up, even against the worst odds. When you or a creature you can see that can see and understand you makes an ability check, attack roll, or saving throw, you can roll a d4 and add it to their roll (no action required). Once you've used this feature, you must complete a short or long rest before you can use it again.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Defiant",
+       "timestamp": "2023-05-30T20:15:40.814035+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.814035Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Human Versatility",
+       "text": "You gain proficiency in one skill, one tool, and one weapon of your choice.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Human Versatility",
+       "timestamp": "2023-05-30T20:15:40.814035+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.814035Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Languages",
+       "text": "You can speak, read, and write Galactic Basic and one extra language of your choice. Humans typically learn the languages of other peoples they deal with, including obscure dialects. They are fond of sprinkling their speech with words borrowed from other tongues: trandoshan curses, twi'lek musical expressions, chiss military phrases, and so on.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Languages",
+       "timestamp": "2023-05-30T20:15:40.814035+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.814035Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Proficiency",
+       "text": "You gain proficiency in one skill, one tool, and one weapon of your choice.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Proficiency",
+       "timestamp": "2022-05-29T01:36:26.4474283+00:00",
+       "eTag": "W/\"datetime'2022-05-29T01%3A36%3A26.4474283Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Size",
+       "text": "Humans vary widely in height and build, from barely 5 feet to well over 6 feet tall. Regardless of your position in that range, your size is Medium.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Size",
+       "timestamp": "2023-05-30T20:15:40.814035+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.814035Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Speed",
+       "text": "Your base walking speed is 30 feet.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Speed",
+       "timestamp": "2023-05-30T20:15:40.814035+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.814035Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Tech Dabbler",
+       "prerequisite": null,
+       "text": "You know two at-will tech powers. When you reach 3rd level, you learn and can cast one 1st-level tech power once per long rest. When you reach 5th level, you learn and can cast one 2nd-level tech power once per long rest. Your techcasting ability is Intelligence. You require use of a wristpad for these powers. Additionally, you lose the Tech-Impaired special trait if you have it.\r\n",
+       "attributesIncreased": null,
+       "attributesIncreasedJson": "",
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Tech Dabbler",
+       "timestamp": "2023-05-30T20:15:09.5568611+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A09.5568611Z'\"",
+       "customIndex": -1,
+       "combat": true
+      }
+     ],
+     "nonCombatFeatures": [],
+     "backgroundFeature": {
+      "name": "Position of Privilege",
+      "combat": false,
+      "text": "Thanks to your noble birth, people are inclined to think the best of you. You are welcome in high society, and people assume you have the right to be wherever you are. The common folk make every effort to accommodate you and avoid your displeasure, and other people of high birth treat you as a member of the same social sphere. You can secure an audience with a local noble if you need to.\r\n"
+     },
+     "settings": {},
+     "notes": ""
+    },
+    "refs": {
+     "classes": {
+      "Consular": {
+       "name": "Consular",
+       "summary": "Force-wielder who focuses on utilizing force powers",
+       "primaryAbility": "Wisdom",
+       "hitDiceDieType": 6,
+       "hitPointsAtFirstLevel": "6 + your Constitution modifier",
+       "hitPointsAtHigherLevels": "1d6 (or 4) + your Constitution modifier per consular level after 1st",
+       "armorProficiencies": [
+        "None"
+       ],
+       "weaponProficiencies": [
+        "Simple lightweapons",
+        "simple vibroweapons"
+       ],
+       "toolProficiencies": [
+        "None"
+       ],
+       "savingThrows": [
+        "Wisdom",
+        "Charisma"
+       ],
+       "skillChoices": "Choose two from Deception, Insight, Intimidation, Investigation, Lore, Medicine, and Persuasion",
+       "levelChanges": {
+        "1": {
+         "Level": "1st",
+         "Proficiency Bonus": "+2",
+         "Features": "Forcecasting, Force Recovery",
+         "Force Powers Known": "9",
+         "Force Points": "4",
+         "Max Power Level": "1st",
+         "Force-Empowered Casting Options": "�"
+        },
+        "2": {
+         "Level": "2nd",
+         "Proficiency Bonus": "+2",
+         "Features": "Force-Empowered Casting, Force Shield",
+         "Force Powers Known": "11",
+         "Force Points": "8",
+         "Max Power Level": "1st",
+         "Force-Empowered Casting Options": "2"
+        },
+        "3": {
+         "Level": "3rd",
+         "Proficiency Bonus": "+2",
+         "Features": "Force Affinity, Consular Tradition",
+         "Force Powers Known": "13",
+         "Force Points": "12",
+         "Max Power Level": "2nd",
+         "Force-Empowered Casting Options": "2"
+        },
+        "4": {
+         "Level": "4th",
+         "Proficiency Bonus": "+2",
+         "Features": "Ability Score Improvement",
+         "Force Powers Known": "15",
+         "Force Points": "16",
+         "Max Power Level": "2nd",
+         "Force-Empowered Casting Options": "2"
+        },
+        "5": {
+         "Level": "5th",
+         "Proficiency Bonus": "+3",
+         "Features": "�",
+         "Force Powers Known": "17",
+         "Force Points": "20",
+         "Max Power Level": "3rd",
+         "Force-Empowered Casting Options": "2"
+        },
+        "6": {
+         "Level": "6th",
+         "Proficiency Bonus": "+3",
+         "Features": "Tradition feature",
+         "Force Powers Known": "19",
+         "Force Points": "24",
+         "Max Power Level": "3rd",
+         "Force-Empowered Casting Options": "2"
+        },
+        "7": {
+         "Level": "7th",
+         "Proficiency Bonus": "+3",
+         "Features": "�",
+         "Force Powers Known": "21",
+         "Force Points": "28",
+         "Max Power Level": "4th",
+         "Force-Empowered Casting Options": "2"
+        },
+        "8": {
+         "Level": "8th",
+         "Proficiency Bonus": "+3",
+         "Features": "Ability Score Improvement",
+         "Force Powers Known": "23",
+         "Force Points": "32",
+         "Max Power Level": "4th",
+         "Force-Empowered Casting Options": "2"
+        },
+        "9": {
+         "Level": "9th",
+         "Proficiency Bonus": "+4",
+         "Features": "�",
+         "Force Powers Known": "25",
+         "Force Points": "36",
+         "Max Power Level": "5th",
+         "Force-Empowered Casting Options": "3"
+        },
+        "10": {
+         "Level": "10th",
+         "Proficiency Bonus": "+4",
+         "Features": "Tradition feature",
+         "Force Powers Known": "26",
+         "Force Points": "40",
+         "Max Power Level": "5th",
+         "Force-Empowered Casting Options": "3"
+        },
+        "11": {
+         "Level": "11th",
+         "Proficiency Bonus": "+4",
+         "Features": "�",
+         "Force Powers Known": "28",
+         "Force Points": "44",
+         "Max Power Level": "6th",
+         "Force-Empowered Casting Options": "3"
+        },
+        "12": {
+         "Level": "12th",
+         "Proficiency Bonus": "+4",
+         "Features": "Ability Score Improvement",
+         "Force Powers Known": "29",
+         "Force Points": "48",
+         "Max Power Level": "6th",
+         "Force-Empowered Casting Options": "3"
+        },
+        "13": {
+         "Level": "13th",
+         "Proficiency Bonus": "+5",
+         "Features": "�",
+         "Force Powers Known": "31",
+         "Force Points": "52",
+         "Max Power Level": "7th",
+         "Force-Empowered Casting Options": "3"
+        },
+        "14": {
+         "Level": "14th",
+         "Proficiency Bonus": "+5",
+         "Features": "Tradition feature",
+         "Force Powers Known": "32",
+         "Force Points": "56",
+         "Max Power Level": "7th",
+         "Force-Empowered Casting Options": "3"
+        },
+        "15": {
+         "Level": "15th",
+         "Proficiency Bonus": "+5",
+         "Features": "�",
+         "Force Powers Known": "34",
+         "Force Points": "60",
+         "Max Power Level": "8th",
+         "Force-Empowered Casting Options": "3"
+        },
+        "16": {
+         "Level": "16th",
+         "Proficiency Bonus": "+5",
+         "Features": "Ability Score Improvement",
+         "Force Powers Known": "35",
+         "Force Points": "64",
+         "Max Power Level": "8th",
+         "Force-Empowered Casting Options": "3"
+        },
+        "17": {
+         "Level": "17th",
+         "Proficiency Bonus": "+6",
+         "Features": "�",
+         "Force Powers Known": "37",
+         "Force Points": "68",
+         "Max Power Level": "9th",
+         "Force-Empowered Casting Options": "4"
+        },
+        "18": {
+         "Level": "18th",
+         "Proficiency Bonus": "+6",
+         "Features": "Tradition feature",
+         "Force Powers Known": "38",
+         "Force Points": "72",
+         "Max Power Level": "9th",
+         "Force-Empowered Casting Options": "4"
+        },
+        "19": {
+         "Level": "19th",
+         "Proficiency Bonus": "+6",
+         "Features": "Ability Score Improvement",
+         "Force Powers Known": "39",
+         "Force Points": "76",
+         "Max Power Level": "9th",
+         "Force-Empowered Casting Options": "4"
+        },
+        "20": {
+         "Level": "20th",
+         "Proficiency Bonus": "+6",
+         "Features": "One with the Force",
+         "Force Powers Known": "40",
+         "Force Points": "80",
+         "Max Power Level": "9th",
+         "Force-Empowered Casting Options": "4"
+        }
+       },
+       "casterType": "Force",
+       "casterRatio": 1,
+       "multiClassProficiencies": [
+        "Simple lightweapons"
+       ],
+       "archetypeFlavorName": "Consular Traditions"
+      }
+     },
+     "archetypes": {
+      "Way of Technology": {
+       "name": "Way of Technology",
+       "className": "Consular",
+       "casterType": "None",
+       "casterRatio": 0,
+       "leveledTable": null
+      }
+     },
+     "species": {
+      "Human": {
+       "name": "Human",
+       "size": "Medium",
+       "homeworld": "Coruscant",
+       "language": "Galactic Basic",
+       "distinctions": "Biped with bilateral symmetry, opposable thumbs",
+       "skinColorOptions": "Light to dark tones",
+       "hairColorOptions": "Black, blond, orange, brown, gray to white (usually with age)",
+       "eyeColorOptions": "Amber, blue, brown, gray, green, hazel, purple, or red",
+       "heightAverage": "4'8\"",
+       "heightRollMod": "+2d10\"",
+       "weightAverage": "110 lb.",
+       "weightRollMod": "x(2d4) lb.",
+       "traits": [
+        {
+         "name": "Ability Score Increase",
+         "description": "One ability score of your choice increases by 2, and two other ability scores of your choice increase by 1. Alternatively, four ability scores of your choice each increase by 1."
+        },
+        {
+         "name": "Age",
+         "description": "Humans reach adulthood in their late teens and live less than a century."
+        },
+        {
+         "name": "Alignment",
+         "description": "Humans tend toward no particular alignment. The best and worst are found among them."
+        },
+        {
+         "name": "Size",
+         "description": "Humans vary widely in height and build, from barely 5 feet to well over 6 feet tall. Regardless of your position in that range, your size is Medium."
+        },
+        {
+         "name": "Speed",
+         "description": "Your base walking speed is 30 feet."
+        },
+        {
+         "name": "Defiant",
+         "description": "Humans are known to be stubborn and often refuse to give up, even against the worst odds. When you or a creature you can see that can see and understand you makes an ability check, attack roll, or saving throw, you can roll a d4 and add it to their roll (no action required). Once you've used this feature, you must complete a short or long rest before you can use it again."
+        },
+        {
+         "name": "Human Versatility",
+         "description": "You gain proficiency in one skill, one tool, and one weapon of your choice."
+        },
+        {
+         "name": "Languages",
+         "description": "You can speak, read, and write Galactic Basic and one extra language of your choice. Humans typically learn the languages of other peoples they deal with, including obscure dialects. They are fond of sprinkling their speech with words borrowed from other tongues: trandoshan curses, twi'lek musical expressions, chiss military phrases, and so on."
+        }
+       ],
+       "imageUrls": [
+        "https://starwars5ecentral.blob.core.windows.net/site-images/species/species_human.png"
+       ]
+      }
+     },
+     "backgrounds": {
+      "Noble": {
+       "name": "Noble",
+       "flavorText": "You understand wealth, power, and privilege. You carry a noble title, and your family owns land, collects taxes, and wields significant political influence. You might be a pampered aristocrat unfamiliar with manual labor, a former merchant just elevated to the nobility, or an honest, hard-working landowner who cares deeply about the people who live and work on your land.\r\n\r\nWork with your GM to come up with an appropriate title and determine how much authority that title carries, as well as your family and their influence on you. Is your family old and established, or was your title only recently bestowed? How much influence do they wield, how do people regard them?\r\n\r\nWhat's your position in the family? Are you the heir to the head of the family or the head itself? Are you far down the line of succession? How does the head of your family feel about your adventuring career? Are you in your family's good graces? \r\n\r\nDoes your family have a coat of arms you might wear, a signet ring, or particular colors? \r\n\r\nThese details help establish your family and your title as features of the world of the campaign.\r\n",
+       "skillProficiencies": "Choose two from Deception, Insight, Lore, and Persuasion",
+       "toolProficiencies": "One type of gaming set",
+       "languages": "One of your choice",
+       "equipment": "A set of fine clothes, a signet ring, a letter of pedigree, and a purse containing 250 cr",
+       "featureName": "Position of Privilege",
+       "featureText": "Thanks to your noble birth, people are inclined to think the best of you. You are welcome in high society, and people assume you have the right to be wherever you are. The common folk make every effort to accommodate you and avoid your displeasure, and other people of high birth treat you as a member of the same social sphere. You can secure an audience with a local noble if you need to.\r\n",
+       "flavorName": null,
+       "flavorDescription": null
+      }
+     },
+     "feats": {
+      "Tech Dabbler": {
+       "name": "Tech Dabbler",
+       "prerequisite": null,
+       "text": "You know two at-will tech powers. When you reach 3rd level, you learn and can cast one 1st-level tech power once per long rest. When you reach 5th level, you learn and can cast one 2nd-level tech power once per long rest. Your techcasting ability is Intelligence. You require use of a wristpad for these powers. Additionally, you lose the Tech-Impaired special trait if you have it.\r\n",
+       "attributesIncreased": null,
+       "contentType": "Core",
+       "contentSource": "PHB"
+      }
+     },
+     "maneuvers": {},
+     "choices": {},
+     "conditions": [
+      {
+       "name": "Blinded",
+       "description": "A blinded creature can't see and automatically fails any ability check that requires sight.\\r\\n- Attack rolls against the creature have advantage, and the creature's attack rolls have disadvantage."
+      },
+      {
+       "name": "Charmed",
+       "description": "A charmed creature can't attack the charmer or target the charmer with harmful abilities or enhanced effects.\\r\\n- The charmer has advantage on any ability check to interact socially with the creature."
+      },
+      {
+       "name": "Deafened",
+       "description": "A deafened creature can't hear and automatically fails any ability check that requires hearing."
+      },
+      {
+       "name": "Exhaustion",
+       "description": "Some special abilities and environmental hazards, such as and the long-term effects of freezing or scorching temperatures, can lead to a special condition called exhaustion. Exhaustion is measured in six levels. An effect can give a creature one or more levels of exhaustion, as specified in the effect's description. Exhaustion Level\\r\\n\\r\\n|Level|Effect|\\r\\n|:--:|:--|\\r\\n|1|Disadvantage on ability checks|\\r\\n|2|Speed halved|\\r\\n|3|Disadvantage on attack rolls and saving throws|\\r\\n|4|Hit point maximum halved|\\r\\n|5|Speed reduced to 0|\\r\\n|6|Death|\\r\\n\\r\\nIf an already exhausted creature suffers another effect that causes exhaustion, its current level of exhaustion increases by the amount specified in the effect's description.\\r\\n\\r\\nA creature suffers the effect of its current level of exhaustion as well as all lower levels. For example, a creature suffering level 2 exhaustion has its speed halved and has disadvantage on ability checks.\\r\\n\\r\\nAn effect that removes exhaustion reduces its level as specified in the effect's description, with all exhaustion effects ending if a creature's exhaustion level is reduced below 1.\\r\\n\\r\\nFinishing a long rest reduces a creature's exhaustion level by 1, provided that the creature has also ingested some food and drink."
+      },
+      {
+       "name": "Frightened",
+       "description": "A frightened creature has disadvantage on ability checks and attack rolls while the source of its fear is within line of sight.\\r\\n- The creature can't willingly move closer to the source of its fear."
+      },
+      {
+       "name": "Grappled",
+       "description": "A grappled creature's speed becomes 0, and it can't benefit from any bonus to its speed.\\r\\n- The condition ends if the grappler is incapacitated (see the condition).\\r\\n- The condition also ends if an effect removes the grappled creature from the reach of the grappler or grappling effect."
+      },
+      {
+       "name": "Incapacitated",
+       "description": "An incapacitated creature can't take actions or reactions."
+      },
+      {
+       "name": "Invisible",
+       "description": "An invisible creature is impossible to see without the aid of powers or a special sense. For the purpose of hiding, the creature is heavily obscured. The creature's location can be detected by any noise it makes or any tracks it leaves.\\r\\n- Attack rolls against the creature have disadvantage, and the creature's attack rolls have advantage."
+      },
+      {
+       "name": "Paralyzed",
+       "description": "A paralyzed creature is incapacitated (see the condition) and can't move or speak.\\r\\n- The creature automatically fails Strength and Dexterity saving throws. Attack rolls against the creature have advantage.\\r\\n- Any attack that hits the creature is a critical hit if the attacker is within 5 feet of the creature."
+      },
+      {
+       "name": "Petrified",
+       "description": "A petrified creature is transformed, along with any object it is wearing or carrying, into a solid inanimate substance (usually stone). Its weight increases by a factor of ten, and it ceases aging.\\r\\n- The creature is incapacitated (see the condition), can't move or speak, and is unaware of its surroundings.\\r\\n- Attack rolls against the creature have advantage. \\r\\n- The creature automatically fails Strength and Dexterity saving throws.\\r\\n- The creature has resistance to all damage.\\r\\n- The creature is immune to poison and disease, although a poison or disease already in its system is suspended, not neutralized."
+      },
+      {
+       "name": "Poisoned",
+       "description": "A poisoned creature has disadvantage on attack rolls and ability checks."
+      },
+      {
+       "name": "Prone",
+       "description": "A prone creature's only movement option is to crawl, unless it stands up and thereby ends the condition. \\r\\n- The creature has disadvantage on melee attack rolls.\\r\\n- The creature has disadvantage on ranged attack rolls against targets within 30 feet.\\r\\n- An attack roll against the creature has advantage if the attacker is within 5 feet of the creature. Otherwise, the attack roll has disadvantage."
+      },
+      {
+       "name": "Restrained",
+       "description": "A restrained creature's speed becomes 0, and it can't benefit from any bonus to its speed.\\r\\n- Attack rolls against the creature have advantage, and the creature's attack rolls have disadvantage.\\r\\n- The creature has disadvantage on Dexterity saving throws."
+      },
+      {
+       "name": "Shocked",
+       "description": "A shocked creature's speed is reduced by half.\\r\\n- The creature can't take reactions."
+      },
+      {
+       "name": "Stunned",
+       "description": "A stunned creature is incapacitated (see the condition), can't move, and can speak only falteringly.\\r\\n- The creature automatically fails Strength and Dexterity saving throws.\\r\\n- Attack rolls against the creature have advantage."
+      },
+      {
+       "name": "Unconscious",
+       "description": "An unconscious creature is incapacitated (see the condition), can't move or speak, and is unaware of its surroundings\\r\\n- The creature drops whatever it's holding and falls prone.\\r\\n- The creature automatically fails Strength and Dexterity saving throws.\\r\\n- Attack rolls against the creature have advantage.\\r\\n- Any attack that hits the creature is a critical hit if the attacker is within 5 feet of the creature."
+      }
+     ]
+    },
+    "validation": {
+     "code": 0,
+     "message": "All checks passed",
+     "isValid": true
+    },
+    "error": null,
+    "source": "file",
+    "loadedAt": 1792187030817,
+    "meta": {
+     "bridge": 9,
+     "dataVersion": 199,
+     "loggedIn": true,
+     "sourceUrl": "https://sw5e.com/tools/mycharacters",
+     "extractedAt": 1792187030703
+    }
+   }
+  },
+  "derived": {
+   "file:consular-test-(local)": {
+    "basis": "{\"background\":{\"feat\":{\"name\":\"Tech Dabbler\",\"type\":\"Feat\"},\"feature\":\"\",\"name\":\"Noble\"},\"baseAbilityScores\":{\"Charisma\":14,\"Constitution\":14,\"Dexterity\":14,\"Intelligence\":10,\"Strength\":8,\"Wisdom\":16},\"builderVersion\":\"0.7.6\",\"characteristics\":null,\"classes\":[{\"abilityScoreImprovements\":[{\"abilitiesIncreased\":[{\"name\":\"Wisdom\",\"value\":2}],\"type\":\"ASI\"}],\"archetype\":{\"name\":\"Way of Technology\"},\"forcePowers\":[\"Saber Throw\",\"Force Push/Pull\",\"Battle Precognition\",\"Force Disarm\"],\"hitPoints\":[4,4,4,4],\"levels\":5,\"name\":\"Consular\"}],\"credits\":null,\"currentStats\":{\"conditions\":[],\"deathSaves\":{\"failures\":0,\"successes\":0},\"exhaustion\":0,\"featuresTimesUsed\":{},\"forcePointsUsed\":0,\"hasInspiration\":false,\"hitDiceUsed\":{},\"hitPointsLost\":0,\"superiorityDiceUsed\":0,\"techPointsUsed\":0,\"temporaryHitPoints\":0},\"customEquipment\":[],\"customFeats\":[],\"customFeatures\":[],\"customForcePowers\":[],\"customLanguages\":[],\"customProficiencies\":[],\"customTechPowers\":[],\"equipment\":[],\"experiencePoints\":6500,\"featureChoices\":{\"Feat: Tech Dabbler (at-will tech power)\":[{\"name\":\"Ion Blast\"},{\"name\":\"Mending\"}],\"Feat: Tech Dabbler (level 1 tech power)\":[{\"name\":\"Alarm\"}],\"Feat: Tech Dabbler (level 2 tech power)\":[{\"name\":\"Overheat\"}]},\"featureNotes\":null,\"image\":\"\",\"name\":\"Consular Test (local)\",\"notes\":null,\"settings\":{},\"species\":{\"abilityScoreImprovement\":{},\"abilityScoreImprovementSelectedOption\":0,\"language\":\"Galactic Basic\",\"name\":\"Human\"},\"tweaks\":{\"abilityScores\":{\"Intelligence\":{\"skills\":{\"Technology\":{\"bonus\":0,\"proficiency\":\"Proficient\"}}}}}}",
+    "complete": {
+     "name": "Consular Test (local)",
+     "builderVersion": "0.7.6",
+     "image": "",
+     "characteristics": {
+      "alignment": "Lawful Light"
+     },
+     "tweaks": {
+      "abilityScores": {
+       "Intelligence": {
+        "skills": {
+         "Technology": {
+          "proficiency": "Proficient",
+          "bonus": 0
+         }
+        }
+       }
+      }
+     },
+     "customProficiencies": [],
+     "customLanguages": [],
+     "customFeatures": [],
+     "customTechPowers": [],
+     "customForcePowers": [],
+     "customEquipment": [],
+     "numCustomFeats": 0,
+     "currentLevel": 5,
+     "classText": "Consular (Way of Technology) 5",
+     "alignment": "Lawful Light",
+     "species": "Human",
+     "background": "Noble",
+     "experiencePoints": {
+      "previousLevel": 6500,
+      "current": 6500,
+      "nextLevel": 14000,
+      "isCorrect": true,
+      "errorMessage": ""
+     },
+     "abilityScores": {
+      "Strength": {
+       "value": 8,
+       "modifier": -1,
+       "savingThrow": {
+        "modifier": -1,
+        "proficiency": "none"
+       },
+       "skills": [
+        {
+         "name": "Athletics",
+         "modifier": -1,
+         "proficiency": "none"
+        }
+       ]
+      },
+      "Dexterity": {
+       "value": 14,
+       "modifier": 2,
+       "savingThrow": {
+        "modifier": 2,
+        "proficiency": "none"
+       },
+       "skills": [
+        {
+         "name": "Acrobatics",
+         "modifier": 2,
+         "proficiency": "none"
+        },
+        {
+         "name": "Sleight of Hand",
+         "modifier": 2,
+         "proficiency": "none"
+        },
+        {
+         "name": "Stealth",
+         "modifier": 2,
+         "proficiency": "none"
+        }
+       ]
+      },
+      "Constitution": {
+       "value": 14,
+       "modifier": 2,
+       "savingThrow": {
+        "modifier": 2,
+        "proficiency": "none"
+       },
+       "skills": []
+      },
+      "Intelligence": {
+       "value": 10,
+       "modifier": 0,
+       "savingThrow": {
+        "modifier": 0,
+        "proficiency": "none"
+       },
+       "skills": [
+        {
+         "name": "Investigation",
+         "modifier": 0,
+         "proficiency": "none"
+        },
+        {
+         "name": "Lore",
+         "modifier": 0,
+         "proficiency": "none"
+        },
+        {
+         "name": "Nature",
+         "modifier": 0,
+         "proficiency": "none"
+        },
+        {
+         "name": "Piloting",
+         "modifier": 0,
+         "proficiency": "none"
+        },
+        {
+         "name": "Technology",
+         "modifier": 3,
+         "proficiency": "proficient"
+        }
+       ]
+      },
+      "Wisdom": {
+       "value": 16,
+       "modifier": 3,
+       "savingThrow": {
+        "modifier": 6,
+        "proficiency": "proficient"
+       },
+       "skills": [
+        {
+         "name": "Animal Handling",
+         "modifier": 3,
+         "proficiency": "none"
+        },
+        {
+         "name": "Insight",
+         "modifier": 3,
+         "proficiency": "none"
+        },
+        {
+         "name": "Medicine",
+         "modifier": 3,
+         "proficiency": "none"
+        },
+        {
+         "name": "Perception",
+         "modifier": 3,
+         "proficiency": "none"
+        },
+        {
+         "name": "Survival",
+         "modifier": 3,
+         "proficiency": "none"
+        }
+       ]
+      },
+      "Charisma": {
+       "value": 14,
+       "modifier": 2,
+       "savingThrow": {
+        "modifier": 5,
+        "proficiency": "proficient"
+       },
+       "skills": [
+        {
+         "name": "Deception",
+         "modifier": 2,
+         "proficiency": "none"
+        },
+        {
+         "name": "Intimidation",
+         "modifier": 2,
+         "proficiency": "none"
+        },
+        {
+         "name": "Performance",
+         "modifier": 2,
+         "proficiency": "none"
+        },
+        {
+         "name": "Persuasion",
+         "modifier": 2,
+         "proficiency": "none"
+        }
+       ]
+      }
+     },
+     "proficiencyBonus": 3,
+     "initiative": 2,
+     "armorClass": 12,
+     "armorList": [],
+     "passivePerception": 13,
+     "inspiration": false,
+     "vision": "normal",
+     "speed": {
+      "base": "30 ft",
+      "hour": "3 miles",
+      "day": "24 miles",
+      "special": ""
+     },
+     "hitPoints": {
+      "current": 32,
+      "temporary": 0,
+      "maximum": 32,
+      "hitDice": [
+       {
+        "size": "d6",
+        "current": 5,
+        "maximum": 5
+       }
+      ],
+      "deathSaves": {
+       "successes": 0,
+       "failures": 0
+      },
+      "resting": {
+       "hitDieBonus": 2,
+       "numHitDiceUsed": 0,
+       "hitDiceRestored": [],
+       "techPointsUsed": 0,
+       "forcePointsUsed": 0,
+       "shortRestFeatures": [],
+       "longRestFeatures": []
+      }
+     },
+     "conditions": [],
+     "exhaustion": 0,
+     "proficiencies": [
+      {
+       "name": "Simple lightweapons",
+       "type": "weapon"
+      },
+      {
+       "name": "simple vibroweapons",
+       "type": "weapon"
+      },
+      {
+       "name": "None",
+       "type": "armor"
+      },
+      {
+       "name": "One type of gaming set",
+       "type": "tool"
+      }
+     ],
+     "skillAndSaveProficiencies": [
+      "Technology",
+      "Wisdom Saving Throws",
+      "Charisma Saving Throws"
+     ],
+     "languages": [
+      "Galactic Basic",
+      "Galactic Basic"
+     ],
+     "equipment": [],
+     "attunement": {
+      "current": 0,
+      "maximum": 3,
+      "hasAttunable": false
+     },
+     "weapons": [
+      {
+       "name": "Unarmed Strike",
+       "description": null,
+       "cost": 0,
+       "weight": "0",
+       "equipmentCategory": "Weapon",
+       "contentType": "Core",
+       "contentSource": "PHB",
+       "damageNumberOfDice": 1,
+       "damageType": "Kinetic",
+       "weaponClassification": "Unarmed",
+       "damageDieType": 0,
+       "properties": [],
+       "propertiesMap": {},
+       "modes": [],
+       "quantity": 0,
+       "index": -1,
+       "isFound": true,
+       "equipped": true,
+       "attackBonus": 2,
+       "damageBonus": 0,
+       "ability": "Strength",
+       "isCustom": false,
+       "tweaks": {}
+      }
+     ],
+     "credits": 0,
+     "carryingCapacity": {
+      "encumbered": 40,
+      "heavilyEncumbered": 80,
+      "maxCapacity": 120,
+      "pushDragLift": 240
+     },
+     "superiority": false,
+     "techCasting": false,
+     "forceCasting": {
+      "pointsUsed": 0,
+      "maxPoints": 23,
+      "lightAttackModifier": 6,
+      "lightSaveDC": 14,
+      "darkAttackModifier": 5,
+      "darkSaveDC": 13,
+      "universalAttackModifier": 6,
+      "universalSaveDC": 14,
+      "maxPowerLevel": 3,
+      "powersKnown": [
+       {
+        "name": "Saber Throw",
+        "powerTypeEnum": 1,
+        "powerType": "Force",
+        "prerequisite": null,
+        "level": 0,
+        "castingPeriodEnum": 1,
+        "castingPeriod": "Action",
+        "castingPeriodText": "1 action",
+        "range": "30 feet",
+        "duration": "Instantaneous",
+        "concentration": false,
+        "forceAlignmentEnum": 1,
+        "forceAlignment": "Universal",
+        "description": "As a part of the action used to cast this power, you must make a ranged force attack with a lightweapon or vibroweapon against one target within the power's range, otherwise the power fails. On a hit, the target takes 1d8 damage of the same type as the weapon's damage. The weapon then immediately returns to your hand.\r\n\r\nThis power can hit multiple targets when you reach higher levels: two targets at 5th level, three targets at 11th level, and four targets at 17th level. Each target must be within 30 feet of the previous target, you must make a separate attack roll for each target, and the last target must be no further than 30 feet away from you. You can not hit the same target twice in succession.",
+        "higherLevelDescription": null,
+        "contentTypeEnum": 1,
+        "contentType": "Core",
+        "contentSourceEnum": 1,
+        "contentSource": "PHB",
+        "partitionKey": "Core",
+        "rowKey": "Saber Throw",
+        "timestamp": "2023-05-30T20:15:09.1211108+00:00",
+        "eTag": "W/\"datetime'2023-05-30T20%3A15%3A09.1211108Z'\""
+       },
+       {
+        "name": "Force Push/Pull",
+        "powerTypeEnum": 1,
+        "powerType": "Force",
+        "prerequisite": null,
+        "level": 0,
+        "castingPeriodEnum": 1,
+        "castingPeriod": "Action",
+        "castingPeriodText": "1 action",
+        "range": "60 feet",
+        "duration": "Instantaneous",
+        "concentration": false,
+        "forceAlignmentEnum": 1,
+        "forceAlignment": "Universal",
+        "description": "You gain the minor ability to move or manipulate creatures and objects with the Force. You can exert fine control on objects with your telekinetic grip, such as manipulating a simple tool, opening a door or a container, stowing or retrieving an item from an open container, or pouring the contents from a vial. Alternatively, you can push or pull a creature or object you can see. \r\n\r\nYou use the Force to move a Medium or smaller creature or object not being worn or carried within range. The target must make a Strength saving throw. An object automatically fails this saving throw. On a failed save, the creature or object moves a number of feet in a direction of your choice based on its size. A Tiny creature or object can be moved up to 20 feet, a Small creature or object can be moved up to 10 feet, and a Medium creature or object can be moved up to 5 feet. If at the end of this movement the creature or object strikes another creature or object, it must make a Dexterity saving throw. An object automatically fails this saving throw. On a failed save, they both take 1d4 kinetic damage.\r\n\r\nThis power improves when you reach higher levels. At 5th level, you can move a Tiny creature or object up to 30 feet, a Small creature or object up to 20 feet, a Medium creature or object up to 10 feet, and the power's damage increases to 2d4 kinetic damage. At 11th level, you can move a Small creature or object up to 30 feet, a Medium creature up to 20 feet, and the power's damage increases to 3d4 kinetic damage. At 17th level, you can move a Medium creature to up 30 feet, and the power's damage increases to 4d4 kinetic damage.",
+        "higherLevelDescription": null,
+        "contentTypeEnum": 1,
+        "contentType": "Core",
+        "contentSourceEnum": 1,
+        "contentSource": "PHB",
+        "partitionKey": "Core",
+        "rowKey": "Force PushPull",
+        "timestamp": "2023-05-30T20:15:09.0781337+00:00",
+        "eTag": "W/\"datetime'2023-05-30T20%3A15%3A09.0781337Z'\""
+       },
+       {
+        "name": "Battle Precognition",
+        "powerTypeEnum": 1,
+        "powerType": "Force",
+        "prerequisite": null,
+        "level": 1,
+        "castingPeriodEnum": 1,
+        "castingPeriod": "Action",
+        "castingPeriodText": "1 action",
+        "range": "Self",
+        "duration": "8 hours",
+        "concentration": false,
+        "forceAlignmentEnum": 1,
+        "forceAlignment": "Universal",
+        "description": "Your attunement to the Force warns you when you are about to enter danger. Until the power ends, your base AC becomes 13 + your Dexterity modifier. This power has no effect if you are wearing armor.",
+        "higherLevelDescription": null,
+        "contentTypeEnum": 1,
+        "contentType": "Core",
+        "contentSourceEnum": 1,
+        "contentSource": "PHB",
+        "partitionKey": "Core",
+        "rowKey": "Battle Precognition",
+        "timestamp": "2023-05-30T20:15:09.0711388+00:00",
+        "eTag": "W/\"datetime'2023-05-30T20%3A15%3A09.0711388Z'\""
+       },
+       {
+        "name": "Force Disarm",
+        "powerTypeEnum": 1,
+        "powerType": "Force",
+        "prerequisite": null,
+        "level": 0,
+        "castingPeriodEnum": 1,
+        "castingPeriod": "Action",
+        "castingPeriodText": "1 action",
+        "range": "30 feet",
+        "duration": "Instantaneous",
+        "concentration": false,
+        "forceAlignmentEnum": 1,
+        "forceAlignment": "Universal",
+        "description": "You select a weapon or object being worn or carried by a Large or smaller creature within range. The creature must make a Strength or Dexterity saving throw (the creature chooses the ability to use). If the item is being carried, this save is made with advantage. On a failed save, the item is pulled directly to you. If you have a free hand, you catch the weapon. Otherwise, it lands at your feet.",
+        "higherLevelDescription": null,
+        "contentTypeEnum": 1,
+        "contentType": "Core",
+        "contentSourceEnum": 1,
+        "contentSource": "PHB",
+        "partitionKey": "Core",
+        "rowKey": "Force Disarm",
+        "timestamp": "2023-05-30T20:15:09.0761349+00:00",
+        "eTag": "W/\"datetime'2023-05-30T20%3A15%3A09.0761349Z'\""
+       }
+      ]
+     },
+     "allForcePowers": [
+      "Saber Throw",
+      "Force Push/Pull",
+      "Battle Precognition",
+      "Force Disarm"
+     ],
+     "combatFeatures": [
+      {
+       "name": "Force Recovery",
+       "text": "_**Consular:** 1st level_\r\nYou have learned to regain some of your energy by briefly meditating. When you finish a short rest, you can regain a number of force points equal to half your consular level + your Wisdom or Charisma modifier (your choice, minimum of one). Once you've used this feature, you must complete a long rest before you can use it again.",
+       "level": 1,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Consular",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Consular-Force Recovery-1",
+       "timestamp": "2023-05-30T20:15:43.3915654+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.3915654Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Forcecasting",
+       "text": "_**Consular:** 1st level_\r\nIn your meditations on the force, you have learned powers, fragments of knowledge that imbue you with an abiding force ability. See chapter 10 for the general rules of forcecasting and chapter 11 for the force powers list.\r\n#### Force Powers Known\r\nYou learn 9 force powers of your choice, and you learn more at higher levels, as shown in the Force Powers Known column of the consular table. You may not learn a force power of a level higher than your Max Power Level, and you may learn a force power at the same time you learn its prerequisite.\r\n#### Force Points\r\nYou have a number of force points equal to your consular level x 4, as shown in the Force Points column of the consular table, + your Wisdom or Charisma modifier (your choice). You use these force points to cast force powers. You regain all expended force points when you finish a long rest.\r\n#### Max Power Level\r\nMany force powers can be overpowered, consuming more force points to create a greater effect. You can overpower these abilities to a maximum level, which increases at higher levels, as shown in the Max Power Level column of the consular table.\r\nYou may only cast force powers at 6th, 7th, 8th, and 9th-level once. You regain the ability to do so after a long rest.\r\n#### Forcecasting Ability\r\nYour forcecasting ability varies based on the alignment of the powers you cast. You use Wisdom for light side powers, Charisma for dark side powers, and Wisdom or Charisma for universal powers (your choice). You use this ability whenever a power refers to your forcecasting ability. Additionally, you use this ability modifier when setting the saving throw DC for a force power you cast and when making an attack roll with one.\r\n___\r\n**Force save DC** = 8 + your proficiency bonus + your forcecasting ability modifier\r\n___\r\n**Force attack modifier** = your proficiency bonus + your forcecasting ability modifier\r\n___",
+       "level": 1,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Consular",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Consular-Forcecasting-1",
+       "timestamp": "2023-05-30T20:15:43.3915654+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.3915654Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Force Shield",
+       "text": "_**Consular:** 2nd level_\r\nYou learn how to defend yourself purely through your strength with the Force. When you are hit by an attack, you can use your reaction to shroud yourself in Force energy. Until the start of your next turn, you have a bonus to AC equal to your Wisdom or Charisma modifier (your choice, minimum of +1). This includes the triggering attack.\r\nYou can use this feature twice. You gain an additional use at 5th, 9th, 13th, and 17th level. You regain all expended uses when you finish a long rest.",
+       "level": 2,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Consular",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Consular-Force Shield-2",
+       "timestamp": "2023-05-30T20:15:43.3915654+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.3915654Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Force-Empowered Casting",
+       "text": "_**Consular:** 2nd level_\r\nYou gain the ability to twist your powers to suit your needs. When you cast a force power, you can expend additional force points to modify the power. You gain two Force-Empowered Casting options, located at the end of the class description, and you learn more at higher levels, as shown in the Force-Empowered Casting Options of the cnosular table.\r\nYou can use only one Force-Empowered Casting option on a power when you cast it, unless otherwise noted.",
+       "level": 2,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Consular",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Consular-Force-Empowered Casting-2",
+       "timestamp": "2023-05-30T20:15:43.3915654+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.3915654Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Consular Tradition",
+       "text": "_**Consular:** 3rd, 6th, 10th, 14th, and 18th level_\r\nYou choose a consular tradition, which is detailed at the end of the class description. ",
+       "level": 3,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Consular",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Consular-Consular Tradition-3",
+       "timestamp": "2023-05-30T20:15:43.3925649+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.3925649Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Force Affinity",
+       "text": "_**Consular:** 3rd level_\r\nYou've developed an affinity for one of the three aspects of the Force: the Ashla, the Bendu, or the Bogan. Choose one from the following:\r\n#### Ashla\r\nWhen you successfully cast a light side power, either your or the target's (your choice) hit point maximum and current hit points increase by an amount equal to the power's level. This effect lasts for 1 minute. You can only have one instance of this effect active at a time.\r\n#### Bendu\r\nYou can add both your Wisdom and Charisma modifier to your maximum number of force points, instead of just one.\r\n#### Bogan\r\nYour dark side power damage rolls gain a minimum roll threshold, discussed in chapter 7.",
+       "level": 3,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Consular",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Consular-Force Affinity-3",
+       "timestamp": "2023-05-30T20:15:43.3915654+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.3915654Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Ability Score Improvement",
+       "text": "_**Consular:** 4th, 8th, 12th, 16th, and 19th level_\r\nYou can increase one ability score by 2, or you can increase two ability scores by 1. You can't increase an ability score above 20 using this feature.",
+       "level": 4,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Consular",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Consular-Ability Score Improvement-4",
+       "timestamp": "2023-05-30T20:15:43.3925649+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.3925649Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Fundamentals of Mechu-deru",
+       "text": "_**Way of Technology:** 3rd, 5th, 9th, 13th, and 17th level_\r\nYou've dabbled in adapting your use of the Force, melding it with technology. You gain proficiency in the Technology skill, as well as simple blasters. When you cast a force power that calls for a melee weapon attack, and you are wielding a blaster with which you are proficient, you can instead make a ranged weapon attack.\r\nAdditionally, you've learned to manipulate the Force to be able to manipulate technology when it couldn't previously. When you cast a force power that could not affect droids or constructs, you can choose to have it affect droids or constructs. If it would affect multiple targets, you must expend additional uses of this feature for each additional target. You can use this feature twice. You gain an additional use at 5th, 9th, 13th, and 17th level. You regain all expended uses when you complete a long rest.",
+       "level": 5,
+       "sourceEnum": 1,
+       "source": "Archetype",
+       "sourceName": "Way of Technology",
+       "metadata": null,
+       "partitionKey": "ExpandedContent",
+       "rowKey": "Archetype-Way of Technology-Fundamentals of Mechu-deru-5",
+       "timestamp": "2023-05-30T20:15:26.4202442+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A26.4202442Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Ability Score Increase",
+       "text": "One ability score of your choice increases by 2, and two other ability scores of your choice increase by 1. Alternatively, four ability scores of your choice each increase by 1.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Ability Score Increase",
+       "timestamp": "2023-05-30T20:15:40.8130359+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.8130359Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Age",
+       "text": "Humans reach adulthood in their late teens and live less than a century.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Age",
+       "timestamp": "2023-05-30T20:15:40.814035+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.814035Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Alignment",
+       "text": "Humans tend toward no particular alignment. The best and worst are found among them.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Alignment",
+       "timestamp": "2023-05-30T20:15:40.814035+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.814035Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Defiant",
+       "text": "Humans are known to be stubborn and often refuse to give up, even against the worst odds. When you or a creature you can see that can see and understand you makes an ability check, attack roll, or saving throw, you can roll a d4 and add it to their roll (no action required). Once you've used this feature, you must complete a short or long rest before you can use it again.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Defiant",
+       "timestamp": "2023-05-30T20:15:40.814035+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.814035Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Human Versatility",
+       "text": "You gain proficiency in one skill, one tool, and one weapon of your choice.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Human Versatility",
+       "timestamp": "2023-05-30T20:15:40.814035+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.814035Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Languages",
+       "text": "You can speak, read, and write Galactic Basic and one extra language of your choice. Humans typically learn the languages of other peoples they deal with, including obscure dialects. They are fond of sprinkling their speech with words borrowed from other tongues: trandoshan curses, twi'lek musical expressions, chiss military phrases, and so on.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Languages",
+       "timestamp": "2023-05-30T20:15:40.814035+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.814035Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Proficiency",
+       "text": "You gain proficiency in one skill, one tool, and one weapon of your choice.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Proficiency",
+       "timestamp": "2022-05-29T01:36:26.4474283+00:00",
+       "eTag": "W/\"datetime'2022-05-29T01%3A36%3A26.4474283Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Size",
+       "text": "Humans vary widely in height and build, from barely 5 feet to well over 6 feet tall. Regardless of your position in that range, your size is Medium.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Size",
+       "timestamp": "2023-05-30T20:15:40.814035+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.814035Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Speed",
+       "text": "Your base walking speed is 30 feet.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Speed",
+       "timestamp": "2023-05-30T20:15:40.814035+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.814035Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Tech Dabbler",
+       "prerequisite": null,
+       "text": "You know two at-will tech powers. When you reach 3rd level, you learn and can cast one 1st-level tech power once per long rest. When you reach 5th level, you learn and can cast one 2nd-level tech power once per long rest. Your techcasting ability is Intelligence. You require use of a wristpad for these powers. Additionally, you lose the Tech-Impaired special trait if you have it.\r\n",
+       "attributesIncreased": null,
+       "attributesIncreasedJson": "",
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Tech Dabbler",
+       "timestamp": "2023-05-30T20:15:09.5568611+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A09.5568611Z'\"",
+       "customIndex": -1,
+       "combat": true
+      }
+     ],
+     "nonCombatFeatures": [],
+     "backgroundFeature": {
+      "name": "Position of Privilege",
+      "combat": false,
+      "text": "Thanks to your noble birth, people are inclined to think the best of you. You are welcome in high society, and people assume you have the right to be wherever you are. The common folk make every effort to accommodate you and avoid your displeasure, and other people of high birth treat you as a member of the same social sphere. You can secure an audience with a local noble if you need to.\r\n"
+     },
+     "settings": {},
+     "notes": ""
+    },
+    "base": {
+     "name": "Consular Test (local)",
+     "builderVersion": "0.7.6",
+     "image": "",
+     "characteristics": {
+      "alignment": "Lawful Light"
+     },
+     "tweaks": {},
+     "customProficiencies": [],
+     "customLanguages": [],
+     "customFeatures": [],
+     "customTechPowers": [],
+     "customForcePowers": [],
+     "customEquipment": [],
+     "numCustomFeats": 0,
+     "currentLevel": 5,
+     "classText": "Consular (Way of Technology) 5",
+     "alignment": "Lawful Light",
+     "species": "Human",
+     "background": "Noble",
+     "experiencePoints": {
+      "previousLevel": 6500,
+      "current": 6500,
+      "nextLevel": 14000,
+      "isCorrect": true,
+      "errorMessage": ""
+     },
+     "abilityScores": {
+      "Strength": {
+       "value": 8,
+       "modifier": -1,
+       "savingThrow": {
+        "modifier": -1,
+        "proficiency": "none"
+       },
+       "skills": [
+        {
+         "name": "Athletics",
+         "modifier": -1,
+         "proficiency": "none"
+        }
+       ]
+      },
+      "Dexterity": {
+       "value": 14,
+       "modifier": 2,
+       "savingThrow": {
+        "modifier": 2,
+        "proficiency": "none"
+       },
+       "skills": [
+        {
+         "name": "Acrobatics",
+         "modifier": 2,
+         "proficiency": "none"
+        },
+        {
+         "name": "Sleight of Hand",
+         "modifier": 2,
+         "proficiency": "none"
+        },
+        {
+         "name": "Stealth",
+         "modifier": 2,
+         "proficiency": "none"
+        }
+       ]
+      },
+      "Constitution": {
+       "value": 14,
+       "modifier": 2,
+       "savingThrow": {
+        "modifier": 2,
+        "proficiency": "none"
+       },
+       "skills": []
+      },
+      "Intelligence": {
+       "value": 10,
+       "modifier": 0,
+       "savingThrow": {
+        "modifier": 0,
+        "proficiency": "none"
+       },
+       "skills": [
+        {
+         "name": "Investigation",
+         "modifier": 0,
+         "proficiency": "none"
+        },
+        {
+         "name": "Lore",
+         "modifier": 0,
+         "proficiency": "none"
+        },
+        {
+         "name": "Nature",
+         "modifier": 0,
+         "proficiency": "none"
+        },
+        {
+         "name": "Piloting",
+         "modifier": 0,
+         "proficiency": "none"
+        },
+        {
+         "name": "Technology",
+         "modifier": 0,
+         "proficiency": "none"
+        }
+       ]
+      },
+      "Wisdom": {
+       "value": 16,
+       "modifier": 3,
+       "savingThrow": {
+        "modifier": 6,
+        "proficiency": "proficient"
+       },
+       "skills": [
+        {
+         "name": "Animal Handling",
+         "modifier": 3,
+         "proficiency": "none"
+        },
+        {
+         "name": "Insight",
+         "modifier": 3,
+         "proficiency": "none"
+        },
+        {
+         "name": "Medicine",
+         "modifier": 3,
+         "proficiency": "none"
+        },
+        {
+         "name": "Perception",
+         "modifier": 3,
+         "proficiency": "none"
+        },
+        {
+         "name": "Survival",
+         "modifier": 3,
+         "proficiency": "none"
+        }
+       ]
+      },
+      "Charisma": {
+       "value": 14,
+       "modifier": 2,
+       "savingThrow": {
+        "modifier": 5,
+        "proficiency": "proficient"
+       },
+       "skills": [
+        {
+         "name": "Deception",
+         "modifier": 2,
+         "proficiency": "none"
+        },
+        {
+         "name": "Intimidation",
+         "modifier": 2,
+         "proficiency": "none"
+        },
+        {
+         "name": "Performance",
+         "modifier": 2,
+         "proficiency": "none"
+        },
+        {
+         "name": "Persuasion",
+         "modifier": 2,
+         "proficiency": "none"
+        }
+       ]
+      }
+     },
+     "proficiencyBonus": 3,
+     "initiative": 2,
+     "armorClass": 12,
+     "armorList": [],
+     "passivePerception": 13,
+     "inspiration": false,
+     "vision": "normal",
+     "speed": {
+      "base": "30 ft",
+      "hour": "3 miles",
+      "day": "24 miles",
+      "special": ""
+     },
+     "hitPoints": {
+      "current": 32,
+      "temporary": 0,
+      "maximum": 32,
+      "hitDice": [
+       {
+        "size": "d6",
+        "current": 5,
+        "maximum": 5
+       }
+      ],
+      "deathSaves": {
+       "successes": 0,
+       "failures": 0
+      },
+      "resting": {
+       "hitDieBonus": 2,
+       "numHitDiceUsed": 0,
+       "hitDiceRestored": [],
+       "techPointsUsed": 0,
+       "forcePointsUsed": 0,
+       "shortRestFeatures": [],
+       "longRestFeatures": []
+      }
+     },
+     "conditions": [],
+     "exhaustion": 0,
+     "proficiencies": [
+      {
+       "name": "Simple lightweapons",
+       "type": "weapon"
+      },
+      {
+       "name": "simple vibroweapons",
+       "type": "weapon"
+      },
+      {
+       "name": "None",
+       "type": "armor"
+      },
+      {
+       "name": "One type of gaming set",
+       "type": "tool"
+      }
+     ],
+     "skillAndSaveProficiencies": [
+      "Wisdom Saving Throws",
+      "Charisma Saving Throws"
+     ],
+     "languages": [
+      "Galactic Basic",
+      "Galactic Basic"
+     ],
+     "equipment": [],
+     "attunement": {
+      "current": 0,
+      "maximum": 3,
+      "hasAttunable": false
+     },
+     "weapons": [
+      {
+       "name": "Unarmed Strike",
+       "description": null,
+       "cost": 0,
+       "weight": "0",
+       "equipmentCategory": "Weapon",
+       "contentType": "Core",
+       "contentSource": "PHB",
+       "damageNumberOfDice": 1,
+       "damageType": "Kinetic",
+       "weaponClassification": "Unarmed",
+       "damageDieType": 0,
+       "properties": [],
+       "propertiesMap": {},
+       "modes": [],
+       "quantity": 0,
+       "index": -1,
+       "isFound": true,
+       "equipped": true,
+       "attackBonus": 2,
+       "damageBonus": 0,
+       "ability": "Strength",
+       "isCustom": false,
+       "tweaks": {}
+      }
+     ],
+     "credits": 0,
+     "carryingCapacity": {
+      "encumbered": 40,
+      "heavilyEncumbered": 80,
+      "maxCapacity": 120,
+      "pushDragLift": 240
+     },
+     "superiority": false,
+     "techCasting": false,
+     "forceCasting": {
+      "pointsUsed": 0,
+      "maxPoints": 23,
+      "lightAttackModifier": 6,
+      "lightSaveDC": 14,
+      "darkAttackModifier": 5,
+      "darkSaveDC": 13,
+      "universalAttackModifier": 6,
+      "universalSaveDC": 14,
+      "maxPowerLevel": 3,
+      "powersKnown": [
+       {
+        "name": "Saber Throw",
+        "powerTypeEnum": 1,
+        "powerType": "Force",
+        "prerequisite": null,
+        "level": 0,
+        "castingPeriodEnum": 1,
+        "castingPeriod": "Action",
+        "castingPeriodText": "1 action",
+        "range": "30 feet",
+        "duration": "Instantaneous",
+        "concentration": false,
+        "forceAlignmentEnum": 1,
+        "forceAlignment": "Universal",
+        "description": "As a part of the action used to cast this power, you must make a ranged force attack with a lightweapon or vibroweapon against one target within the power's range, otherwise the power fails. On a hit, the target takes 1d8 damage of the same type as the weapon's damage. The weapon then immediately returns to your hand.\r\n\r\nThis power can hit multiple targets when you reach higher levels: two targets at 5th level, three targets at 11th level, and four targets at 17th level. Each target must be within 30 feet of the previous target, you must make a separate attack roll for each target, and the last target must be no further than 30 feet away from you. You can not hit the same target twice in succession.",
+        "higherLevelDescription": null,
+        "contentTypeEnum": 1,
+        "contentType": "Core",
+        "contentSourceEnum": 1,
+        "contentSource": "PHB",
+        "partitionKey": "Core",
+        "rowKey": "Saber Throw",
+        "timestamp": "2023-05-30T20:15:09.1211108+00:00",
+        "eTag": "W/\"datetime'2023-05-30T20%3A15%3A09.1211108Z'\""
+       },
+       {
+        "name": "Force Push/Pull",
+        "powerTypeEnum": 1,
+        "powerType": "Force",
+        "prerequisite": null,
+        "level": 0,
+        "castingPeriodEnum": 1,
+        "castingPeriod": "Action",
+        "castingPeriodText": "1 action",
+        "range": "60 feet",
+        "duration": "Instantaneous",
+        "concentration": false,
+        "forceAlignmentEnum": 1,
+        "forceAlignment": "Universal",
+        "description": "You gain the minor ability to move or manipulate creatures and objects with the Force. You can exert fine control on objects with your telekinetic grip, such as manipulating a simple tool, opening a door or a container, stowing or retrieving an item from an open container, or pouring the contents from a vial. Alternatively, you can push or pull a creature or object you can see. \r\n\r\nYou use the Force to move a Medium or smaller creature or object not being worn or carried within range. The target must make a Strength saving throw. An object automatically fails this saving throw. On a failed save, the creature or object moves a number of feet in a direction of your choice based on its size. A Tiny creature or object can be moved up to 20 feet, a Small creature or object can be moved up to 10 feet, and a Medium creature or object can be moved up to 5 feet. If at the end of this movement the creature or object strikes another creature or object, it must make a Dexterity saving throw. An object automatically fails this saving throw. On a failed save, they both take 1d4 kinetic damage.\r\n\r\nThis power improves when you reach higher levels. At 5th level, you can move a Tiny creature or object up to 30 feet, a Small creature or object up to 20 feet, a Medium creature or object up to 10 feet, and the power's damage increases to 2d4 kinetic damage. At 11th level, you can move a Small creature or object up to 30 feet, a Medium creature up to 20 feet, and the power's damage increases to 3d4 kinetic damage. At 17th level, you can move a Medium creature to up 30 feet, and the power's damage increases to 4d4 kinetic damage.",
+        "higherLevelDescription": null,
+        "contentTypeEnum": 1,
+        "contentType": "Core",
+        "contentSourceEnum": 1,
+        "contentSource": "PHB",
+        "partitionKey": "Core",
+        "rowKey": "Force PushPull",
+        "timestamp": "2023-05-30T20:15:09.0781337+00:00",
+        "eTag": "W/\"datetime'2023-05-30T20%3A15%3A09.0781337Z'\""
+       },
+       {
+        "name": "Battle Precognition",
+        "powerTypeEnum": 1,
+        "powerType": "Force",
+        "prerequisite": null,
+        "level": 1,
+        "castingPeriodEnum": 1,
+        "castingPeriod": "Action",
+        "castingPeriodText": "1 action",
+        "range": "Self",
+        "duration": "8 hours",
+        "concentration": false,
+        "forceAlignmentEnum": 1,
+        "forceAlignment": "Universal",
+        "description": "Your attunement to the Force warns you when you are about to enter danger. Until the power ends, your base AC becomes 13 + your Dexterity modifier. This power has no effect if you are wearing armor.",
+        "higherLevelDescription": null,
+        "contentTypeEnum": 1,
+        "contentType": "Core",
+        "contentSourceEnum": 1,
+        "contentSource": "PHB",
+        "partitionKey": "Core",
+        "rowKey": "Battle Precognition",
+        "timestamp": "2023-05-30T20:15:09.0711388+00:00",
+        "eTag": "W/\"datetime'2023-05-30T20%3A15%3A09.0711388Z'\""
+       },
+       {
+        "name": "Force Disarm",
+        "powerTypeEnum": 1,
+        "powerType": "Force",
+        "prerequisite": null,
+        "level": 0,
+        "castingPeriodEnum": 1,
+        "castingPeriod": "Action",
+        "castingPeriodText": "1 action",
+        "range": "30 feet",
+        "duration": "Instantaneous",
+        "concentration": false,
+        "forceAlignmentEnum": 1,
+        "forceAlignment": "Universal",
+        "description": "You select a weapon or object being worn or carried by a Large or smaller creature within range. The creature must make a Strength or Dexterity saving throw (the creature chooses the ability to use). If the item is being carried, this save is made with advantage. On a failed save, the item is pulled directly to you. If you have a free hand, you catch the weapon. Otherwise, it lands at your feet.",
+        "higherLevelDescription": null,
+        "contentTypeEnum": 1,
+        "contentType": "Core",
+        "contentSourceEnum": 1,
+        "contentSource": "PHB",
+        "partitionKey": "Core",
+        "rowKey": "Force Disarm",
+        "timestamp": "2023-05-30T20:15:09.0761349+00:00",
+        "eTag": "W/\"datetime'2023-05-30T20%3A15%3A09.0761349Z'\""
+       }
+      ]
+     },
+     "allForcePowers": [
+      "Saber Throw",
+      "Force Push/Pull",
+      "Battle Precognition",
+      "Force Disarm"
+     ],
+     "combatFeatures": [
+      {
+       "name": "Force Recovery",
+       "text": "_**Consular:** 1st level_\r\nYou have learned to regain some of your energy by briefly meditating. When you finish a short rest, you can regain a number of force points equal to half your consular level + your Wisdom or Charisma modifier (your choice, minimum of one). Once you've used this feature, you must complete a long rest before you can use it again.",
+       "level": 1,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Consular",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Consular-Force Recovery-1",
+       "timestamp": "2023-05-30T20:15:43.3915654+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.3915654Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Forcecasting",
+       "text": "_**Consular:** 1st level_\r\nIn your meditations on the force, you have learned powers, fragments of knowledge that imbue you with an abiding force ability. See chapter 10 for the general rules of forcecasting and chapter 11 for the force powers list.\r\n#### Force Powers Known\r\nYou learn 9 force powers of your choice, and you learn more at higher levels, as shown in the Force Powers Known column of the consular table. You may not learn a force power of a level higher than your Max Power Level, and you may learn a force power at the same time you learn its prerequisite.\r\n#### Force Points\r\nYou have a number of force points equal to your consular level x 4, as shown in the Force Points column of the consular table, + your Wisdom or Charisma modifier (your choice). You use these force points to cast force powers. You regain all expended force points when you finish a long rest.\r\n#### Max Power Level\r\nMany force powers can be overpowered, consuming more force points to create a greater effect. You can overpower these abilities to a maximum level, which increases at higher levels, as shown in the Max Power Level column of the consular table.\r\nYou may only cast force powers at 6th, 7th, 8th, and 9th-level once. You regain the ability to do so after a long rest.\r\n#### Forcecasting Ability\r\nYour forcecasting ability varies based on the alignment of the powers you cast. You use Wisdom for light side powers, Charisma for dark side powers, and Wisdom or Charisma for universal powers (your choice). You use this ability whenever a power refers to your forcecasting ability. Additionally, you use this ability modifier when setting the saving throw DC for a force power you cast and when making an attack roll with one.\r\n___\r\n**Force save DC** = 8 + your proficiency bonus + your forcecasting ability modifier\r\n___\r\n**Force attack modifier** = your proficiency bonus + your forcecasting ability modifier\r\n___",
+       "level": 1,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Consular",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Consular-Forcecasting-1",
+       "timestamp": "2023-05-30T20:15:43.3915654+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.3915654Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Force Shield",
+       "text": "_**Consular:** 2nd level_\r\nYou learn how to defend yourself purely through your strength with the Force. When you are hit by an attack, you can use your reaction to shroud yourself in Force energy. Until the start of your next turn, you have a bonus to AC equal to your Wisdom or Charisma modifier (your choice, minimum of +1). This includes the triggering attack.\r\nYou can use this feature twice. You gain an additional use at 5th, 9th, 13th, and 17th level. You regain all expended uses when you finish a long rest.",
+       "level": 2,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Consular",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Consular-Force Shield-2",
+       "timestamp": "2023-05-30T20:15:43.3915654+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.3915654Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Force-Empowered Casting",
+       "text": "_**Consular:** 2nd level_\r\nYou gain the ability to twist your powers to suit your needs. When you cast a force power, you can expend additional force points to modify the power. You gain two Force-Empowered Casting options, located at the end of the class description, and you learn more at higher levels, as shown in the Force-Empowered Casting Options of the cnosular table.\r\nYou can use only one Force-Empowered Casting option on a power when you cast it, unless otherwise noted.",
+       "level": 2,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Consular",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Consular-Force-Empowered Casting-2",
+       "timestamp": "2023-05-30T20:15:43.3915654+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.3915654Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Consular Tradition",
+       "text": "_**Consular:** 3rd, 6th, 10th, 14th, and 18th level_\r\nYou choose a consular tradition, which is detailed at the end of the class description. ",
+       "level": 3,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Consular",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Consular-Consular Tradition-3",
+       "timestamp": "2023-05-30T20:15:43.3925649+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.3925649Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Force Affinity",
+       "text": "_**Consular:** 3rd level_\r\nYou've developed an affinity for one of the three aspects of the Force: the Ashla, the Bendu, or the Bogan. Choose one from the following:\r\n#### Ashla\r\nWhen you successfully cast a light side power, either your or the target's (your choice) hit point maximum and current hit points increase by an amount equal to the power's level. This effect lasts for 1 minute. You can only have one instance of this effect active at a time.\r\n#### Bendu\r\nYou can add both your Wisdom and Charisma modifier to your maximum number of force points, instead of just one.\r\n#### Bogan\r\nYour dark side power damage rolls gain a minimum roll threshold, discussed in chapter 7.",
+       "level": 3,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Consular",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Consular-Force Affinity-3",
+       "timestamp": "2023-05-30T20:15:43.3915654+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.3915654Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Ability Score Improvement",
+       "text": "_**Consular:** 4th, 8th, 12th, 16th, and 19th level_\r\nYou can increase one ability score by 2, or you can increase two ability scores by 1. You can't increase an ability score above 20 using this feature.",
+       "level": 4,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Consular",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Consular-Ability Score Improvement-4",
+       "timestamp": "2023-05-30T20:15:43.3925649+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.3925649Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Fundamentals of Mechu-deru",
+       "text": "_**Way of Technology:** 3rd, 5th, 9th, 13th, and 17th level_\r\nYou've dabbled in adapting your use of the Force, melding it with technology. You gain proficiency in the Technology skill, as well as simple blasters. When you cast a force power that calls for a melee weapon attack, and you are wielding a blaster with which you are proficient, you can instead make a ranged weapon attack.\r\nAdditionally, you've learned to manipulate the Force to be able to manipulate technology when it couldn't previously. When you cast a force power that could not affect droids or constructs, you can choose to have it affect droids or constructs. If it would affect multiple targets, you must expend additional uses of this feature for each additional target. You can use this feature twice. You gain an additional use at 5th, 9th, 13th, and 17th level. You regain all expended uses when you complete a long rest.",
+       "level": 5,
+       "sourceEnum": 1,
+       "source": "Archetype",
+       "sourceName": "Way of Technology",
+       "metadata": null,
+       "partitionKey": "ExpandedContent",
+       "rowKey": "Archetype-Way of Technology-Fundamentals of Mechu-deru-5",
+       "timestamp": "2023-05-30T20:15:26.4202442+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A26.4202442Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Ability Score Increase",
+       "text": "One ability score of your choice increases by 2, and two other ability scores of your choice increase by 1. Alternatively, four ability scores of your choice each increase by 1.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Ability Score Increase",
+       "timestamp": "2023-05-30T20:15:40.8130359+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.8130359Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Age",
+       "text": "Humans reach adulthood in their late teens and live less than a century.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Age",
+       "timestamp": "2023-05-30T20:15:40.814035+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.814035Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Alignment",
+       "text": "Humans tend toward no particular alignment. The best and worst are found among them.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Alignment",
+       "timestamp": "2023-05-30T20:15:40.814035+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.814035Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Defiant",
+       "text": "Humans are known to be stubborn and often refuse to give up, even against the worst odds. When you or a creature you can see that can see and understand you makes an ability check, attack roll, or saving throw, you can roll a d4 and add it to their roll (no action required). Once you've used this feature, you must complete a short or long rest before you can use it again.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Defiant",
+       "timestamp": "2023-05-30T20:15:40.814035+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.814035Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Human Versatility",
+       "text": "You gain proficiency in one skill, one tool, and one weapon of your choice.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Human Versatility",
+       "timestamp": "2023-05-30T20:15:40.814035+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.814035Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Languages",
+       "text": "You can speak, read, and write Galactic Basic and one extra language of your choice. Humans typically learn the languages of other peoples they deal with, including obscure dialects. They are fond of sprinkling their speech with words borrowed from other tongues: trandoshan curses, twi'lek musical expressions, chiss military phrases, and so on.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Languages",
+       "timestamp": "2023-05-30T20:15:40.814035+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.814035Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Proficiency",
+       "text": "You gain proficiency in one skill, one tool, and one weapon of your choice.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Proficiency",
+       "timestamp": "2022-05-29T01:36:26.4474283+00:00",
+       "eTag": "W/\"datetime'2022-05-29T01%3A36%3A26.4474283Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Size",
+       "text": "Humans vary widely in height and build, from barely 5 feet to well over 6 feet tall. Regardless of your position in that range, your size is Medium.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Size",
+       "timestamp": "2023-05-30T20:15:40.814035+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.814035Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Speed",
+       "text": "Your base walking speed is 30 feet.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Speed",
+       "timestamp": "2023-05-30T20:15:40.814035+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.814035Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Tech Dabbler",
+       "prerequisite": null,
+       "text": "You know two at-will tech powers. When you reach 3rd level, you learn and can cast one 1st-level tech power once per long rest. When you reach 5th level, you learn and can cast one 2nd-level tech power once per long rest. Your techcasting ability is Intelligence. You require use of a wristpad for these powers. Additionally, you lose the Tech-Impaired special trait if you have it.\r\n",
+       "attributesIncreased": null,
+       "attributesIncreasedJson": "",
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Tech Dabbler",
+       "timestamp": "2023-05-30T20:15:09.5568611+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A09.5568611Z'\"",
+       "customIndex": -1,
+       "combat": true
+      }
+     ],
+     "nonCombatFeatures": [],
+     "backgroundFeature": {
+      "name": "Position of Privilege",
+      "combat": false,
+      "text": "Thanks to your noble birth, people are inclined to think the best of you. You are welcome in high society, and people assume you have the right to be wherever you are. The common folk make every effort to accommodate you and avoid your displeasure, and other people of high birth treat you as a member of the same social sphere. You can secure an audience with a local noble if you need to.\r\n"
+     },
+     "settings": {},
+     "notes": ""
+    },
+    "refs": {
+     "classes": {
+      "Consular": {
+       "name": "Consular",
+       "summary": "Force-wielder who focuses on utilizing force powers",
+       "primaryAbility": "Wisdom",
+       "hitDiceDieType": 6,
+       "hitPointsAtFirstLevel": "6 + your Constitution modifier",
+       "hitPointsAtHigherLevels": "1d6 (or 4) + your Constitution modifier per consular level after 1st",
+       "armorProficiencies": [
+        "None"
+       ],
+       "weaponProficiencies": [
+        "Simple lightweapons",
+        "simple vibroweapons"
+       ],
+       "toolProficiencies": [
+        "None"
+       ],
+       "savingThrows": [
+        "Wisdom",
+        "Charisma"
+       ],
+       "skillChoices": "Choose two from Deception, Insight, Intimidation, Investigation, Lore, Medicine, and Persuasion",
+       "levelChanges": {
+        "1": {
+         "Level": "1st",
+         "Proficiency Bonus": "+2",
+         "Features": "Forcecasting, Force Recovery",
+         "Force Powers Known": "9",
+         "Force Points": "4",
+         "Max Power Level": "1st",
+         "Force-Empowered Casting Options": "�"
+        },
+        "2": {
+         "Level": "2nd",
+         "Proficiency Bonus": "+2",
+         "Features": "Force-Empowered Casting, Force Shield",
+         "Force Powers Known": "11",
+         "Force Points": "8",
+         "Max Power Level": "1st",
+         "Force-Empowered Casting Options": "2"
+        },
+        "3": {
+         "Level": "3rd",
+         "Proficiency Bonus": "+2",
+         "Features": "Force Affinity, Consular Tradition",
+         "Force Powers Known": "13",
+         "Force Points": "12",
+         "Max Power Level": "2nd",
+         "Force-Empowered Casting Options": "2"
+        },
+        "4": {
+         "Level": "4th",
+         "Proficiency Bonus": "+2",
+         "Features": "Ability Score Improvement",
+         "Force Powers Known": "15",
+         "Force Points": "16",
+         "Max Power Level": "2nd",
+         "Force-Empowered Casting Options": "2"
+        },
+        "5": {
+         "Level": "5th",
+         "Proficiency Bonus": "+3",
+         "Features": "�",
+         "Force Powers Known": "17",
+         "Force Points": "20",
+         "Max Power Level": "3rd",
+         "Force-Empowered Casting Options": "2"
+        },
+        "6": {
+         "Level": "6th",
+         "Proficiency Bonus": "+3",
+         "Features": "Tradition feature",
+         "Force Powers Known": "19",
+         "Force Points": "24",
+         "Max Power Level": "3rd",
+         "Force-Empowered Casting Options": "2"
+        },
+        "7": {
+         "Level": "7th",
+         "Proficiency Bonus": "+3",
+         "Features": "�",
+         "Force Powers Known": "21",
+         "Force Points": "28",
+         "Max Power Level": "4th",
+         "Force-Empowered Casting Options": "2"
+        },
+        "8": {
+         "Level": "8th",
+         "Proficiency Bonus": "+3",
+         "Features": "Ability Score Improvement",
+         "Force Powers Known": "23",
+         "Force Points": "32",
+         "Max Power Level": "4th",
+         "Force-Empowered Casting Options": "2"
+        },
+        "9": {
+         "Level": "9th",
+         "Proficiency Bonus": "+4",
+         "Features": "�",
+         "Force Powers Known": "25",
+         "Force Points": "36",
+         "Max Power Level": "5th",
+         "Force-Empowered Casting Options": "3"
+        },
+        "10": {
+         "Level": "10th",
+         "Proficiency Bonus": "+4",
+         "Features": "Tradition feature",
+         "Force Powers Known": "26",
+         "Force Points": "40",
+         "Max Power Level": "5th",
+         "Force-Empowered Casting Options": "3"
+        },
+        "11": {
+         "Level": "11th",
+         "Proficiency Bonus": "+4",
+         "Features": "�",
+         "Force Powers Known": "28",
+         "Force Points": "44",
+         "Max Power Level": "6th",
+         "Force-Empowered Casting Options": "3"
+        },
+        "12": {
+         "Level": "12th",
+         "Proficiency Bonus": "+4",
+         "Features": "Ability Score Improvement",
+         "Force Powers Known": "29",
+         "Force Points": "48",
+         "Max Power Level": "6th",
+         "Force-Empowered Casting Options": "3"
+        },
+        "13": {
+         "Level": "13th",
+         "Proficiency Bonus": "+5",
+         "Features": "�",
+         "Force Powers Known": "31",
+         "Force Points": "52",
+         "Max Power Level": "7th",
+         "Force-Empowered Casting Options": "3"
+        },
+        "14": {
+         "Level": "14th",
+         "Proficiency Bonus": "+5",
+         "Features": "Tradition feature",
+         "Force Powers Known": "32",
+         "Force Points": "56",
+         "Max Power Level": "7th",
+         "Force-Empowered Casting Options": "3"
+        },
+        "15": {
+         "Level": "15th",
+         "Proficiency Bonus": "+5",
+         "Features": "�",
+         "Force Powers Known": "34",
+         "Force Points": "60",
+         "Max Power Level": "8th",
+         "Force-Empowered Casting Options": "3"
+        },
+        "16": {
+         "Level": "16th",
+         "Proficiency Bonus": "+5",
+         "Features": "Ability Score Improvement",
+         "Force Powers Known": "35",
+         "Force Points": "64",
+         "Max Power Level": "8th",
+         "Force-Empowered Casting Options": "3"
+        },
+        "17": {
+         "Level": "17th",
+         "Proficiency Bonus": "+6",
+         "Features": "�",
+         "Force Powers Known": "37",
+         "Force Points": "68",
+         "Max Power Level": "9th",
+         "Force-Empowered Casting Options": "4"
+        },
+        "18": {
+         "Level": "18th",
+         "Proficiency Bonus": "+6",
+         "Features": "Tradition feature",
+         "Force Powers Known": "38",
+         "Force Points": "72",
+         "Max Power Level": "9th",
+         "Force-Empowered Casting Options": "4"
+        },
+        "19": {
+         "Level": "19th",
+         "Proficiency Bonus": "+6",
+         "Features": "Ability Score Improvement",
+         "Force Powers Known": "39",
+         "Force Points": "76",
+         "Max Power Level": "9th",
+         "Force-Empowered Casting Options": "4"
+        },
+        "20": {
+         "Level": "20th",
+         "Proficiency Bonus": "+6",
+         "Features": "One with the Force",
+         "Force Powers Known": "40",
+         "Force Points": "80",
+         "Max Power Level": "9th",
+         "Force-Empowered Casting Options": "4"
+        }
+       },
+       "casterType": "Force",
+       "casterRatio": 1,
+       "multiClassProficiencies": [
+        "Simple lightweapons"
+       ],
+       "archetypeFlavorName": "Consular Traditions"
+      }
+     },
+     "archetypes": {
+      "Way of Technology": {
+       "name": "Way of Technology",
+       "className": "Consular",
+       "casterType": "None",
+       "casterRatio": 0,
+       "leveledTable": null
+      }
+     },
+     "species": {
+      "Human": {
+       "name": "Human",
+       "size": "Medium",
+       "homeworld": "Coruscant",
+       "language": "Galactic Basic",
+       "distinctions": "Biped with bilateral symmetry, opposable thumbs",
+       "skinColorOptions": "Light to dark tones",
+       "hairColorOptions": "Black, blond, orange, brown, gray to white (usually with age)",
+       "eyeColorOptions": "Amber, blue, brown, gray, green, hazel, purple, or red",
+       "heightAverage": "4'8\"",
+       "heightRollMod": "+2d10\"",
+       "weightAverage": "110 lb.",
+       "weightRollMod": "x(2d4) lb.",
+       "traits": [
+        {
+         "name": "Ability Score Increase",
+         "description": "One ability score of your choice increases by 2, and two other ability scores of your choice increase by 1. Alternatively, four ability scores of your choice each increase by 1."
+        },
+        {
+         "name": "Age",
+         "description": "Humans reach adulthood in their late teens and live less than a century."
+        },
+        {
+         "name": "Alignment",
+         "description": "Humans tend toward no particular alignment. The best and worst are found among them."
+        },
+        {
+         "name": "Size",
+         "description": "Humans vary widely in height and build, from barely 5 feet to well over 6 feet tall. Regardless of your position in that range, your size is Medium."
+        },
+        {
+         "name": "Speed",
+         "description": "Your base walking speed is 30 feet."
+        },
+        {
+         "name": "Defiant",
+         "description": "Humans are known to be stubborn and often refuse to give up, even against the worst odds. When you or a creature you can see that can see and understand you makes an ability check, attack roll, or saving throw, you can roll a d4 and add it to their roll (no action required). Once you've used this feature, you must complete a short or long rest before you can use it again."
+        },
+        {
+         "name": "Human Versatility",
+         "description": "You gain proficiency in one skill, one tool, and one weapon of your choice."
+        },
+        {
+         "name": "Languages",
+         "description": "You can speak, read, and write Galactic Basic and one extra language of your choice. Humans typically learn the languages of other peoples they deal with, including obscure dialects. They are fond of sprinkling their speech with words borrowed from other tongues: trandoshan curses, twi'lek musical expressions, chiss military phrases, and so on."
+        }
+       ],
+       "imageUrls": [
+        "https://starwars5ecentral.blob.core.windows.net/site-images/species/species_human.png"
+       ]
+      }
+     },
+     "backgrounds": {
+      "Noble": {
+       "name": "Noble",
+       "flavorText": "You understand wealth, power, and privilege. You carry a noble title, and your family owns land, collects taxes, and wields significant political influence. You might be a pampered aristocrat unfamiliar with manual labor, a former merchant just elevated to the nobility, or an honest, hard-working landowner who cares deeply about the people who live and work on your land.\r\n\r\nWork with your GM to come up with an appropriate title and determine how much authority that title carries, as well as your family and their influence on you. Is your family old and established, or was your title only recently bestowed? How much influence do they wield, how do people regard them?\r\n\r\nWhat's your position in the family? Are you the heir to the head of the family or the head itself? Are you far down the line of succession? How does the head of your family feel about your adventuring career? Are you in your family's good graces? \r\n\r\nDoes your family have a coat of arms you might wear, a signet ring, or particular colors? \r\n\r\nThese details help establish your family and your title as features of the world of the campaign.\r\n",
+       "skillProficiencies": "Choose two from Deception, Insight, Lore, and Persuasion",
+       "toolProficiencies": "One type of gaming set",
+       "languages": "One of your choice",
+       "equipment": "A set of fine clothes, a signet ring, a letter of pedigree, and a purse containing 250 cr",
+       "featureName": "Position of Privilege",
+       "featureText": "Thanks to your noble birth, people are inclined to think the best of you. You are welcome in high society, and people assume you have the right to be wherever you are. The common folk make every effort to accommodate you and avoid your displeasure, and other people of high birth treat you as a member of the same social sphere. You can secure an audience with a local noble if you need to.\r\n",
+       "flavorName": null,
+       "flavorDescription": null
+      }
+     },
+     "feats": {
+      "Tech Dabbler": {
+       "name": "Tech Dabbler",
+       "prerequisite": null,
+       "text": "You know two at-will tech powers. When you reach 3rd level, you learn and can cast one 1st-level tech power once per long rest. When you reach 5th level, you learn and can cast one 2nd-level tech power once per long rest. Your techcasting ability is Intelligence. You require use of a wristpad for these powers. Additionally, you lose the Tech-Impaired special trait if you have it.\r\n",
+       "attributesIncreased": null,
+       "contentType": "Core",
+       "contentSource": "PHB"
+      }
+     },
+     "maneuvers": {},
+     "choices": {},
+     "conditions": [
+      {
+       "name": "Blinded",
+       "description": "A blinded creature can't see and automatically fails any ability check that requires sight.\\r\\n- Attack rolls against the creature have advantage, and the creature's attack rolls have disadvantage."
+      },
+      {
+       "name": "Charmed",
+       "description": "A charmed creature can't attack the charmer or target the charmer with harmful abilities or enhanced effects.\\r\\n- The charmer has advantage on any ability check to interact socially with the creature."
+      },
+      {
+       "name": "Deafened",
+       "description": "A deafened creature can't hear and automatically fails any ability check that requires hearing."
+      },
+      {
+       "name": "Exhaustion",
+       "description": "Some special abilities and environmental hazards, such as and the long-term effects of freezing or scorching temperatures, can lead to a special condition called exhaustion. Exhaustion is measured in six levels. An effect can give a creature one or more levels of exhaustion, as specified in the effect's description. Exhaustion Level\\r\\n\\r\\n|Level|Effect|\\r\\n|:--:|:--|\\r\\n|1|Disadvantage on ability checks|\\r\\n|2|Speed halved|\\r\\n|3|Disadvantage on attack rolls and saving throws|\\r\\n|4|Hit point maximum halved|\\r\\n|5|Speed reduced to 0|\\r\\n|6|Death|\\r\\n\\r\\nIf an already exhausted creature suffers another effect that causes exhaustion, its current level of exhaustion increases by the amount specified in the effect's description.\\r\\n\\r\\nA creature suffers the effect of its current level of exhaustion as well as all lower levels. For example, a creature suffering level 2 exhaustion has its speed halved and has disadvantage on ability checks.\\r\\n\\r\\nAn effect that removes exhaustion reduces its level as specified in the effect's description, with all exhaustion effects ending if a creature's exhaustion level is reduced below 1.\\r\\n\\r\\nFinishing a long rest reduces a creature's exhaustion level by 1, provided that the creature has also ingested some food and drink."
+      },
+      {
+       "name": "Frightened",
+       "description": "A frightened creature has disadvantage on ability checks and attack rolls while the source of its fear is within line of sight.\\r\\n- The creature can't willingly move closer to the source of its fear."
+      },
+      {
+       "name": "Grappled",
+       "description": "A grappled creature's speed becomes 0, and it can't benefit from any bonus to its speed.\\r\\n- The condition ends if the grappler is incapacitated (see the condition).\\r\\n- The condition also ends if an effect removes the grappled creature from the reach of the grappler or grappling effect."
+      },
+      {
+       "name": "Incapacitated",
+       "description": "An incapacitated creature can't take actions or reactions."
+      },
+      {
+       "name": "Invisible",
+       "description": "An invisible creature is impossible to see without the aid of powers or a special sense. For the purpose of hiding, the creature is heavily obscured. The creature's location can be detected by any noise it makes or any tracks it leaves.\\r\\n- Attack rolls against the creature have disadvantage, and the creature's attack rolls have advantage."
+      },
+      {
+       "name": "Paralyzed",
+       "description": "A paralyzed creature is incapacitated (see the condition) and can't move or speak.\\r\\n- The creature automatically fails Strength and Dexterity saving throws. Attack rolls against the creature have advantage.\\r\\n- Any attack that hits the creature is a critical hit if the attacker is within 5 feet of the creature."
+      },
+      {
+       "name": "Petrified",
+       "description": "A petrified creature is transformed, along with any object it is wearing or carrying, into a solid inanimate substance (usually stone). Its weight increases by a factor of ten, and it ceases aging.\\r\\n- The creature is incapacitated (see the condition), can't move or speak, and is unaware of its surroundings.\\r\\n- Attack rolls against the creature have advantage. \\r\\n- The creature automatically fails Strength and Dexterity saving throws.\\r\\n- The creature has resistance to all damage.\\r\\n- The creature is immune to poison and disease, although a poison or disease already in its system is suspended, not neutralized."
+      },
+      {
+       "name": "Poisoned",
+       "description": "A poisoned creature has disadvantage on attack rolls and ability checks."
+      },
+      {
+       "name": "Prone",
+       "description": "A prone creature's only movement option is to crawl, unless it stands up and thereby ends the condition. \\r\\n- The creature has disadvantage on melee attack rolls.\\r\\n- The creature has disadvantage on ranged attack rolls against targets within 30 feet.\\r\\n- An attack roll against the creature has advantage if the attacker is within 5 feet of the creature. Otherwise, the attack roll has disadvantage."
+      },
+      {
+       "name": "Restrained",
+       "description": "A restrained creature's speed becomes 0, and it can't benefit from any bonus to its speed.\\r\\n- Attack rolls against the creature have advantage, and the creature's attack rolls have disadvantage.\\r\\n- The creature has disadvantage on Dexterity saving throws."
+      },
+      {
+       "name": "Shocked",
+       "description": "A shocked creature's speed is reduced by half.\\r\\n- The creature can't take reactions."
+      },
+      {
+       "name": "Stunned",
+       "description": "A stunned creature is incapacitated (see the condition), can't move, and can speak only falteringly.\\r\\n- The creature automatically fails Strength and Dexterity saving throws.\\r\\n- Attack rolls against the creature have advantage."
+      },
+      {
+       "name": "Unconscious",
+       "description": "An unconscious creature is incapacitated (see the condition), can't move or speak, and is unaware of its surroundings\\r\\n- The creature drops whatever it's holding and falls prone.\\r\\n- The creature automatically fails Strength and Dexterity saving throws.\\r\\n- Attack rolls against the creature have advantage.\\r\\n- Any attack that hits the creature is a critical hit if the attacker is within 5 feet of the creature."
+      }
+     ]
+    },
+    "validation": {
+     "code": 0,
+     "message": "All checks passed",
+     "isValid": true
+    },
+    "error": null,
+    "at": 1792289045265
+   }
+  },
+  "edits": {
+   "file:consular-test-(local)": {}
+  },
+  "itemState": {
+   "file:consular-test-(local)": {}
+  },
+  "trackers": {
+   "file:consular-test-(local)": {
+    "stats": {
+     "hitPointsLost": 0,
+     "temporaryHitPoints": 0,
+     "techPointsUsed": 0,
+     "forcePointsUsed": 3,
+     "superiorityDiceUsed": 0,
+     "hitDiceUsed": {},
+     "deathSaves": {
+      "successes": 0,
+      "failures": 0
+     },
+     "hasInspiration": false,
+     "featuresTimesUsed": {
+      "Alarm (Feat: Tech Dabbler)": 1
+     },
+     "exhaustion": 0,
+     "highLevelCasting": {
+      "level6": false,
+      "level7": false,
+      "level8": false,
+      "level9": false
+     },
+     "conditions": []
+    },
+    "updatedAt": 1792187099441
+   }
+  },
+  "history": {
+   "file:consular-test-(local)": [
+    {
+     "at": 1792187030817,
+     "reason": "Imported from file",
+     "changedAt": null,
+     "raw": {
+      "name": "Consular Test (local)",
+      "builderVersion": "0.7.6",
+      "image": "",
+      "experiencePoints": 6500,
+      "species": {
+       "name": "Human",
+       "abilityScoreImprovementSelectedOption": 0,
+       "abilityScoreImprovement": {}
+      },
+      "baseAbilityScores": {
+       "Strength": 8,
+       "Dexterity": 14,
+       "Constitution": 14,
+       "Intelligence": 10,
+       "Wisdom": 16,
+       "Charisma": 14
+      },
+      "background": {
+       "name": "Noble",
+       "feat": {
+        "name": "Tech Dabbler",
+        "type": "Feat"
+       },
+       "feature": ""
+      },
+      "characteristics": {
+       "alignment": "Lawful Light"
+      },
+      "credits": 0,
+      "equipment": [],
+      "currentStats": {
+       "hitPointsLost": 0,
+       "temporaryHitPoints": 0,
+       "techPointsUsed": 0,
+       "forcePointsUsed": 0,
+       "superiorityDiceUsed": 0,
+       "hitDiceUsed": {},
+       "deathSaves": {
+        "successes": 0,
+        "failures": 0
+       },
+       "hasInspiration": false,
+       "featuresTimesUsed": {},
+       "conditions": [],
+       "exhaustion": 0
+      },
+      "classes": [
+       {
+        "name": "Consular",
+        "levels": 5,
+        "hitPoints": [
+         4,
+         4,
+         4,
+         4
+        ],
+        "archetype": {
+         "name": "Way of Technology"
+        },
+        "abilityScoreImprovements": [
+         {
+          "type": "ASI",
+          "abilitiesIncreased": [
+           {
+            "name": "Wisdom",
+            "value": 2
+           }
+          ]
+         }
+        ],
+        "forcePowers": [
+         "Saber Throw",
+         "Force Push/Pull",
+         "Battle Precognition",
+         "Force Disarm"
+        ]
+       }
+      ],
+      "featureChoices": {
+       "Feat: Tech Dabbler (at-will tech power)": [
+        {
+         "name": "Ion Blast"
+        },
+        {
+         "name": "Mending"
+        }
+       ],
+       "Feat: Tech Dabbler (level 1 tech power)": [
+        {
+         "name": "Alarm"
+        }
+       ],
+       "Feat: Tech Dabbler (level 2 tech power)": [
+        {
+         "name": "Overheat"
+        }
+       ]
+      },
+      "tweaks": {},
+      "customProficiencies": [],
+      "customLanguages": [],
+      "customFeatures": [],
+      "customFeats": [],
+      "customTechPowers": [],
+      "customForcePowers": [],
+      "customEquipment": [],
+      "settings": {},
+      "notes": ""
+     }
+    }
+   ]
+  },
+  "rolls": [],
+  "rollSettings": {
+   "critMode": "max"
+  },
+  "rulesInfo": {
+   "dataVersion": 199,
+   "fetchedAt": 1792273029637
+  },
+  "catalogInfo": {
+   "dataVersion": 199,
+   "fetchedAt": 1792170265673,
+   "count": 2425
+  },
+  "backupInfo": {
+   "count": null,
+   "characters": {}
+  },
+  "lastCharacter": "file:consular-test-(local)"
+ },
+ "from": {
+  "case": "consular-test-local",
+  "changes": [
+   "--species",
+   "Theelin"
+  ]
+ }
+}
