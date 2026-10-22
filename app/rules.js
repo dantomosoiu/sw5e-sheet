@@ -15,6 +15,10 @@ function initTheme() {
   try { t = localStorage.getItem('theme'); } catch (e) { /* ignore */ }
   if (!t) t = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
   document.documentElement.dataset.theme = t;
+  // The style the sheet last showed (themes.css): the player's, or their character's class.
+  let style = null;
+  try { style = localStorage.getItem('styleShown'); } catch (e) { /* ignore */ }
+  if (style) document.documentElement.dataset.style = style;
 }
 
 /** SW5E's markdown, made plain for md.js: sidebars (quoted blocks) as ordinary text, entities and layout tags out. */

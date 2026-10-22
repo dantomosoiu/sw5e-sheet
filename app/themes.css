@@ -1,0 +1,163 @@
+/*
+ * Theme styles: "standard" (viewer.css's own colours) and one per SW5E class, each in dark and light
+ * (html[data-theme]). html[data-style] is set by viewer.js: the player's choice, or by default the class of the
+ * character on screen (the one with most levels). Each style sets the page's colours, its corners, the font and
+ * case of headings, and a faint background; the colours that mean something (good, bad, warn, light/dark side)
+ * stay the same in every style.
+ */
+
+/* What every class style shares: headings, a background picture, and the in-between colours worked out from each
+   style's own (so a style only names its main ones). */
+h1, h2, h3, .brand span { font-family: var(--font-display, var(--font)); }
+.section > h2 { letter-spacing: var(--display-spacing, .12em); }
+.hero h1 { text-transform: var(--display-case, none); letter-spacing: var(--title-spacing, normal); }
+body { background-image: var(--bg-art, none); background-size: var(--bg-art-size, auto); background-attachment: fixed; }
+:root[data-style]:not([data-style="standard"]) {
+  --bg-2: color-mix(in srgb, var(--bg) 55%, var(--panel));
+  --panel-2: color-mix(in srgb, var(--panel) 80%, var(--line));
+  --chip: color-mix(in srgb, var(--panel) 82%, var(--accent));
+}
+.topbar { box-shadow: inset 0 -2px 0 var(--topbar-line, transparent); }
+:root[data-style]:not([data-style="standard"]) .topbar { --topbar-line: color-mix(in srgb, var(--accent) 45%, transparent); }
+
+/* Berserker: rage. Embers on charred iron; heavy upright headings, hard corners. */
+:root[data-style="berserker"] {
+  --bg: #130c0c; --panel: #201314; --line: #47272a; --text: #f1e7e5; --muted: #b59b98; --faint: #7f6662;
+  --accent: #e5472f; --accent-ink: #fff;
+  --radius: 4px; --font-display: Impact, Haettenschweiler, "Arial Narrow Bold", "Franklin Gothic Bold", sans-serif;
+  --display-case: uppercase; --display-spacing: .14em; --title-spacing: .03em;
+  --bg-art: radial-gradient(ellipse 90% 50% at 50% 0%, rgba(229, 71, 47, .16), transparent 70%);
+}
+:root[data-style="berserker"][data-theme="light"] {
+  --bg: #f6eeeb; --panel: #fffaf8; --line: #e6cfc9; --text: #2a1513; --muted: #6f4d48; --faint: #9d7d78;
+  --accent: #b3261e; --accent-ink: #fff;
+  --bg-art: radial-gradient(ellipse 90% 50% at 50% 0%, rgba(179, 38, 30, .10), transparent 70%);
+}
+
+/* Consular: the Force's quiet. Deep night teal, a glow above; book-like serif headings, soft corners. */
+:root[data-style="consular"] {
+  --bg: #0b1117; --panel: #13202e; --line: #26405a; --text: #e5edf6; --muted: #95aac0; --faint: #63768b;
+  --accent: #5ccbc2; --accent-ink: #052120;
+  --radius: 14px; --font-display: "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+  --display-spacing: .1em;
+  --bg-art: radial-gradient(circle at 85% -10%, rgba(92, 203, 194, .14), transparent 45%), radial-gradient(circle at 0% 100%, rgba(120, 140, 255, .08), transparent 40%);
+}
+:root[data-style="consular"][data-theme="light"] {
+  --bg: #edf4f5; --panel: #ffffff; --line: #cbdfe3; --text: #13232c; --muted: #4b6370; --faint: #7e939c;
+  --accent: #1c8780; --accent-ink: #fff;
+  --bg-art: radial-gradient(circle at 85% -10%, rgba(28, 135, 128, .10), transparent 45%);
+}
+
+/* Engineer: workbench and circuits. Graphite with a blueprint grid; monospaced capitals, small corners. */
+:root[data-style="engineer"] {
+  --bg: #0a0f12; --panel: #121b20; --line: #23363f; --text: #e0f1f5; --muted: #8db0ba; --faint: #5d7b84;
+  --accent: #26d4ee; --accent-ink: #032329;
+  --radius: 5px; --font-display: var(--mono); --display-case: uppercase; --display-spacing: .16em; --title-spacing: .04em;
+  --bg-art: linear-gradient(rgba(38, 212, 238, .045) 1px, transparent 1px), linear-gradient(90deg, rgba(38, 212, 238, .045) 1px, transparent 1px);
+  --bg-art-size: 28px 28px;
+}
+:root[data-style="engineer"][data-theme="light"] {
+  --bg: #f0f6f8; --panel: #ffffff; --line: #cbdde4; --text: #0e2229; --muted: #45626c; --faint: #7a939b;
+  --accent: #0a86a0; --accent-ink: #fff;
+  --bg-art: linear-gradient(rgba(10, 134, 160, .07) 1px, transparent 1px), linear-gradient(90deg, rgba(10, 134, 160, .07) 1px, transparent 1px);
+}
+
+/* Fighter: the soldier's kit. Gunmetal and brass; stencilled headings, square-ish corners. */
+:root[data-style="fighter"] {
+  --bg: #0f1215; --panel: #1a1f25; --line: #313943; --text: #e8eaed; --muted: #a2a9b2; --faint: #6e7681;
+  --accent: #cda548; --accent-ink: #1c1505;
+  --radius: 6px; --font-display: "Franklin Gothic Medium", "Arial Narrow", "Segoe UI", sans-serif;
+  --display-case: uppercase; --display-spacing: .14em; --title-spacing: .02em;
+  --bg-art: linear-gradient(180deg, rgba(205, 165, 72, .07), transparent 260px);
+}
+:root[data-style="fighter"][data-theme="light"] {
+  --bg: #f1f0ec; --panel: #ffffff; --line: #d8d4cb; --text: #1e2227; --muted: #555c66; --faint: #8a9099;
+  --accent: #86661a; --accent-ink: #fff;
+  --bg-art: linear-gradient(180deg, rgba(134, 102, 26, .07), transparent 260px);
+}
+
+/* Guardian: the blue blade. Night blue with a lightsaber glow; clean strong headings. */
+:root[data-style="guardian"] {
+  --bg: #090e1b; --panel: #121a2d; --line: #243459; --text: #e6edfb; --muted: #98a8c8; --faint: #66769a;
+  --accent: #58a6ff; --accent-ink: #03122b;
+  --radius: 10px; --display-spacing: .14em; --title-spacing: .01em;
+  --bg-art: radial-gradient(ellipse 70% 40% at 50% -5%, rgba(88, 166, 255, .22), transparent 70%);
+}
+:root[data-style="guardian"][data-theme="light"] {
+  --bg: #edf2fb; --panel: #ffffff; --line: #cbd8ef; --text: #12203a; --muted: #4a5a78; --faint: #7f8da8;
+  --accent: #1b5ed0; --accent-ink: #fff;
+  --bg-art: radial-gradient(ellipse 70% 40% at 50% -5%, rgba(27, 94, 208, .12), transparent 70%);
+}
+
+/* Monk: stillness and the body. Warm earth and saffron; round, open headings and corners. */
+:root[data-style="monk"] {
+  --bg: #13100b; --panel: #1f1911; --line: #3e3321; --text: #f4ede1; --muted: #bbab8e; --faint: #85775f;
+  --accent: #f28f2c; --accent-ink: #231302;
+  --radius: 18px; --font-display: "Trebuchet MS", "Segoe UI", sans-serif; --display-spacing: .1em;
+  --bg-art: radial-gradient(circle at 50% 110%, rgba(242, 143, 44, .12), transparent 55%);
+}
+:root[data-style="monk"][data-theme="light"] {
+  --bg: #f8f1e6; --panel: #fffdf8; --line: #e7d9c1; --text: #2b2013; --muted: #6a5a40; --faint: #9b8a6c;
+  --accent: #b35b0b; --accent-ink: #fff;
+  --bg-art: radial-gradient(circle at 50% 110%, rgba(179, 91, 11, .10), transparent 55%);
+}
+
+/* Operative: covert work. Dark slate with a faint scan-line; terminal capitals, sharp corners. */
+:root[data-style="operative"] {
+  --bg: #0c0f0d; --panel: #141a16; --line: #27322b; --text: #dde8df; --muted: #93a79a; --faint: #617468;
+  --accent: #7fe08a; --accent-ink: #052008;
+  --radius: 3px; --font-display: var(--mono); --display-case: uppercase; --display-spacing: .2em; --title-spacing: .06em;
+  --bg-art: repeating-linear-gradient(0deg, rgba(127, 224, 138, .03) 0 1px, transparent 1px 4px);
+}
+:root[data-style="operative"][data-theme="light"] {
+  --bg: #eef3ef; --panel: #ffffff; --line: #cfdbd2; --text: #132019; --muted: #4a5f51; --faint: #7d9184;
+  --accent: #23803a; --accent-ink: #fff;
+  --bg-art: repeating-linear-gradient(0deg, rgba(35, 128, 58, .04) 0 1px, transparent 1px 4px);
+}
+
+/* Scholar: archives and lore. Ink and parchment; serif headings, a vignette like an old page. */
+:root[data-style="scholar"] {
+  --bg: #14110d; --panel: #1f1a14; --line: #3c3326; --text: #f0e7d5; --muted: #b8a88b; --faint: #85775f;
+  --accent: #d8b25c; --accent-ink: #211805;
+  --radius: 8px; --font-display: Georgia, "Book Antiqua", "Times New Roman", serif; --display-spacing: .08em;
+  --bg-art: radial-gradient(ellipse at center, transparent 55%, rgba(0, 0, 0, .35) 100%);
+}
+:root[data-style="scholar"][data-theme="light"] {
+  --bg: #f2e8d3; --panel: #fbf6e9; --line: #dacca8; --text: #2d2315; --muted: #6a583a; --faint: #998660;
+  --accent: #87561a; --accent-ink: #fff;
+  --bg-art: radial-gradient(ellipse at center, transparent 55%, rgba(120, 90, 40, .14) 100%);
+}
+
+/* Scout: the trail. Forest and moss with a dawn light; sturdy headings. */
+:root[data-style="scout"] {
+  --bg: #0d120e; --panel: #162018; --line: #2b3b2e; --text: #e4ece2; --muted: #9eb09c; --faint: #6b7c6a;
+  --accent: #9fc75c; --accent-ink: #132006;
+  --radius: 10px; --font-display: "Segoe UI Semibold", "Trebuchet MS", "Segoe UI", sans-serif; --display-spacing: .12em;
+  --bg-art: radial-gradient(ellipse 80% 40% at 20% 0%, rgba(159, 199, 92, .12), transparent 70%);
+}
+:root[data-style="scout"][data-theme="light"] {
+  --bg: #eff3e8; --panel: #ffffff; --line: #d2dbc3; --text: #1a2617; --muted: #4d5f47; --faint: #81917b;
+  --accent: #4b781c; --accent-ink: #fff;
+  --bg-art: radial-gradient(ellipse 80% 40% at 20% 0%, rgba(75, 120, 28, .10), transparent 70%);
+}
+
+/* Sentinel: the yellow blade between light and shadow. Violet dusk and gold; poised headings. */
+:root[data-style="sentinel"] {
+  --bg: #100d17; --panel: #1b1626; --line: #352b4a; --text: #ede8f6; --muted: #aa9fc0; --faint: #776d8e;
+  --accent: #f2c94c; --accent-ink: #231a02;
+  --radius: 12px; --display-spacing: .14em; --title-spacing: .01em;
+  --bg-art: radial-gradient(circle at 100% 0%, rgba(150, 110, 230, .16), transparent 45%), radial-gradient(circle at 0% 100%, rgba(242, 201, 76, .07), transparent 40%);
+}
+:root[data-style="sentinel"][data-theme="light"] {
+  --bg: #f4f1f9; --panel: #ffffff; --line: #dcd3ec; --text: #1f1830; --muted: #594e70; --faint: #8d84a3;
+  --accent: #7346c2; --accent-ink: #fff;
+  --bg-art: radial-gradient(circle at 100% 0%, rgba(115, 70, 194, .10), transparent 45%);
+}
+
+/* The style picker (More ▾ → Theme…). */
+.theme-pick { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 6px; margin: 8px 0; }
+.theme-pick button { display: flex; align-items: center; gap: 8px; text-align: left; padding: 6px 8px; border: 1px solid var(--line);
+  border-radius: 8px; background: var(--panel-2); color: var(--text); cursor: pointer; font: inherit; font-size: 13px; }
+.theme-pick button[aria-pressed="true"] { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent) inset; }
+.theme-pick .sw { flex: none; width: 22px; height: 22px; border-radius: 50%; border: 1px solid rgba(127, 127, 127, .4); }
+.theme-modes { display: flex; gap: 6px; flex-wrap: wrap; }

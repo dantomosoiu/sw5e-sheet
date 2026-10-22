@@ -351,8 +351,22 @@ table.inv { table-layout: fixed; min-width: 520px; }
 
 /* ---------- Overview ---------- */
 .hero { display: grid; grid-template-columns: auto 1fr; gap: 18px; align-items: start; }
-.portrait { width: 120px; height: 120px; border-radius: 12px; object-fit: cover; background: var(--panel-2); border: 1px solid var(--line); display: flex; align-items: center; justify-content: center; font-size: 42px; color: var(--faint); overflow: hidden; }
-.portrait img { width: 100%; height: 100%; object-fit: cover; }
+/* A picture keeps its own shape (portrait, landscape or square): only shrunk to fit. */
+.portrait { position: relative; display: flex; align-items: center; justify-content: center; max-width: min(240px, 42vw);
+  border-radius: 12px; background: var(--panel-2); border: 1px solid var(--line); overflow: hidden; color: var(--faint); }
+.portrait img { display: block; max-width: 100%; max-height: 280px; width: auto; height: auto; }
+.portrait.mine { min-width: 64px; min-height: 64px; }
+.portrait-hide { position: absolute; top: 6px; right: 6px; width: 24px; height: 24px; border-radius: 50%; border: 1px solid var(--line);
+  background: color-mix(in srgb, var(--panel) 85%, transparent); color: var(--text); cursor: pointer; line-height: 1; padding: 0; opacity: 0; }
+.portrait:hover .portrait-hide, .portrait-hide:focus-visible { opacity: 1; }
+@media (hover: none) { .portrait-hide { opacity: .85; } }
+.portrait.broken { width: 200px; padding: 12px; }
+.portrait-msg { font-size: 12.5px; color: var(--muted); text-align: center; display: grid; gap: 8px; justify-items: center; }
+@media (max-width: 560px) {
+  .hero { grid-template-columns: minmax(0, 1fr); }
+  .portrait { max-width: 100%; justify-self: start; }
+  .portrait img { max-height: 240px; }
+}
 .hero.no-portrait { grid-template-columns: minmax(0, 1fr); }
 .hero h1 { margin: 0; font-size: 26px; line-height: 1.15; }
 .hero .line { color: var(--muted); margin-top: 4px; }
@@ -515,7 +529,18 @@ button.dot.on.bad { background: var(--bad); border-color: var(--bad); }
 .rl-cond { display: inline-flex; gap: 4px; align-items: center; }
 .rl-dice { display: flex; flex-wrap: wrap; gap: 6px; }
 .die { position: relative; display: inline-flex; flex-direction: column; align-items: center; justify-content: center; min-width: 40px; height: 44px;
-  padding: 0 6px; border: 1px solid var(--line); border-radius: 8px; background: var(--panel-2); }
+  padding: 0 6px; border: 1px solid var(--line); border-radius: 8px; background: var(--panel-2); color: inherit; font: inherit; }
+button.die { cursor: pointer; }
+button.die:hover { border-color: var(--bad); }
+.die.tumbling { animation: die-tumble .16s ease-in-out infinite alternate; border-color: var(--accent); }
+.die.tumbling b { color: var(--muted); }
+@keyframes die-tumble { from { transform: rotate(-9deg) translateY(1px); } to { transform: rotate(9deg) translateY(-2px); } }
+.die.landed { animation: die-land .32s ease-out; }
+@keyframes die-land { 0% { transform: scale(1.18); } 60% { transform: scale(.96); } 100% { transform: none; } }
+.rl-total.landed { display: inline-block; animation: total-land .4s cubic-bezier(.2, 1.6, .4, 1); }
+@keyframes total-land { 0% { transform: scale(.4); opacity: 0; } 100% { transform: none; opacity: 1; } }
+.rl-result.rolling .rl-total { color: var(--faint); }
+@media (prefers-reduced-motion: reduce) { .die.tumbling, .die.landed, .rl-total.landed { animation: none; } }
 .die b { font-size: 17px; line-height: 1; }
 .die small { font-size: 10px; color: var(--muted); }
 .die.d20 { border-color: var(--accent); }
@@ -526,8 +551,9 @@ button.dot.on.bad { background: var(--bad); border-color: var(--bad); }
 .die.maxed { border-color: var(--warn); color: var(--warn); }
 .rl-critmode { display: inline-flex; gap: 4px; align-items: center; font-size: 12.5px; color: var(--muted); margin-left: auto; }
 .die-x { position: absolute; top: -7px; right: -7px; width: 18px; height: 18px; border-radius: 50%; border: 1px solid var(--line); background: var(--panel);
-  color: var(--muted); font-size: 11px; line-height: 1; padding: 0; cursor: pointer; display: none; }
-.die:hover .die-x, .die:focus-within .die-x { display: block; }
+  color: var(--muted); font-size: 11px; line-height: 16px; text-align: center; display: none; }
+.die:hover .die-x, .die:focus-visible .die-x { display: block; }
+button.die:hover .die-x { color: var(--bad); border-color: var(--bad); }
 @media (hover: none) { .die-x { display: block; } }
 .rl-add { display: flex; flex-wrap: wrap; gap: 4px; align-items: center; font-size: 13px; color: var(--muted); }
 .rl-mod { display: inline-flex; gap: 4px; align-items: center; margin-left: 6px; }

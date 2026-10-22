@@ -232,7 +232,7 @@ damage|2|crit: Unarmed Strike damage (critical): no dice +3 · = +1 STR modifier
 ## Sheet: Overview
 Scholar Test (Claude)
 Bothan · Scholar (Gambler Pursuit) 3
-Level 3 Background: Noble Balanced Neutral Proficiency +2
+Level 3 Background: Noble Balanced Neutral Proficiency +2 [Add a picture]
 900 XP level 4 at 2,700 (1,800 to go)
 Still to choose (6): Scholar skills (3 more) · Scholar tool · background skills (2 more) · background tool · background languages · Silver-Tongued: +1
 

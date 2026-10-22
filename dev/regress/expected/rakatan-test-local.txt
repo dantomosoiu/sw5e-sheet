@@ -184,7 +184,7 @@ damage|0|crit: Unarmed Strike damage (critical): no dice +2 · = +1 other (weapo
 ## Sheet: Overview
 Rakatan Test (local)
 Human · Monk (Rakatan Order) 5, Operative 2
-Level 7 Background: Noble Lawful Light Proficiency +3
+Level 7 Background: Noble Lawful Light Proficiency +3 [Add a picture]
 6,500 XP level 8 at 34,000 (27,500 to go)
 Level 7 usually needs 23,000 XP (you have 6,500).
 Still to choose (12): Monk skills (2 more) · Monastic Vows (2 more) · Rakatan Order tech powers (3 more) · Operative multiclass skill · Operative multiclass too… [369 chars #31602419]

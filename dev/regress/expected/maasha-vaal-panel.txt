@@ -242,7 +242,7 @@ damage|0||two: Lightsaber damage (two-handed): d4 d4 +4 · = +4 STR modifier · 
 ## Sheet: Overview
 Maasha Vaal (Panel)
 Togruta · Guardian (Soresu Form) 4
-Level 4 Background: Jedi Lawful Light Proficiency +2
+Level 4 Background: Jedi Lawful Light Proficiency +2 [Add a picture]
 2,700 XP level 5 at 6,500 (3,800 to go)
 Still to choose (4): Guardian skills (2 more) · background skills (2 more) · background languages · Formfighting Dabbler: +1
 

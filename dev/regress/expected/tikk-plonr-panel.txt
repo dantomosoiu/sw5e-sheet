@@ -238,7 +238,7 @@ damage|1|crit: Unarmed Strike damage (critical): no dice +1 · = +1 flat damage 
 ## Sheet: Overview
 Tikk Plonr (Panel)
 Sullustan · Engineer (Armstech Engineering) 4
-Level 4 Background: Scientist Neutral Light Proficiency +2
+Level 4 Background: Scientist Neutral Light Proficiency +2 [Add a picture]
 2,700 XP level 5 at 6,500 (3,800 to go)
 Still to choose (8): Engineer skills (3 more) · Engineer tool · Armstech Modifications (2 more) · background skills (2 more) · background tool · background languages · Techie: +1 · species language
 

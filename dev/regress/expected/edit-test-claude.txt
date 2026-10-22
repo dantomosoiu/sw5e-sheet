@@ -236,7 +236,7 @@ damage|1|crit: Unarmed Strike damage (critical): no dice +8 · = +5 STR modifier
 ## Sheet: Overview
 Edit Test (Claude)
 Bothan · Fighter (Tactical Specialist) 5, Engineer 2
-Level 7 Background: Noble Lawful Light Proficiency +3
+Level 7 Background: Noble Lawful Light Proficiency +3 [Add a picture]
 24,000 XP level 8 at 34,000 (10,000 to go)
 Still to choose (12): Fighter skills (2 more) · Fighter 4th level: ability score improvement or feat · Fighter Strategies · Fighter maneuvers (6 more) · Enginee… [359 chars #484201c2]
 

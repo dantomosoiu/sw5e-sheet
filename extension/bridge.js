@@ -143,7 +143,7 @@ async function sw5ePageExtract(argsJson) {
                   : path === 'creditLog' || path === 'debts' || path === 'rollLog' ? 'records'
                   : path === 'background' || path === 'species' ? 'namedObject'
                     : ['customLanguages', 'customFeats', 'customTechPowers', 'customForcePowers'].includes(path) ? 'strings'
-                      : path === 'name' ? 'string' : null);
+                      : path === 'name' || path === 'image' ? 'string' : null);
       const isItem = (path, it) => it && typeof it === 'object' && typeof it.name === 'string' && it.name
         && Number.isFinite(Number(it.quantity)) && Number(it.quantity) >= 0
         && (path !== 'equipment' || it.category === 'Equipment' || it.category === 'EnhancedItem');
@@ -349,7 +349,7 @@ async function sw5ePageExtract(argsJson) {
     try { loggedIn = !!G['authentication/isLoggedIn']; } catch (e) { /* ignore */ }
     // bridge: bump when this page function changes, to tell which copy ran (the extension's
     // copy only updates when the extension is reloaded).
-    return { characters, save, meta: { bridge: 15, dataVersion, loggedIn, sourceUrl: location.href, extractedAt: Date.now() } };
+    return { characters, save, meta: { bridge: 16, dataVersion, loggedIn, sourceUrl: location.href, extractedAt: Date.now() } };
   }
   return JSON.stringify(await extract(JSON.parse(argsJson)));
 }

@@ -230,7 +230,7 @@ damage|0||two: Vibrostaff damage (two-handed): d4 d4 −1 · = −1 STR modifier
 ## Sheet: Overview
 Thirza Vitchess (Panel)
 Kel Dor · Consular (Way of the Seer) 4
-Level 4 Background: Force Adept Lawful Balanced Proficiency +2
+Level 4 Background: Force Adept Lawful Balanced Proficiency +2 [Add a picture]
 2,700 XP level 5 at 6,500 (3,800 to go)
 Still to choose (4): Consular skills (2 more) · background skills (2 more) · background tool · Empathic: +1
 

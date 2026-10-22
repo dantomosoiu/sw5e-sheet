@@ -366,6 +366,14 @@ function startRoll(spec, opts = {}) {
   if (opts.attackMode === 'dis') for (const cd of roll.conds) if (/sneak attack/i.test(cd.label)) cd.blocked = 'not after an attack rolled with disadvantage';
   if (opts.mode) roll.mode = opts.mode;
   if (opts.mode && opts.mode !== 'normal') roll.dice.push(newDie(20, 'd20', false));
+  // Roll again: the same dice as the roll it repeats (dice added or taken off after rolling too), modifier and DC.
+  if (opts.sameAs) {
+    const was = opts.sameAs;
+    roll.dice = was.dice.map((d) => ({ ...d, id: ++dieSeq, value: d.max ? d.value : null }));
+    roll.mode = was.mode;
+    roll.custom = was.custom;
+    if (was.dc != null) roll.dc = was.dc;
+  }
   rollState.current = roll;
   rollState.open = true;
   rollState.min = false;
@@ -400,6 +408,7 @@ const rollTotal = (r) => (r.minTotal != null ? Math.max(r.minTotal, rollSum(r)) 
 function doRoll() {
   const r = rollState.current;
   if (!r) return;
+  const fresh = r.dice.filter((d) => d.value == null).map((d) => d.id);
   for (const d of r.dice) if (d.value == null) d.value = rollDie(d.sides);
   for (const c of r.conds) if (c.on && c.spend && !r.rolled) spendCond(c, false);
   // A weapon with the reload property uses a shot.
@@ -413,9 +422,37 @@ function doRoll() {
     rollState.log = capRollLog([r].concat(rollState.log.filter((x) => x.id !== r.id)));
   }
   saveRollLog();
-  renderDice('next');
-  announceRoll(r);
+  tumble(r, fresh, () => { renderDice('next'); announceRoll(r); });
 }
+/**
+ * The dice tumble for a moment before the result shows: their faces flick through numbers, slowing down, then land
+ * (the numbers are already rolled and saved; this is only how they're shown). No tumbling with reduced motion.
+ */
+const TUMBLE_STEPS = [45, 55, 65, 80, 95, 115, 140, 170];
+function tumble(r, ids, done) {
+  clearTimeout(rollState.tumbleTimer);
+  const still = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!ids.length || still || typeof document === 'undefined') { rollState.tumbling = null; done(); landed(); return; }
+  rollState.tumbling = { id: r.id, dice: new Set(ids) };
+  renderDice(false);
+  let step = 0;
+  const flick = () => {
+    if (!rollState.tumbling || rollState.tumbling.id !== r.id) return;
+    for (const el of document.querySelectorAll('#dice .die.tumbling b')) el.textContent = String(rollDie(Number(el.dataset.sides)));
+    if (step < TUMBLE_STEPS.length) { rollState.tumbleTimer = setTimeout(flick, TUMBLE_STEPS[step++]); return; }
+    rollState.tumbling = null;
+    done();
+    landed();
+  };
+  flick();
+}
+/** The result just landed: the total and the dice give a small pop. */
+function landed() {
+  const dock = document.getElementById('dice');
+  if (!dock) return;
+  for (const el of dock.querySelectorAll('.rl-total, .rl-dice .die')) el.classList.add('landed');
+}
+const isTumbling = (r, d) => !!(rollState.tumbling && rollState.tumbling.id === r.id && (!d || rollState.tumbling.dice.has(d.id)));
 /** Tell screen readers the result (the dock itself is redrawn on every change). */
 function announceRoll(r) {
   let el = document.getElementById('rollAnnounce');
@@ -547,16 +584,25 @@ function renderRollCard(r) {
   const kept = keptD20(r);
   const nat = r.rolled && kept ? kept.value : null;
   const total = rollTotal(r);
+  const rolling = isTumbling(r);
   const snap = r.key && r.key === state.current ? state.snapshots[r.key] : null;
   const inspired = r.kind === 'd20' && !r.rolled && snap && snap.complete && buildModel(snap).t.s.hasInspiration;
   const insp = inspired ? `<button class="btn sm" data-rl="insp" data-arg="" title="Spend your Inspiration: advantage on this roll">★ Use Inspiration</button>` : r.inspired ? '<span class="chip good">★ Inspiration used</span>' : '';
   const modes = r.kind === 'd20' ? `<div class="rl-modes" role="group" aria-label="Advantage">${[['dis', 'Disadvantage'], ['normal', 'Normal'], ['adv', 'Advantage']]
     .map(([v, l]) => `<button class="btn sm${r.mode === v ? ' on' : ''}" data-rl="mode" data-arg="${v}" aria-pressed="${r.mode === v}">${l}</button>`).join('')}${insp}</div>` : '';
   const dice = r.dice.map((d) => {
-    const dropped = d.tag === 'd20' && r.rolled && kept && d !== kept;
-    const cls = [d.tag === 'd20' ? 'd20' : 'dx', dropped ? 'dropped' : '', d.max ? 'maxed' : '', d.crit ? 'critd' : '', d.tag === 'd20' && d.value === 20 ? 'nat20' : '', d.tag === 'd20' && d.value === 1 ? 'nat1' : ''].filter(Boolean).join(' ');
+    // While the dice tumble, nothing gives the result away (which d20 counts, a natural 20).
+    const spin = rolling && isTumbling(r, d);
+    const dropped = !rolling && d.tag === 'd20' && r.rolled && kept && d !== kept;
+    const cls = [d.tag === 'd20' ? 'd20' : 'dx', spin ? 'tumbling' : '', dropped ? 'dropped' : '', d.max ? 'maxed' : '', d.crit ? 'critd' : '',
+      !rolling && d.tag === 'd20' && d.value === 20 ? 'nat20' : '', !rolling && d.tag === 'd20' && d.value === 1 ? 'nat1' : ''].filter(Boolean).join(' ');
     const removable = d.tag !== 'd20' || d20s(r).length > 1;
-    return `<span class="die ${cls}" title="d${d.sides}${d.tag.startsWith('cond:') ? ' · ' + d.tag.slice(5) : ''}${d.crit ? (d.max ? ' · critical, at its maximum' : ' · critical') : ''}${dropped ? ' (not counted)' : ''}"><b>${esc(diceText(d))}</b><small>${d.max ? 'max ' : ''}d${d.sides}</small>${removable ? `<button class="die-x" data-rl="remove" data-arg="${d.id}" title="Remove this die" aria-label="Remove d${d.sides}">×</button>` : ''}</span>`;
+    const title = `d${d.sides}${d.tag.startsWith('cond:') ? ' · ' + d.tag.slice(5) : ''}${d.crit ? (d.max ? ' · critical, at its maximum' : ' · critical') : ''}${dropped ? ' (not counted)' : ''}`;
+    const face = `<b data-sides="${d.sides}">${esc(spin ? String(rollDie(d.sides)) : diceText(d))}</b><small>${d.max ? 'max ' : ''}d${d.sides}</small>`;
+    // A die that can be taken off is a button: a click anywhere on it removes it (× shows that it can).
+    return removable
+      ? `<button type="button" class="die ${cls}" data-rl="remove" data-arg="${d.id}" title="${esc(title)} · click to remove" aria-label="Remove d${d.sides}${d.value != null && !spin ? ` (${d.value})` : ''}">${face}<span class="die-x" aria-hidden="true">×</span></button>`
+      : `<span class="die ${cls}" title="${esc(title)}">${face}</span>`;
   }).join('');
   const conds = r.conds.length ? `<div class="rl-conds">${r.conds.map((cd, i) => `<label class="rl-cond${cd.blocked ? ' blocked' : ''}"${cd.blocked ? ` title="${esc(cd.blocked)}"` : ''}><input type="checkbox" data-rl="cond" data-arg="${i}"${cd.on ? ' checked' : ''}> ${esc(cd.label)} <span class="faint">${[num(cd.bonus) ? signed(cd.bonus) : '', ...cd.extra.map((e) => '+' + e)].filter(Boolean).join(' ')}${cd.blocked ? ` · ${esc(cd.blocked)}` : ''}</span></label>`).join('')}</div>` : '';
   const crit = r.kind === 'd20' && nat != null && nat >= (r.critMin || 20);
@@ -579,7 +625,9 @@ function renderRollCard(r) {
     <div class="rl-add">Add ${DIE_SIDES.map((s) => `<button class="btn sm" data-rl="add" data-arg="${s}" title="Add a d${s}${r.rolled ? ' (rolled now)' : ''}">+d${s}</button>`).join('')}
       <label class="rl-mod">Modifier <input type="number" step="1" data-rl="custom" value="${num(r.custom) || ''}" placeholder="0"></label>
       ${r.kind === 'd20' ? `<label class="rl-mod" title="The number to reach (a save's or check's DC, a target's AC)">DC <input type="number" step="1" data-rl="dc" value="${num(r.dc) || ''}" placeholder="—"></label>` : ''}</div>
-    ${r.rolled
+    ${r.rolled && rolling
+    ? '<div class="rl-result rolling" aria-hidden="true"><span class="rl-total">…</span><span class="faint">Rolling…</span></div>'
+    : r.rolled
     ? `<div class="rl-result" tabindex="-1"><span class="rl-total">${total}</span>${r.damageType ? ` <span class="muted">${esc(r.damageType)}</span>` : ''}
         ${crit ? (nat === 20 ? chip('Natural 20', 'good') : `<span class="chip good" title="${esc(r.critFrom)}: critical hit on ${r.critMin}–20">Critical hit (${nat})</span>`) : fumble ? chip('Natural 1', 'bad') : ''}
         ${r.autoFail ? chip(`Automatic failure (${r.autoFail})`, 'bad') : num(r.dc) && r.kind === 'd20' ? chip(total >= num(r.dc) ? `Success (DC ${num(r.dc)})` : `Failure (DC ${num(r.dc)})`, total >= num(r.dc) ? 'good' : 'bad') : ''}
@@ -681,7 +729,7 @@ function renderDice(focus) {
       <button class="btn sm" data-rl="close" data-arg="" title="Hide the dice (the log is kept)" aria-label="Close the dice">✕</button></div>`;
   if (rollState.min) {
     dock.style.minHeight = '';
-    dock.innerHTML = head + (r && r.rolled ? `<button class="dice-mini" data-rl="min" data-arg="">${esc(r.label)}: <b>${rollTotal(r)}</b></button>` : '');
+    dock.innerHTML = head + (r && r.rolled ? `<button class="dice-mini" data-rl="min" data-arg="">${esc(r.label)}: <b>${isTumbling(r) ? '…' : rollTotal(r)}</b></button>` : '');
     document.body.style.paddingBottom = rollState.open ? `${dock.offsetHeight + 16}px` : '';
     return;
   }
@@ -770,7 +818,7 @@ function handleRl(act, arg, el) {
     case 'add': return addDice(Number(arg));
     case 'remove': return removeDie(arg);
     case 'cond': return toggleCond(Number(arg));
-    case 'again': if (r) startRoll(r.spec, { mode: r.mode, conds: r.conds.filter((c) => c.on).map((c) => c.label), ability: r.toolAbility, now: true }); return undefined;
+    case 'again': if (r) startRoll(r.spec, { mode: r.mode, conds: r.conds.filter((c) => c.on).map((c) => c.label), ability: r.toolAbility, sameAs: r, now: true }); return undefined;
     case 'next':
       if (r && r.next) {
         startRoll(r.next.spec + (/crit/.test(arg) ? '|crit' : '|') + (/two/.test(arg) ? '|two' : ''),

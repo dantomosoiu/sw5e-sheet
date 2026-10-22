@@ -583,6 +583,7 @@ function noteShift(before) {
   if (after && after.sig !== before.sig) state.shift = { at: Date.now(), x: before.x, y: before.y, sig: before.sig };
 }
 function renderAllInner(opts) {
+  applyStyle();
   renderPicker();
   const snap = state.snapshots[state.current];
   const sheet = $('#sheet');
@@ -1417,7 +1418,7 @@ const fieldLabel = (path) => ({ notes: 'Notes', credits: 'Credits', experiencePo
   equipment: 'Inventory', customEquipment: 'Custom items', tweaks: 'Tweaks', classes: 'Classes', customFeatures: 'Custom features', featureNotes: 'Feature notes', featureChoices: 'Feature choices',
   background: 'Background', species: 'Species', baseAbilityScores: 'Ability scores', settings: 'Settings', languageChoices: 'Language choices',
   creditLog: 'Credit history', debts: 'Debts', rollLog: 'Recent rolls', characteristics: 'Personality & appearance',
-  customProficiencies: 'Proficiencies', customLanguages: 'Languages', customFeats: 'Feats', name: 'Name' }[path]
+  customProficiencies: 'Proficiencies', customLanguages: 'Languages', customFeats: 'Feats', name: 'Name', image: 'Portrait' }[path]
   || path.replace(/^characteristics\./, ''));
 // Same value as SW5E's? (A missing text field equals an empty one.)
 const sameField = (path, a, b) => (NUMBER_FIELDS.includes(path) ? num(a) === num(b)
@@ -3209,7 +3210,8 @@ function pruneEdits(key, raw) {
 
 /** The fields each section's editor shows. */
 const EDITORS = {
-  overview: () => [{ path: 'experiencePoints', label: 'Experience points' }, { path: 'credits', label: 'Credits' }],
+  overview: () => [{ path: 'experiencePoints', label: 'Experience points' }, { path: 'credits', label: 'Credits' },
+    { path: 'image', label: 'Portrait: a link to a picture', url: true }],
   personality: (m) => {
     const known = new Set([...PERSONAL, ...PHYSICAL, 'alignment', 'Appearance', 'Backstory']);
     const other = Object.keys(m.raw.characteristics || {}).filter((k) => !known.has(k) && !k.includes('.'));
@@ -3236,6 +3238,10 @@ function renderEditor(m, section) {
     const attrs = `id="${id}" data-field="${esc(f.path)}"`;
     if (f.long) return `<textarea ${attrs} rows="${f.rows || 3}">${esc(v)}</textarea>${section === 'personality' && PERSONAL.includes(f.path.replace(/^characteristics\./, '')) ? bdCharacteristicHelper(m, f.path.replace(/^characteristics\./, '')) : ''}`;
     const numeric = NUMBER_FIELDS.includes(f.path);
+    if (f.url) {
+      return `<input ${attrs} type="url" value="${esc(v)}" autocomplete="off" placeholder="https://…/picture.jpg">
+        <small class="faint">The picture itself, not a page showing it: open the picture, then right-click (or long-press) it → Copy image address. Leave empty for none.</small>`;
+    }
     return `<input ${attrs} type="text" value="${esc(v)}" autocomplete="off"${numeric ? ' inputmode="numeric" placeholder="e.g. 250, +50 or -80"' : ''}${f.list ? ` list="${id}-list"` : ''}>`
       + (f.list ? `<datalist id="${id}-list">${f.list.map((o) => `<option value="${esc(o)}">`).join('')}</datalist>` : '');
   };
@@ -3268,6 +3274,10 @@ async function applyEditor(form) {
       if (!/^[+-]?\d+$/.test(t)) { el.focus(); return editorError(form, `${fieldLabel(path)}: enter a whole number, or +n / −n to adjust.`); }
       v = (/^[+-]/.test(t) ? num(getPath(shown, path)) : 0) + parseInt(t, 10);
       if (v < 0) { el.focus(); return editorError(form, `${fieldLabel(path)} can't go below 0 (that would be ${v}).`); }
+    }
+    if (path === 'image') {
+      v = v.trim();
+      if (v && !/^https?:\/\/\S+$/i.test(v)) { el.focus(); return editorError(form, 'Portrait: a link starting with https:// (or leave it empty).'); }
     }
     if (sameField(path, v, getPath(snap.raw, path))) delete fields[path];
     else fields[path] = v;
@@ -3336,7 +3346,7 @@ async function createOnAccount() {
     if (res.save && res.save.existing) {
       const site = state.snapshots[nk].raw;
       const fields = {};
-      for (const p of [...ITEM_FIELDS, ...OBJECT_FIELDS, ...LIST_FIELDS, 'credits', 'experiencePoints', 'notes', 'name']) {
+      for (const p of [...ITEM_FIELDS, ...OBJECT_FIELDS, ...LIST_FIELDS, 'credits', 'experiencePoints', 'notes', 'name', 'image']) {
         if (raw[p] !== undefined && canonical(raw[p]) !== canonical(site[p])) fields[p] = clone(raw[p]);
       }
       for (const c of Object.keys(raw.characteristics || {})) {
@@ -3494,9 +3504,11 @@ function renderOverview(m) {
   const cur = num(xp.current != null ? xp.current : raw.experiencePoints);
   const xi = xpInfo(m, cur);
   const img = raw.image && /^https?:/.test(raw.image) ? raw.image : '';
+  const hidden = img && portraitHidden();
   const classText = c.classText || arr(raw.classes).map((k) => `${k.name}${k.archetype && k.archetype.name ? ` (${k.archetype.name})` : ''} ${k.levels}`).join(', ');
-  return `<div class="hero${img ? '' : ' no-portrait'}">
-    ${img ? `<div class="portrait"><img data-src="${esc(img)}" alt=""></div>` : ''}
+  return `<div class="hero${img && !hidden ? '' : ' no-portrait'}">
+    ${img && !hidden ? `<div class="portrait mine"><img data-src="${esc(img)}" data-mine="1" alt="${esc(raw.name || 'Portrait')}">
+      <button class="portrait-hide" data-act="portrait-toggle" title="Hide the picture (More ▾ or the chip below shows it again)" aria-label="Hide the picture">–</button></div>` : ''}
     <div>
       <h1>${esc(raw.name || 'Unnamed character')}</h1>
       <div class="line">${esc([c.species || (raw.species && raw.species.name), classText].filter(Boolean).join(' · '))}</div>
@@ -3506,7 +3518,9 @@ function renderOverview(m) {
         ${c.alignment || (raw.characteristics && raw.characteristics.alignment) ? chip(c.alignment || raw.characteristics.alignment) : ''}
         ${c.proficiencyBonus ? chip('Proficiency ' + signed(c.proficiencyBonus)) : ''}
         ${live('insp', m, 'span')}
+        ${hidden ? '<button class="chip" data-act="portrait-toggle" title="Show the picture again">Show picture</button>' : ''}
         ${img ? `<a class="chip blue" href="${esc(img)}" target="_blank" rel="noopener">Portrait link ↗</a>` : ''}
+        <button class="chip" data-act="edit-image" title="Add or change the picture: a link to a picture file">${img ? 'Change picture' : 'Add a picture'}</button>
       </div>
       <div class="xp">
         <div class="xp-bar"><div style="width:${xi.pct.toFixed(1)}%"></div></div>
@@ -6073,7 +6087,7 @@ function renderHistoryCard(m) {
 
 // ------------------------------------------------------------- versions: compare and restore (W-137)
 /** The fields a version restores (play state stays as it is). */
-const VERSION_FIELDS = () => [...ITEM_FIELDS, ...OBJECT_FIELDS, ...LIST_FIELDS, 'credits', 'experiencePoints', 'notes', 'name', 'characteristics'];
+const VERSION_FIELDS = () => [...ITEM_FIELDS, ...OBJECT_FIELDS, ...LIST_FIELDS, 'credits', 'experiencePoints', 'notes', 'name', 'image', 'characteristics'];
 const versionFields = (raw) => Object.fromEntries(VERSION_FIELDS().map((p) => [p, raw[p] === undefined ? null : raw[p]]));
 /** What differs between a version (`old`) and the character now (`cur`): [{ label, text }]. */
 function versionDiff(cur, old) {
@@ -6193,7 +6207,7 @@ function renderSidebar(m, sections) {
       <select class="mbar-only mbar-btn sec-jump" data-jump aria-label="Go to a section, or more actions">
         <option value="" selected>☰</option>
         <optgroup label="Sections">${sections.map((s) => `<option value="sec:sec-${s.id}">${esc(s.title)}</option>`).join('')}</optgroup>
-        <optgroup label="More">${[['load', 'Load from SW5E'], ['import', 'Import file…'], ['cr-new', 'New character…'], ['messages', 'Recent messages'], ['guide', 'First session guide'], ['export-character', 'Back up this character'], ['export-backup', 'Back up all characters'], ['toggle-compact', 'Compact cards on/off'], ['theme', 'Switch light / dark']]
+        <optgroup label="More">${[['load', 'Load from SW5E'], ['import', 'Import file…'], ['cr-new', 'New character…'], ['messages', 'Recent messages'], ['guide', 'First session guide'], ['export-character', 'Back up this character'], ['export-backup', 'Back up all characters'], ['toggle-compact', 'Compact cards on/off'], ['theme', 'Switch light / dark'], ['themes', 'Theme…']]
           .map(([a, t]) => `<option value="act:${a}">${esc(t)}</option>`).join('')}</optgroup>
       </select>
       ${m.t ? live('mvitals', m, 'span', 'mvitals mbar-only') : ''}
@@ -6213,9 +6227,19 @@ function renderSidebar(m, sections) {
 }
 
 // ------------------------------------------------------------- behaviours
+const portraitHidden = () => { try { return localStorage.getItem('portrait') === 'hidden'; } catch (e) { return false; } };
 function wireImages(root) {
   root.querySelectorAll('img[data-src]').forEach((img) => {
     img.addEventListener('error', () => {
+      // The character's own picture that doesn't load: say why it may be, and how to fix it.
+      if (img.dataset.mine && img.parentElement) {
+        img.parentElement.classList.add('broken');
+        img.replaceWith(Object.assign(document.createElement('div'), {
+          className: 'portrait-msg',
+          innerHTML: 'This link doesn\'t open as a picture (it may be a page showing it). <button class="btn sm" data-act="edit-image">Change it</button>',
+        }));
+        return;
+      }
       // A picture that doesn't load: leave its box out.
       const p = img.parentElement;
       const hero = p && p.classList.contains('portrait') && p.parentElement;
@@ -6325,6 +6349,78 @@ function applyFilter(q, opts = {}) {
 function setTheme(t) {
   if (t) document.documentElement.dataset.theme = t;
   try { localStorage.setItem('theme', t); } catch (e) { /* ignore */ }
+  applyStyle();
+}
+
+// Theme styles (themes.css): the standard one, or one per SW5E class, each light or dark. Unless the player picks
+// one, the style is the class of the character on screen (the class with most levels).
+// [id, name, dark background, dark accent, light background, light accent]: the picker's swatches.
+const THEME_STYLES = [
+  ['standard', 'Standard', '#0f1218', '#e8b13e', '#f4f2ee', '#b7791f'],
+  ['berserker', 'Berserker', '#130c0c', '#e5472f', '#f6eeeb', '#b3261e'],
+  ['consular', 'Consular', '#0b1117', '#5ccbc2', '#edf4f5', '#1c8780'],
+  ['engineer', 'Engineer', '#0a0f12', '#26d4ee', '#f0f6f8', '#0a86a0'],
+  ['fighter', 'Fighter', '#0f1215', '#cda548', '#f1f0ec', '#86661a'],
+  ['guardian', 'Guardian', '#090e1b', '#58a6ff', '#edf2fb', '#1b5ed0'],
+  ['monk', 'Monk', '#13100b', '#f28f2c', '#f8f1e6', '#b35b0b'],
+  ['operative', 'Operative', '#0c0f0d', '#7fe08a', '#eef3ef', '#23803a'],
+  ['scholar', 'Scholar', '#14110d', '#d8b25c', '#f2e8d3', '#87561a'],
+  ['scout', 'Scout', '#0d120e', '#9fc75c', '#eff3e8', '#4b781c'],
+  ['sentinel', 'Sentinel', '#100d17', '#f2c94c', '#f4f1f9', '#7346c2'],
+];
+const stylePref = () => { try { return localStorage.getItem('style') || 'auto'; } catch (e) { return 'auto'; } };
+/** The style of a character's class: the class with most levels (the first of equals). */
+function classStyleOf(snap) {
+  if (!snap) return 'standard';
+  const classes = arr(withEdits(snap.raw, editedFields(snap.key)).classes);
+  const main = classes.reduce((best, k) => (!best || num(k.levels) > num(best.levels) ? k : best), null);
+  const id = main ? String(main.name || '').toLowerCase() : '';
+  return THEME_STYLES.some(([s]) => s === id) ? id : 'standard';
+}
+/** Puts the chosen (or the character's) style on the page, and the window's colour to match. */
+function applyStyle() {
+  if (typeof document === 'undefined' || !document.documentElement) return;
+  const pref = stylePref();
+  const style = pref === 'auto' || !THEME_STYLES.some(([s]) => s === pref) ? classStyleOf(state.snapshots[state.current]) : pref;
+  const root = document.documentElement;
+  if (root.dataset.style !== style) root.dataset.style = style;
+  try { localStorage.setItem('styleShown', style); } catch (e) { /* ignore */ }
+  const meta = document.querySelector('meta[name="theme-color"]');
+  if (meta && typeof getComputedStyle === 'function') meta.content = getComputedStyle(root).getPropertyValue('--bg').trim() || meta.content;
+}
+/** More ▾ → Theme…: light or dark, and the style. */
+function showThemes(redraw) {
+  let pop = document.getElementById('msgLog');
+  const was = pop && pop.dataset.kind;
+  if (pop) pop.remove();
+  if (was === 'themes' && !redraw) return;
+  pop = document.createElement('div');
+  pop.id = 'msgLog';
+  pop.dataset.kind = 'themes';
+  pop.className = 'msg-log guide';
+  pop.setAttribute('role', 'dialog');
+  pop.setAttribute('aria-label', 'Theme');
+  const light = document.documentElement.dataset.theme === 'light';
+  const pref = stylePref();
+  const mine = classStyleOf(state.snapshots[state.current]);
+  const sw = (id) => {
+    const s = THEME_STYLES.find(([x]) => x === id) || THEME_STYLES[0];
+    const [bg, accent] = light ? [s[4], s[5]] : [s[2], s[3]];
+    return `<span class="sw" style="background:linear-gradient(135deg, ${bg} 50%, ${accent} 50%)"></span>`;
+  };
+  const opt = (id, name, sub) => `<button data-act="style" data-arg="${id}" aria-pressed="${pref === id}">${sw(id === 'auto' ? mine : id)}<span>${esc(name)}${sub ? `<br><small class="faint">${esc(sub)}</small>` : ''}</span></button>`;
+  pop.innerHTML = `<div class="msg-head"><b>Theme</b><button class="btn sm" data-act="themes" aria-label="Close">✕</button></div>
+    <div class="theme-modes" role="group" aria-label="Light or dark">${[['dark', 'Dark'], ['light', 'Light']]
+    .map(([v, l]) => `<button class="btn sm${(v === 'light') === light ? ' on' : ''}" data-act="theme-mode" data-arg="${v}" aria-pressed="${(v === 'light') === light}">${l}</button>`).join('')}</div>
+    <div class="theme-pick" role="group" aria-label="Style">
+      ${opt('auto', "The character's class", `now ${(THEME_STYLES.find(([x]) => x === mine) || THEME_STYLES[0])[1]}`)}
+      ${THEME_STYLES.map(([id, name]) => opt(id, name)).join('')}
+    </div>
+    <p class="faint">Kept in this browser. "The character's class" follows the character on screen (the class with most levels); every style has a light and a dark version.</p>`;
+  const bar = document.querySelector('.side-nav');
+  const narrow = window.matchMedia('(max-width: 900px)').matches;
+  pop.style.top = `${narrow && bar ? Math.max(8, Math.round(bar.getBoundingClientRect().bottom) + 8) : 56}px`;
+  document.body.appendChild(pop);
 }
 function initTheme() {
   let t = null;
@@ -6490,6 +6586,15 @@ async function handleAction(act, arg) {
       if (first) first.focus({ preventScroll: true });
       return;
     }
+    case 'edit-image': {
+      await handleAction('edit', 'overview');
+      const el = document.getElementById('ed-image');
+      if (el) { el.focus({ preventScroll: true }); el.select(); }
+      return;
+    }
+    case 'portrait-toggle':
+      try { localStorage.setItem('portrait', portraitHidden() ? 'shown' : 'hidden'); } catch (e) { /* ignore */ }
+      return renderAll({ keepTyping: true });
     case 'edit-cancel':
       state.editing = null;
       return renderAll();
@@ -6526,6 +6631,14 @@ async function handleAction(act, arg) {
       return recomputeDerived(snap.key);
     case 'theme':
       return setTheme(document.documentElement.dataset.theme === 'light' ? 'dark' : 'light');
+    case 'themes': return showThemes();
+    case 'theme-mode':
+      setTheme(arg === 'light' ? 'light' : 'dark');
+      return showThemes(true);
+    case 'style':
+      try { localStorage.setItem('style', arg); } catch (e) { /* ignore */ }
+      applyStyle();
+      return showThemes(true);
     case 'remove':
       if (!snap) return;
       // Confirm first: the character's local changes (not yet on sw5e.com) go with it.

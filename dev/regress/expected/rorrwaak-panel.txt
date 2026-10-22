@@ -236,7 +236,7 @@ damage|1|crit: Unarmed Strike damage (critical): d4 d4 +5 · = +5 STR modifier �
 ## Sheet: Overview
 Rorrwaak (Panel)
 Wookiee · Berserker (Frenzied Approach) 4
-Level 4 Background: Mercenary Chaotic Light Proficiency +2
+Level 4 Background: Mercenary Chaotic Light Proficiency +2 [Add a picture]
 2,700 XP level 5 at 6,500 (3,800 to go)
 Still to choose (5): Berserker skills (2 more) · background skills (2 more) · background tool · background languages · Brawny: +1
 
