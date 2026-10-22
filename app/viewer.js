@@ -1254,7 +1254,12 @@ async function trackerAction(op, arg, rolled) {
     const fxBefore = arr(state.itemState[snap.key] && state.itemState[snap.key].effects);
     const ending = op === 'short' || op === 'long' ? fxBefore.filter((e) => endsOnRest(e, op))
       : op === 'damage' && hpNow === 0 && m.t.hpCurrent > 0 ? fxBefore.filter((e) => e.group === 'concentration' || e.group === 'state:raging') : [];
-    if (JSON.stringify(m.t.s) === JSON.stringify(before) && !ending.length) { // nothing changed: say why where it isn't obvious
+    // Item charges that come back on a long rest.
+    const charged = op === 'long' ? itemStateOf(snap.key) : null;
+    const recharged = charged ? itemRestCharges(charged) : [];
+    if (recharged.length) await saveItemStateFor(snap.key, charged);
+    const chargesText = recharged.length ? ` Charges back: ${recharged.map((x) => `${x.name} ${x.all ? '(all)' : `+${x.back}${x.rolled ? ` (rolled ${x.rolled})` : ''}`}`).join(', ')}.` : '';
+    if (JSON.stringify(m.t.s) === JSON.stringify(before) && !ending.length && !recharged.length) { // nothing changed: say why where it isn't obvious
       if (op === 'temp') setStatus(`You already have ${num(before.temporaryHitPoints)} temporary hit points; they don't stack (the higher amount stays).`);
       else if (op === 'short') {
         const o = restOffers();
@@ -1310,7 +1315,7 @@ async function trackerAction(op, arg, rolled) {
         await saveItemStateFor(snap.key, st);
         fore = ` Foretelling rolls: ${st.foretell.join(' and ')}.`;
       }
-      setStatus(`Long rest: ${restGains(before, m.t.s, m.t.lim, longRestExhaustion(m)[1]) || 'done'}.${ended}${fore}`);
+      setStatus(`Long rest: ${restGains(before, m.t.s, m.t.lim, longRestExhaustion(m)[1]) || 'done'}.${ended}${chargesText}${fore}`);
     }
     else if (op === 'damage' && num(m.t.s.deathSaves.failures) >= 3 && num(before.deathSaves.failures) < 3) setStatus(`${label}: three failed death saves (damage of at least your hit point maximum kills outright; the GM can rule otherwise on the HP card).${ended}`, 'error');
     else if (op === 'damage' && hpNow === 0 && m.t.hpCurrent > 0) setStatus(`${label}. Down to 0 hit points: unconscious, roll death saves (Death saves → Roll).${ended}${maybe}`, '', false, afterDamage);
@@ -1327,6 +1332,35 @@ async function trackerAction(op, arg, rolled) {
   refreshTracked();
 }
 
+/**
+ * Item charges that come back on a long rest, taken off the used ones in `st` (an itemState): "When you complete a long
+ * rest, this item regains all missing charges", "All expended charges are regained after you complete a long rest",
+ * "This weapon has 6 charges and regains 1d6 charges when you complete a long rest" (rolled); "… daily at dawn" (the
+ * long rest stands for the dawn). [{ name, back, all, rolled }].
+ */
+function itemRestCharges(st) {
+  const out = [];
+  for (const [name, used] of Object.entries(st.charges || {})) {
+    const ref = num(used) > 0 && catalogIndex && catalogIndex.get(name);
+    const t = String((ref && (ref.text || ref.description)) || '').replace(/\s+/g, ' ');
+    if (!/\blong rest\b|\bat dawn\b/i.test(t)) continue;
+    let back = 0;
+    let rolled = '';
+    let x;
+    if (/\bregains? all (?:missing|expended) charges\b|\ball expended charges are regained\b/i.test(t)) back = num(used);
+    else if ((x = /\bregains? (\d*d\d+(?: ?\+ ?\d+)?|\d+) (?:expended )?charges\b/i.exec(t))) {
+      const p = parseDice(x[1]);
+      const n = p ? p.dice.reduce((s, d) => s + rollDie(d.sides), 0) + p.mod : 0;
+      back = Math.min(num(used), Math.max(0, n));
+      rolled = /d/.test(x[1]) ? `${x[1]}: ${n}` : '';
+    }
+    if (!back) continue;
+    st.charges[name] = num(used) - back;
+    if (!st.charges[name]) delete st.charges[name];
+    out.push({ name, back, all: back === num(used) && !rolled, rolled });
+  }
+  return out;
+}
 /** A feature that heals when used ("regain hit points equal to 1d10 + your fighter level"): its roll spec, or ''. */
 function healFeatureRoll(m, name) {
   const f = m.allFeatures.find((x) => x.name === name);
@@ -2943,7 +2977,7 @@ function itemUse(ref, raw) {
   // The class items: "This item can hold a number of charges equal to half your fighter level (rounded up)".
   const cl = /\bcan hold a number of charges equal to half your (\w+) level \(rounded up\)/i.exec(text);
   const clsLevel = cl && raw ? num((arr(raw.classes).find((k) => String(k.name).toLowerCase() === cl[1].toLowerCase()) || {}).levels) : 0;
-  const charges = ch && fxNum(ch[1]) ? { max: fxNum(ch[1]), recharges: /regains? [^.]*charges/i.test(text) }
+  const charges = ch && fxNum(ch[1]) ? { max: fxNum(ch[1]), recharges: /regains? [^.]*charges|charges are regained/i.test(text) }
     : clsLevel ? { max: Math.ceil(clsLevel / 2), recharges: true } : null;
   const consumable = ref.type === 'Consumable' || CONSUMABLE_CATS.includes(ref.equipmentCategory) || /^(medpac|poison|emergency rations)/i.test(ref.name || '');
   if (!consumable && !charges) return null;
