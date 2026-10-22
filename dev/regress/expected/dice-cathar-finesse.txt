@@ -358,7 +358,7 @@ Weapon | To hit | Damage | Ability | Type | Properties |
 Unarmed Strike
 | +6 | 1d6+3 Kinetic | Dexterity (finesse) | Unarmed | — |
   ↳ hover weapons.0.attackBonus: Without tweaks or effects: 2 → now 6 / +4 Finesse: DEX +3 instead of STR · Cat's Claws Cathar trait
-  ↳ hover weapons.0.damageBonus: Without tweaks or effects: 0 → now 3 / +3 Finesse: DEX +3 instead of STR · Cat's Claws Cathar trait
+  ↳ hover weapons.0.damageBonus: Without tweaks or effects: 0 → now 3 / d6 Unarmed damage die (1 → d6) · Cat's Claws Cathar trait / +3 Finesse: DEX +3 instead of STR · Cat's Claws Cathar trait
 
 ## Sheet: Force Casting
 Force points

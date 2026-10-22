@@ -9,6 +9,10 @@ tweaks.abilityScores.Dexterity.score.bonus = 2
 tweaks.abilityScores.Wisdom.score.bonus = 2
 tweaks.armorClass.bonus = 6
 tweaks.speed.base.bonus = 30
+tweaks.unarmed.damage.bonus = 6
+tweaks.unarmed.damageDice.bonus = 0
+tweaks.unarmed.damageDice.dieSize = 12
+tweaks.unarmed.toHit.bonus = 6
 equipped = []
 
 ## Numbers (the rules engine, with the sheet's edits)
@@ -89,9 +93,9 @@ abilityScores.Wisdom.skills[Survival].modifier = 6
 abilityScores.Wisdom.skills[Survival].proficiency = "none"
 abilityScores.Wisdom.value = 22
 weapons[Unarmed Strike].ability = "Strength"
-weapons[Unarmed Strike].attackBonus = 6
-weapons[Unarmed Strike].damageBonus = 1
-weapons[Unarmed Strike].damageDieType = 0
+weapons[Unarmed Strike].attackBonus = 12
+weapons[Unarmed Strike].damageBonus = 6
+weapons[Unarmed Strike].damageDieType = 12
 weapons[Unarmed Strike].damageNumberOfDice = 1
 weapons[Unarmed Strike].damageType = "Kinetic"
 weapons[Unarmed Strike].equipped = true
@@ -99,6 +103,10 @@ weapons[Unarmed Strike].index = -1
 weapons[Unarmed Strike].isCustom = false
 weapons[Unarmed Strike].properties = []
 weapons[Unarmed Strike].quantity = 0
+weapons[Unarmed Strike].tweaks.damage.bonus = 6
+weapons[Unarmed Strike].tweaks.damageDice.bonus = 0
+weapons[Unarmed Strike].tweaks.damageDice.dieSize = 12
+weapons[Unarmed Strike].tweaks.toHit.bonus = 6
 weapons[Unarmed Strike].weaponClassification = "Unarmed"
 attunement.hasAttunable = false
 attunement.maximum = 6
@@ -140,12 +148,16 @@ effect: Perfect Self · feature
 effect: Silver-Tongued · feature
 effect: Silver-Tongued · feature
 effect: Human Versatility · feature
+effect: Martial Arts · feature
 tweak: armorClass +6 · Unarmored Defense
 tweak: speed.base +30 · Unarmored Movement
 tweak: abilityScores.Dexterity.score +2 · Perfect Self
 tweak: abilityScores.Wisdom.score +2 · Perfect Self
 tweak: abilityScores.Charisma.score +1 · Silver-Tongued
 tweak: abilityScores.Charisma.skills.Deception +0 {"proficiency":"Proficient"} · Silver-Tongued
+tweak: unarmed.damageDice +0 {"dieSize":12} · Martial Arts
+tweak: unarmed.toHit +6 · Martial Arts
+tweak: unarmed.damage +6 · Martial Arts
 
 ## Rolls
 init: Initiative: d20 +6 · = +6 modifier
@@ -182,11 +194,11 @@ skill|Charisma|0: Deception (CHA): d20 +5 · = +5 modifier
 skill|Charisma|1: Intimidation (CHA): d20 −1 · = −1 modifier
 skill|Charisma|2: Performance (CHA): d20 −1 · = −1 modifier
 skill|Charisma|3: Persuasion (CHA): d20 −1 · = −1 modifier
-attack|0: Unarmed Strike attack: d20 +6 · = +6 modifier
-damage|0: Unarmed Strike damage: no dice +1 · = +1 unarmed strike · Kinetic
+attack|0: Unarmed Strike attack: d20 +12 · = +12 modifier
+damage|0: Unarmed Strike damage: d12 +6 · = +6 Martial Arts · Kinetic
 pattack|Tech|12: Tech attack: d20 +12 · = +12 modifier
 tool|One type of gaming set|proficient: One type of gaming set check: d20 +8 · = +2 INT modifier +6 proficiency
-damage|0|crit: Unarmed Strike damage (critical): no dice +1 · = +1 unarmed strike · Kinetic · critical
+damage|0|crit: Unarmed Strike damage (critical): d12 d12 +6 · = +6 Martial Arts · Kinetic · critical
 
 ## Sheet: Overview
 Rakatan Test (local)
@@ -241,7 +253,7 @@ Defenses & senses
 Resistances Resistance to all damage
 Immunities Immune to disease and poison and resistant to poison damage
 Effects
-From class features, feats and species traits (9)
+From class features, feats and species traits (10)
 Monk weapon proficiencies Proficient: Simple blasters Proficient: simple vibroweapons Proficient: martial vibroweapons that lack the dexterity, heavy, special, and two-handed properties Monk proficiencies
 Unarmored Defense AC + WIS/CHA Monk feature
 Unarmored Movement Speed +30 ft Monk feature
@@ -251,6 +263,7 @@ Perfect Self DEX +2 WIS +2 Monk feature
 Silver-Tongued CHA +1 feat (background feat)
 Silver-Tongued Deception: proficient feat
 Human Versatility Choose the skill/tool proficiencies Human trait
+Martial Arts Monk feature
 Temporary
 No temporary effects.
 []
@@ -388,7 +401,9 @@ Skill | Ability | Bonus | Passive | Proficiency |
 ## Sheet: Weapons & Attacks
 Weapon | To hit | Damage | Ability | Type | Properties |
 Unarmed Strike
-| +6 | 1 Kinetic | Strength | Unarmed | — |
+| +12 | 1d12+6 Kinetic | Dexterity (finesse) | Unarmed | — |
+  ↳ hover weapons.0.attackBonus: Without tweaks or effects: 6 → now 12 / +6 Finesse: DEX +6 instead of STR · Martial Arts Monk feature / +2 DEX · Perfect Self Monk feature
+  ↳ hover weapons.0.damageBonus: Without tweaks or effects: 1 → now 6 / d12 Unarmed damage die (1 → d12) · Martial Arts Monk feature / +6 Finesse: DEX +6 instead of… [229 chars #14def2b5]
 
 ## Sheet: Tech Casting
 Tech points
@@ -845,4 +860,4 @@ SW5E's rules and item data: version 199, as it comes with the sheet. SW5E is the
 Raw SW5E character JSON
 { "name": "Rakatan Test (local)", "builderVersion": "0.7.6", "image": "", "experiencePoints": 6500, "species": { "name": "Human", "abilityScoreImprovementSelect… [1520 chars #a66a66be]
 Computed character JSON (the sheet's rules engine)
-{ "name": "Rakatan Test (local)", "builderVersion": "0.7.6", "image": "", "characteristics": { "alignment": "Lawful Light" }, "tweaks": { "abilityScores": { "Ch… [25335 chars #5ec65627]
+{ "name": "Rakatan Test (local)", "builderVersion": "0.7.6", "image": "", "characteristics": { "alignment": "Lawful Light" }, "tweaks": { "abilityScores": { "Ch… [25544 chars #06bfcb92]

@@ -482,7 +482,7 @@ Finesse
 Unarmed Strike
 | +6 | 1d4+6 Kinetic | Strength | Unarmed | — |
   ↳ hover weapons.2.attackBonus: Without tweaks or effects: 1 → now 6 / = 16 Strength score · no reason given tweak / +2 STR · Strength Stim (Fine) used, lasts 1 hour, since Thu 00:00
-  ↳ hover weapons.2.damageBonus: Without tweaks or effects: 0 → now 6 / +2 Unarmed damage · Brute Force Assault Specialist feature / = 16 Strength score · no reason… [240 chars #247f38d1]
+  ↳ hover weapons.2.damageBonus: Without tweaks or effects: 0 → now 6 / +2 Unarmed damage · Brute Force Assault Specialist feature / d4 Unarmed damage die (1 → d4) … [306 chars #868ff822]
 
 ## Sheet: Superiority & Maneuvers
 Maneuvers Known

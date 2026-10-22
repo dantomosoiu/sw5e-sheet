@@ -370,7 +370,7 @@ Finesse, light, thrown (range 20/60)
 Unarmed Strike
 | +4 | 1d4+2 Kinetic | Dexterity (finesse) | Unarmed | — |
   ↳ hover weapons.1.attackBonus: Without tweaks or effects: 1 → now 4 / +3 Finesse: DEX +2 instead of STR · Unarmed Combatant Zabrak trait
-  ↳ hover weapons.1.damageBonus: Without tweaks or effects: 0 → now 2 / +2 Finesse: DEX +2 instead of STR · Unarmed Combatant Zabrak trait
+  ↳ hover weapons.1.damageBonus: Without tweaks or effects: 0 → now 2 / d4 Unarmed damage die (1 → d4) · Unarmed Combatant Zabrak trait / +2 Finesse: DEX +2 instead of STR · Unarmed Combatant Zabrak trait
 
 ## Sheet: Tech Casting
 Tech points

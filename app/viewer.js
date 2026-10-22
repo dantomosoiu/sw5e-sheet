@@ -1977,6 +1977,14 @@ function applyEffects(key, editedRaw, complete) {
     return [a, num((((complete && complete.abilityScores) || {})[a] || {}).value) - num(tw.bonus)];
   }));
   const res = fxResolve(effects, scores);
+  // Martial Arts (martialArtsOf): the unarmed strike's die and finesse like a species' natural weapons, while the armor
+  // and shield allow it; the monk weapons' come after the weapon proficiencies, below.
+  const martial = martialArtsOf(editedRaw).filter((x) => !(x.ma.noArmor && armor.armor) && !(x.ma.noShield && armor.shield)).map((x) => {
+    const size = num(String((x.ma.column && classRow(editedRaw, x.k)[x.ma.column]) || x.ma.die).replace(/^\d*d/i, ''));
+    const e = { id: x.id, kind: 'feature', name: x.name, why: `${x.k.name} feature`, target: 'self', mods: [], notes: [], unarmedDie: size, unarmedFinesse: x.ma.finesse };
+    effects.push(e);
+    return { ...x, e, size };
+  });
   // The final scores, as the engine will have them: a tweak's "set to" sets the score and effects add on top of it (a
   // Strength stim on a Strength set by a tweak); the tweak's own bonus doesn't count then (SW5E ignores it).
   const final = { ...scores };
@@ -2069,6 +2077,27 @@ function applyEffects(key, editedRaw, complete) {
       });
     }
   }
+  // Martial Arts on monk weapons ("vibroweapons with which you are proficient that lack the dexterity, heavy, special,
+  // and two-handed properties"): its die in place of a smaller one, and Dexterity where it's better (finesse).
+  for (const x of martial.filter((y) => y.ma.weapons)) {
+    const profs = arr(complete && complete.proficiencies).filter((p) => p && /weapon|other/.test(p.type || '')).map((p) => p.name)
+      .concat(effects.flatMap((e) => arr(e.weapons)));
+    arr(editedRaw.equipment).forEach((it, i) => {
+      const ref = it.category === 'Equipment' && catalogIndex && catalogIndex.get(it.name);
+      if (!ref || ref.equipmentCategory !== 'Weapon' || !clsWeaponMatches(x.ma.weapons.desc, ref)) return;
+      const proficient = profs.some((d) => clsWeaponMatches(d, ref)) || res.weaponTweaks.some((t) => t.index === i && t.fields && t.fields.proficiency);
+      if (!proficient) return;
+      if (num(ref.damageNumberOfDice) <= 1 && x.size > num(ref.damageDieType) && !res.weaponTweaks.some((t) => t.index === i && t.path === 'damageDice')) {
+        res.weaponTweaks.push({ index: i, path: 'damageDice', bonus: 0, fields: { dieSize: x.size }, effect: x.e, mod: { path: 'weapon.damageDice', label: `${x.name}: d${x.size} in place of d${num(ref.damageDieType)}` } });
+      }
+      const w = arr(complete && complete.weapons).find((y) => y.index === i);
+      const gain = modOf('Dexterity') - modOf('Strength');
+      if (x.ma.finesse && w && w.ability === 'Strength' && gain > 0) {
+        const label = `Finesse (${x.name}): DEX ${signed(modOf('Dexterity'))} instead of STR ${signed(modOf('Strength'))}`;
+        for (const path of ['toHit', 'damage']) res.weaponTweaks.push({ index: i, path, bonus: gain, fields: null, effect: x.e, mod: { path: `weapon.${path}`, label, finesse: true } });
+      }
+    });
+  }
   // Tool proficiencies from features (with "choose" picks from notes).
   res.tools = effects.flatMap((e) => arr(e.tools).map((t) => ({ ...t, effect: e })));
   // "Your unarmed strike damage increases by one step" (from SW5E's die: 1 → d4 → d6 → d8 → d10 → d12).
@@ -2087,10 +2116,11 @@ function applyEffects(key, editedRaw, complete) {
   if (stepping.length) {
     const cur = Math.max(0, steps.indexOf(Math.max(tweakDie, natDie)));
     const die = steps[Math.min(steps.length - 1, cur + stepping.reduce((t, e) => t + num(e.unarmedStep), 0))];
-    for (const e of stepping) res.tweaks.push({ path: 'unarmed.damageDice', bonus: 0, fields: { dieSize: die }, effect: e, mod: { path: 'unarmed.damageDice', label: `Unarmed die d${die}` } });
+    const was = steps[cur] ? `d${steps[cur]}` : '1';
+    for (const e of stepping) res.tweaks.push({ path: 'unarmed.damageDice', bonus: 0, fields: { dieSize: die }, effect: e, mod: { path: 'unarmed.damageDice', label: `Unarmed damage up a step (${was} → d${die})` } });
   } else if (natDie > tweakDie) {
     const e = natural.find((x) => num(x.unarmedDie) === natDie);
-    res.tweaks.push({ path: 'unarmed.damageDice', bonus: 0, fields: { dieSize: natDie }, effect: e, mod: { path: 'unarmed.damageDice', label: `Unarmed die d${natDie}` } });
+    res.tweaks.push({ path: 'unarmed.damageDice', bonus: 0, fields: { dieSize: natDie }, effect: e, mod: { path: 'unarmed.damageDice', label: `Unarmed damage die (${tweakDie ? `d${tweakDie}` : '1'} → d${natDie})` } });
   }
   const fin = natural.find((x) => x.unarmedFinesse);
   if (fin && unarmed && unarmed.ability !== 'Dexterity') {
@@ -2201,6 +2231,36 @@ function engineCheckOf(raw, sw5eComplete, ctx) {
   return { at: Date.now(), compared: r.compared, differences: r.differences.slice(0, 50), more: Math.max(0, r.differences.length - 50) };
 }
 
+/**
+ * Class and archetype features (and picked class options) with Martial Arts' wording (clsMartialArts), for the levels
+ * reached: [{ id, name, k (the class), ma }]. Cached for the same classes.
+ */
+function martialArtsOf(editedRaw) {
+  if (!state.rules || typeof clsMartialArts !== 'function') return [];
+  const sig = canonical(arr(editedRaw.classes).map((k) => [k.name, k.levels, k.archetype && k.archetype.name, k.options || null]));
+  if (martialArtsOf.cache && martialArtsOf.cache.rules === state.rules && martialArtsOf.cache.sig === sig) return martialArtsOf.cache.out;
+  const out = [];
+  const parsed = classRules();
+  for (const k of arr(editedRaw.classes)) {
+    const cref = rulesModule('classes').find((x) => x.name === k.name);
+    if (!cref) continue;
+    const aref = k.archetype && k.archetype.name ? rulesModule('archetypes').find((x) => x.name === k.archetype.name) : null;
+    const items = clsTextFeatures(cref.classFeatureText, k.name, 'Class').concat(aref ? clsTextFeatures(aref.text, aref.name, 'Archetype') : [])
+      .filter((f) => f.level <= num(k.levels));
+    // Picked options ("Ideal of the Contender: your unarmed strikes gain the finesse property").
+    const cls = parsed && parsed.classes[k.name];
+    for (const [key, picks] of Object.entries(k.options || {})) {
+      const list = cls && cls.lists.find((l) => l.key === key);
+      for (const p of arr(picks)) { const o = list && list.options.find((x) => x.name === p.name); if (o) items.push({ name: o.name, text: o.text }); }
+    }
+    for (const f of items) {
+      const ma = clsMartialArts(f.text);
+      if (ma) out.push({ id: `martial:${k.name}:${f.name}`, name: f.name, k, ma });
+    }
+  }
+  martialArtsOf.cache = { rules: state.rules, sig, out };
+  return out;
+}
 /**
  * The calculation effects are worked out against (proficiency bonus, skills, weapons): the engine's, of the character as
  * edited now, when it has the data. SW5E's stored one (from the last Load) misses the sheet's own edits (a level added
@@ -2335,7 +2395,8 @@ function bumpSources(m, path) {
     const part = /attackBonus$/.test(path) ? 'toHit' : /damage/i.test(path) ? 'damage' : null;
     const own = (w.name === 'Unarmed Strike' ? tw.filter((t) => t.path.startsWith('unarmed.'))
       : tw.filter((t) => t.path.startsWith('weapon.') || t.path.startsWith(`weapon@${w.index}.`)))
-      .filter((t) => !part || t.path.endsWith('.' + part));
+      // The damage die counts for the damage (an unarmed strike's "1" becomes d4: its damage bonus loses the 1).
+      .filter((t) => !part || t.path.endsWith('.' + part) || (part === 'damage' && t.path.endsWith('.damageDice')));
     // A finesse unarmed strike (Unarmed Combatant) goes by Dexterity: an item's Dexterity counts there too.
     const finesse = own.some((t) => t.mod && t.mod.finesse) ? score('Dexterity') : [];
     return own.concat(w.ability ? score(w.ability) : [], finesse);
@@ -2435,7 +2496,7 @@ function bumpTip(m, path, d) {
   const tweakLine = (t) => `<li><b>${esc(fxTweakValueText({ ...(t.fields || {}), bonus: t.bonus }))}</b> ${esc(t.effect.tweakName)}
       · ${t.effect.reason ? esc(t.effect.reason) : '<span class="warn-text">no reason given</span>'} <span class="faint">${esc(effectWhen(t.effect))}</span></li>`;
   return `<div class="tip-head">Without tweaks or effects: <b>${fmt(d.from ?? '—')}</b> → now <b>${fmt(d.to)}</b></div>
-    ${src.length ? `<ul>${src.map((t) => (t.effect.kind === 'tweak' ? tweakLine(t) : `<li><b>${esc(!t.bonus && t.fields && t.fields.proficiency ? String(t.fields.proficiency).toLowerCase() : signedLabel(t.bonus))}</b> ${esc(t.mod.label.replace(/\s*[+\-−]?\d+( ft)?$/, ''))}${t.mod.set != null ? ` <span class="faint">(the item sets it to ${t.mod.set})</span>`
+    ${src.length ? `<ul>${src.map((t) => (t.effect.kind === 'tweak' ? tweakLine(t) : `<li><b>${esc(!t.bonus && t.fields && t.fields.proficiency ? String(t.fields.proficiency).toLowerCase() : !t.bonus && t.fields && t.fields.dieSize ? `d${t.fields.dieSize}` : signedLabel(t.bonus))}</b> ${esc(t.mod.label.replace(/\s*[+\-−]?\d+( ft)?$/, ''))}${t.mod.set != null ? ` <span class="faint">(the item sets it to ${t.mod.set})</span>`
       : typeof t.mod.bonus === 'number' && t.bonus !== t.mod.bonus && !t.mod.abilityMod ? ` <span class="faint">(capped from ${esc(signedLabel(t.mod.bonus))})</span>` : ''}
       · ${esc(t.effect.name)} <span class="faint">${esc(effectWhen(t.effect))}</span></li>`)).join('')}</ul>`
       : '<div class="faint">Changed by the tweaks or effects listed under Settings, Tweaks &amp; Data and Combat &amp; Vitals → Effects.</div>'}${condHtml}${acOthers(m, path)}`;
