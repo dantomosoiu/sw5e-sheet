@@ -185,7 +185,7 @@ Consular Test (local)
 Human · Consular (Way of Technology) 5
 Level 5 Background: Noble Lawful Light Proficiency +3 [Add a picture]
 6,500 XP level 6 at 14,000 (7,500 to go)
-Still to choose (8): Consular skills (2 more) · Force-Empowered Castings (2 more) · Consular force powers (13 more) · background skills (2 more) · background to… [248 chars #b7d5927d]
+Still to choose (11): Consular skills (2 more) · Force-Empowered Castings (2 more) · Consular force powers (13 more) · background skills (2 more) · background t… [366 chars #67d7ed65]
 
 ## Sheet: Combat & Vitals
 Armor Class
@@ -492,9 +492,8 @@ Overheat [×]
 Choose a manufactured metal object, such as a blaster or a suit of heavy or medium metal armor, that you can see within range. You cause the object to glow red-… [370 chars #bd2db813]
 If an object is held, worn, or integrated, and a creature takes the damage from it, the creature must succeed on a Constitution saving throw or drop the object … [300 chars #1a5fa78e]
 Overcharge Tech. When you cast this power using a tech slot of 3rd level or higher, the damage increases by 1d8 for each slot level above 2nd.
-Tough 0 / 0 Feat: Tough (Consular ASI #2)
+Tough Feat: Tough (Consular ASI #2)
 The feat needs: Durable feat
-None chosen yet.
 Tough Consular ASI #2+ Constitution Prereq: 4th level, Durable feat
 You have the blood of heroes flowing through your veins. You gain the following benefits:
 Increase your Constitution score by 1, to a maximum of 20.

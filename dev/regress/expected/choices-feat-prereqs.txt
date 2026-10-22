@@ -216,7 +216,7 @@ Berserker Test (Claude)
 Human · Berserker 5
 Level 5 Background: Soldier Balanced Neutral Proficiency +3 [Add a picture]
 6,500 XP level 6 at 14,000 (7,500 to go)
-Still to choose (8): Berserker approach · Berserker Instincts (2 more) · background skills (2 more) · background tool · background languages · Customized Droid:… [226 chars #876d2f7f]
+Still to choose (11): Berserker approach · Berserker Instincts (2 more) · background skills (2 more) · background tool · background languages · Customized Droid… [344 chars #6638b34d]
 
 ## Sheet: Combat & Vitals
 Armor Class
@@ -432,15 +432,12 @@ Notes []
 
 ## Sheet: Feats
 Choices from your feats
-Savage Shorty 0 / 0 Feat: Savage Shorty (Berserker ASI #1)
+Savage Shorty Feat: Savage Shorty (Berserker ASI #1)
 The feat needs: size Small
-None chosen yet.
-Inspiring Leader 0 / 0 Feat: Inspiring Leader (Custom feat)
+Inspiring Leader Feat: Inspiring Leader (Custom feat)
 The feat needs: Charisma 13
-None chosen yet.
-Customized Droid 0 / 0 Feat: Customized Droid (Custom feat)
+Customized Droid Feat: Customized Droid (Custom feat)
 The feat needs: Type droid
-None chosen yet.
 Feat ability increases
 Customized Droid: +1 to 0 / 1 added by hand
 None chosen yet.

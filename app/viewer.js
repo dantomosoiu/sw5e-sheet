@@ -2028,13 +2028,15 @@ function featureEffectsUncached(editedRaw) {
   // Intimidation (your choice)" from the trait's notes), numbers ("You have a +1 bonus to AC"; "you can't add more than
   // +3"), advantages (on the dice card), defenses and senses; SW5E's engine applies none of them. And the ones only a
   // species has, below: its walking speed, a hide's or carapace's AC, natural weapons (Toughness is read like Durable).
-  const sp = editedRaw.species && editedRaw.species.name ? rulesModule('species').find((x) => x.name === editedRaw.species.name) : null;
-  for (const tr of arr(sp && sp.traits)) {
+  const sp = editedRaw.species && editedRaw.species.name && state.rules ? bdSpeciesRef(editedRaw) : null; // a half-human's: with its other half's traits
+  for (let tr of arr(sp && sp.traits)) {
     if (/^(?:Ability Score Increase|Age|Alignment|Size|Languages?)$/i.test(tr.name)) continue;
     const note = featureNoteOf(editedRaw, tr.name);
-    const fe = clsFeatureEffects(tr.description || '', note, { level: arr(editedRaw.classes).reduce((t, k) => t + num(k.levels), 0), isWeapon: isWeaponName });
+    // A trait with options (Nikto's Adaptation): clsFeatureEffects reads the chosen one; the rest below reads its text.
+    const fe = clsFeatureEffects(bdTraitFullText(tr), note, { level: arr(editedRaw.classes).reduce((t, k) => t + num(k.levels), 0), isWeapon: isWeaponName });
+    tr = { ...tr, description: bdTraitText(editedRaw, tr) };
     const profs = { ...fe, mods: fe.mods.slice(), critRange: 0, halfProf: false, unarmedStep: 0, unarmedDie: 0, unarmedFinesse: false };
-    // "Your base walking speed is 25 feet": SW5E's engine gives everyone 30.
+    // "Your base walking speed is 25 feet": SW5E's engine gives everyone 30. (A half-human's: its other half's.)
     const walk = /\byour base walking speed is (\d+)/i.exec(tr.description || '');
     if (walk && num(walk[1]) !== 30) profs.mods.push({ path: 'speed.base', bonus: num(walk[1]) - 30, label: `Walking speed ${walk[1]} ft` });
     // "It gives you a base AC of 17 (your Dexterity modifier doesn't affect this number). You gain no benefit from wearing
@@ -2105,7 +2107,7 @@ const armorAllows = (when, st) => !when || ((!when.noArmor || !st.armor || (when
 function withSpeciesLanguage(raw) {
   const sp = raw.species;
   if (!sp || !sp.name || sp.language || !state.rules) return raw;
-  const l = String((rulesModule('species').find((x) => x.name === sp.name) || {}).language || '');
+  const l = String((bdSpeciesRef(raw) || {}).language || ''); // a half-human: its non-human half's
   return l && !/varies|non-verbal/i.test(l) ? { ...raw, species: { ...sp, language: l } } : raw;
 }
 const stripTweaks = (raw) => ({ ...withSpeciesLanguage(raw), tweaks: {}, equipment: arr(raw.equipment).map(({ tweaks, ...it }) => it) });
@@ -4253,8 +4255,8 @@ function defensesOf(m) {
     add(fe.defenses, from);
     add(fe.advantage.map((a) => ({ kind: 'advantage', text: ADV_TEXT(a) })), from);
   };
-  const sp = m.raw.species && m.raw.species.name ? rulesModule('species').find((x) => x.name === m.raw.species.name) : null;
-  const traits = sp && arr(sp.traits).length ? sp.traits.map((t) => ({ name: t.name, text: t.description })) : arr(m.speciesFeatures);
+  const sp = m.raw.species && m.raw.species.name && state.rules ? bdSpeciesRef(m.raw) : null;
+  const traits = sp && arr(sp.traits).length ? sp.traits.map((t) => ({ name: t.name, text: bdTraitText(m.raw, t) })) : arr(m.speciesFeatures);
   for (const f of traits.concat(arr(m.feats))) fromText(f.text || f.description, f.name);
   // Equipment: enhanced items in use, worn weapons/armor, and other gear carried (a jetpack's flying
   // speed); not consumables, whose effects come from using them.
@@ -4550,7 +4552,7 @@ const classCasting = (m) => (state.rules ? arr(m.raw.classes).flatMap((k, idx) =
 /** A species trait that rules out a kind of powers: { force: 'Force-Insensitive' | false, tech: … }. */
 function speciesCannot(m) {
   const out = { force: false, tech: false };
-  const sp = m.raw.species && rulesModule('species').find((x) => x.name === m.raw.species.name);
+  const sp = m.raw.species && state.rules ? bdSpeciesRef(m.raw) : null;
   for (const tr of arr(sp && sp.traits)) {
     const mm = /\byou can ?not use (force|tech) powers\b/i.exec(tr.description || '');
     if (mm) out[mm[1].toLowerCase()] = tr.name;
@@ -5462,7 +5464,8 @@ function featureNoteOf(raw, name) {
 function chosenInPicker(m, f) {
   const base = clsBaseName(f.name).toLowerCase();
   const res = state.rules ? choiceInfo(m) : null;
-  const slots = res ? res.slots.filter((s) => (s.feature && s.feature.toLowerCase() === base) || (s.species && String(s.from).toLowerCase().endsWith(`: ${base}`))) : [];
+  // A trait's given powers (Kiffar Heritage's Sage: telemetry) aren't a pick: its own choice stays in its card.
+  const slots = res ? res.slots.filter((s) => (s.feature && s.feature.toLowerCase() === base) || (s.species && !s.given && String(s.from).toLowerCase().endsWith(`: ${base}`))) : [];
   if (slots.length) return slots.flatMap((s) => s.picks.map((p) => p.name));
   for (const k of arr(m.raw.classes)) {
     if (base === archetypeFeature(k.name)) return k.archetype && k.archetype.name ? [k.archetype.name] : [];
@@ -5482,8 +5485,11 @@ function featureAsks(m, f) {
   if (!state.rules || !text) return [];
   if (f.source === 'Species' && (/^(?:Ability Score Increase|Languages?)$/i.test(f.name)
     || !bdSpeciesTraitFeatures(m).some((t) => t.name === f.name))) return [];
+  // A trait with options (Kiffar Heritage): the options come with the rules' trait (SW5E's feature text stops at its intro).
+  const trait = f.source === 'Species' ? arr((bdSpeciesRef(m.raw) || {}).traits).find((t) => t.name === f.name && arr(t.options).length) : null;
+  if (trait) f = { ...f, text: bdTraitFullText(trait) }; // eslint-disable-line no-param-reassign
   const k = arr(m.raw.classes).find((x) => x.name === f.sourceName || (x.archetype && x.archetype.name === f.sourceName));
-  const asks = clsFeatureEffects(text, featureNoteOf(m.raw, f.name), {
+  const asks = clsFeatureEffects(f.text || text, featureNoteOf(m.raw, f.name), {
     level: k ? num(k.levels) : charLevel(m), pb: num(m.c.proficiencyBonus), row: k ? classRow(m.raw, k) : {}, isWeapon: isWeaponName,
   }).asks;
   // A choice that only comes with "If you already have this proficiency…" (Resilient Retainer): when that holds.
@@ -5806,6 +5812,11 @@ const slotManeuvers = (m) => {
 
 /** One slot's editor: what's chosen (with notes, weapons and problems) and a list to add from. */
 function renderSlot(m, s) {
+  // A feat that grants no picks, only problems (Tough without Durable): the problems, without an empty pick row.
+  if (s.kind === 'feat') {
+    return `<div class="cls-list slot"><div class="cls-head"><b>${esc(s.title)}</b> <span class="faint">${esc(s.label || s.from)}</span></div>
+      ${s.problems.map((p) => `<div class="slot-problem">${esc(p)}</div>`).join('')}</div>`;
+  }
   const kind = CH_KINDS[s.kind] || {};
   const chosen = new Set(s.picks.map((p) => p.name));
   // Things of this kind chosen elsewhere can't be chosen again (styles, forms, maneuvers, powers).
@@ -6214,15 +6225,21 @@ function renderSpecies(m) {
   const name = m.raw.species.name;
   const ref = (m.refs.species || {})[name] || {};
   const img = arr(ref.imageUrls)[0];
+  const eff = state.rules ? bdSpeciesRef(m.raw) : null; // a half-human's: with its non-human half's
+  // A trait with options SW5E's feature text leaves out (Nikto's Adaptation): the card shows them.
+  const withOptions = (f) => { const t = arr(ref.traits).concat(arr(eff && eff.traits)).find((x) => x.name === f.name && arr(x.options).length); return t ? { ...f, text: bdTraitFullText(t) } : f; };
+  // A half-human's traits from its non-human half (SW5E lists Half-human's own only).
+  const inherited = eff && eff.halfOf ? arr(eff.traits).filter((t) => !/^(?:Ability Score Increase|Age|Alignment|Size|Speed|Languages?)$/i.test(t.name) && !m.speciesFeatures.some((f) => f.name === t.name))
+    .map((t) => featureCard({ name: t.name, text: bdTraitFullText(t), source: 'Species', sourceName: eff.halfOf }, m)) : [];
   const traits = m.speciesFeatures.length
-    ? m.speciesFeatures.map((f) => featureCard(f, m))
+    ? m.speciesFeatures.map((f) => featureCard(withOptions(f), m)).concat(inherited)
     : arr(ref.traits).map((t) => card({ title: t.name, body: md(t.description) }));
   const asi = m.raw.species.abilityScoreImprovement;
   const asiText = asi && typeof asi === 'object' && Object.keys(asi).length ? Object.entries(asi).map(([a, n]) => `${a} ${signed(n)}`).join(', ') : '';
   return `<div class="hero" style="margin-bottom:12px">
       ${img ? `<div class="portrait"><img data-src="${esc(img)}" alt=""></div>` : ''}
       <dl class="kv">
-        ${[['Size', ref.size], ['Homeworld', ref.homeworld], ['Language', ref.language], ['Average height', ref.heightAverage && `${ref.heightAverage} ${ref.heightRollMod || ''}`],
+        ${[['Non-human half', eff && eff.halfOf], ['Size', (eff && eff.halfOf && eff.size) || ref.size], ['Homeworld', ref.homeworld], ['Language', (eff && eff.halfOf && eff.language) || ref.language], ['Average height', ref.heightAverage && `${ref.heightAverage} ${ref.heightRollMod || ''}`],
           ['Average weight', ref.weightAverage && `${ref.weightAverage} ${ref.weightRollMod || ''}`], ['Skin', ref.skinColorOptions], ['Hair', ref.hairColorOptions], ['Eyes', ref.eyeColorOptions],
           ['Distinctions', ref.distinctions], ['Chosen increase', asiText]]
           .filter(([, v]) => nonEmpty(v)).map(([k, v]) => `<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join('') || '<dt>Species</dt><dd>' + esc(name) + '</dd>'}

@@ -633,7 +633,6 @@ You have advantage on saving throws against being blinded.
 Notes []
 Fearsome Roar
 Once per day, you can cast the fear force power. Charisma is your forcecasting ability for this power.
-Chosen: Fear · change it in Classes & Progression
 Notes []
 Intimidating Roar
 Once per day, you can cast the fear force power. Charisma is your forcecasting ability for this power.

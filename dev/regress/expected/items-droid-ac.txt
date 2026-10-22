@@ -249,7 +249,7 @@ Tikk Plonr (Panel)
 Droid, Class I · Engineer (Armstech Engineering) 4
 Level 4 Background: Scientist Neutral Light Proficiency +2 [Add a picture]
 2,700 XP level 5 at 6,500 (3,800 to go)
-Still to choose (8): Engineer skills (3 more) · Engineer tool · Armstech Modifications (2 more) · background skills (2 more) · background tool · background languages · species language · species +1 (Wisdom or Charisma)
+Still to choose (9): Engineer skills (3 more) · Engineer tool · Armstech Modifications (2 more) · background skills (2 more) · background tool · background lang… [267 chars #ee7dcc2d]
 
 ## Sheet: Combat & Vitals
 Armor Class
