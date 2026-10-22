@@ -1921,7 +1921,8 @@ function featureEffectEntry(id, name, why, fe, origin = 'class feature') {
   return {
     id, kind: 'feature', origin, name, why, mods, notes: [], needsChoice: fe.needsChoice, weapons: fe.profs.weapons, tools, armor: fe.profs.armor, chains, passives, target: 'self',
     advantage: fe.advantage, defenses: fe.defenses, critRange: fe.critRange, halfProf: fe.halfProf, unarmedStep: fe.unarmedStep,
-    unarmedDie: fe.unarmedDie || 0, unarmedFinesse: !!fe.unarmedFinesse, ...(fe.critOn === 'unarmed' ? { critWeapons: ['unarmed'] } : {}),
+    unarmedDie: fe.unarmedDie || 0, unarmedFinesse: !!fe.unarmedFinesse, ...(fe.critOn === 'unarmed' ? { critWeapons: ['unarmed'] } : fe.critOn ? { critOn: fe.critOn } : {}),
+    ...(fe.darkvisionPlus ? { darkvisionPlus: fe.darkvisionPlus } : {}),
   };
 }
 /**
@@ -4297,9 +4298,10 @@ function defensesOf(m) {
     if (e.critRange) add([{ kind: 'other', text: `Critical hit on ${20 - e.critRange}–20 with ${e.critWeapons ? e.weaponName || 'the chosen weapon' : 'weapons'}` }], e.name, e.kind);
     if (e.halfProf) add([{ kind: 'other', text: `Half proficiency on ${halfProfWhich(e)}checks without it` }], e.name, e.kind);
   }
-  const fromText = (text, from) => {
-    const fe = clsFeatureEffects(text || '', '', { level: 0 });
-    add(fe.defenses, from);
+  // An item's damage reduction is itemDefenses' (with the item's wording and number), not listed twice.
+  const fromText = (text, from, isItem = false) => {
+    const fe = clsFeatureEffects(text || '', '', { level: 0, pb: num(m.c.proficiencyBonus) });
+    add(isItem ? fe.defenses.filter((d) => !/^Damage from .* reduced by\b/.test(d.text)) : fe.defenses, from);
     add(fe.advantage.map((a) => ({ kind: 'advantage', text: ADV_TEXT(a) })), from);
   };
   const sp = m.raw.species && m.raw.species.name && state.rules ? bdSpeciesRef(m.raw) : null;
@@ -4316,13 +4318,13 @@ function defensesOf(m) {
     } else if (['Weapon', 'Armor'].includes(ref.equipmentCategory) ? !it.equipped
       : /Consumable|Explosive|Ammunition|Spice|AlcoholicBeverage|Medical/i.test(`${ref.equipmentCategory} ${ref.type}`)) continue;
     const text = itemDefenseText(ref.text || ref.description, it.notes);
-    fromText(text, it.name);
+    fromText(text, it.name, true);
     add(itemDefenses(text, num(m.c.proficiencyBonus)), it.name);
   }
   // "If you already have darkvision, these goggles increase its range by 30 feet": the longest darkvision from
   // something else, longer (the goggles' own 60 feet otherwise).
   const ft = (d) => num((/^Darkvision (\d+) ft/.exec(d.text) || [])[1]);
-  for (const e of m.effects.filter((x) => x.kind === 'item' && x.darkvisionPlus)) {
+  for (const e of m.effects.filter((x) => (x.kind === 'item' || x.kind === 'feature') && x.darkvisionPlus)) {
     const own = out.filter((d) => d.kind === 'sense' && ft(d) && d.from !== e.name);
     const best = own.reduce((a, d) => (ft(d) > ft(a || {}) ? d : a), null);
     if (!best) continue;
@@ -5411,6 +5413,10 @@ async function startFeatureState(arg) {
   const mods = st.mods.slice();
   const advantage = st.advantage.slice();
   const defenses = arr(st.defenses).slice();
+  // Critical range from lines like "While raging, your critical hit range with melee weapon attacks using Dexterity
+  // increases by 1" (critOn: which attacks).
+  let critRange = 0;
+  let critOn = null;
   if (st.word) {
     for (const x of candidates.filter((y) => y.name !== name)) {
       const ext = featureState(m, x);
@@ -5427,7 +5433,10 @@ async function startFeatureState(arg) {
         if (!lm) continue;
         extra.push(`${x.name}: ${sen}`);
         const note = x.note != null ? x.note : featureNoteOf(m.raw, x.name);
-        const fe = clsFeatureEffects(sen.slice(lm[0].length).replace(/^./, (c) => c.toUpperCase()), note, { level: 0 });
+        // With its class's level and table row ("you add your rage damage to the damage roll": the Rage Damage column).
+        const xk = arr(m.raw.classes).find((k) => k.name === x.sourceName || (k.archetype && k.archetype.name === x.sourceName)) || arr(m.raw.classes)[0];
+        const fe = clsFeatureEffects(sen.slice(lm[0].length).replace(/^./, (c) => c.toUpperCase()), note, xk ? { level: num(xk.levels), row: classRow(m.raw, xk) } : { level: 0 });
+        if (fe.critRange) { critRange = Math.max(critRange, fe.critRange); if (fe.critOn && typeof fe.critOn === 'object') critOn = fe.critOn; }
         mods.push(...fe.mods);
         advantage.push(...fe.advantage);
         defenses.push(...fe.defenses);
@@ -5455,10 +5464,11 @@ async function startFeatureState(arg) {
     const rp = rx && rulesPower(rx[1]);
     if (rx) counter = { label: `${rp ? rp.name : rx[1]} reactions`, power: rp ? rp.name : rx[1], max: num(m.c.proficiencyBonus), used: 0 };
   }
+  if (st.critRange) critRange = Math.max(critRange, st.critRange);
   const eff = {
     id: Date.now().toString(36) + Math.random().toString(36).slice(2, 6), kind: 'temporary', source: 'feature', name,
     startedAt: Date.now(), duration: st.duration, group: st.form ? 'state:lightsaber form' : `state:${st.word || name}`, mods, notes: st.benefits.concat(extra),
-    advantage, defenses, critRange: st.critRange || 0, target: 'self',
+    advantage, defenses, critRange, ...(critOn ? { critOn } : {}), target: 'self',
     ...(how === 'frenzy' && num(s2.frenzy) > 1 ? { exhaustOnEnd: 1 } : {}), ...(counter ? { counter } : {}),
   };
   // "You can't cast them or concentrate on them while raging": starting a rage ends concentration.

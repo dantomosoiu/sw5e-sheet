@@ -622,7 +622,9 @@ function fxResolve(effects, baseScores) {
         const cur = Number(scores[ab[1]]) || 0;
         if (fields && fields.override != null && fields.override !== '') scores[ab[1]] = Number(fields.override);
         else {
-          if (mod.set != null) bonus = Math.max(0, mod.set - cur);
+          // "Your Strength score becomes equal to your Intelligence score" (setFrom): the other score as it stands.
+          const setTo = mod.setFrom ? Number(scores[mod.setFrom]) || 0 : mod.set;
+          if (setTo != null) bonus = Math.max(0, setTo - cur);
           else if (mod.cap != null) bonus = Math.max(0, Math.min(bonus, mod.cap - cur));
           scores[ab[1]] = cur + bonus;
         }

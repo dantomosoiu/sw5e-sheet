@@ -192,7 +192,9 @@ function buildRoll(m, spec, opts = {}) {
       // widen it only for their weapons.
       const seen = new Set();
       // critWeapons: the weapons' indexes, or 'unarmed' ("your critical hit range with unarmed strikes increases by 1").
-      const wider = arr(m.effects).filter((e) => num(e.critRange) > 0 && (!e.critWeapons || e.critWeapons.includes(w.name === 'Unarmed Strike' ? 'unarmed' : w.index)) && !seen.has(e.id) && seen.add(e.id));
+      // critOn: which attacks ("…with melee weapon attacks using Dexterity").
+      const critFits = (e) => !e.critOn || typeof e.critOn !== 'object' || ((!e.critOn.melee || !/blaster/i.test(w.weaponClassification || '')) && (!e.critOn.ability || w.ability === e.critOn.ability));
+      const wider = arr(m.effects).filter((e) => num(e.critRange) > 0 && (!e.critWeapons || e.critWeapons.includes(w.name === 'Unarmed Strike' ? 'unarmed' : w.index)) && critFits(e) && !seen.has(e.id) && seen.add(e.id));
       // The weapon's own keen property ("the critical hit range increases by an amount equal to the keen number"),
       // unless a keen modification on it already counts it (its effect's critRange is the weapon's keen number).
       const keen = wider.some((e) => e.keen) ? 0 : num((/\bkeen (\d+)/i.exec(propsText(w.properties)) || [])[1]);

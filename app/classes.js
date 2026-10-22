@@ -175,8 +175,12 @@ function clsUsage(text, ctx) {
   if ((m = /additional use (?:of (?:this feature|it) )?at ((?:\d+(?:st|nd|rd|th)(?:,? (?:and )?)?)+) level/i.exec(t))) {
     max += [...m[1].matchAll(/(\d+)/g)].filter((x) => level >= Number(x[1])).length;
   }
-  let recharge = /(?:finish|complete|completes|finishes) a short or long rest|short or long rest/i.test(t) ? 'shortRest'
-    : /long rest/i.test(t) ? 'longRest' : null;
+  // "You regain all expended uses when you complete a long rest" decides, even with "short or long rest" said about something
+  // else (Splashclass Scholar: a creature's rest).
+  const regain = /\bregain (?:all )?(?:expended |spent )?(?:uses|use)\b[^.]*?\b(?:finish|complete)s? a (short or long|long) rest/i.exec(t);
+  let recharge = regain ? (/short/i.test(regain[1]) ? 'shortRest' : 'longRest')
+    : /(?:finish|complete|completes|finishes) a short or long rest|short or long rest/i.test(t) ? 'shortRest'
+      : /long rest/i.test(t) ? 'longRest' : null;
   // "Starting at 13th level, you regain the ability to use it after you complete a short or long rest."
   if ((m = /starting at (\d+)(?:st|nd|rd|th) level, you regain the ability to use it after you complete a short or long rest/i.exec(t))) {
     recharge = level >= Number(m[1]) ? 'shortRest' : 'longRest';
@@ -240,7 +244,7 @@ function clsWeaponMatches(desc, w) {
 }
 
 // Something you do to start a state: an action, a bonus action, a reaction, entering it.
-const CLS_ACT = /\bas an? (?:bonus )?action\b|\bas a reaction\b|you can enter\b|you can (?:use your )?(?:bonus )?action\b|you can use your reaction\b|\buse your (?:bonus )?action to\b/i;
+const CLS_ACT = /\bas an? (?:bonus )?action\b|\bas a reaction\b|you can enter\b|you can (?:use your )?(?:bonus )?action\b|you can use your reaction\b|\buse (?:your|an?) (?:bonus )?action to\b/i;
 const CLS_DURATION = /\bfor (?:1|one|10|an?) (?:minute|hour)s?\b|\bfor the next (?:minute|hour)\b/i;
 // A sentence that introduces a state's benefits.
 const CLS_STATE_CUE = new RegExp(`\\bwhile [a-z]+ing\\b|\\bwhile (?:the target is|you are in|in this|this (?:stance|state|form) is)\\b|until the (?:start|end) of your next turn|${CLS_DURATION.source}|${CLS_ACT.source}`, 'i');
@@ -592,6 +596,11 @@ function clsReadProficiencies(s, st, picks, isWeapon, out, ask, opts) {
     return;
   }
   if (/^if you\b/i.test(sen)) return; // another condition ("If you are already proficient with light armor, instead while…")
+  // "You learn your choice of two languages and your choice of Charisma skill" (Silver Tongue): a skill of that ability.
+  if ((m = new RegExp(`\\byou learn [^.]*?\\byour choice of (?:an? |one )?${CLS_ABIL_RE} skill\\b`, 'i').exec(sen))) {
+    st.last = clsApplyProfList([{ kind: 'choice', choice: { kind: 'skill', count: 1, options: CLS_SKILLS.filter((k) => (clsFx.FX_SKILLS || {})[k] === clsAbility(m[1])), of: `one ${clsAbility(m[1])} skill` } }], out.profs, picks, isWeapon, out, ask, opts);
+    return;
+  }
   for (const g of sen.matchAll(CLS_GRANT)) {
     const before = sen.slice(0, g.index);
     // A grant to you that starts a clause, not "fighters gain proficiency" or "a tool you are proficient with".
@@ -637,7 +646,7 @@ function clsFeatureEffects(text, note, ctx) {
   const t = clsScaleText(sub.text, level);
   // A state's benefits list ("While raging, you gain the following benefits: - …") isn't permanent;
   // other lists ("The Force flows through your body, granting the following benefits: - …") are.
-  const sentences = t.replace(/([^\n]*?)([^\n.]*following benefits[^\n]*)\n((?:\s*- [^\n]*(?:\n|$))+)/gi, (all, before, lead, list) => {
+  const sentences = t.replace(/([^\n]*?)([^\n.]*following (?:benefits|effects)[^\n]*)\n((?:\s*- [^\n]*(?:\n|$))+)/gi, (all, before, lead, list) => {
     const prev = before.split(/(?<=\.)\s+/).slice(-2).join(' ');
     return CLS_STATE_CUE.test(lead) || CLS_DURATION.test(prev) ? `${before}\n` : `${before}\n${list.replace(/^\s*- /gm, '')}`;
   }).replace(/\n+/g, ' ').split(/(?<=\.)\s+(?=[A-Z_*])/);
@@ -663,10 +672,24 @@ function clsFeatureEffects(text, note, ctx) {
   const category = sel ? sel[1].trim() : null;
   if (sub.choice && !sub.chosen.length) out.needsChoice.push(`one of ${sub.options.join(', ')}`);
   // Benefit lists of states ("While raging, you gain the following benefits: - …") aren't permanent.
-  const permanent = sentences.filter((s) => !/following benefits/i.test(s) && !/^- /.test(s));
+  const permanent = sentences.filter((s) => !/following (?:benefits|effects)/i.test(s) && !/^- /.test(s));
   // Clauses that only say the feature's precondition is met by having the feature/equipment.
   const ALWAYS = /,?\s*\bwhile (?:you are |you're )?(?:not wearing[^,.]*|wearing no[^,.]*|using (?:your|this|a) [\w' ]+? as (?:a|your) (?:tech |force )?focus|wearing (?:your|these|this) (?:[\w']+ ){0,3}?(?:armor|harness|goggles|gloves|pack|implements|shield|suit|helmet|wristpad|platform|instrument|boots|belt)|wearing (?:your|these|this) [\w ]+?|wielding a weapon with which you are proficient)(?=[,.]|\s+(?:you|your)\b|$),?/gi;
   let m;
+  // "Choose one from force- or tech-casting" (Casting Specialist), "Choose one from Wisdom or Charisma" (Cunning
+  // Forcecaster, Spiritual Techcaster): the pick, for what follows ("+1 bonus to your force or tech save DC…").
+  const fromChoice = /\bchoose one from ([\w-]+)(?: or |, )([\w-]+)\b/i.exec(t);
+  let castingPick = null;
+  if (fromChoice) {
+    const abil = [fromChoice[1], fromChoice[2]].map(clsAbility);
+    if (abil.every(Boolean)) ask('ability', 'Chosen ability', abil, 1, picks.abilities.filter((a) => abil.includes(a)).slice(0, 1));
+    else {
+      const opts = [fromChoice[1], fromChoice[2]].map((w) => (/^force/i.test(w) ? 'Force-casting' : /^tech/i.test(w) ? 'Tech-casting' : w));
+      castingPick = opts.find((o) => new RegExp(`\\b${o.slice(0, 4)}`, 'i').test(String(note || ''))) || null;
+      ask('option', 'Choose one', opts, 1, castingPick ? [castingPick] : []);
+      if (!castingPick) out.needsChoice.push(opts.join(' or '));
+    }
+  }
   // A damage type the player picks: "Choose one of the following damage types: acid, cold, fire, lightning, or sonic".
   // Or any of them: "Choose three damage types other than true damage" (Dewback's Instinct).
   const dtList = /\bchoose (one|two|three) of the following damage types:?\s*([^.]+)/i.exec(t) || /\bchoose (one|two|three) damage types?(?: other than (\w+)(?: damage)?)?\b/i.exec(t);
@@ -682,6 +705,8 @@ function clsFeatureEffects(text, note, ctx) {
     // "You can add your Charisma modifier to your initiative rolls" (Rakish Audacity); "…you can add half your Charisma
     // modifier to your AC as long as it doesn't already include that modifier" (Artful Dancer).
     const s = s0
+      .replace(/\byour Critical Analysis (?:ability )?(score|modifi?e?r)\b/gi, (all, w) => `your Intelligence ${/score/i.test(w) ? 'score' : 'modifier'}`)
+      .replace(/\bmodifer\b/gi, 'modifier')
       .replace(new RegExp(`\\bWhen you make an? (?:${CLS_ABIL_ANY} \\()?(${SKILL_ALT})\\)? check, you (?:gain|have) a bonus to that check\\b`, 'i'), (all, sk) => `You gain a bonus to ${clsSkill(sk)} checks`)
       .replace(/\bWhen you make an ability check with the chosen skill(?: or tool)?, you can add (half )?your\b/i, (all, half) => (picks.skills[0] ? `You gain a bonus to ${picks.skills[0]} checks equal to ${half || ''}your` : all))
       .replace(new RegExp(`\\byou (?:can )?add (half )?your ${CLS_ABIL_RE} modifier to (?:your )?(AC|initiative(?: rolls| checks)?)(?: as long as it doesn(?:'|’)t already include that modifier)?`, 'i'),
@@ -712,6 +737,16 @@ function clsFeatureEffects(text, note, ctx) {
           for (const a of chosen) out.mods.push({ path: `abilityScores.${a}.score`, bonus: n, cap, label: `${a.slice(0, 3).toUpperCase()} +${n}` });
         }
       }
+    }
+    // "Your Strength score becomes equal to your Intelligence score" (Mutagenic Transformation, Critical Analysis read above).
+    if ((m = new RegExp(`\\byour ${CLS_ABIL_RE} score becomes equal to your ${CLS_ABIL_RE} score`, 'i').exec(s))) {
+      out.mods.push({ path: `abilityScores.${clsAbility(m[1])}.score`, setFrom: clsAbility(m[2]), label: `${clsAbility(m[1]).slice(0, 3).toUpperCase()} = ${clsAbility(m[2]).slice(0, 3).toUpperCase()} score` });
+    }
+    // "When you make a melee weapon attack using Dexterity, you add your rage damage to the damage roll" (Focused Rage, read
+    // in a rage): the class table's Rage Damage on those attacks.
+    if ((m = /\bwhen you make a melee weapon attack using (Strength|Dexterity), you add your rage damage to the damage roll/i.exec(s))) {
+      const v = parseInt(String((ctx.row || {})['Rage Damage'] || '').replace(/[^\d]/g, ''), 10);
+      if (v) out.mods.push({ path: 'weapon.damage', bonus: v, label: `Melee ${m[1].slice(0, 3).toUpperCase()} damage +${v} (rage damage)`, weaponFilter: { melee: true, ability: clsAbility(m[1]) } });
     }
     // Unarmored AC: "your AC/Armor Class equals 10 + your Dexterity modifier + your Constitution modifier".
     if ((m = new RegExp(`(?:AC|Armor Class) equals 10 \\+ your Dexterity modifier \\+ your ${CLS_ABIL_RE}(?: or ${CLS_ABIL_RE})? modifier`, 'i').exec(s))) {
@@ -778,6 +813,16 @@ function clsFeatureEffects(text, note, ctx) {
       const ab = chosen ? chosen.slice(0, 3).toUpperCase() : opts.map((a) => a.slice(0, 3).toUpperCase()).join('/');
       for (const x of got || []) out.mods.push({ path: x.path, abilityMod: chosen || opts, ...(half ? { abilityHalf: true } : {}), min: m[4] ? Number(m[4]) : null, label: `${x.label.replace(/ [+\-−]?0$/, '')} + ${half ? 'half ' : ''}${ab}`, when: cond || null });
     }
+    // "You gain a +1 bonus to your force or tech save DC and your force or tech attack modifier" (Casting Specialist): the
+    // casting type picked.
+    if ((m = /\+(\d+) bonus to your force or tech save DC and your force or tech attack modifier/i.exec(s))) {
+      const n = Number(m[1]);
+      if (castingPick === 'Tech-casting') out.mods.push({ path: 'techCasting.saveDC', bonus: n, label: `Tech save DC +${n}` }, { path: 'techCasting.attackModifier', bonus: n, label: `Tech attack +${n}` });
+      if (castingPick === 'Force-casting') {
+        for (const k of ['light', 'dark', 'universal']) out.mods.push({ path: `forceCasting.${k}SaveDC`, bonus: n, label: `${k[0].toUpperCase()}${k.slice(1)} force save DC +${n}` }, { path: `forceCasting.${k}AttackModifier`, bonus: n, label: `${k[0].toUpperCase()}${k.slice(1)} force attack +${n}` });
+      }
+      continue;
+    }
     // "+N bonus to <phrase>" (AC, initiative, saves, skills, tech/force attack and DC…), always or only sometimes; not one
     // the sentence takes away ("Traveling at a fast pace no longer imposes a -5 penalty to your passive Wisdom (Perception)").
     const removed = /\b(?:no longer|doesn't|does not|don't|do not|never) (?:impose|imposes|give|gives|grant|grants|suffer|take)\b/i.test(core);
@@ -811,12 +856,15 @@ function clsFeatureEffects(text, note, ctx) {
       }
     }
     // Critical range: "Your critical hit range with weapons increases by 1" / "a critical hit on a roll of 19 or 20".
+    let x;
     // "…with unarmed strikes": those only (critOn). Not for one attack ("…, your critical hit range increases by 1 for that
     // attack": Enforcer) or while something lasts; some attacks only ("with melee weapon attacks using Dexterity"): listed.
     if ((m = /critical hit ranges?(?: with ([\w' ]+?))? increases? by (\d+)/i.exec(s)) && !conditional && !/\bfor (?:that|this|the) attack\b/i.test(s)) {
       const what = String(m[1] || '').replace(/^your /i, '');
       if (!what || /^weapons$/i.test(what)) out.critRange = Math.max(out.critRange, Number(m[2]));
       else if (/^unarmed strikes$/i.test(what)) { out.critRange = Math.max(out.critRange, Number(m[2])); out.critOn = 'unarmed'; }
+      // "…with melee weapon attacks using Dexterity" (Battle Anticipation): those weapons (the dice card checks them).
+      else if ((x = /^melee weapon attacks using (Strength|Dexterity)$/i.exec(what))) { out.critRange = Math.max(out.critRange, Number(m[2])); out.critOn = { melee: true, ability: clsAbility(x[1]) }; }
       else out.defenses.push({ kind: 'other', text: `Critical hit range +${m[2]} with ${what}` });
     }
     if (!conditional && (m = /(?:score|scores) a critical hit on a roll of (\d+) or 20/i.exec(s))) out.critRange = Math.max(out.critRange, 20 - Number(m[1]));
@@ -837,7 +885,8 @@ function clsFeatureEffects(text, note, ctx) {
     const switched = toggle.test(core);
     // "You have resistance to necrotic damage, and while exposed to the vacuum of space…": the first part always holds.
     const dcore = core.replace(toggle, '').replace(/,? and (?:while|when|if)\b.*$/i, '');
-    if (!/\b(?:when|whenever|if|until|for the next|for 1 minute|while (?!you are not wearing|wearing no))\b/i.test(dcore)) {
+    // ("…, while leaving your hands free" isn't a condition.)
+    if (!/\b(?:when|whenever|if|until|for the next|for 1 minute|while (?!you are not wearing|wearing no|leaving\b))\b/i.test(dcore)) {
       const core = dcore; // eslint-disable-line no-shadow
       const def = (kind, txt) => out.defenses.push({ kind, text: txt.replace(/\s+/g, ' ').trim() + (switched ? ' (when switched on)' : '') });
       for (const am of (switched ? [] : core.matchAll(new RegExp(`\\badvantage on (initiative(?: checks| rolls)?|${CLS_ABIL_ANY} (?:ability )?(?:checks|saving throws)(?:(?:,| and| or) (?:${CLS_ABIL_ANY} )?(?:ability )?(?:checks|saving throws))*)(?! (?:against|that|made|to|involving))`, 'gi')))) {
@@ -857,11 +906,15 @@ function clsFeatureEffects(text, note, ctx) {
       // "advantage on ability checks and saving throws to avoid being disarmed".
       if ((m = /\badvantage on (ability checks and saving throws (?:to avoid|against|made to)[^.;]+?)(?=[.;]|$)/i.exec(core))) def('advantage', `Advantage on ${m[1]}`);
       if ((m = /\bdarkvision (?:out )?(?:to |with |of )?(?:a range of )?(\d+) feet/i.exec(core))) def('sense', `Darkvision ${m[1]} ft`);
+      // "If you already have darkvision, this ideal increases its range by 30 feet" (Ideal of the Hunter): see defensesOf.
+      if ((m = /\bif you already have darkvision, [^.]*?increases? its range by (\d+) feet/i.exec(t))) out.darkvisionPlus = Number(m[1]);
       // "advantage on Intelligence (Investigation) checks", "…on Charisma (Deception) and Charisma (Persuasion) checks": every
       // roll of the skill. With more after "checks" ("in that area", "to locate any secret doors", "you make about…") only
       // sometimes: listed with what it says, not on every roll.
       const SK = `(?:${CLS_ABIL_ANY} \\()?(${CLS_SKILLS.join('|')})\\)?`;
-      for (const sm of core.matchAll(new RegExp(`\\badvantage on ${SK}(?: (?:and|or) ${SK})? checks`, 'gi'))) {
+      // "…on checks you make with the chosen skill" (Careful Steps): the skill picked for the feature.
+      if (/\badvantage on checks you make with the chosen skill\b/i.test(core)) picks.skills.slice(0, 1).forEach((skill) => out.advantage.push({ kind: 'skill', skill }));
+      for (const sm of core.matchAll(new RegExp(`\\badvantage on (?:any )?${SK}(?: (?:and|or) (?:any )?${SK})? checks`, 'gi'))) {
         const skills = [sm[1], sm[2]].filter(Boolean).map(clsSkill);
         let after = /^[^.;]*/.exec(core.slice(sm.index + sm[0].length))[0].replace(/,\s*and\b.*$|\s+and\s+(?:you|resistance|advantage)\b.*$/i, '').replace(/,\s*$/, '').trim();
         // "…on Dexterity (Sleight of Hand) checks and Charisma (Deception) checks": the second one too.
@@ -874,7 +927,31 @@ function clsFeatureEffects(text, note, ctx) {
       else if ((m = /\b(blindsight|truesight|tremorsense) (?:out )?to a number of feet equal to (\d+) x your proficiency bonus/i.exec(core))) {
         def('sense', `${m[1][0].toUpperCase()}${m[1].slice(1)} ${ctx.pb ? `${Number(m[2]) * ctx.pb} ft` : `${m[2]} × proficiency bonus ft`}`);
       }
-      for (const sm of core.matchAll(/\b(climbing|swimming|flying|crawling) speed (?:of (\d+) feet|equal (?:to )?your (?:walking |movement )?speed)/gi)) def('speed', `${sm[1][0].toUpperCase()}${sm[1].slice(1)} speed ${sm[2] ? sm[2] + ' ft' : 'equal to walking speed'}`);
+      // "You gain your choice of a climbing or swimming speed equal to your walking speed" (Animalistic Momentum, Athletic):
+      // the one picked.
+      let speedCore = core;
+      if ((m = /\byour choice of an? ((?:climbing|crawling|swimming|flying)(?:,? (?:or )?(?:climbing|crawling|swimming|flying))+) speed (?:equal to your walking speed|of (\d+) feet)/i.exec(core))) {
+        const kinds = m[1].split(/,? (?:or )?/).map((k) => k.trim()).filter(Boolean);
+        const chosen = kinds.filter((k) => new RegExp(`\\b${k}\\b`, 'i').test(String(note || '')));
+        ask('option', 'Speed', kinds, 1, chosen);
+        chosen.slice(0, 1).forEach((k) => def('speed', `${k[0].toUpperCase()}${k.slice(1)} speed ${m[2] ? `${m[2]} ft` : 'equal to walking speed'}`));
+        if (!chosen.length) out.needsChoice.push(`a ${kinds.join(' or ')} speed`);
+        speedCore = core.replace(m[0], '');
+      }
+      // "a flying speed of 30 feet", "a burrow, fly, and swim speed equal to your movement speed", "swimming and climbing
+      // speed equal to your walking speed", "a flying speed equal to half your walking speed". A speed that grows ("Your jet
+      // pack's speed increases to 40 feet at 5th level, 50 feet at 9th level…"): at this level.
+      const SPEED_KIND = '(?:climbing|swimming|flying|crawling|burrowing|burrow|fly|swim|climb)';
+      const kindName = (k) => ({ burrow: 'burrowing', fly: 'flying', swim: 'swimming', climb: 'climbing' }[k.toLowerCase()] || k.toLowerCase());
+      const grows = /\bspeed increases to ((?:\d+ feet at \d+(?:st|nd|rd|th) level(?:,? (?:and )?)?)+)/i.exec(t);
+      for (const sm of speedCore.matchAll(new RegExp(`\\b(${SPEED_KIND}(?:,? (?:and )?(?:an? )?${SPEED_KIND})*) speeds? (?:of (\\d+) feet|equal (?:to )?(half )?your (?:current )?(?:walking |movement )?speed)`, 'gi'))) {
+        let ft = sm[2] ? Number(sm[2]) : 0;
+        if (ft && grows) for (const g of grows[1].matchAll(/(\d+) feet at (\d+)(?:st|nd|rd|th) level/gi)) if (level >= Number(g[2])) ft = Math.max(ft, Number(g[1]));
+        for (const k of sm[1].split(/,? (?:and )?(?:an? )?/).filter((x) => new RegExp(`^${SPEED_KIND}$`, 'i').test(x))) {
+          const name = kindName(k);
+          def('speed', `${name[0].toUpperCase()}${name.slice(1)} speed ${ft ? `${ft} ft` : `equal to ${sm[3] ? 'half ' : ''}walking speed`}`);
+        }
+      }
       // "a swimming speed and a climbing speed equal to your walking speed": both.
       for (const sm of core.matchAll(/\ba (climbing|swimming|flying) speed and an? (?:climbing|swimming|flying) speed (?:of (\d+) feet|equal (?:to )?your (?:walking |movement )?speed)/gi)) def('speed', `${sm[1][0].toUpperCase()}${sm[1].slice(1)} speed ${sm[2] ? sm[2] + ' ft' : 'equal to walking speed'}`);
       if ((m = /\b((?:opportunity |ranged |melee )?attack(?:s| rolls) (?:made )?against you (?:have|are made with|has) disadvantage)/i.exec(core))) def('other', m[1][0].toUpperCase() + m[1].slice(1));
@@ -895,6 +972,9 @@ function clsFeatureEffects(text, note, ctx) {
     }
     // Species Darkvision traits describe it without the word (and with an "as if"): "You can see in dim light within 60 feet of you as if it were bright light".
     if ((m = /\bsee in dim light within (\d+) feet of you as if it were bright light/i.exec(core)) && !out.defenses.some((d) => /^Darkvision/.test(d.text))) out.defenses.push({ kind: 'sense', text: `Darkvision ${m[1]} ft` });
+    // "If you are able to hear, you are aware of the location of any hidden or invisible creature within 10 feet of you"
+    // (Blindsense: its "if" is the sense's own condition).
+    if ((m = /\byou are aware of the location of any hidden or invisible creature within (\d+) feet of you/i.exec(core))) out.defenses.push({ kind: 'sense', text: `Blindsense ${m[1]} ft${/\bif you are able to hear\b/i.test(core) ? ' (if you can hear)' : ''}` });
     // Hit point maximum: "increases by 1, and it increases by 1 every time you gain a level" (Toughness: from the character's
     // level), "…by 3, and it increases by 1 again whenever you gain a level in this class" (Path of Iron: from the level the
     // feature came at), "…by a number equal to your level, and it increases by 1 every time you gain a level" (Mutagenic
@@ -919,6 +999,14 @@ function clsFeatureEffects(text, note, ctx) {
         else out.passives[sk] = 5;
       }
     }
+    // "…damage that you take from weapons is reduced by an amount equal to your proficiency bonus" (Defense Mastery): listed,
+    // with its condition ("While you are wearing medium or heavy armor with which you are proficient").
+    // Not one attack's ("the damage you take from the attack is reduced by 1d10 + …": a reaction).
+    if ((m = /\bdamage (?:that )?you take from (?!the\b|that\b|this\b)([\w ]+?) is reduced by (?:an amount equal to )?(your proficiency bonus|\d+(?![\dd]))/i.exec(s))) {
+      const n = /\d/.test(m[2]) ? m[2] : pb || 'your proficiency bonus';
+      const when = /\bwhile you are wearing (medium or heavy|heavy|medium) armor\b/i.exec(s);
+      out.defenses.push({ kind: 'other', text: `Damage from ${m[1]} reduced by ${n}${when ? ` (in ${when[1].toLowerCase()} armor)` : ''}` });
+    }
     // "You can't add more than +3 when determining your bonus to AC from your Dexterity" (Muscled Menace; a Hutt's Slow and
     // Lethargic), "…to Dexterity saving throws from Dexterity", "…to attack and damage rolls for weapon attacks using
     // Strength" (Puny, Fragile): what the modifier adds over that is taken off (capAbility; resolved with the final scores).
@@ -933,6 +1021,16 @@ function clsFeatureEffects(text, note, ctx) {
     }
   }
   if (wornGear && /\barmor\b/i.test(wornGear)) out.mods = out.mods.map((x) => (x.when ? x : { ...x, when: { armor: true } }));
+  // "You learn an additional language and an additional skill proficiency from the above list at 11th level" (Mystical
+  // Erudition): one more pick from the same skills.
+  if ((m = /\ban additional skill proficiency from the above list at (\d+)(?:st|nd|rd|th) level/i.exec(t)) && level >= Number(m[1])) {
+    const a = out.asks.find((x) => x.kind === 'skill' && x.options);
+    if (a) {
+      a.count += 1;
+      const more = picks.skills.filter((sk) => a.options.includes(sk) && !out.profs.skills.some((x) => x.name === sk)).slice(0, 1);
+      more.forEach((sk) => { out.profs.skills.push({ name: sk, level: 'Proficient' }); a.chosen.push(sk); });
+    }
+  }
   // De-duplicate.
   const uniq = (list, key) => list.filter((x, i) => list.findIndex((y) => key(y) === key(x)) === i);
   out.profs.skills = uniq(out.profs.skills, (x) => x.name + x.level);
@@ -965,7 +1063,7 @@ function clsFeatureState(name, text, ctx) {
   const ACT = CLS_ACT;
   // A benefits list counts when the sentence introducing it is such an act, or follows one that lasts
   // a while ("…for 1 hour. You gain the following benefits:"), not Martial Arts' "while unarmed".
-  const leadAt = sentences.findIndex((s) => /\b(?:gain|gaining|granting|grants?|receive) the following benefits\b/i.test(s));
+  const leadAt = sentences.findIndex((s) => /\b(?:gain|gaining|granting|grants?|receive) the following (?:benefits|effects)\b/i.test(s));
   const lead = leadAt >= 0 ? sentences[leadAt] : '';
   const listed = !!lead && (ACT.test(lead) || (leadAt > 0 && CLS_DURATION.test(sentences[leadAt - 1])) || /\bwhile the target is\b/i.test(lead));
   // "enter a balanced stance for one minute", "take a savage stance… for 1 minute", "become invisible for 1 minute".
@@ -980,13 +1078,19 @@ function clsFeatureState(name, text, ctx) {
   // more benefits for that state, added when it starts.
   const extension = !!word && !activated && !timed;
   const benefits = [];
-  const listM = /following benefits[^:]*:\s*\n((?:\s*- .+\n?)+)/i.exec(t);
+  // "…the following benefits:" or "…the following benefits for 1 minute. You can invoke a totem…" and the list below.
+  // Not a list of things you can do ("create one of the following effects": Elemental Attunement).
+  const listM = /\b(?:gain|gaining|granting|grants?|receive) the following (?:benefits|effects)[^\n]*\n((?:\s*- .+\n?)+)/i.exec(t);
   if (listM) for (const line of listM[1].split('\n')) if (/^\s*- /.test(line)) benefits.push(line.replace(/^\s*- /, '').trim());
   // Without a list: "During that time, you also have…", "For the duration, …", "Until the start of your next turn, you have…".
   if (!benefits.length) {
+    let on = false;
     for (const s of sentences) {
-      const bm = /^(?:Additionally, |Also, )?(?:during that time|for the duration|until the (?:start|end) of your next turn|while (?:in )?(?:this|that|the) (?:stance|state|form|focus|mode)|while (?:it is |this is )?active)\b,?\s*/i.exec(s);
-      if (bm && s.length > bm[0].length) benefits.push(s.slice(bm[0].length).replace(/^./, (c) => c.toUpperCase()));
+      const bm = /^(?:Additionally, |Also, )?(?:during that time|for the duration|until the (?:start|end) of your next turn|while (?:in )?(?:this|that|the) (?:stance|state|form|focus|mode)|while (?:it is |this is |this ability is )?active)\b,?\s*/i.exec(s);
+      if (bm && s.length > bm[0].length) { benefits.push(s.slice(bm[0].length).replace(/^./, (c) => c.toUpperCase())); on = true; }
+      // "…you have resistance to cold… You also gain a burrow, fly, and swim speed…" (Avatar): the next one goes on.
+      else if (on && /^(?:You also |Additionally, you )/i.test(s)) benefits.push(s.replace(/^Additionally, you/i, 'You').replace(/^You also /i, 'You '));
+      else on = false;
     }
   }
   const one = (n) => /^(1|one|an?)$/i.test(n);
