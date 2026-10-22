@@ -43,7 +43,8 @@ function condDice(roll, cd) {
   const out = [];
   for (const e of cd.extra) {
     for (const d of (parseDice(e) || { dice: [] }).dice) {
-      out.push(newDie(d.sides, `cond:${cd.label}`, roll.rolled));
+      // ("−1d4": a die taken off, a side effect's.)
+      out.push(d.sign < 0 ? { ...newDie(d.sides, `cond:${cd.label}`, roll.rolled), sign: -1 } : newDie(d.sides, `cond:${cd.label}`, roll.rolled));
       if (roll.crit && !cd.noDouble) out.push(critDie(d.sides, `cond:${cd.label}`, roll.rolled));
     }
   }
@@ -754,15 +755,19 @@ function startRoll(spec, opts = {}) {
   // damage): ticked; one that's used once (Guidance) ends its power when the roll is made with it.
   if (snap && (roll.kind === 'd20' || /^damage\|/.test(spec))) {
     // (An attack also counts as "an attack roll using" its weapon's ability: a spice's high.)
+    const [sk, sa, si] = spec.split('|');
+    const skillProf = sk === 'skill' ? (arr(((m.c.abilityScores || {})[sa] || {}).skills)[si] || {}).proficiency : null;
     const kinds = /^damage\|/.test(spec) ? ['weapon-damage'] : plRollKinds(spec)
-      .concat(/^attack\|/.test(spec) ? [`attack:${(arr(m.c.weapons)[spec.split('|')[1]] || {}).ability}`] : []);
+      .concat(/^attack\|/.test(spec) ? [`attack:${(arr(m.c.weapons)[spec.split('|')[1]] || {}).ability}`] : [])
+      // A skill check with or without proficiency (Skills Enhancement Package).
+      .concat(skillProf != null ? [skillProf && skillProf !== 'none' ? 'skill:proficient' : 'skill:unproficient'] : []);
     // A weapon's own sometimes-dice (Hewey's charge, Charric vs heavy armor): offered on its damage, not ticked.
     const wIndex = /^damage\|/.test(spec) ? (arr(m.c.weapons)[spec.split('|')[1]] || {}).index : null;
     for (const e of tempEffects(snap.key).concat(arr(m.effects).filter((x) => x.kind === 'item' && x.active && x.riders))) {
       for (const rd of arr(e.riders)) {
         if (!rd.on.some((o) => kinds.includes(o))) continue;
         if (rd.weapon && (e.weaponIndex == null || e.weaponIndex !== wIndex)) continue;
-        const label = `${String(e.power || e.name).replace(/ \(concentration\)$/, '')} +${rd.dice}${rd.why ? ` (${rd.why})` : ''}`;
+        const label = `${String(e.power || e.name).replace(/ \(concentration\)$/, '')} ${/^-/.test(rd.dice) ? `−${rd.dice.slice(1)}` : `+${rd.dice}`}${rd.why ? ` (${rd.why})` : ''}`;
         if (roll.conds.some((c) => c.label === label)) continue;
         roll.conds.push({ label, bonus: 0, extra: [rd.dice], on: false, consume: rd.once ? e.id : null });
         if (!rd.optional) opts.conds = arr(opts.conds).concat(label);

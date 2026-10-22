@@ -3600,6 +3600,27 @@ async function addCustomEffect() {
   setStatus(`${name.trim()} is now active${label ? ` (${label})` : ''}. End it under Effects.`);
 }
 
+/**
+ * Switch on one of an item's modes ("You can choose from the following types of adrenals", Automated Adrenal
+ * Package): a temporary effect read from the mode's text, lasting as the item says, replacing the item's other mode
+ * ("until a different adrenal is chosen").
+ */
+async function startItemMode(arg) {
+  const snap = state.snapshots[state.current];
+  if (!snap) return;
+  const [id, i] = String(arg).split(/\|(?=\d+$)/);
+  const e = buildModel(snap).effects.find((x) => x.id === id);
+  const mode = e && arr(e.modes)[num(i)];
+  if (!mode) return;
+  const fx = parseItemEffect({ name: mode.name, type: 'Consumable', text: mode.text }) || { mods: [], notes: [], target: 'self' };
+  const st = itemStateOf(snap.key);
+  const replaced = startEffect(st, makeEffect({ name: `${mode.name} (${e.name})`, text: mode.text },
+    { ...fx, notes: fx.notes.length ? fx.notes : [mode.text], duration: e.duration || fx.duration, group: `mode:${e.name}` }, 'used'));
+  await saveItemStateFor(snap.key, st);
+  renderAll();
+  scheduleRecompute(snap.key);
+  setStatus(`${mode.name} is on${e.duration ? ` for ${e.duration}` : ''}${replaced.length ? ` (instead of ${replaced.map((x) => x.name).join(', ')})` : ''}. End it under Effects.`);
+}
 /** Which tool a Tool (Basic…Champion) item is ("these tools"): kept per item copy (itemState.toolPicks). */
 async function setItemTool(id, name) {
   const snap = state.snapshots[state.current];
@@ -3700,6 +3721,8 @@ function effectRow(m, e) {
     chips.push(...(e.propsNow ? Object.entries(e.propsNow).map(([n, v]) => chip(n === 'smart' ? `smart (${v[0]}, +${v[1]})` : n === 'strength' && !v ? 'no strength requirement'
       : v === true ? n : `${n} ${v}`, e.active ? 'good' : '')) : [chip(e.target === 'weapon' ? 'choose a weapon' : 'no armor worn', 'warn')]));
   }
+  // Modes to switch on (Automated Adrenal Package's adrenals): each starts as a temporary effect.
+  if (e.kind === 'item' && e.active && e.modes) chips.push(...e.modes.map((x, i) => `<button class="btn sm" data-act="fx-mode" data-arg="${esc(e.id)}|${i}" title="${esc(x.text)}">${esc(x.name)}</button>`));
   // Tool (Basic…Champion): which tool it is, picked here; the level it comes to.
   if (e.kind === 'item' && e.toolSteps) {
     const names = [...new Set(bdTools().map((x) => x.name))].sort();
@@ -7981,6 +8004,8 @@ async function handleAction(act, arg) {
       return removeTweak(arg);
     case 'tweak-keep':
       return keepTweak(arg);
+    case 'fx-mode':
+      return startItemMode(arg);
     case 'effect-end':
       return endEffect(arg);
     case 'catalog-refresh':

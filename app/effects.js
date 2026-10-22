@@ -122,6 +122,9 @@ function fxBonusMods(n, phrase, ctx) {
     // "a +3 bonus to attack rolls and deal an additional 1d10 damage with this enhanced weapon": the dice on every hit.
     if (m[3]) { add('weapon.toHit', 'Attack'); ctx.target = 'weapon'; } else add('unarmed.toHit', 'Unarmed attack');
     mods.push({ path: m[3] ? 'weapon.extraDice' : 'unarmed.extraDice', dice: m[1], label: `Damage +${m[1]}` });
+  } else if (/^damage rolls of melee weapon attacks$/.test(p)) {
+    // "+1 bonus to the damage rolls of melee weapon attacks" (Strength Adrenal): each melee weapon and unarmed strikes.
+    mods.push({ path: 'weapon.damage', bonus: n, weaponFilter: { melee: true }, label: `Melee weapon damage ${signedLabel(n)}` });
   } else if ((m = /^damage rolls (?:made )?with weapons(?: and (force|tech) powers)?$/.exec(p))) {
     add('weapon.damage', 'Weapon damage');
     add('unarmed.damage', 'Unarmed damage');
@@ -224,6 +227,10 @@ function parseItemEffect(item) {
   let darkvisionPlus = 0;
   let m;
   let options = false; // after "choose from the following": modes to pick from, not always on
+  // Modes to switch on ("You can choose from the following types of adrenals: - **Strength Adrenal:** …", Automated
+  // Adrenal Package): each one started as a temporary effect from the item (viewer: fx-mode).
+  const modeList = /\bchoose from the following[^\n]*\n(?:\s*_{3,}\s*\n)?((?:\s*- \*\*[^*]+?:?\*\*:?[^\n]*\n?)+)/i.exec(String(text).replace(/\r\n?/g, '\n'));
+  const modes = modeList && !isConsumable ? [...modeList[1].matchAll(/- \*\*([^*:]+):?\*\*:?\s*([^\n]*)/g)].map((x) => ({ name: x[1].trim(), text: x[2].trim() })) : [];
   let requires = null; // a set bonus's other pieces ("While wearing and attuned to this armor and Jensaarai Cloak, …")
   let freeAttune = null;
   for (const raw of fxSentences(text)) {
@@ -370,6 +377,14 @@ function parseItemEffect(item) {
       ctx.unarmedDie = Number(m[2]);
       ctx.unarmedType = m[3].toLowerCase();
     }
+    // "…a small integrated droid shock arm with which you can make unarmed strikes. … deals 1d6 lightning damage on a hit"
+    // (Shock Arm): the unarmed die and type (its reach and "Strength or Intelligence" stay in the note).
+    if (/\bwith which you can make unarmed strikes\b/i.test(text) && (m = /\bdeals (\d+)d(\d+) (\w+) damage on a hit/i.exec(s))) {
+      ctx.unarmedDie = Number(m[2]);
+      ctx.unarmedType = m[3].toLowerCase();
+      notes.push(raw);
+      continue;
+    }
     // A spice's high: "increases their current and maximum tech points by 2d4" (Muon Gold; Spicebrew: force points):
     // rolled when it's used (makeEffect), the maximum goes up by the roll and the current with it.
     if ((m = /\bincreases their current and maximum (tech|force) points by (\d*d\d+)/i.exec(s))) {
@@ -407,6 +422,13 @@ function parseItemEffect(item) {
         notes.push(raw);
         continue;
       }
+    }
+    // "When you make an ability check using a skill you are proficient in, you can roll a d4 and add the result to your
+    // total. Side Effect: … not proficient in, you must roll a d4 and subtract the result" (Skills Enhancement Package):
+    // offered (and, for the side effect, ticked) on skill checks.
+    if ((m = /\bability check using a skill you are (not )?proficient in, you (can|must) roll an? (d\d+) and (add|subtract) the result/i.exec(s))) {
+      riders.push({ on: [m[1] ? 'skill:unproficient' : 'skill:proficient'], dice: `${m[4] === 'subtract' ? '-' : ''}1${m[3]}`, optional: m[2] === 'can', why: m[1] ? 'side effect: not proficient' : 'proficient skill' });
+      used = true;
     }
     // Extra dice a weapon deals only sometimes: "Once per turn when you hit … you can expend a charge to have the weapon
     // deal an additional 1d8 kinetic damage" (Hewey), "on a hit, if the target is wearing heavy armor, it deals an
@@ -495,7 +517,9 @@ function parseItemEffect(item) {
       // "…with this enhanced weapon, and when you hit a creature… takes an extra 1d4" (Torchy) / "…with this weapon,
       // when you attack a creature with it, the creature can't take reactions" (Ghostfire Crystal): the bonus is
       // unconditional, what follows is another effect.
-      cm[4] = cm[4].replace(/,\s+(?:and\s+)?when you (?:hit|attack) a creature\b.*$/i, '');
+      cm[4] = cm[4].replace(/,\s+(?:and\s+)?when you (?:hit|attack) a creature\b.*$/i, '')
+        // "…to the damage rolls of melee weapon attacks, and your carrying capacity … doubles": another effect.
+        .replace(/,\s+and\s+(?:your|you)\b.*$/i, '');
       // "…with this enhanced shoulder cannon, which has the smart (18, +4) property": what the weapon is like.
       if (ctx.weaponItem && !isConsumable) cm[4] = cm[4].replace(/,\s+which\b.*$/i, '');
       const phrase = cm[4].replace(/\s*\(.*$/, (x) => (/^\s*\((?:strength|dexterity|constitution|intelligence|wisdom|charisma)\)?/i.test(x) ? x : '')).trim();
@@ -520,13 +544,13 @@ function parseItemEffect(item) {
   notes.push(...ctx.notes);
   // Ammunition's bonuses apply while it's carried (and fired); other consumables' when used.
   const activation = ctx.ammo ? 'carry' : isConsumable ? 'use' : item.requiresAttunement ? 'attune' : 'equip';
-  if (!mods.length && !notes.length && !riders.length && !darkvisionPlus && !ctx.keen && !freeAttune && !ctx.unarmedDie && !ctx.toolSteps && !ctx.props && !(isConsumable && duration)) return null;
+  if (!mods.length && !notes.length && !riders.length && !darkvisionPlus && !ctx.keen && !freeAttune && !ctx.unarmedDie && !ctx.toolSteps && !ctx.props && !modes.length && !(isConsumable && duration)) return null;
   return {
     mods, notes, target: ctx.target, weaponKind: ctx.weaponKind || null, duration, group, activation,
     heals: /regains? [^.]*hit points|temporary hit points/i.test(text),
     ...(riders.length ? { riders } : {}), ...(darkvisionPlus ? { darkvisionPlus } : {}), ...(ctx.keen ? { keen: ctx.keen } : {}),
     ...(ctx.halfProfChecks ? { halfProfChecks: ctx.halfProfChecks } : {}), ...(ctx.unarmedDie ? { unarmedDie: ctx.unarmedDie, unarmedType: ctx.unarmedType } : {}),
-    ...(ctx.toolSteps ? { toolSteps: ctx.toolSteps } : {}), ...(ctx.props ? { props: ctx.props } : {}),
+    ...(ctx.toolSteps ? { toolSteps: ctx.toolSteps } : {}), ...(ctx.props ? { props: ctx.props } : {}), ...(modes.length ? { modes } : {}),
     ...(freeAttune ? { freeAttune } : {}), ...(ctx.sideEffect ? { sideEffect: ctx.sideEffect } : {}), ...(ctx.classBoosts ? { classBoosts: ctx.classBoosts } : {}),
   };
 }
