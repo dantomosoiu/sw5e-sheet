@@ -61,6 +61,36 @@ then a thinner `a-w` core on top.
 **Must not:** copy a real logo, insignia, emblem or a specific film prop exactly; use a red cross (it's a protected
 emblem: medical things get a pulse line, a capsule or a plus on a coloured disc in `a-x`); write text.
 
+**Unarmed strikes** (`unarmed-*`): skin, fur and a droid's plating are `a-x`; the app sets it to the character's own
+colour (`unarmedArt` in `app/art.js`: the species' natural-weapon trait picks the picture, its skin or fur colour
+words the colour).
+
+## Dedicated pictures (one item each)
+
+`art/equipment/<slug>.svg` is the picture of one SW5E item (or one family of tiered enhanced items: "Jetpack (Champion)"
+shares `jetpack.svg`, its tier shows as pips on the tile). Same rules and look as above; on top of that:
+
+- **Draw that item, not its kind.** Read SW5E's facts and text in the batch brief (`python dev/art-manifest.py` writes
+  `dist/art/batches/<batch>.md`): what it does, its properties (two-handed, heavy, light, finesse, reach, burst…),
+  weight and price tell you its size, bulk and how fancy it is. A 25-credit tool looks cheap and practical; a
+  5,000-credit armor looks it.
+- **Siblings must differ at a glance.** Every pistol, every light armor, every kit in a batch gets its own
+  silhouette and parts, not a recolour. Lay them side by side in the preview and fix any two that could swap.
+- **Upgrades build on their base.** When the brief says "Builds on X", start from X's drawing (copy its shapes) and
+  keep the silhouette, then show the better version: tougher materials (plating over fabric, layered plates,
+  reinforced edges), finer finish (trims, inlays, cleaner panel lines), added parts (extra cells, guards, optics), a
+  richer `a-x` colour. Someone who knows X should see "X, but better".
+- **Weapon lines share a motif.** The brief describes it (cryo: coolant tank and frost; ion: capacitor rings…). Every
+  member of a line shows it in its own form (pistol, carbine, rifle, sniper, cannon), so a cryo rifle and a cryo pistol
+  look related, and a cryo rifle and an ion rifle look different.
+- **Named and unique items** (Darksaber, Mandalorian helmet, Jedi and Sith robes): evoke the idea with an original
+  design; never copy a film prop or emblem.
+- **Chassis** (Blaster Chassis, Armor Chassis…) are unfinished frames for crafting: the item's skeleton, open panels,
+  exposed wiring and mounting points, maybe a schematic glow.
+
+Check them with `python dev/art.py preview --only eq-<prefix>* --scale 160` (item pictures are `eq-<slug>` in
+previews) and, as the sheet shows them, `python dev/art.py items --names "Cryo pistol;Ion pistol"`.
+
 ## Tiles and colours in the app
 
 Each picture sits on a tile (`.art-tile`, art.css): a rounded square in the theme's panel colour, with an edge

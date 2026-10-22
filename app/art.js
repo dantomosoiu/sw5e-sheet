@@ -232,7 +232,8 @@ function artGlow(it, icon, badge) {
   if (/disruptor/.test(name)) return 'green';
   if (icon.startsWith('blaster') || ['wrist-blaster', 'bowcaster', 'launcher', 'grenade', 'mine', 'demo-charge', 'thermal-detonator'].includes(icon)) return 'red';
   if (['electrostaff', 'baton', 'whip', 'vibroclaw', 'power-cell', 'shield-generator', 'barrier', 'stealth-field'].includes(icon)) return 'cyan';
-  if (['stimpac', 'medpac', 'med-kit', 'adrenal'].includes(icon)) return 'green';
+  if (['stimpac', 'medpac', 'med-kit', 'adrenal', 'unarmed-stinger'].includes(icon)) return 'green';
+  if (icon === 'unarmed-droid') return 'cyan';
   if (icon === 'spice') return ['yellow', 'violet', 'cyan', 'orange'][artHash(name) % 4];
   return 'accent';
 }
@@ -247,20 +248,111 @@ function artPaint(icon, it) {
   return 'accent';
 }
 
-/** Everything the tile needs for an item. */
-function itemArt(it) {
-  const icon = artIcon(it || {});
-  const badge = artBadge(it || {}, icon);
-  const rarity = typeof invRarity === 'function' ? invRarity(it) : String((it && it.rarityText) || '').toLowerCase();
-  return { icon, badge, glow: artGlow(it || {}, icon, badge), paint: artPaint(icon, it), rarity: ['standard', 'premium', 'prototype', 'advanced', 'legendary', 'artifact'].includes(rarity) ? rarity : '' };
+// Items with a picture of their own (art/equipment/, listed in art/names.js by dev/art.py): an item uses it, its
+// family's ("Jetpack (Champion)" → jetpack), or the picture of its kind above.
+const artSlug = (s) => String(s || '').toLowerCase().replace(/'/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+const ART_TIER_WORDS = ['basic', 'fine', 'improved', 'superior', 'champion', 'exceptional'];
+const ART_TIER_RANKS = ['novice', 'apprentice', 'adept', 'journeyman', 'master', 'ancient'];
+const ART_ROMAN = ['i', 'ii', 'iii', 'iv', 'v', 'vi'];
+/** An enhanced item's family name: without its tier ("Jetpack (Champion)", "Fortitude Enhancer Mk II"). */
+function artFamily(name) {
+  return String(name || '').replace(/\s*\((Basic|Fine|Improved|Superior|Champion|Exceptional|Standard|Premium|Prototype|Advanced|Legendary|Artifact|Novice|Apprentice|Adept|Journeyman|Master|Ancient)\)\s*$/i, '')
+    .replace(/\s+Mk\s+[IVX]+$/i, '').replace(/^Ring of (Novice|Apprentice|Adept|Journeyman|Master|Ancient) /i, 'Ring of ').trim();
+}
+/** Its tier, 1-6 (Fine … Exceptional, Mk I … VI, Novice … Ancient), or 0. */
+function artTier(name) {
+  const n = String(name || '').toLowerCase();
+  let m = /\((\w+)\)\s*$/.exec(n);
+  if (m && ART_TIER_WORDS.includes(m[1])) return ART_TIER_WORDS.indexOf(m[1]) || 0;
+  if (m && ART_TIER_RANKS.includes(m[1])) return ART_TIER_RANKS.indexOf(m[1]) + 1;
+  m = /\bmk\s+([ivx]+)$/.exec(n);
+  if (m) return ART_ROMAN.indexOf(m[1]) + 1;
+  m = /^ring of (novice|apprentice|adept|journeyman|master|ancient) /.exec(n);
+  return m ? ART_TIER_RANKS.indexOf(m[1]) + 1 : 0;
+}
+/** The item's own picture ('eq-<name>'), or ''. */
+function artOwn(it) {
+  if (typeof ART_EQUIPMENT === 'undefined' || !it || !it.name) return '';
+  const own = (s) => (ART_EQUIPMENT.has(s) ? 'eq-' + s : '');
+  // Two items share some names (a lightweapon and a vibroweapon Saberstaff): the vibroweapon's is <name>-vibro.
+  if (/Vibroweapon/.test(String(it.weaponClassification || '')) && own(artSlug(it.name) + '-vibro')) return own(artSlug(it.name) + '-vibro');
+  return own(artSlug(it.name)) || own(artSlug(artFamily(it.name)));
 }
 
-/** The tile's HTML: size '' (40 px), 'sm', 'lg' or 'xl'. */
-function itemTile(it, size = '', title = '') {
+/** Everything the tile needs for an item. `kind` is the general picture, which also decides colours and badges. */
+function itemArt(it) {
+  const kind = (it && (it.artKind || it.artIcon)) || artIcon(it || {});
+  const icon = (it && it.artIcon) || artOwn(it) || kind;
+  const badge = artBadge(it || {}, kind);
+  const rarity = typeof invRarity === 'function' ? invRarity(it) : String((it && it.rarityText) || '').toLowerCase();
+  return { icon, kind, badge, glow: artGlow(it || {}, kind, badge), paint: artPaint(kind, it), tier: artTier(it && it.name),
+    rarity: ['standard', 'premium', 'prototype', 'advanced', 'legendary', 'artifact'].includes(rarity) ? rarity : '' };
+}
+
+/**
+ * The tile's HTML: size '' (40 px), 'sm', 'lg' or 'xl'. A tile for a named item opens its card on a click, tap or
+ * Enter (info.js), unless `opts.inert` (inside another control, e.g. a search suggestion); `opts.custom`: the
+ * character's own custom item.
+ */
+function itemTile(it, size = '', title = '', opts = {}) {
   const a = itemArt(it);
   const cls = ['art-tile', size, a.rarity ? `rar-${a.rarity}` : '', `glow-${a.glow}`, `ax-${a.paint}`].filter(Boolean).join(' ');
-  return `<span class="${cls}" aria-hidden="true"${title ? ` title="${String(title).replace(/"/g, '&quot;')}"` : ''}><svg viewBox="0 0 64 64"><use href="#i-${a.icon}"/></svg>`
-    + `${a.badge ? `<svg class="art-badge b-${a.badge}" viewBox="0 0 64 64"><use href="#i-badge-${a.badge}"/></svg>` : ''}</span>`;
+  const skin = it && /^#[0-9a-f]{6}$/i.test(it.skin || '') ? ` style="--ax:${it.skin}"` : '';
+  const q = (s) => String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
+  const open = it && it.name && !opts.inert
+    ? ` data-item="${q(it.name)}"${opts.custom ? ' data-custom="1"' : ''} role="button" tabindex="0" aria-label="${q(`About ${title || it.name}`)}"`
+    : ' aria-hidden="true"';
+  return `<span class="${cls}"${open}${skin}${title ? ` title="${q(title)}"` : ''}><svg viewBox="0 0 64 64" aria-hidden="true"><use href="#i-${a.icon}"/></svg>`
+    + `${a.badge ? `<svg class="art-badge b-${a.badge}" viewBox="0 0 64 64"><use href="#i-badge-${a.badge}"/></svg>` : ''}`
+    + `${a.tier ? `<i class="art-tier" style="--n:${a.tier}"></i>` : ''}</span>`;
 }
 
-if (typeof module !== 'undefined') module.exports = { artIcon, artBadge, artGlow, itemArt, itemTile, ART_COLORS };
+// ------------------------------------------------------------- the Unarmed Strike, by species
+// What a species strikes with, from its own trait that makes unarmed strikes (SW5E: "Your claws are natural weapons,
+// which you can use to make unarmed strikes", "Your unarmed strikes deal 1d4…"); droids strike with a metal fist.
+const ART_UNARMED = [
+  [/claw|talon|dewclaw|arm blade|tooth and nail/, 'unarmed-claws'],
+  [/\bbite\b|teeth|fangs|tusks|jaws/, 'unarmed-bite'],
+  [/horn|skull|head crest|snout|hoo(f|ves)/, 'unarmed-horns'],
+  [/\btail\b/, 'unarmed-tail'],
+  [/stinger/, 'unarmed-stinger'],
+  [/unarmed strikes deal/, 'unarmed-martial'],
+];
+// Colour words in SW5E's skin and fur descriptions ("Pale to dark brown", "Gold to yellow-brown with dark stripes").
+const ART_SKIN = [
+  ['dark brown', '#5b3a26'], ['dark grey', '#555a62'], ['dark gray', '#555a62'], ['light tones', '#e0b894'], ['dark tones', '#6b4630'],
+  ['pale', '#efd0b8'], ['pasty', '#ecd8c8'], ['light', '#e0b894'], ['cream', '#eadcbd'], ['chalk', '#e6e3dc'], ['white', '#e9e5dd'],
+  ['tan', '#c4925f'], ['olive', '#8c9a52'], ['chestnut', '#7a4a2c'], ['mahogany', '#6e3326'], ['brown', '#8a5a3a'], ['ebony', '#2e2826'], ['black', '#34302f'],
+  ['silver', '#b8c0c8'], ['gray', '#8e939b'], ['grey', '#8e939b'], ['green', '#5fa052'], ['teal', '#3a9e9a'], ['turquoise', '#3fb0aa'], ['cyan', '#46b6c4'],
+  ['blue', '#4f86c9'], ['purple', '#8257b8'], ['violet', '#8a5ac0'], ['crimson', '#a8323a'], ['scarlet', '#c03a32'], ['red', '#b7433a'],
+  ['salmon', '#e3988a'], ['pink', '#e39aa6'], ['orange', '#d9813a'], ['golden', '#c9a03c'], ['gold', '#c9a03c'], ['yellow', '#d9c04a'],
+];
+/** The first colour a description names (#hex), or ''. */
+function artSkinColor(text) {
+  const s = String(text || '').toLowerCase();
+  let best = null;
+  for (const [w, hex] of ART_SKIN) {
+    const i = s.search(new RegExp(`\\b${w}`));
+    if (i >= 0 && (!best || i < best.i || (i === best.i && w.length > best.w.length))) best = { i, w, hex };
+  }
+  return best ? best.hex : '';
+}
+/**
+ * The Unarmed Strike's picture for a species: { artIcon, skin } for itemTile. `ref` is SW5E's species entry (traits,
+ * skin and hair colours), `chars` the character's own description (its Skin or Hair, if written down).
+ */
+function unarmedArt(speciesName, ref, chars) {
+  const name = String(speciesName || '');
+  const r = ref || {};
+  if (/^droid/i.test(name)) return { name: 'Unarmed Strike', artIcon: 'unarmed-droid', skin: artSkinColor((chars || {}).Skin) || '#9aa3ad' };
+  const traits = (Array.isArray(r.traits) ? r.traits : []).filter((t) => /natural weapon|unarmed strike/i.test(t.description || ''))
+    .map((t) => `${t.name} ${t.description}`).join(' ').toLowerCase();
+  const kind = (ART_UNARMED.find(([re]) => re.test(traits)) || [null, 'unarmed-fist'])[1];
+  // Furred species strike with fur, so the hair colour; the character's own words first.
+  const furry = /\bfur|furry|hair covered|furred/i.test(`${r.distinctions || ''} ${r.skinColorOptions || ''}`);
+  const own = furry ? (chars || {}).Hair || (chars || {}).Skin : (chars || {}).Skin;
+  const listed = furry ? `${/brown/i.test(r.hairColorOptions || '') ? 'brown' : ''} ${r.hairColorOptions || ''} ${r.skinColorOptions || ''}` : r.skinColorOptions;
+  return { name: 'Unarmed Strike', artIcon: kind, skin: artSkinColor(own) || artSkinColor(listed) || '#c99a6b' };
+}
+
+if (typeof module !== 'undefined') module.exports = { artIcon, artBadge, artGlow, itemArt, itemTile, unarmedArt, artSkinColor, artFamily, artTier, artSlug, ART_COLORS };

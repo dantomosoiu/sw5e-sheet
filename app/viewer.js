@@ -3138,7 +3138,7 @@ function renderAddSuggestions() {
   const hi = clamp(num(d0.hi), 0, Math.min(hits.length, SUGGEST_MAX) - 1);
   const price = (it) => (it.pack ? it.cost : !isEnhanced(it) ? priceOf(it) : 0);
   return `<div class="sugg" role="listbox">${hits.slice(0, SUGGEST_MAX).map((it, i) => `<button type="button" class="sugg-item${i === hi ? ' hi' : ''}" role="option" aria-selected="${i === hi}"
-      data-act="add-pick" data-arg="${esc(it.name)}"><span class="sugg-name">${it.pack ? '' : itemTile(it, 'sm')}${esc(it.name)}</span><span class="faint">${esc([itemKind(it), price(it) ? `${fmtNum(price(it))} cr` : ''].filter(Boolean).join(' · '))}</span></button>`).join('')}
+      data-act="add-pick" data-arg="${esc(it.name)}"><span class="sugg-name">${it.pack ? '' : itemTile(it, 'sm', '', { inert: true })}${esc(it.name)}</span><span class="faint">${esc([itemKind(it), price(it) ? `${fmtNum(price(it))} cr` : ''].filter(Boolean).join(' · '))}</span></button>`).join('')}
     ${hits.length > SUGGEST_MAX ? `<div class="faint sugg-more">${hits.length - SUGGEST_MAX} more; keep typing to narrow it down</div>` : ''}${asCustom}</div>`;
 }
 function pickAddItem(name) {
@@ -3551,9 +3551,9 @@ function loadoutStrip(m) {
       const base = arr(raw.equipment).find((x) => x.enhancedBy === it.name);
       return { it: { ...ref(base || it), ...(base ? { rarityText: invRarity(ref(it)) } : {}), color: it.color || (base && base.color) }, name: it.label || it.name };
     })
-    .concat(arr(raw.customEquipment).filter((it) => it.equipped).map((it) => ({ it, name: it.name })));
+    .concat(arr(raw.customEquipment).filter((it) => it.equipped).map((it) => ({ it, name: it.name, custom: true })));
   if (!list.length) return '';
-  return `<a class="loadout" href="#sec-equipment" title="Equipped and attuned: go to the inventory">${list.slice(0, 12).map((x) => itemTile(x.it, '', x.name)).join('')}</a>`;
+  return `<div class="loadout" aria-label="Equipped and attuned">${list.slice(0, 12).map((x) => itemTile(x.it, '', x.name, { custom: x.custom })).join('')}</div>`;
 }
 // ------------------------------------------------------------- screen effects (fx.css)
 /**
@@ -3606,6 +3606,13 @@ function fxPulse(kind) {
   el.className = `fx-pulse ${kind}`;
 }
 
+/** The Unarmed Strike's picture for this character: by species (its natural weapons) and skin or fur colour. */
+function unarmedOf(m) {
+  const raw = withEdits(m.snap.raw, editedFields(m.snap.key));
+  const name = raw.species && raw.species.name;
+  const ref = rulesModule('species').find((s) => s.name === name) || (m.refs.species || {})[name];
+  return unarmedArt(name, ref, raw.characteristics);
+}
 /** Items whose blade or crystal can have a colour of the player's choosing. */
 const hasEnergyColor = (it) => /^light|kyber/.test(itemArt(it).icon);
 
@@ -3793,7 +3800,7 @@ function renderTracker(m) {
         <div class="trk-amount">
           <input id="trackAmount" type="number" min="0" step="1" inputmode="numeric" placeholder="Amount" aria-label="Amount of damage or healing">
           <select id="trackType" aria-label="Damage type" title="Damage type: resistances and immunities apply"><option value="">untyped</option>${PL_DAMAGE_TYPES.map((d) => `<option>${d}</option>`).join('')}</select>
-          <button class="btn sm" data-track="damage">Damage</button><button class="btn sm" data-track="heal">Heal</button><button class="btn sm" data-track="temp">Temp HP</button>
+          <button class="btn sm" data-track="damage" title="Take the amount as damage: temporary hit points go first, resistances of the chosen type apply, and at 0 hit points death saves begin">Damage</button><button class="btn sm" data-track="heal" title="Regain the amount in hit points, up to your maximum (at 0 hit points this ends dying)">Heal</button><button class="btn sm" data-track="temp" title="Gain the amount as temporary hit points; they don't stack: the higher amount stays">Temp HP</button>
         </div>
       </div>
       <div class="trk-ds"><span class="trk-label">Death saves</span>
@@ -4030,7 +4037,9 @@ function renderAttacks(m) {
           ${mi.mods.map((x) => `<div><b>${esc(x.name)}</b>: ${mdInline(String(x.text).replace(/_\*\*[^*]+\*\*_\s*/g, '').replace(/\s+/g, ' ').trim())}</div>`).join('') || '<div class="faint">No modifications installed yet (Classes &amp; Progression).</div>'}</details>` : '';
       const hands = w.equipped !== false && hc && hc.weapons.includes(shown) ? `<span class="chip warn" title="${esc(handsWarning(hc))}">two-handed + shield</span>` : '';
       const enh = ent && ent.enhancedBy && catalogIndex ? catalogIndex.get(ent.enhancedBy) : null;
-      const tile = itemTile({ ...w, rarityText: enh ? invRarity(enh) : w.rarityText, color: ent && ent.color }, '', shown);
+      // Unarmed: what the species strikes with (fist, claws, bite, horns…), in the character's own colour.
+      const tile = w.name === 'Unarmed Strike' ? itemTile(unarmedOf(m), '', `${shown}: ${unarmedOf(m).artIcon.replace('unarmed-', '')}`)
+        : itemTile({ ...w, rarityText: enh ? invRarity(enh) : w.rarityText, color: ent && ent.color }, '', shown);
       return `<tr>
       <td><div class="inv-item">${tile}<div class="inv-what"><b>${esc(shown)}</b>${shown !== w.name ? ` <span class="faint">(${esc(w.name)})</span>` : ''}${mi ? ' <span class="chip accent" title="Modified by your Engineer archetype">modified</span>' : ''}${hands ? ` ${hands}` : ''}${w.equipped === false ? ' <span class="chip">not equipped</span>' : ''}${w.isCustom ? ' <span class="chip">custom</span>' : ''}
         ${propsText(w.properties) ? `<div class="m-props">${propsHtml(w.properties)}</div>` : ''}${modLine}
@@ -5883,7 +5892,8 @@ function renderEquipment(m) {
     const desc = e.description || e.text || '';
     const weight = num(e.weight) * qty + (baseE ? num(baseE.weight) * qtyOf(baseE) : 0);
     // Its picture: an enhanced weapon or armor looks like its base item, in its own rarity's tile.
-    const tile = itemTile(baseE ? { ...baseE, rarityText: invRarity(e), color: e.color || baseE.color } : e, '', e.label || e.name);
+    const baseArt = baseE ? itemArt(baseE) : null;
+    const tile = itemTile(baseE ? { ...baseE, name: e.name, artIcon: baseArt.icon, artKind: baseArt.kind, rarityText: invRarity(e), color: e.color || baseE.color } : e, '', e.label || e.name, { custom: isCustom });
     const cost = num(e.cost) + (baseE ? num(baseE.cost) : 0);
     return `<tr${e.equipped ? ' class="is-equipped"' : ''}>
       <td><div class="inv-item">${tile}<div class="inv-what"><b>${esc(e.label || e.name)}</b>${e.label ? ` <span class="faint">(${esc(e.name)})</span>` : ''}${isCustom ? ' <span class="chip">custom</span>' : ''}${e.isFound === false ? ' <span class="chip warn">not in SW5E data</span>' : ''}
@@ -6310,6 +6320,7 @@ function renderSidebar(m, sections) {
         <button class="btn" data-act="collapse-all">Collapse all</button>
         <button class="btn" data-act="top">Top ↑</button>
       </div>
+      <button class="btn mbar-only mbar-btn" data-act="explain" aria-pressed="${document.documentElement.dataset.explain === 'on'}" aria-label="Explain mode: tap anything to see what it is" title="Explain mode: tap anything to see what it is and why">ⓘ</button>
       <button class="btn mbar-only mbar-btn" data-act="search-toggle" aria-pressed="${!!state.searching}" aria-label="Filter the sheet" title="${state.searching ? 'Close the filter' : 'Filter the sheet'}">${state.searching ? '✕' : '🔍'}</button>
       <button class="btn mbar-only mbar-btn${typeof rollState !== 'undefined' && rollState.open ? ' on' : ''}" data-dice-toggle title="Dice roller" aria-label="Dice roller">🎲</button>
     </div>`;
@@ -6724,6 +6735,7 @@ async function handleAction(act, arg) {
     case 'theme':
       return setTheme(document.documentElement.dataset.theme === 'light' ? 'dark' : 'light');
     case 'themes': return showThemes();
+    case 'explain': return typeof toggleExplain === 'function' ? toggleExplain() : undefined;
     case 'theme-mode':
       setTheme(arg === 'light' ? 'light' : 'dark');
       return showThemes(true);
@@ -6938,32 +6950,7 @@ function wireUi() {
     e.preventDefault();
     applyEditor(form);
   });
-  // Bumped numbers: explain on hover, keyboard focus, or tap.
-  const tip = document.createElement('div');
-  tip.id = 'bumpTip';
-  tip.hidden = true;
-  tip.setAttribute('role', 'tooltip');
-  document.body.appendChild(tip);
-  const showTip = (el) => {
-    const snap = state.snapshots[state.current];
-    if (!snap || !el) return;
-    if (el.classList.contains('prop-tip')) {
-      const r = propertyRule(el.dataset.prop, el.dataset.kind);
-      if (!r) return;
-      tip.innerHTML = `<div class="tip-head"><b>${esc(r.name)}</b></div><div class="tip-prop">${md(r.text)}</div>`;
-    } else tip.innerHTML = bumpTip(buildModel(snap), el.dataset.bump, { from: el.dataset.from, to: el.dataset.to });
-    tip.hidden = false;
-    const r = el.getBoundingClientRect();
-    const w = tip.offsetWidth;
-    tip.style.left = `${Math.max(8, Math.min(window.innerWidth - w - 8, r.left + r.width / 2 - w / 2)) + window.scrollX}px`;
-    const below = r.bottom + tip.offsetHeight + 12 < window.innerHeight;
-    tip.style.top = `${(below ? r.bottom + 6 : r.top - tip.offsetHeight - 6) + window.scrollY}px`;
-  };
-  const tipped = (el) => !!el && el.classList && (el.classList.contains('bump') || el.classList.contains('prop-tip'));
-  document.addEventListener('mouseover', (e) => { const el = e.target.closest('.bump, .prop-tip'); if (el) showTip(el); });
-  document.addEventListener('mouseout', (e) => { if (e.target.closest('.bump, .prop-tip')) tip.hidden = true; });
-  document.addEventListener('focusin', (e) => { if (tipped(e.target)) showTip(e.target); });
-  document.addEventListener('focusout', (e) => { if (tipped(e.target)) tip.hidden = true; });
+  // Explanations (changed numbers, rule terms, titles, item cards) on hover, focus, long-press or Explain mode: info.js.
   // Pick lists (Add a maneuver…, Learn a power…, Choose a style…, Archetype): a closed <select> fires "change" on every
   // arrow key and type-ahead letter, so a choice made with the keyboard waits for Enter (leaving the list puts it back);
   // a click or tap in the open list commits at once.

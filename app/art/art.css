@@ -113,3 +113,13 @@ tr.is-equipped .inv-item > .art-tile { outline: 2px solid color-mix(in srgb, var
 .b-frag { --ag: #ff3b30; }
 .b-flash { --ag: #fff3c4; }
 .b-panic { --ag: #b25cff; }
+
+/* An enhanced item's tier (Fine … Exceptional, Mk I … VI, Novice … Ancient): pips along the tile's top edge. */
+.art-tile > .art-tier {
+  position: absolute; top: 3px; left: 50%; transform: translateX(-50%); height: 4px;
+  width: calc(var(--n) * 6px - 2px); max-width: 86%;
+  background: radial-gradient(circle, var(--rar, #ffd23a) 1.6px, transparent 2px) 0 50% / 6px 4px repeat-x;
+  filter: drop-shadow(0 0 2px var(--rar, #ffd23a));
+}
+.art-tile.sm > .art-tier { top: 1px; transform: translateX(-50%) scale(.75); }
+.stat:has(> .value > .stat-art) > .label, .stat:has(.stat-art) > .label { padding-right: 34px; }

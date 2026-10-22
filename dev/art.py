@@ -29,6 +29,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 ITEMS = ROOT / 'art' / 'items'
+EQUIP = ROOT / 'art' / 'equipment'  # one picture per SW5E item (dev/art-manifest.py): symbols i-eq-<name>
+NAMES = ROOT / 'app' / 'art' / 'names.js'
 DEFS = ROOT / 'art' / 'defs.svg'
 SPRITE = ROOT / 'app' / 'art' / 'items.svg'
 OUT = ROOT / 'dist' / 'art'
@@ -91,8 +93,18 @@ def check_file(path):
     return problems
 
 
+def pictures():
+    """[(file, symbol id)]: the general pictures (i-<name>) and the item pictures (i-eq-<name>)."""
+    # ART_ONLY_REVIEWED=1: leave out item pictures not committed yet (git ls-files), to release while others are drawn.
+    eq = sorted(EQUIP.glob('*.svg'))
+    if os.environ.get('ART_ONLY_REVIEWED'):
+        tracked = set(subprocess.run(['git', 'ls-files', 'art/equipment'], cwd=ROOT, capture_output=True, text=True).stdout.split())
+        eq = [p for p in eq if p.relative_to(ROOT).as_posix() in tracked]
+    return [(p, 'i-' + p.stem) for p in sorted(ITEMS.glob('*.svg'))] + [(p, 'i-eq-' + p.stem) for p in eq]
+
+
 def check(quiet=False):
-    files = sorted(ITEMS.glob('*.svg'))
+    files = [p for p, _ in pictures()]
     bad = 0
     for f in files:
         problems = check_file(f)
@@ -104,12 +116,12 @@ def check(quiet=False):
     return bad == 0
 
 
-def symbol(path):
-    """One picture as a <symbol id="i-<name>">."""
+def symbol(path, sid):
+    """One picture as a <symbol id="i-<name>"> (item pictures: i-eq-<name>)."""
     text = path.read_text(encoding='utf-8')
     inner = re.sub(r'^\s*<svg[^>]*>|</svg>\s*$', '', text.strip(), flags=re.S)
     inner = re.sub(r'>\s+<', '><', inner.strip())
-    return f'<symbol id="i-{path.stem}" viewBox="0 0 64 64">{inner}</symbol>'
+    return f'<symbol id="{sid}" viewBox="0 0 64 64">{inner}</symbol>'
 
 
 def sprite_text():
@@ -117,7 +129,7 @@ def sprite_text():
     defs = re.search(r'<defs>.*</defs>', defs, re.S).group(0)
     defs = re.sub(r'<!--.*?-->', '', defs, flags=re.S)
     defs = re.sub(r'>\s+<', '><', defs)
-    symbols = ''.join(symbol(p) for p in sorted(ITEMS.glob('*.svg')))
+    symbols = ''.join(symbol(p, sid) for p, sid in pictures())
     return ('<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" '
             'style="position:absolute;width:0;height:0;overflow:hidden">' + defs + symbols + '</svg>\n')
 
@@ -128,13 +140,20 @@ def build():
     text = sprite_text()
     if not SPRITE.exists() or SPRITE.read_text(encoding='utf-8') != text:
         SPRITE.write_text(text, encoding='utf-8', newline='\n')
-    n = len(list(ITEMS.glob('*.svg')))
-    print(f'app/art/items.svg: {n} pictures, {len(text) // 1024} KB' + ('' if ok else ' (some have problems, see above)'))
+    # Which items have a picture of their own (app/art.js reads it before the sprite has loaded).
+    eq = sorted(sid[5:] for _, sid in pictures() if sid.startswith('i-eq-'))
+    names = ('// Made by dev/art.py: the SW5E items with a picture of their own (art/equipment/<name>.svg, symbol i-eq-<name>).\n'
+             f'const ART_EQUIPMENT = new Set({json.dumps(eq)});\n'
+             "if (typeof module !== 'undefined') module.exports = { ART_EQUIPMENT };\n")
+    if not NAMES.exists() or NAMES.read_text(encoding='utf-8') != names:
+        NAMES.write_text(names, encoding='utf-8', newline='\n')
+    n = len(pictures())
+    print(f'app/art/items.svg: {n} pictures ({len(eq)} of single items), {len(text) // 1024} KB' + ('' if ok else ' (some have problems, see above)'))
     return ok
 
 
 def select(only):
-    names = sorted(p.stem for p in ITEMS.glob('*.svg'))
+    names = [sid[2:] for _, sid in pictures()]
     if not only:
         return names
     out = []

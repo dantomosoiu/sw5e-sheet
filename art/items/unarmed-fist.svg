@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <g transform="translate(0 -1.5) rotate(14 32 32)">
+    <path class="a-x a-oo" d="M23.4 40.7h17.2l2.5 12.3H20.9z"/>
+    <path d="M23.4 40.7h17.2l2.5 12.3H20.9z" fill="url(#a-shade)"/>
+    <path class="a-p" d="M33.5 45.8l.6 4.8"/>
+    <path class="a-c a-oo" d="M19.9 51.4h24.2l1.6 6.2H18.3z"/>
+    <path d="M19.9 51.4h24.2l1.6 6.2H18.3z" fill="url(#a-shade)"/>
+    <path class="a-p" d="M19.2 54.6h25.6"/>
+    <path class="a-x a-oo" d="M14.4 18.7h35.2l-.9 16.9q-.7 9.7-9.7 10.3H23.6q-11.4-.4-13.2-10.6q-.4-4 2.2-7z"/>
+    <path d="M14.4 18.7h35.2l-.9 16.9q-.7 9.7-9.7 10.3H23.6q-11.4-.4-13.2-10.6q-.4-4 2.2-7z" fill="url(#a-shade)"/>
+    <g class="a-x a-oo"><g id="unarmed-fist-k">
+      <rect x="14.2" y="10.3" width="9.7" height="12.1" rx="4.4"/>
+      <rect x="23.6" y="8.8" width="9.7" height="13.6" rx="4.4"/>
+      <rect x="33.1" y="9.5" width="9.5" height="13" rx="4.4"/>
+      <rect x="42.3" y="11.7" width="8.4" height="11" rx="4"/>
+    </g></g>
+    <use href="#unarmed-fist-k" fill="url(#a-sheen)"/>
+    <g class="a-x a-oo"><g id="unarmed-fist-f">
+      <rect x="14.4" y="18.7" width="9.5" height="16.1" rx="4"/>
+      <rect x="23.9" y="18.3" width="9.5" height="16.7" rx="4"/>
+      <rect x="33.3" y="18.7" width="9.2" height="16.1" rx="4"/>
+      <rect x="42.6" y="19.8" width="8.1" height="14.1" rx="3.7"/>
+    </g></g>
+    <use href="#unarmed-fist-f" fill="url(#a-shade)"/>
+    <path class="a-p" d="M16.6 22.4q2.6 1.3 5.1 0M26.1 22q2.6 1.3 5.1 0M35.5 22.4q2.4 1.3 4.8 0M44.5 23.3q2 1.1 4.2 0M36.4 32.6q2 .9 4 0M45 31.7q1.8 .9 3.5 0"/>
+    <path class="a-x a-oo" d="M9.6 34.5q0-4.2 4.2-4.2h18.7q4.2 0 4.2 4.2t-4.2 4.2h-18.7q-4.2 0-4.2-4.2z"/>
+    <path d="M9.6 34.5q0-4.2 4.2-4.2h18.7q4.2 0 4.2 4.2t-4.2 4.2h-18.7q-4.2 0-4.2-4.2z" fill="url(#a-sheen)"/>
+    <path class="a-b a-o" d="M29.4 31.7h3.1q2.9 0 2.9 2.9t-2.9 2.9h-3.1z"/>
+    <path class="a-p" d="M21.4 30.8v7.5"/>
+    <path class="a-l" d="M15.5 13.4q.9-1.8 3.1-2M25 11.9q.9-1.8 3.1-2M34.4 12.5q.9-1.8 3.1-2M43.7 14.3q.7-1.5 2.6-1.8M15.9 20.5q.7-.9 1.8-.9M25.4 20q.7-.9 1.8-.9M34.9 20.5q.7-.9 1.8-.9M12.2 31.9q.9-.9 2.4-.9h14.3M30.2 32.6h2"/>
+  </g>
+</svg>

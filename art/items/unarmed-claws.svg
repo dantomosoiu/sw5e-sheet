@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <g class="a-w" opacity=".85" transform="translate(-1.6 0)">
+    <path d="M61 38.6q-4.4 10.4-13 17.4q6-8 9.6-18.4z"/>
+    <path d="M55 43.6q-3.8 7.8-10.6 13q4.6-6.2 7.8-14z"/>
+    <path d="M60.8 30.8q-2.8 5.6-7 9.4q3-4.4 4.6-10z"/>
+  </g>
+  <g transform="rotate(20 30 34)">
+    <use href="#unarmed-claws-f" transform="rotate(33 31.2 52)"/>
+    <use href="#unarmed-claws-f" transform="rotate(11 31.2 52)"/>
+    <use href="#unarmed-claws-f" transform="rotate(-11 31.2 52)"/>
+    <g transform="rotate(-33 31.2 52)"><g id="unarmed-claws-f">
+      <path class="a-b a-oo" d="M27.2 26.6Q27.6 12.8 40.8 12.4Q34 16.6 35.2 26.8z"/>
+      <path class="a-l" d="M29 21.6q1.6-5.8 7.2-7.4"/>
+      <rect class="a-x a-oo" x="26.8" y="23" width="8.8" height="29" rx="4.4"/>
+      <rect x="26.8" y="23" width="8.8" height="29" rx="4.4" fill="url(#a-sheen)"/>
+      <path class="a-p" d="M27.6 31.4q3.6 1.4 7.2 0"/>
+      <path class="a-l" d="M28.4 25.4v3.6"/>
+    </g></g>
+    <path class="a-x a-oo" d="M23.6 53h15.2l2.6 6.4-2.4-1.4-1.6 2.2-2.2-1.8-2 2.4-2-2.2-2.2 2.2-2-2.4-2 1.8-1.8-2.2-2.4 1.2z"/>
+    <path d="M23.6 53h15.2l2.6 6.4-2.4-1.4-1.6 2.2-2.2-1.8-2 2.4-2-2.2-2.2 2.2-2-2.4-2 1.8-1.8-2.2-2.4 1.2z" fill="url(#a-shade)"/>
+    <path class="a-x a-oo" d="M18.2 44q.2-5 5-5.6h16q4.8.6 5 5.6l-1.6 5.4q-1.6 5.6-7.6 6h-7.6q-6-.4-7.6-6z"/>
+    <path d="M18.2 44q.2-5 5-5.6h16q4.8.6 5 5.6l-1.6 5.4q-1.6 5.6-7.6 6h-7.6q-6-.4-7.6-6z" fill="url(#a-sheen)"/>
+    <path d="M18.2 44q.2-5 5-5.6h16q4.8.6 5 5.6l-1.6 5.4q-1.6 5.6-7.6 6h-7.6q-6-.4-7.6-6z" fill="url(#a-shade)"/>
+    <path class="a-p" d="M22.4 44.4q1.8 1.4 3.6 0M28 43.4q1.8 1.4 3.6 0M33.6 43.6q1.8 1.4 3.6 0M38.8 45q1.6 1.2 3.2 0M25.2 49.4q1.8 1.4 3.6 0M30.8 49q1.8 1.4 3.6 0M36.2 49.4q1.6 1.2 3.2 0"/>
+    <path class="a-l" d="M20.2 42.4q1-2.6 3.6-2.8h14.6"/>
+  </g>
+</svg>

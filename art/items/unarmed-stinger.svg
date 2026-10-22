@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <path class="a-b a-oo" d="M55.4 22q4.6 7.6-2.4 16q.6-6.6-3-11.4z"/>
+  <path class="a-b a-o" d="M53.6 28.6l-3.8-.8 2.4-2.8z"/>
+  <path class="a-l" d="M56.2 25.6q.6 4.4-1.8 8.6"/>
+  <ellipse class="a-x a-oo" cx="50.8" cy="20.2" rx="6.6" ry="5.6" transform="rotate(30 50.8 20.2)"/>
+  <ellipse cx="50.8" cy="20.2" rx="6.6" ry="5.6" transform="rotate(30 50.8 20.2)" fill="url(#a-sheen)"/>
+  <ellipse cx="50.8" cy="20.2" rx="6.6" ry="5.6" transform="rotate(30 50.8 20.2)" fill="url(#a-shade)"/>
+  <path class="a-p" d="M46.4 18.4q3.6-2.4 8 0"/>
+  <use href="#unarmed-stinger-s" transform="translate(41.4 18) rotate(-4) scale(.88)"/>
+  <use href="#unarmed-stinger-s" transform="translate(31.4 21.4) rotate(-22) scale(.94)"/>
+  <use href="#unarmed-stinger-s" transform="translate(22.8 29) rotate(-44)"/>
+  <use href="#unarmed-stinger-s" transform="translate(16.4 39.4) rotate(-64) scale(1.08)"/>
+  <g transform="translate(13 51.6) rotate(-80) scale(1.15)">
+    <g id="unarmed-stinger-s">
+      <path class="a-b a-o" d="M-2.2-4.6L.4-9.8 2.4-4.4z"/>
+      <path class="a-x a-oo" d="M-6-4.2Q0-6.4 6-4.2Q7.6 0 6 4.2Q0 6.4-6 4.2Q-7.4 0-6-4.2z"/>
+      <path d="M-6-4.2Q0-6.4 6-4.2Q7.6 0 6 4.2Q0 6.4-6 4.2Q-7.4 0-6-4.2z" fill="url(#a-sheen)"/>
+      <path d="M-6-4.2Q0-6.4 6-4.2Q7.6 0 6 4.2Q0 6.4-6 4.2Q-7.4 0-6-4.2z" fill="url(#a-shade)"/>
+      <path class="a-p" d="M3.6-4.6Q5 0 3.6 4.6"/>
+      <path class="a-l" d="M-4.4-3.2Q0-4.8 3.6-3.6"/>
+    </g>
+  </g>
+  <path class="a-g" d="M52.8 39.4q3.6 4.6 2.6 6.8-1 2.2-3.2 2.2t-3-2.4q-.2-2.2 3.6-6.6z" filter="url(#a-glow)" opacity=".8"/>
+  <path class="a-g a-o" d="M52.8 40.2q3 4 2.2 6-.8 1.8-2.6 1.8t-2.4-2q-.2-2 2.8-5.8z"/>
+  <circle class="a-w" cx="51.6" cy="45.2" r=".8"/>
+</svg>

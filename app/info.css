@@ -1,0 +1,86 @@
+/*
+ * Explanations (info.js): the tip on hover and focus, the sheet that opens on a long press, in Explain mode or for an
+ * item's card, and the outlines of Explain mode. Plus the touch-screen sizes of small controls.
+ */
+
+/* ---------- The tip (hover, keyboard focus) ---------- */
+#bumpTip .tip-head + p, #bumpTip > p { margin: 4px 0 0; }
+#bumpTip > p:first-child { margin-top: 0; }
+
+/* ---------- The sheet ---------- */
+.info-backdrop { position: fixed; inset: 0; z-index: 69; background: rgba(0, 0, 0, .28); }
+#infoSheet {
+  position: absolute; z-index: 70; width: min(420px, calc(100vw - 16px)); max-height: min(70vh, 560px); overflow: auto;
+  background: var(--panel); color: var(--text); border: 1px solid color-mix(in srgb, var(--accent) 55%, var(--line));
+  border-radius: 14px; padding: 14px 16px 16px; box-shadow: 0 18px 50px rgba(0, 0, 0, .45), 0 0 0 1px rgba(255, 255, 255, .03) inset;
+  opacity: 0; transform: translateY(6px) scale(.98); transition: opacity .16s ease, transform .16s ease;
+}
+#infoSheet.in { opacity: 1; transform: none; }
+/* Phones: docked to the bottom, full width, with a grip to swipe it away. */
+#infoSheet.docked {
+  position: fixed; left: 0; right: 0; bottom: 0; top: auto; width: 100%; max-height: 72vh; border-radius: 18px 18px 0 0;
+  border-bottom: 0; padding: 8px 18px calc(18px + env(safe-area-inset-bottom)); transform: translateY(30px);
+}
+#infoSheet.docked.in { transform: none; }
+.info-grip { display: none; width: 44px; height: 5px; border-radius: 3px; background: var(--line); margin: 2px auto 10px; }
+#infoSheet.docked .info-grip { display: block; }
+.info-close { float: right; margin: -4px -6px 0 8px; }
+#infoSheet h2 { margin: 0 0 8px; font-size: 17px; line-height: 1.25; color: var(--text); letter-spacing: normal; text-transform: none; }
+#infoSheet .info-body { font-size: 14px; }
+#infoSheet .info-body ul { margin: 6px 0 0; padding-left: 18px; }
+#infoSheet .info-body li { margin: 4px 0; }
+#infoSheet .info-body p { margin: 0 0 6px; }
+#infoSheet .tip-head { font-size: 13px; }
+.info-actions { display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap; }
+.info-actions .btn { flex: 1 1 auto; justify-content: center; }
+
+/* An item's card: the picture large, in its rarity's glow. */
+.info-item { display: flex; gap: 14px; align-items: center; margin-bottom: 10px; }
+.info-item h2 { margin-bottom: 2px !important; }
+.info-item .art-tile.xl { --t: 104px; }
+.info-rar { margin-top: 6px; text-transform: capitalize; border-color: var(--rar); color: var(--rar); background: color-mix(in srgb, var(--rar) 14%, transparent); }
+.info-facts { display: grid; grid-template-columns: auto 1fr; gap: 4px 14px; margin: 8px 0 10px; font-size: 13.5px; }
+.info-facts dt { color: var(--muted); }
+.info-facts dd { margin: 0; }
+.info-text { font-size: 13.5px; border-top: 1px solid var(--line); padding-top: 8px; }
+
+/* Item pictures that open their card. */
+.art-tile[data-item] { cursor: pointer; transition: transform .12s ease, filter .12s ease; }
+.art-tile[data-item]:hover { transform: translateY(-1px); filter: brightness(1.12); }
+.art-tile[data-item]:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* ---------- Explain mode ---------- */
+.info-banner {
+  position: fixed; left: 50%; top: calc(var(--topbar-h) + 8px); transform: translateX(-50%); z-index: 65;
+  display: flex; gap: 12px; align-items: center; padding: 8px 10px 8px 14px; border-radius: 999px;
+  background: var(--panel); border: 1px solid var(--accent); box-shadow: 0 8px 26px rgba(0, 0, 0, .35); font-size: 13.5px;
+  width: max-content; max-width: calc(100vw - 16px);
+}
+@media (max-width: 900px) { .info-banner { top: auto; bottom: calc(14px + env(safe-area-inset-bottom)); } }
+[data-explain="on"] .bump, [data-explain="on"] .prop-tip, [data-explain="on"] #sheet [title], [data-explain="on"] .sidebar [title],
+[data-explain="on"] [data-roll], [data-explain="on"] .art-tile[data-item] {
+  outline: 1px dashed color-mix(in srgb, var(--accent) 75%, transparent); outline-offset: 2px; cursor: help;
+}
+[data-explain="on"] [data-act="explain"] { background: var(--accent); color: var(--accent-ink); }
+
+/* ---------- Touch screens ---------- */
+@media (hover: none), (pointer: coarse) {
+  /* A long press explains: no text selection or callout menu on the things that can be pressed. */
+  .bump, .prop-tip, .rollable, .btn, button, .chip, .art-tile, [data-roll], .card-head {
+    -webkit-touch-callout: none; -webkit-user-select: none; user-select: none;
+  }
+  .btn.sm, .chip button, .linklike { min-height: 34px; }
+  .linklike { padding: 4px 2px; }
+  .chip { min-height: 28px; display: inline-flex; align-items: center; }
+  .menu-pop button { min-height: 44px; }
+  .sugg-item { min-height: 44px; }
+  input[type="checkbox"], input[type="radio"] { width: 20px; height: 20px; }
+  select { min-height: 36px; }
+  .die { min-width: 46px; height: 50px; }
+  .inv-ctl .btn.sm { min-width: 36px; }
+  .loadout .art-tile { --t: 44px; }
+  .theme-pick button { min-height: 48px; }
+  /* Things that showed only on hover show on touch screens. */
+  .rollable:not(:has(.bump)) { text-decoration: underline dotted color-mix(in srgb, var(--accent) 60%, transparent); text-underline-offset: 3px; }
+}
+.info-banner[hidden], #infoSheet[hidden], .info-backdrop[hidden] { display: none !important; }

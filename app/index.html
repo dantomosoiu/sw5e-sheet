@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="themes.css">
   <link rel="stylesheet" href="art/art.css">
   <link rel="stylesheet" href="fx.css">
+  <link rel="stylesheet" href="info.css">
 </head>
 <body>
   <div class="theme-art" aria-hidden="true"></div>
@@ -42,6 +43,7 @@
           <button data-act="export-raw" title="The character in SW5E's own format, with your changes: for sw5e.com or other tools. Without play state, reasons, effects or history.">Export for sw5e.com (.json)</button>
           <button data-act="export-snapshot" title="sw5e.com's copy and the numbers its engine computed, without the changes made here: for checking numbers or reporting a problem.">Export SW5E's copy with its numbers (.json)</button>
           <button data-act="messages">Recent messages</button>
+          <button data-act="explain" aria-pressed="false" title="Explain mode: a tap (or click) on anything shows what it is and why, instead of doing it">Explain mode ⓘ</button>
           <button data-act="guide" title="Roll, attack, take damage, use a feature, cast, use an item, rest: where each is">First session guide</button>
           <button data-act="rules-books" title="SW5E's books (the Player's Handbook and the others), kept with the sheet: read and search them, offline too">SW5E rules (the books)</button>
           <hr>
@@ -78,8 +80,10 @@
   <script src="engine.js"></script>
   <script src="roller.js"></script>
   <script src="builder.js"></script>
+  <script src="art/names.js"></script>
   <script src="art.js"></script>
   <script src="viewer.js"></script>
+  <script src="info.js"></script>
   <script src="pwa.js"></script>
 </body>
 </html>
