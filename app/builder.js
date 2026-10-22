@@ -91,10 +91,13 @@ const BD_KINDS = {
     },
   },
   // A feat's +1: the background feat's in background.feat.abilityScoreImprovements (SW5E applies it); an ASI feat's
-  // in its entry's abilitiesIncreased (arg 'asi|class index|slot'), applied by this sheet (SW5E ignores it).
+  // in its entry's abilitiesIncreased (arg 'asi|class index|slot'), applied by this sheet (SW5E ignores it); a feat
+  // added by hand's (SW5E's customFeats are names only) in featureChoices['Feat: Brawny (Custom feat): +1'] (arg
+  // 'custom|<that key>'; choices.js leaves the key alone).
   featinc: {
     get: (raw, a) => {
       if (a === 'bg') return Object.keys((raw.background && raw.background.feat && raw.background.feat.abilityScoreImprovements) || {});
+      if (/^custom\|/.test(a)) return arr((raw.featureChoices || {})[a.slice(7)]).map((p) => (typeof p === 'string' ? p : p && p.name)).filter(Boolean);
       const [, ci, j] = a.split('|').map(Number);
       return arr(((arr(raw.classes)[ci] || {}).abilityScoreImprovements || [])[j] && raw.classes[ci].abilityScoreImprovements[j].abilitiesIncreased).map((x) => x.name);
     },
@@ -103,6 +106,11 @@ const BD_KINDS = {
         const feat = { ...(raw.background.feat || {}) };
         if (list.length) feat.abilityScoreImprovements = Object.fromEntries(list.map((n) => [n, 1])); else delete feat.abilityScoreImprovements;
         return { background: { ...raw.background, feat } };
+      }
+      if (/^custom\|/.test(a)) {
+        const all = { ...(raw.featureChoices || {}) };
+        if (list.length) all[a.slice(7)] = list.map((name) => ({ name })); else delete all[a.slice(7)];
+        return { featureChoices: all };
       }
       const [, ci, j] = a.split('|').map(Number);
       const classes = clone(arr(raw.classes));
@@ -215,11 +223,8 @@ function bdBackgroundPicks(m) {
   }
   const lc = prLanguageChoices(ref.languages);
   if (lc) out.push(bdPickList({ title: 'Languages', from: ref.languages, count: lc.count, chosen: arr(bg.languages), options: lc.options || prLanguages(bdModules()), kind: 'blang', arg: '', word: 'a language' }));
-  const featRef = bg.feat && bg.feat.name ? arr(bdModules().feats).find((f) => f.name === bg.feat.name) : null;
-  const inc = prFeatAbilities(featRef);
-  if (inc.length) {
-    out.push(bdPickList({ title: `${bg.feat.name}: +1 to`, from: 'background feat', count: 1, chosen: BD_KINDS.featinc.get(m.raw, 'bg'), options: inc, kind: 'featinc', arg: 'bg', word: 'an ability' }));
-  }
+  const inc = bdFeatIncreases(m.raw).find((x) => x.arg === 'bg' && x.options.length > 1);
+  if (inc) out.push(bdPickList({ title: `${inc.name}: +1 to`, from: 'background feat', count: 1, chosen: inc.stored, options: inc.options, kind: 'featinc', arg: 'bg', word: 'an ability' }));
   return out.length ? `<div class="cls-choices bd-profs"><h3>Your choices</h3>${out.join('')}</div>` : '';
 }
 
@@ -234,31 +239,64 @@ function bdSpeciesPicks(m) {
   return `<div class="cls-choices bd-profs">${bdPickList({ title: 'Languages', from: tr.description, count: lc.count, chosen: BD_KINDS.lang.get(m.raw, from), options: lc.options || prLanguages(bdModules()), kind: 'lang', arg: from, word: 'a language' })}</div>`;
 }
 
-// ------------------------------------------------------------- feats taken at an ASI: their +1
+// ------------------------------------------------------------- feats' +1
+/** The feats added by hand (customFeats: names) with the featureChoices key of their +1 (choices.js's feat key + ': +1'). */
+function bdCustomFeats(raw) {
+  const seen = {};
+  return arr(raw.customFeats).map((f) => (typeof f === 'string' ? f : f && f.name)).filter(Boolean).map((name) => {
+    seen[name] = (seen[name] || 0) + 1;
+    return { name, key: `Feat: ${name} (Custom feat${seen[name] > 1 ? ` #${seen[name]}` : ''}): +1` };
+  });
+}
+/**
+ * Every feat's +1: the background feat's, the ones taken at an ASI and the ones added by hand: [{ name, from, arg
+ * (BD_KINDS.featinc's), ref, options, stored, chosen, auto, engine }]. A +1 that can go to one ability only (Tough:
+ * "Increase your Constitution score by 1, to a maximum of 20") is no choice: it applies as is (auto), nothing stored.
+ * engine: SW5E's engine applies what's stored (the background feat's).
+ */
+function bdFeatIncreases(raw) {
+  const refs = arr(bdModules().feats);
+  const out = [];
+  const add = (name, from, arg, engine) => {
+    const ref = refs.find((f) => f.name === name);
+    const options = prFeatAbilities(ref);
+    if (!options.length) return;
+    const stored = BD_KINDS.featinc.get(raw, arg);
+    const auto = !stored.length && options.length === 1;
+    out.push({ name, from, arg, ref, options, stored, chosen: stored.length ? stored : auto ? options.slice() : [], auto, engine });
+  };
+  const bg = raw.background || {};
+  if (bg.feat && bg.feat.name) add(bg.feat.name, 'background feat', 'bg', true);
+  arr(raw.classes).forEach((k, ci) => arr(k.abilityScoreImprovements).forEach((a, j) => {
+    if (a && a.type === 'Feat' && a.name) add(a.name, `${k.name} ASI #${j + 1}`, `asi|${ci}|${j}`, false);
+  }));
+  for (const f of bdCustomFeats(raw)) add(f.name, 'added by hand', `custom|${f.key}`, false);
+  return out;
+}
+
+/** The +1 pickers of feats taken at an ASI or added by hand (the background feat's is under Background). */
 function bdFeatPicks(m) {
   if (!state.rules) return '';
-  const out = [];
-  arr(m.raw.classes).forEach((k, ci) => arr(k.abilityScoreImprovements).forEach((a, j) => {
-    if (!a || a.type !== 'Feat' || !a.name) return;
-    const inc = prFeatAbilities(arr(bdModules().feats).find((f) => f.name === a.name));
-    if (inc.length) out.push(bdPickList({ title: `${a.name}: +1 to`, from: `${k.name} ASI #${j + 1}`, count: 1, chosen: BD_KINDS.featinc.get(m.raw, `asi|${ci}|${j}`), options: inc, kind: 'featinc', arg: `asi|${ci}|${j}`, word: 'an ability' }));
-  }));
+  const out = bdFeatIncreases(m.raw).filter((x) => x.arg !== 'bg' && x.options.length > 1)
+    .map((x) => bdPickList({ title: `${x.name}: +1 to`, from: x.from, count: 1, chosen: x.stored, options: x.options, kind: 'featinc', arg: x.arg, word: 'an ability' }));
   return out.length ? `<div class="cls-choices bd-profs"><h3>Feat ability increases</h3>${out.join('')}</div>` : '';
 }
 
 /**
- * The +1s of feats taken at an ASI (SW5E's engine only applies the background feat's): effects of kind 'feature',
- * like class features (see viewer.js featureEffectsUncached).
+ * What feats' +1 does that SW5E's engine doesn't (it applies the background feat's stored pick only): effects of
+ * kind 'feature', like class features (see viewer.js featureEffectsUncached). With it, "You gain proficiency in saving
+ * throws using the chosen ability" (Resilient), which follows the same pick.
  */
 function bdFeatIncreaseEffects(editedRaw) {
   const out = [];
-  arr(editedRaw.classes).forEach((k, ci) => arr(k.abilityScoreImprovements).forEach((a, j) => {
-    if (!a || a.type !== 'Feat' || !a.name || !arr(a.abilitiesIncreased).length) return;
-    out.push({
-      id: `featinc:${ci}:${j}`, kind: 'feature', name: a.name, why: `feat (${k.name} ASI #${j + 1})`, target: 'self', notes: [],
-      mods: arr(a.abilitiesIncreased).map((x) => ({ path: `abilityScores.${x.name}.score`, bonus: num(x.value) || 1, cap: 20, label: `${String(x.name).slice(0, 3).toUpperCase()} +${num(x.value) || 1}` })),
-    });
-  }));
+  for (const x of bdFeatIncreases(editedRaw)) {
+    const raise = x.engine && !x.auto ? [] : x.chosen;
+    const mods = raise.map((a) => ({ path: `abilityScores.${a}.score`, bonus: 1, cap: 20, label: `${a.slice(0, 3).toUpperCase()} +1` }));
+    if (prFeatChosenAbilityUse(x.ref).save) {
+      for (const a of x.chosen) mods.push({ path: `abilityScores.${a}.savingThrowModifier`, bonus: 0, fields: { proficiency: 'Proficient' }, label: `${a} saves: proficient` });
+    }
+    if (mods.length) out.push({ id: `featinc:${x.arg.replace(/^asi\|/, '').replace(/\|/g, ':')}`, kind: 'feature', origin: 'feat', name: x.name, why: `feat (${x.from})`, target: 'self', notes: [], mods });
+  }
   return out;
 }
 
@@ -475,6 +513,14 @@ function bdSpeciesIncrease(raw) {
   });
   return { options: opts, fixed, picks };
 }
+/**
+ * A background feat as SW5E stores it. A +1 that can go to one ability only (Tough: "Increase your Constitution score
+ * by 1") is no choice: it's recorded at once, so SW5E's engine applies it too.
+ */
+function bdNewBgFeat(name) {
+  const inc = prFeatAbilities(arr(bdModules().feats).find((f) => f.name === name));
+  return { name, type: 'Feat', ...(inc.length === 1 ? { abilityScoreImprovements: { [inc[0]]: 1 } } : {}) };
+}
 /** Final ability scores while creating: base + species (fixed and chosen) + the background feat's +1. */
 function bdCreateScores(raw) {
   const inc = bdSpeciesIncrease(raw);
@@ -517,7 +563,7 @@ function bdCreateProblems(C) {
     const lc = prLanguageChoices(bref.languages);
     if (lc && arr(raw.background.languages).length < lc.count) out.push({ step: 'background', text: 'the background languages' });
     if (!raw.background.feat || !raw.background.feat.name) out.push({ step: 'background', text: 'the background feat' });
-    else if (prFeatAbilities(arr(bdModules().feats).find((f) => f.name === raw.background.feat.name)).length && !Object.keys(raw.background.feat.abilityScoreImprovements || {}).length) out.push({ step: 'background', text: 'the feat\'s +1' });
+    else if (bdFeatIncreases(raw).some((x) => x.arg === 'bg' && !x.chosen.length)) out.push({ step: 'background', text: 'the feat\'s +1' });
   }
   return out;
 }
@@ -601,7 +647,7 @@ function bdCreateStep(C) {
           ${featOpts.length ? `<div class="lvl-row">${featOpts.map((f) => `<label class="lvl-opt"><input type="radio" name="cr-feat" data-cr="feat" value="${esc(f.name)}"${f.name === (raw.background.feat || {}).name ? ' checked' : ''}> ${f.roll ? `${f.roll}. ` : ''}${esc(f.name)}</label>`).join('')}</div>
             <button class="btn sm" data-act="cr-feat-roll">Roll d${featOpts.length}</button>` : `<select data-cr="feat"><option value="">Choose…</option>${arr(mods.feats).map((f) => bdOpt(f.name, f.name, (raw.background.feat || {}).name)).join('')}</select>`}
           ${featRef ? `<div class="desc lvl-feat">${md(featRef.text || '')}</div>` : ''}
-          ${inc.length ? bdPickList({ title: `${featRef.name}: +1 to`, count: 1, chosen: Object.keys(raw.background.feat.abilityScoreImprovements || {}), options: inc, kind: 'crfeatinc', arg: '', word: 'an ability' }) : ''}
+          ${inc.length > 1 ? bdPickList({ title: `${featRef.name}: +1 to`, count: 1, chosen: Object.keys(raw.background.feat.abilityScoreImprovements || {}), options: inc, kind: 'crfeatinc', arg: '', word: 'an ability' }) : ''}
           <p class="faint">Choices the feat gives (a form, powers…) are made in the sheet once the character exists.</p></fieldset>
         ${ref.featureName ? `<details><summary>Feature: ${esc(ref.featureName)}</summary><div class="desc">${md(ref.featureText || '')}</div></details>` : ''}`;
     }
@@ -789,7 +835,7 @@ function bdCreateAction(act, arg) {
     case 'cr-feat-roll': {
       const ref = arr(bdModules().backgrounds).find((b) => b.name === raw.background.name);
       const opts = arr(ref && ref.featOptions);
-      if (opts.length) raw.background.feat = { name: opts[rollDie(opts.length) - 1].name, type: 'Feat' };
+      if (opts.length) raw.background.feat = bdNewBgFeat(opts[rollDie(opts.length) - 1].name);
       break;
     }
     case 'cr-char-roll': {
@@ -870,7 +916,7 @@ document.addEventListener('change', (e) => {
       if (before) raw.customProficiencies = arr(raw.customProficiencies).filter((p) => !String(p.from || '').startsWith(`Background: ${before}`));
       break;
     }
-    case 'feat': raw.background.feat = { name: v, type: 'Feat' }; break;
+    case 'feat': raw.background.feat = bdNewBgFeat(v); break;
     case 'eqmode': C.equip.mode = v; break;
     case 'eqline': C.equip.lines[ds.key] = v; break;
     case 'eqchoice': C.equip.picks[ds.id] = v; break;
@@ -949,11 +995,9 @@ function bdOpenChoices(m) {
     if (state.catalog) prToolChoices(bref.toolProficiencies, bdTools()).forEach((g, i) => { if (!g.fixed && BD_KINDS.tool.get(raw, `Background: ${bg.name}${i ? ` #${i + 1}` : ''}`).length < g.count) add('background', 'background tool'); });
     const lc = prLanguageChoices(bref.languages);
     if (lc && arr(bg.languages).length < lc.count) add('background', `background languages${more(lc.count - arr(bg.languages).length)}`);
-    if (bg.feat && bg.feat.name && prFeatAbilities(arr(mods.feats).find((f) => f.name === bg.feat.name)).length && !Object.keys(bg.feat.abilityScoreImprovements || {}).length) add('background', `${bg.feat.name}: +1`);
   }
-  arr(raw.classes).forEach((k, ci) => arr(k.abilityScoreImprovements).forEach((a, j) => {
-    if (a && a.type === 'Feat' && prFeatAbilities(arr(mods.feats).find((f) => f.name === a.name)).length && !arr(a.abilitiesIncreased).length) add('feats', `${a.name}: +1`);
-  }));
+  // Feats' +1 where the feat lets you choose (a +1 to one ability only applies as is).
+  for (const x of bdFeatIncreases(raw)) if (!x.chosen.length) add(x.arg === 'bg' ? 'background' : 'feats', `${x.name}: +1`);
   const sp = arr(mods.species).find((s) => s.name === (raw.species || {}).name);
   const tr = sp && arr(sp.traits).find((t) => /^Languages?$/i.test(t.name));
   const lc = tr && prLanguageChoices(tr.description);

@@ -252,7 +252,7 @@ Rage Damage +2
 Defenses & senses
 Advantages Advantage on Dexterity saving throws against effects that you can see, such as traps and powers
 Effects
-From class features (4)
+From class features and species traits (4)
 Berserker weapon proficiencies Proficient: All vibroweapons Proficient: simple blasters Berserker proficiencies
 Unarmored Defense AC + CON Berserker feature
 Danger Sense Advantage on Dexterity saving throws against effects that you can see, such as traps and powers Berserker feature

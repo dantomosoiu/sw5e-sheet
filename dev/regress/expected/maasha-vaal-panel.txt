@@ -295,7 +295,7 @@ Defenses & senses
 Advantages Advantage on Strength checks and Strength saving throws to avoid being moved
 Senses Tremorsense 30 ft
 Effects
-From class features (4)
+From class features and species traits (4)
 Guardian weapon proficiencies Proficient: All lightweapons Proficient: all vibroweapons Guardian proficiencies
 Aura of Presence STR save + WIS DEX save + WIS CON save + WIS INT save + WIS WIS save + WIS CHA save + WIS Guardian Auras feature
 Wild Hunters Survival: proficient Togruta trait

@@ -1,8 +1,8 @@
 # Scholar Test (Claude)
 
 ## Sent to the rules engine
-The sheet's engine computes the numbers. SW5E's recorded calculation is for this same character.
-tweaks.abilityScores.Charisma.score.bonus = 1
+The sheet's engine computes the numbers. OUT OF DATE: SW5E's recorded calculation is for an older version of this character; record the case again (dev/regress-record.js) for dev/engine-check.js.
+tweaks.abilityScores.Charisma.score.bonus = 2
 tweaks.abilityScores.Charisma.skills.Deception.bonus = 0
 tweaks.abilityScores.Charisma.skills.Deception.proficiency = "Expertise"
 tweaks.abilityScores.Charisma.skills.Persuasion.bonus = 0
@@ -42,7 +42,7 @@ abilityScores.Charisma.skills[Performance].modifier = 1
 abilityScores.Charisma.skills[Performance].proficiency = "none"
 abilityScores.Charisma.skills[Persuasion].modifier = 5
 abilityScores.Charisma.skills[Persuasion].proficiency = "expertise"
-abilityScores.Charisma.value = 12
+abilityScores.Charisma.value = 13
 abilityScores.Constitution.modifier = 1
 abilityScores.Constitution.savingThrow.modifier = 1
 abilityScores.Constitution.savingThrow.proficiency = "none"
@@ -166,6 +166,7 @@ effect: Gambler's Aptitude · feature
 effect: Lifelong Learning · feature
 effect: Running on Fumes · feature
 effect: Silver-Tongued · feature
+effect: Silver-Tongued · feature
 tweak: abilityScores.Charisma.skills.Deception +0 {"proficiency":"Expertise"} · Deception
 tweak: abilityScores.Charisma.skills.Persuasion +0 {"proficiency":"Expertise"} · Persuasion
 tweak: abilityScores.Charisma.score +1 · Charisma score
@@ -174,6 +175,7 @@ tweak: abilityScores.Dexterity.skills.Sleight of Hand +0 {"proficiency":"Profici
 tweak: abilityScores.Charisma.skills.Persuasion +0 {"proficiency":"Expertise"} · Expertise
 tweak: abilityScores.Dexterity.skills.Sleight of Hand +0 {"proficiency":"Proficient"} · Gambler's Aptitude
 tweak: abilityScores.Charisma.skills.Persuasion +0 {"proficiency":"Proficient"} · Lifelong Learning
+tweak: abilityScores.Charisma.score +1 · Silver-Tongued
 tweak: abilityScores.Charisma.skills.Deception +0 {"proficiency":"Proficient"} · Silver-Tongued
 weapon tweak: #1 toHit +0 · Scholar weapon proficiencies
 
@@ -234,7 +236,7 @@ Scholar Test (Claude)
 Bothan · Scholar (Gambler Pursuit) 3
 Level 3 Background: Noble Balanced Neutral Proficiency +2 [Add a picture]
 900 XP level 4 at 2,700 (1,800 to go)
-Still to choose (6): Scholar skills (3 more) · Scholar tool · background skills (2 more) · background tool · background languages · Silver-Tongued: +1
+Still to choose (5): Scholar skills (3 more) · Scholar tool · background skills (2 more) · background tool · background languages
 
 ## Sheet: Combat & Vitals
 Armor Class
@@ -275,12 +277,13 @@ Defenses & senses
 Advantages Advantage on saving throws against exhaustion
 Other Can't have disadvantage on checks you make with them (Gambler's Aptitude)
 Effects
-From class features (6)
+From class features and feats (7)
 Scholar weapon proficiencies Proficient: Simple blasters Proficient: simple vibroweapons Proficient: martial vibroweapons with the finesse property Scholar proficiencies
 Expertise Persuasion: expertise Forgery Kit: expertise Scholar feature
 Gambler's Aptitude Sleight of Hand: proficient Pazaak: proficient Can't have disadvantage on checks you make with them Gambler Pursuit feature
 Lifelong Learning Persuasion: proficient Forgery kit: proficient Discoveries feature
 Running on Fumes Advantage on saving throws against exhaustion Discoveries feature
+Silver-Tongued CHA +1 feat (background feat)
 Silver-Tongued Deception: proficient feat
 Temporary
 No temporary effects.
@@ -354,20 +357,20 @@ base 13
 CHA
 Charisma
 +1
-  ↳ hover abilityScores.Charisma.modifier: Without tweaks or effects: 0 → now 1 / +1 Charisma score · no reason given tweak
-12
-  ↳ hover abilityScores.Charisma.value: Without tweaks or effects: 11 → now 12 / +1 Charisma score · no reason given tweak
+  ↳ hover abilityScores.Charisma.modifier: Without tweaks or effects: 0 → now 1 / +1 Charisma score · no reason given tweak / +1 CHA · Silver-Tongued feat (background feat)
+13
+  ↳ hover abilityScores.Charisma.value: Without tweaks or effects: 11 → now 13 / +1 Charisma score · no reason given tweak / +1 CHA · Silver-Tongued feat (background feat)
 (Not proficient) Saving throw+1
-  ↳ hover abilityScores.Charisma.savingThrow.modifier: Without tweaks or effects: 0 → now 1 / +1 Charisma score · no reason given tweak
+  ↳ hover abilityScores.Charisma.savingThrow.modifier: Without tweaks or effects: 0 → now 1 / +1 Charisma score · no reason given tweak / +1 CHA · Silver-Tongued feat (background feat)
 (Expertise) Deception+5
-  ↳ hover abilityScores.Charisma.skills.0.modifier: Without tweaks or effects: 0 → now 5 / +1 Charisma score · no reason given tweak / Expertise Deception · no reas… [231 chars #f5a8a35b]
+  ↳ hover abilityScores.Charisma.skills.0.modifier: Without tweaks or effects: 0 → now 5 / +1 Charisma score · no reason given tweak / +1 CHA · Silver-Tongued feat … [280 chars #5f17a787]
 (Not proficient) Intimidation+1
-  ↳ hover abilityScores.Charisma.skills.1.modifier: Without tweaks or effects: 0 → now 1 / +1 Charisma score · no reason given tweak
+  ↳ hover abilityScores.Charisma.skills.1.modifier: Without tweaks or effects: 0 → now 1 / +1 Charisma score · no reason given tweak / +1 CHA · Silver-Tongued feat (background feat)
 (Not proficient) Performance+1
-  ↳ hover abilityScores.Charisma.skills.2.modifier: Without tweaks or effects: 0 → now 1 / +1 Charisma score · no reason given tweak
+  ↳ hover abilityScores.Charisma.skills.2.modifier: Without tweaks or effects: 0 → now 1 / +1 Charisma score · no reason given tweak / +1 CHA · Silver-Tongued feat (background feat)
 (Expertise) Persuasion+5
-  ↳ hover abilityScores.Charisma.skills.3.modifier: Without tweaks or effects: 0 → now 5 / +1 Charisma score · no reason given tweak / Expertise Persuasion · no rea… [313 chars #c4cae675]
-base 11 · +1 from Charisma score (tweak)
+  ↳ hover abilityScores.Charisma.skills.3.modifier: Without tweaks or effects: 0 → now 5 / +1 Charisma score · no reason given tweak / +1 CHA · Silver-Tongued feat … [362 chars #81d2f414]
+base 11 · +1 from Charisma score (tweak) · +1 from Silver-Tongued (feat)
 not proficient proficient expertise
 
 ## Sheet: Skills
@@ -376,25 +379,25 @@ Skill | Ability | Bonus | Passive | Proficiency |
 (Not proficient) Animal Handling | WIS | +1 | 11 | — |
 (Not proficient) Athletics | STR | +1 | 11 | — |
 (Expertise) Deception | CHA | +5 | 15 | Expertise |
-  ↳ hover abilityScores.Charisma.skills.0.modifier: Without tweaks or effects: 0 → now 5 / +1 Charisma score · no reason given tweak / Expertise Deception · no reas… [231 chars #f5a8a35b]
-  ↳ hover abilityScores.Charisma.skills.0.modifier: Without tweaks or effects: 0 → now 5 / +1 Charisma score · no reason given tweak / Expertise Deception · no reas… [231 chars #f5a8a35b]
+  ↳ hover abilityScores.Charisma.skills.0.modifier: Without tweaks or effects: 0 → now 5 / +1 Charisma score · no reason given tweak / +1 CHA · Silver-Tongued feat … [280 chars #5f17a787]
+  ↳ hover abilityScores.Charisma.skills.0.modifier: Without tweaks or effects: 0 → now 5 / +1 Charisma score · no reason given tweak / +1 CHA · Silver-Tongued feat … [280 chars #5f17a787]
 (Proficient) Insight | WIS | +3 | 13 | Proficient |
   ↳ hover abilityScores.Wisdom.skills.1.modifier: Without tweaks or effects: 1 → now 3 / Proficient Insight · no reason given tweak
   ↳ hover abilityScores.Wisdom.skills.1.modifier: Without tweaks or effects: 1 → now 3 / Proficient Insight · no reason given tweak
 (Not proficient) Intimidation | CHA | +1 | 11 | — |
-  ↳ hover abilityScores.Charisma.skills.1.modifier: Without tweaks or effects: 0 → now 1 / +1 Charisma score · no reason given tweak
-  ↳ hover abilityScores.Charisma.skills.1.modifier: Without tweaks or effects: 0 → now 1 / +1 Charisma score · no reason given tweak
+  ↳ hover abilityScores.Charisma.skills.1.modifier: Without tweaks or effects: 0 → now 1 / +1 Charisma score · no reason given tweak / +1 CHA · Silver-Tongued feat (background feat)
+  ↳ hover abilityScores.Charisma.skills.1.modifier: Without tweaks or effects: 0 → now 1 / +1 Charisma score · no reason given tweak / +1 CHA · Silver-Tongued feat (background feat)
 (Not proficient) Investigation | INT | +4 | 14 | — |
 (Not proficient) Lore | INT | +4 | 14 | — |
 (Not proficient) Medicine | WIS | +1 | 11 | — |
 (Not proficient) Nature | INT | +4 | 14 | — |
 (Not proficient) Perception | WIS | +1 | 11 | — |
 (Not proficient) Performance | CHA | +1 | 11 | — |
-  ↳ hover abilityScores.Charisma.skills.2.modifier: Without tweaks or effects: 0 → now 1 / +1 Charisma score · no reason given tweak
-  ↳ hover abilityScores.Charisma.skills.2.modifier: Without tweaks or effects: 0 → now 1 / +1 Charisma score · no reason given tweak
+  ↳ hover abilityScores.Charisma.skills.2.modifier: Without tweaks or effects: 0 → now 1 / +1 Charisma score · no reason given tweak / +1 CHA · Silver-Tongued feat (background feat)
+  ↳ hover abilityScores.Charisma.skills.2.modifier: Without tweaks or effects: 0 → now 1 / +1 Charisma score · no reason given tweak / +1 CHA · Silver-Tongued feat (background feat)
 (Expertise) Persuasion | CHA | +5 | 15 | Expertise |
-  ↳ hover abilityScores.Charisma.skills.3.modifier: Without tweaks or effects: 0 → now 5 / +1 Charisma score · no reason given tweak / Expertise Persuasion · no rea… [313 chars #c4cae675]
-  ↳ hover abilityScores.Charisma.skills.3.modifier: Without tweaks or effects: 0 → now 5 / +1 Charisma score · no reason given tweak / Expertise Persuasion · no rea… [313 chars #c4cae675]
+  ↳ hover abilityScores.Charisma.skills.3.modifier: Without tweaks or effects: 0 → now 5 / +1 Charisma score · no reason given tweak / +1 CHA · Silver-Tongued feat … [362 chars #81d2f414]
+  ↳ hover abilityScores.Charisma.skills.3.modifier: Without tweaks or effects: 0 → now 5 / +1 Charisma score · no reason given tweak / +1 CHA · Silver-Tongued feat … [362 chars #81d2f414]
 (Not proficient) Piloting | INT | +4 | 14 | — |
 (Proficient) Sleight of Hand | DEX | +5 | 15 | Proficient |
   ↳ hover abilityScores.Dexterity.skills.1.modifier: Without tweaks or effects: 3 → now 5 / Proficient Sleight of Hand · no reason given tweak / proficient Sleight … [224 chars #d8edc073]
@@ -662,9 +665,6 @@ None chosen yet.
 Languages 0 / 1 One of your choice
 None chosen yet.
 [Choose a language… ▾]
-Silver-Tongued: +1 to 0 / 1 background feat
-None chosen yet.
-[Choose an ability… ▾]
 
 ## Sheet: Proficiencies & Languages
 Armor
@@ -800,4 +800,4 @@ SW5E's rules and item data: version 199, as it comes with the sheet. SW5E is the
 Raw SW5E character JSON
 { "name": "Scholar Test (Claude)", "image": "", "experiencePoints": 900, "species": { "name": "Bothan", "abilityScoreImprovementSelectedOption": 0, "abilityScor… [3253 chars #70438903]
 Computed character JSON (the sheet's rules engine)
-{ "name": "Scholar Test (Claude)", "builderVersion": "0.7.6", "image": "", "characteristics": { "Age": "", "Appearance": "", "Backstory": "Copy of a real charac… [18133 chars #01e15344]
+{ "name": "Scholar Test (Claude)", "builderVersion": "0.7.6", "image": "", "characteristics": { "Age": "", "Appearance": "", "Backstory": "Copy of a real charac… [18133 chars #5fa8bb8e]

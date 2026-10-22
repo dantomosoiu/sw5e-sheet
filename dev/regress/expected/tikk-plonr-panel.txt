@@ -165,6 +165,7 @@ effect: Engineer skill (3 of 6) · tweak
 effect: Engineer weapon proficiencies · feature
 effect: Bonus Proficiencies · feature
 effect: Techie · feature
+effect: Techie · feature
 effect: Pilot · feature
 effect: Armor (Fine) · item
 effect: Infuse Item: Blaster pistol · temporary · infuse · until the end of your next long rest
@@ -240,7 +241,7 @@ Tikk Plonr (Panel)
 Sullustan · Engineer (Armstech Engineering) 4
 Level 4 Background: Scientist Neutral Light Proficiency +2 [Add a picture]
 2,700 XP level 5 at 6,500 (3,800 to go)
-Still to choose (8): Engineer skills (3 more) · Engineer tool · Armstech Modifications (2 more) · background skills (2 more) · background tool · background languages · Techie: +1 · species language
+Still to choose (7): Engineer skills (3 more) · Engineer tool · Armstech Modifications (2 more) · background skills (2 more) · background tool · background languages · species language
 
 ## Sheet: Combat & Vitals
 Armor Class
@@ -281,9 +282,10 @@ Potent Aptitude 1d4
 Defenses & senses
 Senses Darkvision 60 ft
 Effects
-From class features (4)
+From class features, feats and species traits (5)
 Engineer weapon proficiencies Proficient: Simple blasters Proficient: simple vibroweapons Engineer proficiencies
 Bonus Proficiencies Proficient: martial blasters Proficient: martial vibroweapons armstech's implements: proficient Proficient: medium armor Armstech Engineering feature
+Techie INT +1 feat (background feat)
 Techie Technology: proficient feat
 Pilot Piloting: proficient Sullustan trait
 From equipment
@@ -752,9 +754,6 @@ None chosen yet.
 Languages 0 / 1 One of your choice
 None chosen yet.
 [Choose a language… ▾]
-Techie: +1 to 0 / 1 background feat
-None chosen yet.
-[Choose an ability… ▾]
 
 ## Sheet: Proficiencies & Languages
 Armor
