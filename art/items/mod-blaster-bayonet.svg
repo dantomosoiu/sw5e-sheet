@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <g transform="rotate(-45 32 32)">
+    <rect class="a-m a-o" x="4.6" y="27.4" width="3.6" height="10.2" rx="1.2"/>
+    <path class="a-x a-oo" d="M8 28h13.4v9H8z"/>
+    <path d="M8 28h13.4v9H8z" fill="url(#a-sheen)"/>
+    <path d="M8 28h13.4v9H8z" fill="url(#a-shade)"/>
+    <path class="a-d" d="M8.6 28.6h11v1.6h-11z"/>
+    <circle class="a-m a-o" cx="13" cy="33.6" r="1.6"/>
+    <path class="a-p" d="M16.4 31.2v5.4M18.4 31.2v5.4"/>
+    <path class="a-b a-oo" d="M24 28h27l10 5-6.4 3.2H24z"/>
+    <path d="M24 28h27l10 5-6.4 3.2H24z" fill="url(#a-sheen)"/>
+    <path class="a-m" d="M24 33.4h31L61 33l-6.4 3.2H24z"/>
+    <path class="a-o" fill="none" d="M24 28h27l10 5-6.4 3.2H24z"/>
+    <path class="a-d" d="M27 30.2h19l1 .8-1 .8H27z"/>
+    <rect class="a-m a-oo" x="21" y="21.6" width="4" height="18.4" rx="1"/>
+    <circle class="a-m a-oo" cx="23" cy="19.6" r="4.8"/>
+    <circle cx="23" cy="19.6" r="4.8" fill="url(#a-sheen)"/>
+    <circle class="a-d a-o" cx="23" cy="19.6" r="2.6"/>
+    <path class="a-l" d="M25 29.2h25.6M25.2 35.2h29M19.6 17a4 4 0 0 1 2.2-1.8"/>
+  </g>
+</svg>

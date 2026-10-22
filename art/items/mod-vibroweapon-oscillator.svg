@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <path class="a-m a-oo" fill-rule="evenodd" d="M25 38h14v6.6q0 1.4-1.4 1.4H26.4q-1.4 0-1.4-1.4zM28.4 41.4h7.2v2.2h-7.2z"/>
+  <rect class="a-m a-oo" x="8" y="22" width="48" height="12" rx="1"/>
+  <path class="a-g" filter="url(#a-glow)" d="M10.3 23h1.2v10h-1.2zM15.4 23h1.2v10h-1.2zM20.4 23h1.2v10h-1.2zM25.9 23h1.2v10h-1.2zM36.9 23h1.2v10h-1.2zM42.4 23h1.2v10h-1.2zM47.4 23h1.2v10h-1.2zM52.5 23h1.2v10h-1.2z"/>
+  <path class="a-g" d="M10.6 24h.6v8h-.6zM15.7 24h.6v8h-.6zM20.7 24h.6v8h-.6zM26.2 24h.6v8h-.6zM37.2 24h.6v8h-.6zM42.7 24h.6v8h-.6zM47.7 24h.6v8h-.6zM52.8 24h.6v8h-.6z"/>
+  <path class="a-b a-o" d="M12 17h3v22h-3zM17 17h3v22h-3zM22 17h3v22h-3zM39 17h3v22h-3zM44 17h3v22h-3zM49 17h3v22h-3z"/>
+  <path d="M12 17h3v22h-3zM17 17h3v22h-3zM22 17h3v22h-3zM39 17h3v22h-3zM44 17h3v22h-3zM49 17h3v22h-3z" fill="url(#a-sheen)"/>
+  <path d="M12 17h3v22h-3zM17 17h3v22h-3zM22 17h3v22h-3zM39 17h3v22h-3zM44 17h3v22h-3zM49 17h3v22h-3z" fill="url(#a-shade)"/>
+  <rect class="a-x a-oo" x="28" y="15.6" width="8" height="24.8" rx="1.2"/>
+  <rect x="28" y="15.6" width="8" height="24.8" rx="1.2" fill="url(#a-sheen)"/>
+  <path class="a-p" d="M28.4 20h7.2M28.4 36h7.2"/>
+  <circle class="a-g" cx="32" cy="28" r="1.8" filter="url(#a-glow)"/>
+  <circle class="a-g a-o" cx="32" cy="28" r="1.2"/>
+  <rect class="a-m a-oo" x="4.6" y="14" width="5" height="28" rx="1.2"/>
+  <rect class="a-m a-oo" x="54.4" y="14" width="5" height="28" rx="1.2"/>
+  <path d="M4.6 14h5v28h-5zM54.4 14h5v28h-5z" fill="url(#a-sheen)"/>
+  <path class="a-d" d="M6 17.6a1.1 1.1 0 1 0 2.2 0a1.1 1.1 0 1 0-2.2 0zM6 38.4a1.1 1.1 0 1 0 2.2 0a1.1 1.1 0 1 0-2.2 0zM55.8 17.6a1.1 1.1 0 1 0 2.2 0a1.1 1.1 0 1 0-2.2 0zM55.8 38.4a1.1 1.1 0 1 0 2.2 0a1.1 1.1 0 1 0-2.2 0z"/>
+  <path class="a-l" d="M5.8 15.4h2.6M12.6 18.2h1.8M17.6 18.2h1.8M22.6 18.2h1.8M29 16.8h6M39.6 18.2h1.8M44.6 18.2h1.8M49.6 18.2h1.8M55.6 15.4h2.6"/>
+</svg>

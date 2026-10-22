@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <path class="a-m a-o" d="M34 19.4h20V23H34z"/>
+  <path class="a-d" d="M36.4 19.4H38v1.8h-1.6zM40.4 19.4H42v1.8h-1.6zM44.4 19.4H46v1.8h-1.6zM48.4 19.4H50v1.8h-1.6z"/>
+  <path class="a-b a-oo" d="M28 23h26a2.6 2.6 0 0 1 2.6 2.6v8.8A2.6 2.6 0 0 1 54 37H28z"/>
+  <path d="M28 23h26a2.6 2.6 0 0 1 2.6 2.6v8.8A2.6 2.6 0 0 1 54 37H28z" fill="url(#a-sheen)"/>
+  <path d="M28 23h26a2.6 2.6 0 0 1 2.6 2.6v8.8A2.6 2.6 0 0 1 54 37H28z" fill="url(#a-shade)"/>
+  <rect class="a-x a-o" x="34" y="26.2" width="13.4" height="7.6" rx="1"/>
+  <circle class="a-m a-o" cx="51.2" cy="30" r="2.8"/>
+  <path class="a-d" d="M49.7 29.5h3v1h-3z"/>
+  <path class="a-m a-o" d="M14.6 12.2L6.2 9a1.6 1.6 0 0 0-1.2 3l9.6 3.4z"/>
+  <path class="a-m a-oo" d="M14.6 10.4h10.8v7.2H14.6z"/>
+  <path class="a-d" d="M19.5 10.4h1v7.2h-1z"/>
+  <circle class="a-m a-oo" cx="20" cy="30" r="14"/>
+  <circle cx="20" cy="30" r="14" fill="url(#a-sheen)"/>
+  <circle cx="20" cy="30" r="14" fill="url(#a-shade)"/>
+  <circle class="a-m a-o" cx="20" cy="30" r="8.4"/>
+  <path class="a-p" d="M20 21.6v1.6M20 36.8v1.6M11.6 30h1.6M26.8 30h1.6"/>
+  <circle class="a-d a-o" cx="20" cy="30" r="6.4"/>
+  <rect class="a-m a-o" x="15.6" y="41.2" width="8.8" height="5.6" rx="1.8"/>
+  <path class="a-p" d="M18.4 41.6v4.8M21.6 41.6v4.8"/>
+  <circle class="a-d" cx="20" cy="44" r=".8"/>
+  <circle class="a-d" cx="10.4" cy="35.6" r=".9"/>
+  <circle class="a-d" cx="29.6" cy="35.6" r=".9"/>
+  <path class="a-l" d="M8.6 24.6a12.4 12.4 0 0 1 5.2-6.2M34.6 24.2h19M15.4 11.5h3.4"/>
+</svg>

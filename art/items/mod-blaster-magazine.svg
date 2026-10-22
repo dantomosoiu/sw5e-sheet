@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <g transform="rotate(12 32 32)">
+    <path class="a-g" d="M28 4.6h2v1.4h-2zM34 4.6h2v1.4h-2z" filter="url(#a-glow)"/>
+    <path class="a-g a-o" d="M28 4.6h2v1.4h-2zM34 4.6h2v1.4h-2z"/>
+    <path class="a-m a-oo" d="M25 10V7.4l2-2h10l2 2V10z"/>
+    <rect class="a-b a-oo" x="22" y="9.4" width="20" height="31" rx="1.6"/>
+    <rect x="22" y="9.4" width="20" height="31" rx="1.6" fill="url(#a-sheen)"/>
+    <rect x="22" y="9.4" width="20" height="31" rx="1.6" fill="url(#a-shade)"/>
+    <path class="a-d" d="M22.6 13h2.2v4.6h-2.2z"/>
+    <rect class="a-s a-o" x="34" y="13" width="5" height="24" rx="1.2"/>
+    <path class="a-g" d="M35 14.4h3v2.6h-3zM35 18h3v2.6h-3zM35 21.6h3v2.6h-3zM35 25.2h3v2.6h-3zM35 28.8h3v2.6h-3zM35 32.4h3V35h-3z" filter="url(#a-glow)" opacity=".8"/>
+    <path class="a-g" d="M35 18h3v2.6h-3zM35 21.6h3v2.6h-3zM35 25.2h3v2.6h-3zM35 28.8h3v2.6h-3zM35 32.4h3V35h-3z"/>
+    <path class="a-s" d="M35 14.4h3v2.6h-3z"/>
+    <path class="a-p" d="M25.4 22h6.4M25.4 25h6.4M25.4 28h6.4M25.4 31h6.4"/>
+    <rect class="a-x a-oo" x="21" y="40" width="22" height="10" rx="1.2"/>
+    <path class="a-d" d="M24 43.6h16v1.2H24zM24 46.2h16v1.2H24z"/>
+    <rect class="a-m a-oo" x="20" y="49.4" width="24" height="5.4" rx="1.6"/>
+    <rect x="20" y="49.4" width="24" height="5.4" rx="1.6" fill="url(#a-shade)"/>
+    <path class="a-l" d="M23.4 10.6h17.2M22.4 41.2h19.6M21.4 50.6h21.2M23.2 18.6v19"/>
+  </g>
+</svg>

@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <path class="a-m a-oo" fill-rule="evenodd" d="M20.6 38h14v3q0 5-5 5h-4q-5 0-5-5zM23.6 38.6h8v2.2q0 2.8-2.8 2.8h-2.4q-2.8 0-2.8-2.8z"/>
+  <path class="a-d a-o" d="M27.4 38.4l.8 3.8h1.6l-.2-3.8z"/>
+  <rect class="a-m a-oo" x="4" y="26.2" width="6.4" height="10.6" rx="1"/>
+  <path class="a-p" d="M5.2 36.4l1-9.8M7.4 36.4l1-9.8"/>
+  <rect class="a-m a-oo" x="44.4" y="28.2" width="8" height="6.4" rx=".6"/>
+  <path class="a-b a-oo" d="M51.4 27h4.2v8.8h-4.2z"/>
+  <path class="a-d" d="M52.6 28.6h1.8v1.2h-1.8zM52.6 33h1.8v1.2h-1.8z"/>
+  <circle class="a-g" cx="56.2" cy="31.4" r="2" filter="url(#a-glow)"/>
+  <ellipse class="a-w" cx="56" cy="31.4" rx=".6" ry="1.6"/>
+  <path class="a-m a-oo" d="M34.4 25.8h9.6l2 2.2v6.8l-2 2.2h-9.6z"/>
+  <path d="M34.4 25.8h9.6l2 2.2v6.8l-2 2.2h-9.6z" fill="url(#a-sheen)"/>
+  <path class="a-d" d="M37.4 32.6a1 1 0 1 0 2 0a1 1 0 1 0-2 0zM40.6 32.6a1 1 0 1 0 2 0a1 1 0 1 0-2 0z"/>
+  <path class="a-m a-o" d="M40.6 25.8l.8-3h2l.6 3z"/>
+  <rect class="a-b a-oo" x="9" y="23.6" width="26" height="15.4" rx="1.6"/>
+  <rect x="9" y="23.6" width="26" height="15.4" rx="1.6" fill="url(#a-sheen)"/>
+  <rect x="9" y="23.6" width="26" height="15.4" rx="1.6" fill="url(#a-shade)"/>
+  <rect class="a-x a-o" x="12.8" y="23" width="5" height="16.6" rx=".8"/>
+  <rect class="a-s a-o" x="21" y="26.4" width="11" height="4.6" rx=".8"/>
+  <path class="a-g" d="M22 28h9v1.4h-9z" filter="url(#a-glow)"/>
+  <path class="a-g" d="M22.2 28.2h8.6v1h-8.6z"/>
+  <path class="a-p" d="M21 34.6h11M21 36.6h11"/>
+  <path class="a-l" d="M10.4 25h1.8M19 25h14.6M35.6 27.2h8M52.4 28.2h2.4"/>
+</svg>

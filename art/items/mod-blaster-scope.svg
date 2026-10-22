@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <path class="a-m a-oo" d="M16 41.5h30v3.2l-2.6 3H18.6L16 44.7z"/>
+  <path d="M16 41.5h30v3.2l-2.6 3H18.6L16 44.7z" fill="url(#a-shade)"/>
+  <path class="a-d" d="M19.6 45h22.8v1.2H19.6z"/>
+  <path class="a-m a-o" d="M16 42.6h-3a1.6 1.6 0 0 0 0 3.2h3z"/>
+  <rect class="a-c a-oo" x="4" y="21" width="4.4" height="14" rx="1.8"/>
+  <path class="a-b a-oo" d="M7.6 21.4h3.6l5 2.6v8l-5 2.6H7.6z"/>
+  <path d="M7.6 21.4h3.6l5 2.6v8l-5 2.6H7.6z" fill="url(#a-sheen)"/>
+  <rect class="a-b a-oo" x="15" y="23.5" width="30" height="9" rx="1"/>
+  <rect x="15" y="23.5" width="30" height="9" rx="1" fill="url(#a-sheen)"/>
+  <rect x="15" y="23.5" width="30" height="9" rx="1" fill="url(#a-shade)"/>
+  <path class="a-b a-oo" d="M44 23.5l6-3.5h7a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-7l-6-3.5z"/>
+  <path d="M44 23.5l6-3.5h7a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-7l-6-3.5z" fill="url(#a-sheen)"/>
+  <path d="M44 23.5l6-3.5h7a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-7l-6-3.5z" fill="url(#a-shade)"/>
+  <path class="a-p" d="M50 20.4v15.2"/>
+  <rect class="a-x a-o" x="37.8" y="23.5" width="6" height="9"/>
+  <path class="a-m a-o" d="M18.6 22.6h4.6v19.2h-4.6zM32 22.6h4.6v19.2H32z"/>
+  <circle class="a-d" cx="20.9" cy="38.6" r=".8"/>
+  <circle class="a-d" cx="34.3" cy="38.6" r=".8"/>
+  <rect class="a-m a-o" x="24.6" y="16.6" width="6.4" height="7.4" rx=".8"/>
+  <path class="a-p" d="M26.4 18.6v4.4M27.8 18.6v4.4M29.2 18.6v4.4"/>
+  <rect class="a-x a-o" x="24" y="14.4" width="7.6" height="3" rx="1"/>
+  <circle class="a-m a-o" cx="27.8" cy="28" r="2.8"/>
+  <circle class="a-d" cx="27.8" cy="28" r="1.1"/>
+  <ellipse class="a-s a-o" cx="56.6" cy="28" rx="2.2" ry="6.4"/>
+  <ellipse class="a-g" cx="56.8" cy="28" rx="1.1" ry="3.8" filter="url(#a-glow)" opacity=".8"/>
+  <circle class="a-w" cx="56.2" cy="25.4" r=".7"/>
+  <path class="a-l" d="M16.2 24.7h2M23.6 24.7h8M36.8 24.7h.4M45.4 22.4l4.8-2.8h6.4M8.6 22.6h2.6M25 15.5h6"/>
+</svg>

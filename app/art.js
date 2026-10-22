@@ -308,7 +308,7 @@ const ART_MOD_MARKS = [
   ['force', /ossus|byrothsis|ferricite|phobium|echo|krayt|channeling/],
   ['stealth', /silent|obscur|conceal|inconspic|disguis|stealth|clandestine|silencer|collapsible/],
   ['energy', /\bion\b|maser|disrupt|disintegr|burning|ghostfire|bright|lambent|gloom|corruption|biting|crystaliz|electrif|neuraliz|shocking|sonorous|venomous/],
-  ['absorb', /absor|mitigat|dispel|insulat|imperme|dampen|attenuat/], ['repel', /repel|reactive|avoidant|barbed|spiked|threaten/],
+  ['absorb', /absor|mitigat|dispel|insulat|imperme|dampen|attenuat|recoil/], ['repel', /repel|reactive|avoidant|barbed|spiked|threaten/],
   ['store', /stor|access|process|charg|recycl|linger|magazine/],
   ['speed', /quicken|surg|rapid|agile|lightweight|\blight\b|flexib|celerity|semiauto|responsive|quick|optimized|horizontal/],
   ['power', /brutal|mighty|heavy|vicious|dire|keen|piercing|siege|overload|powered|monomolecular|crippler|serrated|neutronium|staggering|gauntlet/],

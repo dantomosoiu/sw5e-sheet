@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <ellipse class="a-g" cx="32" cy="16" rx="27.4" ry="3.4" transform="rotate(-5 32 16)" opacity=".2"/>
+  <ellipse class="a-gl" cx="32" cy="16" rx="27.4" ry="3.4" transform="rotate(-5 32 16)" opacity=".55" style="stroke-width:.8"/>
+  <rect class="a-m a-oo" x="29" y="18" width="6" height="21"/>
+  <rect x="29" y="18" width="6" height="21" fill="url(#a-sheen)"/>
+  <rect class="a-b a-oo" x="20" y="37" width="25" height="12" rx="2"/>
+  <rect x="20" y="37" width="25" height="12" rx="2" fill="url(#a-sheen)"/>
+  <rect x="20" y="37" width="25" height="12" rx="2" fill="url(#a-shade)"/>
+  <path class="a-p" d="M27 37.4v11.2M38 37.4v11.2"/>
+  <ellipse class="a-m a-oo" cx="20" cy="43" rx="3" ry="6.6"/>
+  <ellipse class="a-d a-o" cx="19.8" cy="43" rx="1.8" ry="4.8"/>
+  <rect class="a-x a-o" x="28.2" y="25.6" width="7.6" height="5" rx=".8"/>
+  <rect class="a-b a-o" x="27.6" y="33.4" width="8.8" height="3.6" rx="1"/>
+  <path class="a-b a-oo" d="M26 14.8L6.6 17.2Q4.4 18.4 6.6 19.6L26 18.6zM38 14.2L57.4 12.2Q59.6 13.2 57.6 14.6L38 18z"/>
+  <path class="a-p" d="M26 16.8L6 18.4M38 16.2L58.4 13.4"/>
+  <ellipse class="a-b a-oo" cx="32" cy="16.6" rx="7" ry="3.8"/>
+  <ellipse cx="32" cy="16.6" rx="7" ry="3.8" fill="url(#a-sheen)"/>
+  <ellipse class="a-m a-o" cx="32" cy="14.8" rx="3.6" ry="2"/>
+  <circle class="a-g" cx="32" cy="14.6" r=".9" filter="url(#a-glow)"/>
+  <path class="a-l" d="M25 15.4L7.4 17.6M39 14.6L56.6 12.8M21.4 38.6h22M30.2 19v7"/>
+</svg>

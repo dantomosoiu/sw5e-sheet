@@ -128,6 +128,18 @@ record them again (new test characters, or to see whether sw5e.com's engine chan
    by made-up ones (it stops if it finds an e-mail address).
 3. `node dev/regress.js` shows what the new recording changes; `--update` accepts it.
 
+### What one change does
+```
+node dev/bump-check.js --list                                     # the recorded characters
+node dev/bump-check.js kadro-vos-panel --item "Strength Enhancer" --attune
+node dev/bump-check.js consular-test-local --feat "Tough" --js "raw.tweaks = {}"
+```
+Draws a recorded character, applies the change (a feat, an item carried, equipped or attuned, another species, or
+any JavaScript on the stored character), draws it again and prints the lines of the report that changed: the
+numbers, the effects and tweaks, the rolls and the hover explanation of each changed number. It is how to check that
+a feat, feature or item raises what it should, and nothing else, with the right reason. `--save NAME` keeps the
+changed character as a case, so a fixed bug stays fixed (`node dev/regress.js --update NAME` accepts its output).
+
 ## The rules engine
 `app/engine.js` computes a character from SW5E's character data and rules the way SW5E's engine does, quirks
 included (see [docs/engine.md](../docs/engine.md)). It is checked against SW5E's own results:
