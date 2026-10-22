@@ -185,7 +185,6 @@ tweak: speed.base +10 · Predator's Instinct
 tweak: abilityScores.Strength.skills.Athletics +0 {"proficiency":"Proficient"} · Brawny
 tweak: armorClass +3 · Hide
 tweak: abilityScores.Charisma.skills.Intimidation +0 {"proficiency":"Proficient"} · Menacing
-tweak: unarmed.damageDice +0 {"dieSize":4} · Claws
 weapon tweak: #0 toHit +1 · Weapon (Fine)
 weapon tweak: #0 damage +1 · Weapon (Fine)
 weapon tweak: #0 toHit +0 · Berserker weapon proficiencies

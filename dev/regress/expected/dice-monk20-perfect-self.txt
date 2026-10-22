@@ -1,0 +1,846 @@
+# Rakatan Test (local)
+
+## Sent to the rules engine
+The sheet's engine computes the numbers. OUT OF DATE: SW5E's recorded calculation is for an older version of this character; record the case again (dev/regress-record.js) for dev/engine-check.js.
+tweaks.abilityScores.Charisma.skills.Deception.bonus = 0
+tweaks.abilityScores.Charisma.skills.Deception.proficiency = "Proficient"
+tweaks.abilityScores.Dexterity.score.bonus = 2
+tweaks.abilityScores.Wisdom.score.bonus = 2
+tweaks.armorClass.bonus = 6
+tweaks.speed.base.bonus = 30
+equipped = []
+
+## Numbers (the rules engine, with the sheet's edits)
+currentLevel = 20
+classText = "Monk (Rakatan Order) 20"
+proficiencyBonus = 6
+initiative = 6
+armorClass = 22
+armorList = []
+passivePerception = 16
+vision = "normal"
+speed.base = "60 ft"
+speed.day = "48 miles"
+speed.hour = "6 miles"
+speed.special = ""
+hitPoints.hitDice[0].maximum = 20
+hitPoints.hitDice[0].size = "d8"
+hitPoints.maximum = 143
+abilityScores.Charisma.modifier = -1
+abilityScores.Charisma.savingThrow.modifier = -1
+abilityScores.Charisma.savingThrow.proficiency = "none"
+abilityScores.Charisma.skills[Deception].modifier = 5
+abilityScores.Charisma.skills[Deception].proficiency = "proficient"
+abilityScores.Charisma.skills[Intimidation].modifier = -1
+abilityScores.Charisma.skills[Intimidation].proficiency = "none"
+abilityScores.Charisma.skills[Performance].modifier = -1
+abilityScores.Charisma.skills[Performance].proficiency = "none"
+abilityScores.Charisma.skills[Persuasion].modifier = -1
+abilityScores.Charisma.skills[Persuasion].proficiency = "none"
+abilityScores.Charisma.value = 8
+abilityScores.Constitution.modifier = 2
+abilityScores.Constitution.savingThrow.modifier = 2
+abilityScores.Constitution.savingThrow.proficiency = "none"
+abilityScores.Constitution.skills = []
+abilityScores.Constitution.value = 14
+abilityScores.Dexterity.modifier = 6
+abilityScores.Dexterity.savingThrow.modifier = 12
+abilityScores.Dexterity.savingThrow.proficiency = "proficient"
+abilityScores.Dexterity.skills[Acrobatics].modifier = 6
+abilityScores.Dexterity.skills[Acrobatics].proficiency = "none"
+abilityScores.Dexterity.skills[Sleight of Hand].modifier = 6
+abilityScores.Dexterity.skills[Sleight of Hand].proficiency = "none"
+abilityScores.Dexterity.skills[Stealth].modifier = 6
+abilityScores.Dexterity.skills[Stealth].proficiency = "none"
+abilityScores.Dexterity.value = 22
+abilityScores.Intelligence.modifier = 2
+abilityScores.Intelligence.savingThrow.modifier = 2
+abilityScores.Intelligence.savingThrow.proficiency = "none"
+abilityScores.Intelligence.skills[Investigation].modifier = 2
+abilityScores.Intelligence.skills[Investigation].proficiency = "none"
+abilityScores.Intelligence.skills[Lore].modifier = 2
+abilityScores.Intelligence.skills[Lore].proficiency = "none"
+abilityScores.Intelligence.skills[Nature].modifier = 2
+abilityScores.Intelligence.skills[Nature].proficiency = "none"
+abilityScores.Intelligence.skills[Piloting].modifier = 2
+abilityScores.Intelligence.skills[Piloting].proficiency = "none"
+abilityScores.Intelligence.skills[Technology].modifier = 2
+abilityScores.Intelligence.skills[Technology].proficiency = "none"
+abilityScores.Intelligence.value = 14
+abilityScores.Strength.modifier = 0
+abilityScores.Strength.savingThrow.modifier = 6
+abilityScores.Strength.savingThrow.proficiency = "proficient"
+abilityScores.Strength.skills[Athletics].modifier = 0
+abilityScores.Strength.skills[Athletics].proficiency = "none"
+abilityScores.Strength.value = 10
+abilityScores.Wisdom.modifier = 6
+abilityScores.Wisdom.savingThrow.modifier = 6
+abilityScores.Wisdom.savingThrow.proficiency = "none"
+abilityScores.Wisdom.skills[Animal Handling].modifier = 6
+abilityScores.Wisdom.skills[Animal Handling].proficiency = "none"
+abilityScores.Wisdom.skills[Insight].modifier = 6
+abilityScores.Wisdom.skills[Insight].proficiency = "none"
+abilityScores.Wisdom.skills[Medicine].modifier = 6
+abilityScores.Wisdom.skills[Medicine].proficiency = "none"
+abilityScores.Wisdom.skills[Perception].modifier = 6
+abilityScores.Wisdom.skills[Perception].proficiency = "none"
+abilityScores.Wisdom.skills[Survival].modifier = 6
+abilityScores.Wisdom.skills[Survival].proficiency = "none"
+abilityScores.Wisdom.value = 22
+weapons[Unarmed Strike].ability = "Strength"
+weapons[Unarmed Strike].attackBonus = 6
+weapons[Unarmed Strike].damageBonus = 1
+weapons[Unarmed Strike].damageDieType = 0
+weapons[Unarmed Strike].damageNumberOfDice = 1
+weapons[Unarmed Strike].damageType = "Kinetic"
+weapons[Unarmed Strike].equipped = true
+weapons[Unarmed Strike].index = -1
+weapons[Unarmed Strike].isCustom = false
+weapons[Unarmed Strike].properties = []
+weapons[Unarmed Strike].quantity = 0
+weapons[Unarmed Strike].weaponClassification = "Unarmed"
+attunement.hasAttunable = false
+attunement.maximum = 6
+carryingCapacity.encumbered = 50
+carryingCapacity.heavilyEncumbered = 100
+carryingCapacity.maxCapacity = 150
+carryingCapacity.pushDragLift = 300
+superiority = false
+techCasting.attackModifier = 8
+techCasting.maxPoints = 2
+techCasting.maxPowerLevel = 0
+techCasting.pointsUsed = 0
+techCasting.saveDC = 16
+forceCasting = false
+proficiencies[Simple blasters].type = "weapon"
+proficiencies[simple vibroweapons].type = "weapon"
+proficiencies[martial vibroweapons that lack the dexterity].type = "weapon"
+proficiencies[heavy].type = "weapon"
+proficiencies[special].type = "weapon"
+proficiencies[and two-handed properties].type = "weapon"
+proficiencies[None].type = "armor"
+proficiencies[One type of gaming set].type = "tool"
+skillAndSaveProficiencies = ["Deception", "Strength Saving Throws", "Dexterity Saving Throws"]
+languages = ["Galactic Basic", "Galactic Basic"]
+experiencePoints.isCorrect = false
+experiencePoints.nextLevel = 355000
+experiencePoints.previousLevel = 355000
+conditions = []
+exhaustion = 0
+techCasting.powersKnown = [Encrypted Message, Absorb Energy]
+
+## Effects and tweaks
+effect: Monk weapon proficiencies · feature
+effect: Unarmored Defense · feature
+effect: Unarmored Movement · feature
+effect: Purity of Body · feature
+effect: Empty Body · feature
+effect: Perfect Self · feature
+effect: Silver-Tongued · feature
+effect: Human Versatility · feature
+tweak: armorClass +6 · Unarmored Defense
+tweak: speed.base +30 · Unarmored Movement
+tweak: abilityScores.Dexterity.score +2 · Perfect Self
+tweak: abilityScores.Wisdom.score +2 · Perfect Self
+tweak: abilityScores.Charisma.skills.Deception +0 {"proficiency":"Proficient"} · Silver-Tongued
+
+## Rolls
+init: Initiative: d20 +6 · = +6 modifier
+death: Death saving throw: d20 +0
+hitdie|d8: Hit die (d8): d8 +2 · = +2 per die
+dice|1d12: 1d12: d12 +0
+check|Strength: Strength check: d20 +0 · = +0 modifier
+save|Strength: Strength saving throw: d20 +6 · = +6 modifier
+skill|Strength|0: Athletics (STR): d20 +0 · = +0 modifier
+check|Dexterity: Dexterity check: d20 +6 · = +6 modifier
+save|Dexterity: Dexterity saving throw: d20 +12 · = +12 modifier
+skill|Dexterity|0: Acrobatics (DEX): d20 +6 · = +6 modifier
+skill|Dexterity|1: Sleight of Hand (DEX): d20 +6 · = +6 modifier
+skill|Dexterity|2: Stealth (DEX): d20 +6 · = +6 modifier
+check|Constitution: Constitution check: d20 +2 · = +2 modifier
+save|Constitution: Constitution saving throw: d20 +2 · = +2 modifier
+check|Intelligence: Intelligence check: d20 +2 · = +2 modifier
+save|Intelligence: Intelligence saving throw: d20 +2 · = +2 modifier
+skill|Intelligence|0: Investigation (INT): d20 +2 · = +2 modifier
+skill|Intelligence|1: Lore (INT): d20 +2 · = +2 modifier
+skill|Intelligence|2: Nature (INT): d20 +2 · = +2 modifier
+skill|Intelligence|3: Piloting (INT): d20 +2 · = +2 modifier
+skill|Intelligence|4: Technology (INT): d20 +2 · = +2 modifier
+check|Wisdom: Wisdom check: d20 +6 · = +6 modifier
+save|Wisdom: Wisdom saving throw: d20 +6 · = +6 modifier
+skill|Wisdom|0: Animal Handling (WIS): d20 +6 · = +6 modifier
+skill|Wisdom|1: Insight (WIS): d20 +6 · = +6 modifier
+skill|Wisdom|2: Medicine (WIS): d20 +6 · = +6 modifier
+skill|Wisdom|3: Perception (WIS): d20 +6 · = +6 modifier
+skill|Wisdom|4: Survival (WIS): d20 +6 · = +6 modifier
+check|Charisma: Charisma check: d20 −1 · = −1 modifier
+save|Charisma: Charisma saving throw: d20 −1 · = −1 modifier
+skill|Charisma|0: Deception (CHA): d20 +5 · = +5 modifier
+skill|Charisma|1: Intimidation (CHA): d20 −1 · = −1 modifier
+skill|Charisma|2: Performance (CHA): d20 −1 · = −1 modifier
+skill|Charisma|3: Persuasion (CHA): d20 −1 · = −1 modifier
+attack|0: Unarmed Strike attack: d20 +6 · = +6 modifier
+damage|0: Unarmed Strike damage: no dice +1 · = +1 unarmed strike · Kinetic
+pattack|Tech|12: Tech attack: d20 +12 · = +12 modifier
+tool|One type of gaming set|proficient: One type of gaming set check: d20 +8 · = +2 INT modifier +6 proficiency
+damage|0|crit: Unarmed Strike damage (critical): no dice +1 · = +1 unarmed strike · Kinetic · critical
+
+## Sheet: Overview
+Rakatan Test (local)
+Human · Monk (Rakatan Order) 20
+Level 20 Background: Noble Lawful Light Proficiency +6 [Add a picture]
+6,500 XP highest level
+Level 20 usually needs 355,000 XP (you have 6,500).
+Still to choose (14): Monk skills (2 more) · Monk 8th level: ability score improvement or feat · Monk 10th level: ability score improvement or feat · Monk 12th … [569 chars #cb1156ac]
+
+## Sheet: Combat & Vitals
+Armor Class
+22
+  ↳ hover armorClass: Without tweaks or effects: 15 → now 22 / +6 AC + WIS/CHA · Unarmored Defense Monk feature / +2 DEX · Perfect Self Monk feature
+Unarmored
+Hit Points
+143 / 143
+No temporary HP
+Initiative
++6
+  ↳ hover initiative: Without tweaks or effects: 5 → now 6 / +2 DEX · Perfect Self Monk feature
+Speed
+60 ft
+  ↳ hover speed.base: Without tweaks or effects: 30 ft → now 60 ft / +30 Speed · Unarmored Movement Monk feature
+6 miles/hour · 48 miles/day
+Proficiency
++6
+Passive Perception
+16
+  ↳ hover passivePerception: Without tweaks or effects: 15 → now 16 / +2 WIS · Perfect Self Monk feature
+Hit Dice
+20/20d8
++2 per die spent (Con)
+Vision
+Normal
+Play tracker
+[] [untyped ▾] [Damage] [Heal] [Temp HP]
+Death saves ✓ [] [] [] ✗ [] [] [] [Roll]
+Tech points 16 / 16 [−] [+]
+Hit dice (d8) roll d8 +2, then Heal 20 / 20 [−] [+]
+Focus short rest 20 / 20 [−] [+]
+Defiant short rest 1 / 1 [−] [+]
+Analyze (Rakatan Order Harmonious Rakatan) short rest 1 / 1 [−] [+]
+Start or end
+[Start Empty Body]
+Conditions None [Add a condition… ▾]
+Combat [Start combat]
+[☆ Inspiration] Exhaustion [−] 0 [+] [4th-level available]
+[Short rest] [Long rest]
+Class dice
+Martial Arts 1d12
+Defenses & senses
+Resistances Resistance to all damage
+Immunities Immune to disease and poison and resistant to poison damage
+Effects
+From class features (8)
+Monk weapon proficiencies Proficient: Simple blasters Proficient: simple vibroweapons Proficient: martial vibroweapons that lack the dexterity, heavy, special, and two-handed properties Monk proficiencies
+Unarmored Defense AC + WIS/CHA Monk feature
+Unarmored Movement Speed +30 ft Monk feature
+Purity of Body Immune to disease and poison and resistant to poison damage Monk feature
+Empty Body Resistance to all damage Monk feature
+Perfect Self DEX +2 WIS +2 Monk feature
+Silver-Tongued Deception: proficient feat
+Human Versatility Choose the skill/tool proficiencies Human trait
+Temporary
+No temporary effects.
+[]
+Your own effect (something the sheet doesn't know)…
+[] [] [No number (a reminder) ▾] [] [Add]
+It's applied like any effect (a dice bonus like Bless's d4 isn't a number: add it in the roller), and ends with End, a rest or Next round when it has run out.
+Bonuses are applied to the sheet's numbers in this browser only (not saved to SW5E); changed numbers are underlined: hover or tap them for details. Conditional … [256 chars #e163e104]
+Conditions
+None active (from SW5E)
+Carrying capacity
+Carried
+0 lb
+Unencumbered (variant rule)
+Encumbered at
+50 lb
+Heavily enc. at
+100 lb
+Max capacity
+150 lb
+Push / drag / lift
+300 lb
+
+## Sheet: Abilities & Saving Throws
+STR
+Strength
++0
+10
+(Proficient) Saving throw+6
+(Not proficient) Athletics+0
+base 10
+DEX
+Dexterity
++6
+  ↳ hover abilityScores.Dexterity.modifier: Without tweaks or effects: 5 → now 6 / +2 DEX · Perfect Self Monk feature
+22
+  ↳ hover abilityScores.Dexterity.value: Without tweaks or effects: 20 → now 22 / +2 DEX · Perfect Self Monk feature
+(Proficient) Saving throw+12
+  ↳ hover abilityScores.Dexterity.savingThrow.modifier: Without tweaks or effects: 11 → now 12 / +2 DEX · Perfect Self Monk feature
+(Not proficient) Acrobatics+6
+  ↳ hover abilityScores.Dexterity.skills.0.modifier: Without tweaks or effects: 5 → now 6 / +2 DEX · Perfect Self Monk feature
+(Not proficient) Sleight of Hand+6
+  ↳ hover abilityScores.Dexterity.skills.1.modifier: Without tweaks or effects: 5 → now 6 / +2 DEX · Perfect Self Monk feature
+(Not proficient) Stealth+6
+  ↳ hover abilityScores.Dexterity.skills.2.modifier: Without tweaks or effects: 5 → now 6 / +2 DEX · Perfect Self Monk feature
+base 20 · +2 ASI (Monk 4) · −2 other · +2 from Perfect Self (class feature)
+CON
+Constitution
++2
+14
+(Not proficient) Saving throw+2
+base 14
+INT
+Intelligence
++2
+14
+(Not proficient) Saving throw+2
+(Not proficient) Investigation+2
+(Not proficient) Lore+2
+(Not proficient) Nature+2
+(Not proficient) Piloting+2
+(Not proficient) Technology+2
+base 14
+WIS
+Wisdom
++6
+  ↳ hover abilityScores.Wisdom.modifier: Without tweaks or effects: 5 → now 6 / +2 WIS · Perfect Self Monk feature
+22
+  ↳ hover abilityScores.Wisdom.value: Without tweaks or effects: 20 → now 22 / +2 WIS · Perfect Self Monk feature
+(Not proficient) Saving throw+6
+  ↳ hover abilityScores.Wisdom.savingThrow.modifier: Without tweaks or effects: 5 → now 6 / +2 WIS · Perfect Self Monk feature
+(Not proficient) Animal Handling+6
+  ↳ hover abilityScores.Wisdom.skills.0.modifier: Without tweaks or effects: 5 → now 6 / +2 WIS · Perfect Self Monk feature
+(Not proficient) Insight+6
+  ↳ hover abilityScores.Wisdom.skills.1.modifier: Without tweaks or effects: 5 → now 6 / +2 WIS · Perfect Self Monk feature
+(Not proficient) Medicine+6
+  ↳ hover abilityScores.Wisdom.skills.2.modifier: Without tweaks or effects: 5 → now 6 / +2 WIS · Perfect Self Monk feature
+(Not proficient) Perception+6
+  ↳ hover abilityScores.Wisdom.skills.3.modifier: Without tweaks or effects: 5 → now 6 / +2 WIS · Perfect Self Monk feature
+(Not proficient) Survival+6
+  ↳ hover abilityScores.Wisdom.skills.4.modifier: Without tweaks or effects: 5 → now 6 / +2 WIS · Perfect Self Monk feature
+base 20 · +2 from Perfect Self (class feature)
+CHA
+Charisma
+−1
+8
+(Not proficient) Saving throw−1
+(Proficient) Deception+5
+  ↳ hover abilityScores.Charisma.skills.0.modifier: Without tweaks or effects: -1 → now 5 / proficient Deception: proficient · Silver-Tongued feat
+(Not proficient) Intimidation−1
+(Not proficient) Performance−1
+(Not proficient) Persuasion−1
+base 8
+not proficient proficient expertise
+
+## Sheet: Skills
+Skill | Ability | Bonus | Passive | Proficiency |
+(Not proficient) Acrobatics | DEX | +6 | 16 | — |
+  ↳ hover abilityScores.Dexterity.skills.0.modifier: Without tweaks or effects: 5 → now 6 / +2 DEX · Perfect Self Monk feature
+  ↳ hover abilityScores.Dexterity.skills.0.modifier: Without tweaks or effects: 5 → now 6 / +2 DEX · Perfect Self Monk feature
+(Not proficient) Animal Handling | WIS | +6 | 16 | — |
+  ↳ hover abilityScores.Wisdom.skills.0.modifier: Without tweaks or effects: 5 → now 6 / +2 WIS · Perfect Self Monk feature
+  ↳ hover abilityScores.Wisdom.skills.0.modifier: Without tweaks or effects: 5 → now 6 / +2 WIS · Perfect Self Monk feature
+(Not proficient) Athletics | STR | +0 | 10 | — |
+(Proficient) Deception | CHA | +5 | 15 | Proficient |
+  ↳ hover abilityScores.Charisma.skills.0.modifier: Without tweaks or effects: -1 → now 5 / proficient Deception: proficient · Silver-Tongued feat
+  ↳ hover abilityScores.Charisma.skills.0.modifier: Without tweaks or effects: -1 → now 5 / proficient Deception: proficient · Silver-Tongued feat
+(Not proficient) Insight | WIS | +6 | 16 | — |
+  ↳ hover abilityScores.Wisdom.skills.1.modifier: Without tweaks or effects: 5 → now 6 / +2 WIS · Perfect Self Monk feature
+  ↳ hover abilityScores.Wisdom.skills.1.modifier: Without tweaks or effects: 5 → now 6 / +2 WIS · Perfect Self Monk feature
+(Not proficient) Intimidation | CHA | −1 | 9 | — |
+(Not proficient) Investigation | INT | +2 | 12 | — |
+(Not proficient) Lore | INT | +2 | 12 | — |
+(Not proficient) Medicine | WIS | +6 | 16 | — |
+  ↳ hover abilityScores.Wisdom.skills.2.modifier: Without tweaks or effects: 5 → now 6 / +2 WIS · Perfect Self Monk feature
+  ↳ hover abilityScores.Wisdom.skills.2.modifier: Without tweaks or effects: 5 → now 6 / +2 WIS · Perfect Self Monk feature
+(Not proficient) Nature | INT | +2 | 12 | — |
+(Not proficient) Perception | WIS | +6 | 16 | — |
+  ↳ hover abilityScores.Wisdom.skills.3.modifier: Without tweaks or effects: 5 → now 6 / +2 WIS · Perfect Self Monk feature
+  ↳ hover abilityScores.Wisdom.skills.3.modifier: Without tweaks or effects: 5 → now 6 / +2 WIS · Perfect Self Monk feature
+(Not proficient) Performance | CHA | −1 | 9 | — |
+(Not proficient) Persuasion | CHA | −1 | 9 | — |
+(Not proficient) Piloting | INT | +2 | 12 | — |
+(Not proficient) Sleight of Hand | DEX | +6 | 16 | — |
+  ↳ hover abilityScores.Dexterity.skills.1.modifier: Without tweaks or effects: 5 → now 6 / +2 DEX · Perfect Self Monk feature
+  ↳ hover abilityScores.Dexterity.skills.1.modifier: Without tweaks or effects: 5 → now 6 / +2 DEX · Perfect Self Monk feature
+(Not proficient) Stealth | DEX | +6 | 16 | — |
+  ↳ hover abilityScores.Dexterity.skills.2.modifier: Without tweaks or effects: 5 → now 6 / +2 DEX · Perfect Self Monk feature
+  ↳ hover abilityScores.Dexterity.skills.2.modifier: Without tweaks or effects: 5 → now 6 / +2 DEX · Perfect Self Monk feature
+(Not proficient) Survival | WIS | +6 | 16 | — |
+  ↳ hover abilityScores.Wisdom.skills.4.modifier: Without tweaks or effects: 5 → now 6 / +2 WIS · Perfect Self Monk feature
+  ↳ hover abilityScores.Wisdom.skills.4.modifier: Without tweaks or effects: 5 → now 6 / +2 WIS · Perfect Self Monk feature
+(Not proficient) Technology | INT | +2 | 12 | — |
+
+## Sheet: Weapons & Attacks
+Weapon | To hit | Damage | Ability | Type | Properties |
+Unarmed Strike
+| +6 | 1 Kinetic | Strength | Unarmed | — |
+
+## Sheet: Tech Casting
+Tech points
+16 / 16
+Max power level
+4
+Save DC
+20
+WIS
+Attack
++12
+WIS
+4th-level: available
+Rakatan Order: SW5E's numbers don't follow the rules here, so points (table + the best of Intelligence/Wisdom/Charisma), DC and attack are worked out on this sheet.
+At-will powers (1)
+Encrypted Message Rakatan Order
+[Cast]
+Casting 1 action Range 120 feet Duration 1 round DC / attack 20 / +12 (WIS) Source PHB
+You point your finger toward a creature within range that possesses a commlink and whisper a message. The target (and only the target) hears the message and can… [279 chars #d9647152]
+You can cast this power through solid objects if you are familiar with the target and know it is beyond the barrier. 1 foot of stone, 1 inch of common metal, a … [322 chars #97726ed9]
+1st-level powers (2)
+Absorb Energy Rakatan Order
+[1st level · 2 points ▾] [Cast]
+Casting 1 reaction, which you take when you take acid, cold, energy, fire, ion, kinetic, lightning, or sonic damage Range Self Duration 1 round DC / attack 20 / +12 (WIS) Source PHB
+The power captures some of the incoming energy, lessening its effect on you and storing it for your next melee attack. You have resistance to the triggering dam… [352 chars #7492347e]
+Overcharge Tech. When you cast this power using a power slot of 2nd level or higher, the extra damage increases by 1d6 for each slot level above 1st.
+Analyze Rakatan Order Harmonious Rakatan Once per short rest cast only
+[Cast at 1st level (available)]
+Casting 1 minute Range Touch Duration Instantaneous DC / attack 20 / +12 (WIS) Source PHB
+You choose one object that you must touch throughout the casting of the power. If it is an enhanced or modified item, you learn its properties and how to use th… [380 chars #f07ac2a0]
+If you instead touch a creature throughout the casting, you learn what tech powers, if any, are currently affecting it.
+
+## Sheet: Class Features
+Monk (19)
+Martial Arts Level 1
+Monk: 1st level
+Your practice of martial arts gives you mastery of combat styles that use unarmed strikes and monk weapons, which are vibroweapons with which you are proficient… [228 chars #a326559f]
+You gain the following benefits while you are unarmed or wielding only monk weapons and you aren't wearing armor or wielding a shield:
+Your unarmed strikes and monk weapons gain the finesse property.
+You can roll a d4 in place of the normal damage of your unarmed strike or monk weapon. This die changes as you gain monk levels, as shown in the Martial Arts column of the monk table.
+You can use Dexterity instead of Strength whenever you would make a Strength (Athletics) check to grapple, shove, or trip a creature.
+When you use the Attack action with an unarmed strike or a monk weapon on your turn, you can make one unarmed strike as a bonus action.
+You can take the Dash or Disengage actions as a bonus action.
+> ##### Variant: Monks with Lightweapons
+> If monks gain lightweapon proficiency, consider letting them use lightweapons as monk weapons, provided the weapon lacks the dexterity, heavy, special, and two-handed properties.
+Notes []
+Unarmored Defense Level 1
+Monk: 1st level
+While you are wearing no armor and not wielding a shield, your AC equals 10 + your Dexterity modifier + your Wisdom or Charisma modifier (your choice).
+AC adds 0 / 1
+None chosen yet.
+[Choose an ability… ▾]
+Notes []
+Deflect Missiles Level 3
+Monk: 3rd level
+You can use your reaction to deflect a projectile when you are dealt damage by a ranged weapon attack. When you do so, the damage you take from the attack is reduced by 1d10 + your Dexterity modifier + your monk level.
+If you reduce the damage to 0, and the damage is kinetic, energy, or ion, you can redirect it at another target if you have a weapon capable of doing so. You ca… [427 chars #563d979b]
+Notes []
+Slow Fall Level 4
+Monk: 4th level
+You can use your reaction when you fall to reduce any falling damage you take by an amount equal to five times your monk level.
+Notes []
+Extra Attack Level 5
+Monk: 5th level
+You can attack twice, instead of once, whenever you take the Attack action on your turn.
+Notes []
+Stunning Strike Level 5
+Monk: 5th level
+You can interfere with an opponent's body. When you hit another creature with a melee weapon attack, you can spend 1 focus point to attempt a stunning strike. T… [260 chars #691969a9]
+Notes []
+Enhanced Strikes Level 6
+Monk: 6th level
+Your unarmed strikes count as enhanced for the purpose of overcoming resistance and immunity to unenhanced attacks and damage.
+Notes []
+Evasion Level 7
+Monk: 7th level
+Your instinctive agility lets you dodge out of the way of certain area effects. When you are subjected to an effect that allows you to make a Dexterity saving t… [285 chars #20d6e8d7]
+Notes []
+Stillness of Mind Level 7
+Monk: 7th level
+You can use your action or bonus action to end one effect on yourself that is causing you to be charmed or frightened.
+Notes []
+Unarmored Movement Level 9
+Monk: 3rd and 9th level
+Your speed increases by 10 feet while you are not wearing armor or wielding a shield. This bonus increases when you reach certain monk levels, as shown in the Unarmored Movement column of the monk table.
+At 9th level, you gain the ability to move along vertical surfaces and across liquids on your turn without falling during the move.
+Notes []
+Focus Level 11
+Uses (back on a short or long rest) Focus Points column 20 / 20 [−] [+]
+Monk: 2nd and 11th level
+Your training allows you to harness the mystic energy of focus. Your access to this energy is represented by a number of focus points. Your monk level determine… [247 chars #943d02ad]
+You can spend these points to fuel various focus features. You start knowing three such features: Flurry of Blows, Patient Defense, and Step of the Wind. You learn more focus features as you gain levels in this class.
+When you spend a focus point, it is unavailable until you finish a short or long rest, at the end of which you draw all of your expended focus back into yoursel… [249 chars #a6e858b7]
+You use your choice of Wisdom or Charisma for your focus ability. You use the chosen ability modifier whenever a feature refers to your focus ability. Additiona… [283 chars #4ad9e3ac]
+Focus save DC = 8 + your proficiency bonus + your Wisdom or Charisma modifier (your choice)
+Focus attack modifier = your proficiency bonus + your Wisdom or Charisma modifier (your choice)
+Flurry of Blows
+When you make your Martial Arts bonus action attack, you can spend 1 focus point to make an additional unarmed strike (no action required). At 11th level, you c… [231 chars #1164fc8b]
+Patient Defense
+When you use your bonus action to Disengage, you can spend 1 focus point to also Dodge (no action required). At 11th level, you can instead spend 2 focus points… [236 chars #52380f7b]
+Step of the Wind
+When you use your bonus action to Dash, you can spend 1 focus point to double your jump distance for the turn. At 11th level, you can instead spend 2 focus poin… [329 chars #e4f69d49]
+Your choices []
+Purity of Body Level 13
+Monk: 13th level
+You are immune to disease and poison and resistant to poison damage.
+Notes []
+Diamond Soul Level 14
+Monk: 14th level
+Your mastery of focus grants you proficiency in all saving throws, and when you fail a saving throw, you can spend 1 focus point to reroll it, taking the new roll.
+Notes []
+Timeless Vessel Level 15
+Monk: 15th level
+Your focus sustains you so that you suffer none of the frailty of old age, and you can't be aged abnormally. You can still die of old age, however. Additionally… [261 chars #5309e16d]
+Notes []
+Monastic Order Level 17
+Monk: 3rd, 6th, 11th, and 17th level
+You commit yourself to one monastic order, which is detailed at the end of the class description.
+Chosen: Rakatan Order · change it in Classes & Progression
+Notes []
+Monastic Vows Level 17
+Monk: 2nd, 7th, 13th, and 17th level
+You've sworn two vows, as detailed at the end of the class description. You swear an additional vow at 7th, 13th, and 17th level.
+Not chosen yet · choose it in Classes & Progression
+Notes []
+Empty Body Level 18
+[Start Empty Body]
+Monk: 18th level
+You can use your action to spend 4 focus points to become invisible for 1 minute. During that time, you also have resistance to all damage but force damage.
+Notes []
+Ability Score Improvement Level 19
+Monk: 4th, 8th, 10th, 12th, 16th, and 19th level
+You can increase one ability score by 2, or you can increase two ability scores by 1. You can't increase an ability score above 20 using this feature.
+Notes []
+Perfect Self Level 20
+Monk: 20th level
+You've gained perfect control over your body. Your Dexterity and Wisdom or Charisma scores (your choice) increase by 2. Your maximum for those scores increases … [287 chars #7f9253d6]
++2 to 1 / 1
+Wisdom [×]
+Notes []
+Rakatan Order (archetype) (4)
+Techcasting Level 3
+Rakatan Order: 3rd level
+You have derived powers from schematics with the aid of your wristpad. See chapter 10 for the general rules of techcasting and chapter 12 for the tech powers list.
+Tech Powers Known
+You learn 3 tech powers of your choice, and you learn more at higher levels, as shown in the Tech Powers Known column of the Rakatan Order Techcasting table. Yo… [233 chars #0f943333]
+Tech Points
+You have a number of tech points equal to half of your monk level (rounded up), as shown in the Tech Points column of the Rakatan Order Techcasting table, + you… [340 chars #014b6114]
+Max Power Level
+Many tech powers can be overcharged, consuming more tech points to create a greater effect. You can overcharge these powers to a maximum level, which increases … [256 chars #db84f577]
+You may only cast tech powers at 4th-level once. You regain the ability to do so after a long rest.
+Techcasting Ability
+Intelligence, Wisdom, or Charisma is your techcasting ability for your tech powers (your choice). You use this ability whenever a power refers to your techcasti… [315 chars #db89836a]
+Tech save DC = 8 + your proficiency bonus + your techcasting ability modifer
+Tech attack modifier = your proficiency bonus + your techcasting ability modifer
+Techcasting Focus
+You use a wristpad (found in chapter 5) as a techcasting focus for your tech powers.
+Your choices []
+Focused Tech Level 6
+Rakatan Order: 6th level
+You can cast your tech powers using your focus points. When you do so, your maximum focus points are reduced by 1 until you complete a long rest.
+Additionally, when you use a Focus feature, you gain the following tech enhancements. Each effect costs 1 tech point.
+Flurry of Blows. When you hit with an attack with Flurry of Blows, you can deal an additional 1d8 damage of the same type.
+Rakatan Techcasting
+Level | Tech Powers Known | Tech Points | Max Power Level |
+3rd | 3 | 2 | 1st |
+4th | 4 | 2 | 1st |
+5th | 5 | 3 | 1st |
+6th | 6 | 3 | 1st |
+7th | 7 | 4 | 2nd |
+8th | 8 | 4 | 2nd |
+9th | 9 | 5 | 2nd |
+10th | 10 | 5 | 2nd |
+11th | 11 | 6 | 2nd |
+12th | 12 | 6 | 2nd |
+13th | 13 | 7 | 3rd |
+14th | 14 | 7 | 3rd |
+15th | 15 | 8 | 3rd |
+16th | 16 | 8 | 3rd |
+17th | 17 | 9 | 4th |
+18th | 18 | 9 | 4th |
+19th | 19 | 10 | 4th |
+20th | 20 | 10 | 4th |
+Patient Defense. While under the effects of your Patient Defense, when you are hit by an attack, you can use your reaction and roll your Martial Arts die to increase your AC against the attack.
+Step of the Wind. While under the effects of your Step of the Wind, you can become immune to the shocked condition, and have each slowed level only reduce your speed by 5 feet, unless it would reduce your speed to 0.
+Notes []
+Harmonious Rakatan Level 11
+Rakatan Order: 11th level
+You can use your Focus features using your tech points. When you do so, your maximum tech points are reduced by 1 until you complete a long rest.
+Additionally, you are constantly under the effects of the detect enhancement tech power. As an action, you can cast the analyze tech power without expending tec… [285 chars #659c5c06]
+Chosen: Analyze · change it in Classes & Progression
+Notes []
+Tech Mastery Level 17 from class text
+You learn and can cast one 5th-level tech power once per long rest without expending tech points.
+Not chosen yet · choose it in Classes & Progression
+Notes []
+Improvements and other choices (1)
+Operative Feat: Multiclass Improvement (Custom feat)
+You can add half your other chosen class's levels (rounded down) to your operative levels when determining your amount of Sneak Attack dice.
+
+## Sheet: Feats
+Choices from your feats
+Multiclass improvement 1 / 2 Feat: Multiclass Improvement (Custom feat)
+Each improvement adds the levels of the other class chosen with it.
+Operative needs: At least 3 levels in operative
+Operative: you have no levels in Operative
+Multiclass improvements need a second class
+Operative [×]
+[Monk]
+Prerequisite: At least 3 levels in operative
+You can add half your other chosen class's levels (rounded down) to your operative levels when determining your amount of Sneak Attack dice.
+[Choose a multiclass improvement… ▾]
+Read the options (9)
+Silver-Tongued Background (Noble)+ Charisma
+You develop your conversational skill to better deceive others. You gain the following benefits:
+Increase your Charisma score by 1, to a maximum of 20.
+You gain proficiency in the Deception skill. If you are already proficient in it, you instead gain expertise in it.
+When you take the Attack action, you can replace one attack with an attempt to deceive one humanoid you can see within 30 feet of you that can see and hear you.… [568 chars #4907558c]
+Multiclass Improvement Prereq: 4th level
+You've learned to blend the skills of your different classes. Choose two of the multiclass improvement options, detailed later in this chapter. You can take this feat multiple times.
+
+## Sheet: Classes & Progression
+Monk 20 Rakatan Order Starting class
+Hit die d8 Primary Dexterity Saves Strength, Dexterity HP by level 8 (max), 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5
+Unarmed combatant who uses focus to fuel abilities
+Ability score improvements
+ASI: Dexterity +2
+Skill proficiencies 0 / 2 Choose two from Acrobatics, Athletics, Insight, Lore, Perception, and Stealth
+None chosen yet.
+[Choose a skill… ▾]
+Archetype [Rakatan Order ▾]
+Read the options (13)
+Tech powers 2 / 20 Rakatan Order table · max power level 4
+Encrypted Message at-will [×]
+You point your finger toward a creature within range that possesses a commlink and whisper a message. The target (and only the target) hears the message and can… [279 chars #d9647152]
+You can cast this power through solid objects if you are familiar with the target and know it is beyond the barrier. 1 foot of stone, 1 inch of common metal, a … [322 chars #97726ed9]
+Absorb Energy 1st level [×]
+The power captures some of the incoming energy, lessening its effect on you and storing it for your next melee attack. You have resistance to the triggering dam… [352 chars #7492347e]
+Overcharge Tech. When you cast this power using a power slot of 2nd level or higher, the extra damage increases by 1d6 for each slot level above 1st.
+[Learn a tech power… ▾]
+Read the options (184)
+Monastic Vows 0 / 5 from the Monk table (“Monastic Vows”)
+None chosen yet.
+[Add from Monastic Vows… ▾]
+Read the options (18)
+Power given, once per long rest 1 / 1 Rakatan Order: Harmonious Rakatan
+Analyze from the feature
+You choose one object that you must touch throughout the casting of the power. If it is an enhanced or modified item, you learn its properties and how to use th… [380 chars #f07ac2a0]
+If you instead touch a creature throughout the casting, you learn what tech powers, if any, are currently affecting it.
+5th-level tech power (once per long rest) 0 / 1 Rakatan Order: Tech Mastery
+None chosen yet.
+[Choose a tech power… ▾]
+Read the options (15)
+Class table
+Proficiency Bonus
++6
+Features
+Perfect Self
+Martial Arts
+d12
+Focus Points
+20
+Monastic Vows
+5
+Unarmored Movement
++30 ft.
+| Proficiency Bonus | Features | Martial Arts | Focus Points | Monastic Vows | Unarmored Movement |
+Now (20th) | +6 | Perfect Self | d12 | 20 | 5 | +30 ft. |
+Armor None Weapons Simple blasters, simple vibroweapons, martial vibroweapons that lack the dexterity, heavy, special, and two-handed properties Tools None
+
+## Sheet: Species
+Size
+Medium
+Homeworld
+Coruscant
+Language
+Galactic Basic
+Average height
+4'8" +2d10"
+Average weight
+110 lb. x(2d4) lb.
+Skin
+Light to dark tones
+Hair
+Black, blond, orange, brown, gray to white (usually with age)
+Eyes
+Amber, blue, brown, gray, green, hazel, purple, or red
+Distinctions
+Biped with bilateral symmetry, opposable thumbs
+Traits (9)
+Ability Score Increase
+One ability score of your choice increases by 2, and two other ability scores of your choice increase by 1. Alternatively, four ability scores of your choice each increase by 1.
+Your choices []
+Age
+Humans reach adulthood in their late teens and live less than a century.
+Notes []
+Alignment
+Humans tend toward no particular alignment. The best and worst are found among them.
+Notes []
+Defiant
+Uses (back on a short or long rest) 1 / 1 [−] [+]
+Humans are known to be stubborn and often refuse to give up, even against the worst odds. When you or a creature you can see that can see and understand you mak… [374 chars #6fad59d8]
+Notes []
+Human Versatility
+You gain proficiency in one skill, one tool, and one weapon of your choice.
+Skill proficiency 0 / 1
+None chosen yet.
+[Choose a skill… ▾]
+Tool proficiency 0 / 1
+None chosen yet.
+[Choose a tool… ▾]
+Weapon proficiency 0 / 1
+None chosen yet.
+[Choose a weapon… ▾]
+Notes []
+Languages
+You can speak, read, and write Galactic Basic and one extra language of your choice. Humans typically learn the languages of other peoples they deal with, inclu… [346 chars #ff842958]
+Your choices []
+Proficiency
+You gain proficiency in one skill, one tool, and one weapon of your choice.
+Your choices []
+Size
+Humans vary widely in height and build, from barely 5 feet to well over 6 feet tall. Regardless of your position in that range, your size is Medium.
+Notes []
+Speed
+Your base walking speed is 30 feet.
+Notes []
+
+## Sheet: Background
+Skill proficiencies
+Choose two from Deception, Insight, Lore, and Persuasion
+Tool proficiencies
+One type of gaming set
+Languages
+One of your choice
+Starting equipment
+A set of fine clothes, a signet ring, a letter of pedigree, and a purse containing 250 cr
+Background feat
+Silver-Tongued
+Feature: Position of Privilege Background feature
+Thanks to your noble birth, people are inclined to think the best of you. You are welcome in high society, and people assume you have the right to be wherever y… [390 chars #064df76c]
+About this background
+You understand wealth, power, and privilege. You carry a noble title, and your family owns land, collects taxes, and wields significant political influence. You… [373 chars #12c34b19]
+Work with your GM to come up with an appropriate title and determine how much authority that title carries, as well as your family and their influence on you. I… [297 chars #a939cd75]
+What's your position in the family? Are you the heir to the head of the family or the head itself? Are you far down the line of succession? How does the head of… [246 chars #f0d70c9c]
+Does your family have a coat of arms you might wear, a signet ring, or particular colors?
+These details help establish your family and your title as features of the world of the campaign.
+Your choices
+Skill proficiencies 0 / 2 Choose two from Deception, Insight, Lore, and Persuasion
+None chosen yet.
+[Choose a skill… ▾]
+Tool proficiency 0 / 1 One type of gaming set
+None chosen yet.
+[Choose a tool… ▾]
+Languages 0 / 1 One of your choice
+None chosen yet.
+[Choose a language… ▾]
+Silver-Tongued: +1 to 0 / 1 background feat
+None chosen yet.
+[Choose an ability… ▾]
+
+## Sheet: Proficiencies & Languages
+Armor
+None
+Weapon
+Simple blasters simple vibroweapons martial vibroweapons that lack the dexterity heavy special and two-handed properties
+Tool
+One type of gaming set
+Skills & saves
+Deception Strength Saving Throws Dexterity Saving Throws
+Languages
+Galactic Basic
+✎ = custom proficiency added on the character.
+
+## Sheet: Equipment & Inventory
+Add an item
+[All items ▾] []
+Qty [1] [Add]
+2425 items from SW5E (data version 199). [Check for a newer list]
+Credits
+0 cr
+[] [] [Apply]
+Total weight
+0 lb
+of 150 lb max
+Attunement
+0 / 6
+Items
+0
+No equipment.
+
+## Sheet: Personality & Appearance
+Personality Traits
+—
+Ideal
+—
+Bond
+—
+Flaw
+—
+Details
+Alignment
+Lawful Light
+Gender
+—
+Place of Birth
+—
+Age
+—
+Height
+—
+Weight
+—
+Hair
+—
+Eyes
+—
+Skin
+—
+
+## Sheet: Backstory
+No backstory yet.
+
+## Sheet: Notes
+No notes yet.
+
+## Sheet: Settings, Tweaks & Data
+Tweaks (manual adjustments) 0
+From sw5e.com's editor or added here. Give each a reason (kept in this viewer and in backups); hovering or tapping a number they change shows it.
+No tweaks.
+[Add a tweak to… ▾] [add (+/−) ▾] [] [] [Add]
+Builder settings
+None
+Record
+Source
+Imported file
+Loaded
+10/16/2026, 9:53:39 PM
+Builder version
+0.7.6
+Validation
+All checks passed
+Local version history 3 / 25
+SW5E can lose saved characters, so every version seen here is kept in this browser. Compare a version with the character as it is now, or restore it (Undo puts it back).
+Backups (files you keep): this character never · [Back up this character]
+all characters never · [Back up all characters]
+10/16/2026, 9:53:39 PM latest
+Imported from file [Compare] [Restore] [Export]
+10/16/2026, 9:53:04 PM
+Imported from file [Compare] [Restore] [Export]
+10/16/2026, 9:52:36 PM
+Imported from file [Compare] [Restore] [Export]
+Rules engine
+The sheet computes the numbers itself, with SW5E's rules. A character on sw5e.com is checked against its calculation there on each Load.
+SW5E's rules and item data: version 199, as it comes with the sheet. SW5E is the work of Galiphile and the SW5E contributors: credits · the books.
+[Check with sw5e.com]
+Raw SW5E character JSON
+{ "name": "Rakatan Test (local)", "builderVersion": "0.7.6", "image": "", "experiencePoints": 6500, "species": { "name": "Human", "abilityScoreImprovementSelect… [1520 chars #a66a66be]
+Computed character JSON (the sheet's rules engine)
+{ "name": "Rakatan Test (local)", "builderVersion": "0.7.6", "image": "", "characteristics": { "alignment": "Lawful Light" }, "tweaks": { "abilityScores": { "Ch… [25310 chars #0dd0173b]

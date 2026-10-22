@@ -832,7 +832,7 @@ function buildModel(snap) {
   const edited = editedFields(snap.key);
   const raw = withEdits(snap.raw || {}, edited);
   const engine = engineCtx();
-  const fx = applyEffects(snap.key, raw, snap.complete || (engine && engineResult(engine, raw).complete) || {});
+  const fx = applyEffects(snap.key, raw, effectsBasis(snap, raw));
   // The sheet's own engine computes at once, with every edit and effect; without its data, sw5e.com does.
   const derive = !!engine || ENGINE_FIELDS.some((p) => p in edited) || fx.effects.length > 0;
   const fresh = engine ? engineDerived(snap.key, fx, engine) : derive ? freshComputed(snap.key, fx.raw) : null;
@@ -1651,6 +1651,7 @@ function featureEffects(key, editedRaw, complete) {
   // Cached: the same classes, notes, choices and rules give the same effects (this runs on every redraw).
   const sig = canonical([editedRaw.classes, editedRaw.featureNotes || null, editedRaw.featureChoices || null, editedRaw.background || null,
     editedRaw.customFeats || null, editedRaw.species || null, arr(editedRaw.equipment).map((it) => it.name), castingLevels(complete, editedRaw),
+    num(complete && complete.proficiencyBonus), // choice slots' "5 x your proficiency bonus"
     catalogIndex ? catalogIndex.size : 0]); // weapons are found through the catalog
   if (featureFxCache && featureFxCache.rules === state.rules && featureFxCache.sig === sig) return featureFxCache.out;
   const out = featureEffectsUncached(editedRaw).concat(choiceEffects(editedRaw, complete));
@@ -1901,15 +1902,41 @@ function applyEffects(key, editedRaw, complete) {
       .map((x) => (x.when && x.when.orLight && armor.armor && x.acBase ? { ...x, bonus: x.acBase - armor.lightBase } : x))
       .filter((x) => !(x.when && x.when.orLight && armor.armor && x.bonus <= 0)) } : e))
     .flatMap(expand);
-  // Ability scores before any tweak/effect: SW5E's baseline computation once there is one,
-  // until then the sheet's scores less their tweak bonuses.
-  const base = state.derived[key] && state.derived[key].base;
+  // Ability scores before any tweak/effect: the engine's calculation of the character as edited now, without them (a
+  // species changed a moment ago has its scores at once); without the engine's data, SW5E's baseline computation once
+  // there is one, until then the sheet's scores less their tweak bonuses.
+  const engine = engineCtx();
+  const base = (engine && engineResult(engine, stripTweaks(editedRaw)).complete) || (state.derived[key] && state.derived[key].base);
   const scores = Object.fromEntries(ABILITIES.map((a) => {
     if (base && base.abilityScores) return [a, num((base.abilityScores[a] || {}).value)];
     const tw = getPath(editedRaw.tweaks || {}, `abilityScores.${a}.score`) || {};
     return [a, num((((complete && complete.abilityScores) || {})[a] || {}).value) - num(tw.bonus)];
   }));
   const res = fxResolve(effects, scores);
+  // The final scores, as the engine will have them: a tweak's "set to" sets the score and effects add on top of it (a
+  // Strength stim on a Strength set by a tweak); the tweak's own bonus doesn't count then (SW5E ignores it).
+  const final = { ...scores };
+  const setByTweak = new Set();
+  for (const t of res.tweaks) {
+    const x = /^abilityScores\.(\w+)\.score$/.exec(t.path);
+    if (!x) continue;
+    if (t.fields && engHasOverride(t.fields)) { final[x[1]] = num(t.fields.override); setByTweak.add(x[1]); }
+    else if (!(setByTweak.has(x[1]) && t.effect.kind === 'tweak')) final[x[1]] = num(final[x[1]]) + num(t.bonus);
+  }
+  const modOf = (a) => Math.floor(((Number(final[a]) || 10) - 10) / 2);
+  // "AC equals 10 + your Dexterity modifier + your Wisdom or Charisma modifier": the modifier of the final score, after
+  // items, Perfect Self and temporary effects (fxResolve only knows the scores of the effects before it). The best AC
+  // formula is picked again with them.
+  const withMod = (t) => {
+    if (!t.mod.abilityMod) return t;
+    let b = (t.mod.lowest ? Math.min : Math.max)(...[].concat(t.mod.abilityMod).map(modOf));
+    if (t.mod.min != null) b = Math.max(b, t.mod.min);
+    return { ...t, bonus: b };
+  };
+  const formulas = res.tweaks.filter((t) => t.mod.acFormula).concat(arr(res.acAlternatives)).map(withMod);
+  const bestAc = formulas.reduce((a, b) => (!a || b.bonus > a.bonus ? b : a), null);
+  res.tweaks = res.tweaks.map((t) => (t.mod.acFormula ? bestAc : withMod(t)));
+  res.acAlternatives = formulas.filter((t) => t !== bestAc);
   // Weapon proficiencies from class lists and features: each carried weapon they describe.
   for (const e of effects) {
     for (const desc of arr(e.weapons)) {
@@ -1927,6 +1954,9 @@ function applyEffects(key, editedRaw, complete) {
   const seen = new Set();
   const once = (e) => !seen.has(e.id) && seen.add(e.id);
   const unarmed = arr(complete && complete.weapons).find((w) => w.name === 'Unarmed Strike');
+  // SW5E's unarmed die comes from a tweak alone (unarmed.damageDice): the tweaks as they are now, not a calculation that
+  // may still have one just removed.
+  const tweakDie = res.tweaks.filter((t) => t.path === 'unarmed.damageDice' && t.fields && t.fields.dieSize).reduce((d, t) => Math.max(d, num(t.fields.dieSize)), 0);
   // Steps from several features add up (Brawler Style and Mastery: 1 → d4 → d6).
   const stepping = effects.filter((x) => x.unarmedStep && once(x));
   // A species' natural weapons: "Your unarmed strikes deal 1d4 kinetic damage and have the finesse property".
@@ -1934,18 +1964,17 @@ function applyEffects(key, editedRaw, complete) {
   const natDie = natural.reduce((d, x) => Math.max(d, num(x.unarmedDie)), 0);
   const steps = [0, 4, 6, 8, 10, 12];
   if (stepping.length) {
-    const cur = Math.max(0, steps.indexOf(Math.max(num(unarmed && unarmed.damageDieType), natDie)));
+    const cur = Math.max(0, steps.indexOf(Math.max(tweakDie, natDie)));
     const die = steps[Math.min(steps.length - 1, cur + stepping.reduce((t, e) => t + num(e.unarmedStep), 0))];
     for (const e of stepping) res.tweaks.push({ path: 'unarmed.damageDice', bonus: 0, fields: { dieSize: die }, effect: e, mod: { path: 'unarmed.damageDice', label: `Unarmed die d${die}` } });
-  } else if (natDie > num(unarmed && unarmed.damageDieType)) {
+  } else if (natDie > tweakDie) {
     const e = natural.find((x) => num(x.unarmedDie) === natDie);
     res.tweaks.push({ path: 'unarmed.damageDice', bonus: 0, fields: { dieSize: natDie }, effect: e, mod: { path: 'unarmed.damageDice', label: `Unarmed die d${natDie}` } });
   }
   const fin = natural.find((x) => x.unarmedFinesse);
   if (fin && unarmed && unarmed.ability !== 'Dexterity') {
-    // From the scores with every effect and tweak (a belt that makes Strength 21 ends the gain), not the last calculation.
-    const score = (a) => num(scores[a]) + res.tweaks.filter((t) => t.path === `abilityScores.${a}.score`).reduce((s, t) => s + num(t.bonus), 0);
-    const mod = (a) => Math.floor((score(a) - 10) / 2);
+    // From the final scores (a belt that makes Strength 21 ends the gain), not the last calculation.
+    const mod = modOf;
     const ab = unarmed.ability || 'Strength';
     // SW5E's engine adds no negative modifier to unarmed damage (Strength −1: d4 + 0), but does to the attack.
     const gain = { 'unarmed.toHit': mod('Dexterity') - mod(ab), 'unarmed.damage': mod('Dexterity') - Math.max(0, mod(ab)) };
@@ -1969,21 +1998,30 @@ function applyEffects(key, editedRaw, complete) {
   }
   const baseRaw = stripTweaks(editedRaw);
   const out = { ...baseRaw, tweaks: {}, equipment: clone(baseRaw.equipment) };
+  // A number set by a tweak ("set to 16"): an effect's bonus adds on top of it (the engine would drop a bonus next to an
+  // override), except Armor Class, which a "set to" tweak fixes ("armor, shields and effects don't change it"): those
+  // effects are kept aside (setByTweak) so they aren't explained as applied.
+  const merged = (cur, t, fields) => (engHasOverride(cur) && t.effect.kind !== 'tweak' && num(t.bonus) && !engHasOverride(fields)
+    ? { ...cur, ...fields, override: num(cur.override) + num(t.bonus) }
+    : { ...cur, ...fields, bonus: num(cur.bonus) + num(t.bonus) });
+  const acSet = acSetByTweak(editedRaw) != null;
+  res.setByTweak = acSet ? res.tweaks.filter((t) => t.path === 'armorClass' && t.effect.kind !== 'tweak') : [];
+  res.tweaks = res.tweaks.filter((t) => !res.setByTweak.includes(t));
+  if (acSet) res.acAlternatives = [];
   for (const t of res.tweaks) {
     const cur = getPath(out.tweaks, t.path) || {};
     const fields = { ...(t.fields || {}) };
     // Proficiency never goes down (a feature's "proficient" doesn't undo a tweak's "expertise").
     if (fields.proficiency && PROF_RANK(cur.proficiency) > PROF_RANK(fields.proficiency)) delete fields.proficiency;
-    setDeep(out.tweaks, t.path, { ...cur, ...fields, bonus: num(cur.bonus) + num(t.bonus) });
+    setDeep(out.tweaks, t.path, merged(cur, t, fields));
   }
   for (const t of res.weaponTweaks) {
     const it = out.equipment[t.index];
     if (!it) continue;
     it.tweaks = { ...(it.tweaks || {}) };
-    const cur = it.tweaks[t.path] || {};
-    it.tweaks[t.path] = { ...cur, ...(t.fields || {}), bonus: num(cur.bonus) + num(t.bonus) };
+    it.tweaks[t.path] = merged(it.tweaks[t.path] || {}, t, { ...(t.fields || {}) });
   }
-  return { raw: out, baseRaw, ...res, effects };
+  return { raw: out, baseRaw, ...res, effects, scores: final };
 }
 
 // ------------------------------------------------------------- the sheet's own rules engine
@@ -2040,13 +2078,21 @@ function engineCheckOf(raw, sw5eComplete, ctx) {
   return { at: Date.now(), compared: r.compared, differences: r.differences.slice(0, 50), more: Math.max(0, r.differences.length - 50) };
 }
 
+/**
+ * The calculation effects are worked out against (proficiency bonus, skills, weapons): the engine's, of the character as
+ * edited now, when it has the data. SW5E's stored one (from the last Load) misses the sheet's own edits (a level added
+ * here), so it's used only without the engine.
+ */
+function effectsBasis(snap, raw) {
+  const engine = engineCtx();
+  return (engine && engineResult(engine, raw).complete) || snap.complete || {};
+}
 /** What the sheet is computed from: the edited character, and with effects applied. */
 function derivedInputs(key) {
   const snap = state.snapshots[key];
   const edited = editedFields(key);
   const raw = withEdits(snap.raw, edited);
-  const engine = engineCtx();
-  const fx = applyEffects(key, raw, snap.complete || (engine && engineResult(engine, raw).complete) || {});
+  const fx = applyEffects(key, raw, effectsBasis(snap, raw));
   return { raw, fx, needed: ENGINE_FIELDS.some((p) => p in edited) || fx.effects.length > 0 };
 }
 const needsDerived = (key) => !!state.snapshots[key] && derivedInputs(key).needed;
@@ -2849,6 +2895,7 @@ function effectRow(m, e) {
     const got = applied.filter((t) => t.mod === mod || (t.mod.path === mod.path && t.mod.label === mod.label));
     if (!e.active && e.kind === 'item') return chip(mod.label);
     if (!got.length && mod.when && !armorAllows(mod.when, armorState(m.raw))) return chip(`${mod.label}: not with armor on`);
+    if (!got.length && arr(m.fx.setByTweak).some((t) => t.effect.id === e.id && t.mod.path === mod.path)) return chip(`${mod.label}: AC is set by a tweak`);
     if (!got.length && mod.acFormula) return chip(`${mod.label}: another AC formula is better`);
     if (!got.length) return chip(`${mod.label}: no effect`, 'warn');
     const b = got.reduce((s, t) => s + t.bonus, 0);
@@ -2884,7 +2931,7 @@ async function effectCount(id) {
 
 /** Effects on the character: from items carried, and temporary ones (with "Add an effect"). */
 function renderEffects(m) {
-  const items = itemEffects(m.snap.key, m.raw, m.snap.complete || {});
+  const items = itemEffects(m.snap.key, m.raw, effectsBasis(m.snap, m.raw));
   const temps = tempEffects(m.snap.key);
   const on = items.filter((e) => e.active);
   const off = items.filter((e) => !e.active);
