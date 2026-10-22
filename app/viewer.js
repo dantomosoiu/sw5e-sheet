@@ -2263,7 +2263,11 @@ function applyEffects(key, editedRaw, complete) {
   keepAside();
   // Martial Arts (martialArtsOf): the unarmed strike's die and finesse like a species' natural weapons, while the armor
   // and shield allow it; the monk weapons' come after the weapon proficiencies, below.
-  const martial = martialArtsOf(editedRaw).filter((x) => !(x.ma.noArmor && armor.armor) && !(x.ma.noShield && armor.shield)).map((x) => {
+  // A feature that lifts the armor condition for named features ("Your Martial Arts and Unarmored Movement work while
+  // wearing light or medium armor", Vow of the Sentry: armorAllows) replaces Martial Arts' own.
+  const lifted = (name) => (effects.find((e) => e.armorAllows && arr(e.armorAllows.features).some((f) => String(f).toLowerCase() === String(name).toLowerCase())) || {}).armorAllows;
+  const martial = martialArtsOf(editedRaw).filter((x) => (lifted(x.name) ? armorAllows(lifted(x.name).when, armor)
+    : !(x.ma.noArmor && armor.armor) && !(x.ma.noShield && armor.shield))).map((x) => {
     const size = num(String((x.ma.column && classRow(editedRaw, x.k)[x.ma.column]) || x.ma.die).replace(/^\d*d/i, ''));
     const e = { id: x.id, kind: 'feature', name: x.name, why: `${x.k.name} feature`, target: 'self', mods: [], notes: [], unarmedDie: size, unarmedFinesse: x.ma.finesse };
     effects.push(e);
@@ -4616,10 +4620,18 @@ function renderCombat(m) {
         const ae = armorEffectsOf(m);
         // "Your speed is reduced by 10 unless your Strength score meets or exceeds the strength number": SW5E's speed has
         // it already (engSpeed), so it's named, not taken off again; Cumbersome and conditions come on top.
-        const strWhy = ae.speedWhy.filter((w) => /Strength \d+$/.test(w));
-        const extra = ae.speed + (strWhy.length ? 10 : 0);
-        const now = sp.factor === 1 && !extra ? '' : ` · <b class="bad-text">now ${Math.max(0, Math.floor((num(String(speed.base || '').replace(/\D/g, '')) + extra) * sp.factor))} ft</b> (${esc(sp.why.concat(ae.speedWhy.filter((w) => !strWhy.includes(w))).join(', '))})`;
-        return stat('Speed', bump(m, 'speed.base', esc(speed.base || '—')) + now, esc([strWhy.length ? `−10 ft (${strWhy.join(', ')})` : '', speed.hour && `${speed.hour}/hour`, speed.day && `${speed.day}/day`].filter(Boolean).join(' · ')));
+        // A trait that ignores heavy armor's Strength (Gank: ignoreArmorStrength) cancels it: nothing to name.
+        const strWhy = arr(m.effects).some((e) => e.ignoreArmorStrength) ? [] : ae.speedWhy.filter((w) => /Strength \d+$/.test(w));
+        const extra = ae.speed + (ae.speedWhy.some((w) => /Strength \d+$/.test(w)) ? 10 : 0);
+        // A state that says "Your speed is doubled" (Sovereign Protector) while it's on.
+        const dbl = m.snap ? tempEffects(m.snap.key).find((e) => arr(e.notes).some((n) => /\byour speed (?:is doubled|doubles)\b/i.test(n))) : null;
+        const factor = sp.factor * (dbl ? 2 : 0) || sp.factor;
+        const why = sp.why.concat(ae.speedWhy.filter((w) => !/Strength \d+$/.test(w)), dbl ? [`doubled: ${dbl.name}`] : []);
+        const now = factor === 1 && !extra ? '' : ` · <b class="${factor > 1 && !extra ? 'good-text' : 'bad-text'}">now ${Math.max(0, Math.floor((num(String(speed.base || '').replace(/\D/g, '')) + extra) * factor))} ft</b> (${esc(why.join(', '))})`;
+        // "Whether mounted or on foot, your travel pace is doubled" (Blurrg's Instinct).
+        const pace = featureTextsOf(m.raw).find((f) => /\byour travel pace is doubled\b/i.test(f.text));
+        const miles = (v) => (pace && v ? `${Math.round(num(String(v).replace(/[^\d.]/g, '')) * 2 * 100) / 100} miles` : v);
+        return stat('Speed', bump(m, 'speed.base', esc(speed.base || '—')) + now, esc([strWhy.length ? `−10 ft (${strWhy.join(', ')})` : '', speed.hour && `${miles(speed.hour)}/hour`, speed.day && `${miles(speed.day)}/day`, pace ? `travel pace ×2 (${pace.name})` : ''].filter(Boolean).join(' · ')));
       })()}
       ${stat('Proficiency', signed(c.proficiencyBonus))}
       ${stat('Passive Perception', bump(m, 'passivePerception', esc(c.passivePerception)))}

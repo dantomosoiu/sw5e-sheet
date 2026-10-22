@@ -226,7 +226,7 @@ Initiative
 +2
 Speed
 30 ft
-3 miles/hour · 24 miles/day
+6 miles/hour · 48 miles/day · travel pace ×2 (Blurrg's Instinct)
 Proficiency
 +3
 Passive Perception
