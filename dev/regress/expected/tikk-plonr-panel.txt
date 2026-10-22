@@ -221,7 +221,7 @@ skill|Charisma|3: Persuasion (CHA): d20 +0 · = +0 modifier · option: business 
 attack|0: Blaster pistol attack: d20 +5 · = +5 modifier · option: Close Call +1d4 (after a miss) +1d4
 damage|0: Blaster pistol damage: d6 +3 · = +2 DEX modifier +1 Infuse Item: Blaster pistol · Energy · note: Celerity Oscillator: Once per turn, when you deal damage with your modified weapon, your walking speed increases by 10 feet until the start of your next turn, and the damaged creature can't make opportunity attacks against you for the rest of your turn.
 attack|1: Unarmed Strike attack: d20 +1 · = +1 modifier
-damage|1: Unarmed Strike damage: no dice +1 · = +1 flat damage · Kinetic
+damage|1: Unarmed Strike damage: no dice +0 · = +1 unarmed strike −1 STR modifier · Kinetic
 tech: Tech attack: d20 +7 · = +7 modifier
 pdmg|tech|Detonator|0|0: Detonator: fire damage: d6 +0 · fire
 pdmg|tech|Detonator|0|1: Detonator: fire damage: d4 +0 · fire
@@ -233,7 +233,7 @@ pdmg|tech|Shocking Ray|2|0: Shocking Ray: ion damage: d4 d4 +0 · ion
 tool|One of your choice|proficient: One of your choice check: d20 +7 · = +5 INT modifier +2 proficiency
 tool|armstech's implements|proficient: armstech's implements check: d20 +7 · = +5 INT modifier +2 proficiency
 damage|0|crit: Blaster pistol damage (critical): d6 d6 +3 · = +2 DEX modifier +1 Infuse Item: Blaster pistol · Energy · critical · note: Celerity Oscillator: Once per turn, when you deal damage with your modified weapon, your walking speed increases by 10 feet until the start of your next turn, and the damaged creature can't make opportunity attacks against you for the rest of your turn.
-damage|1|crit: Unarmed Strike damage (critical): no dice +1 · = +1 flat damage · Kinetic · critical
+damage|1|crit: Unarmed Strike damage (critical): no dice +0 · = +1 unarmed strike −1 STR modifier · Kinetic · critical
 
 ## Sheet: Overview
 Tikk Plonr (Panel)

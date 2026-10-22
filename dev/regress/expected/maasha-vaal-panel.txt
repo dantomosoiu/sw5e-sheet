@@ -228,7 +228,7 @@ skill|Charisma|3: Persuasion (CHA): d20 +2 · = +2 modifier
 attack|0: Lightsaber attack: d20 +6 · = +6 modifier · two-handed: 2d4
 damage|0: Lightsaber damage: d6 +4 · = +4 STR modifier · Energy · option: Force-Empowered Strikes +1d8 +1d8 · option: Force-Empowered Strikes +2d8 +2d8
 attack|1: Unarmed Strike attack: d20 +6 · = +6 modifier
-damage|1: Unarmed Strike damage: no dice +6 · = +4 STR modifier +1 other (weapon, style…) +1 flat damage · Kinetic · option: Force-Empowered Strikes +1d8 +1d8 · option: Force-Empowered Strikes +2d8 +2d8
+damage|1: Unarmed Strike damage: no dice +5 · = +1 unarmed strike +4 STR modifier · Kinetic · option: Force-Empowered Strikes +1d8 +1d8 · option: Force-Empowered Strikes +2d8 +2d8
 force|light: Light force attack: d20 +5 · = +5 modifier
 force|dark: Dark force attack: d20 +2 · = +2 modifier
 force|universal: Universal force attack: d20 +5 · = +5 modifier
@@ -236,7 +236,7 @@ pdmg|force|Saber Reflect|0|0: Saber Reflect: damage reduction: d6 +0
 pdmg|force|Heal|1|0: Heal: healing: d8 +3 · = +3 casting modifier
 tool|Artificer's tools|proficient: Artificer's tools check: d20 +1 · = −1 INT modifier +2 proficiency
 damage|0|crit: Lightsaber damage (critical): d6 d6 +4 · = +4 STR modifier · Energy · critical · option: Force-Empowered Strikes +1d8 +1d8 · option: Force-Empowered Strikes +2d8 +2d8
-damage|1|crit: Unarmed Strike damage (critical): no dice +6 · = +4 STR modifier +1 other (weapon, style…) +1 flat damage · Kinetic · critical · option: Force-Empowered Strikes +1d8 +1d8 · option: Force-Empowered Strikes +2d8 +2d8
+damage|1|crit: Unarmed Strike damage (critical): no dice +5 · = +1 unarmed strike +4 STR modifier · Kinetic · critical · option: Force-Empowered Strikes +1d8 +1d8 · option: Force-Empowered Strikes +2d8 +2d8
 damage|0||two: Lightsaber damage (two-handed): d4 d4 +4 · = +4 STR modifier · Energy · option: Force-Empowered Strikes +1d8 +1d8 · option: Force-Empowered Strikes +2d8 +2d8
 
 ## Sheet: Overview

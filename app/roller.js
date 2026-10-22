@@ -225,9 +225,9 @@ function buildRoll(m, spec, opts = {}) {
       return {
         kind: 'dice', label: `${w.name} damage${vers ? ' (two-handed)' : ''}${crit ? ' (critical)' : ''}`, spec, crit,
         diceSpec: die > 0 ? Array.from({ length: n }, () => die) : [],
-        // The bonus by source ("+4 STR modifier + 2 Rage"); a weapon without dice deals its flat number.
-        base: (typeof damageParts === 'function' ? damageParts(m, w) : [{ label: 'damage bonus', value: num(w.damageBonus) + num(w.damageDieModifier) }])
-          .concat(die > 0 ? [] : [{ label: 'flat damage', value: n }]),
+        // The bonus by source ("+4 STR modifier + 2 Rage"). A weapon without dice deals its damage bonus alone: the
+        // unarmed strike's "1 + your Strength modifier" is already in it (as the weapons table shows it).
+        base: typeof damageParts === 'function' ? damageParts(m, w) : [{ label: 'damage bonus', value: num(w.damageBonus) + num(w.damageDieModifier) }],
         conds,
         damageType: w.damageType && w.damageType !== 'Unknown' ? w.damageType : '',
         minTotal: 0, // a penalty can't make damage negative

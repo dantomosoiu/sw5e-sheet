@@ -227,11 +227,11 @@ skill|Charisma|3: Persuasion (CHA): d20 +0 · = +0 modifier
 attack|0: Blaster pistol attack: d20 +6 · = +6 modifier · option: with Cryo Cell (Average) +1
 damage|0: Blaster pistol damage: d6 +4 · = +2 DEX modifier +1 tweak (Custom barrel) +1 Weapon (Fine) · Energy · option: with Cryo Cell (Average) +1
 attack|1: Unarmed Strike attack: d20 +9 · = +9 modifier
-damage|1: Unarmed Strike damage: no dice +8 · = +5 STR modifier +1 Handwraps (Fine) +1 other (weapon, style…) +1 flat damage · Kinetic
+damage|1: Unarmed Strike damage: no dice +7 · = +1 unarmed strike +5 STR modifier +1 Handwraps (Fine) · Kinetic
 tech: Tech attack: d20 +5 · = +5 modifier · option: melee tech attacks +1 · option: ranged tech attacks −1
 tool|One type of gaming set|proficient: One type of gaming set check: d20 +5 · = +2 INT modifier +3 proficiency
 damage|0|crit: Blaster pistol damage (critical): d6 d6 +4 · = +2 DEX modifier +1 tweak (Custom barrel) +1 Weapon (Fine) · Energy · critical · option: with Cryo Cell (Average) +1
-damage|1|crit: Unarmed Strike damage (critical): no dice +8 · = +5 STR modifier +1 Handwraps (Fine) +1 other (weapon, style…) +1 flat damage · Kinetic · critical
+damage|1|crit: Unarmed Strike damage (critical): no dice +7 · = +1 unarmed strike +5 STR modifier +1 Handwraps (Fine) · Kinetic · critical
 
 ## Sheet: Overview
 Edit Test (Claude)

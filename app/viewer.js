@@ -2539,8 +2539,13 @@ function damageParts(m, w) {
   if (m.stale || !m.fx) return one;
   const unarmed = w.name === 'Unarmed Strike';
   const ab = w.ability && ABBR[w.ability] ? num(((m.c.abilityScores || {})[w.ability] || {}).modifier) : 0;
-  // SW5E adds no negative Strength to unarmed damage.
-  const parts = [{ label: `${ABBR[w.ability] || ''} modifier`, value: unarmed ? Math.max(0, ab) : ab }];
+  const abLabel = `${ABBR[w.ability] || ''} modifier`;
+  // Unarmed strikes "do 1 + your Strength modifier kinetic damage" without a damage die, the die and Strength with
+  // one; SW5E never goes below 0 there.
+  const parts = !unarmed ? [{ label: abLabel, value: ab }]
+    : num(w.damageDieType) ? [{ label: abLabel, value: Math.max(0, ab) }]
+      : ab >= -1 ? [{ label: 'unarmed strike', value: 1 }, { label: abLabel, value: ab }]
+        : [{ label: `1 + ${abLabel} (at least 0)`, value: 0 }];
   const src = arr(m.fx.tweaks).filter((t) => t.path === (unarmed ? 'unarmed.damage' : 'weapon.damage'))
     .concat(unarmed ? [] : arr(m.fx.weaponTweaks).filter((t) => t.index === w.index && t.path === 'damage'));
   for (const t of src) if (num(t.bonus)) parts.push({ label: t.effect.kind === 'tweak' ? `tweak${t.effect.reason ? ` (${t.effect.reason})` : ''}` : t.effect.name, value: num(t.bonus) });

@@ -211,13 +211,13 @@ damage|0: Blaster rifle damage: d8 +5 · = +3 DEX modifier +2 Amplifying Barrel 
 attack|1: Vibrosword attack: d20 +4 · = +4 modifier · critical on 19–20 (Juyo Form) · option: Close Call +1d8 (after a miss) +1d8
 damage|1: Vibrosword damage: d6 d6 +1 · = +1 Blade Focus · Kinetic
 attack|2: Unarmed Strike attack: d20 +4 · = +4 modifier · critical on 19–20 (Juyo Form)
-damage|2: Unarmed Strike damage: no dice +2 · = +1 other (weapon, style…) +1 flat damage · Kinetic
+damage|2: Unarmed Strike damage: no dice +1 · = +1 unarmed strike · Kinetic
 tech: Tech attack: d20 +7 · = +7 modifier
 tool|One type of gaming set|proficient: One type of gaming set check: d20 +7 · = +3 INT modifier +4 proficiency
 tool|armstech's implements|proficient: armstech's implements check: d20 +7 · = +3 INT modifier +4 proficiency
 damage|0|crit: Blaster rifle damage (critical): d8 d8 +5 · = +3 DEX modifier +2 Amplifying Barrel · Energy · critical
 damage|1|crit: Vibrosword damage (critical): d6 d6 d6 d6 +1 · = +1 Blade Focus · Kinetic · critical
-damage|2|crit: Unarmed Strike damage (critical): no dice +2 · = +1 other (weapon, style…) +1 flat damage · Kinetic · critical
+damage|2|crit: Unarmed Strike damage (critical): no dice +1 · = +1 unarmed strike · Kinetic · critical
 
 ## Sheet: Overview
 Armstech Test (local)

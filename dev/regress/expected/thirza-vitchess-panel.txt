@@ -213,7 +213,7 @@ skill|Charisma|3: Persuasion (CHA): d20 +3 · = +3 modifier
 attack|0: Vibrostaff attack: d20 +1 · = +1 modifier · two-handed: 2d4
 damage|0: Vibrostaff damage: d6 −1 · = −1 STR modifier · Kinetic
 attack|1: Unarmed Strike attack: d20 +1 · = +1 modifier
-damage|1: Unarmed Strike damage: no dice +1 · = +1 flat damage · Kinetic
+damage|1: Unarmed Strike damage: no dice +0 · = +1 unarmed strike −1 STR modifier · Kinetic
 force|light: Light force attack: d20 +7 · = +7 modifier
 force|dark: Dark force attack: d20 +4 · = +4 modifier
 force|universal: Universal force attack: d20 +7 · = +7 modifier
@@ -224,7 +224,7 @@ pdmg|force|Heal|1|0: Heal: healing: d8 +5 · = +5 casting modifier
 pdmg|force|Force Throw|2|0: Force Throw: force damage: d8 d8 +0 · force
 tool|Two of your choice of artisan's implements, gaming sets, or musical instruments|proficient: Two of your choice of artisan's implements, gaming sets, or musical instruments check: d20 +2 · = +0 INT modifier +2 proficiency
 damage|0|crit: Vibrostaff damage (critical): d6 d6 −1 · = −1 STR modifier · Kinetic · critical
-damage|1|crit: Unarmed Strike damage (critical): no dice +1 · = +1 flat damage · Kinetic · critical
+damage|1|crit: Unarmed Strike damage (critical): no dice +0 · = +1 unarmed strike −1 STR modifier · Kinetic · critical
 damage|0||two: Vibrostaff damage (two-handed): d4 d4 −1 · = −1 STR modifier · Kinetic
 
 ## Sheet: Overview
