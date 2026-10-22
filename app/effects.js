@@ -352,7 +352,8 @@ function fxEquipLabel(item) {
  * (equipment index -> tweaks) when the effect has a weapon target.
  * Conditional mods aren't applied: they're returned in `conds`, for showing as alternatives.
  * Returns { tweaks: [{ path, bonus, effect, mod }], weaponTweaks: [{ index, path, bonus, effect, mod }],
- *           conds: [{ path, bonus, cond, ammo, weaponIndex, effect, mod }] }.
+ *           conds: [{ path, bonus, cond, ammo, weaponIndex, effect, mod }], acAlternatives,
+ *           twins: tweaks left out because the sheet applies what they were made for (fxTweakTwins) }.
  */
 function fxResolve(effects, baseScores) {
   // fields (override, proficiency, dieSize) are set as they are; bonuses add up.
@@ -360,7 +361,9 @@ function fxResolve(effects, baseScores) {
   const tweaks = [];
   const weaponTweaks = [];
   const conds = [];
+  const twins = fxTweakTwins(effects);
   for (const eff of effects) {
+    if (twins.some((t) => t.effect === eff)) continue;
     for (const mod of eff.mods || []) {
       if (mod.cond) {
         conds.push({ path: mod.path, bonus: mod.bonus, cond: mod.cond, ammo: mod.ammo || null,
@@ -395,9 +398,31 @@ function fxResolve(effects, baseScores) {
   // others are returned as acAlternatives (for saying which one was used).
   const formulas = tweaks.filter((t) => t.mod.acFormula);
   const best = formulas.reduce((a, b) => (!a || b.bonus > a.bonus ? b : a), null);
-  return { tweaks: tweaks.filter((t) => !t.mod.acFormula || t === best), weaponTweaks, conds, acAlternatives: formulas.filter((t) => t !== best) };
+  return { tweaks: tweaks.filter((t) => !t.mod.acFormula || t === best), weaponTweaks, conds, acAlternatives: formulas.filter((t) => t !== best), twins };
+}
+
+/**
+ * Tweaks made for something the sheet now applies by itself: the tweak's reason names a feature, trait or item
+ * whose effect changes the same number ("Zabrak Toughness: +1 HP per level (not applied by SW5E)" on the HP
+ * maximum, where the Toughness trait now adds it; "Wookiee Hide (13 + Dex) is 1 better…" on AC). Applied too, the
+ * number would count it twice, so such a tweak is left out unless the player keeps it (the tweak effect's `keep`).
+ * Only bonuses add up: a proficiency or a value set ("= 15") is the same set twice. [{ effect, by: [effect] }].
+ */
+function fxTweakTwins(effects) {
+  const words = (s) => String(s || '').toLowerCase().match(/[a-z']{4,}/g) || [];
+  const out = [];
+  for (const eff of effects) {
+    const mod = eff.kind === 'tweak' && !eff.keep && eff.reason && eff.target !== 'weapon' ? (eff.mods || [])[0] : null;
+    if (!mod || !Number(mod.bonus) || (mod.fields && mod.fields.override != null && mod.fields.override !== '')) continue;
+    const said = new Set(words(eff.reason));
+    const by = effects.filter((o, i) => o.kind !== 'tweak' && words(o.name).length && words(o.name).every((w) => said.has(w))
+      && (o.mods || []).some((x) => x.path === mod.path && !x.cond && (Number(x.bonus) || x.acFormula || x.abilityMod || x.set != null))
+      && effects.findIndex((y) => y.id === o.id) === i);
+    if (by.length) out.push({ effect: eff, by });
+  }
+  return out;
 }
 
 if (typeof module !== 'undefined') {
-  module.exports = { parseItemEffect, fxResolve, fxSentences, fxEquipLabel, fxTweakLeaves, fxTweakActive, fxTweakName, fxTweakValueText, FX_SKILLS, fxBonusMods, fxCondMods, fxListMods };
+  module.exports = { parseItemEffect, fxResolve, fxTweakTwins, fxSentences, fxEquipLabel, fxTweakLeaves, fxTweakActive, fxTweakName, fxTweakValueText, FX_SKILLS, fxBonusMods, fxCondMods, fxListMods };
 }

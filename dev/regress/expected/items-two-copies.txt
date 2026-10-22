@@ -15,7 +15,7 @@ tweaks.abilityScores.Wisdom.skills.Insight.bonus = 0
 tweaks.abilityScores.Wisdom.skills.Insight.proficiency = "Proficient"
 tweaks.abilityScores.Wisdom.skills.Perception.bonus = 0
 tweaks.abilityScores.Wisdom.skills.Perception.proficiency = "Proficient"
-tweaks.hitPoints.maximum.bonus = 8
+tweaks.hitPoints.maximum.bonus = 4
 tweaks.unarmed.damage.bonus = 5
 tweaks.unarmed.damageDice.bonus = 0
 tweaks.unarmed.damageDice.dieSize = 4
@@ -51,7 +51,7 @@ hitPoints.hitDice[0].maximum = 1
 hitPoints.hitDice[0].size = "d8"
 hitPoints.hitDice[1].maximum = 3
 hitPoints.hitDice[1].size = "d10"
-hitPoints.maximum = 47
+hitPoints.maximum = 43
 abilityScores.Charisma.modifier = 1
 abilityScores.Charisma.savingThrow.modifier = 1
 abilityScores.Charisma.savingThrow.proficiency = "none"
@@ -215,7 +215,6 @@ tweak: abilityScores.Wisdom.skills.Perception +0 {"proficiency":"Proficient"} ·
 tweak: abilityScores.Intelligence.skills.Piloting +0 {"proficiency":"Proficient"} · Soldier background skill
 tweak: abilityScores.Dexterity.score +1 · Weapon Expert feat: +1 Dexterity (builder has no choice for it)
 tweak: abilityScores.Dexterity.skills.Stealth +0 {"proficiency":"Proficient"} · Operative multiclass: any one skill (SW5E multiclassing table)
-tweak: hitPoints.maximum +4 · Zabrak Toughness: +1 HP per level (not applied by SW5E)
 tweak: unarmed.damageDice +0 {"override":4,"dieSize":4} · Zabrak Unarmed Combatant: 1d4, finesse
 tweak: weapon.damage +2 · Brute Force
 tweak: unarmed.damage +2 · Brute Force
@@ -301,8 +300,8 @@ Armor Class
 15
 Mesh armor
 Hit Points
-45 / 47
-  ↳ hover hitPoints.maximum: Without tweaks or effects: 39 → now 47 / +4 HP maximum · Zabrak Toughness: +1 HP per level (not applied by SW5E) tweak / +4 HP maximum · Toughness Zabrak trait
+41 / 43
+  ↳ hover hitPoints.maximum: Without tweaks or effects: 39 → now 43 / +4 HP maximum · Toughness Zabrak trait
 No temporary HP
 Initiative
 +3
@@ -967,7 +966,7 @@ Remarkable Athlete not applied by the sheet: initiative should be +4.
 Next level-up: SYNC TO SW5E FIRST, or the builder's new level is ignored on Load.
 
 ## Sheet: Settings, Tweaks & Data
-Tweaks (manual adjustments) 9 · 1 tweak may count twice
+Tweaks (manual adjustments) 9 · 1 tweak left out (the sheet applies it by itself)
 From sw5e.com's editor or added here. Give each a reason (kept in this viewer and in backups); hovering or tapping a number they change shows it.
 Stat | Adjustment | Reason | |
 Persuasion | Proficiency [Proficient ▾] Bonus [] | [Zabrak Coercive (chose Persuasion)] | [×] |
@@ -978,7 +977,7 @@ Piloting | Proficiency [Proficient ▾] Bonus [] | [Soldier background skill] | 
 Dexterity score | Bonus [1] Set to [] | [Weapon Expert feat: +1 Dexterity (builder has no choice for it)] | [×] |
 Stealth | Proficiency [Proficient ▾] Bonus [] | [Operative multiclass: any one skill (SW5E multiclassing table)] | [×] |
 HP maximum
-The sheet applies Toughness by itself now: with this tweak it counts twice. Remove the tweak (×) unless it's for something else.
+not applied The sheet applies Toughness (Zabrak trait) by itself now: with this tweak it would count twice, so the tweak is left out. Remove it (×), or [apply it anyway] if it's for something else.
 | Bonus [4] Set to [] | [Zabrak Toughness: +1 HP per level (not applied by SW5E)] | [×] |
 Unarmed: damage die | Die [4] | [Zabrak Unarmed Combatant: 1d4, finesse] | [×] |
 [Add a tweak to… ▾] [add (+/−) ▾] [] [] [Add]
@@ -1021,4 +1020,4 @@ SW5E's rules and item data: version 199, as it comes with the sheet. SW5E is the
 Raw SW5E character JSON
 { "name": "Kadro Vos (Panel)", "id": "00000000-0000-4000-8000-000008000001", "userId": "00000000-0000-4000-8000-000008000002", "builderVersion": "0.7.6", "image… [8220 chars #4fe1ad72]
 Computed character JSON (the sheet's rules engine)
-{ "name": "Kadro Vos (Panel)", "builderVersion": "0.7.6", "image": "", "characteristics": { "Age": "29", "Appearance": "", "Backstory": "", "Bond": "My old squa… [31836 chars #ae544cda]
+{ "name": "Kadro Vos (Panel)", "builderVersion": "0.7.6", "image": "", "characteristics": { "Age": "29", "Appearance": "", "Backstory": "", "Bond": "My old squa… [31836 chars #f71aa8bb]
