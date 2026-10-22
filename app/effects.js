@@ -342,6 +342,12 @@ function parseItemEffect(item) {
       ctx.unarmedDie = Number(m[2]);
       ctx.notes.push(`Unarmed strikes${/with this/i.test(m[0]) ? ' with it' : ''}: ${m[1]}d${m[2]} ${m[3].toLowerCase()} damage.`);
     }
+    // "One ability score other than Charisma (chosen by the GM) decreases by 1" (enhancements, augments, packages): the
+    // GM's pick is asked for (itemEffects reads it from the item's note).
+    if ((m = new RegExp(`\\bone ability score \\(?other than ${ABIL_RE}\\)? (?:\\(chosen by the [GD]M\\)|that is chosen by the [GD]M[^.]*?) decreases by (\\d+)`, 'i').exec(s))) {
+      ctx.sideEffect = { except: fxAbility(m[1]), by: Number(m[2]) };
+      continue;
+    }
     // Ability scores: "your/the target's Strength score increases by 2, to a maximum of 20" /
     // "…, and your maximum for this score increases by 2" / "your Strength score becomes 19".
     for (const am of s.matchAll(new RegExp(`\\b${ABIL_RE} score (?:increases|is increased) by (\\d+)(?:, to a maximum of (\\d+))?(,? and (?:your|its|their) maximum for this score (?:increases|is increased) by (\\d+))?`, 'gi'))) {
@@ -447,7 +453,7 @@ function parseItemEffect(item) {
     heals: /regains? [^.]*hit points|temporary hit points/i.test(text),
     ...(riders.length ? { riders } : {}), ...(darkvisionPlus ? { darkvisionPlus } : {}), ...(ctx.keen ? { keen: ctx.keen } : {}),
     ...(ctx.halfProfChecks ? { halfProfChecks: ctx.halfProfChecks } : {}), ...(ctx.unarmedDie ? { unarmedDie: ctx.unarmedDie } : {}),
-    ...(freeAttune ? { freeAttune } : {}),
+    ...(freeAttune ? { freeAttune } : {}), ...(ctx.sideEffect ? { sideEffect: ctx.sideEffect } : {}),
   };
 }
 

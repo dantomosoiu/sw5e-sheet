@@ -1656,6 +1656,13 @@ function itemEffects(key, editedRaw, complete) {
     const setMet = (names) => arr(names).every((n) => equipment.some((x) => x.attuned && invSameName(x.name, n)));
     const setPending = mods.filter((x) => x.requires && !setMet(x.requires));
     for (const x of setPending) mods.splice(mods.indexOf(x), 1);
+    // "One ability score other than Charisma (chosen by the GM) decreases by 1": the score the item's note names.
+    const needs = [];
+    if (fx.sideEffect) {
+      const a = clsNoteNames(it.notes).abilities.find((x) => x !== fx.sideEffect.except);
+      if (a) mods.push({ path: `abilityScores.${a}.score`, bonus: -fx.sideEffect.by, label: `${a.slice(0, 3).toUpperCase()} −${fx.sideEffect.by} (side effect)` });
+      else needs.push(`the score the GM lowers by ${fx.sideEffect.by} (not ${fx.sideEffect.except})`);
+    }
     // Proficiencies and always-on advantages in the item's text, read as a feature's are (classes.js), with a choice it
     // asks for ("proficiency in one blaster or vibroweapon of your choice") written in the item's note.
     const fe = itemFeatureEffects(ref, it.notes);
@@ -1675,7 +1682,8 @@ function itemEffects(key, editedRaw, complete) {
       why: fx.activation === 'carry' ? 'when you fire it' : fx.activation === 'attune' ? (active ? 'while attuned' : 'needs attunement') : (active ? `while ${how}` : `needs to be ${how}`),
       weaponName, weaponIndex, linked: linked >= 0,
       ...(keen ? { critRange: keen, critWeapons: [weaponIndex] } : {}),
-      ...(fe ? { weapons: fe.profs.weapons, tools: fe.profs.tools, armor: fe.profs.armor, advantage: fe.advantage, needsChoice: fe.needsChoice } : {}),
+      ...(fe ? { weapons: fe.profs.weapons, tools: fe.profs.tools, armor: fe.profs.armor, advantage: fe.advantage } : {}),
+      needsChoice: (fe ? fe.needsChoice : []).concat(needs),
       setPending, freeAttune: !!fx.freeAttune && !!it.attuned && setMet(fx.freeAttune),
     });
   });
