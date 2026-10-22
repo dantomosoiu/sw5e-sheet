@@ -4211,10 +4211,21 @@ function renderAddItem(m) {
 function addSuggestions() {
   const d = state.addDraft || ADD_DEFAULTS;
   const q = String(d.name).trim();
-  if (!q || !state.catalog || (catalogIndex && catalogIndex.has(q)) || packByName(q)) return [];
-  return invSearch(state.catalog.items.concat(equipmentPacks()), q,
-    (it) => inAddCat(it, d.cat) && (d.cat !== 'enhanced' || ((!d.etype || it.type === d.etype) && invRarityAtLeast(it, d.rarity))));
+  const keep = (it) => inAddCat(it, d.cat) && (d.cat !== 'enhanced' || ((!d.etype || it.type === d.etype) && invRarityAtLeast(it, d.rarity)));
+  if (!state.catalog || (q && ((catalogIndex && catalogIndex.has(q)) || packByName(q)))) return [];
+  // An empty box in a category other than All items (while it has the focus): the whole category, by name.
+  if (!q) return d.cat !== 'all' && d.browse ? state.catalog.items.concat(equipmentPacks()).filter(keep).sort((a, b) => a.name.localeCompare(b.name)) : [];
+  return invSearch(state.catalog.items.concat(equipmentPacks()), q, keep);
 }
+/**
+ * The suggestions shown: the best few for what's typed; a whole category when browsing it, the list scrolling and
+ * growing as it's scrolled (or arrowed) to its end (ADD_BROWSE_STEP rows at a time keeps 1900 enhanced items fast).
+ */
+const ADD_BROWSE_STEP = 120;
+const addShown = (hits) => {
+  const d = state.addDraft || ADD_DEFAULTS;
+  return String(d.name).trim() ? hits.slice(0, SUGGEST_MAX) : hits.slice(0, Math.max(ADD_BROWSE_STEP, num(d.browseN)));
+};
 function renderAddSuggestions() {
   if (!state.catalog) {
     const d = state.addDraft || ADD_DEFAULTS;
@@ -4228,11 +4239,12 @@ function renderAddSuggestions() {
   const known = (catalogIndex && catalogIndex.has(typed)) || packByName(typed);
   const asCustom = typed && !known && !d0.custom ? `<button type="button" class="sugg-item sugg-custom" data-act="add-custom"><span>Add “${esc(typed)}” as a custom item</span><span class="faint">your own: weight, cost, description</span></button>` : '';
   if (!hits.length) return typed && !known && !d0.custom ? `<div class="sugg"><span class="faint">No SW5E item matches.</span>${asCustom}</div>` : '';
-  const hi = clamp(num(d0.hi), 0, Math.min(hits.length, SUGGEST_MAX) - 1);
+  const shown = addShown(hits);
+  const hi = clamp(num(d0.hi), 0, shown.length - 1);
   const price = (it) => (it.pack ? it.cost : !isEnhanced(it) ? priceOf(it) : 0);
-  return `<div class="sugg" role="listbox">${hits.slice(0, SUGGEST_MAX).map((it, i) => `<button type="button" class="sugg-item${i === hi ? ' hi' : ''}" role="option" aria-selected="${i === hi}"
+  return `<div class="sugg" role="listbox">${typed ? '' : `<div class="faint sugg-more">${plural(hits.length, 'item')} in ${esc(ADD_CATS[d0.cat] || d0.cat)}: type to narrow it down</div>`}${shown.map((it, i) => `<button type="button" class="sugg-item${i === hi ? ' hi' : ''}" role="option" aria-selected="${i === hi}"
       data-act="add-pick" data-arg="${esc(it.name)}"><span class="sugg-name">${it.pack ? '' : itemTile(it, 'sm', '', { inert: true })}${esc(it.name)}</span><span class="faint">${esc([itemKind(it), price(it) ? `${fmtNum(price(it))} cr` : ''].filter(Boolean).join(' · '))}</span></button>`).join('')}
-    ${hits.length > SUGGEST_MAX ? `<div class="faint sugg-more">${hits.length - SUGGEST_MAX} more; keep typing to narrow it down</div>` : ''}${asCustom}</div>`;
+    ${hits.length > shown.length ? `<div class="faint sugg-more">${hits.length - shown.length} more; ${typed ? 'keep typing to narrow it down' : 'scroll for more, or type to narrow it down'}</div>` : ''}${asCustom}</div>`;
 }
 function pickAddItem(name) {
   const d = state.addDraft || (state.addDraft = { ...ADD_DEFAULTS });
@@ -4259,7 +4271,7 @@ function renderAddDetail(m) {
   const payRow = `<label class="add-pay"><input type="checkbox" data-add="pay"${d.pay ? ' checked' : ''}> Pay
       <input data-add="price" type="text" inputmode="numeric" value="${esc(addPrice(d, price, qty))}" aria-label="Price paid"> cr</label>
       <label class="add-disc">less <input data-add="disc" type="text" inputmode="numeric" value="${esc(d.disc)}" placeholder="0" aria-label="Discount in percent">%</label>
-      <label class="add-from">from <input data-add="from" type="text" value="${esc(d.from)}" placeholder="seller (optional)" aria-label="Who you buy it from"></label>
+      <label class="add-from">from <input data-add="from" type="text" value="${esc(d.from)}" placeholder="seller / loot source (optional)" aria-label="Who you buy it from, or where you found it"></label>
       <span class="faint">have ${fmtNum(num(m.raw.credits))} cr${price ? ` · standard price ${fmtNum(price)} cr${pack ? '' : ' each'}` : ''}</span>`;
   if (pack) {
     const contents = prPackContents(pack.text, state.catalog ? state.catalog.items : []);
@@ -8641,6 +8653,8 @@ function wireUi() {
         const pr = $('[data-add="price"]');
         if (pr) pr.value = addPrice(d, unit, Math.max(1, parseInt(d.qty, 10) || 1));
       }
+      // Another category: its list from the top.
+      if (['cat', 'etype', 'rarity'].includes(addKey)) Object.assign(d, { browseN: 0, hi: 0, moved: false, closed: false });
       if (['cat', 'name', 'etype', 'rarity'].includes(addKey)) refreshTracked(['addsugg', 'adddetail']);
       else if (addKey === 'qty') refreshTracked(['adddetail']);
       const err = $('#addErr');
@@ -8715,6 +8729,40 @@ function wireUi() {
   });
   document.addEventListener('focusin', (e) => {
     if (e.target.dataset && (e.target.dataset.add === 'name' || e.target.dataset.eff === 'name')) loadCatalogForAdding();
+    // "Add an item" in a category: the empty name box lists the whole category while it has the focus.
+    if (e.target.dataset && e.target.dataset.add === 'name') {
+      const d = state.addDraft || (state.addDraft = { ...ADD_DEFAULTS });
+      if (!d.browse) {
+        d.browse = true;
+        d.browseN = 0;
+        if (!String(d.name).trim()) { d.closed = false; d.hi = 0; d.moved = false; }
+        refreshTracked(['addsugg']);
+      }
+    }
+  });
+  // A category's list scrolled near its end: the next rows.
+  document.addEventListener('scroll', (e) => {
+    const s = e.target;
+    if (!(s.classList && s.classList.contains('sugg') && s.closest && s.closest('.add-name'))) return;
+    const d = state.addDraft;
+    if (!d || String(d.name).trim() || s.scrollTop + s.clientHeight < s.scrollHeight - 200) return;
+    const all = addSuggestions().length;
+    if (all <= addShown(addSuggestions()).length) return;
+    const top = s.scrollTop;
+    d.browseN = addShown(addSuggestions()).length + ADD_BROWSE_STEP;
+    refreshTracked(['addsugg']);
+    const s2 = document.querySelector('.add-name .sugg');
+    if (s2) s2.scrollTop = top;
+  }, true);
+  document.addEventListener('focusout', (e) => {
+    // Leaving the name box (not for one of its suggestions): the category list closes.
+    if (!(e.target.dataset && e.target.dataset.add === 'name') && !(e.target.closest && e.target.closest('.add-name .sugg'))) return;
+    if (e.relatedTarget && e.relatedTarget.closest && e.relatedTarget.closest('.add-name')) return;
+    const d = state.addDraft;
+    if (d && d.browse) {
+      d.browse = false;
+      if (!String(d.name).trim()) refreshTracked(['addsugg']);
+    }
   });
   document.addEventListener('keydown', (e) => {
     if (e.key === '/' && document.activeElement && !/INPUT|TEXTAREA|SELECT/.test(document.activeElement.tagName)) {
@@ -8757,12 +8805,21 @@ function wireUi() {
     if (addKey === 'name' || addKey === 'qty') {
       const d = state.addDraft || (state.addDraft = { ...ADD_DEFAULTS });
       if (addKey === 'name' && e.key === 'ArrowDown' && d.closed) d.closed = false; // ↓ opens them again
-      const hits = addKey === 'name' && !d.closed ? addSuggestions().slice(0, SUGGEST_MAX) : [];
+      const all = addKey === 'name' && !d.closed ? addSuggestions() : [];
+      let hits = addShown(all);
+      // Arrowing past the end of a category's list shows the next rows.
+      if (e.key === 'ArrowDown' && d.moved && num(d.hi) >= hits.length - 1 && all.length > hits.length) {
+        d.browseN = hits.length + ADD_BROWSE_STEP;
+        hits = addShown(all);
+      }
       if (hits.length && (e.key === 'ArrowDown' || e.key === 'ArrowUp')) {
         e.preventDefault();
         d.hi = clamp(num(d.hi) + (e.key === 'ArrowDown' ? (d.moved ? 1 : 0) : -1), 0, hits.length - 1);
         d.moved = true;
         refreshTracked(['addsugg']);
+        // A long list (a whole category) scrolls to keep the highlighted one in view.
+        const hiEl = document.querySelector('.add-name .sugg-item.hi');
+        if (hiEl && hiEl.scrollIntoView) hiEl.scrollIntoView({ block: 'nearest' });
       } else if (e.key === 'Enter') {
         e.preventDefault();
         if (hits.length) pickAddItem(hits[clamp(num(d.hi), 0, hits.length - 1)].name);

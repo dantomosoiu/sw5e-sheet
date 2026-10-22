@@ -461,6 +461,9 @@ button.dot.on.bad { background: var(--bad); border-color: var(--bad); }
 .add-name input { flex: 1; min-width: 0; }
 .sugg { position: absolute; top: calc(100% + 2px); left: 0; right: 0; z-index: 15; max-height: 320px; overflow: auto;
   background: var(--panel); border: 1px solid var(--line); border-radius: 8px; box-shadow: var(--shadow); padding: 4px; }
+/* A section with an open suggestion list stays above the next one (each section's backdrop blur makes its own layer,
+   which would otherwise cover the list's lower part). */
+.section:has(.sugg) { position: relative; z-index: 16; }
 .sugg-item { display: flex; justify-content: space-between; gap: 12px; width: 100%; text-align: left; background: none; border: 0;
   color: var(--text); font: inherit; font-size: 13.5px; padding: 5px 8px; border-radius: 6px; cursor: pointer; }
 .sugg-item .faint { font-size: 12px; white-space: nowrap; }
