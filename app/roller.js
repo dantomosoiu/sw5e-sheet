@@ -391,11 +391,25 @@ function buildRoll(m, spec, opts = {}) {
     case 'skill': {
       const k = arr((sc[a1] || {}).skills)[a2] || {};
       const r = d20(`${k.name} (${ABBR[a1]})`, num(k.modifier), `abilityScores.${a1}.skills.${a2}.modifier`);
-      // "Whenever you make a Charisma (Persuasion) check related to conducting business, you are considered to have
-      // expertise in the Persuasion skill" (Mercantile).
-      for (const f of arr(m.allFeatures).concat(typeof bdSpeciesTraitFeatures === 'function' && m.raw ? bdSpeciesTraitFeatures(m) : [])) {
-        const x = new RegExp(`check related to ([^,.]+), you are considered to have expertise in the ${k.name} skill`, 'i').exec(f.text || f.description || '');
-        if (x && k.proficiency !== 'expertise' && !r.conds.some((c) => c.label.endsWith(`(${f.name})`))) r.conds.push({ label: `${x[1].replace(/^conducting /i, '')} (${f.name})`, bonus: k.proficiency === 'proficient' ? pb : 2 * pb, extra: [], on: false });
+      // Conditional expertise: "Whenever you make a Charisma (Persuasion) check related to conducting business, you are
+      // considered to have expertise in the Persuasion skill" (Mercantile), "… check involving smell, …" (Acute Smell),
+      // "… an Intelligence (Nature) or Intelligence (Technology) check related to food…, … expertise in the skill",
+      // "you are considered to have expertise in Wisdom (Survival) checks made to navigate". Offered with what expertise
+      // adds over the skill's own proficiency (half proficiency from Know a Bit counts as already there).
+      if (k.proficiency !== 'expertise') {
+        const path = `abilityScores.${a1}.skills.${k.name}`;
+        const have = k.proficiency === 'proficient' ? pb : arr(m.fx && m.fx.tweaks).filter((t) => t.path === path && t.effect && t.effect.halfProf).reduce((s, t) => s + num(t.bonus), 0);
+        for (const f of riderTexts(m)) {
+          for (const s of f.text.split(/(?<=\.)\s+/)) {
+            if (!/\bconsidered to have expertise in\b/i.test(s)) continue;
+            const skills = [...s.matchAll(/\(([A-Z][\w ]+?)\)/g), ...s.matchAll(/\b(?:an?|the) ([A-Z]\w+) (?:check|skill)\b/g)].map((x) => x[1]);
+            if (!skills.includes(k.name)) continue;
+            const cond = (/\bchecks? ((?:related to|involving|against|made to|to)\b.+?)(?:,?\s+you (?:are|can)\b|\.$)/i.exec(s) || [])[1];
+            if (!cond || r.conds.some((c) => c.label.endsWith(`(${f.name})`))) continue;
+            const label = cond.replace(/^(?:related to|involving|made to)\s+/i, '').replace(/^conducting /i, '');
+            r.conds.push({ label: `${label} (${f.name})`, bonus: 2 * pb - have, extra: [], on: false });
+          }
+        }
       }
       return r;
     }
