@@ -1,0 +1,740 @@
+# Consular Test (local)
+
+## Sent to the rules engine
+The sheet's engine computes the numbers. OUT OF DATE: SW5E's recorded calculation is for an older version of this character; record the case again (dev/regress-record.js) for dev/engine-check.js.
+tweaks.abilityScores.Intelligence.skills.Technology.bonus = 0
+tweaks.abilityScores.Intelligence.skills.Technology.proficiency = "Proficient"
+equipped = [Tool (Superior)]
+
+## Numbers (the rules engine, with the sheet's edits)
+currentLevel = 5
+classText = "Consular (Way of Technology) 5"
+proficiencyBonus = 3
+initiative = 2
+armorClass = 12
+armorList = []
+passivePerception = 13
+vision = "normal"
+speed.base = "30 ft"
+speed.day = "24 miles"
+speed.hour = "3 miles"
+speed.special = ""
+hitPoints.hitDice[0].maximum = 5
+hitPoints.hitDice[0].size = "d6"
+hitPoints.maximum = 32
+abilityScores.Charisma.modifier = 2
+abilityScores.Charisma.savingThrow.modifier = 5
+abilityScores.Charisma.savingThrow.proficiency = "proficient"
+abilityScores.Charisma.skills[Deception].modifier = 2
+abilityScores.Charisma.skills[Deception].proficiency = "none"
+abilityScores.Charisma.skills[Intimidation].modifier = 2
+abilityScores.Charisma.skills[Intimidation].proficiency = "none"
+abilityScores.Charisma.skills[Performance].modifier = 2
+abilityScores.Charisma.skills[Performance].proficiency = "none"
+abilityScores.Charisma.skills[Persuasion].modifier = 2
+abilityScores.Charisma.skills[Persuasion].proficiency = "none"
+abilityScores.Charisma.value = 14
+abilityScores.Constitution.modifier = 2
+abilityScores.Constitution.savingThrow.modifier = 2
+abilityScores.Constitution.savingThrow.proficiency = "none"
+abilityScores.Constitution.skills = []
+abilityScores.Constitution.value = 14
+abilityScores.Dexterity.modifier = 2
+abilityScores.Dexterity.savingThrow.modifier = 2
+abilityScores.Dexterity.savingThrow.proficiency = "none"
+abilityScores.Dexterity.skills[Acrobatics].modifier = 2
+abilityScores.Dexterity.skills[Acrobatics].proficiency = "none"
+abilityScores.Dexterity.skills[Sleight of Hand].modifier = 2
+abilityScores.Dexterity.skills[Sleight of Hand].proficiency = "none"
+abilityScores.Dexterity.skills[Stealth].modifier = 2
+abilityScores.Dexterity.skills[Stealth].proficiency = "none"
+abilityScores.Dexterity.value = 14
+abilityScores.Intelligence.modifier = 0
+abilityScores.Intelligence.savingThrow.modifier = 0
+abilityScores.Intelligence.savingThrow.proficiency = "none"
+abilityScores.Intelligence.skills[Investigation].modifier = 0
+abilityScores.Intelligence.skills[Investigation].proficiency = "none"
+abilityScores.Intelligence.skills[Lore].modifier = 0
+abilityScores.Intelligence.skills[Lore].proficiency = "none"
+abilityScores.Intelligence.skills[Nature].modifier = 0
+abilityScores.Intelligence.skills[Nature].proficiency = "none"
+abilityScores.Intelligence.skills[Piloting].modifier = 0
+abilityScores.Intelligence.skills[Piloting].proficiency = "none"
+abilityScores.Intelligence.skills[Technology].modifier = 3
+abilityScores.Intelligence.skills[Technology].proficiency = "proficient"
+abilityScores.Intelligence.value = 10
+abilityScores.Strength.modifier = -1
+abilityScores.Strength.savingThrow.modifier = -1
+abilityScores.Strength.savingThrow.proficiency = "none"
+abilityScores.Strength.skills[Athletics].modifier = -1
+abilityScores.Strength.skills[Athletics].proficiency = "none"
+abilityScores.Strength.value = 8
+abilityScores.Wisdom.modifier = 3
+abilityScores.Wisdom.savingThrow.modifier = 6
+abilityScores.Wisdom.savingThrow.proficiency = "proficient"
+abilityScores.Wisdom.skills[Animal Handling].modifier = 3
+abilityScores.Wisdom.skills[Animal Handling].proficiency = "none"
+abilityScores.Wisdom.skills[Insight].modifier = 3
+abilityScores.Wisdom.skills[Insight].proficiency = "none"
+abilityScores.Wisdom.skills[Medicine].modifier = 3
+abilityScores.Wisdom.skills[Medicine].proficiency = "none"
+abilityScores.Wisdom.skills[Perception].modifier = 3
+abilityScores.Wisdom.skills[Perception].proficiency = "none"
+abilityScores.Wisdom.skills[Survival].modifier = 3
+abilityScores.Wisdom.skills[Survival].proficiency = "none"
+abilityScores.Wisdom.value = 16
+weapons[Unarmed Strike].ability = "Strength"
+weapons[Unarmed Strike].attackBonus = 2
+weapons[Unarmed Strike].damageBonus = 0
+weapons[Unarmed Strike].damageDieType = 0
+weapons[Unarmed Strike].damageNumberOfDice = 1
+weapons[Unarmed Strike].damageType = "Kinetic"
+weapons[Unarmed Strike].equipped = true
+weapons[Unarmed Strike].index = -1
+weapons[Unarmed Strike].isCustom = false
+weapons[Unarmed Strike].properties = []
+weapons[Unarmed Strike].quantity = 0
+weapons[Unarmed Strike].weaponClassification = "Unarmed"
+attunement.hasAttunable = false
+attunement.maximum = 3
+carryingCapacity.encumbered = 40
+carryingCapacity.heavilyEncumbered = 80
+carryingCapacity.maxCapacity = 120
+carryingCapacity.pushDragLift = 240
+superiority = false
+techCasting = false
+forceCasting.darkAttackModifier = 5
+forceCasting.darkSaveDC = 13
+forceCasting.lightAttackModifier = 6
+forceCasting.lightSaveDC = 14
+forceCasting.maxPoints = 23
+forceCasting.maxPowerLevel = 3
+forceCasting.pointsUsed = 0
+forceCasting.universalAttackModifier = 6
+forceCasting.universalSaveDC = 14
+proficiencies[Simple lightweapons].type = "weapon"
+proficiencies[simple vibroweapons].type = "weapon"
+proficiencies[None].type = "armor"
+proficiencies[One type of gaming set].type = "tool"
+skillAndSaveProficiencies = ["Technology", "Wisdom Saving Throws", "Charisma Saving Throws"]
+languages = ["Galactic Basic", "Galactic Basic"]
+experiencePoints.isCorrect = true
+experiencePoints.nextLevel = 14000
+experiencePoints.previousLevel = 6500
+conditions = []
+exhaustion = 0
+forceCasting.powersKnown = [Saber Throw, Force Push/Pull, Battle Precognition, Force Disarm]
+
+## Effects and tweaks
+effect: Consular weapon proficiencies · feature
+effect: Force Affinity · feature
+effect: Fundamentals of Mechu-deru · feature
+effect: Human Versatility · feature
+effect: Tool (Superior) · item
+tweak: abilityScores.Intelligence.skills.Technology +0 {"proficiency":"Proficient"} · Fundamentals of Mechu-deru
+
+## Rolls
+init: Initiative: d20 +2 · = +2 modifier
+death: Death saving throw: d20 +0
+hitdie|d6: Hit die (d6): d6 +2 · = +2 per die
+check|Strength: Strength check: d20 −1 · = −1 modifier
+save|Strength: Strength saving throw: d20 −1 · = −1 modifier
+skill|Strength|0: Athletics (STR): d20 −1 · = −1 modifier
+check|Dexterity: Dexterity check: d20 +2 · = +2 modifier
+save|Dexterity: Dexterity saving throw: d20 +2 · = +2 modifier
+skill|Dexterity|0: Acrobatics (DEX): d20 +2 · = +2 modifier
+skill|Dexterity|1: Sleight of Hand (DEX): d20 +2 · = +2 modifier
+skill|Dexterity|2: Stealth (DEX): d20 +2 · = +2 modifier
+check|Constitution: Constitution check: d20 +2 · = +2 modifier
+save|Constitution: Constitution saving throw: d20 +2 · = +2 modifier
+check|Intelligence: Intelligence check: d20 +0 · = +0 modifier
+save|Intelligence: Intelligence saving throw: d20 +0 · = +0 modifier
+skill|Intelligence|0: Investigation (INT): d20 +0 · = +0 modifier
+skill|Intelligence|1: Lore (INT): d20 +0 · = +0 modifier
+skill|Intelligence|2: Nature (INT): d20 +0 · = +0 modifier
+skill|Intelligence|3: Piloting (INT): d20 +0 · = +0 modifier
+skill|Intelligence|4: Technology (INT): d20 +3 · = +3 modifier
+check|Wisdom: Wisdom check: d20 +3 · = +3 modifier
+save|Wisdom: Wisdom saving throw: d20 +6 · = +6 modifier
+skill|Wisdom|0: Animal Handling (WIS): d20 +3 · = +3 modifier
+skill|Wisdom|1: Insight (WIS): d20 +3 · = +3 modifier
+skill|Wisdom|2: Medicine (WIS): d20 +3 · = +3 modifier
+skill|Wisdom|3: Perception (WIS): d20 +3 · = +3 modifier
+skill|Wisdom|4: Survival (WIS): d20 +3 · = +3 modifier
+check|Charisma: Charisma check: d20 +2 · = +2 modifier
+save|Charisma: Charisma saving throw: d20 +5 · = +5 modifier
+skill|Charisma|0: Deception (CHA): d20 +2 · = +2 modifier
+skill|Charisma|1: Intimidation (CHA): d20 +2 · = +2 modifier
+skill|Charisma|2: Performance (CHA): d20 +2 · = +2 modifier
+skill|Charisma|3: Persuasion (CHA): d20 +2 · = +2 modifier
+attack|0: Unarmed Strike attack: d20 +2 · = +2 modifier
+damage|0: Unarmed Strike damage: no dice +0 · = +1 unarmed strike −1 STR modifier · Kinetic
+force|light: Light force attack: d20 +6 · = +6 modifier
+force|dark: Dark force attack: d20 +5 · = +5 modifier
+force|universal: Universal force attack: d20 +6 · = +6 modifier
+pdmg|force|Force Push/Pull|0|0|Wisdom: Force Push/Pull: kinetic damage: d4 d4 +0 · kinetic
+pdmg|tech|Ion Blast|0|0|Intelligence: Ion Blast: ion damage: d4 d4 +0 · ion
+pdmg|tech|Overheat|2|0|Intelligence: Overheat: fire damage: d8 d8 +0 · fire
+tool|One type of gaming set|proficient: One type of gaming set check: d20 +3 · = +0 INT modifier +3 proficiency
+tool|Slicer's kit|expertise: Slicer's kit check: d20 +6 · = +0 INT modifier +6 proficiency ×2
+damage|0|crit: Unarmed Strike damage (critical): no dice +0 · = +1 unarmed strike −1 STR modifier · Kinetic · critical
+
+## Sheet: Overview
+Consular Test (local)
+Human · Consular (Way of Technology) 5
+Level 5 Background: Noble Lawful Light Proficiency +3 [Add a picture]
+6,500 XP level 6 at 14,000 (7,500 to go)
+Still to choose (11): Consular skills (2 more) · Force-Empowered Castings (2 more) · Consular force powers (13 more) · background skills (2 more) · background t… [366 chars #67d7ed65]
+
+## Sheet: Combat & Vitals
+Armor Class
+12
+Unarmored
+Hit Points
+32 / 32
+No temporary HP
+Initiative
++2
+Speed
+30 ft
+3 miles/hour · 24 miles/day
+Proficiency
++3
+Passive Perception
+13
+Hit Dice
+5/5d6
++2 per die spent (Con)
+Vision
+Normal
+Play tracker
+[] [untyped ▾] [Damage] [Heal] [Temp HP]
+Death saves ✓ [] [] [] ✗ [] [] [] [Roll]
+Force points 20 / 23 [−] [+]
+Hit dice (d6) roll d6 +2, then Heal 5 / 5 [−] [+]
+Force Recovery long rest 1 / 1 [−] [+]
+Force Shield long rest 3 / 3 [−] [+]
+Fundamentals of Mechu-deru long rest 3 / 3 [−] [+]
+Defiant short rest 1 / 1 [−] [+]
+Alarm (Feat: Tech Dabbler) long rest 0 / 1 [−] [+]
+Overheat (Feat: Tech Dabbler) long rest 1 / 1 [−] [+]
+Start or end
+[Start Force Shield]
+Conditions None [Add a condition… ▾]
+Combat [Start combat]
+[☆ Inspiration] Exhaustion [−] 0 [+]
+[Short rest] [Long rest] HP and uses: saved here, not on sw5e.com yet. [Use sw5e.com's values]
+Effects
+From class features and species traits (4)
+Consular weapon proficiencies Proficient: Simple lightweapons Proficient: simple vibroweapons Consular proficiencies
+Force Affinity Choose one of Ashla, Bendu, Bogan Consular feature
+Fundamentals of Mechu-deru Technology: proficient Proficient: simple blasters Way of Technology feature
+Human Versatility Choose one skill Choose one tool Choose one weapon of your choice Human trait
+From equipment
+Tool (Superior) Slicer's kit: expertise tool [Slicer's kit ▾] Slicer's kit: mastery (counted as expertise) while equipped
+Temporary
+No temporary effects.
+[]
+Your own effect (something the sheet doesn't know)…
+[] [] [No number (a reminder) ▾] [] [Add]
+It's applied like any effect (a dice bonus like Bless's d4 isn't a number: add it in the roller), and ends with End, a rest or Next round when it has run out.
+Bonuses are applied to the sheet's numbers in this browser only (not saved to SW5E); changed numbers are underlined: hover or tap them for details. Conditional … [256 chars #e163e104]
+Conditions
+None active (from SW5E)
+Carrying capacity
+Carried
+0 lb
+Unencumbered (variant rule)
+Encumbered at
+40 lb
+Heavily enc. at
+80 lb
+Max capacity
+120 lb
+Push / drag / lift
+240 lb
+
+## Sheet: Abilities & Saving Throws
+STR
+Strength
+−1
+8
+(Not proficient) Saving throw−1
+(Not proficient) Athletics−1
+base 8
+DEX
+Dexterity
++2
+14
+(Not proficient) Saving throw+2
+(Not proficient) Acrobatics+2
+(Not proficient) Sleight of Hand+2
+(Not proficient) Stealth+2
+base 14
+CON
+Constitution
++2
+14
+(Not proficient) Saving throw+2
+base 14
+INT
+Intelligence
++0
+10
+(Not proficient) Saving throw+0
+(Not proficient) Investigation+0
+(Not proficient) Lore+0
+(Not proficient) Nature+0
+(Not proficient) Piloting+0
+(Proficient) Technology+3
+  ↳ hover abilityScores.Intelligence.skills.4.modifier: Without tweaks or effects: 0 → now 3 / proficient Technology: proficient · Fundamentals of Mechu-deru Way of Technology feature
+base 10
+WIS
+Wisdom
++3
+16
+(Proficient) Saving throw+6
+(Not proficient) Animal Handling+3
+(Not proficient) Insight+3
+(Not proficient) Medicine+3
+(Not proficient) Perception+3
+(Not proficient) Survival+3
+base 16 · +2 ASI (Consular 4) · −2 other
+CHA
+Charisma
++2
+14
+(Proficient) Saving throw+5
+(Not proficient) Deception+2
+(Not proficient) Intimidation+2
+(Not proficient) Performance+2
+(Not proficient) Persuasion+2
+base 14
+not proficient proficient expertise
+
+## Sheet: Skills
+Skill | Ability | Bonus | Passive | Proficiency |
+(Not proficient) Acrobatics | DEX | +2 | 12 | — |
+(Not proficient) Animal Handling | WIS | +3 | 13 | — |
+(Not proficient) Athletics | STR | −1 | 9 | — |
+(Not proficient) Deception | CHA | +2 | 12 | — |
+(Not proficient) Insight | WIS | +3 | 13 | — |
+(Not proficient) Intimidation | CHA | +2 | 12 | — |
+(Not proficient) Investigation | INT | +0 | 10 | — |
+(Not proficient) Lore | INT | +0 | 10 | — |
+(Not proficient) Medicine | WIS | +3 | 13 | — |
+(Not proficient) Nature | INT | +0 | 10 | — |
+(Not proficient) Perception | WIS | +3 | 13 | — |
+(Not proficient) Performance | CHA | +2 | 12 | — |
+(Not proficient) Persuasion | CHA | +2 | 12 | — |
+(Not proficient) Piloting | INT | +0 | 10 | — |
+(Not proficient) Sleight of Hand | DEX | +2 | 12 | — |
+(Not proficient) Stealth | DEX | +2 | 12 | — |
+(Not proficient) Survival | WIS | +3 | 13 | — |
+(Proficient) Technology | INT | +3 | 13 | Proficient |
+  ↳ hover abilityScores.Intelligence.skills.4.modifier: Without tweaks or effects: 0 → now 3 / proficient Technology: proficient · Fundamentals of Mechu-deru Way of Technology feature
+  ↳ hover abilityScores.Intelligence.skills.4.modifier: Without tweaks or effects: 0 → now 3 / proficient Technology: proficient · Fundamentals of Mechu-deru Way of Technology feature
+
+## Sheet: Weapons & Attacks
+Weapon | To hit | Damage | Ability | Type | Properties |
+Unarmed Strike
+| +2 | 0 Kinetic | Strength | Unarmed | — |
+
+## Sheet: Force Casting
+Force points
+20 / 23
+Max power level
+3
+Light side
+DC 14
+attack +6
+Dark side
+DC 13
+attack +5
+Universal
+DC 14
+attack +6
+At-will powers (3)
+Force Disarm Universal Consular
+Dexterity save DC 14
+Casting 1 action Range 30 feet Duration Instantaneous Source PHB
+You select a weapon or object being worn or carried by a Large or smaller creature within range. The creature must make a Strength or Dexterity saving throw (th… [398 chars #c9871d69]
+Force Push/Pull Universal Consular
+[Cast]
+Strength save DC 14 · Damage 2d4 kinetic
+Casting 1 action Range 60 feet Duration Instantaneous Source PHB
+You gain the minor ability to move or manipulate creatures and objects with the Force. You can exert fine control on objects with your telekinetic grip, such as… [380 chars #d4acff50]
+You use the Force to move a Medium or smaller creature or object not being worn or carried within range. The target must make a Strength saving throw. An object… [711 chars #708794cf]
+This power improves when you reach higher levels. At 5th level, you can move a Tiny creature or object up to 30 feet, a Small creature or object up to 20 feet, … [534 chars #d23711c1]
+Saber Throw Universal Consular
+Attack +6
+Casting 1 action Range 30 feet Duration Instantaneous Source PHB
+As a part of the action used to cast this power, you must make a ranged force attack with a lightweapon or vibroweapon against one target within the power's ran… [319 chars #ce95991f]
+This power can hit multiple targets when you reach higher levels: two targets at 5th level, three targets at 11th level, and four targets at 17th level. Each ta… [385 chars #e441b97e]
+1st-level powers (1)
+Battle Precognition Universal Consular
+[1st level · 2 points ▾] [Cast]
+Casting 1 action Range Self Duration 8 hours Source PHB
+Your attunement to the Force warns you when you are about to enter danger. Until the power ends, your base AC becomes 13 + your Dexterity modifier. This power has no effect if you are wearing armor.
+
+## Sheet: Tech Casting
+SW5E computes no casting for this character; DCs and attacks below are 8 + proficiency + the casting ability.
+At-will powers (2)
+Ion Blast Feat: Tech Dabbler (Background (Noble))
+[Cast]
+Dexterity save DC 11 · Damage 2d4 ion
+Casting 1 action Range 60 feet Duration Instantaneous DC / attack 11 / +3 (INT) Source PHB
+You create a blast of ion energy. Choose one creature within range that you can see, or choose two creatures within range that are within 5 feet of each other t… [250 chars #d3100fc0]
+This power's damage increases by 1d4 when you reach 5th level (2d4), 11th level (3d4), and 17th level (4d4).
+Mending Feat: Tech Dabbler (Background (Noble))
+Casting 1 minute Range Touch Duration Instantaneous DC / attack 11 / +3 (INT) Source PHB
+This ability repairs a single break or tear in an object you touch, such as broken chain link, two halves of a broken key, a torn strap, or a leaking cup. As lo… [410 chars #f9c73b09]
+1st-level powers (1)
+Alarm Feat: Tech Dabbler (Background (Noble)) Once per long rest
+[Cast (used)]
+Casting 1 minute Range 30 feet Duration or until the end of your next short or long rest; whichever happens first DC / attack 11 / +3 (INT) Source PHB
+You set an alarm against unwanted intrusion. Choose a door, a window, or an area within range that is no larger than a 20-foot cube. Until the power ends, an al… [383 chars #384c1ed0]
+A silent alarm alerts you with a ping in your mind if you are within 1 mile of the warded area. This ping awakens you if you are sleeping.
+An audible alarm produces the sound of a hand bell for 10 seconds within 60 feet.
+2nd-level powers (1)
+Overheat Concentration Feat: Tech Dabbler (Background (Noble)) Once per long rest
+[Cast (available)]
+Constitution save DC 11 · Damage 2d8 fire
+Casting 1 action Range 60 feet Duration up to 1 minute DC / attack 11 / +3 (INT) Source PHB
+Choose a manufactured metal object, such as a blaster or a suit of heavy or medium metal armor, that you can see within range. You cause the object to glow red-… [370 chars #bd2db813]
+If an object is held, worn, or integrated, and a creature takes the damage from it, the creature must succeed on a Constitution saving throw or drop the object … [300 chars #1a5fa78e]
+Overcharge Tech. When you cast this power using a tech slot of 3rd level or higher, the damage increases by 1d8 for each slot level above 2nd.
+
+## Sheet: Class Features
+Consular (7)
+Force Recovery Level 1
+Uses (back on a long rest) 1 / 1 [−] [+]
+Consular: 1st level
+You have learned to regain some of your energy by briefly meditating. When you finish a short rest, you can regain a number of force points equal to half your c… [329 chars #dd53f1aa]
+Your choices []
+Forcecasting Level 1
+Consular: 1st level
+In your meditations on the force, you have learned powers, fragments of knowledge that imbue you with an abiding force ability. See chapter 10 for the general r… [222 chars #4108bfc5]
+Force Powers Known
+You learn 9 force powers of your choice, and you learn more at higher levels, as shown in the Force Powers Known column of the consular table. You may not learn… [296 chars #06d411f5]
+Force Points
+You have a number of force points equal to your consular level x 4, as shown in the Force Points column of the consular table, + your Wisdom or Charisma modifie… [291 chars #f7dff645]
+Max Power Level
+Many force powers can be overpowered, consuming more force points to create a greater effect. You can overpower these abilities to a maximum level, which increa… [243 chars #144d7593]
+You may only cast force powers at 6th, 7th, 8th, and 9th-level once. You regain the ability to do so after a long rest.
+Forcecasting Ability
+Your forcecasting ability varies based on the alignment of the powers you cast. You use Wisdom for light side powers, Charisma for dark side powers, and Wisdom … [427 chars #7389ec1d]
+Force save DC = 8 + your proficiency bonus + your forcecasting ability modifier
+Force attack modifier = your proficiency bonus + your forcecasting ability modifier
+Your choices []
+Force Shield Level 2
+Uses (back on a long rest) 3 / 3 [−] [+]
+[Start Force Shield]
+Consular: 2nd level
+You learn how to defend yourself purely through your strength with the Force. When you are hit by an attack, you can use your reaction to shroud yourself in For… [337 chars #8cabfe38]
+You can use this feature twice. You gain an additional use at 5th, 9th, 13th, and 17th level. You regain all expended uses when you finish a long rest.
+Your choices []
+Force-Empowered Casting Level 2
+Consular: 2nd level
+You gain the ability to twist your powers to suit your needs. When you cast a force power, you can expend additional force points to modify the power. You gain … [349 chars #babe2f25]
+You can use only one Force-Empowered Casting option on a power when you cast it, unless otherwise noted.
+Notes []
+Consular Tradition Level 3
+Consular: 3rd, 6th, 10th, 14th, and 18th level
+You choose a consular tradition, which is detailed at the end of the class description.
+Chosen: Way of Technology · change it in Classes & Progression
+Notes []
+Force Affinity Level 3
+Consular: 3rd level
+You've developed an affinity for one of the three aspects of the Force: the Ashla, the Bendu, or the Bogan. Choose one from the following:
+Ashla
+When you successfully cast a light side power, either your or the target's (your choice) hit point maximum and current hit points increase by an amount equal to… [275 chars #c37d6739]
+Bendu
+You can add both your Wisdom and Charisma modifier to your maximum number of force points, instead of just one.
+Bogan
+Your dark side power damage rolls gain a minimum roll threshold, discussed in chapter 7.
+Choose one 0 / 1
+None chosen yet.
+[Choose one… ▾]
+Notes []
+Ability Score Improvement Level 4
+Consular: 4th, 8th, 12th, 16th, and 19th level
+You can increase one ability score by 2, or you can increase two ability scores by 1. You can't increase an ability score above 20 using this feature.
+Notes []
+Way of Technology (archetype) (1)
+Fundamentals of Mechu-deru Level 5
+Uses (back on a long rest) 3 / 3 [−] [+]
+Way of Technology: 3rd, 5th, 9th, 13th, and 17th level
+You've dabbled in adapting your use of the Force, melding it with technology. You gain proficiency in the Technology skill, as well as simple blasters. When you… [324 chars #ce74f996]
+Additionally, you've learned to manipulate the Force to be able to manipulate technology when it couldn't previously. When you cast a force power that could not… [511 chars #e93d612a]
+Your choices []
+
+## Sheet: Feats
+Choices from your feats
+At-will tech power 2 / 2 Feat: Tech Dabbler (Background (Noble))
+Ion Blast [×]
+[]
+You create a blast of ion energy. Choose one creature within range that you can see, or choose two creatures within range that are within 5 feet of each other t… [250 chars #d3100fc0]
+This power's damage increases by 1d4 when you reach 5th level (2d4), 11th level (3d4), and 17th level (4d4).
+Mending [×]
+[]
+This ability repairs a single break or tear in an object you touch, such as broken chain link, two halves of a broken key, a torn strap, or a leaking cup. As lo… [410 chars #f9c73b09]
+1st-level tech power (once per long rest) 1 / 1 Feat: Tech Dabbler (Background (Noble))
+Alarm [×]
+[]
+You set an alarm against unwanted intrusion. Choose a door, a window, or an area within range that is no larger than a 20-foot cube. Until the power ends, an al… [383 chars #384c1ed0]
+A silent alarm alerts you with a ping in your mind if you are within 1 mile of the warded area. This ping awakens you if you are sleeping.
+An audible alarm produces the sound of a hand bell for 10 seconds within 60 feet.
+2nd-level tech power (once per long rest) 1 / 1 Feat: Tech Dabbler (Background (Noble))
+Overheat [×]
+[]
+Choose a manufactured metal object, such as a blaster or a suit of heavy or medium metal armor, that you can see within range. You cause the object to glow red-… [370 chars #bd2db813]
+If an object is held, worn, or integrated, and a creature takes the damage from it, the creature must succeed on a Constitution saving throw or drop the object … [300 chars #1a5fa78e]
+Overcharge Tech. When you cast this power using a tech slot of 3rd level or higher, the damage increases by 1d8 for each slot level above 2nd.
+Tech Dabbler Background (Noble)
+You know two at-will tech powers. When you reach 3rd level, you learn and can cast one 1st-level tech power once per long rest. When you reach 5th level, you le… [382 chars #b0d200c1]
+Notes []
+
+## Sheet: Classes & Progression
+[Level up]
+Consular 5 Way of Technology Starting class Force caster
+Hit die d6 Primary Wisdom Saves Wisdom, Charisma HP by level 6 (max), 4, 4, 4, 4
+Force-wielder who focuses on utilizing force powers
+Ability score improvements
+ASI: Wisdom +2
+Skill proficiencies 0 / 2 Choose two from Deception, Insight, Intimidation, Investigation, Lore, Medicine, and Persuasion
+None chosen yet.
+[Choose a skill… ▾]
+Archetype [Way of Technology ▾]
+Read the options (12)
+Force powers 4 / 17 Consular table · max power level 3
+Force Disarm at-will · Universal [×]
+You select a weapon or object being worn or carried by a Large or smaller creature within range. The creature must make a Strength or Dexterity saving throw (th… [398 chars #c9871d69]
+Force Push/Pull at-will · Universal [×]
+You gain the minor ability to move or manipulate creatures and objects with the Force. You can exert fine control on objects with your telekinetic grip, such as… [380 chars #d4acff50]
+You use the Force to move a Medium or smaller creature or object not being worn or carried within range. The target must make a Strength saving throw. An object… [711 chars #708794cf]
+This power improves when you reach higher levels. At 5th level, you can move a Tiny creature or object up to 30 feet, a Small creature or object up to 20 feet, … [534 chars #d23711c1]
+Saber Throw at-will · Universal [×]
+As a part of the action used to cast this power, you must make a ranged force attack with a lightweapon or vibroweapon against one target within the power's ran… [319 chars #ce95991f]
+This power can hit multiple targets when you reach higher levels: two targets at 5th level, three targets at 11th level, and four targets at 17th level. Each ta… [385 chars #e441b97e]
+Battle Precognition 1st level · Universal [×]
+Your attunement to the Force warns you when you are about to enter danger. Until the power ends, your base AC becomes 13 + your Dexterity modifier. This power has no effect if you are wearing armor.
+[Learn a force power… ▾]
+Read the options (146)
+Force-Empowered Castings 0 / 2 from the Consular table (“Force-Empowered Casting Options”)
+None chosen yet.
+[Add from Force-Empowered Castings… ▾]
+Read the options (11)
+Class table
+Proficiency Bonus
++3 → +3 at 6th
+Features
+— → Tradition feature at 6th
+Force Powers Known
+17 → 19 at 6th
+Force Points
+20 → 24 at 6th
+Max Power Level
+3rd → 3rd at 6th
+Force-Empowered Casting Options
+2 → 2 at 6th
+| Proficiency Bonus | Features | Force Powers Known | Force Points | Max Power Level | Force-Empowered Casting Options |
+Now (5th) | +3 | — | 17 | 20 | 3rd | 2 |
+Next (6th) | +3 | Tradition feature | 19 | 24 | 3rd | 2 |
+Armor None Weapons Simple lightweapons, simple vibroweapons Tools None
+
+## Sheet: Species
+Size
+Medium
+Homeworld
+Coruscant
+Language
+Galactic Basic
+Average height
+4'8" +2d10"
+Average weight
+110 lb. x(2d4) lb.
+Skin
+Light to dark tones
+Hair
+Black, blond, orange, brown, gray to white (usually with age)
+Eyes
+Amber, blue, brown, gray, green, hazel, purple, or red
+Distinctions
+Biped with bilateral symmetry, opposable thumbs
+Traits (9)
+Ability Score Increase
+One ability score of your choice increases by 2, and two other ability scores of your choice increase by 1. Alternatively, four ability scores of your choice each increase by 1.
+Your choices []
+Age
+Humans reach adulthood in their late teens and live less than a century.
+Notes []
+Alignment
+Humans tend toward no particular alignment. The best and worst are found among them.
+Notes []
+Defiant
+Uses (back on a short or long rest) 1 / 1 [−] [+]
+Humans are known to be stubborn and often refuse to give up, even against the worst odds. When you or a creature you can see that can see and understand you mak… [374 chars #6fad59d8]
+Notes []
+Human Versatility
+You gain proficiency in one skill, one tool, and one weapon of your choice.
+Skill proficiency 0 / 1
+None chosen yet.
+[Choose a skill… ▾]
+Tool proficiency 0 / 1 one tool
+None chosen yet.
+[Choose a tool… ▾]
+Weapon proficiency 0 / 1 one weapon of your choice
+None chosen yet.
+[Choose a weapon… ▾]
+Notes []
+Languages
+You can speak, read, and write Galactic Basic and one extra language of your choice. Humans typically learn the languages of other peoples they deal with, inclu… [346 chars #ff842958]
+Your choices []
+Proficiency
+You gain proficiency in one skill, one tool, and one weapon of your choice.
+Your choices []
+Size
+Humans vary widely in height and build, from barely 5 feet to well over 6 feet tall. Regardless of your position in that range, your size is Medium.
+Notes []
+Speed
+Your base walking speed is 30 feet.
+Notes []
+Ability score +2 0 / 1 One ability score of your choice increases by 2, and two other ability scores of your choice increase by 1. Alternatively, four ability scores of your choice each increase by 1.
+None chosen yet.
+[Choose an ability… ▾]
+Ability score +1 0 / 2 One ability score of your choice increases by 2, and two other ability scores of your choice increase by 1. Alternatively, four ability scores of your choice each increase by 1.
+None chosen yet.
+[Choose an ability… ▾]
+
+## Sheet: Background
+Skill proficiencies
+Choose two from Deception, Insight, Lore, and Persuasion
+Tool proficiencies
+One type of gaming set
+Languages
+One of your choice
+Starting equipment
+A set of fine clothes, a signet ring, a letter of pedigree, and a purse containing 250 cr
+Background feat
+Tech Dabbler
+Feature: Position of Privilege Background feature
+Thanks to your noble birth, people are inclined to think the best of you. You are welcome in high society, and people assume you have the right to be wherever y… [390 chars #064df76c]
+About this background
+You understand wealth, power, and privilege. You carry a noble title, and your family owns land, collects taxes, and wields significant political influence. You… [373 chars #12c34b19]
+Work with your GM to come up with an appropriate title and determine how much authority that title carries, as well as your family and their influence on you. I… [297 chars #a939cd75]
+What's your position in the family? Are you the heir to the head of the family or the head itself? Are you far down the line of succession? How does the head of… [246 chars #f0d70c9c]
+Does your family have a coat of arms you might wear, a signet ring, or particular colors?
+These details help establish your family and your title as features of the world of the campaign.
+Your choices
+Skill proficiencies 0 / 2 Choose two from Deception, Insight, Lore, and Persuasion
+None chosen yet.
+[Choose a skill… ▾]
+Tool proficiency 0 / 1 One type of gaming set
+None chosen yet.
+[Choose a tool… ▾]
+Languages 0 / 1 One of your choice
+None chosen yet.
+[Choose a language… ▾]
+
+## Sheet: Proficiencies & Languages
+Armor
+None
+Weapon
+Simple lightweapons simple vibroweapons simple blasters · Fundamentals of Mechu-deru
+Tool
+One type of gaming set Slicer's kit (expertise) · Tool (Superior)
+Skills & saves
+Technology Wisdom Saving Throws Charisma Saving Throws
+Languages
+Galactic Basic
+✎ = custom proficiency added on the character.
+
+## Sheet: Equipment & Inventory
+Add an item
+[All items ▾] []
+Qty [1] [Add]
+2425 items from SW5E (data version 199). [Check for a newer list]
+Credits
+0 cr
+[] [] [Apply]
+Total weight
+0 lb
+of 120 lb max
+Attunement
+0 / 3
+Items
+1
+Enhanced: Adventuring Gear (1)
+Item | Qty & actions | Weight | Cost | Source |
+Tool (Superior)
+Advanced (very rare)
+Description
+Your level of proficiency in these tools increases by four steps (to expertise, from trained to mastery, from proficient to high mastery, or from expertise to grand mastery).
+| [−] 1 [+] [Equipped] [✎] [Sell] [×] | — | — | WH |
+
+## Sheet: Personality & Appearance
+Personality Traits
+—
+Ideal
+—
+Bond
+—
+Flaw
+—
+Details
+Alignment
+Lawful Light
+Gender
+—
+Place of Birth
+—
+Age
+—
+Height
+—
+Weight
+—
+Hair
+—
+Eyes
+—
+Skin
+—
+
+## Sheet: Backstory
+No backstory yet.
+
+## Sheet: Notes
+No notes yet.
+
+## Sheet: Settings, Tweaks & Data
+Tweaks (manual adjustments) 0
+From sw5e.com's editor or added here. Give each a reason (kept in this viewer and in backups); hovering or tapping a number they change shows it.
+No tweaks.
+[Add a tweak to… ▾] [add (+/−) ▾] [] [] [Add]
+Builder settings
+None
+Record
+Source
+Imported file
+Loaded
+10/16/2026, 9:43:50 PM
+Builder version
+0.7.6
+Validation
+All checks passed
+Local version history 1 / 25
+SW5E can lose saved characters, so every version seen here is kept in this browser. Compare a version with the character as it is now, or restore it (Undo puts it back).
+Backups (files you keep): this character never · [Back up this character]
+all characters never · [Back up all characters]
+10/16/2026, 9:43:50 PM latest
+Imported from file [Compare] [Restore] [Export]
+Rules engine
+The sheet computes the numbers itself, with SW5E's rules. A character on sw5e.com is checked against its calculation there on each Load.
+SW5E's rules and item data: version 199, as it comes with the sheet. SW5E is the work of Galiphile and the SW5E contributors: credits · the books.
+[Check with sw5e.com]
+Raw SW5E character JSON
+{ "name": "Consular Test (local)", "builderVersion": "0.7.6", "image": "", "experiencePoints": 6500, "species": { "name": "Human", "abilityScoreImprovementSelec… [1691 chars #7b19fba5]
+Computed character JSON (the sheet's rules engine)
+{ "name": "Consular Test (local)", "builderVersion": "0.7.6", "image": "", "characteristics": { "alignment": "Lawful Light" }, "tweaks": { "abilityScores": { "I… [19752 chars #d557a9ce]
