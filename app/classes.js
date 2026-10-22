@@ -864,6 +864,8 @@ function clsFeatureEffects(text, note, ctx) {
     } else if (/\bhit point maximum increases by a number equal to your level,? and it increases by 1 every time you gain a level/i.test(s)) hp = charLevel;
     else if (/\bhit point maximum increases by an amount equal to twice your level when you gain this feat/i.test(s)) hp = 2 * charLevel;
     if (hp) out.mods.push({ path: 'hitPoints.maximum', bonus: hp, label: `HP maximum +${hp}` });
+    // "Your maximum attunement increases by 1" (Investigative Attunement): a number of the sheet's, not the engine's.
+    if ((m = /\byour maximum attunement increases by (\d+)/i.exec(s))) out.mods.push({ path: 'attunement.maximum', bonus: Number(m[1]), label: `Attunement +${m[1]}` });
     // "You are considered to have advantage when determining your passive Wisdom (Perception) and passive Intelligence
     // (Investigation) scores" (Observant): +5 to each. Passive Perception is the engine's; the others the skills table adds.
     if ((m = /\bconsidered to have advantage when determining your (passive [^.]+?) scores?\b/i.exec(s))) {
