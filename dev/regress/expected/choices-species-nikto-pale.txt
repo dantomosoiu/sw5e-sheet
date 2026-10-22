@@ -192,7 +192,7 @@ Still to choose (7): Consular skills (2 more) · Force-Empowered Castings (2 mor
 ## Sheet: Combat & Vitals
 Armor Class
 15
-  ↳ hover armorClass: Without tweaks or effects: 12 → now 15 / +3 AC 13 + DEX (Hide) · Hide Nikto trait
+  ↳ hover armorClass: Without tweaks or effects: 12 → now 15 / +3 AC 13 + DEX · Hide Nikto trait
 Unarmored
 Hit Points
 37 / 37
@@ -236,7 +236,7 @@ From class features and species traits (7)
 Consular weapon proficiencies Proficient: Simple lightweapons Proficient: simple vibroweapons Consular proficiencies
 Force Affinity Choose one of Ashla, Bendu, Bogan Consular feature
 Fundamentals of Mechu-deru Technology: proficient Proficient: simple blasters Way of Technology feature
-Hide AC 13 + DEX (Hide) Nikto trait
+Hide AC 13 + DEX Nikto trait
 Protective Membrane Advantage on saving throws against being blinded Nikto trait
 Radiation Resistant Resistance to necrotic damage Nikto trait
 Adaptation Swimming speed 30 ft Nikto trait

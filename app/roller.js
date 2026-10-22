@@ -68,7 +68,7 @@ function resourceConds(m, kind, w) {
       if (fits) out.push({ label: `${n} +${t.lim.supSize}`, bonus: 0, extra: [`1${t.lim.supSize}`], on: false, spend: { op: 'sup', arg: '1', what: 'a superiority die' } });
     }
   }
-  const melee = w && !/blaster/i.test(w.weaponClassification || '') && !/ranged/i.test(propsText(w.properties));
+  const melee = w && !/blaster/i.test(w.weaponClassification || '') && !/\branged\b/i.test(propsText(w.properties));
   if (kind === 'damage' && melee && arr(m.allFeatures).some((f) => /^Force-Empowered Strikes$/i.test(f.name))) {
     const col = arr(m.classDice).find((d) => /focused strikes/i.test(d.column));
     const max = col ? num(String(col.dice).split('d')[0]) || 1 : 1;
@@ -191,7 +191,8 @@ function buildRoll(m, spec, opts = {}) {
       // Increases add up (Improved Critical +1 and Blade Supremacy +1: 18–20); weapon supremacy and modifications
       // widen it only for their weapons.
       const seen = new Set();
-      const wider = arr(m.effects).filter((e) => num(e.critRange) > 0 && (!e.critWeapons || e.critWeapons.includes(w.index)) && !seen.has(e.id) && seen.add(e.id));
+      // critWeapons: the weapons' indexes, or 'unarmed' ("your critical hit range with unarmed strikes increases by 1").
+      const wider = arr(m.effects).filter((e) => num(e.critRange) > 0 && (!e.critWeapons || e.critWeapons.includes(w.name === 'Unarmed Strike' ? 'unarmed' : w.index)) && !seen.has(e.id) && seen.add(e.id));
       const add = wider.reduce((t, e) => t + num(e.critRange), 0);
       const vers = /\bversatile \((\d*d\d+)\)/i.exec(propsText(w.properties));
       const atk = d20(`${w.name} attack`, num(w.attackBonus), `weapons.${a1}.attackBonus`, {

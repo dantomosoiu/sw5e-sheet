@@ -611,6 +611,7 @@ function fxResolve(effects, baseScores) {
       // "AC equals 10 + Dex + your Constitution modifier": the modifier as it stands after earlier effects
       // (a choice of abilities that isn't made yet uses the best of them; `lowest`: the other one, Bendu's "both").
       if (mod.abilityMod) bonus = (mod.lowest ? Math.min : Math.max)(...[].concat(mod.abilityMod).map((a) => Math.floor(((Number(scores[a]) || 10) - 10) / 2)));
+      if (mod.abilityMod && mod.abilityHalf) bonus = Math.floor(bonus / 2); // "half your Charisma modifier\"
       if (mod.min != null) bonus = Math.max(bonus, mod.min); // "(minimum of +1)"
       // "Your Dexterity score is treated as 15" for AC and saves: what that modifier adds over the score's own.
       if (mod.scoreAs) bonus = Math.max(0, Math.floor((mod.scoreAs.score - 10) / 2) - modOf(mod.scoreAs.ability));
@@ -628,7 +629,7 @@ function fxResolve(effects, baseScores) {
       }
       // A cap that takes nothing off yet, or a fixed AC (a carapace's 17), is kept: the sheet works them out once it has the
       // final scores and AC without effects (viewer.js applyEffects).
-      if (bonus || fields || mod.capAbility || mod.acFixed) tweaks.push({ path: mod.path, bonus, fields, effect: eff, mod });
+      if (bonus || fields || mod.capAbility || mod.acFixed || mod.acSwap || mod.acFrom) tweaks.push({ path: mod.path, bonus, fields, effect: eff, mod });
     }
   }
   // The proficiency a skill or save has: SW5E's (`baseRank`, from the character's classes, background and tweaks) or

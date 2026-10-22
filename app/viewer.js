@@ -1887,7 +1887,7 @@ function featureEffectEntry(id, name, why, fe, origin = 'class feature') {
   return {
     id, kind: 'feature', origin, name, why, mods, notes: [], needsChoice: fe.needsChoice, weapons: fe.profs.weapons, tools, armor: fe.profs.armor, chains, passives, target: 'self',
     advantage: fe.advantage, defenses: fe.defenses, critRange: fe.critRange, halfProf: fe.halfProf, unarmedStep: fe.unarmedStep,
-    unarmedDie: fe.unarmedDie || 0, unarmedFinesse: !!fe.unarmedFinesse,
+    unarmedDie: fe.unarmedDie || 0, unarmedFinesse: !!fe.unarmedFinesse, ...(fe.critOn === 'unarmed' ? { critWeapons: ['unarmed'] } : {}),
   };
 }
 /**
@@ -2043,12 +2043,6 @@ function featureEffectsUncached(editedRaw) {
     // armor, but if you are using a shield, you can apply the shield's bonus as normal" (Colicoid): resolved in applyEffects.
     const fixed = /\bbase AC of (\d+) \(your Dexterity modifier doesn't affect this number\)/i.exec(tr.description || '');
     if (fixed) profs.mods.push({ path: 'armorClass', bonus: 0, acFixed: num(fixed[1]), acFormula: true, label: `AC ${fixed[1]} (${tr.name})` });
-    // "While you are unarmored or wearing light armor, your AC is 13 + your Dexterity modifier" (Wookiee Hide).
-    const hide = /\b(While you are unarmored(?: or wearing light armor)?|When you aren't wearing armor|While you aren't wearing armor), your (?:AC|Armor Class) (?:is|equals|becomes) (\d+) \+ your Dexterity modifier/i.exec(tr.description || '');
-    if (hide) {
-      const n = num(hide[2]);
-      profs.mods.push({ path: 'armorClass', bonus: n - 10, acBase: n, acFormula: true, when: { noArmor: true, orLight: /light armor/i.test(hide[1]) }, label: `AC ${n} + DEX (${tr.name})` });
-    }
     // "Your unarmed strikes deal 1d4 kinetic damage and have the finesse property" (Zabrak, Wookiee Claws).
     const ua = /\byour unarmed strikes deal (\d+)d(\d+) \w+ damage( and have the finesse property)?/i.exec(tr.description || '');
     if (ua) { profs.unarmedDie = num(ua[2]); profs.unarmedFinesse = !!ua[3]; }
@@ -2175,9 +2169,18 @@ function applyEffects(key, editedRaw, complete) {
   const withMod = (t) => {
     // "You can't add more than +3 … from your Dexterity": what the final modifier adds over the cap.
     if (t.mod.capAbility) return { ...t, bonus: -Math.max(0, modOf(t.mod.capAbility) - num(t.mod.capAt)) };
+    // "…use your Intelligence modifier instead of your Dexterity modifier when determining your AC": the better one (in medium
+    // armor both count up to +2). "Your base AC becomes 13 + your Constitution modifier": over 10 + Dexterity.
+    if (t.mod.acSwap) {
+      const medium = armor.armor && !armor.light && !armor.heavy;
+      const cap = (n) => (medium ? Math.min(n, 2) : n);
+      return { ...t, bonus: Math.max(0, cap(modOf(t.mod.acSwap.to)) - cap(modOf(t.mod.acSwap.from))) };
+    }
+    if (t.mod.acFrom) return { ...t, bonus: num(t.mod.acFrom.base) - 10 + modOf(t.mod.acFrom.ability) - modOf('Dexterity') };
     if (t.mod.acFixed && base) return { ...t, bonus: num(t.mod.acFixed) - (num(base.armorClass) - shieldBonus) };
     if (!t.mod.abilityMod) return t;
     let b = (t.mod.lowest ? Math.min : Math.max)(...[].concat(t.mod.abilityMod).map(modOf));
+    if (t.mod.abilityHalf) b = Math.floor(b / 2); // "half your Charisma modifier\"
     if (t.mod.min != null) b = Math.max(b, t.mod.min);
     return { ...t, bonus: b };
   };

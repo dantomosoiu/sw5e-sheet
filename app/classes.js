@@ -626,8 +626,12 @@ function clsFeatureEffects(text, note, ctx) {
   const level = Number(ctx.level) || 0;
   const sub = clsChosenText(text, note);
   const optionAsk = () => (sub.choice ? [{ kind: 'option', label: 'Choose one', options: sub.options, count: 1, chosen: sub.chosen, of: '' }] : []);
-  if (sub.choice && sub.chosen.length && /\bfor the duration\b|\bwhile wearing your [\w' ]+, you gain the (?:effects|benefits) of the chosen\b/i.test(String(text).split(/^#{4,}\s/m)[0])) {
-    // Only during the state / while wearing the item: not permanent numbers (the text stays on the card).
+  const intro = String(text).split(/^#{4,}\s/m)[0];
+  // "While wearing your spiked armor, you gain the effects of the chosen option" (Customized Armor): the option's numbers
+  // count while armor is worn (wornGear; set on the mods at the end).
+  const wornGear = sub.choice && (/\bwhile wearing your ([\w' ]+), you gain the (?:effects|benefits) of the chosen\b/i.exec(intro) || [])[1];
+  if (sub.choice && sub.chosen.length && /\bfor the duration\b/i.test(intro)) {
+    // Only during the state: not permanent numbers (the text stays on the card).
     return { mods: [], profs: { saves: [], skills: [], tools: [], weapons: [], armor: [], upgrades: [], chains: [] }, notes: [], needsChoice: [], asks: optionAsk(), advantage: [], critRange: 0, halfProf: false, unarmedStep: 0, defenses: [], passives: {} };
   }
   const t = clsScaleText(sub.text, level);
@@ -661,7 +665,7 @@ function clsFeatureEffects(text, note, ctx) {
   // Benefit lists of states ("While raging, you gain the following benefits: - …") aren't permanent.
   const permanent = sentences.filter((s) => !/following benefits/i.test(s) && !/^- /.test(s));
   // Clauses that only say the feature's precondition is met by having the feature/equipment.
-  const ALWAYS = /,?\s*\bwhile (?:you are |you're )?(?:not wearing[^,.]*|wearing no[^,.]*|using (?:your|this|a) [\w ]+? as (?:a|your) (?:tech |force )?focus|wearing (?:your|these|this) (?:[\w']+ ){0,3}?(?:armor|harness|goggles|gloves|pack|implements|shield|suit|helmet|wristpad|platform|instrument|boots|belt)|wearing (?:your|these|this) [\w ]+?|wielding a weapon with which you are proficient)(?=[,.]|\s+(?:you|your)\b|$),?/gi;
+  const ALWAYS = /,?\s*\bwhile (?:you are |you're )?(?:not wearing[^,.]*|wearing no[^,.]*|using (?:your|this|a) [\w' ]+? as (?:a|your) (?:tech |force )?focus|wearing (?:your|these|this) (?:[\w']+ ){0,3}?(?:armor|harness|goggles|gloves|pack|implements|shield|suit|helmet|wristpad|platform|instrument|boots|belt)|wearing (?:your|these|this) [\w ]+?|wielding a weapon with which you are proficient)(?=[,.]|\s+(?:you|your)\b|$),?/gi;
   let m;
   // A damage type the player picks: "Choose one of the following damage types: acid, cold, fire, lightning, or sonic".
   // Or any of them: "Choose three damage types other than true damage" (Dewback's Instinct).
@@ -670,7 +674,20 @@ function clsFeatureEffects(text, note, ctx) {
     : CLS_DAMAGE_TYPES.filter((d) => d !== String(dtList[2] || '').toLowerCase());
   const dtPicked = String(note || '').split(/[,;/+&]|\band\b|\bor\b/).map((x) => x.trim().toLowerCase()).filter((x) => CLS_DAMAGE_TYPES.includes(x) || x === 'true');
   if (dtList) ask('damage', 'Damage type', dtOptions, clsCount(dtList[1]), dtPicked.filter((d) => dtOptions.includes(d)));
-  for (const s of permanent) {
+  const SKILL_ALT = CLS_SKILLS.join('|');
+  for (const s0 of permanent) {
+    // Wordings of "a bonus to <it> equal to your <ability> modifier", read below: "When you make a Dexterity (Sleight of
+    // Hand) check, you gain a bonus to that check equal to…" (Duplicitous Force); "When you make an ability check with the
+    // chosen skill or tool, you can add half your Wisdom or Charisma modifier" (Ideal of the Artisan: the skill picked);
+    // "You can add your Charisma modifier to your initiative rolls" (Rakish Audacity); "…you can add half your Charisma
+    // modifier to your AC as long as it doesn't already include that modifier" (Artful Dancer).
+    const s = s0
+      .replace(new RegExp(`\\bWhen you make an? (?:${CLS_ABIL_ANY} \\()?(${SKILL_ALT})\\)? check, you (?:gain|have) a bonus to that check\\b`, 'i'), (all, sk) => `You gain a bonus to ${clsSkill(sk)} checks`)
+      .replace(/\bWhen you make an ability check with the chosen skill(?: or tool)?, you can add (half )?your\b/i, (all, half) => (picks.skills[0] ? `You gain a bonus to ${picks.skills[0]} checks equal to ${half || ''}your` : all))
+      .replace(new RegExp(`\\byou (?:can )?add (half )?your ${CLS_ABIL_RE} modifier to (?:your )?(AC|initiative(?: rolls| checks)?)(?: as long as it doesn(?:'|’)t already include that modifier)?`, 'i'),
+        (all, half, ab, what) => `you gain a bonus to ${/^AC$/i.test(what) ? 'AC' : 'initiative'} equal to ${half || ''}your ${ab} modifier`);
+    // Ideal of the Artisan: which skill (or tool) is the chosen one.
+    if (/\bWhen you make an ability check with the chosen skill(?: or tool)?, you can add\b/i.test(s0)) ask('skill', 'Chosen skill', null, 1, picks.skills.slice(0, 1), 'one of your skill proficiencies');
     // Table rows ("| 16 | The creature becomes ravenous. |") aren't the character's sentences.
     if ((s.match(/\|/g) || []).length >= 2) continue;
     const cond = clsArmorCondition(s);
@@ -680,7 +697,7 @@ function clsFeatureEffects(text, note, ctx) {
     // increases by 2" / "Your Dexterity and Wisdom or Charisma scores (your choice) increase by 2".
     if (!conditional) {
       const capM = /maximum for (?:this|those|these|that|the chosen) scores? (?:increases by|is now|increases to) (\d+)/i.exec(t);
-      for (const am of core.matchAll(new RegExp(`\\b(${CLS_ABIL_ANY}(?:,? (?:and|or) ${CLS_ABIL_ANY})*) scores?(?: \\(your choice\\))? (?:increases?|increase) by (\\d+)`, 'gi'))) {
+      for (const am of core.replace(/\s*\(your choice\)/gi, '').matchAll(new RegExp(`\\b(${CLS_ABIL_ANY}(?:,? (?:and|or) ${CLS_ABIL_ANY})*) scores? (?:increases?|increase) by (\\d+)`, 'gi'))) {
         const n = Number(am[2]);
         const cap = capM ? (/increases by/i.test(capM[0]) ? 20 + Number(capM[1]) : Number(capM[1])) : 20;
         // "A and B or C": A, plus one of B/C.
@@ -702,6 +719,24 @@ function clsFeatureEffects(text, note, ctx) {
       const chosen = opts.length > 1 ? (opts.find((a) => picks.abilities.includes(a)) || null) : opts[0];
       if (opts.length > 1) ask('ability', 'AC adds', opts, 1, chosen ? [chosen] : []);
       out.mods.push({ path: 'armorClass', abilityMod: chosen || opts, label: `AC + ${chosen ? chosen.slice(0, 3).toUpperCase() : opts.map((a) => a.slice(0, 3).toUpperCase()).join('/')}`, when: cond || { noArmor: true }, acFormula: true });
+    }
+    // "…you can use your Intelligence modifier instead of your Dexterity modifier when determining your AC" (Instinctive
+    // Combatant: in light or medium armor; spiked armor: Constitution while wearing it): the better of the two (acSwap).
+    if ((m = new RegExp(`\\buse your ${CLS_ABIL_RE} modifier instead of your Dexterity modifier when determining your (?:AC|Armor Class)`, 'i').exec(s))) {
+      const ab = clsAbility(m[1]);
+      const when = /\bwearing light or medium armor\b/i.test(s) ? { armor: true, noHeavy: true } : /\bwhile wearing (?:your|this) [\w' ]*armor\b/i.test(s) ? { armor: true } : null;
+      out.mods.push({ path: 'armorClass', acSwap: { to: ab, from: 'Dexterity' }, when, label: `AC: ${ab.slice(0, 3).toUpperCase()} instead of DEX` });
+    }
+    // "Your base AC becomes 13 + your Constitution modifier" (Upheld by the Force): unarmored, instead of 10 + Dexterity.
+    if ((m = new RegExp(`\\bbase (?:AC|Armor Class) becomes (\\d+) \\+ your ${CLS_ABIL_RE} modifier`, 'i').exec(s))) {
+      const ab = clsAbility(m[2]);
+      out.mods.push({ path: 'armorClass', acFrom: { base: Number(m[1]), ability: ab }, acFormula: true, when: { noArmor: true }, label: `AC ${m[1]} + ${ab.slice(0, 3).toUpperCase()}` });
+    }
+    // "When you aren't wearing armor, your AC is 13 + your Dexterity modifier" (Adapted Hide, Integrated Subdermal Armor; a
+    // species' hide, "While you are unarmored or wearing light armor…": in light armor, what it adds over the armor's base).
+    if ((m = /\b(While you are unarmored(?: or wearing light armor)?|When you aren't wearing armor|While you aren't wearing armor|When you are not wearing armor), your (?:AC|Armor Class) (?:is|equals|becomes) (\d+) \+ your Dexterity modifier/i.exec(s))) {
+      const n = Number(m[2]);
+      out.mods.push({ path: 'armorClass', bonus: n - 10, acBase: n, acFormula: true, when: { noArmor: true, orLight: /light armor/i.test(m[1]) }, label: `AC ${n} + DEX` });
     }
     // "Your armor class increases by 1" / "your AC increases by 1".
     if (!conditional && (m = /\b(?:armor class|AC) increases by (\d+)/i.exec(core))) out.mods.push({ path: 'armorClass', bonus: Number(m[1]), label: `AC +${m[1]}`, when: cond || null });
@@ -733,13 +768,15 @@ function clsFeatureEffects(text, note, ctx) {
       for (const a of CLS_ABILITIES) out.mods.push({ path: `abilityScores.${a}.savingThrowModifier`, abilityMod: ab, label: `${a.slice(0, 3).toUpperCase()} save + ${ab.slice(0, 3).toUpperCase()}` });
     }
     // "a bonus to AC equal to your Wisdom or Charisma modifier (your choice, minimum of +1)".
-    if (!conditional && (m = new RegExp(`\\ba bonus to ([^.;]+?) equal to your ${CLS_ABIL_RE}(?: or ${CLS_ABIL_RE})? modifier(?: \\((?:your choice, )?minimum of \\+?(\\d+)\\))?`, 'i').exec(core))) {
+    if (!conditional && (m = new RegExp(`\\ba bonus to ([^.;]+?) equal to (half )?your ${CLS_ABIL_RE}(?: or ${CLS_ABIL_RE})? modifier(?: \\((?:your choice, )?minimum of (?:\\+?(\\d+)|(one))\\))?`, 'i').exec(core))) {
+      const half = !!m[2];
+      m = [m[0], m[1], m[3], m[4], m[5] || (m[6] ? '1' : undefined)]; // as before: phrase, the abilities, the minimum
       const opts = [m[2], m[3]].filter(Boolean).map(clsAbility);
       const chosen = opts.length > 1 ? (opts.find((a) => picks.abilities.includes(a)) || null) : opts[0];
       const got = clsFx.fxBonusMods ? clsFx.fxBonusMods(0, m[1], { notes: [] }) : null;
       if (opts.length > 1 && got && got.length) ask('ability', `Bonus to ${m[1].trim()} from`, opts, 1, chosen ? [chosen] : []);
       const ab = chosen ? chosen.slice(0, 3).toUpperCase() : opts.map((a) => a.slice(0, 3).toUpperCase()).join('/');
-      for (const x of got || []) out.mods.push({ path: x.path, abilityMod: chosen || opts, min: m[4] ? Number(m[4]) : null, label: `${x.label.replace(/ [+\-−]?0$/, '')} + ${ab}`, when: cond || null });
+      for (const x of got || []) out.mods.push({ path: x.path, abilityMod: chosen || opts, ...(half ? { abilityHalf: true } : {}), min: m[4] ? Number(m[4]) : null, label: `${x.label.replace(/ [+\-−]?0$/, '')} + ${half ? 'half ' : ''}${ab}`, when: cond || null });
     }
     // "+N bonus to <phrase>" (AC, initiative, saves, skills, tech/force attack and DC…), always or only sometimes; not one
     // the sentence takes away ("Traveling at a fast pace no longer imposes a -5 penalty to your passive Wisdom (Perception)").
@@ -774,7 +811,14 @@ function clsFeatureEffects(text, note, ctx) {
       }
     }
     // Critical range: "Your critical hit range with weapons increases by 1" / "a critical hit on a roll of 19 or 20".
-    if ((m = /critical hit ranges?(?: with weapons)? increases? by (\d+)/i.exec(s))) out.critRange = Math.max(out.critRange, Number(m[1]));
+    // "…with unarmed strikes": those only (critOn). Not for one attack ("…, your critical hit range increases by 1 for that
+    // attack": Enforcer) or while something lasts; some attacks only ("with melee weapon attacks using Dexterity"): listed.
+    if ((m = /critical hit ranges?(?: with ([\w' ]+?))? increases? by (\d+)/i.exec(s)) && !conditional && !/\bfor (?:that|this|the) attack\b/i.test(s)) {
+      const what = String(m[1] || '').replace(/^your /i, '');
+      if (!what || /^weapons$/i.test(what)) out.critRange = Math.max(out.critRange, Number(m[2]));
+      else if (/^unarmed strikes$/i.test(what)) { out.critRange = Math.max(out.critRange, Number(m[2])); out.critOn = 'unarmed'; }
+      else out.defenses.push({ kind: 'other', text: `Critical hit range +${m[2]} with ${what}` });
+    }
     if (!conditional && (m = /(?:score|scores) a critical hit on a roll of (\d+) or 20/i.exec(s))) out.critRange = Math.max(out.critRange, 20 - Number(m[1]));
     // Half proficiency on checks without proficiency (Led by the Force).
     // Or only some: "…to any Strength, Dexterity, or Constitution check you make that doesn't already use your proficiency
@@ -888,6 +932,7 @@ function clsFeatureEffects(text, note, ctx) {
       }
     }
   }
+  if (wornGear && /\barmor\b/i.test(wornGear)) out.mods = out.mods.map((x) => (x.when ? x : { ...x, when: { armor: true } }));
   // De-duplicate.
   const uniq = (list, key) => list.filter((x, i) => list.findIndex((y) => key(y) === key(x)) === i);
   out.profs.skills = uniq(out.profs.skills, (x) => x.name + x.level);

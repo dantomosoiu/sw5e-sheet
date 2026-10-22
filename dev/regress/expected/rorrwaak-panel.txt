@@ -244,7 +244,7 @@ Still to choose (4): Berserker skills (2 more) · background skills (2 more) · 
 ## Sheet: Combat & Vitals
 Armor Class
 14
-  ↳ hover armorClass: Without tweaks or effects: 11 → now 14 / +3 AC 13 + DEX (Hide) · Hide Wookiee trait / Not used (a better AC formula applies): / +2 AC + CON · Unarmored Defense
+  ↳ hover armorClass: Without tweaks or effects: 11 → now 14 / +3 AC 13 + DEX · Hide Wookiee trait / Not used (a better AC formula applies): / +2 AC + CON · Unarmored Defense
 Unarmored
 Hit Points
 39 / 41
@@ -293,7 +293,7 @@ Brawny STR +1 feat (background feat)
 Brawny Athletics: expertise (already proficient) feat
 Claws Wookiee trait
 Darkvision Darkvision 60 ft Wookiee trait
-Hide AC 13 + DEX (Hide) Advantage on Constitution saving throws made to avoid exhaustion due to extreme cold Wookiee trait
+Hide AC 13 + DEX Advantage on Constitution saving throws made to avoid exhaustion due to extreme cold Wookiee trait
 Menacing Intimidation: proficient Wookiee trait
 Treeclimber Climbing speed 30 ft Advantage on Strength saving throws and Strength (Athletics) checks that involve climbing Wookiee trait
 From equipment
