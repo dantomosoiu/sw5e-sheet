@@ -1153,6 +1153,30 @@ function clsFeatureState(name, text, ctx) {
   return { name, word, extension, duration: extension ? '' : duration, benefits, advantage, mods, defenses: fe.defenses, critRange: fe.critRange };
 }
 
+/**
+ * A feature's own numbers for its card: the save DC it states ("…must make a Wisdom saving throw (DC = 8 + your proficiency
+ * bonus + your Constitution modifier)") and its damage at a level ("…takes 2d6 sonic damage… The damage increases to 4d6
+ * at 5th level"). ctx: { level, pb, mods: { Constitution: 2, … } }. { dc: { value, ability, save }, damage: { dice, type } }
+ * or null.
+ */
+function clsFeatureNumbers(text, ctx) {
+  const t = String(text || '').replace(/\s+/g, ' ');
+  const out = {};
+  let m;
+  if ((m = new RegExp(`\\bDC (?:=|equals|of) 8 \\+ your proficiency bonus \\+ your ${CLS_ABIL_RE} modifier`, 'i').exec(t)) && ctx.pb) {
+    const ab = clsAbility(m[1]);
+    const save = new RegExp(`\\b${CLS_ABIL_RE} saving throw \\((?:save )?DC`, 'i').exec(t);
+    out.dc = { value: 8 + Number(ctx.pb) + (Number((ctx.mods || {})[ab]) || 0), ability: ab, save: save ? clsAbility(save[1]) : null };
+  }
+  if ((m = /\btakes? (\d+d\d+) (\w+) damage\b/i.exec(t))) {
+    let dice = m[1];
+    const grows = /\bdamage increases to ((?:\d+d\d+ at \d+(?:st|nd|rd|th) level(?:,? (?:and )?)?)+)/i.exec(t);
+    if (grows) for (const g of grows[1].matchAll(/(\d+d\d+) at (\d+)(?:st|nd|rd|th) level/gi)) if (Number(ctx.level) >= Number(g[2])) dice = g[1];
+    out.damage = { dice, type: m[2].toLowerCase() };
+  }
+  return out.dc || out.damage ? out : null;
+}
+
 /** "Malleable Maneuvering (Disc)" → "malleable maneuvering": for matching custom features to options. */
 const clsBaseName = (name) => String(name || '').replace(/\s*\([^)]*\)\s*$/, '').replace(/[’']/g, "'").trim().toLowerCase();
 
@@ -1213,4 +1237,4 @@ function clsArchetypeTableAt(archetype, column, level) {
 }
 
 if (typeof module !== 'undefined') module.exports = { parseClassOptions, clsSections, clsCountAt, clsColumnFor, clsBaseName, clsArchetypeTableAt, clsArchetypeTableRaw, clsTextFeatures, clsUsage,
-  clsFeatureEffects, clsFeatureState, clsWeaponMatches, clsJoinProfList, clsNoteNames, clsNoteTokens, clsScaleText, clsChosenText, CLS_DAMAGE_TYPES };
+  clsFeatureEffects, clsFeatureState, clsFeatureNumbers, clsWeaponMatches, clsJoinProfList, clsNoteNames, clsNoteTokens, clsScaleText, clsChosenText, CLS_DAMAGE_TYPES };

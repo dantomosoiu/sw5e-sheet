@@ -5259,6 +5259,18 @@ function missingClassFeatures(raw, have) {
   return out;
 }
 
+/**
+ * A feature's save DC and damage, worked out for the character ("DC = 8 + your proficiency bonus + your Constitution
+ * modifier", "2d6 sonic… increases to 4d6 at 5th level"): at its class's level, or the character's for a trait or feat.
+ */
+function featureNumberChips(m, f) {
+  const k = arr(m.raw.classes).find((x) => x.name === f.sourceName || (x.archetype && x.archetype.name === f.sourceName));
+  const mods = Object.fromEntries(ABILITIES.map((a) => [a, num(((m.c.abilityScores || {})[a] || {}).modifier)]));
+  const n = clsFeatureNumbers(f.text || f.description || '', { level: k ? num(k.levels) : charLevel(m), pb: num(m.c.proficiencyBonus), mods });
+  if (!n) return [];
+  return [n.dc ? `<span class="chip accent" title="8 + proficiency bonus + ${esc(n.dc.ability)} modifier">DC ${n.dc.value}${n.dc.save ? ` ${esc(n.dc.save)} save` : ''}</span>` : '',
+    n.damage ? `<span class="chip accent" title="At your level">${esc(n.damage.dice)} ${esc(n.damage.type)}</span>` : ''];
+}
 function featureCard(f, m) {
   const lvl = f.levels && f.levels.length > 1 ? `Levels ${f.levels.join(', ')}` : f.level != null ? `Level ${f.level}` : '';
   const uses = m && m.t && m.t.lim.features.some((u) => u.name === f.name) ? live('uses:' + f.name, m, 'div', 'trk-rows') : '';
@@ -5272,7 +5284,8 @@ function featureCard(f, m) {
     meta: esc(lvl),
     chips: [f.combat === false ? chip('Non-combat') : '', f.prerequisite ? chip('Prereq: ' + f.prerequisite, 'warn') : '',
       f.fromText ? `<span class="chip" title="SW5E's feature list leaves this out at your level; taken from the class text">from class text</span>` : '',
-      f.source === 'Choice' && f.from ? `<span class="chip" title="Chosen for ${esc(f.from)}">${esc(f.from.split(' › ')[0])}</span>` : ''].filter(Boolean),
+      f.source === 'Choice' && f.from ? `<span class="chip" title="Chosen for ${esc(f.from)}">${esc(f.from.split(' › ')[0])}</span>` : '',
+      ...(m ? featureNumberChips(m, f) : [])].filter(Boolean),
     facts: usageFacts,
     lead: uses + (m ? stateControls(m, f) + featureExtras(m, f) : ''),
     body: md(f.text || f.description || f.content || '') + (m && f.source !== 'Option' && f.source !== 'Choice' ? featureNoteBox(m, f) : ''),

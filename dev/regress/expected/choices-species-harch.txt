@@ -588,7 +588,7 @@ Notes []
 Alignment
 Harch are cold, calculating beings, causing them to tend toward the dark side, though there are exceptions.
 Notes []
-Bite
+Bite DC 13 Constitution save
 Uses (back on a short or long rest) 1 / 1 [−] [+]
 Your fangs are a natural weapon, which you can use to make unarmed strikes. Additionally, your unarmed strikes deal 1d4 kinetic damage. Lastly, as a bonus actio… [519 chars #61081491]
 Notes []
