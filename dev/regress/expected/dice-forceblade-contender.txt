@@ -268,7 +268,7 @@ Still to choose (14): Sentinel skills (3 more) · Sentinel tool · Sentinel 4th 
 ## Sheet: Combat & Vitals
 Armor Class
 13
-Unarmored
+Unarmored · vs one attack: Deflection +1d8 (1 force point)
 Hit Points
 74 / 74
 No temporary HP

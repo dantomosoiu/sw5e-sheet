@@ -224,6 +224,28 @@ function d20Options(m, kind, ctx = {}) {
       const label = headingOf(s0) || t.name;
       const spend = (/\bspend (\d+) force points?\b/i.exec(s) || [])[1];
       let x;
+      // A form's or stance's benefits ("Until the end of your next turn, …", "While in this stance, …"): only while it's on.
+      const stateOnly = /^(?:Before|Until) the end of your next turn\b|^While in this stance\b/i.test(s);
+      if (stateOnly && !stateOn(m, t.name)) continue;
+      if (stateOnly && (kind === 'attack' || kind === 'damage' || kind === 'check' || kind === 'skill')) {
+        const w = ctx.w || {};
+        const ab = ctx.ability || w.ability;
+        const ranged = /blaster/i.test(w.weaponClassification || '') || arr(w.properties).some((p) => /\(range /i.test(p) && !/^thrown/i.test(String(p).trim()));
+        // "… add half your Wisdom or Charisma modifier (your choice, minimum of +1) to one ability check or attack roll you
+        // make using Strength" (Djem So Form).
+        if ((x = /add half your (\w+) or (\w+) modifier \(your choice, minimum of \+1\) to one ability check or attack roll you make using (\w+)/i.exec(s))
+          && kind !== 'damage' && (kind === 'attack' ? ab : ctx.ability) === x[3]) out.push({ label, bonus: Math.max(1, Math.floor(mod([x[1], x[2]]) / 2)), extra: [], on: false });
+        // "… you can use Wisdom or Charisma instead of Strength or Dexterity for the attack and damage rolls of your melee
+        // weapon attacks" (Niman Form).
+        else if (ctx.w && !ranged && (x = /you can use (\w+) or (\w+) instead of Strength or Dexterity for the attack and damage rolls of your melee weapon attacks/i.exec(s)) && mod([x[1], x[2]]) > mod([ab])) {
+          out.push({ label, bonus: mod([x[1], x[2]]) - mod([ab]), extra: [], on: false });
+        // "While in this stance, you add your Wisdom or Charisma modifier (your choice, minimum of +1) to one ranged weapon
+        // attack and damage roll you make each turn" (The Way of the Yerdua).
+        } else if (ctx.w && ranged && (x = /you add your (\w+) or (\w+) modifier \(your choice, minimum of \+1\) to one ranged weapon attack and damage roll/i.exec(s))) {
+          out.push({ label, bonus: Math.max(1, mod([x[1], x[2]])), extra: [], on: false });
+        }
+        continue;
+      }
       if (kind === 'save') {
         if ((x = /\byou (?:may|can)(?: spend \d+ force points? to)? (?:gain a bonus to the saving throw equal to|add) your ((?:Strength|Dexterity|Constitution|Intelligence|Wisdom|Charisma)(?: or (?:Strength|Dexterity|Constitution|Intelligence|Wisdom|Charisma))?) modifier( \((?:your choice, )?minimum of (?:one|\+?1)\))?(?: to the (?:roll|saving throw))?/i.exec(s)) && /saving throw/i.test(s) && !/death saving throw/i.test(s)) {
           const cond = (/^When you make a saving throw ((?:caused by|to resist|against)[^,]+),/i.exec(s) || [])[1];
@@ -238,6 +260,13 @@ function d20Options(m, kind, ctx = {}) {
           const name = x[2].replace(/ ability$/, '');
           const a = ABBR[x[2]] ? x[2] : (new RegExp(`${name} ability modifier, which is (\\w+)`, 'i').exec(riderTexts(m).map((y) => y.text).join(' ')) || [])[1];
           if (ABBR[a] && ctx.ability !== a) out.push({ label: `while ${x[1].replace(/^the target of your /i, 'analyzed by your ')} (${label})`, bonus: Math.max(1, Math.floor(mod([a]) / 2)), extra: [], on: false });
+        }
+        // "you can add your shield's AC bonus to any Dexterity saving throw you make against a power or other harmful
+        // effect" (Shield Mastery): with a shield equipped.
+        else if ((x = /add your shield's AC bonus to any (\w+) saving throw you make (against [^.]+?)\./i.exec(s)) && x[1] === ctx.ability) {
+          const sh = arr(m.c.equipment).find((e) => e.equipped && e.equipmentCategory === 'Armor' && /shield/i.test(e.armorClassification || ''));
+          const b = sh ? num(String(sh.ac || '').replace(/[^\d-]/g, '')) : 0;
+          if (b) out.push({ label: `${x[2].replace(/^against /i, 'vs ')} (${label})`, bonus: b, extra: [], on: false });
         }
       } else if (kind === 'init') {
         if (/When you roll initiative, you can choose to add your proficiency bonus to the initiative check/i.test(s)) out.push({ label, bonus: pb, extra: [], on: false });
@@ -328,6 +357,35 @@ function optionPicked(m, feature, sub) {
   // A list to choose from ("choose", "of your choice", "from any of the following"): not picked.
   if (/\bchoose\b|\bof your choice\b|\bfrom (?:any of )?the following\b|\bselect\b/i.test(text.split(/####/)[0])) return false;
   return true;
+}
+/** Is a feature's state, form or stance on now ("Niman Form (lightsaber form)" → the started "Niman Form")? */
+function stateOn(m, name) {
+  const base = String(name).replace(/ \([^)]*\)$/, '').toLowerCase();
+  return !!m.snap && tempEffects(m.snap.key).some((e) => String(e.name || '').toLowerCase() === base || String(e.group || '').toLowerCase() === `state:${base}`);
+}
+/**
+ * What the character can add to its AC against one attack, as a reaction or a free roll: "roll a Kinetic Combat die and
+ * add it to your AC (no action required)" (Deflection, 1 force point), "roll a d4 and add it to your AC against one
+ * attack" (Splashclass Sentinel), "add half your Wisdom or Charisma modifier … to your AC against one attack" (Shien Form,
+ * while adopted). ["Deflection +1d8 (1 force point)"]
+ */
+function acReactions(m) {
+  const out = [];
+  const mod = (list) => Math.max(...list.map((a) => num((((m.c.abilityScores || {})[a]) || {}).modifier)));
+  for (const t of riderTexts(m)) {
+    const spend = /\bcosts? 1 force point\b|\bspend 1 force point\b/i.test(t.text) ? ' (1 force point)' : '';
+    for (const s0 of t.text.split(/(?<=\.)\s+(?=[-A-Z_*#])/)) {
+      let x;
+      if ((x = /\broll an? (?:([A-Z][\w' ]+?) die|(d\d+)) and add it to your AC\b/i.exec(s0))) {
+        const col = x[1] && arr(m.classDice).find((d) => d.dice && d.column.toLowerCase() === x[1].toLowerCase());
+        const dice = col ? col.dice : x[2] ? `1${x[2]}` : '';
+        if (dice) out.push(`${headingOf(s0) || t.name} +${dice}${spend}`);
+      } else if ((x = /add half your (\w+) or (\w+) modifier \(your choice, minimum of \+1\) to your AC against one attack/i.exec(s0)) && stateOn(m, t.name)) {
+        out.push(`${t.name.replace(/ \([^)]*\)$/, '')} +${Math.max(1, Math.floor(mod([x[1], x[2]]) / 2))}`);
+      }
+    }
+  }
+  return [...new Set(out)];
 }
 /** The class level behind a feature's "_**Berserker:** 9th, 13th, and 17th level_" (a class or archetype name). */
 function ownerLevel(m, owner) {
@@ -711,6 +769,12 @@ function buildRoll(m, spec, opts = {}) {
       // War Caster: "advantage on Constitution saving throws that you make to maintain your concentration".
       const wc = arr(m.allFeatures).find((f) => /advantage on Constitution saving throws (?:that )?you make to maintain (?:your )?concentration/i.test(f.text || f.description || ''));
       if (wc) r.advFrom = wc.name;
+      // "You add your Intelligence modifier to Constitution saving throws you make to maintain concentration" (Focused
+      // Augmentation).
+      for (const f of riderTexts(m)) {
+        const x = /\bYou add your (\w+) modifier to Constitution saving throws you make to maintain concentration/i.exec(f.text);
+        if (x && ABBR[x[1]]) r.base.push({ label: `${ABBR[x[1]]} modifier (${f.name})`, value: num((sc[x[1]] || {}).modifier) });
+      }
       return r;
     }
     case 'itemheal': {

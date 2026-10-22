@@ -2565,10 +2565,13 @@ function applyEffects(key, editedRaw, complete) {
       if (/^#{4,}\s/.test(s0) && typeof headingOf === 'function') sub = headingOf(s0);
       // "While you are concentrating on a Force power, you have a +2 bonus to your AC and all saving throws" (Enduring Focus).
       const w = /^(?:[-#*_ ]*[A-Z][\w'’ -]+?\s+)?While you are ([^,]+), you have a \+(\d+) bonus to your AC\b/.exec(s0);
-      const x = w ? [w[0], w[2]] : /^(?:[^.]*?\s)?You gain a \+(\d+) bonus to AC until the start of your next turn\b/.exec(s0);
+      // "While wielding your modified lightsaber, you gain a +1 bonus to your armor class against melee weapon attacks"
+      // (Crossguard, an Artificer modification picked).
+      const v = /\bWhile wielding your modified \w+, you gain a \+(\d+) bonus to your armor class against melee weapon attacks/i.exec(s0);
+      const x = v ? [v[0], v[1]] : w ? [w[0], w[2]] : /^(?:[^.]*?\s)?You gain a \+(\d+) bonus to AC until the start of your next turn\b/.exec(s0);
       if (!x || /\bfor each\b/i.test(s0)) continue;
       const name = sub || f.name;
-      const cond = w ? `while ${w[1].replace(/ on an? (?:Force|force|tech) power$/, '')}` : name;
+      const cond = v ? 'vs melee' : w ? `while ${w[1].replace(/ on an? (?:Force|force|tech) power$/, '')}` : name;
       const e = { id: `ac-alt:${name}`, kind: 'feature', name, why: f.k ? `${f.from || f.k.name} feature` : 'feat', target: 'self', mods: [], notes: [] };
       res.conds.push({ path: 'armorClass', bonus: num(x[1]), cond, ammo: null, weaponIndex: null, effect: e, mod: { path: 'armorClass', bonus: num(x[1]), label: `AC +${x[1]}`, cond } });
     }
@@ -4854,7 +4857,9 @@ function renderCombat(m) {
   return `
     <div class="grid auto">
       ${stat('Armor Class', bump(m, 'armorClass', esc(c.armorClass)) + acArt, esc(arr(c.armorList).join(', ') || 'Unarmored')
-        + (acSetByTweak(m.raw) != null ? ` · <span class="warn-text" title="Armor, shields and effects don't change it while the tweak is there">set to ${acSetByTweak(m.raw)} by a tweak</span>` : ''))}
+        + (acSetByTweak(m.raw) != null ? ` · <span class="warn-text" title="Armor, shields and effects don't change it while the tweak is there">set to ${acSetByTweak(m.raw)} by a tweak</span>` : '')
+        // What can be added against one attack (Deflection's die, Shien Form's half WIS/CHA): acReactions (roller.js).
+        + (typeof acReactions === 'function' && acReactions(m).length ? ` · <span title="Against one attack, when you choose (a reaction or a free roll)">vs one attack: ${esc(acReactions(m).join(', '))}</span>` : ''))}
       ${live('hp', m, 'div', 'stat')}
       ${stat('Initiative', rollable('init', bump(m, 'initiative', signed(c.initiative)), 'Roll initiative'))}
       ${(() => {
