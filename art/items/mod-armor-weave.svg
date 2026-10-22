@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <g transform="rotate(-45 32 32)">
+  <rect class="a-m a-oo" x="13" y="13" width="38" height="38" rx="3"/>
+  <rect x="13" y="13" width="38" height="38" rx="3" fill="url(#a-sheen)"/>
+  <rect class="a-b a-o" x="17" y="17" width="30" height="30"/>
+  <path class="a-x" d="M17 17h5v5h-5zM17 27h5v5h-5zM17 37h5v5h-5zM22 22h5v5h-5zM22 32h5v5h-5zM22 42h5v5h-5zM27 17h5v5h-5zM27 27h5v5h-5zM27 37h5v5h-5zM32 22h5v5h-5zM32 32h5v5h-5zM32 42h5v5h-5zM37 17h5v5h-5zM37 27h5v5h-5zM37 37h5v5h-5zM42 22h5v5h-5zM42 32h5v5h-5zM42 42h5v5h-5z"/>
+  <path class="a-d" opacity=".35" d="M17 17h.9v5h-.9zM21.1 17h.9v5h-.9zM17 22h5v.9h-5zM17 26.1h5v.9h-5zM17 27h.9v5h-.9zM21.1 27h.9v5h-.9zM17 32h5v.9h-5zM17 36.1h5v.9h-5zM17 37h.9v5h-.9zM21.1 37h.9v5h-.9zM17 42h5v.9h-5zM17 46.1h5v.9h-5zM22 17h5v.9h-5zM22 21.1h5v.9h-5zM22 22h.9v5h-.9zM26.1 22h.9v5h-.9zM22 27h5v.9h-5zM22 31.1h5v.9h-5zM22 32h.9v5h-.9zM26.1 32h.9v5h-.9zM22 37h5v.9h-5zM22 41.1h5v.9h-5zM22 42h.9v5h-.9zM26.1 42h.9v5h-.9zM27 17h.9v5h-.9zM31.1 17h.9v5h-.9zM27 22h5v.9h-5zM27 26.1h5v.9h-5zM27 27h.9v5h-.9zM31.1 27h.9v5h-.9zM27 32h5v.9h-5zM27 36.1h5v.9h-5zM27 37h.9v5h-.9zM31.1 37h.9v5h-.9zM27 42h5v.9h-5zM27 46.1h5v.9h-5zM32 17h5v.9h-5zM32 21.1h5v.9h-5zM32 22h.9v5h-.9zM36.1 22h.9v5h-.9zM32 27h5v.9h-5zM32 31.1h5v.9h-5zM32 32h.9v5h-.9zM36.1 32h.9v5h-.9zM32 37h5v.9h-5zM32 41.1h5v.9h-5zM32 42h.9v5h-.9zM36.1 42h.9v5h-.9zM37 17h.9v5h-.9zM41.1 17h.9v5h-.9zM37 22h5v.9h-5zM37 26.1h5v.9h-5zM37 27h.9v5h-.9zM41.1 27h.9v5h-.9zM37 32h5v.9h-5zM37 36.1h5v.9h-5zM37 37h.9v5h-.9zM41.1 37h.9v5h-.9zM37 42h5v.9h-5zM37 46.1h5v.9h-5zM42 17h5v.9h-5zM42 21.1h5v.9h-5zM42 22h.9v5h-.9zM46.1 22h.9v5h-.9zM42 27h5v.9h-5zM42 31.1h5v.9h-5zM42 32h.9v5h-.9zM46.1 32h.9v5h-.9zM42 37h5v.9h-5zM42 41.1h5v.9h-5zM42 42h.9v5h-.9zM46.1 42h.9v5h-.9z"/>
+  <rect x="17" y="17" width="30" height="30" fill="url(#a-sheen)"/>
+  <rect class="a-p" x="17" y="17" width="30" height="30"/>
+  <circle class="a-b a-o" cx="15.6" cy="15.6" r="2"/>
+  <circle class="a-b a-o" cx="48.4" cy="15.6" r="2"/>
+  <circle class="a-b a-o" cx="15.6" cy="48.4" r="2"/>
+  <circle class="a-b a-o" cx="48.4" cy="48.4" r="2"/>
+  <path class="a-d" d="M15.6 14.7a.9 .9 0 1 0 .1 0zM48.4 14.7a.9 .9 0 1 0 .1 0zM15.6 47.5a.9 .9 0 1 0 .1 0zM48.4 47.5a.9 .9 0 1 0 .1 0z"/>
+  <path class="a-l" d="M14.4 20v-3.4c0-1.2 1-2.2 2.2-2.2H20M24 14.4h20"/>
+  </g>
+</svg>

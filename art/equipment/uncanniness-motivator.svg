@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <path class="a-g" d="M29.6 26L23 13.6h18L34.4 26z" opacity=".3" filter="url(#a-glow)"/>
+  <path class="a-g" d="M32 2.6q1.4 9 10.6 10.6-9.2 1.6-10.6 10.6-1.4-9-10.6-10.6 9.2-1.6 10.6-10.6z" filter="url(#a-glow-lg)" opacity=".8"/>
+  <path class="a-g" d="M32 3.6q1.2 8.4 9.6 9.6-8.4 1.2-9.6 9.6-1.2-8.4-9.6-9.6 8.4-1.2 9.6-9.6z"/>
+  <path class="a-w" d="M32 7.6q.6 5 5.6 5.6-5 .6-5.6 5.6-.6-5-5.6-5.6 5-.6 5.6-5.6z"/>
+  <rect class="a-m a-oo" x="18.6" y="52.4" width="26.8" height="5.6" rx="1.6"/>
+  <rect class="a-b a-oo" x="22" y="29" width="20" height="25" rx="3"/>
+  <rect x="22" y="29" width="20" height="25" rx="3" fill="url(#a-sheen)"/>
+  <rect x="22" y="29" width="20" height="25" rx="3" fill="url(#a-shade)"/>
+  <g class="a-m a-oo"><rect x="20.4" y="33.4" width="23.2" height="3.4" rx="1.2"/><rect x="20.4" y="45.8" width="23.2" height="3.4" rx="1.2"/></g>
+  <rect class="a-x a-o" x="25" y="38.8" width="14" height="5" rx="1"/>
+  <g class="a-g"><circle cx="28.4" cy="41.3" r="1"/><circle cx="32" cy="41.3" r="1"/><circle cx="35.6" cy="41.3" r="1"/></g>
+  <path class="a-m a-oo" d="M23.6 30v-1.6a8.4 5 0 0 1 16.8 0V30z"/>
+  <ellipse class="a-s a-o" cx="32" cy="26.4" rx="4.6" ry="1.8"/>
+  <ellipse class="a-g" cx="32" cy="26.2" rx="3.2" ry="1.1" filter="url(#a-glow)"/>
+  <ellipse class="a-w" cx="32" cy="26.2" rx="1.8" ry=".6"/>
+  <path class="a-l" d="M23.4 31.6v20M24.4 34.6h13M20.6 53.6h23"/>
+</svg>

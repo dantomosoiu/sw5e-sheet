@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <path class="a-m a-oo" d="M15 45Q32 35 49 45V55Q32 45 15 55z"/>
+  <path d="M15 45Q32 35 49 45V55Q32 45 15 55z" fill="url(#a-shade)"/>
+  <g class="a-b a-oo">
+    <path d="M11 36Q32 25 53 36V47Q32 36 11 47z"/>
+    <path d="M8 26Q32 14 56 26V38Q32 26 8 38z"/>
+    <path d="M6 15Q32 2 58 15V28Q32 15 6 28z"/>
+  </g>
+  <g fill="url(#a-sheen)">
+    <path d="M11 36Q32 25 53 36V47Q32 36 11 47z"/>
+    <path d="M8 26Q32 14 56 26V38Q32 26 8 38z"/>
+    <path d="M6 15Q32 2 58 15V28Q32 15 6 28z"/>
+  </g>
+  <g fill="url(#a-shade)">
+    <path d="M11 36Q32 25 53 36V47Q32 36 11 47z"/>
+    <path d="M8 26Q32 14 56 26V38Q32 26 8 38z"/>
+    <path d="M6 15Q32 2 58 15V28Q32 15 6 28z"/>
+  </g>
+  <path class="a-x a-o" d="M6.6 21.6Q32 8.6 57.4 21.6V24.8Q32 11.8 6.6 24.8z"/>
+  <path class="a-d" d="M30.6 41.2h2.8v1.6h-2.8zM29 49.2h6v1.4h-6z"/>
+  <g class="a-m a-o">
+    <circle cx="9.4" cy="17.4" r="1.3"/><circle cx="54.6" cy="17.4" r="1.3"/>
+    <circle cx="11.4" cy="29.4" r="1.3"/><circle cx="52.6" cy="29.4" r="1.3"/>
+    <circle cx="14.4" cy="39.6" r="1.3"/><circle cx="49.6" cy="39.6" r="1.3"/>
+    <circle cx="18.4" cy="48.6" r="1.2"/><circle cx="45.6" cy="48.6" r="1.2"/>
+    <circle cx="32" cy="12.6" r="1.3"/>
+  </g>
+  <path class="a-p" d="M20 10.4l2 2.2M44 10.4l-2 2.2M23 31.2l1.2 1.8M41 31.2l-1.2 1.8"/>
+  <path class="a-l" d="M8 14.4Q32 2.4 56 14.4M10 25.4Q20 20 28 18M13 35.4Q20 31.6 27 29.6"/>
+</svg>

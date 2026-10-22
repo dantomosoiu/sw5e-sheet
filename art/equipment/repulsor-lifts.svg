@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <g class="a-g" opacity=".3" filter="url(#a-glow)">
+    <path d="M13 32h8l3 18H10z"/>
+    <path d="M28 36h8l3 21H25z"/>
+    <path d="M43 32h8l3 18H40z"/>
+  </g>
+  <path class="a-gl" d="M11 42.6q6 2.4 12 0M11.4 48.4q5.6 2.2 11.2 0M26 47.4q6 2.4 12 0M26.4 53.6q5.6 2.2 11.2 0M41 42.6q6 2.4 12 0M41.4 48.4q5.6 2.2 11.2 0" filter="url(#a-glow)"/>
+  <path class="a-gl" d="M11 42.6q6 2.4 12 0M11.4 48.4q5.6 2.2 11.2 0M26 47.4q6 2.4 12 0M26.4 53.6q5.6 2.2 11.2 0M41 42.6q6 2.4 12 0M41.4 48.4q5.6 2.2 11.2 0"/>
+  <rect class="a-m a-oo" x="20" y="7" width="24" height="7" rx="1.8"/>
+  <rect x="20" y="7" width="24" height="7" rx="1.8" fill="url(#a-sheen)"/>
+  <path class="a-d" d="M25 9.6h14v1.8H25z"/>
+  <path class="a-b a-oo" d="M7 13h50v4.6Q57 33 32 37 7 33 7 17.6z"/>
+  <path d="M7 13h50v4.6Q57 33 32 37 7 33 7 17.6z" fill="url(#a-sheen)"/>
+  <path d="M7 13h50v4.6Q57 33 32 37 7 33 7 17.6z" fill="url(#a-shade)"/>
+  <path class="a-x a-o" d="M7.2 16.6h49.6v3.2H7.2z"/>
+  <path class="a-p" d="M19 20.4v8M45 20.4v8M32 20.4v9"/>
+  <g class="a-m a-oo">
+    <path d="M11.4 30.6a5.6 3.6 0 0 1 11.2 0v1.6H11.4z"/>
+    <path d="M26.4 34.6a5.6 3.6 0 0 1 11.2 0v1.6H26.4z"/>
+    <path d="M41.4 30.6a5.6 3.6 0 0 1 11.2 0v1.6H41.4z"/>
+  </g>
+  <g class="a-g" filter="url(#a-glow)"><ellipse cx="17" cy="33" rx="5" ry="1.6"/><ellipse cx="32" cy="37" rx="5" ry="1.6"/><ellipse cx="47" cy="33" rx="5" ry="1.6"/></g>
+  <g class="a-g a-o"><ellipse cx="17" cy="33" rx="4.4" ry="1.2"/><ellipse cx="32" cy="37" rx="4.4" ry="1.2"/><ellipse cx="47" cy="33" rx="4.4" ry="1.2"/></g>
+  <g class="a-w"><ellipse cx="17" cy="33" rx="2.2" ry=".5"/><ellipse cx="32" cy="37" rx="2.2" ry=".5"/><ellipse cx="47" cy="33" rx="2.2" ry=".5"/></g>
+  <path class="a-l" d="M9 14.4h46M21.4 8.4h21.2M8.4 21q.6 5 4 8"/>
+</svg>

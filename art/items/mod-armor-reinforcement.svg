@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <g transform="translate(32 32) rotate(-38)">
+  <rect class="a-m a-oo" x="-21" y="-4.5" width="42" height="9"/>
+  <path class="a-d a-o" d="M-19.8-2.8h6.4l-3.2 5.6zM-14.6 2.8l3.2-5.6 3.2 5.6zM-9.4-2.8H-3l-3.2 5.6zM19.8-2.8h-6.4l3.2 5.6zM14.6 2.8l-3.2-5.6-3.2 5.6zM9.4-2.8H3l3.2 5.6z"/>
+  <path class="a-b a-oo" d="M-21-7.4h42V-4h-42zM-21 4h42v3.4h-42z"/>
+  <path d="M-21-7.4h42V-4h-42zM-21 4h42v3.4h-42z" fill="url(#a-sheen)"/>
+  <path class="a-d" d="M-17-6.2a.6 .6 0 1 0 .1 0zM-11-6.2a.6 .6 0 1 0 .1 0zM11-6.2a.6 .6 0 1 0 .1 0zM17-6.2a.6 .6 0 1 0 .1 0zM-17 5.2a.6 .6 0 1 0 .1 0zM-11 5.2a.6 .6 0 1 0 .1 0zM11 5.2a.6 .6 0 1 0 .1 0zM17 5.2a.6 .6 0 1 0 .1 0z"/>
+  <rect class="a-x a-oo" x="-5.5" y="-9.5" width="11" height="19" rx="1.6"/>
+  <rect x="-5.5" y="-9.5" width="11" height="19" rx="1.6" fill="url(#a-sheen)"/>
+  <rect x="-5.5" y="-9.5" width="11" height="19" rx="1.6" fill="url(#a-shade)"/>
+  <path class="a-p" d="M0-8.8v17.6"/>
+  <path class="a-d" d="M-2.8-6.8a1 1 0 1 0 .1 0zM2.8-6.8a1 1 0 1 0 .1 0zM-2.8 5a1 1 0 1 0 .1 0zM2.8 5a1 1 0 1 0 .1 0z"/>
+  <rect class="a-b a-oo" x="-28" y="-9" width="8" height="18" rx="1.5"/>
+  <rect class="a-b a-oo" x="20" y="-9" width="8" height="18" rx="1.5"/>
+  <rect x="-28" y="-9" width="8" height="18" rx="1.5" fill="url(#a-sheen)"/>
+  <rect x="20" y="-9" width="8" height="18" rx="1.5" fill="url(#a-sheen)"/>
+  <rect x="-28" y="-9" width="8" height="18" rx="1.5" fill="url(#a-shade)"/>
+  <rect x="20" y="-9" width="8" height="18" rx="1.5" fill="url(#a-shade)"/>
+  <path class="a-d" d="M-24-5.6a1.2 1.2 0 1 0 .1 0zM-24 3.2a1.2 1.2 0 1 0 .1 0zM24-5.6a1.2 1.2 0 1 0 .1 0zM24 3.2a1.2 1.2 0 1 0 .1 0z"/>
+  <path class="a-l" d="M-26.8-7.8h5.6M21.2-7.8h5.6M-19.6-6.3h13.8M6.6-6.3h12.8M-4.4-8.4h3.6"/>
+  </g>
+</svg>

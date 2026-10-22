@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect class="a-x a-oo" x="12" y="5" width="40" height="18.6" rx="1.6"/>
+  <rect x="12" y="5" width="40" height="18.6" rx="1.6" fill="url(#a-sheen)"/>
+  <rect x="12" y="5" width="40" height="18.6" rx="1.6" fill="url(#a-shade)"/>
+  <path class="a-p" d="M22 5.6v17.4M42 5.6v17.4M12.6 14.3h38.8"/>
+  <rect class="a-d a-o" x="27" y="11.6" width="10" height="5.4" rx="1"/>
+  <path class="a-m a-o" d="M12 5h5v3.2h-1.8V6.8H12zM52 5h-5v3.2h1.8V6.8H52z"/>
+  <path class="a-b a-oo" d="M17 58v-7q0-8.6 15-8.6T47 51v7z"/>
+  <path d="M17 58v-7q0-8.6 15-8.6T47 51v7z" fill="url(#a-sheen)"/>
+  <path d="M17 58v-7q0-8.6 15-8.6T47 51v7z" fill="url(#a-shade)"/>
+  <path class="a-m a-oo" d="M26.6 43.6v-4.2a5.4 5.4 0 0 1 10.8 0v4.2z"/>
+  <rect class="a-g" x="28.4" y="37.4" width="7.2" height="2" rx=".8" filter="url(#a-glow)"/>
+  <rect class="a-g" x="28.8" y="37.6" width="6.4" height="1.6" rx=".6"/>
+  <rect class="a-d a-o" x="27" y="49" width="10" height="5" rx="1"/>
+  <path class="a-g" d="M28.6 50.6h1.6v1.8h-1.6zM31.2 50.6h1.6v1.8h-1.6zM33.8 50.6h1.6v1.8h-1.6z"/>
+  <g id="mighty-build-a">
+    <path class="a-m a-oo" d="M12.8 34.9L16.4 22.8L11.6 21.2L7.2 33.1z"/>
+    <path class="a-b a-oo" d="M20.1 45.3L12.6 32.6L7.4 35.4L13.9 48.7z"/>
+    <path class="a-x a-o" d="M16.2 38.8l-3.2-5.4-3.4 1.8 2.8 5.8z"/>
+    <path class="a-m a-oo" d="M9.6 26V18.4q0-1.4 1.4-1.4H17v3.4h-3.8V26z"/>
+    <circle class="a-m a-oo" cx="10" cy="34" r="3.6"/>
+    <circle class="a-d" cx="10" cy="34" r="1.2"/>
+    <circle class="a-m a-oo" cx="17.6" cy="47.4" r="4.6"/>
+    <circle cx="17.6" cy="47.4" r="4.6" fill="url(#a-sheen)"/>
+    <circle class="a-d" cx="17.6" cy="47.4" r="1.6"/>
+  </g>
+  <use href="#mighty-build-a" transform="matrix(-1 0 0 1 64 0)"/>
+  <path class="a-l" d="M14 6.6h36M20 47.6q2.6-3.6 12-4.2M28.4 36.4a4 4 0 0 1 3-2"/>
+</svg>

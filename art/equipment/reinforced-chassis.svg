@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <path class="a-m a-oo" d="M25 11V6.4h14V11z"/>
+  <path class="a-b a-oo" d="M14 10h36l7 8.4-4 23.6-8.6 15H19.6L11 42 7 18.4z"/>
+  <path d="M14 10h36l7 8.4-4 23.6-8.6 15H19.6L11 42 7 18.4z" fill="url(#a-sheen)"/>
+  <path d="M14 10h36l7 8.4-4 23.6-8.6 15H19.6L11 42 7 18.4z" fill="url(#a-shade)"/>
+  <path class="a-d a-o" d="M24.6 10.2h14.8l-2 3.4H26.6z"/>
+  <path class="a-x a-o" d="M14.6 11.4h7.4l-3.2 6.4H9.4zM49.4 11.4h-7.4l3.2 6.4h9.4z"/>
+  <path class="a-p" d="M8.4 26.4h47.2M11.6 41.4h40.8M32 14v10"/>
+  <path class="a-m a-oo" d="M14.5 19.3L42.5 51.3L45.5 48.7L17.5 16.7z"/>
+  <path class="a-m a-oo" d="M46.5 16.7L18.5 48.7L21.5 51.3L49.5 19.3z"/>
+  <g class="a-b a-o">
+    <circle cx="16" cy="18" r="2.2"/><circle cx="48" cy="18" r="2.2"/>
+    <circle cx="20" cy="50" r="2.2"/><circle cx="44" cy="50" r="2.2"/>
+  </g>
+  <g class="a-d"><circle cx="16" cy="18" r=".8"/><circle cx="48" cy="18" r=".8"/><circle cx="20" cy="50" r=".8"/><circle cx="44" cy="50" r=".8"/></g>
+  <circle class="a-m a-oo" cx="32" cy="34" r="6"/>
+  <circle cx="32" cy="34" r="6" fill="url(#a-sheen)"/>
+  <circle class="a-d a-o" cx="32" cy="34" r="3.2"/>
+  <circle class="a-g" cx="32" cy="34" r="1.8" filter="url(#a-glow)"/>
+  <circle class="a-g" cx="32" cy="34" r="1.2"/>
+  <path class="a-d" d="M10.6 30h4v1.6h-4zM49.4 30h4v1.6h-4zM11.4 34h3.6v1.6h-3.6zM49 34h3.6v1.6H49z"/>
+  <path class="a-l" d="M15 11.4h-.4M23.4 11.4h17.2M8.6 19.6l3.4 20"/>
+</svg>

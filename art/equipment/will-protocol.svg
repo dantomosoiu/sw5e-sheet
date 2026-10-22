@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <path class="a-m a-o" d="M20.4 55.6h2.4v3.4h-2.4zM25.6 55.6H28v3.4h-2.4zM30.8 55.6h2.4v3.4h-2.4zM36 55.6h2.4v3.4H36zM41.2 55.6h2.4v3.4h-2.4z"/>
+  <rect class="a-m a-oo" x="16" y="49" width="32" height="7" rx="1.6"/>
+  <rect x="16" y="49" width="32" height="7" rx="1.6" fill="url(#a-sheen)"/>
+  <path class="a-x" d="M16.6 51.6h30.8v1.8H16.6z"/>
+  <path class="a-g" d="M32 4.6l10.4 13v20L32 49.6 21.6 37.6v-20z" filter="url(#a-glow-lg)" opacity=".55"/>
+  <path class="a-s a-oo" d="M32 5.4l9.6 12.4v19.6L32 48.6l-9.6-11.2V17.8z"/>
+  <path class="a-g" d="M32 13.6l5 6.6v13.2L32 40.6l-5-7.2V20.2z" filter="url(#a-glow)"/>
+  <path class="a-g" d="M32 15.2l4 5.4v12.2l-4 6-4-6V20.6z"/>
+  <path class="a-w" d="M32 19.6l1.6 2.4v9.2L32 34l-1.6-2.8V22z"/>
+  <path class="a-p" d="M22.4 17.8L32 22.4l9.6-4.6M32 22.4v26M22.4 37.4L32 33l9.6 4.4"/>
+  <path class="a-l" d="M23.6 18.2L31.2 8.4M23.6 21v14"/>
+  <g id="will-protocol-c">
+    <path class="a-m a-oo" d="M19.6 49.4l-1.2-10.6 3.4-6.8 3.2 1.6-2.6 5.6 1.4 10.2z"/>
+    <path class="a-x a-o" d="M19.6 37.2l2.4-4.6 2.2 1.1-2.2 4.6z"/>
+  </g>
+  <use href="#will-protocol-c" transform="matrix(-1 0 0 1 64 0)"/>
+  <rect class="a-m a-oo" x="28.6" y="44" width="6.8" height="5.6" rx="1"/>
+</svg>

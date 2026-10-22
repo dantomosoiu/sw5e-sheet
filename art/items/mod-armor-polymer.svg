@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <clipPath id="mod-armor-polymer-clip"><rect x="18.5" y="24" width="30" height="24"/></clipPath>
+  <rect class="a-x a-oo" x="18.5" y="24" width="30" height="24"/>
+  <path class="a-p" clip-path="url(#mod-armor-polymer-clip)" d="M6 24l24 24M12 24l24 24M18 24l24 24M24 24l24 24M30 24l24 24M36 24l24 24M61 24L37 48M55 24L31 48M49 24L25 48M43 24L19 48M37 24L13 48M31 24L7 48"/>
+  <rect x="18.5" y="24" width="30" height="24" fill="url(#a-sheen)"/>
+  <rect class="a-d" x="19.4" y="26.6" width="28.2" height="3" opacity=".45"/>
+  <rect class="a-m a-oo" x="16.5" y="46.5" width="34" height="5.5" rx="1.5"/>
+  <rect x="16.5" y="46.5" width="34" height="5.5" rx="1.5" fill="url(#a-sheen)"/>
+  <circle class="a-b a-o" cx="24" cy="49.2" r="1.3"/>
+  <circle class="a-b a-o" cx="33.5" cy="49.2" r="1.3"/>
+  <circle class="a-b a-o" cx="43" cy="49.2" r="1.3"/>
+  <path class="a-x a-oo" d="M14.5 11h35a4 8 0 0 1 0 16h-35z"/>
+  <path d="M14.5 11h35a4 8 0 0 1 0 16h-35z" fill="url(#a-sheen)"/>
+  <path d="M14.5 11h35a4 8 0 0 1 0 16h-35z" fill="url(#a-shade)"/>
+  <ellipse class="a-x a-o" cx="14.5" cy="19" rx="4" ry="8"/>
+  <ellipse cx="14.5" cy="19" rx="4" ry="8" fill="url(#a-shade)"/>
+  <ellipse class="a-p" cx="14.5" cy="19" rx="2.9" ry="5.8"/>
+  <ellipse class="a-m a-o" cx="14.5" cy="19" rx="1.7" ry="3.4"/>
+  <ellipse class="a-d" cx="14.5" cy="19" rx=".7" ry="1.5"/>
+  <path class="a-l" d="M16.5 12.4h32M12 13.6c.6-1.2 1.4-1.8 2.4-1.9M19.6 25.2v20.4"/>
+</svg>

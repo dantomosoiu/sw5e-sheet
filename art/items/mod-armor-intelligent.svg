@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect class="a-m a-oo" x="27.5" y="40" width="9" height="9"/>
+  <rect class="a-b a-oo" x="23" y="48" width="18" height="6" rx="1.5"/>
+  <rect x="23" y="48" width="18" height="6" rx="1.5" fill="url(#a-sheen)"/>
+  <path class="a-d" d="M26 50.6h3V52h-3zM30.5 50.6h3V52h-3zM35 50.6h3V52h-3z"/>
+  <path class="a-x a-o" fill-rule="evenodd" transform="rotate(-16 32 27)" d="M6 27a26 8.5 0 1 0 52 0a26 8.5 0 1 0-52 0zM10.5 27a21.5 5.6 0 1 0 43 0a21.5 5.6 0 1 0-43 0z"/>
+  <circle class="a-b a-oo" cx="32" cy="27" r="16"/>
+  <circle cx="32" cy="27" r="16" fill="url(#a-sheen)"/>
+  <circle cx="32" cy="27" r="16" fill="url(#a-shade)"/>
+  <path class="a-p" d="M17 31c9.6 3.6 20.4 3.6 30 0M32 11v4.6"/>
+  <circle class="a-m a-o" cx="32" cy="25" r="7"/>
+  <circle class="a-s a-o" cx="32" cy="25" r="5.2"/>
+  <circle class="a-g" cx="32" cy="25" r="3.8" filter="url(#a-glow)"/>
+  <circle class="a-g" cx="32" cy="25" r="2.8"/>
+  <circle class="a-w" cx="30.8" cy="23.8" r="1.1"/>
+  <g transform="rotate(-16 32 27)">
+    <path class="a-x a-o" d="M6 27A26 8.5 0 0 0 58 27H53.5A21.5 5.6 0 0 1 10.5 27z"/>
+    <path d="M6 27A26 8.5 0 0 0 58 27H53.5A21.5 5.6 0 0 1 10.5 27z" fill="url(#a-shade)"/>
+    <circle class="a-g" cx="45.6" cy="32.8" r="1.6" filter="url(#a-glow)"/>
+    <circle class="a-g" cx="18.4" cy="32.8" r="1.6" filter="url(#a-glow)"/>
+    <circle class="a-w" cx="45.6" cy="32.8" r=".8"/>
+    <circle class="a-w" cx="18.4" cy="32.8" r=".8"/>
+  </g>
+  <path class="a-l" d="M19.5 20.5c2-4.5 6.2-7.6 11-8.3M24.4 49.4h15.2"/>
+</svg>
