@@ -5546,6 +5546,11 @@ const slotManeuvers = (m) => {
 
 /** One slot's editor: what's chosen (with notes, weapons and problems) and a list to add from. */
 function renderSlot(m, s) {
+  // A feat that grants no picks, only problems (Tough without Durable): the problems, without an empty pick row.
+  if (s.kind === 'feat') {
+    return `<div class="cls-list slot"><div class="cls-head"><b>${esc(s.title)}</b> <span class="faint">${esc(s.label || s.from)}</span></div>
+      ${s.problems.map((p) => `<div class="slot-problem">${esc(p)}</div>`).join('')}</div>`;
+  }
   const kind = CH_KINDS[s.kind] || {};
   const chosen = new Set(s.picks.map((p) => p.name));
   // Things of this kind chosen elsewhere can't be chosen again (styles, forms, maneuvers, powers).
