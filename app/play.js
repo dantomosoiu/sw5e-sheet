@@ -10,13 +10,19 @@ const PL_CONDITION_ROLLS = {
   Blinded: { attack: 'dis' },
   Frightened: { attack: 'dis', check: 'dis' },
   Poisoned: { attack: 'dis', check: 'dis' },
-  Prone: { attack: 'dis' },
+  // "The creature has disadvantage on melee attack rolls. The creature has disadvantage on ranged attack rolls against
+  // targets within 30 feet." Melee: always; ranged: only near (PL_CONDITION_MAYBE).
+  Prone: { 'attack:melee': 'dis' },
   Restrained: { attack: 'dis', 'save:Dexterity': 'dis' },
   Invisible: { attack: 'adv' },
   Paralyzed: { 'save:Strength': 'fail', 'save:Dexterity': 'fail' },
   Stunned: { 'save:Strength': 'fail', 'save:Dexterity': 'fail' },
   Unconscious: { 'save:Strength': 'fail', 'save:Dexterity': 'fail' },
   Petrified: { 'save:Strength': 'fail', 'save:Dexterity': 'fail' },
+};
+// What a condition may do to a roll, depending on what the sheet can't know (the player chooses the mode): by kind.
+const PL_CONDITION_MAYBE = {
+  Prone: { 'attack:ranged': 'Prone: disadvantage if the target is within 30 feet (choose Disadvantage)', 'attack:any': 'Prone: disadvantage on a melee attack, or a ranged one against a target within 30 feet (choose Disadvantage)' },
 };
 // Speed under a condition: a factor of the normal speed (0: can't move).
 const PL_CONDITION_SPEED = { Grappled: 0, Restrained: 0, Paralyzed: 0, Stunned: 0, Unconscious: 0, Petrified: 0, Shocked: 0.5 };
@@ -44,15 +50,18 @@ function plRollKinds(spec) {
 
 /**
  * Advantage, disadvantage and automatic failure for a roll from the character's conditions and exhaustion:
- * { adv: [why], dis: [why], fail: [why] } (exhaustion: checks from level 1, attacks and saves from 3).
+ * { adv: [why], dis: [why], fail: [why], maybe: [note] } (exhaustion: checks from level 1, attacks and saves from 3).
+ * ctx.range: 'melee' or 'ranged' for an attack whose kind is known (a weapon's); maybe: what depends on the target.
  */
-function plRollSources(spec, conditions, exhaustion) {
+function plRollSources(spec, conditions, exhaustion, ctx = {}) {
   const kinds = plRollKinds(spec);
-  const out = { adv: [], dis: [], fail: [] };
+  if (kinds.includes('attack')) kinds.push(`attack:${ctx.range || 'any'}`);
+  const out = { adv: [], dis: [], fail: [], maybe: [] };
   for (const c of conditions || []) {
     const eff = PL_CONDITION_ROLLS[c];
-    if (!eff) continue;
-    for (const k of kinds) if (eff[k]) out[eff[k]].push(c);
+    if (eff) for (const k of kinds) if (eff[k]) out[eff[k]].push(c);
+    const may = PL_CONDITION_MAYBE[c];
+    if (may) for (const k of kinds) if (may[k]) out.maybe.push(may[k]);
   }
   const exh = Number(exhaustion) || 0;
   if ((exh >= 1 && kinds.includes('check')) || (exh >= 3 && (kinds.includes('attack') || kinds.includes('save')))) out.dis.push(`exhaustion ${exh}`);
@@ -219,6 +228,6 @@ function plMark(text) {
 }
 
 if (typeof module !== 'undefined') {
-  module.exports = { PL_DAMAGE_TYPES, PL_CONDITION_ROLLS, PL_CONDITION_SPEED, PL_CONDITION_NOTES, plRollKinds, plRollSources, plSpeed, plDamageAfterDefenses, plConcentrationDc,
+  module.exports = { PL_DAMAGE_TYPES, PL_CONDITION_ROLLS, PL_CONDITION_MAYBE, PL_CONDITION_SPEED, PL_CONDITION_NOTES, plRollKinds, plRollSources, plSpeed, plDamageAfterDefenses, plConcentrationDc,
     plCantripSteps, plPowerRolls, plPowerEffect, plCastingOptionCost, plFixedAmount, plMark };
 }

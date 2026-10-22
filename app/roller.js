@@ -875,7 +875,10 @@ function startRoll(spec, opts = {}) {
             })() : false);
     const adv = arr(m.effects).filter((e) => arr(e.advantage).some(fits)).map((e) => e.name).slice(0, 1);
     if (roll.advFrom) adv.push(roll.advFrom);
-    const src = m.t ? plRollSources(spec, m.t.s.conditions, m.t.s.exhaustion) : { adv: [], dis: [], fail: [] };
+    // (A weapon attack is melee or ranged: Prone's disadvantage is certain only on melee attacks.)
+    const range = kind === 'attack' ? (isRangedWeapon(arr(m.c.weapons)[ab] || {}) ? 'ranged' : 'melee') : null;
+    const src = m.t ? plRollSources(spec, m.t.s.conditions, m.t.s.exhaustion, { range }) : { adv: [], dis: [], fail: [], maybe: [] };
+    if (arr(src.maybe).length) roll.notes = arr(roll.notes).concat(src.maybe);
     adv.push(...src.adv);
     const dis = src.dis;
     // A trait's plain "disadvantage on Strength saving throws" (Zilkin's Puny, a Hutt's Dexterity saves): not one with a
@@ -913,11 +916,16 @@ function startRoll(spec, opts = {}) {
       for (const rd of arr(e.riders)) {
         if (!rd.on.some((o) => kinds.includes(o))) continue;
         if (rd.weapon && (e.weaponIndex == null || e.weaponIndex !== wIndex)) continue;
-        // The dice show beside the label (the card adds them): not in it as well.
-        const label = `${String(e.power || e.name).replace(/ \(concentration\)$/, '')}${rd.why ? ` (${rd.why})` : ''}`;
+        // The dice show beside the label (the card adds them): not in it as well. A power's extra damage "to the target"
+        // (Target Lock) counts only against that target, and a die used once (Guidance: "one ability check of its
+        // choice", then the power ends) is the player's to spend: both offered unticked, saying so. Dice the power adds
+        // to every roll of the kind (Battle Meditation, a spice's high) are ticked.
+        const name = String(e.power || e.name).replace(/ \(concentration\)$/, '');
+        const target = !!e.power && rd.on.includes('weapon-damage') && !rd.weapon;
+        const label = `${name}${rd.why ? ` (${rd.why})` : target ? ` (vs your ${name} target)` : rd.once ? ' (ends the power)' : ''}`;
         if (roll.conds.some((c) => c.label === label)) continue;
         roll.conds.push({ label, bonus: 0, extra: [rd.dice], on: false, consume: rd.once ? e.id : null });
-        if (!rd.optional) opts.conds = arr(opts.conds).concat(label);
+        if (!rd.optional && !rd.once && !target) opts.conds = arr(opts.conds).concat(label);
       }
     }
   }
@@ -934,7 +942,10 @@ function startRoll(spec, opts = {}) {
   if (opts.sameAs) {
     const was = opts.sameAs;
     const ids = new Map();
-    roll.dice = was.dice.map((d) => { const x = { ...d, id: ++dieSeq, value: d.max ? d.value : null }; ids.set(d.id, x.id); return x; });
+    // (An option's dice come again only if the option is still offered and ticked now: not a power that has ended or
+    // was used up, as Guidance is.)
+    const still = (d) => !String(d.tag).startsWith('cond:') || roll.conds.some((c) => c.on && `cond:${c.label}` === d.tag);
+    roll.dice = was.dice.filter(still).map((d) => { const x = { ...d, id: ++dieSeq, value: d.max ? d.value : null }; ids.set(d.id, x.id); return x; });
     // (A single die's twin, rolled for advantage, stays paired with it.)
     for (const d of roll.dice) if (d.twin) d.twin = ids.get(d.twin);
     if (was.plain) { roll.kind = was.kind; roll.label = was.label; }
@@ -1078,7 +1089,8 @@ function announceRoll(r) {
  */
 function setMode(mode) {
   const r = rollState.current;
-  if (!r || r.mode === mode || !offersModes(r)) return;
+  // (Decided before rolling: once rolled, the mode and its dice stay.)
+  if (!r || r.rolled || r.mode === mode || !offersModes(r)) return;
   const ds = d20s(r);
   const before = new Set(r.dice.map((d) => d.id));
   if (r.kind === 'd20' && (ds.length || !r.plain)) {
@@ -1113,6 +1125,10 @@ function addDice(sides, count = 1) {
     else if (sides === 20 && r.kind === 'd20' && !d20s(r).length) tag = 'd20';
     r.dice.push(newDie(sides, tag, r.rolled));
   }
+  if (r.rolled) {
+    const added = r.dice.filter((d) => !before.has(d.id));
+    logChange(r, `+${added.length > 1 ? added.length : ''}d${sides} added after rolling (${added.map((d) => d.value).join(', ')})`);
+  }
   afterAmend(before);
 }
 /**
@@ -1124,7 +1140,8 @@ function removeDie(id) {
   const r = rollState.current;
   if (!r) return;
   const d = r.dice.find((x) => x.id === Number(id));
-  if (!d) return;
+  // A die that's been rolled stays (the roll was made with it); before rolling, any can go.
+  if (!d || r.rolled) return;
   if (r.dice.length === 1) {
     rollState.current = { id: rollId(), char: r.char, key: r.key, kind: 'dice', plain: true, label: 'Plain dice', spec: 'dice|', mode: 'normal',
       custom: 0, rolled: false, at: null, dice: [], base: [], conds: [] };
@@ -1162,7 +1179,12 @@ function toggleCond(i) {
       if (r.rolled) spendCond(o, true);
     }
   }
-  if (r.rolled) spendCond(cd, !cd.on);
+  if (r.rolled) {
+    spendCond(cd, !cd.on);
+    const extra = r.dice.filter((d) => !before.has(d.id));
+    const what = [num(cd.bonus) ? signed(cd.bonus) : '', ...cd.extra.map((e) => (/^-/.test(e) ? `−${e.slice(1)}` : `+${e}`))].filter(Boolean).join(' ');
+    logChange(r, cd.on ? `${what} ${cd.label} added after rolling${extra.length ? ` (${extra.map((d) => d.value).join(', ')})` : ''}` : `${cd.label} taken off after rolling`);
+  }
   afterAmend(before);
 }
 /**
@@ -1174,7 +1196,8 @@ function setCritMode(mode) {
   rollSettings.critMode = mode;
   try { platform.storage.set({ [ROLL_SETTINGS_KEY]: { ...rollSettings } }); } catch (e) { /* not critical */ }
   const r = rollState.current;
-  if (r && r.crit) {
+  // (A critical roll already made keeps its dice: the choice is for the next one.)
+  if (r && r.crit && !r.rolled) {
     r.dice = r.dice.map((d) => (d.crit ? (mode === 'max' ? { ...d, value: d.sides, max: true } : { ...d, value: r.rolled ? rollDie(d.sides) : null, max: false }) : d));
     afterAmend();
     return;
@@ -1194,6 +1217,12 @@ function afterAmend(before) {
   // New dice roll in.
   if (added.length && typeof Dice3D !== 'undefined') Dice3D.enter(added);
   renderDice(false);
+}
+/** Write a change made after rolling into the roll's record (the card and the log show the list). */
+function logChange(r, text) {
+  if (!r.rolled) return;
+  r.changes = arr(r.changes).concat(text);
+  r.amended = true;
 }
 const rollId = () => Date.now().toString(36) + Math.random().toString(36).slice(2, 5);
 /**
@@ -1276,7 +1305,7 @@ function renderRollCard(r) {
   const inspired = r.kind === 'd20' && !r.rolled && snap && snap.complete && buildModel(snap).t.s.hasInspiration;
   const insp = inspired ? `<button class="btn sm" data-rl="insp" data-arg="" title="Spend your Inspiration: advantage on this roll">★ Use Inspiration</button>` : r.inspired ? '<span class="chip good">★ Inspiration used</span>' : '';
   const modes = offersModes(r) ? `<div class="rl-modes" role="group" aria-label="Advantage">${[['dis', 'Disadvantage'], ['normal', 'Normal'], ['adv', 'Advantage']]
-    .map(([v, l]) => `<button class="btn sm${r.mode === v ? ' on' : ''}" data-rl="mode" data-arg="${v}" aria-pressed="${r.mode === v}">${l}</button>`).join('')}${insp}</div>` : '';
+    .map(([v, l]) => `<button class="btn sm${r.mode === v ? ' on' : ''}" data-rl="mode" data-arg="${v}" aria-pressed="${r.mode === v}"${r.rolled ? ' disabled title="Chosen before rolling: a roll made keeps it"' : ''}>${l}</button>`).join('')}${insp}</div>` : '';
   const pair = twinPair(r);
   const keep = keptTwin(r);
   const dice = r.dice.map((d) => {
@@ -1288,16 +1317,18 @@ function renderRollCard(r) {
     const title = `d${d.sides}${d.tag.startsWith('cond:') ? ' · ' + d.tag.slice(5) : ''}${d.crit ? (d.max ? ' · critical, at its maximum' : ' · critical') : ''}${dropped ? ' (not counted)' : ''}`;
     // The die in 3D (dice3d.js; while it tumbles it's already headed for its number); its number for screen readers.
     const face = `<span class="die-3d">${dieCanvas(`die:${d.id}`, d.sides, d.value, 'roll', `d${d.sides}`)}<span class="sr-only">${esc(spin ? '' : diceText(d))}</span></span><small>${d.max ? 'max ' : ''}d${d.sides}</small>`;
-    // Every die can be taken off (the last too: the card is then an empty plain roll); a click anywhere on it does.
+    // Before rolling, every die can be taken off (the last too: the card is then an empty plain roll); a click anywhere
+    // on it does. Once rolled, the dice stay.
+    if (r.rolled) return `<span class="die s${d.sides} ${cls}" data-die="${d.id}" title="${esc(title)}" role="img" aria-label="d${d.sides}${d.value != null && !spin ? ` ${d.value}` : ''}${dropped ? ' (not counted)' : ''}">${face}</span>`;
     return `<button type="button" class="die s${d.sides} ${cls}" data-die="${d.id}" data-rl="remove" data-arg="${d.id}" title="${esc(title)} · click to remove" aria-label="Remove d${d.sides}${d.value != null && !spin ? ` (${d.value})` : ''}">${face}<span class="die-x" aria-hidden="true">×</span></button>`;
   }).join('');
   const conds = r.conds.length ? `<div class="rl-conds">${r.conds.map((cd, i) => `<label class="rl-cond${cd.blocked ? ' blocked' : ''}"${cd.blocked ? ` title="${esc(cd.blocked)}"` : ''}><input type="checkbox" data-rl="cond" data-arg="${i}"${cd.on ? ' checked' : ''}> ${esc(cd.label)} <span class="faint">${[num(cd.bonus) ? signed(cd.bonus) : '', ...cd.extra.map((e) => (/^-/.test(e) ? `−${e.slice(1)}` : '+' + e))].filter(Boolean).join(' ')}${cd.blocked ? ` · ${esc(cd.blocked)}` : ''}</span></label>`).join('')}</div>` : '';
   const crit = r.kind === 'd20' && nat != null && nat >= (r.critMin || 20);
   const fumble = r.kind === 'd20' && nat === 1;
   const advSet = r.dice.some((d) => d.tag === 'adv');
-  const dmgAdv = r.dmgAdv ? `<div class="rl-next"><button class="btn sm${advSet ? ' on' : ''}" data-rl="dmgadv" data-arg="" aria-pressed="${advSet}" title="${esc(r.dmgAdv)}: roll the weapon's damage dice twice and keep the higher (once per turn)">Advantage (${esc(r.dmgAdv)})</button>${advSet && r.rolled ? ` <span class="faint">${set2Text(r)}</span>` : ''}</div>` : '';
-  const critToggle = `<span class="rl-critmode" role="group" aria-label="Critical damage">Critical: ${[['double', 'Double dice'], ['max', 'Max + roll']]
-    .map(([v, l]) => `<button class="btn sm${rollSettings.critMode === v ? ' on' : ''}" data-rl="critmode" data-arg="${v}" aria-pressed="${rollSettings.critMode === v}" title="${v === 'double' ? 'Roll the damage dice twice' : 'One set of damage dice at their maximum, plus one set rolled'}">${l}</button>`).join('')}</span>`;
+  const dmgAdv = r.dmgAdv ? `<div class="rl-next"><button class="btn sm${advSet ? ' on' : ''}" data-rl="dmgadv" data-arg="" aria-pressed="${advSet}"${r.rolled ? ' disabled' : ''} title="${esc(r.dmgAdv)}: roll the weapon's damage dice twice and keep the higher (once per turn; chosen before rolling)">Advantage (${esc(r.dmgAdv)})</button>${advSet && r.rolled ? ` <span class="faint">${set2Text(r)}</span>` : ''}</div>` : '';
+  const critToggle = `<span class="rl-critmode" role="group" aria-label="Critical damage">Critical: ${[['double', 'Double dice'], ['max', 'Max + roll (table rule)']]
+    .map(([v, l]) => `<button class="btn sm${rollSettings.critMode === v ? ' on' : ''}" data-rl="critmode" data-arg="${v}" aria-pressed="${rollSettings.critMode === v}" title="${v === 'double' ? 'Roll the damage dice twice (the rules)' : 'A house rule, not SW5E\'s (ask your GM): one set of damage dice at their maximum, plus one set rolled'}">${l}</button>`).join('')}</span>`;
   // A natural 1 on an attack always misses: damage stays offered (a GM may rule otherwise) but isn't the next step.
   const miss = fumble && r.next;
   const two = r.next && r.next.two ? `<button class="btn sm" data-rl="next" data-arg="${crit ? 'crit-two' : 'two'}" title="Versatile: held in two hands">Two-handed (${esc(r.next.two)})</button>` : '';
@@ -1317,13 +1348,38 @@ function renderRollCard(r) {
     : r.rolled
     ? `<div class="rl-result" tabindex="-1"><span class="rl-total">${total}</span>${r.damageType ? ` <span class="muted">${esc(r.damageType)}</span>` : ''}
         ${crit ? (nat === 20 ? chip('Natural 20', 'good') : `<span class="chip good" title="${esc(r.critFrom)}: critical hit on ${r.critMin}–20">Critical hit (${nat})</span>`) : fumble ? chip('Natural 1', 'bad') : ''}
-        ${r.autoFail ? chip(`Automatic failure (${r.autoFail})`, 'bad') : num(r.dc) && r.kind === 'd20' ? chip(total >= num(r.dc) ? `Success (DC ${num(r.dc)})` : `Failure (DC ${num(r.dc)})`, total >= num(r.dc) ? 'good' : 'bad') : ''}
+        ${r.autoFail ? chip(`Automatic failure (${r.autoFail})`, 'bad') : num(r.dc) && r.kind === 'd20' ? dcChip(r, total, crit, fumble) : ''}
         <button class="btn sm rl-again" data-rl="again" data-arg="" title="Roll the same thing again">Roll again</button>
-        <div class="rl-break faint">${esc(rollBreakdown(r))}</div></div>
+        <div class="rl-break faint">${esc(rollBreakdown(r))}</div>${changeList(r)}</div>
       ${follow}${applyButtons(r, total, nat)}`
     : `<div class="rl-actions"><button class="btn primary" data-rl="roll" data-arg="" id="rlGo"${r.dice.length ? '' : ' disabled title="Add dice to roll"'}>Roll ${esc(r.base.length ? signed(r.base.reduce((t, b) => t + num(b.value), 0)) : '')}</button>
         <span class="faint hint-kbd">Enter rolls · Shift-click a value to roll straight away</span></div>`}
   </div>`;
+}
+/**
+ * Against a DC (or a target's AC): an attack's natural 1 always misses and its natural 20 (or critical) always hits,
+ * whatever the total; anything else succeeds on the number or more.
+ */
+function dcChip(r, total, crit, fumble) {
+  const dc = num(r.dc);
+  if (plRollKinds(r.spec || '').includes('attack')) {
+    // (A natural 1's miss is already shown with the damage buttons.)
+    if (fumble) return r.next ? '' : chip(`Miss (natural 1, AC ${dc})`, 'bad');
+    if (crit) return chip(`Hit (AC ${dc})`, 'good');
+    return chip(total >= dc ? `Hit (AC ${dc})` : `Miss (AC ${dc})`, total >= dc ? 'good' : 'bad');
+  }
+  return chip(total >= dc ? `Success (DC ${dc})` : `Failure (DC ${dc})`, total >= dc ? 'good' : 'bad');
+}
+/** What was changed after rolling, in order ("+1d4 Bless added after rolling (3)"). */
+function changeList(r) {
+  const c = arr(r.changes);
+  return c.length ? `<ul class="rl-changes" aria-label="Changed after rolling">${c.map((x) => `<li>${esc(x)}</li>`).join('')}</ul>` : '';
+}
+/** A log row's second line: the mode and why (advantage from Rage…), and the changes made after rolling. */
+function logDetails(x) {
+  const mode = x.mode && x.mode !== 'normal' ? (x.preset || (x.mode === 'adv' ? 'Advantage' : 'Disadvantage')) : x.preset && /cancel out/.test(x.preset) ? x.preset : '';
+  const bits = [mode, ...arr(x.changes)].filter(Boolean);
+  return bits.length ? `<span class="log-more faint">${esc(bits.join(' · '))}</span>` : '';
 }
 /**
  * After a hit die, death save or superiority die roll for the character on screen: put the result on the
@@ -1426,7 +1482,7 @@ function renderDice(focus) {
       <div class="rl-tray" role="group" aria-label="Plain dice">${diceTray('pick', (s) => `A plain d${s} roll`)}</div>
       <p class="faint">Or pick dice for a plain roll (a single die can have advantage or disadvantage).</p></div>`}
     ${log.length ? `<div class="dice-log"><div class="faint">Recent rolls${state.current ? ' for this character' : ''}</div>${log.map((x) => `<button class="log-row${r && x.id === r.id ? ' cur' : ''}" data-rl="open" data-arg="${esc(x.id)}">
-      <span>${esc(x.label)}${x.amended ? ' ✎' : ''}</span><b>${rollTotal(x)}</b><span class="faint">${esc(new Date(x.at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }))}</span></button>`).join('')}</div>` : ''}`;
+      <span>${esc(x.label)}${x.amended ? ' ✎' : ''}</span><b>${rollTotal(x)}</b><span class="faint">${esc(new Date(x.at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }))}</span>${logDetails(x)}</button>`).join('')}</div>` : ''}`;
   document.querySelectorAll('[data-dice-toggle]').forEach((b) => { b.classList.toggle('on', rollState.open); b.setAttribute('aria-expanded', String(rollState.open)); });
   // While open, the dock only grows: its top (and ✕) never moves down, so a click aimed at it can't land on the sheet.
   if (rollState.open) {
@@ -1472,7 +1528,7 @@ const ROLLS_WITH_CHARACTER = 15;
 /** The rolls kept with a character: its latest, without what only the open roll card needs. */
 function rollsForCharacter(key) {
   return rollState.log.filter((x) => x.key === key && x.rolled).slice(0, ROLLS_WITH_CHARACTER).map((x) => {
-    const { next, notes, warn, preset, ...rest } = x; // eslint-disable-line no-unused-vars
+    const { next, notes, warn, ...rest } = x; // eslint-disable-line no-unused-vars
     return { ...rest, conds: arr(x.conds).filter((c) => c.on) };
   });
 }
@@ -1533,7 +1589,7 @@ function handleRl(act, arg, el) {
     case 'close': rollState.open = false; renderDice(false); return returnFocus();
     case 'min': rollState.min = !rollState.min; renderDice(false); return undefined;
     case 'dmgadv': {
-      if (!r) return undefined;
+      if (!r || r.rolled) return undefined;
       const before = new Set(r.dice.map((d) => d.id));
       if (r.dice.some((d) => d.tag === 'adv')) r.dice = r.dice.filter((d) => d.tag !== 'adv');
       else r.dice.push(...r.dice.filter((d) => d.tag === 'base').map((d) => ({ ...newDie(d.sides, 'adv', r.rolled), sign: d.sign })));
@@ -1606,12 +1662,23 @@ document.addEventListener('change', (e) => {
   if (!t.closest || !t.closest('#dice')) return;
   const r = rollState.current;
   if (t.dataset.rl === 'cond') toggleCond(Number(t.dataset.arg));
-  if (t.dataset.rl === 'custom' && r) { r.custom = Math.trunc(Number(t.value)) || 0; afterAmend(); }
-  if (t.dataset.rl === 'dc' && r) { r.dc = Math.trunc(Number(t.value)) || 0; renderDice(false); }
+  if (t.dataset.rl === 'custom' && r) {
+    const was = num(r.custom);
+    r.custom = Math.trunc(Number(t.value)) || 0;
+    if (r.custom !== was) logChange(r, `modifier ${signed(was)} → ${signed(r.custom)} after rolling`);
+    afterAmend();
+  }
+  if (t.dataset.rl === 'dc' && r) {
+    const was = num(r.dc);
+    r.dc = Math.trunc(Number(t.value)) || 0;
+    if (r.dc !== was) { logChange(r, `DC ${was || '—'} → ${r.dc || '—'} after rolling`); if (r.rolled) saveRollLog(); }
+    renderDice(false);
+  }
   if (t.dataset.rl === 'ability' && r) {
     const snap = state.snapshots[state.current];
     const m = buildModel(snap);
     const fresh = buildRoll(m, r.spec, { ability: t.value });
+    if (r.toolAbility !== t.value) logChange(r, `ability ${r.toolAbility} → ${t.value} after rolling`);
     r.toolAbility = t.value;
     r.base = fresh.base;
     afterAmend();

@@ -186,10 +186,10 @@ weapon tweak: #2 damage +1 · Weapon (Fine)
 weapon tweak: #2 toHit +0 · Fighter weapon proficiencies
 only sometimes: armorClass +1 vs melee · Bonded Plates Mk I
 only sometimes: armorClass -1 vs ranged · Bonded Plates Mk I
-only sometimes: techCasting.attackModifier +1 melee tech attacks · Oscillating Amplifier Mk I
-only sometimes: techCasting.attackModifier -1 ranged tech attacks · Oscillating Amplifier Mk I
-only sometimes: techCasting.saveDC +1 powers with STR/CON saves · Fadecasting Core (Training)
-only sometimes: techCasting.saveDC -1 powers with DEX/INT saves · Fadecasting Core (Training)
+only sometimes: techCasting.attackModifier +1 melee tech attacks, while it's your focus · Oscillating Amplifier Mk I
+only sometimes: techCasting.attackModifier -1 ranged tech attacks, while it's your focus · Oscillating Amplifier Mk I
+only sometimes: techCasting.saveDC +1 powers with STR/CON saves, while it's your focus · Fadecasting Core (Training)
+only sometimes: techCasting.saveDC -1 powers with DEX/INT saves, while it's your focus · Fadecasting Core (Training)
 only sometimes: weapon.toHit +1 with Cryo Cell (Average) · Cryo Cell (Average)
 only sometimes: weapon.damage +1 with Cryo Cell (Average) · Cryo Cell (Average)
 
@@ -205,7 +205,7 @@ attack|0: Blaster pistol attack: d20 +6 · = +6 modifier · option: with Cryo Ce
 damage|0: Blaster pistol damage: d6 +4 · = +2 DEX modifier +1 tweak (Custom barrel) +1 Weapon (Fine) · Energy · option: with Cryo Cell (Average) +1
 attack|1: Unarmed Strike attack: d20 +9 · = +9 modifier
 damage|1: Unarmed Strike damage: no dice +7 · = +1 unarmed strike +5 STR modifier +1 Handwraps (Fine) · Kinetic
-tech: Tech attack: d20 +5 · = +5 modifier · option: melee tech attacks +1 · option: ranged tech attacks −1
+tech: Tech attack: d20 +5 · = +5 modifier · option: melee tech attacks, while it's your focus +1 · option: ranged tech attacks, while it's your focus −1
 check|Strength: Strength check: d20 +5 · = +5 modifier
 save|Strength: Strength saving throw: d20 +8 · = +8 modifier
 skill|Strength|0: Athletics (STR): d20 +5 · = +5 modifier
@@ -301,8 +301,8 @@ Strength Enhancer STR 21 (+6) while attuned
 Weapon (Fine) Attack +1 Damage +1 on [Blaster pistol ▾] while equipped
 Handwraps (Fine) Unarmed attack +1 Unarmed damage +1 while equipped
 Bonded Plates Mk I AC +1 vs melee AC −1 vs ranged while installed
-Oscillating Amplifier Mk I Tech attack +1 melee tech attacks Tech attack −1 ranged tech attacks while installed
-Fadecasting Core (Training) Tech save DC +1 powers with STR/CON saves Tech save DC −1 powers with DEX/INT saves while installed
+Oscillating Amplifier Mk I Tech attack +1 melee tech attacks, while it's your focus Tech attack −1 ranged tech attacks, while it's your focus [ ] used as your focus while installed
+Fadecasting Core (Training) Tech save DC +1 powers with STR/CON saves, while it's your focus Tech save DC −1 powers with DEX/INT saves, while it's your focus [ ] used as your focus while installed
 Cryo Cell (Average) Attack +1 with Cryo Cell (Average) Damage +1 with Cryo Cell (Average) when you fire it
 Additionally, the loaded weapon deals cold damage instead of its normal damage type, and when you hit with a shot the creature must make a DC 16 Constitution saving throw.
 Temporary
@@ -350,9 +350,9 @@ Tech points
 Max power level
 1
 Save DC
-13 · 14 powers with STR/CON saves · 12 powers with DEX/INT saves
+13 · 14 powers with STR/CON saves, while it's your focus · 12 powers with DEX/INT saves, while it's your focus
 Attack
-+5 · +6 melee tech attacks · +4 ranged tech attacks
++5 · +6 melee tech attacks, while it's your focus · +4 ranged tech attacks, while it's your focus
 No powers known.
 
 ## Sheet: Abilities & Saving Throws

@@ -540,6 +540,14 @@ function parseItemEffect(item) {
       if (got && got.length) { mods.push(...got); used = true; }
     }
     if (requires) for (const x of mods.slice(before)) x.requires = requires;
+    // "While using this item as your focus, you gain a +3 bonus to melee force attacks" (a modification of a weapon,
+    // armor, clothing or focus): only while the item it's in is your focus, which the player says (itemEffects:
+    // itemState.focusOn); until then an alternative ("+3 while it's your focus"). A focus itself is "used as focus"
+    // when equipped.
+    if (item.type !== 'Focus' && /\bwhile using (?:this|these) [a-z ]+? as (?:a |your )?(?:tech |force )?focus\b/i.test(raw)) {
+      for (const x of mods.slice(before)) Object.assign(x, { cond: x.cond ? `${x.cond}, while it's your focus` : "while it's your focus", asFocus: true });
+      ctx.asFocus = true;
+    }
     if (!used && TRAIT.test(s)) notes.push(raw);
   }
   notes.push(...ctx.notes);
@@ -551,7 +559,7 @@ function parseItemEffect(item) {
     heals: /regains? [^.]*hit points|temporary hit points/i.test(text),
     ...(riders.length ? { riders } : {}), ...(darkvisionPlus ? { darkvisionPlus } : {}), ...(ctx.keen ? { keen: ctx.keen } : {}),
     ...(ctx.halfProfChecks ? { halfProfChecks: ctx.halfProfChecks } : {}), ...(ctx.unarmedDie ? { unarmedDie: ctx.unarmedDie, unarmedType: ctx.unarmedType } : {}),
-    ...(ctx.toolSteps ? { toolSteps: ctx.toolSteps } : {}), ...(ctx.props ? { props: ctx.props } : {}), ...(modes.length ? { modes } : {}),
+    ...(ctx.toolSteps ? { toolSteps: ctx.toolSteps } : {}), ...(ctx.props ? { props: ctx.props } : {}), ...(modes.length ? { modes } : {}), ...(ctx.asFocus ? { asFocus: true } : {}),
     ...(freeAttune ? { freeAttune } : {}), ...(ctx.sideEffect ? { sideEffect: ctx.sideEffect } : {}), ...(ctx.classBoosts ? { classBoosts: ctx.classBoosts } : {}),
   };
 }
