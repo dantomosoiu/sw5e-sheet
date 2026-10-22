@@ -4,6 +4,7 @@
 clothes detail: the wrap tunic's crossed front and its one hanging sash end
 goggles detail: lens glints from the top-left light
 eq-orbalisk-armor detail: a highlight on each creature from the top-left light
+eq-armor-chassis detail: the top-left light on the shoulder bar and the bay plates
 eq-focus-generator-chassis outline: the one loose power lead every unfinished chassis has
 eq-focus-generator-chassis stray: a dash of the empty crystal slot's outline
 eq-shield-chassis outline: partly assembled; the loose cable hangs from the hub into a bay

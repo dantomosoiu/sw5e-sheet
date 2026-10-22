@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <g transform="rotate(-18 28 36)">
+    <rect class="a-m a-oo" x="9" y="12" width="30" height="42" rx="2"/>
+    <rect class="a-b a-o" x="11.4" y="15.6" width="25.2" height="35.6" rx=".8"/>
+    <path class="a-p" d="M14 20h17M14 23.4h20M14 26.8h14"/>
+  </g>
+  <g transform="rotate(-6 28 36)">
+    <rect class="a-m a-oo" x="11" y="11" width="30" height="42" rx="2"/>
+    <rect class="a-b a-o" x="13.4" y="14.6" width="25.2" height="35.6" rx=".8"/>
+    <path class="a-p" d="M16 19h18M16 22.4h20M16 25.8h12M16 29.2h19"/>
+  </g>
+  <g transform="rotate(7 30 36)">
+    <rect class="a-m a-oo" x="14" y="10" width="31" height="44" rx="2"/>
+    <rect x="14" y="10" width="31" height="44" rx="2" fill="url(#a-sheen)"/>
+    <rect class="a-s a-o" x="16.6" y="14" width="25.8" height="37" rx=".8"/>
+    <path class="a-gl" d="M19.4 18.4h12M19.4 22h19M19.4 25.6h16M19.4 29.2h19M19.4 32.8h9M19.4 38.4h17M19.4 42h10" filter="url(#a-glow)" opacity=".6"/>
+    <path class="a-gl" d="M19.4 18.4h12M19.4 22h19M19.4 25.6h16M19.4 29.2h19M19.4 32.8h9M19.4 38.4h17M19.4 42h10" opacity=".9"/>
+    <circle class="a-g" cx="29.5" cy="12" r=".8"/>
+    <path class="a-x" d="M14.4 51.4h30.2v1.4H14.4z"/>
+    <path class="a-l" d="M15.6 11h27.8"/>
+  </g>
+  <g transform="translate(29.2 42.4) rotate(-50)">
+    <path class="a-g" d="M-1.2 0l1.2-.9l1.2.9l-1.2.9z" filter="url(#a-glow)"/>
+    <circle class="a-w" cx="0" cy="0" r=".9"/>
+    <path class="a-b a-oo" d="M.6-1.1L5.4-2.2v4.4L.6 1.1z"/>
+    <rect class="a-m a-o" x="5" y="-2.4" width="3" height="4.8" rx=".6"/>
+    <rect class="a-x a-oo" x="7.6" y="-2.6" width="26" height="5.2" rx="2.2"/>
+    <rect x="7.6" y="-2.6" width="26" height="5.2" rx="2.2" fill="url(#a-sheen)"/>
+    <path class="a-p" d="M12.4-2.4v4.8M15-2.4v4.8M30.2-2.4v4.8"/>
+    <rect class="a-m a-o" x="21" y="-4.2" width="7" height="1.8" rx=".6"/>
+    <circle class="a-g" cx="32" cy="0" r="1" filter="url(#a-glow)"/>
+    <circle class="a-g" cx="32" cy="0" r=".7"/>
+    <path class="a-l" d="M17-1.6h11"/>
+  </g>
+</svg>

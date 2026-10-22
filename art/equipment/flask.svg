@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <clipPath id="flask-clip"><path d="M15 21.2c0-3.2 2.2-5.6 5.4-6.2l6-1.2h11.2l6 1.2c3.2.6 5.4 3 5.4 6.2v31.6c0 3.2-2.6 5.8-5.8 5.8H20.8c-3.2 0-5.8-2.6-5.8-5.8z"/></clipPath>
+  <path class="a-m a-o" d="M37.4 6.2h2.8c.8 0 1.4.6 1.4 1.4v7.2h-2.4V8.6h-1.8z"/>
+  <path class="a-b a-oo" d="M15 21.2c0-3.2 2.2-5.6 5.4-6.2l6-1.2h11.2l6 1.2c3.2.6 5.4 3 5.4 6.2v31.6c0 3.2-2.6 5.8-5.8 5.8H20.8c-3.2 0-5.8-2.6-5.8-5.8z"/>
+  <g clip-path="url(#flask-clip)">
+    <path class="a-c a-o" d="M12 28.4h40v18.8H12z"/>
+    <path d="M12 28.4h40v18.8H12z" fill="url(#a-shade)"/>
+    <path class="a-p" d="M12 30.4h40M12 45.2h40" stroke-dasharray="1.4 1"/>
+  </g>
+  <path d="M15 21.2c0-3.2 2.2-5.6 5.4-6.2l6-1.2h11.2l6 1.2c3.2.6 5.4 3 5.4 6.2v31.6c0 3.2-2.6 5.8-5.8 5.8H20.8c-3.2 0-5.8-2.6-5.8-5.8z" fill="url(#a-sheen)"/>
+  <path d="M15 21.2c0-3.2 2.2-5.6 5.4-6.2l6-1.2h11.2l6 1.2c3.2.6 5.4 3 5.4 6.2v31.6c0 3.2-2.6 5.8-5.8 5.8H20.8c-3.2 0-5.8-2.6-5.8-5.8z" fill="url(#a-shade)"/>
+  <path class="a-x a-o" d="M32 32.2l5 5.6-5 5.6-5-5.6z"/>
+  <path class="a-d" d="M32 35.4l2.2 2.4-2.2 2.4-2.2-2.4z"/>
+  <path class="a-p" d="M17.6 54.2h28.8M22 16.6h20"/>
+  <rect class="a-m a-o" x="27.4" y="9.4" width="9.2" height="5" rx=".6"/>
+  <rect class="a-m a-oo" x="25.8" y="4" width="12.4" height="6.2" rx="1.6"/>
+  <rect x="25.8" y="4" width="12.4" height="6.2" rx="1.6" fill="url(#a-sheen)"/>
+  <path class="a-p" d="M28.2 4.6v5M30.6 4.6v5M33 4.6v5M35.4 4.6v5"/>
+  <ellipse class="a-w" cx="20.4" cy="22.6" rx="1.2" ry="3.4" opacity=".45"/>
+  <path class="a-l" d="M17.2 20.6c.2-1.8 1.4-3 3.4-3.4l5.4-1.2M17.4 49.6v3.4M26.8 5h4.6"/>
+</svg>

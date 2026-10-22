@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <clipPath id="chest-clip"><path d="M6 29.6v-6.8C6 16 11 11 17.6 11h28.8C53 11 58 16 58 22.8v6.8zM6 29h52v26.4H6z"/></clipPath>
+  <path class="a-m a-o" d="M6 35H4a1.4 1.4 0 0 0-1.4 1.4v5.2A1.4 1.4 0 0 0 4 43h2v-1.8H4.4v-4.4H6zM58 35h2a1.4 1.4 0 0 1 1.4 1.4v5.2A1.4 1.4 0 0 1 60 43h-2v-1.8h1.6v-4.4H58z"/>
+  <rect class="a-c a-oo" x="6" y="29" width="52" height="26.4" rx="1.4"/>
+  <rect x="6" y="29" width="52" height="26.4" rx="1.4" fill="url(#a-shade)"/>
+  <path class="a-p" d="M6.6 37.6h50.8M6.6 46.4h50.8"/>
+  <path class="a-c a-oo" d="M6 29.6v-6.8C6 16 11 11 17.6 11h28.8C53 11 58 16 58 22.8v6.8z"/>
+  <path d="M6 29.6v-6.8C6 16 11 11 17.6 11h28.8C53 11 58 16 58 22.8v6.8z" fill="url(#a-sheen)"/>
+  <path class="a-p" d="M6.6 21.4h50.8"/>
+  <g clip-path="url(#chest-clip)">
+    <path class="a-m a-o" d="M14 8h4.4v50H14zM45.6 8H50v50h-4.4z"/>
+    <path class="a-m a-o" d="M4 50h12v8H4zM48 50h12v8H48z"/>
+  </g>
+  <path class="a-oo" fill="none" d="M6 29.6v-6.8C6 16 11 11 17.6 11h28.8C53 11 58 16 58 22.8v6.8M6 29v25a1.4 1.4 0 0 0 1.4 1.4h49.2A1.4 1.4 0 0 0 58 54V29"/>
+  <rect class="a-m a-oo" x="4.8" y="27.4" width="54.4" height="3.6" rx="1"/>
+  <path class="a-d" d="M15.6 16.4h1.2v1.2h-1.2zM47.2 16.4h1.2v1.2h-1.2zM15.6 39.6h1.2v1.2h-1.2zM47.2 39.6h1.2v1.2h-1.2z"/>
+  <rect class="a-x a-oo" x="27" y="24.2" width="10" height="13.4" rx="1.8"/>
+  <rect x="27" y="24.2" width="10" height="13.4" rx="1.8" fill="url(#a-sheen)"/>
+  <rect class="a-d a-o" x="29.2" y="29.8" width="5.6" height="5.2" rx="1"/>
+  <circle class="a-g" cx="32" cy="32.4" r="1.2" filter="url(#a-glow)"/>
+  <circle class="a-g" cx="32" cy="32.4" r=".8"/>
+  <path class="a-p" d="M28.6 27.2h6.8"/>
+  <path class="a-l" d="M10 17.4c1.6-3.4 4.4-5.2 8-5.4h28M7 28.2h18.6M8 30.6v20M28.2 25.4h3"/>
+</svg>

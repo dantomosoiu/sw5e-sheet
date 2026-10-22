@@ -46,7 +46,7 @@ SYMMETRIC = re.compile(r'(armor|armour|-suit\b|suit$|exoskeleton|exo$|shield(?!-
                        r'vest|tunic|clothes|jetpack|rocketpack|propulsion-pack|repulsor-pack|gloves|greaves|handwraps$|amulet|necklace|'
                        r'beskargam|crushgaunts|circlet|headgear|droid-protocol|chassis$)')
 # … except these, which are lopsided on purpose (half-built chassis, single shoulder pieces, side views, worn on one side).
-NOT_SYMMETRIC = re.compile(r'(cloak-chassis|pants-chassis|tunic-chassis|handwraps-chassis|blaster-chassis|vibroweapon-chassis|lightweapon-chassis|eq-handwraps$|ship-armor|pauldron|'
+NOT_SYMMETRIC = re.compile(r'(cloak-chassis|pants-chassis|tunic-chassis|handwraps-chassis|blaster-chassis|vibroweapon-chassis|lightweapon-chassis|eq-handwraps$|ship-armor|implements$|-kit$|pauldron|'
                            r'shield-generator|vibroshield|bone-light-shield|crystadium|ship-shield|shoulder|wrist|bracer|vambraces|boots)')
 
 
@@ -67,6 +67,18 @@ def load_accepted():
             sys.exit(f'art/qa-accepted.txt line {i}: expected "<picture> <{"|".join(sorted(CHECKS))}>: <why>"')
         out.setdefault(parts[0], {})[parts[1]] = why.strip()
     return out
+
+
+def clearly_fine(res, check):
+    """An accepted flag is only reported as no longer needed with a margin: scores right at a limit flicker from run
+    to run with antialiasing."""
+    if check == 'outline':
+        return res.get('symmetry', 1) >= 0.98
+    if check == 'detail':
+        return res.get('detail_symmetry', 1) >= 0.95
+    if check == 'stray':
+        return not res.get('bits')
+    return True
 
 
 def render(names, bg):
@@ -166,6 +178,7 @@ def measure(name, black, white):
     bits = [(size, (bx0 + bx1) // 2, (by0 + by1) // 2) for size, (by0, bx0, by1, bx1), _ in comps[1:]
             if 6 <= size < max(12, main * 0.004)]  # (smaller: antialiasing specks at a blade's tip)
     pattern = [sum(1 for o in bits if 0.6 <= o[0] / b[0] <= 1.67) >= 4 for b in bits]
+    res['bits'] = len(bits)
     if any(pattern):
         res['notes'].append(f'a pattern of {sum(pattern)} small pieces (dashes, a grid, shimmer)')
     for (size, x, y), in_pattern in zip(bits, pattern):
@@ -192,7 +205,7 @@ def main():
         ok = accepted.get(n, {})
         res['accepted'] = [(k, f, ok[k]) for k, f in res['flags'] if k in ok]
         res['flags'] = [(k, f) for k, f in res['flags'] if k not in ok]
-        res['stale'] = [k for k in ok if k not in {a[0] for a in res['accepted']}]
+        res['stale'] = [k for k in ok if k not in {a[0] for a in res['accepted']} and clearly_fine(res, k)]
         results.append(res)
         if res['flags'] or '--all-sheets' in args:
             # Review image: the picture on grey, and its mirror difference in red (expected-symmetric ones).

@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect class="a-m a-o" x="19" y="26" width="2.2" height="12"/>
+  <g transform="rotate(-12 20 18)">
+    <rect class="a-b a-oo" x="14" y="4" width="12.4" height="22.4" rx="6.2"/>
+    <rect x="14" y="4" width="12.4" height="22.4" rx="6.2" fill="url(#a-sheen)"/>
+    <rect x="14" y="4" width="12.4" height="22.4" rx="6.2" fill="url(#a-shade)"/>
+    <path class="a-d a-o" d="M15.6 15.4v-4.6a4.6 4.6 0 0 1 9.2 0v4.6z"/>
+    <path class="a-p" d="M17.8 7.8v7.4M20.2 6.4v8.8M22.6 7.8v7.4M15.8 10.4h8.8M15.8 12.8h8.8"/>
+    <rect class="a-x a-o" x="14" y="15.4" width="12.4" height="2.6"/>
+    <circle class="a-g" cx="20.2" cy="21" r="1.2" filter="url(#a-glow)"/>
+    <circle class="a-g" cx="20.2" cy="21" r=".8"/>
+    <path class="a-m a-o" d="M10.8 14.4h2.4v6.2a7 5.6 0 0 0 14 0v-6.2h2.4v6.2a9.4 8 0 0 1-18.8 0z"/>
+  </g>
+  <path class="a-gl" d="M31 8.6q3.2 4 0 8M35.4 5.6q5.8 7 0 14M39.8 4q8.6 9.6 0 19.2" filter="url(#a-glow)" opacity=".8"/>
+  <path class="a-gl" d="M31 8.6q3.2 4 0 8M35.4 5.6q5.8 7 0 14M39.8 4q8.6 9.6 0 19.2"/>
+  <path class="a-b a-oo" d="M10 35.6h44l6 16.6H4z"/>
+  <path d="M10 35.6h44l6 16.6H4z" fill="url(#a-sheen)"/>
+  <path class="a-m a-oo" d="M4 52.2h56v4a1.4 1.4 0 0 1-1.4 1.4H5.4A1.4 1.4 0 0 1 4 56.2z"/>
+  <path class="a-d" d="M14 39.4h1.4l-2.8 10h-1.4zM20.8 39.4h1.4l-1.6 10h-1.4zM28.1 39.4h1.4l-.4 10h-1.4zM35.5 39.4h1.4l.8 10h-1.4z"/>
+  <g class="a-x a-o">
+    <rect x="10.6" y="45" width="4.6" height="2.4" rx=".6"/>
+    <rect x="18.8" y="40.4" width="4.6" height="2.4" rx=".6"/>
+    <rect x="26.4" y="43.2" width="4.6" height="2.4" rx=".6"/>
+    <rect x="34.2" y="46.4" width="4.6" height="2.4" rx=".6"/>
+  </g>
+  <path class="a-s a-o" d="M42 38.6h9.6l2.6 11.2H43.4z"/>
+  <path class="a-g" d="M44 46h1.6v2.6H44zM46.6 42.4h1.6v6.2h-1.6zM49.2 44.4h1.6v4.2h-1.6z" filter="url(#a-glow)"/>
+  <path class="a-g" d="M44 46h1.6v2.6H44zM46.6 42.4h1.6v6.2h-1.6zM49.2 44.4h1.6v4.2h-1.6z"/>
+  <path class="a-l" d="M11 36.6h42"/>
+  <path class="a-p" d="M6 54.4h52"/>
+  <g class="a-g">
+    <circle cx="9" cy="54.9" r=".8"/>
+    <circle cx="12" cy="54.9" r=".8"/>
+  </g>
+</svg>

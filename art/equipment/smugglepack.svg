@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <path class="a-c a-o" d="M22.2 9.6V5.8a2.6 2.6 0 0 1 2.6-2.6h4.4a2.6 2.6 0 0 1 2.6 2.6v3.8h-2.2V6.2a1.2 1.2 0 0 0-1.2-1.2h-2.8a1.2 1.2 0 0 0-1.2 1.2v3.4z"/>
+  <path class="a-c a-oo" d="M10.4 13.4h33.2c1.4 0 2.4 1 2.4 2.4V53c0 2-1.6 3.6-3.6 3.6H11.6C9.6 56.6 8 55 8 53V15.8c0-1.4 1-2.4 2.4-2.4z"/>
+  <path d="M10.4 13.4h33.2c1.4 0 2.4 1 2.4 2.4V53c0 2-1.6 3.6-3.6 3.6H11.6C9.6 56.6 8 55 8 53V15.8c0-1.4 1-2.4 2.4-2.4z" fill="url(#a-shade)"/>
+  <rect class="a-c a-oo" x="9" y="7.4" width="36" height="8.4" rx="4.2"/>
+  <rect x="9" y="7.4" width="36" height="8.4" rx="4.2" fill="url(#a-sheen)"/>
+  <path class="a-p" d="M11.4 10.6q15.6 1.4 31.2 0M11.4 13.4q15.6 1.4 31.2 0"/>
+  <rect class="a-p" x="20.6" y="19.6" width="12.8" height="17" rx="2"/>
+  <path class="a-p" d="M21.6 23.4h10.8"/>
+  <rect class="a-x a-o" x="29.6" y="22.2" width="2.4" height="4" rx=".6"/>
+  <path class="a-c a-o" d="M13.4 8.8h4.6v31.4h-4.6zM36 8.8h4.6v31.4H36z"/>
+  <path class="a-d" opacity=".3" d="M13.4 8.8h4.6v31.4h-4.6zM36 8.8h4.6v31.4H36z"/>
+  <rect class="a-m a-o" x="12.6" y="27" width="6.2" height="4.6" rx=".8"/>
+  <rect class="a-m a-o" x="35.2" y="27" width="6.2" height="4.6" rx=".8"/>
+  <path class="a-d" d="M14.2 28.6h3v1.4h-3zM36.8 28.6h3v1.4h-3z"/>
+  <rect class="a-m a-o" x="8" y="41" width="38" height="2.6" rx=".6"/>
+  <rect class="a-d a-o" x="9.4" y="43.6" width="11.4" height="11.4" rx="1"/>
+  <path class="a-m a-o" d="M44.6 39.4h11.6c.6 0 1 .4 1 1v3.6H44.6z"/>
+  <rect class="a-x" x="45.8" y="40.6" width="10.2" height="3.4"/>
+  <rect class="a-g" x="47.2" y="35.6" width="2.8" height="6.4" rx="1.4" filter="url(#a-glow)" opacity=".8"/>
+  <rect class="a-g a-o" x="47.2" y="35.6" width="2.8" height="6.4" rx="1.4"/>
+  <rect class="a-g a-o" x="51.2" y="36.8" width="2.8" height="5.2" rx="1.4"/>
+  <rect class="a-w" x="47.9" y="36.6" width=".9" height="3.4" rx=".45"/>
+  <rect class="a-c a-oo" x="20.4" y="43.6" width="36.8" height="11.4" rx="1.2"/>
+  <rect x="20.4" y="43.6" width="36.8" height="11.4" rx="1.2" fill="url(#a-shade)"/>
+  <path class="a-p" d="M22 46h33.6M46 44.2v10.2" stroke-dasharray="1.2 1"/>
+  <rect class="a-d a-o" x="50.4" y="48" width="4.4" height="2.4" rx=".6"/>
+  <path class="a-l" d="M10.4 9.4h18M9.2 18v20M21.8 44.6h20"/>
+</svg>

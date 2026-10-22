@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <clipPath id="bucket-clip"><path d="M10.2 22.4h43.6l-4.6 33.6c-.2 1.6-1.6 2.8-3.2 2.8H18c-1.6 0-3-1.2-3.2-2.8z"/></clipPath>
+  <path class="a-m a-o" d="M12.4 25.4C11.8 12.6 20.4 6 32 6s20.2 6.6 19.6 19.4h-2.2C49.8 14.2 42.6 8.2 32 8.2S14.2 14.2 14.6 25.4z"/>
+  <rect class="a-d a-o" x="25.6" y="4.4" width="12.8" height="5.4" rx="2.7"/>
+  <path class="a-p" d="M28.6 4.8v4.6M32 4.8v4.6M35.4 4.8v4.6"/>
+  <path class="a-b a-oo" d="M10.2 22.4h43.6l-4.6 33.6c-.2 1.6-1.6 2.8-3.2 2.8H18c-1.6 0-3-1.2-3.2-2.8z"/>
+  <g clip-path="url(#bucket-clip)">
+    <path class="a-x a-o" d="M6 37q26 4.4 52 0v4.4q-26 4.4-52 0z"/>
+    <path class="a-m a-o" d="M6 54q26 4.4 52 0v8H6z"/>
+    <ellipse class="a-d" cx="43.4" cy="48.4" rx="3.4" ry="2.4" opacity=".25"/>
+  </g>
+  <path d="M10.2 22.4h43.6l-4.6 33.6c-.2 1.6-1.6 2.8-3.2 2.8H18c-1.6 0-3-1.2-3.2-2.8z" fill="url(#a-sheen)"/>
+  <path d="M10.2 22.4h43.6l-4.6 33.6c-.2 1.6-1.6 2.8-3.2 2.8H18c-1.6 0-3-1.2-3.2-2.8z" fill="url(#a-shade)"/>
+  <path class="a-p" d="M12 31q20 3.6 40 0M14 49q18 3.2 36 0M20.4 27.6l1.6 3M44.8 50.6l-1.6-.8"/>
+  <path class="a-l" d="M12.6 32.4q4 .8 8 1.2M14.6 50.4q4 .8 8 1" opacity=".7"/>
+  <ellipse class="a-m a-oo" cx="32" cy="22.2" rx="22.6" ry="4.8"/>
+  <ellipse class="a-d" cx="32" cy="22" rx="20" ry="3.2"/>
+  <path class="a-l" d="M20 21.6q12-1.6 24 0" opacity=".35"/>
+  <rect class="a-m a-o" x="9.6" y="23.4" width="4.4" height="6" rx="1"/>
+  <rect class="a-m a-o" x="50" y="23.4" width="4.4" height="6" rx="1"/>
+  <circle class="a-d" cx="11.8" cy="25.6" r=".8"/>
+  <circle class="a-d" cx="52.2" cy="25.6" r=".8"/>
+  <path class="a-l" d="M12.8 36l2.6 19M14.4 18.8c3-1.4 7-2.2 11-2.6M26.6 5.4h4"/>
+</svg>

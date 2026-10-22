@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <path class="a-d a-oo" d="M19.4 6H47.4L56.9 14.5V49.5L46.4 61H20.4L9.9 49.5V14.5Z"/>
+  <path class="a-d a-oo" d="M18 4.5H46L55.5 13V49.5L45 61H19L8.5 49.5V13Z"/>
   <path class="a-m a-oo" d="M18 4.5H46L55.5 13V48L45 59.5H19L8.5 48V13Z"/>
   <path d="M18 4.5H46L55.5 13V48L45 59.5H19L8.5 48V13Z" fill="url(#a-sheen)"/>
   <path class="a-b a-o" d="M19.2 7.2H44.8L53 14.4V46.8L43.9 56.8H20.1L11 46.8V14.4Z"/>
@@ -20,6 +20,5 @@
   <circle class="a-d" cx="54.2" cy="38" r=".9"/>
   <circle class="a-d" cx="24" cy="58.2" r=".9"/>
   <circle class="a-d" cx="40" cy="58.2" r=".9"/>
-  <path class="a-l" d="M19 5.7h26M9.7 14v33.4M30.4 8.4v26.8M12.4 15.4l7.4-6.8M14.6 25.4v15"/>
-  <path class="a-l" opacity=".45" d="M44.6 34.4l3-2.6M19 49l2.6 1.8M41.4 12.6l3.4.4"/>
+  <path class="a-l" d="M19 5.7h26M9.7 14v33.4M30.4 8.4v26.8M12.4 15.4l7.4-6.8"/>
 </svg>

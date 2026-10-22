@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <path class="a-c a-oo" d="M5 36C4 23 19 12.6 35 13.4C49 14.2 59 23.6 57.4 35.4C56 45 47.6 52 37.6 52C31.6 52 30.8 47.2 27 47.6C22.6 48 22 54.4 15 53.4C8.8 52.4 5.4 45 5 36z"/>
+  <path d="M5 36C4 23 19 12.6 35 13.4C49 14.2 59 23.6 57.4 35.4C56 45 47.6 52 37.6 52C31.6 52 30.8 47.2 27 47.6C22.6 48 22 54.4 15 53.4C8.8 52.4 5.4 45 5 36z" fill="url(#a-sheen)"/>
+  <path d="M5 36C4 23 19 12.6 35 13.4C49 14.2 59 23.6 57.4 35.4C56 45 47.6 52 37.6 52C31.6 52 30.8 47.2 27 47.6C22.6 48 22 54.4 15 53.4C8.8 52.4 5.4 45 5 36z" fill="url(#a-shade)"/>
+  <ellipse class="a-d a-o" cx="17.6" cy="41.6" rx="3.6" ry="2.8"/>
+  <path class="a-l" d="M7 31C9.6 21 22 14.6 34 14.8"/>
+  <path class="a-x a-o" d="M10.6 30.4c-.6-3 2-5 4.6-4.4c2.8.6 3.6 3.4 2.4 5.4c-1.2 2-5 2.8-7-1z"/>
+  <path class="a-g a-o" d="M19.4 21.6c.4-2.8 3.4-4 5.6-2.6c2.4 1.6 1.8 4.6-.2 5.6c-2.2 1-5.8.2-5.4-3z"/>
+  <path class="a-b a-o" d="M30.6 19.6c.2-2.6 3.2-3.8 5.2-2.6c2 1.2 1.8 4.2-.2 5c-2 .8-5.2.2-5-2.4z"/>
+  <path class="a-s a-o" d="M13.4 37.2c-.4-2.4 1.8-3.8 3.8-3.2c2 .6 2.2 3 .8 4.2c-1.4 1-4.2.8-4.6-1z"/>
+  <path class="a-x" d="M21.6 34.6c2.6-2.8 6.4-2.6 9.2-.6c-2.8.4-5.6 1-9.2.6z" opacity=".75"/>
+  <path class="a-g" d="M25.4 29.6c2.4-1.6 5.2-1 6.8.6c-2.4-.2-4.6 0-6.8-.6z" opacity=".75"/>
+  <g class="a-w" opacity=".8">
+    <circle cx="13" cy="28" r=".9"/>
+    <circle cx="22" cy="20" r=".9"/>
+    <circle cx="33" cy="18.2" r=".9"/>
+  </g>
+  <g transform="translate(43 8.6) rotate(-18)">
+    <rect class="a-b a-oo" x="-2" y="12.6" width="4" height="28" rx="1.6"/>
+    <rect x="-2" y="12.6" width="4" height="28" rx="1.6" fill="url(#a-sheen)"/>
+    <path class="a-x" d="M-1.6 34.6h3.2v3h-3.2z"/>
+    <rect class="a-m a-o" x="-2.3" y="7.6" width="4.6" height="5.4" rx=".6"/>
+    <path class="a-p" d="M-2 9.6h4M-2 11.2h4"/>
+    <path class="a-d a-o" d="M0 0c1.8 2 2.4 5 2.4 7.8H-2.4C-2.4 5-1.8 2 0 0z"/>
+    <path class="a-g" d="M0 0c1.2 1.4 1.8 3 2 4.6H-2C-1.8 3-1.2 1.4 0 0z"/>
+  </g>
+  <g transform="translate(53.4 5.4) rotate(26)">
+    <rect class="a-b a-oo" x="-1.8" y="11" width="3.6" height="31" rx="1.4"/>
+    <rect x="-1.8" y="11" width="3.6" height="31" rx="1.4" fill="url(#a-sheen)"/>
+    <path class="a-x" d="M-1.4 35.6h2.8v3h-2.8z"/>
+    <rect class="a-m a-o" x="-1.9" y="6.6" width="3.8" height="4.8" rx=".6"/>
+    <path class="a-p" d="M-1.6 8.4h3.2M-1.6 9.8h3.2"/>
+    <path class="a-d a-o" d="M-1.9 0h3.8v6.8h-3.8z"/>
+    <path class="a-x" d="M-1.9 0h3.8v3.2h-3.8z"/>
+  </g>
+</svg>
