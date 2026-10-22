@@ -907,7 +907,9 @@ function startRoll(spec, opts = {}) {
       .concat(skillProf != null ? [skillProf && skillProf !== 'none' ? 'skill:proficient' : 'skill:unproficient'] : []);
     // A weapon's own sometimes-dice (Hewey's charge, Charric vs heavy armor): offered on its damage, not ticked.
     const wIndex = /^damage\|/.test(spec) ? (arr(m.c.weapons)[spec.split('|')[1]] || {}).index : null;
-    for (const e of tempEffects(snap.key).concat(arr(m.effects).filter((x) => x.kind === 'item' && x.active && x.riders))) {
+    // (one of the same name, unless applied anyway: m.fx.notStacking)
+    const leftOut = new Set(arr(m.fx && m.fx.notStacking).filter((x) => !x.kept).map((x) => x.id));
+    for (const e of tempEffects(snap.key).concat(arr(m.effects).filter((x) => x.kind === 'item' && x.active && x.riders)).filter((x) => !leftOut.has(x.id))) {
       for (const rd of arr(e.riders)) {
         if (!rd.on.some((o) => kinds.includes(o))) continue;
         if (rd.weapon && (e.weaponIndex == null || e.weaponIndex !== wIndex)) continue;

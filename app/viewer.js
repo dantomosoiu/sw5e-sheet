@@ -1083,9 +1083,15 @@ function buildTracker(snap, c, refsInfo, textUses = [], extraDice = [], highRule
     .filter((f) => f.usage && num(f.usage.maximum) > 0)
     .map((f) => ({ name: f.name, maximum: num(f.usage.maximum), recharge: f.usage.recharge }));
   for (const u of textUses) if (!features.some((f) => f.name === u.name) && Number.isFinite(u.maximum)) features.push(u);
-  const hpMax = num(hp.maximum);
+  // Exhaustion 4 or more: "hit point maximum halved" (hpFull is the maximum without it; hit points lost count from it,
+  // as SW5E stores them).
+  const hpFull = num(hp.maximum);
+  const hpHalved = num(s.exhaustion) >= 4;
+  const hpMax = hpHalved ? Math.floor(hpFull / 2) : hpFull;
   const lim = {
     hpMax,
+    hpFull,
+    hpHalved,
     hitDice: arr(hp.hitDice).map((d) => ({ size: d.size, maximum: num(d.maximum) })),
     hitDieBonus: num(hp.resting && hp.resting.hitDieBonus),
     // The dice from the class or archetype table as the sheet reads them (superiorityInfo), with the superiority tweaks:
@@ -1108,7 +1114,14 @@ function buildTracker(snap, c, refsInfo, textUses = [], extraDice = [], highRule
     const d = lim.hitDice.find((x) => x.size === size);
     return d ? Math.max(0, d.maximum - num(s.hitDiceUsed[size])) : 0;
   };
-  return { s, lim, local: !!local, hpCurrent: Math.max(0, hpMax - num(s.hitPointsLost)), hdLeft };
+  return { s, lim, local: !!local, hpCurrent: hpNowOf({ s, lim }), hdLeft };
+}
+/** Current hit points: the maximum less what's lost, no more than the maximum (halved by exhaustion 4). */
+const hpNowOf = (t) => Math.max(0, Math.min(t.lim.hpMax, num(t.lim.hpFull ?? t.lim.hpMax) - num(t.s.hitPointsLost)));
+/** The hit point maximum shown: halved by exhaustion 4, said so; otherwise as changed by tweaks/effects (bump). */
+function hpMaxHtml(m, t) {
+  if (!t.lim.hpHalved) return bump(m, 'hitPoints.maximum', String(t.lim.hpMax));
+  return `<span class="bump down" tabindex="0" title="${esc(`Halved by exhaustion (level ${num(t.s.exhaustion)}): ${t.lim.hpFull} without it. It comes back as exhaustion drops below 4.`)}">${t.lim.hpMax}</span>`;
 }
 
 const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
@@ -1143,7 +1156,7 @@ function applyTrackerAction(t, op, arg, amount) {
       if (f && num(s.featuresTimesUsed[arg]) >= f.maximum) return null;
       if (f) s.featuresTimesUsed[arg] = num(s.featuresTimesUsed[arg]) + 1;
       const healed = Math.min(Math.max(0, amount), lim.hpMax - cur);
-      s.hitPointsLost = Math.max(0, lim.hpMax - (cur + healed));
+      s.hitPointsLost = Math.max(0, lim.hpFull - (cur + healed));
       if (healed > 0) s.deathSaves = { successes: 0, failures: 0 };
       return `${arg}: healed ${healed}${healed < amount ? ` (of ${amount}; at maximum)` : ''}`;
     }
@@ -1167,7 +1180,7 @@ function applyTrackerAction(t, op, arg, amount) {
       const f = lim.features.find((x) => x.name === arg);
       if (f && num(s.featuresTimesUsed[arg]) >= f.maximum) return null;
       if (f) s.featuresTimesUsed[arg] = num(s.featuresTimesUsed[arg]) + 1;
-      s.hitPointsLost = Math.max(0, lim.hpMax - 1);
+      s.hitPointsLost = Math.max(0, lim.hpFull - 1);
       s.deathSaves = { successes: 0, failures: 0 };
       return `${arg}: 1 hit point instead of 0`;
     }
@@ -1175,14 +1188,19 @@ function applyTrackerAction(t, op, arg, amount) {
       s.deathSaves = { successes: 0, failures: 0 };
       return 'GM ruling: at 0 HP instead of dead';
     case 'insp': s.hasInspiration = !s.hasInspiration; return s.hasInspiration ? 'Inspiration gained' : 'Inspiration used';
-    case 'exh': s.exhaustion = clamp(num(s.exhaustion) + num(arg), 0, 6); return `Exhaustion ${s.exhaustion}`;
+    case 'exh': {
+      s.exhaustion = clamp(num(s.exhaustion) + num(arg), 0, 6);
+      // At 4 the maximum is halved: hit points above it are gone (and don't come back when it drops again).
+      if (s.exhaustion >= 4) s.hitPointsLost = Math.max(num(s.hitPointsLost), lim.hpFull - Math.floor(lim.hpFull / 2));
+      return `Exhaustion ${s.exhaustion}${s.exhaustion >= 4 && num(arg) > 0 && s.exhaustion === 4 ? ` (hit point maximum halved: ${Math.floor(lim.hpFull / 2)})` : ''}`;
+    }
     case 'hl': s.highLevelCasting[arg] = !s.highLevelCasting[arg]; return `${arg.replace(/\D+/g, '')}th-level casting ${s.highLevelCasting[arg] ? 'used' : 'back'}`;
     case 'hdheal': { // a hit die rolled in the roller: spend it and heal what it rolled
       const d = lim.hitDice.find((x) => x.size === arg);
       if (!d || num(s.hitDiceUsed[arg]) >= d.maximum) return null;
       s.hitDiceUsed[arg] = num(s.hitDiceUsed[arg]) + 1;
       const healed = Math.min(Math.max(0, amount), lim.hpMax - cur);
-      s.hitPointsLost = Math.max(0, lim.hpMax - (cur + healed));
+      s.hitPointsLost = Math.max(0, lim.hpFull - (cur + healed));
       if (amount > 0) s.deathSaves = { successes: 0, failures: 0 };
       return `Spent a ${arg} hit die, healed ${healed}${healed < amount ? ` (of ${amount}; at maximum)` : ''}`;
     }
@@ -1204,7 +1222,7 @@ function applyTrackerAction(t, op, arg, amount) {
       return `Death save: ${n === '2' ? 'two failures' : kind === 'successes' ? 'a success' : 'a failure'}`;
     }
     case 'nat20': // a natural 20 on a death save: back up with 1 hit point
-      s.hitPointsLost = Math.max(0, lim.hpMax - Math.max(cur, 1));
+      s.hitPointsLost = Math.max(0, lim.hpFull - Math.max(cur, 1));
       s.deathSaves = { successes: 0, failures: 0 };
       return 'Natural 20: 1 hit point';
     case 'damage': {
@@ -1214,14 +1232,14 @@ function applyTrackerAction(t, op, arg, amount) {
       if (-left >= lim.hpMax) s.deathSaves.failures = 3; // massive damage
       // Damage while at 0 hit points: a failed death save (a critical hit: two; click the next dot).
       else if (cur === 0 && temp === 0) s.deathSaves.failures = clamp(num(s.deathSaves.failures) + 1, 0, 3);
-      s.hitPointsLost = lim.hpMax - (temp > 0 ? cur : Math.max(0, left));
+      s.hitPointsLost = lim.hpFull - (temp > 0 ? cur : Math.max(0, left));
       s.temporaryHitPoints = temp;
       return cur === 0 && temp === 0 ? `Took ${amount} damage at 0 HP (a failed death save)` : `Took ${amount} damage`;
     }
     case 'heal': {
       if (!(amount > 0)) return null;
       const healed = Math.min(amount, lim.hpMax - cur);
-      s.hitPointsLost = Math.max(0, lim.hpMax - Math.min(lim.hpMax, cur + amount));
+      s.hitPointsLost = Math.max(0, lim.hpFull - Math.min(lim.hpMax, cur + amount));
       s.deathSaves = { successes: 0, failures: 0 };
       return `Healed ${healed}${healed < amount ? ` (of ${amount}; at maximum)` : ''}`;
     }
@@ -1299,7 +1317,7 @@ async function trackerAction(op, arg, rolled) {
     const taken = dd ? dd.amount : amount;
     let label = op === 'damage' && dd && !taken ? `${amount} ${dtype} damage: none taken (${dd.applied.join(', ')})` : applyTrackerAction(m.t, op, op === 'damage' ? '' : arg, op === 'damage' ? taken : amount);
     if (op === 'damage' && dd && taken) label = `Took ${taken} damage (${amount} ${dtype}${dd.applied.length ? `, ${dd.applied.join(', ')}` : ''})`;
-    const hpNow = Math.max(0, m.t.lim.hpMax - num(m.t.s.hitPointsLost));
+    const hpNow = hpNowOf(m.t);
     // Down to 0: Unconscious (until healed); back up: not any more.
     if (hpNow === 0 && m.t.hpCurrent > 0 && !arr(m.t.s.conditions).includes('Unconscious')) m.t.s.conditions = arr(m.t.s.conditions).concat('Unconscious');
     if (hpNow > 0 && m.t.hpCurrent === 0) m.t.s.conditions = arr(m.t.s.conditions).filter((x) => x !== 'Unconscious');
@@ -2391,15 +2409,33 @@ function applyEffects(key, editedRaw, complete) {
     return out;
   };
   // Mods that only work without armor (Unarmored Defense, subdermal armor) are dropped while it's worn.
-  const effects = tweakEffects(key, editedRaw)
+  const listed = tweakEffects(key, editedRaw)
     .concat(featureEffects(key, editedRaw, complete))
     .concat(itemEffects(key, editedRaw, complete).filter((e) => e.active))
-    .concat(tempEffects(key).map((e) => (e.target === 'weapon' ? { ...e, weaponIndex: weaponIndexByName(editedRaw, e.weaponName) } : e)))
+    .concat(tempEffects(key).map((e) => (e.target === 'weapon' ? { ...e, weaponIndex: weaponIndexByName(editedRaw, e.weaponName) }
+      // Infused armor or shield: its AC only while it's worn (as an armor modification's).
+      : infusedArmorOff(editedRaw, e) ? { ...e, mods: [] } : e)))
     .map((e) => (arr(e.mods).some((x) => x.when) ? { ...e, mods: e.mods.filter((x) => armorAllows(x.when, armor))
       // "13 + your Dexterity modifier" in light armor: what it adds over the armor's own base.
       .map((x) => (x.when && x.when.orLight && armor.armor && x.acBase ? { ...x, bonus: x.acBase - armor.lightBase } : x))
-      .filter((x) => !(x.when && x.when.orLight && armor.armor && x.bonus <= 0)) } : e))
-    .flatMap(expand);
+      .filter((x) => !(x.when && x.when.orLight && armor.armor && x.bonus <= 0)) } : e));
+  // Effects with the same name don't stack (two Oscillation Calibrators on one vibrorapier, the same stim received twice,
+  // two copies of an attuned item): the first applies, the others are listed as not stacking (res.notStacking), unless
+  // the player applies one anyway (itemState.stackAnyway), as a repeated tweak is.
+  const anyway = (state.itemState[key] && state.itemState[key].stackAnyway) || {};
+  const notStacking = [];
+  const firstOf = new Map();
+  const kept = listed.filter((e) => {
+    if (e.kind !== 'item' && e.kind !== 'temporary') return true;
+    if (e.target === 'weapon' && e.weaponIndex == null) return true;
+    const k = `${String(e.name || '').toLowerCase()}|${e.target === 'weapon' ? `w${e.weaponIndex}` : e.target || 'self'}`;
+    const first = firstOf.get(k);
+    if (!first) { firstOf.set(k, e); return true; }
+    if (first.id === e.id) return true;
+    notStacking.push({ id: e.id, name: e.name, of: first.id, kept: !!anyway[e.id], weaponIndex: e.target === 'weapon' ? e.weaponIndex : null });
+    return !!anyway[e.id];
+  });
+  const effects = kept.flatMap(expand);
   // Ability scores before any tweak/effect: the engine's calculation of the character as edited now, without them (a
   // species changed a moment ago has its scores at once); without the engine's data, SW5E's baseline computation once
   // there is one, until then the sheet's scores less their tweak bonuses.
@@ -2411,6 +2447,7 @@ function applyEffects(key, editedRaw, complete) {
     return [a, num((((complete && complete.abilityScores) || {})[a] || {}).value) - num(tw.bonus)];
   }));
   const res = fxResolve(effects, scores);
+  res.notStacking = notStacking;
   // A tweak that sets a number ("set to", override) fixes it, whatever effects would do: theirs are kept aside
   // (res.setByTweak) and explained as such, not applied. Run again before the end for the effects added below.
   res.setByTweak = [];
@@ -3650,7 +3687,7 @@ async function saveItemStateFor(key, st) {
   st.updatedAt = Date.now();
   if (!Object.keys(st.charges || {}).length && !arr(st.effects).length && !Object.keys(st.targets || {}).length
     && !Object.keys(st.reasons || {}).length && !st.combat && !arr(st.foretell).length && !st.frenzy
-    && !Object.keys(st.shots || {}).length && !Object.keys(st.keepTweaks || {}).length && !Object.keys(st.toolPicks || {}).length && !Object.keys(st.itemPicks || {}).length) delete state.itemState[key];
+    && !Object.keys(st.shots || {}).length && !Object.keys(st.keepTweaks || {}).length && !Object.keys(st.stackAnyway || {}).length && !Object.keys(st.toolPicks || {}).length && !Object.keys(st.itemPicks || {}).length) delete state.itemState[key];
   else state.itemState[key] = st;
   await saveItemState();
 }
@@ -3881,7 +3918,14 @@ function renderEffectSuggestions() {
 /** One effect: its bonuses (as applied: capped ones show it), weapon choice, notes, End. */
 function effectRow(m, e) {
   const applied = m.fx.tweaks.concat(m.fx.weaponTweaks).filter((t) => t.effect.id === e.id);
+  // Another effect of the same name already applies (on the same weapon): this one doesn't stack, unless applied anyway.
+  const dup = arr(m.fx.notStacking).find((x) => x.id === e.id);
+  const left = dup && !dup.kept;
+  // Infused armor not worn: its AC waits until it is.
+  const unworn = infusedArmorOff(m.raw, e);
   const chips = arr(e.mods).map((mod) => {
+    if (left) return chip(mod.label);
+    if (unworn) return chip(`${mod.label}: only while you wear the ${e.name.replace(/^Infuse Item: /, '')}`, 'warn');
     if (mod.cond) return chip(`${mod.label} ${mod.cond}${mod.extraDamage ? `, +${mod.extraDamage} damage` : ''}`, e.kind === 'item' && !e.active ? '' : 'blue');
     const got = applied.filter((t) => t.mod === mod || (t.mod.path === mod.path && t.mod.label === mod.label));
     if (!e.active && e.kind === 'item') return chip(mod.label);
@@ -3951,10 +3995,15 @@ function effectRow(m, e) {
       <option value="">choose a weapon…</option>${weapons.map((w) => `<option${w.it.name === e.weaponName ? ' selected' : ''}>${esc(w.it.name)}</option>`).join('')}</select></label>` : '';
   // An item's effect (carried, or a consumable used or received) shows the item.
   const ref = catalogIndex && !['power', 'feature', 'custom'].includes(e.source) ? catalogIndex.get(e.name) : null;
-  return `<div class="eff${e.kind === 'item' && !e.active ? ' off' : ''}">
+  const on = dup && dup.weaponIndex != null ? ` on the same ${(arr(m.raw.equipment)[dup.weaponIndex] || {}).name || 'weapon'}` : '';
+  const dupNote = !dup ? '' : dup.kept
+    ? `<div class="warn-text tw-twin">Applied as you chose, on top of the other ${esc(e.name)}${esc(on)}: effects with the same name normally don't stack. <button class="linklike" data-act="fx-stack" data-arg="${esc(e.id)}">Leave it out</button></div>`
+    : `<div class="warn-text tw-twin"><span class="chip warn">not applied</span> Another ${esc(e.name)}${esc(on)} already applies, and effects with the same name don't stack: only one counts. <button class="linklike" data-act="fx-stack" data-arg="${esc(e.id)}">Apply it anyway</button> if your GM allows it.</div>`;
+  return `<div class="eff${(e.kind === 'item' && !e.active) || left ? ' off' : ''}">
     <div class="eff-head">${ref ? itemTile(ref, 'sm') : ''}<b>${esc(e.name)}</b>${chips.join('')}${weaponPick}
       <span class="faint">${esc(effectWhen(e))}</span>
       ${e.kind === 'item' ? '' : `<button class="btn sm" data-act="effect-end" data-arg="${esc(e.id)}" title="The effect has worn off">End</button>`}</div>
+    ${dupNote}
     ${arr(e.notes).length ? `<ul class="eff-notes">${e.notes.map((n) => `<li>${md(n).replace(/^<p>|<\/p>$/g, '')}</li>`).join('')}</ul>` : ''}
     ${e.counter ? `<div class="eff-count">${esc(e.counter.label)}: <b>${e.counter.max - num(e.counter.used)}</b>/${e.counter.max}
       <button class="btn sm" data-act="fx-count" data-arg="${esc(e.id)}" ${e.counter.max - num(e.counter.used) > 0 ? '' : 'disabled'} title="Use one (and roll ${esc(e.counter.power || '')})">Use one</button></div>` : ''}
@@ -4765,7 +4814,7 @@ const LIVE = {
     const { t } = m;
     const pct = t.lim.hpMax ? clamp((t.hpCurrent / t.lim.hpMax) * 100, 0, 100) : 0;
     const temp = num(t.s.temporaryHitPoints);
-    return `<div class="label">Hit Points</div><div class="value">${t.hpCurrent} <span class="muted" style="font-size:15px">/ ${bump(m, 'hitPoints.maximum', String(t.lim.hpMax))}</span></div>
+    return `<div class="label">Hit Points</div><div class="value">${t.hpCurrent} <span class="muted" style="font-size:15px">/ ${hpMaxHtml(m, t)}</span></div>
       <div class="hp-bar"><div style="width:${pct}%"></div></div>
       <div class="note">${t.hpCurrent ? '' : num(t.s.deathSaves.failures) >= 3
         ? '<b class="bad-text">Dead (three failed death saves)</b> <button class="linklike" data-track="alive" title="If the GM rules otherwise: back to 0 hit points and death saves">GM ruling: at 0 HP instead</button> · '
@@ -6309,6 +6358,18 @@ async function useChannelTheForce(name) {
   setStatus(`${name} (Channel the Force; one use spent).${save ? ` ${save[1]} save DC ${dc}.` : ''}${amt ? amt.heal ? ` The creature regains ${amt.amount} hit points.` : ` ${amt.amount} ${amt.type} damage${/half as much/i.test(o.text) ? ', half on a success' : ''}.` : ''}`, '', false, buttons);
 }
 
+/**
+ * Infuse Item on armor or a shield: "+1 bonus to AC while wearing it" (decision 59), so not while it's only carried.
+ * True when the infused one isn't worn (or is gone).
+ */
+function infusedArmorOff(raw, e) {
+  if (!e || e.source !== 'feature' || !/^Infuse Item: /.test(e.name || '') || !arr(e.mods).some((x) => x.path === 'armorClass')) return false;
+  const name = e.name.replace(/^Infuse Item: /, '');
+  const eq = arr(raw && raw.equipment);
+  const at = e.armorIndex != null ? eq[e.armorIndex] : null;
+  const it = at && at.name === name ? at : eq.find((x) => x.name === name && x.equipped) || eq.find((x) => x.name === name);
+  return !(it && it.equipped);
+}
 /** Infuse Item: the armor, shields and simple or martial weapons carried that aren't enhanced. */
 function infusable(m) {
   return arr(m.raw.equipment).map((it, i) => ({ it, i, ref: catalogIndex && catalogIndex.get(it.name) }))
@@ -6337,13 +6398,13 @@ async function infuseItem() {
   startEffect(st, {
     id: Date.now().toString(36) + Math.random().toString(36).slice(2, 6), kind: 'temporary', source: 'feature', name: `Infuse Item: ${x.it.name}`,
     startedAt: Date.now(), duration: 'until the end of your next long rest', group: 'infuse', notes: x.armor ? [`+${b} AC while you wear ${x.it.name}.`] : [],
-    ...(x.armor ? { target: 'self', mods: [{ path: 'armorClass', bonus: b, label: `AC +${b}` }] }
+    ...(x.armor ? { target: 'self', armorIndex: x.i, mods: [{ path: 'armorClass', bonus: b, label: `AC +${b}` }] }
       : { target: 'weapon', weaponName: x.it.name, weaponIndex: x.i, mods: [{ path: 'weapon.toHit', bonus: b, label: `Attack +${b}` }, { path: 'weapon.damage', bonus: b, label: `Damage +${b}` }] }),
   });
   await saveItemStateFor(snap.key, st);
   renderAll();
   scheduleRecompute(snap.key);
-  setStatus(`${x.it.name} is infused (+${b} ${x.armor ? 'AC' : 'to attack and damage rolls'}) until the end of your next long rest.`);
+  setStatus(`${x.it.name} is infused (+${b} ${x.armor ? 'AC' : 'to attack and damage rolls'}) until the end of your next long rest.${x.armor && !x.it.equipped ? ` Its AC counts while you wear it: equip the ${x.it.name}.` : ''}`);
 }
 
 /** Reckless Attack and fighting-style marks: short effects with their advantage or their text. */
@@ -7704,6 +7765,19 @@ function tweakTwin(m, r) {
   const again = e && fxTweakTwins([{ ...e, keep: false }].concat(m.fx.effects.filter((x) => x.kind !== 'tweak')))[0];
   return again ? { what: what(again), kept: true } : null;
 }
+/** Apply an effect although another of the same name already applies (or stop applying it). */
+async function stackAnyway(id) {
+  const snap = state.snapshots[state.current];
+  if (!snap) return;
+  const st = itemStateOf(snap.key);
+  st.stackAnyway = { ...(st.stackAnyway || {}) };
+  if (st.stackAnyway[id]) delete st.stackAnyway[id];
+  else st.stackAnyway[id] = true;
+  await saveItemStateFor(snap.key, st);
+  renderAll();
+  scheduleRecompute(snap.key);
+  setStatus(st.stackAnyway[id] ? 'Applied as well: both count.' : 'Left out: only one of the same name counts.');
+}
 /** Apply a tweak although the sheet applies what it was made for (or stop applying it). */
 async function keepTweak(rkey) {
   const snap = state.snapshots[state.current];
@@ -8065,7 +8139,7 @@ function renderSideSummary(m) {
       <div class="side-sub">${esc([c.species, c.classText].filter(Boolean).join(' · '))}</div>
       ${m.has ? `<div class="mini-stats">
         <div class="mini-stat"><b>${bump(m, 'armorClass', esc(c.armorClass))}</b><span>AC</span></div>
-        <div class="mini-stat"><b>${t.hpCurrent}/${bump(m, 'hitPoints.maximum', String(t.lim.hpMax))}${temp ? `<small>+${temp}</small>` : ''}</b><span>HP</span></div>
+        <div class="mini-stat"><b>${t.hpCurrent}/${hpMaxHtml(m, t)}${temp ? `<small>+${temp}</small>` : ''}</b><span>HP</span></div>
         <div class="mini-stat"><b>${rollable('init', bump(m, 'initiative', signed(c.initiative)), 'Roll initiative')}</b><span>Init</span></div>
         <div class="mini-stat"><b>${bump(m, 'speed.base', esc(String((c.speed || {}).base || '—').replace(/\s*ft\.?/, '')))}</b><span>Speed ft</span></div>
         <div class="mini-stat"><b>${signed(c.proficiencyBonus)}</b><span>Prof</span></div>
@@ -8087,7 +8161,7 @@ function renderMiniVitals(m) {
   const conc = (e) => e.group === 'concentration' && e.name.replace(/ \(concentration\)$/, '');
   const tip = act.length ? `Active: ${act.map((e) => (conc(e) ? `concentrating on ${conc(e)}` : e.name) + (e.duration ? ` (${e.duration})` : '')).join('; ')}. Go to Effects` : '';
   const conds = arr(m.t.s.conditions);
-  return `<a class="mv-hp" href="#sec-combat" title="Combat & Vitals"><span class="${m.t.hpCurrent ? '' : 'dying'}" aria-label="Hit points">♥ <b>${m.t.hpCurrent}</b><span class="hpmax">/${m.t.lim.hpMax}</span>${temp ? `<span class="faint">+${temp}</span>` : ''}${m.t.s.hasInspiration ? ' <span class="insp" title="Inspired" aria-label="Inspired">★</span>' : ''}</span> <span class="ac" aria-label="Armor class"><span class="faint">AC</span> <b>${esc(m.c.armorClass)}</b></span></a>`
+  return `<a class="mv-hp" href="#sec-combat" title="Combat & Vitals"><span class="${m.t.hpCurrent ? '' : 'dying'}" aria-label="Hit points">♥ <b>${m.t.hpCurrent}</b><span class="hpmax"${m.t.lim.hpHalved ? ' title="Halved by exhaustion"' : ''}>/${m.t.lim.hpMax}</span>${temp ? `<span class="faint">+${temp}</span>` : ''}${m.t.s.hasInspiration ? ' <span class="insp" title="Inspired" aria-label="Inspired">★</span>' : ''}</span> <span class="ac" aria-label="Armor class"><span class="faint">AC</span> <b>${esc(m.c.armorClass)}</b></span></a>`
     + (conds.length ? `<a class="mstate cond" href="#sec-combat" title="${esc(`Conditions: ${conds.join(', ')}`)}" aria-label="${esc(`Conditions: ${conds.join(', ')}`)}">${esc(conds[0])}${conds.length + act.length > 1 ? `<small> +${conds.length + act.length - 1}</small>` : ''}</a>`
       : act.length ? `<a class="mstate" href="#effects" title="${esc(tip)}" aria-label="${esc(tip)}">${esc(conc(act[0]) ? `◎ ${conc(act[0])}` : act[0].name)}${act.length > 1 ? `<small> +${act.length - 1}</small>` : ''}</a>` : '');
 }
@@ -8538,6 +8612,8 @@ async function handleAction(act, arg) {
       return removeTweak(arg);
     case 'tweak-keep':
       return keepTweak(arg);
+    case 'fx-stack':
+      return stackAnyway(arg);
     case 'fx-mode':
       return startItemMode(arg);
     case 'effect-end':
