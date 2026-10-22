@@ -1752,8 +1752,36 @@ function itemEffects(key, editedRaw, complete) {
       const own = num((/^keen (\d+)/i.exec(arr(ref0 && ref0.properties).find((p) => /^keen \d/i.test(p)) || '') || [])[1]);
       keen = !own ? fx.keen.gain : fx.keen.to ? Math.max(own, fx.keen.to) : fx.keen.by ? Math.min(fx.keen.max || 99, own + fx.keen.by) : Math.max(own, fx.keen.gain);
     }
+    // Properties it gives the weapon chosen or the armor worn (smart, versatile, brutal, vicious, strength number,
+    // absorptive / avoidant / reactive, lightweight), from that item's own.
+    let propsNow = null;
+    let propsOn = null;
+    if (fx.props) {
+      propsOn = fx.target === 'weapon' ? weaponIndex : wornArmorIndex(editedRaw);
+      const base = propsOn != null && propsOn >= 0 ? catalogIndex && catalogIndex.get(equipment[propsOn].name) : null;
+      if (base) propsNow = itemPropsNow(base.properties, fx.props);
+      // Smart (15, +2): "This weapon ignores your Dexterity score and proficiency bonus … uses these values instead of
+      // yours" (no proficiency bonus "if you lack proficiency with the weapon").
+      if (propsNow && propsNow.smart && w && w.ability === 'Dexterity') {
+        const dex = num((((complete && complete.abilityScores) || {}).Dexterity || {}).modifier);
+        const pb = num(complete && complete.proficiencyBonus);
+        const own = num(((equipment[propsOn].tweaks || {}).toHit || {}).bonus) + num((((editedRaw.tweaks || {}).weapon || {}).toHit || {}).bonus);
+        const proficient = num(w.attackBonus) - dex - own >= pb;
+        const sm = Math.floor((propsNow.smart[0] - 10) / 2);
+        const [s, p] = propsNow.smart;
+        const toHit = sm - dex + (proficient ? p - pb : 0);
+        if (toHit) mods.push({ path: 'weapon.toHit', bonus: toHit, label: `Smart (${s}, +${p}): attack ${signedLabel(toHit)}` });
+        if (sm - dex) mods.push({ path: 'weapon.damage', bonus: sm - dex, label: `Smart (${s}, +${p}): damage ${signedLabel(sm - dex)}` });
+      }
+      // The armor's strength number met now: SW5E's speed has the −10 ft its own number gives; it's given back.
+      if (propsNow && 'strength' in propsNow && fx.target !== 'weapon') {
+        const was = num((/^strength (\d+)/i.exec(arr(base && base.properties).find((x) => /^strength \d/i.test(x)) || '') || [])[1]);
+        const str = num((((complete && complete.abilityScores) || {}).Strength || {}).value);
+        if (was > str && (!propsNow.strength || propsNow.strength <= str)) mods.push({ path: 'speed.base', bonus: 10, label: `Speed +10 ft (Strength ${propsNow.strength || 'requirement'} met)` });
+      }
+    }
     out.push({
-      ...fx, mods, id: 'item:' + ck, kind: 'item', name: it.name, index: i, active,
+      ...fx, mods, id: 'item:' + ck, kind: 'item', name: it.name, index: i, active, propsNow, propsOn,
       why: fx.activation === 'carry' ? 'when you fire it' : fx.activation === 'attune' ? (active ? 'while attuned' : 'needs attunement') : (active ? `while ${how}` : `needs to be ${how}`),
       weaponName, weaponIndex, linked: linked >= 0,
       ...(keen ? { critRange: keen, critWeapons: [weaponIndex] } : {}),
@@ -1779,6 +1807,54 @@ function invSameName(a, b) {
   const tail = (s) => s.slice(i + 1);
   return tail(x) === tail(y) || tail(x) === y.slice(i) || x.slice(i) === tail(y) || tail(x).split('').reverse().join('') === tail(y).split('').reverse().join('');
 }
+/** The armor worn (or else the shield): its index in the equipment, or -1 (an armor modification's "this armor"). */
+function wornArmorIndex(raw) {
+  const eq = arr(raw.equipment);
+  const kind = (it) => { const r = it.equipped && catalogIndex && catalogIndex.get(it.name); return r && r.equipmentCategory === 'Armor' ? (/shield/i.test(r.armorClassification || '') ? 'shield' : 'armor') : ''; };
+  const a = eq.findIndex((it) => kind(it) === 'armor');
+  return a >= 0 ? a : eq.findIndex((it) => kind(it) === 'shield');
+}
+const ITEM_VERSATILE = ['2d4', '1d10', '1d12', '2d6', '3d4'];
+/**
+ * A weapon's or armor's properties with what a modification changes ("gains the brutal 1 property. If it already has
+ * the brutal property, its brutal number increases by 1, to a maximum of 3"; "versatile damage increases by one step
+ * (from 2d4 to d10, …)"; the strength number "reduced by one step (from 15 to 13…)", gone at 11): { name: value }.
+ */
+function itemPropsNow(baseProps, props) {
+  const own = {};
+  for (const p of arr(baseProps)) {
+    const s = String(p).trim();
+    let x;
+    if ((x = /^smart \((\d+), \+?(\d+)\)/i.exec(s))) own.smart = [num(x[1]), num(x[2])];
+    else if ((x = /^versatile \((\d*d\d+)\)/i.exec(s))) own.versatile = x[1].replace(/^d/, '1d');
+    else if ((x = /^(brutal|vicious|absorptive|avoidant|reactive|strength) (\d+)/i.exec(s))) own[x[1].toLowerCase()] = num(x[2]);
+    else if (/^lightweight$/i.test(s)) own.lightweight = true;
+  }
+  const out = {};
+  for (const p of props) {
+    const had = own[p.name];
+    if (p.name === 'strength') { if (had) out.strength = had - 2 * p.down <= 11 ? 0 : had - 2 * p.down; continue; }
+    if (p.name === 'smart') out.smart = had ? (p.to ? [p.to, 6] : [Math.min(p.max || 20, had[0] + (p.by || 0)), Math.min(6, had[1] + (p.by || 0))]) : p.value;
+    else if (p.name === 'versatile') out.versatile = had ? ITEM_VERSATILE[Math.min(ITEM_VERSATILE.length - 1, Math.max(0, ITEM_VERSATILE.indexOf(had)) + (p.by || 1))] : String(p.value).replace(/^d/, '1d');
+    else if (typeof p.value === 'number') out[p.name] = had ? (p.to ? Math.max(had, p.to) : Math.min(p.max || 99, had + (p.by || 0))) : p.value;
+    else out[p.name] = p.value;
+  }
+  return out;
+}
+/** A weapon's or armor's properties as the sheet uses them: its own, with what modifications in use change. */
+function itemPropsOf(m, index, own) {
+  const list = arr(own).slice();
+  for (const e of arr(m.effects).filter((x) => x.kind === 'item' && x.active && x.propsNow && x.propsOn === index)) {
+    for (const [name, v] of Object.entries(e.propsNow)) {
+      const i = list.findIndex((p) => new RegExp(`^${name}\\b`, 'i').test(String(p).trim()));
+      const text = name === 'smart' ? `smart (${v[0]}, +${v[1]})` : name === 'versatile' ? `versatile (${v})` : v === true ? name : v ? `${name} ${v}` : '';
+      if (i >= 0) { if (text) list[i] = text; else list.splice(i, 1); } else if (text) list.push(text);
+    }
+  }
+  return list;
+}
+/** A weapon's properties (weapons table, dice card): with its modifications'. */
+const weaponProps = (m, w) => (w && w.index != null && w.index >= 0 ? itemPropsOf(m, w.index, w.properties) : arr(w && w.properties));
 /** What classes.js reads in an item's text (proficiencies, advantages, choices), or null when it finds none. */
 const itemFeCache = new Map();
 function itemFeatureEffects(ref, note) {
@@ -3326,7 +3402,7 @@ async function weaponAmmo(op, wi) {
 
 /** Worn armor and shields: their Stealth disadvantage and speed penalties (Strength N, Cumbersome). */
 function armorEffectsOf(m) {
-  const worn = arr(m.c.equipment).filter((e) => e.equipped && e.equipmentCategory === 'Armor');
+  const worn = arr(m.c.equipment).filter((e) => e.equipped && e.equipmentCategory === 'Armor').map((e) => ({ ...e, properties: itemPropsOf(m, e.index, e.properties) }));
   return invArmorEffects(worn, num(((m.c.abilityScores || {}).Strength || {}).value ?? ((m.c.abilityScores || {}).Strength || {}).score));
 }
 
@@ -3618,6 +3694,11 @@ function effectRow(m, e) {
       ...arr(e.tools).map((t) => chip(`${t.name}: ${t.level}`, on)), ...arr(e.advantage).map((a) => chip(ADV_TEXT(a), on)),
       ...arr(e.halfProfChecks).map((a) => chip(`Half proficiency on ${a} checks without it`, on)), ...(e.unarmedDie ? [chip(`Unarmed strikes: d${e.unarmedDie}${e.unarmedType ? ` ${e.unarmedType}` : ''}`, on)] : []),
       ...arr(e.needsChoice).map((c) => `<span class="chip warn" title="Write your choice in the item's note (✎ under Equipment)">Choose ${esc(c)}</span>`));
+  }
+  // Properties it gives (on the weapon chosen or the armor worn): "brutal 2", "strength 13", "smart (15, +2)".
+  if (e.kind === 'item' && e.props) {
+    chips.push(...(e.propsNow ? Object.entries(e.propsNow).map(([n, v]) => chip(n === 'smart' ? `smart (${v[0]}, +${v[1]})` : n === 'strength' && !v ? 'no strength requirement'
+      : v === true ? n : `${n} ${v}`, e.active ? 'good' : '')) : [chip(e.target === 'weapon' ? 'choose a weapon' : 'no armor worn', 'warn')]));
   }
   // Tool (Basic…Champion): which tool it is, picked here; the level it comes to.
   if (e.kind === 'item' && e.toolSteps) {
@@ -4718,6 +4799,13 @@ function defensesOf(m) {
     fromText(text, it.name, true);
     add(itemDefenses(text, num(m.c.proficiencyBonus)), it.name);
   }
+  // An armor modification's absorptive / avoidant / reactive property (SW5E's armor properties).
+  for (const e of m.effects.filter((x, i, all) => x.kind === 'item' && x.propsNow && all.findIndex((y) => y.id === x.id) === i)) {
+    const p = e.propsNow;
+    if (p.absorptive) add([{ kind: 'other', text: `Damage you take from weapons reduced by ${p.absorptive} (absorptive ${p.absorptive}; not below 1)` }], e.name);
+    if (p.avoidant) add([{ kind: 'other', text: `Critical hit range of attacks against you −${p.avoidant} (avoidant ${p.avoidant})` }], e.name);
+    if (p.reactive) add([{ kind: 'other', text: `+${p.reactive} AC against the next attack from a creature that hit you, until your next turn (reactive ${p.reactive})` }], e.name);
+  }
   // "If you already have darkvision, these goggles increase its range by 30 feet": the longest darkvision from
   // something else, longer (the goggles' own 60 feet otherwise).
   const ft = (d) => num((/^Darkvision (\d+) ft/.exec(d.text) || [])[1]);
@@ -4957,7 +5045,7 @@ function renderAttacks(m) {
         : itemTile({ ...w, rarityText: enh ? invRarity(enh) : w.rarityText, color: ent && ent.color }, '', shown);
       return `<tr>
       <td><div class="inv-item">${tile}<div class="inv-what"><b>${esc(shown)}</b>${shown !== w.name ? ` <span class="faint">(${esc(w.name)})</span>` : ''}${mi ? ' <span class="chip accent" title="Modified by your Engineer archetype">modified</span>' : ''}${hands ? ` ${hands}` : ''}${w.equipped === false ? ' <span class="chip">not equipped</span>' : ''}${w.isCustom ? ' <span class="chip">custom</span>' : ''}
-        ${propsText(w.properties) ? `<div class="m-props">${propsHtml(w.properties)}</div>` : ''}${modLine}
+        ${propsText(weaponProps(m, w)) ? `<div class="m-props">${propsHtml(weaponProps(m, w))}</div>` : ''}${modLine}
         ${sh ? `<div class="shots">Shots <b class="${sh.shots - sh.used ? '' : 'bad-text'}">${sh.shots - sh.used}</b>/${sh.shots}
           <button class="btn sm" data-act="shot" data-arg="${wi}" ${sh.used >= sh.shots ? 'disabled' : ''} title="Fired without rolling here (attacks rolled here count by themselves)">−1</button>
           <button class="btn sm" data-act="reload" data-arg="${wi}" ${sh.used ? '' : 'disabled'} title="Uses one ${esc(sh.ammo.toLowerCase())} from your inventory">Reload</button>
@@ -4967,7 +5055,7 @@ function renderAttacks(m) {
       <td class="muted col-ability">${esc(((t) => (t ? `${t.mod.ability || 'Dexterity'} (${t.mod.finesse ? 'finesse' : t.effect.name})` : w.ability || ''))(
         (w.name === 'Unarmed Strike' ? m.fx.tweaks.filter((t) => /^unarmed\./.test(t.path)) : m.fx.weaponTweaks.filter((t) => t.index === w.index)).find((t) => t.mod && (t.mod.finesse || t.mod.ability))))}</td>
       <td class="muted col-type">${esc(titleCase(w.weaponClassification || ''))}</td>
-      <td class="col-props">${propsHtml(w.properties) || '<span class="faint">—</span>'}</td></tr>
+      <td class="col-props">${propsHtml(weaponProps(m, w)) || '<span class="faint">—</span>'}</td></tr>
       ${arr(w.modes).length ? `<tr class="dim"><td colspan="6">Modes: ${arr(w.modes).map((md_) => esc(md_.name || JSON.stringify(md_))).join(' · ')}</td></tr>` : ''}`;
     }).join('')}${specialAttacks(m).map((s) => `<tr>
       <td><div class="inv-item"><div class="inv-what"><b>${esc(s.name)}</b> <span class="chip" title="${esc(s.from)}">special attack</span><div class="m-props">${esc(s.props)}</div></div></div></td>
@@ -6969,7 +7057,9 @@ function renderProficiencies(m) {
 
 function totalWeight(m) {
   const items = arr(m.c.equipment).length ? arr(m.c.equipment) : arr(m.raw.equipment);
-  const a = items.reduce((s, e) => s + num(e.weight) * qtyOf(e), 0);
+  // Lightweight (a modification's): "Armor and shields with this property have their weight reduced by half".
+  const light = (e, i) => arr(m.effects).some((x) => x.kind === 'item' && x.active && x.propsNow && x.propsNow.lightweight && x.propsOn === (e.index ?? i));
+  const a = items.reduce((s, e, i) => s + num(e.weight) * qtyOf(e) / (light(e, i) ? 2 : 1), 0);
   const b = arr(m.raw.customEquipment).reduce((s, e) => s + num(e.weight) * qtyOf(e), 0);
   return a + b;
 }

@@ -51,6 +51,7 @@ const fxNum = (w) => (/^\d+$/.test(w) ? Number(w) : FX_NUM[String(w).toLowerCase
 const fxAbility = (w) => FX_ABILITIES.find((a) => a.toLowerCase() === String(w).toLowerCase());
 const ABIL_RE = '(Strength|Dexterity|Constitution|Intelligence|Wisdom|Charisma)';
 const SKILL_RE = '(' + Object.keys(FX_SKILLS).join('|') + ')';
+const arr0 = (v) => (Array.isArray(v) ? v : []);
 const signedLabel = (n) => (n >= 0 ? '+' + n : '−' + Math.abs(n));
 
 // Clauses that only say when an item works ("while wearing this armor"): its activation, not a condition.
@@ -306,6 +307,28 @@ function parseItemEffect(item) {
       ctx.keen = { ...(ctx.keen || {}), ...(m[3] ? { to: Number(m[3]) } : { by: Number(m[1]), max: Number(m[2]) }) };
       continue;
     }
+    // Other properties a modification gives that change a number or a roll: smart (15, +2) (the weapon's Dexterity and
+    // proficiency bonus instead of yours), versatile (1d10), brutal 1 (extra dice on a critical), vicious 3, the armor's
+    // absorptive / avoidant / reactive N and lightweight, and the strength number lowered ("reduced by one step") or
+    // removed. Worked out on the weapon or the armor worn, from its own properties (itemEffects).
+    if ((m = /\bthis (weapon|armor|armor or shield|clothing|item) gains the (smart|versatile|brutal|vicious|absorptive|avoidant|reactive|lightweight)(?: \(([^)]*)\)| (\d+))?(?: armor)? property/i.exec(s))) {
+      const name = m[2].toLowerCase();
+      const v = m[3] || m[4] || '';
+      ctx.props = (ctx.props || []).concat({ name, value: name === 'smart' ? v.split(/,\s*/).map((x) => Number(x.replace('+', ''))) : /^\d+$/.test(v) ? Number(v) : v || true });
+      if (/weapon/i.test(m[1])) ctx.target = 'weapon';
+      continue;
+    }
+    if ((m = /^if it already has the (smart|versatile|brutal|vicious|absorptive|avoidant|reactive)(?: armor)? property, (?:its|the) [a-z]+ (?:number|numbers|damage|property) increases? (?:by (\+?\d+|one|two|three)(?: steps?)?(?: and \+?\d+)?(?:, respectively)?(?:, to a maximum of (\d+))?|to (\d+))/i.exec(s))) {
+      const p = arr0(ctx.props).find((x) => x.name === m[1].toLowerCase());
+      if (p) Object.assign(p, m[4] ? { to: Number(m[4]) } : { by: fxNum(String(m[2]).replace('+', '')), max: m[3] ? Number(m[3]) : null });
+      continue;
+    }
+    if ((m = /\bthis (weapon|armor or shield)'s strength number is reduced by (\w+) steps?\b|\bthis (weapon|armor|armor or shield) loses the strength property\b/i.exec(s))) {
+      ctx.props = (ctx.props || []).concat({ name: 'strength', down: m[2] ? fxNum(m[2]) : 99 });
+      if (/weapon/i.test(m[1] || m[3])) ctx.target = 'weapon';
+      continue;
+    }
+    if (/^if the strength number is \d+(?: or lower)?, this modification removes the strength property/i.test(s)) continue;
     // Finesse ("you use your choice of your Strength or Dexterity modifier for the attack and damage rolls"), and a
     // blaster's mighty (the same): the better one, worked out on the weapon (itemEffects, fxResolve).
     if ((m = /\bthis weapon gains the (finesse|mighty) property\b/i.exec(s))) {
@@ -497,13 +520,13 @@ function parseItemEffect(item) {
   notes.push(...ctx.notes);
   // Ammunition's bonuses apply while it's carried (and fired); other consumables' when used.
   const activation = ctx.ammo ? 'carry' : isConsumable ? 'use' : item.requiresAttunement ? 'attune' : 'equip';
-  if (!mods.length && !notes.length && !riders.length && !darkvisionPlus && !ctx.keen && !freeAttune && !ctx.unarmedDie && !ctx.toolSteps && !(isConsumable && duration)) return null;
+  if (!mods.length && !notes.length && !riders.length && !darkvisionPlus && !ctx.keen && !freeAttune && !ctx.unarmedDie && !ctx.toolSteps && !ctx.props && !(isConsumable && duration)) return null;
   return {
     mods, notes, target: ctx.target, weaponKind: ctx.weaponKind || null, duration, group, activation,
     heals: /regains? [^.]*hit points|temporary hit points/i.test(text),
     ...(riders.length ? { riders } : {}), ...(darkvisionPlus ? { darkvisionPlus } : {}), ...(ctx.keen ? { keen: ctx.keen } : {}),
     ...(ctx.halfProfChecks ? { halfProfChecks: ctx.halfProfChecks } : {}), ...(ctx.unarmedDie ? { unarmedDie: ctx.unarmedDie, unarmedType: ctx.unarmedType } : {}),
-    ...(ctx.toolSteps ? { toolSteps: ctx.toolSteps } : {}),
+    ...(ctx.toolSteps ? { toolSteps: ctx.toolSteps } : {}), ...(ctx.props ? { props: ctx.props } : {}),
     ...(freeAttune ? { freeAttune } : {}), ...(ctx.sideEffect ? { sideEffect: ctx.sideEffect } : {}), ...(ctx.classBoosts ? { classBoosts: ctx.classBoosts } : {}),
   };
 }
