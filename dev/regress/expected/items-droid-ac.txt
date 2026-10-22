@@ -256,7 +256,7 @@ Still to choose (9): Engineer skills (3 more) · Engineer tool · Armstech Modif
 ## Sheet: Combat & Vitals
 Armor Class
 19
-  ↳ hover armorClass: Without tweaks or effects: 11 → now 19 / +8 AC 19 (base) (capped from +0) · Droid Dura Plating Mk I while installed
+  ↳ hover armorClass: Without tweaks or effects: 11 → now 19 / +8 AC 19 (base) · Droid Dura Plating Mk I while installed
 Unarmored
 Hit Points
 31 / 31
@@ -351,7 +351,7 @@ Dexterity
 +1
 13
 (Not proficient) Saving throw+2
-  ↳ hover abilityScores.Dexterity.savingThrow.modifier: Without tweaks or effects: 1 → now 2 / +1 DEX saves as DEX (capped from +0) · Celerity Leg Prosthesis while installed
+  ↳ hover abilityScores.Dexterity.savingThrow.modifier: Without tweaks or effects: 1 → now 2 / +1 DEX saves as DEX · Celerity Leg Prosthesis while installed
 (Not proficient) Acrobatics+1
 (Not proficient) Sleight of Hand+1
 (Not proficient) Stealth+1

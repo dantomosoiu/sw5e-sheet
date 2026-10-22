@@ -203,7 +203,7 @@ Still to choose (7): Consular skills (2 more) · Force-Empowered Castings (2 mor
 ## Sheet: Combat & Vitals
 Armor Class
 17
-  ↳ hover armorClass: Without tweaks or effects: 12 → now 17 / +5 AC 17 (Natural Armor) (capped from +0) · Natural Armor Colicoid trait
+  ↳ hover armorClass: Without tweaks or effects: 12 → now 17 / +5 AC 17 (Natural Armor) · Natural Armor Colicoid trait
 Unarmored
 Hit Points
 32 / 32

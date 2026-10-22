@@ -2238,6 +2238,19 @@ function applyEffects(key, editedRaw, complete) {
     return [a, num((((complete && complete.abilityScores) || {})[a] || {}).value) - num(tw.bonus)];
   }));
   const res = fxResolve(effects, scores);
+  // A tweak that sets a number ("set to", override) fixes it, whatever effects would do: theirs are kept aside
+  // (res.setByTweak) and explained as such, not applied. Run again before the end for the effects added below.
+  res.setByTweak = [];
+  const setKey = (t, w) => `${w ? `#${t.index}:` : ''}${t.path}`;
+  const keepAside = () => {
+    const set = new Set(res.tweaks.filter((t) => t.effect.kind === 'tweak' && t.fields && engHasOverride(t.fields)).map((t) => setKey(t))
+      .concat(res.weaponTweaks.filter((t) => t.effect.kind === 'tweak' && t.fields && engHasOverride(t.fields)).map((t) => setKey(t, true))));
+    const aside = (w) => (t) => t.effect.kind !== 'tweak' && set.has(setKey(t, w)) && res.setByTweak.push(t);
+    res.tweaks = res.tweaks.filter((t) => !aside(false)(t));
+    res.weaponTweaks = res.weaponTweaks.filter((t) => !aside(true)(t));
+    if (set.has('armorClass')) res.acAlternatives = [];
+  };
+  keepAside();
   // Martial Arts (martialArtsOf): the unarmed strike's die and finesse like a species' natural weapons, while the armor
   // and shield allow it; the monk weapons' come after the weapon proficiencies, below.
   const martial = martialArtsOf(editedRaw).filter((x) => !(x.ma.noArmor && armor.armor) && !(x.ma.noShield && armor.shield)).map((x) => {
@@ -2246,16 +2259,19 @@ function applyEffects(key, editedRaw, complete) {
     effects.push(e);
     return { ...x, e, size };
   });
-  // The final scores, as the engine will have them: a tweak's "set to" sets the score and effects add on top of it (a
-  // Strength stim on a Strength set by a tweak); the tweak's own bonus doesn't count then (SW5E ignores it).
+  // The final scores, as the engine will have them: a tweak's "set to" is the score (the effects on it are kept aside, and
+  // SW5E ignores a bonus beside it), its "bump to" raises the score with everything else to at least that.
   const final = { ...scores };
-  const setByTweak = new Set();
+  const fixed = new Set();
+  const floors = {};
   for (const t of res.tweaks) {
     const x = /^abilityScores\.(\w+)\.score$/.exec(t.path);
     if (!x) continue;
-    if (t.fields && engHasOverride(t.fields)) { final[x[1]] = num(t.fields.override); setByTweak.add(x[1]); }
-    else if (!(setByTweak.has(x[1]) && t.effect.kind === 'tweak')) final[x[1]] = num(final[x[1]]) + num(t.bonus);
+    if (t.fields && engHasOverride(t.fields)) { final[x[1]] = num(t.fields.override); fixed.add(x[1]); continue; }
+    if (!fixed.has(x[1])) final[x[1]] = num(final[x[1]]) + num(t.bonus);
+    if (t.fields && engHasFloor(t.fields)) floors[x[1]] = Math.max(num(floors[x[1]]), num(t.fields.floor));
   }
+  for (const [a, n] of Object.entries(floors)) if (!fixed.has(a)) final[a] = Math.max(num(final[a]), n);
   const modOf = (a) => Math.floor(((Number(final[a]) || 10) - 10) / 2);
   // "AC equals 10 + your Dexterity modifier + your Wisdom or Charisma modifier": the modifier of the final score, after
   // items, Perfect Self and temporary effects (fxResolve only knows the scores of the effects before it). The best AC
@@ -2498,16 +2514,10 @@ function applyEffects(key, editedRaw, complete) {
   }
   const baseRaw = stripTweaks(editedRaw);
   const out = { ...baseRaw, tweaks: {}, equipment: clone(baseRaw.equipment) };
-  // A number set by a tweak ("set to 16"): an effect's bonus adds on top of it (the engine would drop a bonus next to an
-  // override), except Armor Class, which a "set to" tweak fixes ("armor, shields and effects don't change it"): those
-  // effects are kept aside (setByTweak) so they aren't explained as applied.
-  const merged = (cur, t, fields) => (engHasOverride(cur) && t.effect.kind !== 'tweak' && num(t.bonus) && !engHasOverride(fields)
-    ? { ...cur, ...fields, override: num(cur.override) + num(t.bonus) }
-    : { ...cur, ...fields, bonus: num(cur.bonus) + num(t.bonus) });
-  const acSet = acSetByTweak(editedRaw) != null;
-  res.setByTweak = acSet ? res.tweaks.filter((t) => t.path === 'armorClass' && t.effect.kind !== 'tweak') : [];
-  res.tweaks = res.tweaks.filter((t) => !res.setByTweak.includes(t));
-  if (acSet) res.acAlternatives = [];
+  // Effects added since (finesse, half proficiency, casting swaps…) on a number a tweak sets: aside too. Bonuses add up
+  // with a tweak's "bump to" (the engine takes the larger of the sum and the floor).
+  keepAside();
+  const merged = (cur, t, fields) => ({ ...cur, ...fields, bonus: num(cur.bonus) + num(t.bonus) });
   for (const t of res.tweaks) {
     // Power damage/healing bonuses (the dice card adds them) and the attunement maximum (attunementMax): no engine tweak.
     if (/^(?:(?:force|tech)Powers|attunement)\./.test(t.path)) continue;
@@ -2915,9 +2925,16 @@ function bumpTip(m, path, d) {
       · ${t.effect.reason ? esc(t.effect.reason) : '<span class="warn-text">no reason given</span>'} <span class="faint">${esc(effectWhen(t.effect))}</span></li>`;
   return `<div class="tip-head">Without tweaks or effects: <b>${fmt(d.from ?? '—')}</b> → now <b>${fmt(d.to)}</b></div>
     ${src.length || carryLines(m, path) ? `<ul>${carryLines(m, path)}${src.map((t) => (t.effect.kind === 'tweak' ? tweakLine(t) : `<li><b>${esc(!t.bonus && t.fields && t.fields.proficiency ? String(t.fields.proficiency).toLowerCase() : !t.bonus && t.fields && t.fields.dieSize ? `d${t.fields.dieSize}` : signedLabel(t.bonus))}</b> ${esc(t.mod.label.replace(/\s*[+\-−]?\d+( ft)?$/, ''))}${t.mod.set != null ? ` <span class="faint">(the item sets it to ${t.mod.set})</span>`
-      : typeof t.mod.bonus === 'number' && t.bonus !== t.mod.bonus && !t.mod.abilityMod ? ` <span class="faint">(capped from ${esc(signedLabel(t.mod.bonus))})</span>` : ''}
-      · ${esc(t.effect.name)} <span class="faint">${esc(effectWhen(t.effect))}</span></li>`)).join('')}</ul>`
+      : t.mod.cap != null && typeof t.mod.bonus === 'number' && t.bonus !== t.mod.bonus ? ` <span class="faint">(capped from ${esc(signedLabel(t.mod.bonus))})</span>` : ''}
+      · ${esc(t.effect.name)} <span class="faint">${esc(effectWhen(t.effect))}</span></li>`)).join('')}${setAsideLines(m, src)}</ul>`
       : '<div class="faint">Changed by the tweaks or effects listed under Settings, Tweaks &amp; Data and Combat &amp; Vitals → Effects.</div>'}${condHtml}${acOthers(m, path)}`;
+}
+/** Under a number a tweak sets: the effects that would change it and don't ("+2 STR · Strength Stim: not applied"). */
+function setAsideLines(m, src) {
+  const keys = new Set(src.filter((t) => t.effect.kind === 'tweak' && t.fields && engHasOverride(t.fields))
+    .map((t) => { const w = /^weapon@(\d+)\.(.+)$/.exec(t.path); return w ? `#${w[1]}:${w[2]}` : t.path; }));
+  return arr(m.fx.setByTweak).filter((t) => keys.has(t.index != null ? `#${t.index}:${t.path}` : t.path))
+    .map((t) => `<li class="faint"><b>${esc(signedLabel(num(t.bonus)))}</b> ${esc(String((t.mod && t.mod.label) || fxTweakName(t.path)).replace(/\s*[+\-−]?\d+( ft)?$/, ''))} · ${esc(t.effect.name)}: not applied, a tweak sets this number</li>`).join('');
 }
 /** Under AC: the unarmored formulas that weren't used, because a better one applies. */
 function acOthers(m, path) {
@@ -3545,7 +3562,7 @@ function effectRow(m, e) {
     if (!got.length && mod.property) return chip(`${mod.label}: no change (it already uses the better one, or no weapon chosen)`);
     if (!got.length && mod.scoreAs) return chip(`${mod.label}: no effect (${mod.scoreAs.ability} ${mod.scoreAs.score} or more${mod.path === 'armorClass' ? `, or an AC without ${mod.scoreAs.ability}` : ''})`);
     if (!got.length && mod.when && !armorAllows(mod.when, armorState(m.raw))) return chip(`${mod.label}: not with armor on`);
-    if (!got.length && arr(m.fx.setByTweak).some((t) => t.effect.id === e.id && t.mod.path === mod.path)) return chip(`${mod.label}: AC is set by a tweak`);
+    if (!got.length && arr(m.fx.setByTweak).some((t) => t.effect.id === e.id && t.mod.path === mod.path)) return chip(`${mod.label}: set by a tweak`);
     if (!got.length && mod.acFormula) return chip(`${mod.label}: another AC formula is better`);
     if (!got.length) return chip(`${mod.label}: no effect`, 'warn');
     const b = got.reduce((s, t) => s + t.bonus, 0);
@@ -4116,6 +4133,9 @@ function siteDifferences(m) {
     if (!list.includes(label)) list.push(label);
     by.set(x.effect.name, list);
   }
+  // A tweak's "bump to" is this sheet's own: sw5e.com keeps it with the character but doesn't apply it.
+  const bumps = tweakRows(m.raw).filter((r) => tweakMode(r.value) === 'floor').map((r) => `${r.name} bump to ${r.value.floor}`);
+  if (bumps.length) by.set('Tweaks', bumps);
   return [...by].map(([name, labels]) => `${name}: ${labels.join(', ')}`);
 }
 async function saveChangesToSw5e() {
@@ -4814,18 +4834,30 @@ function renderAbilities(m) {
     const s = (c.abilityScores || {})[a] || {};
     const base = raw.baseAbilityScores ? raw.baseAbilityScores[a] : null;
     const tw = tweaks[a] && tweaks[a].score;
-    const fx = m.fx.tweaks.filter((t) => t.path === `abilityScores.${a}.score`);
+    const path = `abilityScores.${a}.score`;
+    const fx = m.fx.tweaks.filter((t) => t.path === path && !(t.effect.kind === 'tweak' && !num(t.bonus)));
     const fxBonus = fx.reduce((t, x) => t + x.bonus, 0);
-    const diff = base != null ? num(s.value) - num(base) - (m.bumps[`abilityScores.${a}.value`] ? fxBonus : 0) : 0;
+    const set = tw && engHasOverride(tw) ? num(tw.override) : null;
+    const floor = tw && set == null && engHasFloor(tw) ? num(tw.floor) : null;
+    // Without the tweak's "bump to": what the score would be (base, increases, effects).
+    const unbumped = floor != null ? num(((m.base.abilityScores || {})[a] || {}).value) + fxBonus : num(s.value);
+    const bumped = floor != null && floor > unbumped;
+    const diff = base != null ? (bumped ? unbumped : num(s.value)) - num(base) - (m.bumps[`abilityScores.${a}.value`] ? fxBonus : 0) : 0;
     const bits = [];
     if (base != null) bits.push(`base ${base}`);
-    // Where the rest comes from: the species, each Ability Score Improvement, the background feat's +1, tweaks.
-    let left = diff;
-    for (const p of abilitySources(m, a)) { bits.push(`${signedLabel(p.n)} ${p.label}`); left -= p.n; }
-    if (left) bits.push(`${left > 0 ? '+' : '−'}${Math.abs(left)} other`);
     const kindNote = (e) => (e.kind === 'feature' ? ` (${e.origin || 'class feature'})` : { temporary: ' (temporary)', tweak: ' (tweak)' }[e.kind] || '');
-    for (const x of fx) bits.push(`${signedLabel(x.bonus)} from ${x.effect.name}${kindNote(x.effect)}`);
-    if (tw && tw.override != null) bits.push(`override ${tw.override}`);
+    if (set != null) {
+      // "Set to": the score is the tweak's; what effects would add is shown as not applied.
+      bits.push(`set to ${set} by a tweak`);
+      for (const x of arr(m.fx.setByTweak).filter((t) => t.path === path)) bits.push(`${signedLabel(num(x.bonus))} from ${x.effect.name}${kindNote(x.effect)}: not applied`);
+    } else {
+      // Where the rest comes from: the species, each Ability Score Improvement, the background feat's +1, tweaks.
+      let left = diff;
+      for (const p of abilitySources(m, a)) { bits.push(`${signedLabel(p.n)} ${p.label}`); left -= p.n; }
+      if (left) bits.push(`${left > 0 ? '+' : '−'}${Math.abs(left)} other`);
+      for (const x of fx) bits.push(`${signedLabel(x.bonus)} from ${x.effect.name}${kindNote(x.effect)}`);
+      if (floor != null) bits.push(bumped ? `bumped to ${floor} by a tweak` : `at least ${floor} (a tweak)`);
+    }
     const st = s.savingThrow || {};
     const skills = arr(s.skills);
     return `<div class="ability">
@@ -7099,13 +7131,15 @@ function renderTweaks(m) {
   const twins = rows.filter((r) => fxTweakActive(r.value) && tweakTwin(m, r) && !tweakTwin(m, r).kept).length;
   const isProf = (p) => /\.skills\.|savingThrowModifier$/.test(p);
   const num_ = (r, f, label, title) => `<label title="${esc(title)}">${label} <input data-tw="${esc(r.rkey)}" data-twf="${f}" type="number" step="1" value="${esc(r.value[f] ?? '')}"></label>`;
-  // Each tweak either sets the value or adds to it (a negative amount subtracts); SW5E ignores the added amount while a
-  // value is set, so a row from sw5e.com with both shows what's ignored.
+  // Each tweak is one of three (tweakMode): "set to" (the number is that, whatever effects would do), "bump to" (at least
+  // that: the number with everything else, raised to it; the sheet's own, which sw5e.com keeps but doesn't apply), "add"
+  // (a negative amount subtracts). SW5E ignores the added amount while a value is set, so a row from sw5e.com with both
+  // shows what's ignored.
   const amount = (r) => {
-    const set = r.value.override != null && r.value.override !== '';
-    const n = set ? r.value.override : num(r.value.bonus);
-    return `<select data-tw="${esc(r.rkey)}" data-twf="mode" aria-label="Add or set">${[['bonus', 'add'], ['override', 'set to']].map(([v, l]) => `<option value="${v}"${(set ? 'override' : 'bonus') === v ? ' selected' : ''}>${l}</option>`).join('')}</select>
-      <input data-tw="${esc(r.rkey)}" data-twf="amount" type="number" step="1" value="${esc(n)}" title="${set ? 'The value, whatever the sheet computes' : 'Added to the value; a negative number subtracts'}" aria-label="Amount">${set && num(r.value.bonus) ? ` <span class="faint">(${esc(signedLabel(num(r.value.bonus)))} ignored while it's set)</span>` : ''}`;
+    const mode = tweakMode(r.value);
+    const n = mode === 'override' ? r.value.override : mode === 'floor' ? r.value.floor : num(r.value.bonus);
+    return `<select data-tw="${esc(r.rkey)}" data-twf="mode" aria-label="Set to, bump to or add">${TWEAK_MODES.map(([v, l, t]) => `<option value="${v}" title="${esc(t)}"${mode === v ? ' selected' : ''}>${l}</option>`).join('')}</select>
+      <input data-tw="${esc(r.rkey)}" data-twf="amount" type="number" step="1" value="${esc(n)}" title="${esc(TWEAK_MODES.find((x) => x[0] === mode)[2])}" aria-label="Amount">${mode === 'override' && num(r.value.bonus) ? ` <span class="faint">(${esc(signedLabel(num(r.value.bonus)))} ignored while it's set)</span>` : ''}${mode === 'floor' ? ' <span class="faint" title="sw5e.com keeps it with the character but doesn\'t apply it">(this sheet only)</span>' : ''}`;
   };
   const d = state.tweakDraft || {};
   return `<div class="card no-toggle tweaks-card"><div class="card-head"><span class="title">Tweaks (manual adjustments)</span>
@@ -7128,7 +7162,7 @@ function renderTweaks(m) {
       <td><button class="btn sm" data-act="tweak-remove" data-arg="${esc(r.rkey)}" title="Remove this tweak">×</button></td></tr>`).join('')}</tbody></table></div>` : '<p class="empty">No tweaks.</p>'}
     <div class="tw-add">
       <select data-twadd="path" aria-label="Stat to adjust"><option value="">Add a tweak to…</option>${tweakTargetOptions(tweakTargets(m), d.path)}</select>
-      <select data-twadd="kind" aria-label="Kind of adjustment">${[['bonus', 'add (+/−)'], ['override', 'set to'], ['Proficient', 'proficient'], ['Expertise', 'expertise']].map(([v, l]) => `<option value="${v}"${d.kind === v ? ' selected' : ''}>${l}</option>`).join('')}</select>
+      <select data-twadd="kind" aria-label="Kind of adjustment">${TWEAK_MODES.map(([v, l]) => [v, v === 'bonus' ? 'add (+/−)' : l]).concat([['Proficient', 'proficient'], ['Expertise', 'expertise']]).map(([v, l]) => `<option value="${v}"${(d.kind || 'bonus') === v ? ' selected' : ''}>${l}</option>`).join('')}</select>
       <input data-twadd="value" type="text" inputmode="numeric" placeholder="${/damageDice$/.test(d.path || '') ? 'die, e.g. d4' : 'e.g. 1'}" value="${esc(d.value ?? '')}" aria-label="Amount (a die size like d4 for a damage die)">
       <input data-twadd="reason" class="tw-reason" placeholder="Reason (recommended)" value="${esc(d.reason ?? '')}" aria-label="Reason">
       <button class="btn sm primary" data-act="tweak-add">Add</button>
@@ -7164,21 +7198,41 @@ async function writeTweak(snap, row, value) {
   }
 }
 const currentTweakRow = (snap, rkey) => tweakRows(withEdits(snap.raw, editedFields(snap.key))).find((r) => r.rkey === rkey);
+/** The tweak editor's modes: [value, label, what it does]. */
+const TWEAK_MODES = [
+  ['bonus', 'add', 'Added to the number; a negative amount subtracts'],
+  ['override', 'set to', 'The number is this, whatever the sheet computes or effects would do (items, features, temporary effects)'],
+  ['floor', 'bump to', 'The number is at least this: what it would be with everything else, raised to this if lower (this sheet only)'],
+];
+/** A tweak's mode: 'override' (set to), 'floor' (bump to) or 'bonus' (add). */
+const tweakMode = (v) => (v.override != null && v.override !== '' ? 'override' : v.floor != null && v.floor !== '' ? 'floor' : 'bonus');
+/**
+ * A tweak value in one mode only: "set to" and "bump to" carry SW5E's bonus 0 (and override null for "bump to": SW5E's
+ * own fields, so sw5e.com sees no change from a bump), "add" no override or floor.
+ */
+function tweakInMode(value, mode, n) {
+  const v = { ...value };
+  delete v.floor;
+  if (mode === 'override') return { ...v, override: n, bonus: 0 };
+  if (mode === 'floor') return { ...v, override: null, bonus: 0, floor: n };
+  return { ...v, override: null, bonus: n };
+}
 async function updateTweak(rkey, field, val) {
   const snap = state.snapshots[state.current];
   const row = snap && currentTweakRow(snap, rkey);
   if (!row) return;
-  const value = { ...row.value };
-  const setMode = value.override != null && value.override !== '';
+  let value = { ...row.value };
+  const mode = tweakMode(value);
   const typed = String(val).trim().replace(/^[−–]/, '-');
   if (field === 'proficiency') { if (val) value.proficiency = val; else delete value.proficiency; }
   else if (field === 'mode') {
-    // The same number, now set or added: "set to 16" becomes "add 16" (and back).
-    const n = setMode ? num(value.override) : num(value.bonus);
-    if (val === 'override') { value.override = n; value.bonus = 0; } else { value.bonus = n; value.override = null; }
+    // The same number in the other mode: "set to 16" becomes "bump to 16" or "add 16" (and back).
+    const n = mode === 'override' ? num(value.override) : mode === 'floor' ? num(value.floor) : num(value.bonus);
+    value = tweakInMode(value, val, n);
   } else if (field === 'amount') {
     if (typed !== '' && !Number.isFinite(Number(typed))) return setStatus('Enter a whole number (a negative one subtracts).', 'error');
-    if (setMode) value.override = typed === '' ? null : Math.trunc(Number(typed));
+    if (mode === 'override') value.override = typed === '' ? null : Math.trunc(Number(typed));
+    else if (mode === 'floor') { if (typed === '') delete value.floor; else value.floor = Math.trunc(Number(typed)); }
     else value.bonus = typed === '' ? 0 : Math.trunc(Number(typed));
   } else if (typed === '') value[field] = field === 'bonus' ? 0 : null;
   else if (!Number.isFinite(Number(typed))) return setStatus('Enter a whole number.', 'error');
@@ -7228,10 +7282,10 @@ async function addTweak() {
     ? { where: 'equipment', index: Number(w[1]), sub: w[2], rkey: weaponTweakKey(arr(raw.equipment), Number(w[1]), w[2]) }
     : { where: 'tweaks', path: d.path, rkey: d.path };
   const cur = (w ? getPath((arr(raw.equipment)[w[1]] || {}).tweaks, w[2]) : getPath(raw.tweaks, d.path)) || {};
-  // Set and add exclude each other (SW5E ignores the added amount while a value is set): adding to a set value adds to it.
-  const setNow = cur.override != null && cur.override !== '';
-  const value = die ? { ...cur, dieSize } : prof ? { ...cur, proficiency: kind } : kind === 'override' ? { ...cur, override: n, bonus: 0 }
-    : setNow ? { ...cur, override: num(cur.override) + n, bonus: 0 } : { ...cur, bonus: num(cur.bonus) + n, override: null };
+  // One mode at a time (SW5E ignores the added amount while a value is set): adding to an "add" tweak adds to it; a
+  // "set to" or "bump to" replaces what's there.
+  const value = die ? { ...cur, dieSize } : prof ? { ...cur, proficiency: kind }
+    : kind === 'bonus' && tweakMode(cur) === 'bonus' ? tweakInMode(cur, 'bonus', num(cur.bonus) + n) : tweakInMode(cur, kind, n);
   if (String(d.reason || '').trim()) {
     const st = itemStateOf(snap.key);
     st.reasons = { ...(st.reasons || {}), [row.rkey]: String(d.reason).trim() };

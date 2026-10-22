@@ -37,8 +37,14 @@ function engTweak(raw, path) {
   return o && typeof o === 'object' ? o : {};
 }
 const engHasOverride = (t) => t.override != null && t.override !== '';
-/** A value with its tweak applied: an override replaces it, a bonus adds to it. */
-const engTweaked = (value, t) => (engHasOverride(t) ? engNum(t.override) : value + engNum(t.bonus));
+/** The sheet's "bump to" (a floor: at least this much), kept in the tweak beside SW5E's bonus and override. */
+const engHasFloor = (t) => t.floor != null && t.floor !== '';
+/**
+ * A value with its tweak applied: an override replaces it, a bonus adds to it. The sheet's own "bump to" (t.floor, which
+ * SW5E's tweaks don't have, so its numbers are unchanged) raises the result to at least that.
+ */
+const engTweaked = (value, t) => (engHasOverride(t) ? engNum(t.override)
+  : engHasFloor(t) ? Math.max(value + engNum(t.bonus), engNum(t.floor)) : value + engNum(t.bonus));
 
 const engProfRank = (p) => { const s = engLc(p); return s.startsWith('exp') ? 2 : s.startsWith('prof') ? 1 : s.startsWith('half') ? 0.5 : 0; };
 const engProfWord = (rank) => (rank >= 2 ? 'expertise' : rank >= 1 ? 'proficient' : rank > 0 ? 'half proficient' : 'none');

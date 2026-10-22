@@ -498,7 +498,10 @@ function parseItemEffect(item) {
 // ------------------------------------------------------------- tweaks
 // SW5E's "tweaks" (manual adjustments: raw.tweaks, and per-weapon equipment[i].tweaks) are
 // treated as effects, so they too are explained wherever they change a number.
-const TWEAK_FIELDS = ['bonus', 'override', 'proficiency', 'dieSize'];
+// A tweak is one of three (the editor's modes): "set to" (override: the number is that, whatever else changes it),
+// "bump to" (floor, the sheet's own: at least that), "add" (bonus). SW5E's tweaks have bonus and override only; sw5e.com
+// keeps a floor it doesn't know with the character but doesn't apply it.
+const TWEAK_FIELDS = ['bonus', 'override', 'floor', 'proficiency', 'dieSize'];
 /** The adjustments in a tweaks object: [{ path, value }] where value is e.g. { bonus: 1, override: null }. */
 function fxTweakLeaves(tweaks, prefix = '') {
   const out = [];
@@ -512,7 +515,7 @@ function fxTweakLeaves(tweaks, prefix = '') {
   return out;
 }
 /** Does a tweak value change anything? ({ bonus: 0, override: null } doesn't.) */
-const fxTweakActive = (v) => !!v && (num0(v.bonus) !== 0 || (v.override != null && v.override !== '') || !!v.proficiency || !!v.dieSize);
+const fxTweakActive = (v) => !!v && (num0(v.bonus) !== 0 || (v.override != null && v.override !== '') || (v.floor != null && v.floor !== '') || !!v.proficiency || !!v.dieSize);
 const num0 = (x) => (Number.isFinite(Number(x)) ? Number(x) : 0);
 
 const TWEAK_NAMES = {
@@ -542,6 +545,7 @@ function fxTweakName(path) {
 function fxTweakValueText(v) {
   const parts = [];
   if (v.override != null && v.override !== '') parts.push(`= ${v.override}`);
+  else if (v.floor != null && v.floor !== '') parts.push(`bump to ${v.floor}`);
   if (num0(v.bonus)) parts.push(signedLabel(num0(v.bonus)));
   if (v.proficiency) parts.push(String(v.proficiency));
   if (v.dieSize) parts.push(`d${v.dieSize}`);
