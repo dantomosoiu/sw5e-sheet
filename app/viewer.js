@@ -1667,6 +1667,8 @@ function itemEffects(key, editedRaw, complete) {
       if (a) mods.push({ path: `abilityScores.${a}.score`, bonus: -fx.sideEffect.by, label: `${a.slice(0, 3).toUpperCase()} −${fx.sideEffect.by} (side effect)` });
       else needs.push(`the score the GM lowers by ${fx.sideEffect.by} (not ${fx.sideEffect.except})`);
     }
+    // "You have resistance to one type of damage while you wear this armor. The DM chooses the type" (Adapted Armor).
+    if (/\bresistance to one type of damage\b/i.test(ref.text || '') && !new RegExp(`\\b(?:${PL_DAMAGE_TYPES.join('|')})\\b`, 'i').test(it.notes || '')) needs.push('the damage type the GM chose (resistance)');
     // Proficiencies and always-on advantages in the item's text, read as a feature's are (classes.js), with a choice it
     // asks for ("proficiency in one blaster or vibroweapon of your choice") written in the item's note.
     const fe = itemFeatureEffects(ref, it.notes);
@@ -4158,10 +4160,13 @@ function defensesOf(m) {
     const ref = catalogIndex && catalogIndex.get(it.name);
     if (!ref || qtyOf(it) <= 0) continue;
     if (it.category === 'EnhancedItem') {
-      if (!m.effects.some((e) => e.kind === 'item' && e.name === it.name)) continue;
+      // In use: attuned, equipped or installed (whether or not it has numbers: Matrix Armor's text alone).
+      if (ref.type === 'Consumable' || !(ref.requiresAttunement ? it.attuned : canEquip({ ...ref, isFound: true }, false) ? it.equipped : true)) continue;
     } else if (['Weapon', 'Armor'].includes(ref.equipmentCategory) ? !it.equipped
       : /Consumable|Explosive|Ammunition|Spice|AlcoholicBeverage|Medical/i.test(`${ref.equipmentCategory} ${ref.type}`)) continue;
-    fromText(ref.text || ref.description, it.name);
+    const text = itemDefenseText(ref.text || ref.description, it.notes);
+    fromText(text, it.name);
+    add(itemDefenses(text, num(m.c.proficiencyBonus)), it.name);
   }
   // "If you already have darkvision, these goggles increase its range by 30 feet": the longest darkvision from
   // something else, longer (the goggles' own 60 feet otherwise).
@@ -4174,6 +4179,44 @@ function defensesOf(m) {
     out.push({ kind: 'sense', text: `Darkvision ${ft(best) + e.darkvisionPlus} ft`, from: `${best.from} +${e.darkvisionPlus} ft ${e.name}` });
   }
   return out.filter((d, i) => out.findIndex((x) => x.text.toLowerCase() === d.text.toLowerCase()) === i);
+}
+/**
+ * An item's text as defenses are read from it: the modes and options to pick from ("choosing one of the following
+ * options: - …", "activate one of the below modes") and what it does for someone else ("give them advantage on saving
+ * throws against poison") left out, and a set's bonuses (they need the other pieces); "you are resistant to" and the
+ * "resistence" typo read as "you have resistance to"; "resistance to one type of damage" (the GM's choice) as the type
+ * the item's note names.
+ */
+function itemDefenseText(text, note) {
+  let t = String(text || '').replace(/\r\n?/g, '\n').replace(/\bresistence\b/gi, 'resistance').replace(/\byou are resistant to\b/gi, 'you have resistance to')
+    // The item is in use: "While wearing it, …", "… while you wear this armor" always hold.
+    .replace(/\b(?:while|when) (?:you are )?wearing (?:it|this [a-z ]+?|these [a-z ]+?),\s*/gi, '').replace(/,? while you wear (?:it|this [a-z]+|these [a-z]+)(?=[.,])/gi, '');
+  t = t.replace(/[^.\n]*\b(?:one of the following(?: options)?|one of the below modes|the following modes)\b[^\n]*(?:\n+\s*(?:_{3,}|-[^\n]*))+/gi, '');
+  const types = String(note || '').toLowerCase().match(new RegExp(`\\b(?:${PL_DAMAGE_TYPES.map((x) => x.toLowerCase()).join('|')})\\b`, 'g'));
+  if (types) t = t.replace(/\bresistance to one type of damage\b/gi, `resistance to ${[...new Set(types)].join(' and ')} damage`);
+  let set = false;
+  return t.split(/(?<=[.!?])\s+/).filter((s) => {
+    if (/^while wearing and attuned to (?:this|these) \w+,? (?:and )?[A-Z]/i.test(s.replace(/^[*_]+[^*_]+[*_]+\s*/, ''))) { set = true; return false; }
+    if (set && /^additionally\b/i.test(s)) return false;
+    set = false;
+    return !/\b(?:a target|give them|another creature|an ally|allies)\b/i.test(s);
+  }).join(' ');
+}
+/**
+ * Defenses an item's text gives that classes.js doesn't read (yet): "damage you take is reduced by 2" (Armor
+ * (Champion)), "kinetic and energy damage that you take from unenhanced weapons is reduced by an amount equal to your
+ * proficiency bonus" (Jensaarai Headgear), "any critical hit against you becomes a normal hit" (Matrix Armor).
+ */
+function itemDefenses(text, pb) {
+  const out = [];
+  let x;
+  const T = `(?:${PL_DAMAGE_TYPES.join('|')})`;
+  if ((x = new RegExp(`\\b((?:${T}(?:,? and |, ))*${T} )?damage (?:that )?you take(?: from ([^.]*?))? is reduced by (\\d+|an amount equal to your proficiency bonus)`, 'i').exec(text))) {
+    const n = /^\d+$/.test(x[3]) ? Number(x[3]) : pb;
+    out.push({ kind: 'other', text: `${x[1] ? `${x[1][0].toUpperCase()}${x[1].slice(1)}damage` : 'Damage'} you take${x[2] ? ` from ${x[2]}` : ''} reduced by ${n || 'your proficiency bonus'}` });
+  }
+  if (/\bany critical hit against you becomes a normal hit\b/i.test(text)) out.push({ kind: 'immunity', text: 'Critical hits against you are normal hits' });
+  return out;
 }
 function renderDefenses(m) {
   if (!state.rules) return '';

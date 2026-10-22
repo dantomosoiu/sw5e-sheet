@@ -298,6 +298,7 @@ Focused Strikes 2d8
 Defenses & senses
 Advantages Advantage on Strength checks and Strength saving throws to avoid being moved
 Senses Tremorsense 30 ft
+Other Kinetic and energy damage you take from unenhanced weapons reduced by 2
 Effects
 From class features and species traits (4)
 Guardian weapon proficiencies Proficient: All lightweapons Proficient: all vibroweapons Guardian proficiencies
