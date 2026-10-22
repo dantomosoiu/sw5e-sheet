@@ -156,8 +156,13 @@ function parseDice(expr) {
 const wProps = (w) => arr(w && w.properties).map((p) => String(p).toLowerCase().trim());
 /** A ranged weapon: a blaster, or a "(range …)" property that isn't thrown (as the engine reads it). */
 const isRangedWeapon = (w) => /blaster/i.test((w && w.weaponClassification) || '') || wProps(w).some((p) => /\(range /.test(p) && !p.startsWith('thrown'));
-/** Finesse: the property, or an unarmed strike given it (Unarmed Combatant, Martial Arts). */
-const isFinesseWeapon = (m, w) => wProps(w).some((p) => p.startsWith('finesse')) || (w.name === 'Unarmed Strike' && arr(m.effects).some((e) => e.unarmedFinesse));
+/** Finesse: the property, or given it (Unarmed Combatant's unarmed strikes; Martial Arts' unarmed strikes and monk weapons). */
+function isFinesseWeapon(m, w) {
+  if (wProps(w).some((p) => p.startsWith('finesse'))) return true;
+  if (w.name === 'Unarmed Strike') return arr(m.effects).some((e) => e.unarmedFinesse);
+  const ref = typeof catalogIndex !== 'undefined' && catalogIndex && catalogIndex.get(w.name);
+  return !!ref && typeof martialArtsOf === 'function' && !!m.raw && martialArtsOf(m.raw).some((x) => x.ma.finesse && x.ma.weapons && clsWeaponMatches(x.ma.weapons.desc, ref));
+}
 /** The ability the attack uses: Dexterity for a finesse unarmed strike whose Dexterity counts (its finesse tweak). */
 const weaponAbility = (m, w) => (w.name === 'Unarmed Strike' && arr(m.fx && m.fx.tweaks).some((t) => t.path === 'unarmed.toHit' && t.mod && t.mod.finesse) ? 'Dexterity' : w.ability);
 /** The texts of the character's features, species traits and slot picks: [{ name, text }] (a pick: "Operative (splashclass improvement)"). */

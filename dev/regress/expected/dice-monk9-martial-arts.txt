@@ -240,18 +240,18 @@ skill|Charisma|1: Intimidation (CHA): d20 −1 · = −1 modifier
 skill|Charisma|2: Performance (CHA): d20 −1 · = −1 modifier
 skill|Charisma|3: Persuasion (CHA): d20 −1 · = −1 modifier
 attack|0: Nervebaton attack: d20 +7 · = +7 modifier
-damage|0: Nervebaton damage: d8 +3 · = +3 Martial Arts · Kinetic
+damage|0: Nervebaton damage: d8 +3 · = +3 Martial Arts · Kinetic · option: Sneak Attack +3d6
 attack|1: Vibroblade attack: d20 +7 · = +7 modifier · two-handed: 1d10
-damage|1: Vibroblade damage: d8 +3 · = +3 Martial Arts · Kinetic
+damage|1: Vibroblade damage: d8 +3 · = +3 Martial Arts · Kinetic · option: Sneak Attack +3d6
 attack|2: Unarmed Strike attack: d20 +7 · = +7 modifier
 damage|2: Unarmed Strike damage: d8 +3 · = +3 Martial Arts · Kinetic · option: Sneak Attack +3d6
 pattack|Tech|7: Tech attack: d20 +7 · = +7 modifier
 dice|1d6: 1d6: d6 +0
 tool|One type of gaming set|proficient: One type of gaming set check: d20 +6 · = +2 INT modifier +4 proficiency
-damage|0|crit: Nervebaton damage (critical): d8 d8 +3 · = +3 Martial Arts · Kinetic · critical
-damage|1|crit: Vibroblade damage (critical): d8 d8 +3 · = +3 Martial Arts · Kinetic · critical
+damage|0|crit: Nervebaton damage (critical): d8 d8 +3 · = +3 Martial Arts · Kinetic · critical · option: Sneak Attack +3d6
+damage|1|crit: Vibroblade damage (critical): d8 d8 +3 · = +3 Martial Arts · Kinetic · critical · option: Sneak Attack +3d6
 damage|2|crit: Unarmed Strike damage (critical): d8 d8 +3 · = +3 Martial Arts · Kinetic · critical · option: Sneak Attack +3d6
-damage|1||two: Vibroblade damage (two-handed): d10 +3 · = +3 Martial Arts · Kinetic
+damage|1||two: Vibroblade damage (two-handed): d10 +3 · = +3 Martial Arts · Kinetic · option: Sneak Attack +3d6
 
 ## Sheet: Overview
 Rakatan Test (local)
@@ -415,12 +415,12 @@ Skill | Ability | Bonus | Passive | Proficiency |
 Weapon | To hit | Damage | Ability | Type | Properties |
 Nervebaton
 Disruptive, neuralizing 13
-| +7 | 1d8+3 Kinetic | Strength | Simple Vibroweapon | Disruptive, neuralizing 13 |
+| +7 | 1d8+3 Kinetic | Dexterity (finesse) | Simple Vibroweapon | Disruptive, neuralizing 13 |
   ↳ hover weapons.0.attackBonus: Without tweaks or effects: 4 → now 7 / proficient Proficient: simple vibroweapons · Monk weapon proficiencies Monk proficiencies / … [236 chars #b0b3512d]
   ↳ hover weapons.0.damageBonus: Without tweaks or effects: 0 → now 3 / d8 Martial Arts: d8 in place of d · Martial Arts Monk feature / +3 Finesse (Martial Arts): DEX +3 instead of STR · Martial Arts Monk feature
 Vibroblade
 Versatile (1d10)
-| +7 | 1d8+3 Kinetic | Strength | Martial Vibroweapon | Versatile (1d10) |
+| +7 | 1d8+3 Kinetic | Dexterity (finesse) | Martial Vibroweapon | Versatile (1d10) |
   ↳ hover weapons.1.attackBonus: Without tweaks or effects: 0 → now 7 / proficient Proficient: martial vibroweapons that lack the dexterity, heavy, special, and two… [304 chars #351fd44c]
   ↳ hover weapons.1.damageBonus: Without tweaks or effects: 0 → now 3 / +3 Finesse (Martial Arts): DEX +3 instead of STR · Martial Arts Monk feature
 Unarmed Strike

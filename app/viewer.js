@@ -4320,7 +4320,7 @@ function renderAttacks(m) {
           <span class="faint">${sh.cells} ${esc(sh.cellName)}${sh.cells === 1 ? '' : 's'}</span></div>` : ''}</div></div></td>
       <td class="num"><b>${rollable(`attack|${wi}`, bump(m, `weapons.${wi}.attackBonus`, signed(w.attackBonus)), `Roll an attack with the ${w.name}`)}</b></td>
       <td>${rollable(`damage|${wi}`, bump(m, `weapons.${wi}.damageBonus`, esc(damageText(w))), `Roll ${w.name} damage`)}</td>
-      <td class="muted col-ability">${esc(w.name === 'Unarmed Strike' && m.fx.tweaks.some((t) => t.mod && t.mod.finesse) ? 'Dexterity (finesse)' : w.ability || '')}</td>
+      <td class="muted col-ability">${esc((w.name === 'Unarmed Strike' ? m.fx.tweaks.some((t) => t.mod && t.mod.finesse) : m.fx.weaponTweaks.some((t) => t.index === w.index && t.mod && t.mod.finesse)) ? 'Dexterity (finesse)' : w.ability || '')}</td>
       <td class="muted col-type">${esc(titleCase(w.weaponClassification || ''))}</td>
       <td class="col-props">${propsHtml(w.properties) || '<span class="faint">—</span>'}</td></tr>
       ${arr(w.modes).length ? `<tr class="dim"><td colspan="6">Modes: ${arr(w.modes).map((md_) => esc(md_.name || JSON.stringify(md_))).join(' · ')}</td></tr>` : ''}`;
