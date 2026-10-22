@@ -233,7 +233,8 @@ function clsWeaponMatches(desc, w) {
   // "all simple weapons" is "simple weapons".
   const m = /^(simple|martial|all|exotic)?\s*(blasters?|vibroweapons?|lightweapons?|weapons?)\b(.*)$/.exec(d.replace(/^all (?=simple|martial|exotic)/, ''));
   const name = String(w.name || '').toLowerCase();
-  if (!m) return !!name && [name, `${name}s`, `${name}es`].includes(d);
+  // "blaster pistols": a weapon's name, not every blaster (words after the kind that don't start a clause).
+  if (!m || /^\s+(?!that\b|with\b|which\b|without\b|of\b|you\b|in\b|and\b|or\b|from\b|on\b|for\b)[a-z]/.test(m[3])) return !!name && [name, `${name}s`, `${name}es`].includes(d);
   // "blasters", "all blasters": the simple and martial ones; an exotic weapon needs its own proficiency (Exotic Weapon Training).
   if (m[1] === 'exotic' ? tier !== 'exotic' : tier === 'exotic' || (m[1] && m[1] !== 'all' && m[1] !== tier)) return false;
   if (!/^weapons?$/.test(m[2]) && m[2].replace(/s$/, '') !== kind) return false;
@@ -702,6 +703,7 @@ function clsFeatureEffects(text, note, ctx) {
   const dtPicked = String(note || '').split(/[,;/+&]|\band\b|\bor\b/).map((x) => x.trim().toLowerCase()).filter((x) => CLS_DAMAGE_TYPES.includes(x) || x === 'true');
   if (dtList) ask('damage', 'Damage type', dtOptions, clsCount(dtList[1]), dtPicked.filter((d) => dtOptions.includes(d)));
   const SKILL_ALT = CLS_SKILLS.join('|');
+  const limitedUses = /\b(?:you can use this (?:feature|trait|ability) (?:a number of times|once|twice|\w+ times)|regain all expended uses)\b/i.test(t);
   for (const s0 of permanent) {
     // Wordings of "a bonus to <it> equal to your <ability> modifier", read below: "When you make a Dexterity (Sleight of
     // Hand) check, you gain a bonus to that check equal to…" (Duplicitous Force); "When you make an ability check with the
@@ -714,7 +716,8 @@ function clsFeatureEffects(text, note, ctx) {
       // "…(minimum of +1) if it doesn't already include that modifier": not a condition, the rule against counting it twice.
       .replace(/,?\s*(?:if|as long as) it doesn(?:'|’)t already include (?:that|this|the) modifier/gi, '')
       .replace(new RegExp(`\\bWhen you make an? (?:${CLS_ABIL_ANY} \\()?(${SKILL_ALT})\\)? check, you (?:gain|have) a bonus to that check\\b`, 'i'), (all, sk) => `You gain a bonus to ${clsSkill(sk)} checks`)
-      .replace(/\bWhen you make an ability check with the chosen skill(?: or tool)?, you can add (half )?your\b/i, (all, half) => (picks.skills[0] ? `You gain a bonus to ${picks.skills[0]} checks equal to ${half || ''}your` : all))
+      // (Only when it's always on: with a number of uses it's an option on the roll, Force Guidance.)
+      .replace(/\bWhen you make an ability check with the chosen skill(?: or tool)?, you can add (half )?your\b/i, (all, half) => (picks.skills[0] && !limitedUses ? `You gain a bonus to ${picks.skills[0]} checks equal to ${half || ''}your` : all))
       .replace(new RegExp(`\\byou (?:can )?add (half )?your ${CLS_ABIL_RE} modifier to (?:your )?(AC|initiative(?: rolls| checks)?)(?: as long as it doesn(?:'|’)t already include that modifier)?`, 'i'),
         (all, half, ab, what) => `you gain a bonus to ${/^AC$/i.test(what) ? 'AC' : 'initiative'} equal to ${half || ''}your ${ab} modifier`);
     // Ideal of the Artisan: which skill (or tool) is the chosen one.
