@@ -439,7 +439,7 @@ Blaster pistol
 Power cell (range 50/200), reload 16
 Shots 16/16 [−1] [Reload] 0 Power cells
 | +6 · +7 with Cryo Cell (Average) | 1d6+4 Energy · 1d6+5 Energy with Cryo Cell (Average) | Dexterity | Simple Blaster | Power cell (range 50/200), reload 16 |
-  ↳ hover weapons.0.attackBonus: Without tweaks or effects: 5 → now 6 / +1 Attack · Weapon (Fine) while equipped / proficient Proficient: All blasters · Fighter wea… [290 chars #ce0ae158]
+  ↳ hover weapons.0.attackBonus: Without tweaks or effects: 5 → now 6 / +1 Attack · Weapon (Fine) while equipped / Only sometimes: / +7 with Cryo Cell (Average): +1 · Cryo Cell (Average) when you fire it
   ↳ hover weapons.0.damageBonus: Without tweaks or effects: 2 → now 4 / +1 Blaster pistol: damage · Custom barrel tweak / +1 Damage · Weapon (Fine) while equipped /… [259 chars #5d4d5b3b]
 Unarmed Strike
 | +9 | 7 Kinetic | Strength | Unarmed | — |

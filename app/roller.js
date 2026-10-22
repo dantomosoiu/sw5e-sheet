@@ -231,6 +231,13 @@ function d20Options(m, kind, ctx = {}) {
         } else if ((x = /\broll an? (d\d+) and add the die to a saving throw you make/i.exec(s))) out.push({ label, bonus: 0, extra: [`1${x[1]}`], on: false });
         // "While you are concentrating on a Force power, you have a +2 bonus to your AC and all saving throws" (Enduring Focus).
         else if ((x = /^While you are ([^,]+), you have a \+(\d+) bonus to your AC and all saving throws/i.exec(s))) out.push({ label: `while ${x[1].replace(/ on an? (?:Force|force|tech) power$/, '')} (${label})`, bonus: num(x[2]), extra: [], on: false });
+        // "While you are the target of your Critical Analysis feature, you can add half your Critical Analysis ability modifer
+        // (minimum of one) to any saving throw you make that doesn't already include that modifier" (Mutagenic Analysis).
+        else if ((x = /^While you are ([^,]+), you can add half your ([\w ]+?) modif(?:i)?er \(minimum of one\) to any saving throw you make that doesn't already include that modifier/i.exec(s))) {
+          const name = x[2].replace(/ ability$/, '');
+          const a = ABBR[x[2]] ? x[2] : (new RegExp(`${name} ability modifier, which is (\\w+)`, 'i').exec(riderTexts(m).map((y) => y.text).join(' ')) || [])[1];
+          if (ABBR[a] && ctx.ability !== a) out.push({ label: `while ${x[1].replace(/^the target of your /i, 'analyzed by your ')} (${label})`, bonus: Math.max(1, Math.floor(mod([a]) / 2)), extra: [], on: false });
+        }
       } else if (kind === 'init') {
         if (/When you roll initiative, you can choose to add your proficiency bonus to the initiative check/i.test(s)) out.push({ label, bonus: pb, extra: [], on: false });
         // "You can use your Intelligence modifier instead of your Dexterity modifier when making Initiative checks" (Quick-Witted).
@@ -249,6 +256,10 @@ function d20Options(m, kind, ctx = {}) {
           && !arr(m.fx && m.fx.tweaks).some((x) => x.effect && x.effect.name === t.name && x.path.endsWith(`.skills.${ctx.skill}`))) {
           // "… add half your Wisdom or Charisma modifier (your choice, minimum of one)" (Force Guidance; its notes name the skill).
           out.push({ label, bonus: Math.max(1, Math.floor(mod(['Wisdom', 'Charisma']) / 2)), extra: [], on: false });
+        // "You can double your proficiency bonus for it when you make an Intelligence (Lore) check to recall information you
+        // have learned" (Duros Superior Memory): expertise's extra proficiency, where proficient.
+        } else if (kind === 'skill' && (x = /double your proficiency bonus for it when you make an? \w+ \((\w+)\) check (to [^,.]+)/i.exec(s)) && x[1] === ctx.skill && ctx.prof === 'proficient') {
+          out.push({ label: `${x[2]} (${label})`, bonus: pb, extra: [], on: false });
         // "When you make an ability check using Charisma, you can choose to instead make the check using your Intelligence or
         // Wisdom modifier (your choice)" (Calculated Bluff).
         } else if ((x = /When you make an ability check using (\w+), you can choose to instead make the check using your (\w+(?: or \w+)?) modifier/i.exec(s)) && x[1] === ctx.ability) {
@@ -277,6 +288,12 @@ function d20Options(m, kind, ctx = {}) {
           && ABBR[x[2] || x[3]] && (ctx.finesse || /blaster/i.test(w.weaponClassification || '')) && mod([x[2] || x[3]]) > mod([ab])) {
           const a = x[2] || x[3];
           out.push({ label: `${(x[1] || x[4]).replace(/^against the target of your /i, 'vs ').replace(/^against /i, 'vs ')} (${ABBR[a]}, ${label})`, bonus: mod([a]) - mod([ab]), extra: [], on: false });
+        // "You can use your choice of Strength or Dexterity modifier for the attack and damage rolls of blaster weapons
+        // against targets within 30 feet of you" (Ballistic Approach: Firestorm).
+        } else if (ctx.w && (x = /You can use your choice of (\w+) or (\w+) modifier for the attack and damage rolls of (blaster|vibro|light)\w* weapons (against [^.]+?)\./i.exec(s))
+          && new RegExp(x[3], 'i').test(w.weaponClassification || '') && ABBR[x[1]] && ABBR[x[2]] && mod([x[1], x[2]]) > mod([ab])) {
+          const a = mod([x[1]]) >= mod([x[2]]) ? x[1] : x[2];
+          out.push({ label: `${x[4].replace(/^against /i, 'vs ')} (${ABBR[a]}, ${label})`, bonus: mod([a]) - mod([ab]), extra: [], on: false });
         // "When you make an attack roll using your Strength, you can choose to add half your Constitution modifier to the
         // attack roll" (Adaptable Fading), and its "Alternatively, when you would make an attack roll using Constitution…".
         } else if (kind === 'attack' && (x = /when you (?:would )?make an attack roll using (?:your )?(\w+), you can (?:choose to )?add half your (\w+) modifier to the attack roll/i.exec(s)) && x[1] === ab && ABBR[x[2]]) {
@@ -481,6 +498,13 @@ function weaponRiders(m, w, crit, die) {
       if (applied && arr(p.weapons).some((n) => weaponIndexByName(m.raw, n) === w.index)) out.push({ label: p.name, bonus: 0, extra: [`1d${die}`], on: true, noDouble: true });
     }
   }
+  // A state on now whose benefits say "Your weapon attacks deal an extra 1d6 damage" (Totemic Might): ticked.
+  for (const e of m.snap ? tempEffects(m.snap.key).filter((x) => x.source === 'feature') : []) {
+    for (const n of arr(e.notes)) {
+      const x = /\byour weapon attacks deal an extra (\d*d\d+) (?:\w+ )?damage\b/i.exec(n);
+      if (x) out.push({ label: e.name, bonus: 0, extra: [x[1].replace(/^d/, '1d')], on: true });
+    }
+  }
   // Rage Damage: "When you make a melee weapon attack using Strength, you gain a bonus to the damage roll"; also "to
   // damage rolls from ranged weapon attacks using Strength" (Ballistic Approach) and "when you make a melee weapon attack
   // using Dexterity, you add your rage damage" (Precision Approach). While raging it's ticked, unless the rage already put
@@ -525,7 +549,7 @@ function buildRoll(m, spec, opts = {}) {
     }
     case 'save': {
       const r = d20(`${a1} saving throw`, num(((sc[a1] || {}).savingThrow || {}).modifier), `abilityScores.${a1}.savingThrow.modifier`);
-      r.conds.push(...d20Options(m, 'save'));
+      r.conds.push(...d20Options(m, 'save', { ability: a1 }));
       return r;
     }
     case 'skill': {
@@ -551,7 +575,7 @@ function buildRoll(m, spec, opts = {}) {
           }
         }
       }
-      r.conds.push(...d20Options(m, 'skill', { skill: k.name, ability: a1 }));
+      r.conds.push(...d20Options(m, 'skill', { skill: k.name, ability: a1, prof: k.proficiency }));
       return r;
     }
     case 'init': {
@@ -648,7 +672,11 @@ function buildRoll(m, spec, opts = {}) {
     }
     case 'hitdie': {
       const size = num(String(a1).replace(/\D/g, ''));
-      return { kind: 'dice', label: `Hit die (${a1})`, spec, diceSpec: [size], base: [{ label: 'per die', value: num(m.t && m.t.lim.hitDieBonus) }], conds: [] };
+      // "When you roll a Hit Die to regain hit points, the minimum number of hit points you can regain from the roll equals
+      // twice your Constitution modifier (minimum of 2)" (Durable).
+      const dur = riderTexts(m).find((f) => /minimum number of hit points you can regain from the roll equals twice your Constitution modifier/i.test(f.text));
+      const min = dur ? Math.max(2, 2 * num((sc.Constitution || {}).modifier)) : undefined;
+      return { kind: 'dice', label: `Hit die (${a1})${dur ? `, at least ${min} (${dur.name})` : ''}`, spec, diceSpec: [size], base: [{ label: 'per die', value: num(m.t && m.t.lim.hitDieBonus) }], conds: [], ...(dur ? { minTotal: min } : {}) };
     }
     case 'death': { // "You have advantage on death saving throws" (Self-Sustain); "You can add your Constitution modifier to
       // death saving throws you make" (Unnatural Resilience).

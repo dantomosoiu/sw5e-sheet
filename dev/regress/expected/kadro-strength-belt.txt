@@ -471,7 +471,7 @@ Shots 11/12 [−1] [Reload] 13 Power cells
 Vibrorapier
 Finesse
 | +7 | 1d8+7 Kinetic | Strength | Martial Vibroweapon | Finesse |
-  ↳ hover weapons.1.attackBonus: Without tweaks or effects: 5 → now 7 / proficient Proficient: all vibroweapons · Fighter weapon proficiencies Fighter proficiencies… [229 chars #e8d664b7]
+  ↳ hover weapons.1.attackBonus: Without tweaks or effects: 5 → now 7 / +13 STR (the item sets it to 21) · Strength Enhancer while attuned
   ↳ hover weapons.1.damageBonus: Without tweaks or effects: 3 → now 7 / +2 Weapon damage · Brute Force Assault Specialist feature / +13 STR (the item sets it to 21) · Strength Enhancer while attuned
 Unarmed Strike
 | +7 | 1d4+7 Kinetic | Strength | Unarmed | — |

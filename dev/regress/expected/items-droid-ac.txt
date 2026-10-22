@@ -447,7 +447,7 @@ Celerity Oscillator: Once per turn, when you deal damage with your modified weap
 Expanded Magazine: Your modified weapon can be more efficiently reloaded. You can reload your modified weapon once without using an action. You can't use this feature again until you reload the weapon with an action.
 Shots 16/16 [−1] [Reload] 17 Power cells
 | +4 | 1d6+2 Energy | Dexterity | Simple Blaster | Power cell (range 50/200), reload 16 |
-  ↳ hover weapons.0.attackBonus: Without tweaks or effects: 3 → now 4 / +1 Attack · Infuse Item: Blaster pistol started, lasts until the end of your next long rest,… [272 chars #9b1854a2]
+  ↳ hover weapons.0.attackBonus: Without tweaks or effects: 3 → now 4 / +1 Attack · Infuse Item: Blaster pistol started, lasts until the end of your next long rest, since Sat 21:22
   ↳ hover weapons.0.damageBonus: Without tweaks or effects: 1 → now 2 / +1 Damage · Infuse Item: Blaster pistol started, lasts until the end of your next long rest, since Sat 21:22
 Unarmed Strike
 | +1 | 0 Kinetic | Strength | Unarmed | — |

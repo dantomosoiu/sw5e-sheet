@@ -2391,8 +2391,10 @@ function applyEffects(key, editedRaw, complete) {
     for (const desc of arr(e.weapons)) {
       arr(editedRaw.equipment).forEach((it, i) => {
         const ref = it.category === 'Equipment' && catalogIndex && catalogIndex.get(it.name);
+        // Where SW5E's calculation is already proficient (its own list covers the weapon), it's no change: not explained as one.
+        const already = ref && arr(complete && complete.proficiencies).some((p) => p && /weapon|other/.test(p.type || '') && engWeaponCovered(p.name, ref));
         if (ref && ref.equipmentCategory === 'Weapon' && clsWeaponMatches(desc, ref) && !res.weaponTweaks.some((t) => t.index === i && t.fields && t.fields.proficiency)) {
-          res.weaponTweaks.push({ index: i, path: 'toHit', bonus: 0, fields: { proficiency: 'proficient' }, effect: e, mod: { path: 'weapon.toHit', label: `Proficient: ${desc}` } });
+          res.weaponTweaks.push({ index: i, path: 'toHit', bonus: 0, fields: { proficiency: 'proficient' }, effect: e, mod: { path: 'weapon.toHit', label: `Proficient: ${desc}`, already } });
         }
       });
     }
@@ -2459,6 +2461,29 @@ function applyEffects(key, editedRaw, complete) {
       const e = { id: `ac-alt:${name}`, kind: 'feature', name, why: f.k ? `${f.k.name} feature` : 'feat', target: 'self', mods: [], notes: [] };
       res.conds.push({ path: 'armorClass', bonus: num(x[1]), cond, ammo: null, weaponIndex: null, effect: e, mod: { path: 'armorClass', bonus: num(x[1]), label: `AC +${x[1]}`, cond } });
     }
+  }
+  // "If you are already proficient with medium armor, instead while you are wearing medium armor, you can add 3, rather
+  // than 2, to your AC if you have a Dexterity of 16 or higher" / "… with light armor, instead while you are wearing light
+  // armor, your speed increases by 5 feet" (Armor Expert): already proficient = SW5E's list (class, background), not the
+  // feat's own grant.
+  const armorProfs = arr(complete && complete.proficiencies).filter((p) => p && p.type === 'armor').map((p) => String(p.name).toLowerCase());
+  for (const f of featureTextsOf(editedRaw)) {
+    const t = String(f.text).replace(/\s+/g, ' ');
+    const e = { id: `armor-expert:${f.name}`, kind: 'feature', name: f.name, why: f.k ? `${f.k.name} feature` : 'feat', target: 'self', mods: [], notes: [] };
+    const has = (k) => armorProfs.some((p) => p.includes(`${k} armor`) || p === 'all armor');
+    let x;
+    if ((x = /If you are already proficient with medium armor, instead while you are wearing medium armor, you can add 3, rather than 2, to your AC if you have a Dexterity of (\d+) or higher/i.exec(t))
+      && has('medium') && armor.armor && !armor.light && !armor.heavy && num(final.Dexterity) >= num(x[1]) && modOf('Dexterity') >= 3) {
+      const mod = { path: 'armorClass', bonus: 1, label: 'AC: DEX up to +3 in medium armor' };
+      e.mods.push(mod);
+      res.tweaks.push({ path: 'armorClass', bonus: 1, fields: null, effect: e, mod });
+    }
+    if (/If you are already proficient with light armor, instead while you are wearing light armor, your speed increases by 5 feet/i.test(t) && has('light') && armor.light) {
+      const mod = { path: 'speed.base', bonus: 5, label: 'Speed +5 ft in light armor' };
+      e.mods.push(mod);
+      res.tweaks.push({ path: 'speed.base', bonus: 5, fields: null, effect: e, mod });
+    }
+    if (e.mods.length) effects.push(e);
   }
   // Each weapon with the best of them, where better than the ability SW5E uses: the difference on attack and damage.
   for (const [i, list] of Object.entries(abilityFor)) {
@@ -2697,6 +2722,16 @@ function attackGrantsOf(editedRaw) {
         out.push({ id: `grant:${f.name}`, name: f.name, why, abilities: ['Dexterity'], finesse: true, target: { lacking: x[1] } });
         return;
       }
+      // "Your unarmed strikes deal 1d4 kinetic damage, and you can use your choice of your Strength, Dexterity, or Critical
+      // Analysis ability modifer for the attack and damage rolls" (Unnatural Weaponry). "Critical Analysis ability": the
+      // one its feature names ("…modifier, which is Intelligence").
+      if ((x = /\byour unarmed strikes\b[^.]*?\byou can use your choice of (?:your )?([\w, ]+?) modif(?:i)?er for the attack and damage rolls\b/i.exec(s))) {
+        const all = featureTextsOf(editedRaw).map((y) => y.text).join(' ');
+        const abilities = x[1].split(/,\s*(?:or\s+)?|\s+or\s+/).map((n) => n.trim()).filter(Boolean)
+          .map((n) => (ABBR[n] ? n : (new RegExp(`${n.replace(/ ability$/, '')} ability modifier, which is (\\w+)`, 'i').exec(all) || [])[1])).filter((a) => ABBR[a]);
+        if (abilities.length) out.push({ id: `grant:${f.name}`, name: f.name, why, abilities, finesse: false, target: { unarmed: true } });
+        return;
+      }
       x = new RegExp(`\\bYou can use (?:your choice of )?(${A}(?: or ${A})?)(?: modifier)? instead of (?:Strength|Dexterity)(?: or (?:Strength|Dexterity))? for the attack and damage rolls(?: (?:of|made with) ([^.]+?))?\\.`).exec(s);
       if (!x) return;
       const what = String(x[2] || '');
@@ -2828,7 +2863,7 @@ function castingAbilities(m, kind, field) {
 }
 /** The applied tweaks that can have changed the number at `path`. */
 function bumpSources(m, path) {
-  const tw = m.fx.tweaks.concat(m.fx.weaponTweaks.map((t) => ({ ...t, path: `weapon@${t.index}.${t.path}` })));
+  const tw = m.fx.tweaks.concat(m.fx.weaponTweaks.map((t) => ({ ...t, path: `weapon@${t.index}.${t.path}` }))).filter((t) => !(t.mod && t.mod.already));
   const scoreOnly = (a) => tw.filter((t) => t.path === `abilityScores.${a}.score`);
   // A number that uses the modifier: a score change counts only when it changed the modifier (DEX 14 → 15 doesn't).
   const score = (a) => (m.bumps[`abilityScores.${a}.modifier`] ? scoreOnly(a) : []);
@@ -2858,7 +2893,9 @@ function bumpSources(m, path) {
   if ((x = /^maneuver\.(\w+)\.(\w+)\.(dc|attack)$/.exec(path))) return tw.filter((t) => t.path === `superiority.${x[1].toLowerCase()}${x[3] === 'dc' ? 'SaveDC' : 'Modifier'}`).concat(score(x[2]));
   const rel = {
     armorClass: ['armorClass', 'Dexterity'], initiative: ['initiative', 'Dexterity'], passivePerception: ['passivePerception', 'Wisdom', 'abilityScores.Wisdom.skills.Perception'],
-    hitPoints: ['hitPoints', 'Constitution'], speed: ['speed', 'Strength'], carryingCapacity: ['Strength'],
+    // Speed goes by Strength only through worn armor's strength number (Muscled Menace's +1 STR doesn't move it otherwise).
+    hitPoints: ['hitPoints', 'Constitution'], speed: ['speed'].concat(arr(m.c.equipment).some((e) => e.equipped && e.equipmentCategory === 'Armor' && arr(e.properties).some((p) => /^strength \d+/i.test(String(p).trim()))) ? ['Strength'] : []),
+    carryingCapacity: ['Strength'],
     proficiencyBonus: [], attunement: ['attunement'],
   }[path.split('.')[0]] || ['*'];
   // Carrying capacity and speed (heavy armor's Strength) go by the score itself; the rest by the modifier.
@@ -3266,7 +3303,20 @@ function damageParts(m, w) {
         : [{ label: `1 + ${abLabel} (at least 0)`, value: 0 }];
   const src = arr(m.fx.tweaks).filter((t) => t.path === (unarmed ? 'unarmed.damage' : 'weapon.damage'))
     .concat(unarmed ? [] : arr(m.fx.weaponTweaks).filter((t) => t.index === w.index && t.path === 'damage'));
-  for (const t of src) if (num(t.bonus)) parts.push({ label: t.effect.kind === 'tweak' ? `tweak${t.effect.reason ? ` (${t.effect.reason})` : ''}` : t.effect.name, value: num(t.bonus) });
+  for (const t of src) {
+    if (!num(t.bonus)) continue;
+    // Another ability instead of the weapon's (finesse, Vow of Spirit, Blinding Agility, an item's Finesse Oscillator):
+    // it's that ability's modifier, named so ("+5 DEX modifier (Blinding Agility)"), in place of the one it replaces.
+    const swapTo = t.mod && (t.mod.ability || (t.mod.finesse ? 'Dexterity' : '') || (t.mod.swap && t.mod.swap.to));
+    if (swapTo && ABBR[swapTo]) {
+      const own = parts.findIndex((p) => p.label === abLabel);
+      const v = num(t.bonus) + (own >= 0 ? parts[own].value : 0);
+      const p = { label: `${ABBR[swapTo]} modifier (${t.effect.name})`, value: v };
+      if (own >= 0) parts[own] = p; else parts.push(p);
+      continue;
+    }
+    parts.push({ label: t.effect.kind === 'tweak' ? `tweak${t.effect.reason ? ` (${t.effect.reason})` : ''}` : t.effect.name, value: num(t.bonus) });
+  }
   const rest = total - parts.reduce((s, p) => s + p.value, 0);
   if (rest < 0) return one; // it doesn't add up (a weapon without the ability modifier): don't guess
   if (rest) parts.push({ label: 'other (weapon, style…)', value: rest });
