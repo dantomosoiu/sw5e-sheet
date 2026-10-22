@@ -2388,7 +2388,10 @@ function applyEffects(key, editedRaw, complete) {
   }
   // Weapon proficiencies from class lists and features: each carried weapon they describe.
   for (const e of effects) {
-    for (const desc of arr(e.weapons)) {
+    // The description naming the weapon itself first ("blaster rifles" for a Blaster rifle, before "blaster pistols"), so
+    // the explanation names the right one.
+    const named = (d) => arr(editedRaw.equipment).some((it) => [it.name.toLowerCase(), `${it.name.toLowerCase()}s`].includes(String(d).toLowerCase().trim()));
+    for (const desc of arr(e.weapons).slice().sort((a, b) => named(b) - named(a))) {
       arr(editedRaw.equipment).forEach((it, i) => {
         const ref = it.category === 'Equipment' && catalogIndex && catalogIndex.get(it.name);
         // Where SW5E's calculation is already proficient (its own list covers the weapon), it's no change: not explained as one.
