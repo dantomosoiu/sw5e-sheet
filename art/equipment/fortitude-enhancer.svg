@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <g transform="rotate(-45 32 32)">
+    <path class="a-b a-oo" d="M11.3 28.6H52.7A5 5 0 1 1 59.6 32 5 5 0 1 1 52.7 35.4H11.3A5 5 0 1 1 4.4 32 5 5 0 1 1 11.3 28.6z"/>
+    <path d="M11.3 28.6H52.7A5 5 0 1 1 59.6 32 5 5 0 1 1 52.7 35.4H11.3A5 5 0 1 1 4.4 32 5 5 0 1 1 11.3 28.6z" fill="url(#a-sheen)"/>
+    <path d="M11.3 28.6H52.7A5 5 0 1 1 59.6 32 5 5 0 1 1 52.7 35.4H11.3A5 5 0 1 1 4.4 32 5 5 0 1 1 11.3 28.6z" fill="url(#a-shade)"/>
+    <path class="a-gl" d="M11 32h42" filter="url(#a-glow)" opacity=".7"/>
+    <path class="a-gl" style="stroke-width:.9" d="M11 32h42"/>
+    <g id="fortitude-enhancer-b">
+      <rect class="a-m a-oo" x="15" y="26.2" width="5.6" height="11.6" rx="1.4"/>
+      <rect x="15" y="26.2" width="5.6" height="11.6" rx="1.4" fill="url(#a-sheen)"/>
+      <rect class="a-x" x="16.9" y="26.8" width="1.8" height="10.4"/>
+    </g>
+    <use href="#fortitude-enhancer-b" transform="matrix(-1 0 0 1 64 0)"/>
+    <path class="a-l" d="M11.8 29.8h2.4M50 29.8h2.4M3.3 25.6A3.6 3.6 0 0 1 7.6 24M54.5 25.6A3.6 3.6 0 0 1 58.8 24"/>
+  </g>
+  <path class="a-b a-oo" d="M32 20.4l10.2 5.9v11.4L32 43.6l-10.2-5.9V26.3z"/>
+  <path d="M32 20.4l10.2 5.9v11.4L32 43.6l-10.2-5.9V26.3z" fill="url(#a-sheen)"/>
+  <path d="M32 20.4l10.2 5.9v11.4L32 43.6l-10.2-5.9V26.3z" fill="url(#a-shade)"/>
+  <path class="a-p" d="M32 20.4v3.2M42.2 26.3l-2.8 1.6M42.2 37.7l-2.8-1.6M32 43.6v-3.2M21.8 37.7l2.8-1.6M21.8 26.3l2.8 1.6"/>
+  <circle class="a-s a-o" cx="32" cy="32" r="6.8"/>
+  <path class="a-g" d="M32 26l5 2v4c0 3.2-2.2 5.4-5 6.6-2.8-1.2-5-3.4-5-6.6v-4z" filter="url(#a-glow)" opacity=".8"/>
+  <path class="a-g a-o" style="stroke-width:.8" d="M32 26.8l4.2 1.7v3.4c0 2.7-1.8 4.6-4.2 5.6-2.4-1-4.2-2.9-4.2-5.6v-3.4z"/>
+  <path class="a-w" d="M32 28.6l2.4 1v2.2c0 1.6-1 2.8-2.4 3.4z"/>
+  <path class="a-l" d="M23 26.6l9-5.2"/>
+</svg>

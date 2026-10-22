@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect class="a-m a-oo" x="28.4" y="47" width="7.2" height="9" rx="1"/>
+  <path class="a-p" d="M32 47.4v8.2"/>
+  <path class="a-m a-oo" d="M17 60l2.6-5.4h24.8L47 60z"/>
+  <path d="M17 60l2.6-5.4h24.8L47 60z" fill="url(#a-sheen)"/>
+  <path class="a-x" d="M20.4 56.4h23.2l.8 1.6H19.6z"/>
+  <path class="a-b a-oo" fill-rule="evenodd" d="M32 5.6a23 23 0 1 0 0 46 23 23 0 1 0 0-46zM32 9.2a19.4 19.4 0 1 0 0 38.8 19.4 19.4 0 1 0 0-38.8z"/>
+  <path fill-rule="evenodd" fill="url(#a-sheen)" d="M32 5.6a23 23 0 1 0 0 46 23 23 0 1 0 0-46zM32 9.2a19.4 19.4 0 1 0 0 38.8 19.4 19.4 0 1 0 0-38.8z"/>
+  <path fill-rule="evenodd" fill="url(#a-shade)" d="M32 5.6a23 23 0 1 0 0 46 23 23 0 1 0 0-46zM32 9.2a19.4 19.4 0 1 0 0 38.8 19.4 19.4 0 1 0 0-38.8z"/>
+  <path class="a-p" d="M15.7 12.3l1.4 1.4M48.3 12.3l-1.4 1.4M15.7 44.9l1.4-1.4M48.3 44.9l-1.4-1.4M9 28.6h1.8M53.2 28.6H55"/>
+  <rect class="a-m a-oo" x="28.6" y="2.6" width="6.8" height="5.2" rx="1.6"/>
+  <g transform="rotate(-24 32 28.6)">
+    <path class="a-m a-oo" fill-rule="evenodd" d="M12.8 28.6a19.2 7.6 0 1 0 38.4 0 19.2 7.6 0 1 0-38.4 0zM15.6 28.6a16.4 5.2 0 1 0 32.8 0 16.4 5.2 0 1 0-32.8 0z"/>
+    <path fill-rule="evenodd" fill="url(#a-sheen)" d="M12.8 28.6a19.2 7.6 0 1 0 38.4 0 19.2 7.6 0 1 0-38.4 0zM15.6 28.6a16.4 5.2 0 1 0 32.8 0 16.4 5.2 0 1 0-32.8 0z"/>
+    <circle class="a-b a-o" cx="13.4" cy="28.6" r="2.2"/>
+    <circle class="a-b a-o" cx="50.6" cy="28.6" r="2.2"/>
+    <circle class="a-d" cx="13.4" cy="28.6" r=".8"/>
+    <circle class="a-d" cx="50.6" cy="28.6" r=".8"/>
+  </g>
+  <g transform="rotate(32 32 28.6)">
+    <path class="a-x a-oo" fill-rule="evenodd" d="M25.4 28.6a6.6 15.6 0 1 0 13.2 0 6.6 15.6 0 1 0-13.2 0zM27.6 28.6a4.4 13.4 0 1 0 8.8 0 4.4 13.4 0 1 0-8.8 0z"/>
+    <path fill-rule="evenodd" fill="url(#a-shade)" d="M25.4 28.6a6.6 15.6 0 1 0 13.2 0 6.6 15.6 0 1 0-13.2 0zM27.6 28.6a4.4 13.4 0 1 0 8.8 0 4.4 13.4 0 1 0-8.8 0z"/>
+    <circle class="a-m a-o" cx="32" cy="14.2" r="1.6"/>
+    <circle class="a-m a-o" cx="32" cy="43" r="1.6"/>
+  </g>
+  <circle class="a-g" cx="32" cy="28.6" r="6.4" filter="url(#a-glow)" opacity=".8"/>
+  <circle class="a-m a-oo" cx="32" cy="28.6" r="5"/>
+  <circle cx="32" cy="28.6" r="5" fill="url(#a-sheen)"/>
+  <circle class="a-g" cx="32" cy="28.6" r="2.8"/>
+  <circle class="a-w" cx="32" cy="28.6" r="1.2"/>
+  <path class="a-l" d="M13.6 21.4a19.6 19.6 0 0 1 9.8-11.2M29.8 3.8h4.4M20 55.8h9"/>
+</svg>

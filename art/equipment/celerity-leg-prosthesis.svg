@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <g id="celerity-leg-prosthesis-leg">
+    <path class="a-x a-oo" d="M19.6 39.2c-5 4.2-7 10.8-3.2 15.2 3.2 3.4 10.2 4.6 19.2 5 1.8.1 2.2-2.4.4-3-8.2-1.2-13.6-2.4-16.2-5-2.4-3-.8-7.8 4.8-11z"/>
+    <path d="M19.6 39.2c-5 4.2-7 10.8-3.2 15.2 3.2 3.4 10.2 4.6 19.2 5 1.8.1 2.2-2.4.4-3-8.2-1.2-13.6-2.4-16.2-5-2.4-3-.8-7.8 4.8-11z" fill="url(#a-shade)"/>
+    <path class="a-p" d="M14.6 47.6l3.6.6M15.6 53.2l3.4-1.6M23.2 57.6l1.2-2.8"/>
+    <path class="a-m a-o" d="M22.4 31l5.2.8-2.6 10.2-5.2-.8z"/>
+    <path class="a-b a-oo" d="M16.6 9l9 .6 2 17.4-6.6.6z"/>
+    <path d="M16.6 9l9 .6 2 17.4-6.6.6z" fill="url(#a-sheen)"/>
+    <path d="M16.6 9l9 .6 2 17.4-6.6.6z" fill="url(#a-shade)"/>
+    <path class="a-x" d="M17.9 14.4l8.3.6.4 3-7.9-.2z"/>
+    <path class="a-p" d="M19.4 20.4l6.8.4"/>
+    <circle class="a-m a-oo" cx="21" cy="7.6" r="4.8"/>
+    <circle cx="21" cy="7.6" r="4.8" fill="url(#a-sheen)"/>
+    <circle class="a-d" cx="21" cy="7.6" r="1.7"/>
+    <circle class="a-m a-oo" cx="24.8" cy="29" r="4.2"/>
+    <circle class="a-d" cx="24.8" cy="29" r="1.5"/>
+    <path class="a-l" d="M14.6 46.4c.4-2.8 1.8-5 3.8-6.8M18.2 10.4l2 13.4M19.2 31.8l1.8-2.6"/>
+  </g>
+  <use href="#celerity-leg-prosthesis-leg" transform="translate(12 0)"/>
+</svg>

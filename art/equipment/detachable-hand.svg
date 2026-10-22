@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <g id="detachable-hand-f" transform="translate(40.6 22.4)">
+    <rect class="a-b a-o" x="-1.7" y="-1.7" width="17.5" height="3.4" rx="1.7" transform="translate(13.5 8.6) rotate(83.7)"/>
+    <rect class="a-b a-o" x="-1.8" y="-1.8" width="16.2" height="3.6" rx="1.8" transform="translate(7.8 -2.6) rotate(62.9)"/>
+    <rect class="a-m a-o" x="-2" y="-2" width="12.2" height="4" rx="2" transform="rotate(-18.4)"/>
+    <circle class="a-m a-o" cx="7.8" cy="-2.6" r="2.1"/>
+    <circle class="a-m a-o" cx="13.5" cy="8.6" r="2.1"/>
+    <circle class="a-d" cx="13.5" cy="8.6" r=".8"/>
+    <path class="a-d a-o" d="M13.4 22.4h3.4l-.4 1.6h-2.6z"/>
+  </g>
+  <use href="#detachable-hand-f" transform="translate(-1.6 2.8)"/>
+  <use href="#detachable-hand-f" transform="translate(-3.2 5.6)"/>
+  <use href="#detachable-hand-f" transform="translate(-4.8 8.4)"/>
+  <path class="a-b a-oo" d="M17 21.4l19.6-1.2c3.8-.2 6.2 2 6.2 5.4l-.2 3.4c-.4 3.4-2.8 5-6 5l-19.6-.6z"/>
+  <path d="M17 21.4l19.6-1.2c3.8-.2 6.2 2 6.2 5.4l-.2 3.4c-.4 3.4-2.8 5-6 5l-19.6-.6z" fill="url(#a-sheen)"/>
+  <path d="M17 21.4l19.6-1.2c3.8-.2 6.2 2 6.2 5.4l-.2 3.4c-.4 3.4-2.8 5-6 5l-19.6-.6z" fill="url(#a-shade)"/>
+  <path class="a-p" d="M24 21v12.6M30.4 20.6v13.2"/>
+  <rect class="a-s a-o" x="24.8" y="23.2" width="4.6" height="2.8" rx="1.2"/>
+  <rect class="a-g" x="25.6" y="23.8" width="3" height="1.6" rx=".8" filter="url(#a-glow)"/>
+  <rect class="a-w" x="26.1" y="24.3" width="2" height=".6" rx=".3"/>
+  <path class="a-m a-o" d="M40.6 20.2a2.4 2.4 0 1 0 0 4.8a2.4 2.4 0 1 0 0-4.8zM39 23a2.4 2.4 0 1 0 0 4.8a2.4 2.4 0 1 0 0-4.8zM37.4 25.8a2.4 2.4 0 1 0 0 4.8a2.4 2.4 0 1 0 0-4.8zM35.8 28.6a2.4 2.4 0 1 0 0 4.8a2.4 2.4 0 1 0 0-4.8z"/>
+  <g transform="translate(22.4 32)">
+    <rect class="a-b a-o" x="-1.7" y="-1.7" width="13.6" height="3.4" rx="1.7" transform="translate(-3.6 9) rotate(100.2)"/>
+    <rect class="a-b a-o" x="-1.9" y="-1.9" width="13.5" height="3.8" rx="1.9" transform="rotate(111.8)"/>
+    <circle class="a-m a-o" cx="0" cy="0" r="2.4"/>
+    <circle class="a-m a-o" cx="-3.6" cy="9" r="2.1"/>
+    <path class="a-d a-o" d="M-7.2 19.6h3.4l-.2 1.6h-3z"/>
+  </g>
+  <rect class="a-m a-oo" x="7.6" y="20.8" width="10.4" height="13.6" rx="2.2"/>
+  <rect x="7.6" y="20.8" width="10.4" height="13.6" rx="2.2" fill="url(#a-sheen)"/>
+  <path class="a-p" d="M11.2 21.2v12.8M14.4 21.2v12.8"/>
+  <rect class="a-d a-o" x="5.8" y="22" width="2.8" height="11.2" rx="1"/>
+  <rect class="a-g" x="3.6" y="24.2" width="2.8" height="1.6" rx=".6" filter="url(#a-glow)"/>
+  <rect class="a-g" x="3.6" y="29.4" width="2.8" height="1.6" rx=".6" filter="url(#a-glow)"/>
+  <rect class="a-w" x="4" y="24.6" width="2.2" height=".8" rx=".4"/>
+  <rect class="a-w" x="4" y="29.8" width="2.2" height=".8" rx=".4"/>
+  <path class="a-l" d="M18.4 22.4l17.8-1.1M9 22.2h7.6"/>
+</svg>

@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <path class="a-d a-oo" d="M14 13h36c0 15-1.4 27-3.6 39H17.6C15.4 40 14 28 14 13z"/>
+  <g id="hardy-torso-prosthesis-v">
+    <path class="a-b a-oo" d="M30 8.6H15.4c-4 0-6.6 2.2-6.6 5.6 0 2.4 1.4 3.6 3.6 3.6H30z"/>
+    <path d="M30 8.6H15.4c-4 0-6.6 2.2-6.6 5.6 0 2.4 1.4 3.6 3.6 3.6H30z" fill="url(#a-sheen)"/>
+    <circle class="a-m a-oo" cx="12.6" cy="15" r="5"/>
+    <circle cx="12.6" cy="15" r="5" fill="url(#a-sheen)"/>
+    <circle class="a-d a-o" cx="12.6" cy="15" r="2.2"/>
+    <path class="a-b a-o" d="M30 20.4c-7.6 0-13.2 1.4-15 5.6l2.6 1c1.8-2.6 6-3.4 12.4-3.4zM30 27.6c-6.6 0-11.4 1.4-13.4 5.6l2.6 1c1.6-2.6 5-3.4 10.8-3.4zM30 34.8c-5.6 0-9.6 1.4-11.4 5.4l2.6 1c1.4-2.4 4.2-3.2 8.8-3.2zM30 42c-4.4 0-7.6 1-9.2 4.2l2.4 1c1.2-1.8 3.4-2.4 6.8-2.4z"/>
+    <path d="M30 20.4c-7.6 0-13.2 1.4-15 5.6l2.6 1c1.8-2.6 6-3.4 12.4-3.4zM30 27.6c-6.6 0-11.4 1.4-13.4 5.6l2.6 1c1.6-2.6 5-3.4 10.8-3.4zM30 34.8c-5.6 0-9.6 1.4-11.4 5.4l2.6 1c1.4-2.4 4.2-3.2 8.8-3.2zM30 42c-4.4 0-7.6 1-9.2 4.2l2.4 1c1.2-1.8 3.4-2.4 6.8-2.4z" fill="url(#a-shade)"/>
+    <path class="a-l" d="M16.2 9.8h12.8M18 25.4c2.4-1.8 6.4-2.6 11-2.8"/>
+  </g>
+  <use href="#hardy-torso-prosthesis-v" transform="matrix(-1 0 0 1 64 0)"/>
+  <rect class="a-m a-oo" x="24.6" y="4" width="14.8" height="6" rx="2"/>
+  <rect x="24.6" y="4" width="14.8" height="6" rx="2" fill="url(#a-sheen)"/>
+  <rect class="a-m a-oo" x="28.4" y="17" width="7.2" height="34" rx="2"/>
+  <path class="a-p" d="M28.8 41h6.4M28.8 45.4h6.4"/>
+  <rect class="a-m a-oo" x="17.6" y="50" width="28.8" height="7" rx="2.4"/>
+  <rect x="17.6" y="50" width="28.8" height="7" rx="2.4" fill="url(#a-sheen)"/>
+  <path class="a-d" d="M21 52.4h2.4v2.4H21zM40.6 52.4H43v2.4h-2.4z"/>
+  <path class="a-x a-o" d="M27 52h10v3H27z"/>
+  <circle class="a-b a-oo" cx="32" cy="29.6" r="8"/>
+  <circle cx="32" cy="29.6" r="8" fill="url(#a-sheen)"/>
+  <circle cx="32" cy="29.6" r="8" fill="url(#a-shade)"/>
+  <circle class="a-x a-o" cx="32" cy="29.6" r="6"/>
+  <circle class="a-d a-o" cx="32" cy="29.6" r="4.4"/>
+  <path class="a-m" d="M28 27.2h8v1.2h-8zM27.6 29h8.8v1.2h-8.8zM28 30.8h8V32h-8z"/>
+  <circle class="a-g" cx="32" cy="36.2" r="1" filter="url(#a-glow)"/>
+  <circle class="a-w" cx="32" cy="36.2" r=".45"/>
+  <path class="a-l" d="M26.4 25.2a7 7 0 0 1 4-2.8M26 5.2h12"/>
+</svg>
