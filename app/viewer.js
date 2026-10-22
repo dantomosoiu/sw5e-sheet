@@ -1996,6 +1996,34 @@ function applyEffects(key, editedRaw, complete) {
   const bestAc = formulas.reduce((a, b) => (!a || b.bonus > a.bonus ? b : a), null);
   res.tweaks = res.tweaks.map((t) => (t.mod.acFormula ? bestAc : withMod(t)));
   res.acAlternatives = formulas.filter((t) => t !== bestAc);
+  // Feats that change the casting ability (castingSwaps): what SW5E's numbers gain with it, from the final scores. "You
+  // can use Intelligence instead of the chosen ability": the better of the two, for the powers and points that use it.
+  for (const sw of castingSwaps(editedRaw)) {
+    const cast = complete && complete[`${sw.kind}Casting`];
+    if (!cast || typeof cast !== 'object') continue;
+    const e = { id: `castswap:${sw.name}`, kind: 'feature', origin: 'feat', name: sw.name, why: 'feat (casting ability)', target: 'self', notes: [], mods: [],
+      needsChoice: sw.chosen ? [] : [`one of ${sw.options.join(', ')} (the casting ability it replaces)`] };
+    effects.push(e);
+    if (!sw.chosen) continue;
+    const bestMod = (list) => Math.max(...list.map(modOf));
+    const keys = sw.kind === 'tech' ? { tech: ['Intelligence'] } : { light: ['Wisdom'], dark: ['Charisma'], universal: ['Wisdom', 'Charisma'] };
+    const gainOf = (list) => (list.includes(sw.from) ? bestMod(list.concat(sw.to)) - bestMod(list) : 0);
+    const word = sw.kind === 'tech' ? 'Tech' : 'Force';
+    const add = (path, g, what) => {
+      if (g <= 0) return;
+      const mod = { path, bonus: g, label: `${what}, ${ABBR[sw.to]} instead of ${ABBR[sw.from]} +${g}` };
+      e.mods.push(mod);
+      res.tweaks.push({ path, bonus: g, fields: null, effect: e, mod });
+    };
+    for (const [k, list] of Object.entries(keys)) {
+      const g = gainOf(list);
+      const pre = sw.kind === 'tech' ? 'techCasting.' : `forceCasting.${k}`;
+      const name = sw.kind === 'tech' ? 'Tech' : `${titleCase(k)} force`;
+      add(sw.kind === 'tech' ? `${pre}attackModifier` : `${pre}AttackModifier`, g, `${name} attack`);
+      add(sw.kind === 'tech' ? `${pre}saveDC` : `${pre}SaveDC`, g, `${name} save DC`);
+    }
+    if (sw.points) add(`${sw.kind}Casting.maxPoints`, gainOf(sw.kind === 'tech' ? ['Intelligence'] : ['Wisdom', 'Charisma']), `${word} points`);
+  }
   // Weapon proficiencies from class lists and features: each carried weapon they describe.
   for (const e of effects) {
     for (const desc of arr(e.weapons)) {
@@ -4316,13 +4344,21 @@ function ownCasting(m, kind, casters = classCasting(m)) {
   const points = engineKnows
     ? num(cast.maxPoints) + own.filter(blindSource).reduce((t, c) => t + c.points, 0) + Math.max(0, own.some((c) => !blindSource(c)) ? mod(ability) - Math.max(...usual.map(mod)) : 0)
     : mine.reduce((t, c) => t + c.points, 0) + mod(ability);
-  // Numbers for a power, by its alignment and the abilities the source allows.
+  // Numbers for a power, by its alignment and the abilities the source allows. Where SW5E computes the kind's casting
+  // too, what tweaks and effects add to its numbers counts here as well (a focus generator's "+1 bonus to the force
+  // attack rolls"): SW5E's number less its own 8 + proficiency + ability.
   const numbers = (p) => {
     const ab = Object.assign({}, ...own.map((c) => sourceAbilities(c) || {}));
     const k = kind === 'tech' ? 'tech' : /light/i.test(p.forceAlignment) ? 'light' : /dark/i.test(p.forceAlignment) ? 'dark' : 'universal';
     const list = ab[k] || (kind === 'tech' ? ab.tech || ab.points : null) || pwAbilities(p);
     const a = best(list);
-    return { dc: 8 + pb + mod(a), attack: pb + mod(a), ability: a };
+    const extra = { dc: 0, attack: 0 };
+    if (engineKnows) {
+      const e = mod(engCastAbility(m, kind, k));
+      extra.dc = num(cast[kind === 'tech' ? 'saveDC' : `${k}SaveDC`]) - (8 + pb + e);
+      extra.attack = num(cast[kind === 'tech' ? 'attackModifier' : `${k}AttackModifier`]) - (pb + e);
+    }
+    return { dc: 8 + pb + mod(a) + extra.dc, attack: pb + mod(a) + extra.attack, ability: a };
   };
   return { points, abilities: pointAbilities, ability, numbers, sources: own.map((c) => c.from), partial: !!engineKnows, ...numbers({ forceAlignment: 'Universal', powerType: kind === 'tech' ? 'Tech' : 'Force' }) };
 }
@@ -4486,14 +4522,56 @@ function powerNumbers(m, kind, p, x = {}) {
   const cast = kind === 'force' ? m.c.forceCasting : m.c.techCasting;
   if (kind === 'force') {
     const k = /light/i.test(p.forceAlignment) ? 'light' : /dark/i.test(p.forceAlignment) ? 'dark' : 'universal';
-    // SW5E's numbers: Wisdom for light side powers, Charisma for dark side, the better of the two for universal ones.
-    const engAbility = k === 'light' ? 'Wisdom' : k === 'dark' ? 'Charisma' : mod('Charisma') > mod('Wisdom') ? 'Charisma' : 'Wisdom';
-    if (cast && typeof cast === 'object') return { dc: num(cast[k + 'SaveDC']), attack: num(cast[k + 'AttackModifier']), spec: `force|${k}`, ability: engAbility };
+    if (cast && typeof cast === 'object') return { dc: num(cast[k + 'SaveDC']), attack: num(cast[k + 'AttackModifier']), spec: `force|${k}`, ability: engCastAbility(m, kind, k) };
     const best = pwAbilities(p).reduce((b, a) => (mod(a) > mod(b) ? a : b));
     return { dc: 8 + pb + mod(best), attack: pb + mod(best), spec: null, ability: best };
   }
-  if (cast && typeof cast === 'object') return { dc: num(cast.saveDC), attack: num(cast.attackModifier), spec: 'tech', ability: 'Intelligence' };
+  if (cast && typeof cast === 'object') return { dc: num(cast.saveDC), attack: num(cast.attackModifier), spec: 'tech', ability: engCastAbility(m, kind, 'tech') };
   return { dc: 8 + pb + mod('Intelligence'), attack: pb + mod('Intelligence'), spec: null, ability: 'Intelligence' };
+}
+/**
+ * The ability behind SW5E's casting numbers of a kind ('light', 'dark', 'universal', 'tech'): Wisdom for light side
+ * powers, Charisma for dark side, the better of the two for universal ones, Intelligence for tech; a feat's swap
+ * (castingSwaps) adds its ability where it replaces one. The best of them, by the character's modifiers.
+ */
+function engCastAbility(m, kind, k) {
+  const sc = m.c.abilityScores || {};
+  const mod = (a) => num((sc[a] || {}).modifier);
+  let list = k === 'light' ? ['Wisdom'] : k === 'dark' ? ['Charisma'] : k === 'universal' ? ['Wisdom', 'Charisma'] : ['Intelligence'];
+  for (const s of castingSwaps(m.raw)) if (s.kind === kind && s.chosen && list.includes(s.from)) list = list.concat(s.to);
+  return list.reduce((b, a) => (mod(a) > mod(b) ? a : b));
+}
+/**
+ * Feats that change the casting ability: "Choose one from Wisdom or Charisma. … You can use Intelligence instead of the
+ * chosen ability as your forcecasting ability. You can add Intelligence instead of the chosen ability when determining
+ * your maximum force points" (Cunning Forcecaster); "You can use the chosen ability instead of Intelligence as your
+ * techcasting ability…" (Spiritual Techcaster). The chosen ability: the feat's notes, else its ability increase when
+ * that is one of the choices. [{ name, kind, from, to, points, chosen, options }]; chosen false: not chosen yet.
+ */
+function castingSwaps(raw) {
+  if (!state.rules) return [];
+  const A = '(Strength|Dexterity|Constitution|Intelligence|Wisdom|Charisma|the chosen ability)';
+  const names = [raw.background && raw.background.feat && raw.background.feat.name]
+    .concat(arr(raw.classes).flatMap((k) => arr(k.abilityScoreImprovements).filter((a) => a && a.type === 'Feat').map((a) => a.name)), arr(raw.customFeats).map((f) => (typeof f === 'string' ? f : f && f.name)))
+    .filter(Boolean);
+  const out = [];
+  for (const name of [...new Set(names)]) {
+    const t = String((rulesModule('feats').find((f) => f.name === name) || {}).text || '').replace(/\s+/g, ' ');
+    const x = new RegExp(`You can use ${A} instead of ${A} as your (force|tech)casting ability`, 'i').exec(t);
+    if (!x) continue;
+    const choice = /Choose one from ((?:\w+)(?:,? (?:or )?\w+)*)/i.exec(t);
+    const options = choice ? choice[1].split(/,? (?:or )?/).filter((a) => ABILITIES.includes(a)) : [];
+    const note = featureNoteOf(raw, name);
+    const inc = typeof bdFeatIncreases === 'function' ? bdFeatIncreases(raw).find((y) => y.name === name) : null;
+    const chosen = options.find((a) => new RegExp(`\\b(?:${a}|${ABBR[a]})\\b`, 'i').test(note)) || (inc ? arr(inc.chosen).find((a) => options.includes(a)) : null) || null;
+    const pick = (s) => (/chosen/i.test(s) ? chosen : titleCase(s));
+    const kind = x[3].toLowerCase();
+    out.push({
+      name, kind, from: pick(x[2]), to: pick(x[1]), options, chosen: !!chosen,
+      points: new RegExp(`You can add ${A} instead of ${A} when determining your maximum ${kind} points`, 'i').test(t),
+    });
+  }
+  return out;
 }
 /** A power's casting ability modifier ("temporary hit points equal to your forcecasting ability modifier"). */
 const powerCastMod = (m, ability) => num((((m.c.abilityScores || {})[ability]) || {}).modifier);
@@ -4749,7 +4827,10 @@ async function ashlaBoost(level) {
 function renderCasting(m, kind) {
   const own = ownCasting(m, kind);
   const cast = kind === 'force' ? m.c.forceCasting : m.c.techCasting;
-  const has = cast && typeof cast === 'object' && !(own && !own.partial);
+  // Every caster of the kind works out its own numbers (Archaeologist: Intelligence): SW5E's light, dark and universal
+  // numbers belong to none of its powers, so the card shows the sheet's.
+  const allOwn = !!own && own.partial && classCasting(m).filter((c) => c.type === kind).every((c) => own.sources.includes(c.from));
+  const has = cast && typeof cast === 'object' && !(own && !own.partial) && !allOwn;
   const max = castMaxLevel(m, kind);
   const multi = state.rules ? pwMulticlassMax(m.raw, state.rules.modules || {})[kind] != null : false;
   const statsHtml = [
@@ -4759,7 +4840,11 @@ function renderCasting(m, kind) {
       ? (has ? ['light', 'dark', 'universal'].map((k) => stat(k === 'universal' ? 'Universal' : `${titleCase(k)} side`,
         `DC ${bump(m, `forceCasting.${k}SaveDC`, esc(cast[k + 'SaveDC']))}`, `attack ${rollable(`force|${k}`, bump(m, `forceCasting.${k}AttackModifier`, signed(cast[k + 'AttackModifier'])), `Roll a ${k} force attack`)}`)) : [])
       : (has ? [stat('Save DC', bump(m, 'techCasting.saveDC', esc(cast.saveDC))), stat('Attack', rollable('tech', bump(m, 'techCasting.attackModifier', signed(cast.attackModifier)), 'Roll a tech attack'))] : [])),
-    ...(own && !own.partial ? [stat('Save DC', esc(own.dc), ABBR[own.ability]), stat('Attack', rollable(`pattack|${kind === 'force' ? 'Force' : 'Tech'}|${own.attack}`, signed(own.attack), `Roll a ${kind} attack`), ABBR[own.ability])] : []),
+    ...(own && allOwn && kind === 'force' ? ['Light', 'Dark', 'Universal'].map((al) => {
+      const n = own.numbers({ forceAlignment: al });
+      return stat(al === 'Universal' ? al : `${al} side`, `DC ${esc(n.dc)}`, `attack ${rollable(`pattack|${al} force|${n.attack}`, signed(n.attack), `Roll a ${al.toLowerCase()} force attack`)} (${ABBR[n.ability]})`);
+    }) : []),
+    ...(own && (!own.partial || (allOwn && kind === 'tech')) ? [stat('Save DC', esc(own.dc), ABBR[own.ability]), stat('Attack', rollable(`pattack|${kind === 'force' ? 'Force' : 'Tech'}|${own.attack}`, signed(own.attack), `Roll a ${kind} attack`), ABBR[own.ability])] : []),
   ].filter(Boolean);
   const powers = [];
   const srcOf = (x) => String(x.source).replace(/\s*\(.*$/, '');
