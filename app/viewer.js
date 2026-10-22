@@ -2284,6 +2284,7 @@ function applyEffects(key, editedRaw, complete) {
   }
   // Martial Arts on monk weapons ("vibroweapons with which you are proficient that lack the dexterity, heavy, special,
   // and two-handed properties"): its die in place of a smaller one, and Dexterity where it's better (finesse).
+  const abilityFor = {}; // weapon index → [{ a: ability it can use, e: the effect, finesse }]
   for (const x of martial.filter((y) => y.ma.weapons)) {
     const profs = arr(complete && complete.proficiencies).filter((p) => p && /weapon|other/.test(p.type || '')).map((p) => p.name)
       .concat(effects.flatMap((e) => arr(e.weapons)));
@@ -2293,15 +2294,41 @@ function applyEffects(key, editedRaw, complete) {
       const proficient = profs.some((d) => clsWeaponMatches(d, ref)) || res.weaponTweaks.some((t) => t.index === i && t.fields && t.fields.proficiency);
       if (!proficient) return;
       if (num(ref.damageNumberOfDice) <= 1 && x.size > num(ref.damageDieType) && !res.weaponTweaks.some((t) => t.index === i && t.path === 'damageDice')) {
-        res.weaponTweaks.push({ index: i, path: 'damageDice', bonus: 0, fields: { dieSize: x.size }, effect: x.e, mod: { path: 'weapon.damageDice', label: `${x.name}: d${x.size} in place of d${num(ref.damageDieType)}` } });
+        res.weaponTweaks.push({ index: i, path: 'damageDice', bonus: 0, fields: { dieSize: x.size }, effect: x.e, mod: { path: 'weapon.damageDice', label: `${x.name} die (in place of d${num(ref.damageDieType)})` } });
       }
-      const w = arr(complete && complete.weapons).find((y) => y.index === i);
-      const gain = modOf('Dexterity') - modOf('Strength');
-      if (x.ma.finesse && w && w.ability === 'Strength' && gain > 0) {
-        const label = `Finesse (${x.name}): DEX ${signed(modOf('Dexterity'))} instead of STR ${signed(modOf('Strength'))}`;
-        for (const path of ['toHit', 'damage']) res.weaponTweaks.push({ index: i, path, bonus: gain, fields: null, effect: x.e, mod: { path: `weapon.${path}`, label, finesse: true } });
-      }
+      if (x.ma.finesse) (abilityFor[i] = abilityFor[i] || []).push({ a: 'Dexterity', e: x.e, finesse: true });
     });
+  }
+  // Attacks that can use another ability (attackGrantsOf): "Weapons that lack the two-handed or special properties are
+  // considered to have the finesse property for you" (Blinding Agility), "You can use your choice of Wisdom or Charisma
+  // instead of Strength or Dexterity for the attack and damage rolls of your unarmed strikes and monk weapons" (Vow of
+  // Spirit), "… for the attack and damage rolls" of a bonded weapon named in the notes (Forceblade Bond).
+  const grants = attackGrantsOf(editedRaw).map((g) => {
+    const e = { id: g.id, kind: 'feature', name: g.name, why: g.why, target: 'self', mods: [], notes: [] };
+    effects.push(e);
+    return { ...g, e };
+  });
+  const monkDesc = martial.map((x) => x.ma.weapons && x.ma.weapons.desc).filter(Boolean);
+  arr(editedRaw.equipment).forEach((it, i) => {
+    const ref = it.category === 'Equipment' && catalogIndex && catalogIndex.get(it.name);
+    if (!ref || ref.equipmentCategory !== 'Weapon') return;
+    const ranged = /blaster/i.test(ref.weaponClassification || '') || arr(ref.properties).some((p) => /\(range /i.test(p) && !/^thrown/i.test(p));
+    for (const g of grants) {
+      const t = g.target;
+      const fits = (t.lacking && clsWeaponMatches(`weapons that lack the ${t.lacking} properties`, ref)) || (t.melee && !ranged)
+        || (t.monk && monkDesc.some((d) => clsWeaponMatches(d, ref))) || arr(t.names).some((n) => invSameName(n, it.name) || invSameName(n, it.label || ''));
+      if (fits) for (const a of g.abilities) (abilityFor[i] = abilityFor[i] || []).push({ a, e: g.e, finesse: g.finesse });
+    }
+  });
+  // Each weapon with the best of them, where better than the ability SW5E uses: the difference on attack and damage.
+  for (const [i, list] of Object.entries(abilityFor)) {
+    const w = arr(complete && complete.weapons).find((y) => y.index === Number(i));
+    if (!w || !w.ability) continue;
+    const best = list.reduce((b, x) => (modOf(x.a) > modOf(b.a) ? x : b), { a: w.ability });
+    const gain = modOf(best.a) - modOf(w.ability);
+    if (!best.e || gain <= 0) continue;
+    const label = `${best.finesse ? 'Finesse: ' : ''}${ABBR[best.a]} ${signed(modOf(best.a))} instead of ${ABBR[w.ability]} ${signed(modOf(w.ability))}`;
+    for (const path of ['toHit', 'damage']) res.weaponTweaks.push({ index: Number(i), path, bonus: gain, fields: null, effect: best.e, mod: { path: `weapon.${path}`, label, finesse: !!best.finesse, ability: best.a } });
   }
   // Tool proficiencies from features (with "choose" picks from notes).
   res.tools = effects.flatMap((e) => arr(e.tools).map((t) => ({ ...t, effect: e })));
@@ -2327,15 +2354,19 @@ function applyEffects(key, editedRaw, complete) {
     const e = natural.find((x) => num(x.unarmedDie) === natDie);
     res.tweaks.push({ path: 'unarmed.damageDice', bonus: 0, fields: { dieSize: natDie }, effect: e, mod: { path: 'unarmed.damageDice', label: `Unarmed damage die (${tweakDie ? `d${tweakDie}` : '1'} → d${natDie})` } });
   }
-  const fin = natural.find((x) => x.unarmedFinesse);
-  if (fin && unarmed && unarmed.ability !== 'Dexterity') {
+  // The unarmed strike's ability: Dexterity with finesse (a species' natural weapons, Martial Arts, Ideal of the
+  // Contender), the abilities features allow (Vow of Spirit's Wisdom or Charisma), the best of them over SW5E's Strength.
+  const unarmedCan = effects.filter((x) => x.unarmedFinesse).map((e) => ({ a: 'Dexterity', e, finesse: true }))
+    .concat(grants.filter((g) => g.target.unarmed || g.target.melee).flatMap((g) => g.abilities.map((a) => ({ a, e: g.e, finesse: g.finesse }))));
+  if (unarmedCan.length && unarmed) {
     // From the final scores (a belt that makes Strength 21 ends the gain), not the last calculation.
     const mod = modOf;
     const ab = unarmed.ability || 'Strength';
+    const best = unarmedCan.reduce((b, x) => (mod(x.a) > mod(b.a) ? x : b), { a: ab });
     // SW5E's engine adds no negative modifier to unarmed damage (Strength −1: d4 + 0), but does to the attack.
-    const gain = { 'unarmed.toHit': mod('Dexterity') - mod(ab), 'unarmed.damage': mod('Dexterity') - Math.max(0, mod(ab)) };
-    const label = `Finesse: DEX ${signed(mod('Dexterity'))} instead of ${ab.slice(0, 3).toUpperCase()} ${signed(mod(ab))}`;
-    for (const path of Object.keys(gain)) if (gain[path] > 0) res.tweaks.push({ path, bonus: gain[path], fields: null, effect: fin, mod: { path, label, finesse: true } });
+    const gain = { 'unarmed.toHit': mod(best.a) - mod(ab), 'unarmed.damage': mod(best.a) - Math.max(0, mod(ab)) };
+    const label = `${best.finesse ? 'Finesse: ' : ''}${ABBR[best.a]} ${signed(mod(best.a))} instead of ${ab.slice(0, 3).toUpperCase()} ${signed(mod(ab))}`;
+    if (best.e) for (const path of Object.keys(gain)) if (gain[path] > 0) res.tweaks.push({ path, bonus: gain[path], fields: null, effect: best.e, mod: { path, label, finesse: !!best.finesse, ability: best.a } });
   }
   // "Add half your proficiency bonus to any ability check that doesn't already include it": skills
   // without proficiency and initiative (plain ability checks get it in the roller).
@@ -2443,9 +2474,17 @@ function engineCheckOf(raw, sw5eComplete, ctx) {
  * reached: [{ id, name, k (the class), ma }]. Cached for the same classes.
  */
 function martialArtsOf(editedRaw) {
-  if (!state.rules || typeof clsMartialArts !== 'function') return [];
-  const sig = canonical(arr(editedRaw.classes).map((k) => [k.name, k.levels, k.archetype && k.archetype.name, k.options || null]));
-  if (martialArtsOf.cache && martialArtsOf.cache.rules === state.rules && martialArtsOf.cache.sig === sig) return martialArtsOf.cache.out;
+  if (typeof clsMartialArts !== 'function') return [];
+  return featureTextsOf(editedRaw).filter((f) => f.k).map((f) => ({ id: `martial:${f.k.name}:${f.name}`, name: f.name, k: f.k, ma: clsMartialArts(f.text) })).filter((x) => x.ma);
+}
+/**
+ * The texts of the character's class and archetype features (the levels reached), picked class options and feats:
+ * [{ name, text, k (the class; none for a feat), note }]. Cached for the same classes, feats and notes.
+ */
+function featureTextsOf(editedRaw) {
+  if (!state.rules) return [];
+  const sig = canonical([arr(editedRaw.classes).map((k) => [k.name, k.levels, k.archetype && k.archetype.name, k.options || null]), featNamesOf(editedRaw), editedRaw.featureNotes || null]);
+  if (featureTextsOf.cache && featureTextsOf.cache.rules === state.rules && featureTextsOf.cache.sig === sig) return featureTextsOf.cache.out;
   const out = [];
   const parsed = classRules();
   for (const k of arr(editedRaw.classes)) {
@@ -2458,14 +2497,55 @@ function martialArtsOf(editedRaw) {
     const cls = parsed && parsed.classes[k.name];
     for (const [key, picks] of Object.entries(k.options || {})) {
       const list = cls && cls.lists.find((l) => l.key === key);
-      for (const p of arr(picks)) { const o = list && list.options.find((x) => x.name === p.name); if (o) items.push({ name: o.name, text: o.text }); }
+      for (const p of arr(picks)) { const o = list && list.options.find((x) => x.name === p.name); if (o) items.push({ name: o.name, text: o.text, note: p.note || '' }); }
     }
-    for (const f of items) {
-      const ma = clsMartialArts(f.text);
-      if (ma) out.push({ id: `martial:${k.name}:${f.name}`, name: f.name, k, ma });
-    }
+    for (const f of items) out.push({ name: f.name, text: f.text, k, note: f.note || featureNoteOf(editedRaw, f.name) });
   }
-  martialArtsOf.cache = { rules: state.rules, sig, out };
+  for (const name of featNamesOf(editedRaw)) {
+    const ref = rulesModule('feats').find((f) => f.name === name);
+    if (ref) out.push({ name, text: ref.text || '', k: null, note: featureNoteOf(editedRaw, name) });
+  }
+  featureTextsOf.cache = { rules: state.rules, sig, out };
+  return out;
+}
+/**
+ * Attacks that can use another ability, for good (not a stance's or a state's "for the duration"):
+ * - "Weapons that lack the two-handed or special properties are considered to have the finesse property for you"
+ *   (Blinding Agility): Dexterity for them;
+ * - "You can use your choice of Wisdom or Charisma instead of Strength or Dexterity for the attack and damage rolls of your
+ *   unarmed strikes and monk weapons" (Vow of Spirit; "of your melee weapon attacks"); without the attacks named, the
+ *   weapons the feature's notes name ("You can use Wisdom or Charisma instead of Strength or Dexterity for the attack and
+ *   damage rolls", Forceblade Bond's bonded weapons). "Your choice": the one the notes name, else either.
+ * [{ id, name, why, abilities, finesse, target: { lacking, unarmed, melee, monk, names } }]
+ */
+function attackGrantsOf(editedRaw) {
+  const out = [];
+  const A = '(?:Strength|Dexterity|Constitution|Intelligence|Wisdom|Charisma)';
+  for (const f of featureTextsOf(editedRaw)) {
+    const why = f.k ? `${f.k.name} feature` : 'feat';
+    const sentences = String(f.text).replace(/\s+/g, ' ').split(/(?<=\.)\s+(?=[-A-Z_*#])/);
+    sentences.forEach((s0, i) => {
+      const s = s0.replace(/^[-#*_ ]+/, '');
+      // A state's ("for the duration", "until the end of your next turn", "while in this stance"): not for good.
+      const lead = sentences.slice(Math.max(0, i - 3), i + 1).join(' ');
+      if (/\bfor the duration\b|until the (?:start|end) of your next turn|while in this stance|for (?:1|one) minute/i.test(lead)) return;
+      let x;
+      if ((x = /\b(?:Weapons|weapons) that lack the ([\w ,-]+?) properties are considered to have the finesse property for you/.exec(s))) {
+        out.push({ id: `grant:${f.name}`, name: f.name, why, abilities: ['Dexterity'], finesse: true, target: { lacking: x[1] } });
+        return;
+      }
+      x = new RegExp(`\\bYou can use (?:your choice of )?(${A}(?: or ${A})?)(?: modifier)? instead of (?:Strength|Dexterity)(?: or (?:Strength|Dexterity))? for the attack and damage rolls(?: (?:of|made with) ([^.]+?))?\\.`).exec(s);
+      if (!x) return;
+      const what = String(x[2] || '');
+      if (/\bagainst\b|\bas a part of\b/i.test(what)) return; // against a target, or a power's attack: an option on the roll
+      let abilities = x[1].split(/ or /);
+      const chosen = abilities.filter((a) => new RegExp(`\\b(?:${a}|${ABBR[a]})\\b`, 'i').test(f.note || ''));
+      if (chosen.length === 1) abilities = chosen;
+      const target = what ? { unarmed: /unarmed strikes?/i.test(what), monk: /monk weapons/i.test(what), melee: /melee weapon attacks/i.test(what) }
+        : { names: String(f.note || '').split(/\s*[,;]\s*|\s+and\s+/).map((n) => n.trim()).filter(Boolean) };
+      out.push({ id: `grant:${f.name}`, name: f.name, why, abilities, finesse: false, target });
+    });
+  }
   return out;
 }
 /**
@@ -4673,7 +4753,8 @@ function renderAttacks(m) {
           <span class="faint">${sh.cells} ${esc(sh.cellName)}${sh.cells === 1 ? '' : 's'}</span></div>` : ''}</div></div></td>
       <td class="num"><b>${rollable(`attack|${wi}`, bump(m, `weapons.${wi}.attackBonus`, signed(w.attackBonus)), `Roll an attack with the ${w.name}`)}</b></td>
       <td>${rollable(`damage|${wi}`, bump(m, `weapons.${wi}.damageBonus`, esc(weaponDamageText(m, w))), `Roll ${w.name} damage`)}</td>
-      <td class="muted col-ability">${esc((w.name === 'Unarmed Strike' ? m.fx.tweaks.some((t) => t.mod && t.mod.finesse) : m.fx.weaponTweaks.some((t) => t.index === w.index && t.mod && t.mod.finesse)) ? 'Dexterity (finesse)' : w.ability || '')}</td>
+      <td class="muted col-ability">${esc(((t) => (t ? `${t.mod.ability || 'Dexterity'} (${t.mod.finesse ? 'finesse' : t.effect.name})` : w.ability || ''))(
+        (w.name === 'Unarmed Strike' ? m.fx.tweaks.filter((t) => /^unarmed\./.test(t.path)) : m.fx.weaponTweaks.filter((t) => t.index === w.index)).find((t) => t.mod && (t.mod.finesse || t.mod.ability))))}</td>
       <td class="muted col-type">${esc(titleCase(w.weaponClassification || ''))}</td>
       <td class="col-props">${propsHtml(w.properties) || '<span class="faint">—</span>'}</td></tr>
       ${arr(w.modes).length ? `<tr class="dim"><td colspan="6">Modes: ${arr(w.modes).map((md_) => esc(md_.name || JSON.stringify(md_))).join(' · ')}</td></tr>` : ''}`;

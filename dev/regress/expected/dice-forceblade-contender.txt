@@ -1,0 +1,860 @@
+# Rakatan Test (local)
+
+## Sent to the rules engine
+The sheet's engine computes the numbers. OUT OF DATE: SW5E's recorded calculation is for an older version of this character; record the case again (dev/regress-record.js) for dev/engine-check.js.
+tweaks.abilityScores.Charisma.score.bonus = 1
+tweaks.abilityScores.Charisma.skills.Deception.bonus = 0
+tweaks.abilityScores.Charisma.skills.Deception.proficiency = "Proficient"
+tweaks.abilityScores.Charisma.skills.Intimidation.bonus = 2
+tweaks.abilityScores.Charisma.skills.Performance.bonus = 2
+tweaks.abilityScores.Charisma.skills.Persuasion.bonus = 2
+tweaks.abilityScores.Dexterity.skills.Acrobatics.bonus = 2
+tweaks.abilityScores.Dexterity.skills.Sleight of Hand.bonus = 2
+tweaks.abilityScores.Dexterity.skills.Stealth.bonus = 0
+tweaks.abilityScores.Dexterity.skills.Stealth.proficiency = "Proficient"
+tweaks.abilityScores.Intelligence.skills.Investigation.bonus = 2
+tweaks.abilityScores.Intelligence.skills.Lore.bonus = 2
+tweaks.abilityScores.Intelligence.skills.Nature.bonus = 2
+tweaks.abilityScores.Intelligence.skills.Piloting.bonus = 2
+tweaks.abilityScores.Intelligence.skills.Technology.bonus = 2
+tweaks.abilityScores.Strength.skills.Athletics.bonus = 2
+tweaks.abilityScores.Wisdom.skills.Animal Handling.bonus = 2
+tweaks.abilityScores.Wisdom.skills.Insight.bonus = 2
+tweaks.abilityScores.Wisdom.skills.Medicine.bonus = 2
+tweaks.abilityScores.Wisdom.skills.Perception.bonus = 2
+tweaks.abilityScores.Wisdom.skills.Survival.bonus = 2
+tweaks.initiative.bonus = 2
+tweaks.unarmed.damage.bonus = 3
+tweaks.unarmed.damageDice.bonus = 0
+tweaks.unarmed.damageDice.dieSize = 4
+tweaks.unarmed.toHit.bonus = 3
+equipment[0 Vibrorapier].tweaks.damage.bonus = 2
+equipment[0 Vibrorapier].tweaks.toHit.bonus = 2
+equipment[0 Vibrorapier].tweaks.toHit.proficiency = "proficient"
+equipped = [Vibrorapier]
+
+## Numbers (the rules engine, with the sheet's edits)
+currentLevel = 9
+classText = "Sentinel (Path of the Forceblade) 9"
+proficiencyBonus = 4
+initiative = 5
+armorClass = 13
+armorList = []
+passivePerception = 17
+vision = "normal"
+speed.base = "30 ft"
+speed.day = "24 miles"
+speed.hour = "3 miles"
+speed.special = ""
+hitPoints.hitDice[0].maximum = 9
+hitPoints.hitDice[0].size = "d8"
+hitPoints.maximum = 74
+abilityScores.Charisma.modifier = -1
+abilityScores.Charisma.savingThrow.modifier = 3
+abilityScores.Charisma.savingThrow.proficiency = "proficient"
+abilityScores.Charisma.skills[Deception].modifier = 3
+abilityScores.Charisma.skills[Deception].proficiency = "proficient"
+abilityScores.Charisma.skills[Intimidation].modifier = 1
+abilityScores.Charisma.skills[Intimidation].proficiency = "none"
+abilityScores.Charisma.skills[Performance].modifier = 1
+abilityScores.Charisma.skills[Performance].proficiency = "none"
+abilityScores.Charisma.skills[Persuasion].modifier = 1
+abilityScores.Charisma.skills[Persuasion].proficiency = "none"
+abilityScores.Charisma.value = 9
+abilityScores.Constitution.modifier = 2
+abilityScores.Constitution.savingThrow.modifier = 2
+abilityScores.Constitution.savingThrow.proficiency = "none"
+abilityScores.Constitution.skills = []
+abilityScores.Constitution.value = 14
+abilityScores.Dexterity.modifier = 3
+abilityScores.Dexterity.savingThrow.modifier = 7
+abilityScores.Dexterity.savingThrow.proficiency = "proficient"
+abilityScores.Dexterity.skills[Acrobatics].modifier = 5
+abilityScores.Dexterity.skills[Acrobatics].proficiency = "none"
+abilityScores.Dexterity.skills[Sleight of Hand].modifier = 5
+abilityScores.Dexterity.skills[Sleight of Hand].proficiency = "none"
+abilityScores.Dexterity.skills[Stealth].modifier = 7
+abilityScores.Dexterity.skills[Stealth].proficiency = "proficient"
+abilityScores.Dexterity.value = 16
+abilityScores.Intelligence.modifier = 2
+abilityScores.Intelligence.savingThrow.modifier = 2
+abilityScores.Intelligence.savingThrow.proficiency = "none"
+abilityScores.Intelligence.skills[Investigation].modifier = 4
+abilityScores.Intelligence.skills[Investigation].proficiency = "none"
+abilityScores.Intelligence.skills[Lore].modifier = 4
+abilityScores.Intelligence.skills[Lore].proficiency = "none"
+abilityScores.Intelligence.skills[Nature].modifier = 4
+abilityScores.Intelligence.skills[Nature].proficiency = "none"
+abilityScores.Intelligence.skills[Piloting].modifier = 4
+abilityScores.Intelligence.skills[Piloting].proficiency = "none"
+abilityScores.Intelligence.skills[Technology].modifier = 4
+abilityScores.Intelligence.skills[Technology].proficiency = "none"
+abilityScores.Intelligence.value = 14
+abilityScores.Strength.modifier = 0
+abilityScores.Strength.savingThrow.modifier = 0
+abilityScores.Strength.savingThrow.proficiency = "none"
+abilityScores.Strength.skills[Athletics].modifier = 2
+abilityScores.Strength.skills[Athletics].proficiency = "none"
+abilityScores.Strength.value = 10
+abilityScores.Wisdom.modifier = 5
+abilityScores.Wisdom.savingThrow.modifier = 5
+abilityScores.Wisdom.savingThrow.proficiency = "none"
+abilityScores.Wisdom.skills[Animal Handling].modifier = 7
+abilityScores.Wisdom.skills[Animal Handling].proficiency = "none"
+abilityScores.Wisdom.skills[Insight].modifier = 7
+abilityScores.Wisdom.skills[Insight].proficiency = "none"
+abilityScores.Wisdom.skills[Medicine].modifier = 7
+abilityScores.Wisdom.skills[Medicine].proficiency = "none"
+abilityScores.Wisdom.skills[Perception].modifier = 7
+abilityScores.Wisdom.skills[Perception].proficiency = "none"
+abilityScores.Wisdom.skills[Survival].modifier = 7
+abilityScores.Wisdom.skills[Survival].proficiency = "none"
+abilityScores.Wisdom.value = 20
+weapons[Vibrorapier].ability = "Dexterity"
+weapons[Vibrorapier].attackBonus = 9
+weapons[Vibrorapier].damageBonus = 5
+weapons[Vibrorapier].damageDieModifier = 0
+weapons[Vibrorapier].damageDieType = 8
+weapons[Vibrorapier].damageNumberOfDice = 1
+weapons[Vibrorapier].damageType = "Kinetic"
+weapons[Vibrorapier].equipped = true
+weapons[Vibrorapier].index = 0
+weapons[Vibrorapier].isCustom = false
+weapons[Vibrorapier].properties = ["Finesse"]
+weapons[Vibrorapier].quantity = 1
+weapons[Vibrorapier].tweaks.damage.bonus = 2
+weapons[Vibrorapier].tweaks.toHit.bonus = 2
+weapons[Vibrorapier].tweaks.toHit.proficiency = "proficient"
+weapons[Vibrorapier].weaponClassification = "MartialVibroweapon"
+weapons[Unarmed Strike].ability = "Strength"
+weapons[Unarmed Strike].attackBonus = 7
+weapons[Unarmed Strike].damageBonus = 3
+weapons[Unarmed Strike].damageDieType = 4
+weapons[Unarmed Strike].damageNumberOfDice = 1
+weapons[Unarmed Strike].damageType = "Kinetic"
+weapons[Unarmed Strike].equipped = true
+weapons[Unarmed Strike].index = -1
+weapons[Unarmed Strike].isCustom = false
+weapons[Unarmed Strike].properties = []
+weapons[Unarmed Strike].quantity = 0
+weapons[Unarmed Strike].tweaks.damage.bonus = 3
+weapons[Unarmed Strike].tweaks.damageDice.bonus = 0
+weapons[Unarmed Strike].tweaks.damageDice.dieSize = 4
+weapons[Unarmed Strike].tweaks.toHit.bonus = 3
+weapons[Unarmed Strike].weaponClassification = "Unarmed"
+attunement.hasAttunable = false
+attunement.maximum = 4
+carryingCapacity.encumbered = 50
+carryingCapacity.heavilyEncumbered = 100
+carryingCapacity.maxCapacity = 150
+carryingCapacity.pushDragLift = 300
+superiority = false
+techCasting = false
+forceCasting.darkAttackModifier = 3
+forceCasting.darkSaveDC = 11
+forceCasting.lightAttackModifier = 9
+forceCasting.lightSaveDC = 17
+forceCasting.maxPoints = 32
+forceCasting.maxPowerLevel = 4
+forceCasting.pointsUsed = 0
+forceCasting.universalAttackModifier = 9
+forceCasting.universalSaveDC = 17
+proficiencies[Simple lightweapons].type = "weapon"
+proficiencies[simple vibroweapons].type = "weapon"
+proficiencies[martial lightweapons with the finesse property].type = "weapon"
+proficiencies[martial vibroweapons with the finesse property].type = "weapon"
+proficiencies[Light armor].type = "armor"
+proficiencies[One type of gaming set].type = "tool"
+skillAndSaveProficiencies = ["Stealth", "Deception", "Dexterity Saving Throws", "Charisma Saving Throws"]
+languages = ["Galactic Basic", "Galactic Basic"]
+experiencePoints.isCorrect = false
+experiencePoints.nextLevel = 64000
+experiencePoints.previousLevel = 48000
+conditions = []
+exhaustion = 0
+forceCasting.powersKnown = []
+
+## Effects and tweaks
+effect: Sentinel weapon proficiencies · feature
+effect: Led by the Force · feature
+effect: Ideal of the Agile · feature
+effect: Ideal of the Contender · feature
+effect: Silver-Tongued · feature
+effect: Silver-Tongued · feature
+effect: Human Versatility · feature
+effect: Ideal of the Contender · feature
+effect: Forceblade Bond · feature
+tweak: abilityScores.Charisma.score +1 · Silver-Tongued
+tweak: abilityScores.Charisma.skills.Deception +0 {"proficiency":"Proficient"} · Silver-Tongued
+tweak: abilityScores.Dexterity.skills.Stealth +0 {"proficiency":"Proficient"} · Human Versatility
+tweak: unarmed.damageDice +0 {"dieSize":4} · Ideal of the Contender
+tweak: unarmed.toHit +3 · Ideal of the Contender
+tweak: unarmed.damage +3 · Ideal of the Contender
+tweak: initiative +2 · Led by the Force
+tweak: abilityScores.Strength.skills.Athletics +2 · Led by the Force
+tweak: abilityScores.Dexterity.skills.Acrobatics +2 · Led by the Force
+tweak: abilityScores.Dexterity.skills.Sleight of Hand +2 · Led by the Force
+tweak: abilityScores.Intelligence.skills.Investigation +2 · Led by the Force
+tweak: abilityScores.Intelligence.skills.Lore +2 · Led by the Force
+tweak: abilityScores.Intelligence.skills.Nature +2 · Led by the Force
+tweak: abilityScores.Intelligence.skills.Piloting +2 · Led by the Force
+tweak: abilityScores.Intelligence.skills.Technology +2 · Led by the Force
+tweak: abilityScores.Wisdom.skills.Animal Handling +2 · Led by the Force
+tweak: abilityScores.Wisdom.skills.Insight +2 · Led by the Force
+tweak: abilityScores.Wisdom.skills.Medicine +2 · Led by the Force
+tweak: abilityScores.Wisdom.skills.Perception +2 · Led by the Force
+tweak: abilityScores.Wisdom.skills.Survival +2 · Led by the Force
+tweak: abilityScores.Charisma.skills.Intimidation +2 · Led by the Force
+tweak: abilityScores.Charisma.skills.Performance +2 · Led by the Force
+tweak: abilityScores.Charisma.skills.Persuasion +2 · Led by the Force
+weapon tweak: #0 toHit +0 · Sentinel weapon proficiencies
+weapon tweak: #0 toHit +2 · Forceblade Bond
+weapon tweak: #0 damage +2 · Forceblade Bond
+
+## Rolls
+init: Initiative: d20 +5 · = +5 modifier
+death: Death saving throw: d20 +0
+hitdie|d8: Hit die (d8): d8 +2 · = +2 per die
+dice|1d8: 1d8: d8 +0
+check|Strength: Strength check: d20 +2 · = +0 modifier +2 half proficiency (Led by the Force)
+save|Strength: Strength saving throw: d20 +0 · = +0 modifier
+skill|Strength|0: Athletics (STR): d20 +2 · = +2 modifier
+check|Dexterity: Dexterity check: d20 +5 · = +3 modifier +2 half proficiency (Led by the Force)
+save|Dexterity: Dexterity saving throw: d20 +7 · = +7 modifier
+skill|Dexterity|0: Acrobatics (DEX): d20 +5 · = +5 modifier
+skill|Dexterity|1: Sleight of Hand (DEX): d20 +5 · = +5 modifier
+skill|Dexterity|2: Stealth (DEX): d20 +7 · = +7 modifier
+check|Constitution: Constitution check: d20 +4 · = +2 modifier +2 half proficiency (Led by the Force)
+save|Constitution: Constitution saving throw: d20 +2 · = +2 modifier
+check|Intelligence: Intelligence check: d20 +4 · = +2 modifier +2 half proficiency (Led by the Force)
+save|Intelligence: Intelligence saving throw: d20 +2 · = +2 modifier
+skill|Intelligence|0: Investigation (INT): d20 +4 · = +4 modifier
+skill|Intelligence|1: Lore (INT): d20 +4 · = +4 modifier
+skill|Intelligence|2: Nature (INT): d20 +4 · = +4 modifier
+skill|Intelligence|3: Piloting (INT): d20 +4 · = +4 modifier
+skill|Intelligence|4: Technology (INT): d20 +4 · = +4 modifier
+check|Wisdom: Wisdom check: d20 +7 · = +5 modifier +2 half proficiency (Led by the Force)
+save|Wisdom: Wisdom saving throw: d20 +5 · = +5 modifier
+skill|Wisdom|0: Animal Handling (WIS): d20 +7 · = +7 modifier
+skill|Wisdom|1: Insight (WIS): d20 +7 · = +7 modifier
+skill|Wisdom|2: Medicine (WIS): d20 +7 · = +7 modifier
+skill|Wisdom|3: Perception (WIS): d20 +7 · = +7 modifier
+skill|Wisdom|4: Survival (WIS): d20 +7 · = +7 modifier
+check|Charisma: Charisma check: d20 +1 · = −1 modifier +2 half proficiency (Led by the Force)
+save|Charisma: Charisma saving throw: d20 +3 · = +3 modifier
+skill|Charisma|0: Deception (CHA): d20 +3 · = +3 modifier
+skill|Charisma|1: Intimidation (CHA): d20 +1 · = +1 modifier
+skill|Charisma|2: Performance (CHA): d20 +1 · = +1 modifier
+skill|Charisma|3: Persuasion (CHA): d20 +1 · = +1 modifier
+attack|0: Vibrorapier attack: d20 +9 · = +9 modifier
+damage|0: Vibrorapier damage: d8 +5 · = +3 DEX modifier +2 Forceblade Bond · Kinetic · option: Double Strike (1 force point) +1d8
+attack|1: Unarmed Strike attack: d20 +7 · = +7 modifier
+damage|1: Unarmed Strike damage: d4 +3 · = +3 Ideal of the Contender · Kinetic · option: Double Strike (1 force point) +1d8
+force|light: Light force attack: d20 +9 · = +9 modifier
+force|dark: Dark force attack: d20 +3 · = +3 modifier
+force|universal: Universal force attack: d20 +9 · = +9 modifier
+tool|One type of gaming set|proficient: One type of gaming set check: d20 +6 · = +2 INT modifier +4 proficiency
+damage|0|crit: Vibrorapier damage (critical): d8 d8 +5 · = +3 DEX modifier +2 Forceblade Bond · Kinetic · critical · option: Double Strike (1 force point) +1d8
+damage|1|crit: Unarmed Strike damage (critical): d4 d4 +3 · = +3 Ideal of the Contender · Kinetic · critical · option: Double Strike (1 force point) +1d8
+
+## Sheet: Overview
+Rakatan Test (local)
+Human · Sentinel (Path of the Forceblade) 9
+Level 9 Background: Noble Lawful Light Proficiency +4 [Add a picture]
+6,500 XP level 10 at 64,000 (57,500 to go)
+Level 9 usually needs 48,000 XP (you have 6,500).
+Still to choose (14): Sentinel skills (3 more) · Sentinel tool · Sentinel 4th level: ability score improvement or feat · Sentinel 8th level: ability score impro… [493 chars #d2f304a7]
+
+## Sheet: Combat & Vitals
+Armor Class
+13
+Unarmored
+Hit Points
+74 / 74
+No temporary HP
+Initiative
++5
+  ↳ hover initiative: Without tweaks or effects: 3 → now 5 / +2 Half proficiency · Led by the Force Sentinel feature
+Speed
+30 ft
+3 miles/hour · 24 miles/day
+Proficiency
++4
+Passive Perception
+17
+  ↳ hover passivePerception: Without tweaks or effects: 15 → now 17 / +2 Half proficiency · Led by the Force Sentinel feature
+Hit Dice
+9/9d8
++2 per die spent (Con)
+Vision
+Normal
+Play tracker
+[] [untyped ▾] [Damage] [Heal] [Temp HP]
+Death saves ✓ [] [] [] ✗ [] [] [] [Roll]
+Force points 32 / 32 [−] [+]
+Hit dice (d8) roll d8 +2, then Heal 9 / 9 [−] [+]
+Twin Saber Throw long rest 4 / 4 [−] [+]
+Defiant short rest 1 / 1 [−] [+]
+Conditions None [Add a condition… ▾]
+Combat [Start combat]
+[☆ Inspiration] Exhaustion [−] 0 [+]
+[Short rest] [Long rest]
+Class dice
+Kinetic Combat 1d8
+Defenses & senses
+Speeds Climbing speed equal to walking speed Swimming speed equal to walking speed
+Other Half proficiency on checks without it (Led by the Force)
+Effects
+From class features, feats and species traits (9)
+Sentinel weapon proficiencies Proficient: Simple lightweapons Proficient: simple vibroweapons Proficient: martial lightweapons with the finesse property Profici… [234 chars #541e941a]
+Led by the Force Half proficiency on checks Sentinel feature
+Ideal of the Agile Climbing speed equal to walking speed Swimming speed equal to walking speed Sentinel Ideals feature
+Ideal of the Contender Unarmed die +1 step Sentinel Ideals feature
+Silver-Tongued CHA +1 feat (background feat)
+Silver-Tongued Deception: proficient feat
+Human Versatility Stealth: proficient Choose one tool Choose one weapon of your choice Human trait
+Ideal of the Contender Sentinel feature
+Forceblade Bond Sentinel feature
+Temporary
+No temporary effects.
+[]
+Your own effect (something the sheet doesn't know)…
+[] [] [No number (a reminder) ▾] [] [Add]
+It's applied like any effect (a dice bonus like Bless's d4 isn't a number: add it in the roller), and ends with End, a rest or Next round when it has run out.
+Bonuses are applied to the sheet's numbers in this browser only (not saved to SW5E); changed numbers are underlined: hover or tap them for details. Conditional … [256 chars #e163e104]
+Conditions
+None active (from SW5E)
+Carrying capacity
+Carried
+3.5 lb
+Unencumbered (variant rule)
+Encumbered at
+50 lb
+Heavily enc. at
+100 lb
+Max capacity
+150 lb
+Push / drag / lift
+300 lb
+
+## Sheet: Abilities & Saving Throws
+STR
+Strength
++0
+10
+(Not proficient) Saving throw+0
+(Not proficient) Athletics+2
+  ↳ hover abilityScores.Strength.skills.0.modifier: Without tweaks or effects: 0 → now 2 / +2 Half proficiency · Led by the Force Sentinel feature
+base 10
+DEX
+Dexterity
++3
+16
+(Proficient) Saving throw+7
+(Not proficient) Acrobatics+5
+  ↳ hover abilityScores.Dexterity.skills.0.modifier: Without tweaks or effects: 3 → now 5 / +2 Half proficiency · Led by the Force Sentinel feature
+(Not proficient) Sleight of Hand+5
+  ↳ hover abilityScores.Dexterity.skills.1.modifier: Without tweaks or effects: 3 → now 5 / +2 Half proficiency · Led by the Force Sentinel feature
+(Proficient) Stealth+7
+  ↳ hover abilityScores.Dexterity.skills.2.modifier: Without tweaks or effects: 3 → now 7 / proficient Stealth: proficient · Human Versatility Human trait
+base 16
+CON
+Constitution
++2
+14
+(Not proficient) Saving throw+2
+base 14
+INT
+Intelligence
++2
+14
+(Not proficient) Saving throw+2
+(Not proficient) Investigation+4
+  ↳ hover abilityScores.Intelligence.skills.0.modifier: Without tweaks or effects: 2 → now 4 / +2 Half proficiency · Led by the Force Sentinel feature
+(Not proficient) Lore+4
+  ↳ hover abilityScores.Intelligence.skills.1.modifier: Without tweaks or effects: 2 → now 4 / +2 Half proficiency · Led by the Force Sentinel feature
+(Not proficient) Nature+4
+  ↳ hover abilityScores.Intelligence.skills.2.modifier: Without tweaks or effects: 2 → now 4 / +2 Half proficiency · Led by the Force Sentinel feature
+(Not proficient) Piloting+4
+  ↳ hover abilityScores.Intelligence.skills.3.modifier: Without tweaks or effects: 2 → now 4 / +2 Half proficiency · Led by the Force Sentinel feature
+(Not proficient) Technology+4
+  ↳ hover abilityScores.Intelligence.skills.4.modifier: Without tweaks or effects: 2 → now 4 / +2 Half proficiency · Led by the Force Sentinel feature
+base 14
+WIS
+Wisdom
++5
+20
+(Not proficient) Saving throw+5
+(Not proficient) Animal Handling+7
+  ↳ hover abilityScores.Wisdom.skills.0.modifier: Without tweaks or effects: 5 → now 7 / +2 Half proficiency · Led by the Force Sentinel feature
+(Not proficient) Insight+7
+  ↳ hover abilityScores.Wisdom.skills.1.modifier: Without tweaks or effects: 5 → now 7 / +2 Half proficiency · Led by the Force Sentinel feature
+(Not proficient) Medicine+7
+  ↳ hover abilityScores.Wisdom.skills.2.modifier: Without tweaks or effects: 5 → now 7 / +2 Half proficiency · Led by the Force Sentinel feature
+(Not proficient) Perception+7
+  ↳ hover abilityScores.Wisdom.skills.3.modifier: Without tweaks or effects: 5 → now 7 / +2 Half proficiency · Led by the Force Sentinel feature
+(Not proficient) Survival+7
+  ↳ hover abilityScores.Wisdom.skills.4.modifier: Without tweaks or effects: 5 → now 7 / +2 Half proficiency · Led by the Force Sentinel feature
+base 20
+CHA
+Charisma
+−1
+9
+  ↳ hover abilityScores.Charisma.value: Without tweaks or effects: 8 → now 9 / +1 CHA · Silver-Tongued feat (background feat)
+(Proficient) Saving throw+3
+(Proficient) Deception+3
+  ↳ hover abilityScores.Charisma.skills.0.modifier: Without tweaks or effects: -1 → now 3 / proficient Deception: proficient · Silver-Tongued feat
+(Not proficient) Intimidation+1
+  ↳ hover abilityScores.Charisma.skills.1.modifier: Without tweaks or effects: -1 → now 1 / +2 Half proficiency · Led by the Force Sentinel feature
+(Not proficient) Performance+1
+  ↳ hover abilityScores.Charisma.skills.2.modifier: Without tweaks or effects: -1 → now 1 / +2 Half proficiency · Led by the Force Sentinel feature
+(Not proficient) Persuasion+1
+  ↳ hover abilityScores.Charisma.skills.3.modifier: Without tweaks or effects: -1 → now 1 / +2 Half proficiency · Led by the Force Sentinel feature
+base 8 · +1 from Silver-Tongued (feat)
+not proficient proficient expertise
+
+## Sheet: Skills
+Skill | Ability | Bonus | Passive | Proficiency |
+(Not proficient) Acrobatics | DEX | +5 | 15 | — |
+  ↳ hover abilityScores.Dexterity.skills.0.modifier: Without tweaks or effects: 3 → now 5 / +2 Half proficiency · Led by the Force Sentinel feature
+  ↳ hover abilityScores.Dexterity.skills.0.modifier: Without tweaks or effects: 3 → now 5 / +2 Half proficiency · Led by the Force Sentinel feature
+(Not proficient) Animal Handling | WIS | +7 | 17 | — |
+  ↳ hover abilityScores.Wisdom.skills.0.modifier: Without tweaks or effects: 5 → now 7 / +2 Half proficiency · Led by the Force Sentinel feature
+  ↳ hover abilityScores.Wisdom.skills.0.modifier: Without tweaks or effects: 5 → now 7 / +2 Half proficiency · Led by the Force Sentinel feature
+(Not proficient) Athletics | STR | +2 | 12 | — |
+  ↳ hover abilityScores.Strength.skills.0.modifier: Without tweaks or effects: 0 → now 2 / +2 Half proficiency · Led by the Force Sentinel feature
+  ↳ hover abilityScores.Strength.skills.0.modifier: Without tweaks or effects: 0 → now 2 / +2 Half proficiency · Led by the Force Sentinel feature
+(Proficient) Deception | CHA | +3 | 13 | Proficient |
+  ↳ hover abilityScores.Charisma.skills.0.modifier: Without tweaks or effects: -1 → now 3 / proficient Deception: proficient · Silver-Tongued feat
+  ↳ hover abilityScores.Charisma.skills.0.modifier: Without tweaks or effects: -1 → now 3 / proficient Deception: proficient · Silver-Tongued feat
+(Not proficient) Insight | WIS | +7 | 17 | — |
+  ↳ hover abilityScores.Wisdom.skills.1.modifier: Without tweaks or effects: 5 → now 7 / +2 Half proficiency · Led by the Force Sentinel feature
+  ↳ hover abilityScores.Wisdom.skills.1.modifier: Without tweaks or effects: 5 → now 7 / +2 Half proficiency · Led by the Force Sentinel feature
+(Not proficient) Intimidation | CHA | +1 | 11 | — |
+  ↳ hover abilityScores.Charisma.skills.1.modifier: Without tweaks or effects: -1 → now 1 / +2 Half proficiency · Led by the Force Sentinel feature
+  ↳ hover abilityScores.Charisma.skills.1.modifier: Without tweaks or effects: -1 → now 1 / +2 Half proficiency · Led by the Force Sentinel feature
+(Not proficient) Investigation | INT | +4 | 14 | — |
+  ↳ hover abilityScores.Intelligence.skills.0.modifier: Without tweaks or effects: 2 → now 4 / +2 Half proficiency · Led by the Force Sentinel feature
+  ↳ hover abilityScores.Intelligence.skills.0.modifier: Without tweaks or effects: 2 → now 4 / +2 Half proficiency · Led by the Force Sentinel feature
+(Not proficient) Lore | INT | +4 | 14 | — |
+  ↳ hover abilityScores.Intelligence.skills.1.modifier: Without tweaks or effects: 2 → now 4 / +2 Half proficiency · Led by the Force Sentinel feature
+  ↳ hover abilityScores.Intelligence.skills.1.modifier: Without tweaks or effects: 2 → now 4 / +2 Half proficiency · Led by the Force Sentinel feature
+(Not proficient) Medicine | WIS | +7 | 17 | — |
+  ↳ hover abilityScores.Wisdom.skills.2.modifier: Without tweaks or effects: 5 → now 7 / +2 Half proficiency · Led by the Force Sentinel feature
+  ↳ hover abilityScores.Wisdom.skills.2.modifier: Without tweaks or effects: 5 → now 7 / +2 Half proficiency · Led by the Force Sentinel feature
+(Not proficient) Nature | INT | +4 | 14 | — |
+  ↳ hover abilityScores.Intelligence.skills.2.modifier: Without tweaks or effects: 2 → now 4 / +2 Half proficiency · Led by the Force Sentinel feature
+  ↳ hover abilityScores.Intelligence.skills.2.modifier: Without tweaks or effects: 2 → now 4 / +2 Half proficiency · Led by the Force Sentinel feature
+(Not proficient) Perception | WIS | +7 | 17 | — |
+  ↳ hover abilityScores.Wisdom.skills.3.modifier: Without tweaks or effects: 5 → now 7 / +2 Half proficiency · Led by the Force Sentinel feature
+  ↳ hover passivePerception: Without tweaks or effects: 15 → now 17 / +2 Half proficiency · Led by the Force Sentinel feature
+(Not proficient) Performance | CHA | +1 | 11 | — |
+  ↳ hover abilityScores.Charisma.skills.2.modifier: Without tweaks or effects: -1 → now 1 / +2 Half proficiency · Led by the Force Sentinel feature
+  ↳ hover abilityScores.Charisma.skills.2.modifier: Without tweaks or effects: -1 → now 1 / +2 Half proficiency · Led by the Force Sentinel feature
+(Not proficient) Persuasion | CHA | +1 | 11 | — |
+  ↳ hover abilityScores.Charisma.skills.3.modifier: Without tweaks or effects: -1 → now 1 / +2 Half proficiency · Led by the Force Sentinel feature
+  ↳ hover abilityScores.Charisma.skills.3.modifier: Without tweaks or effects: -1 → now 1 / +2 Half proficiency · Led by the Force Sentinel feature
+(Not proficient) Piloting | INT | +4 | 14 | — |
+  ↳ hover abilityScores.Intelligence.skills.3.modifier: Without tweaks or effects: 2 → now 4 / +2 Half proficiency · Led by the Force Sentinel feature
+  ↳ hover abilityScores.Intelligence.skills.3.modifier: Without tweaks or effects: 2 → now 4 / +2 Half proficiency · Led by the Force Sentinel feature
+(Not proficient) Sleight of Hand | DEX | +5 | 15 | — |
+  ↳ hover abilityScores.Dexterity.skills.1.modifier: Without tweaks or effects: 3 → now 5 / +2 Half proficiency · Led by the Force Sentinel feature
+  ↳ hover abilityScores.Dexterity.skills.1.modifier: Without tweaks or effects: 3 → now 5 / +2 Half proficiency · Led by the Force Sentinel feature
+(Proficient) Stealth | DEX | +7 | 17 | Proficient |
+  ↳ hover abilityScores.Dexterity.skills.2.modifier: Without tweaks or effects: 3 → now 7 / proficient Stealth: proficient · Human Versatility Human trait
+  ↳ hover abilityScores.Dexterity.skills.2.modifier: Without tweaks or effects: 3 → now 7 / proficient Stealth: proficient · Human Versatility Human trait
+(Not proficient) Survival | WIS | +7 | 17 | — |
+  ↳ hover abilityScores.Wisdom.skills.4.modifier: Without tweaks or effects: 5 → now 7 / +2 Half proficiency · Led by the Force Sentinel feature
+  ↳ hover abilityScores.Wisdom.skills.4.modifier: Without tweaks or effects: 5 → now 7 / +2 Half proficiency · Led by the Force Sentinel feature
+(Not proficient) Technology | INT | +4 | 14 | — |
+  ↳ hover abilityScores.Intelligence.skills.4.modifier: Without tweaks or effects: 2 → now 4 / +2 Half proficiency · Led by the Force Sentinel feature
+  ↳ hover abilityScores.Intelligence.skills.4.modifier: Without tweaks or effects: 2 → now 4 / +2 Half proficiency · Led by the Force Sentinel feature
+
+## Sheet: Weapons & Attacks
+Weapon | To hit | Damage | Ability | Type | Properties |
+Vibrorapier
+Finesse
+| +9 | 1d8+5 Kinetic | Wisdom (Forceblade Bond) | Martial Vibroweapon | Finesse |
+  ↳ hover weapons.0.attackBonus: Without tweaks or effects: 3 → now 9 / proficient Proficient: martial vibroweapons with the finesse property · Sentinel weapon prof… [254 chars #86ad7e9d]
+  ↳ hover weapons.0.damageBonus: Without tweaks or effects: 3 → now 5 / +2 WIS +5 instead of DEX · Forceblade Bond Sentinel feature
+Unarmed Strike
+| +7 | 1d4+3 Kinetic | Dexterity (finesse) | Unarmed | — |
+  ↳ hover weapons.1.attackBonus: Without tweaks or effects: 4 → now 7 / +3 Finesse: DEX +3 instead of STR · Ideal of the Contender Sentinel feature
+  ↳ hover weapons.1.damageBonus: Without tweaks or effects: 1 → now 3 / d4 Unarmed damage up a step (1 → d4) · Ideal of the Contender Sentinel Ideals feature / +3 F… [231 chars #463ccc17]
+
+## Sheet: Force Casting
+Force points
+32 / 32
+Max power level
+4
+Light side
+DC 17
+attack +9
+Dark side
+DC 11
+attack +3
+Universal
+DC 17
+attack +9
+At-will powers (1)
+Saber Throw Universal Path of the Forceblade Phasethrow
+Attack +9
+Casting 1 action Range 30 feet Duration Instantaneous Source PHB
+As a part of the action used to cast this power, you must make a ranged force attack with a lightweapon or vibroweapon against one target within the power's ran… [319 chars #ce95991f]
+This power can hit multiple targets when you reach higher levels: two targets at 5th level, three targets at 11th level, and four targets at 17th level. Each ta… [385 chars #e441b97e]
+
+## Sheet: Class Features
+Sentinel (7)
+Forcecasting Level 1
+Sentinel: 1st level
+In your meditations on the force, you have learned powers, fragments of knowledge that imbue you with an abiding force ability. See chapter 10 for the general r… [222 chars #4108bfc5]
+Force Powers Known
+You learn 7 force powers of your choice, and you learn more at higher levels, as shown in the Force Powers Known column of the sentinel table. You may not learn… [296 chars #6d9a1a87]
+Force Points
+You have a number of force points equal to your sentinel level x 3, as shown in the Force Points column of the sentinel table, + your Wisdom or Charisma modifie… [291 chars #ed15dc1a]
+Max Power Level
+Many force powers can be overpowered, consuming more force points to create a greater effect. You can overpower these abilities to a maximum level, which increa… [243 chars #ec2f7f04]
+You may only cast force powers at 5th, 6th, and 7th-level once. You regain the ability to do so after a long rest.
+Forcecasting Ability
+Your forcecasting ability varies based on the alignment of the powers you cast. You use Wisdom for light side powers, Charisma for dark side powers, and Wisdom … [427 chars #7389ec1d]
+Force save DC = 8 + your proficiency bonus + your forcecasting ability modifier
+Force attack modifier = your proficiency bonus + your forcecasting ability modifier
+Your choices []
+Led by the Force Level 1
+Sentinel: 1st level
+You can add half your proficiency bonus to any ability check you make that doesn't already include your proficiency bonus.
+Notes []
+Force-Empowered Self Level 2
+Sentinel: 2nd level
+Your training allows you to harness the mystical energy of the Force throughout your body. You learn three effects: Deflection, Double Strike, and Slow Time. Ea… [353 chars #ff739e14]
+Deflection
+When you are the target of an attack, you can roll a Kinetic Combat die and add it to your AC (no action required). You can do so before or after the attack is … [239 chars #ac0dac3e]
+Double Strike
+When you hit a creature with a weapon attack, you can roll a Kinetic Combat die and deal additional damage of the same type equal to the amount rolled.
+Slow Time
+When you move on your turn, you can roll a Kinetic Combat die to increase your speed by 5 x the amount rolled until the end of your turn.
+Your choices []
+Extra Attack Level 5
+Sentinel: 5th level
+You can attack twice, instead of once, whenever you take the Attack action on your turn.
+Notes []
+Sentinel Calling Level 7
+Sentinel: 3rd, 7th, 13th, and 18th level
+You choose a sentinel calling, which is detailed at the end of the class description.
+Chosen: Path of the Forceblade · change it in Classes & Progression
+Notes []
+Ability Score Improvement Level 8
+Sentinel: 4th, 8th, 12th, 16th, and 19th level
+You can increase one ability score by 2, or you can increase two ability scores by 1. You can't increase an ability score above 20 using this feature.
+Notes []
+Sentinel Ideals Level 9
+Sentinel: 2nd, 6th, 9th, 11th, and 17th level
+You adopt ideals that exemplify your bond with the Force. You adopt two ideals of your choice, as detailed at the end of the class description. You adopt an additional ideal at 6th and 11th level.
+You can manifest your ideals a combined total of twice. You gain an additional use at 9th and 17th level. You regain all expended uses when you finish a long rest.
+Chosen: Ideal of the Agile, Ideal of the Contender · change it in Classes & Progression
+Notes []
+Path of the Forceblade (archetype) (3)
+Forceblade Bond Level 3
+Path of the Forceblade: 3rd level
+You learn how to bond with a light- or vibro-weapon through the Force, making it part of you.
+You perform the ritual over the course of 1 hour, which can be done during a short rest. The weapon must be within your reach throughout the ritual, at the conc… [248 chars #794012a3]
+You can't be disarmed of that weapon while you are conscious.
+If the weapon is within 60 feet of you and you can see it, you can summon that weapon as a bonus action on your turn, causing it to travel instantly to you. If … [237 chars #d27ad052]
+You can use Wisdom or Charisma instead of Strength or Dexterity for the attack and damage rolls.
+You can have two weapons bonded to you in this way at a time, and you can summon both of them to you with the same bonus action.
+Notes [Vibrorapier]
+Phasethrow Level 3
+Path of the Forceblade: 3rd level
+You learn the saber throw force power, which does not count against your total powers known. Additionally, you no longer have disadvantage on the attack roll wi… [541 chars #513f47a4]
+Chosen: Saber Throw · change it in Classes & Progression
+Notes []
+Twin Saber Throw Level 9
+Uses (back on a long rest) 4 / 4 [−] [+]
+Path of the Forceblade: 7th, 9th, 13th, and 17th level
+When you cast saber throw while wielding your forceblade, you can attack the same target multiple times.
+Additionally, when you deal damage to a creature within 30 feet of you with your forceblade, you can use your bonus action to teleport to within 5 feet of that … [455 chars #73157a02]
+Notes []
+Sentinel: Sentinel Ideals (2)
+Ideal of the Agile
+You gain a swimming speed and a climbing speed equal to your walking speed. When you make a long jump, you can cover a number of feet up to twice your Wisdom or… [330 chars #9edcc4f5]
+Additionally, as a bonus action, you can manifest this ideal in a brief surge of energy. For the next minute, opportunity attacks against you are made with disadvantage.
+Ideal of the Contender
+Your unarmed strike damage increases by one step (from 1 to d4, d4 to d6, or d6 to d8), and your unarmed strikes gain the finesse property.
+Additionally, as a bonus action, you can manifest this ideal in a brief surge of energy. For the next minute, your unarmed strikes count as enhanced for the pur… [376 chars #e9898e34]
+Improvements and other choices (1)
+Operative Feat: Multiclass Improvement (Custom feat)
+You can add half your other chosen class's levels (rounded down) to your operative levels when determining your amount of Sneak Attack dice.
+
+## Sheet: Feats
+Choices from your feats
+Multiclass improvement 1 / 2 Feat: Multiclass Improvement (Custom feat)
+Each improvement adds the levels of the other class chosen with it.
+Operative needs: At least 3 levels in operative
+Operative: you have no levels in Operative
+Multiclass improvements need a second class
+Operative [×]
+[Monk]
+Prerequisite: At least 3 levels in operative
+You can add half your other chosen class's levels (rounded down) to your operative levels when determining your amount of Sneak Attack dice.
+[Choose a multiclass improvement… ▾]
+Read the options (9)
+Silver-Tongued Background (Noble)+ Charisma
+You develop your conversational skill to better deceive others. You gain the following benefits:
+Increase your Charisma score by 1, to a maximum of 20.
+You gain proficiency in the Deception skill. If you are already proficient in it, you instead gain expertise in it.
+When you take the Attack action, you can replace one attack with an attempt to deceive one humanoid you can see within 30 feet of you that can see and hear you.… [568 chars #4907558c]
+Notes []
+Multiclass Improvement Prereq: 4th level
+You've learned to blend the skills of your different classes. Choose two of the multiclass improvement options, detailed later in this chapter. You can take this feat multiple times.
+Notes []
+
+## Sheet: Classes & Progression
+[Level up]
+Sentinel 9 Path of the Forceblade Starting class Force caster
+Hit die d8 Primary Dexterity Saves Dexterity, Charisma HP by level 8 (max), 6, 6, 6, 6, 6, 6, 6, 6
+Force-wielder who blends melee combat with the Force
+Skill proficiencies 0 / 3 Choose three from Acrobatics, Animal Handling, Insight, Intimidation, Perception, Persuasion, Piloting, Stealth, and Technology
+None chosen yet.
+[Choose a skill… ▾]
+Tool proficiency 0 / 1 One specialist's kit of your choice
+None chosen yet.
+[Choose a tool… ▾]
+Archetype [Path of the Forceblade ▾]
+Read the options (13)
+Force powers 0 / 21 Sentinel table · max power level 4
+None chosen yet.
+[Learn a force power… ▾]
+Read the options (166)
+Sentinel Ideals 2 / 3 from the Sentinel table (“Ideals Known”)
+Ideal of the Agile [×]
+[]
+You gain a swimming speed and a climbing speed equal to your walking speed. When you make a long jump, you can cover a number of feet up to twice your Wisdom or… [330 chars #9edcc4f5]
+Additionally, as a bonus action, you can manifest this ideal in a brief surge of energy. For the next minute, opportunity attacks against you are made with disadvantage.
+Ideal of the Contender [×]
+[]
+Your unarmed strike damage increases by one step (from 1 to d4, d4 to d6, or d6 to d8), and your unarmed strikes gain the finesse property.
+Additionally, as a bonus action, you can manifest this ideal in a brief surge of energy. For the next minute, your unarmed strikes count as enhanced for the pur… [376 chars #e9898e34]
+[Add from Sentinel Ideals… ▾]
+Read the options (7)
+Power given 1 / 1 Path of the Forceblade: Phasethrow
+Saber Throw from the feature
+As a part of the action used to cast this power, you must make a ranged force attack with a lightweapon or vibroweapon against one target within the power's ran… [319 chars #ce95991f]
+This power can hit multiple targets when you reach higher levels: two targets at 5th level, three targets at 11th level, and four targets at 17th level. Each ta… [385 chars #e441b97e]
+Class table
+Proficiency Bonus
++4 → +4 at 10th
+Features
+3 → Battle Readiness at 10th
+Force Powers Known
+21 → 22 at 10th
+Force Points
+27 → 30 at 10th
+Max Power Level
+4th → 4th at 10th
+Kinetic Combat
+d8 → d8 at 10th
+Ideals Known
+3 → 3 at 10th
+Ideal Manifests
+3 → 3 at 10th
+| Proficiency Bonus | Features | Force Powers Known | Force Points | Max Power Level | Kinetic Combat | Ideals Known | Ideal Manifests |
+Now (9th) | +4 | 3 | 21 | 27 | 4th | d8 | 3 | 3 |
+Next (10th) | +4 | Battle Readiness | 22 | 30 | 4th | d8 | 3 | 3 |
+Armor Light armor Weapons Simple lightweapons, simple vibroweapons, martial lightweapons with the finesse property, martial vibroweapons with the finesse property Tools One specialist's kit of your choice
+
+## Sheet: Species
+Size
+Medium
+Homeworld
+Coruscant
+Language
+Galactic Basic
+Average height
+4'8" +2d10"
+Average weight
+110 lb. x(2d4) lb.
+Skin
+Light to dark tones
+Hair
+Black, blond, orange, brown, gray to white (usually with age)
+Eyes
+Amber, blue, brown, gray, green, hazel, purple, or red
+Distinctions
+Biped with bilateral symmetry, opposable thumbs
+Traits (9)
+Ability Score Increase
+One ability score of your choice increases by 2, and two other ability scores of your choice increase by 1. Alternatively, four ability scores of your choice each increase by 1.
+Your choices []
+Age
+Humans reach adulthood in their late teens and live less than a century.
+Notes []
+Alignment
+Humans tend toward no particular alignment. The best and worst are found among them.
+Notes []
+Defiant
+Uses (back on a short or long rest) 1 / 1 [−] [+]
+Humans are known to be stubborn and often refuse to give up, even against the worst odds. When you or a creature you can see that can see and understand you mak… [374 chars #6fad59d8]
+Notes []
+Human Versatility
+You gain proficiency in one skill, one tool, and one weapon of your choice.
+Skill proficiency 1 / 1
+Stealth [×]
+Tool proficiency 0 / 1 one tool
+None chosen yet.
+[Choose a tool… ▾]
+Weapon proficiency 0 / 1 one weapon of your choice
+None chosen yet.
+[Choose a weapon… ▾]
+Notes []
+Languages
+You can speak, read, and write Galactic Basic and one extra language of your choice. Humans typically learn the languages of other peoples they deal with, inclu… [346 chars #ff842958]
+Your choices []
+Proficiency
+You gain proficiency in one skill, one tool, and one weapon of your choice.
+Your choices []
+Size
+Humans vary widely in height and build, from barely 5 feet to well over 6 feet tall. Regardless of your position in that range, your size is Medium.
+Notes []
+Speed
+Your base walking speed is 30 feet.
+Notes []
+Ability score +2 0 / 1 One ability score of your choice increases by 2, and two other ability scores of your choice increase by 1. Alternatively, four ability scores of your choice each increase by 1.
+None chosen yet.
+[Choose an ability… ▾]
+Ability score +1 0 / 2 One ability score of your choice increases by 2, and two other ability scores of your choice increase by 1. Alternatively, four ability scores of your choice each increase by 1.
+None chosen yet.
+[Choose an ability… ▾]
+
+## Sheet: Background
+Skill proficiencies
+Choose two from Deception, Insight, Lore, and Persuasion
+Tool proficiencies
+One type of gaming set
+Languages
+One of your choice
+Starting equipment
+A set of fine clothes, a signet ring, a letter of pedigree, and a purse containing 250 cr
+Background feat
+Silver-Tongued
+Feature: Position of Privilege Background feature
+Thanks to your noble birth, people are inclined to think the best of you. You are welcome in high society, and people assume you have the right to be wherever y… [390 chars #064df76c]
+About this background
+You understand wealth, power, and privilege. You carry a noble title, and your family owns land, collects taxes, and wields significant political influence. You… [373 chars #12c34b19]
+Work with your GM to come up with an appropriate title and determine how much authority that title carries, as well as your family and their influence on you. I… [297 chars #a939cd75]
+What's your position in the family? Are you the heir to the head of the family or the head itself? Are you far down the line of succession? How does the head of… [246 chars #f0d70c9c]
+Does your family have a coat of arms you might wear, a signet ring, or particular colors?
+These details help establish your family and your title as features of the world of the campaign.
+Your choices
+Skill proficiencies 0 / 2 Choose two from Deception, Insight, Lore, and Persuasion
+None chosen yet.
+[Choose a skill… ▾]
+Tool proficiency 0 / 1 One type of gaming set
+None chosen yet.
+[Choose a tool… ▾]
+Languages 0 / 1 One of your choice
+None chosen yet.
+[Choose a language… ▾]
+
+## Sheet: Proficiencies & Languages
+Armor
+Light armor
+Weapon
+Simple lightweapons simple vibroweapons martial lightweapons with the finesse property martial vibroweapons with the finesse property
+Tool
+One type of gaming set
+Skills & saves
+Stealth Deception Dexterity Saving Throws Charisma Saving Throws
+Languages
+Galactic Basic
+✎ = custom proficiency added on the character.
+
+## Sheet: Equipment & Inventory
+Add an item
+[All items ▾] []
+Qty [1] [Add]
+2425 items from SW5E (data version 199). [Check for a newer list]
+Credits
+0 cr
+[] [] [Apply]
+Total weight
+3.5 lb
+of 150 lb max
+Attunement
+0 / 4
+Items
+1
+Weapon (1)
+Item | Qty & actions | Weight | Cost | Source |
+Vibrorapier
+1d8 Kinetic · Finesse
+| [−] 1 [+] [Equipped] [✎] [Sell] [×] | 3.5 lb | 150 cr | PHB |
+
+## Sheet: Personality & Appearance
+Personality Traits
+—
+Ideal
+—
+Bond
+—
+Flaw
+—
+Details
+Alignment
+Lawful Light
+Gender
+—
+Place of Birth
+—
+Age
+—
+Height
+—
+Weight
+—
+Hair
+—
+Eyes
+—
+Skin
+—
+
+## Sheet: Backstory
+No backstory yet.
+
+## Sheet: Notes
+No notes yet.
+
+## Sheet: Settings, Tweaks & Data
+Tweaks (manual adjustments) 0
+From sw5e.com's editor or added here. Give each a reason (kept in this viewer and in backups); hovering or tapping a number they change shows it.
+No tweaks.
+[Add a tweak to… ▾] [add (+/−) ▾] [] [] [Add]
+Builder settings
+None
+Record
+Source
+Imported file
+Loaded
+10/16/2026, 9:53:39 PM
+Builder version
+0.7.6
+Validation
+All checks passed
+Local version history 3 / 25
+SW5E can lose saved characters, so every version seen here is kept in this browser. Compare a version with the character as it is now, or restore it (Undo puts it back).
+Backups (files you keep): this character never · [Back up this character]
+all characters never · [Back up all characters]
+10/16/2026, 9:53:39 PM latest
+Imported from file [Compare] [Restore] [Export]
+10/16/2026, 9:53:04 PM
+Imported from file [Compare] [Restore] [Export]
+10/16/2026, 9:52:36 PM
+Imported from file [Compare] [Restore] [Export]
+Rules engine
+The sheet computes the numbers itself, with SW5E's rules. A character on sw5e.com is checked against its calculation there on each Load.
+SW5E's rules and item data: version 199, as it comes with the sheet. SW5E is the work of Galiphile and the SW5E contributors: credits · the books.
+[Check with sw5e.com]
+Raw SW5E character JSON
+{ "name": "Rakatan Test (local)", "builderVersion": "0.7.6", "image": "", "experiencePoints": 6500, "species": { "name": "Human", "abilityScoreImprovementSelect… [1596 chars #6eba08e3]
+Computed character JSON (the sheet's rules engine)
+{ "name": "Rakatan Test (local)", "builderVersion": "0.7.6", "image": "", "characteristics": { "alignment": "Lawful Light" }, "tweaks": { "abilityScores": { "Ch… [19097 chars #ffe37526]
