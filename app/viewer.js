@@ -5431,7 +5431,9 @@ function choiceInfoFor(raw, complete) {
   const casting = castingLevels(complete, raw);
   const pb = num(complete && complete.proficiencyBonus);
   const skillSig = ABILITIES.flatMap((a) => arr((((complete && complete.abilityScores) || {})[a] || {}).skills)).map((x) => x.name + x.proficiency).join();
-  const sig = canonical([raw.classes, raw.featureChoices || null, raw.featureNotes || null, raw.background || null, raw.customFeats || null, raw.species || null, casting, pb, skillSig]);
+  // Ability scores, for feat prerequisites ("Strength 13").
+  const scores = complete && complete.abilityScores ? Object.fromEntries(ABILITIES.map((a) => [a, num((complete.abilityScores[a] || {}).value)])) : null;
+  const sig = canonical([raw.classes, raw.featureChoices || null, raw.featureNotes || null, raw.background || null, raw.customFeats || null, raw.species || null, casting, pb, skillSig, scores]);
   const hit = choiceCache.get(sig);
   if (hit && hit.rules === state.rules) return hit.res;
   const modules = state.rules.modules || {};
@@ -5443,7 +5445,7 @@ function choiceInfoFor(raw, complete) {
   const res = choiceSlots(raw, {
     modules, parsed, casting, notes: raw.featureNotes || {}, pb, rowOf,
     classManeuvers: cm.names.length, classManeuverMax: cm.max, classManeuverNames: cm.names, classDice: chClassSupDice(raw, modules), classPowerNames,
-    skills: complete && complete.abilityScores ? skills : null,
+    skills: complete && complete.abilityScores ? skills : null, scores,
   });
   if (choiceCache.size > 6) choiceCache.delete(choiceCache.keys().next().value);
   choiceCache.set(sig, { rules: state.rules, res });
