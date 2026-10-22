@@ -1640,8 +1640,24 @@ function itemEffects(key, editedRaw, complete) {
     // A weapon that gains finesse (or a blaster mighty) uses the better of Strength and Dexterity: from the one it uses.
     const w = weaponIndex != null ? arr(complete && complete.weapons).find((x) => x.index === weaponIndex) : null;
     const swapFrom = (prop) => (w && prop === 'finesse' && w.ability === 'Strength' ? 'Strength' : w && prop === 'mighty' && w.ability === 'Dexterity' ? 'Dexterity' : null);
+    // Proficiency steps and half proficiency start from the proficiency SW5E gives (classes, background, tweaks).
+    const sc = (complete && complete.abilityScores) || {};
+    const rankOf = (path) => {
+      const x = /^abilityScores\.(\w+)\.(?:skills\.(.+)|savingThrowModifier)$/.exec(path) || [];
+      const a = sc[x[1]] || {};
+      return x[2] ? (arr(a.skills).find((k) => k.name === x[2]) || {}).proficiency : (a.savingThrow || {}).proficiency;
+    };
     const mods = arr(fx.mods).map((x) => (x.perLevel ? { ...x, bonus: x.perLevel * level, label: x.label.replace(/\+(\d+) per level$/, (p) => `+${x.perLevel * level} (${p})`) }
-      : x.property && swapFrom(x.property) ? { ...x, swap: { from: swapFrom(x.property), to: swapFrom(x.property) === 'Strength' ? 'Dexterity' : 'Strength' } } : x));
+      : x.property && swapFrom(x.property) ? { ...x, swap: { from: swapFrom(x.property), to: swapFrom(x.property) === 'Strength' ? 'Dexterity' : 'Strength' } }
+        : x.profSteps ? { ...x, baseRank: rankOf(x.path) }
+          : x.halfProf ? { ...x, baseRank: rankOf(x.path), bonus: Math.floor(num(complete && complete.proficiencyBonus) / 2) } : x));
+    // Proficiencies and always-on advantages in the item's text, read as a feature's are (classes.js), with a choice it
+    // asks for ("proficiency in one blaster or vibroweapon of your choice") written in the item's note.
+    const fe = itemFeatureEffects(ref, it.notes);
+    if (fe) {
+      for (const a of fe.profs.saves) mods.push({ path: `abilityScores.${a}.savingThrowModifier`, bonus: 0, fields: { proficiency: 'Proficient' }, label: `${a} saves: proficient` });
+      for (const k of fe.profs.skills) mods.push({ path: `abilityScores.${FX_SKILLS[k.name]}.skills.${k.name}`, bonus: 0, fields: { proficiency: k.level }, label: `${k.name}: ${String(k.level).toLowerCase()}` });
+    }
     // Keen: the weapon's own keen number (its base item's), raised as the modification says, widens its critical range.
     let keen = null;
     if (fx.keen && weaponIndex != null) {
@@ -1654,11 +1670,24 @@ function itemEffects(key, editedRaw, complete) {
       why: fx.activation === 'carry' ? 'when you fire it' : fx.activation === 'attune' ? (active ? 'while attuned' : 'needs attunement') : (active ? `while ${how}` : `needs to be ${how}`),
       weaponName, weaponIndex, linked: linked >= 0,
       ...(keen ? { critRange: keen, critWeapons: [weaponIndex] } : {}),
+      ...(fe ? { weapons: fe.profs.weapons, tools: fe.profs.tools, armor: fe.profs.armor, advantage: fe.advantage, needsChoice: fe.needsChoice } : {}),
     });
   });
   return out;
 }
 
+/** What classes.js reads in an item's text (proficiencies, advantages, choices), or null when it finds none. */
+const itemFeCache = new Map();
+function itemFeatureEffects(ref, note) {
+  if (!ref || typeof clsFeatureEffects !== 'function' || ref.type === 'Consumable') return null;
+  const key = `${ref.name}\n${note || ''}`;
+  if (!itemFeCache.has(key)) {
+    const fe = clsFeatureEffects(ref.text || ref.description || '', note || '', { level: 0, isWeapon: isWeaponName });
+    const p = fe.profs;
+    itemFeCache.set(key, p.saves.length || p.skills.length || p.tools.length || p.weapons.length || p.armor.length || fe.advantage.length || fe.needsChoice.length ? fe : null);
+  }
+  return itemFeCache.get(key);
+}
 /**
  * Dice an item adds to a weapon's damage on every hit ("deal an additional 1d10 damage with this enhanced weapon",
  * Ostrine Edge's 1d6 of a type the GM chose): [{ dice, type, from }]. The weapons table shows them in the damage, the
@@ -3000,6 +3029,13 @@ function effectRow(m, e) {
     if (!e.active && e.kind === 'item') return chip(mod.label);
     // Extra damage dice: on the weapon chosen (shown in its damage and rolled with it).
     if (mod.dice) return arr(m.fx.dice).some((d) => d.effect.id === e.id && d.mod.path === mod.path) ? chip(mod.label, 'good') : chip(`${mod.label}: choose a weapon`, 'warn');
+    // "+2 proficiency steps": the level it comes to ("mastery" counts as expertise, the highest the engine knows).
+    if (mod.profSteps) {
+      const lv = got.find((t) => t.level);
+      return lv ? chip(`${mod.label.replace(/:.*$/, '')}: ${lv.level}${/mastery/.test(lv.level) ? ' (counted as expertise)' : ''}`, 'good')
+        : chip(`${mod.label}: trained (a level the sheet doesn't count)`);
+    }
+    if (mod.halfProf && !got.length) return '';
     if (!got.length && mod.property) return chip(`${mod.label}: no change (it already uses the better one, or no weapon chosen)`);
     if (!got.length && mod.scoreAs) return chip(`${mod.label}: no effect (${mod.scoreAs.ability} ${mod.scoreAs.score} or more${mod.path === 'armorClass' ? `, or an AC without ${mod.scoreAs.ability}` : ''})`);
     if (!got.length && mod.when && !armorAllows(mod.when, armorState(m.raw))) return chip(`${mod.label}: not with armor on`);
@@ -3011,6 +3047,14 @@ function effectRow(m, e) {
     const worked = mod.set != null || mod.scoreAs || mod.acFlat != null || mod.abilityMod;
     return chip(worked ? `${mod.label} (${signedLabel(b)})` : b === mod.bonus || mod.bonus == null ? mod.label : `${mod.label} → ${signedLabel(b)} (cap)`, 'good');
   });
+  // Proficiencies, advantages and choices the item's text gives (as a feature's), and half proficiency on checks.
+  if (e.kind === 'item') {
+    const on = e.active ? 'good' : '';
+    chips.push(...arr(e.weapons).map((w) => chip(`Proficient: ${w}`, on)), ...arr(e.armor).map((a) => chip(`Proficient: ${a}`, on)),
+      ...arr(e.tools).map((t) => chip(`${t.name}: ${t.level}`, on)), ...arr(e.advantage).map((a) => chip(ADV_TEXT(a), on)),
+      ...arr(e.halfProfChecks).map((a) => chip(`Half proficiency on ${a} checks without it`, on)), ...(e.unarmedDie ? [chip(`Unarmed strikes: d${e.unarmedDie}`, on)] : []),
+      ...arr(e.needsChoice).map((c) => `<span class="chip warn" title="Write your choice in the item's note (✎ under Equipment)">Choose ${esc(c)}</span>`));
+  }
   // A keen modification: the weapon's critical range (the dice card's attack rolls use it).
   if (e.kind === 'item' && e.keen) chips.push(e.critRange ? chip(`Keen ${e.critRange}: critical range +${e.critRange}`, e.active ? 'good' : '') : chip(`Keen ${e.keen.gain}: choose a weapon`, 'warn'));
   const weapons = ownWeapons(m.raw);

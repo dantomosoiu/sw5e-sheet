@@ -57,6 +57,10 @@ const signedLabel = (n) => (n >= 0 ? '+' + n : '−' + Math.abs(n));
 const ACTIVATION_CLAUSE = /,?\s*\b(?:when you (?:administer|apply|use|consume|drink|inject|eat) (?:this|these|it)[^,.;]*,?|(?:while|whilst) (?:(?:you are |you're )?(?:wearing|wielding|holding|attuned to|using) (?:this|these|the) [^,.;]*|you (?:wear|wield|hold) (?:this|these|it)[^,.;]*|this (?:item|armor|shield|weapon) is (?:worn|equipped|installed)[^,.;]*))/gi;
 // Words that make a bonus conditional (applies only sometimes): kept as a note, not applied.
 const CONDITIONAL = /\b(?:against|that require|which require|when you|when the|if you|if the|once|until|for the next|melee tech|ranged tech|melee force|ranged force|melee attacks?\b|ranged attacks?\b|made with this enhanced (?!weapon\b)|fired by|grenades?|ammunition|cartridges?|cells?\b|darts?\b|rounds?\b|(?<!focus )generators?\b|of powers)/i;
+// Levels of proficiency, in steps ("increases by two steps"). SW5E's engine (and the sheet's) knows proficient and
+// expertise; trained, and the masteries above expertise, aren't numbers it has.
+const FX_PROF_LADDER = ['none', 'trained', 'proficient', 'expertise', 'mastery', 'high mastery', 'grand mastery'];
+const fxProfRank = (p) => { const s = String(p || '').toLowerCase(); return s.startsWith('exp') ? 2 : s.startsWith('prof') ? 1 : 0; };
 // What ammunition is called ("this enhanced power cell"): its bonuses are the ammunition's, not a weapon's.
 const FX_AMMO = /\b(?:cells?|cartridges?|darts?|ammunition|rockets?|missiles?|torpedo(?:es)?|(?<!focus )generators?|grenades?|rounds?)\b/i;
 // Sentences worth keeping as notes even when they carry no number we can apply.
@@ -291,6 +295,34 @@ function parseItemEffect(item) {
       ctx.target = 'weapon';
       continue;
     }
+    // "Your level of proficiency in Investigation increases by two steps (to proficient, from trained to expertise, …)" /
+    // "…in Dexterity saving throws…" / "You gain grand mastery in Investigation": worked out from the proficiency the
+    // character has (fxResolve). "These tools" (a tool kit) names no tool: it stays the item's text.
+    if ((m = /\byour level of proficiency in (.+?) increases by (one|two|three|four|five|six) steps?\b|\byou (?:gain|have) (grand mastery) in (.+?)(?:\.|$)/i.exec(s))) {
+      const what = (m[1] || m[4]).trim();
+      const steps = m[3] ? FX_PROF_LADDER.length - 1 : fxNum(m[2]);
+      const sk = Object.keys(FX_SKILLS).find((k) => k.toLowerCase() === what.toLowerCase());
+      const sv = new RegExp(`^${ABIL_RE} saving throws$`, 'i').exec(what);
+      const path = sk ? `abilityScores.${FX_SKILLS[sk]}.skills.${sk}` : sv ? `abilityScores.${fxAbility(sv[1])}.savingThrowModifier` : null;
+      if (path) {
+        mods.push({ path, bonus: 0, profSteps: steps, label: `${sk || `${FX_ABBR[fxAbility(sv[1])]} saves`}: ${m[3] ? 'grand mastery' : `+${steps} proficiency step${steps === 1 ? '' : 's'}`}` });
+        continue;
+      }
+    }
+    // "…you can add half your proficiency bonus (rounded down) to any Intelligence check you make that doesn't already
+    // include your proficiency bonus" (Intuitive Facial Prosthesis): its skills without proficiency (fxResolve), and
+    // plain Intelligence checks on the dice card (halfProfChecks).
+    if ((m = new RegExp(`\\badd half your proficiency bonus(?: \\(rounded down\\))? to any ${ABIL_RE} check you make that doesn(?:'|’)t already include your proficiency bonus`, 'i').exec(s))) {
+      const a = fxAbility(m[1]);
+      ctx.halfProfChecks = [a];
+      for (const sk of Object.keys(FX_SKILLS).filter((k) => FX_SKILLS[k] === a)) mods.push({ path: `abilityScores.${a}.skills.${sk}`, bonus: 0, halfProf: true, label: `${sk}: half proficiency` });
+    }
+    // "Your unarmed strikes with this arm deal 1d4 ion damage" (Iridonian Grav-lev Arm): the unarmed die, as a species'
+    // natural weapons give it (the strike's damage type stays SW5E's: the note says which).
+    if ((m = /\byour unarmed strikes(?: with this \w+)? deal (\d+)d(\d+) (\w+) damage/i.exec(s))) {
+      ctx.unarmedDie = Number(m[2]);
+      ctx.notes.push(`Unarmed strikes${/with this/i.test(m[0]) ? ' with it' : ''}: ${m[1]}d${m[2]} ${m[3].toLowerCase()} damage.`);
+    }
     // Ability scores: "your/the target's Strength score increases by 2, to a maximum of 20" /
     // "…, and your maximum for this score increases by 2" / "your Strength score becomes 19".
     for (const am of s.matchAll(new RegExp(`\\b${ABIL_RE} score (?:increases|is increased) by (\\d+)(?:, to a maximum of (\\d+))?(,? and (?:your|its|their) maximum for this score (?:increases|is increased) by (\\d+))?`, 'gi'))) {
@@ -394,6 +426,7 @@ function parseItemEffect(item) {
     mods, notes, target: ctx.target, weaponKind: ctx.weaponKind || null, duration, group, activation,
     heals: /regains? [^.]*hit points|temporary hit points/i.test(text),
     ...(riders.length ? { riders } : {}), ...(darkvisionPlus ? { darkvisionPlus } : {}), ...(ctx.keen ? { keen: ctx.keen } : {}),
+    ...(ctx.halfProfChecks ? { halfProfChecks: ctx.halfProfChecks } : {}), ...(ctx.unarmedDie ? { unarmedDie: ctx.unarmedDie } : {}),
   };
 }
 
@@ -477,6 +510,7 @@ function fxResolve(effects, baseScores) {
   const weaponTweaks = [];
   const conds = [];
   const dice = [];
+  const later = [];
   const twins = fxTweakTwins(effects);
   const modOf = (a) => Math.floor(((Number(scores[a]) || 10) - 10) / 2);
   for (const eff of effects) {
@@ -494,6 +528,8 @@ function fxResolve(effects, baseScores) {
         }
         continue;
       }
+      // Proficiency steps and half proficiency: once every other effect's proficiency is known (below).
+      if (mod.profSteps || mod.halfProf) { later.push({ eff, mod }); continue; }
       const fields = mod.fields || null;
       // A weapon's effect can also change the character ("…, and a +2 bonus to damage rolls with force powers").
       if (eff.target === 'weapon' && /^weapon\./.test(mod.path)) {
@@ -526,6 +562,18 @@ function fxResolve(effects, baseScores) {
       if (bonus || fields) tweaks.push({ path: mod.path, bonus, fields, effect: eff, mod });
     }
   }
+  // The proficiency a skill or save has: SW5E's (`baseRank`, from the character's classes, background and tweaks) or
+  // what an effect gives it. "Increases by two steps": from none to proficient, from proficient to mastery, which
+  // counts as expertise (the highest the engine knows); "to trained" changes no number. Half proficiency only where
+  // there's none.
+  const rankAt = (path, base) => Math.max(fxProfRank(base), ...tweaks.filter((t) => t.path === path && t.fields && t.fields.proficiency).map((t) => fxProfRank(t.fields.proficiency)));
+  for (const { eff, mod } of later.filter((x) => x.mod.profSteps)) {
+    const from = [0, 2, 3][rankAt(mod.path, mod.baseRank)];
+    const level = FX_PROF_LADDER[Math.min(FX_PROF_LADDER.length - 1, from + mod.profSteps)];
+    if (FX_PROF_LADDER.indexOf(level) < 2) continue; // trained
+    tweaks.push({ path: mod.path, bonus: 0, fields: { proficiency: level === 'proficient' ? 'Proficient' : 'Expertise' }, level, effect: eff, mod });
+  }
+  for (const { eff, mod } of later.filter((x) => x.mod.halfProf)) if (mod.bonus && !rankAt(mod.path, mod.baseRank)) tweaks.push({ path: mod.path, bonus: mod.bonus, fields: null, effect: eff, mod });
   // Alternative AC formulas (Unarmored Defense, subdermal armor, a species' hide…): only the best one applies; the
   // others are returned as acAlternatives (for saying which one was used).
   const formulas = tweaks.filter((t) => t.mod.acFormula);
