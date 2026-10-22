@@ -251,6 +251,7 @@ const ART_PAINT_BY_NAME = [
   [/disguise kit/, 'red'], [/poisoner/, 'green'], [/brewer/, 'copper'], [/incinerator/, 'red'], [/orbalisk/, 'green'],
   [/diving suit/, 'gold'], [/flame-proof/, 'white'], [/hazard suit/, 'hazard'], [/chemical suit/, 'white'], [/water suit/, 'blue'],
   [/conductive suit/, 'copper'], [/dampening suit/, 'black'], [/emergency raft/, 'hazard'], [/fire extinguisher/, 'red'],
+  [/^sith .*robe/, 'red'],
 ];
 function artPaint(icon, it) {
   if (icon === 'mod-chip') return ART_MOD_PAINT[String((it && it.subtype) || '').toLowerCase()] || 'accent';

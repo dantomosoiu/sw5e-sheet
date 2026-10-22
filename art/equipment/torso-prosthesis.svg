@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <g id="torso-prosthesis-a">
+    <path class="a-d a-o" d="M11 19.6c-2 10.4 1 22.4 9.4 31l1.4-1.2C14 41.6 11 30 12.8 20z"/>
+  </g>
+  <use href="#torso-prosthesis-a" transform="matrix(-1 0 0 1 64 0)"/>
+  <rect class="a-d a-o" x="24" y="34" width="16" height="17" rx="1"/>
+  <rect class="a-m a-oo" x="26.6" y="4" width="10.8" height="7.4" rx="1.2"/>
+  <ellipse class="a-d a-o" cx="32" cy="4.8" rx="4.2" ry="1.2"/>
+  <path class="a-b a-oo" d="M17 9.6h30q5.4.8 5.6 6l-2 10q-2.6 6.8-6.6 10.8H20q-4-4-6.6-10.8l-2-10q.2-5.2 5.6-6z"/>
+  <path d="M17 9.6h30q5.4.8 5.6 6l-2 10q-2.6 6.8-6.6 10.8H20q-4-4-6.6-10.8l-2-10q.2-5.2 5.6-6z" fill="url(#a-sheen)"/>
+  <path d="M17 9.6h30q5.4.8 5.6 6l-2 10q-2.6 6.8-6.6 10.8H20q-4-4-6.6-10.8l-2-10q.2-5.2 5.6-6z" fill="url(#a-shade)"/>
+  <path class="a-p" d="M32 11.4v6.4M32 28v8M15.6 26.4q6.4 5.2 12.8 1.2M48.4 26.4q-6.4 5.2-12.8 1.2M18.4 13.4q6.4 2.2 9.8-1.6M45.6 13.4q-6.4 2.2-9.8-1.6"/>
+  <path class="a-x a-o" d="M15.4 18.4l5 .6.6 3.6-4.8-.4zM48.6 18.4l-5 .6-.6 3.6 4.8-.4z"/>
+  <circle class="a-m a-oo" cx="32" cy="22.8" r="4.8"/>
+  <circle class="a-g" cx="32" cy="22.8" r="3.2" filter="url(#a-glow)" opacity=".85"/>
+  <circle class="a-g" cx="32" cy="22.8" r="2.8"/>
+  <circle class="a-w" cx="32" cy="22.8" r="1.2"/>
+  <rect class="a-b a-o" x="21" y="36.2" width="22" height="4.2" rx="1.6"/>
+  <rect class="a-b a-o" x="22" y="40.8" width="20" height="4.2" rx="1.6"/>
+  <rect class="a-b a-o" x="23" y="45.4" width="18" height="4.2" rx="1.6"/>
+  <path class="a-p" d="M32 36.6v12.6"/>
+  <rect class="a-m a-oo" x="18.6" y="49.6" width="26.8" height="5.6" rx="1.8"/>
+  <path class="a-x a-o" d="M26 49.6h12v5.6H26z"/>
+  <circle class="a-d" cx="21.8" cy="52.4" r=".9"/>
+  <circle class="a-d" cx="42.2" cy="52.4" r=".9"/>
+  <path class="a-b a-o" d="M24.2 55.2h1.6V58h-1.6zM28.2 55.2h1.6V58h-1.6zM34.2 55.2h1.6V58h-1.6zM38.2 55.2h1.6V58h-1.6z"/>
+  <circle class="a-m a-oo" cx="12" cy="15" r="5.4"/>
+  <circle cx="12" cy="15" r="5.4" fill="url(#a-sheen)"/>
+  <circle class="a-d a-o" cx="12" cy="15" r="3"/>
+  <circle class="a-m a-oo" cx="52" cy="15" r="5.4"/>
+  <circle cx="52" cy="15" r="5.4" fill="url(#a-sheen)"/>
+  <circle class="a-d a-o" cx="52" cy="15" r="3"/>
+  <path class="a-l" d="M19 11h7.4M8.4 12.6a4.6 4.6 0 0 1 2.4-2.2M48.4 12.6a4.6 4.6 0 0 1 2.4-2.2M22.4 37.4h4.4M27.8 5.6v4.2M30.6 21a2.4 2.4 0 0 1 1-.8"/>
+</svg>
