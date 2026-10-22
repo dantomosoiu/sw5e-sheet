@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <g transform="translate(2.4 .6)">
+  <g transform="translate(16.4 45.6) rotate(135)">
+    <rect class="a-b a-oo" x="0" y="-1.4" width="12" height="2.8"/>
+    <path class="a-x a-o" d="M11.4-1.6h1.6v3.2h-1.6z"/>
+    <path class="a-b a-o" d="M12.8-.9h2.2c.6-.9 1.2-1.5 1.8-1.7v5.2c-.6-.2-1.2-.8-1.8-1.7h-2.2z"/>
+  </g>
+  <path class="a-b a-oo" fill-rule="evenodd" d="M9 36a17 17 0 1 0 34 0a17 17 0 1 0-34 0zM12.4 36a13.6 13.6 0 1 0 27.2 0a13.6 13.6 0 1 0-27.2 0z"/>
+  <path fill-rule="evenodd" d="M9 36a17 17 0 1 0 34 0a17 17 0 1 0-34 0zM12.4 36a13.6 13.6 0 1 0 27.2 0a13.6 13.6 0 1 0-27.2 0z" fill="url(#a-shade)"/>
+  <path class="a-b a-o" fill-rule="evenodd" d="M13.4 36a12.6 12.6 0 1 0 25.2 0a12.6 12.6 0 1 0-25.2 0zM16.4 36a9.6 9.6 0 1 0 19.2 0a9.6 9.6 0 1 0-19.2 0z"/>
+  <path class="a-m a-o" d="M16.6 34.8h4.8v2.4h-4.8zM30.6 34.8h4.8v2.4h-4.8z"/>
+  <rect class="a-m a-oo" x="21.2" y="28.6" width="9.6" height="14.8" rx="1.4"/>
+  <rect x="21.2" y="28.6" width="9.6" height="14.8" rx="1.4" fill="url(#a-sheen)"/>
+  <path class="a-b a-o" d="M23.6 31.8a2.4 2.4 0 1 0 4.8 0a2.4 2.4 0 1 0-4.8 0zM23.6 36a2.4 2.4 0 1 0 4.8 0a2.4 2.4 0 1 0-4.8 0zM23.6 40.2a2.4 2.4 0 1 0 4.8 0a2.4 2.4 0 1 0-4.8 0z"/>
+  <path class="a-x" d="M25 31.8a1 1 0 1 0 2 0a1 1 0 1 0-2 0zM25 36a1 1 0 1 0 2 0a1 1 0 1 0-2 0zM25 40.2a1 1 0 1 0 2 0a1 1 0 1 0-2 0z"/>
+  <g transform="translate(31.6 23.6) rotate(-27)">
+    <path class="a-b a-oo" d="M-1.4-1.8C9-1.8 15-4 21.6-10.6V10.6C15 4 9 1.8-1.4 1.8z"/>
+    <path d="M-1.4-1.8C9-1.8 15-4 21.6-10.6V10.6C15 4 9 1.8-1.4 1.8z" fill="url(#a-sheen)"/>
+    <path d="M-1.4-1.8C9-1.8 15-4 21.6-10.6V10.6C15 4 9 1.8-1.4 1.8z" fill="url(#a-shade)"/>
+    <ellipse class="a-x a-oo" cx="21.6" cy="0" rx="2.2" ry="10.6"/>
+    <ellipse class="a-d" cx="22" cy="0" rx="1" ry="8.6"/>
+    <path class="a-x a-o" d="M5 -1.9h1.8v3.8H5z"/>
+    <path class="a-l" d="M0-.8C9-.8 14.6-3 20.4-8.6"/>
+  </g>
+  <path class="a-l" d="M12 27.4a16 16 0 0 1 9.4-8.2M15.6 31a11.4 11.4 0 0 1 5-5.6"/>
+  </g>
+</svg>

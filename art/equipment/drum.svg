@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect class="a-c a-o" x="0" y="-1.2" width="36" height="2.4" rx="1.2" transform="translate(10 8) rotate(45)"/>
+  <rect class="a-c a-o" x="0" y="-1.2" width="36" height="2.4" rx="1.2" transform="translate(54 8) rotate(135)"/>
+  <circle class="a-b a-o" cx="10" cy="8" r="2.4"/>
+  <circle class="a-b a-o" cx="54" cy="8" r="2.4"/>
+  <path class="a-x a-oo" d="M12 30V51a20 7 0 0 0 40 0V30a20 7 0 0 0-40 0z"/>
+  <path d="M12 30V51a20 7 0 0 0 40 0V30a20 7 0 0 0-40 0z" fill="url(#a-shade)"/>
+  <path class="a-d" d="M12 38.6a20 7 0 0 0 40 0v4a20 7 0 0 1-40 0z" opacity=".3"/>
+  <polyline class="a-l" points="14,36.6 18,52.4 22,39.6 27,54.2 32,40.5 37,54.2 42,39.6 46,52.4 50,36.6"/>
+  <path class="a-m a-o" d="M12 30v3.5a20 7 0 0 0 40 0V30a20 7 0 0 1-40 0zM12 47.5V51a20 7 0 0 0 40 0v-3.5a20 7 0 0 1-40 0z"/>
+  <path class="a-p" d="M15 36.1v-2.6M22 39.6V37M32 40.5V38M42 39.6V37M49 36.1v-2.6"/>
+  <ellipse class="a-m a-oo" cx="32" cy="30" rx="20" ry="7"/>
+  <ellipse class="a-b a-o" cx="32" cy="30" rx="17.4" ry="5.4"/>
+  <ellipse cx="32" cy="30" rx="17.4" ry="5.4" fill="url(#a-sheen)"/>
+  <ellipse class="a-p" cx="32" cy="30.4" rx="7" ry="2.1"/>
+  <path class="a-l" d="M15.8 27.4c3.6-2 9-2.9 14-2.9M13.6 29.4c0 0 0-.1 0-.1"/>
+</svg>

@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <path class="a-m a-oo" d="M10 46V51A22 6 0 0 0 54 51V46A22 6 0 0 0 10 46z"/>
+  <path d="M10 46V51A22 6 0 0 0 54 51V46A22 6 0 0 0 10 46z" fill="url(#a-shade)"/>
+  <path class="a-x a-o" style="stroke-width:.7" d="M14.2 51.2h4.6a.8 .8 0 0 1 .8 .8v1.4a.8 .8 0 0 1-.8 .8h-4.6a.8 .8 0 0 1-.8-.8v-1.4a.8 .8 0 0 1 .8-.8zM20.4 52.3h4.6a.8 .8 0 0 1 .8 .8v1.4a.8 .8 0 0 1-.8 .8h-4.6a.8 .8 0 0 1-.8-.8v-1.4a.8 .8 0 0 1 .8-.8zM26.6 52.8h4.6a.8 .8 0 0 1 .8 .8v1.4a.8 .8 0 0 1-.8 .8h-4.6a.8 .8 0 0 1-.8-.8v-1.4a.8 .8 0 0 1 .8-.8zM32.8 52.8h4.6a.8 .8 0 0 1 .8 .8v1.4a.8 .8 0 0 1-.8 .8h-4.6a.8 .8 0 0 1-.8-.8v-1.4a.8 .8 0 0 1 .8-.8zM39 52.3h4.6a.8 .8 0 0 1 .8 .8v1.4a.8 .8 0 0 1-.8 .8h-4.6a.8 .8 0 0 1-.8-.8v-1.4a.8 .8 0 0 1 .8-.8zM45.2 51.2h4.6a.8 .8 0 0 1 .8 .8v1.4a.8 .8 0 0 1-.8 .8h-4.6a.8 .8 0 0 1-.8-.8v-1.4a.8 .8 0 0 1 .8-.8z"/>
+  <ellipse class="a-b a-o" cx="32" cy="46" rx="22" ry="6"/>
+  <ellipse cx="32" cy="46" rx="22" ry="6" fill="url(#a-sheen)"/>
+  <path class="a-x a-o" d="M17 46a15 3.8 0 0 0 30 0a15 3.8 0 0 0-30 0zM20.6 46a11.4 2.6 0 0 1 22.8 0a11.4 2.6 0 0 1-22.8 0z" fill-rule="evenodd"/>
+  <path class="a-m a-o" d="M23.4 39.6L21.6 46.4H42.4L40.6 39.6z"/>
+  <path d="M23.4 39.6L21.6 46.4H42.4L40.6 39.6z" fill="url(#a-shade)"/>
+  <circle class="a-s a-oo" cx="32" cy="25" r="16"/>
+  <circle class="a-g" cx="32" cy="25" r="13" opacity=".22" filter="url(#a-glow-lg)"/>
+  <path class="a-gl" d="M32 26.4l-3.4-4 1.2-2.4-3.8-4.6M32 26.4l4.6-2.6.4-3 4.4-1.6M32 26.4l-5 2.4-1.4 3.4-4 1.2M32 26.4l3.4 4.2 3.6.4 1.6 3.6M32 26.4l.6-5.6 2.4-2.2-.2-5.4M32 26.4l-1.6 5.2-3 1.8" filter="url(#a-glow)" opacity=".85"/>
+  <path class="a-gl" style="stroke-width:.7" d="M32 26.4l-3.4-4 1.2-2.4-3.8-4.6M32 26.4l4.6-2.6.4-3 4.4-1.6M32 26.4l-5 2.4-1.4 3.4-4 1.2M32 26.4l3.4 4.2 3.6.4 1.6 3.6M32 26.4l.6-5.6 2.4-2.2-.2-5.4M32 26.4l-1.6 5.2-3 1.8"/>
+  <circle class="a-g" cx="32" cy="26.4" r="4" filter="url(#a-glow)"/>
+  <circle class="a-g" cx="32" cy="26.4" r="2.6"/>
+  <circle class="a-w" cx="32" cy="26.4" r="1.4"/>
+  <ellipse class="a-m a-o" cx="32" cy="39.8" rx="9" ry="2.6"/>
+  <path class="a-l" d="M19.8 17.4a14 14 0 0 1 9-6.6" opacity=".9"/>
+  <circle class="a-w" cx="22.4" cy="15.6" r=".9" opacity=".8"/>
+  <path class="a-l" d="M12.4 44.2c4-2.4 11-3.8 19.6-3.8"/>
+</svg>

@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <g id="rocket-boots-b" transform="matrix(.9 0 0 .9 4.8 1.4)">
+    <path class="a-g" d="M36.8 52.6h14.2c0 5-3.2 9-7.1 13-3.9-4-7.1-8-7.1-13z" filter="url(#a-glow)" opacity=".9"/>
+    <path class="a-g" d="M38.6 52.6h10.6c0 4-2.4 7.2-5.3 10.2-2.9-3-5.3-6.2-5.3-10.2z"/>
+    <path class="a-w" d="M41.4 52.6h5c0 2.4-1.1 4.4-2.5 6.2-1.4-1.8-2.5-3.8-2.5-6.2z"/>
+    <path class="a-m a-oo" d="M39.4 48h9l2.2 4.8H37.2z"/>
+    <path class="a-d" d="M38 51.6h11.8l.5 1.2H37.5z"/>
+    <path class="a-c a-oo" d="M34.6 9H47v23.4c4.4 1.2 8.2 3 10.6 5.4 1.8 1.8 2.6 4.2 2.6 6.6V46H34.6z"/>
+    <path d="M34.6 9H47v23.4c4.4 1.2 8.2 3 10.6 5.4 1.8 1.8 2.6 4.2 2.6 6.6V46H34.6z" fill="url(#a-shade)"/>
+    <path class="a-d a-oo" d="M33.6 45h27.2v2.6c0 1.2-1 2.2-2.2 2.2H35.8c-1.2 0-2.2-1-2.2-2.2z"/>
+    <path class="a-m" d="M38 48.4h2.4v1.4H38zM44 48.4h2.4v1.4H44zM50 48.4h2.4v1.4H50zM55.4 48.4h2.4v1.4h-2.4z"/>
+    <path class="a-b a-o" d="M38.6 10.6h9.2v21.8l-3.4 3.4h-5.8z"/>
+    <path class="a-x" d="M38.7 15.8h9v2.8h-9z"/>
+    <path d="M38.6 10.6h9.2v21.8l-3.4 3.4h-5.8z" fill="url(#a-sheen)"/>
+    <path class="a-p" d="M38.8 25.4h8.8"/>
+    <path class="a-b a-o" d="M47.6 34.6c3.8 1.2 7 2.8 9.2 4.8 1.8 1.6 2.8 3.6 3 5.6H49.4l-3.2-6.2z"/>
+    <path d="M47.6 34.6c3.8 1.2 7 2.8 9.2 4.8 1.8 1.6 2.8 3.6 3 5.6H49.4l-3.2-6.2z" fill="url(#a-sheen)"/>
+    <path class="a-m a-o" d="M34.6 37.6h11.6l1.6 3H34.6z"/>
+    <rect class="a-m a-o" x="33" y="13" width="4.6" height="19" rx="1.4"/>
+    <rect class="a-s" x="34" y="15" width="2.6" height="15" rx=".8"/>
+    <rect class="a-g" x="34.2" y="18.4" width="2.2" height="11.4" rx=".7" filter="url(#a-glow)"/>
+    <rect class="a-g" x="34.4" y="18.8" width="1.8" height="10.8" rx=".6"/>
+    <rect class="a-m a-oo" x="33.6" y="5.6" width="15" height="4.6" rx="1.3"/>
+    <path class="a-l" d="M35 6.8h12.4M39.8 12v19M48.6 35.6c3.4 1.1 6.2 2.6 8 4.2"/>
+  </g>
+  <use href="#rocket-boots-b" transform="matrix(-1 0 0 1 64 0)"/>
+</svg>

@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <g id="mag-lock-boots-b" transform="matrix(.9 0 0 .9 4.8 2.6)">
+    <path class="a-gl" d="M36.8 52c0 5.6 4.8 7.6 11 7.6s11-2 11-7.6M41.2 52c0 3 2.8 4.2 6.6 4.2s6.6-1.2 6.6-4.2" filter="url(#a-glow)"/>
+    <path class="a-gl" d="M36.8 52c0 5.6 4.8 7.6 11 7.6s11-2 11-7.6M41.2 52c0 3 2.8 4.2 6.6 4.2s6.6-1.2 6.6-4.2"/>
+    <path class="a-b a-oo" d="M34.6 10h13v20.6c4.8 1.4 8.4 3 10.6 5.2 1.6 1.6 2.2 3.6 2.2 5.6V44H34.6z"/>
+    <path d="M34.6 10h13v20.6c4.8 1.4 8.4 3 10.6 5.2 1.6 1.6 2.2 3.6 2.2 5.6V44H34.6z" fill="url(#a-sheen)"/>
+    <path d="M34.6 10h13v20.6c4.8 1.4 8.4 3 10.6 5.2 1.6 1.6 2.2 3.6 2.2 5.6V44H34.6z" fill="url(#a-shade)"/>
+    <path class="a-m a-o" d="M34.6 19.4h13v3.4h-13zM47.6 31.2l3.8 1.2-2.4 11.6h-3.6z"/>
+    <path class="a-p" d="M41 23v20.8M51.6 37.4h8.4"/>
+    <rect class="a-s a-o" x="36.6" y="26" width="3.6" height="11" rx=".9"/>
+    <path class="a-g" d="M37.4 31h2v1.6h-2zM37.4 33.4h2V35h-2zM37.4 28.6h2v1.6h-2z" opacity=".95"/>
+    <rect class="a-c a-oo" x="33.4" y="6" width="15.4" height="5.6" rx="2.4"/>
+    <path class="a-m a-oo" d="M33.4 43.2h28v7.6c0 1-.8 1.8-1.8 1.8H35.2c-1 0-1.8-.8-1.8-1.8z"/>
+    <path class="a-x" d="M36 44.4h3.2l-2.2 3.4h-2.4zM42.4 44.4h3.2l-2.2 3.4h-3.2zM48.8 44.4H52l-2.2 3.4h-3.2zM55.2 44.4h3.2l-2.2 3.4H53z"/>
+    <path class="a-d" d="M36.4 49h6.4v3.6h-6.4zM45 49h6.4v3.6H45zM53.6 49h6.4v3.6h-6.4z"/>
+    <path class="a-p" d="M33.6 48.2h27.6"/>
+    <path class="a-l" d="M35 7.4h12.6M36 11.6v7M48.8 31.6c3.6 1.2 6.6 2.6 8.6 4.4M34.4 44.4h1"/>
+  </g>
+  <use href="#mag-lock-boots-b" transform="matrix(-1 0 0 1 64 0)"/>
+</svg>

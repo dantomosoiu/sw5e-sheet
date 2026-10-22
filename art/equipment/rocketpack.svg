@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <g id="rocketpack-h">
+    <g transform="translate(.2 1.8) rotate(-24 20.4 22)">
+      <path class="a-x a-oo" d="M16.4 6.4c0-3.4 1.8-5.8 4-6.8 2.2 1 4 3.4 4 6.8z"/>
+      <path class="a-m a-o" d="M17.2 3.4h6.4l.4 1.8h-7.2z"/>
+      <rect class="a-m a-oo" x="15.4" y="5.4" width="10" height="17.6" rx="1.4"/>
+      <rect x="15.4" y="5.4" width="10" height="17.6" rx="1.4" fill="url(#a-shade)"/>
+      <rect class="a-b a-o" x="14.8" y="5" width="11.2" height="3.4" rx=".9"/>
+      <path class="a-x" d="M15.6 13.6h9.6v2.4h-9.6z"/>
+      <path class="a-l" d="M15.8 6.2h9.6M16.8 9.6v11.4"/>
+    </g>
+    <path class="a-g" d="M17 49.6h12.8l-2 6.2-4.4 4.2-4.4-4.2z" filter="url(#a-glow)" opacity=".9"/>
+    <path class="a-g" d="M18.8 49.6h9.2l-1.6 5-3 3-3-3z"/>
+    <path class="a-w" d="M21.4 49.6h4l-2 4.4zM22.4 55.2l1-1.2 1 1.2-1 1.6z"/>
+    <path class="a-m a-oo" d="M19.6 41.8h7.6l2.6 8H17z"/>
+    <path class="a-d" d="M17.4 48.2h12l.5 1.6H17z"/>
+    <path class="a-p" d="M18.8 45.2h9.2"/>
+  </g>
+  <use href="#rocketpack-h" transform="matrix(-1 0 0 1 64 0)"/>
+  <path class="a-b a-oo" d="M19.6 10h24.8l7 7v21l-6.6 6.4H19.2L12.6 38V17z"/>
+  <path d="M19.6 10h24.8l7 7v21l-6.6 6.4H19.2L12.6 38V17z" fill="url(#a-sheen)"/>
+  <path d="M19.6 10h24.8l7 7v21l-6.6 6.4H19.2L12.6 38V17z" fill="url(#a-shade)"/>
+  <path class="a-x" d="M13 22.4h14.4v3.4H13zM36.6 22.4H51v3.4H36.6z"/>
+  <path class="a-d" d="M16 31h10.4v1.4H16zM16 34h10.4v1.4H16zM16 37h10.4v1.4H16zM37.6 31H48v1.4H37.6zM37.6 34H48v1.4H37.6zM37.6 37H48v1.4H37.6z"/>
+  <path class="a-p" d="M13 28.4h14.4M36.6 28.4H51M19.6 10l-3.2 6.6h31.2L44.4 10"/>
+  <rect class="a-m a-oo" x="27.6" y="13.4" width="8.8" height="31" rx="1.4"/>
+  <rect class="a-s a-o" x="29.4" y="16.2" width="5.2" height="22.6" rx="1"/>
+  <path class="a-g" d="M30.2 17.2h3.6v3.2h-3.6zM30.2 21.4h3.6v3.2h-3.6zM30.2 25.6h3.6v3.2h-3.6zM30.2 29.8h3.6V33h-3.6zM30.2 34h3.6v3.2h-3.6z" filter="url(#a-glow)"/>
+  <path class="a-g" d="M30.4 17.4h3.2v2.8h-3.2zM30.4 21.6h3.2v2.8h-3.2zM30.4 25.8h3.2v2.8h-3.2zM30.4 30h3.2v2.8h-3.2zM30.4 34.2h3.2V37h-3.2z"/>
+  <circle class="a-b a-o" cx="32" cy="41.6" r="1.6"/>
+  <path class="a-l" d="M20.2 11.2h23.6M13.8 17.6v20M28.8 14.6h6.4"/>
+</svg>

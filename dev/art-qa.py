@@ -189,6 +189,8 @@ def measure(name, black, white):
 
 def main():
     args = sys.argv[1:]
+    if {'-h', '--help'} & set(args):
+        sys.exit(__doc__)
     only = args[args.index('--only') + 1] if '--only' in args else ''
     names = art.select(only)
     files = {('eq-' + p.stem if p.parent.name == 'equipment' else p.stem): p for p, _ in art.pictures()}

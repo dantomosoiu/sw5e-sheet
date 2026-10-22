@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <g transform="translate(6.8 3.2) rotate(-45 32 32)">
+    <path class="a-d a-o" d="M58.8 25.6L61.6 22.1L63 23.2L61.6 26.8z"/>
+    <path class="a-m a-oo" d="M52 29.1C55 29.1 56.6 27.6 58.4 24.8L61.4 26.6C59 30.8 56 34.9 52 34.9z"/>
+    <path class="a-x a-o" d="M58 25.8l2.4 1.6-.8 1.2-2.4-1.6z"/>
+    <path class="a-m a-oo" d="M8 35.1A10.1 10.1 0 0 1 8 14.9V21.1A3.9 3.9 0 0 0 8 28.9z"/>
+    <path d="M8 35.1A10.1 10.1 0 0 1 8 14.9V21.1A3.9 3.9 0 0 0 8 28.9z" fill="url(#a-shade)"/>
+    <rect class="a-m a-oo" x="7.4" y="29.1" width="45" height="5.8" rx=".6"/>
+    <rect x="7.4" y="29.1" width="45" height="5.8" rx=".6" fill="url(#a-sheen)"/>
+    <path class="a-m a-oo" d="M7.4 14.9H12C17 14.9 19 12.6 22.4 9V27C19 23.4 17 21.1 12 21.1H7.4z"/>
+    <path d="M7.4 14.9H12C17 14.9 19 12.6 22.4 9V27C19 23.4 17 21.1 12 21.1H7.4z" fill="url(#a-sheen)"/>
+    <ellipse class="a-x a-oo" cx="22.4" cy="18" rx="2.1" ry="9.2"/>
+    <ellipse class="a-d" cx="22.8" cy="18" rx=".9" ry="7.2"/>
+    <path class="a-x a-o" d="M6.6 28.9h2.6v6.2H6.6zM6.6 14.7h2.6v6.6H6.6zM50.2 28.9h2.2v6.2h-2.2z"/>
+    <ellipse class="a-x a-oo" cx="27.4" cy="32" rx="6" ry="5.6"/>
+    <ellipse cx="27.4" cy="32" rx="6" ry="5.6" fill="url(#a-sheen)"/>
+    <path class="a-p" d="M27.4 26.6v10.8"/>
+    <path class="a-m a-o" d="M35 27.8h14v1.2H35z"/>
+    <path class="a-b a-o" d="M36.2 32a1.5 1.5 0 1 0 3 0a1.5 1.5 0 1 0-3 0zM40.2 32a1.5 1.5 0 1 0 3 0a1.5 1.5 0 1 0-3 0zM44.2 32a1.4 1.4 0 1 0 2.8 0a1.4 1.4 0 1 0-2.8 0zM14.4 32a1.5 1.5 0 1 0 3 0a1.5 1.5 0 1 0-3 0zM18.4 32a1.5 1.5 0 1 0 3 0a1.5 1.5 0 1 0-3 0z"/>
+    <path class="a-l" d="M10 30.2h12M33.6 30.2h12.6M12.4 15.9c4 0 6-1.6 9-4.6M24 27.8a5.4 5.4 0 0 1 4.8-.8"/>
+  </g>
+</svg>

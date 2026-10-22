@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <path class="a-g" d="M28.6 33.6h7L52.6 20.4H11.4z" opacity=".16"/>
+  <path class="a-gl" style="stroke-width:.6" d="M28.6 33.4L11.8 20.8M35.6 33.4L52.2 20.8" opacity=".5"/>
+  <rect class="a-g" x="9" y="4" width="46" height="17.4" rx="2" opacity=".14"/>
+  <rect class="a-gl" x="9" y="4" width="46" height="17.4" rx="2" filter="url(#a-glow)" opacity=".7"/>
+  <rect class="a-gl" style="stroke-width:.8" x="9" y="4" width="46" height="17.4" rx="2"/>
+  <path class="a-gl" style="stroke-width:.6" d="M13.2 8.8l4.2-2.2 4.2 2.2v4.8l-4.2 2.2-4.2-2.2zM13.2 8.8l4.2 2.2 4.2-2.2M17.4 11v4.8"/>
+  <path class="a-gl" style="stroke-width:.9" d="M25.4 8.4h12M25.4 11.4h20M25.4 14.4h8.6M36.8 14.4h13M25.4 17.4h16" opacity=".85"/>
+  <path class="a-w" d="M47.4 7.2h4v2.4h-4z" opacity=".8"/>
+  <path class="a-m a-oo" d="M17 38L25 30H47V52L39 60H17z"/>
+  <path class="a-m a-o" d="M17 38L25 30H47L39 38z"/>
+  <path d="M17 38L25 30H47L39 38z" fill="url(#a-sheen)"/>
+  <path class="a-m a-o" d="M39 38L47 30V52L39 60z"/>
+  <path d="M39 38L47 30V52L39 60z" fill="url(#a-shade)"/>
+  <path class="a-p" d="M41.6 41.4l3-3M41.6 45.4l3-3M41.6 49.4l3-3"/>
+  <rect class="a-b a-o" x="17" y="38" width="22" height="22"/>
+  <rect x="17" y="38" width="22" height="22" fill="url(#a-shade)"/>
+  <path class="a-p" d="M20.4 43.4h4.2l2.2 2.2M35.6 54.6h-4.2l-2.2-2.2M20.4 54.6v-3.4M35.6 43.4v3.4"/>
+  <path class="a-x a-o" d="M17 38h6v2.2h-3.8V44H17zM39 38h-6v2.2h3.8V44H39zM17 60h6v-2.2h-3.8V54H17zM39 60h-6v-2.2h3.8V54H39z"/>
+  <rect class="a-s a-o" x="23.4" y="46.4" width="9.2" height="5.2" rx="1"/>
+  <rect class="a-g" x="24.6" y="48.2" width="6.8" height="1.6" rx=".8" filter="url(#a-glow)"/>
+  <rect class="a-g" x="24.6" y="48.4" width="6.8" height="1.2" rx=".6"/>
+  <ellipse class="a-s a-o" cx="32" cy="34" rx="5" ry="2.2"/>
+  <ellipse class="a-g" cx="32" cy="34" rx="3.6" ry="1.5" filter="url(#a-glow)"/>
+  <ellipse class="a-w" cx="32" cy="34" rx="1.6" ry=".7"/>
+  <path class="a-l" d="M18.4 38.8L25.4 31.4H46"/>
+</svg>

@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <g id="aratech-sound-dampening-boots-b">
+    <path class="a-c a-oo" d="M35 8.6l11.8-4.2V33c4.8 1.6 8.8 3.6 11.2 6 1.4 1.4 2 3 2 4.6V47H35z"/>
+    <path class="a-p" d="M35.4 12.6l11 11M35.4 22.6l11 11M46.4 9.2L35.4 20.2M46.4 19.2l-11 11"/>
+    <path d="M35 8.6l11.8-4.2V33c4.8 1.6 8.8 3.6 11.2 6 1.4 1.4 2 3 2 4.6V47H35z" fill="url(#a-shade)"/>
+    <path class="a-b a-o" d="M43.6 7.4l4-1.4v26.4l-4-1.2z"/>
+    <path d="M43.6 7.4l4-1.4v26.4l-4-1.2z" fill="url(#a-sheen)"/>
+    <path class="a-m a-oo" d="M34.2 7.6l13.4-4.8v4.4L34.2 12z"/>
+    <path class="a-x" d="M47.2 34.4c4.6 1.6 8.6 3.6 10.8 6.2l-1.4 1c-2-2.2-5.6-4.2-10-5.6z"/>
+    <path class="a-d a-oo" d="M34.2 45.6h26.4v2.6c0 2.4-2 4.2-4.4 4.2H37.6c-1.8 0-3.4-1.4-3.4-3.4z"/>
+    <path class="a-c a-o" d="M37.2 47.4h4.6v2.8h-4.6zM43.4 47.4H48v2.8h-4.6zM49.6 47.4h4.6v2.8h-4.6zM55.4 47.4h3.4c0 1.6-1 2.8-2.4 2.8h-1z"/>
+    <circle class="a-s a-oo" cx="39.4" cy="39.4" r="3.8"/>
+    <circle class="a-gl" cx="39.4" cy="39.4" r="2.2" filter="url(#a-glow)"/>
+    <circle class="a-gl" cx="39.4" cy="39.4" r="2.2" opacity=".8"/>
+    <circle class="a-w" cx="39.4" cy="39.4" r=".7"/>
+    <path class="a-l" d="M35.4 8.6l11.6-4.2M44.6 8.4v21.4M47.6 34.2c3.8 1.4 7 3 9 4.8"/>
+  </g>
+  <use href="#aratech-sound-dampening-boots-b" transform="matrix(-1 0 0 1 64 0)"/>
+</svg>

@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <g transform="rotate(-45 32 32)">
+    <path class="a-c a-oo" d="M3 27h54.6v10H3l2.8-5z"/>
+    <path d="M3 27h54.6v10H3l2.8-5z" fill="url(#a-shade)"/>
+    <path class="a-p" d="M6.4 28.8h50M6.4 35.2h50" stroke-dasharray="1.4 1"/>
+    <g id="bandolier-cell">
+      <rect class="a-m a-o" x="7.8" y="21.4" width="4.4" height="9" rx="1"/>
+      <rect class="a-g" x="8.2" y="24.2" width="3.6" height="2.6" filter="url(#a-glow)"/>
+      <rect class="a-g" x="8.2" y="24.2" width="3.6" height="2.6"/>
+      <path class="a-l" d="M8.8 22.6h2.4"/>
+    </g>
+    <g id="bandolier-nade">
+      <rect class="a-m a-o" x="16.8" y="19.4" width="2.4" height="3" rx=".6"/>
+      <circle class="a-m a-o" cx="18" cy="25.6" r="3.8"/>
+      <path class="a-x" d="M14.3 24.6h7.4v2h-7.4z"/>
+      <path class="a-l" d="M15.8 23.4c.6-.9 1.3-1.4 2.2-1.6"/>
+    </g>
+    <use href="#bandolier-cell" transform="translate(16 0)"/>
+    <use href="#bandolier-nade" transform="translate(24 0)"/>
+    <use href="#bandolier-cell" transform="translate(40 0)"/>
+    <path class="a-d a-o" d="M32.6 17h2.8v13h-2.8z"/>
+    <path class="a-m a-o" d="M32.4 14.2c0-1 .7-1.6 1.6-1.6s1.6.6 1.6 1.6v3H32.4zM30.6 27.6h6.8v2.4h-6.8z"/>
+    <path class="a-p" d="M33 20h2M33 23h2M33 26h2"/>
+    <g id="bandolier-loop">
+      <path class="a-c a-oo" d="M6.4 29.6h7.2v11.2c0 1-.8 1.8-1.8 1.8H8.2c-1 0-1.8-.8-1.8-1.8z"/>
+      <path d="M6.4 29.6h7.2v11.2c0 1-.8 1.8-1.8 1.8H8.2c-1 0-1.8-.8-1.8-1.8z" fill="url(#a-shade)"/>
+      <circle class="a-m a-o" cx="10" cy="37.4" r="1"/>
+      <path class="a-l" d="M7.2 30.8h5.6"/>
+    </g>
+    <use href="#bandolier-loop" transform="translate(8 0)"/>
+    <use href="#bandolier-loop" transform="translate(16 0)"/>
+    <use href="#bandolier-loop" transform="translate(24 0)"/>
+    <use href="#bandolier-loop" transform="translate(32 0)"/>
+    <use href="#bandolier-loop" transform="translate(40 0)"/>
+    <rect class="a-m a-oo" x="55.4" y="25.2" width="6.4" height="13.6" rx="1.6"/>
+    <rect class="a-d" x="57.2" y="27.6" width="2.8" height="8.8" rx=".6"/>
+    <path class="a-b a-o" d="M56 31.2h5.2v1.6H56z"/>
+    <path class="a-l" d="M56.6 26.4h4"/>
+  </g>
+</svg>

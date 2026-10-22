@@ -337,6 +337,8 @@ def stack(pngs, out):
 
 
 if __name__ == '__main__':
+    if {'-h', '--help'} & set(sys.argv):
+        sys.exit(__doc__)
     cmd = sys.argv[1] if len(sys.argv) > 1 else 'build'  # anything else: the usage above
     if cmd == 'check':
         sys.exit(0 if check() else 1)

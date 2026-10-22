@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <g id="boots-of-bounding-b">
+    <path class="a-g" d="M50.2 36.6h7.2c0 3.8-1.6 6.6-3.6 9.2-2-2.6-3.6-5.4-3.6-9.2z" filter="url(#a-glow)" opacity=".9"/>
+    <path class="a-g" d="M51.4 36.6h4.8c0 2.8-1.1 5-2.4 6.8-1.3-1.8-2.4-4-2.4-6.8z"/>
+    <path class="a-w" d="M52.8 36.6h2c0 1.4-.4 2.6-1 3.6-.6-1-1-2.2-1-3.6z"/>
+    <rect class="a-m a-o" x="42.4" y="50" width="3.2" height="8"/>
+    <ellipse class="a-oo" fill="none" style="stroke-width:3" cx="44" cy="52.6" rx="6.2" ry="1.7" transform="rotate(-6 44 52.6)"/>
+    <ellipse class="a-l" style="stroke-width:1.3" cx="44" cy="52.6" rx="6.2" ry="1.7" transform="rotate(-6 44 52.6)"/>
+    <ellipse class="a-oo" fill="none" style="stroke-width:3" cx="44" cy="55.6" rx="6.2" ry="1.7" transform="rotate(-6 44 55.6)"/>
+    <ellipse class="a-l" style="stroke-width:1.3" cx="44" cy="55.6" rx="6.2" ry="1.7" transform="rotate(-6 44 55.6)"/>
+    <rect class="a-d a-oo" x="35.4" y="57.4" width="17.2" height="3.2" rx="1.2"/>
+    <path class="a-c a-oo" d="M36.6 7.6h14.8l-1.2 29.6H37.8z"/>
+    <path d="M36.6 7.6h14.8l-1.2 29.6H37.8z" fill="url(#a-shade)"/>
+    <ellipse class="a-m a-oo" cx="44" cy="7.6" rx="7.8" ry="2.6"/>
+    <ellipse class="a-d" cx="44" cy="7.4" rx="6" ry="1.4"/>
+    <path class="a-b a-o" d="M38.4 11.4h11.2l-.6 19.6-5 4-5-4z"/>
+    <path d="M38.4 11.4h11.2l-.6 19.6-5 4-5-4z" fill="url(#a-sheen)"/>
+    <path class="a-p" d="M38.6 15h10.8"/>
+    <path class="a-g" d="M42.3 19.6a1.7 1.7 0 1 0 3.4 0a1.7 1.7 0 1 0 -3.4 0zM42.3 24.2a1.7 1.7 0 1 0 3.4 0a1.7 1.7 0 1 0 -3.4 0zM42.3 28.8a1.7 1.7 0 1 0 3.4 0a1.7 1.7 0 1 0 -3.4 0z" filter="url(#a-glow)"/>
+    <path class="a-s a-o" d="M42.6 19.6a1.4 1.4 0 1 0 2.8 0a1.4 1.4 0 1 0 -2.8 0zM42.6 24.2a1.4 1.4 0 1 0 2.8 0a1.4 1.4 0 1 0 -2.8 0zM42.6 28.8a1.4 1.4 0 1 0 2.8 0a1.4 1.4 0 1 0 -2.8 0z"/>
+    <path class="a-g" d="M43.2 19.6a0.8 0.8 0 1 0 1.6 0a0.8 0.8 0 1 0 -1.6 0zM43.2 24.2a0.8 0.8 0 1 0 1.6 0a0.8 0.8 0 1 0 -1.6 0zM43.2 28.8a0.8 0.8 0 1 0 1.6 0a0.8 0.8 0 1 0 -1.6 0z"/>
+    <path class="a-c a-oo" d="M37.6 37h12.8c2.8 1.6 4.2 4.4 4.2 7.6v2.8H33.4v-2.8c0-3.2 1.4-6 4.2-7.6z"/>
+    <path class="a-b a-o" d="M36.2 41.6c0-2.4 3.4-3.6 7.8-3.6s7.8 1.2 7.8 3.6V47H36.2z"/>
+    <path d="M36.2 41.6c0-2.4 3.4-3.6 7.8-3.6s7.8 1.2 7.8 3.6V47H36.2z" fill="url(#a-sheen)"/>
+    <path class="a-x a-o" d="M37.9 34.4h12.2l-.1 2.8H38z"/>
+    <rect class="a-d a-oo" x="33" y="47" width="22" height="3.8" rx="1.2"/>
+    <rect class="a-m a-oo" x="50.4" y="16.4" width="7" height="17" rx="3.2"/>
+    <rect x="50.4" y="16.4" width="7" height="17" rx="3.2" fill="url(#a-shade)"/>
+    <path class="a-m a-o" d="M51 33h5.8l.8 3.6h-7.4z"/>
+    <path class="a-x" d="M50.6 21h6.6v2h-6.6z"/>
+    <path class="a-l" d="M37.8 6.4c1.8-.8 3.8-1.2 6.2-1.2M39.8 12.6l-.2 17.4M51.8 18v12M37.4 40.6c1.8-.8 4-1.4 6.6-1.4"/>
+  </g>
+  <use href="#boots-of-bounding-b" transform="matrix(-1 0 0 1 64 0)"/>
+</svg>
