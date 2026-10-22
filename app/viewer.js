@@ -2331,7 +2331,9 @@ function applyEffects(key, editedRaw, complete) {
   const armor = armorState(editedRaw);
   // Mods aimed at "melee weapon attacks using Strength" (Rage) go to each such weapon and unarmed strikes.
   const weaponsFor = (f) => arr(complete && complete.weapons).filter((w) => (!f.ability || w.ability === f.ability)
-    && (!f.melee || !/blaster/i.test(w.weaponClassification || '')));
+    && (!f.melee || !/blaster/i.test(w.weaponClassification || ''))
+    // Ranged: a blaster, or a "(range …)" property that isn't thrown (as the engine reads it); never the unarmed strike.
+    && (!f.ranged || (w.name !== 'Unarmed Strike' && (/blaster/i.test(w.weaponClassification || '') || arr(w.properties).some((p) => /\(range /i.test(p) && !/^thrown/i.test(String(p).trim()))))));
   const expand = (e) => {
     const plain = arr(e.mods).filter((x) => !x.weaponFilter);
     const out = [{ ...e, mods: plain }];
@@ -2575,10 +2577,13 @@ function applyEffects(key, editedRaw, complete) {
       if (/^#{4,}\s/.test(s0) && typeof headingOf === 'function') sub = headingOf(s0);
       // "While you are concentrating on a Force power, you have a +2 bonus to your AC and all saving throws" (Enduring Focus).
       const w = /^(?:[-#*_ ]*[A-Z][\w'’ -]+?\s+)?While you are ([^,]+), you have a \+(\d+) bonus to your AC\b/.exec(s0);
-      const x = w ? [w[0], w[2]] : /^(?:[^.]*?\s)?You gain a \+(\d+) bonus to AC until the start of your next turn\b/.exec(s0);
+      // "While wielding your modified lightsaber, you gain a +1 bonus to your armor class against melee weapon attacks"
+      // (Crossguard, an Artificer modification picked).
+      const v = /\bWhile wielding your modified \w+, you gain a \+(\d+) bonus to your armor class against melee weapon attacks/i.exec(s0);
+      const x = v ? [v[0], v[1]] : w ? [w[0], w[2]] : /^(?:[^.]*?\s)?You gain a \+(\d+) bonus to AC until the start of your next turn\b/.exec(s0);
       if (!x || /\bfor each\b/i.test(s0)) continue;
       const name = sub || f.name;
-      const cond = w ? `while ${w[1].replace(/ on an? (?:Force|force|tech) power$/, '')}` : name;
+      const cond = v ? 'vs melee' : w ? `while ${w[1].replace(/ on an? (?:Force|force|tech) power$/, '')}` : name;
       const e = { id: `ac-alt:${name}`, kind: 'feature', name, why: f.k ? `${f.from || f.k.name} feature` : 'feat', target: 'self', mods: [], notes: [] };
       res.conds.push({ path: 'armorClass', bonus: num(x[1]), cond, ammo: null, weaponIndex: null, effect: e, mod: { path: 'armorClass', bonus: num(x[1]), label: `AC +${x[1]}`, cond } });
     }
@@ -2643,7 +2648,14 @@ function applyEffects(key, editedRaw, complete) {
   // The unarmed strike's ability: Dexterity with finesse (a species' natural weapons, Martial Arts, Ideal of the
   // Contender), the abilities features allow (Vow of Spirit's Wisdom or Charisma), the best of them over SW5E's Strength.
   const unarmedCan = effects.filter((x) => x.unarmedFinesse).map((e) => ({ a: 'Dexterity', e, finesse: true }))
-    .concat(grants.filter((g) => g.target.unarmed || g.target.melee).flatMap((g) => g.abilities.map((a) => ({ a, e: g.e, finesse: g.finesse }))));
+    .concat(grants.filter((g) => g.target.unarmed || g.target.melee).flatMap((g) => g.abilities.map((a) => ({ a, e: g.e, finesse: g.finesse }))))
+    // An item you make unarmed strikes with: "You can use your choice of Strength or Intelligence for the attack and damage
+    // rolls" (Shock Arm).
+    .concat(effects.filter((e) => e.kind === 'item' && e.unarmedDie).flatMap((e) => {
+      const ref = catalogIndex && catalogIndex.get(e.name);
+      const x = /You can use your choice of (\w+) or (\w+)(?: modifier)? for the attack and damage rolls/i.exec(String((ref && (ref.text || ref.description)) || ''));
+      return x ? [x[1], x[2]].filter((a) => ABBR[a]).map((a) => ({ a, e })) : [];
+    }));
   if (unarmedCan.length && unarmed) {
     // From the final scores (a belt that makes Strength 21 ends the gain), not the last calculation.
     const mod = modOf;
@@ -4876,7 +4888,9 @@ function renderCombat(m) {
   return `
     <div class="grid auto">
       ${stat('Armor Class', bump(m, 'armorClass', esc(c.armorClass)) + acArt, esc(arr(c.armorList).join(', ') || 'Unarmored')
-        + (acSetByTweak(m.raw) != null ? ` · <span class="warn-text" title="Armor, shields and effects don't change it while the tweak is there">set to ${acSetByTweak(m.raw)} by a tweak</span>` : ''))}
+        + (acSetByTweak(m.raw) != null ? ` · <span class="warn-text" title="Armor, shields and effects don't change it while the tweak is there">set to ${acSetByTweak(m.raw)} by a tweak</span>` : '')
+        // What can be added against one attack (Deflection's die, Shien Form's half WIS/CHA): acReactions (roller.js).
+        + (typeof acReactions === 'function' && acReactions(m).length ? ` · <span title="Against one attack, when you choose (a reaction or a free roll)">vs one attack: ${esc(acReactions(m).join(', '))}</span>` : ''))}
       ${live('hp', m, 'div', 'stat')}
       ${stat('Initiative', rollable('init', bump(m, 'initiative', signed(c.initiative)), 'Roll initiative'))}
       ${(() => {
@@ -5237,7 +5251,7 @@ function renderAttacks(m) {
     }).join('')}${specialAttacks(m).map((s) => `<tr>
       <td><div class="inv-item"><div class="inv-what"><b>${esc(s.name)}</b> <span class="chip" title="${esc(s.from)}">special attack</span><div class="m-props">${esc(s.props)}</div></div></div></td>
       <td class="num"><b>${rollable(`pattack|${s.name}|${s.attack}`, signed(s.attack), `Roll ${s.name}'s attack`)}</b></td>
-      <td>${rollable(`dice|${s.dice}${s.bonus ? signed(s.bonus) : ''}`, esc(`${s.dice}${s.bonus ? signed(s.bonus) : ''} ${titleCase(s.type)}`), `Roll ${s.name}'s damage`)}</td>
+      <td>${rollable(`dice|${s.dice}${s.bonus ? signed(s.bonus) : ''}|${s.name} damage|${s.type}`, esc(`${s.dice}${s.bonus ? signed(s.bonus) : ''} ${titleCase(s.type)}`), `Roll ${s.name}'s damage`)}</td>
       <td class="muted col-ability">${esc(s.ability)}</td><td class="muted col-type">${esc(titleCase(s.kind))}</td><td class="col-props"><span class="faint">${esc(s.props)}</span></td></tr>`).join('')}</tbody>
   </table></div>
   ${ws.some((w) => w.description) ? `<h3>Weapon notes</h3><div class="grid cards">${ws.filter((w) => w.description).map((w) => card({ title: w.name, body: md(w.description) })).join('')}</div>` : ''}`;

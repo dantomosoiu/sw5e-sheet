@@ -188,7 +188,7 @@ skill|Charisma|3: Persuasion (CHA): d20 −1 · = −1 modifier
 attack|0: Unarmed Strike attack: d20 +6 · = +6 modifier
 damage|0: Unarmed Strike damage: d6 +3 · = +3 DEX modifier (Martial Arts) · Kinetic · option: Sneak Attack +2d6
 pattack|Ichor Lightning|6: Ichor Lightning attack: d20 +6 · = +6 modifier
-dice|1d6+3: 1d6+3: d6 +3 · = +3 modifier
+dice|1d6+3|Ichor Lightning damage|necrotic: Ichor Lightning damage: d6 +3 · = +3 ability modifier · Necrotic
 tool|One type of gaming set|proficient: One type of gaming set check: d20 +5 · = +2 INT modifier +3 proficiency
 damage|0|crit: Unarmed Strike damage (critical): d6 d6 +3 · = +3 DEX modifier (Martial Arts) · Kinetic · critical · option: Sneak Attack +2d6
 
