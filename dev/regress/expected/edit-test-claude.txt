@@ -1,8 +1,8 @@
 # Edit Test (Claude)
 
 ## Sent to the rules engine
-The sheet's engine computes the numbers. SW5E's recorded calculation is for this same character.
-tweaks.abilityScores.Charisma.score.bonus = 2
+The sheet's engine computes the numbers. OUT OF DATE: SW5E's recorded calculation is for an older version of this character; record the case again (dev/regress-record.js) for dev/engine-check.js.
+tweaks.abilityScores.Charisma.score.bonus = 3
 tweaks.abilityScores.Charisma.skills.Deception.bonus = 0
 tweaks.abilityScores.Charisma.skills.Deception.proficiency = "Expertise"
 tweaks.abilityScores.Strength.score.bonus = 6
@@ -43,7 +43,7 @@ abilityScores.Charisma.skills[Performance].modifier = 0
 abilityScores.Charisma.skills[Performance].proficiency = "none"
 abilityScores.Charisma.skills[Persuasion].modifier = 0
 abilityScores.Charisma.skills[Persuasion].proficiency = "none"
-abilityScores.Charisma.value = 10
+abilityScores.Charisma.value = 11
 abilityScores.Constitution.modifier = 2
 abilityScores.Constitution.savingThrow.modifier = 5
 abilityScores.Constitution.savingThrow.proficiency = "proficient"
@@ -157,6 +157,7 @@ effect: Custom barrel · tweak
 effect: Fighter weapon proficiencies · feature
 effect: Bonus Proficiencies · feature
 effect: Silver-Tongued · feature
+effect: Silver-Tongued · feature
 effect: Aratech Echo Belt · item
 effect: Shield (Fine) · item
 effect: Strength Enhancer · item
@@ -168,6 +169,7 @@ effect: Fadecasting Core (Training) · item
 effect: Cryo Cell (Average) · item · 1 hour
 tweak: abilityScores.Charisma.score +2 · Test character setup: +1 CHA
 tweak: abilityScores.Charisma.skills.Deception +0 {"proficiency":"Expertise"} · Deception
+tweak: abilityScores.Charisma.score +1 · Silver-Tongued
 tweak: abilityScores.Charisma.skills.Deception +0 {"proficiency":"Proficient"} · Silver-Tongued
 tweak: armorClass +1 · Shield (Fine)
 tweak: abilityScores.Strength.score +6 · Strength Enhancer
@@ -238,7 +240,7 @@ Edit Test (Claude)
 Bothan · Fighter (Tactical Specialist) 5, Engineer 2
 Level 7 Background: Noble Lawful Light Proficiency +3 [Add a picture]
 24,000 XP level 8 at 34,000 (10,000 to go)
-Still to choose (12): Fighter skills (2 more) · Fighter 4th level: ability score improvement or feat · Fighter Strategies · Fighter maneuvers (6 more) · Enginee… [359 chars #484201c2]
+Still to choose (11): Fighter skills (2 more) · Fighter 4th level: ability score improvement or feat · Fighter Strategies · Fighter maneuvers (6 more) · Enginee… [338 chars #6cb5a703]
 
 ## Sheet: Combat & Vitals
 Armor Class
@@ -280,9 +282,10 @@ Combat [Start combat]
 Class dice
 Superiority Dice Size 1d6 Potent Aptitude 1d4
 Effects
-From class features (3)
+From class features and feats (4)
 Fighter weapon proficiencies Proficient: All blasters Proficient: all vibroweapons Fighter proficiencies
 Bonus Proficiencies Choose artisan's implements Tactical Specialist feature
+Silver-Tongued CHA +1 feat (background feat)
 Silver-Tongued Deception: proficient feat
 From equipment
 Aratech Echo Belt while attuned
@@ -374,20 +377,20 @@ base 10
 CHA
 Charisma
 +0
-  ↳ hover abilityScores.Charisma.modifier: Without tweaks or effects: -1 → now 0 / +2 Charisma score · Test character setup: +1 CHA tweak
-10
-  ↳ hover abilityScores.Charisma.value: Without tweaks or effects: 8 → now 10 / +2 Charisma score · Test character setup: +1 CHA tweak
+  ↳ hover abilityScores.Charisma.modifier: Without tweaks or effects: -1 → now 0 / +2 Charisma score · Test character setup: +1 CHA tweak / +1 CHA · Silver-Tongued feat (background feat)
+11
+  ↳ hover abilityScores.Charisma.value: Without tweaks or effects: 8 → now 11 / +2 Charisma score · Test character setup: +1 CHA tweak / +1 CHA · Silver-Tongued feat (background feat)
 (Not proficient) Saving throw+0
-  ↳ hover abilityScores.Charisma.savingThrow.modifier: Without tweaks or effects: -1 → now 0 / +2 Charisma score · Test character setup: +1 CHA tweak
+  ↳ hover abilityScores.Charisma.savingThrow.modifier: Without tweaks or effects: -1 → now 0 / +2 Charisma score · Test character setup: +1 CHA tweak / +1 CHA · Silver-Tongued feat (background feat)
 (Expertise) Deception+6
-  ↳ hover abilityScores.Charisma.skills.0.modifier: Without tweaks or effects: -1 → now 6 / +2 Charisma score · Test character setup: +1 CHA tweak / Expertise Decep… [245 chars #15264ded]
+  ↳ hover abilityScores.Charisma.skills.0.modifier: Without tweaks or effects: -1 → now 6 / +2 Charisma score · Test character setup: +1 CHA tweak / +1 CHA · Silver… [294 chars #955be9f4]
 (Not proficient) Intimidation+0
-  ↳ hover abilityScores.Charisma.skills.1.modifier: Without tweaks or effects: -1 → now 0 / +2 Charisma score · Test character setup: +1 CHA tweak
+  ↳ hover abilityScores.Charisma.skills.1.modifier: Without tweaks or effects: -1 → now 0 / +2 Charisma score · Test character setup: +1 CHA tweak / +1 CHA · Silver-Tongued feat (background feat)
 (Not proficient) Performance+0
-  ↳ hover abilityScores.Charisma.skills.2.modifier: Without tweaks or effects: -1 → now 0 / +2 Charisma score · Test character setup: +1 CHA tweak
+  ↳ hover abilityScores.Charisma.skills.2.modifier: Without tweaks or effects: -1 → now 0 / +2 Charisma score · Test character setup: +1 CHA tweak / +1 CHA · Silver-Tongued feat (background feat)
 (Not proficient) Persuasion+0
-  ↳ hover abilityScores.Charisma.skills.3.modifier: Without tweaks or effects: -1 → now 0 / +2 Charisma score · Test character setup: +1 CHA tweak
-base 8 · +2 from Test character setup: +1 CHA (tweak)
+  ↳ hover abilityScores.Charisma.skills.3.modifier: Without tweaks or effects: -1 → now 0 / +2 Charisma score · Test character setup: +1 CHA tweak / +1 CHA · Silver-Tongued feat (background feat)
+base 8 · +2 from Test character setup: +1 CHA (tweak) · +1 from Silver-Tongued (feat)
 not proficient proficient expertise
 
 ## Sheet: Skills
@@ -398,23 +401,23 @@ Skill | Ability | Bonus | Passive | Proficiency |
   ↳ hover abilityScores.Strength.skills.0.modifier: Without tweaks or effects: 2 → now 5 / +6 STR (the item sets it to 21) · Strength Enhancer while attuned
   ↳ hover abilityScores.Strength.skills.0.modifier: Without tweaks or effects: 2 → now 5 / +6 STR (the item sets it to 21) · Strength Enhancer while attuned
 (Expertise) Deception | CHA | +6 | 16 | Expertise |
-  ↳ hover abilityScores.Charisma.skills.0.modifier: Without tweaks or effects: -1 → now 6 / +2 Charisma score · Test character setup: +1 CHA tweak / Expertise Decep… [245 chars #15264ded]
-  ↳ hover abilityScores.Charisma.skills.0.modifier: Without tweaks or effects: -1 → now 6 / +2 Charisma score · Test character setup: +1 CHA tweak / Expertise Decep… [245 chars #15264ded]
+  ↳ hover abilityScores.Charisma.skills.0.modifier: Without tweaks or effects: -1 → now 6 / +2 Charisma score · Test character setup: +1 CHA tweak / +1 CHA · Silver… [294 chars #955be9f4]
+  ↳ hover abilityScores.Charisma.skills.0.modifier: Without tweaks or effects: -1 → now 6 / +2 Charisma score · Test character setup: +1 CHA tweak / +1 CHA · Silver… [294 chars #955be9f4]
 (Not proficient) Insight | WIS | +0 | 10 | — |
 (Not proficient) Intimidation | CHA | +0 | 10 | — |
-  ↳ hover abilityScores.Charisma.skills.1.modifier: Without tweaks or effects: -1 → now 0 / +2 Charisma score · Test character setup: +1 CHA tweak
-  ↳ hover abilityScores.Charisma.skills.1.modifier: Without tweaks or effects: -1 → now 0 / +2 Charisma score · Test character setup: +1 CHA tweak
+  ↳ hover abilityScores.Charisma.skills.1.modifier: Without tweaks or effects: -1 → now 0 / +2 Charisma score · Test character setup: +1 CHA tweak / +1 CHA · Silver-Tongued feat (background feat)
+  ↳ hover abilityScores.Charisma.skills.1.modifier: Without tweaks or effects: -1 → now 0 / +2 Charisma score · Test character setup: +1 CHA tweak / +1 CHA · Silver-Tongued feat (background feat)
 (Not proficient) Investigation | INT | +2 | 12 | — |
 (Not proficient) Lore | INT | +2 | 12 | — |
 (Not proficient) Medicine | WIS | +0 | 10 | — |
 (Not proficient) Nature | INT | +2 | 12 | — |
 (Not proficient) Perception | WIS | +0 | 10 | — |
 (Not proficient) Performance | CHA | +0 | 10 | — |
-  ↳ hover abilityScores.Charisma.skills.2.modifier: Without tweaks or effects: -1 → now 0 / +2 Charisma score · Test character setup: +1 CHA tweak
-  ↳ hover abilityScores.Charisma.skills.2.modifier: Without tweaks or effects: -1 → now 0 / +2 Charisma score · Test character setup: +1 CHA tweak
+  ↳ hover abilityScores.Charisma.skills.2.modifier: Without tweaks or effects: -1 → now 0 / +2 Charisma score · Test character setup: +1 CHA tweak / +1 CHA · Silver-Tongued feat (background feat)
+  ↳ hover abilityScores.Charisma.skills.2.modifier: Without tweaks or effects: -1 → now 0 / +2 Charisma score · Test character setup: +1 CHA tweak / +1 CHA · Silver-Tongued feat (background feat)
 (Not proficient) Persuasion | CHA | +0 | 10 | — |
-  ↳ hover abilityScores.Charisma.skills.3.modifier: Without tweaks or effects: -1 → now 0 / +2 Charisma score · Test character setup: +1 CHA tweak
-  ↳ hover abilityScores.Charisma.skills.3.modifier: Without tweaks or effects: -1 → now 0 / +2 Charisma score · Test character setup: +1 CHA tweak
+  ↳ hover abilityScores.Charisma.skills.3.modifier: Without tweaks or effects: -1 → now 0 / +2 Charisma score · Test character setup: +1 CHA tweak / +1 CHA · Silver-Tongued feat (background feat)
+  ↳ hover abilityScores.Charisma.skills.3.modifier: Without tweaks or effects: -1 → now 0 / +2 Charisma score · Test character setup: +1 CHA tweak / +1 CHA · Silver-Tongued feat (background feat)
 (Not proficient) Piloting | INT | +2 | 12 | — |
 (Not proficient) Sleight of Hand | DEX | +2 | 12 | — |
 (Not proficient) Stealth | DEX | +2 | 12 | — |
@@ -727,9 +730,6 @@ None chosen yet.
 Languages 0 / 1 One of your choice
 None chosen yet.
 [Choose a language… ▾]
-Silver-Tongued: +1 to 0 / 1 background feat
-None chosen yet.
-[Choose an ability… ▾]
 
 ## Sheet: Proficiencies & Languages
 Armor
@@ -930,4 +930,4 @@ SW5E's rules and item data: version 199, as it comes with the sheet. SW5E is the
 Raw SW5E character JSON
 { "name": "Edit Test (Claude)", "image": "", "experiencePoints": 24000, "species": { "name": "Bothan", "abilityScoreImprovementSelectedOption": 0, "abilityScore… [3455 chars #bd4ad58f]
 Computed character JSON (the sheet's rules engine)
-{ "name": "Edit Test (Claude)", "builderVersion": "0.7.6", "image": "", "characteristics": { "Age": "30", "Appearance": "", "Backstory": "Viewer version of the … [30116 chars #291a5f6b]
+{ "name": "Edit Test (Claude)", "builderVersion": "0.7.6", "image": "", "characteristics": { "Age": "30", "Appearance": "", "Backstory": "Viewer version of the … [30116 chars #18b18062]

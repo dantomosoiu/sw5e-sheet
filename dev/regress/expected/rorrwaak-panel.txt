@@ -169,6 +169,7 @@ effect: Unarmored Defense · feature
 effect: Danger Sense · feature
 effect: Predator's Instinct · feature
 effect: Brawny · feature
+effect: Brawny · feature
 effect: Claws · feature
 effect: Hide · feature
 effect: Menacing · feature
@@ -238,7 +239,7 @@ Rorrwaak (Panel)
 Wookiee · Berserker (Frenzied Approach) 4
 Level 4 Background: Mercenary Chaotic Light Proficiency +2 [Add a picture]
 2,700 XP level 5 at 6,500 (3,800 to go)
-Still to choose (5): Berserker skills (2 more) · background skills (2 more) · background tool · background languages · Brawny: +1
+Still to choose (4): Berserker skills (2 more) · background skills (2 more) · background tool · background languages
 
 ## Sheet: Combat & Vitals
 Armor Class
@@ -283,11 +284,12 @@ Advantages Advantage on Dexterity saving throws against effects that you can see
 Senses Darkvision 60 ft
 Speeds Climbing speed 30 ft
 Effects
-From class features (8)
+From class features, feats and species traits (9)
 Berserker weapon proficiencies Proficient: All vibroweapons Proficient: simple blasters Berserker proficiencies
 Unarmored Defense AC + CON Berserker feature
 Danger Sense Advantage on Dexterity saving throws against effects that you can see, such as traps and powers Berserker feature
 Predator's Instinct Speed +10 ft Berserker Instincts feature
+Brawny STR +1 feat (background feat)
 Brawny Athletics: proficient feat
 Claws Wookiee trait
 Hide AC 13 + DEX (Hide) Wookiee trait
@@ -612,9 +614,6 @@ None chosen yet.
 Languages 0 / 1 One of your choice
 None chosen yet.
 [Choose a language… ▾]
-Brawny: +1 to 0 / 1 background feat
-None chosen yet.
-[Choose an ability… ▾]
 
 ## Sheet: Proficiencies & Languages
 Armor

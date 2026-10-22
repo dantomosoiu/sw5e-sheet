@@ -326,7 +326,7 @@ Superiority Dice Size 1d4 Sneak Attack 1d6
 Defenses & senses
 Other Critical hit on 19–20 with weapons
 Effects
-From class features (9)
+From class features, feats and species traits (9)
 Fighter weapon proficiencies Proficient: All blasters Proficient: all vibroweapons Fighter proficiencies
 Brute Force Weapon damage +2 Unarmed damage +2 Assault Specialist feature
 Improved Critical Critical on 19–20 Assault Specialist feature
@@ -458,11 +458,11 @@ Blaster rifle
 Power cell (range 105/420), reload 12, two-handed
 Shots 11/12 [−1] [Reload] 13 Power cells
 | +5 | 1d8+6 Energy | Dexterity | Martial Blaster | Power cell (range 105/420), reload 12, two-handed |
-  ↳ hover weapons.0.damageBonus: Without tweaks or effects: 3 → now 6 / +2 Weapon damage · Brute Force Assault Specialist feature / +1 Damage · Xerrol Nightstinger … [273 chars #636e20b1]
+  ↳ hover weapons.0.damageBonus: Without tweaks or effects: 3 → now 6 / +2 Weapon damage · Brute Force Assault Specialist feature / +1 Damage · Xerrol Nightstinger Rifle while equipped
 Vibrorapier
 Finesse
 | +5 | 1d8+5 Kinetic | Dexterity | Martial Vibroweapon | Finesse |
-  ↳ hover weapons.1.damageBonus: Without tweaks or effects: 3 → now 5 / +2 Weapon damage · Brute Force Assault Specialist feature / +1 Dexterity score · Weapon Expert feat: +1 Dexterity (builder has no choice for it) tweak
+  ↳ hover weapons.1.damageBonus: Without tweaks or effects: 3 → now 5 / +2 Weapon damage · Brute Force Assault Specialist feature
 Unarmed Strike
 | +5 | 1d4+5 Kinetic | Dexterity (finesse) | Unarmed | — |
   ↳ hover weapons.2.attackBonus: Without tweaks or effects: 1 → now 5 / +4 Finesse: DEX +3 instead of STR · Unarmed Combatant Zabrak trait

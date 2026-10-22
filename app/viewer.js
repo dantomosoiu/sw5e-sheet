@@ -1653,19 +1653,23 @@ function featureEffects(key, editedRaw, complete) {
     editedRaw.customFeats || null, editedRaw.species || null, arr(editedRaw.equipment).map((it) => it.name), castingLevels(complete, editedRaw),
     catalogIndex ? catalogIndex.size : 0]); // weapons are found through the catalog
   if (featureFxCache && featureFxCache.rules === state.rules && featureFxCache.sig === sig) return featureFxCache.out;
-  const out = featureEffectsUncached(editedRaw).concat(choiceEffects(editedRaw, complete));
+  const own = featureEffectsUncached(editedRaw);
+  const out = own.concat(choiceEffects(editedRaw, complete, own));
   featureFxCache = { rules: state.rules, sig, out };
   return out;
 }
-/** A feature-effect entry from clsFeatureEffects' result (null when it changes nothing). */
-function featureEffectEntry(id, name, why, fe) {
+/**
+ * A feature-effect entry from clsFeatureEffects' result (null when it changes nothing). origin: what gives it, for
+ * explanations ('class feature', 'feat', 'species trait').
+ */
+function featureEffectEntry(id, name, why, fe, origin = 'class feature') {
   const mods = fe.mods.slice();
   for (const a of fe.profs.saves) mods.push({ path: `abilityScores.${a}.savingThrowModifier`, bonus: 0, fields: { proficiency: 'Proficient' }, label: `${a} saves: proficient` });
   for (const sk of fe.profs.skills) mods.push({ path: `abilityScores.${FX_SKILLS[sk.name]}.skills.${sk.name}`, bonus: 0, fields: { proficiency: sk.level }, label: `${sk.name}: ${sk.level.toLowerCase()}` });
   const other = fe.advantage.length || fe.defenses.length || fe.critRange || fe.halfProf || fe.unarmedStep || fe.unarmedDie;
   if (!mods.length && !fe.profs.tools.length && !fe.profs.weapons.length && !fe.needsChoice.length && !other) return null;
   return {
-    id, kind: 'feature', name, why, mods, notes: [], needsChoice: fe.needsChoice, weapons: fe.profs.weapons, tools: fe.profs.tools, armor: fe.profs.armor, target: 'self',
+    id, kind: 'feature', origin, name, why, mods, notes: [], needsChoice: fe.needsChoice, weapons: fe.profs.weapons, tools: fe.profs.tools, armor: fe.profs.armor, target: 'self',
     advantage: fe.advantage, defenses: fe.defenses, critRange: fe.critRange, halfProf: fe.halfProf, unarmedStep: fe.unarmedStep,
     unarmedDie: fe.unarmedDie || 0, unarmedFinesse: !!fe.unarmedFinesse,
   };
@@ -1674,27 +1678,43 @@ function featureEffectEntry(id, name, why, fe) {
  * What fighting styles, masteries, weapon focuses/supremacies and improvements picked in slots do:
  * permanent numbers like a feature's, and weapon bonuses on the weapons chosen with a focus. Forms
  * are adopted (Class Features → Start), maneuvers and powers are used, so neither applies here.
+ * `features`: the features' own effects (the weapon proficiencies they give).
  */
-function choiceEffects(editedRaw, complete) {
+function choiceEffects(editedRaw, complete, features = []) {
   const res = choiceInfoFor(editedRaw, complete);
   if (!res) return [];
   const out = [];
+  // Proficient with the carried weapon at `idx`: by the classes' lists (SW5E's), a proficiency added by hand, the
+  // weapon's own tweak, or a feature's ("martial vibroweapons with the finesse property").
+  const proficient = (idx) => {
+    const it = arr(editedRaw.equipment)[idx] || {};
+    const ref = catalogByName(it.name);
+    if (!ref) return false;
+    const own = PROF_RANK(getPath(it.tweaks || {}, 'toHit.proficiency')) || PROF_RANK(getPath(editedRaw.tweaks || {}, 'weapon.toHit.proficiency'));
+    return own > 0 || arr(complete && complete.proficiencies).some((x) => ['weapon', 'other'].includes(x.type) && engWeaponCovered(x.name, ref))
+      || arr(editedRaw.customProficiencies).some((x) => x && x.type === 'weapon' && engWeaponCovered(x.name, ref))
+      || features.some((e) => arr(e.weapons).some((d) => clsWeaponMatches(d, ref)));
+  };
   for (const p of chPickTexts(res)) {
     if (['lightsaberForms', 'maneuvers', 'forcePowers', 'techPowers', 'powers'].includes(p.kind)) continue;
+    const origin = p.owner ? 'class feature' : p.species ? 'species trait' : 'feat';
     if (CH_KINDS[p.kind] && CH_KINDS[p.kind].weapons) {
       const wb = chWeaponBenefits(p.text);
+      // "You gain the following benefits while wielding any of these weapons, if you are proficient with it".
+      const needsProf = /\bif you are proficient with it\b/i.test(p.text);
       for (const wname of p.weapons) {
         const idx = weaponIndexByName(editedRaw, wname);
         if (idx == null || (!wb.mods.length && !wb.critRange) || out.some((x) => x.name === p.name && x.weaponIndex === idx)) continue;
+        if (needsProf && !proficient(idx)) continue;
         out.push({
-          id: `choice:${p.key}:${p.name}:${wname}`, kind: 'feature', name: p.name, why: `${p.title} (${wname})`, target: 'weapon', weaponIndex: idx,
+          id: `choice:${p.key}:${p.name}:${wname}`, kind: 'feature', origin, name: p.name, why: `${p.title} (${wname})`, target: 'weapon', weaponIndex: idx,
           mods: wb.mods.map((x) => ({ ...x, label: `${p.name}: ${x.path === 'weapon.damage' ? 'damage' : 'attack'} +${x.bonus}` })), notes: [],
           critRange: wb.critRange, critWeapons: wb.critRange ? [idx] : null, weaponName: wname,
         });
       }
       continue;
     }
-    const e = featureEffectEntry(`choice:${p.key}:${p.name}`, p.name, p.title, clsFeatureEffects(p.text, p.note, { level: res.level, pb: num(complete && complete.proficiencyBonus) }));
+    const e = featureEffectEntry(`choice:${p.key}:${p.name}`, p.name, p.title, clsFeatureEffects(p.text, p.note, { level: res.level, pb: num(complete && complete.proficiencyBonus) }), origin);
     if (e) out.push(e);
   }
   return out;
@@ -1783,7 +1803,7 @@ function featureEffectsUncached(editedRaw) {
     const note = featureNoteOf(editedRaw, name);
     const fe = clsFeatureEffects(ref.text || '', note, { level: arr(editedRaw.classes).reduce((t, k) => t + num(k.levels), 0), isWeapon: isWeaponName });
     fe.mods = fe.mods.filter((x) => !/^abilityScores\.\w+\.score$/.test(x.path));
-    const e = featureEffectEntry(`feat:${name}${note ? `:${note}` : ''}`, name, 'feat', fe);
+    const e = featureEffectEntry(`feat:${name}${note ? `:${note}` : ''}`, name, 'feat', fe, 'feat');
     if (e) out.push(e);
   }
   // Species traits' proficiencies ("You have proficiency in the Survival skill"; Coercive's "Persuasion or Intimidation
@@ -1811,7 +1831,7 @@ function featureEffectsUncached(editedRaw) {
     // "Your unarmed strikes deal 1d4 kinetic damage and have the finesse property" (Zabrak, Wookiee Claws).
     const ua = /\byour unarmed strikes deal (\d+)d(\d+) \w+ damage( and have the finesse property)?/i.exec(tr.description || '');
     if (ua) { profs.unarmedDie = num(ua[2]); profs.unarmedFinesse = !!ua[3]; }
-    const e = featureEffectEntry(`species:${tr.name}${note ? `:${note}` : ''}`, tr.name, `${sp.name} trait`, profs);
+    const e = featureEffectEntry(`species:${tr.name}${note ? `:${note}` : ''}`, tr.name, `${sp.name} trait`, profs, 'species trait');
     if (e) out.push(e);
   }
   return out;
@@ -2141,8 +2161,11 @@ function diffStats(a, b) {
 /** The applied tweaks that can have changed the number at `path`. */
 function bumpSources(m, path) {
   const tw = m.fx.tweaks.concat(m.fx.weaponTweaks.map((t) => ({ ...t, path: `weapon@${t.index}.${t.path}` })));
-  const score = (a) => tw.filter((t) => t.path === `abilityScores.${a}.score`);
+  const scoreOnly = (a) => tw.filter((t) => t.path === `abilityScores.${a}.score`);
+  // A number that uses the modifier: a score change counts only when it changed the modifier (DEX 14 → 15 doesn't).
+  const score = (a) => (m.bumps[`abilityScores.${a}.modifier`] ? scoreOnly(a) : []);
   let x;
+  if ((x = /^abilityScores\.(\w+)\.(?:value|modifier)$/.exec(path))) return scoreOnly(x[1]);
   if ((x = /^abilityScores\.(\w+)\.skills\.(\d+)/.exec(path))) {
     const skill = ((((m.c.abilityScores || {})[x[1]] || {}).skills || [])[x[2]] || {}).name;
     return score(x[1]).concat(tw.filter((t) => t.path === `abilityScores.${x[1]}.skills.${skill}`));
@@ -2162,7 +2185,10 @@ function bumpSources(m, path) {
     hitPoints: ['hitPoints', 'Constitution'], speed: ['speed', 'Strength'], carryingCapacity: ['Strength'],
     techCasting: ['techCasting', '*'], forceCasting: ['forceCasting', '*'], proficiencyBonus: [],
   }[path.split('.')[0]] || ['*'];
-  return tw.filter((t) => rel.some((r) => (r === '*' ? /^abilityScores\.\w+\.score$/.test(t.path) : ABBR[r] ? t.path === `abilityScores.${r}.score` : t.path.startsWith(r))));
+  // Carrying capacity and speed (heavy armor's Strength) go by the score itself; the rest by the modifier.
+  const byScore = ['carryingCapacity', 'speed'].includes(path.split('.')[0]);
+  const scoreFx = (t) => { const a = (/^abilityScores\.(\w+)\.score$/.exec(t.path) || [])[1]; return a && (byScore || m.bumps[`abilityScores.${a}.modifier`]) ? a : null; };
+  return tw.filter((t) => rel.some((r) => (r === '*' ? !!scoreFx(t) : ABBR[r] ? scoreFx(t) === r : t.path.startsWith(r))));
 }
 
 // Conditional bonuses ("+1 AC vs melee", "with Cryo Cell (Average)") aren't applied: each number
@@ -2890,9 +2916,12 @@ function renderEffects(m) {
       ${arr(e.advantage).map((a) => chip(ADV_TEXT(a), 'good')).join('')}${e.critRange ? chip(`Critical on ${20 - e.critRange}–20`, 'good') : ''}
       ${e.halfProf ? chip('Half proficiency on checks', 'good') : ''}${e.unarmedStep ? chip('Unarmed die +1 step', 'good') : ''}
       ${arr(e.defenses).map((d) => chip(d.text)).join('')}
-      ${arr(e.needsChoice).map((c) => `<span class="chip warn" title="Write your choice in the feature's notes (Class Features)">Choose ${esc(c)}</span>`).join('')}
+      ${arr(e.needsChoice).map((c) => `<span class="chip warn" title="${esc(e.origin === 'feat' ? "Choose it on the feat's card (Feats)" : e.origin === 'species trait' ? "Choose it on the trait's card (Species)" : "Choose it on the feature's card (Class Features)")}">Choose ${esc(c)}</span>`).join('')}
       <span class="faint">${esc(e.why)}</span></div></div>`;
-  return `${feats.length ? `<details class="eff-feats"${feats.some((e) => arr(e.needsChoice).length) ? ' open' : ''}><summary><h4>From class features (${feats.length})</h4></summary>${feats.map(featRow).join('')}</details>` : ''}
+  // "From class features, feats and species traits": what the list holds.
+  const origins = ['class feature', 'feat', 'species trait'].filter((o) => feats.some((e) => (e.origin || 'class feature') === o)).map((o) => `${o}s`);
+  const fromWhat = origins.length > 1 ? `${origins.slice(0, -1).join(', ')} and ${origins[origins.length - 1]}` : origins[0];
+  return `${feats.length ? `<details class="eff-feats"${feats.some((e) => arr(e.needsChoice).length) ? ' open' : ''}><summary><h4>From ${esc(fromWhat)} (${feats.length})</h4></summary>${feats.map(featRow).join('')}</details>` : ''}
     ${on.length ? `<h4>From equipment</h4>${on.map((e) => effectRow(m, e)).join('')}` : ''}
     <h4>Temporary</h4>
     ${temps.map((e) => effectRow(m, e)).join('') || '<p class="empty" style="margin:0 0 8px">No temporary effects.</p>'}
@@ -3990,8 +4019,8 @@ function renderAbilities(m) {
     let left = diff;
     for (const p of abilitySources(m, a)) { bits.push(`${signedLabel(p.n)} ${p.label}`); left -= p.n; }
     if (left) bits.push(`${left > 0 ? '+' : '−'}${Math.abs(left)} other`);
-    const kindNote = { temporary: ' (temporary)', tweak: ' (tweak)', feature: ' (class feature)' };
-    for (const x of fx) bits.push(`${signedLabel(x.bonus)} from ${x.effect.name}${kindNote[x.effect.kind] || ''}`);
+    const kindNote = (e) => (e.kind === 'feature' ? ` (${e.origin || 'class feature'})` : { temporary: ' (temporary)', tweak: ' (tweak)' }[e.kind] || '');
+    for (const x of fx) bits.push(`${signedLabel(x.bonus)} from ${x.effect.name}${kindNote(x.effect)}`);
     if (tw && tw.override != null) bits.push(`override ${tw.override}`);
     const st = s.savingThrow || {};
     const skills = arr(s.skills);

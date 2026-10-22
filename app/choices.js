@@ -299,6 +299,7 @@ function choiceSlots(raw, ctx) {
       featTwice: f.n > 1 && !/you can take this feat multiple times/i.test(ref.text || ''),
     };
     feats.push({ f, ref, base });
+    used.add(`${base.key}: +1`); // the +1 of a feat added by hand (builder.js)
     addGrants(ref.text, base, { maneuvers: true });
   }
 
@@ -632,13 +633,13 @@ function chClassManeuvers(raw, modules, parsed, rowOf) {
   return { names, max };
 }
 
-/** The texts of everything picked in slots, for the effects pipeline: [{ name, text, note, weapons, kind, key }]. */
+/** The texts of everything picked in slots, for the effects pipeline: [{ name, text, note, weapons, kind, key, owner, species }]. */
 function chPickTexts(res) {
   const out = [];
   for (const s of res.slots) {
     for (const p of s.picks) {
       const o = s.options.find((x) => x.name === p.name);
-      if (o) out.push({ name: p.name, text: o.text, note: p.note || '', weapons: chArr(p.weapons), kind: s.kind, key: s.key, title: s.title, owner: s.owner });
+      if (o) out.push({ name: p.name, text: o.text, note: p.note || '', weapons: chArr(p.weapons), kind: s.kind, key: s.key, title: s.title, owner: s.owner, species: !!s.species });
     }
   }
   return out;

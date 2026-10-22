@@ -268,7 +268,7 @@ Potent Aptitude 1d8
 Defenses & senses
 Other Critical hit on 19–20 with weapons
 Effects
-From class features (6)
+From class features, feats and species traits (6)
 Accuracy Focus Accuracy Focus: attack +2 Armstech Modifications (Blaster rifle)
 Amplifying Barrel Amplifying Barrel: damage +2 Armstech Modifications (Blaster rifle)
 Engineer weapon proficiencies Proficient: Simple blasters Proficient: simple vibroweapons Engineer proficiencies

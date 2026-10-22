@@ -182,11 +182,32 @@ function prAsiIncreases(v) {
 }
 
 // ------------------------------------------------------------- feats
-/** The abilities a feat lets you increase by 1 (["Any"] → all six), or []. */
+/** The abilities named in a phrase: "Dexterity, Consitution, or Intelligence" (SW5E misspells some) → the three. */
+const prAbilitiesIn = (s) => PR_ABILITIES.filter((a) => String(s || '').split(/[^A-Za-z]+/).some((w) => w.length >= 6 && w.slice(0, 3).toLowerCase() === a.slice(0, 3).toLowerCase()));
+/**
+ * The abilities a feat lets you increase by 1, or []. Read from the text, which SW5E's attributesIncreased doesn't
+ * always match (Heat Shielded's leaves out the Constitution the text names; Resilient's is empty):
+ * "Increase your Dexterity, Consitution, or Intelligence score by 1" → those three; "Increase an ability score of your
+ * choice by 1" → all six; "Choose one ability score. … Increase the chosen ability score by 1" → all six; "Choose one
+ * from Wisdom or Charisma. … Increase the chosen ability score by 1" → those two.
+ */
 function prFeatAbilities(featRef) {
+  const t = String((featRef && featRef.text) || '').replace(/\s+/g, ' ');
+  const m = /\bincrease (your|an|one|the chosen) ([^.]*?)\bscores?(?: of your choice)? by 1\b/i.exec(t);
+  if (m && /^the chosen$/i.test(m[1])) {
+    const c = /\bchoose one (?:from|of) ([^.]+?)\./i.exec(t);
+    return c ? prAbilitiesIn(c[1]) : PR_ABILITIES.slice();
+  }
+  if (m && /^(?:an|one)$/i.test(m[1]) && /^ability $/i.test(m[2])) return PR_ABILITIES.slice();
+  if (m) return prAbilitiesIn(m[2]);
   const a = prArr(featRef && featRef.attributesIncreased).filter(Boolean);
-  if (!a.length || !/increase (?:your|an|one)[^.]*?score[^.]*?by 1/i.test(String((featRef && featRef.text) || ''))) return [];
+  if (!a.length || !/increase (?:your|an|one)[^.]*?score[^.]*?by 1/i.test(t)) return [];
   return a.some((x) => /^any$/i.test(x)) ? PR_ABILITIES.slice() : a.filter((x) => PR_ABILITIES.includes(x));
+}
+/** What else follows a feat's chosen ability: "You gain proficiency in saving throws using the chosen ability" → { save: true }. */
+function prFeatChosenAbilityUse(featRef) {
+  const t = String((featRef && featRef.text) || '').replace(/\s+/g, ' ');
+  return { save: /\bproficiency in saving throws using the chosen ability\b/i.test(t) };
 }
 
 // ------------------------------------------------------------- ability scores
@@ -317,7 +338,7 @@ function prCharacteristics(bgRef) {
 if (typeof module !== 'undefined') {
   module.exports = {
     PR_ABILITIES, PR_STANDARD_ARRAY, PR_POINT_COST, PR_POINTS, prSkillChoice, prMulticlassRules, prMulticlassUnmet, prToolChoices,
-    prLanguageChoices, prLanguages, prXpTable, prAsiLevels, prTableFeatures, prAddLevel, prAsiSlots, prAsiIncreases, prFeatAbilities,
+    prLanguageChoices, prLanguages, prXpTable, prAsiLevels, prTableFeatures, prAddLevel, prAsiSlots, prAsiIncreases, prFeatAbilities, prFeatChosenAbilityUse,
     prPointBuyCost, prSpeciesIncreases, prList, prEquipmentOptions, prEquipmentItems, prResolveEquipment, prCharacteristics,
     prPackContents, prPackCost,
   };

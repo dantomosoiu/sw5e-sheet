@@ -223,7 +223,7 @@ Combat [Start combat]
 [☆ Inspiration] Exhaustion [−] 0 [+]
 [Short rest] [Long rest] HP and uses: saved here, not on sw5e.com yet. [Use sw5e.com's values]
 Effects
-From class features (4)
+From class features and species traits (4)
 Consular weapon proficiencies Proficient: Simple lightweapons Proficient: simple vibroweapons Consular proficiencies
 Force Affinity Choose one of Ashla, Bendu, Bogan Consular feature
 Fundamentals of Mechu-deru Technology: proficient Way of Technology feature
