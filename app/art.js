@@ -297,23 +297,27 @@ function artOwn(it) {
 
 // ------------------------------------------------------------- item modifications: part + effect mark + colour
 // The words in a modification's name say what it does; the first group that matches gives its mark (art/items/mark-*).
+// Words match from their start: 'rend' is Rendcasting, not MerenData.
 const ART_MOD_MARKS = [
   ['class', /^(berserker|consular|engineer|fighter|guardian|monk|operative|scholar|scout|sentinel)\b/],
-  ['str', /strength|brawny/], ['dex', /dexterity|acrobat/], ['con', /constitution/], ['int', /intelligence/], ['wis', /wisdom/],
+  ['str', /strength|brawny|hydraulic/], ['dex', /dexterity|acrobat|finesse/], ['con', /constitution|bioenhancement/],
+  ['int', /intelligence|artificially|smart/], ['wis', /wisdom|darkvision/],
   ['cha', /charisma|charmer|silver-tongued|performer/],
   ['fade', /fade|fading/], ['rend', /rend/], ['wither', /wither/],
-  ['style', /fighting|dueling|mastery|ascendancy|supremacy|training/], ['force', /ossus|byrothsis|ferricite|phobium|echo|krayt/],
-  ['stealth', /silent|obscur|conceal|inconspic|disguis|stealth|clandestine|silencer/],
-  ['energy', /\bion\b|maser|disrupt|disintegr|burning|ghostfire|bright|lambent|gloom|corruption|biting|crystaliz|electrif|neuraliz/],
-  ['absorb', /absorb|mitigat|dispel|insulat|imperme|dampen/], ['repel', /repel|reactive|avoidant|barbed|spiked|threaten/],
+  ['style', /fighting|dueling|mastery|ascendancy|supremacy|training|versatile|disarming/],
+  ['force', /ossus|byrothsis|ferricite|phobium|echo|krayt|channeling/],
+  ['stealth', /silent|obscur|conceal|inconspic|disguis|stealth|clandestine|silencer|collapsible/],
+  ['energy', /\bion\b|maser|disrupt|disintegr|burning|ghostfire|bright|lambent|gloom|corruption|biting|crystaliz|electrif|neuraliz|shocking|sonorous|venomous/],
+  ['absorb', /absor|mitigat|dispel|insulat|imperme|dampen|attenuat/], ['repel', /repel|reactive|avoidant|barbed|spiked|threaten/],
   ['store', /stor|access|process|charg|recycl|linger|magazine/],
-  ['speed', /quicken|surg|rapid|agile|lightweight|\blight\b|flexib|celerity|semiauto|responsive|quick/],
-  ['power', /brutal|mighty|heavy|vicious|dire|keen|piercing|siege|overload|powered|monomolecular|crippler/],
+  ['speed', /quicken|surg|rapid|agile|lightweight|\blight\b|flexib|celerity|semiauto|responsive|quick|optimized|horizontal/],
+  ['power', /brutal|mighty|heavy|vicious|dire|keen|piercing|siege|overload|powered|monomolecular|crippler|serrated|neutronium|staggering|gauntlet/],
   ['guard', /reinforc|bonded|steadfast|balanced|regulat|careful|comfortable|interlock|lock|safety|defensive|guard/],
-  ['range', /rang|extend|elongat|distant|seeking|target|pinpoint|precision|accuracy|focus|multispectral|optic|scope/],
-  ['expand', /expand|enlarg|inflat|increas|amplif|heighten|twinned|duplex|burst/],
+  ['guard', /crossguard|bolster|fiber-alloy|cortosis|ballistic|magnetized|compensat|contoured|emergency|manageab/],
+  ['range', /rang|extend|elongat|distant|seeking|target|pinpoint|precision|accuracy|focus|multispectral|optic|scope|refocus|returning|throwing/],
+  ['expand', /expand|enlarg|inflat|increas|amplif|heighten|twinned|duplex|burst|improved/],
   ['skill', /'s\b|investigator|naturalist|survivalist|perceptive|empathic|medic|techie/],
-];
+].map(([mark, re]) => [mark, new RegExp(`\\b(?:${re.source})`)]);
 // Colours for modification families: distinct, rich, readable on the dark tile.
 const ART_MOD_COLORS = ['#c8463b', '#d9813a', '#d9b13c', '#8fb43a', '#3fa66a', '#2fa3a0', '#3f8bd0', '#5b63d6', '#8a55c9',
   '#c04f9a', '#b7895a', '#8e9aab'];

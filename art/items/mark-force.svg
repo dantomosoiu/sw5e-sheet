@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <circle class="a-d a-oo" cx="32" cy="32" r="26"/>
+  <circle cx="32" cy="32" r="26" fill="url(#a-sheen)" opacity=".3"/>
+  <path class="a-l" d="M8.9 23.6A24.6 24.6 0 0 1 38.4 8.2" opacity=".4"/>
+  <g class="a-g" filter="url(#a-glow)" opacity=".8"><path fill-rule="evenodd" d="M19.4 32A12.6 12.6 0 1 0 44.6 32A12.6 12.6 0 1 0 19.4 32ZM23 32A9 9 0 1 0 41 32A9 9 0 1 0 23 32Z"/><path fill-rule="evenodd" d="M11 32A21 21 0 1 0 53 32A21 21 0 1 0 11 32ZM14.2 32A17.8 17.8 0 1 0 49.8 32A17.8 17.8 0 1 0 14.2 32Z"/><path d="M27 32A5 5 0 1 0 37 32A5 5 0 1 0 27 32Z"/></g>
+  <g class="a-g"><path fill-rule="evenodd" d="M19.4 32A12.6 12.6 0 1 0 44.6 32A12.6 12.6 0 1 0 19.4 32ZM23 32A9 9 0 1 0 41 32A9 9 0 1 0 23 32Z"/><path fill-rule="evenodd" opacity=".75" d="M11 32A21 21 0 1 0 53 32A21 21 0 1 0 11 32ZM14.2 32A17.8 17.8 0 1 0 49.8 32A17.8 17.8 0 1 0 14.2 32Z"/><path d="M27 32A5 5 0 1 0 37 32A5 5 0 1 0 27 32Z"/></g>
+  <path class="a-w" d="M29.4 32A2.6 2.6 0 1 0 34.6 32A2.6 2.6 0 1 0 29.4 32Z"/>
+</svg>
