@@ -556,7 +556,16 @@ function buildRoll(m, spec, opts = {}) {
       const size = num(String(a1).replace(/\D/g, ''));
       return { kind: 'dice', label: `Hit die (${a1})`, spec, diceSpec: [size], base: [{ label: 'per die', value: num(m.t && m.t.lim.hitDieBonus) }], conds: [] };
     }
-    case 'death': return { kind: 'd20', label: 'Death saving throw', spec, base: [], conds: [] };
+    case 'death': { // "You have advantage on death saving throws" (Self-Sustain); "You can add your Constitution modifier to
+      // death saving throws you make" (Unnatural Resilience).
+      const r = { kind: 'd20', label: 'Death saving throw', spec, base: [], conds: [] };
+      for (const f of riderTexts(m)) {
+        if (/\byou have advantage on death saving throws\b/i.test(f.text)) r.advFrom = f.name;
+        const x = /\byou can add your (Strength|Dexterity|Constitution|Intelligence|Wisdom|Charisma) modifier to death saving throws\b/i.exec(f.text);
+        if (x) r.base.push({ label: `${ABBR[x[1]]} modifier (${f.name})`, value: num((sc[x[1]] || {}).modifier) });
+      }
+      return r;
+    }
     case 'pdmg': { // pdmg|force|Heal|2|0|Wisdom: a power's roll (damage, healing, reduction) at a level, with its casting ability
       const p = rulesPower(a2);
       const g = p && plPowerRolls(p, num(a3), charLevel(m))[num(a4)];
