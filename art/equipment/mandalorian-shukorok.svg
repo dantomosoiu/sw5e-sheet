@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <g id="mandalorian-shukorok-g" transform="translate(-1.2 0)">
+    <path class="a-b a-oo" d="M7 39.4h21.2l2 18.8c-8.4 2.4-16.8 2.4-25 0z"/>
+    <path d="M7 39.4h21.2l2 18.8c-8.4 2.4-16.8 2.4-25 0z" fill="url(#a-sheen)"/>
+    <path class="a-x" d="M6.2 47.6h23l.3 3H5.9z"/>
+    <path class="a-p" d="M17.4 39.6v7.8M17.4 50.8v8.6"/>
+    <path d="M7 39.4h21.2l2 18.8c-8.4 2.4-16.8 2.4-25 0z" fill="url(#a-shade)"/>
+    <path class="a-d a-oo" d="M26.4 20.6c2.6-.4 4.6 1.4 4.8 4l.4 7.6c.1 2.4-1.6 4-3.8 4h-2z"/>
+    <path class="a-b a-o" d="M27.8 22.6c1.4.2 2.2 1.2 2.3 2.6l.2 4.2-2.6.2z"/>
+    <path class="a-d a-oo" d="M7.4 17.6c0-2 1.4-3.4 3.4-3.4h14.4c2 0 3.4 1.4 3.4 3.4V37c0 1.6-1.2 2.8-2.8 2.8H10.2c-1.6 0-2.8-1.2-2.8-2.8z"/>
+    <path class="a-b a-o" d="M9.8 21h16.4l-.4 11.2-2.6 3.4H12.8l-2.6-3.4z"/>
+    <path d="M9.8 21h16.4l-.4 11.2-2.6 3.4H12.8l-2.6-3.4z" fill="url(#a-sheen)"/>
+    <path class="a-p" d="M18 21.2v14.2"/>
+    <rect class="a-d a-oo" x="7.4" y="9.4" width="5" height="10.4" rx="2.4"/>
+    <rect class="a-d a-oo" x="12.4" y="8.2" width="5" height="11.6" rx="2.4"/>
+    <rect class="a-d a-oo" x="17.4" y="8.6" width="5" height="11.2" rx="2.4"/>
+    <rect class="a-d a-oo" x="22.4" y="10.2" width="5" height="9.6" rx="2.4"/>
+    <path class="a-b a-o" d="M8.4 11.4h3v3.6h-3zM13.4 10.2h3v3.6h-3zM18.4 10.6h3v3.6h-3zM23.4 12.2h3v3.6h-3z"/>
+    <path class="a-l" d="M10.8 22.2h14.2M8 40.6h18.8M8.8 10.6c.4-.6 1-.9 1.6-.9M13.8 9.4c.4-.6 1-.9 1.6-.9M18.8 9.8c.4-.6 1-.9 1.6-.9M23.8 11.4c.4-.6 1-.9 1.6-.9"/>
+  </g>
+  <use href="#mandalorian-shukorok-g" transform="matrix(-1 0 0 1 64 0)"/>
+</svg>

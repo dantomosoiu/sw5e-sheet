@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <g id="sith-strength-belt-leg">
+    <path class="a-d a-o" d="M7 48.4a8.6 2.8 0 0 1 17.2 0 8.6 2.8 0 0 1-17.2 0z"/>
+    <g transform="rotate(-9 13.6 35)">
+      <rect class="a-b a-o" x="12.2" y="37" width="3" height="11.6" rx=".8"/>
+      <path class="a-p" d="M12.4 41.4h2.6"/>
+      <rect class="a-m a-oo" x="10.2" y="24.6" width="7" height="14" rx="2"/>
+      <rect x="10.2" y="24.6" width="7" height="14" rx="2" fill="url(#a-sheen)"/>
+      <rect x="10.2" y="24.6" width="7" height="14" rx="2" fill="url(#a-shade)"/>
+      <path class="a-x" d="M10.4 34.4h6.6v1.4h-6.6z"/>
+      <path class="a-gl" d="M13.7 26.4v6.4" filter="url(#a-glow)" opacity=".8"/>
+      <path class="a-gl" d="M13.7 26.4v6.4"/>
+    </g>
+    <path class="a-m a-oo" d="M7 48.4a8.6 2.8 0 0 0 17.2 0v6.2a8.6 2.8 0 0 1-17.2 0z"/>
+    <path class="a-x" d="M7 51.2a8.6 2.8 0 0 0 17.2 0v1.4a8.6 2.8 0 0 1-17.2 0z"/>
+    <path d="M7 48.4a8.6 2.8 0 0 0 17.2 0v6.2a8.6 2.8 0 0 1-17.2 0z" fill="url(#a-shade)"/>
+    <path class="a-b a-o" d="M13.8 49.6l3.6-.2.6 4.6-4 .3z"/>
+    <circle class="a-d" cx="15.8" cy="50.8" r=".7"/>
+    <path class="a-l" d="M8.4 49.8c2 .9 4.6 1.4 7.2 1.4"/>
+  </g>
+  <use href="#sith-strength-belt-leg" transform="matrix(-1 0 0 1 64 0)"/>
+  <path class="a-m a-oo" d="M4 15.6h56l-2.4 10.6-19.4 2.2L32 35.4l-6.2-7-19.4-2.2z"/>
+  <path d="M4 15.6h56l-2.4 10.6-19.4 2.2L32 35.4l-6.2-7-19.4-2.2z" fill="url(#a-sheen)"/>
+  <path d="M4 15.6h56l-2.4 10.6-19.4 2.2L32 35.4l-6.2-7-19.4-2.2z" fill="url(#a-shade)"/>
+  <path class="a-b a-o" d="M6.6 17.6h17.2l-1 7.8-15.2-1.6zM57.4 17.6H40.2l1 7.8 15.2-1.6z"/>
+  <path d="M6.6 17.6h17.2l-1 7.8-15.2-1.6zM57.4 17.6H40.2l1 7.8 15.2-1.6z" fill="url(#a-sheen)"/>
+  <path class="a-p" d="M12.4 17.8l-.6 6.6M51.6 17.8l.6 6.6"/>
+  <path class="a-x" d="M7.2 22.6l15.8 1.4-.1.8-15.6-1.4zM56.8 22.6L41 24l.1.8 15.6-1.4z"/>
+  <circle class="a-m a-o" cx="13.4" cy="25.2" r="2.6"/>
+  <circle class="a-m a-o" cx="50.6" cy="25.2" r="2.6"/>
+  <circle class="a-d" cx="13.4" cy="25.2" r=".9"/>
+  <circle class="a-d" cx="50.6" cy="25.2" r=".9"/>
+  <path class="a-b a-oo" d="M25.4 17.4h13.2l-.8 10.4L32 33.4l-5.8-5.6z"/>
+  <path class="a-s a-o" d="M27.4 19.4h9.2l-.6 7.4-4 3.8-4-3.8z"/>
+  <path class="a-gl" d="M28.4 23.6h1.6l.8-2 1.4 4.4 1.2-3.6.8 1.2h1.4" filter="url(#a-glow)" opacity=".8"/>
+  <path class="a-gl" d="M28.4 23.6h1.6l.8-2 1.4 4.4 1.2-3.6.8 1.2h1.4"/>
+  <circle class="a-g" cx="32" cy="28.4" r=".9"/>
+  <path class="a-l" d="M5.4 16.8h17.4M41 16.8h17.6M26.4 18.4h11.2"/>
+</svg>

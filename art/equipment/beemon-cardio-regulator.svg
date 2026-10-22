@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <path class="a-b a-oo" d="M9.5 14A26 24 0 1 0 54.5 14H46.9A20 18 0 1 1 17.1 14z"/>
+  <path d="M9.5 14A26 24 0 1 0 54.5 14H46.9A20 18 0 1 1 17.1 14z" fill="url(#a-shade)"/>
+  <path class="a-x" d="M12.8 14A22.8 21 0 1 0 51.2 14H49.8A21.4 19.6 0 1 1 14.2 14z"/>
+  <g id="beemon-cardio-regulator-v">
+    <rect class="a-m a-oo" x="6.2" y="9.2" width="10.6" height="6.4" rx="2.2"/>
+    <rect x="6.2" y="9.2" width="10.6" height="6.4" rx="2.2" fill="url(#a-sheen)"/>
+    <path class="a-d" d="M10.6 10.6h1.8v3.6h-1.8z"/>
+    <path class="a-m a-o" d="M7.4 23.2l7.2.6.2 3.2-7.4.4zM9.4 36.4l6.4-2.8 1.4 2.8-6 3.6z"/>
+    <circle class="a-g" cx="11.2" cy="25.2" r="1" filter="url(#a-glow)"/>
+    <circle class="a-g" cx="11.2" cy="25.2" r=".6"/>
+    <circle class="a-g" cx="13.2" cy="36.6" r="1" filter="url(#a-glow)"/>
+    <circle class="a-g" cx="13.2" cy="36.6" r=".6"/>
+  </g>
+  <use href="#beemon-cardio-regulator-v" transform="matrix(-1 0 0 1 64 0)"/>
+  <path class="a-l" d="M7.6 21.4c.8-3.6 2.4-6.2 4.4-7.8M15.6 16.2c-1.2 1.6-1.9 3.2-2.3 4.8"/>
+  <rect class="a-m a-oo" x="20.2" y="38" width="23.6" height="19.4" rx="4"/>
+  <rect x="20.2" y="38" width="23.6" height="19.4" rx="4" fill="url(#a-sheen)"/>
+  <rect class="a-s a-o" x="23.2" y="41" width="17.6" height="12.6" rx="1.8"/>
+  <path class="a-g" d="M32 52l-5.4-5.4c-1.6-1.6-1.6-4 0-5.4 1.4-1.2 3.6-1.2 5.4.8 1.8-2 4-2 5.4-.8 1.6 1.4 1.6 3.8 0 5.4z" filter="url(#a-glow)" opacity=".6"/>
+  <path class="a-g a-o" d="M32 51l-4.8-4.8c-1.3-1.3-1.3-3.3 0-4.5 1.2-1 3.2-1 4.8.9 1.6-1.9 3.6-1.9 4.8-.9 1.3 1.2 1.3 3.2 0 4.5z"/>
+  <path class="a-l" d="M24.6 46.4h4.2l1.2-1.8 1.6 4 1.8-6 1.4 4.6 1-.8h3.6"/>
+  <path class="a-d" d="M26.6 54.6h10.8v1.2H26.6z"/>
+  <path class="a-l" d="M21.6 39.4h20.8"/>
+</svg>

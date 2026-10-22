@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <clipPath id="baragwin-stealth-unit-clip"><rect x="15" y="10" width="34" height="44"/></clipPath>
+  <path class="a-c" d="M3 24c9 4.5 19 6.5 29 6.5S52 28.5 61 24v11c-9 4.5-19 6.5-29 6.5S12 39.5 3 35z" opacity=".22"/>
+  <path class="a-gl" d="M3 24c9 4.5 19 6.5 29 6.5S52 28.5 61 24v11c-9 4.5-19 6.5-29 6.5S12 39.5 3 35z" opacity=".35"/>
+  <g clip-path="url(#baragwin-stealth-unit-clip)">
+    <path class="a-c a-oo" d="M3 24c9 4.5 19 6.5 29 6.5S52 28.5 61 24v11c-9 4.5-19 6.5-29 6.5S12 39.5 3 35z"/>
+    <path class="a-p" d="M3.5 26.2c9 4.5 18.6 6.3 28.5 6.3s19.5-1.8 28.5-6.3M3.5 32.8c9 4.5 18.6 6.3 28.5 6.3s19.5-1.8 28.5-6.3"/>
+    <path d="M3 24c9 4.5 19 6.5 29 6.5S52 28.5 61 24v11c-9 4.5-19 6.5-29 6.5S12 39.5 3 35z" fill="url(#a-shade)"/>
+  </g>
+  <g id="baragwin-stealth-unit-s">
+    <path class="a-gl" d="M12.6 25.8c-1.4 3.6-1.4 7.6 0 11.6M8.6 23.8c-1.6 4.6-1.6 9.6 0 14.4M4.8 21.4c-1.8 5.6-1.8 11.6 0 17.6" filter="url(#a-glow)" opacity=".7"/>
+    <path class="a-gl" d="M12.6 25.8c-1.4 3.6-1.4 7.6 0 11.6"/>
+    <path class="a-gl" d="M8.6 23.8c-1.6 4.6-1.6 9.6 0 14.4" opacity=".7"/>
+    <path class="a-gl" d="M4.8 21.4c-1.8 5.6-1.8 11.6 0 17.6" opacity=".4"/>
+    <path class="a-m a-oo" d="M15.4 29.2c0-2.2 1.6-3.8 3.6-3.8s3.6 1.6 3.6 3.8v10.4h-7.2z"/>
+    <path d="M15.4 29.2c0-2.2 1.6-3.8 3.6-3.8s3.6 1.6 3.6 3.8v10.4h-7.2z" fill="url(#a-sheen)"/>
+    <circle class="a-g" cx="19" cy="29" r="1.4" filter="url(#a-glow)"/>
+    <circle class="a-w" cx="19" cy="29" r=".6"/>
+    <path class="a-p" d="M15.6 33.4h6.8M15.6 36.4h6.8"/>
+  </g>
+  <use href="#baragwin-stealth-unit-s" transform="matrix(-1 0 0 1 64 0)"/>
+  <rect class="a-m a-oo" x="23.6" y="25" width="16.8" height="17.6" rx="3"/>
+  <rect x="23.6" y="25" width="16.8" height="17.6" rx="3" fill="url(#a-sheen)"/>
+  <rect x="23.6" y="25" width="16.8" height="17.6" rx="3" fill="url(#a-shade)"/>
+  <circle class="a-b a-o" cx="32" cy="33.8" r="6.4"/>
+  <circle class="a-s a-o" cx="32" cy="33.8" r="4.6"/>
+  <circle class="a-g" cx="32" cy="33.8" r="4" filter="url(#a-glow)" opacity=".5"/>
+  <path class="a-gl" d="M28.6 33.8c1.2-1.4 2.2-1.4 3.4 0s2.2 1.4 3.4 0" opacity=".9"/>
+  <circle class="a-w" cx="30.2" cy="31.8" r=".9"/>
+  <path class="a-d" d="M25.4 27a.7.7 0 1 0 .1 0zM38.6 27a.7.7 0 1 0 .1 0zM25.4 40.4a.7.7 0 1 0 .1 0zM38.6 40.4a.7.7 0 1 0 .1 0z"/>
+  <path class="a-l" d="M25 26.2h14M27.8 30c1-1.4 2.4-2.2 4.2-2.4"/>
+</svg>

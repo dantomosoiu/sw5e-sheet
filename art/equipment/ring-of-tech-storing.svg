@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <path class="a-m a-oo" fill-rule="evenodd" d="M21.4 25h21.2l9.4 9.4v15.8L42.6 59.6H21.4L12 50.2V34.4zM24.8 32.4L19.4 37.8v10l5.4 5.4h14.4l5.4-5.4v-10l-5.4-5.4z"/>
+  <path fill-rule="evenodd" d="M21.4 25h21.2l9.4 9.4v15.8L42.6 59.6H21.4L12 50.2V34.4zM24.8 32.4L19.4 37.8v10l5.4 5.4h14.4l5.4-5.4v-10l-5.4-5.4z" fill="url(#a-sheen)"/>
+  <path fill-rule="evenodd" d="M21.4 25h21.2l9.4 9.4v15.8L42.6 59.6H21.4L12 50.2V34.4zM24.8 32.4L19.4 37.8v10l5.4 5.4h14.4l5.4-5.4v-10l-5.4-5.4z" fill="url(#a-shade)"/>
+  <path class="a-d a-o" d="M24.8 32.4h14.4l5.4 5.4v3.4l-5.4-5.4H24.8l-5.4 5.4v-3.4z"/>
+  <g id="ring-of-tech-storing-t">
+    <path class="a-b a-o" d="M12.6 35l6.8 6.8v4l-6.8 6.8z"/>
+    <path class="a-gl" d="M15.4 38.4v5l2.2 2.2v3" filter="url(#a-glow)" opacity=".7"/>
+    <path class="a-gl" d="M15.4 38.4v5l2.2 2.2v3"/>
+    <circle class="a-g" cx="15.4" cy="38.4" r="1.1"/>
+    <path class="a-p" d="M22 59l3.4-5.2M28 59l1-5.6"/>
+    <path class="a-m a-oo" d="M10.4 11.6h7.4v16.2h-7.4c-1.2 0-2-.8-2-2V13.6c0-1.2.8-2 2-2z"/>
+    <path d="M10.4 11.6h7.4v16.2h-7.4c-1.2 0-2-.8-2-2V13.6c0-1.2.8-2 2-2z" fill="url(#a-sheen)"/>
+    <path class="a-b a-o" d="M17.6 13.4h3v12.6h-3z"/>
+    <path class="a-p" d="M10.6 16h5M10.6 19.6h5M10.6 23.2h5"/>
+  </g>
+  <use href="#ring-of-tech-storing-t" transform="matrix(-1 0 0 1 64 0)"/>
+  <rect class="a-s a-oo" x="20.4" y="13" width="23.2" height="13.4" rx="3"/>
+  <rect class="a-g" x="21.6" y="14.4" width="20.8" height="10.6" rx="2.2" filter="url(#a-glow-lg)" opacity=".7"/>
+  <rect class="a-g" x="22" y="15" width="20" height="9.4" rx="2"/>
+  <rect class="a-w" x="23.4" y="16.4" width="17.2" height="2.2" rx="1" opacity=".8"/>
+  <path class="a-m a-o" d="M30.8 13.2h2.4v13h-2.4z"/>
+  <path class="a-l" d="M21.4 14.4h8.6M10 12.8h6.8M13.2 35.2l7.6-8.6"/>
+</svg>

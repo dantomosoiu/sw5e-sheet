@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <path class="a-b a-oo" d="M6 40a26 10 0 0 1 52 0v3.6a26 10 0 0 0-52 0z"/>
+  <path class="a-d" d="M6 40a26 10 0 0 1 52 0v3.6a26 10 0 0 0-52 0z" opacity=".5"/>
+  <path class="a-b a-oo" d="M6 40a26 10 0 0 0 52 0v3.6a26 10 0 0 1-52 0z"/>
+  <path class="a-x" d="M6.4 41.6a25.6 10 0 0 0 51.2 0v.9a25.6 10 0 0 1-51.2 0z"/>
+  <path d="M6 40a26 10 0 0 0 52 0v3.6a26 10 0 0 1-52 0z" fill="url(#a-shade)"/>
+  <g id="circlet-of-persistence-w">
+    <path class="a-x a-oo" d="M29 50.4c-5.4-1-10-4.6-12.6-10.2 5 1.4 9.4 4 12.8 7.6z"/>
+    <path d="M29 50.4c-5.4-1-10-4.6-12.6-10.2 5 1.4 9.4 4 12.8 7.6z" fill="url(#a-sheen)"/>
+    <path class="a-p" d="M27.8 48.6c-3.4-1.2-6.4-3.6-8.6-6.6"/>
+    <circle class="a-g" cx="10" cy="46.4" r="2" filter="url(#a-glow)" opacity=".8"/>
+    <circle class="a-g a-o" cx="10" cy="46.4" r="1.5"/>
+    <circle class="a-g" cx="14.6" cy="48.6" r="2" filter="url(#a-glow)" opacity=".8"/>
+    <circle class="a-g a-o" cx="14.6" cy="48.6" r="1.5"/>
+  </g>
+  <use href="#circlet-of-persistence-w" transform="matrix(-1 0 0 1 64 0)"/>
+  <path class="a-x a-oo" d="M32 12.4c4.6 7 8.6 15 7.8 23.4-.4 5-2.6 9.4-4.4 15.2h-6.8c-1.8-5.8-4-10.2-4.4-15.2-.8-8.4 3.2-16.4 7.8-23.4z"/>
+  <path d="M32 12.4c4.6 7 8.6 15 7.8 23.4-.4 5-2.6 9.4-4.4 15.2h-6.8c-1.8-5.8-4-10.2-4.4-15.2-.8-8.4 3.2-16.4 7.8-23.4z" fill="url(#a-sheen)"/>
+  <path d="M32 12.4c4.6 7 8.6 15 7.8 23.4-.4 5-2.6 9.4-4.4 15.2h-6.8c-1.8-5.8-4-10.2-4.4-15.2-.8-8.4 3.2-16.4 7.8-23.4z" fill="url(#a-shade)"/>
+  <path class="a-m a-o" d="M32 18.4l4.8 14.6L32 46.6 27.2 33z"/>
+  <path class="a-g" d="M32 20.6l3.8 12.4L32 44.2 28.2 33z" filter="url(#a-glow-lg)" opacity=".9"/>
+  <path class="a-g a-o" d="M32 21.6l3.2 11.4L32 43.2 28.8 33z"/>
+  <path class="a-w" d="M32 23.6l1.2 9.4-1.2 8z" opacity=".85"/>
+  <path class="a-l" d="M26.2 27.4c.8-3.6 2.4-7 4.4-10.2M8.6 36.6c3-2.6 7.4-4.4 12.4-5.4"/>
+</svg>
