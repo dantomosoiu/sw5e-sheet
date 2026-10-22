@@ -1943,7 +1943,9 @@ function applyEffects(key, editedRaw, complete) {
   }
   const fin = natural.find((x) => x.unarmedFinesse);
   if (fin && unarmed && unarmed.ability !== 'Dexterity') {
-    const mod = (a) => num((((complete && complete.abilityScores) || {})[a] || {}).modifier);
+    // From the scores with every effect and tweak (a belt that makes Strength 21 ends the gain), not the last calculation.
+    const score = (a) => num(scores[a]) + res.tweaks.filter((t) => t.path === `abilityScores.${a}.score`).reduce((s, t) => s + num(t.bonus), 0);
+    const mod = (a) => Math.floor((score(a) - 10) / 2);
     const ab = unarmed.ability || 'Strength';
     // SW5E's engine adds no negative modifier to unarmed damage (Strength −1: d4 + 0), but does to the attack.
     const gain = { 'unarmed.toHit': mod('Dexterity') - mod(ab), 'unarmed.damage': mod('Dexterity') - Math.max(0, mod(ab)) };
