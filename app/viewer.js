@@ -1656,6 +1656,10 @@ function itemEffects(key, editedRaw, complete) {
     const setMet = (names) => arr(names).every((n) => equipment.some((x) => x.attuned && invSameName(x.name, n)));
     const setPending = mods.filter((x) => x.requires && !setMet(x.requires));
     for (const x of setPending) mods.splice(mods.indexOf(x), 1);
+    // A class augment's numbers are for its class only ("Fighter Offensive Augment"'s superiority die).
+    for (const x of mods.filter((y) => y.forClass && !arr(editedRaw.classes).some((kk) => kk.name === y.forClass))) mods.splice(mods.indexOf(x), 1);
+    const kc = fx.classBoosts && arr(editedRaw.classes).find((kk) => kk.name === fx.classBoosts.cls);
+    const classChanges = kc ? itemBoostChanges(chClassRow(editedRaw, kc, (state.rules && state.rules.modules) || {}), fx.classBoosts.boosts) : [];
     // "One ability score other than Charisma (chosen by the GM) decreases by 1": the score the item's note names.
     const needs = [];
     if (fx.sideEffect) {
@@ -1684,7 +1688,7 @@ function itemEffects(key, editedRaw, complete) {
       ...(keen ? { critRange: keen, critWeapons: [weaponIndex] } : {}),
       ...(fe ? { weapons: fe.profs.weapons, tools: fe.profs.tools, armor: fe.profs.armor, advantage: fe.advantage } : {}),
       needsChoice: (fe ? fe.needsChoice : []).concat(needs),
-      setPending, freeAttune: !!fx.freeAttune && !!it.attuned && setMet(fx.freeAttune),
+      setPending, freeAttune: !!fx.freeAttune && !!it.attuned && setMet(fx.freeAttune), classChanges,
     });
   });
   return out;
@@ -3082,6 +3086,9 @@ function effectRow(m, e) {
   }
   // A set's bonuses still to come ("AC +1 (with Jensaarai Cloak)"), and a piece that takes no attunement slot.
   if (e.kind === 'item') chips.push(...arr(e.setPending).map((x) => chip(`${x.label}: not yet`)), ...(e.freeAttune ? [chip('takes no attunement slot (set)', 'good')] : []));
+  // A class augment: the class table numbers it changes ("Rage Damage +2 → +3").
+  if (e.kind === 'item') chips.push(...arr(e.classChanges).map((x) => chip(`${x.col} ${x.from} → ${x.to}`, e.active ? 'good' : '')),
+    ...(e.classBoosts && !arr(e.classChanges).length ? [chip(`for a ${e.classBoosts.cls}: no change here`)] : []));
   // A keen modification: the weapon's critical range (the dice card's attack rolls use it).
   if (e.kind === 'item' && e.keen) chips.push(e.critRange ? chip(`Keen ${e.critRange}: critical range +${e.critRange}`, e.active ? 'good' : '') : chip(`Keen ${e.keen.gain}: choose a weapon`, 'warn'));
   const weapons = ownWeapons(m.raw);
@@ -5537,7 +5544,48 @@ function modifiableItems(m, kind) {
 
 /** Multiclass improvements and the class-table row they change (choices.js). */
 const multiclassBoosts = (raw, k) => chMulticlassBoosts(raw, k, (state.rules && state.rules.modules) || {});
-const classRow = (raw, k) => chClassRow(raw, k, (state.rules && state.rules.modules) || {});
+const classRow = (raw, k) => itemClassRow(raw, k, chClassRow(raw, k, (state.rules && state.rules.modules) || {}));
+/** The class augments installed ("Berserker Offensive Augment"): [{ name, cls, boosts }] (effects.js classBoosts). */
+function itemClassBoosts(raw) {
+  return arr(raw.equipment).filter((it) => it.category === 'EnhancedItem').map((it) => {
+    const fx = itemEffectOf(catalogIndex && catalogIndex.get(it.name));
+    const on = fx && fx.classBoosts && (fx.activation === 'attune' ? it.attuned : it.equipped);
+    return on ? { name: it.name, ...fx.classBoosts } : null;
+  }).filter(Boolean);
+}
+/**
+ * What an augment changes in its class's table row: the column its words name ("Rage damage" → Rage Damage +2 → +3,
+ * "Sneak Attack" 3d6 → 3d8, "maneuver" → Maneuvers Known, "Guardian Auras radius" → Aura Radius 5 ft. → 10 ft.), each
+ * column once. [{ col, from, to }]. A boost no column matches (Potent Aptitude's uses) changes nothing.
+ */
+function itemBoostChanges(row, boosts) {
+  const STOP = new Set(['your', 'the', 'use', 'uses', 'additional', 'option', 'options', 'feature', 'features', 'die']);
+  const stems = (s) => String(s).toLowerCase().split(/[^a-z]+/).filter((w) => w.length >= 3 && !STOP.has(w));
+  const same = (a, b) => a.startsWith(b) || b.startsWith(a) || (a.length > 4 && b.length > 4 && a.slice(0, 5) === b.slice(0, 5));
+  const fits = { add: (v) => /^\+?\d+$/.test(String(v).trim()), step: (v) => /^\d*d(?:4|6|8|10)$/i.test(String(v).trim()), feet: (v) => /^\d+ ?ft\.?$/i.test(String(v).trim()) };
+  const out = [];
+  for (const b of boosts) {
+    const words = stems(b.phrase);
+    const best = Object.keys(row).filter((c) => !['Level', 'Features', 'Proficiency Bonus'].includes(c) && fits[b.kind](row[c]) && !out.some((x) => x.col === c))
+      .map((c) => ({ c, score: stems(c).filter((w) => words.some((x) => same(w, x))).length }))
+      .filter((x) => x.score > 0).sort((x, y) => y.score - x.score)[0];
+    if (!best) continue;
+    const v = String(row[best.c]).trim();
+    const to = b.kind === 'step' ? v.replace(/d(\d+)$/i, (x, n) => `d${Math.min(12, Number(n) + 2)}`)
+      : b.kind === 'feet' ? v.replace(/^\d+/, (n) => String(Number(n) + b.n))
+        : `${v.startsWith('+') ? '+' : ''}${num(v) + b.n}`;
+    out.push({ col: best.c, from: v, to });
+  }
+  return out;
+}
+/** A class's table row with its installed augments' changes. */
+function itemClassRow(raw, k, row) {
+  const mine = catalogIndex ? itemClassBoosts(raw).filter((b) => b.cls === k.name) : [];
+  if (!mine.length) return row;
+  const out = { ...row };
+  for (const b of mine) for (const x of itemBoostChanges(out, b.boosts)) out[x.col] = x.to;
+  return out;
+}
 /** The highest power level the classes let the character cast, by kind (0: at-will only, -1: none); choices.js adds feat powers. */
 function castingLevels(c, raw) {
   const lvl = (cast) => (cast && typeof cast === 'object' && (num(cast.maxPoints) || arr(cast.powersKnown).length) ? num(cast.maxPowerLevel) : -1);

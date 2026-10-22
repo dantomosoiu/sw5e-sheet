@@ -348,6 +348,31 @@ function parseItemEffect(item) {
       ctx.sideEffect = { except: fxAbility(m[1]), by: Number(m[2]) };
       continue;
     }
+    // A class augment ("Fighter Offensive Augment") changes its class's table: "Your Rage damage bonus increases by 1",
+    // "Your Sneak Attack damage die increases by one step", "you gain one additional superiority die", "You learn an
+    // additional maneuver / Berserker Instinct option", "the radius of your Guardian Auras increases by 5 feet". The
+    // column each means is found in the class's table (itemClassRow); only for that class.
+    const augClass = (/^(\w+) (?:Offensive|Defensive) Augment$/.exec(item.name || '') || [])[1];
+    if (augClass) {
+      const boosts = [];
+      for (const c of s.split(/,\s*and\s+|;\s*/)) {
+        if ((m = /\byour ([\w' -]+?) damage bonus increases by (\d+)/i.exec(c))) boosts.push({ phrase: `${m[1]} damage`, kind: 'add', n: Number(m[2]) });
+        else if ((m = /\bthe damage die for your ([\w' -]+?) (?:die )?and ([\w' -]+?) features? increases by one step/i.exec(c))) boosts.push({ phrase: m[1], kind: 'step' }, { phrase: m[2], kind: 'step' });
+        else if ((m = /\byour ([\w' -]+?) damage die increases by one step/i.exec(c))) boosts.push({ phrase: m[1], kind: 'step' });
+        else if (/\bgain one additional superiority die\b/i.test(c)) {
+          boosts.push({ phrase: 'superiority dice quantity', kind: 'add', n: 1 });
+          // SW5E's engine counts superiority dice itself when it knows the class's: its tweak too.
+          mods.push({ path: 'superiority.maxDice', bonus: 1, forClass: augClass, label: 'Superiority dice +1' });
+        } else if ((m = /\bthe radius of your ([\w' -]+?) increases by (\d+) feet/i.exec(c))) boosts.push({ phrase: `${m[1]} radius`, kind: 'feet', n: Number(m[2]) });
+        else if ((m = /\byou (?:learn an additional|gain one|gain an additional) ([\w' -]+?)(?: option)?\s*$/i.exec(c.replace(/\.$/, '')))) boosts.push({ phrase: m[1], kind: 'add', n: 1 });
+      }
+      if (boosts.length) {
+        ctx.classBoosts = { cls: augClass, boosts: (ctx.classBoosts ? ctx.classBoosts.boosts : []).concat(boosts) };
+        used = true;
+        notes.push(raw);
+        continue;
+      }
+    }
     // Ability scores: "your/the target's Strength score increases by 2, to a maximum of 20" /
     // "…, and your maximum for this score increases by 2" / "your Strength score becomes 19".
     for (const am of s.matchAll(new RegExp(`\\b${ABIL_RE} score (?:increases|is increased) by (\\d+)(?:, to a maximum of (\\d+))?(,? and (?:your|its|their) maximum for this score (?:increases|is increased) by (\\d+))?`, 'gi'))) {
@@ -453,7 +478,7 @@ function parseItemEffect(item) {
     heals: /regains? [^.]*hit points|temporary hit points/i.test(text),
     ...(riders.length ? { riders } : {}), ...(darkvisionPlus ? { darkvisionPlus } : {}), ...(ctx.keen ? { keen: ctx.keen } : {}),
     ...(ctx.halfProfChecks ? { halfProfChecks: ctx.halfProfChecks } : {}), ...(ctx.unarmedDie ? { unarmedDie: ctx.unarmedDie } : {}),
-    ...(freeAttune ? { freeAttune } : {}), ...(ctx.sideEffect ? { sideEffect: ctx.sideEffect } : {}),
+    ...(freeAttune ? { freeAttune } : {}), ...(ctx.sideEffect ? { sideEffect: ctx.sideEffect } : {}), ...(ctx.classBoosts ? { classBoosts: ctx.classBoosts } : {}),
   };
 }
 
