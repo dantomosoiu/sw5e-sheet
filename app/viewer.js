@@ -6887,7 +6887,11 @@ function renderProficiencies(m) {
     const label = `${p.name}${p.proficiencyLevel && p.proficiencyLevel !== 'proficient' ? ` (${p.proficiencyLevel})` : ''} ✎`;
     (byType[p.type || 'other'] = byType[p.type || 'other'] || []).push(p.type === 'tool' ? { html: toolChip(p.name, p.proficiencyLevel, label) } : label);
   }
-  for (const t of arr(m.fx && m.fx.tools)) {
+  // One row per tool (letter case aside: "armstech's implements" from a class feature, "Armstech's implements" from a
+  // feat), at its highest level.
+  const fxTools = arr(m.fx && m.fx.tools).filter((t, i, all) => !all.some((x, j) => j !== i && x.name.toLowerCase() === t.name.toLowerCase()
+    && (x.level === 'expertise' && t.level !== 'expertise' || (x.level === t.level && j < i))));
+  for (const t of fxTools) {
     const same = (n) => String(n).toLowerCase().includes(t.name.toLowerCase()) || t.name.toLowerCase().includes(String(n).toLowerCase());
     const already = arr(raw.customProficiencies).some((p) => same(p.name) && (t.level !== 'expertise' || p.proficiencyLevel === 'expertise'))
       || (t.level !== 'expertise' && arr(c.proficiencies).some((p) => p.type === 'tool' && same(p.name)));
