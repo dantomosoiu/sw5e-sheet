@@ -1741,13 +1741,20 @@ function weaponDamageText(m, w) {
 // ------------------------------------------------------------- tweaks
 // The character's tweaks (manual adjustments: raw.tweaks, and per-weapon equipment[i].tweaks),
 // whether set in sw5e.com's editor or here, are effects too, with an optional (but asked-for)
-// reason kept in this viewer (itemState.reasons, keyed by tweak path / "item:<name>.<path>").
+// reason kept in this viewer (itemState.reasons, keyed by tweak path / "item:<name>.<path>"; a second weapon of the
+// same name "item:<name>#2.<path>", so each keeps its own reason).
 const reasonsOf = (key) => (state.itemState[key] && state.itemState[key].reasons) || {};
+/** A weapon tweak's reason key: by name, numbered from the second entry of that name. */
+function weaponTweakKey(items, i, sub) {
+  const it = items[i] || {};
+  const k = items.slice(0, i).filter((x) => x && x.name === it.name).length;
+  return `item:${it.name}${k ? `#${k + 1}` : ''}.${sub}`;
+}
 /** The character's tweaks as rows: { rkey, path (effect path), value, name, where, index?, sub? }. */
 function tweakRows(editedRaw) {
   const rows = fxTweakLeaves(editedRaw.tweaks).map((l) => ({ rkey: l.path, path: l.path, value: l.value, name: fxTweakName(l.path), where: 'tweaks' }));
   arr(editedRaw.equipment).forEach((it, i) => fxTweakLeaves(it.tweaks).forEach((l) => rows.push({
-    rkey: `item:${it.name}.${l.path}`, path: `weapon.${l.path}`, sub: l.path, index: i, value: l.value,
+    rkey: weaponTweakKey(arr(editedRaw.equipment), i, l.path), path: `weapon.${l.path}`, sub: l.path, index: i, value: l.value,
     name: `${it.name}: ${TWEAK_NAMES[l.path] || l.path}`, where: 'equipment',
   })));
   return rows;
@@ -6484,7 +6491,7 @@ async function addTweak() {
   const raw = withEdits(snap.raw, editedFields(snap.key));
   const w = /^weapon@(\d+)\.(\w+)$/.exec(d.path);
   const row = w
-    ? { where: 'equipment', index: Number(w[1]), sub: w[2], rkey: `item:${arr(raw.equipment)[w[1]].name}.${w[2]}` }
+    ? { where: 'equipment', index: Number(w[1]), sub: w[2], rkey: weaponTweakKey(arr(raw.equipment), Number(w[1]), w[2]) }
     : { where: 'tweaks', path: d.path, rkey: d.path };
   const cur = (w ? getPath((arr(raw.equipment)[w[1]] || {}).tweaks, w[2]) : getPath(raw.tweaks, d.path)) || {};
   // Set and add exclude each other (SW5E ignores the added amount while a value is set): adding to a set value adds to it.
