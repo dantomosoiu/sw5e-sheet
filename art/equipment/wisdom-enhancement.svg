@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <path class="a-b a-oo" d="M32 4.5C40 11 51 23 52.5 32C51 41 40 53 32 59.5C24 53 13 41 11.5 32C13 23 24 11 32 4.5z"/>
+  <path d="M32 4.5C40 11 51 23 52.5 32C51 41 40 53 32 59.5C24 53 13 41 11.5 32C13 23 24 11 32 4.5z" fill="url(#a-sheen)"/>
+  <path d="M32 4.5C40 11 51 23 52.5 32C51 41 40 53 32 59.5C24 53 13 41 11.5 32C13 23 24 11 32 4.5z" fill="url(#a-shade)"/>
+  <path class="a-m a-o" d="M32 12C37.5 16.5 44.5 24.5 45.5 32C44.5 39.5 37.5 47.5 32 52C26.5 47.5 19.5 39.5 18.5 32C19.5 24.5 26.5 16.5 32 12z"/>
+  <path class="a-s a-o" d="M32 17C37.5 23 37.5 41 32 47C26.5 41 26.5 23 32 17z"/>
+  <circle class="a-g" cx="32" cy="32" r="4.4" filter="url(#a-glow)" opacity=".9"/>
+  <circle class="a-g" cx="32" cy="32" r="3.6"/>
+  <ellipse class="a-d" cx="32" cy="32" rx="1" ry="2.8"/>
+  <circle class="a-w" cx="30.9" cy="30.6" r=".8"/>
+  <path class="a-gl" style="stroke-width:.8" d="M32 19.2v-3.4M32 44.8v3.4"/>
+  <g id="wisdom-enhancement-s">
+    <path class="a-gl" style="stroke-width:.8" d="M36.2 28.6l3.2-2.2h3M36.2 35.4l3.2 2.2h3"/>
+    <circle class="a-d" cx="48.8" cy="32" r="1.1"/>
+  </g>
+  <use href="#wisdom-enhancement-s" transform="matrix(-1 0 0 1 64 0)"/>
+  <path class="a-x a-o" d="M32 6.8l2.6 2.8L32 12l-2.6-2.4zM32 57.2l2.6-2.8L32 52l-2.6 2.4z"/>
+  <path class="a-l" d="M14.8 28.4C17.6 21 23.6 14 30 8.6"/>
+</svg>

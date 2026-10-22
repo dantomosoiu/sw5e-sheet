@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <clipPath id="integrated-subdermal-armor-clip">
+    <path d="M10 8Q32 13 54 8Q49 31.5 54 55Q32 50 10 55Q15 31.5 10 8z"/>
+  </clipPath>
+  <path class="a-d" d="M10 8Q32 13 54 8Q49 31.5 54 55Q32 50 10 55Q15 31.5 10 8z"/>
+  <g clip-path="url(#integrated-subdermal-armor-clip)">
+    <path class="a-m a-o" d="M12.8 6h6.4v52h-6.4zM20.8 6h6.4v52h-6.4zM28.8 6h6.4v52h-6.4zM36.8 6h6.4v52h-6.4zM44.8 6h6.4v52h-6.4z"/>
+    <path class="a-b a-o" d="M6 12.3h52v6.4H6zM6 20.3h52v6.4H6zM6 28.3h52v6.4H6zM6 36.3h52v6.4H6zM6 44.3h52v6.4H6z"/>
+    <path class="a-m" d="M20.8 11.5h6.4v8h-6.4zM36.8 11.5h6.4v8h-6.4zM12.8 19.5h6.4v8h-6.4zM28.8 19.5h6.4v8h-6.4zM44.8 19.5h6.4v8h-6.4zM20.8 27.5h6.4v8h-6.4zM36.8 27.5h6.4v8h-6.4zM12.8 35.5h6.4v8h-6.4zM28.8 35.5h6.4v8h-6.4zM44.8 35.5h6.4v8h-6.4zM20.8 43.5h6.4v8h-6.4zM36.8 43.5h6.4v8h-6.4z"/>
+    <path class="a-o" fill="none" d="M20.8 11.5v8M27.2 11.5v8M36.8 11.5v8M43.2 11.5v8M12.8 19.5v8M19.2 19.5v8M28.8 19.5v8M35.2 19.5v8M44.8 19.5v8M51.2 19.5v8M20.8 27.5v8M27.2 27.5v8M36.8 27.5v8M43.2 27.5v8M12.8 35.5v8M19.2 35.5v8M28.8 35.5v8M35.2 35.5v8M44.8 35.5v8M51.2 35.5v8M20.8 43.5v8M27.2 43.5v8M36.8 43.5v8M43.2 43.5v8"/>
+    <path d="M10 8Q32 13 54 8Q49 31.5 54 55Q32 50 10 55Q15 31.5 10 8z" fill="url(#a-sheen)"/>
+    <path d="M10 8Q32 13 54 8Q49 31.5 54 55Q32 50 10 55Q15 31.5 10 8z" fill="url(#a-shade)"/>
+  </g>
+  <path class="a-oo" fill="none" d="M10 8Q32 13 54 8Q49 31.5 54 55Q32 50 10 55Q15 31.5 10 8z"/>
+  <path class="a-g" d="M32 28.4l3.1 3.1-3.1 3.1-3.1-3.1z" filter="url(#a-glow)"/>
+  <path class="a-g a-o" style="stroke-width:.8" d="M32 29l2.5 2.5-2.5 2.5-2.5-2.5z"/>
+  <circle class="a-w" cx="32" cy="31.5" r=".8"/>
+  <g id="integrated-subdermal-armor-t">
+    <circle class="a-m a-oo" cx="10" cy="8" r="4.2"/>
+    <circle class="a-x a-o" cx="10" cy="8" r="2.2"/>
+    <circle class="a-m a-oo" cx="10" cy="55" r="4.2"/>
+    <circle class="a-x a-o" cx="10" cy="55" r="2.2"/>
+  </g>
+  <use href="#integrated-subdermal-armor-t" transform="matrix(-1 0 0 1 64 0)"/>
+  <path class="a-l" d="M15 10.6Q32 14.6 49 10.6"/>
+</svg>

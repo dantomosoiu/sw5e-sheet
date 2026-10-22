@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <path class="a-o" style="stroke-width:3.2" fill="none" d="M32 30v25M26 29.5C24.5 39 22 46 19 53M38 29.5C39.5 39 42 46 45 53M19 27.5C15 34 11.5 40 8 45.5M45 27.5C49 34 52.5 40 56 45.5"/>
+  <path class="a-gl" style="stroke-width:1.2" d="M32 30v25M26 29.5C24.5 39 22 46 19 53M38 29.5C39.5 39 42 46 45 53M19 27.5C15 34 11.5 40 8 45.5M45 27.5C49 34 52.5 40 56 45.5" filter="url(#a-glow)" opacity=".7"/>
+  <path class="a-gl" style="stroke-width:1.1" d="M32 30v25M26 29.5C24.5 39 22 46 19 53M38 29.5C39.5 39 42 46 45 53M19 27.5C15 34 11.5 40 8 45.5M45 27.5C49 34 52.5 40 56 45.5"/>
+  <path class="a-g a-o" d="M32 54a2 2 0 1 0 0 4a2 2 0 1 0 0-4zM19 51.8a2 2 0 1 0 0 4a2 2 0 1 0 0-4zM45 51.8a2 2 0 1 0 0 4a2 2 0 1 0 0-4zM8 44.2a2 2 0 1 0 0 4a2 2 0 1 0 0-4zM56 44.2a2 2 0 1 0 0 4a2 2 0 1 0 0-4z"/>
+  <path class="a-m a-oo" d="M9 18v6.5C9 30 19.3 34 32 34s23-4 23-9.5V18z"/>
+  <path d="M9 18v6.5C9 30 19.3 34 32 34s23-4 23-9.5V18z" fill="url(#a-shade)"/>
+  <path class="a-p" d="M15 26.6v4.4M22 28.8v4.6M32 29.6v4.4M42 28.8v4.6M49 26.6v4.4"/>
+  <ellipse class="a-b a-oo" cx="32" cy="18" rx="23" ry="9.5"/>
+  <ellipse cx="32" cy="18" rx="23" ry="9.5" fill="url(#a-sheen)"/>
+  <ellipse class="a-x a-o" cx="32" cy="18" rx="15" ry="6"/>
+  <ellipse class="a-d a-o" cx="32" cy="18" rx="10.5" ry="4.1"/>
+  <path class="a-m a-o" d="M32 13.8l7.4 4.2-7.4 4.2-7.4-4.2z"/>
+  <path class="a-g" d="M32 15.6l4.2 2.4-4.2 2.4-4.2-2.4z" filter="url(#a-glow)"/>
+  <path class="a-g" d="M32 16.2l3.2 1.8-3.2 1.8-3.2-1.8z"/>
+  <circle class="a-w" cx="32" cy="18" r=".8"/>
+  <path class="a-gl" style="stroke-width:.8" d="M39.4 18h3.6M24.6 18H21M32 13.8v-1.6M32 22.2v1.6"/>
+  <path class="a-l" d="M13.5 13.6C18 10.4 24.6 9 32 9"/>
+</svg>

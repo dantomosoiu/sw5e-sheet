@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <g transform="translate(0 4)">
+    <g id="microphasic-hypervisor-b">
+      <rect class="a-m a-o" x="3.5" y="23" width="6" height="12" rx="1.5"/>
+      <circle class="a-d" cx="5.8" cy="29" r="1"/>
+    </g>
+    <use href="#microphasic-hypervisor-b" transform="matrix(-1 0 0 1 64 0)"/>
+    <rect class="a-m a-oo" x="15" y="12.5" width="34" height="5.5" rx="1.2"/>
+    <path class="a-p" d="M24 13v4.6M40 13v4.6"/>
+    <path class="a-b a-oo" d="M11 16.5H53L57 20.5V38.5L53 42.5H38.5L35.5 39H28.5L25.5 42.5H11L7 38.5V20.5z"/>
+    <path d="M11 16.5H53L57 20.5V38.5L53 42.5H38.5L35.5 39H28.5L25.5 42.5H11L7 38.5V20.5z" fill="url(#a-sheen)"/>
+    <path d="M11 16.5H53L57 20.5V38.5L53 42.5H38.5L35.5 39H28.5L25.5 42.5H11L7 38.5V20.5z" fill="url(#a-shade)"/>
+    <rect class="a-s a-o" x="10.5" y="20" width="43" height="14.5" rx="2"/>
+    <path class="a-gl" style="stroke-width:.6" d="M28 24h8M28 26.5h8M28 29h8M28 31.5h8"/>
+    <g id="microphasic-hypervisor-l">
+      <circle class="a-m a-o" cx="20" cy="27.2" r="6"/>
+      <circle class="a-s" cx="20" cy="27.2" r="4.2"/>
+      <circle class="a-g" cx="20" cy="27.2" r="3" filter="url(#a-glow)" opacity=".9"/>
+      <circle class="a-g" cx="20" cy="27.2" r="2.4"/>
+      <circle class="a-d" cx="20" cy="27.2" r="1.1"/>
+      <rect class="a-x a-o" x="11" y="36.4" width="12.5" height="3" rx=".8"/>
+    </g>
+    <use href="#microphasic-hypervisor-l" transform="matrix(-1 0 0 1 64 0)"/>
+    <path class="a-g" d="M20 14.2a1 1 0 1 0 0 2a1 1 0 1 0 0-2zM26 14.2a1 1 0 1 0 0 2a1 1 0 1 0 0-2zM32 14.2a1 1 0 1 0 0 2a1 1 0 1 0 0-2zM38 14.2a1 1 0 1 0 0 2a1 1 0 1 0 0-2zM44 14.2a1 1 0 1 0 0 2a1 1 0 1 0 0-2z"/>
+    <circle class="a-w" cx="18.9" cy="26.1" r=".7"/>
+    <circle class="a-w" cx="42.9" cy="26.1" r=".7"/>
+    <path class="a-l" d="M11.6 18H44"/>
+  </g>
+</svg>
