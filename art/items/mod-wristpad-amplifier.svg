@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <path class="a-b a-o" d="M21.5 41h3.2v12.5l-.8 3h-1.6l-.8-3zM30.4 41h3.2v12.5l-.8 3h-1.6l-.8-3zM39.3 41h3.2v12.5l-.8 3h-1.6l-.8-3z"/>
+  <path class="a-l" opacity=".6" d="M22.4 44v9M31.3 44v9M40.2 44v9"/>
+  <path class="a-m a-oo" d="M21 5h22a2 2 0 0 1 2 2v14H19V7a2 2 0 0 1 2-2z"/>
+  <path d="M21 5h22a2 2 0 0 1 2 2v14H19V7a2 2 0 0 1 2-2z" fill="url(#a-sheen)"/>
+  <circle class="a-d a-o" cx="32" cy="12.2" r="3.3"/>
+  <path class="a-p" d="M21.5 9v8.5M42.5 9v8.5"/>
+  <rect class="a-b a-oo" x="16" y="18" width="32" height="25" rx="2.5"/>
+  <path class="a-x a-o" d="M16 25v-4.5a2.5 2.5 0 0 1 2.5-2.5h27a2.5 2.5 0 0 1 2.5 2.5V25z"/>
+  <rect x="16" y="18" width="32" height="25" rx="2.5" fill="url(#a-sheen)"/>
+  <rect x="16" y="18" width="32" height="25" rx="2.5" fill="url(#a-shade)"/>
+  <rect class="a-s a-o" x="19.5" y="28" width="25" height="11.5" rx="1.5"/>
+  <path class="a-g" filter="url(#a-glow)" opacity=".8" d="M22 35.6h2.6v2h-2.6zM26 34.2h2.6v3.4H26zM30 32.6h2.6v5H30zM34 30.8h2.6v6.8H34zM38 29.2h2.6v8.4H38z"/>
+  <path class="a-g" d="M22 35.6h2.6v2h-2.6zM26 34.2h2.6v3.4H26zM30 32.6h2.6v5H30zM34 30.8h2.6v6.8H34zM38 29.2h2.6v8.4H38z"/>
+  <path class="a-w" d="M38.5 29.7h1.6v.8h-1.6z"/>
+  <circle class="a-g" cx="43.6" cy="21.5" r="1.6" filter="url(#a-glow)"/>
+  <circle class="a-g a-o" cx="43.6" cy="21.5" r="1"/>
+  <path class="a-l" d="M21.5 6.4h21M18 19.4h28M17.4 26v14"/>
+</svg>

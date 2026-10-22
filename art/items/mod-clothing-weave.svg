@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <path class="a-c a-o" d="M15.4 48.5h5.2l-.4 5.5-1 1-1-1.6-1 1.6-1-1zM22.4 48.5h5.2l-.4 5.5-1 1-1-1.6-1 1.6-1-1zM29.4 48.5h5.2l-.4 5.5-1 1-1-1.6-1 1.6-1-1zM36.4 48.5h5.2l-.4 5.5-1 1-1-1.6-1 1.6-1-1zM43.4 48.5h5.2l-.4 5.5-1 1-1-1.6-1 1.6-1-1z"/>
+  <rect class="a-d a-oo" x="14" y="13" width="36" height="36"/>
+  <path class="a-c a-o" d="M15 13h6v36h-6zM22 13h6v36h-6zM29 13h6v36h-6zM36 13h6v36h-6zM43 13h6v36h-6z"/>
+  <path class="a-x a-o" d="M14 14h36v6H14zM14 21h36v6H14zM14 28h36v6H14zM14 35h36v6H14zM14 42h36v6H14z"/>
+  <path class="a-c" d="M15 13.7h6v6.6h-6zM29 13.7h6v6.6h-6zM43 13.7h6v6.6h-6zM22 20.7h6v6.6h-6zM36 20.7h6v6.6h-6zM15 27.7h6v6.6h-6zM29 27.7h6v6.6h-6zM43 27.7h6v6.6h-6zM22 34.7h6v6.6h-6zM36 34.7h6v6.6h-6zM15 41.7h6v6.6h-6zM29 41.7h6v6.6h-6zM43 41.7h6v6.6h-6z"/>
+  <path class="a-o" fill="none" d="M15 14v6M21 14v6M29 14v6M35 14v6M43 14v6M49 14v6M22 21v6M28 21v6M36 21v6M42 21v6M15 28v6M21 28v6M29 28v6M35 28v6M43 28v6M49 28v6M22 35v6M28 35v6M36 35v6M42 35v6M15 42v6M21 42v6M29 42v6M35 42v6M43 42v6M49 42v6"/>
+  <path class="a-d" opacity=".35" d="M21 14h1.4v6h-1.4zM35 14h1.4v6h-1.4zM28 21h1.4v6h-1.4zM42 21h1.4v6h-1.4zM21 28h1.4v6h-1.4zM35 28h1.4v6h-1.4zM28 35h1.4v6h-1.4zM42 35h1.4v6h-1.4zM21 42h1.4v6h-1.4zM35 42h1.4v6h-1.4zM22 20h6v1.2h-6zM36 20h6v1.2h-6zM15 27h6v1.2h-6zM29 27h6v1.2h-6zM43 27h6v1.2h-6zM22 34h6v1.2h-6zM36 34h6v1.2h-6zM15 41h6v1.2h-6zM29 41h6v1.2h-6zM43 41h6v1.2h-6z"/>
+  <rect x="14" y="13" width="36" height="36" fill="url(#a-sheen)"/>
+  <rect x="14" y="13" width="36" height="36" fill="url(#a-shade)"/>
+  <rect class="a-c a-oo" x="11.5" y="6.5" width="41" height="8" rx="1.5"/>
+  <rect x="11.5" y="6.5" width="41" height="8" rx="1.5" fill="url(#a-sheen)"/>
+  <path class="a-p" stroke-dasharray="1.6 1.2" d="M13.5 12.6h37"/>
+  <circle class="a-b a-o" cx="17.5" cy="9.8" r="2"/>
+  <circle class="a-b a-o" cx="46.5" cy="9.8" r="2"/>
+  <path class="a-d" d="M17.5 8.9a.9 .9 0 1 0 .1 0zM46.5 8.9a.9 .9 0 1 0 .1 0z"/>
+  <path class="a-l" d="M13 7.9h38"/>
+</svg>

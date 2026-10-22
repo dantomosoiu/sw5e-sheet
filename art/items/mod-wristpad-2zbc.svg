@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <path class="a-b a-o" d="M24.8 48h2.2v6.5h-2.2zM29.2 48h2.2v6.5h-2.2zM33.6 48h2.2v6.5h-2.2zM38 48h2.2v6.5H38z"/>
+  <rect class="a-m a-oo" x="8" y="41" width="48" height="8" rx="2"/>
+  <rect x="8" y="41" width="48" height="8" rx="2" fill="url(#a-sheen)"/>
+  <rect class="a-m a-oo" x="17.5" y="5.5" width="5" height="5" rx="1"/>
+  <rect class="a-m a-oo" x="41.5" y="5.5" width="5" height="5" rx="1"/>
+  <rect class="a-m a-oo" x="12.5" y="9" width="15" height="5" rx="1.5"/>
+  <rect class="a-m a-oo" x="36.5" y="9" width="15" height="5" rx="1.5"/>
+  <rect class="a-b a-oo" x="11" y="13" width="18" height="29" rx="3"/>
+  <rect class="a-b a-oo" x="35" y="13" width="18" height="29" rx="3"/>
+  <path class="a-x a-o" d="M11 18h18v6H11zM35 18h18v6H35z"/>
+  <path d="M11 16a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v23a3 3 0 0 1-3 3H14a3 3 0 0 1-3-3zM35 16a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v23a3 3 0 0 1-3 3H38a3 3 0 0 1-3-3z" fill="url(#a-sheen)"/>
+  <path d="M11 16a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v23a3 3 0 0 1-3 3H14a3 3 0 0 1-3-3zM35 16a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v23a3 3 0 0 1-3 3H38a3 3 0 0 1-3-3z" fill="url(#a-shade)"/>
+  <path class="a-d" opacity=".3" d="M25.5 14h2.4v27h-2.4zM49.5 14h2.4v27h-2.4z"/>
+  <rect class="a-s a-o" x="17.5" y="27" width="5" height="11" rx="1"/>
+  <rect class="a-s a-o" x="41.5" y="27" width="5" height="11" rx="1"/>
+  <path class="a-g" filter="url(#a-glow)" d="M18.5 30h3v7h-3zM42.5 30h3v7h-3z"/>
+  <path class="a-g" d="M18.5 30h3v7h-3zM42.5 30h3v7h-3z"/>
+  <path class="a-gl" filter="url(#a-glow-lg)" d="M29 17.5l6 4.5-5 3.5 5 4.5-5 3.5 5 4"/>
+  <path class="a-gl" filter="url(#a-glow)" d="M29 17.5l6 4.5-5 3.5 5 4.5-5 3.5 5 4"/>
+  <path class="a-w" d="M29.2 17.2l6.3 4.8-5 3.5 5 4.5-5 3.5 5 4-.6.6-5.4-4.4 5-3.5-5-4.5 5-3.5-6-4.4z"/>
+  <path class="a-l" d="M12.6 16v22M36.6 16v22M14 14.4h12M38 14.4h12M10 42.4h44"/>
+</svg>

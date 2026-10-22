@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <clipPath id="mod-focus-generator-emitter-clip"><path d="M15 20C17 31 23.5 37 25.5 42H38.5C40.5 37 47 31 49 20z"/></clipPath>
+  <rect class="a-m a-oo" x="26" y="49.5" width="12" height="7.5" rx="1"/>
+  <path class="a-p" d="M26.6 52h10.8M26.6 54.4h10.8"/>
+  <path class="a-m a-oo" d="M26.5 41h11l-1.5 9.5h-8z"/>
+  <path class="a-b a-oo" d="M15 20C17 31 23.5 37 25.5 42H38.5C40.5 37 47 31 49 20z"/>
+  <rect class="a-x a-o" x="10" y="29" width="44" height="5.5" clip-path="url(#mod-focus-generator-emitter-clip)"/>
+  <path d="M15 20C17 31 23.5 37 25.5 42H38.5C40.5 37 47 31 49 20z" fill="url(#a-sheen)"/>
+  <path d="M15 20C17 31 23.5 37 25.5 42H38.5C40.5 37 47 31 49 20z" fill="url(#a-shade)"/>
+  <path class="a-o" fill="none" d="M15 20C17 31 23.5 37 25.5 42H38.5C40.5 37 47 31 49 20"/>
+  <path class="a-g" filter="url(#a-glow-lg)" opacity=".55" d="M21 19L17 6h30l-4 13z"/>
+  <path class="a-g" opacity=".14" d="M22 19.5L19.5 9h25L42 19.5z"/>
+  <ellipse class="a-m a-oo" cx="32" cy="20" rx="17.5" ry="4.5"/>
+  <ellipse class="a-s a-o" cx="32" cy="19.6" rx="13.5" ry="2.8"/>
+  <ellipse class="a-g" cx="32" cy="19.5" rx="10" ry="2" filter="url(#a-glow)"/>
+  <ellipse class="a-g" cx="32" cy="19.5" rx="8" ry="1.5"/>
+  <ellipse class="a-w" cx="32" cy="19.4" rx="4" ry=".7"/>
+  <path class="a-gl" filter="url(#a-glow)" opacity=".8" d="M32 17V9M26.5 17.3l-2.5-6.6M37.5 17.3l2.5-6.6"/>
+  <path class="a-gl" style="stroke-width:.8" d="M32 17V9M26.5 17.3l-2.5-6.6M37.5 17.3l2.5-6.6"/>
+  <path class="a-l" d="M16.6 23c1.2 5.6 3.6 9.6 6.4 12.8M16 17.6c3-1.4 7-2.2 11-2.4M28 50.4V43"/>
+</svg>

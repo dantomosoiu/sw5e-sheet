@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <circle class="a-c a-oo" cx="32" cy="31" r="23"/>
+  <path class="a-b a-o" fill-rule="evenodd" d="M9 31a23 23 0 1 0 46 0a23 23 0 1 0-46 0zM12.4 31a19.6 19.6 0 1 0 39.2 0a19.6 19.6 0 1 0-39.2 0z"/>
+  <circle class="a-p" style="stroke-width:2.4" stroke-dasharray=".45 .95" cx="32" cy="31" r="21.3"/>
+  <circle class="a-p" stroke-dasharray="1.6 1.2" cx="32" cy="31" r="17.6"/>
+  <path class="a-x a-o" d="M17 23.5L20 19.5 23 23.5 26 19.5 29 23.5 32 19.5 35 23.5 38 19.5 41 23.5 44 19.5 47 23.5zM17 38.5L20 42.5 23 38.5 26 42.5 29 38.5 32 42.5 35 38.5 38 42.5 41 38.5 44 42.5 47 38.5z"/>
+  <path class="a-x a-o" d="M22 25.5l4.6 5.5-4.6 5.5-4.6-5.5zM32 25l5 6-5 6-5-6zM42 25.5l4.6 5.5-4.6 5.5-4.6-5.5z"/>
+  <path class="a-c" d="M32 28.4l2.2 2.6-2.2 2.6-2.2-2.6zM22 28.6l2 2.4-2 2.4-2-2.4zM42 28.6l2 2.4-2 2.4-2-2.4z"/>
+  <path class="a-b" d="M27 30.2a.8 .8 0 1 0 .1 0zM37 30.2a.8 .8 0 1 0 .1 0z"/>
+  <circle cx="32" cy="31" r="23" fill="url(#a-sheen)"/>
+  <circle cx="32" cy="31" r="23" fill="url(#a-shade)"/>
+  <path class="a-l" d="M11.4 25.4c1.8-7 7.2-12.6 14.2-14.6"/>
+</svg>
