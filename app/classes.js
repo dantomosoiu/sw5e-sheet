@@ -220,7 +220,8 @@ function clsWeaponMatches(desc, w) {
   const kind = /blaster/i.test(cls) ? 'blaster' : /vibro/i.test(cls) ? 'vibroweapon' : /light/i.test(cls) ? 'lightweapon' : '';
   const props = (w.properties || []).map((p) => String(p).toLowerCase());
   const has = (p) => props.some((x) => x.startsWith(p.trim()));
-  const m = /^(simple|martial|all|exotic)?\s*(blasters?|vibroweapons?|lightweapons?|weapons?)\b(.*)$/.exec(d);
+  // "all simple weapons" is "simple weapons".
+  const m = /^(simple|martial|all|exotic)?\s*(blasters?|vibroweapons?|lightweapons?|weapons?)\b(.*)$/.exec(d.replace(/^all (?=simple|martial|exotic)/, ''));
   const name = String(w.name || '').toLowerCase();
   if (!m) return !!name && [name, `${name}s`, `${name}es`].includes(d);
   // "blasters", "all blasters": the simple and martial ones; an exotic weapon needs its own proficiency (Exotic Weapon Training).
@@ -317,7 +318,7 @@ const clsFx = typeof fxBonusMods !== 'undefined' ? { fxBonusMods, fxCondMods, fx
 const CLS_GRANT = /\b(?:you (?:also |then |instead |now )?(?:gain|have) proficiency|you are (?:also )?proficient|(?:grants?|gives?) you proficiency|you to gain proficiency|gain proficiency) (?:in|with) /gi;
 const CLS_COUNT_RE = '(a|an|one|two|three|four|five)';
 const clsToolWord = (s) => /\b(?:kits?|implements|sets?|instruments?|tools?)\b/i.test(s);
-const CLS_WEAPON_KINDS = /^(?:(?:all|simple|martial|exotic)\s+)?(?:blasters?|vibroweapons?|lightweapons?|weapons?)\b/i;
+const CLS_WEAPON_KINDS = /^(?:all\s+)?(?:(?:simple|martial|exotic)\s+)?(?:blasters?|vibroweapons?|lightweapons?|weapons?)\b/i;
 
 /**
  * One thing a proficiency grant names: { kind: 'save', names } | { kind: 'skill'|'armor'|'weapon'|'tool', name } |
@@ -337,6 +338,7 @@ function clsProfItem(seg, isWeapon) {
   const sk = clsSkill(plain.replace(/\s+skills?$/i, ''));
   if (sk) return { kind: 'skill', name: sk };
   if (/^(?:light|medium|heavy) armor$|^shields?$/i.test(plain)) return { kind: 'armor', name: plain.toLowerCase() };
+  if (/^all armor$/i.test(plain)) return { kind: 'armors', names: ['light armor', 'medium armor', 'heavy armor'] };
   if ((m = new RegExp(`^${CLS_COUNT_RE}\\s+(?:set of |type of |kind of )?(.+)$`, 'i').exec(plain))) {
     const count = clsCount(m[1]);
     const what = m[2];
@@ -367,6 +369,7 @@ function clsProfDistribute(parts) {
     const bare = p.replace(/^(?:in|with)\s+/i, '').replace(/^the\s+/i, '').trim();
     const noun = (re) => { const q = parts.slice(i + 1).find((x) => re.test(x)); return q ? re.exec(q)[0] : null; };
     if (/^(?:light|medium|heavy)$/i.test(bare)) { const n = noun(/\barmor$/i); return n ? `${bare} ${n}` : p; }
+    if (/^(?:all )?(?:simple|martial)$/i.test(bare)) { const n = noun(/\b(?:blasters?|vibroweapons?|lightweapons?|weapons?)$/i); return n ? `${bare} ${n}` : p; }
     if (clsAbility(bare)) { const n = noun(/\bsaving throws?$/i); return n ? `${bare} ${n}` : p; }
     return p;
   });
@@ -447,6 +450,7 @@ function clsApplyProfList(items, into, picks, isWeapon, out, ask, opts = {}) {
     if (it.kind === 'save') it.names.forEach(save);
     else if (it.kind === 'skill') skill(it.name);
     else if (it.kind === 'armor') { into.armor.push(it.name); got.push({ kind: 'armor', name: it.name }); }
+    else if (it.kind === 'armors') it.names.forEach((n) => { into.armor.push(n); got.push({ kind: 'armor', name: n }); });
     else if (it.kind === 'weapon') weapon(it.name);
     else if (it.kind === 'tool') tool(it.name);
     else if (it.kind === 'initiative') {
@@ -559,6 +563,7 @@ function clsDefenseClauses(s) {
 
 /** [{ kind, name }] for the fixed things in a list (what an "If you are already proficient in X" names). */
 const clsProfNames = (items) => items.flatMap((it) => (it.kind === 'save' ? it.names.map((n) => ({ kind: 'save', name: n }))
+  : it.kind === 'armors' ? it.names.map((n) => ({ kind: 'armor', name: n }))
   : ['skill', 'armor', 'weapon', 'tool'].includes(it.kind) ? [{ kind: it.kind, name: it.name }] : []));
 
 /**
@@ -791,7 +796,7 @@ function clsFeatureEffects(text, note, ctx) {
     if (!/\b(?:when|whenever|if|until|for the next|for 1 minute|while (?!you are not wearing|wearing no))\b/i.test(dcore)) {
       const core = dcore; // eslint-disable-line no-shadow
       const def = (kind, txt) => out.defenses.push({ kind, text: txt.replace(/\s+/g, ' ').trim() + (switched ? ' (when switched on)' : '') });
-      for (const am of (switched ? [] : core.matchAll(new RegExp(`\\badvantage on (initiative(?: checks| rolls)?|${CLS_ABIL_ANY} (?:checks|saving throws)(?:(?:,| and| or) (?:${CLS_ABIL_ANY} )?(?:checks|saving throws))*)(?! (?:against|that|made|to|involving))`, 'gi')))) {
+      for (const am of (switched ? [] : core.matchAll(new RegExp(`\\badvantage on (initiative(?: checks| rolls)?|${CLS_ABIL_ANY} (?:ability )?(?:checks|saving throws)(?:(?:,| and| or) (?:${CLS_ABIL_ANY} )?(?:ability )?(?:checks|saving throws))*)(?! (?:against|that|made|to|involving))`, 'gi')))) {
         // "…saving throws and Strength (Athletics) checks that involve climbing": only sometimes.
         const after = /^[^.;]*/.exec(core.slice(am.index + am[0].length))[0];
         if (/^[^,]*?\b(?:that|against|involving|to avoid|made to|which)\b/i.test(after)) { def('advantage', `Advantage on ${am[1]}${after.replace(/,.*$/, '')}`); continue; }
