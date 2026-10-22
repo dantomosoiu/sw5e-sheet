@@ -1,0 +1,2259 @@
+# Panel round 3: items (enhanced items, modifications, cybernetics, droid customizations, tweaks)
+
+Player: items. Tool: `node dev/bump-check.js`, one run at a time.
+
+## How I checked
+
+- Read every enhanced item's SW5E text in `app/data/sw5e/catalog.json` (1,909 items: every `type` except the three
+  ship types) next to what `parseItemEffect` (app/effects.js) reads from it, and wrote down what each should change.
+- Ran `node dev/bump-check.js` once per item (1,909 runs, sequential), with the item in the state it works in:
+  - armor / shields / enhanced weapons: carried, equipped (or attuned when it requires attunement), linked to a base
+    item the character wears (`enhancedBy` on Mesh armor, Light physical shield, Light pistol, Vibrodagger or Lightsaber);
+  - focuses: force ones on Thirza (her own Focus Generator (Fine) un-attuned first), tech ones on Tikk;
+  - modifications: installed (`equipped`), weapon ones aimed at a weapon (`itemState.targets`), wristpad mods on Tikk,
+    focus generator mods on Thirza, lightweapon mods on Maasha, the rest on Kadro;
+  - cybernetics: installed or attuned, on Kadro; droid customizations: on Tikk made a "Droid, Class I" without armor;
+  - consumables: used on yourself the way the sheet's "use on me" does it (an `itemState.effects` entry built from
+    `parseItemEffect`, as `makeEffect` does), ammunition carried, everything else carried.
+  For Kadro I used a copy of kadro-vos-panel with his Light pistol and Vibrodagger already equipped, so a weapon
+  bonus shows only its own change; the commands in the findings below use the stock cases.
+- Then the sheet's own tweaks: every tweak path, with and without a reason, bonus / override / proficiency / die size,
+  on the character and on a weapon, and tweaks next to item effects.
+
+## Sources checked
+
+Counts: 1,939 sources checked = 1,909 enhanced items + 30 tweak checks.
+Items: 474 OK, 959 no number (roleplay, table-time, effects on other creatures, chassis slots, casting
+properties the sheet doesn't model), 476 with a finding. Tweaks: 19 OK, 11 with a finding.
+"OK" means every number the text changes moved by the right amount, under the right condition, with an
+explanation naming the item and "while equipped / attuned / installed" or "used, lasts …" (conditional ones shown
+as "15 · 16 vs melee" or as a dice-card option).
+
+### Armor (18)
+- Adapted Armor: FINDING 22
+- Armor (Champion): FINDING 22
+- Armor (Exceptional): FINDING 22
+- Armor (Fine): OK
+- Armor (Improved): OK
+- Armor (Superior): OK
+- Armor Chassis (Advanced): no number
+- Armor Chassis (Artifact): no number
+- Armor Chassis (Legendary): no number
+- Armor Chassis (Premium): no number
+- Armor Chassis (Prototype): no number
+- Armor Chassis (Standard): no number
+- Jensaarai Armor: FINDING 13
+- Mandalorian Beskar'gam: FINDING 13
+- Matrix Armor: FINDING 22
+- Orbalisk Armor: FINDING 22
+- Reactive Ultrachrome Armor: FINDING 22
+- Viir Agathys's Armor: no number
+
+### Shield (12)
+- Shield (Champion): FINDING 22
+- Shield (Exceptional): FINDING 22
+- Shield (Fine): OK
+- Shield (Improved): OK
+- Shield (Superior): OK
+- Shield Chassis (Advanced): no number
+- Shield Chassis (Artifact): no number
+- Shield Chassis (Legendary): no number
+- Shield Chassis (Premium): no number
+- Shield Chassis (Prototype): no number
+- Shield Chassis (Standard): no number
+- Verpine Auto-Shielding Unit: no number
+
+### Weapon (58)
+- AB-75 Bo-Rifle: OK
+- Blaster Chassis (Advanced): no number
+- Blaster Chassis (Artifact): no number
+- Blaster Chassis (Legendary): no number
+- Blaster Chassis (Premium): no number
+- Blaster Chassis (Prototype): no number
+- Blaster Chassis (Standard): no number
+- Bolas (Champion): no number
+- Bolas (Exceptional): no number
+- Bolas (Fine): no number
+- Bolas (Improved): no number
+- Bolas (Superior): no number
+- Charric Pistol: FINDING 27
+- Charric Rifle: FINDING 27
+- Darksaber: FINDING 7
+- Flashy: FINDING 27
+- Grenade Launcher (Champion): no number
+- Grenade Launcher (Exceptional): no number
+- Grenade Launcher (Fine): no number
+- Grenade Launcher (Improved): no number
+- Grenade Launcher (Superior): no number
+- Hewey: FINDING 27
+- Inquisitor Saber: OK
+- J-19 Bo-Rifle: OK
+- Lightweapon Chassis (Advanced): no number
+- Lightweapon Chassis (Artifact): no number
+- Lightweapon Chassis (Legendary): no number
+- Lightweapon Chassis (Premium): no number
+- Lightweapon Chassis (Prototype): no number
+- Lightweapon Chassis (Standard): no number
+- Net (Champion): no number
+- Net (Exceptional): no number
+- Net (Fine): no number
+- Net (Improved): no number
+- Net (Superior): no number
+- Shotgun Axe: FINDING 7
+- Shoulder Cannon (Champion): FINDING 7
+- Shoulder Cannon (Exceptional): FINDING 7
+- Shoulder Cannon (Fine): FINDING 7
+- Shoulder Cannon (Improved): FINDING 7
+- Shoulder Cannon (Superior): FINDING 7
+- Sparkles: FINDING 27
+- Torchy: FINDING 7
+- Vibroweapon Chassis (Advanced): no number
+- Vibroweapon Chassis (Artifact): no number
+- Vibroweapon Chassis (Legendary): no number
+- Vibroweapon Chassis (Premium): no number
+- Vibroweapon Chassis (Prototype): no number
+- Vibroweapon Chassis (Standard): no number
+- Weapon (Champion): FINDING 8
+- Weapon (Exceptional): FINDING 8
+- Weapon (Fine): OK
+- Weapon (Improved): OK
+- Weapon (Superior): OK
+- Xerrol Nightstinger Rifle: OK
+- Torpedo Launcher (Fine): OK
+- Torpedo Launcher (Improved): OK
+- Torpedo Launcher (Superior): OK
+
+### Focus (18)
+- Focus Generator (Fine): FINDING 1
+- Focus Generator (Improved): FINDING 1
+- Focus Generator (Superior): FINDING 1
+- Focus Generator Chassis (Advanced): no number
+- Focus Generator Chassis (Artifact): no number
+- Focus Generator Chassis (Legendary): no number
+- Focus Generator Chassis (Premium): no number
+- Focus Generator Chassis (Prototype): no number
+- Focus Generator Chassis (Standard): no number
+- Wristpad (Fine): FINDING 1
+- Wristpad (Improved): FINDING 1
+- Wristpad (Superior): FINDING 1
+- Wristpad Chassis (Advanced): no number
+- Wristpad Chassis (Artifact): no number
+- Wristpad Chassis (Legendary): no number
+- Wristpad Chassis (Premium): no number
+- Wristpad Chassis (Prototype): no number
+- Wristpad Chassis (Standard): no number
+
+### AdventuringGear (156)
+- Aratech Echo Belt: no number
+- Aratech Sound Dampening Boots: no number
+- Atmospheric Decanting Vessel: no number
+- Baragwin Stealth Unit: no number
+- Beemon Cardio-Regulator: OK
+- Blueprint (Advanced): no number
+- Blueprint (Artifact): no number
+- Blueprint (Legendary): no number
+- Blueprint (Premium): no number
+- Blueprint (Prototype): no number
+- Blueprint (Standard): no number
+- Boots of Bounding: FINDING 27
+- Boots of Hiding: no number
+- CNS Strength Enhancer: OK
+- Cape of the Orator: FINDING 27
+- Circlet of Persistence: FINDING 27
+- Cloak Chassis (Advanced): no number
+- Cloak Chassis (Artifact): no number
+- Cloak Chassis (Legendary): no number
+- Cloak Chassis (Premium): no number
+- Cloak Chassis (Prototype): no number
+- Cloak Chassis (Standard): no number
+- Clothes, Clandestine (Champion): no number
+- Clothes, Clandestine (Exceptional): no number
+- Clothes, Clandestine (Fine): no number
+- Clothes, Clandestine (Improved): no number
+- Clothes, Clandestine (Superior): no number
+- Cowl of the Professional: FINDING 27
+- Darkvision Goggles: FINDING 19
+- Datacron Mk I: no number
+- Datacron Mk II: no number
+- Datacron Mk III: no number
+- Datacron Mk IV: no number
+- Datacron Mk V: no number
+- Datacron Mk VI: no number
+- Defel Mimicker: no number
+- Dominator Belt: OK
+- Flightsuit: no number
+- GNS Strength Enhancer: OK
+- Gauntlets of the Warrior: FINDING 27
+- Goggles of the Tinkerer: FINDING 27
+- Handwraps (Basic): OK
+- Handwraps (Champion): FINDING 8
+- Handwraps (Exceptional): FINDING 8
+- Handwraps (Fine): OK
+- Handwraps (Improved): OK
+- Handwraps (Superior): OK
+- Handwraps Chassis (Advanced): no number
+- Handwraps Chassis (Artifact): no number
+- Handwraps Chassis (Legendary): no number
+- Handwraps Chassis (Premium): no number
+- Handwraps Chassis (Prototype): no number
+- Handwraps Chassis (Standard): no number
+- Holocron (Adept): no number
+- Holocron (Ancient): no number
+- Holocron (Apprentice): no number
+- Holocron (Journeyman): no number
+- Holocron (Master): no number
+- Holocron (Novice): no number
+- Jedi Knight's Robe: OK
+- Jedi Master's Robe: OK
+- Jedi Padawan's Robe: OK
+- Jensaarai Cloak: FINDING 13
+- Jensaarai Headgear: FINDING 13, 22
+- Jetpack (Champion): no number
+- Jetpack (Exceptional): no number
+- Jetpack (Fine): no number
+- Jetpack (Improved): no number
+- Jetpack (Superior): no number
+- Mag-lock Boots: no number
+- Mandalorian Helmet: FINDING 13
+- Mandalorian Shuk'orok: FINDING 13
+- Mantle of the Anomic: FINDING 27
+- Necklace of Determination: FINDING 27
+- Pants Chassis (Advanced): no number
+- Pants Chassis (Artifact): no number
+- Pants Chassis (Legendary): no number
+- Pants Chassis (Premium): no number
+- Pants Chassis (Prototype): no number
+- Pants Chassis (Standard): no number
+- Pauldron of Retribution: FINDING 27
+- Respiration Facilitator: no number
+- Reverse-Engineered Crushgaunts: OK
+- Ring of Adept Force Storing: no number
+- Ring of Ancient Force Storing: no number
+- Ring of Apprentice Force Storing: no number
+- Ring of Journeyman Force Storing: no number
+- Ring of Master Force Storing: no number
+- Ring of Novice Force Storing: no number
+- Ring of Tech Storing Mk I: no number
+- Ring of Tech Storing Mk II: no number
+- Ring of Tech Storing Mk III: no number
+- Ring of Tech Storing Mk IV: no number
+- Ring of Tech Storing Mk V: no number
+- Ring of Tech Storing Mk VI: no number
+- Rocket Boots (Champion): no number
+- Rocket Boots (Exceptional): no number
+- Rocket Boots (Fine): no number
+- Rocket Boots (Improved): no number
+- Rocket Boots (Superior): no number
+- Rocketpack (Champion): no number
+- Rocketpack (Exceptional): no number
+- Rocketpack (Fine): no number
+- Rocketpack (Improved): no number
+- Rocketpack (Superior): no number
+- Sith Acolyte's Robe: FINDING 28
+- Sith Lord's Robe: FINDING 28
+- Sith Strength Belt: OK
+- Sith Warrior's Robe: FINDING 28
+- Slipstream Kickers: no number
+- Smugglepack (Champion): no number
+- Smugglepack (Exceptional): no number
+- Smugglepack (Fine): no number
+- Smugglepack (Improved): no number
+- Smugglepack (Superior): no number
+- Strength Enhancer: OK
+- Taozin Amulet: no number
+- Tool (Basic): FINDING 10
+- Tool (Champion): FINDING 10
+- Tool (Exceptional): FINDING 10
+- Tool (Fine): FINDING 10
+- Tool (Improved): FINDING 10
+- Tool (Superior): FINDING 10
+- Tunic Chassis (Advanced): no number
+- Tunic Chassis (Artifact): no number
+- Tunic Chassis (Legendary): no number
+- Tunic Chassis (Premium): no number
+- Tunic Chassis (Prototype): no number
+- Tunic Chassis (Standard): no number
+- Vambraces of the Outrider: FINDING 27
+- Wrist-Mounted Grappling Hook: no number
+- Binders (Champion): no number
+- Binders (Exceptional): no number
+- Binders (Fine): no number
+- Binders (Improved): no number
+- Binders (Superior): no number
+- Camtono (Champion): no number
+- Camtono (Exceptional): no number
+- Camtono (Fine): no number
+- Camtono (Improved): no number
+- Camtono (Superior): no number
+- Credit Chip (Champion): no number
+- Credit Chip (Exceptional): no number
+- Credit Chip (Fine): no number
+- Credit Chip (Improved): no number
+- Credit Chip (Superior): no number
+- Remote Detonator (Champion): no number
+- Remote Detonator (Exceptional): no number
+- Remote Detonator (Fine): no number
+- Remote Detonator (Improved): no number
+- Remote Detonator (Superior): no number
+- Restraining Bolt (Champion): no number
+- Restraining Bolt (Exceptional): no number
+- Restraining Bolt (Fine): no number
+- Restraining Bolt (Improved): no number
+- Restraining Bolt (Superior): no number
+
+### Consumable (528)
+- Alacrity Adrenal (Basic): OK
+- Alacrity Adrenal (Champion): OK
+- Alacrity Adrenal (Exceptional): OK
+- Alacrity Adrenal (Fine): OK
+- Alacrity Adrenal (Improved): OK
+- Alacrity Adrenal (Superior): OK
+- Andris (Fine): FINDING 21
+- Andris (High Quality): FINDING 21
+- Andris (Potent): FINDING 21
+- Andris (Pure): FINDING 21
+- Andris (Uncut): FINDING 21
+- Battle Adrenal Mk I: no number
+- Battle Adrenal Mk II: no number
+- Charisma Stim (Basic): OK
+- Charisma Stim (Champion): OK
+- Charisma Stim (Exceptional): OK
+- Charisma Stim (Fine): OK
+- Charisma Stim (Improved): OK
+- Charisma Stim (Superior): OK
+- Cilona (Fine): FINDING 21
+- Cilona (High Quality): FINDING 21
+- Cilona (Potent): FINDING 21
+- Cilona (Pure): FINDING 21
+- Cilona (Uncut): FINDING 21
+- Computer Spike (Champion): no number
+- Computer Spike (Fine): no number
+- Computer Spike (Superior): no number
+- Constitution Stim (Basic): OK
+- Constitution Stim (Champion): OK
+- Constitution Stim (Exceptional): OK
+- Constitution Stim (Fine): OK
+- Constitution Stim (Improved): OK
+- Constitution Stim (Superior): OK
+- Dart (Average): OK
+- Dart (Deadly): OK
+- Dart (Devastating): OK
+- Dart (Lethal): OK
+- Dart (Major): OK
+- Deuterium-pyro (Aged): FINDING 21
+- Deuterium-pyro (Fine): FINDING 21
+- Deuterium-pyro (Matured): FINDING 21
+- Deuterium-pyro (Reserve): FINDING 21
+- Deuterium-pyro (Special): FINDING 21
+- Dexterity Stim (Basic): OK
+- Dexterity Stim (Champion): OK
+- Dexterity Stim (Exceptional): OK
+- Dexterity Stim (Fine): OK
+- Dexterity Stim (Improved): OK
+- Dexterity Stim (Superior): OK
+- Environmental Barrier Mk I: no number
+- Environmental Barrier Mk II: no number
+- Environmental Barrier Mk III: no number
+- Environmental Barrier Mk IV: no number
+- Environmental Barrier Mk V: no number
+- Environmental Barrier Mk VI: no number
+- Flux Collimator (Average): OK
+- Flux Collimator (Deadly): OK
+- Flux Collimator (Devastating): FINDING 8
+- Flux Collimator (Lethal): FINDING 8
+- Flux Collimator (Major): OK
+- Giggledust (Fine): FINDING 21
+- Giggledust (High Quality): FINDING 21
+- Giggledust (Potent): FINDING 21
+- Giggledust (Pure): FINDING 21
+- Giggledust (Uncut): FINDING 21
+- Glitterstim (Fine): FINDING 21
+- Glitterstim (High Quality): FINDING 21
+- Glitterstim (Potent): FINDING 21
+- Glitterstim (Pure): FINDING 21
+- Glitterstim (Uncut): FINDING 21
+- Grenade, Fragmentation (Average): no number
+- Grenade, Fragmentation (Deadly): no number
+- Grenade, Fragmentation (Devastating): no number
+- Grenade, Fragmentation (Lethal): no number
+- Grenade, Fragmentation (Major): no number
+- Intelligence Stim (Basic): OK
+- Intelligence Stim (Champion): OK
+- Intelligence Stim (Exceptional): OK
+- Intelligence Stim (Fine): OK
+- Intelligence Stim (Improved): OK
+- Intelligence Stim (Superior): OK
+- Karrak (Fine): FINDING 21
+- Karrak (High Quality): FINDING 21
+- Karrak (Potent): FINDING 21
+- Karrak (Pure): FINDING 21
+- Karrak (Uncut): FINDING 21
+- Machinist's Catalyzer Mk I: FINDING 28
+- Machinist's Catalyzer Mk II: FINDING 28
+- Machinist's Catalyzer Mk III: FINDING 28
+- Machinist's Catalyzer Mk IV: FINDING 28
+- Medpac (Champion): no number
+- Medpac (Exceptional): no number
+- Medpac (Fine): no number
+- Medpac (Improved): no number
+- Medpac (Superior): no number
+- Mine, Fragmentation (Average): no number
+- Mine, Fragmentation (Deadly): no number
+- Mine, Fragmentation (Devastating): no number
+- Mine, Fragmentation (Lethal): no number
+- Mine, Fragmentation (Major): no number
+- Mummergy (Aged): FINDING 21
+- Mummergy (Fine): FINDING 21
+- Mummergy (Matured): FINDING 21
+- Mummergy (Reserve): FINDING 21
+- Mummergy (Special): FINDING 21
+- Muon Gold (Fine): FINDING 21
+- Muon Gold (High Quality): FINDING 21
+- Muon Gold (Potent): FINDING 21
+- Muon Gold (Pure): FINDING 21
+- Muon Gold (Uncut): FINDING 21
+- Novanian Grog (Aged): FINDING 21
+- Novanian Grog (Fine): FINDING 21
+- Novanian Grog (Matured): FINDING 21
+- Novanian Grog (Reserve): FINDING 21
+- Novanian Grog (Special): FINDING 21
+- Oscillation Calibrator (Average): OK
+- Oscillation Calibrator (Deadly): OK
+- Oscillation Calibrator (Devastating): FINDING 8
+- Oscillation Calibrator (Lethal): FINDING 8
+- Oscillation Calibrator (Major): OK
+- Physical Barrier Mk I: no number
+- Physical Barrier Mk II: no number
+- Physical Barrier Mk III: no number
+- Physical Barrier Mk IV: no number
+- Physical Barrier Mk V: no number
+- Physical Barrier Mk VI: no number
+- Poison (Average): no number
+- Poison (Deadly): no number
+- Poison (Devastating): no number
+- Poison (Lethal): no number
+- Poison (Major): no number
+- Portable Teleporter Mk I: no number
+- Portable Teleporter Mk II: no number
+- Portable Teleporter Mk III: no number
+- Portable Teleporter Mk IV: no number
+- Portable Teleporter Mk V: no number
+- Portable Teleporter Mk VI: no number
+- Power Cell (Average): OK
+- Power Cell (Deadly): OK
+- Power Cell (Devastating): OK
+- Power Cell (Lethal): OK
+- Power Cell (Major): OK
+- Raava (Aged): FINDING 21
+- Raava (Fine): FINDING 21
+- Raava (Matured): FINDING 21
+- Raava (Reserve): FINDING 21
+- Raava (Special): FINDING 21
+- Repair Kit Mk II: no number
+- Repair Kit Mk III: no number
+- Repair Kit Mk IV: no number
+- Repair Kit Mk V: no number
+- Repair Kit Mk VI: no number
+- Security Spike (Champion): no number
+- Security Spike (Fine): no number
+- Security Spike (Superior): no number
+- Slug Cartridge (Average): OK
+- Slug Cartridge (Deadly): OK
+- Slug Cartridge (Devastating): OK
+- Slug Cartridge (Lethal): OK
+- Slug Cartridge (Major): OK
+- Sorcerer's Adrenal (Basic): FINDING 28
+- Sorcerer's Adrenal (Fine): FINDING 28
+- Sorcerer's Adrenal (Improved): FINDING 28
+- Sorcerer's Adrenal (Superior): FINDING 28
+- Spicebrew (Aged): FINDING 21
+- Spicebrew (Fine): FINDING 21
+- Spicebrew (Matured): FINDING 21
+- Spicebrew (Reserve): FINDING 21
+- Spicebrew (Special): FINDING 21
+- Stamina Adrenal (Basic): OK
+- Stamina Adrenal (Champion): OK
+- Stamina Adrenal (Exceptional): OK
+- Stamina Adrenal (Fine): OK
+- Stamina Adrenal (Improved): OK
+- Stamina Adrenal (Superior): OK
+- Strength Stim (Basic): OK
+- Strength Stim (Champion): OK
+- Strength Stim (Exceptional): OK
+- Strength Stim (Fine): OK
+- Strength Stim (Improved): OK
+- Strength Stim (Superior): OK
+- Tihaar (Aged): FINDING 21
+- Tihaar (Fine): FINDING 21
+- Tihaar (Matured): FINDING 21
+- Tihaar (Reserve): FINDING 21
+- Tihaar (Special): FINDING 21
+- Tsiraki (Aged): FINDING 21
+- Tsiraki (Fine): FINDING 21
+- Tsiraki (Matured): FINDING 21
+- Tsiraki (Reserve): FINDING 21
+- Tsiraki (Special): FINDING 21
+- Vayerbok (Aged): FINDING 21
+- Vayerbok (Fine): FINDING 21
+- Vayerbok (Matured): FINDING 21
+- Vayerbok (Reserve): FINDING 21
+- Vayerbok (Special): FINDING 21
+- Vitapac (Basic): no number
+- Vitapac (Champion): no number
+- Vitapac (Exceptional): no number
+- Vitapac (Fine): no number
+- Vitapac (Improved): no number
+- Vitapac (Superior): no number
+- Wisdom Stim (Basic): OK
+- Wisdom Stim (Champion): OK
+- Wisdom Stim (Exceptional): OK
+- Wisdom Stim (Fine): OK
+- Wisdom Stim (Improved): OK
+- Wisdom Stim (Superior): OK
+- Yaladai (Fine): FINDING 21
+- Yaladai (High Quality): FINDING 21
+- Yaladai (Potent): FINDING 21
+- Yaladai (Pure): FINDING 21
+- Yaladai (Uncut): FINDING 21
+- Yarrock (Fine): FINDING 21
+- Yarrock (High Quality): FINDING 21
+- Yarrock (Potent): FINDING 21
+- Yarrock (Pure): FINDING 21
+- Yarrock (Uncut): FINDING 21
+- Charge, Fragmentation (Average): no number
+- Charge, Fragmentation (Deadly): no number
+- Charge, Fragmentation (Devastating): no number
+- Charge, Fragmentation (Lethal): no number
+- Charge, Fragmentation (Major): no number
+- Charge, Plasma (Average): no number
+- Charge, Plasma (Deadly): no number
+- Charge, Plasma (Devastating): no number
+- Charge, Plasma (Lethal): no number
+- Charge, Plasma (Major): no number
+- Corrosive Cartridge (Average): OK
+- Corrosive Cartridge (Deadly): OK
+- Corrosive Cartridge (Devastating): OK
+- Corrosive Cartridge (Lethal): OK
+- Corrosive Cartridge (Major): OK
+- Cryo Cell (Average): OK
+- Cryo Cell (Deadly): OK
+- Cryo Cell (Devastating): OK
+- Cryo Cell (Lethal): OK
+- Cryo Cell (Major): OK
+- Deafening Calibrator (Average): OK
+- Deafening Calibrator (Deadly): OK
+- Deafening Calibrator (Devastating): FINDING 8
+- Deafening Calibrator (Lethal): FINDING 8
+- Deafening Calibrator (Major): OK
+- Deafening Cell (Average): OK
+- Deafening Cell (Deadly): OK
+- Deafening Cell (Devastating): OK
+- Deafening Cell (Lethal): OK
+- Deafening Cell (Major): OK
+- Deafening Collimator (Average): OK
+- Deafening Collimator (Deadly): OK
+- Deafening Collimator (Devastating): FINDING 8
+- Deafening Collimator (Lethal): FINDING 8
+- Deafening Collimator (Major): OK
+- Deafening Dart (Average): OK
+- Deafening Dart (Deadly): OK
+- Deafening Dart (Devastating): OK
+- Deafening Dart (Lethal): OK
+- Deafening Dart (Major): OK
+- Electrifying Calibrator (Average): OK
+- Electrifying Calibrator (Deadly): OK
+- Electrifying Calibrator (Devastating): FINDING 8
+- Electrifying Calibrator (Lethal): FINDING 8
+- Electrifying Calibrator (Major): OK
+- Electrifying Cartridge (Average): OK
+- Electrifying Cartridge (Deadly): OK
+- Electrifying Cartridge (Devastating): OK
+- Electrifying Cartridge (Lethal): OK
+- Electrifying Cartridge (Major): OK
+- Electrifying Collimator (Average): OK
+- Electrifying Collimator (Deadly): OK
+- Electrifying Collimator (Devastating): FINDING 8
+- Electrifying Collimator (Lethal): FINDING 8
+- Electrifying Collimator (Major): OK
+- Electrifying Dart (Average): OK
+- Electrifying Dart (Deadly): OK
+- Electrifying Dart (Devastating): OK
+- Electrifying Dart (Lethal): OK
+- Electrifying Dart (Major): OK
+- Flechette Clip, Fragmentation (Average): no number
+- Flechette Clip, Fragmentation (Deadly): no number
+- Flechette Clip, Fragmentation (Devastating): no number
+- Flechette Clip, Fragmentation (Lethal): no number
+- Flechette Clip, Fragmentation (Major): no number
+- Flechette Clip, Ion (Average): no number
+- Flechette Clip, Ion (Deadly): no number
+- Flechette Clip, Ion (Devastating): no number
+- Flechette Clip, Ion (Lethal): no number
+- Flechette Clip, Ion (Major): no number
+- Flechette Clip, Plasma (Average): no number
+- Flechette Clip, Plasma (Deadly): no number
+- Flechette Clip, Plasma (Devastating): no number
+- Flechette Clip, Plasma (Lethal): no number
+- Flechette Clip, Plasma (Major): no number
+- Flechette Mag, Fragmentation (Average): no number
+- Flechette Mag, Fragmentation (Deadly): no number
+- Flechette Mag, Fragmentation (Devastating): no number
+- Flechette Mag, Fragmentation (Lethal): no number
+- Flechette Mag, Fragmentation (Major): no number
+- Flechette Mag, Ion (Average): no number
+- Flechette Mag, Ion (Deadly): no number
+- Flechette Mag, Ion (Devastating): no number
+- Flechette Mag, Ion (Lethal): no number
+- Flechette Mag, Ion (Major): no number
+- Flechette Mag, Plasma (Average): no number
+- Flechette Mag, Plasma (Deadly): no number
+- Flechette Mag, Plasma (Devastating): no number
+- Flechette Mag, Plasma (Lethal): no number
+- Flechette Mag, Plasma (Major): no number
+- Gas Cartridge (Average): OK
+- Gas Cartridge (Deadly): OK
+- Gas Cartridge (Devastating): OK
+- Gas Cartridge (Lethal): OK
+- Gas Cartridge (Major): OK
+- Grenade, Corrosive (Average): no number
+- Grenade, Corrosive (Deadly): no number
+- Grenade, Corrosive (Devastating): no number
+- Grenade, Corrosive (Lethal): no number
+- Grenade, Corrosive (Major): no number
+- Grenade, Cryo (Average): no number
+- Grenade, Cryo (Deadly): no number
+- Grenade, Cryo (Devastating): no number
+- Grenade, Cryo (Lethal): no number
+- Grenade, Cryo (Major): no number
+- Grenade, Deafening (Average): no number
+- Grenade, Deafening (Deadly): no number
+- Grenade, Deafening (Devastating): no number
+- Grenade, Deafening (Lethal): no number
+- Grenade, Deafening (Major): no number
+- Grenade, Electrifying (Average): no number
+- Grenade, Electrifying (Deadly): no number
+- Grenade, Electrifying (Devastating): no number
+- Grenade, Electrifying (Lethal): no number
+- Grenade, Electrifying (Major): no number
+- Grenade, Flash (Average): no number
+- Grenade, Flash (Deadly): no number
+- Grenade, Flash (Devastating): no number
+- Grenade, Flash (Lethal): no number
+- Grenade, Flash (Major): no number
+- Grenade, Gas (Average): no number
+- Grenade, Gas (Deadly): no number
+- Grenade, Gas (Devastating): no number
+- Grenade, Gas (Lethal): no number
+- Grenade, Gas (Major): no number
+- Grenade, Incendiary (Average): no number
+- Grenade, Incendiary (Deadly): no number
+- Grenade, Incendiary (Devastating): no number
+- Grenade, Incendiary (Lethal): no number
+- Grenade, Incendiary (Major): no number
+- Grenade, Ion (Average): no number
+- Grenade, Ion (Deadly): no number
+- Grenade, Ion (Devastating): no number
+- Grenade, Ion (Lethal): no number
+- Grenade, Ion (Major): no number
+- Grenade, Panic (Average): no number
+- Grenade, Panic (Deadly): no number
+- Grenade, Panic (Devastating): no number
+- Grenade, Panic (Lethal): no number
+- Grenade, Panic (Major): no number
+- Grenade, Plasma (Average): no number
+- Grenade, Plasma (Deadly): no number
+- Grenade, Plasma (Devastating): no number
+- Grenade, Plasma (Lethal): no number
+- Grenade, Plasma (Major): no number
+- Grenade, Stun (Average): no number
+- Grenade, Stun (Deadly): no number
+- Grenade, Stun (Devastating): no number
+- Grenade, Stun (Lethal): no number
+- Grenade, Stun (Major): no number
+- Incendiary Cell (Average): OK
+- Incendiary Cell (Deadly): OK
+- Incendiary Cell (Devastating): OK
+- Incendiary Cell (Lethal): OK
+- Incendiary Cell (Major): OK
+- Mine, Corrosive (Average): no number
+- Mine, Corrosive (Deadly): no number
+- Mine, Corrosive (Devastating): no number
+- Mine, Corrosive (Lethal): no number
+- Mine, Corrosive (Major): no number
+- Mine, Cryo (Average): no number
+- Mine, Cryo (Deadly): no number
+- Mine, Cryo (Devastating): no number
+- Mine, Cryo (Lethal): no number
+- Mine, Cryo (Major): no number
+- Mine, Deafening (Average): no number
+- Mine, Deafening (Deadly): no number
+- Mine, Deafening (Devastating): no number
+- Mine, Deafening (Lethal): no number
+- Mine, Deafening (Major): no number
+- Mine, Electrifying (Average): no number
+- Mine, Electrifying (Deadly): no number
+- Mine, Electrifying (Devastating): no number
+- Mine, Electrifying (Lethal): no number
+- Mine, Electrifying (Major): no number
+- Mine, Flash (Average): no number
+- Mine, Flash (Deadly): no number
+- Mine, Flash (Devastating): no number
+- Mine, Flash (Lethal): no number
+- Mine, Flash (Major): no number
+- Mine, Gas (Average): no number
+- Mine, Gas (Deadly): no number
+- Mine, Gas (Devastating): no number
+- Mine, Gas (Lethal): no number
+- Mine, Gas (Major): no number
+- Mine, Incendiary (Average): no number
+- Mine, Incendiary (Deadly): no number
+- Mine, Incendiary (Devastating): no number
+- Mine, Incendiary (Lethal): no number
+- Mine, Incendiary (Major): no number
+- Mine, Ion (Average): no number
+- Mine, Ion (Deadly): no number
+- Mine, Ion (Devastating): no number
+- Mine, Ion (Lethal): no number
+- Mine, Ion (Major): no number
+- Mine, Panic (Average): no number
+- Mine, Panic (Deadly): no number
+- Mine, Panic (Devastating): no number
+- Mine, Panic (Lethal): no number
+- Mine, Panic (Major): no number
+- Mine, Plasma (Average): no number
+- Mine, Plasma (Deadly): no number
+- Mine, Plasma (Devastating): no number
+- Mine, Plasma (Lethal): no number
+- Mine, Plasma (Major): no number
+- Mine, Stun (Average): no number
+- Mine, Stun (Deadly): no number
+- Mine, Stun (Devastating): no number
+- Mine, Stun (Lethal): no number
+- Mine, Stun (Major): no number
+- Missile, Fragmentation (Average): OK
+- Missile, Fragmentation (Deadly): OK
+- Missile, Fragmentation (Devastating): OK
+- Missile, Fragmentation (Lethal): OK
+- Missile, Fragmentation (Major): OK
+- Missile, Incendiary (Average): OK
+- Missile, Incendiary (Deadly): OK
+- Missile, Incendiary (Devastating): OK
+- Missile, Incendiary (Lethal): OK
+- Missile, Incendiary (Major): OK
+- Missile, Ion (Average): OK
+- Missile, Ion (Deadly): OK
+- Missile, Ion (Devastating): OK
+- Missile, Ion (Lethal): OK
+- Missile, Ion (Major): OK
+- Panic Calibrator (Average): OK
+- Panic Calibrator (Deadly): OK
+- Panic Calibrator (Devastating): FINDING 8
+- Panic Calibrator (Lethal): FINDING 8
+- Panic Calibrator (Major): OK
+- Panic Collimator (Average): OK
+- Panic Collimator (Deadly): OK
+- Panic Collimator (Devastating): FINDING 8
+- Panic Collimator (Lethal): FINDING 8
+- Panic Collimator (Major): OK
+- Panic Dart (Average): OK
+- Panic Dart (Deadly): OK
+- Panic Dart (Devastating): OK
+- Panic Dart (Lethal): OK
+- Panic Dart (Major): OK
+- Power Generator (Average): OK
+- Power Generator (Deadly): OK
+- Power Generator (Devastating): FINDING 7
+- Power Generator (Lethal): FINDING 7
+- Power Generator (Major): OK
+- Projector Canister, Corrosive (Average): no number
+- Projector Canister, Corrosive (Deadly): no number
+- Projector Canister, Corrosive (Devastating): no number
+- Projector Canister, Corrosive (Lethal): no number
+- Projector Canister, Corrosive (Major): no number
+- Projector Canister, Cryo (Average): no number
+- Projector Canister, Cryo (Deadly): no number
+- Projector Canister, Cryo (Devastating): no number
+- Projector Canister, Cryo (Lethal): no number
+- Projector Canister, Cryo (Major): no number
+- Projector Canister, Incendiary (Average): no number
+- Projector Canister, Incendiary (Deadly): no number
+- Projector Canister, Incendiary (Devastating): no number
+- Projector Canister, Incendiary (Lethal): no number
+- Projector Canister, Incendiary (Major): no number
+- Projector Tank, Corrosive (Average): no number
+- Projector Tank, Corrosive (Deadly): no number
+- Projector Tank, Corrosive (Devastating): no number
+- Projector Tank, Corrosive (Lethal): no number
+- Projector Tank, Corrosive (Major): no number
+- Projector Tank, Cryo (Average): no number
+- Projector Tank, Cryo (Deadly): no number
+- Projector Tank, Cryo (Devastating): no number
+- Projector Tank, Cryo (Lethal): no number
+- Projector Tank, Cryo (Major): no number
+- Projector Tank, Incendiary (Average): no number
+- Projector Tank, Incendiary (Deadly): no number
+- Projector Tank, Incendiary (Devastating): no number
+- Projector Tank, Incendiary (Lethal): no number
+- Projector Tank, Incendiary (Major): no number
+- Rocket, Fragmentation (Average): OK
+- Rocket, Fragmentation (Deadly): OK
+- Rocket, Fragmentation (Devastating): OK
+- Rocket, Fragmentation (Lethal): OK
+- Rocket, Fragmentation (Major): OK
+- Rocket, Incendiary (Average): OK
+- Rocket, Incendiary (Deadly): OK
+- Rocket, Incendiary (Devastating): OK
+- Rocket, Incendiary (Lethal): OK
+- Rocket, Incendiary (Major): OK
+- Rocket, Ion (Average): OK
+- Rocket, Ion (Deadly): OK
+- Rocket, Ion (Devastating): OK
+- Rocket, Ion (Lethal): OK
+- Rocket, Ion (Major): OK
+- Snare (Champion): no number
+- Snare (Exceptional): no number
+- Snare (Fine): no number
+- Snare (Improved): no number
+- Snare (Superior): no number
+- Thermal Detonator (Average): no number
+- Thermal Detonator (Deadly): no number
+- Thermal Detonator (Devastating): no number
+- Thermal Detonator (Lethal): no number
+- Thermal Detonator (Major): no number
+- Torpedo, Fragmentation (Average): OK
+- Torpedo, Fragmentation (Deadly): OK
+- Torpedo, Fragmentation (Devastating): OK
+- Torpedo, Fragmentation (Lethal): OK
+- Torpedo, Fragmentation (Major): OK
+- Torpedo, Plasma (Average): OK
+- Torpedo, Plasma (Deadly): OK
+- Torpedo, Plasma (Devastating): OK
+- Torpedo, Plasma (Lethal): OK
+- Torpedo, Plasma (Major): OK
+
+### ItemModification (1025)
+- Absorbing Amplifier Mk I: no number
+- Absorbing Amplifier Mk II: no number
+- Absorbing Amplifier Mk III: no number
+- Absorbing Amplifier Mk IV: no number
+- Absorbing Amplifier Mk V: no number
+- Absorbing Amplifier Mk VI: no number
+- Absorbing Conductor (Adept): no number
+- Absorbing Conductor (Ancient): no number
+- Absorbing Conductor (Apprentice): no number
+- Absorbing Conductor (Journeyman): no number
+- Absorbing Conductor (Master): no number
+- Absorbing Conductor (Novice): no number
+- Absorptive Reinforcement: FINDING 9
+- Absorptive Reinforcement Mk II: FINDING 9
+- Absorptive Reinforcement Mk III: FINDING 9
+- Accessing Cycler (Chipped): no number
+- Accessing Cycler (Cracked): no number
+- Accessing Cycler (Flawed): no number
+- Accessing Cycler (Flawless): no number
+- Accessing Cycler (Perfect): no number
+- Accessing Cycler (Regular): no number
+- Accessing Motherboard (Adequate): no number
+- Accessing Motherboard (Excellent): no number
+- Accessing Motherboard (Leading): no number
+- Accessing Motherboard (Outstanding): no number
+- Accessing Motherboard (Prime): no number
+- Accessing Motherboard (Simple): no number
+- Accuracy Focus Mk I: OK
+- Accuracy Focus Mk II: OK
+- Accuracy Focus Mk III: OK
+- Accuracy Focus Mk IV: OK
+- Ace Pilot's Pattern (Basic): FINDING 10
+- Ace Pilot's Pattern (Choice): FINDING 10
+- Ace Pilot's Pattern (Elite): FINDING 10
+- Ace Pilot's Pattern (Exquisite): FINDING 10
+- Ace Pilot's Pattern (Favored): FINDING 10
+- Ace Pilot's Pattern (Fine): FINDING 10
+- Acrobat's Pattern (Basic): FINDING 10
+- Acrobat's Pattern (Choice): FINDING 10
+- Acrobat's Pattern (Elite): FINDING 10
+- Acrobat's Pattern (Exquisite): FINDING 10
+- Acrobat's Pattern (Favored): FINDING 10
+- Acrobat's Pattern (Fine): FINDING 10
+- Adegan Crystal (Chipped): OK
+- Adegan Crystal (Cracked): OK
+- Adegan Crystal (Flawed): OK
+- Adegan Crystal (Regular): OK
+- Agile Armoring Mk I: FINDING 9
+- Agile Armoring Mk II: FINDING 9
+- Agile Armoring Mk III: FINDING 9
+- Agile Armoring Mk IV: FINDING 9
+- Agile Armoring Mk V: FINDING 9
+- Agile Armoring Mk VI: FINDING 9
+- Amplifying Barrel (Basic): OK
+- Amplifying Barrel (Fine): OK
+- Amplifying Barrel (Improved): OK
+- Amplifying Barrel (Superior): OK
+- Amplifying Channel (Ascendancy): no number
+- Amplifying Channel (Fighting): no number
+- Amplifying Channel (Mastery): no number
+- Amplifying Processor (Ascendancy): no number
+- Amplifying Processor (Fighting): no number
+- Amplifying Processor (Mastery): no number
+- Animal Handler's Pattern (Basic): FINDING 10
+- Animal Handler's Pattern (Choice): FINDING 10
+- Animal Handler's Pattern (Elite): FINDING 10
+- Animal Handler's Pattern (Exquisite): FINDING 10
+- Animal Handler's Pattern (Favored): FINDING 10
+- Animal Handler's Pattern (Fine): FINDING 10
+- Aratech Recycler Core Mk II: no number
+- Artificially Intelligent: no number
+- Avoidant Reinforcement: FINDING 9
+- Avoidant Reinforcement Mk II: FINDING 9
+- Avoidant Reinforcement Mk III: FINDING 9
+- Avoidant Weave (Basic): FINDING 9
+- Avoidant Weave (Choice): FINDING 9
+- Avoidant Weave (Exquisite): FINDING 9
+- Balanced Shielding: no number
+- Ballistic Polymer: no number
+- Ballistic Polymer (Exceptional): no number
+- Bansche Advanced 2ZBc: no number
+- Bansche Purifier MENAD Pro Mk I: no number
+- Barbed Armoring: no number
+- Barbed Armoring Mk II: no number
+- Barbed Armoring Mk III: no number
+- Bayonet: FINDING 9
+- Berserker Defensive Augment: no number
+- Berserker Offensive Augment: FINDING 15
+- Bioenhancement Matrix Mk I: FINDING 11
+- Bioenhancement Matrix Mk II: FINDING 11
+- Bioenhancement Matrix Mk III: FINDING 11
+- Biometric Safety Measures: no number
+- Biting Crystal (Adept): no number
+- Biting Crystal (Ancient): no number
+- Biting Crystal (Apprentice): no number
+- Biting Crystal (Journeyman): no number
+- Biting Crystal (Master): no number
+- Biting Crystal (Novice): no number
+- Bolstering Channel (Adept): no number
+- Bolstering Channel (Ancient): no number
+- Bolstering Channel (Apprentice): no number
+- Bolstering Channel (Journeyman): no number
+- Bolstering Channel (Master): no number
+- Bolstering Channel (Novice): no number
+- Bonded Plates Mk I: OK
+- Bonded Plates Mk II: OK
+- Bonded Plates Mk III: OK
+- Bonded Plates Mk IV: OK
+- Bonded Weave (Basic): OK
+- Bonded Weave (Choice): OK
+- Bonded Weave (Favored): OK
+- Bonded Weave (Fine): OK
+- Brawny Pattern (Basic): FINDING 10
+- Brawny Pattern (Choice): FINDING 10
+- Brawny Pattern (Elite): FINDING 10
+- Brawny Pattern (Exquisite): FINDING 10
+- Brawny Pattern (Favored): FINDING 10
+- Brawny Pattern (Fine): FINDING 10
+- Bright Crystal (Adept): no number
+- Bright Crystal (Ancient): no number
+- Bright Crystal (Apprentice): no number
+- Bright Crystal (Journeyman): no number
+- Bright Crystal (Master): no number
+- Bright Crystal (Novice): no number
+- Brutal Cell: FINDING 9
+- Brutal Cell (Deadly): FINDING 9
+- Brutal Cell (Devastating): FINDING 9
+- Brutal Oscillator: FINDING 9
+- Brutal Oscillator (Deadly): FINDING 9
+- Brutal Oscillator (Devastating): FINDING 9
+- Brutal Scope: FINDING 9
+- Brutal Scope (Deadly): FINDING 9
+- Brutal Scope (Devastating): FINDING 9
+- Burning Cell: no number
+- Burst Core: no number
+- Burst Core (Champion): no number
+- Burst Core (Superior): no number
+- Celerity Oscillator: no number
+- Channeling Amplifier (Dueling): OK
+- Channeling Amplifier (Fighting): OK
+- Channeling Amplifier (Mastery): OK
+- Channeling Amplifier (Training): OK
+- Channeling Rangefinder (Dueling): OK
+- Channeling Rangefinder (Fighting): OK
+- Channeling Rangefinder (Mastery): OK
+- Channeling Rangefinder (Training): OK
+- Charging Reinforcement: no number
+- Charging Reinforcement Mk II: no number
+- Charging Reinforcement Mk III: no number
+- Charisma Augment (Basic): FINDING 14
+- Charisma Augment (Champion): OK
+- Charisma Augment (Exceptional): OK
+- Charisma Augment (Fine): OK
+- Charisma Augment (Improved): FINDING 14
+- Charisma Augment (Superior): OK
+- Charisma Weave (Basic): FINDING 10
+- Charisma Weave (Exceptional): FINDING 10
+- Charisma Weave (Improved): FINDING 10
+- Charmer's Pattern (Basic): FINDING 10
+- Charmer's Pattern (Choice): FINDING 10
+- Charmer's Pattern (Elite): FINDING 10
+- Charmer's Pattern (Exquisite): FINDING 10
+- Charmer's Pattern (Favored): FINDING 10
+- Charmer's Pattern (Fine): FINDING 10
+- Clandestine Stitching (Basic): no number
+- Clandestine Stitching (Champion): no number
+- Clandestine Stitching (Exceptional): no number
+- Clandestine Stitching (Fine): no number
+- Clandestine Stitching (Improved): no number
+- Clandestine Stitching (Superior): no number
+- Collapsible Frame: no number
+- Collapsible Hilt: no number
+- Collapsible Stock: no number
+- Collapsible Suit: no number
+- Comfortable Handle: FINDING 9
+- Compensating Attachment: FINDING 9
+- Compensation Oscillator: FINDING 9
+- Compensation Oscillator (Champion): FINDING 9
+- Compensation Oscillator (Exceptional): FINDING 9
+- Compensation Oscillator (Fine): FINDING 9
+- Compensation Oscillator (Improved): FINDING 9
+- Compensation Oscillator (Superior): FINDING 9
+- Concealing Shielding: no number
+- Constitution Augment (Basic): FINDING 14
+- Constitution Augment (Champion): OK
+- Constitution Augment (Exceptional): OK
+- Constitution Augment (Fine): OK
+- Constitution Augment (Improved): FINDING 14
+- Constitution Augment (Superior): OK
+- Constitution Dataport (Basic): no number
+- Constitution Dataport (Champion): no number
+- Constitution Dataport (Exceptional): no number
+- Constitution Dataport (Fine): no number
+- Constitution Dataport (Improved): no number
+- Constitution Dataport (Superior): no number
+- Constitution Emitter (Basic): no number
+- Constitution Emitter (Champion): no number
+- Constitution Emitter (Exceptional): no number
+- Constitution Emitter (Fine): no number
+- Constitution Emitter (Improved): no number
+- Constitution Emitter (Superior): no number
+- Constitution Weave (Champion): FINDING 10
+- Constitution Weave (Fine): FINDING 10
+- Constitution Weave (Superior): FINDING 10
+- Consular Defensive Augment: no number
+- Consular Offensive Augment: no number
+- Contoured Grip (Basic): OK
+- Contoured Grip (Fine): OK
+- Contoured Grip (Improved): OK
+- Contoured Grip (Superior): OK
+- Convenience Reinforcement: FINDING 9
+- Corellian Crippler Matrix: no number
+- Corruption Crystal (Adept): no number
+- Corruption Crystal (Ancient): no number
+- Corruption Crystal (Apprentice): no number
+- Corruption Crystal (Journeyman): no number
+- Corruption Crystal (Master): no number
+- Corruption Crystal (Novice): no number
+- Cortosis Weave: FINDING 9
+- Cortosis Weave (Exceptional): FINDING 9
+- Crossguard Hilt: no number
+- Crossguard Hilt (Champion): no number
+- Crossguard Hilt (Superior): no number
+- Crystalizing Amplifier (Dueling): OK
+- Crystalizing Amplifier (Fighting): OK
+- Crystalizing Amplifier (Mastery): OK
+- Crystalizing Amplifier (Training): OK
+- Crystalizing Rangefinder (Dueling): OK
+- Crystalizing Rangefinder (Fighting): OK
+- Crystalizing Rangefinder (Mastery): OK
+- Crystalizing Rangefinder (Training): OK
+- Czerka Attenuating Pulsator: no number
+- Czerka Elite Pro Mk V: no number
+- Damind Crystal (Flawed): FINDING 8
+- Damind Crystal (Flawless): FINDING 8
+- Damind Crystal (Perfect): FINDING 8
+- Damind Crystal (Regular): FINDING 8
+- Darkvision Visor: FINDING 19
+- Defensive Guard: no number
+- Defensive Guard (Champion): no number
+- Defensive Guard (Superior): no number
+- Dexterity Augment  (Champion): OK
+- Dexterity Augment (Basic): FINDING 14
+- Dexterity Augment (Exceptional): OK
+- Dexterity Augment (Fine): OK
+- Dexterity Augment (Improved): FINDING 14
+- Dexterity Augment (Superior): OK
+- Dexterity Weave (Champion): FINDING 10
+- Dexterity Weave (Fine): FINDING 10
+- Dexterity Weave (Superior): FINDING 10
+- Dire Ascendancy Guard: no number
+- Dire Ascendancy Hilt: no number
+- Dire Ascendancy Scope: no number
+- Dire Fighting Guard: no number
+- Dire Fighting Hilt: no number
+- Dire Fighting Scope: no number
+- Dire Mastery Guard: no number
+- Dire Mastery Hilt: no number
+- Dire Mastery Scope: no number
+- Disarming Cell: no number
+- Disarming Oscillator: no number
+- Disguised Guard: no number
+- Disguised Hilt: no number
+- Disguised Stock: no number
+- Disintegration Core: no number
+- Disintegration Core Mk II: no number
+- Disintegration Core Mk III: no number
+- Disintegration Core Mk IV: no number
+- Disintegration Core Mk V: no number
+- Disintegration Core Mk VI: no number
+- Dispelling Dataport (Basic): no number
+- Dispelling Dataport (Champion): no number
+- Dispelling Dataport (Exceptional): no number
+- Dispelling Dataport (Fine): no number
+- Dispelling Dataport (Improved): no number
+- Dispelling Dataport (Superior): no number
+- Dispelling Emitter (Basic): no number
+- Dispelling Emitter (Champion): no number
+- Dispelling Emitter (Exceptional): no number
+- Dispelling Emitter (Fine): no number
+- Dispelling Emitter (Improved): no number
+- Dispelling Emitter (Superior): no number
+- Disruption Cell: no number
+- Disruption Core: no number
+- Disruption Oscillator: no number
+- Double Guard: no number
+- Double Hilt: no number
+- Duplexed Extender Channel: no number
+- Duplexed Extender Channel (Fine): no number
+- Electrifying Oscillator: no number
+- Elongating Dataport Mk I: no number
+- Elongating Dataport Mk II: no number
+- Elongating Dataport Mk III: no number
+- Elongating Dataport Mk IV: no number
+- Elongating Dataport Mk V: no number
+- Elongating Dataport Mk VI: no number
+- Elongating Emitter (Adept): no number
+- Elongating Emitter (Ancient): no number
+- Elongating Emitter (Apprentice): no number
+- Elongating Emitter (Journeyman): no number
+- Elongating Emitter (Master): no number
+- Elongating Emitter (Novice): no number
+- Emergency Landing Braces: no number
+- Empathic Pattern (Basic): FINDING 10
+- Empathic Pattern (Choice): FINDING 10
+- Empathic Pattern (Elite): FINDING 10
+- Empathic Pattern (Exquisite): FINDING 10
+- Empathic Pattern (Favored): FINDING 10
+- Empathic Pattern (Fine): FINDING 10
+- Engineer Defensive Augment: FINDING 15
+- Engineer Offensive Augment: no number
+- Enhanced Endurance: no number
+- Enlarging Channel (Chipped): no number
+- Enlarging Channel (Cracked): no number
+- Enlarging Channel (Flawed): no number
+- Enlarging Channel (Flawless): no number
+- Enlarging Channel (Perfect): no number
+- Enlarging Channel (Regular): no number
+- Enlarging Processor (Adequate): no number
+- Enlarging Processor (Excellent): no number
+- Enlarging Processor (Leading): no number
+- Enlarging Processor (Outstanding): no number
+- Enlarging Processor (Prime): no number
+- Enlarging Processor (Simple): no number
+- Expanded Magazine: no number
+- Expanded Magazine (Champion): no number
+- Expanded Magazine (Exceptional): no number
+- Expanded Magazine (Fine): no number
+- Expanded Magazine (Improved): no number
+- Expanded Magazine (Superior): no number
+- Expanding Amplifier (Basic): no number
+- Expanding Amplifier (Champion): no number
+- Expanding Amplifier (Exceptional): no number
+- Expanding Amplifier (Fine): no number
+- Expanding Amplifier (Improved): no number
+- Expanding Amplifier (Superior): no number
+- Expanding Conductor (Basic): no number
+- Expanding Conductor (Champion): no number
+- Expanding Conductor (Exceptional): no number
+- Expanding Conductor (Fine): no number
+- Expanding Conductor (Improved): no number
+- Expanding Conductor (Superior): no number
+- Extended Beam: no number
+- Extending Cycler (Basic): no number
+- Extending Cycler (Champion): no number
+- Extending Cycler (Exceptional): no number
+- Extending Cycler (Fine): no number
+- Extending Cycler (Improved): no number
+- Extending Cycler (Superior): no number
+- Extending Motherboard (Basic): no number
+- Extending Motherboard (Champion): no number
+- Extending Motherboard (Exceptional): no number
+- Extending Motherboard (Fine): no number
+- Extending Motherboard (Improved): no number
+- Extending Motherboard (Superior): no number
+- Fadecasting Channel (Dueling): OK
+- Fadecasting Channel (Fighting): OK
+- Fadecasting Channel (Mastery): OK
+- Fadecasting Channel (Training): OK
+- Fadecasting Core (Dueling): OK
+- Fadecasting Core (Fighting): OK
+- Fadecasting Core (Mastery): OK
+- Fadecasting Core (Training): OK
+- Fadecasting Crystal (Dueling): OK
+- Fadecasting Crystal (Fighting): OK
+- Fadecasting Crystal (Mastery): OK
+- Fadecasting Crystal (Training): OK
+- Fadecasting Guard (Adept): OK
+- Fadecasting Guard (Apprentice): OK
+- Fadecasting Guard (Journeyman): OK
+- Fadecasting Guard (Novice): OK
+- Fadecasting Inlay (Adept): OK
+- Fadecasting Inlay (Apprentice): OK
+- Fadecasting Inlay (Journeyman): OK
+- Fadecasting Inlay (Novice): OK
+- Fadecasting Oscillator Mk I: OK
+- Fadecasting Oscillator Mk II: OK
+- Fadecasting Oscillator Mk III: OK
+- Fadecasting Oscillator Mk IV: OK
+- Fadecasting Overlay (Adept): OK
+- Fadecasting Overlay (Apprentice): OK
+- Fadecasting Overlay (Journeyman): OK
+- Fadecasting Overlay (Novice): OK
+- Fadecasting Processor (Dueling): OK
+- Fadecasting Processor (Fighting): OK
+- Fadecasting Processor (Mastery): OK
+- Fadecasting Processor (Training): OK
+- Fadecasting Stitching Mk I: OK
+- Fadecasting Stitching Mk II: OK
+- Fadecasting Stitching Mk III: OK
+- Fadecasting Stitching Mk IV: OK
+- Fadecasting Underlay Mk I: OK
+- Fadecasting Underlay Mk II: OK
+- Fadecasting Underlay Mk III: OK
+- Fadecasting Underlay Mk IV: OK
+- Fading Cycler (Ascendancy): no number
+- Fading Cycler (Fighting): no number
+- Fading Cycler (Mastery): no number
+- Fading Motherboard (Ascendancy): no number
+- Fading Motherboard (Fighting): no number
+- Fading Motherboard (Mastery): no number
+- Fiber-Alloy Guard: FINDING 9
+- Fighter Defensive Augment: no number
+- Fighter Offensive Augment: FINDING 15
+- Finesse Oscillator: FINDING 9
+- Flashlight Attachment: no number
+- Flashlight Guard: no number
+- Flexible Armoring: FINDING 9
+- Focused Amplifier: no number
+- Focused Conductor: no number
+- Focusing Scope: no number
+- Forged Ferricite Ascendancy Channel: no number
+- Forged Ferricite Dueling Channel: no number
+- Forged Ferricite Fighting Channel: no number
+- Forged Ferricite Mastery Channel: no number
+- Forged Ferricite Supremacy Channel: no number
+- Gauntlet Armoring: no number
+- Gauntlet Armoring Mk II: no number
+- Gauntlet Armoring Mk III: no number
+- Gloom Cell: no number
+- Grappling Harpoon: no number
+- Guard Amplifier (Adept): OK
+- Guard Amplifier (Apprentice): OK
+- Guard Amplifier (Journeyman): OK
+- Guard Amplifier (Novice): OK
+- Guard Rangefinder (Adept): OK
+- Guard Rangefinder (Apprentice): OK
+- Guard Rangefinder (Journeyman): OK
+- Guard Rangefinder (Novice): OK
+- Guardian Defensive Augment: FINDING 15
+- Guardian Offensive Augment: FINDING 15
+- Harpoon Reel Attachment: no number
+- Harpoon Reel Guard: no number
+- Heavy Cell: no number
+- Heavy Oscillator: no number
+- Heavy Suit: no number
+- Helisaber Attachment: no number
+- Hilt Blaster: no number
+- Horizontal Exojets: no number
+- Hydraulic Equalizer: FINDING 9
+- Hydraulic Equalizer Mk II: FINDING 9
+- Hydraulic Equalizer Mk III: FINDING 9
+- Hydraulic Equalizer Mk IV: FINDING 9
+- Hydraulic Equalizer Mk V: FINDING 9
+- Hydraulic Equalizer Mk VI: FINDING 9
+- Impermeable Armoring: no number
+- Impermeable Inlay (Basic): no number
+- Impermeable Inlay (Champion): no number
+- Impermeable Inlay (Exceptional): no number
+- Impermeable Inlay (Fine): no number
+- Impermeable Inlay (Improved): no number
+- Impermeable Inlay (Superior): no number
+- Impermeable Overlay Mk I: no number
+- Impermeable Overlay Mk II: no number
+- Impermeable Overlay Mk III: no number
+- Impermeable Overlay Mk IV: no number
+- Impermeable Overlay Mk V: no number
+- Impermeable Overlay Mk VI: no number
+- Inconspicuous Shielding: no number
+- Increasing Cycler (Adept): no number
+- Increasing Cycler (Ancient): no number
+- Increasing Cycler (Apprentice): no number
+- Increasing Cycler (Journeyman): no number
+- Increasing Cycler (Master): no number
+- Increasing Cycler (Novice): no number
+- Increasing Motherboard Mk I: no number
+- Increasing Motherboard Mk II: no number
+- Increasing Motherboard Mk III: no number
+- Increasing Motherboard Mk IV: no number
+- Increasing Motherboard Mk V: no number
+- Increasing Motherboard Mk VI: no number
+- Inflating Amplifier (Adequate): no number
+- Inflating Amplifier (Excellent): no number
+- Inflating Amplifier (Leading): no number
+- Inflating Amplifier (Outstanding): no number
+- Inflating Amplifier (Prime): no number
+- Inflating Amplifier (Simple): no number
+- Inflating Conductor (Chipped): no number
+- Inflating Conductor (Cracked): no number
+- Inflating Conductor (Flawed): no number
+- Inflating Conductor (Flawless): no number
+- Inflating Conductor (Perfect): no number
+- Inflating Conductor (Regular): no number
+- Inlay Amplifier (Adept): OK
+- Inlay Amplifier (Apprentice): OK
+- Inlay Amplifier (Journeyman): OK
+- Inlay Amplifier (Novice): OK
+- Inlay Rangefinder (Adept): OK
+- Inlay Rangefinder (Apprentice): OK
+- Inlay Rangefinder (Journeyman): OK
+- Inlay Rangefinder (Novice): OK
+- Insulated Pattern (Basic): no number
+- Insulated Pattern (Champion): no number
+- Insulated Pattern (Exceptional): no number
+- Insulated Pattern (Fine): no number
+- Insulated Pattern (Improved): no number
+- Insulated Pattern (Superior): no number
+- Insulated Reinforcement (Basic): no number
+- Insulated Reinforcement (Champion): no number
+- Insulated Reinforcement (Exceptional): no number
+- Insulated Reinforcement (Fine): no number
+- Insulated Reinforcement (Improved): no number
+- Insulated Reinforcement (Superior): no number
+- Integrated Jetboosters Mk I: no number
+- Intelligence Augment (Basic): FINDING 14
+- Intelligence Augment (Champion): OK
+- Intelligence Augment (Exceptional): OK
+- Intelligence Augment (Fine): OK
+- Intelligence Augment (Improved): FINDING 14
+- Intelligence Augment (Superior): OK
+- Intelligence Weave (Basic): FINDING 10
+- Intelligence Weave (Exceptional): FINDING 10
+- Intelligence Weave (Improved): FINDING 10
+- Interlocking Shielding: no number
+- Interlocking Shielding Mk II: no number
+- Interlocking Shielding Mk III: no number
+- Investigator's Pattern (Basic): FINDING 10
+- Investigator's Pattern (Choice): FINDING 10
+- Investigator's Pattern (Elite): FINDING 10
+- Investigator's Pattern (Exquisite): FINDING 10
+- Investigator's Pattern (Favored): FINDING 10
+- Investigator's Pattern (Fine): FINDING 10
+- Ion Amplifying Core: no number
+- Keen Beam: FINDING 9
+- Keen Beam (Deadly): FINDING 9
+- Keen Beam (Devastating): FINDING 9
+- Keen Core: FINDING 9
+- Keen Core (Deadly): FINDING 9
+- Keen Core (Devastating): FINDING 9
+- Keen Oscillator: FINDING 9
+- Keen Oscillator (Deadly): FINDING 9
+- Keen Oscillator (Devastating): FINDING 9
+- Lambent Shielding: no number
+- Light Cell: no number
+- Light Core: no number
+- Light Oscillator: no number
+- Lightweight Reinforcement: FINDING 9
+- Lightweight Stabilizer Frame: FINDING 9
+- Lightweight Weave: FINDING 9
+- Loremaster's Pattern (Basic): FINDING 10
+- Loremaster's Pattern (Choice): FINDING 10
+- Loremaster's Pattern (Elite): FINDING 10
+- Loremaster's Pattern (Exquisite): FINDING 10
+- Loremaster's Pattern (Favored): FINDING 10
+- Loremaster's Pattern (Fine): FINDING 10
+- Magnetic-Lock Grip: no number
+- Magnetized Shield: no number
+- Magnetized Shield (Champion): no number
+- Magnetized Shield (Exceptional): no number
+- Magnetized Shield (Fine): no number
+- Magnetized Shield (Improved): no number
+- Magnetized Shield (Superior): no number
+- Manageability Armoring: no number
+- Maser Core: no number
+- Medic's Pattern (Basic): FINDING 10
+- Medic's Pattern (Choice): FINDING 10
+- Medic's Pattern (Elite): FINDING 10
+- Medic's Pattern (Exquisite): FINDING 10
+- Medic's Pattern (Favored): FINDING 10
+- Medic's Pattern (Fine): FINDING 10
+- MerenData Excelcior: no number
+- Mighty Core: FINDING 9
+- Mitigating Channel (Adept): no number
+- Mitigating Channel (Ancient): no number
+- Mitigating Channel (Apprentice): no number
+- Mitigating Channel (Journeyman): no number
+- Mitigating Channel (Master): no number
+- Mitigating Channel (Novice): no number
+- Mitigating Processor Mk I: no number
+- Mitigating Processor Mk II: no number
+- Mitigating Processor Mk III: no number
+- Mitigating Processor Mk IV: no number
+- Mitigating Processor Mk V: no number
+- Mitigating Processor Mk VI: no number
+- Monk Defensive Augment: no number
+- Monk Offensive Augment: no number
+- Monomolecular Oscillator Mk I: no number
+- Monomolecular Oscillator Mk II: no number
+- Multispectral Optics (Champion): FINDING 7
+- Nagai Edge (Basic): no number
+- Nagai Edge (Exceptional): no number
+- Nagai Edge (Improved): no number
+- Naturalist's Pattern (Basic): FINDING 10
+- Naturalist's Pattern (Choice): FINDING 10
+- Naturalist's Pattern (Elite): FINDING 10
+- Naturalist's Pattern (Exquisite): FINDING 10
+- Naturalist's Pattern (Favored): FINDING 10
+- Naturalist's Pattern (Fine): FINDING 10
+- Neuralizing Oscillator: no number
+- Neuralizing Oscillator Mk II: no number
+- Neuralizing Oscillator Mk III: no number
+- Neuralizing Oscillator Mk IV: no number
+- Neuralizing Oscillator Mk V: no number
+- Neuralizing Oscillator Mk VI: no number
+- Neutronium Edge (Average): OK
+- Neutronium Edge (Deadly): OK
+- Neutronium Edge (Major): OK
+- Neutronium Edge (Minor): OK
+- Obscured Armoring: no number
+- Obscured Stitching: no number
+- Operative Defensive Augment: no number
+- Operative Offensive Augment: FINDING 15
+- Optimized Actuators Mk I: OK
+- Oscillating Amplifier Mk I: OK
+- Oscillating Amplifier Mk II: OK
+- Oscillating Amplifier Mk III: OK
+- Oscillating Amplifier Mk IV: OK
+- Oscillating Rangefinder Mk I: OK
+- Oscillating Rangefinder Mk II: OK
+- Oscillating Rangefinder Mk III: OK
+- Oscillating Rangefinder Mk IV: OK
+- Ossus Dueling Lens: OK
+- Ossus Fighting Lens: OK
+- Ossus Mastery Lens: OK
+- Ossus Training Lens: OK
+- Ostrine Edge (Deadly): FINDING 8
+- Ostrine Edge (Devastating): FINDING 8
+- Ostrine Edge (Lethal): FINDING 8
+- Ostrine Splitter Mk I: FINDING 8
+- Ostrine Splitter Mk II: FINDING 8
+- Ostrine Splitter Mk III: FINDING 8
+- Overlay Amplifier (Adept): OK
+- Overlay Amplifier (Apprentice): OK
+- Overlay Amplifier (Journeyman): OK
+- Overlay Amplifier (Novice): OK
+- Overlay Rangefinder (Adept): OK
+- Overlay Rangefinder (Apprentice): OK
+- Overlay Rangefinder (Journeyman): OK
+- Overlay Rangefinder (Novice): OK
+- Overload Shield: no number
+- Pacnorval Chem Integrator: no number
+- Perceptive Pattern (Basic): FINDING 10
+- Perceptive Pattern (Choice): FINDING 10
+- Perceptive Pattern (Elite): FINDING 10
+- Perceptive Pattern (Exquisite): FINDING 10
+- Perceptive Pattern (Favored): FINDING 10
+- Perceptive Pattern (Fine): FINDING 10
+- Performer's Pattern (Basic): FINDING 10
+- Performer's Pattern (Choice): FINDING 10
+- Performer's Pattern (Elite): FINDING 10
+- Performer's Pattern (Exquisite): FINDING 10
+- Performer's Pattern (Favored): FINDING 10
+- Performer's Pattern (Fine): FINDING 10
+- Phobium Echoer (Improved): no number
+- Phobium Echoer (Superior): no number
+- Piercing Cell: no number
+- Piercing Cell (Deadly): no number
+- Piercing Cell (Devastating): no number
+- Piercing Core: no number
+- Piercing Core (Deadly): no number
+- Piercing Core (Devastating): no number
+- Piercing Oscillator: no number
+- Piercing Oscillator (Deadly): no number
+- Piercing Oscillator (Devastating): no number
+- Powered Armoring Mk I: FINDING 9
+- Powered Armoring Mk II: FINDING 9
+- Powered Armoring Mk III: FINDING 9
+- Powered Armoring Mk IV: FINDING 9
+- Powered Armoring Mk V: FINDING 9
+- Powered Armoring Mk VI: FINDING 9
+- Precision Chamber Mk I: no number
+- Precision Chamber Mk II: no number
+- Precision Chamber Mk III: no number
+- Precision Chamber Mk IV: no number
+- Precision Chamber Mk V: no number
+- Precision Chamber Mk VI: no number
+- Processing Amplifier (Dueling): OK
+- Processing Amplifier (Fighting): OK
+- Processing Amplifier (Mastery): OK
+- Processing Amplifier (Training): OK
+- Processing Rangefinder (Dueling): OK
+- Processing Rangefinder (Fighting): OK
+- Processing Rangefinder (Mastery): OK
+- Processing Rangefinder (Training): OK
+- Quantum Splitter Mk I: FINDING 8
+- Quantum Splitter Mk II: FINDING 8
+- Quantum Splitter Mk III: FINDING 8
+- Quantum Splitter Mk IV: FINDING 8
+- Quick-Fingered Pattern (Basic): FINDING 10
+- Quick-Fingered Pattern (Choice): FINDING 10
+- Quick-Fingered Pattern (Elite): FINDING 10
+- Quick-Fingered Pattern (Exquisite): FINDING 10
+- Quick-Fingered Pattern (Favored): FINDING 10
+- Quick-Fingered Pattern (Fine): FINDING 10
+- RZ-3 Extender Frame: no number
+- Ranging Dataport (Ascendancy): no number
+- Ranging Dataport (Fighting): no number
+- Ranging Dataport (Mastery): no number
+- Ranging Emitter (Ascendancy): no number
+- Ranging Emitter (Fighting): no number
+- Ranging Emitter (Mastery): no number
+- Rapid Core: no number
+- Rapid Core (Champion): no number
+- Rapid Core (Superior): no number
+- Reactive Armoring: FINDING 9
+- Reactive Armoring Mk II: FINDING 9
+- Reactive Armoring Mk III: FINDING 9
+- Reactive Stitching (Adequate): FINDING 9
+- Reactive Stitching (Excellent): FINDING 9
+- Reactive Stitching (Prime): FINDING 9
+- Recoil Dampener: FINDING 9
+- Recoil Dampener (Champion): FINDING 9
+- Recoil Dampener (Exceptional): FINDING 9
+- Recoil Dampener (Fine): FINDING 9
+- Recoil Dampener (Improved): FINDING 9
+- Recoil Dampener (Superior): FINDING 9
+- Regulated Reinforcement: no number
+- Regulated Weave: no number
+- Reinforced Armoring: no number
+- Reinforced Stitching (Basic): OK
+- Reinforced Stitching (Fine): OK
+- Reinforced Stitching (Improved): OK
+- Reinforced Stitching (Superior): OK
+- Reinforced Underlay (Basic): OK
+- Reinforced Underlay (Fine): OK
+- Reinforced Underlay (Improved): OK
+- Reinforced Underlay (Superior): OK
+- Rendcasting Channel (Dueling): OK
+- Rendcasting Channel (Fighting): OK
+- Rendcasting Channel (Mastery): OK
+- Rendcasting Channel (Training): OK
+- Rendcasting Core (Dueling): OK
+- Rendcasting Core (Fighting): OK
+- Rendcasting Core (Mastery): OK
+- Rendcasting Core (Training): OK
+- Rendcasting Crystal (Dueling): OK
+- Rendcasting Crystal (Fighting): OK
+- Rendcasting Crystal (Mastery): OK
+- Rendcasting Crystal (Training): OK
+- Rendcasting Guard (Adept): OK
+- Rendcasting Guard (Apprentice): OK
+- Rendcasting Guard (Journeyman): OK
+- Rendcasting Guard (Novice): OK
+- Rendcasting Inlay (Adept): OK
+- Rendcasting Inlay (Apprentice): OK
+- Rendcasting Inlay (Journeyman): OK
+- Rendcasting Inlay (Novice): OK
+- Rendcasting Oscillator Mk I: OK
+- Rendcasting Oscillator Mk II: OK
+- Rendcasting Oscillator Mk III: OK
+- Rendcasting Oscillator Mk IV: OK
+- Rendcasting Overlay (Adept): OK
+- Rendcasting Overlay (Apprentice): OK
+- Rendcasting Overlay (Journeyman): OK
+- Rendcasting Overlay (Novice): OK
+- Rendcasting Processor (Dueling): OK
+- Rendcasting Processor (Fighting): OK
+- Rendcasting Processor (Mastery): OK
+- Rendcasting Processor (Training): OK
+- Rendcasting Stitching Mk I: OK
+- Rendcasting Stitching Mk II: OK
+- Rendcasting Stitching Mk III: OK
+- Rendcasting Stitching Mk IV: OK
+- Rendcasting Underlay Mk I: OK
+- Rendcasting Underlay Mk II: OK
+- Rendcasting Underlay Mk III: OK
+- Rendcasting Underlay Mk IV: OK
+- Rending Amplifier (Ascendancy): no number
+- Rending Amplifier (Fighting): no number
+- Rending Amplifier (Mastery): no number
+- Rending Conductor (Ascendancy): no number
+- Rending Conductor (Fighting): no number
+- Rending Conductor (Mastery): no number
+- Repelling Cycler (Chipped): no number
+- Repelling Cycler (Cracked): no number
+- Repelling Cycler (Flawed): no number
+- Repelling Cycler (Flawless): no number
+- Repelling Cycler (Perfect): no number
+- Repelling Cycler (Regular): no number
+- Repelling Motherboard (Adequate): no number
+- Repelling Motherboard (Excellent): no number
+- Repelling Motherboard (Leading): no number
+- Repelling Motherboard (Outstanding): no number
+- Repelling Motherboard (Prime): no number
+- Repelling Motherboard (Simple): no number
+- Responsive Shielding Mk I: no number
+- Responsive Shielding Mk II: no number
+- Responsive Shielding Mk III: no number
+- Returning Weapon Guard: no number
+- Returning Weapon Hilt: no number
+- Rylith Power Core: no number
+- Scholar Defensive Augment: no number
+- Scholar Offensive Augment: FINDING 15
+- Scout Defensive Augment: FINDING 15
+- Scout Offensive Augment: no number
+- Semiauto Core: no number
+- Sentinel Defensive Augment: FINDING 15
+- Sentinel Offensive Augment: no number
+- Serrated Edge Mk I: FINDING 8
+- Serrated Edge Mk II: FINDING 8
+- Serrated Edge Mk III: FINDING 8
+- Serrated Edge Mk IV: FINDING 8
+- Shield Amplifier: no number
+- Shield Anchor: no number
+- Shocking Oscillator: no number
+- Shocking Oscillator Mk II: no number
+- Shocking Oscillator Mk III: no number
+- Shocking Oscillator Mk IV: no number
+- Shocking Oscillator Mk V: no number
+- Shocking Oscillator Mk VI: no number
+- Siege Weapon: no number
+- Sienar Starfire X-Force Mk I: no number
+- Sienar Starfire X-Force Mk II: no number
+- Silencer: no number
+- Silent Armoring: no number
+- Silent Stitching: no number
+- Silver-Tongued Pattern (Basic): FINDING 10
+- Silver-Tongued Pattern (Choice): FINDING 10
+- Silver-Tongued Pattern (Elite): FINDING 10
+- Silver-Tongued Pattern (Exquisite): FINDING 10
+- Silver-Tongued Pattern (Favored): FINDING 10
+- Silver-Tongued Pattern (Fine): FINDING 10
+- Smart Interface (Basic): FINDING 9
+- Smart Interface (Champion): FINDING 9
+- Smart Interface (Exceptional): FINDING 9
+- Smart Interface (Fine): FINDING 9
+- Smart Interface (Improved): FINDING 9
+- Smart Interface (Superior): FINDING 9
+- Sonorous Oscillator: no number
+- Sonorous Oscillator Mk II: no number
+- Sonorous Oscillator Mk III: no number
+- Sonorous Oscillator Mk IV: no number
+- Sonorous Oscillator Mk V: no number
+- Sonorous Oscillator Mk VI: no number
+- Spiked Shielding: no number
+- Spiked Shielding Mk II: no number
+- Spiked Shielding Mk III: no number
+- Stabilizer Ascendancy Cell: FINDING 9
+- Stabilizer Dueling Cell: FINDING 9
+- Stabilizer Fighting Cell: FINDING 9
+- Stabilizer Mastery Cell: FINDING 9
+- Stabilizer Supremacy Cell: FINDING 9
+- Stabilizer Training Cell: FINDING 9
+- Staggering Oscillator: no number
+- Steadfast Reinforcement: no number
+- Stealthy Pattern (Basic): FINDING 10
+- Stealthy Pattern (Choice): FINDING 10
+- Stealthy Pattern (Elite): FINDING 10
+- Stealthy Pattern (Exquisite): FINDING 10
+- Stealthy Pattern (Favored): FINDING 10
+- Stealthy Pattern (Fine): FINDING 10
+- Stitching Amplifier Mk I: OK
+- Stitching Amplifier Mk II: OK
+- Stitching Amplifier Mk III: OK
+- Stitching Amplifier Mk IV: OK
+- Stitching Rangefinder Mk I: OK
+- Stitching Rangefinder Mk II: OK
+- Stitching Rangefinder Mk III: OK
+- Stitching Rangefinder Mk IV: OK
+- Storing Dataport (Basic): no number
+- Storing Dataport (Champion): no number
+- Storing Dataport (Exceptional): no number
+- Storing Dataport (Fine): no number
+- Storing Dataport (Improved): no number
+- Storing Dataport (Superior): no number
+- Storing Emitter (Basic): no number
+- Storing Emitter (Champion): no number
+- Storing Emitter (Exceptional): no number
+- Storing Emitter (Fine): no number
+- Storing Emitter (Improved): no number
+- Storing Emitter (Superior): no number
+- Strength Augment (Basic): FINDING 14
+- Strength Augment (Champion): OK
+- Strength Augment (Exceptional): OK
+- Strength Augment (Fine): OK
+- Strength Augment (Improved): FINDING 14
+- Strength Augment (Superior): OK
+- Strength Weave (Basic): FINDING 10
+- Strength Weave (Exceptional): FINDING 10
+- Strength Weave (Improved): FINDING 10
+- Surging Processor Mk I: no number
+- Surging Processor Mk II: no number
+- Surging Processor Mk III: no number
+- Surging Processor Mk IV: no number
+- Surging Processor Mk V: no number
+- Surging Processor Mk VI: no number
+- Survivalist's Pattern (Basic): FINDING 10
+- Survivalist's Pattern (Choice): FINDING 10
+- Survivalist's Pattern (Elite): FINDING 10
+- Survivalist's Pattern (Exquisite): FINDING 10
+- Survivalist's Pattern (Favored): FINDING 10
+- Survivalist's Pattern (Fine): FINDING 10
+- T-Cycle Reinforcer (Basic): no number
+- T-Cycle Reinforcer (Improved): no number
+- Targeting Amplifier (Dueling): OK
+- Targeting Amplifier (Fighting): OK
+- Targeting Amplifier (Mastery): OK
+- Targeting Amplifier (Training): OK
+- Targeting Rangefinder (Dueling): OK
+- Targeting Rangefinder (Fighting): OK
+- Targeting Rangefinder (Mastery): OK
+- Targeting Rangefinder (Training): OK
+- Techie's Pattern (Basic): FINDING 10
+- Techie's Pattern (Choice): FINDING 10
+- Techie's Pattern (Elite): FINDING 10
+- Techie's Pattern (Exquisite): FINDING 10
+- Techie's Pattern (Favored): FINDING 10
+- Techie's Pattern (Fine): FINDING 10
+- Threatening Pattern (Basic): FINDING 10
+- Threatening Pattern (Choice): FINDING 10
+- Threatening Pattern (Elite): FINDING 10
+- Threatening Pattern (Exquisite): FINDING 10
+- Threatening Pattern (Favored): FINDING 10
+- Threatening Pattern (Fine): FINDING 10
+- Throwing Weapon Guard (Basic): no number
+- Throwing Weapon Guard (Champion): no number
+- Throwing Weapon Guard (Exceptional): no number
+- Throwing Weapon Guard (Fine): no number
+- Throwing Weapon Guard (Improved): no number
+- Throwing Weapon Guard (Superior): no number
+- Throwing Weapon Hilt (Basic): no number
+- Throwing Weapon Hilt (Champion): no number
+- Throwing Weapon Hilt (Exceptional): no number
+- Throwing Weapon Hilt (Fine): no number
+- Throwing Weapon Hilt (Improved): no number
+- Throwing Weapon Hilt (Superior): no number
+- Underlay Amplifier Mk I: OK
+- Underlay Amplifier Mk II: OK
+- Underlay Amplifier Mk III: OK
+- Underlay Amplifier Mk IV: OK
+- Underlay Rangefinder Mk I: OK
+- Underlay Rangefinder Mk II: OK
+- Underlay Rangefinder Mk III: OK
+- Underlay Rangefinder Mk IV: OK
+- Venomous Oscillator: no number
+- Ventilation Stabilizer: no number
+- Versatile Frame: FINDING 9
+- Versatile Frame (Champion): FINDING 9
+- Versatile Frame (Superior): FINDING 9
+- Versatile Handle: FINDING 9
+- Versatile Handle (Champion): FINDING 9
+- Versatile Handle (Superior): FINDING 9
+- Versatile Shielding: FINDING 9
+- Versatile Shielding Mk II: FINDING 9
+- Versatile Shielding Mk III: FINDING 9
+- Vicious Ascendancy Core: FINDING 9
+- Vicious Ascendancy Guard: FINDING 9
+- Vicious Ascendancy Hilt: FINDING 9
+- Vicious Fighting Core: FINDING 9
+- Vicious Fighting Guard: FINDING 9
+- Vicious Fighting Hilt: FINDING 9
+- Vicious Mastery Core: FINDING 9
+- Vicious Mastery Guard: FINDING 9
+- Vicious Mastery Hilt: FINDING 9
+- Viir Agathys's Armoring: no number
+- Weapon Integration Armoring: no number
+- Wisdom Augment (Basic): FINDING 14
+- Wisdom Augment (Champion): OK
+- Wisdom Augment (Exceptional): OK
+- Wisdom Augment (Fine): OK
+- Wisdom Augment (Improved): FINDING 14
+- Wisdom Augment (Superior): OK
+- Wisdom Weave (Champion): FINDING 10
+- Wisdom Weave (Fine): FINDING 10
+- Wisdom Weave (Superior): FINDING 10
+- Withercasting Channel (Dueling): OK
+- Withercasting Channel (Fighting): OK
+- Withercasting Channel (Mastery): OK
+- Withercasting Channel (Training): OK
+- Withercasting Core (Dueling): OK
+- Withercasting Core (Fighting): OK
+- Withercasting Core (Mastery): OK
+- Withercasting Core (Training): OK
+- Withercasting Crystal (Dueling): OK
+- Withercasting Crystal (Fighting): OK
+- Withercasting Crystal (Mastery): OK
+- Withercasting Crystal (Training): OK
+- Withercasting Guard (Adept): OK
+- Withercasting Guard (Apprentice): OK
+- Withercasting Guard (Journeyman): OK
+- Withercasting Guard (Novice): OK
+- Withercasting Inlay (Adept): OK
+- Withercasting Inlay (Apprentice): OK
+- Withercasting Inlay (Journeyman): OK
+- Withercasting Inlay (Novice): OK
+- Withercasting Oscillator Mk I: OK
+- Withercasting Oscillator Mk II: OK
+- Withercasting Oscillator Mk III: OK
+- Withercasting Oscillator Mk IV: OK
+- Withercasting Overlay (Adept): OK
+- Withercasting Overlay (Apprentice): OK
+- Withercasting Overlay (Journeyman): OK
+- Withercasting Overlay (Novice): OK
+- Withercasting Processor (Dueling): OK
+- Withercasting Processor (Fighting): OK
+- Withercasting Processor (Mastery): OK
+- Withercasting Processor (Training): OK
+- Withercasting Stitching Mk I: OK
+- Withercasting Stitching Mk II: OK
+- Withercasting Stitching Mk III: OK
+- Withercasting Stitching Mk IV: OK
+- Withercasting Underlay Mk I: OK
+- Withercasting Underlay Mk II: OK
+- Withercasting Underlay Mk III: OK
+- Withercasting Underlay Mk IV: OK
+- Withering Channel (Ascendancy): no number
+- Withering Channel (Fighting): no number
+- Withering Channel (Mastery): no number
+- Withering Processor (Ascendancy): no number
+- Withering Processor (Fighting): no number
+- Withering Processor (Mastery): no number
+- Wrist Mount Attachment: no number
+- Wrist Mount Guard: no number
+- Wrist Mount Hilt: no number
+- Byrothsis Adept Cell: no number
+- Byrothsis Ancient Cell: no number
+- Careful Subroutine: no number
+- Distant Subroutine: no number
+- Extended Subroutine: no number
+- Ghostfire Crystal: FINDING 7
+- Heightened Subroutine: no number
+- Improved Subroutine: no number
+- Krayt Dragon Pearl (Flawless): FINDING 28
+- Krayt Dragon Pearl (Perfect): FINDING 28
+- Krayt Dragon Pearl (Regular): FINDING 28
+- Lingering Subroutine: no number
+- Ostrine Crystal (Flawless): FINDING 8
+- Ostrine Crystal (Perfect): FINDING 8
+- Ostrine Crystal (Regular): FINDING 8
+- Pinpoint Subroutine: no number
+- Quickened Subroutine: no number
+- Refocused Subroutine: no number
+- Seeking Subroutine: no number
+- Telgorn Jolt Stabilizer (Improved): no number
+- Twinned Subroutine: no number
+
+### CyberneticAugmentation (46)
+- Active Camouflage Core: no number
+- Armament and Defense Library: FINDING 17
+- Automated Adrenal Package: FINDING 27
+- Brawny Arm Prosthesis: no number
+- Celerity Leg Prosthesis: FINDING 12
+- Charisma Enhancement (Basic): FINDING 14
+- Charming Noble Package: FINDING 14, 20
+- Constitution Enhancement (Basic): FINDING 14
+- Czerka Variable Claw-Hand Multitool: no number
+- Daring Acrobat Package: FINDING 14, 20
+- Detachable Eye: no number
+- Detachable Hand: no number
+- Dexterity Enhancement (Basic): FINDING 14
+- Fortitude Enhancer Mk I: no number
+- Fortitude Enhancer Mk II: no number
+- Fortitude Enhancer Mk III: no number
+- Hardy Torso Prosthesis: OK
+- Hawkeye Ocular Package: no number
+- Hidden Compartment Blaster: no number
+- High-Grade Cybernetic Arm: no number
+- High-Grade Cybernetic Legs: FINDING 20
+- Indomitable Fortress Package: FINDING 14, 20
+- Infiltration Package: no number
+- Integrated Subdermal Armor: OK
+- Integrated Subdermal Armor Mk II: OK
+- Intelligence Enhancement (Basic): FINDING 14
+- Intuitive Facial Prosthesis: FINDING 18
+- Iridonian Grav-lev Arm: FINDING 16
+- Magnetic Forearm Enhancement: no number
+- Microphasic Hypervisor: FINDING 27
+- Mighty Athlete Package: FINDING 14, 20
+- Nighthawk Ocular Implant: FINDING 27
+- Quick Savant Package: FINDING 14, 20
+- Reflex Enhancer Mk I: no number
+- Reflex Enhancer Mk II: no number
+- Reflex Enhancer Mk III: no number
+- Skills Enhancement Package: FINDING 27
+- Strength Enhancement (Basic): FINDING 14
+- Surveillance Implant: no number
+- Survival and Surveillance Implant: no number
+- Survival and Surveillance Implant Mk II: FINDING 26
+- Will Enhancer Mk I: no number
+- Will Enhancer Mk II: no number
+- Will Enhancer Mk III: no number
+- Wisdom Enhancement (Basic): FINDING 14
+- Wise Sage Package: FINDING 14, 20
+
+### DroidCustomization (48)
+- Analysis Protocol: no number
+- Blaster Integration: no number
+- Droid Dura Plating Mk I: FINDING 12
+- Droid Dura Plating Mk II: FINDING 12
+- Droid Dura Plating Mk III: FINDING 12
+- Enhanced Reconstructor: no number
+- Fortitude Protocol Mk I: no number
+- Fortitude Protocol Mk II: no number
+- Fortitude Protocol Mk III: no number
+- Four-Armed Combatant: no number
+- Humanoid Replicant: no number
+- Interface Protocol: no number
+- Interfaced Assistance Protocol: no number
+- Interfaced Crafting Protocol: no number
+- Interfaced Distraction Protocol: no number
+- Interfaced Healing Protocol: no number
+- Interfaced Tracking Protocol: no number
+- Leg Reinforcements: no number
+- Manipulator Upgrade: no number
+- Mechanic: no number
+- Medic: FINDING 26
+- Mighty Build: FINDING 16
+- Power Supply Port: no number
+- Reflex Protocol Mk I: no number
+- Reflex Protocol Mk II: no number
+- Reflex Protocol Mk III: no number
+- Reinforced Chassis: FINDING 12
+- Repulsor Lifts (Basic): no number
+- Repulsor Lifts (Champion): no number
+- Repulsor Lifts (Exceptional): no number
+- Repulsor Lifts (Fine): no number
+- Repulsor Lifts (Improved): no number
+- Repulsor Lifts (Superior): no number
+- Resourceful Drive: FINDING 17
+- Sentry: no number
+- Shock Arm: FINDING 27
+- Tool Integration: no number
+- Uncanniness Motivator: no number
+- Versatility Motivator: OK
+- Vocoder (Basic): no number
+- Vocoder (Champion): no number
+- Vocoder (Exceptional): no number
+- Vocoder (Fine): no number
+- Vocoder (Improved): no number
+- Vocoder (Superior): no number
+- Will Protocol Mk I: no number
+- Will Protocol Mk II: no number
+- Will Protocol Mk III: no number
+
+### The sheet's own tweaks (30 checks)
+- T01 AC +2, no reason (consular-test-local): OK ("+2 AC · no reason given", AC 12 → 14)
+- T02 AC +2 with a reason: OK (the reason is the explanation)
+- T03 AC set to 18: OK ("set to 18 by a tweak")
+- T04 AC set to 18 + Armor (Fine) equipped: FINDING 4 (chip and hover still claim "+1 AC · Armor (Fine)")
+- T05 Strength set to 16 + Strength Stim (Fine): FINDING 4
+- T06 skill proficiency + save bonus: OK
+- T07 save proficiency, initiative, passive Perception, speed, HP max bonuses: OK
+- T08 weapon tweaks (attack +1, damage +2, die d10): OK
+- T09 all-weapons attack/damage: OK (unarmed strikes not included, as SW5E)
+- T10 unarmed attack/damage: OK
+- T11 force casting (save DC, attack, points, power level): numbers OK, FINDING 24 (points explained by the DC and attack tweaks)
+- T12 tech casting (save DC, attack, points): numbers OK, FINDING 1 (Kolto Pack healing +5 → +7), FINDING 24
+- T13 superiority (dice, physical DC, physical attack) on a Fighter: FINDING 23
+- T14 proficiency bonus +1: OK (saves, skills, casting, attunement maximum follow)
+- T15 negative AC and speed: OK
+- T16 bonus 0 / override null / override "": OK (inactive, nothing changes)
+- T17 Kadro's Dex tweak +1 → +2: OK
+- T18 Kadro's "Zabrak Toughness" HP tweak: FINDING 3
+- T19 Rorrwaak's "Wookiee Hide" AC tweak: FINDING 3
+- T20 Rorrwaak's "Brawny feat +1 Str" tweak: OK (the sheet doesn't add the feat's +1 itself: no double)
+- T21 Thirza's "Empathic +1 Wis" tweak: OK (no double)
+- T22 Tikk's "Techie +1 Int" tweak: OK (no double)
+- T23 Kadro's "Weapon Expert +1 Dex" tweak: FINDING 24 (listed under AC, initiative and weapon damage it doesn't change)
+- T24 Kadro's "Zabrak Unarmed Combatant" die tweak removed: FINDING 6
+- T25 Strength +30: numbers OK (38, no cap: SW5E's tweak), FINDING 5 (unarmed dice card +16 vs table +15)
+- T26 Perception expertise + 1: OK (+10, passive 20)
+- T27 weapon expertise tweak: OK (+2)
+- T28 HP max set to 50: OK
+- T29 unarmed die d8: OK
+- T30 Dexterity set to 20: OK (AC, initiative, saves, skills follow)
+
+## Findings (most severe first)
+
+### FINDING 1 (high): a bonus to tech/force attack rolls also raises every power's damage and healing
+- Sources: Focus Generator (Fine/Improved/Superior), Wristpad (Fine/Improved/Superior), and any tweak to
+  `techCasting.attackModifier` / `forceCasting.*AttackModifier`.
+- SW5E: Focus Generator (Fine) "You gain a +1 bonus to the force attack rolls for force powers you cast through this
+  focus generator." Wristpad (Fine) "You gain a +1 bonus to the tech attack rolls for tech powers you cast through this
+  wristpad." Kolto Pack "regains hit points equal to 1d4 + your techcasting ability modifier."
+- `node dev/bump-check.js thirza-vitchess-panel --js "raw.equipment.find(e=>e.name==='Focus Generator (Fine)').attuned=false"`
+  - Expected: force attacks 7 → 6; Heal stays d8 +4 (Wisdom 18).
+  - Actual: `Heal: healing: d8 +5 · = +5 casting modifier` → `d8 +4`. Thirza's sheet shows Heal +5 today: one too many.
+- `node dev/bump-check.js tikk-plonr-panel --item "Wristpad (Fine)" --attune`: tech attack 7 → 8 (right), but Kolto Pack
+  d4 +5 → d4 +6 and Repair Droid d8 +5 → d8 +6 (wrong). A tech attack tweak +2 (T12) makes them +7.
+- Code: app/roller.js `buildRoll` case 'pdmg': `castMod = powerNumbers(m, a1, p, {}).attack - pb` (attack modifier minus
+  proficiency: every attack bonus leaks in); the same in app/viewer.js (~4511). It should be the casting ability's modifier.
+
+### FINDING 2 (high): two copies of an enhanced item (or a modification) both land on one weapon
+- `node dev/bump-check.js kadro-vos-panel --item "Weapon (Fine)" --equip --item "Weapon (Fine)" --equip --js "raw.equipment.find(e=>e.name==='Vibrorapier').enhancedBy='Weapon (Fine)';raw.equipment.find(e=>e.name==='Blaster rifle').enhancedBy='Weapon (Fine)'"`
+  - Expected (SW5E Weapon (Fine): "You have a +1 bonus to attack and damage rolls made with this enhanced weapon."):
+    Blaster rifle +6 / d8 +7 and Vibrorapier +6 / d8 +6.
+  - Actual: Blaster rifle +7 / d8 +8 ("+1 Weapon (Fine) +1 Weapon (Fine)"), Vibrorapier unchanged +5 / +5.
+- `node dev/bump-check.js kadro-vos-panel --item "Accuracy Focus Mk IV" --equip --item "Accuracy Focus Mk IV" --equip --js "itemState.targets={'Accuracy Focus Mk IV':'Blaster rifle'}"`:
+  both go to one weapon (+6): `itemState.targets` is keyed by item name, a second copy can't be aimed elsewhere.
+- Code: app/viewer.js `itemEffects`: `linked = equipment.findIndex((x) => x.enhancedBy === it.name)` (the first base with
+  that name, for every copy); `itemTargets(key)[it.name]`; effect id `'item:' + it.name` shared by copies.
+
+### FINDING 3 (high): tweaks with a reason that the sheet now applies itself are counted twice
+- Sources: Kadro's tweak `hitPoints.maximum +4` "Zabrak Toughness: +1 HP per level (not applied by SW5E)"; Rorrwaak's
+  tweak `armorClass +1` "Wookiee Hide (13 + Dex) is 1 better than Unarmored Defense (10 + Dex + Con)".
+- SW5E: Zabrak Toughness "Your hit point maximum increases by 1, and it increases by 1 every time you gain a level."
+- `node dev/bump-check.js kadro-vos-panel --js "delete raw.tweaks.hitPoints"`
+  - Expected (level 4): HP max 43.
+  - Actual: 47 with the tweak; hover "+4 HP maximum · Zabrak Toughness… tweak / +4 HP maximum · Toughness Zabrak trait".
+- `node dev/bump-check.js rorrwaak-panel --js "delete raw.tweaks.armorClass"`: AC 15 → 14; the sheet's own "+3 AC 13 + DEX
+  (Hide) · Hide Wookiee trait" already makes 14.
+- Code: app/viewer.js `tweakEffects` + `featureEffectsUncached` (Toughness and Hide applied since these tweaks were made);
+  nothing flags a tweak that repeats a trait the sheet now applies (the reasons even name the trait).
+
+### FINDING 4 (high): a score set by a tweak swallows item and consumable bonuses that still show as applied
+- SW5E: Strength Stim (Fine) "the target's Strength score increases by 2, and its maximum for this score increases by 2."
+- `node dev/bump-check.js kadro-vos-panel --js "raw.tweaks.abilityScores.Strength={score:{override:16}};const N='Strength Stim (Fine)';const fx=process.mainModule.require('../app/effects.js').parseItemEffect(catalog.find(x=>x.name===N));itemState.effects=[{id:'s1',kind:'temporary',name:N,source:'used',startedAt:1,duration:fx.duration,group:fx.group,mods:fx.mods,notes:fx.notes,target:'self',weaponName:null,text:''}]"`
+  - Expected: Strength 18 (or the stim shown as "no effect").
+  - Actual: Strength 16, while the chip says "Strength Stim (Fine) STR +2" and the hover "= 16 Strength score · no reason
+    given tweak / +2 STR · Strength Stim (Fine) used, lasts 1 hour".
+- AC (T04: `raw.tweaks.armorClass={override:18}` + Armor (Fine)): AC 18 with "set to 18 by a tweak" (intended), but the
+  chip still reads "Armor (Fine) AC +1 while equipped" and the hover lists "+1 AC · Armor (Fine)".
+- Code: app/viewer.js `applyEffects` merges override and bonuses into one `{override, bonus}`; app/engine.js `engTweaked`
+  ignores `bonus` when `override` is set.
+
+### FINDING 5 (high): unarmed strike with no damage die: the dice card adds the flat 1 a second time
+- SW5E: Handwraps (Fine) "you have a +1 bonus to attack and damage rolls made with your unarmed strikes."
+- `node dev/bump-check.js consular-test-local --item "Handwraps (Fine)" --equip`
+  - Expected: damage 1 (1 + STR −1 + 1), table and card agreeing.
+  - Actual: table `damageBonus` 0 → 1; card "no dice +1 · = +1 flat damage" → "no dice +2 · = +1 Handwraps (Fine) +1 flat
+    damage". With a Strength +30 tweak (T25): table 15, card 16 ("+14 STR modifier +1 other +1 flat damage").
+- Code: app/roller.js `buildRoll` case 'damage': `.concat(die > 0 ? [] : [{ label: 'flat damage', value: n }])` on top of
+  `damageParts`, whose total already holds SW5E's 1 (and leaves out the negative Strength).
+
+### FINDING 6 (high): deleting Kadro's unarmed-die tweak also loses the Zabrak's own 1d4
+- SW5E: Unarmed Combatant "Your unarmed strikes deal 1d4 kinetic damage and have the finesse property".
+- `node dev/bump-check.js kadro-vos-panel --js "delete raw.tweaks.unarmed.damageDice"`
+  - Expected: Unarmed Strike damage stays d4 +5 (the trait gives the die).
+  - Actual: "no dice +6 · = +2 Brute Force +3 Unarmed Combatant +1 flat damage".
+- Code: app/viewer.js `applyEffects`: `natDie > num(unarmed.damageDieType)` compares with `complete` (SW5E's recorded
+  calculation, which still has the tweak's d4), so the trait's die isn't added once the tweak is gone.
+
+### FINDING 7 (medium): weapon bonuses in other wordings aren't read (12 items)
+- Darksaber "You gain a +3 bonus to attack and damage rolls made with this enhanced lightsaber." —
+  `node dev/bump-check.js maasha-vaal-panel --item "Darksaber" --attune --js "raw.equipment.find(e=>e.name==='Lightsaber').enhancedBy='Darksaber'"`:
+  expected Lightsaber +3 attack and damage; actual unchanged, the sentence only a note.
+- Shoulder Cannon (Fine/Improved/Superior) "You have a +3 bonus to attack and damage rolls made with this enhanced shoulder
+  cannon, which has the smart (18, +4) property." (Champion/Exceptional: "+3 bonus to attack rolls and deal an additional
+  1d10 damage with this enhanced shoulder cannon") —
+  `node dev/bump-check.js kadro-vos-panel --item "Shoulder Cannon (Superior)" --equip --js "raw.equipment.find(e=>e.name==='Blaster rifle').enhancedBy='Shoulder Cannon (Superior)'"`: nothing.
+- Torchy "You gain a +1 bonus to attack and damage rolls with this enhanced weapon, and when you hit a creature…" —
+  `node dev/bump-check.js kadro-vos-panel --item "Torchy" --equip --js "raw.equipment.find(e=>e.name==='Blaster rifle').enhancedBy='Torchy'"`:
+  nothing (the "when you" later in the clause makes the whole bonus "conditional").
+- Shotgun Axe "You have a +1 to damage rolls made with this shotgun." — same command with "Shotgun Axe": nothing.
+- Ghostfire Crystal "you gain a +2 bonus to damage rolls made with this weapon, when you attack a creature with it, …" —
+  `node dev/bump-check.js maasha-vaal-panel --item "Ghostfire Crystal" --equip --js "itemState.targets={'Ghostfire Crystal':'Lightsaber'}"`: nothing.
+- Multispectral Optics (Champion) "Additionally, you gain a +2 bonus to attack rolls." — nothing.
+- Power Generator (Devastating/Lethal) "You have a +3 bonus to attack rolls and deal an additional 1d10 damage with this
+  enhanced power generator." — `node dev/bump-check.js kadro-vos-panel --item "Power Generator (Devastating)" --item "Power Generator (Deadly)"`:
+  (Deadly) shows "Attack +3 with Power Generator (Deadly)", (Devastating) nothing: read as a consumable used on yourself.
+- Code: app/effects.js `fxBonusMods` (weapon nouns lack lightsaber/shoulder cannon/shotgun; needs "bonus");
+  `parseItemEffect` drops a whole clause once `CONDITIONAL` finds "when you…" in it; `CONDITIONAL` knows "cells" but not "generator".
+
+### FINDING 8 (medium): "an additional 1d10 damage" on every hit never reaches the damage roll (41 items)
+- Sources: Weapon and Handwraps (Champion/Exceptional); the Collimators and Calibrators (Devastating/Lethal): a note only;
+  Ostrine Edge/Splitter/Crystal, Damind Crystal, Serrated Edge, Quantum Splitter: nothing at all.
+- SW5E: Weapon (Champion) "You have a +3 bonus to attack rolls and deal an additional 1d10 damage with this enhanced
+  weapon." Ostrine Edge (Lethal) "When you deal damage with this weapon, you deal an additional 1d6 … damage".
+- `node dev/bump-check.js kadro-vos-panel --item "Weapon (Champion)" --equip --js "raw.equipment.find(e=>e.name==='Vibrorapier').enhancedBy='Weapon (Champion)'"`
+  - Expected: Vibrorapier +8; damage d8 + 1d10 + 5 in the row and on the card.
+  - Actual: +8 (right); "1d8+5" and card "d8 +5", plus a note "Extra 1d10 damage on a hit with this weapon."
+- `node dev/bump-check.js kadro-vos-panel --item "Ostrine Edge (Lethal)" --equip --js "itemState.targets=Object.assign({},itemState.targets,{'Ostrine Edge (Lethal)':'Vibrorapier'})"`: no effect at all.
+- Ammunition does it right: `--item "Power Cell (Devastating)"` offers "option: with Power Cell (Devastating) +1d10".
+- Code: app/effects.js `fxBonusMods` keeps the dice as a note only (no `extraDamage` mod for weapon/unarmed targets);
+  "When you deal damage with this weapon, you deal an additional / can roll a …" isn't read.
+
+### FINDING 9 (medium): modifications that change a property change nothing, Agile/Powered Armoring included (106 items)
+- Sources: Agile Armoring Mk I–VI, Powered Armoring Mk I–VI, Keen Beam/Core/Oscillator, Finesse Oscillator, Comfortable
+  Handle, Mighty Core, Smart Interface, Versatile Frame/Handle, Brutal/Vicious mods, Hydraulic Equalizer, Recoil Dampener,
+  Compensation Oscillator, Stabilizer cells, Convenience Reinforcement, Flexible Armoring, Compensating Attachment,
+  Fiber-Alloy Guard, Lightweight mods, Absorptive/Avoidant/Reactive mods, Cortosis Weave, Bayonet.
+- SW5E: Agile Armoring Mk VI "This armor gains the agile 21 property." Agile: "your Dexterity score becomes equal to the
+  agile number." Powered: "your Strength score becomes equal to the powered number." Keen: "the critical hit range
+  increases by an amount equal to the keen number."
+- `node dev/bump-check.js kadro-vos-panel --item "Agile Armoring Mk VI" --equip --item "Powered Armoring Mk VI" --equip`
+  - Expected: Dexterity 21 (DEX save, initiative, Dex skills, Blaster rifle/Vibrorapier +2) and Strength 21 (Athletics,
+    STR save, carrying capacity).
+  - Actual: nothing changes.
+- `node dev/bump-check.js kadro-vos-panel --item "Keen Core (Devastating)" --equip --js "itemState.targets=Object.assign({},itemState.targets,{'Keen Core (Devastating)':'Blaster rifle'})"`:
+  expected "critical on 16–20", actual 19–20.
+- `node dev/bump-check.js thirza-vitchess-panel --item "Finesse Oscillator" --equip --js "itemState.targets={'Finesse Oscillator':'Vibrostaff'}"`:
+  expected the Vibrostaff to use DEX (+2) instead of STR (−1); actual unchanged.
+- Code: no property handling in app/effects.js; the engine and `invArmorEffects` read the base item's properties only.
+
+### FINDING 10 (medium): "level of proficiency increases by N steps" changes no skill, save or tool (132 items)
+- Sources: the 18 skill Patterns (Basic/Fine/Favored/Choice/Elite/Exquisite), the six ability Weaves, Tool (Basic…Champion).
+- SW5E: Investigator's Pattern (Fine) "Your level of proficiency in Investigation increases by two steps (to proficient, …)".
+- `node dev/bump-check.js kadro-vos-panel --item "Investigator's Pattern (Fine)" --equip --item "Dexterity Weave (Superior)" --equip`
+  - Expected: Investigation +0 → +2 (proficient), Dexterity save +3 → +5.
+  - Actual: unchanged; only the sentence as a note.
+
+### FINDING 11 (medium): Bioenhancement Matrix Mk I–III: hit point maximum not raised
+- SW5E: "Your hit point maximum increases by an amount equal to your level, and it increases by 1 every time you gain a level."
+- `node dev/bump-check.js kadro-vos-panel --item "Bioenhancement Matrix Mk I" --equip`: expected HP max 47 → 51 (level 4);
+  actual unchanged, no effect line (parseItemEffect returns null).
+- Code: app/effects.js hit point maximum regex needs a number ("by (\d+)").
+
+### FINDING 12 (medium): AC formulas not read: Droid Dura Plating Mk I–III, Reinforced Chassis, Celerity Leg Prosthesis
+- SW5E: Droid Dura Plating Mk I "Your base AC becomes 19." Reinforced Chassis "When you don't have armor integrated, your AC
+  is 13 + your Dexterity modifier." Celerity Leg Prosthesis "When determining your bonus to AC and saving throws from
+  Dexterity, your Dexterity score is treated as 15."
+- `node dev/bump-check.js tikk-plonr-panel --species "Droid, Class I" --js "raw.equipment.forEach(e=>{if(['Combat suit','Armor (Fine)'].includes(e.name))e.equipped=false})" --item "Droid Dura Plating Mk I" --equip`:
+  expected AC 19; actual 11 (the same as without it). With "Reinforced Chassis": expected 14, actual 11.
+- `node dev/bump-check.js tikk-plonr-panel --item "Celerity Leg Prosthesis" --equip` (Dex 13): expected AC and DEX save +1;
+  actual unchanged.
+- Code: app/effects.js unarmored-AC regex only "When/While you aren't wearing armor, your AC becomes N + your Dexterity modifier".
+
+### FINDING 13 (medium): Jensaarai and Mandalorian set bonuses aren't applied
+- SW5E: Jensaarai Armor "While wearing and attuned to this armor and Jensaarai Cloak, … this armor now grants a +2 bonus to
+  AC, instead of +1. While wearing and attuned to this armor, Jensaarai Cloak, and Jensaarai Headgear, this armor now grants
+  a +3 bonus to AC". Jensaarai Headgear "this headgear no longer count towards your maximum attunement".
+- `node dev/bump-check.js maasha-vaal-panel --item "Jensaarai Cloak" --attune --item "Jensaarai Headgear" --attune`
+  (Maasha wears Jensaarai Armor): expected AC 16 → 18 and attunement 2 / 2; actual AC 16, attunement "3 / 2".
+- Mandalorian Beskar'gam + Helmet (`maasha-vaal-panel --item "Mandalorian Beskar'gam" --attune --item "Mandalorian Helmet" --attune`,
+  Jensaarai Armor un-attuned, Mesh armor linked): expected +2 AC, actual +1.
+
+### FINDING 14 (medium): cybernetic side effects (−1 to a score the GM picks) neither applied nor asked (24 items)
+- Sources: the six "X Enhancement (Basic)", the six "… Package", the "X Augment (Basic)" and "(Improved)".
+- SW5E: Charisma Enhancement (Basic) "Your Charisma score increases by 1, to a maximum of 20. Side Effect: One ability score
+  other than Charisma (chosen by the GM) decreases by 1."
+- `node dev/bump-check.js kadro-vos-panel --item "Charisma Enhancement (Basic)" --equip`: expected CHA +1 and a "Still to
+  choose" for the −1; actual CHA 13 only.
+
+### FINDING 15 (medium): class augments don't change the class numbers the sheet shows
+- SW5E: Fighter/Scholar Offensive Augment "you gain one additional superiority die."; Operative Offensive Augment "Your Sneak
+  Attack damage die increases by one step (from d6 to a d8, …)"; Berserker Offensive Augment "Your Rage damage bonus
+  increases by 1"; also Engineer Defensive (+1 Potent Aptitude use), Guardian Offensive (Focused Strike die step),
+  Guardian/Scout Defensive (radius +5 ft), Sentinel Defensive (+1 manifestation use).
+- `node dev/bump-check.js kadro-vos-panel --item "Fighter Offensive Augment" --equip --item "Operative Offensive Augment" --equip`:
+  expected one more superiority die and "Sneak Attack +1d8"; actual unchanged ("option: Sneak Attack +1d6").
+- `node dev/bump-check.js rorrwaak-panel --item "Berserker Offensive Augment" --equip`: expected "Rage Damage +3", actual +2.
+- `node dev/bump-check.js scholar-test-claude --item "Scholar Offensive Augment" --equip`: no change.
+
+### FINDING 16 (medium): carrying capacity doubling from Mighty Build and the Iridonian Grav-lev Arm is ignored
+- SW5E: Mighty Build "Your carrying capacity and the weight you can push, drag, or lift doubles. If it would already double,
+  it instead triples." Iridonian Grav-lev Arm adds "Your unarmed strikes with this arm deal 1d4 ion damage".
+- `node dev/bump-check.js kadro-vos-panel --item "Mighty Build" --equip` (or "Iridonian Grav-lev Arm"): expected max capacity
+  120 → 240 lb, push/drag/lift 240 → 480 (the arm: unarmed d4 ion too); actual unchanged, no effect line.
+- Code: app/viewer.js `carryFactor` reads feats, features and species traits only.
+
+### FINDING 17 (medium): proficiencies granted by items aren't applied
+- SW5E: Armament and Defense Library "You gain proficiency in all simple and martial weapons, all armor, and the Piloting
+  skill." Resourceful Drive "you gain proficiency in one blaster or vibroweapon of your choice" (not asked).
+- `node dev/bump-check.js consular-test-local --item "Armament and Defense Library" --equip`: expected Piloting proficient
+  (+3); actual unchanged, the sentence a note.
+- Code: app/effects.js `parseItemEffect` never returns proficiencies (features go through `clsFeatureEffects`).
+
+### FINDING 18 (medium): Intuitive Facial Prosthesis: half proficiency on Intelligence checks missing
+- SW5E: "you can add half your proficiency bonus (rounded down) to any Intelligence check you make that doesn't already
+  include your proficiency bonus."
+- `node dev/bump-check.js kadro-vos-panel --item "Intuitive Facial Prosthesis" --equip`: INT 10 → 13 (right); expected
+  Investigation, Lore, Nature, Technology and INT checks +1 → +2; actual +1.
+
+### FINDING 19 (medium): darkvision you already have isn't extended
+- SW5E: Darkvision Goggles "If you already have darkvision, these goggles increase its range by 30 feet." (Darkvision Visor too.)
+- `node dev/bump-check.js thirza-vitchess-panel --item "Darkvision Goggles" --equip` (Kel Dor, darkvision 60 ft):
+  expected Darkvision 90 ft; actual 60 ft.
+
+### FINDING 20 (medium): advantages from items aren't preselected on the dice card; Cybernetic Legs' advantage is lost
+- SW5E: Charming Noble Package "you have advantage on Charisma saving throws." High-Grade Cybernetic Legs "You gain
+  advantage on Strength ability checks and Strength saving throws, …, and your speed increases by 10 feet."
+- `node dev/bump-check.js kadro-vos-panel --item "Charming Noble Package" --equip`: "Advantage on Charisma saving throws" is
+  listed under Advantages but the Charisma save roll is unchanged (no "mode adv"), while features and species preselect it
+  (app/roller.js `startRoll` reads `e.advantage`, which item effects don't carry).
+- `node dev/bump-check.js kadro-vos-panel --item "High-Grade Cybernetic Legs" --equip`: speed +10 (right); the advantage is
+  nowhere (the sentence is consumed by the speed bonus; "Strength ability checks" isn't matched by the defenses reader).
+
+### FINDING 21 (medium): spice and liquor highs last as long as the low (48 of 80), and their dice never reach a roll
+- SW5E: Andris (Fine) "For the next minute, the creature experiences a high that allows them to roll an additional d4 when
+  making an ability check, attack roll, or saving throw using Wisdom. At the end of the high, … a low that lasts 1 hour".
+- `node dev/bump-check.js kadro-vos-panel --js "const N='Andris (Fine)';const fx=process.mainModule.require('../app/effects.js').parseItemEffect(catalog.find(x=>x.name===N));itemState.effects=[{id:'a1',kind:'temporary',name:N,source:'used',startedAt:1,duration:fx.duration,group:fx.group,mods:fx.mods,notes:fx.notes,target:'self',weaponName:null,text:''}]"`
+  - Expected: "lasts 1 minute"; Wisdom checks, attacks and saves offer +d4.
+  - Actual: "Andris (Fine) used, lasts 1 hour"; no +d4 anywhere. Fine/Potent/Pure and Fine/Reserve/Special tiers read
+    "For the next minute/hour" as 1 hour / 4 hours / 8 hours. Muon Gold, Novanian Grog, Spicebrew, Yaladai ("current and
+    maximum tech/force points by 2d4") change no points either.
+- Code: app/effects.js `parseItemEffect` duration regex needs a number ("for the next (\d+|an?|one|ten) …"), so it skips
+  "For the next minute" and takes the low's "lasts 1 hour".
+
+### FINDING 22 (medium): damage reduction, critical-hit immunity and some resistances from items aren't listed
+- SW5E: Armor (Champion) "damage you take is reduced by 2"; Matrix Armor "any critical hit against you becomes a normal hit";
+  Orbalisk Armor "you are resistant to all unenhanced damage"; Jensaarai Headgear "kinetic and energy damage that you take
+  from unenhanced weapons is reduced by an amount equal to your proficiency bonus"; Reactive Ultrachrome Armor "You have
+  resistence to unenhanced damage"; Adapted Armor "resistance to one type of damage" (type never asked).
+- `node dev/bump-check.js kadro-vos-panel --item "Armor (Champion)" --equip --js "raw.equipment.find(e=>e.name==='Mesh armor').enhancedBy='Armor (Champion)'"`:
+  AC +3 (right); the damage reduction appears nowhere. "Matrix Armor": no effect at all.
+  `node dev/bump-check.js maasha-vaal-panel --item "Orbalisk Armor" --equip --js "raw.equipment.find(e=>e.name==='Mesh armor').enhancedBy='Orbalisk Armor'"`: no Resistances row.
+- Code: app/classes.js `clsFeatureEffects` defenses: no damage-reduction or crit rule, "you are resistant to" not read;
+  app/viewer.js `defensesOf` skips items whose `parseItemEffect` is null (Matrix Armor).
+
+### FINDING 23 (medium): superiority tweaks change nothing
+- `node dev/bump-check.js kadro-vos-panel --js "raw.tweaks.superiority={maxDice:{bonus:1},physicalSaveDC:{bonus:1},physicalModifier:{bonus:1}}"`
+  - Expected: one more superiority die, physical maneuver DC 13 → 14 and attack +5 → +6.
+  - Actual: listed as three effects; no number moves (the Superiority section counts dice from the class table and computes
+    DCs as 8 + proficiency + modifier; the engine's `superiority` is `false` for Kadro's archetype).
+
+### FINDING 24 (medium): explanations list sources that didn't change the number
+- `node dev/bump-check.js kadro-vos-panel --item "Charisma Enhancement (Basic)" --equip`: Intimidation stays +3, yet its hover
+  now lists "+1 CHA · Charisma Enhancement (Basic) while installed" (CHA 12 → 13, modifier still +1).
+- Kadro's AC, initiative and weapon damage hovers list "+1 Dexterity score · Weapon Expert feat… tweak" though that tweak moves
+  no modifier (`node dev/bump-check.js kadro-vos-panel --js "raw.tweaks.abilityScores.Dexterity.score.bonus=0"` changes only
+  the Dexterity value).
+- T11: Force points 23 → 26 explained by "+1 Light force save DC · tweak / +2 Dark force attack · tweak"; Thirza's Dark
+  force attack (Charisma) lists her "+1 Wisdom score" tweak.
+- Code: app/viewer.js `bumpSources` picks sources by category (`armorClass: ['armorClass','Dexterity']`,
+  `forceCasting: ['forceCasting','*']`…), not by whether they changed the number.
+
+### FINDING 25 (medium): an item's Dexterity bonus isn't named on Kadro's finesse unarmed strike
+- `node dev/bump-check.js kadro-vos-panel --item "Dexterity Augment (Fine)" --equip`: Unarmed Strike attack 5 → 6, hover
+  "Without tweaks or effects: 1 → now 6 / +5 Finesse: DEX +4 instead of STR · Unarmed Combatant Zabrak trait": the augment
+  that made the difference isn't named (the same with any Dexterity stim or augment).
+- Code: app/viewer.js `applyEffects` folds the item's Dexterity into the finesse tweak; `bumpSources` for unarmed lists
+  `unarmed.*` and Strength (the strike's recorded ability) only.
+
+### FINDING 26 (medium): options and modes shown as permanent defenses
+- SW5E: Medic "You can cure a target of one poison affecting them or to give them advantage on saving throws against poison
+  for 1 hour." Survival and Surveillance Implant Mk II "Respirator Mode: … grants advantage on saving throws made to avoid
+  being poisoned and resistance to poison damage."
+- `node dev/bump-check.js kadro-vos-panel --item "Medic" --equip`: Defenses show "Advantage on saving throws against poison
+  for 1 hour" as the character's own; the implant's Respirator Mode shows as always on.
+
+### FINDING 27 (low): options that could be on the dice card or tracked aren't
+- Once-per-turn/round extra damage: Flashy, Sparkles, Hewey (a charge: +1d8), Charric Pistol/Rifle (+1d6/+1d8 vs heavy
+  armor); Skills Enhancement Package (+d4 / −d4 on skill checks); Shock Arm (an unarmed 1d6 lightning attack with STR or
+  INT); toggled senses (Nighthawk darkvision 120 ft, Microphasic truesight 30 ft) not listed "when switched on" as jetpacks
+  are; Automated Adrenal Package modes can't be switched on; the class items (Boots of Bounding, Cape of the Orator, Circlet
+  of Persistence, Cowl of the Professional, Gauntlets of the Warrior, Goggles of the Tinkerer, Mantle of the Anomic,
+  Necklace of Determination, Pauldron of Retribution, Vambraces of the Outrider): "a number of charges equal to half your
+  X level (rounded up)" isn't tracked.
+
+### FINDING 28 (medium): bonuses to force and tech power damage/healing rolls are notes only
+- SW5E: Sorcerer's Adrenal (Basic) "the target gains a +1 bonus to its damage and healing rolls with force powers";
+  Machinist's Catalyzer Mk I (tech powers, the same); Sith Acolyte's Robe "+1 bonus to damage rolls with weapons and force
+  powers" (weapons applied, powers not); Krayt Dragon Pearl (force powers through it).
+- `node dev/bump-check.js thirza-vitchess-panel --js "const N=\"Sorcerer's Adrenal (Basic)\";const fx=process.mainModule.require('../app/effects.js').parseItemEffect(catalog.find(x=>x.name===N));itemState.effects=[{id:'a1',kind:'temporary',name:N,source:'used',startedAt:1,duration:fx.duration,group:fx.group,mods:fx.mods,notes:fx.notes,target:'self',weaponName:null,text:''}]"`:
+  expected Heal d8 +6; actual d8 +5 (unchanged). The Fine–Superior tiers look right only because of FINDING 1.
