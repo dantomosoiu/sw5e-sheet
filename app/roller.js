@@ -192,10 +192,14 @@ function buildRoll(m, spec, opts = {}) {
       // widen it only for their weapons.
       const seen = new Set();
       const wider = arr(m.effects).filter((e) => num(e.critRange) > 0 && (!e.critWeapons || e.critWeapons.includes(w.index)) && !seen.has(e.id) && seen.add(e.id));
-      const add = wider.reduce((t, e) => t + num(e.critRange), 0);
+      // The weapon's own keen property ("the critical hit range increases by an amount equal to the keen number"),
+      // unless a keen modification on it already counts it (its effect's critRange is the weapon's keen number).
+      const keen = wider.some((e) => e.keen) ? 0 : num((/\bkeen (\d+)/i.exec(propsText(w.properties)) || [])[1]);
+      const add = wider.reduce((t, e) => t + num(e.critRange), 0) + keen;
       const vers = /\bversatile \((\d*d\d+)\)/i.exec(propsText(w.properties));
       const atk = d20(`${w.name} attack`, num(w.attackBonus), `weapons.${a1}.attackBonus`, {
-        next: { spec: `damage|${a1}`, two: vers ? vers[1].replace(/^d/, '1d') : null }, critMin: Math.max(2, 20 - add), critFrom: wider.map((e) => e.name).join(' + '),
+        next: { spec: `damage|${a1}`, two: vers ? vers[1].replace(/^d/, '1d') : null }, critMin: Math.max(2, 20 - add),
+        critFrom: wider.map((e) => e.name).concat(keen ? [`keen ${keen}`] : []).join(' + '),
       });
       atk.conds.push(...resourceConds(m, 'attack', w));
       // A two-handed weapon with a shield equipped (W-149): say so before the roll.
