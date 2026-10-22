@@ -1,0 +1,1002 @@
+# Maasha Vaal (Panel)
+
+## Sent to the rules engine
+The sheet's engine computes the numbers. OUT OF DATE: SW5E's recorded calculation is for an older version of this character; record the case again (dev/regress-record.js) for dev/engine-check.js.
+tweaks.abilityScores.Charisma.savingThrowModifier.bonus = 3
+tweaks.abilityScores.Charisma.skills.Persuasion.bonus = 0
+tweaks.abilityScores.Charisma.skills.Persuasion.proficiency = "Proficient"
+tweaks.abilityScores.Constitution.savingThrowModifier.bonus = 3
+tweaks.abilityScores.Dexterity.savingThrowModifier.bonus = 3
+tweaks.abilityScores.Intelligence.savingThrowModifier.bonus = 3
+tweaks.abilityScores.Strength.savingThrowModifier.bonus = 3
+tweaks.abilityScores.Strength.skills.Athletics.bonus = 0
+tweaks.abilityScores.Strength.skills.Athletics.proficiency = "Proficient"
+tweaks.abilityScores.Wisdom.savingThrowModifier.bonus = 3
+tweaks.abilityScores.Wisdom.score.bonus = 1
+tweaks.abilityScores.Wisdom.skills.Insight.bonus = 0
+tweaks.abilityScores.Wisdom.skills.Insight.proficiency = "Proficient"
+tweaks.abilityScores.Wisdom.skills.Perception.bonus = 0
+tweaks.abilityScores.Wisdom.skills.Perception.proficiency = "Proficient"
+tweaks.abilityScores.Wisdom.skills.Survival.bonus = 0
+tweaks.abilityScores.Wisdom.skills.Survival.proficiency = "Proficient"
+tweaks.armorClass.bonus = 1
+equipment[1 Lightsaber].tweaks.toHit.bonus = 0
+equipment[1 Lightsaber].tweaks.toHit.proficiency = "proficient"
+equipment[8 Vibrodagger].tweaks.toHit.bonus = 0
+equipment[8 Vibrodagger].tweaks.toHit.proficiency = "proficient"
+equipped = [Mesh armor, Lightsaber, Light physical shield]
+
+## Numbers (the rules engine, with the sheet's edits)
+currentLevel = 4
+classText = "Guardian (Soresu Form) 4"
+proficiencyBonus = 2
+initiative = 1
+armorClass = 16
+armorList = ["Mesh armor", "Light physical shield"]
+passivePerception = 15
+vision = "normal"
+speed.base = "30 ft"
+speed.day = "24 miles"
+speed.hour = "3 miles"
+speed.special = ""
+hitPoints.hitDice[0].maximum = 4
+hitPoints.hitDice[0].size = "d10"
+hitPoints.maximum = 36
+abilityScores.Charisma.modifier = 0
+abilityScores.Charisma.savingThrow.modifier = 5
+abilityScores.Charisma.savingThrow.proficiency = "proficient"
+abilityScores.Charisma.skills[Deception].modifier = 0
+abilityScores.Charisma.skills[Deception].proficiency = "none"
+abilityScores.Charisma.skills[Intimidation].modifier = 0
+abilityScores.Charisma.skills[Intimidation].proficiency = "none"
+abilityScores.Charisma.skills[Performance].modifier = 0
+abilityScores.Charisma.skills[Performance].proficiency = "none"
+abilityScores.Charisma.skills[Persuasion].modifier = 2
+abilityScores.Charisma.skills[Persuasion].proficiency = "proficient"
+abilityScores.Charisma.value = 10
+abilityScores.Constitution.modifier = 2
+abilityScores.Constitution.savingThrow.modifier = 7
+abilityScores.Constitution.savingThrow.proficiency = "proficient"
+abilityScores.Constitution.skills = []
+abilityScores.Constitution.value = 14
+abilityScores.Dexterity.modifier = 1
+abilityScores.Dexterity.savingThrow.modifier = 4
+abilityScores.Dexterity.savingThrow.proficiency = "none"
+abilityScores.Dexterity.skills[Acrobatics].modifier = 1
+abilityScores.Dexterity.skills[Acrobatics].proficiency = "none"
+abilityScores.Dexterity.skills[Sleight of Hand].modifier = 1
+abilityScores.Dexterity.skills[Sleight of Hand].proficiency = "none"
+abilityScores.Dexterity.skills[Stealth].modifier = 1
+abilityScores.Dexterity.skills[Stealth].proficiency = "none"
+abilityScores.Dexterity.value = 12
+abilityScores.Intelligence.modifier = -1
+abilityScores.Intelligence.savingThrow.modifier = 2
+abilityScores.Intelligence.savingThrow.proficiency = "none"
+abilityScores.Intelligence.skills[Investigation].modifier = -1
+abilityScores.Intelligence.skills[Investigation].proficiency = "none"
+abilityScores.Intelligence.skills[Lore].modifier = -1
+abilityScores.Intelligence.skills[Lore].proficiency = "none"
+abilityScores.Intelligence.skills[Nature].modifier = -1
+abilityScores.Intelligence.skills[Nature].proficiency = "none"
+abilityScores.Intelligence.skills[Piloting].modifier = -1
+abilityScores.Intelligence.skills[Piloting].proficiency = "none"
+abilityScores.Intelligence.skills[Technology].modifier = -1
+abilityScores.Intelligence.skills[Technology].proficiency = "none"
+abilityScores.Intelligence.value = 8
+abilityScores.Strength.modifier = 4
+abilityScores.Strength.savingThrow.modifier = 7
+abilityScores.Strength.savingThrow.proficiency = "none"
+abilityScores.Strength.skills[Athletics].modifier = 6
+abilityScores.Strength.skills[Athletics].proficiency = "proficient"
+abilityScores.Strength.value = 18
+abilityScores.Wisdom.modifier = 3
+abilityScores.Wisdom.savingThrow.modifier = 6
+abilityScores.Wisdom.savingThrow.proficiency = "none"
+abilityScores.Wisdom.skills[Animal Handling].modifier = 3
+abilityScores.Wisdom.skills[Animal Handling].proficiency = "none"
+abilityScores.Wisdom.skills[Insight].modifier = 5
+abilityScores.Wisdom.skills[Insight].proficiency = "proficient"
+abilityScores.Wisdom.skills[Medicine].modifier = 3
+abilityScores.Wisdom.skills[Medicine].proficiency = "none"
+abilityScores.Wisdom.skills[Perception].modifier = 5
+abilityScores.Wisdom.skills[Perception].proficiency = "proficient"
+abilityScores.Wisdom.skills[Survival].modifier = 5
+abilityScores.Wisdom.skills[Survival].proficiency = "proficient"
+abilityScores.Wisdom.value = 16
+weapons[Lightsaber].ability = "Strength"
+weapons[Lightsaber].attackBonus = 6
+weapons[Lightsaber].damageBonus = 4
+weapons[Lightsaber].damageDieModifier = 0
+weapons[Lightsaber].damageDieType = 6
+weapons[Lightsaber].damageNumberOfDice = 1
+weapons[Lightsaber].damageType = "Energy"
+weapons[Lightsaber].equipped = true
+weapons[Lightsaber].index = 1
+weapons[Lightsaber].isCustom = false
+weapons[Lightsaber].properties = ["Hidden", "luminous", "versatile (2d4)"]
+weapons[Lightsaber].quantity = 1
+weapons[Lightsaber].tweaks.toHit.bonus = 0
+weapons[Lightsaber].tweaks.toHit.proficiency = "proficient"
+weapons[Lightsaber].weaponClassification = "SimpleLightweapon"
+weapons[Unarmed Strike].ability = "Strength"
+weapons[Unarmed Strike].attackBonus = 6
+weapons[Unarmed Strike].damageBonus = 5
+weapons[Unarmed Strike].damageDieType = 0
+weapons[Unarmed Strike].damageNumberOfDice = 1
+weapons[Unarmed Strike].damageType = "Kinetic"
+weapons[Unarmed Strike].equipped = true
+weapons[Unarmed Strike].index = -1
+weapons[Unarmed Strike].isCustom = false
+weapons[Unarmed Strike].properties = []
+weapons[Unarmed Strike].quantity = 0
+weapons[Unarmed Strike].weaponClassification = "Unarmed"
+attunement.hasAttunable = true
+attunement.maximum = 2
+carryingCapacity.encumbered = 90
+carryingCapacity.heavilyEncumbered = 180
+carryingCapacity.maxCapacity = 270
+carryingCapacity.pushDragLift = 540
+superiority = false
+techCasting = false
+forceCasting.darkAttackModifier = 2
+forceCasting.darkSaveDC = 10
+forceCasting.lightAttackModifier = 5
+forceCasting.lightSaveDC = 13
+forceCasting.maxPoints = 11
+forceCasting.maxPowerLevel = 1
+forceCasting.pointsUsed = 0
+forceCasting.universalAttackModifier = 5
+forceCasting.universalSaveDC = 13
+proficiencies[All lightweapons].type = "weapon"
+proficiencies[all vibroweapons].type = "weapon"
+proficiencies[Light armor].type = "armor"
+proficiencies[medium armor].type = "armor"
+proficiencies[Artificer's tools].type = "tool"
+skillAndSaveProficiencies = ["Athletics", "Insight", "Perception", "Survival", "Persuasion", "Constitution Saving Throws", "Charisma Saving Throws"]
+languages = ["Galactic Basic", "Togruti"]
+experiencePoints.isCorrect = true
+experiencePoints.nextLevel = 6500
+experiencePoints.previousLevel = 2700
+conditions = []
+exhaustion = 0
+forceCasting.powersKnown = [Heal, Heroism, Saber Reflect, Saber Ward, Guidance, Force Leap, Force Jump, Saber Throw, Sanctuary, Burst of Speed]
+
+## Effects and tweaks
+effect: Formfighting Dabbler (Jedi background feat): +1 to an ability of my choice · tweak
+effect: Togruta Wild Hunters: proficiency in Survival · tweak
+effect: Guardian class skill (2 of 2) · tweak
+effect: Jedi background skill (1 of 2) · tweak
+effect: Guardian class skill (1 of 2) · tweak
+effect: Jedi background skill (2 of 2) · tweak
+effect: Guardian weapon proficiencies · feature
+effect: Bonus Proficiencies · feature
+effect: Aura of Presence · feature
+effect: Investigative Attunement · feature
+effect: Montral Reception · feature
+effect: Wild Hunters · feature
+effect: Defense Style · feature
+effect: Jensaarai Armor · item
+tweak: abilityScores.Wisdom.score +1 · Formfighting Dabbler (Jedi background feat): +1 to an ability of my choice
+tweak: abilityScores.Wisdom.skills.Survival +0 {"proficiency":"Proficient"} · Togruta Wild Hunters: proficiency in Survival
+tweak: abilityScores.Wisdom.skills.Perception +0 {"proficiency":"Proficient"} · Guardian class skill (2 of 2)
+tweak: abilityScores.Wisdom.skills.Insight +0 {"proficiency":"Proficient"} · Jedi background skill (1 of 2)
+tweak: abilityScores.Strength.skills.Athletics +0 {"proficiency":"Proficient"} · Guardian class skill (1 of 2)
+tweak: abilityScores.Charisma.skills.Persuasion +0 {"proficiency":"Proficient"} · Jedi background skill (2 of 2)
+tweak: abilityScores.Strength.savingThrowModifier +3 · Aura of Presence
+tweak: abilityScores.Dexterity.savingThrowModifier +3 · Aura of Presence
+tweak: abilityScores.Constitution.savingThrowModifier +3 · Aura of Presence
+tweak: abilityScores.Intelligence.savingThrowModifier +3 · Aura of Presence
+tweak: abilityScores.Wisdom.savingThrowModifier +3 · Aura of Presence
+tweak: abilityScores.Charisma.savingThrowModifier +3 · Aura of Presence
+tweak: attunement.maximum +1 · Investigative Attunement
+tweak: abilityScores.Wisdom.skills.Survival +0 {"proficiency":"Proficient"} · Wild Hunters
+tweak: armorClass +1 · Jensaarai Armor
+weapon tweak: #1 toHit +0 · Guardian weapon proficiencies
+weapon tweak: #8 toHit +0 · Guardian weapon proficiencies
+
+## Rolls
+init: Initiative: d20 +1 · = +1 modifier
+death: Death saving throw: d20 +0
+hitdie|d10: Hit die (d10): d10 +2 · = +2 per die
+dice|2d8: 2d8: d8 d8 +0
+check|Strength: Strength check: d20 +4 · = +4 modifier
+save|Strength: Strength saving throw: d20 +7 · = +7 modifier
+skill|Strength|0: Athletics (STR): d20 +6 · = +6 modifier
+check|Dexterity: Dexterity check: d20 +1 · = +1 modifier
+save|Dexterity: Dexterity saving throw: d20 +4 · = +4 modifier
+skill|Dexterity|0: Acrobatics (DEX): d20 +1 · = +1 modifier
+skill|Dexterity|1: Sleight of Hand (DEX): d20 +1 · = +1 modifier
+skill|Dexterity|2: Stealth (DEX): d20 +1 · = +1 modifier
+check|Constitution: Constitution check: d20 +2 · = +2 modifier
+save|Constitution: Constitution saving throw: d20 +7 · = +7 modifier
+check|Intelligence: Intelligence check: d20 −1 · = −1 modifier
+save|Intelligence: Intelligence saving throw: d20 +2 · = +2 modifier
+skill|Intelligence|0: Investigation (INT): d20 −1 · = −1 modifier
+skill|Intelligence|1: Lore (INT): d20 −1 · = −1 modifier
+skill|Intelligence|2: Nature (INT): d20 −1 · = −1 modifier
+skill|Intelligence|3: Piloting (INT): d20 −1 · = −1 modifier
+skill|Intelligence|4: Technology (INT): d20 −1 · = −1 modifier
+check|Wisdom: Wisdom check: d20 +3 · = +3 modifier
+save|Wisdom: Wisdom saving throw: d20 +6 · = +6 modifier
+skill|Wisdom|0: Animal Handling (WIS): d20 +3 · = +3 modifier
+skill|Wisdom|1: Insight (WIS): d20 +5 · = +5 modifier
+skill|Wisdom|2: Medicine (WIS): d20 +3 · = +3 modifier
+skill|Wisdom|3: Perception (WIS): d20 +5 · = +5 modifier
+skill|Wisdom|4: Survival (WIS): d20 +5 · = +5 modifier
+check|Charisma: Charisma check: d20 +0 · = +0 modifier
+save|Charisma: Charisma saving throw: d20 +5 · = +5 modifier
+skill|Charisma|0: Deception (CHA): d20 +0 · = +0 modifier
+skill|Charisma|1: Intimidation (CHA): d20 +0 · = +0 modifier
+skill|Charisma|2: Performance (CHA): d20 +0 · = +0 modifier
+skill|Charisma|3: Persuasion (CHA): d20 +2 · = +2 modifier
+attack|0: Lightsaber attack: d20 +6 · = +6 modifier · two-handed: 2d4
+damage|0: Lightsaber damage: d6 +4 · = +4 STR modifier · Energy · option: Force-Empowered Strikes +1d8 +1d8 · option: Force-Empowered Strikes +2d8 +2d8
+attack|1: Unarmed Strike attack: d20 +6 · = +6 modifier
+damage|1: Unarmed Strike damage: no dice +5 · = +1 unarmed strike +4 STR modifier · Kinetic · option: Force-Empowered Strikes +1d8 +1d8 · option: Force-Empowered Strikes +2d8 +2d8
+force|light: Light force attack: d20 +5 · = +5 modifier
+force|dark: Dark force attack: d20 +2 · = +2 modifier
+force|universal: Universal force attack: d20 +5 · = +5 modifier
+pdmg|force|Saber Reflect|0|0: Saber Reflect: damage reduction: d6 +0
+pdmg|force|Heal|1|0: Heal: healing: d8 +3 · = +3 casting modifier
+tool|Artificer's tools|proficient: Artificer's tools check: d20 +1 · = −1 INT modifier +2 proficiency
+damage|0|crit: Lightsaber damage (critical): d6 d6 +4 · = +4 STR modifier · Energy · critical · option: Force-Empowered Strikes +1d8 +1d8 · option: Force-Empowered Strikes +2d8 +2d8
+damage|1|crit: Unarmed Strike damage (critical): no dice +5 · = +1 unarmed strike +4 STR modifier · Kinetic · critical · option: Force-Empowered Strikes +1d8 +1d8 · option: Force-Empowered Strikes +2d8 +2d8
+damage|0||two: Lightsaber damage (two-handed): d4 d4 +4 · = +4 STR modifier · Energy · option: Force-Empowered Strikes +1d8 +1d8 · option: Force-Empowered Strikes +2d8 +2d8
+
+## Sheet: Overview
+Maasha Vaal (Panel)
+Togruta · Guardian (Soresu Form) 4
+Level 4 Background: Jedi Lawful Light Proficiency +2 [Add a picture]
+2,700 XP level 5 at 6,500 (3,800 to go)
+Still to choose (5): Guardian skills (2 more) · background skills (2 more) · background languages · Formfighting Dabbler: +1 · Investigative Attunement: +1
+
+## Sheet: Combat & Vitals
+Armor Class
+16
+  ↳ hover armorClass: Without tweaks or effects: 15 → now 16 / +1 AC · Jensaarai Armor while attuned
+Mesh armor, Light physical shield
+Hit Points
+34 / 36
+No temporary HP
+Initiative
++1
+Speed
+30 ft
+3 miles/hour · 24 miles/day
+Proficiency
++2
+Passive Perception
+15
+  ↳ hover passivePerception: Without tweaks or effects: 12 → now 15 / +1 Wisdom score · Formfighting Dabbler (Jedi background feat): +1 to an ability of my choice t… [226 chars #3cabdafa]
+Hit Dice
+4/4d10
++2 per die spent (Con)
+Vision
+Normal
+Play tracker
+[] [untyped ▾] [Damage] [Heal] [Temp HP]
+Death saves ✓ [] [] [] ✗ [] [] [] [Roll]
+Force points 11 / 11 [−] [+]
+Hit dice (d10) roll d10 +2, then Heal 4 / 4 [−] [+]
+Channel the Force short rest 1 / 2 [−] [+]
+The Way of the Mynock long rest 0 / 1 [−] [+]
+Start or end
+[Start The Way of the Mynock]
+[Mark a target (Defense)]
+[Adopt Shien Form]
+Form rules
+Lightsaber forms (PHB chapter 6): each form you know can be adopted on your turn by using your bonus action, and adopting one replaces the form you were in. Wha… [422 chars #a55c1a59]
+[Adopt Soresu Form]
+Form rules
+Lightsaber forms (PHB chapter 6): each form you know can be adopted on your turn by using your bonus action, and adopting one replaces the form you were in. Wha… [422 chars #a55c1a59]
+Conditions None [Add a condition… ▾]
+Combat [Start combat]
+[☆ Inspiration] Exhaustion [−] 0 [+]
+[Short rest] [Long rest] HP and uses: saved here, not on sw5e.com yet. [Sync to SW5E] [Use sw5e.com's values]
+Class dice
+Focused Strikes 2d8
+Defenses & senses
+Advantages Advantage on Strength checks and Strength saving throws to avoid being moved
+Senses Tremorsense 30 ft
+Effects
+From class features, feats and species traits (7)
+Guardian weapon proficiencies Proficient: All lightweapons Proficient: all vibroweapons Guardian proficiencies
+Bonus Proficiencies Proficient: heavy armor Soresu Form feature
+Aura of Presence STR save + WIS DEX save + WIS CON save + WIS INT save + WIS WIS save + WIS CHA save + WIS Guardian Auras feature
+Investigative Attunement Attunement +1 feat
+Montral Reception Tremorsense 30 ft Togruta trait
+Wild Hunters Survival: proficient Togruta trait
+Defense Style Advantage on Strength checks and Strength saving throws to avoid being moved Fighting style
+From equipment
+Jensaarai Armor AC +1 AC +1 (with Jensaarai Cloak): not yet AC +1 (with Jensaarai Cloak and Jensaarai Headgear): not yet while attuned
+While wearing this armor, you are considered proficient regardless of whether or not you have proficiency in medium armor.
+Temporary
+No temporary effects.
+[]
+Your own effect (something the sheet doesn't know)…
+[] [] [No number (a reminder) ▾] [] [Add]
+It's applied like any effect (a dice bonus like Bless's d4 isn't a number: add it in the roller), and ends with End, a rest or Next round when it has run out.
+Bonuses are applied to the sheet's numbers in this browser only (not saved to SW5E); changed numbers are underlined: hover or tap them for details. Conditional … [256 chars #e163e104]
+Conditions
+None active (from SW5E)
+Carrying capacity
+Carried
+50.75 lb
+Unencumbered (variant rule)
+Encumbered at
+90 lb
+Heavily enc. at
+180 lb
+Max capacity
+270 lb
+Push / drag / lift
+540 lb
+
+## Sheet: Abilities & Saving Throws
+STR
+Strength
++4
+18
+(Not proficient) Saving throw+7
+  ↳ hover abilityScores.Strength.savingThrow.modifier: Without tweaks or effects: 4 → now 7 / +3 STR save + WIS · Aura of Presence Guardian Auras feature
+(Proficient) Athletics+6
+  ↳ hover abilityScores.Strength.skills.0.modifier: Without tweaks or effects: 4 → now 6 / Proficient Athletics · Guardian class skill (1 of 2) tweak
+base 15 · +1 Togruta · +2 ASI (Guardian 4)
+DEX
+Dexterity
++1
+12
+(Not proficient) Saving throw+4
+  ↳ hover abilityScores.Dexterity.savingThrow.modifier: Without tweaks or effects: 1 → now 4 / +3 DEX save + WIS · Aura of Presence Guardian Auras feature
+(Not proficient) Acrobatics+1
+(Not proficient) Sleight of Hand+1
+(Not proficient) Stealth+1
+base 12
+CON
+Constitution
++2
+14
+(Proficient) Saving throw+7
+  ↳ hover abilityScores.Constitution.savingThrow.modifier: Without tweaks or effects: 4 → now 7 / +3 CON save + WIS · Aura of Presence Guardian Auras feature
+base 14
+INT
+Intelligence
+−1
+8
+(Not proficient) Saving throw+2
+  ↳ hover abilityScores.Intelligence.savingThrow.modifier: Without tweaks or effects: -1 → now 2 / +3 INT save + WIS · Aura of Presence Guardian Auras feature
+(Not proficient) Investigation−1
+(Not proficient) Lore−1
+(Not proficient) Nature−1
+(Not proficient) Piloting−1
+(Not proficient) Technology−1
+base 8
+WIS
+Wisdom
++3
+  ↳ hover abilityScores.Wisdom.modifier: Without tweaks or effects: 2 → now 3 / +1 Wisdom score · Formfighting Dabbler (Jedi background feat): +1 to an ability of my choice tweak
+16
+  ↳ hover abilityScores.Wisdom.value: Without tweaks or effects: 15 → now 16 / +1 Wisdom score · Formfighting Dabbler (Jedi background feat): +1 to an ability of my choice tweak
+(Not proficient) Saving throw+6
+  ↳ hover abilityScores.Wisdom.savingThrow.modifier: Without tweaks or effects: 2 → now 6 / +1 Wisdom score · Formfighting Dabbler (Jedi background feat): +1 to an … [248 chars #5168a888]
+(Not proficient) Animal Handling+3
+  ↳ hover abilityScores.Wisdom.skills.0.modifier: Without tweaks or effects: 2 → now 3 / +1 Wisdom score · Formfighting Dabbler (Jedi background feat): +1 to an ability of my choice tweak
+(Proficient) Insight+5
+  ↳ hover abilityScores.Wisdom.skills.1.modifier: Without tweaks or effects: 2 → now 5 / +1 Wisdom score · Formfighting Dabbler (Jedi background feat): +1 to an abi… [243 chars #6b810d8a]
+(Not proficient) Medicine+3
+  ↳ hover abilityScores.Wisdom.skills.2.modifier: Without tweaks or effects: 2 → now 3 / +1 Wisdom score · Formfighting Dabbler (Jedi background feat): +1 to an ability of my choice tweak
+(Proficient) Perception+5
+  ↳ hover abilityScores.Wisdom.skills.3.modifier: Without tweaks or effects: 2 → now 5 / +1 Wisdom score · Formfighting Dabbler (Jedi background feat): +1 to an abi… [245 chars #94c071aa]
+(Proficient) Survival+5
+  ↳ hover abilityScores.Wisdom.skills.4.modifier: Without tweaks or effects: 2 → now 5 / +1 Wisdom score · Formfighting Dabbler (Jedi background feat): +1 to an abi… [322 chars #8a3ba6b8]
+base 13 · +2 Togruta · +1 from Formfighting Dabbler (Jedi background feat): +1 to an ability of my choice (tweak)
+CHA
+Charisma
++0
+10
+(Proficient) Saving throw+5
+  ↳ hover abilityScores.Charisma.savingThrow.modifier: Without tweaks or effects: 2 → now 5 / +3 CHA save + WIS · Aura of Presence Guardian Auras feature
+(Not proficient) Deception+0
+(Not proficient) Intimidation+0
+(Not proficient) Performance+0
+(Proficient) Persuasion+2
+  ↳ hover abilityScores.Charisma.skills.3.modifier: Without tweaks or effects: 0 → now 2 / Proficient Persuasion · Jedi background skill (2 of 2) tweak
+base 10
+not proficient proficient expertise
+
+## Sheet: Skills
+Skill | Ability | Bonus | Passive | Proficiency |
+(Not proficient) Acrobatics | DEX | +1 | 11 | — |
+(Not proficient) Animal Handling | WIS | +3 | 13 | — |
+  ↳ hover abilityScores.Wisdom.skills.0.modifier: Without tweaks or effects: 2 → now 3 / +1 Wisdom score · Formfighting Dabbler (Jedi background feat): +1 to an ability of my choice tweak
+  ↳ hover abilityScores.Wisdom.skills.0.modifier: Without tweaks or effects: 2 → now 3 / +1 Wisdom score · Formfighting Dabbler (Jedi background feat): +1 to an ability of my choice tweak
+(Proficient) Athletics | STR | +6 | 16 | Proficient |
+  ↳ hover abilityScores.Strength.skills.0.modifier: Without tweaks or effects: 4 → now 6 / Proficient Athletics · Guardian class skill (1 of 2) tweak
+  ↳ hover abilityScores.Strength.skills.0.modifier: Without tweaks or effects: 4 → now 6 / Proficient Athletics · Guardian class skill (1 of 2) tweak
+(Not proficient) Deception | CHA | +0 | 10 | — |
+(Proficient) Insight | WIS | +5 | 15 | Proficient |
+  ↳ hover abilityScores.Wisdom.skills.1.modifier: Without tweaks or effects: 2 → now 5 / +1 Wisdom score · Formfighting Dabbler (Jedi background feat): +1 to an abi… [243 chars #6b810d8a]
+  ↳ hover abilityScores.Wisdom.skills.1.modifier: Without tweaks or effects: 2 → now 5 / +1 Wisdom score · Formfighting Dabbler (Jedi background feat): +1 to an abi… [243 chars #6b810d8a]
+(Not proficient) Intimidation | CHA | +0 | 10 | — |
+(Not proficient) Investigation | INT | −1 | 9 | — |
+(Not proficient) Lore | INT | −1 | 9 | — |
+(Not proficient) Medicine | WIS | +3 | 13 | — |
+  ↳ hover abilityScores.Wisdom.skills.2.modifier: Without tweaks or effects: 2 → now 3 / +1 Wisdom score · Formfighting Dabbler (Jedi background feat): +1 to an ability of my choice tweak
+  ↳ hover abilityScores.Wisdom.skills.2.modifier: Without tweaks or effects: 2 → now 3 / +1 Wisdom score · Formfighting Dabbler (Jedi background feat): +1 to an ability of my choice tweak
+(Not proficient) Nature | INT | −1 | 9 | — |
+(Proficient) Perception | WIS | +5 | 15 | Proficient |
+  ↳ hover abilityScores.Wisdom.skills.3.modifier: Without tweaks or effects: 2 → now 5 / +1 Wisdom score · Formfighting Dabbler (Jedi background feat): +1 to an abi… [245 chars #94c071aa]
+  ↳ hover passivePerception: Without tweaks or effects: 12 → now 15 / +1 Wisdom score · Formfighting Dabbler (Jedi background feat): +1 to an ability of my choice t… [226 chars #3cabdafa]
+(Not proficient) Performance | CHA | +0 | 10 | — |
+(Proficient) Persuasion | CHA | +2 | 12 | Proficient |
+  ↳ hover abilityScores.Charisma.skills.3.modifier: Without tweaks or effects: 0 → now 2 / Proficient Persuasion · Jedi background skill (2 of 2) tweak
+  ↳ hover abilityScores.Charisma.skills.3.modifier: Without tweaks or effects: 0 → now 2 / Proficient Persuasion · Jedi background skill (2 of 2) tweak
+(Not proficient) Piloting | INT | −1 | 9 | — |
+(Not proficient) Sleight of Hand | DEX | +1 | 11 | — |
+(Not proficient) Stealth | DEX | +1 | 11 | — |
+(Proficient) Survival | WIS | +5 | 15 | Proficient |
+  ↳ hover abilityScores.Wisdom.skills.4.modifier: Without tweaks or effects: 2 → now 5 / +1 Wisdom score · Formfighting Dabbler (Jedi background feat): +1 to an abi… [322 chars #8a3ba6b8]
+  ↳ hover abilityScores.Wisdom.skills.4.modifier: Without tweaks or effects: 2 → now 5 / +1 Wisdom score · Formfighting Dabbler (Jedi background feat): +1 to an abi… [322 chars #8a3ba6b8]
+(Not proficient) Technology | INT | −1 | 9 | — |
+
+## Sheet: Weapons & Attacks
+Weapon | To hit | Damage | Ability | Type | Properties |
+Lightsaber
+Hidden, luminous, versatile (2d4)
+| +6 | 1d6+4 Energy | Strength | Simple Lightweapon | Hidden, luminous, versatile (2d4) |
+Unarmed Strike
+| +6 | 5 Kinetic | Strength | Unarmed | — |
+
+## Sheet: Force Casting
+Force points
+11 / 11
+  ↳ hover forceCasting.maxPoints: Without tweaks or effects: 10 → now 11 / +1 Wisdom score · Formfighting Dabbler (Jedi background feat): +1 to an ability of my choice tweak
+Max power level
+1
+Light side
+DC 13
+  ↳ hover forceCasting.lightSaveDC: Without tweaks or effects: 12 → now 13 / +1 Wisdom score · Formfighting Dabbler (Jedi background feat): +1 to an ability of my choice tweak
+attack +5
+  ↳ hover forceCasting.lightAttackModifier: Without tweaks or effects: 4 → now 5 / +1 Wisdom score · Formfighting Dabbler (Jedi background feat): +1 to an ability of my choice tweak
+Dark side
+DC 10
+attack +2
+Universal
+DC 13
+  ↳ hover forceCasting.universalSaveDC: Without tweaks or effects: 12 → now 13 / +1 Wisdom score · Formfighting Dabbler (Jedi background feat): +1 to an ability of my choice tweak
+attack +5
+  ↳ hover forceCasting.universalAttackModifier: Without tweaks or effects: 4 → now 5 / +1 Wisdom score · Formfighting Dabbler (Jedi background feat): +1 to an ability of my choice tweak
+At-will powers (5)
+Force Leap Universal Guardian
+[Cast]
+Casting 1 bonus action Range Self Duration 1 round Source PHB
+Until the end of your next turn, you can use your forcecasting ability score instead of your Strength score when you jump, and always count as having made a running start before jumping.
+Guidance Light Concentration Guardian
+[Cast]
+Casting 1 action Range Touch Duration up to 1 minute Source PHB
+You touch one willing creature. Once before the power ends, the target can roll a d4 and add the number rolled to one ability check of its choice. The power then ends.
+This power's die increases at higher levels: to a d6 at 5th level, a d8 at 11th level, and a d10 at 17th level.
+Saber Reflect Universal Guardian
+[Cast]
+Attack +5 · Reduction 1d6
+Casting 1 reaction, which you take in response to being dealt damage by a ranged attack Range Self Duration Instantaneous Source PHB
+In response to being attacked, you raise your weapon to attempt to deflect. When you use this power, the damage you take from the attack is reduced by 1d6. If y… [535 chars #719c2600]
+The power's damage reduction increases by 1d6 when you reach 5th level (2d6), 11th level (3d6), and 17th level (4d6).
+Saber Throw Universal Guardian
+Attack +5
+Casting 1 action Range 30 feet Duration Instantaneous Source PHB
+As a part of the action used to cast this power, you must make a ranged force attack with a lightweapon or vibroweapon against one target within the power's ran… [319 chars #ce95991f]
+This power can hit multiple targets when you reach higher levels: two targets at 5th level, three targets at 11th level, and four targets at 17th level. Each ta… [385 chars #e441b97e]
+Saber Ward Universal Guardian
+[Cast]
+Casting 1 action Range Self Duration 1 round Source PHB
+You take a defensive stance. Until the end of your next turn, you have resistance against kinetic, energy, and ion damage dealt by weapons.
+1st-level powers (5)
+Burst of Speed Universal Guardian
+[1st level · 2 points ▾] [Cast]
+Casting 1 action Range Touch Duration 1 hour Source PHB
+You touch a creature. The target's speed increases by 10 feet until the power ends.
+Force Potency. When you cast this power using a force slot of 2nd level or higher, you can target one additional creature for each slot level above 1st.
+Force Jump Universal Prereq: Force Leap Guardian
+[1st level · 2 points ▾] [Cast]
+Casting 1 action Range Self Duration Instantaneous Source PHB
+Using the Force to augment the strength in your legs, you leap up to 30 feet to an unoccupied space you can see, provided you have a direct path to the space.
+Force Potency. When you cast this power using a force slot of 2nd level or higher, your jump distance increases by 5 feet for each slot level above 1st.
+Heal Light Guardian
+[1st level · 2 points ▾] [Cast]
+Healing 1d8+3
+Casting 1 action Range Touch Duration Instantaneous Source PHB
+A creature you touch regains a number of hit points equal to 1d8 + your forcecasting ability modifier. This power has no effect on droids or constructs.
+Force Potency. When you cast this power using a force slot of 2nd level or higher, the healing increases by 1d8 for each slot level above 1st.
+Heroism Light Concentration Guardian
+[1st level · 2 points ▾] [Cast]
+Casting 1 action Range Touch Duration up to 1 minute Source PHB
+A willing creature you touch is imbued with bravery. Until the power ends, the creature is immune to being frightened and gains temporary hit points equal to yo… [367 chars #1056666d]
+Force Potency. When you cast this power using a force slot of 2nd level or higher, you can target one additional creature for each slot level above 1st.
+Sanctuary Light Guardian
+[1st level · 2 points ▾] [Cast]
+Wisdom save DC 13
+Casting 1 bonus action Range 30 feet Duration 1 minute Source PHB
+Until the power ends, any creature who targets the warded creature with an attack, a harmful power, or a hostile action must first make a Wisdom saving throw. O… [309 chars #5be8bffc]
+If the warded creature makes an attack, casts a power that affects an enemy creature, or takes a hostile action this power ends.
+
+## Sheet: Class Features
+Guardian (7)
+Channel the Force Level 1
+Uses (back on a short or long rest) 1 / 2 [−] [+]
+[Use Lend Aid] [Use Advancing Defender]
+Guardian: 1st level
+You know how to channel the Force to create a unique effect. You start with your choice of one from two such effects: Cause Harm or Lend Aid. At 3rd level, your… [280 chars #1a6d2428]
+Some Channel the Force effects require saving throws. When you use such an effect from this class, the DC equals your universal force save DC.
+You can use this feature twice. You gain an additional use at 5th, 9th, 13th, and 17th level. You regain all expended uses when you finish a short or long rest.
+Cause Harm
+As an action, you can expend a use of your Channel the Force to sap the life from a hostile creature you can see within 60 feet. That creature must make a Const… [342 chars #5ac7384b]
+Lend Aid
+As a bonus action, you can expend a use of your Channel the Force and touch a beast or humanoid within 5 feet of you. That creature regains hit points equal to … [474 chars #c83fcb87]
+Choose one 1 / 1
+Lend Aid [×]
+Notes []
+Forcecasting Level 1
+Guardian: 1st level
+In your meditations on the Force, you have learned powers, fragments of knowledge that imbue you with an abiding force ability. See chapter 10 for the general r… [222 chars #8d3510d0]
+Force Powers Known
+You learn 5 force powers of your choice, and you learn more at higher levels, as shown in the Force Powers Known column of the guardian table. You may not learn… [296 chars #3b39ed88]
+Force Points
+You have a number of force points equal to your guardian level x 2, as shown in the Force Points column of the guardian table, + your Wisdom or Charisma modifie… [291 chars #4e2e08d3]
+Max Power Level
+Many force powers can be overpowered, consuming more force points to create a greater effect. You can overpower these abilities to a maximum level, which increa… [243 chars #66479344]
+You may only cast force powers at 4th and 5th-level once. You regain the ability to do so after a long rest.
+Forcecasting Ability
+Your forcecasting ability varies based on the alignment of the powers you cast. You use Wisdom for light side powers, Charisma for dark side powers, and Wisdom … [427 chars #7389ec1d]
+Force save DC = 8 + your proficiency bonus + your forcecasting ability modifier
+Force attack modifier = your proficiency bonus + your forcecasting ability modifier
+Your choices []
+Fighting Style Level 2
+Guardian: 2nd level
+You adopt a particular style of fighting as your specialty. Choose one of the fighting style options, detailed in Chapter 6.
+Chosen: Defense Style · change it in Classes & Progression
+Notes []
+Force-Empowered Strikes Level 2
+Guardian: 2nd level
+When you hit a creature with a melee weapon attack, you can expend force points to deal additional damage to the target, which is the same type as the weapon's … [343 chars #717b2b93]
+Notes []
+Guardian Aura Level 3
+Guardian: 3rd level
+You gain an aura of your choice, as detailed at the end of the class description, and you gain more at higher levels, as shown in the Auras Known column of the … [301 chars #fca1850f]
+Your choices []
+Guardian Focus Level 3
+Guardian: 3rd, 7th, 15th, and 20th level
+You begin to focus your studies on a specific lightsaber form, which is detailed at the end of the class description.
+Chosen: Soresu Form · change it in Classes & Progression
+Notes []
+Ability Score Improvement Level 4
+Guardian: 4th, 8th, 12th, 16th, and 19th level
+You can increase one ability score by 2, or you can increase two ability scores by 1. You can't increase an ability score above 20 using this feature.
+Notes []
+Soresu Form (archetype) (4)
+Bonus Proficiencies Level 3
+Soresu Form: 3rd level
+You gain proficiency in heavy armor.
+Notes []
+Channel the Force Level 3
+Uses (back on a short or long rest) 1 / 2 [−] [+]
+Soresu Form: 3rd level
+You gain the following Channel the Force option.
+Advancing Defender
+When you cast the saber reflect power, you can expend a use of your Channel the Force to move up to 10 feet as a part of that same reaction. This movement does not provoke opportunity attacks.
+Notes [Lend Aid]
+Form Basics Level 3
+Soresu Form: 3rd level
+You gain the Soresu lightsaber form, detailed in Chapter 6. If you already know this form, you can instead choose another lightsaber form.
+Chosen: Shien Form · change it in Classes & Progression
+Notes []
+The Way of the Mynock Level 3
+Uses (back on a long rest) 0 / 1 [−] [+]
+[Start The Way of the Mynock]
+Soresu Form: 3rd level
+As a bonus action, you can enter a defensive stance for one minute. As a part of this bonus action, and as a bonus action on each of your turns, you can cast th… [327 chars #0a66023f]
+This effect ends early if you are incapacitated or die. Once you've used this feature, you can't use it again until you finish a long rest.
+Notes []
+Guardian: Guardian Auras (1)
+Aura of Presence
+Whenever you or a friendly creature within 5 feet of you must make a saving throw, the creature can add your Wisdom modifier to the saving throw.
+Fighting styles (1)
+Defense Style Guardian: Fighting Style
+[Mark a target (Defense)]
+You are skilled at the art of defending yourself. You gain the following benefits:
+While you are wearing medium or heavy armor with which you are proficient, you can use your bonus action to mark a target within 30 feet that you can see until … [492 chars #19aa7073]
+You have advantage on Strength checks and Strength saving throws to avoid being moved.
+Lightsaber forms (2)
+Shien Form Soresu Form: Form Basics
+[Adopt Shien Form]
+Form rules
+Lightsaber forms (PHB chapter 6): each form you know can be adopted on your turn by using your bonus action, and adopting one replaces the form you were in. Wha… [422 chars #a55c1a59]
+Before the end of your next turn, you can add half your Wisdom or Charisma modifier (your choice, minimum of +1) to your AC against one attack.
+Soresu Form Feat: Formfighting Dabbler (Background (Jedi))
+[Adopt Soresu Form]
+Form rules
+Lightsaber forms (PHB chapter 6): each form you know can be adopted on your turn by using your bonus action, and adopting one replaces the form you were in. Wha… [422 chars #a55c1a59]
+The first time you take kinetic, energy, or ion damage from a weapon before the end of your next turn, that damage is reduced by half.
+
+## Sheet: Feats
+Choices from your feats
+Lightsaber form 1 / 1 Feat: Formfighting Dabbler (Background (Jedi))
+Form rules
+Lightsaber forms (PHB chapter 6): each form you know can be adopted on your turn by using your bonus action, and adopting one replaces the form you were in. Wha… [422 chars #a55c1a59]
+Soresu Form [×]
+[]
+The first time you take kinetic, energy, or ion damage from a weapon before the end of your next turn, that damage is reduced by half.
+Feat ability increases
+Investigative Attunement: +1 to 0 / 1 Guardian ASI #2
+None chosen yet.
+[Choose an ability… ▾]
+Investigative Attunement Guardian ASI #2+1 to any ability Prereq: 4th level
+You've spent a significant amount of time appraising and testing enhanced items. You gain the following benefits:
+Increase an ability score of your choice by 1, to a maximum of 20.
+Your maximum attunement increases by 1.
+You have advantage on ability checks made to identify items.
+Once per long rest, you can choose one object that you must touch for 10 minutes. If it is an enhanced or modified item, you learn its properties and how to use… [383 chars #5a8976c4]
+Your choices []
+Formfighting Dabbler Background (Jedi)+1 to any ability Prereq: The ability to cast force powers
+You've dabbled in the basics of the known forms of lightsaber combat. You gain the following benefits:
+Increase an ability score of your choice by 1, to a maximum of 20.
+You learn one lightsaber form, detailed later in this chapter. If you already know at least one lightsaber form, you instead learn three lightsaber forms. If yo… [339 chars #b47641a0]
+Notes []
+
+## Sheet: Classes & Progression
+[Level up]
+Guardian 4 Soresu Form Starting class Force caster
+Hit die d10 Primary Strength Saves Constitution, Charisma HP by level 10 (max), 6, 6, 6
+Force-wielder specializing in melee combat
+Ability score improvements
+Ability Score Improvement: Strength +2 Feat: Investigative Attunement
+Skill proficiencies 0 / 2 Choose two from Acrobatics, Athletics, Deception, Insight, Intimidation, Lore, Perception, Persuasion, and Piloting
+None chosen yet.
+[Choose a skill… ▾]
+Archetype [Soresu Form ▾]
+Read the options (14)
+The Guardian archetypes named after forms ("Shien/Djem So Form") are guardian paths: they give their own features. The lightsaber forms you adopt in a fight (Dj… [262 chars #53e2edb8]
+Force powers 10 / 10 Guardian table · max power level 1
+Force Leap at-will · Universal [×]
+Until the end of your next turn, you can use your forcecasting ability score instead of your Strength score when you jump, and always count as having made a running start before jumping.
+Guidance at-will · Light [×]
+You touch one willing creature. Once before the power ends, the target can roll a d4 and add the number rolled to one ability check of its choice. The power then ends.
+This power's die increases at higher levels: to a d6 at 5th level, a d8 at 11th level, and a d10 at 17th level.
+Saber Reflect at-will · Universal [×]
+In response to being attacked, you raise your weapon to attempt to deflect. When you use this power, the damage you take from the attack is reduced by 1d6. If y… [535 chars #719c2600]
+The power's damage reduction increases by 1d6 when you reach 5th level (2d6), 11th level (3d6), and 17th level (4d6).
+Saber Throw at-will · Universal [×]
+As a part of the action used to cast this power, you must make a ranged force attack with a lightweapon or vibroweapon against one target within the power's ran… [319 chars #ce95991f]
+This power can hit multiple targets when you reach higher levels: two targets at 5th level, three targets at 11th level, and four targets at 17th level. Each ta… [385 chars #e441b97e]
+Saber Ward at-will · Universal [×]
+You take a defensive stance. Until the end of your next turn, you have resistance against kinetic, energy, and ion damage dealt by weapons.
+Burst of Speed 1st level · Universal [×]
+You touch a creature. The target's speed increases by 10 feet until the power ends.
+Force Potency. When you cast this power using a force slot of 2nd level or higher, you can target one additional creature for each slot level above 1st.
+Force Jump 1st level · Universal [×]
+Prerequisite: Force Leap
+Using the Force to augment the strength in your legs, you leap up to 30 feet to an unoccupied space you can see, provided you have a direct path to the space.
+Force Potency. When you cast this power using a force slot of 2nd level or higher, your jump distance increases by 5 feet for each slot level above 1st.
+Heal 1st level · Light [×]
+A creature you touch regains a number of hit points equal to 1d8 + your forcecasting ability modifier. This power has no effect on droids or constructs.
+Force Potency. When you cast this power using a force slot of 2nd level or higher, the healing increases by 1d8 for each slot level above 1st.
+Heroism 1st level · Light [×]
+A willing creature you touch is imbued with bravery. Until the power ends, the creature is immune to being frightened and gains temporary hit points equal to yo… [367 chars #1056666d]
+Force Potency. When you cast this power using a force slot of 2nd level or higher, you can target one additional creature for each slot level above 1st.
+Sanctuary 1st level · Light [×]
+Until the power ends, any creature who targets the warded creature with an attack, a harmful power, or a hostile action must first make a Wisdom saving throw. O… [309 chars #5be8bffc]
+If the warded creature makes an attack, casts a power that affects an enemy creature, or takes a hostile action this power ends.
+[Learn a force power… ▾]
+Read the options (74)
+Guardian Auras 1 / 1 from the Guardian table (“Auras Known”)
+Aura of Presence [×]
+Whenever you or a friendly creature within 5 feet of you must make a saving throw, the creature can add your Wisdom modifier to the saving throw.
+[Add from Guardian Auras… ▾]
+Read the options (6)
+Fighting style 1 / 1 Guardian: Fighting Style
+Defense Style [×]
+[]
+You are skilled at the art of defending yourself. You gain the following benefits:
+While you are wearing medium or heavy armor with which you are proficient, you can use your bonus action to mark a target within 30 feet that you can see until … [492 chars #19aa7073]
+You have advantage on Strength checks and Strength saving throws to avoid being moved.
+Lightsaber form 1 / 1 Soresu Form: Form Basics
+Form rules
+Lightsaber forms (PHB chapter 6): each form you know can be adopted on your turn by using your bonus action, and adopting one replaces the form you were in. Wha… [422 chars #a55c1a59]
+Shien Form [×]
+[]
+Before the end of your next turn, you can add half your Wisdom or Charisma modifier (your choice, minimum of +1) to your AC against one attack.
+Class table
+Proficiency Bonus
++2 → +3 at 5th
+Features
+Ability Score Improvement → Extra Attack at 5th
+Force Powers Known
+10 → 12 at 5th
+Force Points
+8 → 10 at 5th
+Max Power Level
+1st → 2nd at 5th
+Focused Strikes
+2d8 → 3d8 at 5th
+Auras Known
+1 → 1 at 5th
+Aura Radius
+5 ft. → 5 ft. at 5th
+| Proficiency Bonus | Features | Force Powers Known | Force Points | Max Power Level | Focused Strikes | Auras Known | Aura Radius |
+Now (4th) | +2 | Ability Score Improvement | 10 | 8 | 1st | 2d8 | 1 | 5 ft. |
+Next (5th) | +3 | Extra Attack | 12 | 10 | 2nd | 3d8 | 1 | 5 ft. |
+Armor Light armor, medium armor Weapons All lightweapons, all vibroweapons Tools None
+
+## Sheet: Species
+Size
+Medium
+Homeworld
+Shili
+Language
+Togruti
+Average height
+4'9" +2d8"
+Average weight
+115 lb. x(2d4) lb.
+Skin
+Blue, green, orange, purple, red, white, or yellow
+Hair
+None
+Eyes
+Black, blue, green, orange, purple, yellow, or red
+Distinctions
+Sharp canine teeth, two montrals, three or four head-tails
+Chosen increase
+Strength +1
+Traits (10)
+Ability Score Increase
+Your Wisdom score increases by 2, and your Strength or Dexterity score increases by 1.
+Notes []
+Age
+Togruta reach adulthood in their late teens and live less than a century.
+Notes []
+Alignment
+Togruta culture focuses on unity which causes them to tend toward the light side, though there are exceptions.
+Notes []
+Darkvision
+Your vision can easily cut through darkness. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray.
+Notes []
+Languages
+You can speak, read, and write Galactic Basic and Togruti. Togruti is an ornate language characterized by trills and long vowel sounds which are modified by sub… [361 chars #bc30a6fd]
+Notes []
+Mask of the Wild
+You can attempt to hide even when you are only lightly obscured by foliage, heavy rain, falling snow, mist, and other natural phenomena.
+Notes []
+Montral Reception
+You have tremorsense out to 30 feet. You can detect and pinpoint the origin of vibrations within a specific radius, provided that you and the source of the vibr… [285 chars #e806ea9c]
+Notes []
+Size
+Togruta typically stand between 5 and 6 feet tall and weigh 150 lbs. Regardless of your position in that range, your size is Medium.
+Notes []
+Speed
+Your base walking speed is 30 feet.
+Notes []
+Wild Hunters
+You have proficiency in the Survival skill.
+Notes []
+Ability score +1 1 / 1 Your Wisdom score increases by 2, and your Strength or Dexterity score increases by 1.
+Strength [×]
+
+## Sheet: Background
+Skill proficiencies
+Choose two from Insight, Investigation, Lore, and Persuasion
+Tool proficiencies
+Artificer's tools
+Languages
+One of your choice
+Starting equipment
+A copy of the Jedi code, a set of common clothes including a robe, and a belt pouch containing 150 cr
+Background feat
+Formfighting Dabbler
+Feature: Shelter of the Faithful Background feature
+As a Jedi, you command the respect of those who are loyal to the Jedi Order. You and your adventuring companions can expect to receive free healing and care at … [267 chars #91e5368c]
+You might also have ties to a specific Jedi temple and have a residence there. This could be the temple where you trained, or a temple where you have found a ne… [337 chars #fdf13df5]
+About this background
+You are a devout follower of the Jedi Order: an ancient, monastic peacekeeping organization united in its observance of the light side of the Force. A noble ord… [337 chars #4516e948]
+"There is no emotion, there is peace.
+There is no ignorance, there is knowledge.
+There is no passion, there is serenity.
+There is no chaos, there is harmony.
+There is no death, there is the Force."*
+Your choices
+Skill proficiencies 0 / 2 Choose two from Insight, Investigation, Lore, and Persuasion
+None chosen yet.
+[Choose a skill… ▾]
+Languages 0 / 1 One of your choice
+None chosen yet.
+[Choose a language… ▾]
+Formfighting Dabbler: +1 to 0 / 1 background feat
+None chosen yet.
+[Choose an ability… ▾]
+
+## Sheet: Proficiencies & Languages
+Armor
+Light armor medium armor heavy armor · Bonus Proficiencies
+Weapon
+All lightweapons all vibroweapons
+Tool
+Artificer's tools
+Skills & saves
+Athletics Insight Perception Survival Persuasion Constitution Saving Throws Charisma Saving Throws
+Languages
+Galactic Basic Togruti
+✎ = custom proficiency added on the character.
+
+## Sheet: Equipment & Inventory
+Add an item
+[All items ▾] []
+Qty [1] [Add]
+2425 items from SW5E (data version 199). [Check for a newer list]
+Credits
+450 cr
+[] [] [Apply]
+Total weight
+50.75 lb
+of 270 lb max
+Attunement
+1 / 3
+  ↳ hover attunement.maximum: Without tweaks or effects: 2 → now 3 / +1 Attunement · Investigative Attunement feat
+Items
+12
+Weapon (2)
+Item | Qty & actions | Weight | Cost | Source |
+Lightsaber
+1d6 Energy · Hidden, luminous, versatile (2d4)
+| [−] 1 [+] [Equipped] [✎] [Sell] [×] | 2.25 lb | 450 cr | PHB |
+Vibrodagger
+1d4 Kinetic · Finesse, light, thrown (range 20/60)
+| [−] 1 [+] [Equip] [✎] [Sell] [×] | 0.5 lb | 50 cr | PHB |
+Armor (2)
+Item | Qty & actions | Weight | Cost | Source |
+Mesh armor
+AC 13 + Dex modifier (max 2) · Medium
+Description
+Providing solid protection for a minimal cost, mesh armor is considered excellent protection for entrenched troops or guards. However, this protection comes at … [280 chars #c7f6f72d]
+| [−] 1 [+] [Equipped] [✎] [Sell] [×] | 20 lb | 500 cr | PHB |
+Light physical shield
+AC +1 · Shield
+| [−] 1 [+] [Equipped] [✎] [Sell] [×] | — | 50 cr | PHB |
+Clothing (1)
+Item | Qty & actions | Weight | Cost | Source |
+Clothes, common
+| [−] 1 [+] [✎] [Sell] [×] | 3 lb | 5 cr | PHB |
+Enhanced: Armor (1)
+Item | Qty & actions | Weight | Cost | Source |
+Jensaarai Armor
+Prototype (rare) · Requires attunement · Attuned
+Base item [choose… (its damage, AC and weight) ▾]
+Description
+Requires attunement
+While wearing this armor, you are considered proficient regardless of whether or not you have proficiency in medium armor. Additionally, it grants a +1 bonus to AC.
+Jensaarai Regalia. While wearing and attuned to this armor and Jensaarai Cloak, you are adapted to both hot and cold climates, as described in chapter 5 of the … [389 chars #d5d293ed]
+At the height of their training, Jensaarai craft and bond with their own armor. While each set of armor is unique to its bearer, they share similar traits.
+| [−] 1 [+] [Attuned] [✎] [Sell] [×] | — | — | WH |
+Storage (1)
+Item | Qty & actions | Weight | Cost | Source |
+Backpack
+Description
+A backpack stores 30 lb., not exceeding 1 cubic foot.
+| [−] 1 [+] [✎] [Sell] [×] | 5 lb | 50 cr | PHB |
+Utility (3)
+Item | Qty & actions | Weight | Cost | Source |
+Bedroll
+| [−] 1 [+] [✎] [Sell] [×] | 7 lb | 10 cr | PHB |
+Field rations (one day's)
+| [−] 10 [+] [✎] [Sell] [×] | 10 lb | 5 cr | PHB |
+Glowrod
+Description
+Glowrods create a beam of light illuminating the area around you in bright light for a 20-foot radius and dim light for an additional 20 feet. The glowrod lasts… [258 chars #59229a13]
+| [−] 1 [+] [✎] [Sell] [×] | 2 lb | 10 cr | PHB |
+Custom items (2)
+Item | Qty & actions | Weight | Cost | Source |
+Coded datapad (smuggler's coordinates) custom
+Description
+Story item from the docks ambush on Ord Mantell: encrypted coordinates of the smuggler's hideout.
+| [−] 1 [+] [✎] [Sell] [×] | — | — | |
+Copy of the Jedi Code custom
+Description
+Jedi background starting equipment.
+| [−] 1 [+] [✎] [Sell] [×] | 1 lb | — | |
+
+## Sheet: Personality & Appearance
+Personality Traits
+I quote the Jedi Code chapter and verse, and I expect others to keep their word as I keep mine.
+Ideal
+Order. Rules exist so the weak are protected from the strong. (Lawful)
+Bond
+My master vanished on Ord Mantell; the smuggler's trail is my only lead.
+Flaw
+I can't let a wrong ruling pass, even mid-fight.
+Details
+Alignment
+Lawful Light
+Gender
+Female
+Place of Birth
+Shili
+Age
+22
+Height
+5'7"
+Weight
+—
+Hair
+—
+Eyes
+Blue
+Skin
+Orange with white markings
+
+## Sheet: Backstory
+No backstory yet.
+
+## Sheet: Notes
+Not in the sheet yet
+Languages: Galactic Basic, Togruti (species), Huttese (Jedi background, my choice). The sheet only lists Basic.
+Channel the Force: Lend Aid (bonus action, touch: heal guardian level + Wis mod, or neutralise a poison/disease).
+Formfighting Dabbler +1 went to Wisdom (tweak).
+Jedi gear not in SW5E's item list: a copy of the Jedi Code.
+(now a custom item, added on sw5e.com)
+Session 1 — Trouble on Ord Mantell
+Contact in the cantina: Persuasion 10 (with Guidance), Insight 16 (adv).
+Debt: I owe Kessa (Kessa's Outfitters) 370 cr — 2 Medpacs at 480 (20% off), paid 150; Vibrodagger 40 on credit.
+Docks ambush: Soresu Form + Heroism; lost concentration on a failed Con save (6 vs DC 10). Used 1 Medpac.
+Loot: 150 cr, Strength Stim (Basic), coded datapad (smuggler's coordinates).
+GM: Inspiration (spent on Stealth 17). 300 XP → level 2 reached.
+
+## Sheet: Settings, Tweaks & Data
+Tweaks (manual adjustments) 6
+From sw5e.com's editor or added here. Give each a reason (kept in this viewer and in backups); hovering or tapping a number they change shows it.
+Stat | Adjustment | Reason | |
+Wisdom score | [add ▾] [1] | [Formfighting Dabbler (Jedi background feat): +1 to an ability of my choice] | [×] |
+Survival | Proficiency [Proficient ▾] [add ▾] [0] | [Togruta Wild Hunters: proficiency in Survival] | [×] |
+Perception | Proficiency [Proficient ▾] [add ▾] [0] | [Guardian class skill (2 of 2)] | [×] |
+Insight | Proficiency [Proficient ▾] [add ▾] [0] | [Jedi background skill (1 of 2)] | [×] |
+Athletics | Proficiency [Proficient ▾] [add ▾] [0] | [Guardian class skill (1 of 2)] | [×] |
+Persuasion | Proficiency [Proficient ▾] [add ▾] [0] | [Jedi background skill (2 of 2)] | [×] |
+[Add a tweak to… ▾] [add (+/−) ▾] [] [] [Add]
+Builder settings
+Is Enforcing Force Prerequisites
+true
+Is Fixed Hit Points
+false
+Ability Score Method
+Standard Array
+Record
+Source
+sw5e.com
+Loaded
+10/17/2026, 11:59:22 PM
+Last changed on SW5E
+10/17/2026, 4:51:40 PM
+Created
+10/17/2026, 1:16:43 PM
+Builder version
+0.7.6
+Validation
+All checks passed
+Character id
+00000000-0000-4000-8000-000010000001 ↗
+Local version history 3 / 25
+SW5E can lose saved characters, so every version seen here is kept in this browser. Compare a version with the character as it is now, or restore it (Undo puts it back).
+Backups (files you keep): this character never · [Back up this character]
+all characters never · [Back up all characters]
+10/17/2026, 7:13:37 PM latest
+Loaded from SW5E · changed on SW5E 10/17/2026, 4:51:40 PM [Compare] [Restore] [Export]
+10/17/2026, 5:21:12 PM
+Loaded from SW5E · changed on SW5E 10/17/2026, 5:20:20 PM [Compare] [Restore] [Export]
+10/17/2026, 5:16:17 PM
+Loaded from SW5E · changed on SW5E 10/17/2026, 4:51:40 PM [Compare] [Restore] [Export]
+Rules engine
+The sheet computes the numbers itself, with SW5E's rules. Check with sw5e.com compares them with sw5e.com’s own calculation of this character (it also happens on each Load from SW5E).
+SW5E's rules and item data: version 199, as it comes with the sheet. SW5E is the work of Galiphile and the SW5E contributors: credits · the books.
+[Check with sw5e.com]
+Raw SW5E character JSON
+{ "name": "Maasha Vaal (Panel)", "id": "00000000-0000-4000-8000-000010000001", "userId": "00000000-0000-4000-8000-000010000002", "builderVersion": "0.7.6", "ima… [5274 chars #25d251e7]
+Computed character JSON (the sheet's rules engine)
+{ "name": "Maasha Vaal (Panel)", "builderVersion": "0.7.6", "image": "", "characteristics": { "alignment": "Lawful Light", "Personality Traits": "I quote the Je… [34730 chars #17243c69]

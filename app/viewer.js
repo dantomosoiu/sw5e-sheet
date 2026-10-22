@@ -1254,7 +1254,12 @@ async function trackerAction(op, arg, rolled) {
     const fxBefore = arr(state.itemState[snap.key] && state.itemState[snap.key].effects);
     const ending = op === 'short' || op === 'long' ? fxBefore.filter((e) => endsOnRest(e, op))
       : op === 'damage' && hpNow === 0 && m.t.hpCurrent > 0 ? fxBefore.filter((e) => e.group === 'concentration' || e.group === 'state:raging') : [];
-    if (JSON.stringify(m.t.s) === JSON.stringify(before) && !ending.length) { // nothing changed: say why where it isn't obvious
+    // Item charges that come back on a long rest.
+    const charged = op === 'long' ? itemStateOf(snap.key) : null;
+    const recharged = charged ? itemRestCharges(charged) : [];
+    if (recharged.length) await saveItemStateFor(snap.key, charged);
+    const chargesText = recharged.length ? ` Charges back: ${recharged.map((x) => `${x.name} ${x.all ? '(all)' : `+${x.back}${x.rolled ? ` (rolled ${x.rolled})` : ''}`}`).join(', ')}.` : '';
+    if (JSON.stringify(m.t.s) === JSON.stringify(before) && !ending.length && !recharged.length) { // nothing changed: say why where it isn't obvious
       if (op === 'temp') setStatus(`You already have ${num(before.temporaryHitPoints)} temporary hit points; they don't stack (the higher amount stays).`);
       else if (op === 'short') {
         const o = restOffers();
@@ -1310,7 +1315,7 @@ async function trackerAction(op, arg, rolled) {
         await saveItemStateFor(snap.key, st);
         fore = ` Foretelling rolls: ${st.foretell.join(' and ')}.`;
       }
-      setStatus(`Long rest: ${restGains(before, m.t.s, m.t.lim, longRestExhaustion(m)[1]) || 'done'}.${ended}${fore}`);
+      setStatus(`Long rest: ${restGains(before, m.t.s, m.t.lim, longRestExhaustion(m)[1]) || 'done'}.${ended}${chargesText}${fore}`);
     }
     else if (op === 'damage' && num(m.t.s.deathSaves.failures) >= 3 && num(before.deathSaves.failures) < 3) setStatus(`${label}: three failed death saves (damage of at least your hit point maximum kills outright; the GM can rule otherwise on the HP card).${ended}`, 'error');
     else if (op === 'damage' && hpNow === 0 && m.t.hpCurrent > 0) setStatus(`${label}. Down to 0 hit points: unconscious, roll death saves (Death saves → Roll).${ended}${maybe}`, '', false, afterDamage);
@@ -1327,6 +1332,35 @@ async function trackerAction(op, arg, rolled) {
   refreshTracked();
 }
 
+/**
+ * Item charges that come back on a long rest, taken off the used ones in `st` (an itemState): "When you complete a long
+ * rest, this item regains all missing charges", "All expended charges are regained after you complete a long rest",
+ * "This weapon has 6 charges and regains 1d6 charges when you complete a long rest" (rolled); "… daily at dawn" (the
+ * long rest stands for the dawn). [{ name, back, all, rolled }].
+ */
+function itemRestCharges(st) {
+  const out = [];
+  for (const [name, used] of Object.entries(st.charges || {})) {
+    const ref = num(used) > 0 && catalogIndex && catalogIndex.get(name);
+    const t = String((ref && (ref.text || ref.description)) || '').replace(/\s+/g, ' ');
+    if (!/\blong rest\b|\bat dawn\b/i.test(t)) continue;
+    let back = 0;
+    let rolled = '';
+    let x;
+    if (/\bregains? all (?:missing|expended) charges\b|\ball expended charges are regained\b/i.test(t)) back = num(used);
+    else if ((x = /\bregains? (\d*d\d+(?: ?\+ ?\d+)?|\d+) (?:expended )?charges\b/i.exec(t))) {
+      const p = parseDice(x[1]);
+      const n = p ? p.dice.reduce((s, d) => s + rollDie(d.sides), 0) + p.mod : 0;
+      back = Math.min(num(used), Math.max(0, n));
+      rolled = /d/.test(x[1]) ? `${x[1]}: ${n}` : '';
+    }
+    if (!back) continue;
+    st.charges[name] = num(used) - back;
+    if (!st.charges[name]) delete st.charges[name];
+    out.push({ name, back, all: back === num(used) && !rolled, rolled });
+  }
+  return out;
+}
 /** A feature that heals when used ("regain hit points equal to 1d10 + your fighter level"): its roll spec, or ''. */
 function healFeatureRoll(m, name) {
   const f = m.allFeatures.find((x) => x.name === name);
@@ -2265,7 +2299,8 @@ function applyEffects(key, editedRaw, complete) {
   res.tweaks = res.tweaks.filter((t) => !res.setByTweak.includes(t));
   if (acSet) res.acAlternatives = [];
   for (const t of res.tweaks) {
-    if (/^(?:force|tech)Powers\./.test(t.path)) continue; // power damage/healing bonuses: the dice card adds them
+    // Power damage/healing bonuses (the dice card adds them) and the attunement maximum (attunementMax): no engine tweak.
+    if (/^(?:(?:force|tech)Powers|attunement)\./.test(t.path)) continue;
     const cur = getPath(out.tweaks, t.path) || {};
     const fields = { ...(t.fields || {}) };
     // Proficiency never goes down (a feature's "proficient" doesn't undo a tweak's "expertise").
@@ -2466,7 +2501,7 @@ function bumpSources(m, path) {
   const rel = {
     armorClass: ['armorClass', 'Dexterity'], initiative: ['initiative', 'Dexterity'], passivePerception: ['passivePerception', 'Wisdom', 'abilityScores.Wisdom.skills.Perception'],
     hitPoints: ['hitPoints', 'Constitution'], speed: ['speed', 'Strength'], carryingCapacity: ['Strength'],
-    techCasting: ['techCasting', '*'], forceCasting: ['forceCasting', '*'], proficiencyBonus: [],
+    techCasting: ['techCasting', '*'], forceCasting: ['forceCasting', '*'], proficiencyBonus: [], attunement: ['attunement'],
   }[path.split('.')[0]] || ['*'];
   // Carrying capacity and speed (heavy armor's Strength) go by the score itself; the rest by the modifier.
   const byScore = ['carryingCapacity', 'speed'].includes(path.split('.')[0]);
@@ -2623,9 +2658,18 @@ const canEquip = (e, custom) => (custom ? e.equipmentCategory !== 'Gear'
 const EQUIP_VERB = { Equipped: 'Equip', Installed: 'Install', 'Using as focus': 'Use as focus' };
 const canAttune = (e, custom) => !custom && !!e.isFound && isEnhanced(e) && !!e.requiresAttunement;
 const atAttuneLimit = (m, e) => {
-  const att = m.c.attunement || {};
-  return !e.attuned && att.maximum != null && attunementUsed(m) + attuneCost(e) > num(att.maximum);
+  const max = attunementMax(m);
+  return !e.attuned && max != null && attunementUsed(m) + attuneCost(e) > max;
 };
+/**
+ * The attunement maximum: SW5E's (the proficiency bonus) and what feats add ("Your maximum attunement increases by 1",
+ * Investigative Attunement: a mod on attunement.maximum, which SW5E's engine has no tweak for). Null without one.
+ */
+function attunementMax(m) {
+  const att = m.c.attunement || {};
+  if (att.maximum == null) return null;
+  return num(att.maximum) + arr(m.fx && m.fx.tweaks).filter((t) => t.path === 'attunement.maximum').reduce((s, t) => s + num(t.bonus), 0);
+}
 /** A catalog item's price in credits, or 0 if it has none. */
 const priceOf = (ref) => {
   if (typeof ref.cost === 'number') return ref.cost;
@@ -2936,7 +2980,7 @@ function itemUse(ref, raw) {
   // The class items: "This item can hold a number of charges equal to half your fighter level (rounded up)".
   const cl = /\bcan hold a number of charges equal to half your (\w+) level \(rounded up\)/i.exec(text);
   const clsLevel = cl && raw ? num((arr(raw.classes).find((k) => String(k.name).toLowerCase() === cl[1].toLowerCase()) || {}).levels) : 0;
-  const charges = ch && fxNum(ch[1]) ? { max: fxNum(ch[1]), recharges: /regains? [^.]*charges/i.test(text) }
+  const charges = ch && fxNum(ch[1]) ? { max: fxNum(ch[1]), recharges: /regains? [^.]*charges|charges are regained/i.test(text) }
     : clsLevel ? { max: Math.ceil(clsLevel / 2), recharges: true } : null;
   const consumable = ref.type === 'Consumable' || CONSUMABLE_CATS.includes(ref.equipmentCategory) || /^(medpac|poison|emergency rations)/i.test(ref.name || '');
   if (!consumable && !charges) return null;
@@ -6422,7 +6466,9 @@ function renderEquipment(m) {
       ${stat('Total weight', fmtNum(totalWeight(m)) + ' lb', c.carryingCapacity ? `of ${num(c.carryingCapacity.maxCapacity) * carryFactor(m).factor} lb max` : '')}
       ${(() => {
         const mods = modifiedItemsOf(m).filter((x) => x.attune);
-        return stat('Attunement', `${attunementUsed(m)} / ${esc(att.maximum ?? '—')}`, mods.length ? esc(`incl. ${mods.map((x) => `${x.item} (${x.what.toLowerCase()})`).join(', ')}`) : '');
+        const max = attunementMax(m);
+        const maxHtml = max == null ? '—' : bump(m, 'attunement.maximum', esc(max), { from: num(att.maximum), to: max });
+        return stat('Attunement', `${attunementUsed(m)} / ${maxHtml}`, mods.length ? esc(`incl. ${mods.map((x) => `${x.item} (${x.what.toLowerCase()})`).join(', ')}`) : '');
       })()}
       ${stat('Items', items.filter((e) => !own(e, false).enhancedBy).length + custom.length)}
     </div>
