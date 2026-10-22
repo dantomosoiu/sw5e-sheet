@@ -1691,12 +1691,81 @@ function featureEffects(key, editedRaw, complete) {
   const sig = canonical([editedRaw.classes, editedRaw.featureNotes || null, editedRaw.featureChoices || null, editedRaw.background || null,
     editedRaw.customFeats || null, editedRaw.species || null, arr(editedRaw.equipment).map((it) => it.name), castingLevels(complete, editedRaw),
     num(complete && complete.proficiencyBonus), // choice slots' "5 x your proficiency bonus"
+    editedRaw.tweaks || null, editedRaw.customProficiencies || null, arr(complete && complete.proficiencies).length, // "if you are already proficient"
     catalogIndex ? catalogIndex.size : 0]); // weapons are found through the catalog
   if (featureFxCache && featureFxCache.rules === state.rules && featureFxCache.sig === sig) return featureFxCache.out;
   const own = featureEffectsUncached(editedRaw);
-  const out = own.concat(choiceEffects(editedRaw, complete, own));
+  const out = proficiencyRules(editedRaw, complete, own.concat(choiceEffects(editedRaw, complete, own)));
   featureFxCache = { rules: state.rules, sig, out };
   return out;
+}
+/** A skill or saving throw proficiency as a mod: { path, fields: { proficiency }, label }. */
+function profMod(kind, name, level, extra = {}) {
+  const path = kind === 'save' ? `abilityScores.${name}.savingThrowModifier` : `abilityScores.${FX_SKILLS[name]}.skills.${name}`;
+  return { path, bonus: 0, fields: { proficiency: level }, label: `${kind === 'save' ? `${name} saves` : name}: ${String(level).toLowerCase()}`, ...extra };
+}
+/**
+ * "If you are already proficient…" (classes.js profs.upgrades and profs.chains): a grant that becomes expertise when the
+ * character already has it (Brawny's Athletics, Titan's Power's Strength saves, Specialist's kit), and grants that need
+ * another proficiency first (Armor Expert's medium armor; Resilient Retainer's Intelligence or Charisma saves when it
+ * already had Wisdom's). "Already": from anything but the feature itself — the classes and background, the player's
+ * tweaks and custom proficiencies, the other features, feats and traits. Chains met are marked (chainsMet) for pickers.
+ */
+function proficiencyRules(editedRaw, complete, effects) {
+  if (!effects.some((e) => arr(e.chains).length || arr(e.mods).some((x) => x.orExpertise) || arr(e.tools).some((t) => t.orExpertise))) return effects;
+  const has = new Map(); // "skill:athletics" → who gives it ('base', or effect ids)
+  const key = (kind, name) => `${kind}:${String(name).toLowerCase()}`;
+  const give = (k, who) => { if (!has.has(k)) has.set(k, new Set()); has.get(k).add(who); };
+  const hasOther = (k, who) => [...(has.get(k) || [])].some((x) => x !== who);
+  const ofMod = (path) => { const sk = /\.skills\.(.+)$/.exec(path); const sv = /^abilityScores\.(\w+)\.savingThrowModifier$/.exec(path); return sk ? key('skill', sk[1]) : sv ? key('save', sv[1]) : null; };
+  for (const k of arr(editedRaw.classes)) for (const s of arr(k.skills).concat(arr(k.expertise))) give(key('skill', s), 'base');
+  for (const s of arr(editedRaw.background && editedRaw.background.skills)) give(key('skill', s), 'base');
+  arr(editedRaw.classes).forEach((k, i) => {
+    const cref = rulesModule('classes').find((x) => x.name === k.name);
+    if (!cref) return;
+    if (i === 0) for (const a of arr(cref.savingThrows)) give(key('save', a), 'base');
+    // The first class's armor ("All armor": light, medium and heavy); another class's multiclass list.
+    for (const a of i === 0 ? arr(cref.armorProficiencies) : arr(cref.multiClassProficiencies)) {
+      const s = String(a).toLowerCase();
+      for (const n of /^all armor$/.test(s) ? ['light armor', 'medium armor', 'heavy armor'] : s.match(/\b(?:light|medium|heavy) armor\b|\bshields?\b/g) || []) give(key('armor', n), 'base');
+    }
+  });
+  for (const p of arr(complete && complete.proficiencies)) if (p.type === 'tool') give(key('tool', p.name), 'base');
+  for (const p of arr(editedRaw.customProficiencies)) if (['tool', 'armor', 'skill'].includes(String(p.type).toLowerCase())) give(key(String(p.type).toLowerCase(), p.name), 'base');
+  for (const l of fxTweakLeaves(editedRaw.tweaks)) if (l.value && l.value.proficiency && ofMod(l.path)) give(ofMod(l.path), 'base');
+  for (const e of effects) {
+    for (const x of arr(e.mods)) if (x.fields && x.fields.proficiency && !x.orExpertise && ofMod(x.path)) give(ofMod(x.path), e.id);
+    for (const t of arr(e.tools)) if (!t.orExpertise) give(key('tool', t.name), e.id);
+    for (const a of arr(e.armor)) give(key('armor', a), e.id);
+  }
+  return effects.map((e) => {
+    if (!arr(e.chains).length && !arr(e.mods).some((x) => x.orExpertise) && !arr(e.tools).some((t) => t.orExpertise)) return e;
+    const mods = arr(e.mods).map((x) => {
+      if (!x.orExpertise) return x;
+      const k = ofMod(x.path);
+      const already = hasOther(k, e.id);
+      give(k, e.id);
+      return already ? { ...x, fields: { proficiency: 'Expertise' }, label: x.label.replace(/: proficient$/, ': expertise (already proficient)') } : x;
+    });
+    const tools = arr(e.tools).map((t) => {
+      if (!t.orExpertise) return t;
+      const already = hasOther(key('tool', t.name), e.id);
+      give(key('tool', t.name), e.id);
+      return already ? { ...t, level: 'expertise' } : t;
+    });
+    const weapons = arr(e.weapons).slice();
+    const armor = arr(e.armor).slice();
+    const chainsMet = arr(e.chains).map((c) => {
+      if (!c.ifHas.every((h) => hasOther(key(h.kind, h.name), e.id))) return false;
+      for (const a of c.saves) { mods.push(profMod('save', a, 'Proficient')); give(key('save', a), e.id); }
+      for (const sk of c.skills) { mods.push(profMod('skill', sk.name, sk.level)); give(key('skill', sk.name), e.id); }
+      for (const t of c.tools) { tools.push(t); give(key('tool', t.name), e.id); }
+      for (const a of c.armor) { armor.push(a); give(key('armor', a), e.id); }
+      weapons.push(...c.weapons);
+      return true;
+    });
+    return { ...e, mods, tools, weapons, armor, chainsMet };
+  });
 }
 /**
  * A feature-effect entry from clsFeatureEffects' result (null when it changes nothing). origin: what gives it, for
@@ -1704,12 +1773,16 @@ function featureEffects(key, editedRaw, complete) {
  */
 function featureEffectEntry(id, name, why, fe, origin = 'class feature') {
   const mods = fe.mods.slice();
-  for (const a of fe.profs.saves) mods.push({ path: `abilityScores.${a}.savingThrowModifier`, bonus: 0, fields: { proficiency: 'Proficient' }, label: `${a} saves: proficient` });
-  for (const sk of fe.profs.skills) mods.push({ path: `abilityScores.${FX_SKILLS[sk.name]}.skills.${sk.name}`, bonus: 0, fields: { proficiency: sk.level }, label: `${sk.name}: ${sk.level.toLowerCase()}` });
+  // "If you are already proficient in it, you instead gain expertise in it": marked, resolved by proficiencyRules.
+  const up = (kind, n) => arr(fe.profs.upgrades).some((u) => u.kind === kind && u.name === n) ? { orExpertise: true } : {};
+  for (const a of fe.profs.saves) mods.push(profMod('save', a, 'Proficient', up('save', a)));
+  for (const sk of fe.profs.skills) mods.push(profMod('skill', sk.name, sk.level, up('skill', sk.name)));
+  const tools = fe.profs.tools.map((t) => ({ ...t, ...up('tool', t.name) }));
+  const chains = arr(fe.profs.chains);
   const other = fe.advantage.length || fe.defenses.length || fe.critRange || fe.halfProf || fe.unarmedStep || fe.unarmedDie;
-  if (!mods.length && !fe.profs.tools.length && !fe.profs.weapons.length && !fe.needsChoice.length && !other) return null;
+  if (!mods.length && !tools.length && !fe.profs.weapons.length && !fe.profs.armor.length && !chains.length && !fe.needsChoice.length && !other) return null;
   return {
-    id, kind: 'feature', origin, name, why, mods, notes: [], needsChoice: fe.needsChoice, weapons: fe.profs.weapons, tools: fe.profs.tools, armor: fe.profs.armor, target: 'self',
+    id, kind: 'feature', origin, name, why, mods, notes: [], needsChoice: fe.needsChoice, weapons: fe.profs.weapons, tools, armor: fe.profs.armor, chains, target: 'self',
     advantage: fe.advantage, defenses: fe.defenses, critRange: fe.critRange, halfProf: fe.halfProf, unarmedStep: fe.unarmedStep,
     unarmedDie: fe.unarmedDie || 0, unarmedFinesse: !!fe.unarmedFinesse,
   };
@@ -5187,9 +5260,13 @@ function featureAsks(m, f) {
   if (f.source === 'Species' && (/^(?:Ability Score Increase|Languages?)$/i.test(f.name)
     || !bdSpeciesTraitFeatures(m).some((t) => t.name === f.name))) return [];
   const k = arr(m.raw.classes).find((x) => x.name === f.sourceName || (x.archetype && x.archetype.name === f.sourceName));
-  return clsFeatureEffects(text, featureNoteOf(m.raw, f.name), {
+  const asks = clsFeatureEffects(text, featureNoteOf(m.raw, f.name), {
     level: k ? num(k.levels) : charLevel(m), pb: num(m.c.proficiencyBonus), row: k ? classRow(m.raw, k) : {}, isWeapon: isWeaponName,
   }).asks;
+  // A choice that only comes with "If you already have this proficiency…" (Resilient Retainer): when that holds.
+  const fx = arr(m.effects).find((e) => e.kind === 'feature' && e.name === f.name && arr(e.chains).length);
+  const met = (a) => !!fx && fx.chains.some((c, i) => arr(fx.chainsMet)[i] && canonical(c.ifHas) === canonical(a.ifHas));
+  return asks.filter((a) => !a.ifHas || met(a));
 }
 const ASK_WORDS = { option: 'one', ability: 'an ability', skill: 'a skill', tool: 'a tool', weapon: 'a weapon', skilltool: 'a skill or tool', expertise: 'a proficiency', damage: 'a damage type' };
 /** The tools the character is proficient with (SW5E's list, custom ones, features'). */

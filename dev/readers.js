@@ -40,13 +40,19 @@ function effectsBlock(text, ctx) {
   if (p.tools.length) out.push(`  tool prof ${p.tools.map((s) => `${s.name} (${s.level})`).join(', ')}`);
   if (p.weapons.length) out.push(`  weapon prof ${p.weapons.join(' | ')}`);
   if (p.armor.length) out.push(`  armor prof ${p.armor.join(' | ')}`);
+  const names = (list) => list.map((x) => `${x.kind} ${x.name}`).join(', ');
+  if ((p.upgrades || []).length) out.push(`  expertise if already proficient: ${names(p.upgrades)}`);
+  for (const c of p.chains || []) {
+    const gain = [...c.saves.map((x) => `save ${x}`), ...c.skills.map((x) => `skill ${x.name}`), ...c.tools.map((x) => `tool ${x.name}`), ...c.weapons.map((x) => `weapon ${x}`), ...c.armor.map((x) => `armor ${x}`)];
+    out.push(`  if already ${names(c.ifHas)}: ${gain.join(', ') || '(a choice)'}`);
+  }
   for (const k of ['critRange', 'halfProf', 'unarmedStep']) if (fe[k]) out.push(`  ${k} ${fe[k]}`);
   for (const k of Object.keys(fe).filter((k) => !['mods', 'profs', 'notes', 'needsChoice', 'asks', 'advantage', 'defenses', 'critRange', 'halfProf', 'unarmedStep'].includes(k))) {
     if (fe[k] && (!Array.isArray(fe[k]) || fe[k].length)) out.push(`  ${k} ${JSON.stringify(fe[k])}`);
   }
   if (fe.advantage.length) out.push(`  advantage ${fe.advantage.map((a) => [a.kind, a.ability || a.skill].filter(Boolean).join(' ')).join(', ')}`);
   for (const d of fe.defenses) out.push(`  ${d.kind}: ${d.text}`);
-  for (const a of fe.asks) out.push(`  ask ${a.kind} ×${a.count} "${a.label}"${a.options ? ` of ${a.options.join(', ')}` : ''}`);
+  for (const a of fe.asks) out.push(`  ask ${a.kind} ×${a.count} "${a.label}"${a.options ? ` of ${a.options.join(', ')}` : ''}${a.of ? ` (${a.of})` : ''}${a.ifHas ? ` if already ${names(a.ifHas)}` : ''}`);
   if (fe.needsChoice.length) out.push(`  needs ${fe.needsChoice.join('; ')}`);
   return out;
 }

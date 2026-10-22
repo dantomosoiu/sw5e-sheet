@@ -1,9 +1,9 @@
 # Wizard Check (local)
 
 ## Sent to the rules engine
-The sheet's engine computes the numbers. SW5E's recorded calculation is for this same character.
+The sheet's engine computes the numbers. OUT OF DATE: SW5E's recorded calculation is for an older version of this character; record the case again (dev/regress-record.js) for dev/engine-check.js.
 tweaks.abilityScores.Intelligence.skills.Technology.bonus = 0
-tweaks.abilityScores.Intelligence.skills.Technology.proficiency = "Proficient"
+tweaks.abilityScores.Intelligence.skills.Technology.proficiency = "Expertise"
 tweaks.hitPoints.maximum.bonus = 4
 tweaks.unarmed.damage.bonus = 2
 tweaks.unarmed.damageDice.bonus = 0
@@ -67,8 +67,8 @@ abilityScores.Intelligence.skills[Nature].modifier = 4
 abilityScores.Intelligence.skills[Nature].proficiency = "none"
 abilityScores.Intelligence.skills[Piloting].modifier = 4
 abilityScores.Intelligence.skills[Piloting].proficiency = "none"
-abilityScores.Intelligence.skills[Technology].modifier = 6
-abilityScores.Intelligence.skills[Technology].proficiency = "proficient"
+abilityScores.Intelligence.skills[Technology].modifier = 8
+abilityScores.Intelligence.skills[Technology].proficiency = "expertise"
 abilityScores.Intelligence.value = 18
 abilityScores.Strength.modifier = -1
 abilityScores.Strength.savingThrow.modifier = -1
@@ -155,7 +155,7 @@ effect: Coercive · feature
 effect: Crafters · feature
 effect: Toughness · feature
 effect: Unarmed Combatant · feature
-tweak: abilityScores.Intelligence.skills.Technology +0 {"proficiency":"Proficient"} · Techie
+tweak: abilityScores.Intelligence.skills.Technology +0 {"proficiency":"Expertise"} · Techie
 tweak: hitPoints.maximum +4 · Toughness
 tweak: unarmed.damageDice +0 {"dieSize":4} · Unarmed Combatant
 tweak: unarmed.toHit +3 · Unarmed Combatant
@@ -183,7 +183,7 @@ skill|Intelligence|0: Investigation (INT): d20 +6 · = +6 modifier
 skill|Intelligence|1: Lore (INT): d20 +6 · = +6 modifier
 skill|Intelligence|2: Nature (INT): d20 +4 · = +4 modifier
 skill|Intelligence|3: Piloting (INT): d20 +4 · = +4 modifier
-skill|Intelligence|4: Technology (INT): d20 +6 · = +6 modifier
+skill|Intelligence|4: Technology (INT): d20 +8 · = +8 modifier
 check|Wisdom: Wisdom check: d20 +1 · = +1 modifier
 save|Wisdom: Wisdom saving throw: d20 +1 · = +1 modifier
 skill|Wisdom|0: Animal Handling (WIS): d20 +1 · = +1 modifier
@@ -257,7 +257,7 @@ Effects
 From class features, feats and species traits (7)
 Engineer weapon proficiencies Proficient: Simple blasters Proficient: simple vibroweapons Engineer proficiencies
 Bonus Proficiencies Proficient: martial blasters Proficient: martial vibroweapons armstech's implements: proficient Proficient: medium armor Armstech Engineering feature
-Techie Technology: proficient feat
+Techie Technology: expertise (already proficient) feat
 Coercive Choose one of Persuasion, Intimidation Zabrak trait
 Crafters Choose one set of artisan’s implements of your choice Zabrak trait
 Toughness HP maximum +4 Zabrak trait
@@ -316,7 +316,8 @@ Intelligence
 (Proficient) Lore+6
 (Not proficient) Nature+4
 (Not proficient) Piloting+4
-(Proficient) Technology+6
+(Expertise) Technology+8
+  ↳ hover abilityScores.Intelligence.skills.4.modifier: Without tweaks or effects: 6 → now 8 / expertise Technology: expertise (already proficient) · Techie feat
 base 15 · +2 ASI (Engineer 4) · +1 Techie (background feat)
 WIS
 Wisdom
@@ -360,7 +361,9 @@ Skill | Ability | Bonus | Passive | Proficiency |
 (Not proficient) Sleight of Hand | DEX | +2 | 12 | — |
 (Not proficient) Stealth | DEX | +2 | 12 | — |
 (Not proficient) Survival | WIS | +1 | 11 | — |
-(Proficient) Technology | INT | +6 | 16 | Proficient |
+(Expertise) Technology | INT | +8 | 18 | Expertise |
+  ↳ hover abilityScores.Intelligence.skills.4.modifier: Without tweaks or effects: 6 → now 8 / expertise Technology: expertise (already proficient) · Techie feat
+  ↳ hover abilityScores.Intelligence.skills.4.modifier: Without tweaks or effects: 6 → now 8 / expertise Technology: expertise (already proficient) · Techie feat
 
 ## Sheet: Weapons & Attacks
 Weapon | To hit | Damage | Ability | Type | Properties |
@@ -770,4 +773,4 @@ SW5E's rules and item data: version 199, as it comes with the sheet. SW5E is the
 Raw SW5E character JSON
 { "name": "Wizard Check (local)", "id": "00000000-0000-4000-8000-000012000001", "builderVersion": "0.7.6", "image": "", "experiencePoints": 2700, "species": { "… [2926 chars #e05cab17]
 Computed character JSON (the sheet's rules engine)
-{ "name": "Wizard Check (local)", "builderVersion": "0.7.6", "image": "", "characteristics": { "Age": "", "Appearance": "", "Backstory": "", "Bond": "", "Eyes":… [21206 chars #bbf44341]
+{ "name": "Wizard Check (local)", "builderVersion": "0.7.6", "image": "", "characteristics": { "Age": "", "Appearance": "", "Backstory": "", "Bond": "", "Eyes":… [21204 chars #b91892c2]

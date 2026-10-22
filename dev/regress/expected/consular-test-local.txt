@@ -226,8 +226,8 @@ Effects
 From class features and species traits (4)
 Consular weapon proficiencies Proficient: Simple lightweapons Proficient: simple vibroweapons Consular proficiencies
 Force Affinity Choose one of Ashla, Bendu, Bogan Consular feature
-Fundamentals of Mechu-deru Technology: proficient Way of Technology feature
-Human Versatility Choose the skill/tool proficiencies Human trait
+Fundamentals of Mechu-deru Technology: proficient Proficient: simple blasters Way of Technology feature
+Human Versatility Choose one skill Choose one tool Choose one weapon of your choice Human trait
 Temporary
 No temporary effects.
 []
@@ -576,10 +576,10 @@ You gain proficiency in one skill, one tool, and one weapon of your choice.
 Skill proficiency 0 / 1
 None chosen yet.
 [Choose a skill… ▾]
-Tool proficiency 0 / 1
+Tool proficiency 0 / 1 one tool
 None chosen yet.
 [Choose a tool… ▾]
-Weapon proficiency 0 / 1
+Weapon proficiency 0 / 1 one weapon of your choice
 None chosen yet.
 [Choose a weapon… ▾]
 Notes []
@@ -630,7 +630,7 @@ None chosen yet.
 Armor
 None
 Weapon
-Simple lightweapons simple vibroweapons
+Simple lightweapons simple vibroweapons simple blasters · Fundamentals of Mechu-deru
 Tool
 One type of gaming set
 Skills & saves

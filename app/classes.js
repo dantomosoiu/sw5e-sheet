@@ -212,17 +212,21 @@ function clsJoinProfList(list) {
 
 /** Does a weapon (catalog entry) fit a proficiency like "martial vibroweapons with the finesse property"? */
 function clsWeaponMatches(desc, w) {
-  const d = String(desc).toLowerCase().replace(/^(?:and|the)\s+/, '').trim();
+  const d = String(desc).toLowerCase().replace(/^(?:and|the|a|an|one|two|three)\s+/, '').trim();
   const cls = String(w.weaponClassification || '');
-  const tier = /^simple/i.test(cls) ? 'simple' : /^martial/i.test(cls) ? 'martial' : '';
+  const tier = /^simple/i.test(cls) ? 'simple' : /^martial/i.test(cls) ? 'martial' : /^exotic/i.test(cls) ? 'exotic' : '';
   const kind = /blaster/i.test(cls) ? 'blaster' : /vibro/i.test(cls) ? 'vibroweapon' : /light/i.test(cls) ? 'lightweapon' : '';
   const props = (w.properties || []).map((p) => String(p).toLowerCase());
   const has = (p) => props.some((x) => x.startsWith(p.trim()));
-  const m = /^(simple|martial|all)?\s*(blasters|vibroweapons|lightweapons|weapons)\b(.*)$/.exec(d);
-  if (!m) return !!w.name && (d === String(w.name).toLowerCase() || d === `${String(w.name).toLowerCase()}s`);
-  if (m[1] && m[1] !== 'all' && m[1] !== tier) return false;
-  if (m[2] !== 'weapons' && m[2].replace(/s$/, '') !== kind) return false;
+  const m = /^(simple|martial|all|exotic)?\s*(blasters?|vibroweapons?|lightweapons?|weapons?)\b(.*)$/.exec(d);
+  const name = String(w.name || '').toLowerCase();
+  if (!m) return !!name && [name, `${name}s`, `${name}es`].includes(d);
+  // "blasters", "all blasters": the simple and martial ones; an exotic weapon needs its own proficiency (Exotic Weapon Training).
+  if (m[1] === 'exotic' ? tier !== 'exotic' : tier === 'exotic' || (m[1] && m[1] !== 'all' && m[1] !== tier)) return false;
+  if (!/^weapons?$/.test(m[2]) && m[2].replace(/s$/, '') !== kind) return false;
   let x;
+  // "blasters that deal sonic damage" (Geonosian Weaponry).
+  if ((x = /that deals? (\w+) damage/.exec(m[3])) && String(w.damageType || '').toLowerCase() !== x[1]) return false;
   if ((x = /with the ([\w ,-]+?) propert/.exec(m[3]))) {
     if (!x[1].split(/,\s*|\s+or\s+/).map((s) => s.replace(/^or /, '').trim()).filter(Boolean).some(has)) return false;
   }
@@ -302,8 +306,247 @@ function clsChosenText(text, note) {
 }
 
 // effects.js's "+N bonus to <phrase>" readers (a global in the browser; required in Node).
-const clsFx = typeof fxBonusMods !== 'undefined' ? { fxBonusMods, fxCondMods, fxListMods } // eslint-disable-line no-undef
+const clsFx = typeof fxBonusMods !== 'undefined' ? { fxBonusMods, fxCondMods, fxListMods, FX_SKILLS } // eslint-disable-line no-undef
   : (typeof require !== 'undefined' ? require('./effects.js') : {});
+
+// ------------------------------------------------------------- proficiencies
+// A grant: "You gain proficiency in…", "You have proficiency with…", "You are proficient in…", "Your mastery of focus
+// grants you proficiency in…", "…causes you to gain proficiency in…", "…, and gain proficiency with…".
+const CLS_GRANT = /\b(?:you (?:also |then |instead |now )?(?:gain|have) proficiency|you are (?:also )?proficient|(?:grants?|gives?) you proficiency|you to gain proficiency|gain proficiency) (?:in|with) /gi;
+const CLS_COUNT_RE = '(a|an|one|two|three|four|five)';
+const clsToolWord = (s) => /\b(?:kits?|implements|sets?|instruments?|tools?)\b/i.test(s);
+const CLS_WEAPON_KINDS = /^(?:(?:all|simple|martial|exotic)\s+)?(?:blasters?|vibroweapons?|lightweapons?|weapons?)\b/i;
+
+/**
+ * One thing a proficiency grant names: { kind: 'save', names } | { kind: 'skill'|'armor'|'weapon'|'tool', name } |
+ * { kind: 'initiative' } | { kind: 'chosen', of } ("the chosen kit": the feat's own pick) | { kind: 'choice', choice }
+ * (what the player picks: "two skills of your choice", "one musical instrument", "three blasters or vibroweapons…"),
+ * or null (it, them, "the chosen ability", languages…).
+ */
+function clsProfItem(seg, isWeapon) {
+  const s = String(seg).trim().replace(/^(?:in|with)\s+/i, '').replace(/^the\s+/i, '').replace(/[.:]+$/, '').trim();
+  const plain = s.replace(/\s+of your choice$/i, '');
+  let m;
+  if (!plain || /^(?:it|them|this|that|these|those)\b/i.test(plain)) return null;
+  if (/^initiative(?: checks| rolls)?$/i.test(plain)) return { kind: 'initiative' };
+  if ((m = /^chosen (.+)$/i.exec(plain))) return clsToolWord(m[1]) ? { kind: 'chosen', of: m[1] } : null;
+  if (/^(?:all )?saving throws$/i.test(plain)) return { kind: 'save', names: CLS_ABILITIES.slice() };
+  if ((m = new RegExp(`^${CLS_ABIL_RE} saving throws?$`, 'i').exec(plain))) return { kind: 'save', names: [clsAbility(m[1])] };
+  const sk = clsSkill(plain.replace(/\s+skills?$/i, ''));
+  if (sk) return { kind: 'skill', name: sk };
+  if (/^(?:light|medium|heavy) armor$|^shields?$/i.test(plain)) return { kind: 'armor', name: plain.toLowerCase() };
+  if ((m = new RegExp(`^${CLS_COUNT_RE}\\s+(?:set of |type of |kind of )?(.+)$`, 'i').exec(plain))) {
+    const count = clsCount(m[1]);
+    const what = m[2];
+    if (/\bskills?$/i.test(what)) {
+      // "two Intelligence, Wisdom, or Charisma skills": the skills of those abilities.
+      const abil = [...what.matchAll(new RegExp(CLS_ABIL_RE, 'gi'))].map((x) => clsAbility(x[1]));
+      const of = clsFx.FX_SKILLS || {};
+      return { kind: 'choice', choice: { kind: 'skill', count, options: abil.length ? CLS_SKILLS.filter((k) => abil.includes(of[k])) : null, of: s } };
+    }
+    if (/\bsaving throws?$/i.test(what)) return { kind: 'choice', choice: { kind: 'ability', count, options: CLS_ABILITIES.slice(), of: s } };
+    if (/\blanguages?$/i.test(what)) return null;
+    if (clsToolWord(what)) return { kind: 'choice', choice: { kind: 'tool', count, options: null, of: s } };
+    if (/\b(?:blasters?|vibroweapons?|lightweapons?|weapons?)\b/i.test(what)) return { kind: 'choice', choice: { kind: 'weapon', count, options: null, of: s } };
+    return null;
+  }
+  if (CLS_WEAPON_KINDS.test(plain) || /^improvised weapons?$/i.test(plain)) return { kind: 'weapon', name: plain };
+  // A weapon by name, singular or plural ("the vibroaxe", "vibroblades", "blaster pistols").
+  if ([plain, plain.replace(/s$/i, ''), plain.replace(/es$/i, '')].some(isWeapon)) return { kind: 'weapon', name: plain };
+  // "the lightsaber simple lightweapon": the weapon's name, then what kind it is.
+  if ((m = /^(.+?)\s+(?:simple|martial|exotic)\s+(?:blaster|vibroweapon|lightweapon)$/i.exec(plain)) && isWeapon(m[1])) return { kind: 'weapon', name: m[1] };
+  if (clsToolWord(plain)) return { kind: 'tool', name: plain };
+  return null;
+}
+
+/** "light and medium armor", "Strength and Constitution saving throws", "the Insight and Deception skills": the noun is both's. */
+function clsProfDistribute(parts) {
+  return parts.map((p, i) => {
+    const bare = p.replace(/^(?:in|with)\s+/i, '').replace(/^the\s+/i, '').trim();
+    const noun = (re) => { const q = parts.slice(i + 1).find((x) => re.test(x)); return q ? re.exec(q)[0] : null; };
+    if (/^(?:light|medium|heavy)$/i.test(bare)) { const n = noun(/\barmor$/i); return n ? `${bare} ${n}` : p; }
+    if (clsAbility(bare)) { const n = noun(/\bsaving throws?$/i); return n ? `${bare} ${n}` : p; }
+    return p;
+  });
+}
+
+/** "A, B, or C" (one of them): a choice of skills, saves, or tools (with a counted weapon choice among them: Baragwin). */
+function clsProfAlternatives(text, isWeapon) {
+  const alts = clsProfDistribute(text.split(/,\s*(?:or\s+)?|\s+or\s+/i).map((x) => x.trim()).filter(Boolean)).map((x) => clsProfItem(x, isWeapon)).filter(Boolean);
+  if (alts.length && alts.every((a) => a.kind === 'skill')) return { kind: 'choice', choice: { kind: 'skill', count: 1, options: alts.map((a) => a.name), of: text } };
+  if (alts.length && alts.every((a) => a.kind === 'save')) return { kind: 'choice', choice: { kind: 'ability', count: 1, options: alts.flatMap((a) => a.names), of: text } };
+  return { kind: 'choice', choice: { kind: 'tool', count: 1, options: null, of: text }, alts };
+}
+
+/** Everything a grant's list names, as clsProfItem's items (choices included). */
+function clsProfList(text, isWeapon) {
+  let x = String(text).replace(/\s*\([^)]*\)/g, '').replace(/[.:;]+$/, '').trim();
+  // "all martial light- and vibro- weapons": both kinds.
+  x = x.replace(/\b((?:all )?(?:simple |martial )?)light-\s*and vibro-\s*weapons\b/i, '$1lightweapons and $1vibroweapons');
+  // A property or damage phrase belongs to its weapon description ("with the burst or rapid property"): kept whole.
+  const kept = [];
+  x = x.replace(/\b(?:with|that lack) the [\w ,'-]+? propert(?:y|ies)\b|\bthat deals? \w+ damage\b/gi, (p) => `§${kept.push(p) - 1}§`);
+  const back = (s) => s.replace(/§(\d+)§/g, (a, i) => kept[Number(i)]);
+  const items = [];
+  // "your choice of A, B, or C" (to the end, or to the next "and your choice of").
+  for (const ch of [...x.matchAll(/(?:^|,?\s+(?:and\s+)?)(?:in\s+|with\s+)?your choice of (?:the\s+)?(.+?)(?=,?\s+and\s+(?:in\s+|with\s+)?your choice of\b|$)/gi)]) {
+    items.push(clsProfAlternatives(back(ch[1]), isWeapon));
+    x = x.replace(ch[0], ' ');
+  }
+  x = x.trim().replace(/^,\s*|,\s*$/g, '').trim();
+  if (!x) return items;
+  let m;
+  // "two of the following skills of your choice: A, B, or C"; "two of the Perception, Piloting, Survival, and Acrobatics skills".
+  if ((m = new RegExp(`^${CLS_COUNT_RE} of the following skills(?: of your choice)?:?\\s*(.+)$`, 'i').exec(x)) || (m = new RegExp(`^${CLS_COUNT_RE} of the (.+?) skills$`, 'i').exec(x))) {
+    items.push({ kind: 'choice', choice: { kind: 'skill', count: clsCount(m[1]), options: CLS_SKILLS.filter((sk) => new RegExp(`\\b${sk}\\b`, 'i').test(m[2])), of: back(x) } });
+    return items;
+  }
+  // "any combination of two skills or tools of your choice"; "a skill and a tool, or two tools".
+  if ((m = new RegExp(`^any combination of ${CLS_COUNT_RE} skills or tools`, 'i').exec(x))) { items.push({ kind: 'choice', choice: { kind: 'skilltool', count: clsCount(m[1]), options: null, of: back(x) } }); return items; }
+  if (/^an? skill and an? tool,? or two tools$/i.test(x)) { items.push({ kind: 'choice', choice: { kind: 'skilltool', count: 2, options: null, of: 'a skill and a tool, or two tools' } }); return items; }
+  // One counted choice: "two Intelligence, Wisdom, or Charisma skills of your choice", "two vibroweapons or blasters…".
+  if ((m = new RegExp(`^${CLS_COUNT_RE}\\s+(.+)$`, 'i').exec(x)) && !/,\s|\s+and\s+/i.test(m[2].replace(new RegExp(`^${CLS_ABIL_ANY}(?:,?\\s+(?:or\\s+|and\\s+)?${CLS_ABIL_ANY})*`, 'i'), ''))) {
+    const it = clsProfItem(back(x), isWeapon);
+    if (it) items.push(it);
+    return items;
+  }
+  // "Persuasion or Deception", "Intelligence or Charisma saving throws", "armstech's implements, munitions kits, or two weapons".
+  if (/\s+or\s+/i.test(x) && !/\s+and\s+/i.test(x)) { items.push(clsProfAlternatives(back(x), isWeapon)); return items; }
+  const parts = clsProfDistribute(x.split(/,\s*(?:and,?\s+|as well as\s+)?|\s+and\s+|\s+as well as\s+/i).map((s) => back(s).trim()).filter(Boolean));
+  for (const p of parts) { const it = clsProfItem(p, isWeapon); if (it) items.push(it); }
+  return items;
+}
+
+/**
+ * Give what a grant's items name (into `into`: { saves, skills, tools, weapons, armor }), choices from the player's
+ * picks in the feature's note, and their pickers (asks). opts: { ifHas (a condition: the asks only count when it holds),
+ * category (what "the chosen kit" is: "specialist's kit"), pb }. Returns what was granted, [{ kind, name }].
+ */
+function clsApplyProfList(items, into, picks, isWeapon, out, ask, opts = {}) {
+  const got = [];
+  const tools = picks.others.filter((x) => !isWeapon(x));
+  const weapons = picks.others.filter(isWeapon);
+  const conditional = !!opts.ifHas;
+  const asked = (a) => { if (a && conditional) a.ifHas = opts.ifHas; return a; };
+  const need = (text) => { if (!conditional) out.needsChoice.push(text); };
+  const skill = (n) => { into.skills.push({ name: n, level: 'Proficient' }); got.push({ kind: 'skill', name: n }); };
+  const tool = (n) => { into.tools.push({ name: n, level: 'proficient' }); got.push({ kind: 'tool', name: n }); };
+  const save = (n) => { into.saves.push(n); got.push({ kind: 'save', name: n }); };
+  const weapon = (n) => { into.weapons.push(n); got.push({ kind: 'weapon', name: n }); };
+  // Weapon choices in one list are one pick ("one vibroweapon and one blaster of your choice": two weapons).
+  const wch = items.filter((it) => it.kind === 'choice' && it.choice.kind === 'weapon' && !it.alts);
+  if (wch.length > 1) {
+    const count = wch.reduce((t, it) => t + it.choice.count, 0);
+    const kinds = wch.map((it) => it.choice.of.replace(new RegExp(`^${CLS_COUNT_RE}\\s+`, 'i'), '').replace(/\s+of your choice$/i, '')
+      .replace(/\b(blaster|vibroweapon|lightweapon|weapon)$/i, '$1s'));
+    items = items.filter((it) => !wch.includes(it)).concat([{ kind: 'choice', choice: { kind: 'weapon', count, options: null, of: `${['', 'one', 'two', 'three', 'four'][count] || count} ${kinds.join(' or ')}` } }]);
+  }
+  for (const it of items) {
+    if (it.kind === 'save') it.names.forEach(save);
+    else if (it.kind === 'skill') skill(it.name);
+    else if (it.kind === 'armor') { into.armor.push(it.name); got.push({ kind: 'armor', name: it.name }); }
+    else if (it.kind === 'weapon') weapon(it.name);
+    else if (it.kind === 'tool') tool(it.name);
+    else if (it.kind === 'initiative') {
+      // "You are proficient in Initiative checks" (Alert): the proficiency bonus on initiative.
+      if (opts.pb) out.mods.push({ path: 'initiative', bonus: opts.pb, label: `Initiative +${opts.pb} (proficient)` });
+    } else if (it.kind === 'chosen') {
+      // "You gain proficiency with the chosen kit" (Specialist: "Select one type of specialist's kit").
+      const of = opts.category || it.of;
+      const t = tools.slice(0, 1);
+      t.forEach(tool);
+      asked(ask('tool', 'Tool proficiency', null, 1, t, of));
+      if (!t.length) need(`the ${it.of} (${of})`);
+    } else if (it.kind === 'choice') {
+      const c = it.choice;
+      if (it.alts) {
+        // One of several kinds ("Technology or one tool of your choice"; Baragwin's tools or two weapons): what was picked.
+        const altSkills = it.alts.filter((a) => a.kind === 'skill').map((a) => a.name);
+        const altWeapon = it.alts.find((a) => a.kind === 'choice' && a.choice.kind === 'weapon');
+        const altTools = it.alts.filter((a) => a.kind === 'tool' || (a.kind === 'choice' && a.choice.kind === 'tool'));
+        const s = picks.skills.filter((k) => altSkills.includes(k)).slice(0, 1);
+        const w = altWeapon ? weapons.slice(0, altWeapon.choice.count) : [];
+        const t = !s.length && !w.length && altTools.length ? tools.slice(0, 1) : [];
+        s.forEach(skill); w.forEach(weapon); t.forEach(tool);
+        if (altSkills.length) asked(ask('skill', 'Skill proficiency', altSkills, 1, s, c.of));
+        if (altTools.length) asked(ask('tool', 'Tool proficiency', null, 1, t, altTools.map((a) => (a.kind === 'tool' ? a.name : a.choice.of)).join(' or ')));
+        if (altWeapon) asked(ask('weapon', 'Weapon proficiency', null, altWeapon.choice.count, w, altWeapon.choice.of));
+        if (!s.length && !w.length && !t.length) need(c.of);
+        continue;
+      }
+      if (c.kind === 'skill') {
+        const s = picks.skills.filter((k) => !c.options || c.options.includes(k)).slice(0, c.count);
+        s.forEach(skill);
+        asked(ask('skill', 'Skill proficiency', c.options, c.count, s, c.of));
+        if (!s.length) need(c.options && c.options.length <= 6 ? `${c.count > 1 ? `${c.count} of` : 'one of'} ${c.options.join(', ')}` : c.of);
+      } else if (c.kind === 'ability') {
+        const a = picks.abilities.filter((x) => c.options.includes(x)).slice(0, c.count);
+        a.forEach(save);
+        asked(ask('ability', 'Saving throw proficiency', c.options, c.count, a, c.of));
+        if (!a.length) need(`${c.options.join(' or ')} saving throws`);
+      } else if (c.kind === 'tool') {
+        const t = tools.slice(0, c.count);
+        t.forEach(tool);
+        asked(ask('tool', 'Tool proficiency', c.options, c.count, t, c.of));
+        if (!t.length) need(c.of);
+      } else if (c.kind === 'weapon') {
+        const w = weapons.slice(0, c.count);
+        w.forEach(weapon);
+        asked(ask('weapon', 'Weapon proficiency', null, c.count, w, c.of));
+        if (!w.length) need(c.of);
+      } else if (c.kind === 'skilltool') {
+        const both = picks.skills.concat(tools).slice(0, c.count);
+        both.forEach((x) => (clsSkill(x) ? skill(clsSkill(x)) : tool(x)));
+        asked(ask('skilltool', 'Skill or tool proficiencies', null, c.count, both, c.of));
+        if (!both.length) need(c.of);
+      }
+    }
+  }
+  return got;
+}
+
+/** [{ kind, name }] for the fixed things in a list (what an "If you are already proficient in X" names). */
+const clsProfNames = (items) => items.flatMap((it) => (it.kind === 'save' ? it.names.map((n) => ({ kind: 'save', name: n }))
+  : ['skill', 'armor', 'weapon', 'tool'].includes(it.kind) ? [{ kind: it.kind, name: it.name }] : []));
+
+/**
+ * The proficiencies a sentence grants, into out.profs (choices from the note's picks, their pickers into asks), and
+ * the "already proficient" rules, which need the character's other proficiencies (resolved by the sheet):
+ *   "If you are already proficient in it, you instead gain expertise in it": the last grant, in profs.upgrades;
+ *   "If you are already proficient in light armor…, you also gain proficiency in medium armor", "If you already have
+ *   this proficiency, you instead gain proficiency in Intelligence or Charisma saving throws": profs.chains
+ *   ({ ifHas: [{ kind, name }], saves, skills, tools, weapons, armor }).
+ * st.last: what the previous grant gave; st.category: what "the chosen …" is ("Select one gaming set").
+ */
+function clsReadProficiencies(s, st, picks, isWeapon, out, ask, opts) {
+  // Without a list dash, a "#### Option" heading, or SW5E's "_**Tactical Specialist:** 3rd level_" in front.
+  const sen = s.replace(/\r/g, ' ').replace(/^\s*_\*\*[^*]+:\*\*\s*[^_]+_\s*/, '').replace(/^\s*-\s*/, '').replace(/^#+\s*[^#]*?\s(?=You\b)/, '').trim();
+  let m;
+  if (/^if you are already proficient (?:in|with) (?:it|them|this \w+|that \w+|the chosen [\w' ]+?),? (?:you )?instead gain expertise/i.test(sen)) {
+    out.profs.upgrades.push(...st.last.filter((x) => ['skill', 'save', 'tool'].includes(x.kind)));
+    return;
+  }
+  if ((m = /^if you (?:are already proficient (?:in|with) (.+?)|already have (?:this|that|these) proficienc(?:y|ies))(?: when you take this feat)?,\s*(?:you\s+)?(?:also\s+|then\s+|instead\s+)?(?:gain|have) proficiency (?:in|with) (.+?)\.?$/i.exec(sen))) {
+    const ifHas = m[1] ? clsProfNames(clsProfList(m[1], isWeapon)) : st.last;
+    if (!ifHas.length) return;
+    const gain = { saves: [], skills: [], tools: [], weapons: [], armor: [] };
+    clsApplyProfList(clsProfList(m[2], isWeapon), gain, picks, isWeapon, out, ask, { ...opts, ifHas });
+    out.profs.chains.push({ ifHas, ...gain });
+    return;
+  }
+  if (/^if you\b/i.test(sen)) return; // another condition ("If you are already proficient with light armor, instead while…")
+  for (const g of sen.matchAll(CLS_GRANT)) {
+    const before = sen.slice(0, g.index);
+    // A grant to you that starts a clause, not "fighters gain proficiency" or "a tool you are proficient with".
+    const ok = /^gain/i.test(g[0]) ? /,?\s*and\s*$/i.test(before)
+      : /^(?:grants?|gives?|you to)\b/i.test(g[0]) || /(?:^|[,:;]|\band|\bAdditionally,?|\bAlso,?)\s*$/i.test(before);
+    if (!ok) continue;
+    const rest = sen.slice(g.index + g[0].length);
+    const end = /\s+if you\b|,\s*(?:and\s+)?(?:you|they|it|which|when|while|but)\b|,?\s+and\s+(?:you|they|it)\b|,\s*and\s+gain\b|\s+which\s+(?:are|is)\b|[.;](?=\s|$)/i.exec(rest);
+    const items = clsProfList(end ? rest.slice(0, end.index) : rest, isWeapon);
+    st.last = clsApplyProfList(items, out.profs, picks, isWeapon, out, ask, opts);
+  }
+}
 
 /**
  * The permanent effects of a feature or option at a level, from its text and the player's note.
@@ -328,7 +571,7 @@ function clsFeatureEffects(text, note, ctx) {
   const optionAsk = () => (sub.choice ? [{ kind: 'option', label: 'Choose one', options: sub.options, count: 1, chosen: sub.chosen, of: '' }] : []);
   if (sub.choice && sub.chosen.length && /\bfor the duration\b|\bwhile wearing your [\w' ]+, you gain the (?:effects|benefits) of the chosen\b/i.test(String(text).split(/^#{4,}\s/m)[0])) {
     // Only during the state / while wearing the item: not permanent numbers (the text stays on the card).
-    return { mods: [], profs: { saves: [], skills: [], tools: [], weapons: [], armor: [] }, notes: [], needsChoice: [], asks: optionAsk(), advantage: [], critRange: 0, halfProf: false, unarmedStep: 0, defenses: [] };
+    return { mods: [], profs: { saves: [], skills: [], tools: [], weapons: [], armor: [], upgrades: [], chains: [] }, notes: [], needsChoice: [], asks: optionAsk(), advantage: [], critRange: 0, halfProf: false, unarmedStep: 0, defenses: [] };
   }
   const t = clsScaleText(sub.text, level);
   // A state's benefits list ("While raging, you gain the following benefits: - …") isn't permanent;
@@ -339,15 +582,24 @@ function clsFeatureEffects(text, note, ctx) {
   }).replace(/\n+/g, ' ').split(/(?<=\.)\s+(?=[A-Z_*])/);
   const picks = clsNoteNames(note);
   const out = {
-    mods: [], profs: { saves: [], skills: [], tools: [], weapons: [], armor: [] }, notes: [], needsChoice: [],
+    mods: [], profs: { saves: [], skills: [], tools: [], weapons: [], armor: [], upgrades: [], chains: [] }, notes: [], needsChoice: [],
     advantage: [], critRange: 0, halfProf: false, unarmedStep: 0, defenses: [], asks: optionAsk(),
   };
   const same = (x, a) => x.kind === a.kind && x.label === a.label && String(x.options) === String(a.options);
   const ask = (kind, label, options, count, chosen, of = '') => {
     const a = { kind, label, options: options && options.length ? options : null, count: count || 1, chosen: [...new Set(chosen || [])], of };
-    if (!out.asks.some((x) => same(x, a))) out.asks.push(a);
+    const had = out.asks.find((x) => same(x, a));
+    if (had) return had;
+    out.asks.push(a);
+    return a;
   };
   const isWeapon = typeof ctx.isWeapon === 'function' ? ctx.isWeapon : () => false;
+  // Proficiency grants: what the previous one gave ("If you are already proficient in it…"), the proficiency bonus (Alert's
+  // initiative; a feat's level is the character's), and what "the chosen kit" is ("Select one type of specialist's kit").
+  const profState = { last: [] };
+  const pb = Number(ctx.pb) || (level ? Math.ceil(level / 4) + 1 : 0);
+  const sel = /\bselect one (?:type of |set of )?([^.]+?)\./i.exec(t);
+  const category = sel ? sel[1].trim() : null;
   if (sub.choice && !sub.chosen.length) out.needsChoice.push(`one of ${sub.options.join(', ')}`);
   // Benefit lists of states ("While raging, you gain the following benefits: - …") aren't permanent.
   const permanent = sentences.filter((s) => !/following benefits/i.test(s) && !/^- /.test(s));
@@ -437,99 +689,10 @@ function clsFeatureEffects(text, note, ctx) {
         if (got && got.length) out.mods.push(...got.map((x) => (cond ? { ...x, when: cond } : x)));
       }
     }
-    // Proficiencies: "You gain proficiency in Wisdom saving throws / heavy armor / martial blasters… / your choice of…"
-    // Species traits say "You have proficiency in the Survival skill" / "…with Persuasion or Intimidation (your choice)".
-    if ((m = /(?:\bgain|^\s*you have) proficiency (?:in|with) (.+?)(?:\.|$)/i.exec(s)) && !/if you don't already have it|already proficient/i.test(s)) {
-      // "your choice of the Insight, Deception, Persuasion, or Sleight of Hand skills": the player picks.
-      let rest = m[1].replace(/\(.*?\)/g, '');
-      for (const ch of [...rest.matchAll(/your choice of (?:the |a |an )?(.+?)(?=,? and your choice|,? and (?:light|medium|heavy|simple|martial)\b|$)/gi)]) {
-        const seg = ch[1];
-        const listed = CLS_SKILLS.filter((sk) => new RegExp(`\\b${sk}\\b`, 'i').test(seg));
-        const skills = /skill/i.test(seg) || listed.length ? picks.skills.filter((sk) => !listed.length || listed.includes(sk)) : [];
-        const tools = /tool|kit|set|instrument|implement/i.test(seg) ? picks.others.filter((x) => !isWeapon(x)) : [];
-        skills.forEach((sk) => out.profs.skills.push({ name: sk, level: 'Proficient' }));
-        tools.forEach((tl) => out.profs.tools.push({ name: tl, level: 'proficient' }));
-        if ((/skill/i.test(seg) || listed.length) && !skills.length) out.needsChoice.push(listed.length ? `one of ${listed.join(', ')}` : 'a skill');
-        if (/tool|kit|set|instrument|implement/i.test(seg) && !tools.length) out.needsChoice.push(seg.replace(/ and .*$/, ''));
-        if (/skill/i.test(seg) || listed.length) ask('skill', 'Skill proficiency', listed, clsCount(seg), skills);
-        if (/tool|kit|set|instrument|implement/i.test(seg)) ask('tool', 'Tool proficiency', null, clsCount(seg), tools, seg.replace(/ and .*$/, ''));
-        rest = rest.replace(ch[0], '');
-      }
-      // "one of the following skills: Intimidation, Persuasion, Stealth, or Perception": only the one(s) picked (the
-      // list isn't split up below, where each name would count as a proficiency).
-      for (const ch of [...rest.matchAll(/\b(a|an|one|two|three) of the following skills(?: of your choice)?:?\s*([^.;]+)/gi)]) {
-        const listed = CLS_SKILLS.filter((sk) => new RegExp(`\\b${sk}\\b`, 'i').test(ch[2]));
-        const n = clsCount(ch[1]);
-        const chosen = picks.skills.filter((sk) => listed.includes(sk)).slice(0, n);
-        chosen.forEach((sk) => out.profs.skills.push({ name: sk, level: 'Proficient' }));
-        if (!chosen.length) out.needsChoice.push(`${n > 1 ? `${ch[1]} of` : 'one of'} ${listed.join(', ')}`);
-        ask('skill', 'Skill proficiency', listed, n, chosen);
-        rest = rest.replace(ch[0], '');
-      }
-      const items = rest.replace(/^\s*(?:and|the)\s+|\s*,?\s*and\s*$/g, '').split(/,\s*(?:and\s+)?|\s+and\s+(?=(?:your|one|two|three|the|light|medium|heavy|simple|martial|all|\w+(?:'s)? (?:kit|implements|set))\b)/i).map((x) => x.trim()).filter(Boolean);
-      for (const it of items) {
-        let x;
-        // "Strength and Constitution saving throws" (both); "Intelligence or Wisdom saving throws" (one, from the note).
-        if ((x = new RegExp(`^(${CLS_ABIL_ANY}(?:,? (?:and|or) ${CLS_ABIL_ANY})*) saving throws?$`, 'i').exec(it))) {
-          const names = x[1].split(/,? (?:and|or) /i).map(clsAbility).filter(Boolean);
-          if (/ or /i.test(x[1])) {
-            const chosen = names.filter((a) => picks.abilities.includes(a)).slice(0, 1);
-            chosen.forEach((a) => out.profs.saves.push(a));
-            if (!chosen.length) out.needsChoice.push(`${names.join(' or ')} saving throws`);
-            ask('ability', 'Saving throw proficiency', names, 1, chosen);
-          } else names.forEach((a) => out.profs.saves.push(a));
-        } else if (clsSkill(it.replace(/ skill$/i, ''))) out.profs.skills.push({ name: clsSkill(it.replace(/ skill$/i, '')), level: 'Proficient' });
-        else if (/ or /i.test(it) && it.split(/,? or /i).every((p) => clsSkill(p.replace(/ skills?$/i, '')))) {
-          // "Intimidation or Persuasion": one of them, from the note.
-          const listed = it.split(/,? or /i).map((p) => clsSkill(p.replace(/ skills?$/i, '')));
-          const chosen = picks.skills.filter((sk) => listed.includes(sk)).slice(0, 1);
-          chosen.forEach((sk) => out.profs.skills.push({ name: sk, level: 'Proficient' }));
-          if (!chosen.length) out.needsChoice.push(`one of ${listed.join(', ')}`);
-          ask('skill', 'Skill proficiency', listed, 1, chosen);
-        } else if (/\barmor\b|shields?/i.test(it)) out.profs.armor.push(it);
-        else if (/^(?:simple|martial|all)?\s*(?:blasters|vibroweapons|lightweapons|weapons)\b/i.test(it)) out.profs.weapons.push(it);
-        else if (/choice|of the following|\b(?:a|one|two|three|any) (?:skills?|tools?)\b|any (?:one|two)/i.test(it)) {
-          if (/gain proficiency in (?:a|one|two) (?:skill|tool)/i.test(s)) continue; // read from the note below
-          const isTool = /tool|kit|set|instrument|implement/i.test(it);
-          const isWeap = !isTool && /blaster|vibroweapon|lightweapon|weapon/i.test(it);
-          const listed = CLS_SKILLS.filter((sk) => new RegExp(`\\b${sk}\\b`, 'i').test(it));
-          const skills = picks.skills.filter((sk) => /skill/i.test(it) || listed.includes(sk));
-          const tools = isTool ? picks.others.filter((x) => !isWeapon(x)) : [];
-          const weapons = isWeap ? picks.others.filter((x) => !ctx.isWeapon || isWeapon(x)) : [];
-          skills.forEach((sk) => out.profs.skills.push({ name: sk, level: 'Proficient' }));
-          tools.forEach((tl) => out.profs.tools.push({ name: tl, level: 'proficient' }));
-          weapons.forEach((w) => out.profs.weapons.push(w));
-          if (!skills.length && !tools.length && !weapons.length) out.needsChoice.push(it);
-          if (/skill/i.test(it) || listed.length) ask('skill', 'Skill proficiency', listed, clsCount(it), skills, it);
-          if (isTool) ask('tool', 'Tool proficiency', null, clsCount(it), tools, it);
-          if (isWeap) ask('weapon', 'Weapon proficiency', null, clsCount(it), weapons, it);
-        } else if (/kit|implements|set|instrument|tools?\b/i.test(it)) out.profs.tools.push({ name: it.replace(/^(?:a |an |the )/i, ''), level: 'proficient' });
-      }
-    }
-    // "You are proficient with improvised weapons" (Brawler Style).
-    if (/\byou are proficient with improvised weapons\b/i.test(s)) out.profs.weapons.push('improvised weapons');
-    // "You gain proficiency in a skill and a tool, or two tools." (Lifelong Learning): from the note.
-    if (/gain proficiency in (?:a|one|two) (?:skill|tool)/i.test(s) && !/gain proficiency (?:in|with) (?!a |one |two )/i.test(s)) {
-      // "…one skill, one tool, and one weapon of your choice" (Human Versatility): the weapon among the other words.
-      const wp = /\b(a|one|two) weapons?\b/i.exec(s);
-      const weapons = wp && ctx.isWeapon ? picks.others.filter(isWeapon) : [];
-      const tools = picks.others.filter((x) => !weapons.includes(x));
-      picks.skills.forEach((sk) => out.profs.skills.push({ name: sk, level: 'Proficient' }));
-      tools.forEach((tl) => out.profs.tools.push({ name: tl, level: 'proficient' }));
-      weapons.forEach((w) => out.profs.weapons.push(w));
-      if (!picks.skills.length && !picks.others.length) out.needsChoice.push('the skill/tool proficiencies');
-      const sk = /\b(a|one|two) skills?\b/i.exec(s);
-      const tl = /\b(a|one|two) tools?\b/i.exec(s);
-      // "a skill and a tool, or two tools": two picks, skills or tools.
-      if (/,? or (?:a|one|two) tools?\b/i.test(s)) ask('skilltool', 'Skill or tool proficiencies', null, 2, picks.skills.concat(picks.others), 'a skill and a tool, or two tools');
-      else {
-        if (sk) ask('skill', 'Skill proficiency', null, clsCount(sk[0]), picks.skills);
-        if (tl) ask('tool', 'Tool proficiency', null, clsCount(tl[0]), tools, 'tool');
-        if (wp) ask('weapon', 'Weapon proficiency', null, clsCount(wp[0]), weapons, 'weapons');
-      }
-    }
+    // Proficiencies ("You gain proficiency in…", "You are proficient with…", "If you are already proficient…").
+    clsReadProficiencies(s, profState, picks, isWeapon, out, ask, { pb, category });
     // Expertise: "Choose two of your skill proficiencies… You gain expertise in those skills or tools."
-    if (/\bexpertise\b/i.test(s) && /choose|of your choice|those skills/i.test(t) && !/\blevel of proficiency\b/i.test(s)) {
+    if (/\byou gain expertise in (?:those|these|the chosen|them)\b/i.test(s)) {
       picks.skills.forEach((sk) => out.profs.skills.push({ name: sk, level: 'Expertise' }));
       picks.others.forEach((tl) => out.profs.tools.push({ name: tl, level: 'expertise' }));
       if (!picks.skills.length && !picks.others.length) out.needsChoice.push('the skills/tools for expertise');

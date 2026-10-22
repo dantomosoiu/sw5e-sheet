@@ -273,7 +273,7 @@ Accuracy Focus Accuracy Focus: attack +2 Armstech Modifications (Blaster rifle)
 Amplifying Barrel Amplifying Barrel: damage +2 Armstech Modifications (Blaster rifle)
 Engineer weapon proficiencies Proficient: Simple blasters Proficient: simple vibroweapons Engineer proficiencies
 Bonus Proficiencies Proficient: martial blasters Proficient: martial vibroweapons armstech's implements: proficient Proficient: medium armor Armstech Engineering feature
-Human Versatility Choose the skill/tool proficiencies Human trait
+Human Versatility Choose one skill Choose one tool Choose one weapon of your choice Human trait
 Blade Focus Blade Focus: damage +1 Weapon focus (Vibrosword)
 Temporary
 Juyo Form started, lasts until the start of your next turn, since Fri 21:36 [End]
@@ -647,10 +647,10 @@ You gain proficiency in one skill, one tool, and one weapon of your choice.
 Skill proficiency 0 / 1
 None chosen yet.
 [Choose a skill… ▾]
-Tool proficiency 0 / 1
+Tool proficiency 0 / 1 one tool
 None chosen yet.
 [Choose a tool… ▾]
-Weapon proficiency 0 / 1
+Weapon proficiency 0 / 1 one weapon of your choice
 None chosen yet.
 [Choose a weapon… ▾]
 Notes []

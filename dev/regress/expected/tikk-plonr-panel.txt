@@ -176,7 +176,7 @@ tweak: abilityScores.Intelligence.skills.Lore +0 {"proficiency":"Proficient"} ·
 tweak: abilityScores.Intelligence.skills.Technology +0 {"proficiency":"Expertise"} · Scientist skill + Techie (already proficient -> expertise)
 tweak: abilityScores.Wisdom.skills.Medicine +0 {"proficiency":"Proficient"} · Engineer skill (3 of 6)
 tweak: abilityScores.Intelligence.score +1 · Techie
-tweak: abilityScores.Intelligence.skills.Technology +0 {"proficiency":"Proficient"} · Techie
+tweak: abilityScores.Intelligence.skills.Technology +0 {"proficiency":"Expertise"} · Techie
 tweak: abilityScores.Intelligence.skills.Piloting +0 {"proficiency":"Proficient"} · Pilot
 tweak: armorClass +1 · Armor (Fine)
 weapon tweak: #1 toHit +1 · Infuse Item: Blaster pistol
@@ -286,7 +286,7 @@ From class features, feats and species traits (5)
 Engineer weapon proficiencies Proficient: Simple blasters Proficient: simple vibroweapons Engineer proficiencies
 Bonus Proficiencies Proficient: martial blasters Proficient: martial vibroweapons armstech's implements: proficient Proficient: medium armor Armstech Engineering feature
 Techie INT +1 feat (background feat)
-Techie Technology: proficient feat
+Techie Technology: expertise (already proficient) feat
 Pilot Piloting: proficient Sullustan trait
 From equipment
 Armor (Fine) AC +1 while equipped
@@ -352,7 +352,7 @@ Intelligence
 (Proficient) Piloting+7
   ↳ hover abilityScores.Intelligence.skills.3.modifier: Without tweaks or effects: 4 → now 7 / +1 INT · Techie feat (background feat) / Proficient Piloting · Sullus… [234 chars #298967e9]
 (Expertise) Technology+9
-  ↳ hover abilityScores.Intelligence.skills.4.modifier: Without tweaks or effects: 4 → now 9 / +1 INT · Techie feat (background feat) / Expertise Technology · Scien… [269 chars #b2c26b82]
+  ↳ hover abilityScores.Intelligence.skills.4.modifier: Without tweaks or effects: 4 → now 9 / +1 INT · Techie feat (background feat) / Expertise Technology · Scien… [288 chars #5e37b24b]
 base 15 · +2 Sullustan · +2 ASI (Engineer 4) · +1 from Techie (feat)
 WIS
 Wisdom
@@ -408,8 +408,8 @@ Skill | Ability | Bonus | Passive | Proficiency |
 (Not proficient) Stealth | DEX | +2 | 12 | — |
 (Not proficient) Survival | WIS | +1 | 11 | — |
 (Expertise) Technology | INT | +9 | 19 | Expertise |
-  ↳ hover abilityScores.Intelligence.skills.4.modifier: Without tweaks or effects: 4 → now 9 / +1 INT · Techie feat (background feat) / Expertise Technology · Scien… [269 chars #b2c26b82]
-  ↳ hover abilityScores.Intelligence.skills.4.modifier: Without tweaks or effects: 4 → now 9 / +1 INT · Techie feat (background feat) / Expertise Technology · Scien… [269 chars #b2c26b82]
+  ↳ hover abilityScores.Intelligence.skills.4.modifier: Without tweaks or effects: 4 → now 9 / +1 INT · Techie feat (background feat) / Expertise Technology · Scien… [288 chars #5e37b24b]
+  ↳ hover abilityScores.Intelligence.skills.4.modifier: Without tweaks or effects: 4 → now 9 / +1 INT · Techie feat (background feat) / Expertise Technology · Scien… [288 chars #5e37b24b]
 
 ## Sheet: Weapons & Attacks
 Weapon | To hit | Damage | Ability | Type | Properties |

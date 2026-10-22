@@ -182,7 +182,7 @@ tweak: abilityScores.Intelligence.skills.Piloting +0 {"proficiency":"Proficient"
 tweak: unarmed.damageDice +0 {"override":4,"dieSize":4} · Wookiee Claws: unarmed strikes deal 1d4 (not applied by SW5E)
 tweak: speed.base +10 · Predator's Instinct
 tweak: abilityScores.Strength.score +1 · Brawny
-tweak: abilityScores.Strength.skills.Athletics +0 {"proficiency":"Proficient"} · Brawny
+tweak: abilityScores.Strength.skills.Athletics +0 {"proficiency":"Expertise"} · Brawny
 tweak: armorClass +3 · Hide
 tweak: abilityScores.Charisma.skills.Intimidation +0 {"proficiency":"Proficient"} · Menacing
 weapon tweak: #0 toHit +1 · Weapon (Fine)
@@ -288,7 +288,7 @@ Unarmored Defense AC + CON Berserker feature
 Danger Sense Advantage on Dexterity saving throws against effects that you can see, such as traps and powers Berserker feature
 Predator's Instinct Speed +10 ft Berserker Instincts feature
 Brawny STR +1 feat (background feat)
-Brawny Athletics: proficient feat
+Brawny Athletics: expertise (already proficient) feat
 Claws Wookiee trait
 Hide AC 13 + DEX (Hide) Wookiee trait
 Menacing Intimidation: proficient Wookiee trait
@@ -330,7 +330,7 @@ Strength
 (Proficient) Saving throw+7
   ↳ hover abilityScores.Strength.savingThrow.modifier: Without tweaks or effects: 6 → now 7 / +1 STR · Brawny feat (background feat)
 (Expertise) Athletics+9
-  ↳ hover abilityScores.Strength.skills.0.modifier: Without tweaks or effects: 4 → now 9 / +1 STR · Brawny feat (background feat) / Expertise Athletics · Berserker … [300 chars #d91fa75b]
+  ↳ hover abilityScores.Strength.skills.0.modifier: Without tweaks or effects: 4 → now 9 / +1 STR · Brawny feat (background feat) / Expertise Athletics · Berserker … [319 chars #aa73cf74]
 base 15 · +2 Wookiee · +2 ASI (Berserker 4) · +1 from Brawny (feat)
 DEX
 Dexterity
@@ -390,8 +390,8 @@ Skill | Ability | Bonus | Passive | Proficiency |
 (Not proficient) Acrobatics | DEX | +1 | 11 | — |
 (Not proficient) Animal Handling | WIS | +1 | 11 | — |
 (Expertise) Athletics | STR | +9 | 19 | Expertise |
-  ↳ hover abilityScores.Strength.skills.0.modifier: Without tweaks or effects: 4 → now 9 / +1 STR · Brawny feat (background feat) / Expertise Athletics · Berserker … [300 chars #d91fa75b]
-  ↳ hover abilityScores.Strength.skills.0.modifier: Without tweaks or effects: 4 → now 9 / +1 STR · Brawny feat (background feat) / Expertise Athletics · Berserker … [300 chars #d91fa75b]
+  ↳ hover abilityScores.Strength.skills.0.modifier: Without tweaks or effects: 4 → now 9 / +1 STR · Brawny feat (background feat) / Expertise Athletics · Berserker … [319 chars #aa73cf74]
+  ↳ hover abilityScores.Strength.skills.0.modifier: Without tweaks or effects: 4 → now 9 / +1 STR · Brawny feat (background feat) / Expertise Athletics · Berserker … [319 chars #aa73cf74]
 (Not proficient) Deception | CHA | +0 | 10 | — |
 (Not proficient) Insight | WIS | +1 | 11 | — |
 (Proficient) Intimidation | CHA | +2 | 12 | Proficient |

@@ -256,7 +256,7 @@ From class features and species traits (4)
 Berserker weapon proficiencies Proficient: All vibroweapons Proficient: simple blasters Berserker proficiencies
 Unarmored Defense AC + CON Berserker feature
 Danger Sense Advantage on Dexterity saving throws against effects that you can see, such as traps and powers Berserker feature
-Human Versatility Choose the skill/tool proficiencies Human trait
+Human Versatility Choose one skill Choose one tool Choose one weapon of your choice Human trait
 Temporary
 No temporary effects.
 []
@@ -486,10 +486,10 @@ You gain proficiency in one skill, one tool, and one weapon of your choice.
 Skill proficiency 0 / 1
 None chosen yet.
 [Choose a skill… ▾]
-Tool proficiency 0 / 1
+Tool proficiency 0 / 1 one tool
 None chosen yet.
 [Choose a tool… ▾]
-Weapon proficiency 0 / 1
+Weapon proficiency 0 / 1 one weapon of your choice
 None chosen yet.
 [Choose a weapon… ▾]
 Notes []
