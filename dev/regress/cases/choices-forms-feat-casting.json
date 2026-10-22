@@ -1,0 +1,3673 @@
+{
+ "format": "sw5e-sheet-regress-case",
+ "name": "choices-forms-feat-casting",
+ "key": "id:00000000-0000-4000-8000-000003000001",
+ "recordedAt": 1792289049607,
+ "rules": {
+  "dataVersion": 199,
+  "fetchedAt": 1792273029637
+ },
+ "catalog": {
+  "dataVersion": 199,
+  "fetchedAt": 1792170265673,
+  "count": 2425
+ },
+ "storage": {
+  "snapshots": {
+   "id:00000000-0000-4000-8000-000003000001": {
+    "format": "sw5e-sheet-snapshot",
+    "version": 1,
+    "key": "id:00000000-0000-4000-8000-000003000001",
+    "raw": {
+     "name": "Berserker Test (Claude)",
+     "image": "",
+     "experiencePoints": 6500,
+     "species": {
+      "name": "Human",
+      "abilityScoreImprovementSelectedOption": 0,
+      "abilityScoreImprovement": {}
+     },
+     "classes": [
+      {
+       "name": "Berserker",
+       "levels": 5,
+       "hitPoints": [
+        7,
+        7,
+        7,
+        7
+       ],
+       "abilityScoreImprovements": [
+        {
+         "type": "Feat",
+         "name": "Formfighting Dabbler"
+        }
+       ],
+       "skills": [
+        "Athletics",
+        "Intimidation"
+       ]
+      }
+     ],
+     "baseAbilityScores": {
+      "Strength": 16,
+      "Dexterity": 14,
+      "Constitution": 16,
+      "Intelligence": 8,
+      "Wisdom": 12,
+      "Charisma": 10
+     },
+     "background": {
+      "name": "Soldier",
+      "feature": "",
+      "feat": {
+       "name": "Force-Sensitive",
+       "type": "Feat"
+      }
+     },
+     "characteristics": {
+      "alignment": "Balanced Neutral",
+      "Personality Traits": "",
+      "Ideal": "",
+      "Bond": "",
+      "Flaw": "",
+      "Gender": "",
+      "Place of Birth": "",
+      "Age": "",
+      "Height": "",
+      "Weight": "",
+      "Hair": "",
+      "Eyes": "",
+      "Skin": "",
+      "Appearance": "",
+      "Backstory": ""
+     },
+     "credits": 100,
+     "equipment": [
+      {
+       "name": "Dire vibroblade",
+       "quantity": 1,
+       "category": "Equipment",
+       "equipped": true
+      },
+      {
+       "name": "Medium physical shield",
+       "quantity": 1,
+       "category": "Equipment",
+       "equipped": true
+      },
+      {
+       "name": "Combat suit",
+       "quantity": 1,
+       "category": "Equipment",
+       "equipped": false
+      },
+      {
+       "name": "Blaster pistol",
+       "quantity": 1,
+       "category": "Equipment",
+       "equipped": true
+      }
+     ],
+     "currentStats": {
+      "hitPointsLost": 0,
+      "temporaryHitPoints": 0,
+      "techPointsUsed": 0,
+      "forcePointsUsed": 0,
+      "superiorityDiceUsed": 0,
+      "hitDiceUsed": {},
+      "deathSaves": {
+       "successes": 0,
+       "failures": 0
+      },
+      "hasInspiration": false,
+      "featuresTimesUsed": {},
+      "conditions": [],
+      "exhaustion": 0,
+      "highLevelCasting": {
+       "level6": false,
+       "level7": false,
+       "level8": false,
+       "level9": false
+      }
+     },
+     "tweaks": {},
+     "customProficiencies": [],
+     "customLanguages": [],
+     "customFeatures": [],
+     "customFeats": [],
+     "customTechPowers": [],
+     "customForcePowers": [],
+     "customEquipment": [],
+     "settings": {
+      "isEnforcingForcePrerequisites": true,
+      "isFixedHitPoints": false,
+      "abilityScoreMethod": "Manual"
+     },
+     "notes": "Test character for the SW5E Sheet extension. Safe to delete.",
+     "localId": "temp-3ygjdy0ex",
+     "createdAt": 1792178402225,
+     "builderVersion": "0.7.6",
+     "changedAt": 1792178402225,
+     "id": "00000000-0000-4000-8000-000003000001",
+     "userId": "00000000-0000-4000-8000-000003000002",
+     "featureChoices": {
+      "Feat: Force-Sensitive (Background (Soldier)) (at-will force power)": [
+       {
+        "name": "Affect Mind"
+       },
+       {
+        "name": "Burst"
+       }
+      ],
+      "Feat: Formfighting Dabbler (Berserker ASI #1)": [
+       {
+        "name": "Makashi Form"
+       }
+      ]
+     }
+    },
+    "complete": {
+     "name": "Berserker Test (Claude)",
+     "builderVersion": "0.7.6",
+     "image": "",
+     "characteristics": {
+      "alignment": "Balanced Neutral",
+      "Personality Traits": "",
+      "Ideal": "",
+      "Bond": "",
+      "Flaw": "",
+      "Gender": "",
+      "Place of Birth": "",
+      "Age": "",
+      "Height": "",
+      "Weight": "",
+      "Hair": "",
+      "Eyes": "",
+      "Skin": "",
+      "Appearance": "",
+      "Backstory": ""
+     },
+     "tweaks": {},
+     "customProficiencies": [],
+     "customLanguages": [],
+     "customFeatures": [],
+     "customTechPowers": [],
+     "customForcePowers": [],
+     "customEquipment": [],
+     "numCustomFeats": 0,
+     "currentLevel": 5,
+     "classText": "Berserker 5",
+     "alignment": "Balanced Neutral",
+     "species": "Human",
+     "background": "Soldier",
+     "experiencePoints": {
+      "previousLevel": 6500,
+      "current": 6500,
+      "nextLevel": 14000,
+      "isCorrect": true,
+      "errorMessage": ""
+     },
+     "abilityScores": {
+      "Strength": {
+       "value": 16,
+       "modifier": 3,
+       "savingThrow": {
+        "modifier": 6,
+        "proficiency": "proficient"
+       },
+       "skills": [
+        {
+         "name": "Athletics",
+         "modifier": 6,
+         "proficiency": "proficient"
+        }
+       ]
+      },
+      "Dexterity": {
+       "value": 14,
+       "modifier": 2,
+       "savingThrow": {
+        "modifier": 2,
+        "proficiency": "none"
+       },
+       "skills": [
+        {
+         "name": "Acrobatics",
+         "modifier": 2,
+         "proficiency": "none"
+        },
+        {
+         "name": "Sleight of Hand",
+         "modifier": 2,
+         "proficiency": "none"
+        },
+        {
+         "name": "Stealth",
+         "modifier": 2,
+         "proficiency": "none"
+        }
+       ]
+      },
+      "Constitution": {
+       "value": 16,
+       "modifier": 3,
+       "savingThrow": {
+        "modifier": 6,
+        "proficiency": "proficient"
+       },
+       "skills": []
+      },
+      "Intelligence": {
+       "value": 8,
+       "modifier": -1,
+       "savingThrow": {
+        "modifier": -1,
+        "proficiency": "none"
+       },
+       "skills": [
+        {
+         "name": "Investigation",
+         "modifier": -1,
+         "proficiency": "none"
+        },
+        {
+         "name": "Lore",
+         "modifier": -1,
+         "proficiency": "none"
+        },
+        {
+         "name": "Nature",
+         "modifier": -1,
+         "proficiency": "none"
+        },
+        {
+         "name": "Piloting",
+         "modifier": -1,
+         "proficiency": "none"
+        },
+        {
+         "name": "Technology",
+         "modifier": -1,
+         "proficiency": "none"
+        }
+       ]
+      },
+      "Wisdom": {
+       "value": 12,
+       "modifier": 1,
+       "savingThrow": {
+        "modifier": 1,
+        "proficiency": "none"
+       },
+       "skills": [
+        {
+         "name": "Animal Handling",
+         "modifier": 1,
+         "proficiency": "none"
+        },
+        {
+         "name": "Insight",
+         "modifier": 1,
+         "proficiency": "none"
+        },
+        {
+         "name": "Medicine",
+         "modifier": 1,
+         "proficiency": "none"
+        },
+        {
+         "name": "Perception",
+         "modifier": 1,
+         "proficiency": "none"
+        },
+        {
+         "name": "Survival",
+         "modifier": 1,
+         "proficiency": "none"
+        }
+       ]
+      },
+      "Charisma": {
+       "value": 10,
+       "modifier": 0,
+       "savingThrow": {
+        "modifier": 0,
+        "proficiency": "none"
+       },
+       "skills": [
+        {
+         "name": "Deception",
+         "modifier": 0,
+         "proficiency": "none"
+        },
+        {
+         "name": "Intimidation",
+         "modifier": 3,
+         "proficiency": "proficient"
+        },
+        {
+         "name": "Performance",
+         "modifier": 0,
+         "proficiency": "none"
+        },
+        {
+         "name": "Persuasion",
+         "modifier": 0,
+         "proficiency": "none"
+        }
+       ]
+      }
+     },
+     "proficiencyBonus": 3,
+     "initiative": 2,
+     "armorClass": 14,
+     "armorList": [
+      "Medium physical shield"
+     ],
+     "passivePerception": 11,
+     "inspiration": false,
+     "vision": "normal",
+     "speed": {
+      "base": "30 ft",
+      "hour": "3 miles",
+      "day": "24 miles",
+      "special": ""
+     },
+     "hitPoints": {
+      "current": 55,
+      "temporary": 0,
+      "maximum": 55,
+      "hitDice": [
+       {
+        "size": "d12",
+        "current": 5,
+        "maximum": 5
+       }
+      ],
+      "deathSaves": {
+       "successes": 0,
+       "failures": 0
+      },
+      "resting": {
+       "hitDieBonus": 3,
+       "numHitDiceUsed": 0,
+       "hitDiceRestored": [],
+       "techPointsUsed": 0,
+       "forcePointsUsed": 0,
+       "highLevelCasting": {
+        "level6": false,
+        "level7": false,
+        "level8": false,
+        "level9": false
+       },
+       "shortRestFeatures": [],
+       "longRestFeatures": []
+      }
+     },
+     "conditions": [],
+     "exhaustion": 0,
+     "proficiencies": [
+      {
+       "name": "All vibroweapons",
+       "type": "weapon"
+      },
+      {
+       "name": "simple blasters",
+       "type": "weapon"
+      },
+      {
+       "name": "Light armor",
+       "type": "armor"
+      },
+      {
+       "name": "medium armor",
+       "type": "armor"
+      },
+      {
+       "name": "One type of gaming set",
+       "type": "tool"
+      }
+     ],
+     "skillAndSaveProficiencies": [
+      "Athletics",
+      "Intimidation",
+      "Strength Saving Throws",
+      "Constitution Saving Throws"
+     ],
+     "languages": [
+      "Galactic Basic"
+     ],
+     "equipment": [
+      {
+       "name": "Dire vibroblade",
+       "description": null,
+       "cost": 550,
+       "weight": "7",
+       "equipmentCategoryEnum": 3,
+       "equipmentCategory": "Weapon",
+       "damageNumberOfDice": 1,
+       "damageTypeEnum": 7,
+       "damageType": "Kinetic",
+       "damageDieModifier": 0,
+       "weaponClassificationEnum": 4,
+       "weaponClassification": "MartialVibroweapon",
+       "armorClassificationEnum": 0,
+       "armorClassification": "Unknown",
+       "damageDiceDieTypeEnum": 8,
+       "damageDieType": 8,
+       "properties": [
+        "Dexterity 13",
+        "dire 1",
+        "versatile (1d10)"
+       ],
+       "propertiesJson": "[\"Dexterity 13\",\"dire 1\",\"versatile (1d10)\"]",
+       "propertiesMap": {
+        "Dexterity": "Dexterity 13",
+        "Dire": "dire 1",
+        "Versatile": "versatile (1d10)"
+       },
+       "propertiesMapJson": "{\"Dexterity\":\"Dexterity 13\",\"Dire\":\"dire 1\",\"Versatile\":\"versatile (1d10)\"}",
+       "modes": [],
+       "modesJson": "[]",
+       "ac": null,
+       "strengthRequirement": null,
+       "stealthDisadvantage": false,
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 2,
+       "contentSource": "WH",
+       "partitionKey": "Core",
+       "rowKey": "Dire vibroblade",
+       "timestamp": "2023-05-30T20:15:17.4273727+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A17.4273727Z'\"",
+       "attackBonus": 6,
+       "damageBonus": 3,
+       "ability": "Strength",
+       "isCustom": false,
+       "equipped": true,
+       "quantity": 1,
+       "index": 0,
+       "tweaks": {},
+       "isFound": true
+      },
+      {
+       "name": "Medium physical shield",
+       "description": null,
+       "cost": 150,
+       "weight": "18",
+       "equipmentCategoryEnum": 4,
+       "equipmentCategory": "Armor",
+       "damageNumberOfDice": 0,
+       "damageTypeEnum": 0,
+       "damageType": "Unknown",
+       "damageDieModifier": 0,
+       "weaponClassificationEnum": 0,
+       "weaponClassification": "Unknown",
+       "armorClassificationEnum": 4,
+       "armorClassification": "Shield",
+       "damageDiceDieTypeEnum": 0,
+       "damageDieType": 0,
+       "properties": [
+        "Strength 13"
+       ],
+       "propertiesJson": "[\"Strength 13\"]",
+       "propertiesMap": {
+        "Strength": "Strength 13"
+       },
+       "propertiesMapJson": "{\"Strength\":\"Strength 13\"}",
+       "modes": [],
+       "modesJson": "[]",
+       "ac": "+2",
+       "strengthRequirement": "",
+       "stealthDisadvantage": false,
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Medium physical shield",
+       "timestamp": "2023-05-30T20:15:38.6912462+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A38.6912462Z'\"",
+       "equipped": true,
+       "quantity": 1,
+       "index": 1,
+       "isFound": true
+      },
+      {
+       "name": "Combat suit",
+       "description": "Combat suits are seen all over the galaxy, and can be found for sale by almost any merchant who dealt in weapons and armor. Many such suits are used by military organizations, such as the Galactic Republic's military, as well as by mercenaries, criminals, bounty hunters and even some Jedi.\r\n\r\nThe suit itself offers decent protection from most types of attacks while maintaining maximum flexibility and minimum weight. However this armor is only recommended for light skirmishes.",
+       "cost": 100,
+       "weight": "10",
+       "equipmentCategoryEnum": 4,
+       "equipmentCategory": "Armor",
+       "damageNumberOfDice": 0,
+       "damageTypeEnum": 0,
+       "damageType": "Unknown",
+       "damageDieModifier": 0,
+       "weaponClassificationEnum": 0,
+       "weaponClassification": "Unknown",
+       "armorClassificationEnum": 1,
+       "armorClassification": "Light",
+       "damageDiceDieTypeEnum": 0,
+       "damageDieType": 0,
+       "properties": [],
+       "propertiesJson": "[]",
+       "propertiesMap": {},
+       "propertiesMapJson": "{}",
+       "modes": [],
+       "modesJson": "[]",
+       "ac": "11 + Dex modifier",
+       "strengthRequirement": "",
+       "stealthDisadvantage": false,
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Combat suit",
+       "timestamp": "2023-05-30T20:15:38.6892471+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A38.6892471Z'\"",
+       "equipped": false,
+       "quantity": 1,
+       "index": 2,
+       "isFound": true
+      },
+      {
+       "name": "Blaster pistol",
+       "description": null,
+       "cost": 175,
+       "weight": "2.5",
+       "equipmentCategoryEnum": 3,
+       "equipmentCategory": "Weapon",
+       "damageNumberOfDice": 1,
+       "damageTypeEnum": 3,
+       "damageType": "Energy",
+       "damageDieModifier": 0,
+       "weaponClassificationEnum": 1,
+       "weaponClassification": "SimpleBlaster",
+       "armorClassificationEnum": 0,
+       "armorClassification": "Unknown",
+       "damageDiceDieTypeEnum": 6,
+       "damageDieType": 6,
+       "properties": [
+        "Power cell (range 50/200)",
+        "reload 16"
+       ],
+       "propertiesJson": "[\"Power cell (range 50/200)\",\"reload 16\"]",
+       "propertiesMap": {
+        "Power Cell": "Power cell (range 50/200)",
+        "Reload": "reload 16"
+       },
+       "propertiesMapJson": "{\"Power Cell\":\"Power cell (range 50/200)\",\"Reload\":\"reload 16\"}",
+       "modes": [],
+       "modesJson": "[]",
+       "ac": null,
+       "strengthRequirement": null,
+       "stealthDisadvantage": false,
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Blaster pistol",
+       "timestamp": "2023-05-30T20:15:38.6782539+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A38.6782539Z'\"",
+       "attackBonus": 5,
+       "damageBonus": 2,
+       "ability": "Dexterity",
+       "isCustom": false,
+       "equipped": true,
+       "quantity": 1,
+       "index": 3,
+       "tweaks": {},
+       "isFound": true
+      }
+     ],
+     "attunement": {
+      "current": 0,
+      "maximum": 3,
+      "hasAttunable": false
+     },
+     "weapons": [
+      {
+       "name": "Dire vibroblade",
+       "description": null,
+       "cost": 550,
+       "weight": "7",
+       "equipmentCategoryEnum": 3,
+       "equipmentCategory": "Weapon",
+       "damageNumberOfDice": 1,
+       "damageTypeEnum": 7,
+       "damageType": "Kinetic",
+       "damageDieModifier": 0,
+       "weaponClassificationEnum": 4,
+       "weaponClassification": "MartialVibroweapon",
+       "armorClassificationEnum": 0,
+       "armorClassification": "Unknown",
+       "damageDiceDieTypeEnum": 8,
+       "damageDieType": 8,
+       "properties": [
+        "Dexterity 13",
+        "dire 1",
+        "versatile (1d10)"
+       ],
+       "propertiesJson": "[\"Dexterity 13\",\"dire 1\",\"versatile (1d10)\"]",
+       "propertiesMap": {
+        "Dexterity": "Dexterity 13",
+        "Dire": "dire 1",
+        "Versatile": "versatile (1d10)"
+       },
+       "propertiesMapJson": "{\"Dexterity\":\"Dexterity 13\",\"Dire\":\"dire 1\",\"Versatile\":\"versatile (1d10)\"}",
+       "modes": [],
+       "modesJson": "[]",
+       "ac": null,
+       "strengthRequirement": null,
+       "stealthDisadvantage": false,
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 2,
+       "contentSource": "WH",
+       "partitionKey": "Core",
+       "rowKey": "Dire vibroblade",
+       "timestamp": "2023-05-30T20:15:17.4273727+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A17.4273727Z'\"",
+       "attackBonus": 6,
+       "damageBonus": 3,
+       "ability": "Strength",
+       "isCustom": false,
+       "equipped": true,
+       "quantity": 1,
+       "index": 0,
+       "tweaks": {},
+       "isFound": true
+      },
+      {
+       "name": "Blaster pistol",
+       "description": null,
+       "cost": 175,
+       "weight": "2.5",
+       "equipmentCategoryEnum": 3,
+       "equipmentCategory": "Weapon",
+       "damageNumberOfDice": 1,
+       "damageTypeEnum": 3,
+       "damageType": "Energy",
+       "damageDieModifier": 0,
+       "weaponClassificationEnum": 1,
+       "weaponClassification": "SimpleBlaster",
+       "armorClassificationEnum": 0,
+       "armorClassification": "Unknown",
+       "damageDiceDieTypeEnum": 6,
+       "damageDieType": 6,
+       "properties": [
+        "Power cell (range 50/200)",
+        "reload 16"
+       ],
+       "propertiesJson": "[\"Power cell (range 50/200)\",\"reload 16\"]",
+       "propertiesMap": {
+        "Power Cell": "Power cell (range 50/200)",
+        "Reload": "reload 16"
+       },
+       "propertiesMapJson": "{\"Power Cell\":\"Power cell (range 50/200)\",\"Reload\":\"reload 16\"}",
+       "modes": [],
+       "modesJson": "[]",
+       "ac": null,
+       "strengthRequirement": null,
+       "stealthDisadvantage": false,
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Blaster pistol",
+       "timestamp": "2023-05-30T20:15:38.6782539+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A38.6782539Z'\"",
+       "attackBonus": 5,
+       "damageBonus": 2,
+       "ability": "Dexterity",
+       "isCustom": false,
+       "equipped": true,
+       "quantity": 1,
+       "index": 3,
+       "tweaks": {},
+       "isFound": true
+      },
+      {
+       "name": "Unarmed Strike",
+       "description": null,
+       "cost": 0,
+       "weight": "0",
+       "equipmentCategory": "Weapon",
+       "contentType": "Core",
+       "contentSource": "PHB",
+       "damageNumberOfDice": 1,
+       "damageType": "Kinetic",
+       "weaponClassification": "Unarmed",
+       "damageDieType": 0,
+       "properties": [],
+       "propertiesMap": {},
+       "modes": [],
+       "quantity": 0,
+       "index": -1,
+       "isFound": true,
+       "equipped": true,
+       "attackBonus": 6,
+       "damageBonus": 4,
+       "ability": "Strength",
+       "isCustom": false,
+       "tweaks": {}
+      }
+     ],
+     "credits": 100,
+     "carryingCapacity": {
+      "encumbered": 80,
+      "heavilyEncumbered": 160,
+      "maxCapacity": 240,
+      "pushDragLift": 480
+     },
+     "superiority": false,
+     "highLevelCasting": {
+      "level6": false,
+      "level7": false,
+      "level8": false,
+      "level9": false
+     },
+     "techCasting": false,
+     "forceCasting": false,
+     "allForcePowers": [],
+     "combatFeatures": [
+      {
+       "name": "Rage",
+       "text": "_**Berserker:** 1st level_\r\nIn battle, you fight with primal ferocity. On your turn, you can enter a rage as a bonus action if you aren't wearing heavy armor.\r\nWhile raging, you gain the following benefits:\r\n- You have advantage on Strength checks and Strength saving throws.\r\n- When you make a melee weapon attack using Strength, you gain a bonus to the damage roll that increases as you gain levels as a berserker, as shown in the Rage Damage column of the berserker table.\r\n- You have resistance to kinetic and energy damage.\r\nIf you are able to cast powers, you can't cast them or concentrate on them while raging.\r\nYour rage lasts for 1 minute. It ends early if you are knocked unconscious, you don heavy armor, or if your turn ends and you haven't taken a hostile action or taken damage since your last turn. You can also end your rage on your turn as a bonus action.\r\nYou can enter a rage a number of times as shown in the Rages column of the berserker table. You regain all expended uses when you complete a long rest.",
+       "level": 1,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Berserker",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Berserker-Rage-1",
+       "timestamp": "2023-05-30T20:15:43.389567+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.389567Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Unarmored Defense",
+       "text": "_**Berserker:** 1st level_\r\nWhile you are not wearing any armor, your Armor Class equals 10 + your Dexterity modifier + your Constitution modifier. You can use a shield and still gain this benefit.",
+       "level": 1,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Berserker",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Berserker-Unarmored Defense-1",
+       "timestamp": "2023-05-30T20:15:43.389567+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.389567Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Berserker Instincts",
+       "text": "_**Berserker:** 2nd level_\r\nYou've honed two instincts, as detailed at the end of the class description, and you hone more at higher levels, as shown in the Berserker Instincts column of the berserker table.",
+       "level": 2,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Berserker",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Berserker-Berserker Instincts-2",
+       "timestamp": "2023-05-30T20:15:43.389567+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.389567Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Reckless Attack",
+       "text": "_**Berserker:** 2nd level_\r\nYou can throw aside all concern for defense to attack with fierce desperation. When you make your first attack on your turn, you can decide to attack recklessly. Doing so gives you advantage on melee weapon attack rolls using Strength during this turn, but attack rolls against you have advantage until your next turn.",
+       "level": 2,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Berserker",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Berserker-Reckless Attack-2",
+       "timestamp": "2023-05-30T20:15:43.389567+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.389567Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Berserker Approach",
+       "text": "_**Berserker:** 3rd, 6th, 10th, and 14th level_\r\nYou choose an approach that shapes the nature of your rage which is detailed at the end of the class description. ",
+       "level": 3,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Berserker",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Berserker-Berserker Approach-3",
+       "timestamp": "2023-05-30T20:15:43.389567+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.389567Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Danger Sense",
+       "text": "_**Berserker:** 3rd level_\r\nYou gain an uncanny sense of when things nearby aren't as they should be, giving you an edge when you dodge away from danger. You have advantage on Dexterity saving throws against effects that you can see, such as traps and powers. To gain this benefit, you can't be blinded, deafened, or incapacitated.",
+       "level": 3,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Berserker",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Berserker-Danger Sense-3",
+       "timestamp": "2023-05-30T20:15:43.389567+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.389567Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Ability Score Improvement",
+       "text": "_**Berserker:** 4th, 8th, 12th, 16th, and 19th level_\r\nYou can increase one ability score by 2, or you can increase two ability scores by 1. You can't increase an ability score above 20 using this feature.",
+       "level": 4,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Berserker",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Berserker-Ability Score Improvement-4",
+       "timestamp": "2023-05-30T20:15:43.3905665+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.3905665Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Extra Attack",
+       "text": "_**Berserker:** 5th level_\r\nYou can attack twice, instead of once, whenever you take the Attack action on your turn.",
+       "level": 5,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Berserker",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Berserker-Extra Attack-5",
+       "timestamp": "2023-05-30T20:15:43.3905665+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.3905665Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Ability Score Increase",
+       "text": "One ability score of your choice increases by 2, and two other ability scores of your choice increase by 1. Alternatively, four ability scores of your choice each increase by 1.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Ability Score Increase",
+       "timestamp": "2023-05-30T20:15:40.8130359+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.8130359Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Age",
+       "text": "Humans reach adulthood in their late teens and live less than a century.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Age",
+       "timestamp": "2023-05-30T20:15:40.814035+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.814035Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Alignment",
+       "text": "Humans tend toward no particular alignment. The best and worst are found among them.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Alignment",
+       "timestamp": "2023-05-30T20:15:40.814035+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.814035Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Defiant",
+       "text": "Humans are known to be stubborn and often refuse to give up, even against the worst odds. When you or a creature you can see that can see and understand you makes an ability check, attack roll, or saving throw, you can roll a d4 and add it to their roll (no action required). Once you've used this feature, you must complete a short or long rest before you can use it again.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Defiant",
+       "timestamp": "2023-05-30T20:15:40.814035+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.814035Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Human Versatility",
+       "text": "You gain proficiency in one skill, one tool, and one weapon of your choice.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Human Versatility",
+       "timestamp": "2023-05-30T20:15:40.814035+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.814035Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Languages",
+       "text": "You can speak, read, and write Galactic Basic and one extra language of your choice. Humans typically learn the languages of other peoples they deal with, including obscure dialects. They are fond of sprinkling their speech with words borrowed from other tongues: trandoshan curses, twi'lek musical expressions, chiss military phrases, and so on.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Languages",
+       "timestamp": "2023-05-30T20:15:40.814035+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.814035Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Proficiency",
+       "text": "You gain proficiency in one skill, one tool, and one weapon of your choice.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Proficiency",
+       "timestamp": "2022-05-29T01:36:26.4474283+00:00",
+       "eTag": "W/\"datetime'2022-05-29T01%3A36%3A26.4474283Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Size",
+       "text": "Humans vary widely in height and build, from barely 5 feet to well over 6 feet tall. Regardless of your position in that range, your size is Medium.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Size",
+       "timestamp": "2023-05-30T20:15:40.814035+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.814035Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Speed",
+       "text": "Your base walking speed is 30 feet.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Speed",
+       "timestamp": "2023-05-30T20:15:40.814035+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.814035Z'\"",
+       "combat": true
+      }
+     ],
+     "nonCombatFeatures": [],
+     "backgroundFeature": {
+      "name": "Military Rank",
+      "combat": false,
+      "text": "You have a military rank from your career as a soldier. Soldiers loyal to your former military organization still recognize your authority and influence, and they defer to you if they are of a lower rank. You can invoke your rank to exert influence over other soldiers and requisition simple equipment for temporary use. You can also usually gain access to friendly military encampments where your rank is recognized.\r\n"
+     },
+     "settings": {
+      "isEnforcingForcePrerequisites": true,
+      "isFixedHitPoints": false,
+      "abilityScoreMethod": "Manual"
+     },
+     "notes": "Test character for the SW5E Sheet extension. Safe to delete."
+    },
+    "refs": {
+     "classes": {
+      "Berserker": {
+       "name": "Berserker",
+       "summary": "Melee combatant who utilizes rage to increase prowess",
+       "primaryAbility": "Strength",
+       "hitDiceDieType": 12,
+       "hitPointsAtFirstLevel": "12 + your Constitution modifier",
+       "hitPointsAtHigherLevels": "1d12 (or 7) + your Constitution modifier per berserker level after 1st",
+       "armorProficiencies": [
+        "Light armor",
+        "medium armor"
+       ],
+       "weaponProficiencies": [
+        "All vibroweapons",
+        "simple blasters"
+       ],
+       "toolProficiencies": [
+        "None"
+       ],
+       "savingThrows": [
+        "Strength",
+        "Constitution"
+       ],
+       "skillChoices": "Choose two from Animal Handling, Athletics, Intimidation, Nature, Perception, Survival",
+       "levelChanges": {
+        "1": {
+         "Level": "1st",
+         "Proficiency Bonus": "+2",
+         "Features": "Rage, Unarmored Defense",
+         "Rages": "2",
+         "Rage Damage": "+2",
+         "Berserker Instincts": "�"
+        },
+        "2": {
+         "Level": "2nd",
+         "Proficiency Bonus": "+2",
+         "Features": "Reckless Attack, Berserker Instincts",
+         "Rages": "2",
+         "Rage Damage": "+2",
+         "Berserker Instincts": "2"
+        },
+        "3": {
+         "Level": "3rd",
+         "Proficiency Bonus": "+2",
+         "Features": "Danger Sense, Berserker Approach",
+         "Rages": "3",
+         "Rage Damage": "+2",
+         "Berserker Instincts": "2"
+        },
+        "4": {
+         "Level": "4th",
+         "Proficiency Bonus": "+2",
+         "Features": "Ability Score Improvement",
+         "Rages": "3",
+         "Rage Damage": "+2",
+         "Berserker Instincts": "2"
+        },
+        "5": {
+         "Level": "5th",
+         "Proficiency Bonus": "+3",
+         "Features": "Extra Attack",
+         "Rages": "3",
+         "Rage Damage": "+2",
+         "Berserker Instincts": "2"
+        },
+        "6": {
+         "Level": "6th",
+         "Proficiency Bonus": "+3",
+         "Features": "Approach feature",
+         "Rages": "4",
+         "Rage Damage": "+2",
+         "Berserker Instincts": "2"
+        },
+        "7": {
+         "Level": "7th",
+         "Proficiency Bonus": "+3",
+         "Features": "Feral Impulse",
+         "Rages": "4",
+         "Rage Damage": "+2",
+         "Berserker Instincts": "3"
+        },
+        "8": {
+         "Level": "8th",
+         "Proficiency Bonus": "+3",
+         "Features": "Ability Score Improvement",
+         "Rages": "4",
+         "Rage Damage": "+2",
+         "Berserker Instincts": "3"
+        },
+        "9": {
+         "Level": "9th",
+         "Proficiency Bonus": "+4",
+         "Features": "Brutal Critical (one die)",
+         "Rages": "4",
+         "Rage Damage": "+3",
+         "Berserker Instincts": "3"
+        },
+        "10": {
+         "Level": "10th",
+         "Proficiency Bonus": "+4",
+         "Features": "Approach feature",
+         "Rages": "4",
+         "Rage Damage": "+3",
+         "Berserker Instincts": "3"
+        },
+        "11": {
+         "Level": "11th",
+         "Proficiency Bonus": "+4",
+         "Features": "Relentless Rage",
+         "Rages": "4",
+         "Rage Damage": "+3",
+         "Berserker Instincts": "3"
+        },
+        "12": {
+         "Level": "12th",
+         "Proficiency Bonus": "+4",
+         "Features": "Ability Score Improvement",
+         "Rages": "5",
+         "Rage Damage": "+3",
+         "Berserker Instincts": "3"
+        },
+        "13": {
+         "Level": "13th",
+         "Proficiency Bonus": "+5",
+         "Features": "Brutal Critical (two dice)",
+         "Rages": "5",
+         "Rage Damage": "+4",
+         "Berserker Instincts": "4"
+        },
+        "14": {
+         "Level": "14th",
+         "Proficiency Bonus": "+5",
+         "Features": "Approach feature",
+         "Rages": "5",
+         "Rage Damage": "+4",
+         "Berserker Instincts": "4"
+        },
+        "15": {
+         "Level": "15th",
+         "Proficiency Bonus": "+5",
+         "Features": "Persistent Rage",
+         "Rages": "5",
+         "Rage Damage": "+4",
+         "Berserker Instincts": "4"
+        },
+        "16": {
+         "Level": "16th",
+         "Proficiency Bonus": "+5",
+         "Features": "Ability Score Improvement",
+         "Rages": "5",
+         "Rage Damage": "+4",
+         "Berserker Instincts": "4"
+        },
+        "17": {
+         "Level": "17th",
+         "Proficiency Bonus": "+6",
+         "Features": "Brutal Critical (three dice)",
+         "Rages": "6",
+         "Rage Damage": "+5",
+         "Berserker Instincts": "5"
+        },
+        "18": {
+         "Level": "18th",
+         "Proficiency Bonus": "+6",
+         "Features": "Indomitable Might",
+         "Rages": "6",
+         "Rage Damage": "+5",
+         "Berserker Instincts": "5"
+        },
+        "19": {
+         "Level": "19th",
+         "Proficiency Bonus": "+6",
+         "Features": "Ability Score Improvement",
+         "Rages": "6",
+         "Rage Damage": "+5",
+         "Berserker Instincts": "5"
+        },
+        "20": {
+         "Level": "20th",
+         "Proficiency Bonus": "+6",
+         "Features": "Primal Champion",
+         "Rages": "Unlimited",
+         "Rage Damage": "+5",
+         "Berserker Instincts": "5"
+        }
+       },
+       "casterType": "None",
+       "casterRatio": 0,
+       "multiClassProficiencies": [
+        "Light armor",
+        "all vibroweapons"
+       ],
+       "archetypeFlavorName": "Berserker Approaches"
+      }
+     },
+     "archetypes": {},
+     "species": {
+      "Human": {
+       "name": "Human",
+       "size": "Medium",
+       "homeworld": "Coruscant",
+       "language": "Galactic Basic",
+       "distinctions": "Biped with bilateral symmetry, opposable thumbs",
+       "skinColorOptions": "Light to dark tones",
+       "hairColorOptions": "Black, blond, orange, brown, gray to white (usually with age)",
+       "eyeColorOptions": "Amber, blue, brown, gray, green, hazel, purple, or red",
+       "heightAverage": "4'8\"",
+       "heightRollMod": "+2d10\"",
+       "weightAverage": "110 lb.",
+       "weightRollMod": "x(2d4) lb.",
+       "traits": [
+        {
+         "name": "Ability Score Increase",
+         "description": "One ability score of your choice increases by 2, and two other ability scores of your choice increase by 1. Alternatively, four ability scores of your choice each increase by 1."
+        },
+        {
+         "name": "Age",
+         "description": "Humans reach adulthood in their late teens and live less than a century."
+        },
+        {
+         "name": "Alignment",
+         "description": "Humans tend toward no particular alignment. The best and worst are found among them."
+        },
+        {
+         "name": "Size",
+         "description": "Humans vary widely in height and build, from barely 5 feet to well over 6 feet tall. Regardless of your position in that range, your size is Medium."
+        },
+        {
+         "name": "Speed",
+         "description": "Your base walking speed is 30 feet."
+        },
+        {
+         "name": "Defiant",
+         "description": "Humans are known to be stubborn and often refuse to give up, even against the worst odds. When you or a creature you can see that can see and understand you makes an ability check, attack roll, or saving throw, you can roll a d4 and add it to their roll (no action required). Once you've used this feature, you must complete a short or long rest before you can use it again."
+        },
+        {
+         "name": "Human Versatility",
+         "description": "You gain proficiency in one skill, one tool, and one weapon of your choice."
+        },
+        {
+         "name": "Languages",
+         "description": "You can speak, read, and write Galactic Basic and one extra language of your choice. Humans typically learn the languages of other peoples they deal with, including obscure dialects. They are fond of sprinkling their speech with words borrowed from other tongues: trandoshan curses, twi'lek musical expressions, chiss military phrases, and so on."
+        }
+       ],
+       "imageUrls": [
+        "https://starwars5ecentral.blob.core.windows.net/site-images/species/species_human.png"
+       ]
+      }
+     },
+     "backgrounds": {
+      "Soldier": {
+       "name": "Soldier",
+       "flavorText": "War has been your life for as long as you care to remember. You trained as a youth, studied the use of weapons and armor, learned basic survival techniques, including how to stay alive on the battlefield. You might have been part of a standing national army, a mercenary company, or perhaps a member of a local militia who rose to prominence during a recent war.\r\n\r\nWhen you choose this background, work with your GM to determine which military organization you were a part of, how far through its ranks you progressed, and what kind of experiences you had during your military career. Was it a standing army, a town guard, a village militia, or perhaps a private company.\r\n",
+       "skillProficiencies": "Choose two from Athletics, Intimidation, Persuasion, and Piloting",
+       "toolProficiencies": "One type of gaming set",
+       "languages": "One of your choice",
+       "equipment": "An insignia of rank, a trophy taken from a fallen enemy, a gaming set (one of your choice), a set of common clothes, and a belt pouch containing 100 cr",
+       "featureName": "Military Rank",
+       "featureText": "You have a military rank from your career as a soldier. Soldiers loyal to your former military organization still recognize your authority and influence, and they defer to you if they are of a lower rank. You can invoke your rank to exert influence over other soldiers and requisition simple equipment for temporary use. You can also usually gain access to friendly military encampments where your rank is recognized.\r\n",
+       "flavorName": "Specialty",
+       "flavorDescription": "During your time as a soldier, you had a specific role to play in your unit or army. Roll a d8 or choose from the options in the table below to determine your role:\r\n\r\n|d8|Specialty|\r\n|:---:|:----------:|\r\n|1|Officer|\r\n|2|Scout|\r\n|3|Infantry|\r\n|4|Medic|\r\n\r\n|d8|Specialty|\r\n|:---:|:----------:|\r\n|5|Quartermaster|\r\n|6|Pilot|\r\n|7|Artisan|\r\n|8|Support Staff|\r\n"
+      }
+     },
+     "feats": {},
+     "maneuvers": {},
+     "choices": {
+      "skills": {
+       "Athletics": {
+        "name": "Athletics",
+        "baseAttribute": "Strength",
+        "contentType": "Lookup",
+        "contentSource": "None"
+       },
+       "Intimidation": {
+        "name": "Intimidation",
+        "baseAttribute": "Charisma",
+        "contentType": "Lookup",
+        "contentSource": "None"
+       }
+      }
+     },
+     "conditions": [
+      {
+       "name": "Blinded",
+       "description": "A blinded creature can't see and automatically fails any ability check that requires sight.\\r\\n- Attack rolls against the creature have advantage, and the creature's attack rolls have disadvantage."
+      },
+      {
+       "name": "Charmed",
+       "description": "A charmed creature can't attack the charmer or target the charmer with harmful abilities or enhanced effects.\\r\\n- The charmer has advantage on any ability check to interact socially with the creature."
+      },
+      {
+       "name": "Deafened",
+       "description": "A deafened creature can't hear and automatically fails any ability check that requires hearing."
+      },
+      {
+       "name": "Exhaustion",
+       "description": "Some special abilities and environmental hazards, such as and the long-term effects of freezing or scorching temperatures, can lead to a special condition called exhaustion. Exhaustion is measured in six levels. An effect can give a creature one or more levels of exhaustion, as specified in the effect's description. Exhaustion Level\\r\\n\\r\\n|Level|Effect|\\r\\n|:--:|:--|\\r\\n|1|Disadvantage on ability checks|\\r\\n|2|Speed halved|\\r\\n|3|Disadvantage on attack rolls and saving throws|\\r\\n|4|Hit point maximum halved|\\r\\n|5|Speed reduced to 0|\\r\\n|6|Death|\\r\\n\\r\\nIf an already exhausted creature suffers another effect that causes exhaustion, its current level of exhaustion increases by the amount specified in the effect's description.\\r\\n\\r\\nA creature suffers the effect of its current level of exhaustion as well as all lower levels. For example, a creature suffering level 2 exhaustion has its speed halved and has disadvantage on ability checks.\\r\\n\\r\\nAn effect that removes exhaustion reduces its level as specified in the effect's description, with all exhaustion effects ending if a creature's exhaustion level is reduced below 1.\\r\\n\\r\\nFinishing a long rest reduces a creature's exhaustion level by 1, provided that the creature has also ingested some food and drink."
+      },
+      {
+       "name": "Frightened",
+       "description": "A frightened creature has disadvantage on ability checks and attack rolls while the source of its fear is within line of sight.\\r\\n- The creature can't willingly move closer to the source of its fear."
+      },
+      {
+       "name": "Grappled",
+       "description": "A grappled creature's speed becomes 0, and it can't benefit from any bonus to its speed.\\r\\n- The condition ends if the grappler is incapacitated (see the condition).\\r\\n- The condition also ends if an effect removes the grappled creature from the reach of the grappler or grappling effect."
+      },
+      {
+       "name": "Incapacitated",
+       "description": "An incapacitated creature can't take actions or reactions."
+      },
+      {
+       "name": "Invisible",
+       "description": "An invisible creature is impossible to see without the aid of powers or a special sense. For the purpose of hiding, the creature is heavily obscured. The creature's location can be detected by any noise it makes or any tracks it leaves.\\r\\n- Attack rolls against the creature have disadvantage, and the creature's attack rolls have advantage."
+      },
+      {
+       "name": "Paralyzed",
+       "description": "A paralyzed creature is incapacitated (see the condition) and can't move or speak.\\r\\n- The creature automatically fails Strength and Dexterity saving throws. Attack rolls against the creature have advantage.\\r\\n- Any attack that hits the creature is a critical hit if the attacker is within 5 feet of the creature."
+      },
+      {
+       "name": "Petrified",
+       "description": "A petrified creature is transformed, along with any object it is wearing or carrying, into a solid inanimate substance (usually stone). Its weight increases by a factor of ten, and it ceases aging.\\r\\n- The creature is incapacitated (see the condition), can't move or speak, and is unaware of its surroundings.\\r\\n- Attack rolls against the creature have advantage. \\r\\n- The creature automatically fails Strength and Dexterity saving throws.\\r\\n- The creature has resistance to all damage.\\r\\n- The creature is immune to poison and disease, although a poison or disease already in its system is suspended, not neutralized."
+      },
+      {
+       "name": "Poisoned",
+       "description": "A poisoned creature has disadvantage on attack rolls and ability checks."
+      },
+      {
+       "name": "Prone",
+       "description": "A prone creature's only movement option is to crawl, unless it stands up and thereby ends the condition. \\r\\n- The creature has disadvantage on melee attack rolls.\\r\\n- The creature has disadvantage on ranged attack rolls against targets within 30 feet.\\r\\n- An attack roll against the creature has advantage if the attacker is within 5 feet of the creature. Otherwise, the attack roll has disadvantage."
+      },
+      {
+       "name": "Restrained",
+       "description": "A restrained creature's speed becomes 0, and it can't benefit from any bonus to its speed.\\r\\n- Attack rolls against the creature have advantage, and the creature's attack rolls have disadvantage.\\r\\n- The creature has disadvantage on Dexterity saving throws."
+      },
+      {
+       "name": "Shocked",
+       "description": "A shocked creature's speed is reduced by half.\\r\\n- The creature can't take reactions."
+      },
+      {
+       "name": "Stunned",
+       "description": "A stunned creature is incapacitated (see the condition), can't move, and can speak only falteringly.\\r\\n- The creature automatically fails Strength and Dexterity saving throws.\\r\\n- Attack rolls against the creature have advantage."
+      },
+      {
+       "name": "Unconscious",
+       "description": "An unconscious creature is incapacitated (see the condition), can't move or speak, and is unaware of its surroundings\\r\\n- The creature drops whatever it's holding and falls prone.\\r\\n- The creature automatically fails Strength and Dexterity saving throws.\\r\\n- Attack rolls against the creature have advantage.\\r\\n- Any attack that hits the creature is a critical hit if the attacker is within 5 feet of the creature."
+      }
+     ]
+    },
+    "validation": {
+     "code": 0,
+     "message": "All checks passed",
+     "isValid": true
+    },
+    "error": null,
+    "source": "sw5e",
+    "loadedAt": 1792281562507,
+    "meta": {
+     "bridge": 14,
+     "dataVersion": 199,
+     "loggedIn": true,
+     "sourceUrl": "https://sw5e.com/tools/mycharacters",
+     "extractedAt": 1792281562248
+    }
+   }
+  },
+  "derived": {
+   "id:00000000-0000-4000-8000-000003000001": {
+    "basis": "{\"background\":{\"feature\":\"\",\"name\":\"Soldier\"},\"baseAbilityScores\":{\"Charisma\":10,\"Constitution\":16,\"Dexterity\":14,\"Intelligence\":8,\"Strength\":16,\"Wisdom\":12},\"builderVersion\":\"0.7.6\",\"changedAt\":1792178402225,\"characteristics\":null,\"classes\":[{\"abilityScoreImprovements\":[],\"hitPoints\":[7,7,7,7],\"levels\":5,\"name\":\"Berserker\",\"skills\":[\"Athletics\",\"Intimidation\"]}],\"createdAt\":1792178402225,\"credits\":null,\"currentStats\":{\"conditions\":[],\"deathSaves\":{\"failures\":0,\"successes\":0},\"exhaustion\":0,\"featuresTimesUsed\":{},\"forcePointsUsed\":0,\"hasInspiration\":false,\"highLevelCasting\":{\"level6\":false,\"level7\":false,\"level8\":false,\"level9\":false},\"hitDiceUsed\":{},\"hitPointsLost\":0,\"superiorityDiceUsed\":0,\"techPointsUsed\":0,\"temporaryHitPoints\":0},\"customEquipment\":[],\"customFeats\":[],\"customFeatures\":[],\"customForcePowers\":[],\"customLanguages\":[],\"customProficiencies\":[],\"customTechPowers\":[],\"equipment\":[{\"category\":\"Equipment\",\"equipped\":true,\"name\":\"Dire vibroblade\",\"quantity\":1,\"tweaks\":{\"toHit\":{\"bonus\":0,\"proficiency\":\"proficient\"}}},{\"category\":\"Equipment\",\"equipped\":true,\"name\":\"Medium physical shield\",\"quantity\":1},{\"category\":\"Equipment\",\"equipped\":false,\"name\":\"Combat suit\",\"quantity\":1},{\"category\":\"Equipment\",\"equipped\":true,\"name\":\"Blaster pistol\",\"quantity\":1,\"tweaks\":{\"toHit\":{\"bonus\":0,\"proficiency\":\"proficient\"}}}],\"experiencePoints\":6500,\"featureNotes\":null,\"id\":\"00000000-0000-4000-8000-000003000001\",\"image\":\"\",\"localId\":\"temp-3ygjdy0ex\",\"name\":\"Berserker Test (Claude)\",\"notes\":null,\"settings\":{\"abilityScoreMethod\":\"Manual\",\"isEnforcingForcePrerequisites\":true,\"isFixedHitPoints\":false},\"species\":{\"abilityScoreImprovement\":{},\"abilityScoreImprovementSelectedOption\":0,\"language\":\"Galactic Basic\",\"name\":\"Human\"},\"tweaks\":{\"armorClass\":{\"bonus\":3}},\"userId\":\"00000000-0000-4000-8000-000003000002\"}",
+    "complete": {
+     "name": "Berserker Test (Claude)",
+     "builderVersion": "0.7.6",
+     "image": "",
+     "characteristics": {
+      "alignment": "Balanced Neutral",
+      "Personality Traits": "",
+      "Ideal": "",
+      "Bond": "",
+      "Flaw": "",
+      "Gender": "",
+      "Place of Birth": "",
+      "Age": "",
+      "Height": "",
+      "Weight": "",
+      "Hair": "",
+      "Eyes": "",
+      "Skin": "",
+      "Appearance": "",
+      "Backstory": ""
+     },
+     "tweaks": {
+      "armorClass": {
+       "bonus": 3
+      }
+     },
+     "customProficiencies": [],
+     "customLanguages": [],
+     "customFeatures": [],
+     "customTechPowers": [],
+     "customForcePowers": [],
+     "customEquipment": [],
+     "numCustomFeats": 0,
+     "currentLevel": 5,
+     "classText": "Berserker 5",
+     "alignment": "Balanced Neutral",
+     "species": "Human",
+     "background": "Soldier",
+     "experiencePoints": {
+      "previousLevel": 6500,
+      "current": 6500,
+      "nextLevel": 14000,
+      "isCorrect": true,
+      "errorMessage": ""
+     },
+     "abilityScores": {
+      "Strength": {
+       "value": 16,
+       "modifier": 3,
+       "savingThrow": {
+        "modifier": 6,
+        "proficiency": "proficient"
+       },
+       "skills": [
+        {
+         "name": "Athletics",
+         "modifier": 6,
+         "proficiency": "proficient"
+        }
+       ]
+      },
+      "Dexterity": {
+       "value": 14,
+       "modifier": 2,
+       "savingThrow": {
+        "modifier": 2,
+        "proficiency": "none"
+       },
+       "skills": [
+        {
+         "name": "Acrobatics",
+         "modifier": 2,
+         "proficiency": "none"
+        },
+        {
+         "name": "Sleight of Hand",
+         "modifier": 2,
+         "proficiency": "none"
+        },
+        {
+         "name": "Stealth",
+         "modifier": 2,
+         "proficiency": "none"
+        }
+       ]
+      },
+      "Constitution": {
+       "value": 16,
+       "modifier": 3,
+       "savingThrow": {
+        "modifier": 6,
+        "proficiency": "proficient"
+       },
+       "skills": []
+      },
+      "Intelligence": {
+       "value": 8,
+       "modifier": -1,
+       "savingThrow": {
+        "modifier": -1,
+        "proficiency": "none"
+       },
+       "skills": [
+        {
+         "name": "Investigation",
+         "modifier": -1,
+         "proficiency": "none"
+        },
+        {
+         "name": "Lore",
+         "modifier": -1,
+         "proficiency": "none"
+        },
+        {
+         "name": "Nature",
+         "modifier": -1,
+         "proficiency": "none"
+        },
+        {
+         "name": "Piloting",
+         "modifier": -1,
+         "proficiency": "none"
+        },
+        {
+         "name": "Technology",
+         "modifier": -1,
+         "proficiency": "none"
+        }
+       ]
+      },
+      "Wisdom": {
+       "value": 12,
+       "modifier": 1,
+       "savingThrow": {
+        "modifier": 1,
+        "proficiency": "none"
+       },
+       "skills": [
+        {
+         "name": "Animal Handling",
+         "modifier": 1,
+         "proficiency": "none"
+        },
+        {
+         "name": "Insight",
+         "modifier": 1,
+         "proficiency": "none"
+        },
+        {
+         "name": "Medicine",
+         "modifier": 1,
+         "proficiency": "none"
+        },
+        {
+         "name": "Perception",
+         "modifier": 1,
+         "proficiency": "none"
+        },
+        {
+         "name": "Survival",
+         "modifier": 1,
+         "proficiency": "none"
+        }
+       ]
+      },
+      "Charisma": {
+       "value": 10,
+       "modifier": 0,
+       "savingThrow": {
+        "modifier": 0,
+        "proficiency": "none"
+       },
+       "skills": [
+        {
+         "name": "Deception",
+         "modifier": 0,
+         "proficiency": "none"
+        },
+        {
+         "name": "Intimidation",
+         "modifier": 3,
+         "proficiency": "proficient"
+        },
+        {
+         "name": "Performance",
+         "modifier": 0,
+         "proficiency": "none"
+        },
+        {
+         "name": "Persuasion",
+         "modifier": 0,
+         "proficiency": "none"
+        }
+       ]
+      }
+     },
+     "proficiencyBonus": 3,
+     "initiative": 2,
+     "armorClass": 17,
+     "armorList": [
+      "Medium physical shield"
+     ],
+     "passivePerception": 11,
+     "inspiration": false,
+     "vision": "normal",
+     "speed": {
+      "base": "30 ft",
+      "hour": "3 miles",
+      "day": "24 miles",
+      "special": ""
+     },
+     "hitPoints": {
+      "current": 55,
+      "temporary": 0,
+      "maximum": 55,
+      "hitDice": [
+       {
+        "size": "d12",
+        "current": 5,
+        "maximum": 5
+       }
+      ],
+      "deathSaves": {
+       "successes": 0,
+       "failures": 0
+      },
+      "resting": {
+       "hitDieBonus": 3,
+       "numHitDiceUsed": 0,
+       "hitDiceRestored": [],
+       "techPointsUsed": 0,
+       "forcePointsUsed": 0,
+       "highLevelCasting": {
+        "level6": false,
+        "level7": false,
+        "level8": false,
+        "level9": false
+       },
+       "shortRestFeatures": [],
+       "longRestFeatures": []
+      }
+     },
+     "conditions": [],
+     "exhaustion": 0,
+     "proficiencies": [
+      {
+       "name": "All vibroweapons",
+       "type": "weapon"
+      },
+      {
+       "name": "simple blasters",
+       "type": "weapon"
+      },
+      {
+       "name": "Light armor",
+       "type": "armor"
+      },
+      {
+       "name": "medium armor",
+       "type": "armor"
+      },
+      {
+       "name": "One type of gaming set",
+       "type": "tool"
+      }
+     ],
+     "skillAndSaveProficiencies": [
+      "Athletics",
+      "Intimidation",
+      "Strength Saving Throws",
+      "Constitution Saving Throws"
+     ],
+     "languages": [
+      "Galactic Basic",
+      "Galactic Basic"
+     ],
+     "equipment": [
+      {
+       "name": "Dire vibroblade",
+       "description": null,
+       "cost": 550,
+       "weight": "7",
+       "equipmentCategoryEnum": 3,
+       "equipmentCategory": "Weapon",
+       "damageNumberOfDice": 1,
+       "damageTypeEnum": 7,
+       "damageType": "Kinetic",
+       "damageDieModifier": 0,
+       "weaponClassificationEnum": 4,
+       "weaponClassification": "MartialVibroweapon",
+       "armorClassificationEnum": 0,
+       "armorClassification": "Unknown",
+       "damageDiceDieTypeEnum": 8,
+       "damageDieType": 8,
+       "properties": [
+        "Dexterity 13",
+        "dire 1",
+        "versatile (1d10)"
+       ],
+       "propertiesJson": "[\"Dexterity 13\",\"dire 1\",\"versatile (1d10)\"]",
+       "propertiesMap": {
+        "Dexterity": "Dexterity 13",
+        "Dire": "dire 1",
+        "Versatile": "versatile (1d10)"
+       },
+       "propertiesMapJson": "{\"Dexterity\":\"Dexterity 13\",\"Dire\":\"dire 1\",\"Versatile\":\"versatile (1d10)\"}",
+       "modes": [],
+       "modesJson": "[]",
+       "ac": null,
+       "strengthRequirement": null,
+       "stealthDisadvantage": false,
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 2,
+       "contentSource": "WH",
+       "partitionKey": "Core",
+       "rowKey": "Dire vibroblade",
+       "timestamp": "2023-05-30T20:15:17.4273727+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A17.4273727Z'\"",
+       "attackBonus": 6,
+       "damageBonus": 3,
+       "ability": "Strength",
+       "isCustom": false,
+       "equipped": true,
+       "quantity": 1,
+       "index": 0,
+       "tweaks": {
+        "toHit": {
+         "proficiency": "proficient",
+         "bonus": 0
+        }
+       },
+       "isFound": true
+      },
+      {
+       "name": "Medium physical shield",
+       "description": null,
+       "cost": 150,
+       "weight": "18",
+       "equipmentCategoryEnum": 4,
+       "equipmentCategory": "Armor",
+       "damageNumberOfDice": 0,
+       "damageTypeEnum": 0,
+       "damageType": "Unknown",
+       "damageDieModifier": 0,
+       "weaponClassificationEnum": 0,
+       "weaponClassification": "Unknown",
+       "armorClassificationEnum": 4,
+       "armorClassification": "Shield",
+       "damageDiceDieTypeEnum": 0,
+       "damageDieType": 0,
+       "properties": [
+        "Strength 13"
+       ],
+       "propertiesJson": "[\"Strength 13\"]",
+       "propertiesMap": {
+        "Strength": "Strength 13"
+       },
+       "propertiesMapJson": "{\"Strength\":\"Strength 13\"}",
+       "modes": [],
+       "modesJson": "[]",
+       "ac": "+2",
+       "strengthRequirement": "",
+       "stealthDisadvantage": false,
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Medium physical shield",
+       "timestamp": "2023-05-30T20:15:38.6912462+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A38.6912462Z'\"",
+       "equipped": true,
+       "quantity": 1,
+       "index": 1,
+       "isFound": true
+      },
+      {
+       "name": "Combat suit",
+       "description": "Combat suits are seen all over the galaxy, and can be found for sale by almost any merchant who dealt in weapons and armor. Many such suits are used by military organizations, such as the Galactic Republic's military, as well as by mercenaries, criminals, bounty hunters and even some Jedi.\r\n\r\nThe suit itself offers decent protection from most types of attacks while maintaining maximum flexibility and minimum weight. However this armor is only recommended for light skirmishes.",
+       "cost": 100,
+       "weight": "10",
+       "equipmentCategoryEnum": 4,
+       "equipmentCategory": "Armor",
+       "damageNumberOfDice": 0,
+       "damageTypeEnum": 0,
+       "damageType": "Unknown",
+       "damageDieModifier": 0,
+       "weaponClassificationEnum": 0,
+       "weaponClassification": "Unknown",
+       "armorClassificationEnum": 1,
+       "armorClassification": "Light",
+       "damageDiceDieTypeEnum": 0,
+       "damageDieType": 0,
+       "properties": [],
+       "propertiesJson": "[]",
+       "propertiesMap": {},
+       "propertiesMapJson": "{}",
+       "modes": [],
+       "modesJson": "[]",
+       "ac": "11 + Dex modifier",
+       "strengthRequirement": "",
+       "stealthDisadvantage": false,
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Combat suit",
+       "timestamp": "2023-05-30T20:15:38.6892471+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A38.6892471Z'\"",
+       "equipped": false,
+       "quantity": 1,
+       "index": 2,
+       "isFound": true
+      },
+      {
+       "name": "Blaster pistol",
+       "description": null,
+       "cost": 175,
+       "weight": "2.5",
+       "equipmentCategoryEnum": 3,
+       "equipmentCategory": "Weapon",
+       "damageNumberOfDice": 1,
+       "damageTypeEnum": 3,
+       "damageType": "Energy",
+       "damageDieModifier": 0,
+       "weaponClassificationEnum": 1,
+       "weaponClassification": "SimpleBlaster",
+       "armorClassificationEnum": 0,
+       "armorClassification": "Unknown",
+       "damageDiceDieTypeEnum": 6,
+       "damageDieType": 6,
+       "properties": [
+        "Power cell (range 50/200)",
+        "reload 16"
+       ],
+       "propertiesJson": "[\"Power cell (range 50/200)\",\"reload 16\"]",
+       "propertiesMap": {
+        "Power Cell": "Power cell (range 50/200)",
+        "Reload": "reload 16"
+       },
+       "propertiesMapJson": "{\"Power Cell\":\"Power cell (range 50/200)\",\"Reload\":\"reload 16\"}",
+       "modes": [],
+       "modesJson": "[]",
+       "ac": null,
+       "strengthRequirement": null,
+       "stealthDisadvantage": false,
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Blaster pistol",
+       "timestamp": "2023-05-30T20:15:38.6782539+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A38.6782539Z'\"",
+       "attackBonus": 5,
+       "damageBonus": 2,
+       "ability": "Dexterity",
+       "isCustom": false,
+       "equipped": true,
+       "quantity": 1,
+       "index": 3,
+       "tweaks": {
+        "toHit": {
+         "proficiency": "proficient",
+         "bonus": 0
+        }
+       },
+       "isFound": true
+      }
+     ],
+     "attunement": {
+      "current": 0,
+      "maximum": 3,
+      "hasAttunable": false
+     },
+     "weapons": [
+      {
+       "name": "Dire vibroblade",
+       "description": null,
+       "cost": 550,
+       "weight": "7",
+       "equipmentCategoryEnum": 3,
+       "equipmentCategory": "Weapon",
+       "damageNumberOfDice": 1,
+       "damageTypeEnum": 7,
+       "damageType": "Kinetic",
+       "damageDieModifier": 0,
+       "weaponClassificationEnum": 4,
+       "weaponClassification": "MartialVibroweapon",
+       "armorClassificationEnum": 0,
+       "armorClassification": "Unknown",
+       "damageDiceDieTypeEnum": 8,
+       "damageDieType": 8,
+       "properties": [
+        "Dexterity 13",
+        "dire 1",
+        "versatile (1d10)"
+       ],
+       "propertiesJson": "[\"Dexterity 13\",\"dire 1\",\"versatile (1d10)\"]",
+       "propertiesMap": {
+        "Dexterity": "Dexterity 13",
+        "Dire": "dire 1",
+        "Versatile": "versatile (1d10)"
+       },
+       "propertiesMapJson": "{\"Dexterity\":\"Dexterity 13\",\"Dire\":\"dire 1\",\"Versatile\":\"versatile (1d10)\"}",
+       "modes": [],
+       "modesJson": "[]",
+       "ac": null,
+       "strengthRequirement": null,
+       "stealthDisadvantage": false,
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 2,
+       "contentSource": "WH",
+       "partitionKey": "Core",
+       "rowKey": "Dire vibroblade",
+       "timestamp": "2023-05-30T20:15:17.4273727+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A17.4273727Z'\"",
+       "attackBonus": 6,
+       "damageBonus": 3,
+       "ability": "Strength",
+       "isCustom": false,
+       "equipped": true,
+       "quantity": 1,
+       "index": 0,
+       "tweaks": {
+        "toHit": {
+         "proficiency": "proficient",
+         "bonus": 0
+        }
+       },
+       "isFound": true
+      },
+      {
+       "name": "Blaster pistol",
+       "description": null,
+       "cost": 175,
+       "weight": "2.5",
+       "equipmentCategoryEnum": 3,
+       "equipmentCategory": "Weapon",
+       "damageNumberOfDice": 1,
+       "damageTypeEnum": 3,
+       "damageType": "Energy",
+       "damageDieModifier": 0,
+       "weaponClassificationEnum": 1,
+       "weaponClassification": "SimpleBlaster",
+       "armorClassificationEnum": 0,
+       "armorClassification": "Unknown",
+       "damageDiceDieTypeEnum": 6,
+       "damageDieType": 6,
+       "properties": [
+        "Power cell (range 50/200)",
+        "reload 16"
+       ],
+       "propertiesJson": "[\"Power cell (range 50/200)\",\"reload 16\"]",
+       "propertiesMap": {
+        "Power Cell": "Power cell (range 50/200)",
+        "Reload": "reload 16"
+       },
+       "propertiesMapJson": "{\"Power Cell\":\"Power cell (range 50/200)\",\"Reload\":\"reload 16\"}",
+       "modes": [],
+       "modesJson": "[]",
+       "ac": null,
+       "strengthRequirement": null,
+       "stealthDisadvantage": false,
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Blaster pistol",
+       "timestamp": "2023-05-30T20:15:38.6782539+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A38.6782539Z'\"",
+       "attackBonus": 5,
+       "damageBonus": 2,
+       "ability": "Dexterity",
+       "isCustom": false,
+       "equipped": true,
+       "quantity": 1,
+       "index": 3,
+       "tweaks": {
+        "toHit": {
+         "proficiency": "proficient",
+         "bonus": 0
+        }
+       },
+       "isFound": true
+      },
+      {
+       "name": "Unarmed Strike",
+       "description": null,
+       "cost": 0,
+       "weight": "0",
+       "equipmentCategory": "Weapon",
+       "contentType": "Core",
+       "contentSource": "PHB",
+       "damageNumberOfDice": 1,
+       "damageType": "Kinetic",
+       "weaponClassification": "Unarmed",
+       "damageDieType": 0,
+       "properties": [],
+       "propertiesMap": {},
+       "modes": [],
+       "quantity": 0,
+       "index": -1,
+       "isFound": true,
+       "equipped": true,
+       "attackBonus": 6,
+       "damageBonus": 4,
+       "ability": "Strength",
+       "isCustom": false,
+       "tweaks": {}
+      }
+     ],
+     "credits": 100,
+     "carryingCapacity": {
+      "encumbered": 80,
+      "heavilyEncumbered": 160,
+      "maxCapacity": 240,
+      "pushDragLift": 480
+     },
+     "superiority": false,
+     "highLevelCasting": {
+      "level6": false,
+      "level7": false,
+      "level8": false,
+      "level9": false
+     },
+     "techCasting": false,
+     "forceCasting": false,
+     "allForcePowers": [],
+     "combatFeatures": [
+      {
+       "name": "Rage",
+       "text": "_**Berserker:** 1st level_\r\nIn battle, you fight with primal ferocity. On your turn, you can enter a rage as a bonus action if you aren't wearing heavy armor.\r\nWhile raging, you gain the following benefits:\r\n- You have advantage on Strength checks and Strength saving throws.\r\n- When you make a melee weapon attack using Strength, you gain a bonus to the damage roll that increases as you gain levels as a berserker, as shown in the Rage Damage column of the berserker table.\r\n- You have resistance to kinetic and energy damage.\r\nIf you are able to cast powers, you can't cast them or concentrate on them while raging.\r\nYour rage lasts for 1 minute. It ends early if you are knocked unconscious, you don heavy armor, or if your turn ends and you haven't taken a hostile action or taken damage since your last turn. You can also end your rage on your turn as a bonus action.\r\nYou can enter a rage a number of times as shown in the Rages column of the berserker table. You regain all expended uses when you complete a long rest.",
+       "level": 1,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Berserker",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Berserker-Rage-1",
+       "timestamp": "2023-05-30T20:15:43.389567+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.389567Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Unarmored Defense",
+       "text": "_**Berserker:** 1st level_\r\nWhile you are not wearing any armor, your Armor Class equals 10 + your Dexterity modifier + your Constitution modifier. You can use a shield and still gain this benefit.",
+       "level": 1,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Berserker",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Berserker-Unarmored Defense-1",
+       "timestamp": "2023-05-30T20:15:43.389567+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.389567Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Berserker Instincts",
+       "text": "_**Berserker:** 2nd level_\r\nYou've honed two instincts, as detailed at the end of the class description, and you hone more at higher levels, as shown in the Berserker Instincts column of the berserker table.",
+       "level": 2,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Berserker",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Berserker-Berserker Instincts-2",
+       "timestamp": "2023-05-30T20:15:43.389567+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.389567Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Reckless Attack",
+       "text": "_**Berserker:** 2nd level_\r\nYou can throw aside all concern for defense to attack with fierce desperation. When you make your first attack on your turn, you can decide to attack recklessly. Doing so gives you advantage on melee weapon attack rolls using Strength during this turn, but attack rolls against you have advantage until your next turn.",
+       "level": 2,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Berserker",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Berserker-Reckless Attack-2",
+       "timestamp": "2023-05-30T20:15:43.389567+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.389567Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Berserker Approach",
+       "text": "_**Berserker:** 3rd, 6th, 10th, and 14th level_\r\nYou choose an approach that shapes the nature of your rage which is detailed at the end of the class description. ",
+       "level": 3,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Berserker",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Berserker-Berserker Approach-3",
+       "timestamp": "2023-05-30T20:15:43.389567+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.389567Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Danger Sense",
+       "text": "_**Berserker:** 3rd level_\r\nYou gain an uncanny sense of when things nearby aren't as they should be, giving you an edge when you dodge away from danger. You have advantage on Dexterity saving throws against effects that you can see, such as traps and powers. To gain this benefit, you can't be blinded, deafened, or incapacitated.",
+       "level": 3,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Berserker",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Berserker-Danger Sense-3",
+       "timestamp": "2023-05-30T20:15:43.389567+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.389567Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Ability Score Improvement",
+       "text": "_**Berserker:** 4th, 8th, 12th, 16th, and 19th level_\r\nYou can increase one ability score by 2, or you can increase two ability scores by 1. You can't increase an ability score above 20 using this feature.",
+       "level": 4,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Berserker",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Berserker-Ability Score Improvement-4",
+       "timestamp": "2023-05-30T20:15:43.3905665+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.3905665Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Extra Attack",
+       "text": "_**Berserker:** 5th level_\r\nYou can attack twice, instead of once, whenever you take the Attack action on your turn.",
+       "level": 5,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Berserker",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Berserker-Extra Attack-5",
+       "timestamp": "2023-05-30T20:15:43.3905665+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.3905665Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Ability Score Increase",
+       "text": "One ability score of your choice increases by 2, and two other ability scores of your choice increase by 1. Alternatively, four ability scores of your choice each increase by 1.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Ability Score Increase",
+       "timestamp": "2023-05-30T20:15:40.8130359+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.8130359Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Age",
+       "text": "Humans reach adulthood in their late teens and live less than a century.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Age",
+       "timestamp": "2023-05-30T20:15:40.814035+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.814035Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Alignment",
+       "text": "Humans tend toward no particular alignment. The best and worst are found among them.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Alignment",
+       "timestamp": "2023-05-30T20:15:40.814035+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.814035Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Defiant",
+       "text": "Humans are known to be stubborn and often refuse to give up, even against the worst odds. When you or a creature you can see that can see and understand you makes an ability check, attack roll, or saving throw, you can roll a d4 and add it to their roll (no action required). Once you've used this feature, you must complete a short or long rest before you can use it again.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Defiant",
+       "timestamp": "2023-05-30T20:15:40.814035+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.814035Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Human Versatility",
+       "text": "You gain proficiency in one skill, one tool, and one weapon of your choice.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Human Versatility",
+       "timestamp": "2023-05-30T20:15:40.814035+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.814035Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Languages",
+       "text": "You can speak, read, and write Galactic Basic and one extra language of your choice. Humans typically learn the languages of other peoples they deal with, including obscure dialects. They are fond of sprinkling their speech with words borrowed from other tongues: trandoshan curses, twi'lek musical expressions, chiss military phrases, and so on.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Languages",
+       "timestamp": "2023-05-30T20:15:40.814035+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.814035Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Proficiency",
+       "text": "You gain proficiency in one skill, one tool, and one weapon of your choice.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Proficiency",
+       "timestamp": "2022-05-29T01:36:26.4474283+00:00",
+       "eTag": "W/\"datetime'2022-05-29T01%3A36%3A26.4474283Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Size",
+       "text": "Humans vary widely in height and build, from barely 5 feet to well over 6 feet tall. Regardless of your position in that range, your size is Medium.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Size",
+       "timestamp": "2023-05-30T20:15:40.814035+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.814035Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Speed",
+       "text": "Your base walking speed is 30 feet.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Speed",
+       "timestamp": "2023-05-30T20:15:40.814035+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.814035Z'\"",
+       "combat": true
+      }
+     ],
+     "nonCombatFeatures": [],
+     "backgroundFeature": {
+      "name": "Military Rank",
+      "combat": false,
+      "text": "You have a military rank from your career as a soldier. Soldiers loyal to your former military organization still recognize your authority and influence, and they defer to you if they are of a lower rank. You can invoke your rank to exert influence over other soldiers and requisition simple equipment for temporary use. You can also usually gain access to friendly military encampments where your rank is recognized.\r\n"
+     },
+     "settings": {
+      "isEnforcingForcePrerequisites": true,
+      "isFixedHitPoints": false,
+      "abilityScoreMethod": "Manual"
+     },
+     "notes": "Test character for the SW5E Sheet extension. Safe to delete."
+    },
+    "base": {
+     "name": "Berserker Test (Claude)",
+     "builderVersion": "0.7.6",
+     "image": "",
+     "characteristics": {
+      "alignment": "Balanced Neutral",
+      "Personality Traits": "",
+      "Ideal": "",
+      "Bond": "",
+      "Flaw": "",
+      "Gender": "",
+      "Place of Birth": "",
+      "Age": "",
+      "Height": "",
+      "Weight": "",
+      "Hair": "",
+      "Eyes": "",
+      "Skin": "",
+      "Appearance": "",
+      "Backstory": ""
+     },
+     "tweaks": {},
+     "customProficiencies": [],
+     "customLanguages": [],
+     "customFeatures": [],
+     "customTechPowers": [],
+     "customForcePowers": [],
+     "customEquipment": [],
+     "numCustomFeats": 0,
+     "currentLevel": 5,
+     "classText": "Berserker 5",
+     "alignment": "Balanced Neutral",
+     "species": "Human",
+     "background": "Soldier",
+     "experiencePoints": {
+      "previousLevel": 6500,
+      "current": 6500,
+      "nextLevel": 14000,
+      "isCorrect": true,
+      "errorMessage": ""
+     },
+     "abilityScores": {
+      "Strength": {
+       "value": 16,
+       "modifier": 3,
+       "savingThrow": {
+        "modifier": 6,
+        "proficiency": "proficient"
+       },
+       "skills": [
+        {
+         "name": "Athletics",
+         "modifier": 6,
+         "proficiency": "proficient"
+        }
+       ]
+      },
+      "Dexterity": {
+       "value": 14,
+       "modifier": 2,
+       "savingThrow": {
+        "modifier": 2,
+        "proficiency": "none"
+       },
+       "skills": [
+        {
+         "name": "Acrobatics",
+         "modifier": 2,
+         "proficiency": "none"
+        },
+        {
+         "name": "Sleight of Hand",
+         "modifier": 2,
+         "proficiency": "none"
+        },
+        {
+         "name": "Stealth",
+         "modifier": 2,
+         "proficiency": "none"
+        }
+       ]
+      },
+      "Constitution": {
+       "value": 16,
+       "modifier": 3,
+       "savingThrow": {
+        "modifier": 6,
+        "proficiency": "proficient"
+       },
+       "skills": []
+      },
+      "Intelligence": {
+       "value": 8,
+       "modifier": -1,
+       "savingThrow": {
+        "modifier": -1,
+        "proficiency": "none"
+       },
+       "skills": [
+        {
+         "name": "Investigation",
+         "modifier": -1,
+         "proficiency": "none"
+        },
+        {
+         "name": "Lore",
+         "modifier": -1,
+         "proficiency": "none"
+        },
+        {
+         "name": "Nature",
+         "modifier": -1,
+         "proficiency": "none"
+        },
+        {
+         "name": "Piloting",
+         "modifier": -1,
+         "proficiency": "none"
+        },
+        {
+         "name": "Technology",
+         "modifier": -1,
+         "proficiency": "none"
+        }
+       ]
+      },
+      "Wisdom": {
+       "value": 12,
+       "modifier": 1,
+       "savingThrow": {
+        "modifier": 1,
+        "proficiency": "none"
+       },
+       "skills": [
+        {
+         "name": "Animal Handling",
+         "modifier": 1,
+         "proficiency": "none"
+        },
+        {
+         "name": "Insight",
+         "modifier": 1,
+         "proficiency": "none"
+        },
+        {
+         "name": "Medicine",
+         "modifier": 1,
+         "proficiency": "none"
+        },
+        {
+         "name": "Perception",
+         "modifier": 1,
+         "proficiency": "none"
+        },
+        {
+         "name": "Survival",
+         "modifier": 1,
+         "proficiency": "none"
+        }
+       ]
+      },
+      "Charisma": {
+       "value": 10,
+       "modifier": 0,
+       "savingThrow": {
+        "modifier": 0,
+        "proficiency": "none"
+       },
+       "skills": [
+        {
+         "name": "Deception",
+         "modifier": 0,
+         "proficiency": "none"
+        },
+        {
+         "name": "Intimidation",
+         "modifier": 3,
+         "proficiency": "proficient"
+        },
+        {
+         "name": "Performance",
+         "modifier": 0,
+         "proficiency": "none"
+        },
+        {
+         "name": "Persuasion",
+         "modifier": 0,
+         "proficiency": "none"
+        }
+       ]
+      }
+     },
+     "proficiencyBonus": 3,
+     "initiative": 2,
+     "armorClass": 14,
+     "armorList": [
+      "Medium physical shield"
+     ],
+     "passivePerception": 11,
+     "inspiration": false,
+     "vision": "normal",
+     "speed": {
+      "base": "30 ft",
+      "hour": "3 miles",
+      "day": "24 miles",
+      "special": ""
+     },
+     "hitPoints": {
+      "current": 55,
+      "temporary": 0,
+      "maximum": 55,
+      "hitDice": [
+       {
+        "size": "d12",
+        "current": 5,
+        "maximum": 5
+       }
+      ],
+      "deathSaves": {
+       "successes": 0,
+       "failures": 0
+      },
+      "resting": {
+       "hitDieBonus": 3,
+       "numHitDiceUsed": 0,
+       "hitDiceRestored": [],
+       "techPointsUsed": 0,
+       "forcePointsUsed": 0,
+       "highLevelCasting": {
+        "level6": false,
+        "level7": false,
+        "level8": false,
+        "level9": false
+       },
+       "shortRestFeatures": [],
+       "longRestFeatures": []
+      }
+     },
+     "conditions": [],
+     "exhaustion": 0,
+     "proficiencies": [
+      {
+       "name": "All vibroweapons",
+       "type": "weapon"
+      },
+      {
+       "name": "simple blasters",
+       "type": "weapon"
+      },
+      {
+       "name": "Light armor",
+       "type": "armor"
+      },
+      {
+       "name": "medium armor",
+       "type": "armor"
+      },
+      {
+       "name": "One type of gaming set",
+       "type": "tool"
+      }
+     ],
+     "skillAndSaveProficiencies": [
+      "Athletics",
+      "Intimidation",
+      "Strength Saving Throws",
+      "Constitution Saving Throws"
+     ],
+     "languages": [
+      "Galactic Basic",
+      "Galactic Basic"
+     ],
+     "equipment": [
+      {
+       "name": "Dire vibroblade",
+       "description": null,
+       "cost": 550,
+       "weight": "7",
+       "equipmentCategoryEnum": 3,
+       "equipmentCategory": "Weapon",
+       "damageNumberOfDice": 1,
+       "damageTypeEnum": 7,
+       "damageType": "Kinetic",
+       "damageDieModifier": 0,
+       "weaponClassificationEnum": 4,
+       "weaponClassification": "MartialVibroweapon",
+       "armorClassificationEnum": 0,
+       "armorClassification": "Unknown",
+       "damageDiceDieTypeEnum": 8,
+       "damageDieType": 8,
+       "properties": [
+        "Dexterity 13",
+        "dire 1",
+        "versatile (1d10)"
+       ],
+       "propertiesJson": "[\"Dexterity 13\",\"dire 1\",\"versatile (1d10)\"]",
+       "propertiesMap": {
+        "Dexterity": "Dexterity 13",
+        "Dire": "dire 1",
+        "Versatile": "versatile (1d10)"
+       },
+       "propertiesMapJson": "{\"Dexterity\":\"Dexterity 13\",\"Dire\":\"dire 1\",\"Versatile\":\"versatile (1d10)\"}",
+       "modes": [],
+       "modesJson": "[]",
+       "ac": null,
+       "strengthRequirement": null,
+       "stealthDisadvantage": false,
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 2,
+       "contentSource": "WH",
+       "partitionKey": "Core",
+       "rowKey": "Dire vibroblade",
+       "timestamp": "2023-05-30T20:15:17.4273727+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A17.4273727Z'\"",
+       "attackBonus": 6,
+       "damageBonus": 3,
+       "ability": "Strength",
+       "isCustom": false,
+       "equipped": true,
+       "quantity": 1,
+       "index": 0,
+       "tweaks": {},
+       "isFound": true
+      },
+      {
+       "name": "Medium physical shield",
+       "description": null,
+       "cost": 150,
+       "weight": "18",
+       "equipmentCategoryEnum": 4,
+       "equipmentCategory": "Armor",
+       "damageNumberOfDice": 0,
+       "damageTypeEnum": 0,
+       "damageType": "Unknown",
+       "damageDieModifier": 0,
+       "weaponClassificationEnum": 0,
+       "weaponClassification": "Unknown",
+       "armorClassificationEnum": 4,
+       "armorClassification": "Shield",
+       "damageDiceDieTypeEnum": 0,
+       "damageDieType": 0,
+       "properties": [
+        "Strength 13"
+       ],
+       "propertiesJson": "[\"Strength 13\"]",
+       "propertiesMap": {
+        "Strength": "Strength 13"
+       },
+       "propertiesMapJson": "{\"Strength\":\"Strength 13\"}",
+       "modes": [],
+       "modesJson": "[]",
+       "ac": "+2",
+       "strengthRequirement": "",
+       "stealthDisadvantage": false,
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Medium physical shield",
+       "timestamp": "2023-05-30T20:15:38.6912462+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A38.6912462Z'\"",
+       "equipped": true,
+       "quantity": 1,
+       "index": 1,
+       "isFound": true
+      },
+      {
+       "name": "Combat suit",
+       "description": "Combat suits are seen all over the galaxy, and can be found for sale by almost any merchant who dealt in weapons and armor. Many such suits are used by military organizations, such as the Galactic Republic's military, as well as by mercenaries, criminals, bounty hunters and even some Jedi.\r\n\r\nThe suit itself offers decent protection from most types of attacks while maintaining maximum flexibility and minimum weight. However this armor is only recommended for light skirmishes.",
+       "cost": 100,
+       "weight": "10",
+       "equipmentCategoryEnum": 4,
+       "equipmentCategory": "Armor",
+       "damageNumberOfDice": 0,
+       "damageTypeEnum": 0,
+       "damageType": "Unknown",
+       "damageDieModifier": 0,
+       "weaponClassificationEnum": 0,
+       "weaponClassification": "Unknown",
+       "armorClassificationEnum": 1,
+       "armorClassification": "Light",
+       "damageDiceDieTypeEnum": 0,
+       "damageDieType": 0,
+       "properties": [],
+       "propertiesJson": "[]",
+       "propertiesMap": {},
+       "propertiesMapJson": "{}",
+       "modes": [],
+       "modesJson": "[]",
+       "ac": "11 + Dex modifier",
+       "strengthRequirement": "",
+       "stealthDisadvantage": false,
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Combat suit",
+       "timestamp": "2023-05-30T20:15:38.6892471+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A38.6892471Z'\"",
+       "equipped": false,
+       "quantity": 1,
+       "index": 2,
+       "isFound": true
+      },
+      {
+       "name": "Blaster pistol",
+       "description": null,
+       "cost": 175,
+       "weight": "2.5",
+       "equipmentCategoryEnum": 3,
+       "equipmentCategory": "Weapon",
+       "damageNumberOfDice": 1,
+       "damageTypeEnum": 3,
+       "damageType": "Energy",
+       "damageDieModifier": 0,
+       "weaponClassificationEnum": 1,
+       "weaponClassification": "SimpleBlaster",
+       "armorClassificationEnum": 0,
+       "armorClassification": "Unknown",
+       "damageDiceDieTypeEnum": 6,
+       "damageDieType": 6,
+       "properties": [
+        "Power cell (range 50/200)",
+        "reload 16"
+       ],
+       "propertiesJson": "[\"Power cell (range 50/200)\",\"reload 16\"]",
+       "propertiesMap": {
+        "Power Cell": "Power cell (range 50/200)",
+        "Reload": "reload 16"
+       },
+       "propertiesMapJson": "{\"Power Cell\":\"Power cell (range 50/200)\",\"Reload\":\"reload 16\"}",
+       "modes": [],
+       "modesJson": "[]",
+       "ac": null,
+       "strengthRequirement": null,
+       "stealthDisadvantage": false,
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Blaster pistol",
+       "timestamp": "2023-05-30T20:15:38.6782539+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A38.6782539Z'\"",
+       "attackBonus": 5,
+       "damageBonus": 2,
+       "ability": "Dexterity",
+       "isCustom": false,
+       "equipped": true,
+       "quantity": 1,
+       "index": 3,
+       "tweaks": {},
+       "isFound": true
+      }
+     ],
+     "attunement": {
+      "current": 0,
+      "maximum": 3,
+      "hasAttunable": false
+     },
+     "weapons": [
+      {
+       "name": "Dire vibroblade",
+       "description": null,
+       "cost": 550,
+       "weight": "7",
+       "equipmentCategoryEnum": 3,
+       "equipmentCategory": "Weapon",
+       "damageNumberOfDice": 1,
+       "damageTypeEnum": 7,
+       "damageType": "Kinetic",
+       "damageDieModifier": 0,
+       "weaponClassificationEnum": 4,
+       "weaponClassification": "MartialVibroweapon",
+       "armorClassificationEnum": 0,
+       "armorClassification": "Unknown",
+       "damageDiceDieTypeEnum": 8,
+       "damageDieType": 8,
+       "properties": [
+        "Dexterity 13",
+        "dire 1",
+        "versatile (1d10)"
+       ],
+       "propertiesJson": "[\"Dexterity 13\",\"dire 1\",\"versatile (1d10)\"]",
+       "propertiesMap": {
+        "Dexterity": "Dexterity 13",
+        "Dire": "dire 1",
+        "Versatile": "versatile (1d10)"
+       },
+       "propertiesMapJson": "{\"Dexterity\":\"Dexterity 13\",\"Dire\":\"dire 1\",\"Versatile\":\"versatile (1d10)\"}",
+       "modes": [],
+       "modesJson": "[]",
+       "ac": null,
+       "strengthRequirement": null,
+       "stealthDisadvantage": false,
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 2,
+       "contentSource": "WH",
+       "partitionKey": "Core",
+       "rowKey": "Dire vibroblade",
+       "timestamp": "2023-05-30T20:15:17.4273727+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A17.4273727Z'\"",
+       "attackBonus": 6,
+       "damageBonus": 3,
+       "ability": "Strength",
+       "isCustom": false,
+       "equipped": true,
+       "quantity": 1,
+       "index": 0,
+       "tweaks": {},
+       "isFound": true
+      },
+      {
+       "name": "Blaster pistol",
+       "description": null,
+       "cost": 175,
+       "weight": "2.5",
+       "equipmentCategoryEnum": 3,
+       "equipmentCategory": "Weapon",
+       "damageNumberOfDice": 1,
+       "damageTypeEnum": 3,
+       "damageType": "Energy",
+       "damageDieModifier": 0,
+       "weaponClassificationEnum": 1,
+       "weaponClassification": "SimpleBlaster",
+       "armorClassificationEnum": 0,
+       "armorClassification": "Unknown",
+       "damageDiceDieTypeEnum": 6,
+       "damageDieType": 6,
+       "properties": [
+        "Power cell (range 50/200)",
+        "reload 16"
+       ],
+       "propertiesJson": "[\"Power cell (range 50/200)\",\"reload 16\"]",
+       "propertiesMap": {
+        "Power Cell": "Power cell (range 50/200)",
+        "Reload": "reload 16"
+       },
+       "propertiesMapJson": "{\"Power Cell\":\"Power cell (range 50/200)\",\"Reload\":\"reload 16\"}",
+       "modes": [],
+       "modesJson": "[]",
+       "ac": null,
+       "strengthRequirement": null,
+       "stealthDisadvantage": false,
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Blaster pistol",
+       "timestamp": "2023-05-30T20:15:38.6782539+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A38.6782539Z'\"",
+       "attackBonus": 5,
+       "damageBonus": 2,
+       "ability": "Dexterity",
+       "isCustom": false,
+       "equipped": true,
+       "quantity": 1,
+       "index": 3,
+       "tweaks": {},
+       "isFound": true
+      },
+      {
+       "name": "Unarmed Strike",
+       "description": null,
+       "cost": 0,
+       "weight": "0",
+       "equipmentCategory": "Weapon",
+       "contentType": "Core",
+       "contentSource": "PHB",
+       "damageNumberOfDice": 1,
+       "damageType": "Kinetic",
+       "weaponClassification": "Unarmed",
+       "damageDieType": 0,
+       "properties": [],
+       "propertiesMap": {},
+       "modes": [],
+       "quantity": 0,
+       "index": -1,
+       "isFound": true,
+       "equipped": true,
+       "attackBonus": 6,
+       "damageBonus": 4,
+       "ability": "Strength",
+       "isCustom": false,
+       "tweaks": {}
+      }
+     ],
+     "credits": 100,
+     "carryingCapacity": {
+      "encumbered": 80,
+      "heavilyEncumbered": 160,
+      "maxCapacity": 240,
+      "pushDragLift": 480
+     },
+     "superiority": false,
+     "highLevelCasting": {
+      "level6": false,
+      "level7": false,
+      "level8": false,
+      "level9": false
+     },
+     "techCasting": false,
+     "forceCasting": false,
+     "allForcePowers": [],
+     "combatFeatures": [
+      {
+       "name": "Rage",
+       "text": "_**Berserker:** 1st level_\r\nIn battle, you fight with primal ferocity. On your turn, you can enter a rage as a bonus action if you aren't wearing heavy armor.\r\nWhile raging, you gain the following benefits:\r\n- You have advantage on Strength checks and Strength saving throws.\r\n- When you make a melee weapon attack using Strength, you gain a bonus to the damage roll that increases as you gain levels as a berserker, as shown in the Rage Damage column of the berserker table.\r\n- You have resistance to kinetic and energy damage.\r\nIf you are able to cast powers, you can't cast them or concentrate on them while raging.\r\nYour rage lasts for 1 minute. It ends early if you are knocked unconscious, you don heavy armor, or if your turn ends and you haven't taken a hostile action or taken damage since your last turn. You can also end your rage on your turn as a bonus action.\r\nYou can enter a rage a number of times as shown in the Rages column of the berserker table. You regain all expended uses when you complete a long rest.",
+       "level": 1,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Berserker",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Berserker-Rage-1",
+       "timestamp": "2023-05-30T20:15:43.389567+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.389567Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Unarmored Defense",
+       "text": "_**Berserker:** 1st level_\r\nWhile you are not wearing any armor, your Armor Class equals 10 + your Dexterity modifier + your Constitution modifier. You can use a shield and still gain this benefit.",
+       "level": 1,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Berserker",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Berserker-Unarmored Defense-1",
+       "timestamp": "2023-05-30T20:15:43.389567+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.389567Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Berserker Instincts",
+       "text": "_**Berserker:** 2nd level_\r\nYou've honed two instincts, as detailed at the end of the class description, and you hone more at higher levels, as shown in the Berserker Instincts column of the berserker table.",
+       "level": 2,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Berserker",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Berserker-Berserker Instincts-2",
+       "timestamp": "2023-05-30T20:15:43.389567+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.389567Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Reckless Attack",
+       "text": "_**Berserker:** 2nd level_\r\nYou can throw aside all concern for defense to attack with fierce desperation. When you make your first attack on your turn, you can decide to attack recklessly. Doing so gives you advantage on melee weapon attack rolls using Strength during this turn, but attack rolls against you have advantage until your next turn.",
+       "level": 2,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Berserker",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Berserker-Reckless Attack-2",
+       "timestamp": "2023-05-30T20:15:43.389567+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.389567Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Berserker Approach",
+       "text": "_**Berserker:** 3rd, 6th, 10th, and 14th level_\r\nYou choose an approach that shapes the nature of your rage which is detailed at the end of the class description. ",
+       "level": 3,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Berserker",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Berserker-Berserker Approach-3",
+       "timestamp": "2023-05-30T20:15:43.389567+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.389567Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Danger Sense",
+       "text": "_**Berserker:** 3rd level_\r\nYou gain an uncanny sense of when things nearby aren't as they should be, giving you an edge when you dodge away from danger. You have advantage on Dexterity saving throws against effects that you can see, such as traps and powers. To gain this benefit, you can't be blinded, deafened, or incapacitated.",
+       "level": 3,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Berserker",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Berserker-Danger Sense-3",
+       "timestamp": "2023-05-30T20:15:43.389567+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.389567Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Ability Score Improvement",
+       "text": "_**Berserker:** 4th, 8th, 12th, 16th, and 19th level_\r\nYou can increase one ability score by 2, or you can increase two ability scores by 1. You can't increase an ability score above 20 using this feature.",
+       "level": 4,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Berserker",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Berserker-Ability Score Improvement-4",
+       "timestamp": "2023-05-30T20:15:43.3905665+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.3905665Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Extra Attack",
+       "text": "_**Berserker:** 5th level_\r\nYou can attack twice, instead of once, whenever you take the Attack action on your turn.",
+       "level": 5,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Berserker",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Berserker-Extra Attack-5",
+       "timestamp": "2023-05-30T20:15:43.3905665+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.3905665Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Ability Score Increase",
+       "text": "One ability score of your choice increases by 2, and two other ability scores of your choice increase by 1. Alternatively, four ability scores of your choice each increase by 1.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Ability Score Increase",
+       "timestamp": "2023-05-30T20:15:40.8130359+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.8130359Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Age",
+       "text": "Humans reach adulthood in their late teens and live less than a century.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Age",
+       "timestamp": "2023-05-30T20:15:40.814035+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.814035Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Alignment",
+       "text": "Humans tend toward no particular alignment. The best and worst are found among them.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Alignment",
+       "timestamp": "2023-05-30T20:15:40.814035+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.814035Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Defiant",
+       "text": "Humans are known to be stubborn and often refuse to give up, even against the worst odds. When you or a creature you can see that can see and understand you makes an ability check, attack roll, or saving throw, you can roll a d4 and add it to their roll (no action required). Once you've used this feature, you must complete a short or long rest before you can use it again.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Defiant",
+       "timestamp": "2023-05-30T20:15:40.814035+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.814035Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Human Versatility",
+       "text": "You gain proficiency in one skill, one tool, and one weapon of your choice.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Human Versatility",
+       "timestamp": "2023-05-30T20:15:40.814035+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.814035Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Languages",
+       "text": "You can speak, read, and write Galactic Basic and one extra language of your choice. Humans typically learn the languages of other peoples they deal with, including obscure dialects. They are fond of sprinkling their speech with words borrowed from other tongues: trandoshan curses, twi'lek musical expressions, chiss military phrases, and so on.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Languages",
+       "timestamp": "2023-05-30T20:15:40.814035+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.814035Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Proficiency",
+       "text": "You gain proficiency in one skill, one tool, and one weapon of your choice.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Proficiency",
+       "timestamp": "2022-05-29T01:36:26.4474283+00:00",
+       "eTag": "W/\"datetime'2022-05-29T01%3A36%3A26.4474283Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Size",
+       "text": "Humans vary widely in height and build, from barely 5 feet to well over 6 feet tall. Regardless of your position in that range, your size is Medium.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Size",
+       "timestamp": "2023-05-30T20:15:40.814035+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.814035Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Speed",
+       "text": "Your base walking speed is 30 feet.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Speed",
+       "timestamp": "2023-05-30T20:15:40.814035+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.814035Z'\"",
+       "combat": true
+      }
+     ],
+     "nonCombatFeatures": [],
+     "backgroundFeature": {
+      "name": "Military Rank",
+      "combat": false,
+      "text": "You have a military rank from your career as a soldier. Soldiers loyal to your former military organization still recognize your authority and influence, and they defer to you if they are of a lower rank. You can invoke your rank to exert influence over other soldiers and requisition simple equipment for temporary use. You can also usually gain access to friendly military encampments where your rank is recognized.\r\n"
+     },
+     "settings": {
+      "isEnforcingForcePrerequisites": true,
+      "isFixedHitPoints": false,
+      "abilityScoreMethod": "Manual"
+     },
+     "notes": "Test character for the SW5E Sheet extension. Safe to delete."
+    },
+    "refs": {
+     "classes": {
+      "Berserker": {
+       "name": "Berserker",
+       "summary": "Melee combatant who utilizes rage to increase prowess",
+       "primaryAbility": "Strength",
+       "hitDiceDieType": 12,
+       "hitPointsAtFirstLevel": "12 + your Constitution modifier",
+       "hitPointsAtHigherLevels": "1d12 (or 7) + your Constitution modifier per berserker level after 1st",
+       "armorProficiencies": [
+        "Light armor",
+        "medium armor"
+       ],
+       "weaponProficiencies": [
+        "All vibroweapons",
+        "simple blasters"
+       ],
+       "toolProficiencies": [
+        "None"
+       ],
+       "savingThrows": [
+        "Strength",
+        "Constitution"
+       ],
+       "skillChoices": "Choose two from Animal Handling, Athletics, Intimidation, Nature, Perception, Survival",
+       "levelChanges": {
+        "1": {
+         "Level": "1st",
+         "Proficiency Bonus": "+2",
+         "Features": "Rage, Unarmored Defense",
+         "Rages": "2",
+         "Rage Damage": "+2",
+         "Berserker Instincts": "�"
+        },
+        "2": {
+         "Level": "2nd",
+         "Proficiency Bonus": "+2",
+         "Features": "Reckless Attack, Berserker Instincts",
+         "Rages": "2",
+         "Rage Damage": "+2",
+         "Berserker Instincts": "2"
+        },
+        "3": {
+         "Level": "3rd",
+         "Proficiency Bonus": "+2",
+         "Features": "Danger Sense, Berserker Approach",
+         "Rages": "3",
+         "Rage Damage": "+2",
+         "Berserker Instincts": "2"
+        },
+        "4": {
+         "Level": "4th",
+         "Proficiency Bonus": "+2",
+         "Features": "Ability Score Improvement",
+         "Rages": "3",
+         "Rage Damage": "+2",
+         "Berserker Instincts": "2"
+        },
+        "5": {
+         "Level": "5th",
+         "Proficiency Bonus": "+3",
+         "Features": "Extra Attack",
+         "Rages": "3",
+         "Rage Damage": "+2",
+         "Berserker Instincts": "2"
+        },
+        "6": {
+         "Level": "6th",
+         "Proficiency Bonus": "+3",
+         "Features": "Approach feature",
+         "Rages": "4",
+         "Rage Damage": "+2",
+         "Berserker Instincts": "2"
+        },
+        "7": {
+         "Level": "7th",
+         "Proficiency Bonus": "+3",
+         "Features": "Feral Impulse",
+         "Rages": "4",
+         "Rage Damage": "+2",
+         "Berserker Instincts": "3"
+        },
+        "8": {
+         "Level": "8th",
+         "Proficiency Bonus": "+3",
+         "Features": "Ability Score Improvement",
+         "Rages": "4",
+         "Rage Damage": "+2",
+         "Berserker Instincts": "3"
+        },
+        "9": {
+         "Level": "9th",
+         "Proficiency Bonus": "+4",
+         "Features": "Brutal Critical (one die)",
+         "Rages": "4",
+         "Rage Damage": "+3",
+         "Berserker Instincts": "3"
+        },
+        "10": {
+         "Level": "10th",
+         "Proficiency Bonus": "+4",
+         "Features": "Approach feature",
+         "Rages": "4",
+         "Rage Damage": "+3",
+         "Berserker Instincts": "3"
+        },
+        "11": {
+         "Level": "11th",
+         "Proficiency Bonus": "+4",
+         "Features": "Relentless Rage",
+         "Rages": "4",
+         "Rage Damage": "+3",
+         "Berserker Instincts": "3"
+        },
+        "12": {
+         "Level": "12th",
+         "Proficiency Bonus": "+4",
+         "Features": "Ability Score Improvement",
+         "Rages": "5",
+         "Rage Damage": "+3",
+         "Berserker Instincts": "3"
+        },
+        "13": {
+         "Level": "13th",
+         "Proficiency Bonus": "+5",
+         "Features": "Brutal Critical (two dice)",
+         "Rages": "5",
+         "Rage Damage": "+4",
+         "Berserker Instincts": "4"
+        },
+        "14": {
+         "Level": "14th",
+         "Proficiency Bonus": "+5",
+         "Features": "Approach feature",
+         "Rages": "5",
+         "Rage Damage": "+4",
+         "Berserker Instincts": "4"
+        },
+        "15": {
+         "Level": "15th",
+         "Proficiency Bonus": "+5",
+         "Features": "Persistent Rage",
+         "Rages": "5",
+         "Rage Damage": "+4",
+         "Berserker Instincts": "4"
+        },
+        "16": {
+         "Level": "16th",
+         "Proficiency Bonus": "+5",
+         "Features": "Ability Score Improvement",
+         "Rages": "5",
+         "Rage Damage": "+4",
+         "Berserker Instincts": "4"
+        },
+        "17": {
+         "Level": "17th",
+         "Proficiency Bonus": "+6",
+         "Features": "Brutal Critical (three dice)",
+         "Rages": "6",
+         "Rage Damage": "+5",
+         "Berserker Instincts": "5"
+        },
+        "18": {
+         "Level": "18th",
+         "Proficiency Bonus": "+6",
+         "Features": "Indomitable Might",
+         "Rages": "6",
+         "Rage Damage": "+5",
+         "Berserker Instincts": "5"
+        },
+        "19": {
+         "Level": "19th",
+         "Proficiency Bonus": "+6",
+         "Features": "Ability Score Improvement",
+         "Rages": "6",
+         "Rage Damage": "+5",
+         "Berserker Instincts": "5"
+        },
+        "20": {
+         "Level": "20th",
+         "Proficiency Bonus": "+6",
+         "Features": "Primal Champion",
+         "Rages": "Unlimited",
+         "Rage Damage": "+5",
+         "Berserker Instincts": "5"
+        }
+       },
+       "casterType": "None",
+       "casterRatio": 0,
+       "multiClassProficiencies": [
+        "Light armor",
+        "all vibroweapons"
+       ],
+       "archetypeFlavorName": "Berserker Approaches"
+      }
+     },
+     "archetypes": {},
+     "species": {
+      "Human": {
+       "name": "Human",
+       "size": "Medium",
+       "homeworld": "Coruscant",
+       "language": "Galactic Basic",
+       "distinctions": "Biped with bilateral symmetry, opposable thumbs",
+       "skinColorOptions": "Light to dark tones",
+       "hairColorOptions": "Black, blond, orange, brown, gray to white (usually with age)",
+       "eyeColorOptions": "Amber, blue, brown, gray, green, hazel, purple, or red",
+       "heightAverage": "4'8\"",
+       "heightRollMod": "+2d10\"",
+       "weightAverage": "110 lb.",
+       "weightRollMod": "x(2d4) lb.",
+       "traits": [
+        {
+         "name": "Ability Score Increase",
+         "description": "One ability score of your choice increases by 2, and two other ability scores of your choice increase by 1. Alternatively, four ability scores of your choice each increase by 1."
+        },
+        {
+         "name": "Age",
+         "description": "Humans reach adulthood in their late teens and live less than a century."
+        },
+        {
+         "name": "Alignment",
+         "description": "Humans tend toward no particular alignment. The best and worst are found among them."
+        },
+        {
+         "name": "Size",
+         "description": "Humans vary widely in height and build, from barely 5 feet to well over 6 feet tall. Regardless of your position in that range, your size is Medium."
+        },
+        {
+         "name": "Speed",
+         "description": "Your base walking speed is 30 feet."
+        },
+        {
+         "name": "Defiant",
+         "description": "Humans are known to be stubborn and often refuse to give up, even against the worst odds. When you or a creature you can see that can see and understand you makes an ability check, attack roll, or saving throw, you can roll a d4 and add it to their roll (no action required). Once you've used this feature, you must complete a short or long rest before you can use it again."
+        },
+        {
+         "name": "Human Versatility",
+         "description": "You gain proficiency in one skill, one tool, and one weapon of your choice."
+        },
+        {
+         "name": "Languages",
+         "description": "You can speak, read, and write Galactic Basic and one extra language of your choice. Humans typically learn the languages of other peoples they deal with, including obscure dialects. They are fond of sprinkling their speech with words borrowed from other tongues: trandoshan curses, twi'lek musical expressions, chiss military phrases, and so on."
+        }
+       ],
+       "imageUrls": [
+        "https://starwars5ecentral.blob.core.windows.net/site-images/species/species_human.png"
+       ]
+      }
+     },
+     "backgrounds": {
+      "Soldier": {
+       "name": "Soldier",
+       "flavorText": "War has been your life for as long as you care to remember. You trained as a youth, studied the use of weapons and armor, learned basic survival techniques, including how to stay alive on the battlefield. You might have been part of a standing national army, a mercenary company, or perhaps a member of a local militia who rose to prominence during a recent war.\r\n\r\nWhen you choose this background, work with your GM to determine which military organization you were a part of, how far through its ranks you progressed, and what kind of experiences you had during your military career. Was it a standing army, a town guard, a village militia, or perhaps a private company.\r\n",
+       "skillProficiencies": "Choose two from Athletics, Intimidation, Persuasion, and Piloting",
+       "toolProficiencies": "One type of gaming set",
+       "languages": "One of your choice",
+       "equipment": "An insignia of rank, a trophy taken from a fallen enemy, a gaming set (one of your choice), a set of common clothes, and a belt pouch containing 100 cr",
+       "featureName": "Military Rank",
+       "featureText": "You have a military rank from your career as a soldier. Soldiers loyal to your former military organization still recognize your authority and influence, and they defer to you if they are of a lower rank. You can invoke your rank to exert influence over other soldiers and requisition simple equipment for temporary use. You can also usually gain access to friendly military encampments where your rank is recognized.\r\n",
+       "flavorName": "Specialty",
+       "flavorDescription": "During your time as a soldier, you had a specific role to play in your unit or army. Roll a d8 or choose from the options in the table below to determine your role:\r\n\r\n|d8|Specialty|\r\n|:---:|:----------:|\r\n|1|Officer|\r\n|2|Scout|\r\n|3|Infantry|\r\n|4|Medic|\r\n\r\n|d8|Specialty|\r\n|:---:|:----------:|\r\n|5|Quartermaster|\r\n|6|Pilot|\r\n|7|Artisan|\r\n|8|Support Staff|\r\n"
+      }
+     },
+     "feats": {},
+     "maneuvers": {},
+     "choices": {
+      "skills": {
+       "Athletics": {
+        "name": "Athletics",
+        "baseAttribute": "Strength",
+        "contentType": "Lookup",
+        "contentSource": "None"
+       },
+       "Intimidation": {
+        "name": "Intimidation",
+        "baseAttribute": "Charisma",
+        "contentType": "Lookup",
+        "contentSource": "None"
+       }
+      }
+     },
+     "conditions": [
+      {
+       "name": "Blinded",
+       "description": "A blinded creature can't see and automatically fails any ability check that requires sight.\\r\\n- Attack rolls against the creature have advantage, and the creature's attack rolls have disadvantage."
+      },
+      {
+       "name": "Charmed",
+       "description": "A charmed creature can't attack the charmer or target the charmer with harmful abilities or enhanced effects.\\r\\n- The charmer has advantage on any ability check to interact socially with the creature."
+      },
+      {
+       "name": "Deafened",
+       "description": "A deafened creature can't hear and automatically fails any ability check that requires hearing."
+      },
+      {
+       "name": "Exhaustion",
+       "description": "Some special abilities and environmental hazards, such as and the long-term effects of freezing or scorching temperatures, can lead to a special condition called exhaustion. Exhaustion is measured in six levels. An effect can give a creature one or more levels of exhaustion, as specified in the effect's description. Exhaustion Level\\r\\n\\r\\n|Level|Effect|\\r\\n|:--:|:--|\\r\\n|1|Disadvantage on ability checks|\\r\\n|2|Speed halved|\\r\\n|3|Disadvantage on attack rolls and saving throws|\\r\\n|4|Hit point maximum halved|\\r\\n|5|Speed reduced to 0|\\r\\n|6|Death|\\r\\n\\r\\nIf an already exhausted creature suffers another effect that causes exhaustion, its current level of exhaustion increases by the amount specified in the effect's description.\\r\\n\\r\\nA creature suffers the effect of its current level of exhaustion as well as all lower levels. For example, a creature suffering level 2 exhaustion has its speed halved and has disadvantage on ability checks.\\r\\n\\r\\nAn effect that removes exhaustion reduces its level as specified in the effect's description, with all exhaustion effects ending if a creature's exhaustion level is reduced below 1.\\r\\n\\r\\nFinishing a long rest reduces a creature's exhaustion level by 1, provided that the creature has also ingested some food and drink."
+      },
+      {
+       "name": "Frightened",
+       "description": "A frightened creature has disadvantage on ability checks and attack rolls while the source of its fear is within line of sight.\\r\\n- The creature can't willingly move closer to the source of its fear."
+      },
+      {
+       "name": "Grappled",
+       "description": "A grappled creature's speed becomes 0, and it can't benefit from any bonus to its speed.\\r\\n- The condition ends if the grappler is incapacitated (see the condition).\\r\\n- The condition also ends if an effect removes the grappled creature from the reach of the grappler or grappling effect."
+      },
+      {
+       "name": "Incapacitated",
+       "description": "An incapacitated creature can't take actions or reactions."
+      },
+      {
+       "name": "Invisible",
+       "description": "An invisible creature is impossible to see without the aid of powers or a special sense. For the purpose of hiding, the creature is heavily obscured. The creature's location can be detected by any noise it makes or any tracks it leaves.\\r\\n- Attack rolls against the creature have disadvantage, and the creature's attack rolls have advantage."
+      },
+      {
+       "name": "Paralyzed",
+       "description": "A paralyzed creature is incapacitated (see the condition) and can't move or speak.\\r\\n- The creature automatically fails Strength and Dexterity saving throws. Attack rolls against the creature have advantage.\\r\\n- Any attack that hits the creature is a critical hit if the attacker is within 5 feet of the creature."
+      },
+      {
+       "name": "Petrified",
+       "description": "A petrified creature is transformed, along with any object it is wearing or carrying, into a solid inanimate substance (usually stone). Its weight increases by a factor of ten, and it ceases aging.\\r\\n- The creature is incapacitated (see the condition), can't move or speak, and is unaware of its surroundings.\\r\\n- Attack rolls against the creature have advantage. \\r\\n- The creature automatically fails Strength and Dexterity saving throws.\\r\\n- The creature has resistance to all damage.\\r\\n- The creature is immune to poison and disease, although a poison or disease already in its system is suspended, not neutralized."
+      },
+      {
+       "name": "Poisoned",
+       "description": "A poisoned creature has disadvantage on attack rolls and ability checks."
+      },
+      {
+       "name": "Prone",
+       "description": "A prone creature's only movement option is to crawl, unless it stands up and thereby ends the condition. \\r\\n- The creature has disadvantage on melee attack rolls.\\r\\n- The creature has disadvantage on ranged attack rolls against targets within 30 feet.\\r\\n- An attack roll against the creature has advantage if the attacker is within 5 feet of the creature. Otherwise, the attack roll has disadvantage."
+      },
+      {
+       "name": "Restrained",
+       "description": "A restrained creature's speed becomes 0, and it can't benefit from any bonus to its speed.\\r\\n- Attack rolls against the creature have advantage, and the creature's attack rolls have disadvantage.\\r\\n- The creature has disadvantage on Dexterity saving throws."
+      },
+      {
+       "name": "Shocked",
+       "description": "A shocked creature's speed is reduced by half.\\r\\n- The creature can't take reactions."
+      },
+      {
+       "name": "Stunned",
+       "description": "A stunned creature is incapacitated (see the condition), can't move, and can speak only falteringly.\\r\\n- The creature automatically fails Strength and Dexterity saving throws.\\r\\n- Attack rolls against the creature have advantage."
+      },
+      {
+       "name": "Unconscious",
+       "description": "An unconscious creature is incapacitated (see the condition), can't move or speak, and is unaware of its surroundings\\r\\n- The creature drops whatever it's holding and falls prone.\\r\\n- The creature automatically fails Strength and Dexterity saving throws.\\r\\n- Attack rolls against the creature have advantage.\\r\\n- Any attack that hits the creature is a critical hit if the attacker is within 5 feet of the creature."
+      }
+     ]
+    },
+    "validation": {
+     "code": 0,
+     "message": "All checks passed",
+     "isValid": true
+    },
+    "error": null,
+    "at": 1792289041250
+   }
+  },
+  "edits": {
+   "id:00000000-0000-4000-8000-000003000001": {}
+  },
+  "itemState": {
+   "id:00000000-0000-4000-8000-000003000001": {}
+  },
+  "trackers": {},
+  "history": {
+   "id:00000000-0000-4000-8000-000003000001": [
+    {
+     "at": 1792178420175,
+     "reason": "Loaded from SW5E",
+     "changedAt": 1792178402225,
+     "raw": {
+      "name": "Berserker Test (Claude)",
+      "image": "",
+      "experiencePoints": 6500,
+      "species": {
+       "name": "Human",
+       "abilityScoreImprovementSelectedOption": 0,
+       "abilityScoreImprovement": {}
+      },
+      "classes": [
+       {
+        "name": "Berserker",
+        "levels": 5,
+        "hitPoints": [
+         7,
+         7,
+         7,
+         7
+        ],
+        "abilityScoreImprovements": [],
+        "skills": [
+         "Athletics",
+         "Intimidation"
+        ]
+       }
+      ],
+      "baseAbilityScores": {
+       "Strength": 16,
+       "Dexterity": 14,
+       "Constitution": 16,
+       "Intelligence": 8,
+       "Wisdom": 12,
+       "Charisma": 10
+      },
+      "background": {
+       "name": "Soldier",
+       "feature": ""
+      },
+      "characteristics": {
+       "alignment": "Balanced Neutral",
+       "Personality Traits": "",
+       "Ideal": "",
+       "Bond": "",
+       "Flaw": "",
+       "Gender": "",
+       "Place of Birth": "",
+       "Age": "",
+       "Height": "",
+       "Weight": "",
+       "Hair": "",
+       "Eyes": "",
+       "Skin": "",
+       "Appearance": "",
+       "Backstory": ""
+      },
+      "credits": 100,
+      "equipment": [
+       {
+        "name": "Dire vibroblade",
+        "quantity": 1,
+        "category": "Equipment",
+        "equipped": true
+       },
+       {
+        "name": "Medium physical shield",
+        "quantity": 1,
+        "category": "Equipment",
+        "equipped": true
+       },
+       {
+        "name": "Combat suit",
+        "quantity": 1,
+        "category": "Equipment",
+        "equipped": false
+       },
+       {
+        "name": "Blaster pistol",
+        "quantity": 1,
+        "category": "Equipment",
+        "equipped": true
+       }
+      ],
+      "currentStats": {
+       "hitPointsLost": 0,
+       "temporaryHitPoints": 0,
+       "techPointsUsed": 0,
+       "forcePointsUsed": 0,
+       "superiorityDiceUsed": 0,
+       "hitDiceUsed": {},
+       "deathSaves": {
+        "successes": 0,
+        "failures": 0
+       },
+       "hasInspiration": false,
+       "featuresTimesUsed": {},
+       "conditions": [],
+       "exhaustion": 0,
+       "highLevelCasting": {
+        "level6": false,
+        "level7": false,
+        "level8": false,
+        "level9": false
+       }
+      },
+      "tweaks": {},
+      "customProficiencies": [],
+      "customLanguages": [],
+      "customFeatures": [],
+      "customFeats": [],
+      "customTechPowers": [],
+      "customForcePowers": [],
+      "customEquipment": [],
+      "settings": {
+       "isEnforcingForcePrerequisites": true,
+       "isFixedHitPoints": false,
+       "abilityScoreMethod": "Manual"
+      },
+      "notes": "Test character for the SW5E Sheet extension. Safe to delete.",
+      "localId": "temp-3ygjdy0ex",
+      "createdAt": 1792178402225,
+      "builderVersion": "0.7.6",
+      "changedAt": 1792178402225,
+      "id": "00000000-0000-4000-8000-000003000001",
+      "userId": "00000000-0000-4000-8000-000003000002"
+     }
+    }
+   ]
+  },
+  "rolls": [],
+  "rollSettings": {
+   "critMode": "max"
+  },
+  "rulesInfo": {
+   "dataVersion": 199,
+   "fetchedAt": 1792273029637
+  },
+  "catalogInfo": {
+   "dataVersion": 199,
+   "fetchedAt": 1792170265673,
+   "count": 2425
+  },
+  "backupInfo": {
+   "count": null,
+   "characters": {}
+  },
+  "lastCharacter": "id:00000000-0000-4000-8000-000003000001"
+ },
+ "from": {
+  "case": "berserker-test-claude",
+  "changes": [
+   "--js",
+   "raw.background={...raw.background, feat:{name:'Force-Sensitive',type:'Feat'}}; addFeat('Formfighting Dabbler'); raw.featureChoices={'Feat: Force-Sensitive (Background (Soldier)) (at-will force power)':[{name:'Affect Mind'},{name:'Burst'}],'Feat: Formfighting Dabbler (Berserker ASI #1)':[{name:'Makashi Form'}]}"
+  ]
+ }
+}

@@ -576,6 +576,11 @@ function choiceSlots(raw, ctx) {
       if (s.kind === 'multiclassImprovements' && !classes.some((k) => k.name === p.name)) s.problems.push(`${p.name}: you have no levels in ${p.name}`);
     });
     if (s.kind === 'lightsaberForms' && s.picks.some((p) => !p.auto) && casting.force < 0 && !lightweapon) s.problems.push('Lightsaber forms need the ability to cast force powers (or Lightweapon Strategist)');
+    // Forms "are restricted to forcecasters": force powers from a feat only (Force-Sensitive) count here, as the sheet's
+    // decision; a GM may require a class or archetype that casts (the GM panel's decision F).
+    else if (s.kind === 'lightsaberForms' && s.picks.some((p) => !p.auto) && baseCasting.force < 0 && casting.force >= 0 && !lightweapon) {
+      s.hint = `${s.hint ? `${s.hint} ` : ''}GM's call: your force casting comes from a feat's powers only; lightsaber forms are "restricted to forcecasters".`;
+    }
     if (s.kind === 'multiclassImprovements' && classes.length < 2) s.problems.push('Multiclass improvements need a second class');
   }
   // Feats: prerequisites at the level the feat was taken, with what you could cast before it; taken twice.
