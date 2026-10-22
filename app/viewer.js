@@ -960,12 +960,19 @@ function featureUses(m) {
   const pb = num(m.c.proficiencyBonus);
   const classOf = (f) => classes.find((k) => k.name === f.sourceName || (k.archetype && k.archetype.name === f.sourceName))
     || (classes.length === 1 ? classes[0] : null);
-  const ctxFor = (k) => ({ level: num(k.levels), pb, mods, row: k.name ? classRow(m.raw, k) : {} });
+  // Multiclass Improvement: "You can add your other chosen class's levels to your engineer levels when determining … the
+  // number of uses of your Potent Aptitude feature" (half of them: Guardian's Channel the Force): that feature's uses
+  // go by the boosted level.
+  const boost = (k, name) => (k.name ? multiclassBoosts(m.raw, k) : []).filter((b) => {
+    const t = String((rulesModule('multiclassImprovements').find((x) => x.name === k.name) || {}).description || '');
+    return new RegExp(`\\buses of (?:your )?${name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'i').test(t);
+  }).reduce((s, b) => s + num(b.add), 0);
+  const ctxFor = (k, name) => ({ level: Math.min(20, num(k.levels) + (name ? boost(k, name) : 0)), pb, mods, row: k.name ? classRow(m.raw, k) : {} });
   const out = [];
   const seen = new Set();
   const add = (name, text, k) => {
     if (!k || seen.has(name)) return;
-    const u = clsUsage(text, ctxFor(k));
+    const u = clsUsage(text, ctxFor(k, name));
     if (!u) return;
     seen.add(name);
     out.push({ name, ...u });
