@@ -707,6 +707,8 @@ function clsFeatureEffects(text, note, ctx) {
     const s = s0
       .replace(/\byour Critical Analysis (?:ability )?(score|modifi?e?r)\b/gi, (all, w) => `your Intelligence ${/score/i.test(w) ? 'score' : 'modifier'}`)
       .replace(/\bmodifer\b/gi, 'modifier')
+      // "…(minimum of +1) if it doesn't already include that modifier": not a condition, the rule against counting it twice.
+      .replace(/,?\s*(?:if|as long as) it doesn(?:'|’)t already include (?:that|this|the) modifier/gi, '')
       .replace(new RegExp(`\\bWhen you make an? (?:${CLS_ABIL_ANY} \\()?(${SKILL_ALT})\\)? check, you (?:gain|have) a bonus to that check\\b`, 'i'), (all, sk) => `You gain a bonus to ${clsSkill(sk)} checks`)
       .replace(/\bWhen you make an ability check with the chosen skill(?: or tool)?, you can add (half )?your\b/i, (all, half) => (picks.skills[0] ? `You gain a bonus to ${picks.skills[0]} checks equal to ${half || ''}your` : all))
       .replace(new RegExp(`\\byou (?:can )?add (half )?your ${CLS_ABIL_RE} modifier to (?:your )?(AC|initiative(?: rolls| checks)?)(?: as long as it doesn(?:'|’)t already include that modifier)?`, 'i'),
@@ -744,7 +746,8 @@ function clsFeatureEffects(text, note, ctx) {
     }
     // "When you make a melee weapon attack using Dexterity, you add your rage damage to the damage roll" (Focused Rage, read
     // in a rage): the class table's Rage Damage on those attacks.
-    if ((m = /\bwhen you make a melee weapon attack using (Strength|Dexterity), you add your rage damage to the damage roll/i.exec(s))) {
+    // Only in the rage: "While raging, when you make…" is read when the rage starts (without its "While raging,").
+    if (!/^While [a-z]+ing\b/i.test(s) && (m = /\bwhen you make a melee weapon attack using (Strength|Dexterity), you add your rage damage to the damage roll/i.exec(s))) {
       const v = parseInt(String((ctx.row || {})['Rage Damage'] || '').replace(/[^\d]/g, ''), 10);
       if (v) out.mods.push({ path: 'weapon.damage', bonus: v, label: `Melee ${m[1].slice(0, 3).toUpperCase()} damage +${v} (rage damage)`, weaponFilter: { melee: true, ability: clsAbility(m[1]) } });
     }
