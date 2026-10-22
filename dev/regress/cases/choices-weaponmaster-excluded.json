@@ -1,0 +1,3717 @@
+{
+ "format": "sw5e-sheet-regress-case",
+ "name": "choices-weaponmaster-excluded",
+ "key": "file:armstech-test-(local)",
+ "recordedAt": 1792289049607,
+ "rules": {
+  "dataVersion": 199,
+  "fetchedAt": 1792273029637
+ },
+ "catalog": {
+  "dataVersion": 199,
+  "fetchedAt": 1792170265673,
+  "count": 2425
+ },
+ "storage": {
+  "snapshots": {
+   "file:armstech-test-(local)": {
+    "format": "sw5e-sheet-snapshot",
+    "version": 1,
+    "key": "file:armstech-test-(local)",
+    "raw": {
+     "name": "Armstech Test (local)",
+     "builderVersion": "0.7.6",
+     "image": "",
+     "experiencePoints": 48000,
+     "species": {
+      "name": "Human",
+      "abilityScoreImprovementSelectedOption": 0,
+      "abilityScoreImprovement": {}
+     },
+     "baseAbilityScores": {
+      "Strength": 10,
+      "Dexterity": 16,
+      "Constitution": 14,
+      "Intelligence": 16,
+      "Wisdom": 12,
+      "Charisma": 8
+     },
+     "background": {
+      "name": "Soldier",
+      "feat": {
+       "name": "Fighting Stylist",
+       "type": "Feat"
+      },
+      "feature": ""
+     },
+     "characteristics": {
+      "alignment": "Balanced Neutral"
+     },
+     "credits": 0,
+     "equipment": [
+      {
+       "name": "Blaster rifle",
+       "quantity": 1,
+       "category": "Equipment",
+       "equipped": true
+      },
+      {
+       "name": "Vibrosword",
+       "quantity": 1,
+       "category": "Equipment",
+       "equipped": true
+      }
+     ],
+     "currentStats": {
+      "hitPointsLost": 0,
+      "temporaryHitPoints": 0,
+      "techPointsUsed": 0,
+      "forcePointsUsed": 0,
+      "superiorityDiceUsed": 0,
+      "hitDiceUsed": {},
+      "deathSaves": {
+       "successes": 0,
+       "failures": 0
+      },
+      "hasInspiration": false,
+      "featuresTimesUsed": {},
+      "conditions": [],
+      "exhaustion": 0
+     },
+     "classes": [
+      {
+       "name": "Operative",
+       "levels": 9,
+       "hitPoints": [
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5,
+        5
+       ],
+       "archetype": {
+        "name": "Gunslinger Practice"
+       },
+       "abilityScoreImprovements": [
+        {
+         "type": "Feat",
+         "name": "Weapon Focused"
+        },
+        {
+         "type": "Feat",
+         "name": "Tech Dabbler"
+        }
+       ],
+       "techPowers": [],
+       "modifiedItems": [
+        "Blaster rifle",
+        "Vibrosword"
+       ],
+       "options": {
+        "Operative Exploits": [
+         {
+          "name": "Weaponmaster's Exploit",
+          "note": "Revolver, Vibrosword, Techblade"
+         }
+        ]
+       }
+      }
+     ],
+     "tweaks": {},
+     "customProficiencies": [],
+     "customLanguages": [],
+     "customFeatures": [],
+     "customFeats": [],
+     "customTechPowers": [],
+     "customForcePowers": [],
+     "customEquipment": [],
+     "settings": {},
+     "notes": ""
+    },
+    "complete": {
+     "name": "Armstech Test (local)",
+     "builderVersion": "0.7.6",
+     "image": "",
+     "characteristics": {
+      "alignment": "Balanced Neutral"
+     },
+     "tweaks": {},
+     "customProficiencies": [],
+     "customLanguages": [],
+     "customFeatures": [],
+     "customTechPowers": [],
+     "customForcePowers": [],
+     "customEquipment": [],
+     "numCustomFeats": 0,
+     "currentLevel": 9,
+     "classText": "Engineer (Armstech Engineering) 9",
+     "alignment": "Balanced Neutral",
+     "species": "Human",
+     "background": "Soldier",
+     "experiencePoints": {
+      "previousLevel": 48000,
+      "current": 48000,
+      "nextLevel": 64000,
+      "isCorrect": true,
+      "errorMessage": ""
+     },
+     "abilityScores": {
+      "Strength": {
+       "value": 10,
+       "modifier": 0,
+       "savingThrow": {
+        "modifier": 0,
+        "proficiency": "none"
+       },
+       "skills": [
+        {
+         "name": "Athletics",
+         "modifier": 0,
+         "proficiency": "none"
+        }
+       ]
+      },
+      "Dexterity": {
+       "value": 16,
+       "modifier": 3,
+       "savingThrow": {
+        "modifier": 3,
+        "proficiency": "none"
+       },
+       "skills": [
+        {
+         "name": "Acrobatics",
+         "modifier": 3,
+         "proficiency": "none"
+        },
+        {
+         "name": "Sleight of Hand",
+         "modifier": 3,
+         "proficiency": "none"
+        },
+        {
+         "name": "Stealth",
+         "modifier": 3,
+         "proficiency": "none"
+        }
+       ]
+      },
+      "Constitution": {
+       "value": 14,
+       "modifier": 2,
+       "savingThrow": {
+        "modifier": 6,
+        "proficiency": "proficient"
+       },
+       "skills": []
+      },
+      "Intelligence": {
+       "value": 16,
+       "modifier": 3,
+       "savingThrow": {
+        "modifier": 7,
+        "proficiency": "proficient"
+       },
+       "skills": [
+        {
+         "name": "Investigation",
+         "modifier": 3,
+         "proficiency": "none"
+        },
+        {
+         "name": "Lore",
+         "modifier": 3,
+         "proficiency": "none"
+        },
+        {
+         "name": "Nature",
+         "modifier": 3,
+         "proficiency": "none"
+        },
+        {
+         "name": "Piloting",
+         "modifier": 3,
+         "proficiency": "none"
+        },
+        {
+         "name": "Technology",
+         "modifier": 3,
+         "proficiency": "none"
+        }
+       ]
+      },
+      "Wisdom": {
+       "value": 12,
+       "modifier": 1,
+       "savingThrow": {
+        "modifier": 1,
+        "proficiency": "none"
+       },
+       "skills": [
+        {
+         "name": "Animal Handling",
+         "modifier": 1,
+         "proficiency": "none"
+        },
+        {
+         "name": "Insight",
+         "modifier": 1,
+         "proficiency": "none"
+        },
+        {
+         "name": "Medicine",
+         "modifier": 1,
+         "proficiency": "none"
+        },
+        {
+         "name": "Perception",
+         "modifier": 1,
+         "proficiency": "none"
+        },
+        {
+         "name": "Survival",
+         "modifier": 1,
+         "proficiency": "none"
+        }
+       ]
+      },
+      "Charisma": {
+       "value": 8,
+       "modifier": -1,
+       "savingThrow": {
+        "modifier": -1,
+        "proficiency": "none"
+       },
+       "skills": [
+        {
+         "name": "Deception",
+         "modifier": -1,
+         "proficiency": "none"
+        },
+        {
+         "name": "Intimidation",
+         "modifier": -1,
+         "proficiency": "none"
+        },
+        {
+         "name": "Performance",
+         "modifier": -1,
+         "proficiency": "none"
+        },
+        {
+         "name": "Persuasion",
+         "modifier": -1,
+         "proficiency": "none"
+        }
+       ]
+      }
+     },
+     "proficiencyBonus": 4,
+     "initiative": 3,
+     "armorClass": 13,
+     "armorList": [],
+     "passivePerception": 11,
+     "inspiration": false,
+     "vision": "normal",
+     "speed": {
+      "base": "30 ft",
+      "hour": "3 miles",
+      "day": "24 miles",
+      "special": ""
+     },
+     "hitPoints": {
+      "current": 66,
+      "temporary": 0,
+      "maximum": 66,
+      "hitDice": [
+       {
+        "size": "d8",
+        "current": 9,
+        "maximum": 9
+       }
+      ],
+      "deathSaves": {
+       "successes": 0,
+       "failures": 0
+      },
+      "resting": {
+       "hitDieBonus": 2,
+       "numHitDiceUsed": 0,
+       "hitDiceRestored": [],
+       "techPointsUsed": 0,
+       "forcePointsUsed": 0,
+       "shortRestFeatures": [],
+       "longRestFeatures": []
+      }
+     },
+     "conditions": [],
+     "exhaustion": 0,
+     "proficiencies": [
+      {
+       "name": "Simple blasters",
+       "type": "weapon"
+      },
+      {
+       "name": "simple vibroweapons",
+       "type": "weapon"
+      },
+      {
+       "name": "Light armor",
+       "type": "armor"
+      },
+      {
+       "name": "One type of gaming set",
+       "type": "tool"
+      }
+     ],
+     "skillAndSaveProficiencies": [
+      "Constitution Saving Throws",
+      "Intelligence Saving Throws"
+     ],
+     "languages": [
+      "Galactic Basic"
+     ],
+     "equipment": [
+      {
+       "name": "Blaster rifle",
+       "description": null,
+       "cost": 525,
+       "weight": "7.5",
+       "equipmentCategoryEnum": 3,
+       "equipmentCategory": "Weapon",
+       "damageNumberOfDice": 1,
+       "damageTypeEnum": 3,
+       "damageType": "Energy",
+       "damageDieModifier": 0,
+       "weaponClassificationEnum": 2,
+       "weaponClassification": "MartialBlaster",
+       "armorClassificationEnum": 0,
+       "armorClassification": "Unknown",
+       "damageDiceDieTypeEnum": 8,
+       "damageDieType": 8,
+       "properties": [
+        "Power cell (range 105/420)",
+        "reload 12",
+        "two-handed"
+       ],
+       "propertiesJson": "[\"Power cell (range 105/420)\",\"reload 12\",\"two-handed\"]",
+       "propertiesMap": {
+        "Power Cell": "Power cell (range 105/420)",
+        "Reload": "reload 12",
+        "Two-Handed": "two-handed"
+       },
+       "propertiesMapJson": "{\"Power Cell\":\"Power cell (range 105/420)\",\"Reload\":\"reload 12\",\"Two-Handed\":\"two-handed\"}",
+       "modes": [],
+       "modesJson": "[]",
+       "ac": null,
+       "strengthRequirement": null,
+       "stealthDisadvantage": false,
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Blaster rifle",
+       "timestamp": "2023-05-30T20:15:38.6812514+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A38.6812514Z'\"",
+       "attackBonus": 3,
+       "damageBonus": 3,
+       "ability": "Dexterity",
+       "isCustom": false,
+       "equipped": true,
+       "quantity": 1,
+       "index": 0,
+       "tweaks": {},
+       "isFound": true
+      },
+      {
+       "name": "Vibrosword",
+       "description": null,
+       "cost": 1150,
+       "weight": "9.25",
+       "equipmentCategoryEnum": 3,
+       "equipmentCategory": "Weapon",
+       "damageNumberOfDice": 2,
+       "damageTypeEnum": 7,
+       "damageType": "Kinetic",
+       "damageDieModifier": 0,
+       "weaponClassificationEnum": 4,
+       "weaponClassification": "MartialVibroweapon",
+       "armorClassificationEnum": 0,
+       "armorClassification": "Unknown",
+       "damageDiceDieTypeEnum": 6,
+       "damageDieType": 6,
+       "properties": [
+        "Dexterity 11",
+        "two-handed"
+       ],
+       "propertiesJson": "[\"Dexterity 11\",\"two-handed\"]",
+       "propertiesMap": {
+        "Dexterity": "Dexterity 11",
+        "Two-Handed": "two-handed"
+       },
+       "propertiesMapJson": "{\"Dexterity\":\"Dexterity 11\",\"Two-Handed\":\"two-handed\"}",
+       "modes": [],
+       "modesJson": "[]",
+       "ac": null,
+       "strengthRequirement": null,
+       "stealthDisadvantage": false,
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Vibrosword",
+       "timestamp": "2023-05-30T20:15:38.6862491+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A38.6862491Z'\"",
+       "attackBonus": 0,
+       "damageBonus": 0,
+       "ability": "Strength",
+       "isCustom": false,
+       "equipped": true,
+       "quantity": 1,
+       "index": 1,
+       "tweaks": {},
+       "isFound": true
+      }
+     ],
+     "attunement": {
+      "current": 0,
+      "maximum": 4,
+      "hasAttunable": false
+     },
+     "weapons": [
+      {
+       "name": "Blaster rifle",
+       "description": null,
+       "cost": 525,
+       "weight": "7.5",
+       "equipmentCategoryEnum": 3,
+       "equipmentCategory": "Weapon",
+       "damageNumberOfDice": 1,
+       "damageTypeEnum": 3,
+       "damageType": "Energy",
+       "damageDieModifier": 0,
+       "weaponClassificationEnum": 2,
+       "weaponClassification": "MartialBlaster",
+       "armorClassificationEnum": 0,
+       "armorClassification": "Unknown",
+       "damageDiceDieTypeEnum": 8,
+       "damageDieType": 8,
+       "properties": [
+        "Power cell (range 105/420)",
+        "reload 12",
+        "two-handed"
+       ],
+       "propertiesJson": "[\"Power cell (range 105/420)\",\"reload 12\",\"two-handed\"]",
+       "propertiesMap": {
+        "Power Cell": "Power cell (range 105/420)",
+        "Reload": "reload 12",
+        "Two-Handed": "two-handed"
+       },
+       "propertiesMapJson": "{\"Power Cell\":\"Power cell (range 105/420)\",\"Reload\":\"reload 12\",\"Two-Handed\":\"two-handed\"}",
+       "modes": [],
+       "modesJson": "[]",
+       "ac": null,
+       "strengthRequirement": null,
+       "stealthDisadvantage": false,
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Blaster rifle",
+       "timestamp": "2023-05-30T20:15:38.6812514+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A38.6812514Z'\"",
+       "attackBonus": 3,
+       "damageBonus": 3,
+       "ability": "Dexterity",
+       "isCustom": false,
+       "equipped": true,
+       "quantity": 1,
+       "index": 0,
+       "tweaks": {},
+       "isFound": true
+      },
+      {
+       "name": "Vibrosword",
+       "description": null,
+       "cost": 1150,
+       "weight": "9.25",
+       "equipmentCategoryEnum": 3,
+       "equipmentCategory": "Weapon",
+       "damageNumberOfDice": 2,
+       "damageTypeEnum": 7,
+       "damageType": "Kinetic",
+       "damageDieModifier": 0,
+       "weaponClassificationEnum": 4,
+       "weaponClassification": "MartialVibroweapon",
+       "armorClassificationEnum": 0,
+       "armorClassification": "Unknown",
+       "damageDiceDieTypeEnum": 6,
+       "damageDieType": 6,
+       "properties": [
+        "Dexterity 11",
+        "two-handed"
+       ],
+       "propertiesJson": "[\"Dexterity 11\",\"two-handed\"]",
+       "propertiesMap": {
+        "Dexterity": "Dexterity 11",
+        "Two-Handed": "two-handed"
+       },
+       "propertiesMapJson": "{\"Dexterity\":\"Dexterity 11\",\"Two-Handed\":\"two-handed\"}",
+       "modes": [],
+       "modesJson": "[]",
+       "ac": null,
+       "strengthRequirement": null,
+       "stealthDisadvantage": false,
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Vibrosword",
+       "timestamp": "2023-05-30T20:15:38.6862491+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A38.6862491Z'\"",
+       "attackBonus": 0,
+       "damageBonus": 0,
+       "ability": "Strength",
+       "isCustom": false,
+       "equipped": true,
+       "quantity": 1,
+       "index": 1,
+       "tweaks": {},
+       "isFound": true
+      },
+      {
+       "name": "Unarmed Strike",
+       "description": null,
+       "cost": 0,
+       "weight": "0",
+       "equipmentCategory": "Weapon",
+       "contentType": "Core",
+       "contentSource": "PHB",
+       "damageNumberOfDice": 1,
+       "damageType": "Kinetic",
+       "weaponClassification": "Unarmed",
+       "damageDieType": 0,
+       "properties": [],
+       "propertiesMap": {},
+       "modes": [],
+       "quantity": 0,
+       "index": -1,
+       "isFound": true,
+       "equipped": true,
+       "attackBonus": 4,
+       "damageBonus": 1,
+       "ability": "Strength",
+       "isCustom": false,
+       "tweaks": {}
+      }
+     ],
+     "credits": 0,
+     "carryingCapacity": {
+      "encumbered": 50,
+      "heavilyEncumbered": 100,
+      "maxCapacity": 150,
+      "pushDragLift": 300
+     },
+     "superiority": false,
+     "techCasting": {
+      "pointsUsed": 0,
+      "maxPoints": 21,
+      "attackModifier": 7,
+      "saveDC": 15,
+      "maxPowerLevel": 5,
+      "powersKnown": []
+     },
+     "forceCasting": false,
+     "allForcePowers": [],
+     "combatFeatures": [
+      {
+       "name": "Potent Aptitude",
+       "text": "_**Engineer:** 1st level_\r\nYour technological experience lends you an uncommon insight that you can use to bolster your allies. To do so, you use a bonus action on your turn to choose one creature other than yourself within 60 feet of you who can hear you. That creature gains one Potent Aptitude die, a d4. This die changes as you gain engineer levels, as shown in the Potent Aptitude column of the engineer table.\r\nOnce within the next 10 minutes, the creature can roll the die and add the number rolled to one ability check, attack roll, or saving throw it makes. Once the Potent Aptitude die is rolled, it is lost.\r\nA creature can have only one Potent Aptitude die at a time.\r\nYou can use this feature twice. You gain an additional use at 5th, 9th, 13th, and 17th level. You regain any expended uses when you finish a short or long rest.",
+       "level": 1,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Engineer",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Engineer-Potent Aptitude-1",
+       "timestamp": "2023-05-30T20:15:43.3935639+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.3935639Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Techcasting",
+       "text": "_**Engineer:** 1st level_\r\nDuring your training you have derived powers from schematics with the aid of your wristpad. See chapter 10 for the general rules of techcasting and chapter 12 for the tech powers list.\r\n#### Tech Powers Known\r\nYou learn 6 tech powers of your choice, and you learn more at higher levels, as shown in the Tech Powers Known column of the engineer table. You may not learn a tech power of a level higher than your Max Power Level.\r\n#### Tech Points\r\nYou have a number of tech points equal to your engineer level x 2, as shown in the Tech Points column of the engineer table, + your Intelligence modifier. You use these tech points to cast tech powers. You regain all expended tech points when you finish a short or long rest.\r\n#### Max Power Level\r\nMany tech powers can be overcharged, consuming more tech points to create a greater effect. You can overcharge these powers to a maximum level, which increases at higher levels, as shown in the Max Power Level column of the engineer table.\r\nYou may only cast tech powers at 6th, 7th, 8th, and 9th-level once. You regain the ability to do so after a long rest.\r\n#### Techcasting Ability\r\nIntelligence is your techcasting ability for your tech powers. You use your Intelligence whenever a power refers to your techcasting ability. Additionally, you use your Intelligence modifier when setting the saving throw DC for a tech power you cast and when making an attack roll with one.\r\n___\r\n**Tech save DC** = 8 + your proficiency bonus + your Intelligence modifier\r\n___\r\n**Tech attack modifier** = your proficiency bonus + your Intelligence modifier\r\n___\r\n#### Techcasting Focus\r\nYou use a wristpad (found in chapter 5) or the tools in which you are granted proficiency by this class as a tech focus for your tech powers.",
+       "level": 1,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Engineer",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Engineer-Techcasting-1",
+       "timestamp": "2023-05-30T20:15:43.3935639+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.3935639Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Infuse Item",
+       "text": "_**Engineer:** 2nd level_\r\nYou gain the ability to temporarily enhance a weapon or armor. At the end of a long rest, you can touch one unenhanced object that is a suit of armor, a shield, or a simple or martial weapon. Until the end of your next long rest or until you die, the object becomes an enhanced item, granting a +1 bonus to AC if it's armor or a shield or a +1 bonus to attack and damage rolls if it's a weapon. \r\nOnce you've used this feature, you can't use it again until you finish a long rest.\r\nThis bonus increases to +2 at 10th level and +3 at 15th level.",
+       "level": 2,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Engineer",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Engineer-Infuse Item-2",
+       "timestamp": "2023-05-30T20:15:43.3935639+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.3935639Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Tool Expertise",
+       "text": "_**Engineer:** 2nd level_\r\nYou gain expertise in any tool proficiencies you gain from this class.",
+       "level": 2,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Engineer",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Engineer-Tool Expertise-2",
+       "timestamp": "2023-05-30T20:15:43.3935639+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.3935639Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Bonus Proficiencies",
+       "text": "_**Armstech Engineering:** 3rd level_\r\nYou gain proficiency in armstech's implements, medium armor, martial blasters, and martial vibroweapons. Additionally, when you engage in crafting with armstech's implements, the rate at which you craft doubles.",
+       "level": 3,
+       "sourceEnum": 1,
+       "source": "Archetype",
+       "sourceName": "Armstech Engineering",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Archetype-Armstech Engineering-Bonus Proficiencies-3",
+       "timestamp": "2023-05-30T20:15:42.71995+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A42.71995Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Close Call",
+       "text": "_**Armstech Engineering:** 3rd level_\r\nWhen you make an attack roll with your modified weapon and miss, you can expend one use of your Potent Aptitude to attempt to turn that miss into a hit. Roll the die and add it to the attack roll. ",
+       "level": 3,
+       "sourceEnum": 1,
+       "source": "Archetype",
+       "sourceName": "Armstech Engineering",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Archetype-Armstech Engineering-Close Call-3",
+       "timestamp": "2023-05-30T20:15:42.71995+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A42.71995Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Modified Weaponry",
+       "text": "_**Armstech Engineering:** 3rd level_\r\nYou learn to modify one unenhanced weapon with which you are proficient utilizing your armstech experience. Over the course of a long rest, you can modify the weapon. You must have the weapon and armstech's implements in order to perform this modification.\r\nYour modified weapon is enhanced, requires attunement, can only be used by you, and counts as a tech focus for your tech powers while you are attuned to it. Your modified weapon has 4 modification slots, and it gains more at higher levels, as shown in the Modification Slots column of the engineer table. For each modification installed in excess of your proficiency bonus, your tech point maximum is reduced by 1. Over the course of a long rest, you can install, replace, or remove a number of modifications up to your Intelligence modifier (minimum of one).\r\nSome modification effects require saving throws. When you use such an effect from this class, the DC equals your tech save DC.\r\nAt 9th level, you can maintain two modified weapons. Each modified weapon has modification slots as shown in the Modification Slots column of the engineer table.",
+       "level": 3,
+       "sourceEnum": 1,
+       "source": "Archetype",
+       "sourceName": "Armstech Engineering",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Archetype-Armstech Engineering-Modified Weaponry-3",
+       "timestamp": "2023-05-30T20:15:42.71995+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A42.71995Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Armstech's Strike",
+       "text": "_**Armstech Engineering:** 6th level_\r\nOnce per round, when you deal damage to a creature with your modified weapon, you can increase the damage by 1d6. The damage is of the same type as the weapon's damage.\r\nThe damage increases to 2d6 at 11th level and 3d6 at 17th level.",
+       "level": 6,
+       "sourceEnum": 1,
+       "source": "Archetype",
+       "sourceName": "Armstech Engineering",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Archetype-Armstech Engineering-Armstech's Strike-6",
+       "timestamp": "2023-05-30T20:15:42.71995+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A42.71995Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Engineering Discipline",
+       "text": "_**Engineer:** 3rd, 6th, 14th, and 18th level_\r\nYou begin to focus on a specific engineering discipline, which is detailed at the end of the class description. ",
+       "level": 6,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Engineer",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Engineer-Engineering Discipline-6",
+       "timestamp": "2023-05-30T20:15:43.3935639+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.3935639Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Ability Score Improvement",
+       "text": "_**Engineer:** 4th, 8th, 12th, 16th, and 19th level_\r\nYou can increase one ability score by 2, or you can increase two ability scores by 1. You can't increase an ability score above 20 using this feature.",
+       "level": 8,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Engineer",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Engineer-Ability Score Improvement-8",
+       "timestamp": "2023-05-30T20:15:43.3945638+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.3945638Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Ability Score Increase",
+       "text": "One ability score of your choice increases by 2, and two other ability scores of your choice increase by 1. Alternatively, four ability scores of your choice each increase by 1.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Ability Score Increase",
+       "timestamp": "2023-05-30T20:15:40.8130359+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.8130359Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Age",
+       "text": "Humans reach adulthood in their late teens and live less than a century.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Age",
+       "timestamp": "2023-05-30T20:15:40.814035+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.814035Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Alignment",
+       "text": "Humans tend toward no particular alignment. The best and worst are found among them.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Alignment",
+       "timestamp": "2023-05-30T20:15:40.814035+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.814035Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Defiant",
+       "text": "Humans are known to be stubborn and often refuse to give up, even against the worst odds. When you or a creature you can see that can see and understand you makes an ability check, attack roll, or saving throw, you can roll a d4 and add it to their roll (no action required). Once you've used this feature, you must complete a short or long rest before you can use it again.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Defiant",
+       "timestamp": "2023-05-30T20:15:40.814035+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.814035Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Human Versatility",
+       "text": "You gain proficiency in one skill, one tool, and one weapon of your choice.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Human Versatility",
+       "timestamp": "2023-05-30T20:15:40.814035+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.814035Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Languages",
+       "text": "You can speak, read, and write Galactic Basic and one extra language of your choice. Humans typically learn the languages of other peoples they deal with, including obscure dialects. They are fond of sprinkling their speech with words borrowed from other tongues: trandoshan curses, twi'lek musical expressions, chiss military phrases, and so on.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Languages",
+       "timestamp": "2023-05-30T20:15:40.814035+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.814035Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Proficiency",
+       "text": "You gain proficiency in one skill, one tool, and one weapon of your choice.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Proficiency",
+       "timestamp": "2022-05-29T01:36:26.4474283+00:00",
+       "eTag": "W/\"datetime'2022-05-29T01%3A36%3A26.4474283Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Size",
+       "text": "Humans vary widely in height and build, from barely 5 feet to well over 6 feet tall. Regardless of your position in that range, your size is Medium.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Size",
+       "timestamp": "2023-05-30T20:15:40.814035+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.814035Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Speed",
+       "text": "Your base walking speed is 30 feet.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Speed",
+       "timestamp": "2023-05-30T20:15:40.814035+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.814035Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Weapon Focused",
+       "prerequisite": "4th level",
+       "text": "You adopt a particular type of weapon as your focus. Choose one of the weapon focus options, detailed later in this chapter. You can take this feat multiple times. \r\n",
+       "attributesIncreased": null,
+       "attributesIncreasedJson": "",
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 2,
+       "contentSource": "WH",
+       "partitionKey": "Core",
+       "rowKey": "Weapon Focused",
+       "timestamp": "2023-05-30T20:15:17.9500743+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A17.9500743Z'\"",
+       "customIndex": -1,
+       "combat": true
+      },
+      {
+       "name": "Tech Dabbler",
+       "prerequisite": null,
+       "text": "You know two at-will tech powers. When you reach 3rd level, you learn and can cast one 1st-level tech power once per long rest. When you reach 5th level, you learn and can cast one 2nd-level tech power once per long rest. Your techcasting ability is Intelligence. You require use of a wristpad for these powers. Additionally, you lose the Tech-Impaired special trait if you have it.\r\n",
+       "attributesIncreased": null,
+       "attributesIncreasedJson": "",
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Tech Dabbler",
+       "timestamp": "2023-05-30T20:15:09.5568611+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A09.5568611Z'\"",
+       "customIndex": -1,
+       "combat": true
+      },
+      {
+       "name": "Fighting Stylist",
+       "prerequisite": "4th level",
+       "text": "You adopt a particular style of fighting as your specialty, gaining the following benefits:\r\n- Increase your Strength, Dexterity, or Constitution score by 1, to a maximum of 20.\r\n- Choose one of the fighting style options, detailed later in this chapter. \r\n\r\nYou can take this feat multiple times. \r\n",
+       "attributesIncreased": [
+        "Strength",
+        "Dexterity",
+        "Constitution"
+       ],
+       "attributesIncreasedJson": "[\"Strength\",\"Dexterity\",\"Constitution\"]",
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Fighting Stylist",
+       "timestamp": "2023-05-30T20:15:09.5528641+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A09.5528641Z'\"",
+       "customIndex": -1,
+       "combat": true
+      }
+     ],
+     "nonCombatFeatures": [],
+     "backgroundFeature": {
+      "name": "Military Rank",
+      "combat": false,
+      "text": "You have a military rank from your career as a soldier. Soldiers loyal to your former military organization still recognize your authority and influence, and they defer to you if they are of a lower rank. You can invoke your rank to exert influence over other soldiers and requisition simple equipment for temporary use. You can also usually gain access to friendly military encampments where your rank is recognized.\r\n"
+     },
+     "settings": {},
+     "notes": ""
+    },
+    "refs": {
+     "classes": {
+      "Engineer": {
+       "name": "Engineer",
+       "summary": "Tech caster who enhances items to benefit allies",
+       "primaryAbility": "Intelligence",
+       "hitDiceDieType": 8,
+       "hitPointsAtFirstLevel": "8 + your Constitution modifier",
+       "hitPointsAtHigherLevels": "1d8 (or 5) + your Constitution modifier per engineer level after 1st",
+       "armorProficiencies": [
+        "Light armor"
+       ],
+       "weaponProficiencies": [
+        "Simple blasters",
+        "simple vibroweapons"
+       ],
+       "toolProficiencies": [
+        "Tinker's implements",
+        "one of your choice"
+       ],
+       "savingThrows": [
+        "Constitution",
+        "Intelligence"
+       ],
+       "skillChoices": "Choose three from Investigation, Lore, Medicine, Nature, Piloting, and Technology",
+       "levelChanges": {
+        "1": {
+         "Level": "1",
+         "Proficiency Bonus": "+2",
+         "Features": "Techcasting, Potent Aptitude",
+         "Tech Powers Known": "6",
+         "Tech Points": "2",
+         "Max Power Level": "1st",
+         "Potent Aptitude": "d4",
+         "Modification Slots": "�"
+        },
+        "2": {
+         "Level": "2",
+         "Proficiency Bonus": "+2",
+         "Features": "Infuse Item (+1), Tool Expertise",
+         "Tech Powers Known": "7",
+         "Tech Points": "4",
+         "Max Power Level": "1st",
+         "Potent Aptitude": "d4",
+         "Modification Slots": "�"
+        },
+        "3": {
+         "Level": "3",
+         "Proficiency Bonus": "+2",
+         "Features": "Engineering Discipline",
+         "Tech Powers Known": "9",
+         "Tech Points": "6",
+         "Max Power Level": "2nd",
+         "Potent Aptitude": "d4",
+         "Modification Slots": "4"
+        },
+        "4": {
+         "Level": "4",
+         "Proficiency Bonus": "+2",
+         "Features": "Ability Score Improvement",
+         "Tech Powers Known": "10",
+         "Tech Points": "8",
+         "Max Power Level": "2nd",
+         "Potent Aptitude": "d4",
+         "Modification Slots": "4"
+        },
+        "5": {
+         "Level": "5",
+         "Proficiency Bonus": "+3",
+         "Features": "�",
+         "Tech Powers Known": "12",
+         "Tech Points": "10",
+         "Max Power Level": "3rd",
+         "Potent Aptitude": "d6",
+         "Modification Slots": "5"
+        },
+        "6": {
+         "Level": "6",
+         "Proficiency Bonus": "+3",
+         "Features": "Discipline feature",
+         "Tech Powers Known": "13",
+         "Tech Points": "12",
+         "Max Power Level": "3rd",
+         "Potent Aptitude": "d6",
+         "Modification Slots": "5"
+        },
+        "7": {
+         "Level": "7",
+         "Proficiency Bonus": "+3",
+         "Features": "�",
+         "Tech Powers Known": "15",
+         "Tech Points": "14",
+         "Max Power Level": "4th",
+         "Potent Aptitude": "d6",
+         "Modification Slots": "5"
+        },
+        "8": {
+         "Level": "8",
+         "Proficiency Bonus": "+3",
+         "Features": "Ability Score Improvement",
+         "Tech Powers Known": "16",
+         "Tech Points": "16",
+         "Max Power Level": "4th",
+         "Potent Aptitude": "d6",
+         "Modification Slots": "5"
+        },
+        "9": {
+         "Level": "9",
+         "Proficiency Bonus": "+4",
+         "Features": "�",
+         "Tech Powers Known": "18",
+         "Tech Points": "18",
+         "Max Power Level": "5th",
+         "Potent Aptitude": "d8",
+         "Modification Slots": "6"
+        },
+        "10": {
+         "Level": "10",
+         "Proficiency Bonus": "+4",
+         "Features": "Infuse Item (+2)",
+         "Tech Powers Known": "19",
+         "Tech Points": "20",
+         "Max Power Level": "5th",
+         "Potent Aptitude": "d8",
+         "Modification Slots": "6"
+        },
+        "11": {
+         "Level": "11",
+         "Proficiency Bonus": "+4",
+         "Features": "�",
+         "Tech Powers Known": "21",
+         "Tech Points": "22",
+         "Max Power Level": "6th",
+         "Potent Aptitude": "d8",
+         "Modification Slots": "7"
+        },
+        "12": {
+         "Level": "12",
+         "Proficiency Bonus": "+4",
+         "Features": "Ability Score Improvement",
+         "Tech Powers Known": "22",
+         "Tech Points": "24",
+         "Max Power Level": "6th",
+         "Potent Aptitude": "d8",
+         "Modification Slots": "7"
+        },
+        "13": {
+         "Level": "13",
+         "Proficiency Bonus": "+5",
+         "Features": "�",
+         "Tech Powers Known": "23",
+         "Tech Points": "26",
+         "Max Power Level": "7th",
+         "Potent Aptitude": "d10",
+         "Modification Slots": "8"
+        },
+        "14": {
+         "Level": "14",
+         "Proficiency Bonus": "+5",
+         "Features": "Discipline feature",
+         "Tech Powers Known": "24",
+         "Tech Points": "28",
+         "Max Power Level": "7th",
+         "Potent Aptitude": "d10",
+         "Modification Slots": "8"
+        },
+        "15": {
+         "Level": "15",
+         "Proficiency Bonus": "+5",
+         "Features": "Infuse Item (+3)",
+         "Tech Powers Known": "25",
+         "Tech Points": "30",
+         "Max Power Level": "8th",
+         "Potent Aptitude": "d10",
+         "Modification Slots": "8"
+        },
+        "16": {
+         "Level": "16",
+         "Proficiency Bonus": "+5",
+         "Features": "Ability Score Improvement",
+         "Tech Powers Known": "26",
+         "Tech Points": "32",
+         "Max Power Level": "8th",
+         "Potent Aptitude": "d10",
+         "Modification Slots": "8"
+        },
+        "17": {
+         "Level": "17",
+         "Proficiency Bonus": "+6",
+         "Features": "�",
+         "Tech Powers Known": "27",
+         "Tech Points": "34",
+         "Max Power Level": "9th",
+         "Potent Aptitude": "d12",
+         "Modification Slots": "9"
+        },
+        "18": {
+         "Level": "18",
+         "Proficiency Bonus": "+6",
+         "Features": "Discipline feature",
+         "Tech Powers Known": "28",
+         "Tech Points": "36",
+         "Max Power Level": "9th",
+         "Potent Aptitude": "d12",
+         "Modification Slots": "9"
+        },
+        "19": {
+         "Level": "19",
+         "Proficiency Bonus": "+6",
+         "Features": "Ability Score Improvement",
+         "Tech Powers Known": "29",
+         "Tech Points": "38",
+         "Max Power Level": "9th",
+         "Potent Aptitude": "d12",
+         "Modification Slots": "9"
+        },
+        "20": {
+         "Level": "20",
+         "Proficiency Bonus": "+6",
+         "Features": "Tech Mastery",
+         "Tech Powers Known": "30",
+         "Tech Points": "40",
+         "Max Power Level": "9th",
+         "Potent Aptitude": "d12",
+         "Modification Slots": "9"
+        }
+       },
+       "casterType": "Tech",
+       "casterRatio": 1,
+       "multiClassProficiencies": [
+        "Light armor"
+       ],
+       "archetypeFlavorName": "Engineering Disciplines"
+      }
+     },
+     "archetypes": {
+      "Armstech Engineering": {
+       "name": "Armstech Engineering",
+       "className": "Engineer",
+       "casterType": "None",
+       "casterRatio": 0,
+       "leveledTable": null
+      }
+     },
+     "species": {
+      "Human": {
+       "name": "Human",
+       "size": "Medium",
+       "homeworld": "Coruscant",
+       "language": "Galactic Basic",
+       "distinctions": "Biped with bilateral symmetry, opposable thumbs",
+       "skinColorOptions": "Light to dark tones",
+       "hairColorOptions": "Black, blond, orange, brown, gray to white (usually with age)",
+       "eyeColorOptions": "Amber, blue, brown, gray, green, hazel, purple, or red",
+       "heightAverage": "4'8\"",
+       "heightRollMod": "+2d10\"",
+       "weightAverage": "110 lb.",
+       "weightRollMod": "x(2d4) lb.",
+       "traits": [
+        {
+         "name": "Ability Score Increase",
+         "description": "One ability score of your choice increases by 2, and two other ability scores of your choice increase by 1. Alternatively, four ability scores of your choice each increase by 1."
+        },
+        {
+         "name": "Age",
+         "description": "Humans reach adulthood in their late teens and live less than a century."
+        },
+        {
+         "name": "Alignment",
+         "description": "Humans tend toward no particular alignment. The best and worst are found among them."
+        },
+        {
+         "name": "Size",
+         "description": "Humans vary widely in height and build, from barely 5 feet to well over 6 feet tall. Regardless of your position in that range, your size is Medium."
+        },
+        {
+         "name": "Speed",
+         "description": "Your base walking speed is 30 feet."
+        },
+        {
+         "name": "Defiant",
+         "description": "Humans are known to be stubborn and often refuse to give up, even against the worst odds. When you or a creature you can see that can see and understand you makes an ability check, attack roll, or saving throw, you can roll a d4 and add it to their roll (no action required). Once you've used this feature, you must complete a short or long rest before you can use it again."
+        },
+        {
+         "name": "Human Versatility",
+         "description": "You gain proficiency in one skill, one tool, and one weapon of your choice."
+        },
+        {
+         "name": "Languages",
+         "description": "You can speak, read, and write Galactic Basic and one extra language of your choice. Humans typically learn the languages of other peoples they deal with, including obscure dialects. They are fond of sprinkling their speech with words borrowed from other tongues: trandoshan curses, twi'lek musical expressions, chiss military phrases, and so on."
+        }
+       ],
+       "imageUrls": [
+        "https://starwars5ecentral.blob.core.windows.net/site-images/species/species_human.png"
+       ]
+      }
+     },
+     "backgrounds": {
+      "Soldier": {
+       "name": "Soldier",
+       "flavorText": "War has been your life for as long as you care to remember. You trained as a youth, studied the use of weapons and armor, learned basic survival techniques, including how to stay alive on the battlefield. You might have been part of a standing national army, a mercenary company, or perhaps a member of a local militia who rose to prominence during a recent war.\r\n\r\nWhen you choose this background, work with your GM to determine which military organization you were a part of, how far through its ranks you progressed, and what kind of experiences you had during your military career. Was it a standing army, a town guard, a village militia, or perhaps a private company.\r\n",
+       "skillProficiencies": "Choose two from Athletics, Intimidation, Persuasion, and Piloting",
+       "toolProficiencies": "One type of gaming set",
+       "languages": "One of your choice",
+       "equipment": "An insignia of rank, a trophy taken from a fallen enemy, a gaming set (one of your choice), a set of common clothes, and a belt pouch containing 100 cr",
+       "featureName": "Military Rank",
+       "featureText": "You have a military rank from your career as a soldier. Soldiers loyal to your former military organization still recognize your authority and influence, and they defer to you if they are of a lower rank. You can invoke your rank to exert influence over other soldiers and requisition simple equipment for temporary use. You can also usually gain access to friendly military encampments where your rank is recognized.\r\n",
+       "flavorName": "Specialty",
+       "flavorDescription": "During your time as a soldier, you had a specific role to play in your unit or army. Roll a d8 or choose from the options in the table below to determine your role:\r\n\r\n|d8|Specialty|\r\n|:---:|:----------:|\r\n|1|Officer|\r\n|2|Scout|\r\n|3|Infantry|\r\n|4|Medic|\r\n\r\n|d8|Specialty|\r\n|:---:|:----------:|\r\n|5|Quartermaster|\r\n|6|Pilot|\r\n|7|Artisan|\r\n|8|Support Staff|\r\n"
+      }
+     },
+     "feats": {
+      "Fighting Stylist": {
+       "name": "Fighting Stylist",
+       "prerequisite": "4th level",
+       "text": "You adopt a particular style of fighting as your specialty, gaining the following benefits:\r\n- Increase your Strength, Dexterity, or Constitution score by 1, to a maximum of 20.\r\n- Choose one of the fighting style options, detailed later in this chapter. \r\n\r\nYou can take this feat multiple times. \r\n",
+       "attributesIncreased": [
+        "Strength",
+        "Dexterity",
+        "Constitution"
+       ],
+       "contentType": "Core",
+       "contentSource": "PHB"
+      },
+      "Weapon Focused": {
+       "name": "Weapon Focused",
+       "prerequisite": "4th level",
+       "text": "You adopt a particular type of weapon as your focus. Choose one of the weapon focus options, detailed later in this chapter. You can take this feat multiple times. \r\n",
+       "attributesIncreased": null,
+       "contentType": "Core",
+       "contentSource": "WH"
+      },
+      "Tech Dabbler": {
+       "name": "Tech Dabbler",
+       "prerequisite": null,
+       "text": "You know two at-will tech powers. When you reach 3rd level, you learn and can cast one 1st-level tech power once per long rest. When you reach 5th level, you learn and can cast one 2nd-level tech power once per long rest. Your techcasting ability is Intelligence. You require use of a wristpad for these powers. Additionally, you lose the Tech-Impaired special trait if you have it.\r\n",
+       "attributesIncreased": null,
+       "contentType": "Core",
+       "contentSource": "PHB"
+      }
+     },
+     "maneuvers": {},
+     "choices": {},
+     "conditions": [
+      {
+       "name": "Blinded",
+       "description": "A blinded creature can't see and automatically fails any ability check that requires sight.\\r\\n- Attack rolls against the creature have advantage, and the creature's attack rolls have disadvantage."
+      },
+      {
+       "name": "Charmed",
+       "description": "A charmed creature can't attack the charmer or target the charmer with harmful abilities or enhanced effects.\\r\\n- The charmer has advantage on any ability check to interact socially with the creature."
+      },
+      {
+       "name": "Deafened",
+       "description": "A deafened creature can't hear and automatically fails any ability check that requires hearing."
+      },
+      {
+       "name": "Exhaustion",
+       "description": "Some special abilities and environmental hazards, such as and the long-term effects of freezing or scorching temperatures, can lead to a special condition called exhaustion. Exhaustion is measured in six levels. An effect can give a creature one or more levels of exhaustion, as specified in the effect's description. Exhaustion Level\\r\\n\\r\\n|Level|Effect|\\r\\n|:--:|:--|\\r\\n|1|Disadvantage on ability checks|\\r\\n|2|Speed halved|\\r\\n|3|Disadvantage on attack rolls and saving throws|\\r\\n|4|Hit point maximum halved|\\r\\n|5|Speed reduced to 0|\\r\\n|6|Death|\\r\\n\\r\\nIf an already exhausted creature suffers another effect that causes exhaustion, its current level of exhaustion increases by the amount specified in the effect's description.\\r\\n\\r\\nA creature suffers the effect of its current level of exhaustion as well as all lower levels. For example, a creature suffering level 2 exhaustion has its speed halved and has disadvantage on ability checks.\\r\\n\\r\\nAn effect that removes exhaustion reduces its level as specified in the effect's description, with all exhaustion effects ending if a creature's exhaustion level is reduced below 1.\\r\\n\\r\\nFinishing a long rest reduces a creature's exhaustion level by 1, provided that the creature has also ingested some food and drink."
+      },
+      {
+       "name": "Frightened",
+       "description": "A frightened creature has disadvantage on ability checks and attack rolls while the source of its fear is within line of sight.\\r\\n- The creature can't willingly move closer to the source of its fear."
+      },
+      {
+       "name": "Grappled",
+       "description": "A grappled creature's speed becomes 0, and it can't benefit from any bonus to its speed.\\r\\n- The condition ends if the grappler is incapacitated (see the condition).\\r\\n- The condition also ends if an effect removes the grappled creature from the reach of the grappler or grappling effect."
+      },
+      {
+       "name": "Incapacitated",
+       "description": "An incapacitated creature can't take actions or reactions."
+      },
+      {
+       "name": "Invisible",
+       "description": "An invisible creature is impossible to see without the aid of powers or a special sense. For the purpose of hiding, the creature is heavily obscured. The creature's location can be detected by any noise it makes or any tracks it leaves.\\r\\n- Attack rolls against the creature have disadvantage, and the creature's attack rolls have advantage."
+      },
+      {
+       "name": "Paralyzed",
+       "description": "A paralyzed creature is incapacitated (see the condition) and can't move or speak.\\r\\n- The creature automatically fails Strength and Dexterity saving throws. Attack rolls against the creature have advantage.\\r\\n- Any attack that hits the creature is a critical hit if the attacker is within 5 feet of the creature."
+      },
+      {
+       "name": "Petrified",
+       "description": "A petrified creature is transformed, along with any object it is wearing or carrying, into a solid inanimate substance (usually stone). Its weight increases by a factor of ten, and it ceases aging.\\r\\n- The creature is incapacitated (see the condition), can't move or speak, and is unaware of its surroundings.\\r\\n- Attack rolls against the creature have advantage. \\r\\n- The creature automatically fails Strength and Dexterity saving throws.\\r\\n- The creature has resistance to all damage.\\r\\n- The creature is immune to poison and disease, although a poison or disease already in its system is suspended, not neutralized."
+      },
+      {
+       "name": "Poisoned",
+       "description": "A poisoned creature has disadvantage on attack rolls and ability checks."
+      },
+      {
+       "name": "Prone",
+       "description": "A prone creature's only movement option is to crawl, unless it stands up and thereby ends the condition. \\r\\n- The creature has disadvantage on melee attack rolls.\\r\\n- The creature has disadvantage on ranged attack rolls against targets within 30 feet.\\r\\n- An attack roll against the creature has advantage if the attacker is within 5 feet of the creature. Otherwise, the attack roll has disadvantage."
+      },
+      {
+       "name": "Restrained",
+       "description": "A restrained creature's speed becomes 0, and it can't benefit from any bonus to its speed.\\r\\n- Attack rolls against the creature have advantage, and the creature's attack rolls have disadvantage.\\r\\n- The creature has disadvantage on Dexterity saving throws."
+      },
+      {
+       "name": "Shocked",
+       "description": "A shocked creature's speed is reduced by half.\\r\\n- The creature can't take reactions."
+      },
+      {
+       "name": "Stunned",
+       "description": "A stunned creature is incapacitated (see the condition), can't move, and can speak only falteringly.\\r\\n- The creature automatically fails Strength and Dexterity saving throws.\\r\\n- Attack rolls against the creature have advantage."
+      },
+      {
+       "name": "Unconscious",
+       "description": "An unconscious creature is incapacitated (see the condition), can't move or speak, and is unaware of its surroundings\\r\\n- The creature drops whatever it's holding and falls prone.\\r\\n- The creature automatically fails Strength and Dexterity saving throws.\\r\\n- Attack rolls against the creature have advantage.\\r\\n- Any attack that hits the creature is a critical hit if the attacker is within 5 feet of the creature."
+      }
+     ]
+    },
+    "validation": {
+     "code": 0,
+     "message": "All checks passed",
+     "isValid": true
+    },
+    "error": null,
+    "source": "file",
+    "loadedAt": 1792186458445,
+    "meta": {
+     "bridge": 9,
+     "dataVersion": 199,
+     "loggedIn": true,
+     "sourceUrl": "https://sw5e.com/tools/mycharacters",
+     "extractedAt": 1792186458136
+    }
+   }
+  },
+  "derived": {
+   "file:armstech-test-(local)": {
+    "basis": "{\"background\":{\"feat\":{\"name\":\"Fighting Stylist\",\"type\":\"Feat\"},\"feature\":\"\",\"name\":\"Soldier\"},\"baseAbilityScores\":{\"Charisma\":8,\"Constitution\":14,\"Dexterity\":16,\"Intelligence\":16,\"Strength\":10,\"Wisdom\":12},\"builderVersion\":\"0.7.6\",\"characteristics\":null,\"classes\":[{\"abilityScoreImprovements\":[{\"name\":\"Weapon Focused\",\"type\":\"Feat\"},{\"name\":\"Tech Dabbler\",\"type\":\"Feat\"}],\"archetype\":{\"name\":\"Armstech Engineering\"},\"hitPoints\":[5,5,5,5,5,5,5,5],\"levels\":9,\"modifiedItems\":[\"Blaster rifle\",\"Vibrosword\"],\"name\":\"Engineer\",\"options\":{\"Armstech Modifications\":[{\"name\":\"Accuracy Focus\"},{\"name\":\"Amplifying Barrel\"},{\"item\":1,\"name\":\"Burst Core\"}]},\"techPowers\":[]}],\"credits\":null,\"currentStats\":{\"conditions\":[],\"deathSaves\":{\"failures\":0,\"successes\":0},\"exhaustion\":0,\"featuresTimesUsed\":{},\"forcePointsUsed\":0,\"hasInspiration\":false,\"hitDiceUsed\":{},\"hitPointsLost\":0,\"superiorityDiceUsed\":0,\"techPointsUsed\":0,\"temporaryHitPoints\":0},\"customEquipment\":[],\"customFeats\":[],\"customFeatures\":[],\"customForcePowers\":[],\"customLanguages\":[],\"customProficiencies\":[],\"customTechPowers\":[],\"equipment\":[{\"category\":\"Equipment\",\"equipped\":true,\"name\":\"Blaster rifle\",\"quantity\":1,\"tweaks\":{\"damage\":{\"bonus\":2},\"toHit\":{\"bonus\":2,\"proficiency\":\"proficient\"}}},{\"category\":\"Equipment\",\"equipped\":true,\"name\":\"Vibrosword\",\"quantity\":1,\"tweaks\":{\"damage\":{\"bonus\":1},\"toHit\":{\"bonus\":0,\"proficiency\":\"proficient\"}}}],\"experiencePoints\":48000,\"featureChoices\":{\"Feat: Fighting Stylist\":[{\"name\":\"Formfighting Style\"}],\"Feat: Fighting Stylist › Formfighting Style\":[{\"name\":\"Juyo Form\"}],\"Feat: Weapon Focused\":[{\"name\":\"Blade Focus\",\"weapons\":[\"Vibrosword\"]}]},\"featureNotes\":null,\"image\":\"\",\"name\":\"Armstech Test (local)\",\"notes\":null,\"settings\":{},\"species\":{\"abilityScoreImprovement\":{},\"abilityScoreImprovementSelectedOption\":0,\"language\":\"Galactic Basic\",\"name\":\"Human\"},\"tweaks\":{}}",
+    "complete": {
+     "name": "Armstech Test (local)",
+     "builderVersion": "0.7.6",
+     "image": "",
+     "characteristics": {
+      "alignment": "Balanced Neutral"
+     },
+     "tweaks": {},
+     "customProficiencies": [],
+     "customLanguages": [],
+     "customFeatures": [],
+     "customTechPowers": [],
+     "customForcePowers": [],
+     "customEquipment": [],
+     "numCustomFeats": 0,
+     "currentLevel": 9,
+     "classText": "Engineer (Armstech Engineering) 9",
+     "alignment": "Balanced Neutral",
+     "species": "Human",
+     "background": "Soldier",
+     "experiencePoints": {
+      "previousLevel": 48000,
+      "current": 48000,
+      "nextLevel": 64000,
+      "isCorrect": true,
+      "errorMessage": ""
+     },
+     "abilityScores": {
+      "Strength": {
+       "value": 10,
+       "modifier": 0,
+       "savingThrow": {
+        "modifier": 0,
+        "proficiency": "none"
+       },
+       "skills": [
+        {
+         "name": "Athletics",
+         "modifier": 0,
+         "proficiency": "none"
+        }
+       ]
+      },
+      "Dexterity": {
+       "value": 16,
+       "modifier": 3,
+       "savingThrow": {
+        "modifier": 3,
+        "proficiency": "none"
+       },
+       "skills": [
+        {
+         "name": "Acrobatics",
+         "modifier": 3,
+         "proficiency": "none"
+        },
+        {
+         "name": "Sleight of Hand",
+         "modifier": 3,
+         "proficiency": "none"
+        },
+        {
+         "name": "Stealth",
+         "modifier": 3,
+         "proficiency": "none"
+        }
+       ]
+      },
+      "Constitution": {
+       "value": 14,
+       "modifier": 2,
+       "savingThrow": {
+        "modifier": 6,
+        "proficiency": "proficient"
+       },
+       "skills": []
+      },
+      "Intelligence": {
+       "value": 16,
+       "modifier": 3,
+       "savingThrow": {
+        "modifier": 7,
+        "proficiency": "proficient"
+       },
+       "skills": [
+        {
+         "name": "Investigation",
+         "modifier": 3,
+         "proficiency": "none"
+        },
+        {
+         "name": "Lore",
+         "modifier": 3,
+         "proficiency": "none"
+        },
+        {
+         "name": "Nature",
+         "modifier": 3,
+         "proficiency": "none"
+        },
+        {
+         "name": "Piloting",
+         "modifier": 3,
+         "proficiency": "none"
+        },
+        {
+         "name": "Technology",
+         "modifier": 3,
+         "proficiency": "none"
+        }
+       ]
+      },
+      "Wisdom": {
+       "value": 12,
+       "modifier": 1,
+       "savingThrow": {
+        "modifier": 1,
+        "proficiency": "none"
+       },
+       "skills": [
+        {
+         "name": "Animal Handling",
+         "modifier": 1,
+         "proficiency": "none"
+        },
+        {
+         "name": "Insight",
+         "modifier": 1,
+         "proficiency": "none"
+        },
+        {
+         "name": "Medicine",
+         "modifier": 1,
+         "proficiency": "none"
+        },
+        {
+         "name": "Perception",
+         "modifier": 1,
+         "proficiency": "none"
+        },
+        {
+         "name": "Survival",
+         "modifier": 1,
+         "proficiency": "none"
+        }
+       ]
+      },
+      "Charisma": {
+       "value": 8,
+       "modifier": -1,
+       "savingThrow": {
+        "modifier": -1,
+        "proficiency": "none"
+       },
+       "skills": [
+        {
+         "name": "Deception",
+         "modifier": -1,
+         "proficiency": "none"
+        },
+        {
+         "name": "Intimidation",
+         "modifier": -1,
+         "proficiency": "none"
+        },
+        {
+         "name": "Performance",
+         "modifier": -1,
+         "proficiency": "none"
+        },
+        {
+         "name": "Persuasion",
+         "modifier": -1,
+         "proficiency": "none"
+        }
+       ]
+      }
+     },
+     "proficiencyBonus": 4,
+     "initiative": 3,
+     "armorClass": 13,
+     "armorList": [],
+     "passivePerception": 11,
+     "inspiration": false,
+     "vision": "normal",
+     "speed": {
+      "base": "30 ft",
+      "hour": "3 miles",
+      "day": "24 miles",
+      "special": ""
+     },
+     "hitPoints": {
+      "current": 66,
+      "temporary": 0,
+      "maximum": 66,
+      "hitDice": [
+       {
+        "size": "d8",
+        "current": 9,
+        "maximum": 9
+       }
+      ],
+      "deathSaves": {
+       "successes": 0,
+       "failures": 0
+      },
+      "resting": {
+       "hitDieBonus": 2,
+       "numHitDiceUsed": 0,
+       "hitDiceRestored": [],
+       "techPointsUsed": 0,
+       "forcePointsUsed": 0,
+       "shortRestFeatures": [],
+       "longRestFeatures": []
+      }
+     },
+     "conditions": [],
+     "exhaustion": 0,
+     "proficiencies": [
+      {
+       "name": "Simple blasters",
+       "type": "weapon"
+      },
+      {
+       "name": "simple vibroweapons",
+       "type": "weapon"
+      },
+      {
+       "name": "Light armor",
+       "type": "armor"
+      },
+      {
+       "name": "One type of gaming set",
+       "type": "tool"
+      }
+     ],
+     "skillAndSaveProficiencies": [
+      "Constitution Saving Throws",
+      "Intelligence Saving Throws"
+     ],
+     "languages": [
+      "Galactic Basic",
+      "Galactic Basic"
+     ],
+     "equipment": [
+      {
+       "name": "Blaster rifle",
+       "description": null,
+       "cost": 525,
+       "weight": "7.5",
+       "equipmentCategoryEnum": 3,
+       "equipmentCategory": "Weapon",
+       "damageNumberOfDice": 1,
+       "damageTypeEnum": 3,
+       "damageType": "Energy",
+       "damageDieModifier": 0,
+       "weaponClassificationEnum": 2,
+       "weaponClassification": "MartialBlaster",
+       "armorClassificationEnum": 0,
+       "armorClassification": "Unknown",
+       "damageDiceDieTypeEnum": 8,
+       "damageDieType": 8,
+       "properties": [
+        "Power cell (range 105/420)",
+        "reload 12",
+        "two-handed"
+       ],
+       "propertiesJson": "[\"Power cell (range 105/420)\",\"reload 12\",\"two-handed\"]",
+       "propertiesMap": {
+        "Power Cell": "Power cell (range 105/420)",
+        "Reload": "reload 12",
+        "Two-Handed": "two-handed"
+       },
+       "propertiesMapJson": "{\"Power Cell\":\"Power cell (range 105/420)\",\"Reload\":\"reload 12\",\"Two-Handed\":\"two-handed\"}",
+       "modes": [],
+       "modesJson": "[]",
+       "ac": null,
+       "strengthRequirement": null,
+       "stealthDisadvantage": false,
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Blaster rifle",
+       "timestamp": "2023-05-30T20:15:38.6812514+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A38.6812514Z'\"",
+       "attackBonus": 9,
+       "damageBonus": 5,
+       "ability": "Dexterity",
+       "isCustom": false,
+       "equipped": true,
+       "quantity": 1,
+       "index": 0,
+       "tweaks": {
+        "toHit": {
+         "bonus": 2,
+         "proficiency": "proficient"
+        },
+        "damage": {
+         "bonus": 2
+        }
+       },
+       "isFound": true
+      },
+      {
+       "name": "Vibrosword",
+       "description": null,
+       "cost": 1150,
+       "weight": "9.25",
+       "equipmentCategoryEnum": 3,
+       "equipmentCategory": "Weapon",
+       "damageNumberOfDice": 2,
+       "damageTypeEnum": 7,
+       "damageType": "Kinetic",
+       "damageDieModifier": 0,
+       "weaponClassificationEnum": 4,
+       "weaponClassification": "MartialVibroweapon",
+       "armorClassificationEnum": 0,
+       "armorClassification": "Unknown",
+       "damageDiceDieTypeEnum": 6,
+       "damageDieType": 6,
+       "properties": [
+        "Dexterity 11",
+        "two-handed"
+       ],
+       "propertiesJson": "[\"Dexterity 11\",\"two-handed\"]",
+       "propertiesMap": {
+        "Dexterity": "Dexterity 11",
+        "Two-Handed": "two-handed"
+       },
+       "propertiesMapJson": "{\"Dexterity\":\"Dexterity 11\",\"Two-Handed\":\"two-handed\"}",
+       "modes": [],
+       "modesJson": "[]",
+       "ac": null,
+       "strengthRequirement": null,
+       "stealthDisadvantage": false,
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Vibrosword",
+       "timestamp": "2023-05-30T20:15:38.6862491+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A38.6862491Z'\"",
+       "attackBonus": 4,
+       "damageBonus": 1,
+       "ability": "Strength",
+       "isCustom": false,
+       "equipped": true,
+       "quantity": 1,
+       "index": 1,
+       "tweaks": {
+        "damage": {
+         "bonus": 1
+        },
+        "toHit": {
+         "proficiency": "proficient",
+         "bonus": 0
+        }
+       },
+       "isFound": true
+      }
+     ],
+     "attunement": {
+      "current": 0,
+      "maximum": 4,
+      "hasAttunable": false
+     },
+     "weapons": [
+      {
+       "name": "Blaster rifle",
+       "description": null,
+       "cost": 525,
+       "weight": "7.5",
+       "equipmentCategoryEnum": 3,
+       "equipmentCategory": "Weapon",
+       "damageNumberOfDice": 1,
+       "damageTypeEnum": 3,
+       "damageType": "Energy",
+       "damageDieModifier": 0,
+       "weaponClassificationEnum": 2,
+       "weaponClassification": "MartialBlaster",
+       "armorClassificationEnum": 0,
+       "armorClassification": "Unknown",
+       "damageDiceDieTypeEnum": 8,
+       "damageDieType": 8,
+       "properties": [
+        "Power cell (range 105/420)",
+        "reload 12",
+        "two-handed"
+       ],
+       "propertiesJson": "[\"Power cell (range 105/420)\",\"reload 12\",\"two-handed\"]",
+       "propertiesMap": {
+        "Power Cell": "Power cell (range 105/420)",
+        "Reload": "reload 12",
+        "Two-Handed": "two-handed"
+       },
+       "propertiesMapJson": "{\"Power Cell\":\"Power cell (range 105/420)\",\"Reload\":\"reload 12\",\"Two-Handed\":\"two-handed\"}",
+       "modes": [],
+       "modesJson": "[]",
+       "ac": null,
+       "strengthRequirement": null,
+       "stealthDisadvantage": false,
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Blaster rifle",
+       "timestamp": "2023-05-30T20:15:38.6812514+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A38.6812514Z'\"",
+       "attackBonus": 9,
+       "damageBonus": 5,
+       "ability": "Dexterity",
+       "isCustom": false,
+       "equipped": true,
+       "quantity": 1,
+       "index": 0,
+       "tweaks": {
+        "toHit": {
+         "bonus": 2,
+         "proficiency": "proficient"
+        },
+        "damage": {
+         "bonus": 2
+        }
+       },
+       "isFound": true
+      },
+      {
+       "name": "Vibrosword",
+       "description": null,
+       "cost": 1150,
+       "weight": "9.25",
+       "equipmentCategoryEnum": 3,
+       "equipmentCategory": "Weapon",
+       "damageNumberOfDice": 2,
+       "damageTypeEnum": 7,
+       "damageType": "Kinetic",
+       "damageDieModifier": 0,
+       "weaponClassificationEnum": 4,
+       "weaponClassification": "MartialVibroweapon",
+       "armorClassificationEnum": 0,
+       "armorClassification": "Unknown",
+       "damageDiceDieTypeEnum": 6,
+       "damageDieType": 6,
+       "properties": [
+        "Dexterity 11",
+        "two-handed"
+       ],
+       "propertiesJson": "[\"Dexterity 11\",\"two-handed\"]",
+       "propertiesMap": {
+        "Dexterity": "Dexterity 11",
+        "Two-Handed": "two-handed"
+       },
+       "propertiesMapJson": "{\"Dexterity\":\"Dexterity 11\",\"Two-Handed\":\"two-handed\"}",
+       "modes": [],
+       "modesJson": "[]",
+       "ac": null,
+       "strengthRequirement": null,
+       "stealthDisadvantage": false,
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Vibrosword",
+       "timestamp": "2023-05-30T20:15:38.6862491+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A38.6862491Z'\"",
+       "attackBonus": 4,
+       "damageBonus": 1,
+       "ability": "Strength",
+       "isCustom": false,
+       "equipped": true,
+       "quantity": 1,
+       "index": 1,
+       "tweaks": {
+        "damage": {
+         "bonus": 1
+        },
+        "toHit": {
+         "proficiency": "proficient",
+         "bonus": 0
+        }
+       },
+       "isFound": true
+      },
+      {
+       "name": "Unarmed Strike",
+       "description": null,
+       "cost": 0,
+       "weight": "0",
+       "equipmentCategory": "Weapon",
+       "contentType": "Core",
+       "contentSource": "PHB",
+       "damageNumberOfDice": 1,
+       "damageType": "Kinetic",
+       "weaponClassification": "Unarmed",
+       "damageDieType": 0,
+       "properties": [],
+       "propertiesMap": {},
+       "modes": [],
+       "quantity": 0,
+       "index": -1,
+       "isFound": true,
+       "equipped": true,
+       "attackBonus": 4,
+       "damageBonus": 1,
+       "ability": "Strength",
+       "isCustom": false,
+       "tweaks": {}
+      }
+     ],
+     "credits": 0,
+     "carryingCapacity": {
+      "encumbered": 50,
+      "heavilyEncumbered": 100,
+      "maxCapacity": 150,
+      "pushDragLift": 300
+     },
+     "superiority": false,
+     "techCasting": {
+      "pointsUsed": 0,
+      "maxPoints": 21,
+      "attackModifier": 7,
+      "saveDC": 15,
+      "maxPowerLevel": 5,
+      "powersKnown": []
+     },
+     "forceCasting": false,
+     "allForcePowers": [],
+     "combatFeatures": [
+      {
+       "name": "Potent Aptitude",
+       "text": "_**Engineer:** 1st level_\r\nYour technological experience lends you an uncommon insight that you can use to bolster your allies. To do so, you use a bonus action on your turn to choose one creature other than yourself within 60 feet of you who can hear you. That creature gains one Potent Aptitude die, a d4. This die changes as you gain engineer levels, as shown in the Potent Aptitude column of the engineer table.\r\nOnce within the next 10 minutes, the creature can roll the die and add the number rolled to one ability check, attack roll, or saving throw it makes. Once the Potent Aptitude die is rolled, it is lost.\r\nA creature can have only one Potent Aptitude die at a time.\r\nYou can use this feature twice. You gain an additional use at 5th, 9th, 13th, and 17th level. You regain any expended uses when you finish a short or long rest.",
+       "level": 1,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Engineer",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Engineer-Potent Aptitude-1",
+       "timestamp": "2023-05-30T20:15:43.3935639+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.3935639Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Techcasting",
+       "text": "_**Engineer:** 1st level_\r\nDuring your training you have derived powers from schematics with the aid of your wristpad. See chapter 10 for the general rules of techcasting and chapter 12 for the tech powers list.\r\n#### Tech Powers Known\r\nYou learn 6 tech powers of your choice, and you learn more at higher levels, as shown in the Tech Powers Known column of the engineer table. You may not learn a tech power of a level higher than your Max Power Level.\r\n#### Tech Points\r\nYou have a number of tech points equal to your engineer level x 2, as shown in the Tech Points column of the engineer table, + your Intelligence modifier. You use these tech points to cast tech powers. You regain all expended tech points when you finish a short or long rest.\r\n#### Max Power Level\r\nMany tech powers can be overcharged, consuming more tech points to create a greater effect. You can overcharge these powers to a maximum level, which increases at higher levels, as shown in the Max Power Level column of the engineer table.\r\nYou may only cast tech powers at 6th, 7th, 8th, and 9th-level once. You regain the ability to do so after a long rest.\r\n#### Techcasting Ability\r\nIntelligence is your techcasting ability for your tech powers. You use your Intelligence whenever a power refers to your techcasting ability. Additionally, you use your Intelligence modifier when setting the saving throw DC for a tech power you cast and when making an attack roll with one.\r\n___\r\n**Tech save DC** = 8 + your proficiency bonus + your Intelligence modifier\r\n___\r\n**Tech attack modifier** = your proficiency bonus + your Intelligence modifier\r\n___\r\n#### Techcasting Focus\r\nYou use a wristpad (found in chapter 5) or the tools in which you are granted proficiency by this class as a tech focus for your tech powers.",
+       "level": 1,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Engineer",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Engineer-Techcasting-1",
+       "timestamp": "2023-05-30T20:15:43.3935639+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.3935639Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Infuse Item",
+       "text": "_**Engineer:** 2nd level_\r\nYou gain the ability to temporarily enhance a weapon or armor. At the end of a long rest, you can touch one unenhanced object that is a suit of armor, a shield, or a simple or martial weapon. Until the end of your next long rest or until you die, the object becomes an enhanced item, granting a +1 bonus to AC if it's armor or a shield or a +1 bonus to attack and damage rolls if it's a weapon. \r\nOnce you've used this feature, you can't use it again until you finish a long rest.\r\nThis bonus increases to +2 at 10th level and +3 at 15th level.",
+       "level": 2,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Engineer",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Engineer-Infuse Item-2",
+       "timestamp": "2023-05-30T20:15:43.3935639+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.3935639Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Tool Expertise",
+       "text": "_**Engineer:** 2nd level_\r\nYou gain expertise in any tool proficiencies you gain from this class.",
+       "level": 2,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Engineer",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Engineer-Tool Expertise-2",
+       "timestamp": "2023-05-30T20:15:43.3935639+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.3935639Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Bonus Proficiencies",
+       "text": "_**Armstech Engineering:** 3rd level_\r\nYou gain proficiency in armstech's implements, medium armor, martial blasters, and martial vibroweapons. Additionally, when you engage in crafting with armstech's implements, the rate at which you craft doubles.",
+       "level": 3,
+       "sourceEnum": 1,
+       "source": "Archetype",
+       "sourceName": "Armstech Engineering",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Archetype-Armstech Engineering-Bonus Proficiencies-3",
+       "timestamp": "2023-05-30T20:15:42.71995+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A42.71995Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Close Call",
+       "text": "_**Armstech Engineering:** 3rd level_\r\nWhen you make an attack roll with your modified weapon and miss, you can expend one use of your Potent Aptitude to attempt to turn that miss into a hit. Roll the die and add it to the attack roll. ",
+       "level": 3,
+       "sourceEnum": 1,
+       "source": "Archetype",
+       "sourceName": "Armstech Engineering",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Archetype-Armstech Engineering-Close Call-3",
+       "timestamp": "2023-05-30T20:15:42.71995+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A42.71995Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Modified Weaponry",
+       "text": "_**Armstech Engineering:** 3rd level_\r\nYou learn to modify one unenhanced weapon with which you are proficient utilizing your armstech experience. Over the course of a long rest, you can modify the weapon. You must have the weapon and armstech's implements in order to perform this modification.\r\nYour modified weapon is enhanced, requires attunement, can only be used by you, and counts as a tech focus for your tech powers while you are attuned to it. Your modified weapon has 4 modification slots, and it gains more at higher levels, as shown in the Modification Slots column of the engineer table. For each modification installed in excess of your proficiency bonus, your tech point maximum is reduced by 1. Over the course of a long rest, you can install, replace, or remove a number of modifications up to your Intelligence modifier (minimum of one).\r\nSome modification effects require saving throws. When you use such an effect from this class, the DC equals your tech save DC.\r\nAt 9th level, you can maintain two modified weapons. Each modified weapon has modification slots as shown in the Modification Slots column of the engineer table.",
+       "level": 3,
+       "sourceEnum": 1,
+       "source": "Archetype",
+       "sourceName": "Armstech Engineering",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Archetype-Armstech Engineering-Modified Weaponry-3",
+       "timestamp": "2023-05-30T20:15:42.71995+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A42.71995Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Armstech's Strike",
+       "text": "_**Armstech Engineering:** 6th level_\r\nOnce per round, when you deal damage to a creature with your modified weapon, you can increase the damage by 1d6. The damage is of the same type as the weapon's damage.\r\nThe damage increases to 2d6 at 11th level and 3d6 at 17th level.",
+       "level": 6,
+       "sourceEnum": 1,
+       "source": "Archetype",
+       "sourceName": "Armstech Engineering",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Archetype-Armstech Engineering-Armstech's Strike-6",
+       "timestamp": "2023-05-30T20:15:42.71995+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A42.71995Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Engineering Discipline",
+       "text": "_**Engineer:** 3rd, 6th, 14th, and 18th level_\r\nYou begin to focus on a specific engineering discipline, which is detailed at the end of the class description. ",
+       "level": 6,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Engineer",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Engineer-Engineering Discipline-6",
+       "timestamp": "2023-05-30T20:15:43.3935639+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.3935639Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Ability Score Improvement",
+       "text": "_**Engineer:** 4th, 8th, 12th, 16th, and 19th level_\r\nYou can increase one ability score by 2, or you can increase two ability scores by 1. You can't increase an ability score above 20 using this feature.",
+       "level": 8,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Engineer",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Engineer-Ability Score Improvement-8",
+       "timestamp": "2023-05-30T20:15:43.3945638+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.3945638Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Ability Score Increase",
+       "text": "One ability score of your choice increases by 2, and two other ability scores of your choice increase by 1. Alternatively, four ability scores of your choice each increase by 1.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Ability Score Increase",
+       "timestamp": "2023-05-30T20:15:40.8130359+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.8130359Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Age",
+       "text": "Humans reach adulthood in their late teens and live less than a century.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Age",
+       "timestamp": "2023-05-30T20:15:40.814035+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.814035Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Alignment",
+       "text": "Humans tend toward no particular alignment. The best and worst are found among them.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Alignment",
+       "timestamp": "2023-05-30T20:15:40.814035+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.814035Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Defiant",
+       "text": "Humans are known to be stubborn and often refuse to give up, even against the worst odds. When you or a creature you can see that can see and understand you makes an ability check, attack roll, or saving throw, you can roll a d4 and add it to their roll (no action required). Once you've used this feature, you must complete a short or long rest before you can use it again.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Defiant",
+       "timestamp": "2023-05-30T20:15:40.814035+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.814035Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Human Versatility",
+       "text": "You gain proficiency in one skill, one tool, and one weapon of your choice.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Human Versatility",
+       "timestamp": "2023-05-30T20:15:40.814035+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.814035Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Languages",
+       "text": "You can speak, read, and write Galactic Basic and one extra language of your choice. Humans typically learn the languages of other peoples they deal with, including obscure dialects. They are fond of sprinkling their speech with words borrowed from other tongues: trandoshan curses, twi'lek musical expressions, chiss military phrases, and so on.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Languages",
+       "timestamp": "2023-05-30T20:15:40.814035+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.814035Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Proficiency",
+       "text": "You gain proficiency in one skill, one tool, and one weapon of your choice.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Proficiency",
+       "timestamp": "2022-05-29T01:36:26.4474283+00:00",
+       "eTag": "W/\"datetime'2022-05-29T01%3A36%3A26.4474283Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Size",
+       "text": "Humans vary widely in height and build, from barely 5 feet to well over 6 feet tall. Regardless of your position in that range, your size is Medium.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Size",
+       "timestamp": "2023-05-30T20:15:40.814035+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.814035Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Speed",
+       "text": "Your base walking speed is 30 feet.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Speed",
+       "timestamp": "2023-05-30T20:15:40.814035+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.814035Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Weapon Focused",
+       "prerequisite": "4th level",
+       "text": "You adopt a particular type of weapon as your focus. Choose one of the weapon focus options, detailed later in this chapter. You can take this feat multiple times. \r\n",
+       "attributesIncreased": null,
+       "attributesIncreasedJson": "",
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 2,
+       "contentSource": "WH",
+       "partitionKey": "Core",
+       "rowKey": "Weapon Focused",
+       "timestamp": "2023-05-30T20:15:17.9500743+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A17.9500743Z'\"",
+       "customIndex": -1,
+       "combat": true
+      },
+      {
+       "name": "Tech Dabbler",
+       "prerequisite": null,
+       "text": "You know two at-will tech powers. When you reach 3rd level, you learn and can cast one 1st-level tech power once per long rest. When you reach 5th level, you learn and can cast one 2nd-level tech power once per long rest. Your techcasting ability is Intelligence. You require use of a wristpad for these powers. Additionally, you lose the Tech-Impaired special trait if you have it.\r\n",
+       "attributesIncreased": null,
+       "attributesIncreasedJson": "",
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Tech Dabbler",
+       "timestamp": "2023-05-30T20:15:09.5568611+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A09.5568611Z'\"",
+       "customIndex": -1,
+       "combat": true
+      },
+      {
+       "name": "Fighting Stylist",
+       "prerequisite": "4th level",
+       "text": "You adopt a particular style of fighting as your specialty, gaining the following benefits:\r\n- Increase your Strength, Dexterity, or Constitution score by 1, to a maximum of 20.\r\n- Choose one of the fighting style options, detailed later in this chapter. \r\n\r\nYou can take this feat multiple times. \r\n",
+       "attributesIncreased": [
+        "Strength",
+        "Dexterity",
+        "Constitution"
+       ],
+       "attributesIncreasedJson": "[\"Strength\",\"Dexterity\",\"Constitution\"]",
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Fighting Stylist",
+       "timestamp": "2023-05-30T20:15:09.5528641+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A09.5528641Z'\"",
+       "customIndex": -1,
+       "combat": true
+      }
+     ],
+     "nonCombatFeatures": [],
+     "backgroundFeature": {
+      "name": "Military Rank",
+      "combat": false,
+      "text": "You have a military rank from your career as a soldier. Soldiers loyal to your former military organization still recognize your authority and influence, and they defer to you if they are of a lower rank. You can invoke your rank to exert influence over other soldiers and requisition simple equipment for temporary use. You can also usually gain access to friendly military encampments where your rank is recognized.\r\n"
+     },
+     "settings": {},
+     "notes": ""
+    },
+    "base": {
+     "name": "Armstech Test (local)",
+     "builderVersion": "0.7.6",
+     "image": "",
+     "characteristics": {
+      "alignment": "Balanced Neutral"
+     },
+     "tweaks": {},
+     "customProficiencies": [],
+     "customLanguages": [],
+     "customFeatures": [],
+     "customTechPowers": [],
+     "customForcePowers": [],
+     "customEquipment": [],
+     "numCustomFeats": 0,
+     "currentLevel": 9,
+     "classText": "Engineer (Armstech Engineering) 9",
+     "alignment": "Balanced Neutral",
+     "species": "Human",
+     "background": "Soldier",
+     "experiencePoints": {
+      "previousLevel": 48000,
+      "current": 48000,
+      "nextLevel": 64000,
+      "isCorrect": true,
+      "errorMessage": ""
+     },
+     "abilityScores": {
+      "Strength": {
+       "value": 10,
+       "modifier": 0,
+       "savingThrow": {
+        "modifier": 0,
+        "proficiency": "none"
+       },
+       "skills": [
+        {
+         "name": "Athletics",
+         "modifier": 0,
+         "proficiency": "none"
+        }
+       ]
+      },
+      "Dexterity": {
+       "value": 16,
+       "modifier": 3,
+       "savingThrow": {
+        "modifier": 3,
+        "proficiency": "none"
+       },
+       "skills": [
+        {
+         "name": "Acrobatics",
+         "modifier": 3,
+         "proficiency": "none"
+        },
+        {
+         "name": "Sleight of Hand",
+         "modifier": 3,
+         "proficiency": "none"
+        },
+        {
+         "name": "Stealth",
+         "modifier": 3,
+         "proficiency": "none"
+        }
+       ]
+      },
+      "Constitution": {
+       "value": 14,
+       "modifier": 2,
+       "savingThrow": {
+        "modifier": 6,
+        "proficiency": "proficient"
+       },
+       "skills": []
+      },
+      "Intelligence": {
+       "value": 16,
+       "modifier": 3,
+       "savingThrow": {
+        "modifier": 7,
+        "proficiency": "proficient"
+       },
+       "skills": [
+        {
+         "name": "Investigation",
+         "modifier": 3,
+         "proficiency": "none"
+        },
+        {
+         "name": "Lore",
+         "modifier": 3,
+         "proficiency": "none"
+        },
+        {
+         "name": "Nature",
+         "modifier": 3,
+         "proficiency": "none"
+        },
+        {
+         "name": "Piloting",
+         "modifier": 3,
+         "proficiency": "none"
+        },
+        {
+         "name": "Technology",
+         "modifier": 3,
+         "proficiency": "none"
+        }
+       ]
+      },
+      "Wisdom": {
+       "value": 12,
+       "modifier": 1,
+       "savingThrow": {
+        "modifier": 1,
+        "proficiency": "none"
+       },
+       "skills": [
+        {
+         "name": "Animal Handling",
+         "modifier": 1,
+         "proficiency": "none"
+        },
+        {
+         "name": "Insight",
+         "modifier": 1,
+         "proficiency": "none"
+        },
+        {
+         "name": "Medicine",
+         "modifier": 1,
+         "proficiency": "none"
+        },
+        {
+         "name": "Perception",
+         "modifier": 1,
+         "proficiency": "none"
+        },
+        {
+         "name": "Survival",
+         "modifier": 1,
+         "proficiency": "none"
+        }
+       ]
+      },
+      "Charisma": {
+       "value": 8,
+       "modifier": -1,
+       "savingThrow": {
+        "modifier": -1,
+        "proficiency": "none"
+       },
+       "skills": [
+        {
+         "name": "Deception",
+         "modifier": -1,
+         "proficiency": "none"
+        },
+        {
+         "name": "Intimidation",
+         "modifier": -1,
+         "proficiency": "none"
+        },
+        {
+         "name": "Performance",
+         "modifier": -1,
+         "proficiency": "none"
+        },
+        {
+         "name": "Persuasion",
+         "modifier": -1,
+         "proficiency": "none"
+        }
+       ]
+      }
+     },
+     "proficiencyBonus": 4,
+     "initiative": 3,
+     "armorClass": 13,
+     "armorList": [],
+     "passivePerception": 11,
+     "inspiration": false,
+     "vision": "normal",
+     "speed": {
+      "base": "30 ft",
+      "hour": "3 miles",
+      "day": "24 miles",
+      "special": ""
+     },
+     "hitPoints": {
+      "current": 66,
+      "temporary": 0,
+      "maximum": 66,
+      "hitDice": [
+       {
+        "size": "d8",
+        "current": 9,
+        "maximum": 9
+       }
+      ],
+      "deathSaves": {
+       "successes": 0,
+       "failures": 0
+      },
+      "resting": {
+       "hitDieBonus": 2,
+       "numHitDiceUsed": 0,
+       "hitDiceRestored": [],
+       "techPointsUsed": 0,
+       "forcePointsUsed": 0,
+       "shortRestFeatures": [],
+       "longRestFeatures": []
+      }
+     },
+     "conditions": [],
+     "exhaustion": 0,
+     "proficiencies": [
+      {
+       "name": "Simple blasters",
+       "type": "weapon"
+      },
+      {
+       "name": "simple vibroweapons",
+       "type": "weapon"
+      },
+      {
+       "name": "Light armor",
+       "type": "armor"
+      },
+      {
+       "name": "One type of gaming set",
+       "type": "tool"
+      }
+     ],
+     "skillAndSaveProficiencies": [
+      "Constitution Saving Throws",
+      "Intelligence Saving Throws"
+     ],
+     "languages": [
+      "Galactic Basic",
+      "Galactic Basic"
+     ],
+     "equipment": [
+      {
+       "name": "Blaster rifle",
+       "description": null,
+       "cost": 525,
+       "weight": "7.5",
+       "equipmentCategoryEnum": 3,
+       "equipmentCategory": "Weapon",
+       "damageNumberOfDice": 1,
+       "damageTypeEnum": 3,
+       "damageType": "Energy",
+       "damageDieModifier": 0,
+       "weaponClassificationEnum": 2,
+       "weaponClassification": "MartialBlaster",
+       "armorClassificationEnum": 0,
+       "armorClassification": "Unknown",
+       "damageDiceDieTypeEnum": 8,
+       "damageDieType": 8,
+       "properties": [
+        "Power cell (range 105/420)",
+        "reload 12",
+        "two-handed"
+       ],
+       "propertiesJson": "[\"Power cell (range 105/420)\",\"reload 12\",\"two-handed\"]",
+       "propertiesMap": {
+        "Power Cell": "Power cell (range 105/420)",
+        "Reload": "reload 12",
+        "Two-Handed": "two-handed"
+       },
+       "propertiesMapJson": "{\"Power Cell\":\"Power cell (range 105/420)\",\"Reload\":\"reload 12\",\"Two-Handed\":\"two-handed\"}",
+       "modes": [],
+       "modesJson": "[]",
+       "ac": null,
+       "strengthRequirement": null,
+       "stealthDisadvantage": false,
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Blaster rifle",
+       "timestamp": "2023-05-30T20:15:38.6812514+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A38.6812514Z'\"",
+       "attackBonus": 3,
+       "damageBonus": 3,
+       "ability": "Dexterity",
+       "isCustom": false,
+       "equipped": true,
+       "quantity": 1,
+       "index": 0,
+       "tweaks": {},
+       "isFound": true
+      },
+      {
+       "name": "Vibrosword",
+       "description": null,
+       "cost": 1150,
+       "weight": "9.25",
+       "equipmentCategoryEnum": 3,
+       "equipmentCategory": "Weapon",
+       "damageNumberOfDice": 2,
+       "damageTypeEnum": 7,
+       "damageType": "Kinetic",
+       "damageDieModifier": 0,
+       "weaponClassificationEnum": 4,
+       "weaponClassification": "MartialVibroweapon",
+       "armorClassificationEnum": 0,
+       "armorClassification": "Unknown",
+       "damageDiceDieTypeEnum": 6,
+       "damageDieType": 6,
+       "properties": [
+        "Dexterity 11",
+        "two-handed"
+       ],
+       "propertiesJson": "[\"Dexterity 11\",\"two-handed\"]",
+       "propertiesMap": {
+        "Dexterity": "Dexterity 11",
+        "Two-Handed": "two-handed"
+       },
+       "propertiesMapJson": "{\"Dexterity\":\"Dexterity 11\",\"Two-Handed\":\"two-handed\"}",
+       "modes": [],
+       "modesJson": "[]",
+       "ac": null,
+       "strengthRequirement": null,
+       "stealthDisadvantage": false,
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Vibrosword",
+       "timestamp": "2023-05-30T20:15:38.6862491+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A38.6862491Z'\"",
+       "attackBonus": 0,
+       "damageBonus": 0,
+       "ability": "Strength",
+       "isCustom": false,
+       "equipped": true,
+       "quantity": 1,
+       "index": 1,
+       "tweaks": {},
+       "isFound": true
+      }
+     ],
+     "attunement": {
+      "current": 0,
+      "maximum": 4,
+      "hasAttunable": false
+     },
+     "weapons": [
+      {
+       "name": "Blaster rifle",
+       "description": null,
+       "cost": 525,
+       "weight": "7.5",
+       "equipmentCategoryEnum": 3,
+       "equipmentCategory": "Weapon",
+       "damageNumberOfDice": 1,
+       "damageTypeEnum": 3,
+       "damageType": "Energy",
+       "damageDieModifier": 0,
+       "weaponClassificationEnum": 2,
+       "weaponClassification": "MartialBlaster",
+       "armorClassificationEnum": 0,
+       "armorClassification": "Unknown",
+       "damageDiceDieTypeEnum": 8,
+       "damageDieType": 8,
+       "properties": [
+        "Power cell (range 105/420)",
+        "reload 12",
+        "two-handed"
+       ],
+       "propertiesJson": "[\"Power cell (range 105/420)\",\"reload 12\",\"two-handed\"]",
+       "propertiesMap": {
+        "Power Cell": "Power cell (range 105/420)",
+        "Reload": "reload 12",
+        "Two-Handed": "two-handed"
+       },
+       "propertiesMapJson": "{\"Power Cell\":\"Power cell (range 105/420)\",\"Reload\":\"reload 12\",\"Two-Handed\":\"two-handed\"}",
+       "modes": [],
+       "modesJson": "[]",
+       "ac": null,
+       "strengthRequirement": null,
+       "stealthDisadvantage": false,
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Blaster rifle",
+       "timestamp": "2023-05-30T20:15:38.6812514+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A38.6812514Z'\"",
+       "attackBonus": 3,
+       "damageBonus": 3,
+       "ability": "Dexterity",
+       "isCustom": false,
+       "equipped": true,
+       "quantity": 1,
+       "index": 0,
+       "tweaks": {},
+       "isFound": true
+      },
+      {
+       "name": "Vibrosword",
+       "description": null,
+       "cost": 1150,
+       "weight": "9.25",
+       "equipmentCategoryEnum": 3,
+       "equipmentCategory": "Weapon",
+       "damageNumberOfDice": 2,
+       "damageTypeEnum": 7,
+       "damageType": "Kinetic",
+       "damageDieModifier": 0,
+       "weaponClassificationEnum": 4,
+       "weaponClassification": "MartialVibroweapon",
+       "armorClassificationEnum": 0,
+       "armorClassification": "Unknown",
+       "damageDiceDieTypeEnum": 6,
+       "damageDieType": 6,
+       "properties": [
+        "Dexterity 11",
+        "two-handed"
+       ],
+       "propertiesJson": "[\"Dexterity 11\",\"two-handed\"]",
+       "propertiesMap": {
+        "Dexterity": "Dexterity 11",
+        "Two-Handed": "two-handed"
+       },
+       "propertiesMapJson": "{\"Dexterity\":\"Dexterity 11\",\"Two-Handed\":\"two-handed\"}",
+       "modes": [],
+       "modesJson": "[]",
+       "ac": null,
+       "strengthRequirement": null,
+       "stealthDisadvantage": false,
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Vibrosword",
+       "timestamp": "2023-05-30T20:15:38.6862491+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A38.6862491Z'\"",
+       "attackBonus": 0,
+       "damageBonus": 0,
+       "ability": "Strength",
+       "isCustom": false,
+       "equipped": true,
+       "quantity": 1,
+       "index": 1,
+       "tweaks": {},
+       "isFound": true
+      },
+      {
+       "name": "Unarmed Strike",
+       "description": null,
+       "cost": 0,
+       "weight": "0",
+       "equipmentCategory": "Weapon",
+       "contentType": "Core",
+       "contentSource": "PHB",
+       "damageNumberOfDice": 1,
+       "damageType": "Kinetic",
+       "weaponClassification": "Unarmed",
+       "damageDieType": 0,
+       "properties": [],
+       "propertiesMap": {},
+       "modes": [],
+       "quantity": 0,
+       "index": -1,
+       "isFound": true,
+       "equipped": true,
+       "attackBonus": 4,
+       "damageBonus": 1,
+       "ability": "Strength",
+       "isCustom": false,
+       "tweaks": {}
+      }
+     ],
+     "credits": 0,
+     "carryingCapacity": {
+      "encumbered": 50,
+      "heavilyEncumbered": 100,
+      "maxCapacity": 150,
+      "pushDragLift": 300
+     },
+     "superiority": false,
+     "techCasting": {
+      "pointsUsed": 0,
+      "maxPoints": 21,
+      "attackModifier": 7,
+      "saveDC": 15,
+      "maxPowerLevel": 5,
+      "powersKnown": []
+     },
+     "forceCasting": false,
+     "allForcePowers": [],
+     "combatFeatures": [
+      {
+       "name": "Potent Aptitude",
+       "text": "_**Engineer:** 1st level_\r\nYour technological experience lends you an uncommon insight that you can use to bolster your allies. To do so, you use a bonus action on your turn to choose one creature other than yourself within 60 feet of you who can hear you. That creature gains one Potent Aptitude die, a d4. This die changes as you gain engineer levels, as shown in the Potent Aptitude column of the engineer table.\r\nOnce within the next 10 minutes, the creature can roll the die and add the number rolled to one ability check, attack roll, or saving throw it makes. Once the Potent Aptitude die is rolled, it is lost.\r\nA creature can have only one Potent Aptitude die at a time.\r\nYou can use this feature twice. You gain an additional use at 5th, 9th, 13th, and 17th level. You regain any expended uses when you finish a short or long rest.",
+       "level": 1,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Engineer",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Engineer-Potent Aptitude-1",
+       "timestamp": "2023-05-30T20:15:43.3935639+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.3935639Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Techcasting",
+       "text": "_**Engineer:** 1st level_\r\nDuring your training you have derived powers from schematics with the aid of your wristpad. See chapter 10 for the general rules of techcasting and chapter 12 for the tech powers list.\r\n#### Tech Powers Known\r\nYou learn 6 tech powers of your choice, and you learn more at higher levels, as shown in the Tech Powers Known column of the engineer table. You may not learn a tech power of a level higher than your Max Power Level.\r\n#### Tech Points\r\nYou have a number of tech points equal to your engineer level x 2, as shown in the Tech Points column of the engineer table, + your Intelligence modifier. You use these tech points to cast tech powers. You regain all expended tech points when you finish a short or long rest.\r\n#### Max Power Level\r\nMany tech powers can be overcharged, consuming more tech points to create a greater effect. You can overcharge these powers to a maximum level, which increases at higher levels, as shown in the Max Power Level column of the engineer table.\r\nYou may only cast tech powers at 6th, 7th, 8th, and 9th-level once. You regain the ability to do so after a long rest.\r\n#### Techcasting Ability\r\nIntelligence is your techcasting ability for your tech powers. You use your Intelligence whenever a power refers to your techcasting ability. Additionally, you use your Intelligence modifier when setting the saving throw DC for a tech power you cast and when making an attack roll with one.\r\n___\r\n**Tech save DC** = 8 + your proficiency bonus + your Intelligence modifier\r\n___\r\n**Tech attack modifier** = your proficiency bonus + your Intelligence modifier\r\n___\r\n#### Techcasting Focus\r\nYou use a wristpad (found in chapter 5) or the tools in which you are granted proficiency by this class as a tech focus for your tech powers.",
+       "level": 1,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Engineer",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Engineer-Techcasting-1",
+       "timestamp": "2023-05-30T20:15:43.3935639+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.3935639Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Infuse Item",
+       "text": "_**Engineer:** 2nd level_\r\nYou gain the ability to temporarily enhance a weapon or armor. At the end of a long rest, you can touch one unenhanced object that is a suit of armor, a shield, or a simple or martial weapon. Until the end of your next long rest or until you die, the object becomes an enhanced item, granting a +1 bonus to AC if it's armor or a shield or a +1 bonus to attack and damage rolls if it's a weapon. \r\nOnce you've used this feature, you can't use it again until you finish a long rest.\r\nThis bonus increases to +2 at 10th level and +3 at 15th level.",
+       "level": 2,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Engineer",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Engineer-Infuse Item-2",
+       "timestamp": "2023-05-30T20:15:43.3935639+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.3935639Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Tool Expertise",
+       "text": "_**Engineer:** 2nd level_\r\nYou gain expertise in any tool proficiencies you gain from this class.",
+       "level": 2,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Engineer",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Engineer-Tool Expertise-2",
+       "timestamp": "2023-05-30T20:15:43.3935639+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.3935639Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Bonus Proficiencies",
+       "text": "_**Armstech Engineering:** 3rd level_\r\nYou gain proficiency in armstech's implements, medium armor, martial blasters, and martial vibroweapons. Additionally, when you engage in crafting with armstech's implements, the rate at which you craft doubles.",
+       "level": 3,
+       "sourceEnum": 1,
+       "source": "Archetype",
+       "sourceName": "Armstech Engineering",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Archetype-Armstech Engineering-Bonus Proficiencies-3",
+       "timestamp": "2023-05-30T20:15:42.71995+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A42.71995Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Close Call",
+       "text": "_**Armstech Engineering:** 3rd level_\r\nWhen you make an attack roll with your modified weapon and miss, you can expend one use of your Potent Aptitude to attempt to turn that miss into a hit. Roll the die and add it to the attack roll. ",
+       "level": 3,
+       "sourceEnum": 1,
+       "source": "Archetype",
+       "sourceName": "Armstech Engineering",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Archetype-Armstech Engineering-Close Call-3",
+       "timestamp": "2023-05-30T20:15:42.71995+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A42.71995Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Modified Weaponry",
+       "text": "_**Armstech Engineering:** 3rd level_\r\nYou learn to modify one unenhanced weapon with which you are proficient utilizing your armstech experience. Over the course of a long rest, you can modify the weapon. You must have the weapon and armstech's implements in order to perform this modification.\r\nYour modified weapon is enhanced, requires attunement, can only be used by you, and counts as a tech focus for your tech powers while you are attuned to it. Your modified weapon has 4 modification slots, and it gains more at higher levels, as shown in the Modification Slots column of the engineer table. For each modification installed in excess of your proficiency bonus, your tech point maximum is reduced by 1. Over the course of a long rest, you can install, replace, or remove a number of modifications up to your Intelligence modifier (minimum of one).\r\nSome modification effects require saving throws. When you use such an effect from this class, the DC equals your tech save DC.\r\nAt 9th level, you can maintain two modified weapons. Each modified weapon has modification slots as shown in the Modification Slots column of the engineer table.",
+       "level": 3,
+       "sourceEnum": 1,
+       "source": "Archetype",
+       "sourceName": "Armstech Engineering",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Archetype-Armstech Engineering-Modified Weaponry-3",
+       "timestamp": "2023-05-30T20:15:42.71995+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A42.71995Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Armstech's Strike",
+       "text": "_**Armstech Engineering:** 6th level_\r\nOnce per round, when you deal damage to a creature with your modified weapon, you can increase the damage by 1d6. The damage is of the same type as the weapon's damage.\r\nThe damage increases to 2d6 at 11th level and 3d6 at 17th level.",
+       "level": 6,
+       "sourceEnum": 1,
+       "source": "Archetype",
+       "sourceName": "Armstech Engineering",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Archetype-Armstech Engineering-Armstech's Strike-6",
+       "timestamp": "2023-05-30T20:15:42.71995+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A42.71995Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Engineering Discipline",
+       "text": "_**Engineer:** 3rd, 6th, 14th, and 18th level_\r\nYou begin to focus on a specific engineering discipline, which is detailed at the end of the class description. ",
+       "level": 6,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Engineer",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Engineer-Engineering Discipline-6",
+       "timestamp": "2023-05-30T20:15:43.3935639+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.3935639Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Ability Score Improvement",
+       "text": "_**Engineer:** 4th, 8th, 12th, 16th, and 19th level_\r\nYou can increase one ability score by 2, or you can increase two ability scores by 1. You can't increase an ability score above 20 using this feature.",
+       "level": 8,
+       "sourceEnum": 0,
+       "source": "Class",
+       "sourceName": "Engineer",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Class-Engineer-Ability Score Improvement-8",
+       "timestamp": "2023-05-30T20:15:43.3945638+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A43.3945638Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Ability Score Increase",
+       "text": "One ability score of your choice increases by 2, and two other ability scores of your choice increase by 1. Alternatively, four ability scores of your choice each increase by 1.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Ability Score Increase",
+       "timestamp": "2023-05-30T20:15:40.8130359+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.8130359Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Age",
+       "text": "Humans reach adulthood in their late teens and live less than a century.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Age",
+       "timestamp": "2023-05-30T20:15:40.814035+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.814035Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Alignment",
+       "text": "Humans tend toward no particular alignment. The best and worst are found among them.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Alignment",
+       "timestamp": "2023-05-30T20:15:40.814035+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.814035Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Defiant",
+       "text": "Humans are known to be stubborn and often refuse to give up, even against the worst odds. When you or a creature you can see that can see and understand you makes an ability check, attack roll, or saving throw, you can roll a d4 and add it to their roll (no action required). Once you've used this feature, you must complete a short or long rest before you can use it again.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Defiant",
+       "timestamp": "2023-05-30T20:15:40.814035+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.814035Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Human Versatility",
+       "text": "You gain proficiency in one skill, one tool, and one weapon of your choice.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Human Versatility",
+       "timestamp": "2023-05-30T20:15:40.814035+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.814035Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Languages",
+       "text": "You can speak, read, and write Galactic Basic and one extra language of your choice. Humans typically learn the languages of other peoples they deal with, including obscure dialects. They are fond of sprinkling their speech with words borrowed from other tongues: trandoshan curses, twi'lek musical expressions, chiss military phrases, and so on.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Languages",
+       "timestamp": "2023-05-30T20:15:40.814035+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.814035Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Proficiency",
+       "text": "You gain proficiency in one skill, one tool, and one weapon of your choice.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Proficiency",
+       "timestamp": "2022-05-29T01:36:26.4474283+00:00",
+       "eTag": "W/\"datetime'2022-05-29T01%3A36%3A26.4474283Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Size",
+       "text": "Humans vary widely in height and build, from barely 5 feet to well over 6 feet tall. Regardless of your position in that range, your size is Medium.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Size",
+       "timestamp": "2023-05-30T20:15:40.814035+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.814035Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Speed",
+       "text": "Your base walking speed is 30 feet.",
+       "level": null,
+       "sourceEnum": 2,
+       "source": "Species",
+       "sourceName": "Human",
+       "metadata": null,
+       "partitionKey": "Core",
+       "rowKey": "Species-Human-Speed",
+       "timestamp": "2023-05-30T20:15:40.814035+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A40.814035Z'\"",
+       "combat": true
+      },
+      {
+       "name": "Weapon Focused",
+       "prerequisite": "4th level",
+       "text": "You adopt a particular type of weapon as your focus. Choose one of the weapon focus options, detailed later in this chapter. You can take this feat multiple times. \r\n",
+       "attributesIncreased": null,
+       "attributesIncreasedJson": "",
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 2,
+       "contentSource": "WH",
+       "partitionKey": "Core",
+       "rowKey": "Weapon Focused",
+       "timestamp": "2023-05-30T20:15:17.9500743+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A17.9500743Z'\"",
+       "customIndex": -1,
+       "combat": true
+      },
+      {
+       "name": "Tech Dabbler",
+       "prerequisite": null,
+       "text": "You know two at-will tech powers. When you reach 3rd level, you learn and can cast one 1st-level tech power once per long rest. When you reach 5th level, you learn and can cast one 2nd-level tech power once per long rest. Your techcasting ability is Intelligence. You require use of a wristpad for these powers. Additionally, you lose the Tech-Impaired special trait if you have it.\r\n",
+       "attributesIncreased": null,
+       "attributesIncreasedJson": "",
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Tech Dabbler",
+       "timestamp": "2023-05-30T20:15:09.5568611+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A09.5568611Z'\"",
+       "customIndex": -1,
+       "combat": true
+      },
+      {
+       "name": "Fighting Stylist",
+       "prerequisite": "4th level",
+       "text": "You adopt a particular style of fighting as your specialty, gaining the following benefits:\r\n- Increase your Strength, Dexterity, or Constitution score by 1, to a maximum of 20.\r\n- Choose one of the fighting style options, detailed later in this chapter. \r\n\r\nYou can take this feat multiple times. \r\n",
+       "attributesIncreased": [
+        "Strength",
+        "Dexterity",
+        "Constitution"
+       ],
+       "attributesIncreasedJson": "[\"Strength\",\"Dexterity\",\"Constitution\"]",
+       "contentTypeEnum": 1,
+       "contentType": "Core",
+       "contentSourceEnum": 1,
+       "contentSource": "PHB",
+       "partitionKey": "Core",
+       "rowKey": "Fighting Stylist",
+       "timestamp": "2023-05-30T20:15:09.5528641+00:00",
+       "eTag": "W/\"datetime'2023-05-30T20%3A15%3A09.5528641Z'\"",
+       "customIndex": -1,
+       "combat": true
+      }
+     ],
+     "nonCombatFeatures": [],
+     "backgroundFeature": {
+      "name": "Military Rank",
+      "combat": false,
+      "text": "You have a military rank from your career as a soldier. Soldiers loyal to your former military organization still recognize your authority and influence, and they defer to you if they are of a lower rank. You can invoke your rank to exert influence over other soldiers and requisition simple equipment for temporary use. You can also usually gain access to friendly military encampments where your rank is recognized.\r\n"
+     },
+     "settings": {},
+     "notes": ""
+    },
+    "refs": {
+     "classes": {
+      "Engineer": {
+       "name": "Engineer",
+       "summary": "Tech caster who enhances items to benefit allies",
+       "primaryAbility": "Intelligence",
+       "hitDiceDieType": 8,
+       "hitPointsAtFirstLevel": "8 + your Constitution modifier",
+       "hitPointsAtHigherLevels": "1d8 (or 5) + your Constitution modifier per engineer level after 1st",
+       "armorProficiencies": [
+        "Light armor"
+       ],
+       "weaponProficiencies": [
+        "Simple blasters",
+        "simple vibroweapons"
+       ],
+       "toolProficiencies": [
+        "Tinker's implements",
+        "one of your choice"
+       ],
+       "savingThrows": [
+        "Constitution",
+        "Intelligence"
+       ],
+       "skillChoices": "Choose three from Investigation, Lore, Medicine, Nature, Piloting, and Technology",
+       "levelChanges": {
+        "1": {
+         "Level": "1",
+         "Proficiency Bonus": "+2",
+         "Features": "Techcasting, Potent Aptitude",
+         "Tech Powers Known": "6",
+         "Tech Points": "2",
+         "Max Power Level": "1st",
+         "Potent Aptitude": "d4",
+         "Modification Slots": "�"
+        },
+        "2": {
+         "Level": "2",
+         "Proficiency Bonus": "+2",
+         "Features": "Infuse Item (+1), Tool Expertise",
+         "Tech Powers Known": "7",
+         "Tech Points": "4",
+         "Max Power Level": "1st",
+         "Potent Aptitude": "d4",
+         "Modification Slots": "�"
+        },
+        "3": {
+         "Level": "3",
+         "Proficiency Bonus": "+2",
+         "Features": "Engineering Discipline",
+         "Tech Powers Known": "9",
+         "Tech Points": "6",
+         "Max Power Level": "2nd",
+         "Potent Aptitude": "d4",
+         "Modification Slots": "4"
+        },
+        "4": {
+         "Level": "4",
+         "Proficiency Bonus": "+2",
+         "Features": "Ability Score Improvement",
+         "Tech Powers Known": "10",
+         "Tech Points": "8",
+         "Max Power Level": "2nd",
+         "Potent Aptitude": "d4",
+         "Modification Slots": "4"
+        },
+        "5": {
+         "Level": "5",
+         "Proficiency Bonus": "+3",
+         "Features": "�",
+         "Tech Powers Known": "12",
+         "Tech Points": "10",
+         "Max Power Level": "3rd",
+         "Potent Aptitude": "d6",
+         "Modification Slots": "5"
+        },
+        "6": {
+         "Level": "6",
+         "Proficiency Bonus": "+3",
+         "Features": "Discipline feature",
+         "Tech Powers Known": "13",
+         "Tech Points": "12",
+         "Max Power Level": "3rd",
+         "Potent Aptitude": "d6",
+         "Modification Slots": "5"
+        },
+        "7": {
+         "Level": "7",
+         "Proficiency Bonus": "+3",
+         "Features": "�",
+         "Tech Powers Known": "15",
+         "Tech Points": "14",
+         "Max Power Level": "4th",
+         "Potent Aptitude": "d6",
+         "Modification Slots": "5"
+        },
+        "8": {
+         "Level": "8",
+         "Proficiency Bonus": "+3",
+         "Features": "Ability Score Improvement",
+         "Tech Powers Known": "16",
+         "Tech Points": "16",
+         "Max Power Level": "4th",
+         "Potent Aptitude": "d6",
+         "Modification Slots": "5"
+        },
+        "9": {
+         "Level": "9",
+         "Proficiency Bonus": "+4",
+         "Features": "�",
+         "Tech Powers Known": "18",
+         "Tech Points": "18",
+         "Max Power Level": "5th",
+         "Potent Aptitude": "d8",
+         "Modification Slots": "6"
+        },
+        "10": {
+         "Level": "10",
+         "Proficiency Bonus": "+4",
+         "Features": "Infuse Item (+2)",
+         "Tech Powers Known": "19",
+         "Tech Points": "20",
+         "Max Power Level": "5th",
+         "Potent Aptitude": "d8",
+         "Modification Slots": "6"
+        },
+        "11": {
+         "Level": "11",
+         "Proficiency Bonus": "+4",
+         "Features": "�",
+         "Tech Powers Known": "21",
+         "Tech Points": "22",
+         "Max Power Level": "6th",
+         "Potent Aptitude": "d8",
+         "Modification Slots": "7"
+        },
+        "12": {
+         "Level": "12",
+         "Proficiency Bonus": "+4",
+         "Features": "Ability Score Improvement",
+         "Tech Powers Known": "22",
+         "Tech Points": "24",
+         "Max Power Level": "6th",
+         "Potent Aptitude": "d8",
+         "Modification Slots": "7"
+        },
+        "13": {
+         "Level": "13",
+         "Proficiency Bonus": "+5",
+         "Features": "�",
+         "Tech Powers Known": "23",
+         "Tech Points": "26",
+         "Max Power Level": "7th",
+         "Potent Aptitude": "d10",
+         "Modification Slots": "8"
+        },
+        "14": {
+         "Level": "14",
+         "Proficiency Bonus": "+5",
+         "Features": "Discipline feature",
+         "Tech Powers Known": "24",
+         "Tech Points": "28",
+         "Max Power Level": "7th",
+         "Potent Aptitude": "d10",
+         "Modification Slots": "8"
+        },
+        "15": {
+         "Level": "15",
+         "Proficiency Bonus": "+5",
+         "Features": "Infuse Item (+3)",
+         "Tech Powers Known": "25",
+         "Tech Points": "30",
+         "Max Power Level": "8th",
+         "Potent Aptitude": "d10",
+         "Modification Slots": "8"
+        },
+        "16": {
+         "Level": "16",
+         "Proficiency Bonus": "+5",
+         "Features": "Ability Score Improvement",
+         "Tech Powers Known": "26",
+         "Tech Points": "32",
+         "Max Power Level": "8th",
+         "Potent Aptitude": "d10",
+         "Modification Slots": "8"
+        },
+        "17": {
+         "Level": "17",
+         "Proficiency Bonus": "+6",
+         "Features": "�",
+         "Tech Powers Known": "27",
+         "Tech Points": "34",
+         "Max Power Level": "9th",
+         "Potent Aptitude": "d12",
+         "Modification Slots": "9"
+        },
+        "18": {
+         "Level": "18",
+         "Proficiency Bonus": "+6",
+         "Features": "Discipline feature",
+         "Tech Powers Known": "28",
+         "Tech Points": "36",
+         "Max Power Level": "9th",
+         "Potent Aptitude": "d12",
+         "Modification Slots": "9"
+        },
+        "19": {
+         "Level": "19",
+         "Proficiency Bonus": "+6",
+         "Features": "Ability Score Improvement",
+         "Tech Powers Known": "29",
+         "Tech Points": "38",
+         "Max Power Level": "9th",
+         "Potent Aptitude": "d12",
+         "Modification Slots": "9"
+        },
+        "20": {
+         "Level": "20",
+         "Proficiency Bonus": "+6",
+         "Features": "Tech Mastery",
+         "Tech Powers Known": "30",
+         "Tech Points": "40",
+         "Max Power Level": "9th",
+         "Potent Aptitude": "d12",
+         "Modification Slots": "9"
+        }
+       },
+       "casterType": "Tech",
+       "casterRatio": 1,
+       "multiClassProficiencies": [
+        "Light armor"
+       ],
+       "archetypeFlavorName": "Engineering Disciplines"
+      }
+     },
+     "archetypes": {
+      "Armstech Engineering": {
+       "name": "Armstech Engineering",
+       "className": "Engineer",
+       "casterType": "None",
+       "casterRatio": 0,
+       "leveledTable": null
+      }
+     },
+     "species": {
+      "Human": {
+       "name": "Human",
+       "size": "Medium",
+       "homeworld": "Coruscant",
+       "language": "Galactic Basic",
+       "distinctions": "Biped with bilateral symmetry, opposable thumbs",
+       "skinColorOptions": "Light to dark tones",
+       "hairColorOptions": "Black, blond, orange, brown, gray to white (usually with age)",
+       "eyeColorOptions": "Amber, blue, brown, gray, green, hazel, purple, or red",
+       "heightAverage": "4'8\"",
+       "heightRollMod": "+2d10\"",
+       "weightAverage": "110 lb.",
+       "weightRollMod": "x(2d4) lb.",
+       "traits": [
+        {
+         "name": "Ability Score Increase",
+         "description": "One ability score of your choice increases by 2, and two other ability scores of your choice increase by 1. Alternatively, four ability scores of your choice each increase by 1."
+        },
+        {
+         "name": "Age",
+         "description": "Humans reach adulthood in their late teens and live less than a century."
+        },
+        {
+         "name": "Alignment",
+         "description": "Humans tend toward no particular alignment. The best and worst are found among them."
+        },
+        {
+         "name": "Size",
+         "description": "Humans vary widely in height and build, from barely 5 feet to well over 6 feet tall. Regardless of your position in that range, your size is Medium."
+        },
+        {
+         "name": "Speed",
+         "description": "Your base walking speed is 30 feet."
+        },
+        {
+         "name": "Defiant",
+         "description": "Humans are known to be stubborn and often refuse to give up, even against the worst odds. When you or a creature you can see that can see and understand you makes an ability check, attack roll, or saving throw, you can roll a d4 and add it to their roll (no action required). Once you've used this feature, you must complete a short or long rest before you can use it again."
+        },
+        {
+         "name": "Human Versatility",
+         "description": "You gain proficiency in one skill, one tool, and one weapon of your choice."
+        },
+        {
+         "name": "Languages",
+         "description": "You can speak, read, and write Galactic Basic and one extra language of your choice. Humans typically learn the languages of other peoples they deal with, including obscure dialects. They are fond of sprinkling their speech with words borrowed from other tongues: trandoshan curses, twi'lek musical expressions, chiss military phrases, and so on."
+        }
+       ],
+       "imageUrls": [
+        "https://starwars5ecentral.blob.core.windows.net/site-images/species/species_human.png"
+       ]
+      }
+     },
+     "backgrounds": {
+      "Soldier": {
+       "name": "Soldier",
+       "flavorText": "War has been your life for as long as you care to remember. You trained as a youth, studied the use of weapons and armor, learned basic survival techniques, including how to stay alive on the battlefield. You might have been part of a standing national army, a mercenary company, or perhaps a member of a local militia who rose to prominence during a recent war.\r\n\r\nWhen you choose this background, work with your GM to determine which military organization you were a part of, how far through its ranks you progressed, and what kind of experiences you had during your military career. Was it a standing army, a town guard, a village militia, or perhaps a private company.\r\n",
+       "skillProficiencies": "Choose two from Athletics, Intimidation, Persuasion, and Piloting",
+       "toolProficiencies": "One type of gaming set",
+       "languages": "One of your choice",
+       "equipment": "An insignia of rank, a trophy taken from a fallen enemy, a gaming set (one of your choice), a set of common clothes, and a belt pouch containing 100 cr",
+       "featureName": "Military Rank",
+       "featureText": "You have a military rank from your career as a soldier. Soldiers loyal to your former military organization still recognize your authority and influence, and they defer to you if they are of a lower rank. You can invoke your rank to exert influence over other soldiers and requisition simple equipment for temporary use. You can also usually gain access to friendly military encampments where your rank is recognized.\r\n",
+       "flavorName": "Specialty",
+       "flavorDescription": "During your time as a soldier, you had a specific role to play in your unit or army. Roll a d8 or choose from the options in the table below to determine your role:\r\n\r\n|d8|Specialty|\r\n|:---:|:----------:|\r\n|1|Officer|\r\n|2|Scout|\r\n|3|Infantry|\r\n|4|Medic|\r\n\r\n|d8|Specialty|\r\n|:---:|:----------:|\r\n|5|Quartermaster|\r\n|6|Pilot|\r\n|7|Artisan|\r\n|8|Support Staff|\r\n"
+      }
+     },
+     "feats": {
+      "Fighting Stylist": {
+       "name": "Fighting Stylist",
+       "prerequisite": "4th level",
+       "text": "You adopt a particular style of fighting as your specialty, gaining the following benefits:\r\n- Increase your Strength, Dexterity, or Constitution score by 1, to a maximum of 20.\r\n- Choose one of the fighting style options, detailed later in this chapter. \r\n\r\nYou can take this feat multiple times. \r\n",
+       "attributesIncreased": [
+        "Strength",
+        "Dexterity",
+        "Constitution"
+       ],
+       "contentType": "Core",
+       "contentSource": "PHB"
+      },
+      "Weapon Focused": {
+       "name": "Weapon Focused",
+       "prerequisite": "4th level",
+       "text": "You adopt a particular type of weapon as your focus. Choose one of the weapon focus options, detailed later in this chapter. You can take this feat multiple times. \r\n",
+       "attributesIncreased": null,
+       "contentType": "Core",
+       "contentSource": "WH"
+      },
+      "Tech Dabbler": {
+       "name": "Tech Dabbler",
+       "prerequisite": null,
+       "text": "You know two at-will tech powers. When you reach 3rd level, you learn and can cast one 1st-level tech power once per long rest. When you reach 5th level, you learn and can cast one 2nd-level tech power once per long rest. Your techcasting ability is Intelligence. You require use of a wristpad for these powers. Additionally, you lose the Tech-Impaired special trait if you have it.\r\n",
+       "attributesIncreased": null,
+       "contentType": "Core",
+       "contentSource": "PHB"
+      }
+     },
+     "maneuvers": {},
+     "choices": {},
+     "conditions": [
+      {
+       "name": "Blinded",
+       "description": "A blinded creature can't see and automatically fails any ability check that requires sight.\\r\\n- Attack rolls against the creature have advantage, and the creature's attack rolls have disadvantage."
+      },
+      {
+       "name": "Charmed",
+       "description": "A charmed creature can't attack the charmer or target the charmer with harmful abilities or enhanced effects.\\r\\n- The charmer has advantage on any ability check to interact socially with the creature."
+      },
+      {
+       "name": "Deafened",
+       "description": "A deafened creature can't hear and automatically fails any ability check that requires hearing."
+      },
+      {
+       "name": "Exhaustion",
+       "description": "Some special abilities and environmental hazards, such as and the long-term effects of freezing or scorching temperatures, can lead to a special condition called exhaustion. Exhaustion is measured in six levels. An effect can give a creature one or more levels of exhaustion, as specified in the effect's description. Exhaustion Level\\r\\n\\r\\n|Level|Effect|\\r\\n|:--:|:--|\\r\\n|1|Disadvantage on ability checks|\\r\\n|2|Speed halved|\\r\\n|3|Disadvantage on attack rolls and saving throws|\\r\\n|4|Hit point maximum halved|\\r\\n|5|Speed reduced to 0|\\r\\n|6|Death|\\r\\n\\r\\nIf an already exhausted creature suffers another effect that causes exhaustion, its current level of exhaustion increases by the amount specified in the effect's description.\\r\\n\\r\\nA creature suffers the effect of its current level of exhaustion as well as all lower levels. For example, a creature suffering level 2 exhaustion has its speed halved and has disadvantage on ability checks.\\r\\n\\r\\nAn effect that removes exhaustion reduces its level as specified in the effect's description, with all exhaustion effects ending if a creature's exhaustion level is reduced below 1.\\r\\n\\r\\nFinishing a long rest reduces a creature's exhaustion level by 1, provided that the creature has also ingested some food and drink."
+      },
+      {
+       "name": "Frightened",
+       "description": "A frightened creature has disadvantage on ability checks and attack rolls while the source of its fear is within line of sight.\\r\\n- The creature can't willingly move closer to the source of its fear."
+      },
+      {
+       "name": "Grappled",
+       "description": "A grappled creature's speed becomes 0, and it can't benefit from any bonus to its speed.\\r\\n- The condition ends if the grappler is incapacitated (see the condition).\\r\\n- The condition also ends if an effect removes the grappled creature from the reach of the grappler or grappling effect."
+      },
+      {
+       "name": "Incapacitated",
+       "description": "An incapacitated creature can't take actions or reactions."
+      },
+      {
+       "name": "Invisible",
+       "description": "An invisible creature is impossible to see without the aid of powers or a special sense. For the purpose of hiding, the creature is heavily obscured. The creature's location can be detected by any noise it makes or any tracks it leaves.\\r\\n- Attack rolls against the creature have disadvantage, and the creature's attack rolls have advantage."
+      },
+      {
+       "name": "Paralyzed",
+       "description": "A paralyzed creature is incapacitated (see the condition) and can't move or speak.\\r\\n- The creature automatically fails Strength and Dexterity saving throws. Attack rolls against the creature have advantage.\\r\\n- Any attack that hits the creature is a critical hit if the attacker is within 5 feet of the creature."
+      },
+      {
+       "name": "Petrified",
+       "description": "A petrified creature is transformed, along with any object it is wearing or carrying, into a solid inanimate substance (usually stone). Its weight increases by a factor of ten, and it ceases aging.\\r\\n- The creature is incapacitated (see the condition), can't move or speak, and is unaware of its surroundings.\\r\\n- Attack rolls against the creature have advantage. \\r\\n- The creature automatically fails Strength and Dexterity saving throws.\\r\\n- The creature has resistance to all damage.\\r\\n- The creature is immune to poison and disease, although a poison or disease already in its system is suspended, not neutralized."
+      },
+      {
+       "name": "Poisoned",
+       "description": "A poisoned creature has disadvantage on attack rolls and ability checks."
+      },
+      {
+       "name": "Prone",
+       "description": "A prone creature's only movement option is to crawl, unless it stands up and thereby ends the condition. \\r\\n- The creature has disadvantage on melee attack rolls.\\r\\n- The creature has disadvantage on ranged attack rolls against targets within 30 feet.\\r\\n- An attack roll against the creature has advantage if the attacker is within 5 feet of the creature. Otherwise, the attack roll has disadvantage."
+      },
+      {
+       "name": "Restrained",
+       "description": "A restrained creature's speed becomes 0, and it can't benefit from any bonus to its speed.\\r\\n- Attack rolls against the creature have advantage, and the creature's attack rolls have disadvantage.\\r\\n- The creature has disadvantage on Dexterity saving throws."
+      },
+      {
+       "name": "Shocked",
+       "description": "A shocked creature's speed is reduced by half.\\r\\n- The creature can't take reactions."
+      },
+      {
+       "name": "Stunned",
+       "description": "A stunned creature is incapacitated (see the condition), can't move, and can speak only falteringly.\\r\\n- The creature automatically fails Strength and Dexterity saving throws.\\r\\n- Attack rolls against the creature have advantage."
+      },
+      {
+       "name": "Unconscious",
+       "description": "An unconscious creature is incapacitated (see the condition), can't move or speak, and is unaware of its surroundings\\r\\n- The creature drops whatever it's holding and falls prone.\\r\\n- The creature automatically fails Strength and Dexterity saving throws.\\r\\n- Attack rolls against the creature have advantage.\\r\\n- Any attack that hits the creature is a critical hit if the attacker is within 5 feet of the creature."
+      }
+     ]
+    },
+    "validation": {
+     "code": 0,
+     "message": "All checks passed",
+     "isValid": true
+    },
+    "error": null,
+    "at": 1792281333576
+   }
+  },
+  "edits": {
+   "file:armstech-test-(local)": {
+    "fields": {
+     "featureChoices": {
+      "Feat: Weapon Focused": [
+       {
+        "name": "Blade Focus",
+        "weapons": [
+         "Vibrosword"
+        ]
+       }
+      ],
+      "Feat: Fighting Stylist": [
+       {
+        "name": "Formfighting Style"
+       }
+      ],
+      "Feat: Fighting Stylist › Formfighting Style": [
+       {
+        "name": "Juyo Form"
+       }
+      ]
+     }
+    },
+    "updatedAt": 1792281327881
+   }
+  },
+  "itemState": {
+   "file:armstech-test-(local)": {
+    "charges": {},
+    "effects": [
+     {
+      "id": "mvbhm6sy35gt",
+      "kind": "temporary",
+      "source": "feature",
+      "name": "Juyo Form",
+      "startedAt": 1792186579186,
+      "duration": "until the start of your next turn",
+      "group": "state:lightsaber form",
+      "mods": [],
+      "notes": [
+       "Until the start of your next turn, your critical hit range with weapons increases by 1."
+      ],
+      "advantage": [],
+      "defenses": [],
+      "critRange": 1,
+      "target": "self"
+     }
+    ],
+    "updatedAt": 1792186579186
+   }
+  },
+  "trackers": {},
+  "history": {
+   "file:armstech-test-(local)": [
+    {
+     "at": 1792186458445,
+     "reason": "Imported from file",
+     "changedAt": null,
+     "raw": {
+      "name": "Armstech Test (local)",
+      "builderVersion": "0.7.6",
+      "image": "",
+      "experiencePoints": 48000,
+      "species": {
+       "name": "Human",
+       "abilityScoreImprovementSelectedOption": 0,
+       "abilityScoreImprovement": {}
+      },
+      "baseAbilityScores": {
+       "Strength": 10,
+       "Dexterity": 16,
+       "Constitution": 14,
+       "Intelligence": 16,
+       "Wisdom": 12,
+       "Charisma": 8
+      },
+      "background": {
+       "name": "Soldier",
+       "feat": {
+        "name": "Fighting Stylist",
+        "type": "Feat"
+       },
+       "feature": ""
+      },
+      "characteristics": {
+       "alignment": "Balanced Neutral"
+      },
+      "credits": 0,
+      "equipment": [
+       {
+        "name": "Blaster rifle",
+        "quantity": 1,
+        "category": "Equipment",
+        "equipped": true
+       },
+       {
+        "name": "Vibrosword",
+        "quantity": 1,
+        "category": "Equipment",
+        "equipped": true
+       }
+      ],
+      "currentStats": {
+       "hitPointsLost": 0,
+       "temporaryHitPoints": 0,
+       "techPointsUsed": 0,
+       "forcePointsUsed": 0,
+       "superiorityDiceUsed": 0,
+       "hitDiceUsed": {},
+       "deathSaves": {
+        "successes": 0,
+        "failures": 0
+       },
+       "hasInspiration": false,
+       "featuresTimesUsed": {},
+       "conditions": [],
+       "exhaustion": 0
+      },
+      "classes": [
+       {
+        "name": "Engineer",
+        "levels": 9,
+        "hitPoints": [
+         5,
+         5,
+         5,
+         5,
+         5,
+         5,
+         5,
+         5
+        ],
+        "archetype": {
+         "name": "Armstech Engineering"
+        },
+        "abilityScoreImprovements": [
+         {
+          "type": "Feat",
+          "name": "Weapon Focused"
+         },
+         {
+          "type": "Feat",
+          "name": "Tech Dabbler"
+         }
+        ],
+        "techPowers": [],
+        "modifiedItems": [
+         "Blaster rifle",
+         "Vibrosword"
+        ],
+        "options": {
+         "Armstech Modifications": [
+          {
+           "name": "Accuracy Focus"
+          },
+          {
+           "name": "Amplifying Barrel"
+          },
+          {
+           "name": "Burst Core",
+           "item": 1
+          }
+         ]
+        }
+       }
+      ],
+      "tweaks": {},
+      "customProficiencies": [],
+      "customLanguages": [],
+      "customFeatures": [],
+      "customFeats": [],
+      "customTechPowers": [],
+      "customForcePowers": [],
+      "customEquipment": [],
+      "settings": {},
+      "notes": ""
+     }
+    }
+   ]
+  },
+  "rolls": [],
+  "rollSettings": {
+   "critMode": "max"
+  },
+  "rulesInfo": {
+   "dataVersion": 199,
+   "fetchedAt": 1792273029637
+  },
+  "catalogInfo": {
+   "dataVersion": 199,
+   "fetchedAt": 1792170265673,
+   "count": 2425
+  },
+  "backupInfo": {
+   "count": null,
+   "characters": {}
+  },
+  "lastCharacter": "file:armstech-test-(local)"
+ },
+ "from": {
+  "case": "armstech-test-local",
+  "changes": [
+   "--js",
+   "raw.classes[0].name='Operative'; raw.classes[0].archetype={name:'Gunslinger Practice'}; raw.classes[0].options={'Operative Exploits':[{name:\"Weaponmaster's Exploit\", note:'Revolver, Vibrosword, Techblade'}]}"
+  ]
+ }
+}

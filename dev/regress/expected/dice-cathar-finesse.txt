@@ -247,7 +247,7 @@ From class features and species traits (7)
 Consular weapon proficiencies Proficient: Simple lightweapons Proficient: simple vibroweapons Consular proficiencies
 Force Affinity Choose one of Ashla, Bendu, Bogan Consular feature
 Fundamentals of Mechu-deru Technology: proficient Proficient: simple blasters Way of Technology feature
-Cat's Claws Cathar trait
+Cat's Claws Unarmed strike d6, finesse Cathar trait
 Darkvision Darkvision 60 ft Cathar trait
 Silent Step Stealth: proficient Cathar trait
 Treeclimber Climbing speed 30 ft Advantage on Strength saving throws and Strength (Athletics) checks that involve climbing Cathar trait

@@ -278,12 +278,11 @@ Defenses & senses
 Advantages Advantage on Dexterity saving throws against effects that you can see, such as traps and powers
 Other Half proficiency on Intelligence checks without it (Cunning Intellect)
 Effects
-From class features, feats and species traits (8)
+From class features, feats and species traits (7)
 Berserker weapon proficiencies Proficient: All vibroweapons Proficient: simple blasters Berserker proficiencies
 Unarmored Defense AC + CON Berserker feature
 Danger Sense Advantage on Dexterity saving throws against effects that you can see, such as traps and powers Berserker feature
-Durable CON +1 feat (Berserker ASI #1)
-Durable HP maximum +10 feat
+Durable CON +1 HP maximum +10 feat (Berserker ASI #1)
 Observant Passive Perception +5 (advantage) feat
 Cunning Intellect Intelligence saves: proficient Half proficiency on Intelligence checks feat
 Human Versatility Choose one skill Choose one tool Choose one weapon of your choice Human trait

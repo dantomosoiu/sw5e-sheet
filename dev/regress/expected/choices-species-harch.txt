@@ -243,7 +243,7 @@ Force Affinity Choose one of Ashla, Bendu, Bogan Consular feature
 Fundamentals of Mechu-deru Technology: proficient Proficient: simple blasters Way of Technology feature
 Ability Score Increase CON +1 Harch trait
 Darkvision Darkvision 60 ft Harch trait
-Bite Harch trait
+Bite Unarmed strike d4 Harch trait
 Spider Climb Climbing speed 30 ft Advantage on Strength saving throws and Strength (Athletics) checks that involve climbing Harch trait
 Temporary
 No temporary effects.

@@ -383,6 +383,11 @@ function bdFeatureLanguages(raw) {
   }
   return out;
 }
+/**
+ * Which of a feat's asks to make: "Choose one from Wisdom or Charisma… Increase the chosen ability score by 1"
+ * (Spiritual Techcaster) is the +1 picker's choice, so its ability ask isn't asked again.
+ */
+const bdFeatAskFilter = (text) => (/\bincrease the chosen ability score\b/i.test(String(text || '')) ? (a) => !(a.options && a.options.length && a.options.every((o) => PR_ABILITIES.includes(o))) : null);
 /** A class feature's language picker, for its card. */
 function bdFeatureLanguagePicks(m, name) {
   const x = bdFeatureLanguages(m.raw).find((l) => l.name === name);
@@ -649,8 +654,13 @@ function bdSpeciesIncrease(raw) {
       left = left.filter(([a]) => !mine.includes(a));
       return { i, count, options: PR_ABILITIES.slice(), given: any ? PR_ABILITIES.slice() : p.abilities, amount: p.amount, chosen: mine };
     });
+    // Nothing recorded yet: the half's own increases hold (the sheet applies them; moving one records them all).
+    const missing = {};
+    if (!Object.keys(chosen).length) {
+      for (const p of hpicks.filter((x) => x.given.length <= x.count)) { p.chosen = p.given.slice(); p.auto = true; for (const g of p.given) missing[g] = p.amount; }
+    }
     const moved = hpicks.filter((p) => p.chosen.some((a) => !p.given.includes(a)));
-    return { options: hopts, fixed: {}, picks: hpicks, all: {}, missing: {}, half: half.name,
+    return { options: hopts, fixed: {}, picks: hpicks, all: {}, missing, half: half.name,
       problems: moved.length > 1 ? ['Only one of the increases can go to another ability than the given one.'] : [] };
   }
   const opts = prSpeciesIncreases(ref);
@@ -1190,7 +1200,8 @@ function bdOpenChoices(m) {
   for (const name of bdFeatNames(raw)) {
     const ref = bdFeatList().find((f) => f.name === name);
     if (!ref) continue;
-    for (const a of openAsks(featureAsks(m, { name, text: ref.text || '', source: 'Feat' }))) add('feats', `${name}: ${a.label.toLowerCase()}${more(a.count - a.chosen.length)}`);
+    const keep = bdFeatAskFilter(ref.text);
+    for (const a of openAsks(featureAsks(m, { name, text: ref.text || '', source: 'Feat' }).filter((x) => !keep || keep(x)))) add('feats', `${name}: ${a.label.toLowerCase()}${more(a.count - a.chosen.length)}`);
   }
   // What the items in use ask (a side effect's score, Adapted Armor's damage type, a weapon of your choice): in the
   // item's note.
@@ -1206,7 +1217,7 @@ function bdOpenChoices(m) {
   for (const t of bdSpeciesTraitFeatures(m)) {
     for (const a of openAsks(featureAsks(m, t))) add('species', `${t.name}: ${a.label.toLowerCase()}${more(a.count - a.chosen.length)}`);
   }
-  if (sp) for (const p of bdSpeciesIncrease(raw).picks) if (p.chosen.length < p.count) add('species', `species +${p.amount}${more(p.count - p.chosen.length)} (${p.options.length < 6 ? p.options.join(' or ') : 'any ability'})`);
+  if (sp) for (const p of bdSpeciesIncrease(raw).picks) if (p.chosen.length < p.count) add('species', `species +${p.amount}${more(p.count - p.chosen.length)} (${p.given.length < 6 ? p.given.join(' or ') : 'any ability'})`);
   return out;
 }
 function bdOpenChoicesHtml(m) {

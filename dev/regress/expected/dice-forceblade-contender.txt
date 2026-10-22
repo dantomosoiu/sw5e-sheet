@@ -305,16 +305,15 @@ Defenses & senses
 Speeds Climbing speed equal to walking speed Swimming speed equal to walking speed
 Other Half proficiency on checks without it (Led by the Force)
 Effects
-From class features, feats and species traits (9)
+From class features, feats and species traits (8)
 Sentinel weapon proficiencies Proficient: Simple lightweapons Proficient: simple vibroweapons Proficient: martial lightweapons with the finesse property Profici… [234 chars #541e941a]
 Led by the Force Half proficiency on checks Sentinel feature
 Ideal of the Agile Climbing speed equal to walking speed Swimming speed equal to walking speed Sentinel Ideals feature
 Ideal of the Contender Unarmed die +1 step Sentinel Ideals feature
-Silver-Tongued CHA +1 feat (background feat)
-Silver-Tongued Deception: proficient feat
+Silver-Tongued CHA +1 Deception: proficient feat (background feat)
 Human Versatility Stealth: proficient Choose one tool Choose one weapon of your choice Human trait
-Ideal of the Contender Sentinel feature
-Forceblade Bond Sentinel feature
+Ideal of the Contender Sentinel Ideals feature
+Forceblade Bond Path of the Forceblade feature
 Temporary
 No temporary effects.
 []
@@ -475,12 +474,12 @@ Weapon | To hit | Damage | Ability | Type | Properties |
 Vibrorapier
 Finesse
 | +9 | 1d8+5 Kinetic | Wisdom (Forceblade Bond) | Martial Vibroweapon | Finesse |
-  ↳ hover weapons.0.attackBonus: Without tweaks or effects: 3 → now 9 / proficient Proficient: martial vibroweapons with the finesse property · Sentinel weapon prof… [254 chars #86ad7e9d]
-  ↳ hover weapons.0.damageBonus: Without tweaks or effects: 3 → now 5 / +2 WIS +5 instead of DEX · Forceblade Bond Sentinel feature
+  ↳ hover weapons.0.attackBonus: Without tweaks or effects: 3 → now 9 / proficient Proficient: martial vibroweapons with the finesse property · Sentinel weapon prof… [268 chars #0d8f50c3]
+  ↳ hover weapons.0.damageBonus: Without tweaks or effects: 3 → now 5 / +2 WIS +5 instead of DEX · Forceblade Bond Path of the Forceblade feature
 Unarmed Strike
 | +7 | 1d4+3 Kinetic | Dexterity (finesse) | Unarmed | — |
-  ↳ hover weapons.1.attackBonus: Without tweaks or effects: 4 → now 7 / +3 Finesse: DEX +3 instead of STR · Ideal of the Contender Sentinel feature
-  ↳ hover weapons.1.damageBonus: Without tweaks or effects: 1 → now 3 / d4 Unarmed damage up a step (1 → d4) · Ideal of the Contender Sentinel Ideals feature / +3 F… [231 chars #463ccc17]
+  ↳ hover weapons.1.attackBonus: Without tweaks or effects: 4 → now 7 / +3 Finesse: DEX +3 instead of STR · Ideal of the Contender Sentinel Ideals feature
+  ↳ hover weapons.1.damageBonus: Without tweaks or effects: 1 → now 3 / d4 Unarmed damage up a step (1 → d4) · Ideal of the Contender Sentinel Ideals feature / +3 F… [238 chars #ceefcdfa]
 
 ## Sheet: Force Casting
 Force points

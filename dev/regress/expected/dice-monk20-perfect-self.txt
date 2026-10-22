@@ -271,17 +271,16 @@ Defenses & senses
 Resistances Resistance to poison damage
 Immunities Immune to disease and poison
 Effects
-From class features, feats and species traits (10)
+From class features, feats and species traits (9)
 Monk weapon proficiencies Proficient: Simple blasters Proficient: simple vibroweapons Proficient: martial vibroweapons that lack the dexterity, heavy, special, and two-handed properties Monk proficiencies
 Unarmored Defense AC + WIS/CHA Monk feature
 Unarmored Movement Speed +30 ft Monk feature
 Purity of Body Immune to disease and poison Resistance to poison damage Monk feature
 Diamond Soul Strength saves: proficient Dexterity saves: proficient Constitution saves: proficient Intelligence saves: proficient Wisdom saves: proficient Charisma saves: proficient Monk feature
 Perfect Self DEX +2 WIS +2 Monk feature
-Silver-Tongued CHA +1 feat (background feat)
-Silver-Tongued Deception: proficient feat
+Silver-Tongued CHA +1 Deception: proficient feat (background feat)
 Human Versatility Choose one skill Choose one tool Choose one weapon of your choice Human trait
-Martial Arts Monk feature
+Martial Arts Unarmed strike d12, finesse Monk feature
 Temporary
 No temporary effects.
 []

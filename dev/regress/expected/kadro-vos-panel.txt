@@ -334,7 +334,7 @@ Weapon Expert Proficient: all blasters Proficient: all lightweapons Proficient: 
 Coercive Persuasion: proficient Zabrak trait
 Crafters Tinker's implements: proficient Zabrak trait
 Toughness HP maximum +4 Zabrak trait
-Unarmed Combatant Zabrak trait
+Unarmed Combatant Unarmed strike d4, finesse Zabrak trait
 From equipment
 Xerrol Nightstinger Rifle Damage +1 on [Blaster rifle ▾] while equipped
 Additionally, when you make the Dexterity (Stealth) check to remain hidden as a part of the weapon's silent property, you have advantage on the check.

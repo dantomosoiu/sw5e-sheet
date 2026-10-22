@@ -287,11 +287,10 @@ Combat [Start combat]
 Class dice
 Superiority Dice Size 1d6 Potent Aptitude 1d4
 Effects
-From class features, feats and species traits (5)
+From class features, feats and species traits (4)
 Fighter weapon proficiencies Proficient: All blasters Proficient: all vibroweapons Fighter proficiencies
 Bonus Proficiencies Choose artisan's implements Tactical Specialist feature
-Silver-Tongued CHA +1 feat (background feat)
-Silver-Tongued Deception: expertise (already proficient) feat
+Silver-Tongued CHA +1 Deception: expertise (already proficient) feat (background feat)
 Shrewd Insight: proficient Deception: proficient Bothan trait
 From equipment
 Aratech Echo Belt while attuned

@@ -264,7 +264,7 @@ Techie Technology: expertise (already proficient) feat
 Coercive Choose one of Persuasion, Intimidation Zabrak trait
 Crafters Choose one set of artisan’s implements of your choice Zabrak trait
 Toughness HP maximum +4 Zabrak trait
-Unarmed Combatant Zabrak trait
+Unarmed Combatant Unarmed strike d4, finesse Zabrak trait
 Temporary
 No temporary effects.
 []

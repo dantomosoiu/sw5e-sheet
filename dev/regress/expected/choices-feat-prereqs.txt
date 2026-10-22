@@ -259,12 +259,11 @@ Rage Damage +2
 Defenses & senses
 Advantages Advantage on Dexterity saving throws against effects that you can see, such as traps and powers
 Effects
-From class features, feats and species traits (6)
+From class features, feats and species traits (5)
 Berserker weapon proficiencies Proficient: All vibroweapons Proficient: simple blasters Berserker proficiencies
 Unarmored Defense AC + CON Berserker feature
 Danger Sense Advantage on Dexterity saving throws against effects that you can see, such as traps and powers Berserker feature
-Savage Shorty STR +1 feat (Berserker ASI #1)
-Savage Shorty Speed +5 ft feat
+Savage Shorty STR +1 Speed +5 ft feat (Berserker ASI #1)
 Human Versatility Choose one skill Choose one tool Choose one weapon of your choice Human trait
 Temporary
 No temporary effects.

@@ -1,0 +1,797 @@
+# Armstech Test (local)
+
+## Sent to the rules engine
+The sheet's engine computes the numbers. OUT OF DATE: SW5E's recorded calculation is for an older version of this character; record the case again (dev/regress-record.js) for dev/engine-check.js.
+equipment[1 Vibrosword].tweaks.damage.bonus = 1
+equipment[1 Vibrosword].tweaks.toHit.bonus = 0
+equipment[1 Vibrosword].tweaks.toHit.proficiency = "proficient"
+equipped = [Blaster rifle, Vibrosword]
+
+## Numbers (the rules engine, with the sheet's edits)
+currentLevel = 9
+classText = "Operative (Gunslinger Practice) 9"
+proficiencyBonus = 4
+initiative = 3
+armorClass = 13
+armorList = []
+passivePerception = 11
+vision = "normal"
+speed.base = "30 ft"
+speed.day = "24 miles"
+speed.hour = "3 miles"
+speed.special = ""
+hitPoints.hitDice[0].maximum = 9
+hitPoints.hitDice[0].size = "d8"
+hitPoints.maximum = 66
+abilityScores.Charisma.modifier = -1
+abilityScores.Charisma.savingThrow.modifier = -1
+abilityScores.Charisma.savingThrow.proficiency = "none"
+abilityScores.Charisma.skills[Deception].modifier = -1
+abilityScores.Charisma.skills[Deception].proficiency = "none"
+abilityScores.Charisma.skills[Intimidation].modifier = -1
+abilityScores.Charisma.skills[Intimidation].proficiency = "none"
+abilityScores.Charisma.skills[Performance].modifier = -1
+abilityScores.Charisma.skills[Performance].proficiency = "none"
+abilityScores.Charisma.skills[Persuasion].modifier = -1
+abilityScores.Charisma.skills[Persuasion].proficiency = "none"
+abilityScores.Charisma.value = 8
+abilityScores.Constitution.modifier = 2
+abilityScores.Constitution.savingThrow.modifier = 2
+abilityScores.Constitution.savingThrow.proficiency = "none"
+abilityScores.Constitution.skills = []
+abilityScores.Constitution.value = 14
+abilityScores.Dexterity.modifier = 3
+abilityScores.Dexterity.savingThrow.modifier = 7
+abilityScores.Dexterity.savingThrow.proficiency = "proficient"
+abilityScores.Dexterity.skills[Acrobatics].modifier = 3
+abilityScores.Dexterity.skills[Acrobatics].proficiency = "none"
+abilityScores.Dexterity.skills[Sleight of Hand].modifier = 3
+abilityScores.Dexterity.skills[Sleight of Hand].proficiency = "none"
+abilityScores.Dexterity.skills[Stealth].modifier = 3
+abilityScores.Dexterity.skills[Stealth].proficiency = "none"
+abilityScores.Dexterity.value = 16
+abilityScores.Intelligence.modifier = 3
+abilityScores.Intelligence.savingThrow.modifier = 7
+abilityScores.Intelligence.savingThrow.proficiency = "proficient"
+abilityScores.Intelligence.skills[Investigation].modifier = 3
+abilityScores.Intelligence.skills[Investigation].proficiency = "none"
+abilityScores.Intelligence.skills[Lore].modifier = 3
+abilityScores.Intelligence.skills[Lore].proficiency = "none"
+abilityScores.Intelligence.skills[Nature].modifier = 3
+abilityScores.Intelligence.skills[Nature].proficiency = "none"
+abilityScores.Intelligence.skills[Piloting].modifier = 3
+abilityScores.Intelligence.skills[Piloting].proficiency = "none"
+abilityScores.Intelligence.skills[Technology].modifier = 3
+abilityScores.Intelligence.skills[Technology].proficiency = "none"
+abilityScores.Intelligence.value = 16
+abilityScores.Strength.modifier = 0
+abilityScores.Strength.savingThrow.modifier = 0
+abilityScores.Strength.savingThrow.proficiency = "none"
+abilityScores.Strength.skills[Athletics].modifier = 0
+abilityScores.Strength.skills[Athletics].proficiency = "none"
+abilityScores.Strength.value = 10
+abilityScores.Wisdom.modifier = 1
+abilityScores.Wisdom.savingThrow.modifier = 1
+abilityScores.Wisdom.savingThrow.proficiency = "none"
+abilityScores.Wisdom.skills[Animal Handling].modifier = 1
+abilityScores.Wisdom.skills[Animal Handling].proficiency = "none"
+abilityScores.Wisdom.skills[Insight].modifier = 1
+abilityScores.Wisdom.skills[Insight].proficiency = "none"
+abilityScores.Wisdom.skills[Medicine].modifier = 1
+abilityScores.Wisdom.skills[Medicine].proficiency = "none"
+abilityScores.Wisdom.skills[Perception].modifier = 1
+abilityScores.Wisdom.skills[Perception].proficiency = "none"
+abilityScores.Wisdom.skills[Survival].modifier = 1
+abilityScores.Wisdom.skills[Survival].proficiency = "none"
+abilityScores.Wisdom.value = 12
+weapons[Blaster rifle].ability = "Dexterity"
+weapons[Blaster rifle].attackBonus = 3
+weapons[Blaster rifle].damageBonus = 3
+weapons[Blaster rifle].damageDieModifier = 0
+weapons[Blaster rifle].damageDieType = 8
+weapons[Blaster rifle].damageNumberOfDice = 1
+weapons[Blaster rifle].damageType = "Energy"
+weapons[Blaster rifle].equipped = true
+weapons[Blaster rifle].index = 0
+weapons[Blaster rifle].isCustom = false
+weapons[Blaster rifle].properties = ["Power cell (range 105/420)", "reload 12", "two-handed"]
+weapons[Blaster rifle].quantity = 1
+weapons[Blaster rifle].weaponClassification = "MartialBlaster"
+weapons[Vibrosword].ability = "Strength"
+weapons[Vibrosword].attackBonus = 4
+weapons[Vibrosword].damageBonus = 1
+weapons[Vibrosword].damageDieModifier = 0
+weapons[Vibrosword].damageDieType = 6
+weapons[Vibrosword].damageNumberOfDice = 2
+weapons[Vibrosword].damageType = "Kinetic"
+weapons[Vibrosword].equipped = true
+weapons[Vibrosword].index = 1
+weapons[Vibrosword].isCustom = false
+weapons[Vibrosword].properties = ["Dexterity 11", "two-handed"]
+weapons[Vibrosword].quantity = 1
+weapons[Vibrosword].tweaks.damage.bonus = 1
+weapons[Vibrosword].tweaks.toHit.bonus = 0
+weapons[Vibrosword].tweaks.toHit.proficiency = "proficient"
+weapons[Vibrosword].weaponClassification = "MartialVibroweapon"
+weapons[Unarmed Strike].ability = "Strength"
+weapons[Unarmed Strike].attackBonus = 4
+weapons[Unarmed Strike].damageBonus = 1
+weapons[Unarmed Strike].damageDieType = 0
+weapons[Unarmed Strike].damageNumberOfDice = 1
+weapons[Unarmed Strike].damageType = "Kinetic"
+weapons[Unarmed Strike].equipped = true
+weapons[Unarmed Strike].index = -1
+weapons[Unarmed Strike].isCustom = false
+weapons[Unarmed Strike].properties = []
+weapons[Unarmed Strike].quantity = 0
+weapons[Unarmed Strike].weaponClassification = "Unarmed"
+attunement.hasAttunable = false
+attunement.maximum = 4
+carryingCapacity.encumbered = 50
+carryingCapacity.heavilyEncumbered = 100
+carryingCapacity.maxCapacity = 150
+carryingCapacity.pushDragLift = 300
+superiority = false
+techCasting = false
+forceCasting = false
+proficiencies[Simple blasters].type = "weapon"
+proficiencies[simple vibroweapons].type = "weapon"
+proficiencies[martial blasters that lack the auto].type = "weapon"
+proficiencies[special].type = "weapon"
+proficiencies[strength].type = "weapon"
+proficiencies[and two-handed properties].type = "weapon"
+proficiencies[martial vibroweapons with the finesse property].type = "weapon"
+proficiencies[Light armor].type = "armor"
+proficiencies[One type of gaming set].type = "tool"
+skillAndSaveProficiencies = ["Dexterity Saving Throws", "Intelligence Saving Throws"]
+languages = ["Galactic Basic", "Galactic Basic"]
+experiencePoints.isCorrect = true
+experiencePoints.nextLevel = 64000
+experiencePoints.previousLevel = 48000
+conditions = []
+exhaustion = 0
+
+## Effects and tweaks
+effect: Operative weapon proficiencies · feature
+effect: Expertise · feature
+effect: Weaponmaster's Exploit · feature
+effect: Human Versatility · feature
+effect: Blade Focus · feature
+effect: Juyo Form · temporary · state:lightsaber form · until the start of your next turn
+weapon tweak: #1 damage +1 · Blade Focus
+weapon tweak: #1 toHit +0 · Weaponmaster's Exploit
+
+## Rolls
+init: Initiative: d20 +3 · = +3 modifier
+death: Death saving throw: d20 +0
+hitdie|d8: Hit die (d8): d8 +2 · = +2 per die
+dice|5d6: 5d6: d6 d6 d6 d6 d6 +0
+check|Strength: Strength check: d20 +0 · = +0 modifier
+save|Strength: Strength saving throw: d20 +0 · = +0 modifier
+skill|Strength|0: Athletics (STR): d20 +0 · = +0 modifier
+check|Dexterity: Dexterity check: d20 +3 · = +3 modifier
+save|Dexterity: Dexterity saving throw: d20 +7 · = +7 modifier
+skill|Dexterity|0: Acrobatics (DEX): d20 +3 · = +3 modifier
+skill|Dexterity|1: Sleight of Hand (DEX): d20 +3 · = +3 modifier
+skill|Dexterity|2: Stealth (DEX): d20 +3 · = +3 modifier
+check|Constitution: Constitution check: d20 +2 · = +2 modifier
+save|Constitution: Constitution saving throw: d20 +2 · = +2 modifier
+check|Intelligence: Intelligence check: d20 +3 · = +3 modifier
+save|Intelligence: Intelligence saving throw: d20 +7 · = +7 modifier
+skill|Intelligence|0: Investigation (INT): d20 +3 · = +3 modifier
+skill|Intelligence|1: Lore (INT): d20 +3 · = +3 modifier
+skill|Intelligence|2: Nature (INT): d20 +3 · = +3 modifier
+skill|Intelligence|3: Piloting (INT): d20 +3 · = +3 modifier
+skill|Intelligence|4: Technology (INT): d20 +3 · = +3 modifier
+check|Wisdom: Wisdom check: d20 +1 · = +1 modifier
+save|Wisdom: Wisdom saving throw: d20 +1 · = +1 modifier
+skill|Wisdom|0: Animal Handling (WIS): d20 +1 · = +1 modifier
+skill|Wisdom|1: Insight (WIS): d20 +1 · = +1 modifier
+skill|Wisdom|2: Medicine (WIS): d20 +1 · = +1 modifier
+skill|Wisdom|3: Perception (WIS): d20 +1 · = +1 modifier
+skill|Wisdom|4: Survival (WIS): d20 +1 · = +1 modifier
+check|Charisma: Charisma check: d20 −1 · = −1 modifier
+save|Charisma: Charisma saving throw: d20 −1 · = −1 modifier
+skill|Charisma|0: Deception (CHA): d20 −1 · = −1 modifier
+skill|Charisma|1: Intimidation (CHA): d20 −1 · = −1 modifier
+skill|Charisma|2: Performance (CHA): d20 −1 · = −1 modifier
+skill|Charisma|3: Persuasion (CHA): d20 −1 · = −1 modifier
+attack|0: Blaster rifle attack: d20 +3 · = +3 modifier · critical on 19–20 (Juyo Form)
+damage|0: Blaster rifle damage: d8 +3 · = +3 DEX modifier · Energy · option: Sneak Attack +5d6
+attack|1: Vibrosword attack: d20 +4 · = +4 modifier · critical on 19–20 (Juyo Form)
+damage|1: Vibrosword damage: d6 d6 +1 · = +1 Blade Focus · Kinetic
+attack|2: Unarmed Strike attack: d20 +4 · = +4 modifier · critical on 19–20 (Juyo Form)
+damage|2: Unarmed Strike damage: no dice +1 · = +1 unarmed strike · Kinetic
+tool|One type of gaming set|proficient: One type of gaming set check: d20 +7 · = +3 INT modifier +4 proficiency
+damage|0|crit: Blaster rifle damage (critical): d8 d8 +3 · = +3 DEX modifier · Energy · critical · option: Sneak Attack +5d6
+damage|1|crit: Vibrosword damage (critical): d6 d6 d6 d6 +1 · = +1 Blade Focus · Kinetic · critical
+damage|2|crit: Unarmed Strike damage (critical): no dice +1 · = +1 unarmed strike · Kinetic · critical
+
+## Sheet: Overview
+Armstech Test (local)
+Human · Operative (Gunslinger Practice) 9
+Level 9 Background: Soldier Balanced Neutral Proficiency +4 [Add a picture]
+48,000 XP level 10 at 64,000 (16,000 to go)
+Still to choose (17): Operative skills (4 more) · Operative tool · Operative Expertise (4 more) · Operative Exploits (2 more) · At-will tech power (2 more) (Fea… [585 chars #ee1536bd]
+
+## Sheet: Combat & Vitals
+Armor Class
+13
+Unarmored
+Hit Points
+66 / 66
+No temporary HP
+Initiative
++3
+Speed
+30 ft
+3 miles/hour · 24 miles/day
+Proficiency
++4
+Passive Perception
+11
+Hit Dice
+9/9d8
++2 per die spent (Con)
+Vision
+Normal
+Play tracker
+[] [untyped ▾] [Damage] [Heal] [Temp HP]
+Death saves ✓ [] [] [] ✗ [] [] [] [Roll]
+Hit dice (d8) roll d8 +2, then Heal 9 / 9 [−] [+]
+Bad Feeling long rest 1 / 1 [−] [+]
+Dive For Cover long rest 4 / 4 [−] [+]
+Defiant short rest 1 / 1 [−] [+]
+Start or end
+Active · lasts until the start of your next turn [End]
+Form rules
+Lightsaber forms (PHB chapter 6): each form you know can be adopted on your turn by using your bonus action, and adopting one replaces the form you were in. Wha… [422 chars #a55c1a59]
+Conditions None [Add a condition… ▾]
+Combat [Start combat]
+[☆ Inspiration] Exhaustion [−] 0 [+]
+[Short rest] [Long rest]
+Class dice
+Sneak Attack 5d6
+Defenses & senses
+Other Critical hit on 19–20 with weapons
+Effects
+From class features, feats and species traits (5)
+Operative weapon proficiencies Proficient: Simple blasters Proficient: simple vibroweapons Proficient: martial blasters that lack the auto, special, strength, a… [267 chars #00d0c943]
+Expertise Choose the skills/tools for expertise Operative feature
+Weaponmaster's Exploit Proficient: Vibrosword Proficient: Techblade Operative Exploits feature
+Human Versatility Choose one skill Choose one tool Choose one weapon of your choice Human trait
+Blade Focus Blade Focus: damage +1 Weapon focus (Vibrosword)
+Temporary
+Juyo Form started, lasts until the start of your next turn, since Fri 21:36 [End]
+Until the start of your next turn, your critical hit range with weapons increases by 1.
+[]
+Your own effect (something the sheet doesn't know)…
+[] [] [No number (a reminder) ▾] [] [Add]
+It's applied like any effect (a dice bonus like Bless's d4 isn't a number: add it in the roller), and ends with End, a rest or Next round when it has run out.
+Bonuses are applied to the sheet's numbers in this browser only (not saved to SW5E); changed numbers are underlined: hover or tap them for details. Conditional … [256 chars #e163e104]
+Conditions
+None active (from SW5E)
+Carrying capacity
+Carried
+16.75 lb
+Unencumbered (variant rule)
+Encumbered at
+50 lb
+Heavily enc. at
+100 lb
+Max capacity
+150 lb
+Push / drag / lift
+300 lb
+
+## Sheet: Abilities & Saving Throws
+STR
+Strength
++0
+10
+(Not proficient) Saving throw+0
+(Not proficient) Athletics+0
+base 10
+DEX
+Dexterity
++3
+16
+(Proficient) Saving throw+7
+(Not proficient) Acrobatics+3
+(Not proficient) Sleight of Hand+3
+(Not proficient) Stealth+3
+base 16
+CON
+Constitution
++2
+14
+(Not proficient) Saving throw+2
+base 14
+INT
+Intelligence
++3
+16
+(Proficient) Saving throw+7
+(Not proficient) Investigation+3
+(Not proficient) Lore+3
+(Not proficient) Nature+3
+(Not proficient) Piloting+3
+(Not proficient) Technology+3
+base 16
+WIS
+Wisdom
++1
+12
+(Not proficient) Saving throw+1
+(Not proficient) Animal Handling+1
+(Not proficient) Insight+1
+(Not proficient) Medicine+1
+(Not proficient) Perception+1
+(Not proficient) Survival+1
+base 12
+CHA
+Charisma
+−1
+8
+(Not proficient) Saving throw−1
+(Not proficient) Deception−1
+(Not proficient) Intimidation−1
+(Not proficient) Performance−1
+(Not proficient) Persuasion−1
+base 8
+not proficient proficient expertise
+
+## Sheet: Skills
+Skill | Ability | Bonus | Passive | Proficiency |
+(Not proficient) Acrobatics | DEX | +3 | 13 | — |
+(Not proficient) Animal Handling | WIS | +1 | 11 | — |
+(Not proficient) Athletics | STR | +0 | 10 | — |
+(Not proficient) Deception | CHA | −1 | 9 | — |
+(Not proficient) Insight | WIS | +1 | 11 | — |
+(Not proficient) Intimidation | CHA | −1 | 9 | — |
+(Not proficient) Investigation | INT | +3 | 13 | — |
+(Not proficient) Lore | INT | +3 | 13 | — |
+(Not proficient) Medicine | WIS | +1 | 11 | — |
+(Not proficient) Nature | INT | +3 | 13 | — |
+(Not proficient) Perception | WIS | +1 | 11 | — |
+(Not proficient) Performance | CHA | −1 | 9 | — |
+(Not proficient) Persuasion | CHA | −1 | 9 | — |
+(Not proficient) Piloting | INT | +3 | 13 | — |
+(Not proficient) Sleight of Hand | DEX | +3 | 13 | — |
+(Not proficient) Stealth | DEX | +3 | 13 | — |
+(Not proficient) Survival | WIS | +1 | 11 | — |
+(Not proficient) Technology | INT | +3 | 13 | — |
+
+## Sheet: Weapons & Attacks
+Weapon | To hit | Damage | Ability | Type | Properties |
+Blaster rifle
+Power cell (range 105/420), reload 12, two-handed
+Shots 12/12 [−1] [Reload] 0 Power cells
+| +3 | 1d8+3 Energy | Dexterity | Martial Blaster | Power cell (range 105/420), reload 12, two-handed |
+Vibrosword
+Dexterity 11, two-handed
+| +4 | 2d6+1 Kinetic | Strength | Martial Vibroweapon | Dexterity 11, two-handed |
+  ↳ hover weapons.1.attackBonus: Without tweaks or effects: 0 → now 4 / proficient Proficient: Vibrosword · Weaponmaster's Exploit Operative Exploits feature
+  ↳ hover weapons.1.damageBonus: Without tweaks or effects: 0 → now 1 / +1 Blade Focus: damage · Blade Focus Weapon focus (Vibrosword)
+Unarmed Strike
+| +4 | 1 Kinetic | Strength | Unarmed | — |
+
+## Sheet: Class Features
+Operative (9)
+Sneak Attack Level 1
+Operative: 1st level
+You know how to strike subtly and exploit a foe's distraction. Once per turn, you can deal an extra 1d6 damage to one creature you hit with a weapon attack if y… [299 chars #80e56766]
+You don't need advantage on the attack roll if another enemy of the target is within 5 feet of it, that enemy isn't incapacitated, and you don't have disadvantage on the attack roll.
+The amount of the extra damage increases as you gain levels in this class, as shown in the Sneak Attack column of the operative table.
+Add a note
+Notes []
+Cunning Action Level 2
+Operative: 2nd level
+Your quick thinking and agility allow you to move and act quickly. You can take the Dash, Disengage, or Hide actions as a bonus action.
+Add a note
+Notes []
+Bad Feeling Level 3
+Uses (back on a long rest) 1 / 1 [−] [+]
+Operative: 3rd level
+You have a wary eye, bordering on paranoia. When you roll for initiative, you can move up to your speed. This movement happens before the initiative order is determined.
+Once you've used this feature, you can't use it again until you finish a long rest.
+Add a note
+Notes []
+Uncanny Dodge Level 5
+Operative: 5th level
+When an attacker that you can see deals damage to you with an attack, you can use your reaction to halve the attack's damage against you.
+Add a note
+Notes []
+Expertise Level 6
+Operative: 1st and 6th level
+Choose two of your skill proficiencies, or one of skill proficiencies and one of your tool proficiencies, or two of your tool proficiencies. You gain expertise in those skills or tools.
+At 6th level, you can choose two more of your proficiencies (in skills or tools) to gain this benefit.
+Expertise 0 / 4 Operative 1st and 6th level
+None chosen yet.
+Add a note
+Notes []
+Evasion Level 7
+Operative: 7th level
+When you are subjected to an effect that allows you to make a Dexterity saving throw to take only half damage, you instead take no damage if you succeed on a saving throw, and only half damage if you fail.
+Add a note
+Notes []
+Operative Exploits Level 7
+Operative: 2nd, 7th, 13th, and 17th level
+You've adopted two exploits, as detailed at the end of the class description. You adopt an additional exploit at 7th, 13th, and 17th level.
+Operative Exploits 1 / 3 from the Operative table (“Operative Exploits”)
+Weaponmaster's Exploit Revolver: not allowed [×]
+[Revolver, Vibrosword, Techblade]
+You gain proficiency in three blasters or vibroweapons that lack the heavy and strength properties.
+You can select this exploit multiple times. Each time you do so, you must choose different weapons.
+[Add from Operative Exploits… ▾]
+Read the options (11)
+Add a note
+Notes []
+Ability Score Improvement Level 8
+Operative: 4th, 8th, 10th, 12th, 16th, and 19th level
+You can increase one ability score by 2, or you can increase two ability scores by 1. You can't increase an ability score above 20 using this feature.
+Add a note
+Notes []
+Operative Practice Level 9
+Operative: 3rd, 9th, 13th, and 17th level
+You choose a practice that you emulate in the exercise of your operative abilities, which is detailed at the end of the class description. Your practice choice … [237 chars #baadaa83]
+Archetype [Gunslinger Practice ▾]
+Read the options (15)
+Add a note
+Notes []
+Gunslinger Practice (archetype) (3)
+Trick Shooter Level 3
+Gunslinger Practice: 3rd level
+You learn a number of trick shots you can use to debilitate enemies and impress allies. When you deal Sneak Attack damage to a creature, you may choose to forgo… [223 chars #06fdc063]
+Some of your trick shots require your target to make a saving throw to resist the trick shot's effects. The saving throw DC is calculated as follows:
+Trick Shot save DC = 8 + your proficiency bonus + your Dexterity modifier
+Blinding Shot
+You attempt to blind the target. The target must make a Constitution saving throw or be blinded until the end of your next turn.
+Brutal Shot
+You attempt to knock the target prone. The target must make a Strength saving throw or be knocked prone.
+Hampering Shot
+You attempt to hobble the enemy's movement. The target must make a Dexterity saving throw. If it fails, it gains 1 slowed level and it has disadvantage on Dexterity saving throws until the end of its next turn.
+Your choices []
+Dive For Cover Level 9
+Uses (back on a long rest) 4 / 4 [−] [+]
+Gunslinger Practice: 3rd, 5th, 9th, 13th, and 17th level
+You learn to quickly move into cover when under fire. Once per round, when you are the target of a ranged attack, or you are subjected to an effect that allows … [325 chars #7a3784fe]
+You can use this feature twice. You gain an additional use at 5th, 9th, 13th, and 17th level. You regain all expended uses when you complete a long rest.
+Add a note
+Notes []
+Spinning Flourish Level 9 DC 15 Wisdom save
+Gunslinger Practice: 9th level
+You can flourish your weapon in an intimidating or charming manner. As an action, you can cause one creature within 60 feet to make a Wisdom saving throw (DC = … [322 chars #4c5224c4]
+Add a note
+Notes []
+Operative: Operative Exploits (1)
+Weaponmaster's Exploit (Revolver, Vibrosword, Techblade)
+You gain proficiency in three blasters or vibroweapons that lack the heavy and strength properties.
+You can select this exploit multiple times. Each time you do so, you must choose different weapons.
+Fighting styles (1)
+Formfighting Style Feat: Fighting Stylist (Background (Soldier))
+You are skilled at the basics of the known forms of lightsaber combat. You gain the following benefits:
+You learn three lightsaber forms, detailed later in this chapter.
+Once on each of your turns, you can draw or stow a lightweapon without using your object interaction.
+Weapon focuses (1)
+Blade Focus Feat: Weapon Focused (Operative ASI #1)
+You've focused your combat training on blade weapons. You gain the following benefits while wielding any of these weapons, if you are proficient with it:
+You gain a +1 bonus to the weapon's damage rolls.
+When you score a critical hit with the weapon, the next attack roll the target makes before the start of your next turn has disadvantage.
+When you take the Attack action, you can choose to forgo one or more attacks to parry. For each attack you forgo, you gain a +1 bonus to AC until the start of your next turn.
+Lightsaber forms (1)
+Juyo Form Feat: Fighting Stylist (Background (Soldier))
+Active · lasts until the start of your next turn [End]
+Form rules
+Lightsaber forms (PHB chapter 6): each form you know can be adopted on your turn by using your bonus action, and adopting one replaces the form you were in. Wha… [422 chars #a55c1a59]
+Until the start of your next turn, your critical hit range with weapons increases by 1.
+
+## Sheet: Feats
+Choices from your feats
+Fighting style 1 / 1 Feat: Fighting Stylist (Background (Soldier))
+Formfighting Style needs: The ability to cast force powers
+The feat needs: 4th level (a background feat is taken at 1st level)
+Formfighting Style [×]
+[]
+Prerequisite: The ability to cast force powers
+You are skilled at the basics of the known forms of lightsaber combat. You gain the following benefits:
+You learn three lightsaber forms, detailed later in this chapter.
+Once on each of your turns, you can draw or stow a lightweapon without using your object interaction.
+Weapon focus 1 / 1 Feat: Weapon Focused (Operative ASI #1)
+Blade Focus [×]
+[]
+Applies to: [ ] Blaster rifle [x] Vibrosword
+You've focused your combat training on blade weapons. You gain the following benefits while wielding any of these weapons, if you are proficient with it:
+You gain a +1 bonus to the weapon's damage rolls.
+When you score a critical hit with the weapon, the next attack roll the target makes before the start of your next turn has disadvantage.
+When you take the Attack action, you can choose to forgo one or more attacks to parry. For each attack you forgo, you gain a +1 bonus to AC until the start of your next turn.
+At-will tech power 0 / 2 Feat: Tech Dabbler (Operative ASI #2)
+None chosen yet.
+[Choose a tech power… ▾]
+Read the options (46)
+1st-level tech power (once per long rest) 0 / 1 Feat: Tech Dabbler (Operative ASI #2)
+None chosen yet.
+[Choose a tech power… ▾]
+Read the options (53)
+2nd-level tech power (once per long rest) 0 / 1 Feat: Tech Dabbler (Operative ASI #2)
+None chosen yet.
+[Choose a tech power… ▾]
+Read the options (44)
+Lightsaber form 1 / 3 Formfighting Style (Feat: Fighting Stylist (Background (Soldier)))
+Form rules
+Lightsaber forms (PHB chapter 6): each form you know can be adopted on your turn by using your bonus action, and adopting one replaces the form you were in. Wha… [422 chars #a55c1a59]
+Lightsaber forms need the ability to cast force powers (or Lightweapon Strategist)
+The feat needs: 4th level (a background feat is taken at 1st level)
+Juyo Form [×]
+[]
+Until the start of your next turn, your critical hit range with weapons increases by 1.
+[Choose a lightsaber form… ▾]
+Read the options (19)
+Weapon Focused Operative ASI #1 Prereq: 4th level
+You adopt a particular type of weapon as your focus. Choose one of the weapon focus options, detailed later in this chapter. You can take this feat multiple times.
+Add a note
+Notes []
+Tech Dabbler Operative ASI #2
+You know two at-will tech powers. When you reach 3rd level, you learn and can cast one 1st-level tech power once per long rest. When you reach 5th level, you le… [382 chars #b0d200c1]
+Add a note
+Notes []
+Fighting Stylist Background (Soldier)+ Strength+ Dexterity+ Constitution Prereq: 4th level
+You adopt a particular style of fighting as your specialty, gaining the following benefits:
+Increase your Strength, Dexterity, or Constitution score by 1, to a maximum of 20.
+Choose one of the fighting style options, detailed later in this chapter.
+You can take this feat multiple times.
+Add a note
+Notes []
+
+## Sheet: Classes & Progression
+[Level up]
+Operative 9 Gunslinger Practice Starting class
+Hit die d8 Primary Dexterity Saves Dexterity, Intelligence HP by level 8 (max), 5, 5, 5, 5, 5, 5, 5, 5
+Controller who focuses on stealth and techniques
+Ability score improvements
+Feat: Weapon Focused Feat: Tech Dabbler
+Skill proficiencies 0 / 4 Choose any four
+None chosen yet.
+[Choose a skill… ▾]
+Tool proficiency 0 / 1 One specialist's kit of your choice
+None chosen yet.
+[Choose a tool… ▾]
+Expertise 0 / 4 Operative 1st and 6th level
+None chosen yet.
+Archetype [Gunslinger Practice ▾]
+Read the options (15)
+Operative Exploits 1 / 3 from the Operative table (“Operative Exploits”)
+Weaponmaster's Exploit Revolver: not allowed [×]
+[Revolver, Vibrosword, Techblade]
+You gain proficiency in three blasters or vibroweapons that lack the heavy and strength properties.
+You can select this exploit multiple times. Each time you do so, you must choose different weapons.
+[Add from Operative Exploits… ▾]
+Read the options (11)
+Class table
+Proficiency Bonus
++4 → +4 at 10th
+Features
+Practice feature → Ability Score Improvement at 10th
+Sneak Attack
+5d6 → 5d6 at 10th
+Operative Exploits
+3 → 3 at 10th
+| Proficiency Bonus | Features | Sneak Attack | Operative Exploits |
+Now (9th) | +4 | Practice feature | 5d6 | 3 |
+Next (10th) | +4 | Ability Score Improvement | 5d6 | 3 |
+Armor Light armor Weapons Simple blasters, simple vibroweapons, martial blasters that lack the auto, special, strength, and two-handed properties, martial vibro… [235 chars #ad8794bc]
+
+## Sheet: Species
+Size
+Medium
+Homeworld
+Coruscant
+Language
+Galactic Basic
+Average height
+4'8" +2d10"
+Average weight
+110 lb. x(2d4) lb.
+Skin
+Light to dark tones
+Hair
+Black, blond, orange, brown, gray to white (usually with age)
+Eyes
+Amber, blue, brown, gray, green, hazel, purple, or red
+Distinctions
+Biped with bilateral symmetry, opposable thumbs
+Traits (9)
+Ability Score Increase
+One ability score of your choice increases by 2, and two other ability scores of your choice increase by 1. Alternatively, four ability scores of your choice each increase by 1.
+Your choices []
+Age
+Humans reach adulthood in their late teens and live less than a century.
+Add a note
+Notes []
+Alignment
+Humans tend toward no particular alignment. The best and worst are found among them.
+Add a note
+Notes []
+Defiant
+Uses (back on a short or long rest) 1 / 1 [−] [+]
+Humans are known to be stubborn and often refuse to give up, even against the worst odds. When you or a creature you can see that can see and understand you mak… [374 chars #6fad59d8]
+Add a note
+Notes []
+Human Versatility
+You gain proficiency in one skill, one tool, and one weapon of your choice.
+Skill proficiency 0 / 1
+None chosen yet.
+[Choose a skill… ▾]
+Tool proficiency 0 / 1 one tool
+None chosen yet.
+[Choose a tool… ▾]
+Weapon proficiency 0 / 1 one weapon of your choice
+None chosen yet.
+[Choose a weapon… ▾]
+Add a note
+Notes []
+Languages
+You can speak, read, and write Galactic Basic and one extra language of your choice. Humans typically learn the languages of other peoples they deal with, inclu… [346 chars #ff842958]
+Your choices []
+Proficiency
+You gain proficiency in one skill, one tool, and one weapon of your choice.
+Your choices []
+Size
+Humans vary widely in height and build, from barely 5 feet to well over 6 feet tall. Regardless of your position in that range, your size is Medium.
+Add a note
+Notes []
+Speed
+Your base walking speed is 30 feet.
+Add a note
+Notes []
+Ability score +2 0 / 1 One ability score of your choice increases by 2, and two other ability scores of your choice increase by 1. Alternatively, four ability scores of your choice each increase by 1.
+None chosen yet.
+[Choose an ability… ▾]
+Ability score +1 0 / 2 One ability score of your choice increases by 2, and two other ability scores of your choice increase by 1. Alternatively, four ability scores of your choice each increase by 1.
+None chosen yet.
+[Choose an ability… ▾]
+
+## Sheet: Background
+Skill proficiencies
+Choose two from Athletics, Intimidation, Persuasion, and Piloting
+Tool proficiencies
+One type of gaming set
+Languages
+One of your choice
+Starting equipment
+An insignia of rank, a trophy taken from a fallen enemy, a gaming set (one of your choice), a set of common clothes, and a belt pouch containing 100 cr
+Background feat
+Fighting Stylist
+Specialty
+During your time as a soldier, you had a specific role to play in your unit or army. Roll a d8 or choose from the options in the table below to determine your role:
+d8 | Specialty |
+1 | Officer |
+2 | Scout |
+3 | Infantry |
+4 | Medic |
+d8 | Specialty |
+5 | Quartermaster |
+6 | Pilot |
+7 | Artisan |
+8 | Support Staff |
+Feature: Military Rank Background feature
+You have a military rank from your career as a soldier. Soldiers loyal to your former military organization still recognize your authority and influence, and th… [417 chars #07d82bc5]
+About this background
+War has been your life for as long as you care to remember. You trained as a youth, studied the use of weapons and armor, learned basic survival techniques, inc… [362 chars #b05030ad]
+When you choose this background, work with your GM to determine which military organization you were a part of, how far through its ranks you progressed, and wh… [306 chars #85e13a8a]
+Your choices
+Skill proficiencies 0 / 2 Choose two from Athletics, Intimidation, Persuasion, and Piloting
+None chosen yet.
+[Choose a skill… ▾]
+Tool proficiency 0 / 1 One type of gaming set
+None chosen yet.
+[Choose a tool… ▾]
+Languages 0 / 1 One of your choice
+None chosen yet.
+[Choose a language… ▾]
+Fighting Stylist: +1 to 0 / 1 background feat
+None chosen yet.
+[Choose an ability… ▾]
+
+## Sheet: Proficiencies & Languages
+Armor
+Light armor
+Weapon
+Simple blasters simple vibroweapons martial blasters that lack the auto special strength and two-handed properties martial vibroweapons with the finesse propert… [232 chars #d5835e52]
+Tool
+One type of gaming set
+Skills & saves
+Dexterity Saving Throws Intelligence Saving Throws
+Languages
+Galactic Basic
+✎ = custom proficiency added on the character.
+
+## Sheet: Equipment & Inventory
+Add an item
+[All items ▾] []
+Qty [1] [Add]
+2425 items from SW5E (data version 199). [Check for a newer list]
+Credits
+0 cr
+[] [] [Apply]
+Total weight
+16.75 lb
+of 150 lb max
+Attunement
+0 / 4
+Items
+2
+Weapon (2)
+Item | Qty & actions | Weight | Cost | Source |
+Blaster rifle
+1d8 Energy · Power cell (range 105/420), reload 12, two-handed
+| [−] 1 [+] [Equipped] [✎] [Sell] [×] | 7.5 lb | 525 cr | PHB |
+Vibrosword
+2d6 Kinetic · Dexterity 11, two-handed
+| [−] 1 [+] [Equipped] [✎] [Sell] [×] | 9.25 lb | 1,150 cr | PHB |
+
+## Sheet: Personality & Appearance
+Personality Traits
+—
+Ideal
+—
+Bond
+—
+Flaw
+—
+Details
+Alignment
+Balanced Neutral
+Gender
+—
+Place of Birth
+—
+Age
+—
+Height
+—
+Weight
+—
+Hair
+—
+Eyes
+—
+Skin
+—
+
+## Sheet: Backstory
+No backstory yet.
+
+## Sheet: Notes
+No notes yet.
+
+## Sheet: Settings, Tweaks & Data
+Tweaks (manual adjustments) 0
+From sw5e.com's editor or added here. Give each a reason (kept in this viewer and in backups); hovering or tapping a number they change shows it.
+No tweaks.
+[Add a tweak to… ▾] [add (+/−) ▾] [] [] [Add]
+Builder settings
+None
+Record
+Source
+Imported file
+Loaded
+10/16/2026, 9:34:18 PM
+Builder version
+0.7.6
+Validation
+All checks passed
+Local version history 1 / 25
+SW5E can lose saved characters, so every version seen here is kept in this browser. Compare a version with the character as it is now, or restore it (Undo puts it back).
+Backups (files you keep): this character never · [Back up this character]
+all characters never · [Back up all characters]
+10/16/2026, 9:34:18 PM latest
+Imported from file [Compare] [Restore] [Export]
+Rules engine
+The sheet computes the numbers itself, with SW5E's rules. A character on sw5e.com is checked against its calculation there on each Load.
+SW5E's rules and item data: version 199, as it comes with the sheet. SW5E is the work of Galiphile and the SW5E contributors: credits · the books.
+[Check with sw5e.com]
+Raw SW5E character JSON
+{ "name": "Armstech Test (local)", "builderVersion": "0.7.6", "image": "", "experiencePoints": 48000, "species": { "name": "Human", "abilityScoreImprovementSele… [1897 chars #e6aed2ad]
+Computed character JSON (the sheet's rules engine)
+{ "name": "Armstech Test (local)", "builderVersion": "0.7.6", "image": "", "characteristics": { "alignment": "Balanced Neutral" }, "tweaks": {}, "customProficie… [17834 chars #3f2c9845]

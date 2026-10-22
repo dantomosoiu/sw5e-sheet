@@ -2040,7 +2040,7 @@ function featureEffectsUncached(editedRaw) {
         const esc_ = (x) => x.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
         const viaFeature = items.some((it) => new RegExp(`^#{4,}\\s*${esc_(o.name)}\\s*$`, 'mi').test(it.text || ''));
         // Its choices: on the pick, or in the option card's notes and pickers (Vow of the Focused's ability).
-        if (mods || !(arch && arch.lists.some((l) => l.key === listKey)) || !viaFeature) items.push({ name: p.name, text, note: p.note || featureNoteOf(editedRaw, p.name), source: listKey });
+        if (mods || !(arch && arch.lists.some((l) => l.key === listKey)) || !viaFeature) items.push({ name: p.name, text, note: optionNoteFitting(o, p.note || featureNoteOf(editedRaw, p.name)), source: listKey });
       }
       // "For each modification installed in excess of your proficiency bonus, your tech point maximum is reduced by 1."
       const pb = Math.ceil(arr(editedRaw.classes).reduce((t, x) => t + num(x.levels), 0) / 4) + 1;
@@ -2252,7 +2252,7 @@ function applyEffects(key, editedRaw, complete) {
   // and shield allow it; the monk weapons' come after the weapon proficiencies, below.
   const martial = martialArtsOf(editedRaw).filter((x) => !(x.ma.noArmor && armor.armor) && !(x.ma.noShield && armor.shield)).map((x) => {
     const size = num(String((x.ma.column && classRow(editedRaw, x.k)[x.ma.column]) || x.ma.die).replace(/^\d*d/i, ''));
-    const e = { id: x.id, kind: 'feature', name: x.name, why: `${x.k.name} feature`, target: 'self', mods: [], notes: [], unarmedDie: size, unarmedFinesse: x.ma.finesse };
+    const e = { id: x.id, kind: 'feature', name: x.name, why: `${x.from || x.k.name} feature`, target: 'self', mods: [], notes: [], unarmedDie: size, unarmedFinesse: x.ma.finesse };
     effects.push(e);
     return { ...x, e, size };
   });
@@ -2344,7 +2344,7 @@ function applyEffects(key, editedRaw, complete) {
     const cast = complete && complete[`${sw.kind}Casting`];
     if (!cast || typeof cast !== 'object') continue;
     const e = { id: `castswap:${sw.name}`, kind: 'feature', origin: 'feat', name: sw.name, why: 'feat (casting ability)', target: 'self', notes: [], mods: [],
-      needsChoice: sw.chosen ? [] : [`one of ${sw.options.join(', ')} (the casting ability it replaces)`] };
+      needsChoice: sw.chosen || sw.viaInc ? [] : [`one of ${sw.options.join(', ')} (the casting ability it replaces)`] };
     effects.push(e);
     if (!sw.chosen) continue;
     const bestMod = (list) => Math.max(...list.map(modOf));
@@ -2436,7 +2436,7 @@ function applyEffects(key, editedRaw, complete) {
       if (!x || /\bfor each\b/i.test(s0)) continue;
       const name = sub || f.name;
       const cond = w ? `while ${w[1].replace(/ on an? (?:Force|force|tech) power$/, '')}` : name;
-      const e = { id: `ac-alt:${name}`, kind: 'feature', name, why: f.k ? `${f.k.name} feature` : 'feat', target: 'self', mods: [], notes: [] };
+      const e = { id: `ac-alt:${name}`, kind: 'feature', name, why: f.k ? `${f.from || f.k.name} feature` : 'feat', target: 'self', mods: [], notes: [] };
       res.conds.push({ path: 'armorClass', bonus: num(x[1]), cond, ammo: null, weaponIndex: null, effect: e, mod: { path: 'armorClass', bonus: num(x[1]), label: `AC +${x[1]}`, cond } });
     }
   }
@@ -2596,7 +2596,7 @@ function engineCheckOf(raw, sw5eComplete, ctx) {
  */
 function martialArtsOf(editedRaw) {
   if (typeof clsMartialArts !== 'function') return [];
-  return featureTextsOf(editedRaw).filter((f) => f.k).map((f) => ({ id: `martial:${f.k.name}:${f.name}`, name: f.name, k: f.k, ma: clsMartialArts(f.text) })).filter((x) => x.ma);
+  return featureTextsOf(editedRaw).filter((f) => f.k).map((f) => ({ id: `martial:${f.k.name}:${f.name}`, name: f.name, k: f.k, from: f.from, ma: clsMartialArts(f.text) })).filter((x) => x.ma);
 }
 /**
  * The texts of the character's class and archetype features (the levels reached), picked class options and feats:
@@ -2618,9 +2618,10 @@ function featureTextsOf(editedRaw) {
     const cls = parsed && parsed.classes[k.name];
     for (const [key, picks] of Object.entries(k.options || {})) {
       const list = cls && cls.lists.find((l) => l.key === key);
-      for (const p of arr(picks)) { const o = list && list.options.find((x) => x.name === p.name); if (o) items.push({ name: o.name, text: o.text, note: p.note || '' }); }
+      for (const p of arr(picks)) { const o = list && list.options.find((x) => x.name === p.name); if (o) items.push({ name: o.name, text: o.text, note: p.note || '', from: key }); }
     }
-    for (const f of items) out.push({ name: f.name, text: f.text, k, note: f.note || featureNoteOf(editedRaw, f.name) });
+    // `from`: what gives it, for explanations ("Sentinel Ideals", "Path of Focus", the vow's list).
+    for (const f of items) out.push({ name: f.name, text: f.text, k, note: f.note || featureNoteOf(editedRaw, f.name), from: f.from || f.sourceName || k.name });
   }
   for (const name of featNamesOf(editedRaw)) {
     const ref = rulesModule('feats').find((f) => f.name === name);
@@ -2663,7 +2664,7 @@ function attackGrantsOf(editedRaw) {
   const out = [];
   const A = '(?:Strength|Dexterity|Constitution|Intelligence|Wisdom|Charisma)';
   for (const f of featureTextsOf(editedRaw)) {
-    const why = f.k ? `${f.k.name} feature` : 'feat';
+    const why = f.k ? `${f.from || f.k.name} feature` : 'feat';
     const sentences = String(f.text).replace(/\s+/g, ' ').split(/(?<=\.)\s+(?=[-A-Z_*#])/);
     sentences.forEach((s0, i) => {
       const s = s0.replace(/^[-#*_ ]+/, '');
@@ -3612,8 +3613,14 @@ function renderEffects(m) {
   const temps = tempEffects(m.snap.key);
   const on = items.filter((e) => e.active);
   const off = items.filter((e) => !e.active);
-  const feats = m.fx.effects.filter((e, i, all) => e.kind === 'feature' && all.findIndex((x) => x.id === e.id) === i);
-  const featRow = (e) => `<div class="eff"><div class="eff-head"><b>${esc(e.name)}</b>
+  // One row per feature: the parts of one (Ideal of the Contender's unarmed die and its other numbers) together.
+  const feats0 = m.fx.effects.filter((e, i, all) => e.kind === 'feature' && all.findIndex((x) => x.id === e.id) === i);
+  const feats = feats0.filter((e, i) => feats0.findIndex((x) => x.name === e.name && (x.origin || '') === (e.origin || '')) === i)
+    .map((e) => ({ e, also: feats0.filter((x) => x !== e && x.name === e.name && (x.origin || '') === (e.origin || '')) }))
+    .map(({ e, also }) => (also.length ? { ...e, ...Object.fromEntries(['mods', 'weapons', 'tools', 'armor', 'advantage', 'defenses', 'needsChoice'].map((k) => [k, [e, ...also].flatMap((x) => arr(x[k]))])),
+      critRange: Math.max(...[e, ...also].map((x) => num(x.critRange))), halfProf: [e, ...also].some((x) => x.halfProf), unarmedStep: Math.max(...[e, ...also].map((x) => num(x.unarmedStep))),
+      unarmedDie: Math.max(...[e, ...also].map((x) => num(x.unarmedDie))), unarmedFinesse: [e, ...also].some((x) => x.unarmedFinesse) } : e));
+  const featRow = (e) => `<div class="eff"><div class="eff-head"><b>${esc(e.name)}</b>${e.unarmedDie ? chip(`Unarmed strike d${e.unarmedDie}${e.unarmedFinesse ? ', finesse' : ''}`, 'good') : ''}
       ${arr(e.mods).map((x) => chip(x.label, 'good')).join('')}${arr(e.weapons).map((w) => chip(`Proficient: ${w}`, 'good')).join('')}
       ${arr(e.tools).map((t) => chip(`${t.name}: ${t.level}`, 'good')).join('')}${arr(e.armor).map((a) => chip(`Proficient: ${a}`)).join('')}
       ${arr(e.advantage).map((a) => chip(ADV_TEXT(a), 'good')).join('')}${e.critRange ? chip(`Critical on ${20 - e.critRange}–20`, 'good') : ''}
@@ -5303,11 +5310,14 @@ function castingSwaps(raw) {
     const options = choice ? choice[1].split(/,? (?:or )?/).filter((a) => ABILITIES.includes(a)) : [];
     const note = featureNoteOf(raw, name);
     const inc = typeof bdFeatIncreases === 'function' ? bdFeatIncreases(raw).find((y) => y.name === name) : null;
-    const chosen = options.find((a) => new RegExp(`\\b(?:${a}|${ABBR[a]})\\b`, 'i').test(note)) || (inc ? arr(inc.chosen).find((a) => options.includes(a)) : null) || null;
+    // "Increase the chosen ability score by 1" (Spiritual Techcaster): the +1's pick is the chosen ability, one choice.
+    const viaInc = !!inc && /\bincrease the chosen ability score\b/i.test(t);
+    const chosen = viaInc ? arr(inc.chosen).find((a) => options.includes(a)) || null
+      : options.find((a) => new RegExp(`\\b(?:${a}|${ABBR[a]})\\b`, 'i').test(note)) || (inc ? arr(inc.chosen).find((a) => options.includes(a)) : null) || null;
     const pick = (s) => (/chosen/i.test(s) ? chosen : titleCase(s));
     const kind = x[3].toLowerCase();
     out.push({
-      name, kind, from: pick(x[2]), to: pick(x[1]), options, chosen: !!chosen,
+      name, kind, from: pick(x[2]), to: pick(x[1]), options, chosen: !!chosen, viaInc,
       points: new RegExp(`You can add ${A} instead of ${A} when determining your maximum ${kind} points`, 'i').test(t),
     });
   }
@@ -6169,6 +6179,26 @@ const ASK_WORDS = { option: 'one', ability: 'an ability', skill: 'a skill', tool
 const toolProficiencies = (m) => [...new Set(arr(m.c.proficiencies).filter((p) => p.type === 'tool').map((p) => p.name)
   .concat(arr(m.raw.customProficiencies).filter((p) => p && p.type === 'tool').map((p) => p.name), arr(m.fx && m.fx.tools).map((t) => t.name)))]
   .filter((n) => !/^(?:one|two|any)\b|\bchoice\b/i.test(n)); // SW5E lists the class's "One type of gaming set" until it's picked
+/**
+ * A weapon against an ask's property clause: "that lack the heavy and strength properties" (Weaponmaster's Exploit),
+ * "with the finesse property", "without the two-handed property". No clause: fits.
+ */
+function weaponFitsProps(of, w) {
+  const t = String(of || '');
+  const props = arr(w && w.properties).map((p) => String(p).toLowerCase());
+  const has = (n) => props.some((p) => p === n || p.startsWith(`${n} `));
+  const names = (s) => s.split(/,\s*|\s+(?:and|or)\s+/).map((x) => x.trim().toLowerCase()).filter(Boolean);
+  let m;
+  if ((m = /\b(?:that|which) (?:lack|don't have|do not have) the ([\w\s,-]+?) propert(?:y|ies)\b/i.exec(t)) || (m = /\bwithout the ([\w\s,-]+?) propert(?:y|ies)\b/i.exec(t))) return !names(m[1]).some(has);
+  if ((m = /\b(?:that have|with) the ([\w\s,-]+?) propert(?:y|ies)\b/i.exec(t))) return names(m[1]).every(has);
+  return true;
+}
+/** An option pick's note without the weapons its words exclude (Weaponmaster's Exploit: no heavy or strength weapons). */
+function optionNoteFitting(o, note) {
+  const clause = (/[^.]*(?:weapon|blaster)s?\b[^.]*\b(?:that|which) (?:lack|don't have|do not have) the [\w\s,-]+? propert(?:y|ies)\b[^.]*|[^.]*(?:weapon|blaster)s?\b[^.]*\b(?:with|without) the [\w\s,-]+? propert(?:y|ies)\b[^.]*/i.exec(String((o && o.text) || '').replace(/\s+/g, ' ')) || [])[0];
+  if (!clause || !note) return note || '';
+  return clsNoteTokens(note).filter((n) => { const w = catalogByName(n.replace(/[.;:]+$/, '')); return !(w && w.equipmentCategory === 'Weapon' && !weaponFitsProps(clause, w)); }).join(', ');
+}
 /** What an ask can be answered with. */
 function askOptions(m, a) {
   const tools = bdTools().map((x) => x.name);
@@ -6185,9 +6215,10 @@ function askOptions(m, a) {
     }
     case 'weapon': {
       // "two vibroweapons or blasters of your choice", "three blasters of your choice"
-      const descs = String(a.of || 'weapons').replace(/^.*?\b(?:a|an|one|two|three)\s+/i, '').replace(/\s+of your choice.*$/i, '').split(/\s+or\s+|,\s*/).filter(Boolean);
+      const descs = String(a.of || 'weapons').replace(/^.*?\b(?:a|an|one|two|three)\s+/i, '').replace(/\s+of your choice.*$/i, '')
+        .replace(/\s+(?:that|which) (?:lack|have|don't have)\b.*$|\s+(?:with|without) the\b.*$/i, '').split(/\s+or\s+|,\s*/).filter(Boolean);
       const all = state.catalog ? state.catalog.items.filter((w) => w.equipmentCategory === 'Weapon') : [];
-      return all.filter((w) => descs.some((d) => clsWeaponMatches(d, w))).map((w) => w.name).sort();
+      return all.filter((w) => descs.some((d) => clsWeaponMatches(d, w)) && weaponFitsProps(a.of, w)).map((w) => w.name).sort();
     }
     case 'skilltool': return prSkillList().sort().concat(tools);
     case 'expertise': return [...new Set(bdSkillsKnown(m).concat(toolProficiencies(m), a.chosen))].sort();
@@ -6213,7 +6244,7 @@ function featureNoteBox(m, f, opts = {}) {
   // The choices made in Classes & Progression (Discoveries, maneuvers, a fighting style…): the same pickers here.
   const pk = 'picked' in opts ? null : featurePickers(m, f);
   const picked = 'picked' in opts ? opts.picked : pk ? pk.chosen : null;
-  const asks = picked == null ? featureAsks(m, f) : [];
+  const asks = picked == null ? featureAsks(m, f).filter((a) => !opts.asksFilter || opts.asksFilter(a)) : [];
   // What the pickers chose are words of the note (classes.js reads them there); the box shows the rest.
   const lc = (s) => String(s).toLowerCase().replace(/[.;:]+$/, '');
   const managed = new Set(asks.flatMap((a) => a.chosen).concat(arr(picked)).map(lc)); // Expertise: tools are in the note
@@ -6228,7 +6259,10 @@ function featureNoteBox(m, f, opts = {}) {
     : `<div class="feat-chosen">${picked.length ? `Chosen: <b>${esc(picked.join(', '))}</b>` : '<span class="warn-text">Not chosen yet</span>'} · <a href="#sec-classes">${picked.length ? 'change' : 'choose'} it in Classes &amp; Progression</a></div>`;
   // Languages a class feature teaches (Silver Tongue's two).
   const langs = f.source === 'Class' || f.source === 'Archetype' ? bdFeatureLanguagePicks(m, f.name) : '';
+  // A weapon picked that the ask's words exclude ("…that lack the heavy and strength properties").
+  const misfit = (a) => (a.kind === 'weapon' ? a.chosen.filter((n) => { const w = catalogByName(n); return w && !weaponFitsProps(a.of, w); }) : []);
   const pickers = langs + asks.filter((a) => askShown(a, asks)).map((a) => bdPickList({
+    problem: misfit(a).length ? `${misfit(a).join(', ')}: not one of ${String(a.of).replace(/^.*?\b(?:a|an|one|two|three)\s+/i, '')}` : '',
     title: a.label, from: ['tool', 'weapon'].includes(a.kind) && /\s/.test(a.of) ? a.of : '', count: a.count, chosen: a.chosen, options: askOptions(m, a), kind: 'fnote', arg: key, word: ASK_WORDS[a.kind] || 'one',
     hint: ['tool', 'weapon', 'skilltool'].includes(a.kind) && !state.catalog ? 'The list comes with SW5E\'s item list (Equipment → Add an item loads it).' : '',
   })).join('');
@@ -6306,7 +6340,7 @@ function renderFeats(m) {
         ...(rulesNote ? [] : featureNumberChips(m, { ...f, text }))].filter(Boolean),
       // A feat's own choices (classes.js asks: skills, tools, a damage type…), the languages it teaches, and its notes.
       body: md(text) + (state.rules && !rulesNote ? bdFeatLanguagePicks(m, f.name) + featureNoteBox(m, { ...f, text, source: 'Feat' }, {
-        picked: null, choiceText: featSlots.some((s) => s.feat && s.feat.name === f.name) ? '' : bdFeatChoiceText({ text }),
+        picked: null, choiceText: featSlots.some((s) => s.feat && s.feat.name === f.name) ? '' : bdFeatChoiceText({ text }), asksFilter: bdFeatAskFilter(text),
       }) : ''),
     });
   }).join('')}</div>`;
@@ -6634,8 +6668,11 @@ function classListBlock(m, k, idx, info, l) {
     <div class="cls-picks">${l.chosen.map((p, i) => {
       const o = l.options.find((x) => x.name === p.name);
       const tooLow = o && o.minLevel > info.level;
+      // Weapons noted for it that its words exclude (Weaponmaster's Exploit: "…that lack the heavy and strength properties").
+      const clause = o && (/[^.]*(?:weapon|blaster)s?\b[^.]*\b(?:that|which) (?:lack|don't have|do not have) the [\w\s,-]+? propert(?:y|ies)\b[^.]*|[^.]*(?:weapon|blaster)s?\b[^.]*\b(?:with|without) the [\w\s,-]+? propert(?:y|ies)\b[^.]*/i.exec(String(o.text || '').replace(/\s+/g, ' ')) || [])[0];
+      const misfit = clause ? clsNoteTokens(p.note).filter((n) => { const w = catalogByName(n.replace(/[.;:]+$/, '')); return w && w.equipmentCategory === 'Weapon' && !weaponFitsProps(clause, w); }) : [];
       return `<details class="cls-pick"><summary><b>${esc(p.name)}</b>${o && o.source !== k.name ? ` <span class="chip">${esc(o.source)}</span>` : ''}
-          ${tooLow ? ` <span class="chip warn">needs ${esc(ordinal(o.minLevel))} level</span>` : ''}${!o ? ' <span class="chip warn">not in SW5E data</span>' : ''}
+          ${tooLow ? ` <span class="chip warn">needs ${esc(ordinal(o.minLevel))} level</span>` : ''}${misfit.length ? ` <span class="chip warn" title="${esc(clause.trim())}">${esc(misfit.join(', '))}: not allowed</span>` : ''}${!o ? ' <span class="chip warn">not in SW5E data</span>' : ''}
           <button class="btn sm cls-x" data-act="cls-remove" data-arg="${idx}|${esc(l.key)}|${i}" title="Remove" aria-label="Remove ${esc(p.name)}">×</button></summary>
         ${md_ && md_.items > 1 ? `<label class="faint">On <select data-cls-pickitem="${idx}|${esc(l.key)}|${i}">${Array.from({ length: md_.items }, (_, n) => `<option value="${n}"${(p.item || 0) === n ? ' selected' : ''}>${esc(arr(k.modifiedItems)[n] || `${md_.what} ${n + 1}`)}</option>`).join('')}</select></label>` : ''}
         ${p.note || !o || /\b(?:choose|choice|of your choice|select)\b/i.test(o.text || '') ? `<input class="cls-note" data-cls-note="${idx}|${esc(l.key)}|${i}" value="${esc(p.note || '')}" placeholder="What you chose for it (e.g. Persuasion + Forgery kit)" aria-label="Choices for ${esc(p.name)}">` : ''}
@@ -6985,6 +7022,8 @@ function renderProficiencies(m) {
       for (const n of arr(list)) (byType[type] = byType[type] || []).push({ html: `<span class="chip" title="From ${esc(e.name)}">${esc(n)} · ${esc(e.name)}</span>` });
     }
   }
+  // The class's "None" (Monk armor) once a feature gives some.
+  for (const t of Object.keys(byType)) if (byType[t].some((n) => typeof n === 'object')) byType[t] = byType[t].filter((n) => !(typeof n === 'string' && /^none$/i.test(n.trim())));
   const langs = [...new Set([...arr(c.languages), ...arr(raw.customLanguages)])];
   const order = ['armor', 'weapon', 'tool', 'skill', 'other'];
   const types = Object.keys(byType).sort((a, b) => (order.indexOf(a) + 99 * (order.indexOf(a) < 0)) - (order.indexOf(b) + 99 * (order.indexOf(b) < 0)));

@@ -284,14 +284,13 @@ Advantages Advantage on Dexterity saving throws against effects that you can see
 Senses Darkvision 60 ft
 Speeds Climbing speed 30 ft
 Effects
-From class features, feats and species traits (11)
+From class features, feats and species traits (10)
 Berserker weapon proficiencies Proficient: All vibroweapons Proficient: simple blasters Berserker proficiencies
 Unarmored Defense AC + CON Berserker feature
 Danger Sense Advantage on Dexterity saving throws against effects that you can see, such as traps and powers Berserker feature
 Predator's Instinct Speed +10 ft Berserker Instincts feature
-Brawny STR +1 feat (background feat)
-Brawny Athletics: expertise (already proficient) feat
-Claws Wookiee trait
+Brawny STR +1 Athletics: expertise (already proficient) feat (background feat)
+Claws Unarmed strike d4 Wookiee trait
 Darkvision Darkvision 60 ft Wookiee trait
 Hide AC 13 + DEX Advantage on Constitution saving throws made to avoid exhaustion due to extreme cold Wookiee trait
 Menacing Intimidation: proficient Wookiee trait

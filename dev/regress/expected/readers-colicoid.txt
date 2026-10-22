@@ -252,7 +252,7 @@ Speed Walking speed 25 ft Colicoid trait
 Acute Senses Perception: proficient Colicoid trait
 Closed Mind Advantage on Wisdom and Charisma saving throws against force powers Colicoid trait
 Natural Armor AC 17 (Natural Armor) Colicoid trait
-Stinger Colicoid trait
+Stinger Unarmed strike d4 Colicoid trait
 Temporary
 No temporary effects.
 []

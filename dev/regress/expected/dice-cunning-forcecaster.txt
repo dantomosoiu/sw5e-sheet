@@ -237,13 +237,12 @@ Combat [Start combat]
 [☆ Inspiration] Exhaustion [−] 0 [+]
 [Short rest] [Long rest] HP and uses: saved here, not on sw5e.com yet. [Use sw5e.com's values]
 Effects
-From class features, feats and species traits (6)
+From class features, feats and species traits (5)
 Consular weapon proficiencies Proficient: Simple lightweapons Proficient: simple vibroweapons Consular proficiencies
 Force Affinity Choose one of Ashla, Bendu, Bogan Consular feature
 Fundamentals of Mechu-deru Technology: proficient Proficient: simple blasters Way of Technology feature
-Cunning Forcecaster INT +1 feat (Consular ASI #1)
+Cunning Forcecaster INT +1 Light force attack, INT instead of WIS +1 Light force save DC, INT instead of WIS +1 Universal force attack, INT instead of WIS +1 Un… [263 chars #d3cd9125]
 Human Versatility Choose one skill Choose one tool Choose one weapon of your choice Human trait
-Cunning Forcecaster Light force attack, INT instead of WIS +1 Light force save DC, INT instead of WIS +1 Universal force attack, INT instead of WIS +1 Universal… [256 chars #bcf60e92]
 Temporary
 No temporary effects.
 []

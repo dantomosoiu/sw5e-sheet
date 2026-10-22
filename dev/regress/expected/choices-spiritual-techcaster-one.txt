@@ -1,0 +1,909 @@
+# Armstech Test (local)
+
+## Sent to the rules engine
+The sheet's engine computes the numbers. OUT OF DATE: SW5E's recorded calculation is for an older version of this character; record the case again (dev/regress-record.js) for dev/engine-check.js.
+tweaks.abilityScores.Wisdom.score.bonus = 1
+tweaks.techCasting.attackModifier.bonus = 2
+tweaks.techCasting.maxPoints.bonus = 2
+tweaks.techCasting.saveDC.bonus = 2
+equipment[0 Blaster rifle].tweaks.damage.bonus = 2
+equipment[0 Blaster rifle].tweaks.toHit.bonus = 2
+equipment[0 Blaster rifle].tweaks.toHit.proficiency = "proficient"
+equipment[1 Vibrosword].tweaks.damage.bonus = 1
+equipment[1 Vibrosword].tweaks.toHit.bonus = 0
+equipment[1 Vibrosword].tweaks.toHit.proficiency = "proficient"
+equipped = [Blaster rifle, Vibrosword]
+
+## Numbers (the rules engine, with the sheet's edits)
+currentLevel = 9
+classText = "Engineer (Armstech Engineering) 9"
+proficiencyBonus = 4
+initiative = 3
+armorClass = 13
+armorList = []
+passivePerception = 15
+vision = "normal"
+speed.base = "30 ft"
+speed.day = "24 miles"
+speed.hour = "3 miles"
+speed.special = ""
+hitPoints.hitDice[0].maximum = 9
+hitPoints.hitDice[0].size = "d8"
+hitPoints.maximum = 66
+abilityScores.Charisma.modifier = -1
+abilityScores.Charisma.savingThrow.modifier = -1
+abilityScores.Charisma.savingThrow.proficiency = "none"
+abilityScores.Charisma.skills[Deception].modifier = -1
+abilityScores.Charisma.skills[Deception].proficiency = "none"
+abilityScores.Charisma.skills[Intimidation].modifier = -1
+abilityScores.Charisma.skills[Intimidation].proficiency = "none"
+abilityScores.Charisma.skills[Performance].modifier = -1
+abilityScores.Charisma.skills[Performance].proficiency = "none"
+abilityScores.Charisma.skills[Persuasion].modifier = -1
+abilityScores.Charisma.skills[Persuasion].proficiency = "none"
+abilityScores.Charisma.value = 8
+abilityScores.Constitution.modifier = 2
+abilityScores.Constitution.savingThrow.modifier = 6
+abilityScores.Constitution.savingThrow.proficiency = "proficient"
+abilityScores.Constitution.skills = []
+abilityScores.Constitution.value = 14
+abilityScores.Dexterity.modifier = 3
+abilityScores.Dexterity.savingThrow.modifier = 3
+abilityScores.Dexterity.savingThrow.proficiency = "none"
+abilityScores.Dexterity.skills[Acrobatics].modifier = 3
+abilityScores.Dexterity.skills[Acrobatics].proficiency = "none"
+abilityScores.Dexterity.skills[Sleight of Hand].modifier = 3
+abilityScores.Dexterity.skills[Sleight of Hand].proficiency = "none"
+abilityScores.Dexterity.skills[Stealth].modifier = 3
+abilityScores.Dexterity.skills[Stealth].proficiency = "none"
+abilityScores.Dexterity.value = 16
+abilityScores.Intelligence.modifier = 3
+abilityScores.Intelligence.savingThrow.modifier = 7
+abilityScores.Intelligence.savingThrow.proficiency = "proficient"
+abilityScores.Intelligence.skills[Investigation].modifier = 3
+abilityScores.Intelligence.skills[Investigation].proficiency = "none"
+abilityScores.Intelligence.skills[Lore].modifier = 3
+abilityScores.Intelligence.skills[Lore].proficiency = "none"
+abilityScores.Intelligence.skills[Nature].modifier = 3
+abilityScores.Intelligence.skills[Nature].proficiency = "none"
+abilityScores.Intelligence.skills[Piloting].modifier = 3
+abilityScores.Intelligence.skills[Piloting].proficiency = "none"
+abilityScores.Intelligence.skills[Technology].modifier = 3
+abilityScores.Intelligence.skills[Technology].proficiency = "none"
+abilityScores.Intelligence.value = 16
+abilityScores.Strength.modifier = 0
+abilityScores.Strength.savingThrow.modifier = 0
+abilityScores.Strength.savingThrow.proficiency = "none"
+abilityScores.Strength.skills[Athletics].modifier = 0
+abilityScores.Strength.skills[Athletics].proficiency = "none"
+abilityScores.Strength.value = 10
+abilityScores.Wisdom.modifier = 5
+abilityScores.Wisdom.savingThrow.modifier = 5
+abilityScores.Wisdom.savingThrow.proficiency = "none"
+abilityScores.Wisdom.skills[Animal Handling].modifier = 5
+abilityScores.Wisdom.skills[Animal Handling].proficiency = "none"
+abilityScores.Wisdom.skills[Insight].modifier = 5
+abilityScores.Wisdom.skills[Insight].proficiency = "none"
+abilityScores.Wisdom.skills[Medicine].modifier = 5
+abilityScores.Wisdom.skills[Medicine].proficiency = "none"
+abilityScores.Wisdom.skills[Perception].modifier = 5
+abilityScores.Wisdom.skills[Perception].proficiency = "none"
+abilityScores.Wisdom.skills[Survival].modifier = 5
+abilityScores.Wisdom.skills[Survival].proficiency = "none"
+abilityScores.Wisdom.value = 20
+weapons[Blaster rifle].ability = "Dexterity"
+weapons[Blaster rifle].attackBonus = 9
+weapons[Blaster rifle].damageBonus = 5
+weapons[Blaster rifle].damageDieModifier = 0
+weapons[Blaster rifle].damageDieType = 8
+weapons[Blaster rifle].damageNumberOfDice = 1
+weapons[Blaster rifle].damageType = "Energy"
+weapons[Blaster rifle].equipped = true
+weapons[Blaster rifle].index = 0
+weapons[Blaster rifle].isCustom = false
+weapons[Blaster rifle].properties = ["Power cell (range 105/420)", "reload 12", "two-handed"]
+weapons[Blaster rifle].quantity = 1
+weapons[Blaster rifle].tweaks.damage.bonus = 2
+weapons[Blaster rifle].tweaks.toHit.bonus = 2
+weapons[Blaster rifle].tweaks.toHit.proficiency = "proficient"
+weapons[Blaster rifle].weaponClassification = "MartialBlaster"
+weapons[Vibrosword].ability = "Strength"
+weapons[Vibrosword].attackBonus = 4
+weapons[Vibrosword].damageBonus = 1
+weapons[Vibrosword].damageDieModifier = 0
+weapons[Vibrosword].damageDieType = 6
+weapons[Vibrosword].damageNumberOfDice = 2
+weapons[Vibrosword].damageType = "Kinetic"
+weapons[Vibrosword].equipped = true
+weapons[Vibrosword].index = 1
+weapons[Vibrosword].isCustom = false
+weapons[Vibrosword].properties = ["Dexterity 11", "two-handed"]
+weapons[Vibrosword].quantity = 1
+weapons[Vibrosword].tweaks.damage.bonus = 1
+weapons[Vibrosword].tweaks.toHit.bonus = 0
+weapons[Vibrosword].tweaks.toHit.proficiency = "proficient"
+weapons[Vibrosword].weaponClassification = "MartialVibroweapon"
+weapons[Unarmed Strike].ability = "Strength"
+weapons[Unarmed Strike].attackBonus = 4
+weapons[Unarmed Strike].damageBonus = 1
+weapons[Unarmed Strike].damageDieType = 0
+weapons[Unarmed Strike].damageNumberOfDice = 1
+weapons[Unarmed Strike].damageType = "Kinetic"
+weapons[Unarmed Strike].equipped = true
+weapons[Unarmed Strike].index = -1
+weapons[Unarmed Strike].isCustom = false
+weapons[Unarmed Strike].properties = []
+weapons[Unarmed Strike].quantity = 0
+weapons[Unarmed Strike].weaponClassification = "Unarmed"
+attunement.hasAttunable = false
+attunement.maximum = 4
+carryingCapacity.encumbered = 50
+carryingCapacity.heavilyEncumbered = 100
+carryingCapacity.maxCapacity = 150
+carryingCapacity.pushDragLift = 300
+superiority = false
+techCasting.attackModifier = 9
+techCasting.maxPoints = 23
+techCasting.maxPowerLevel = 5
+techCasting.pointsUsed = 0
+techCasting.saveDC = 17
+forceCasting = false
+proficiencies[Simple blasters].type = "weapon"
+proficiencies[simple vibroweapons].type = "weapon"
+proficiencies[Light armor].type = "armor"
+proficiencies[One type of gaming set].type = "tool"
+skillAndSaveProficiencies = ["Constitution Saving Throws", "Intelligence Saving Throws"]
+languages = ["Galactic Basic", "Galactic Basic"]
+experiencePoints.isCorrect = true
+experiencePoints.nextLevel = 64000
+experiencePoints.previousLevel = 48000
+conditions = []
+exhaustion = 0
+techCasting.powersKnown = []
+
+## Effects and tweaks
+effect: Accuracy Focus · feature
+effect: Amplifying Barrel · feature
+effect: Engineer weapon proficiencies · feature
+effect: Bonus Proficiencies · feature
+effect: Tool Expertise · feature
+effect: Spiritual Techcaster · feature
+effect: Human Versatility · feature
+effect: Blade Focus · feature
+effect: Juyo Form · temporary · state:lightsaber form · until the start of your next turn
+effect: Spiritual Techcaster · feature
+tweak: abilityScores.Wisdom.score +1 · Spiritual Techcaster
+tweak: techCasting.attackModifier +2 · Spiritual Techcaster
+tweak: techCasting.saveDC +2 · Spiritual Techcaster
+tweak: techCasting.maxPoints +2 · Spiritual Techcaster
+weapon tweak: #0 toHit +2 · Accuracy Focus
+weapon tweak: #0 damage +2 · Amplifying Barrel
+weapon tweak: #1 damage +1 · Blade Focus
+weapon tweak: #0 toHit +0 · Bonus Proficiencies
+weapon tweak: #1 toHit +0 · Bonus Proficiencies
+
+## Rolls
+init: Initiative: d20 +3 · = +3 modifier
+death: Death saving throw: d20 +0
+hitdie|d8: Hit die (d8): d8 +2 · = +2 per die
+dice|1d8: 1d8: d8 +0
+check|Strength: Strength check: d20 +0 · = +0 modifier
+save|Strength: Strength saving throw: d20 +0 · = +0 modifier
+skill|Strength|0: Athletics (STR): d20 +0 · = +0 modifier
+check|Dexterity: Dexterity check: d20 +3 · = +3 modifier
+save|Dexterity: Dexterity saving throw: d20 +3 · = +3 modifier
+skill|Dexterity|0: Acrobatics (DEX): d20 +3 · = +3 modifier
+skill|Dexterity|1: Sleight of Hand (DEX): d20 +3 · = +3 modifier
+skill|Dexterity|2: Stealth (DEX): d20 +3 · = +3 modifier
+check|Constitution: Constitution check: d20 +2 · = +2 modifier
+save|Constitution: Constitution saving throw: d20 +6 · = +6 modifier
+check|Intelligence: Intelligence check: d20 +3 · = +3 modifier
+save|Intelligence: Intelligence saving throw: d20 +7 · = +7 modifier
+skill|Intelligence|0: Investigation (INT): d20 +3 · = +3 modifier
+skill|Intelligence|1: Lore (INT): d20 +3 · = +3 modifier
+skill|Intelligence|2: Nature (INT): d20 +3 · = +3 modifier
+skill|Intelligence|3: Piloting (INT): d20 +3 · = +3 modifier
+skill|Intelligence|4: Technology (INT): d20 +3 · = +3 modifier
+check|Wisdom: Wisdom check: d20 +5 · = +5 modifier
+save|Wisdom: Wisdom saving throw: d20 +5 · = +5 modifier
+skill|Wisdom|0: Animal Handling (WIS): d20 +5 · = +5 modifier
+skill|Wisdom|1: Insight (WIS): d20 +5 · = +5 modifier
+skill|Wisdom|2: Medicine (WIS): d20 +5 · = +5 modifier
+skill|Wisdom|3: Perception (WIS): d20 +5 · = +5 modifier
+skill|Wisdom|4: Survival (WIS): d20 +5 · = +5 modifier
+check|Charisma: Charisma check: d20 −1 · = −1 modifier
+save|Charisma: Charisma saving throw: d20 −1 · = −1 modifier
+skill|Charisma|0: Deception (CHA): d20 −1 · = −1 modifier
+skill|Charisma|1: Intimidation (CHA): d20 −1 · = −1 modifier
+skill|Charisma|2: Performance (CHA): d20 −1 · = −1 modifier
+skill|Charisma|3: Persuasion (CHA): d20 −1 · = −1 modifier
+attack|0: Blaster rifle attack: d20 +9 · = +9 modifier · critical on 19–20 (Juyo Form) · option: Close Call +1d8 (after a miss) +1d8
+damage|0: Blaster rifle damage: d8 +5 · = +3 DEX modifier +2 Amplifying Barrel · Energy
+attack|1: Vibrosword attack: d20 +4 · = +4 modifier · critical on 19–20 (Juyo Form) · option: Close Call +1d8 (after a miss) +1d8
+damage|1: Vibrosword damage: d6 d6 +1 · = +1 Blade Focus · Kinetic
+attack|2: Unarmed Strike attack: d20 +4 · = +4 modifier · critical on 19–20 (Juyo Form)
+damage|2: Unarmed Strike damage: no dice +1 · = +1 unarmed strike · Kinetic
+tech: Tech attack: d20 +9 · = +9 modifier
+tool|One type of gaming set|proficient: One type of gaming set check: d20 +7 · = +3 INT modifier +4 proficiency
+tool|armstech's implements|proficient: armstech's implements check: d20 +7 · = +3 INT modifier +4 proficiency
+tool|Tinker's implements|expertise: Tinker's implements check: d20 +11 · = +3 INT modifier +8 proficiency ×2
+damage|0|crit: Blaster rifle damage (critical): d8 d8 +5 · = +3 DEX modifier +2 Amplifying Barrel · Energy · critical
+damage|1|crit: Vibrosword damage (critical): d6 d6 d6 d6 +1 · = +1 Blade Focus · Kinetic · critical
+damage|2|crit: Unarmed Strike damage (critical): no dice +1 · = +1 unarmed strike · Kinetic · critical
+
+## Sheet: Overview
+Armstech Test (local)
+Human · Engineer (Armstech Engineering) 9
+Level 9 Background: Soldier Balanced Neutral Proficiency +4 [Add a picture]
+48,000 XP level 10 at 64,000 (16,000 to go)
+Still to choose (17): Engineer skills (3 more) · Engineer tool · Armstech Modifications (9 more) · Engineer tech powers (18 more) · At-will tech power (2 more) … [589 chars #6e708b7e]
+
+## Sheet: Combat & Vitals
+Armor Class
+13
+Unarmored
+Hit Points
+66 / 66
+No temporary HP
+Initiative
++3
+Speed
+30 ft
+3 miles/hour · 24 miles/day
+Proficiency
++4
+Passive Perception
+15
+  ↳ hover passivePerception: Without tweaks or effects: 14 → now 15 / +1 WIS · Spiritual Techcaster feat (Engineer ASI #3)
+Hit Dice
+9/9d8
++2 per die spent (Con)
+Vision
+Normal
+Play tracker
+[] [untyped ▾] [Damage] [Heal] [Temp HP]
+Death saves ✓ [] [] [] ✗ [] [] [] [Roll]
+Tech points 23 / 23 [−] [+]
+Hit dice (d8) roll d8 +2, then Heal 9 / 9 [−] [+]
+Potent Aptitude short rest 4 / 4 [−] [+]
+Infuse Item long rest 1 / 1 [−] [+]
+Defiant short rest 1 / 1 [−] [+]
+Start or end
+Active · lasts until the start of your next turn [End]
+Form rules
+Lightsaber forms (PHB chapter 6): each form you know can be adopted on your turn by using your bonus action, and adopting one replaces the form you were in. Wha… [422 chars #a55c1a59]
+Conditions None [Add a condition… ▾]
+Combat [Start combat]
+[☆ Inspiration] Exhaustion [−] 0 [+]
+[Short rest] [Long rest]
+Class dice
+Potent Aptitude 1d8
+Defenses & senses
+Other Critical hit on 19–20 with weapons
+Effects
+From class features, feats and species traits (8)
+Accuracy Focus Accuracy Focus: attack +2 Armstech Modifications (Blaster rifle)
+Amplifying Barrel Amplifying Barrel: damage +2 Armstech Modifications (Blaster rifle)
+Engineer weapon proficiencies Proficient: Simple blasters Proficient: simple vibroweapons Engineer proficiencies
+Bonus Proficiencies Proficient: martial blasters Proficient: martial vibroweapons armstech's implements: proficient Proficient: medium armor Armstech Engineering feature
+Tool Expertise Tinker's implements: expertise Engineer proficiencies
+Spiritual Techcaster WIS +1 Tech attack, WIS instead of INT +2 Tech save DC, WIS instead of INT +2 Tech points, WIS instead of INT +2 feat (Engineer ASI #3)
+Human Versatility Choose one skill Choose one tool Choose one weapon of your choice Human trait
+Blade Focus Blade Focus: damage +1 Weapon focus (Vibrosword)
+Temporary
+Juyo Form started, lasts until the start of your next turn, since Fri 21:36 [End]
+Until the start of your next turn, your critical hit range with weapons increases by 1.
+[]
+Your own effect (something the sheet doesn't know)…
+[] [] [No number (a reminder) ▾] [] [Add]
+It's applied like any effect (a dice bonus like Bless's d4 isn't a number: add it in the roller), and ends with End, a rest or Next round when it has run out.
+Bonuses are applied to the sheet's numbers in this browser only (not saved to SW5E); changed numbers are underlined: hover or tap them for details. Conditional … [256 chars #e163e104]
+Conditions
+None active (from SW5E)
+Carrying capacity
+Carried
+16.75 lb
+Unencumbered (variant rule)
+Encumbered at
+50 lb
+Heavily enc. at
+100 lb
+Max capacity
+150 lb
+Push / drag / lift
+300 lb
+
+## Sheet: Abilities & Saving Throws
+STR
+Strength
++0
+10
+(Not proficient) Saving throw+0
+(Not proficient) Athletics+0
+base 10
+DEX
+Dexterity
++3
+16
+(Not proficient) Saving throw+3
+(Not proficient) Acrobatics+3
+(Not proficient) Sleight of Hand+3
+(Not proficient) Stealth+3
+base 16
+CON
+Constitution
++2
+14
+(Proficient) Saving throw+6
+base 14
+INT
+Intelligence
++3
+16
+(Proficient) Saving throw+7
+(Not proficient) Investigation+3
+(Not proficient) Lore+3
+(Not proficient) Nature+3
+(Not proficient) Piloting+3
+(Not proficient) Technology+3
+base 16
+WIS
+Wisdom
++5
+  ↳ hover abilityScores.Wisdom.modifier: Without tweaks or effects: 4 → now 5 / +1 WIS · Spiritual Techcaster feat (Engineer ASI #3)
+20
+  ↳ hover abilityScores.Wisdom.value: Without tweaks or effects: 19 → now 20 / +1 WIS · Spiritual Techcaster feat (Engineer ASI #3)
+(Not proficient) Saving throw+5
+  ↳ hover abilityScores.Wisdom.savingThrow.modifier: Without tweaks or effects: 4 → now 5 / +1 WIS · Spiritual Techcaster feat (Engineer ASI #3)
+(Not proficient) Animal Handling+5
+  ↳ hover abilityScores.Wisdom.skills.0.modifier: Without tweaks or effects: 4 → now 5 / +1 WIS · Spiritual Techcaster feat (Engineer ASI #3)
+(Not proficient) Insight+5
+  ↳ hover abilityScores.Wisdom.skills.1.modifier: Without tweaks or effects: 4 → now 5 / +1 WIS · Spiritual Techcaster feat (Engineer ASI #3)
+(Not proficient) Medicine+5
+  ↳ hover abilityScores.Wisdom.skills.2.modifier: Without tweaks or effects: 4 → now 5 / +1 WIS · Spiritual Techcaster feat (Engineer ASI #3)
+(Not proficient) Perception+5
+  ↳ hover abilityScores.Wisdom.skills.3.modifier: Without tweaks or effects: 4 → now 5 / +1 WIS · Spiritual Techcaster feat (Engineer ASI #3)
+(Not proficient) Survival+5
+  ↳ hover abilityScores.Wisdom.skills.4.modifier: Without tweaks or effects: 4 → now 5 / +1 WIS · Spiritual Techcaster feat (Engineer ASI #3)
+base 19 · +1 from Spiritual Techcaster (feat)
+CHA
+Charisma
+−1
+8
+(Not proficient) Saving throw−1
+(Not proficient) Deception−1
+(Not proficient) Intimidation−1
+(Not proficient) Performance−1
+(Not proficient) Persuasion−1
+base 8
+not proficient proficient expertise
+
+## Sheet: Skills
+Skill | Ability | Bonus | Passive | Proficiency |
+(Not proficient) Acrobatics | DEX | +3 | 13 | — |
+(Not proficient) Animal Handling | WIS | +5 | 15 | — |
+  ↳ hover abilityScores.Wisdom.skills.0.modifier: Without tweaks or effects: 4 → now 5 / +1 WIS · Spiritual Techcaster feat (Engineer ASI #3)
+  ↳ hover abilityScores.Wisdom.skills.0.modifier: Without tweaks or effects: 4 → now 5 / +1 WIS · Spiritual Techcaster feat (Engineer ASI #3)
+(Not proficient) Athletics | STR | +0 | 10 | — |
+(Not proficient) Deception | CHA | −1 | 9 | — |
+(Not proficient) Insight | WIS | +5 | 15 | — |
+  ↳ hover abilityScores.Wisdom.skills.1.modifier: Without tweaks or effects: 4 → now 5 / +1 WIS · Spiritual Techcaster feat (Engineer ASI #3)
+  ↳ hover abilityScores.Wisdom.skills.1.modifier: Without tweaks or effects: 4 → now 5 / +1 WIS · Spiritual Techcaster feat (Engineer ASI #3)
+(Not proficient) Intimidation | CHA | −1 | 9 | — |
+(Not proficient) Investigation | INT | +3 | 13 | — |
+(Not proficient) Lore | INT | +3 | 13 | — |
+(Not proficient) Medicine | WIS | +5 | 15 | — |
+  ↳ hover abilityScores.Wisdom.skills.2.modifier: Without tweaks or effects: 4 → now 5 / +1 WIS · Spiritual Techcaster feat (Engineer ASI #3)
+  ↳ hover abilityScores.Wisdom.skills.2.modifier: Without tweaks or effects: 4 → now 5 / +1 WIS · Spiritual Techcaster feat (Engineer ASI #3)
+(Not proficient) Nature | INT | +3 | 13 | — |
+(Not proficient) Perception | WIS | +5 | 15 | — |
+  ↳ hover abilityScores.Wisdom.skills.3.modifier: Without tweaks or effects: 4 → now 5 / +1 WIS · Spiritual Techcaster feat (Engineer ASI #3)
+  ↳ hover passivePerception: Without tweaks or effects: 14 → now 15 / +1 WIS · Spiritual Techcaster feat (Engineer ASI #3)
+(Not proficient) Performance | CHA | −1 | 9 | — |
+(Not proficient) Persuasion | CHA | −1 | 9 | — |
+(Not proficient) Piloting | INT | +3 | 13 | — |
+(Not proficient) Sleight of Hand | DEX | +3 | 13 | — |
+(Not proficient) Stealth | DEX | +3 | 13 | — |
+(Not proficient) Survival | WIS | +5 | 15 | — |
+  ↳ hover abilityScores.Wisdom.skills.4.modifier: Without tweaks or effects: 4 → now 5 / +1 WIS · Spiritual Techcaster feat (Engineer ASI #3)
+  ↳ hover abilityScores.Wisdom.skills.4.modifier: Without tweaks or effects: 4 → now 5 / +1 WIS · Spiritual Techcaster feat (Engineer ASI #3)
+(Not proficient) Technology | INT | +3 | 13 | — |
+
+## Sheet: Weapons & Attacks
+Weapon | To hit | Damage | Ability | Type | Properties |
+Blaster rifle modified
+Power cell (range 105/420), reload 12, two-handed
+Modified Weaponry · attuned · 2 mods
+Accuracy Focus: You gain a +2 bonus to attack rolls made with this weapon.
+Amplifying Barrel: You gain a +2 bonus to damage rolls made with this weapon.
+Shots 12/12 [−1] [Reload] 0 Power cells
+| +9 | 1d8+5 Energy | Dexterity | Martial Blaster | Power cell (range 105/420), reload 12, two-handed |
+  ↳ hover weapons.0.attackBonus: Without tweaks or effects: 3 → now 9 / +2 Accuracy Focus: attack · Accuracy Focus Armstech Modifications (Blaster rifle) / proficie… [242 chars #867df50b]
+  ↳ hover weapons.0.damageBonus: Without tweaks or effects: 3 → now 5 / +2 Amplifying Barrel: damage · Amplifying Barrel Armstech Modifications (Blaster rifle)
+Vibrosword modified
+Dexterity 11, two-handed
+Modified Weaponry · attuned · 1 mod
+Burst Core: Your weapon gains the burst property, with a burst number equal to its reload number.
+| +4 | 2d6+1 Kinetic | Strength | Martial Vibroweapon | Dexterity 11, two-handed |
+  ↳ hover weapons.1.attackBonus: Without tweaks or effects: 0 → now 4 / proficient Proficient: martial vibroweapons · Bonus Proficiencies Armstech Engineering feature
+  ↳ hover weapons.1.damageBonus: Without tweaks or effects: 0 → now 1 / +1 Blade Focus: damage · Blade Focus Weapon focus (Vibrosword)
+Unarmed Strike
+| +4 | 1 Kinetic | Strength | Unarmed | — |
+
+## Sheet: Tech Casting
+Tech points
+23 / 23
+  ↳ hover techCasting.maxPoints: Without tweaks or effects: 21 → now 23 / +2 Tech points, WIS instead of INT · Spiritual Techcaster feat (casting ability) / +1 WIS · Spiritual Techcaster feat (Engineer ASI #3)
+Max power level
+5
+Save DC
+17
+  ↳ hover techCasting.saveDC: Without tweaks or effects: 15 → now 17 / +2 Tech save DC, WIS instead of INT · Spiritual Techcaster feat (casting ability) / +1 WIS · Spiritual Techcaster feat (Engineer ASI #3)
+Attack
++9
+  ↳ hover techCasting.attackModifier: Without tweaks or effects: 7 → now 9 / +2 Tech attack, WIS instead of INT · Spiritual Techcaster feat (casting ability) / +1 WIS · Spiritual Techcaster feat (Engineer ASI #3)
+No powers known.
+
+## Sheet: Class Features
+Engineer (6)
+Potent Aptitude Level 1
+Uses (back on a short or long rest) 4 / 4 [−] [+]
+Engineer: 1st level
+Your technological experience lends you an uncommon insight that you can use to bolster your allies. To do so, you use a bonus action on your turn to choose one… [388 chars #b7fc5b55]
+Once within the next 10 minutes, the creature can roll the die and add the number rolled to one ability check, attack roll, or saving throw it makes. Once the Potent Aptitude die is rolled, it is lost.
+A creature can have only one Potent Aptitude die at a time.
+You can use this feature twice. You gain an additional use at 5th, 9th, 13th, and 17th level. You regain any expended uses when you finish a short or long rest.
+Add a note
+Notes []
+Techcasting Level 1
+Engineer: 1st level
+During your training you have derived powers from schematics with the aid of your wristpad. See chapter 10 for the general rules of techcasting and chapter 12 for the tech powers list.
+Tech Powers Known
+You learn 6 tech powers of your choice, and you learn more at higher levels, as shown in the Tech Powers Known column of the engineer table. You may not learn a tech power of a level higher than your Max Power Level.
+Tech Points
+You have a number of tech points equal to your engineer level x 2, as shown in the Tech Points column of the engineer table, + your Intelligence modifier. You u… [275 chars #c9972ec6]
+Max Power Level
+Many tech powers can be overcharged, consuming more tech points to create a greater effect. You can overcharge these powers to a maximum level, which increases … [239 chars #bb0ee539]
+You may only cast tech powers at 6th, 7th, 8th, and 9th-level once. You regain the ability to do so after a long rest.
+Techcasting Ability
+Intelligence is your techcasting ability for your tech powers. You use your Intelligence whenever a power refers to your techcasting ability. Additionally, you … [290 chars #25c52137]
+Tech save DC = 8 + your proficiency bonus + your Intelligence modifier
+Tech attack modifier = your proficiency bonus + your Intelligence modifier
+Techcasting Focus
+You use a wristpad (found in chapter 5) or the tools in which you are granted proficiency by this class as a tech focus for your tech powers.
+Tech powers 0 / 18 Engineer table · max power level 5
+None chosen yet.
+[Learn a tech power… ▾]
+Read the options (201)
+Add a note
+Notes []
+Infuse Item Level 2
+Uses (back on a long rest) 1 / 1 [−] [+]
+[Blaster rifle (attack and damage +1) ▾] [Infuse]
+Engineer: 2nd level
+You gain the ability to temporarily enhance a weapon or armor. At the end of a long rest, you can touch one unenhanced object that is a suit of armor, a shield,… [394 chars #dfc18efa]
+Once you've used this feature, you can't use it again until you finish a long rest.
+This bonus increases to +2 at 10th level and +3 at 15th level.
+Add a note
+Notes []
+Tool Expertise Level 2
+Engineer: 2nd level
+You gain expertise in any tool proficiencies you gain from this class.
+Add a note
+Notes []
+Engineering Discipline Level 6
+Engineer: 3rd, 6th, 14th, and 18th level
+You begin to focus on a specific engineering discipline, which is detailed at the end of the class description.
+Archetype [Armstech Engineering ▾]
+Read the options (14)
+Add a note
+Notes []
+Ability Score Improvement Level 8
+Engineer: 4th, 8th, 12th, 16th, and 19th level
+You can increase one ability score by 2, or you can increase two ability scores by 1. You can't increase an ability score above 20 using this feature.
+Add a note
+Notes []
+Armstech Engineering (archetype) (4)
+Bonus Proficiencies Level 3
+Armstech Engineering: 3rd level
+You gain proficiency in armstech's implements, medium armor, martial blasters, and martial vibroweapons. Additionally, when you engage in crafting with armstech's implements, the rate at which you craft doubles.
+Add a note
+Notes []
+Close Call Level 3
+Armstech Engineering: 3rd level
+When you make an attack roll with your modified weapon and miss, you can expend one use of your Potent Aptitude to attempt to turn that miss into a hit. Roll the die and add it to the attack roll.
+Add a note
+Notes []
+Modified Weaponry Level 3
+Armstech Engineering: 3rd level
+You learn to modify one unenhanced weapon with which you are proficient utilizing your armstech experience. Over the course of a long rest, you can modify the w… [256 chars #d8b2328b]
+Your modified weapon is enhanced, requires attunement, can only be used by you, and counts as a tech focus for your tech powers while you are attuned to it. You… [559 chars #66e3b1df]
+Some modification effects require saving throws. When you use such an effect from this class, the DC equals your tech save DC.
+At 9th level, you can maintain two modified weapons. Each modified weapon has modification slots as shown in the Modification Slots column of the engineer table.
+Armstech Modifications 3 / 12 Armstech Engineering, 3rd level · can be changed on a rest
+Modified Weaponry 1 [Blaster rifle ▾] Modified Weaponry 2 [Vibrosword ▾] 6 slots each
+Burst Core needs a blaster as the modified weaponry
+Accuracy Focus Armstech Engineering [×]
+On [Blaster rifle ▾]
+Prerequisite: 5th level, Blaster
+You gain a +1 bonus to attack rolls made with this weapon. This bonus increases to +2 at 9th level and +3 at 13th level.
+Amplifying Barrel Armstech Engineering [×]
+On [Blaster rifle ▾]
+Prerequisite: 5th level, Blaster
+You gain a +1 bonus to damage rolls made with this weapon. This bonus increases to +2 at 9th level and +3 at 13th level.
+Burst Core Armstech Engineering [×]
+On [Vibrosword ▾]
+Prerequisite: Blaster
+Your weapon gains the burst property, with a burst number equal to its reload number.
+[Add from Armstech Modifications… ▾]
+Read the options (29)
+Add a note
+Notes []
+Armstech's Strike Level 6
+Armstech Engineering: 6th level
+Once per round, when you deal damage to a creature with your modified weapon, you can increase the damage by 1d6. The damage is of the same type as the weapon's damage.
+The damage increases to 2d6 at 11th level and 3d6 at 17th level.
+Add a note
+Notes []
+Engineer: Armstech Modifications (3)
+Accuracy Focus
+You gain a +1 bonus to attack rolls made with this weapon. This bonus increases to +2 at 9th level and +3 at 13th level.
+Amplifying Barrel
+You gain a +1 bonus to damage rolls made with this weapon. This bonus increases to +2 at 9th level and +3 at 13th level.
+Burst Core
+Your weapon gains the burst property, with a burst number equal to its reload number.
+Fighting styles (1)
+Formfighting Style Feat: Fighting Stylist (Background (Soldier))
+You are skilled at the basics of the known forms of lightsaber combat. You gain the following benefits:
+You learn three lightsaber forms, detailed later in this chapter.
+Once on each of your turns, you can draw or stow a lightweapon without using your object interaction.
+Weapon focuses (1)
+Blade Focus Feat: Weapon Focused (Engineer ASI #1)
+You've focused your combat training on blade weapons. You gain the following benefits while wielding any of these weapons, if you are proficient with it:
+You gain a +1 bonus to the weapon's damage rolls.
+When you score a critical hit with the weapon, the next attack roll the target makes before the start of your next turn has disadvantage.
+When you take the Attack action, you can choose to forgo one or more attacks to parry. For each attack you forgo, you gain a +1 bonus to AC until the start of your next turn.
+Lightsaber forms (1)
+Juyo Form Feat: Fighting Stylist (Background (Soldier))
+Active · lasts until the start of your next turn [End]
+Form rules
+Lightsaber forms (PHB chapter 6): each form you know can be adopted on your turn by using your bonus action, and adopting one replaces the form you were in. Wha… [422 chars #a55c1a59]
+Until the start of your next turn, your critical hit range with weapons increases by 1.
+
+## Sheet: Feats
+Choices from your feats
+Fighting style 1 / 1 Feat: Fighting Stylist (Background (Soldier))
+Formfighting Style needs: The ability to cast force powers
+The feat needs: 4th level (a background feat is taken at 1st level)
+Formfighting Style [×]
+[]
+Prerequisite: The ability to cast force powers
+You are skilled at the basics of the known forms of lightsaber combat. You gain the following benefits:
+You learn three lightsaber forms, detailed later in this chapter.
+Once on each of your turns, you can draw or stow a lightweapon without using your object interaction.
+Weapon focus 1 / 1 Feat: Weapon Focused (Engineer ASI #1)
+Blade Focus [×]
+[]
+Applies to: [ ] Blaster rifle [x] Vibrosword
+You've focused your combat training on blade weapons. You gain the following benefits while wielding any of these weapons, if you are proficient with it:
+You gain a +1 bonus to the weapon's damage rolls.
+When you score a critical hit with the weapon, the next attack roll the target makes before the start of your next turn has disadvantage.
+When you take the Attack action, you can choose to forgo one or more attacks to parry. For each attack you forgo, you gain a +1 bonus to AC until the start of your next turn.
+At-will tech power 0 / 2 Feat: Tech Dabbler (Engineer ASI #2)
+None chosen yet.
+[Choose a tech power… ▾]
+Read the options (46)
+1st-level tech power (once per long rest) 0 / 1 Feat: Tech Dabbler (Engineer ASI #2)
+None chosen yet.
+[Choose a tech power… ▾]
+Read the options (53)
+2nd-level tech power (once per long rest) 0 / 1 Feat: Tech Dabbler (Engineer ASI #2)
+None chosen yet.
+[Choose a tech power… ▾]
+Read the options (44)
+Lightsaber form 1 / 3 Formfighting Style (Feat: Fighting Stylist (Background (Soldier)))
+Form rules
+Lightsaber forms (PHB chapter 6): each form you know can be adopted on your turn by using your bonus action, and adopting one replaces the form you were in. Wha… [422 chars #a55c1a59]
+Lightsaber forms need the ability to cast force powers (or Lightweapon Strategist)
+The feat needs: 4th level (a background feat is taken at 1st level)
+Juyo Form [×]
+[]
+Until the start of your next turn, your critical hit range with weapons increases by 1.
+[Choose a lightsaber form… ▾]
+Read the options (19)
+Feat ability increases
+Spiritual Techcaster: +1 to 1 / 1 Engineer ASI #3
+Wisdom [×]
+Weapon Focused Engineer ASI #1 Prereq: 4th level
+You adopt a particular type of weapon as your focus. Choose one of the weapon focus options, detailed later in this chapter. You can take this feat multiple times.
+Add a note
+Notes []
+Tech Dabbler Engineer ASI #2
+You know two at-will tech powers. When you reach 3rd level, you learn and can cast one 1st-level tech power once per long rest. When you reach 5th level, you le… [382 chars #b0d200c1]
+Add a note
+Notes []
+Spiritual Techcaster Engineer ASI #3+ Wisdom+ Charisma Prereq: The ability to cast tech powers
+You've developed a transcendent approach to your tech prowess. Choose one from Wisdom or Charisma. You gain the following benefits:
+Increase the chosen ability score by 1, to a maximum of 20.
+You can use the chosen ability instead of Intelligence as your techcasting ability.
+You can add the chosen ability instead of Intelligence when determining your maximum tech points.
+Notes [Charisma]
+Fighting Stylist Background (Soldier)+ Strength+ Dexterity+ Constitution Prereq: 4th level
+You adopt a particular style of fighting as your specialty, gaining the following benefits:
+Increase your Strength, Dexterity, or Constitution score by 1, to a maximum of 20.
+Choose one of the fighting style options, detailed later in this chapter.
+You can take this feat multiple times.
+Add a note
+Notes []
+
+## Sheet: Classes & Progression
+[Level up]
+Engineer 9 Armstech Engineering Starting class Tech caster
+Hit die d8 Primary Intelligence Saves Constitution, Intelligence HP by level 8 (max), 5, 5, 5, 5, 5, 5, 5, 5
+Tech caster who enhances items to benefit allies
+Ability score improvements
+Feat: Weapon Focused Feat: Tech Dabbler Feat: Spiritual Techcaster
+Skill proficiencies 0 / 3 Choose three from Investigation, Lore, Medicine, Nature, Piloting, and Technology
+None chosen yet.
+[Choose a skill… ▾]
+Tool proficiency 0 / 1 Tinker's implements, one of your choice
+None chosen yet.
+[Choose a tool… ▾]
+Archetype [Armstech Engineering ▾]
+Read the options (14)
+Tech powers 0 / 18 Engineer table · max power level 5
+None chosen yet.
+[Learn a tech power… ▾]
+Read the options (201)
+Armstech Modifications 3 / 12 Armstech Engineering, 3rd level · can be changed on a rest
+Modified Weaponry 1 [Blaster rifle ▾] Modified Weaponry 2 [Vibrosword ▾] 6 slots each
+Burst Core needs a blaster as the modified weaponry
+Accuracy Focus Armstech Engineering [×]
+On [Blaster rifle ▾]
+Prerequisite: 5th level, Blaster
+You gain a +1 bonus to attack rolls made with this weapon. This bonus increases to +2 at 9th level and +3 at 13th level.
+Amplifying Barrel Armstech Engineering [×]
+On [Blaster rifle ▾]
+Prerequisite: 5th level, Blaster
+You gain a +1 bonus to damage rolls made with this weapon. This bonus increases to +2 at 9th level and +3 at 13th level.
+Burst Core Armstech Engineering [×]
+On [Vibrosword ▾]
+Prerequisite: Blaster
+Your weapon gains the burst property, with a burst number equal to its reload number.
+[Add from Armstech Modifications… ▾]
+Read the options (29)
+Class table
+Proficiency Bonus
++4 → +4 at 10
+Features
+— → Infuse Item (+2) at 10
+Tech Powers Known
+18 → 19 at 10
+Tech Points
+18 → 20 at 10
+Max Power Level
+5th → 5th at 10
+Potent Aptitude
+d8 → d8 at 10
+Modification Slots
+6 → 6 at 10
+| Proficiency Bonus | Features | Tech Powers Known | Tech Points | Max Power Level | Potent Aptitude | Modification Slots |
+Now (9) | +4 | — | 18 | 18 | 5th | d8 | 6 |
+Next (10) | +4 | Infuse Item (+2) | 19 | 20 | 5th | d8 | 6 |
+Armor Light armor Weapons Simple blasters, simple vibroweapons Tools Tinker's implements, one of your choice
+
+## Sheet: Species
+Size
+Medium
+Homeworld
+Coruscant
+Language
+Galactic Basic
+Average height
+4'8" +2d10"
+Average weight
+110 lb. x(2d4) lb.
+Skin
+Light to dark tones
+Hair
+Black, blond, orange, brown, gray to white (usually with age)
+Eyes
+Amber, blue, brown, gray, green, hazel, purple, or red
+Distinctions
+Biped with bilateral symmetry, opposable thumbs
+Traits (9)
+Ability Score Increase
+One ability score of your choice increases by 2, and two other ability scores of your choice increase by 1. Alternatively, four ability scores of your choice each increase by 1.
+Your choices []
+Age
+Humans reach adulthood in their late teens and live less than a century.
+Add a note
+Notes []
+Alignment
+Humans tend toward no particular alignment. The best and worst are found among them.
+Add a note
+Notes []
+Defiant
+Uses (back on a short or long rest) 1 / 1 [−] [+]
+Humans are known to be stubborn and often refuse to give up, even against the worst odds. When you or a creature you can see that can see and understand you mak… [374 chars #6fad59d8]
+Add a note
+Notes []
+Human Versatility
+You gain proficiency in one skill, one tool, and one weapon of your choice.
+Skill proficiency 0 / 1
+None chosen yet.
+[Choose a skill… ▾]
+Tool proficiency 0 / 1 one tool
+None chosen yet.
+[Choose a tool… ▾]
+Weapon proficiency 0 / 1 one weapon of your choice
+None chosen yet.
+[Choose a weapon… ▾]
+Add a note
+Notes []
+Languages
+You can speak, read, and write Galactic Basic and one extra language of your choice. Humans typically learn the languages of other peoples they deal with, inclu… [346 chars #ff842958]
+Your choices []
+Proficiency
+You gain proficiency in one skill, one tool, and one weapon of your choice.
+Your choices []
+Size
+Humans vary widely in height and build, from barely 5 feet to well over 6 feet tall. Regardless of your position in that range, your size is Medium.
+Add a note
+Notes []
+Speed
+Your base walking speed is 30 feet.
+Add a note
+Notes []
+Ability score +2 0 / 1 One ability score of your choice increases by 2, and two other ability scores of your choice increase by 1. Alternatively, four ability scores of your choice each increase by 1.
+None chosen yet.
+[Choose an ability… ▾]
+Ability score +1 0 / 2 One ability score of your choice increases by 2, and two other ability scores of your choice increase by 1. Alternatively, four ability scores of your choice each increase by 1.
+None chosen yet.
+[Choose an ability… ▾]
+
+## Sheet: Background
+Skill proficiencies
+Choose two from Athletics, Intimidation, Persuasion, and Piloting
+Tool proficiencies
+One type of gaming set
+Languages
+One of your choice
+Starting equipment
+An insignia of rank, a trophy taken from a fallen enemy, a gaming set (one of your choice), a set of common clothes, and a belt pouch containing 100 cr
+Background feat
+Fighting Stylist
+Specialty
+During your time as a soldier, you had a specific role to play in your unit or army. Roll a d8 or choose from the options in the table below to determine your role:
+d8 | Specialty |
+1 | Officer |
+2 | Scout |
+3 | Infantry |
+4 | Medic |
+d8 | Specialty |
+5 | Quartermaster |
+6 | Pilot |
+7 | Artisan |
+8 | Support Staff |
+Feature: Military Rank Background feature
+You have a military rank from your career as a soldier. Soldiers loyal to your former military organization still recognize your authority and influence, and th… [417 chars #07d82bc5]
+About this background
+War has been your life for as long as you care to remember. You trained as a youth, studied the use of weapons and armor, learned basic survival techniques, inc… [362 chars #b05030ad]
+When you choose this background, work with your GM to determine which military organization you were a part of, how far through its ranks you progressed, and wh… [306 chars #85e13a8a]
+Your choices
+Skill proficiencies 0 / 2 Choose two from Athletics, Intimidation, Persuasion, and Piloting
+None chosen yet.
+[Choose a skill… ▾]
+Tool proficiency 0 / 1 One type of gaming set
+None chosen yet.
+[Choose a tool… ▾]
+Languages 0 / 1 One of your choice
+None chosen yet.
+[Choose a language… ▾]
+Fighting Stylist: +1 to 0 / 1 background feat
+None chosen yet.
+[Choose an ability… ▾]
+
+## Sheet: Proficiencies & Languages
+Armor
+Light armor medium armor · Bonus Proficiencies
+Weapon
+Simple blasters simple vibroweapons martial blasters · Bonus Proficiencies martial vibroweapons · Bonus Proficiencies
+Tool
+One type of gaming set armstech's implements · Bonus Proficiencies Tinker's implements (expertise) · Tool Expertise
+Skills & saves
+Constitution Saving Throws Intelligence Saving Throws
+Languages
+Galactic Basic
+✎ = custom proficiency added on the character.
+
+## Sheet: Equipment & Inventory
+Add an item
+[All items ▾] []
+Qty [1] [Add]
+2425 items from SW5E (data version 199). [Check for a newer list]
+Credits
+0 cr
+[] [] [Apply]
+Total weight
+16.75 lb
+of 150 lb max
+Attunement
+2 / 4
+incl. Blaster rifle (modified weaponry), Vibrosword (modified weaponry)
+Items
+2
+Weapon (2)
+Item | Qty & actions | Weight | Cost | Source |
+Blaster rifle
+1d8 Energy · Power cell (range 105/420), reload 12, two-handed
+| [−] 1 [+] [Equipped] [✎] [Sell] [×] | 7.5 lb | 525 cr | PHB |
+Vibrosword
+2d6 Kinetic · Dexterity 11, two-handed
+| [−] 1 [+] [Equipped] [✎] [Sell] [×] | 9.25 lb | 1,150 cr | PHB |
+
+## Sheet: Personality & Appearance
+Personality Traits
+—
+Ideal
+—
+Bond
+—
+Flaw
+—
+Details
+Alignment
+Balanced Neutral
+Gender
+—
+Place of Birth
+—
+Age
+—
+Height
+—
+Weight
+—
+Hair
+—
+Eyes
+—
+Skin
+—
+
+## Sheet: Backstory
+No backstory yet.
+
+## Sheet: Notes
+No notes yet.
+
+## Sheet: Settings, Tweaks & Data
+Tweaks (manual adjustments) 0
+From sw5e.com's editor or added here. Give each a reason (kept in this viewer and in backups); hovering or tapping a number they change shows it.
+No tweaks.
+[Add a tweak to… ▾] [add (+/−) ▾] [] [] [Add]
+Builder settings
+None
+Record
+Source
+Imported file
+Loaded
+10/16/2026, 9:34:18 PM
+Builder version
+0.7.6
+Validation
+All checks passed
+Local version history 1 / 25
+SW5E can lose saved characters, so every version seen here is kept in this browser. Compare a version with the character as it is now, or restore it (Undo puts it back).
+Backups (files you keep): this character never · [Back up this character]
+all characters never · [Back up all characters]
+10/16/2026, 9:34:18 PM latest
+Imported from file [Compare] [Restore] [Export]
+Rules engine
+The sheet computes the numbers itself, with SW5E's rules. A character on sw5e.com is checked against its calculation there on each Load.
+SW5E's rules and item data: version 199, as it comes with the sheet. SW5E is the work of Galiphile and the SW5E contributors: credits · the books.
+[Check with sw5e.com]
+Raw SW5E character JSON
+{ "name": "Armstech Test (local)", "builderVersion": "0.7.6", "image": "", "experiencePoints": 48000, "species": { "name": "Human", "abilityScoreImprovementSele… [2088 chars #01b35f65]
+Computed character JSON (the sheet's rules engine)
+{ "name": "Armstech Test (local)", "builderVersion": "0.7.6", "image": "", "characteristics": { "alignment": "Balanced Neutral" }, "tweaks": { "abilityScores": … [19528 chars #a9da0242]

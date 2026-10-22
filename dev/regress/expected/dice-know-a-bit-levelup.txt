@@ -285,16 +285,15 @@ Martial Arts 1d6 Sneak Attack 4d6
 Defenses & senses
 Other Half proficiency on checks without it (Know a Bit)
 Effects
-From class features, feats and species traits (9)
+From class features, feats and species traits (8)
 Monk weapon proficiencies Proficient: Simple blasters Proficient: simple vibroweapons Proficient: martial vibroweapons that lack the dexterity, heavy, special, and two-handed properties Monk proficiencies
 Unarmored Defense AC + WIS/CHA Monk feature
 Unarmored Movement Speed +15 ft Monk feature
 Expertise Choose the skills/tools for expertise Operative feature
 Know a Bit Half proficiency on checks Maverick Practice feature
-Silver-Tongued CHA +1 feat (background feat)
-Silver-Tongued Deception: proficient feat
+Silver-Tongued CHA +1 Deception: proficient feat (background feat)
 Human Versatility Choose one skill Choose one tool Choose one weapon of your choice Human trait
-Martial Arts Monk feature
+Martial Arts Unarmed strike d6, finesse Monk feature
 Temporary
 No temporary effects.
 []

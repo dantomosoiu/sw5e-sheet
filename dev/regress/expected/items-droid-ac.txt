@@ -297,12 +297,11 @@ Vulnerabilities Vulnerable to ion damage
 Disadvantages Disadvantage on saving throws against effects that would deal ion or lightning damage
 Senses Darkvision 60 ft
 Effects
-From class features, feats and species traits (9)
+From class features, feats and species traits (8)
 Engineer weapon proficiencies Proficient: Simple blasters Proficient: simple vibroweapons Engineer proficiencies
 Bonus Proficiencies Proficient: martial blasters Proficient: martial vibroweapons armstech's implements: proficient Proficient: medium armor Armstech Engineering feature
 Tool Expertise Tinker's implements: expertise Engineer proficiencies
-Techie INT +1 feat (background feat)
-Techie Technology: expertise (already proficient) feat
+Techie INT +1 Technology: expertise (already proficient) feat (background feat)
 Speed Walking speed 25 ft Droid, Class I trait
 Droid Resistances Resistance to necrotic, poison, and psychic damage Immune to poison and disease Droid, Class I trait
 Droid Vulnerabilities Vulnerable to ion damage Disadvantage on saving throws against effects that would deal ion or lightning damage Droid, Class I trait

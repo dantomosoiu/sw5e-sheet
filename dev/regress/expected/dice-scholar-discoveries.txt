@@ -278,13 +278,12 @@ Defenses & senses
 Advantages Advantage on saving throws against poison
 Other Can't have disadvantage on checks you make with them (Gambler's Aptitude)
 Effects
-From class features, feats and species traits (7)
+From class features, feats and species traits (6)
 Scholar weapon proficiencies Proficient: Simple blasters Proficient: simple vibroweapons Proficient: martial vibroweapons with the finesse property Scholar proficiencies
 Expertise Persuasion: expertise Forgery Kit: expertise Scholar feature
 Gambler's Aptitude Sleight of Hand: proficient Pazaak: proficient Can't have disadvantage on checks you make with them Gambler Pursuit feature
 Survival Expert Advantage on saving throws against poison Discoveries feature
-Silver-Tongued CHA +1 feat (background feat)
-Silver-Tongued Deception: expertise (already proficient) feat
+Silver-Tongued CHA +1 Deception: expertise (already proficient) feat (background feat)
 Shrewd Insight: proficient Deception: proficient Bothan trait
 Temporary
 No temporary effects.

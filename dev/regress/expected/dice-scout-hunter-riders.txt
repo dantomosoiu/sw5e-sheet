@@ -243,13 +243,12 @@ Combat [Start combat]
 Class dice
 Ranger's Quarry 1d8
 Effects
-From class features, feats and species traits (7)
+From class features, feats and species traits (6)
 Scout weapon proficiencies Proficient: All blasters Proficient: all vibroweapons Scout proficiencies
 Expertise Choose the skills/tools for expertise Scout feature
 Hunter's Prey Choose one of Colossus Slayer, Giant Killer, Horde Breaker Hunter Technique feature
 Defensive Tactics Choose one of Escape the Horde, Multiattack Defense, Steel Will Hunter Technique feature
-Silver-Tongued CHA +1 feat (background feat)
-Silver-Tongued Deception: proficient feat
+Silver-Tongued CHA +1 Deception: proficient feat (background feat)
 Human Versatility Stealth: proficient Choose one tool Choose one weapon of your choice Human trait
 Temporary
 No temporary effects.
