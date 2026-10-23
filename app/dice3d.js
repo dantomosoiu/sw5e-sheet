@@ -2,12 +2,14 @@
  *
  * Each die is a real polyhedron (tetrahedron, cube, octahedron, pentagonal trapezohedron, dodecahedron,
  * icosahedron), built from its vertices, lit face by face and drawn on a <canvas> with plain 2D calls (no
- * libraries: the sheet also runs as a Chrome extension). Its faces carry their numbers; at rest the face with the
- * rolled number looks at you, tilted a little so the die reads as a solid, and its number is drawn upright, the
- * same size on every die and at the same height (the die is shifted so that face's centre is the canvas's centre).
+ * libraries: the sheet also runs as a Chrome extension). Its faces carry their numbers. The table is seen from above
+ * (the view tipped only a little): at rest a die lies flat on the table with the rolled number's face on top, looking
+ * at you, its number upright, the same size on every die and at the same height (the die is shifted so that face's
+ * centre is the canvas's centre). A d4 has no top face: it rests on a face, point up, and its number shows at that
+ * point (as a real d4's top number).
  *
- * A roll is only shown here (the numbers are rolled before): each die drops in, bounces, and tumbles with a spin
- * that slows down until it settles on its face. The motion is built backwards from the resting pose, so it always
+ * A roll is only shown here (the numbers are rolled before): each die is tossed up toward you (it grows), bounces on
+ * the table (its shadow underneath), and tumbles with a spin that slows down until it settles flat. The motion is built backwards from the resting pose, so it always
  * lands on the right number. Colours come from the page (--die-c on the die, --text, --panel-2), so the dice follow
  * the theme and the die's state (a natural 20, a critical die, a dropped one…).
  *
@@ -40,11 +42,9 @@ const Dice3D = (() => {
     return [[t * x * x + c, t * x * y - s * z, t * x * z + s * y], [t * x * y + s * z, t * y * y + c, t * y * z - s * x], [t * x * z - s * y, t * y * z + s * x, t * z * z + c]];
   }
   const DEG = Math.PI / 180;
-  // At rest: tipped back (its top shows) and turned a little (its right side shows).
-  const TILT = mxm(rot([0, 1, 0], -13 * DEG), rot([1, 0, 0], 19 * DEG));
-  // (A d4 face-on hides its other three faces: it leans back further, so it reads as a pyramid.)
-  const TILT4 = mxm(rot([0, 1, 0], -30 * DEG), rot([1, 0, 0], 26 * DEG));
-  const tiltOf = (shape) => (shape === 4 ? TILT4 : TILT);
+  // The view: from above the table, tipped a little (a sliver of the dice's near sides shows, so they read as solids).
+  const TILT = rot([1, 0, 0], -9 * DEG);
+  const tiltOf = () => TILT;
   const LIGHT = unit([-0.5, 0.75, 0.65]);
   const HALF = unit(addv(LIGHT, [0, 0, 1]));
   const PERSP = 7; // the eye's distance, in die radii
@@ -123,7 +123,16 @@ const Dice3D = (() => {
       const V = unit(sub(sub(up, f.c), mulv(f.n, dot(sub(up, f.c), f.n))));
       f.V = V;
       f.U = cross(V, f.n);
-      f.M = [f.U, f.V, f.n]; // turns the die so this face looks at you, upright
+      f.M = [f.U, f.V, f.n]; // turns the die so this face looks at you (on top), upright
+      f.anchor = f.c; // where its number shows at rest
+      if (shape === 4) {
+        // A d4 lies on another face, its point (the corner opposite this face) up: the number shows at the point.
+        const apex = vs.find((v, m) => !f.idx.includes(m));
+        const n = unit(apex);
+        const V4 = unit(sub(p[0], mulv(n, dot(p[0], n))));
+        f.M = [cross(V4, n), V4, n];
+        f.anchor = apex;
+      }
       f.rest = mxm(tiltOf(shape), f.M);
       f.tilt = tiltOf(shape);
       // The face's inner radius (how big a number fits on it).
@@ -222,29 +231,34 @@ const Dice3D = (() => {
     const g = geo(o.sides);
     const { R, S } = o;
     const front = g.faces[o.front];
-    // Shift the die so its front face's centre (at rest) is the canvas's centre: every number at the same height.
-    const restC = mxv(front.rest, front.c);
+    // Shift the die so its number's place (at rest) is the canvas's centre: every number at the same height.
+    const restC = mxv(front.rest, front.anchor);
     const kc = PERSP / (PERSP - restC[2]);
     const ox = -restC[0] * kc * S;
     const oy = restC[1] * kc * S;
+    // Seen from above, a die off the table is nearer: larger, and a little up the screen (the view is tipped).
+    const near = 1 + o.lift / (S * 5.5);
+    const dx = o.cx + ox + o.drift[0];
+    const dy = o.cy + oy + o.drift[1] - o.lift * 0.2;
     const px = (v) => {
       const p = mxv(R, v);
-      const k = PERSP / (PERSP - p[2]);
-      return [o.cx + ox + o.drift + p[0] * k * S, o.cy + oy - o.lift + -p[1] * k * S, p[2]];
+      const k = (PERSP / (PERSP - p[2])) * S * near;
+      return [dx + p[0] * k, dy - p[1] * k, p[2]];
     };
     const pts = g.vs.map(px);
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    // A soft shadow on the table, smaller and fainter the higher the die is.
+    // A soft shadow on the table under the die (the light is above, to the upper left): it slides off to the lower
+    // right and fades as the die rises.
     if (o.shadow) {
-      const fy = o.cy + oy + S * 0.86;
-      const up = Math.min(1, o.lift / (S * 1.4));
-      const rx = S * (1.05 - 0.35 * up);
+      const up = Math.min(1, o.lift / (S * 1.2));
+      const r = S * (0.86 + 0.2 * up);
       const grad = ctx.createRadialGradient(0, 0, 0, 0, 0, 1);
-      grad.addColorStop(0, `rgba(0,0,0,${0.34 * (1 - 0.6 * up)})`);
+      grad.addColorStop(0, `rgba(0,0,0,${0.3 * (1 - 0.65 * up)})`);
+      grad.addColorStop(0.6, `rgba(0,0,0,${0.18 * (1 - 0.65 * up)})`);
       grad.addColorStop(1, 'rgba(0,0,0,0)');
       ctx.save();
-      ctx.translate(o.cx + ox + o.drift, fy);
-      ctx.scale(rx, S * 0.2);
+      ctx.translate(o.cx + o.drift[0] + S * 0.1 + o.lift * 0.35, o.cy + o.drift[1] + S * 0.16 + o.lift * 0.3);
+      ctx.scale(r, r * 0.93);
       ctx.fillStyle = grad;
       ctx.beginPath();
       ctx.arc(0, 0, 1, 0, Math.PI * 2);
@@ -331,7 +345,10 @@ const Dice3D = (() => {
         if (a > 0.02) label(i, String(g.faces[i].value), a * 0.7, fit(g.faces[i]), 0, colors.text);
       }
     }
-    if (vis[o.front][2] > 1e-3 && o.text) {
+    // A d4's number: at its point, once it settles (its face lies on the table).
+    if (g.shape === 4) {
+      if (o.text && o.upright > 0) label(o.front, o.text, o.upright, o.fontPx, 1, o.textColor || colors.text);
+    } else if (vis[o.front][2] > 1e-3 && o.text) {
       const a = Math.max(o.upright, Math.min(1, (vis[o.front][2] - 0.22) / 0.4));
       const color = o.textColor || colors.text;
       label(o.front, o.text, a, o.upright >= 1 ? o.fontPx : fit(front), o.upright, color);
@@ -370,14 +387,14 @@ const Dice3D = (() => {
       kind, start: now(), T,
       ax1: randAxis([1, 0.35, 0.7]), A1: kind === 'roll' ? Math.PI * 2 * rand(1.3, 2.3) * (Math.random() < 0.5 ? -1 : 1) : kind === 'enter' ? Math.PI * rand(0.8, 1.2) : 0,
       ax2: randAxis([0.4, 1, 0.4]), A2: kind === 'roll' ? Math.PI * 2 * rand(0.25, 0.6) : kind === 'spin' ? Math.PI * 2 : 0,
-      drift: kind === 'roll' ? rand(-16, 16) : kind === 'enter' ? -26 : 0,
+      drift: kind === 'roll' ? [rand(-14, 14), rand(-10, 10)] : kind === 'enter' ? [-26, 0] : [0, 0],
       lift: kind === 'roll' ? bounceCurve(rand(20, 28), 0.3, 0.42) : kind === 'enter' ? bounceCurve(10, 0.18, 0.35) : () => 0,
     };
     return a;
   }
   /** Where a die is now: its rotation, height, sideways drift and how upright its number is. */
   function poseAt(a, face, t) {
-    if (!a) return { R: face.rest, lift: 0, drift: 0, upright: 1, done: true };
+    if (!a) return { R: face.rest, lift: 0, drift: [0, 0], upright: 1, done: true };
     const u = Math.min(1, (t - a.start) / 1000 / a.T);
     // Spin built backwards from the rest pose: the turn left shrinks to nothing, so the die slows and settles.
     const s1 = a.A1 * Math.pow(1 - u, 3);
@@ -385,7 +402,7 @@ const Dice3D = (() => {
     const spin = mxm(rot(a.ax1, s1), rot(a.kind === 'spin' ? [0, 1, 0] : a.ax2, s2));
     const R = mxm(face.tilt, mxm(spin, face.M));
     const up = u < 0.8 ? 0 : (u - 0.8) / 0.2;
-    return { R, lift: Math.max(0, a.lift((t - a.start) / 1000)), drift: a.drift * Math.pow(1 - u, 2.5), upright: up * up * (3 - 2 * up), done: u >= 1 };
+    return { R, lift: Math.max(0, a.lift((t - a.start) / 1000)), drift: a.drift.map((d) => d * Math.pow(1 - u, 2.5)), upright: up * up * (3 - 2 * up), done: u >= 1 };
   }
   /** Size a canvas to its box (sharp at any zoom). */
   function fitCanvas(cv) {
@@ -429,7 +446,7 @@ const Dice3D = (() => {
       fontPx: size === 'roll' ? (unrolled ? 12.5 : 18) : Math.round(box.w * 0.27),
       textColor: unrolled ? mix(colors.text, colors.panel, 0.25) : null,
       die: dieColor, dashed: dieEl.classList.contains('critd'), dropped: dieEl.classList.contains('dropped'),
-      numbers: size !== 'add' && g.shape === sides, small: size !== 'roll', shadow: size === 'roll',
+      numbers: size !== 'add' && g.shape === sides && g.shape !== 4, small: size !== 'roll', shadow: size === 'roll',
     }, colors);
     if (a && pose.done) anims.delete(cv.dataset.key);
     return !a || pose.done;
