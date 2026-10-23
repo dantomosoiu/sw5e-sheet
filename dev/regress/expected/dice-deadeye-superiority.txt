@@ -152,9 +152,9 @@ dice|1d8: 1d8: d8 +0
 attack|0: Unarmed Strike attack: d20 +4 · = +4 modifier
 damage|0: Unarmed Strike damage: no dice +1 · = +1 unarmed strike · Kinetic · option: Ranger's Quarry +1d8
 supdie: Superiority die: d8 +0
-maneuver|Physical|Dexterity: Physical maneuver attack: d20 +7 · = +7 modifier
-maneuver|Mental|Wisdom: Mental maneuver attack: d20 +7 · = +7 modifier
-maneuver|General|Dexterity: General maneuver attack: d20 +7 · = +7 modifier
+maneuver|Physical|Dexterity: Physical maneuver attack: d20 +7 · = +7 DEX modifier + proficiency
+maneuver|Mental|Wisdom: Mental maneuver attack: d20 +7 · = +7 WIS modifier + proficiency
+maneuver|General|Dexterity: General maneuver attack: d20 +7 · = +7 DEX modifier + proficiency
 tech: Tech attack: d20 +6 · = +6 modifier
 check|Strength: Strength check: d20 +0 · = +0 modifier
 save|Strength: Strength saving throw: d20 +4 · = +4 modifier
@@ -283,7 +283,7 @@ WIS · attack +7
 General maneuver DC
 15
 DEX · attack +7
-Dice come from the class table at your level; save DCs are calculated here as 8 + proficiency + your best eligible ability modifier (SW5E's site does not compute superiority).
+Dice come from the class table at your level; save DCs are calculated here as 8 + proficiency + your best eligible ability modifier (SW5E's site does not comput… [316 chars #1069feec]
 
 ## Sheet: Tech Casting
 Tech points

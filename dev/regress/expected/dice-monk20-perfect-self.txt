@@ -184,7 +184,7 @@ hitdie|d8: Hit die (d8): d8 +2 · = +2 per die
 dice|1d12: 1d12: d12 +0
 attack|0: Unarmed Strike attack: d20 +12 · = +12 modifier
 damage|0: Unarmed Strike damage: d12 +6 · = +6 DEX modifier (Martial Arts) · Kinetic
-pattack|Tech|12: Tech attack: d20 +12 · = +12 modifier
+pattack|Tech|12|Wisdom|Intelligence,Wisdom,Charisma: Tech attack: d20 +12 · = +12 modifier
 check|Strength: Strength check: d20 +0 · = +0 modifier
 save|Strength: Strength saving throw: d20 +6 · = +6 modifier
 skill|Strength|0: Athletics (STR): d20 +0 · = +0 modifier
@@ -317,7 +317,7 @@ Tech points
 Max power level
 4
 Save DC
-20
+20 (WIS; INT 16, CHA 13)
 WIS
 Attack
 +12

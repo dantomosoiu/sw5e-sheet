@@ -329,12 +329,12 @@ Dark side
 DC 11
 attack +3
 Universal
-DC 12
+DC 12 (WIS; CHA 11)
 attack +4
 At-will powers (1)
 Force Push/Pull Universal
 Not castable: not from a class that casts it
-Strength save DC 12 · Damage 2d4+2 kinetic
+Strength save DC 12 (WIS; CHA 11) · Damage 2d4+2 kinetic
 Casting 1 action Range 60 feet Duration Instantaneous Source PHB
 You gain the minor ability to move or manipulate creatures and objects with the Force. You can exert fine control on objects with your telekinetic grip, such as… [380 chars #d4acff50]
 You use the Force to move a Medium or smaller creature or object not being worn or carried within range. The target must make a Strength saving throw. An object… [711 chars #708794cf]

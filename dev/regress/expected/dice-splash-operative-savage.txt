@@ -311,16 +311,16 @@ Dark side
 DC 13
 attack +5
 Universal
-DC 14
+DC 14 (WIS; CHA 13)
 attack +6
 At-will powers (3)
 Force Disarm Universal Consular
-Dexterity save DC 14
+Dexterity save DC 14 (WIS; CHA 13)
 Casting 1 action Range 30 feet Duration Instantaneous Source PHB
 You select a weapon or object being worn or carried by a Large or smaller creature within range. The creature must make a Strength or Dexterity saving throw (th… [398 chars #c9871d69]
 Force Push/Pull Universal Consular
 [Cast]
-Strength save DC 14 · Damage 2d4 kinetic
+Strength save DC 14 (WIS; CHA 13) · Damage 2d4 kinetic
 Casting 1 action Range 60 feet Duration Instantaneous Source PHB
 You gain the minor ability to move or manipulate creatures and objects with the Force. You can exert fine control on objects with your telekinetic grip, such as… [380 chars #d4acff50]
 You use the Force to move a Medium or smaller creature or object not being worn or carried within range. The target must make a Strength saving throw. An object… [711 chars #708794cf]

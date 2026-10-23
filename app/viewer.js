@@ -5599,7 +5599,7 @@ function renderSuperiority(m) {
       ${m.t && m.t.lim.supSize && !info.some((i) => i.rows.some(([k, v]) => /size/i.test(k) && String(v) === String(m.t.lim.supSize)))
         ? stat('Superiority die', rollable('supdie', esc(m.t.lim.supSize), 'Roll a superiority die')) : ''}
     </div>
-    <p class="faint" style="font-size:12px;margin:8px 0 0">Dice come from the class table at your level; save DCs are calculated here as 8 + proficiency + your best eligible ability modifier (SW5E's site does not compute superiority).</p>
+    <p class="faint" style="font-size:12px;margin:8px 0 0">Dice come from the class table at your level; save DCs are calculated here as 8 + proficiency + your best eligible ability modifier (SW5E's site does not compute superiority). The ability is your choice: another eligible one gives 8 + proficiency + its modifier, and a maneuver attack's dice card lets you switch it.</p>
     ${Object.entries(byType).map(([t, list]) => `<h3>${esc(t)} maneuvers <span class="faint">(${list.length})</span></h3>
       <div class="grid cards">${list.map((r) => card({
         title: r.name, chips: [r.prerequisite ? chip('Prereq: ' + r.prerequisite, 'warn') : '', r.contentSource ? chip(r.contentSource) : ''].filter(Boolean),
@@ -5693,7 +5693,7 @@ function ownCasting(m, kind, casters = classCasting(m)) {
       extra.dc = num(cast[kind === 'tech' ? 'saveDC' : `${k}SaveDC`]) - (8 + pb + e);
       extra.attack = num(cast[kind === 'tech' ? 'attackModifier' : `${k}AttackModifier`]) - (pb + e);
     }
-    return { dc: 8 + pb + mod(a) + extra.dc, attack: pb + mod(a) + extra.attack, ability: a };
+    return { dc: 8 + pb + mod(a) + extra.dc, attack: pb + mod(a) + extra.attack, ability: a, options: chosenCast && list.includes(chosenCast) ? [chosenCast] : [...new Set(list)] };
   };
   return { points, abilities: pointAbilities, ability, numbers, sources: own.map((c) => c.from), partial: !!engineKnows, ...numbers({ forceAlignment: 'Universal', powerType: kind === 'tech' ? 'Tech' : 'Force' }) };
 }
@@ -5846,12 +5846,12 @@ function powerNumbers(m, kind, p, x = {}) {
   // "Wisdom or Charisma (your choice) is your forcecasting modifier for these powers" (Evil Eye, species).
   if (x.slot && arr(x.slot.abilities).length) {
     const a = x.slot.abilities.reduce((b, c) => (mod(c) > mod(b) ? c : b));
-    return { dc: 8 + pb + mod(a), attack: pb + mod(a), spec: null, ability: a };
+    return { dc: 8 + pb + mod(a), attack: pb + mod(a), spec: null, ability: a, options: x.slot.abilities };
   }
   for (const r of damageAbilityRules(m)) {
     if (r.kind !== kind || !new RegExp(`\\b${r.damage} damage\\b`, 'i').test(p.description || '')) continue;
     const a = r.abilities.reduce((b, c) => (mod(c) > mod(b) ? c : b));
-    return { dc: 8 + pb + mod(a), attack: pb + mod(a), spec: null, ability: a, from: r.from };
+    return { dc: 8 + pb + mod(a), attack: pb + mod(a), spec: null, ability: a, options: r.abilities, from: r.from };
   }
   const own = ownCasting(m, kind);
   const fromOwn = own && (!own.partial || own.sources.includes(x.source));
@@ -5859,11 +5859,11 @@ function powerNumbers(m, kind, p, x = {}) {
   const cast = kind === 'force' ? m.c.forceCasting : m.c.techCasting;
   if (kind === 'force') {
     const k = /light/i.test(p.forceAlignment) ? 'light' : /dark/i.test(p.forceAlignment) ? 'dark' : 'universal';
-    if (cast && typeof cast === 'object') return { dc: num(cast[k + 'SaveDC']), attack: num(cast[k + 'AttackModifier']), spec: `force|${k}`, ability: engCastAbility(m, kind, k) };
+    if (cast && typeof cast === 'object') return { dc: num(cast[k + 'SaveDC']), attack: num(cast[k + 'AttackModifier']), spec: `force|${k}`, ability: engCastAbility(m, kind, k), options: engCastAbilities(m, kind, k) };
     const best = pwAbilities(p).reduce((b, a) => (mod(a) > mod(b) ? a : b));
-    return { dc: 8 + pb + mod(best), attack: pb + mod(best), spec: null, ability: best };
+    return { dc: 8 + pb + mod(best), attack: pb + mod(best), spec: null, ability: best, options: pwAbilities(p) };
   }
-  if (cast && typeof cast === 'object') return { dc: num(cast.saveDC), attack: num(cast.attackModifier), spec: 'tech', ability: engCastAbility(m, kind, 'tech') };
+  if (cast && typeof cast === 'object') return { dc: num(cast.saveDC), attack: num(cast.attackModifier), spec: 'tech', ability: engCastAbility(m, kind, 'tech'), options: engCastAbilities(m, kind, 'tech') };
   return { dc: 8 + pb + mod('Intelligence'), attack: pb + mod('Intelligence'), spec: null, ability: 'Intelligence' };
 }
 /**
@@ -5874,9 +5874,25 @@ function powerNumbers(m, kind, p, x = {}) {
 function engCastAbility(m, kind, k) {
   const sc = m.c.abilityScores || {};
   const mod = (a) => num((sc[a] || {}).modifier);
+  return engCastAbilities(m, kind, k).reduce((b, a) => (mod(a) > mod(b) ? a : b));
+}
+/** The abilities SW5E's casting numbers of a kind may use (universal powers: Wisdom or Charisma; a feat's swap adds one). */
+function engCastAbilities(m, kind, k) {
   let list = k === 'light' ? ['Wisdom'] : k === 'dark' ? ['Charisma'] : k === 'universal' ? ['Wisdom', 'Charisma'] : ['Intelligence'];
   for (const s of castingSwaps(m.raw)) if (s.kind === kind && s.chosen && list.includes(s.from)) list = list.concat(s.to);
-  return list.reduce((b, a) => (mod(a) > mod(b) ? a : b));
+  return list;
+}
+/**
+ * "Your choice" of ability for a roll (decided: the best one by default, another one picked on the dice card): the spec's
+ * end for a power's rolls, "|Ability|Wisdom,Charisma" (nothing when there's only one).
+ */
+const abilitySpec = (n) => (n && n.ability && arr(n.options).length > 1 ? `|${n.ability}|${n.options.join(',')}` : '');
+/** A save DC with the other abilities' DCs ("DC 15 (WIS; CHA 13)"). */
+function dcWithOthers(m, n) {
+  if (!n.ability || arr(n.options).length < 2) return esc(n.dc);
+  const mod = (a) => num(((m.c.abilityScores || {})[a] || {}).modifier);
+  const others = n.options.filter((a) => a !== n.ability).map((a) => `${ABBR[a]} ${n.dc - mod(n.ability) + mod(a)}`);
+  return `${esc(n.dc)} <span class="faint" title="Your choice: the best one is used; another one gives these">(${ABBR[n.ability]}; ${esc(others.join(', '))})</span>`;
 }
 /**
  * Feats that change the casting ability: "Choose one from Wisdom or Charisma. … You can use Intelligence instead of the
@@ -5959,14 +5975,14 @@ function powerRoll(m, kind, p, x) {
   const n = powerNumbers(m, kind, p, x);
   const bits = [];
   if (/\b(?:force|tech|power) attack\b|\bmake a (?:melee|ranged) (?:force |tech |power )?attack\b/i.test(d)) {
-    bits.push(`Attack ${rollable(n.spec || `pattack|${p.name}|${n.attack}`, signed(n.attack), `Roll ${p.name}'s attack`)}`);
+    bits.push(`Attack ${rollable(n.spec || `pattack|${p.name}|${n.attack}${abilitySpec(n)}`, signed(n.attack), `Roll ${p.name}'s attack`)}`);
   }
   const save = /\b(Strength|Dexterity|Constitution|Intelligence|Wisdom|Charisma) saving throw\b/i.exec(d);
-  if (save) bits.push(`${save[1]} save DC ${n.dc}`);
+  if (save) bits.push(`${save[1]} save DC ${dcWithOthers(m, n)}`);
   const lvl = charLevel(m);
   plPowerRolls(p, num(p.level), lvl).forEach((g, i) => {
     const mod = powerRollBonus(m, kind, p, g, n.ability);
-    bits.push(`${titleCase(g.heal ? 'Healing' : g.reduce ? 'Reduction' : 'Damage')} ${rollable(`pdmg|${kind}|${p.name}|${num(p.level)}|${i}|${n.ability || ''}`, `${g.n}d${g.die}${mod ? signed(mod) : ''}`, `Roll ${p.name}'s ${g.label}`)}${g.type ? ` ${esc(g.type)}` : ''}`);
+    bits.push(`${titleCase(g.heal ? 'Healing' : g.reduce ? 'Reduction' : 'Damage')} ${rollable(`pdmg|${kind}|${p.name}|${num(p.level)}|${i}|${n.ability || ''}${g.mod && arr(n.options).length > 1 ? `|${n.options.join(',')}` : ''}`, `${g.n}d${g.die}${mod ? signed(mod) : ''}`, `Roll ${p.name}'s ${g.label}`)}${g.type ? ` ${esc(g.type)}` : ''}`);
   });
   return bits.length ? `<div class="pw-roll">${bits.join(' · ')}</div>` : '';
 }
@@ -6093,7 +6109,8 @@ async function castPower(arg) {
   const pfx = plPowerEffect(p, charLevel(m));
   const hasFx = pfx.mods.length || pfx.defenses.length || pfx.riders.length || pfx.tempHp;
   const own = hasFx && !pfx.forTarget ? { mods: pfx.mods, defenses: pfx.defenses, riders: pfx.riders } : {};
-  const castAbility = powerNumbers(m, kind, p, x).ability;
+  const castNums = powerNumbers(m, kind, p, x);
+  const castAbility = castNums.ability;
   const castMod = powerCastMod(m, castAbility);
   // Concentration: a new concentration power ends the one before (not on yourself where the feature says so).
   let note = '';
@@ -6124,7 +6141,7 @@ async function castPower(arg) {
   // Next steps: its rolls at this level, "On me" for a power whose benefits go to its target, Ashla's hit points.
   const buttons = plPowerRolls(p, level, charLevel(m)).map((g, i) => {
     const b = powerRollBonus(m, kind, p, g, castAbility);
-    return { act: 'roll', arg: `pdmg|${kind}|${name}|${level}|${i}|${castAbility || ''}`, label: `Roll ${g.label} (${g.n}d${g.die}${b ? signed(b) : ''})` };
+    return { act: 'roll', arg: `pdmg|${kind}|${name}|${level}|${i}|${castAbility || ''}${g.mod && arr(castNums.options).length > 1 ? `|${castNums.options.join(',')}` : ''}`, label: `Roll ${g.label} (${g.n}d${g.die}${b ? signed(b) : ''})` };
   });
   const effectNow = tempEffects(snap.key).find((e) => e.power === name);
   if (hasFx && pfx.forTarget && effectNow) buttons.push({ act: 'pw-onme', arg: effectNow.id, label: 'It\'s on me: apply it' });
@@ -6168,6 +6185,11 @@ async function ashlaBoost(level) {
   setStatus(`Ashla: hit point maximum and current hit points +${num(level)} for 1 minute.`);
 }
 
+/** SW5E's universal DC with the other ability's: " (WIS; CHA 13)" (your choice; the best one by default). */
+function castOthers(m, k, dc) {
+  const list = engCastAbilities(m, 'force', k);
+  return list.length > 1 ? ` ${dcWithOthers(m, { dc, ability: engCastAbility(m, 'force', k), options: list }).replace(/^\S+ /, '')}` : '';
+}
 function renderCasting(m, kind) {
   const own = ownCasting(m, kind);
   const cast = kind === 'force' ? m.c.forceCasting : m.c.techCasting;
@@ -6182,13 +6204,13 @@ function renderCasting(m, kind) {
     has || classCasting(m).some((c) => c.type === kind) ? stat('Max power level', `${esc(max)}`, multi ? 'multiclass table' : '') : '',
     ...(kind === 'force'
       ? (has ? ['light', 'dark', 'universal'].map((k) => stat(k === 'universal' ? 'Universal' : `${titleCase(k)} side`,
-        `DC ${bump(m, `forceCasting.${k}SaveDC`, esc(cast[k + 'SaveDC']))}`, `attack ${rollable(`force|${k}`, bump(m, `forceCasting.${k}AttackModifier`, signed(cast[k + 'AttackModifier'])), `Roll a ${k} force attack`)}`)) : [])
+        `DC ${bump(m, `forceCasting.${k}SaveDC`, esc(cast[k + 'SaveDC']))}${k === 'universal' ? castOthers(m, k, num(cast[k + 'SaveDC'])) : ''}`, `attack ${rollable(`force|${k}`, bump(m, `forceCasting.${k}AttackModifier`, signed(cast[k + 'AttackModifier'])), `Roll a ${k} force attack`)}`)) : [])
       : (has ? [stat('Save DC', bump(m, 'techCasting.saveDC', esc(cast.saveDC))), stat('Attack', rollable('tech', bump(m, 'techCasting.attackModifier', signed(cast.attackModifier)), 'Roll a tech attack'))] : [])),
     ...(own && allOwn && kind === 'force' ? ['Light', 'Dark', 'Universal'].map((al) => {
       const n = own.numbers({ forceAlignment: al });
-      return stat(al === 'Universal' ? al : `${al} side`, `DC ${esc(n.dc)}`, `attack ${rollable(`pattack|${al} force|${n.attack}`, signed(n.attack), `Roll a ${al.toLowerCase()} force attack`)} (${ABBR[n.ability]})`);
+      return stat(al === 'Universal' ? al : `${al} side`, `DC ${dcWithOthers(m, n)}`, `attack ${rollable(`pattack|${al} force|${n.attack}${abilitySpec(n)}`, signed(n.attack), `Roll a ${al.toLowerCase()} force attack`)} (${ABBR[n.ability]})`);
     }) : []),
-    ...(own && (!own.partial || (allOwn && kind === 'tech')) ? [stat('Save DC', esc(own.dc), ABBR[own.ability]), stat('Attack', rollable(`pattack|${kind === 'force' ? 'Force' : 'Tech'}|${own.attack}`, signed(own.attack), `Roll a ${kind} attack`), ABBR[own.ability])] : []),
+    ...(own && (!own.partial || (allOwn && kind === 'tech')) ? [stat('Save DC', dcWithOthers(m, own), ABBR[own.ability]), stat('Attack', rollable(`pattack|${kind === 'force' ? 'Force' : 'Tech'}|${own.attack}${abilitySpec(own)}`, signed(own.attack), `Roll a ${kind} attack`), ABBR[own.ability])] : []),
   ].filter(Boolean);
   const powers = [];
   const srcOf = (x) => String(x.source).replace(/\s*\(.*$/, '');

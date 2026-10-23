@@ -301,13 +301,13 @@ SW5E computes no casting for this character; DCs and attacks below are 8 + profi
 At-will powers (2)
 Affect Mind Universal Concentration Feat: Force-Sensitive (Background (Soldier))
 [Cast]
-Wisdom save DC 12
+Wisdom save DC 12 (WIS; CHA 11)
 Casting 1 action Range 30 feet Duration up to 1 minute DC / attack 12 / +4 (WIS) Source PHB
 Choose a target within range that isn't hostile toward you. The target must make a Wisdom saving throw. On a failed save, you have advantage on all Charisma checks directed at that target.
 On a successful save, the creature does not realize that you tried to use the Force to influence its mood, but it becomes immune to this power for one day. This power has no effect on droids or constructs.
 Burst Universal Feat: Force-Sensitive (Background (Soldier))
 [Cast]
-Dexterity save DC 12 · Damage 2d8 kinetic
+Dexterity save DC 12 (WIS; CHA 11) · Damage 2d8 kinetic
 Casting 1 action Range Self (5-foot sphere) Duration Instantaneous DC / attack 12 / +4 (WIS) Source PHB
 You cause the earth to burst from beneath your feet. Each creature within range, other than you, must succeed on a Dexterity saving throw or take 1d8 kinetic damage.
 This power's damage increases by 1d8 when you reach 5th level (2d8), 11th level (3d8), and 17th level (4d8).

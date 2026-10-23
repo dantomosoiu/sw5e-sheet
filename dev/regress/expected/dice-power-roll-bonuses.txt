@@ -339,14 +339,14 @@ DC 11
 attack +4
   ↳ hover forceCasting.darkAttackModifier: Without tweaks or effects: 3 → now 4 / +1 Dark force attack · Focus Generator (Fine) while attuned
 Universal
-DC 14
+DC 14 (WIS; CHA 11)
   ↳ hover forceCasting.universalSaveDC: Without tweaks or effects: 13 → now 14 / +1 WIS modifier (+1 score) · Empathic feat (background feat)
 attack +7
   ↳ hover forceCasting.universalAttackModifier: Without tweaks or effects: 5 → now 7 / +1 Universal force attack · Focus Generator (Fine) while attuned / +1 WIS modifier (+1 score) · Empathic feat (background feat)
 At-will powers (5)
 Force Push/Pull Universal Consular
 [Cast] [No casting option ▾]
-Strength save DC 14 · Damage 1d4+1 kinetic
+Strength save DC 14 (WIS; CHA 11) · Damage 1d4+1 kinetic
 Casting 1 action Range 60 feet Duration Instantaneous Source PHB
 You gain the minor ability to move or manipulate creatures and objects with the Force. You can exert fine control on objects with your telekinetic grip, such as… [380 chars #d4acff50]
 You use the Force to move a Medium or smaller creature or object not being worn or carried within range. The target must make a Strength saving throw. An object… [711 chars #708794cf]
@@ -358,7 +358,7 @@ You touch one willing creature. Once before the power ends, the target can roll 
 This power's die increases at higher levels: to a d6 at 5th level, a d8 at 11th level, and a d10 at 17th level.
 Mind Trick Universal Concentration Consular
 [Cast] [No casting option ▾]
-Wisdom save DC 14
+Wisdom save DC 14 (WIS; CHA 11)
 Casting 1 action Range 30 feet Duration up to 1 minute Source PHB
 Choose a target within range that isn't hostile toward you. The target must make a Wisdom saving throw. On a failed save, the target has disadvantage on Wisdom (Perception) and Intelligence (Investigation) checks.
 On a successful save, the creature realizes that you tried to use the Force to influence its awareness and becomes hostile toward you. A creature prone to viole… [364 chars #60273583]
@@ -386,7 +386,7 @@ This power has no effect on droids or constructs.
 Force Potency. When you cast this power using a force slot of 2nd level or higher, you can roll an additional 2d8 for each slot level above 1st.
 Force Propel Universal Prereq: Force Push/Pull Consular
 [1st level · 2 points ▾] [No casting option ▾] [Cast]
-Dexterity save DC 14 · Damage 3d8+1 kinetic
+Dexterity save DC 14 (WIS; CHA 11) · Damage 3d8+1 kinetic
 Casting 1 action Range 60 feet Duration Instantaneous Source PHB
 Choose one or more creatures or objects not being worn or carried within 60 feet that weigh up to a combined total of 15 pounds. The creatures or objects immedi… [601 chars #9581b5e9]
 Force Potency. When you cast this power using a force slot of 2nd level or higher, the maximum weight increases by 15 pounds and the damage increases by 1d8 for each slot level above 1st.
@@ -414,7 +414,7 @@ You attune your senses to pick up the emotions of others for the duration. When 
 2nd-level powers (3)
 Battle Meditation Universal Concentration Consular
 [2nd level · 3 points ▾] [No casting option ▾] [Cast]
-Charisma save DC 14
+Charisma save DC 14 (WIS; CHA 11)
 Casting 1 action Range Self (5-foot radius) Duration up to 1 minute Source PHB
 You exude an aura out to 5 feet that boosts the morale and overall battle prowess of you and your allies while simultaneously reducing the opposition's combat-effectiveness by eroding their will to fight.
 Whenever you or a friendly creature within your meditation makes an attack roll or a saving throw, they can roll a d4 and add the number rolled to the attack roll or saving throw.
@@ -426,7 +426,7 @@ This power bolsters your allies with toughness and resolve. Choose up to three c
 Force Potency. When you cast this power using a force slot of 3rd level or higher, a target's hit points increase by an additional 5 for each slot level above 2nd.
 Force Throw Universal Prereq: Force Push/Pull Consular
 [2nd level · 3 points ▾] [No casting option ▾] [Cast]
-Strength save DC 14 · Damage 2d8+1 force
+Strength save DC 14 (WIS; CHA 11) · Damage 2d8+1 force
 Casting 1 action Range 90 feet Duration Instantaneous Source PHB
 You use the Force to move a Large or smaller creature or object not being worn or carried within
 range. The target must make a Strength saving throw. An object automatically fails this saving throw. On a failed save, the creature or object moves a number of… [561 chars #e36ebd9f]

@@ -194,9 +194,9 @@ damage|1: Vibrobaton damage: d4 d4 +1 · = +1 STR modifier · Kinetic · option:
 attack|2: Unarmed Strike attack: d20 +6 · = +6 modifier
 damage|2: Unarmed Strike damage: no dice +2 · = +1 unarmed strike +1 STR modifier · Kinetic · option: Tyrannical Strike +d10 +1d10 · option: Disarming Blow +d10 +1d10
 supdie: Superiority die: d10 +0
-maneuver|Physical|Dexterity: Physical maneuver attack: d20 +8 · = +8 modifier
-maneuver|Mental|Intelligence: Mental maneuver attack: d20 +9 · = +9 modifier
-maneuver|General|Intelligence: General maneuver attack: d20 +9 · = +9 modifier
+maneuver|Physical|Dexterity: Physical maneuver attack: d20 +8 · = +8 DEX modifier + proficiency
+maneuver|Mental|Intelligence: Mental maneuver attack: d20 +9 · = +9 INT modifier + proficiency
+maneuver|General|Intelligence: General maneuver attack: d20 +9 · = +9 INT modifier + proficiency
 check|Strength: Strength check: d20 +1 · = +1 modifier
 save|Strength: Strength saving throw: d20 +1 · = +1 modifier · option: caused by an effect you can see: Calm and Collected +4
 skill|Strength|0: Athletics (STR): d20 +1 · = +1 modifier
@@ -340,7 +340,7 @@ INT · attack +9
 General maneuver DC
 17
 INT · attack +9
-Dice come from the class table at your level; save DCs are calculated here as 8 + proficiency + your best eligible ability modifier (SW5E's site does not compute superiority).
+Dice come from the class table at your level; save DCs are calculated here as 8 + proficiency + your best eligible ability modifier (SW5E's site does not comput… [316 chars #1069feec]
 Mental maneuvers (3)
 Tyrannical Strike Prereq: Proficiency with Intimidation PHB
 When you hit a creature with a weapon attack, you can expend one superiority die and use your reaction to issue a one-word command to a creature who can see or … [351 chars #04553101]

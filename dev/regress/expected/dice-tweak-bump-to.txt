@@ -247,9 +247,9 @@ damage|1: Vibrorapier damage: d8 +5 · = +3 DEX modifier +2 Brute Force · Kinet
 attack|2: Unarmed Strike attack: d20 +5 · = +5 modifier · critical on 19–20 (Improved Critical) · option: Precision Attack +d4 +1d4
 damage|2: Unarmed Strike damage: d4 +5 · = +3 DEX modifier (Unarmed Combatant) +2 Brute Force · Kinetic · option: Sneak Attack +1d6 · option: Return Fire +d4 +1d4
 supdie: Superiority die: d4 +0
-maneuver|Physical|Dexterity: Physical maneuver attack: d20 +5 · = +5 modifier
-maneuver|Mental|Wisdom: Mental maneuver attack: d20 +3 · = +3 modifier
-maneuver|General|Dexterity: General maneuver attack: d20 +5 · = +5 modifier
+maneuver|Physical|Dexterity: Physical maneuver attack: d20 +5 · = +5 DEX modifier + proficiency
+maneuver|Mental|Wisdom: Mental maneuver attack: d20 +3 · = +3 WIS modifier + proficiency
+maneuver|General|Dexterity: General maneuver attack: d20 +5 · = +5 DEX modifier + proficiency
 check|Strength: Strength check: d20 +2 · = +2 modifier
 save|Strength: Strength saving throw: d20 +4 · = +4 modifier
 skill|Strength|0: Athletics (STR): d20 +2 · = +2 modifier
@@ -407,7 +407,7 @@ WIS · attack +3
 General maneuver DC
 13
 DEX · attack +5
-Dice come from the class table at your level; save DCs are calculated here as 8 + proficiency + your best eligible ability modifier (SW5E's site does not compute superiority).
+Dice come from the class table at your level; save DCs are calculated here as 8 + proficiency + your best eligible ability modifier (SW5E's site does not comput… [316 chars #1069feec]
 General maneuvers (1)
 Precision Attack PHB
 When you make a weapon attack roll against a creature, you can expend one superiority die to add it to the roll. You can use this maneuver before or after makin… [228 chars #f67ac2fb]

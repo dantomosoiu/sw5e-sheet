@@ -359,7 +359,7 @@ Dark side
 DC 11
 attack +3
 Universal
-DC 17
+DC 17 (WIS; CHA 11)
 attack +9
 At-will powers (1)
 Saber Throw Universal Path of the Forceblade Phasethrow

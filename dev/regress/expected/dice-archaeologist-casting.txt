@@ -231,13 +231,13 @@ damage|1: Vibrobaton damage: d4 d4 +1 · = +1 STR modifier · Kinetic · option:
 attack|2: Unarmed Strike attack: d20 +3 · = +3 modifier
 damage|2: Unarmed Strike damage: no dice +2 · = +1 unarmed strike +1 STR modifier · Kinetic · option: Tyrannical Strike +d4 +1d4 · option: Disarming Blow +d4 +1d4
 supdie: Superiority die: d4 +0
-maneuver|Physical|Dexterity: Physical maneuver attack: d20 +5 · = +5 modifier
-maneuver|Mental|Intelligence: Mental maneuver attack: d20 +6 · = +6 modifier
-maneuver|General|Intelligence: General maneuver attack: d20 +6 · = +6 modifier
-pattack|Light force|6: Light force attack: d20 +6 · = +6 modifier
-pattack|Dark force|6: Dark force attack: d20 +6 · = +6 modifier
-pattack|Universal force|6: Universal force attack: d20 +6 · = +6 modifier
-pattack|Saber Throw|6: Saber Throw attack: d20 +6 · = +6 modifier
+maneuver|Physical|Dexterity: Physical maneuver attack: d20 +5 · = +5 DEX modifier + proficiency
+maneuver|Mental|Intelligence: Mental maneuver attack: d20 +6 · = +6 INT modifier + proficiency
+maneuver|General|Intelligence: General maneuver attack: d20 +6 · = +6 INT modifier + proficiency
+pattack|Light force|6|Intelligence|Intelligence,Wisdom: Light force attack: d20 +6 · = +6 modifier
+pattack|Dark force|6|Intelligence|Intelligence,Charisma: Dark force attack: d20 +6 · = +6 modifier
+pattack|Universal force|6|Intelligence|Intelligence,Wisdom,Charisma: Universal force attack: d20 +6 · = +6 modifier
+pattack|Saber Throw|6|Intelligence|Intelligence,Wisdom,Charisma: Saber Throw attack: d20 +6 · = +6 modifier
 check|Strength: Strength check: d20 +1 · = +1 modifier
 save|Strength: Strength saving throw: d20 +1 · = +1 modifier
 skill|Strength|0: Athletics (STR): d20 +1 · = +1 modifier
@@ -381,7 +381,7 @@ INT · attack +6
 General maneuver DC
 14
 INT · attack +6
-Dice come from the class table at your level; save DCs are calculated here as 8 + proficiency + your best eligible ability modifier (SW5E's site does not compute superiority).
+Dice come from the class table at your level; save DCs are calculated here as 8 + proficiency + your best eligible ability modifier (SW5E's site does not comput… [316 chars #1069feec]
 Mental maneuvers (3)
 Tyrannical Strike Prereq: Proficiency with Intimidation PHB
 When you hit a creature with a weapon attack, you can expend one superiority die and use your reaction to issue a one-word command to a creature who can see or … [351 chars #04553101]
@@ -404,13 +404,13 @@ Force points
 Max power level
 1
 Light side
-DC 14
+DC 14 (INT; WIS 11)
 attack +6 (INT)
 Dark side
-DC 14
+DC 14 (INT; CHA 11)
 attack +6 (INT)
 Universal
-DC 14
+DC 14 (INT; WIS 11, CHA 11)
 attack +6 (INT)
 Archaeologist Pursuit: SW5E's numbers don't follow the rules here, so its powers' DC and attack (and the extra points) are worked out on this sheet.
 At-will powers (1)

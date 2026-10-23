@@ -1179,12 +1179,17 @@ function clsFeatureState(name, text, ctx) {
   // a while ("…for 1 hour. You gain the following benefits:"), not Martial Arts' "while unarmed".
   const leadAt = sentences.findIndex((s) => /\b(?:gain|gaining|granting|grants?|receive) the following (?:benefits|effects)\b/i.test(s));
   const lead = leadAt >= 0 ? sentences[leadAt] : '';
-  const listed = !!lead && (ACT.test(lead) || (leadAt > 0 && CLS_DURATION.test(sentences[leadAt - 1])) || /\bwhile the target is\b/i.test(lead));
+  // "As an action, you can initiate your Saber Storm. … Additionally, while your Saber Storm is active, … you gain the
+  // following benefits": the feature's own state, started by its act.
+  const whileActive = !!lead && new RegExp(`\\bwhile your ${name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')} is active\\b`, 'i').test(lead) && ACT.test(flat);
+  const listed = !!lead && (ACT.test(lead) || (leadAt > 0 && CLS_DURATION.test(sentences[leadAt - 1])) || /\bwhile the target is\b/i.test(lead) || whileActive);
   // "enter a balanced stance for one minute", "take a savage stance… for 1 minute", "become invisible for 1 minute".
   const selfTimed = sentences.find((s) => ACT.test(s) && /\b(?:enter|assume|adopt|take|become|focus|transform|step)\b[^.]{0,120}?\bfor (?:1|one|10|an?) (?:minute|hour)s?\b/i.test(s));
   const durM = leadAt > 0 && !ACT.test(lead) ? /\bfor (1|one|10|an?) (minute|hour)s?\b/i.exec(sentences[leadAt - 1]) : null;
   const lasts = /(?:lasts?|benefits|effects?|focus|stance|state|rage|form) for (1|one|10|an?) (minute|hour)s?/i.exec(flat)
-    || /\bfor (1|one|10|an?) (minute|hour)s?\b/i.exec(selfTimed || '') || durM || /to a maximum (?:duration )?of (1|one|10) (minute|hour)s?/i.exec(flat);
+    || /\bfor (1|one|10|an?) (minute|hour)s?\b/i.exec(selfTimed || '') || durM || /to a maximum (?:duration )?of (1|one|10) (minute|hour)s?/i.exec(flat)
+    // ("…acting as an extension of your will for 1 minute": Saber Storm.)
+    || (whileActive ? /\bfor (1|one|10|an?) (minute|hour)s?\b/i.exec(flat) : null);
   const nextTurn = /\b(?:benefits|effects?)(?: [a-z]+){0,3} until the (?:start|end) of your next turn\b|\bUntil the start of your next turn, you (?:have|gain)\b/i.test(flat);
   const activated = ACT.test(flat);
   if (!word && !timed && !listed && !selfTimed && !(lasts && activated) && !(nextTurn && activated)) return null;

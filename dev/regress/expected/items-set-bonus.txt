@@ -364,7 +364,7 @@ Dark side
 DC 10
 attack +2
 Universal
-DC 13
+DC 13 (WIS; CHA 10)
   ↳ hover forceCasting.universalSaveDC: Without tweaks or effects: 12 → now 13 / +1 WIS modifier (+1 score) · Formfighting Dabbler (Jedi background feat): +1 to an ability of my choice tweak
 attack +5
   ↳ hover forceCasting.universalAttackModifier: Without tweaks or effects: 4 → now 5 / +1 WIS modifier (+1 score) · Formfighting Dabbler (Jedi background feat): +1 to an ability of my choice tweak

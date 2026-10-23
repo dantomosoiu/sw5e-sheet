@@ -258,9 +258,9 @@ damage|1: Vibrorapier damage: d8 +3 · = +3 DEX modifier · Kinetic · option: S
 attack|2: Unarmed Strike attack: d20 +9 · = +9 modifier · option: Precision Attack +d12 +1d12
 damage|2: Unarmed Strike damage: d4 +3 · = +3 DEX modifier (Unarmed Combatant) · Kinetic · option: Sneak Attack +1d6 · option: Return Fire +d12 +1d12
 supdie: Superiority die: d12 +0
-maneuver|Physical|Constitution: Physical maneuver attack: d20 +11 · = +11 modifier
-maneuver|Mental|Wisdom: Mental maneuver attack: d20 +7 · = +7 modifier
-maneuver|General|Constitution: General maneuver attack: d20 +10 · = +10 modifier
+maneuver|Physical|Constitution: Physical maneuver attack: d20 +11 · = +11 CON modifier (tweaked) + proficiency
+maneuver|Mental|Wisdom: Mental maneuver attack: d20 +7 · = +7 WIS modifier + proficiency
+maneuver|General|Constitution: General maneuver attack: d20 +10 · = +10 CON modifier + proficiency
 check|Strength: Strength check: d20 −1 · = −1 modifier
 save|Strength: Strength saving throw: d20 +5 · = +5 modifier
 skill|Strength|0: Athletics (STR): d20 −1 · = −1 modifier
@@ -421,7 +421,7 @@ General maneuver DC
   ↳ hover maneuver.General.Constitution.dc: Without tweaks or effects: 17 → now 18 / +1 CON modifier (+2 score) · Master of Combat Fighter feature
 CON · attack +10
   ↳ hover maneuver.General.Constitution.attack: Without tweaks or effects: +9 → now +10 / +1 CON modifier (+2 score) · Master of Combat Fighter feature
-Dice come from the class table at your level; save DCs are calculated here as 8 + proficiency + your best eligible ability modifier (SW5E's site does not compute superiority).
+Dice come from the class table at your level; save DCs are calculated here as 8 + proficiency + your best eligible ability modifier (SW5E's site does not comput… [316 chars #1069feec]
 General maneuvers (1)
 Precision Attack PHB
 When you make a weapon attack roll against a creature, you can expend one superiority die to add it to the roll. You can use this maneuver before or after makin… [228 chars #f67ac2fb]

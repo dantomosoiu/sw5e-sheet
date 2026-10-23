@@ -199,7 +199,7 @@ dice|1d6: 1d6: d6 +0
 dice|4d6: 4d6: d6 d6 d6 d6 +0
 attack|0: Unarmed Strike attack: d20 +7 · = +7 modifier
 damage|0: Unarmed Strike damage: d6 +3 · = +3 DEX modifier (Martial Arts) · Kinetic · option: Sneak Attack +4d6
-pattack|Tech|7: Tech attack: d20 +7 · = +7 modifier
+pattack|Tech|7|Wisdom|Intelligence,Wisdom,Charisma: Tech attack: d20 +7 · = +7 modifier
 check|Strength: Strength check: d20 +2 · = +0 modifier +2 half proficiency (Know a Bit)
 save|Strength: Strength saving throw: d20 +4 · = +4 modifier
 skill|Strength|0: Athletics (STR): d20 +2 · = +2 modifier
@@ -330,7 +330,7 @@ Tech points
 Max power level
 2
 Save DC
-15
+15 (WIS; INT 14, CHA 11)
 WIS
 Attack
 +7

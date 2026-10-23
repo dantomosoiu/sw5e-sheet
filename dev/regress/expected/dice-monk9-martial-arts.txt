@@ -215,7 +215,7 @@ attack|1: Vibroblade attack: d20 +7 · = +7 modifier · two-handed: 1d10
 damage|1: Vibroblade damage: d8 +3 · = +3 DEX modifier (Martial Arts) · Kinetic · option: Sneak Attack +3d6
 attack|2: Unarmed Strike attack: d20 +7 · = +7 modifier
 damage|2: Unarmed Strike damage: d8 +3 · = +3 DEX modifier (Martial Arts) · Kinetic · option: Sneak Attack +3d6
-pattack|Tech|7: Tech attack: d20 +7 · = +7 modifier
+pattack|Tech|7|Wisdom|Intelligence,Wisdom,Charisma: Tech attack: d20 +7 · = +7 modifier
 check|Strength: Strength check: d20 +0 · = +0 modifier
 save|Strength: Strength saving throw: d20 +4 · = +4 modifier
 skill|Strength|0: Athletics (STR): d20 +0 · = +0 modifier
@@ -352,7 +352,7 @@ Tech points
 Max power level
 2
 Save DC
-15
+15 (WIS; INT 14, CHA 11)
 WIS
 Attack
 +7

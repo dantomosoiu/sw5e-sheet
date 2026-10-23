@@ -613,6 +613,7 @@ function buildRoll(m, spec, opts = {}) {
   const sc = c.abilityScores || {};
   const pb = num(c.proficiencyBonus);
   const condsAt = (path) => arr(m.alts && m.alts[path]).map((a) => ({ label: a.cond, bonus: a.bonus, extra: a.extra.slice(), on: false }));
+  const abMod = (a) => num((sc[a] || {}).modifier);
   const d20 = (label, value, path, extra = {}) => ({ kind: 'd20', label, base: [{ label: 'modifier', value }], conds: path ? condsAt(path) : [], spec, ...extra });
   switch (kind) {
     case 'check': {
@@ -746,19 +747,39 @@ function buildRoll(m, spec, opts = {}) {
         critExtra: crit && die > 0 ? Array.from({ length: num((/\bbrutal (\d+)/i.exec(props) || [])[1]) }, () => die) : [],
       };
     }
-    case 'tech': {
-      const t = c.techCasting || {};
-      return d20('Tech attack', num(t.attackModifier), 'techCasting.attackModifier');
-    }
+    // SW5E's casting numbers: with the ability it uses (universal powers: Wisdom or Charisma, the best one unless another
+    // is picked on the card).
+    case 'tech':
     case 'force': {
-      const f = c.forceCasting || {};
-      return d20(`${titleCase(a1)} force attack`, num(f[`${a1}AttackModifier`]), `forceCasting.${a1}AttackModifier`);
+      const k = kind === 'tech' ? 'tech' : a1;
+      const f = (kind === 'tech' ? c.techCasting : c.forceCasting) || {};
+      const path = kind === 'tech' ? 'techCasting.attackModifier' : `forceCasting.${a1}AttackModifier`;
+      const value = num(kind === 'tech' ? f.attackModifier : f[`${a1}AttackModifier`]);
+      if (typeof engCastAbilities !== 'function' || !m.raw) return d20(kind === 'tech' ? 'Tech attack' : `${titleCase(a1)} force attack`, value, path);
+      const options = engCastAbilities(m, kind, k);
+      const best = engCastAbility(m, kind, k);
+      const chosen = options.includes(opts.ability) ? opts.ability : best;
+      const r = d20(kind === 'tech' ? 'Tech attack' : `${titleCase(a1)} force attack`, value + abMod(chosen) - abMod(best), path);
+      if (options.length > 1) Object.assign(r, { toolAbility: chosen, abilityOptions: options });
+      return r;
     }
     case 'maneuver': { // maneuver|Physical|Strength: with a superiority tweak to that kind's modifier
       const tw = (typeof supTweaks === 'function' ? supTweaks(m) : {})[`${String(a1).toLowerCase()}Modifier`] || {};
-      return d20(`${a1} maneuver attack`, pb + engTweaked(num((sc[a2] || {}).modifier), tw), null);
+      // "Strength, Dexterity, or Constitution for physical maneuvers (your choice)…": the best one, or another picked.
+      const options = MANEUVER_ABILITIES[a1] || [a2];
+      const ab = options.includes(opts.ability) ? opts.ability : a2;
+      const r = d20(`${a1} maneuver attack`, pb + engTweaked(abMod(ab), tw), null);
+      r.base = [{ label: `${ABBR[ab]} modifier${tw && Object.keys(tw).length ? ' (tweaked)' : ''} + proficiency`, value: pb + engTweaked(abMod(ab), tw) }];
+      if (options.length > 1) Object.assign(r, { toolAbility: ab, abilityOptions: options });
+      return r;
     }
-    case 'pattack': return d20(`${a1} attack`, num(a2), null); // a power cast without SW5E's casting numbers
+    case 'pattack': { // pattack|Power|bonus[|Ability|Wisdom,Charisma]: a power cast without SW5E's casting numbers
+      const options = String(a4 || '').split(',').filter((x) => ABBR[x]);
+      const ab = options.includes(opts.ability) ? opts.ability : a3;
+      const r = d20(`${a1} attack`, num(a2) + (ABBR[a3] && ab !== a3 ? abMod(ab) - abMod(a3) : 0), null);
+      if (options.length > 1 && ABBR[a3]) Object.assign(r, { toolAbility: ab, abilityOptions: options });
+      return r;
+    }
     case 'supdie': {
       const size = num(String(a1 || (m.t && m.t.lim.supSize) || '').replace(/\D/g, ''));
       return { kind: 'dice', label: 'Superiority die', spec, diceSpec: size ? [size] : [], base: [], conds: [] };
@@ -789,8 +810,11 @@ function buildRoll(m, spec, opts = {}) {
       const g = p && plPowerRolls(p, num(a3), charLevel(m))[num(a4)];
       if (!g) return null;
       // The casting ability the power's card used (a roll from before it was in the spec: SW5E's for the power).
-      const ability = ABBR[a5] ? a5 : powerNumbers(m, a1, p, {}).ability;
+      // ("|Wisdom,Charisma" after it: your choice, another one picked on the card.)
+      const options = String(spec.split('|')[6] || '').split(',').filter((x) => ABBR[x]);
+      const ability = options.includes(opts.ability) ? opts.ability : ABBR[a5] ? a5 : powerNumbers(m, a1, p, {}).ability;
       return {
+        ...(options.length > 1 ? { toolAbility: ability, abilityOptions: options } : {}),
         kind: 'dice', label: `${p.name}: ${g.label}${num(a3) > num(p.level) ? ` (${ordinal(num(a3))} level)` : ''}`, spec, diceSpec: Array.from({ length: g.n }, () => g.die),
         base: powerRollParts(m, a1, p, g, ability), conds: powerRollConds(m, a1, g), damageType: g.type || '', minTotal: 0, heal: !!g.heal,
       };
@@ -805,6 +829,14 @@ function buildRoll(m, spec, opts = {}) {
       for (const f of riderTexts(m)) {
         const x = /\bYou add your (\w+) modifier to Constitution saving throws you make to maintain concentration/i.exec(f.text);
         if (x && ABBR[x[1]]) r.base.push({ label: `${ABBR[x[1]]} modifier (${f.name})`, value: num((sc[x[1]] || {}).modifier) });
+        // "…while your Saber Storm is active…: You gain a bonus to any Constitution saving throw you make to maintain your
+        // concentration on a power. The bonus equals your Wisdom or Charisma modifier (your choice, minimum of +1)": while
+        // the state is on (the better one).
+        const y = /\bwhile your ([\w' -]+?) is active\b[^]*?\bbonus to any Constitution saving throw you make to maintain your concentration[^.]*\. The bonus equals your (\w+) or (\w+) modifier(?: \(your choice, minimum of \+?1\))?/i.exec(f.text);
+        if (y && ABBR[y[2]] && ABBR[y[3]] && stateOn(m, y[1])) {
+          const a = abMod(y[2]) >= abMod(y[3]) ? y[2] : y[3];
+          r.base.push({ label: `${ABBR[a]} modifier (${f.name})`, value: Math.max(1, abMod(a)) });
+        }
       }
       return r;
     }
@@ -835,6 +867,11 @@ function buildRoll(m, spec, opts = {}) {
 }
 
 /** The Hit Die size a character has the most of (8 for 3d8 + 2d10; a tie: the larger), as a medpac says. */
+/** The abilities each kind of maneuver may use ("Strength, Dexterity, or Constitution for physical maneuvers…"). */
+const MANEUVER_ABILITIES = {
+  Physical: ['Strength', 'Dexterity', 'Constitution'], Mental: ['Intelligence', 'Wisdom', 'Charisma'],
+  General: ['Strength', 'Dexterity', 'Constitution', 'Intelligence', 'Wisdom', 'Charisma'],
+};
 function mainHitDie(m) {
   const hp = (m.c || {}).hitPoints || {};
   const dice = arr(m.t ? m.t.lim.hitDice : hp.hitDice).map((d) => ({ sides: num(String(d.size).replace(/\D/g, '')), n: num(d.maximum) }));
@@ -1335,7 +1372,7 @@ function renderRollCard(r) {
   const follow = r.next && r.rolled ? `<div class="rl-next${miss ? ' missed' : ''}">${miss ? '<span class="chip bad">Miss (natural 1)</span>' : ''}<button class="btn sm${crit || miss ? '' : ' primary'}" data-rl="next" data-arg="">Hit: roll damage</button><button class="btn sm${crit ? ' primary' : ''}" data-rl="next" data-arg="crit">Critical damage</button>${two}${critToggle}</div>` : '';
   return `<div class="rl-card${r.rolled ? ' rolled' : ''}">
     <div class="rl-title"><b>${esc(r.label)}</b>${r.char ? ` <span class="faint">${esc(r.char)}</span>` : ''}${r.amended ? ' <span class="chip">amended</span>' : ''}</div>
-    ${r.toolAbility ? `<label class="rl-ability">Ability <select data-rl="ability">${ABILITIES.map((a) => `<option${a === r.toolAbility ? ' selected' : ''}>${a}</option>`).join('')}</select></label>` : ''}
+    ${r.toolAbility ? `<label class="rl-ability">Ability <select data-rl="ability"${r.abilityOptions ? ' title="Your choice: the best one unless you pick another"' : ''}>${(r.abilityOptions || ABILITIES).map((a) => `<option${a === r.toolAbility ? ' selected' : ''}>${a}</option>`).join('')}</select></label>` : ''}
     ${r.crit ? `<div class="rl-next">${critToggle}</div>` : ''}${r.preset ? `<div class="faint">${esc(r.preset)}</div>` : ''}
     ${r.critMin && r.critMin < 20 ? `<div class="rl-critrange"><span class="chip accent" title="${esc(r.critFrom)}">Critical hit on ${r.critMin}–20</span> <span class="faint">${esc(r.critFrom)}</span></div>` : ''}
     ${r.warn ? `<div class="rl-note warn">${esc(r.warn)}</div>` : ''}${arr(r.notes).map((n) => `<div class="rl-note">${esc(n)}</div>`).join('')}${modes}${conds}${dmgAdv}${foretellButtons(r)}
