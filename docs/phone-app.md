@@ -37,7 +37,7 @@ fetched from SW5E's public data service), so it works offline.
 
 ## Status (2026-10-18)
 - **The engine** is built (`app/engine.js`, see [engine.md](engine.md)) and the sheet uses it: every field of SW5E's
-  calculation matches on 621 characters SW5E computed, and characters loaded from sw5e.com are checked against
+  calculation matches on 621 characters SW5E computed (607 since, see engine.md), and characters loaded from sw5e.com are checked against
   sw5e.com's own calculation.
 - **The app and the extension are split** as above. The app runs as a web page with its own storage: viewing,
   rolling, tracking, editing, creating characters and reading the rules all work there.
@@ -51,7 +51,8 @@ fetched from SW5E's public data service), so it works offline.
   files. Not yet tried on a real phone (needs a host).
 
 ## Next
-1. **Publish on GitHub Pages** (see "Hosting" below) and try it on a real phone.
+1. ~~Publish on GitHub Pages~~: done 2026-10-22 (https://dantomosoiu.github.io/sw5e-sheet/, see "Hosting"
+   below). Still to do: try it on a real phone.
 2. **Getting characters onto the phone:** done for loading (2026-10-22): a bookmark on sw5e.com reads the account's
    characters in the player's own signed-in page and hands them to the sheet (or copies them for Paste), and the
    installed app takes shared files (Android). Saving back to sw5e.com from the phone isn't there. A sign-in of the
@@ -63,7 +64,7 @@ fetched from SW5E's public data service), so it works offline.
 ## Hosting
 `python dev/build.py` makes `dist/web/`; a host serves that folder as it is. The host's build command is
 `python dev/build.py` and its output folder `dist/web`. A hosted site can be opened by anyone with its address
-unless the host restricts it, which matters while the repository is private:
+unless the host restricts it (the repository has been public since 2026-10-22):
 - **GitHub Pages** (chosen, 2026-10-22): `.github/workflows/pages.yml` builds and publishes `dist/web/` on every
   push to `main`. From a private repository it needs a paid GitHub plan, and the site itself is public (anyone
   with its address). Set up once: Settings → Pages → Source: **GitHub Actions**.

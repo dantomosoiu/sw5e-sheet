@@ -1,4 +1,7 @@
-# Open decisions and things to know (roadmap steps 3 and 4)
+# Open decisions and things to know
+
+Every rules reading that needed a choice, numbered in the order it was made, and what isn't modelled yet (at the
+end). An entry is updated when the code changes it; check here before deciding a rules question again.
 
 _2026-10-16. Built without supervision as asked ("continue to steps 3 and 4 unsupervised and validate using the
 panel of players as you go. Document any matters that need later decisions or awareness"). Each decision says what
@@ -35,8 +38,8 @@ each) and a checker re-running every repro. Step 3: 100 findings, 45 after mergi
 5. **Superiority dice** from Superiority Style/Mastery and Splashclass Fighter join the class pool; its die is the
    largest of the sizes. *Alternative:* separate pools with their own sizes.
 6. **Weapon groups.** Weapon focus/supremacy apply to "blade weapons", "carbines"… but SW5E's data has no weapon groups:
-   the player ticks which weapons count. "If you are proficient with it" isn't checked. *Alternative:* a hand-written
-   group table.
+   the player ticks which weapons count. "If you are proficient with it" is checked (since 2026-10-23: a focus on a
+   weapon you aren't proficient with gives nothing). *Alternative:* a hand-written group table.
 7. **Repeating a choice under a repeated feat.** The same weapon focus, supremacy or class/splashclass improvement
    chosen under two copies of the feat is flagged ("can't be chosen twice") and its bonus counts once. The rules don't
    say; this can be relaxed.
@@ -81,8 +84,10 @@ each) and a checker re-running every repro. Step 3: 100 findings, 45 after mergi
     can use these features a combined three times", +1 at 9th, 13th and 17th: the feature's own levels), the same pool
     as its Martial Arts/Focus use. A once-per-rest grant whose feature already counts its uses (Telekinetic
     Ministrations) spends that one counter.
-18. **"Your choice" casting abilities** (Archaeologist by alignment, Evil Eye, Miraluka, Rakatan, Monk focus) use the best
-    of the allowed abilities automatically. *Alternative:* store the player's choice.
+18. **"Your choice" casting abilities** (Archaeologist by alignment, Evil Eye, Miraluka, Rakatan, Monk focus): until a
+    choice is made they use the best of the allowed abilities and are listed under Still to choose; once chosen, that
+    one ability counts for all of the feature's numbers (2026-10-23, after the GM review). Where SW5E itself leaves
+    the choice open on every roll, see 104.
 19. **A named power with its own prerequisite** (Telekinesis needs Force Throw, Valor needs Resistance) is given
     without asking for the prerequisite (specific beats general). The handbook says you must keep knowing the
     prerequisite to cast the new power; that isn't enforced for given powers.
@@ -111,7 +116,8 @@ each) and a checker re-running every repro. Step 3: 100 findings, 45 after mergi
     to 0 HP ends concentration and Rage; forms and other states stay (End them by hand). Undo brings them back.
 26. **Exhaustion** is explained level by level and the roller applies its disadvantage (ability checks and initiative
     from level 1; attacks and saving throws, death saves included, from level 3; advantage and disadvantage cancel).
-    Halved speed and HP maximum are described, not applied to the numbers. A long rest removes one level, or what a
+    Halved speed (level 2) and speed 0 (level 5) are applied to Speed, and level 4 halves the hit point maximum
+    (2026-10-23, after the GM review); level 6 is described, not applied. A long rest removes one level, or what a
     feature says (Frenzy: two).
 27. **Force Recovery and similar** ("regain force points equal to half your consular level + your Wisdom or Charisma
     modifier") are offered after a short rest: half the level rounded down (unless the text says up), plus the best
@@ -160,7 +166,9 @@ each) and a checker re-running every repro. Step 3: 100 findings, 45 after mergi
     Paralyzed, Stunned, Unconscious and Petrified, Strength and Dexterity saves fail automatically. Advantage and
     disadvantage from all sources (features, states, conditions, exhaustion, War Caster) cancel out. Speed shows its
     value under Grappled, Restrained… (0) and Shocked or exhaustion 2 (halved). Dropping to 0 HP adds Unconscious;
-    healing removes it. Frightened's "while the source is in sight" and Prone's ranged rule aren't asked.
+    healing removes it. Prone gives disadvantage on melee attacks; on ranged attacks it's offered as a note ("if the
+    target is within 30 feet"), and Frightened's "while the source is in sight" is noted, for the player to choose
+    the mode (2026-10-23, after the GM review).
 43. **Damage types.** Damage from the tracker can have a type; resistance (halved, rounded down), immunity (0) and
     vulnerability (doubled) apply when the character's defenses name that type without a condition; conditional ones
     ("…from weapons") are mentioned, not applied. True damage is never reduced. *To confirm: SW5E's true damage.*
@@ -184,9 +192,10 @@ each) and a checker re-running every repro. Step 3: 100 findings, 45 after mergi
 49. **Casting options cost points on top.** One option per cast. Twinned costs the power's level (1 at will); the
     others cost what their text says. A cast that costs no points (at will, once per rest, a feature's use) pays only
     the option.
-50. **Dice from active powers.** Guidance's die is ticked on ability checks, Battle Meditation's on attacks and saves,
-    Target Lock's 1d6 on weapon damage. Untick them when they don't apply (another target). A die "once before the
-    power ends" ends the power when the roll is made with it.
+50. **Dice from active powers.** Dice a power adds to every roll of a kind (Battle Meditation on attacks and saves)
+    are ticked. Target Lock's 1d6 (only against its target) and Guidance's die ("one ability check of its choice") are
+    offered unticked, saying so (2026-10-23, after the GM review). A die used once ends the power when the roll is
+    made with it.
 51. **Class resources from the dice dock.** Offered unticked on the roll they apply to. Ticking spends: on the roll
     made, or at once on a roll already made (Close Call after a miss); unticking gives it back. Maneuvers count when
     they "add the superiority die" to the attack or its damage; ones that need a save or a choice stay on their
@@ -209,7 +218,7 @@ each) and a checker re-running every repro. Step 3: 100 findings, 45 after mergi
     form's own effect is added. Use spends a use and shows the save DC (universal force) and the amount ("guardian
     level + Charisma modifier, minimum +1"). Lend Aid offers Heal on yourself.
 59. **Infuse Item** is an effect until your next long rest: weapons get attack and damage, armor and shields get AC.
-    The AC bonus doesn't check that you're wearing the infused armor.
+    Infused armor or a shield gives its AC only while it's worn (2026-10-23, after the GM review).
 60. **Weapon Expert's damage advantage** rolls the weapon's own dice twice; the higher set counts. Other dice on the
     roll (Sneak Attack, riders) are rolled once.
 
@@ -334,6 +343,29 @@ each) and a checker re-running every repro. Step 3: 100 findings, 45 after mergi
     like one (W-135). Wider screens keep it as the app's mark. *Confirm, or say if the icon should open the ☰ menu
     instead.*
 
+_2026-10-22/23: a GM review of the player panel (`docs/panel/2026-10-22/dm-review.md`) and the owner's decisions on
+it._
+
+103. **Tweaks have three modes** (owner, 2026-10-22): **Add** (on top of everything else), **Set to** (exactly that
+     number, for every number, ability scores included: effects such as a stim are shown as not applied) and
+     **Bump to** (at least that number; stored as the tweak's `floor`, which this sheet reads and sw5e.com's engine
+     ignores). The GM review asked for "set to" on ability scores to set the base instead; the owner kept it exact
+     ("otherwise it's the same as Bump to") and had each mode explained where it's chosen.
+104. **"Your choice" abilities on rolls** (owner, 2026-10-23): where SW5E leaves the ability to the player each time
+     (a Consular's, Guardian's or Sentinel's universal force powers: "Wisdom or Charisma (your choice)"; a maneuver's
+     ability: Physical STR/DEX/CON, Mental INT/WIS/CHA, General any), the roll uses the best one and the dice card's
+     Ability menu switches it; save DCs list the others ("DC 14 (WIS; CHA 13)"). An archetype caster whose choice is
+     recorded gets only that one.
+105. **Rolled dice are locked** (owner, 2026-10-23): once rolled, the dice and advantage/disadvantage stay; dice,
+     bonuses, the modifier and the DC can still be added or changed, and each change is listed on the roll and in the
+     log. Advantage on any single die (not only d20s) stays, as it's chosen before rolling.
+106. **Same-name effects don't stack:** a second effect with the same name (two of the same calibrator on one weapon)
+     is left out, with "apply anyway", as repeated tweaks are.
+107. **States worded "while your X is active"** (Saber Storm) are started like other states (Start, a use spent, its
+     duration from the text); their benefits apply only while active.
+108. **The dice land flat** (owner, 2026-10-23): the table is seen from above, each die settles with the rolled face
+     on top and its number upright; a d4 rests point up with its number at the point.
+
 ## Not done yet (known gaps)
 
 - **Rakatan Focused Tech** (cast tech powers with focus points, focus maximum −1 until a long rest): the cost isn't
@@ -351,19 +383,23 @@ each) and a checker re-running every repro. Step 3: 100 findings, 45 after mergi
 
 - **Swapping picks on a rest** (Style Strategist, the Fighter and Scholar class improvements, Malleable Maneuvering,
   Blademaster's Change Up, totems, Chimeric Adaptation, Customized Armor): lists say "can be changed on a rest" where
-  the text says so, but there's no rest-time swap flow (roadmap step 6). Powers aren't limited to "replace one when
-  you gain a level" either (level-up is step 5).
+  the text says so, but there's no rest-time swap flow. Powers aren't limited to "replace one when you gain a level"
+  either.
 - **Options that only work during a state or while worn** (Chimeric Adaptation during the mutagenic transformation,
   Customized Armor while wearing the spiked armor) are shown as text, not applied; they'd need to join that state /
   the armor condition. Totem passives need "while wielding or wearing the object" too.
+- **Titan's Power** ("ignore the two-handed property", damage on a miss) is shown as the feat's text only.
+- **Shock Arm's** "better of Strength or Intelligence" uses the better one, with no picker.
+- **Force points** use the better of Wisdom and Charisma (as SW5E's engine), with no way to choose the other.
+- **Quick cast and use pickers**, and a **Lucky** button on rolls, are wanted but not built.
 - **Splashclass Fighter's superiority dice** come back on a long rest, but share the pool that resets on a short rest.
 - **Engineer modifications**: "install, replace or remove up to your Intelligence modifier per long rest" isn't
   enforced; prosthesis scores ("Strength score of your Brawny Arm Prosthesis increases by 2") aren't modelled; any
   lightweapon can be the modified lightsaber.
 - **Maneuver prerequisites** "Companion" are hints (no companion data); "Proficiency in X" is checked against the
   sheet's skills.
-- **Feat prerequisites** about species ("Type humanoid") aren't checked; ASI/feat counts per level belong to the
-  level-up flow (step 5).
+- **Feat prerequisites** about species ("Type humanoid") aren't checked; ASI/feat counts per level are level up's
+  (Classes & Progression).
 - **Free-text sub-choices** remain notes: Echani weapon types, damage types for Environmental Shielding/Dewback,
   Vow of the Open Mind's skill, Kinetic Mastery's form, One with the Force's signature power…
 - **Granted powers cast "as part of" something** (Ataru Form's force jump) stay text; Soresu's saber ward is applied

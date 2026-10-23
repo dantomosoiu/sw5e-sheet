@@ -18,7 +18,7 @@
   // Safety net while developing against a real account: the characters listed in localStorage
   // 'sw5e-dev:protectedIds' (a JSON array of sw5e.com ids: your real characters; '[]' if there are
   // none) are never saved from the dev page, nor recorded as test cases (dev/regress-record.js).
-  // Until the list is set, nothing is saved or recorded.
+  // Until the list is set, nothing is saved, created or recorded. It's read when the page loads: reload after setting it.
   const PROTECTED_IDS = JSON.parse(localStorage.getItem('sw5e-dev:protectedIds') || 'null');
   window.__devProtectedIds = Array.isArray(PROTECTED_IDS) ? PROTECTED_IDS.slice() : null;
 
@@ -66,8 +66,8 @@
   });
 
   async function runInSw5eViaExtension(args, { preferredTabId, onStatus } = {}) {
-    if (args && args.mode === 'save' && !Array.isArray(PROTECTED_IDS)) {
-      throw new Error("Dev guard: saving from the dev page is off until localStorage 'sw5e-dev:protectedIds' lists your real characters ('[]' if none): see dev/README.md.");
+    if (args && (args.mode === 'save' || args.mode === 'create') && !Array.isArray(PROTECTED_IDS)) {
+      throw new Error("Dev guard: saving to sw5e.com from the dev page is off until localStorage 'sw5e-dev:protectedIds' lists your real characters ('[]' if none), and the page is reloaded: see dev/README.md.");
     }
     if (args && args.mode === 'save' && PROTECTED_IDS.includes(args.id)) {
       throw new Error(`Dev guard: saving character ${args.id} is blocked in the dev harness (protected id).`);

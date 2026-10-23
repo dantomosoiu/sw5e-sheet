@@ -16,7 +16,7 @@ engCheckAgainst(sw5eComplete, ownComplete)    // the numbers that differ
 ## How it's checked
 - `node dev/engine-check.js`: every number of every character SW5E has computed for us, computed again. SW5E's
   results come from the regression cases (each test character as stored, with the sheet's effects, and without
-  tweaks) and from `dev/engine/sw5e-results.json`: about 580 made-up characters (`dev/engine-cases.js`). They cover:
+  tweaks) and from `dev/engine/sw5e-results.json`: 585 made-up characters (`dev/engine-cases.js`). They cover:
   - every class at 11 levels, multiclass pairs, every species;
   - every armor and weapon, every tweak as a bonus and as an override;
   - every archetype caster and superiority archetype;
@@ -29,7 +29,9 @@ engCheckAgainst(sw5eComplete, ownComplete)    // the numbers that differ
 - In use, every character loaded from sw5e.com is compared with sw5e.com's own calculation (Settings, Tweaks & Data
   → Rules engine).
 
-As of 2026-10-18: 621 characters, all 82,379 numbers and all 361,836 fields the same.
+As of 2026-10-23: 607 characters (585 made-up ones and the recorded test characters), all 80,413 numbers and all
+353,659 fields the same. (Regression cases made from another case by `dev/bump-check.js --save` aren't compared: SW5E's
+stored calculation is the original character's.)
 
 ## What SW5E does, as the engine copies it
 **Ability scores**

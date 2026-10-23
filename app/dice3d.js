@@ -9,8 +9,8 @@
  * point (as a real d4's top number).
  *
  * A roll is only shown here (the numbers are rolled before): each die is tossed up toward you (it grows), bounces on
- * the table (its shadow underneath), and tumbles with a spin that slows down until it settles flat. The motion is built backwards from the resting pose, so it always
- * lands on the right number. Colours come from the page (--die-c on the die, --text, --panel-2), so the dice follow
+ * the table (its shadow underneath), and tumbles with a spin that slows down until it settles flat. The motion is
+ * built backwards from the resting pose, so it always lands on the right number. Colours come from the page (--die-c on the die, --text, --panel-2), so the dice follow
  * the theme and the die's state (a natural 20, a critical die, a dropped one…).
  *
  *   Dice3D.paint(root)          draw every canvas.die-cv under root (after the dock is redrawn)

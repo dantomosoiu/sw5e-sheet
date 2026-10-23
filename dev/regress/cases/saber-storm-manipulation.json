@@ -1,6 +1,13 @@
 {
  "format": "sw5e-sheet-regress-case",
  "name": "saber-storm-manipulation",
+ "from": {
+  "case": "consular-test-local",
+  "changes": [
+   "--js",
+   "raw.classes[0].archetype={name:'Way of Manipulation'}"
+  ]
+ },
  "key": "file:consular-test-(local)",
  "recordedAt": 1792289049607,
  "rules": {

@@ -1,6 +1,9 @@
 # Publishing the code: checklist
 
-What has been done towards an open repository, and what's left to decide before it's published.
+What has been done towards an open repository, and what's still open.
+
+**Status:** the repository is public since 2026-10-22 (github.com/dantomosoiu/sw5e-sheet), not advertised, and
+GitHub Pages publishes the web version from `main`. The questions under "Still to decide" are still open.
 
 ## Done (2026-10-18)
 - **A new repository with a fresh history**, made from the private one by an export that:
@@ -40,7 +43,7 @@ GPL (it says so wherever the data is), and asking SW5E before publishing matters
 carries their content.
 
 ## Still to decide
-1. **SW5E.** Before publishing:
+1. **SW5E.** Before it's shared more widely:
    - tell the SW5E team and ask whether they mind: the repository carries their data and books (credited), and the
      extension runs sw5e.com's own code in a sw5e.com tab to load, compute and save characters;
    - ask whether they'd put a license on their website's code and content, or say how they'd like to be credited.
@@ -50,6 +53,6 @@ carries their content.
    later version".
 
 ## Before each push
-- `node dev/regress.js`: the check passes.
+- `node dev/regress.js` and `node dev/engine-check.js`: the checks pass (see [CONTRIBUTING.md](../CONTRIBUTING.md)).
 - Search the change for ids and personal details. The export script does this for the first commit; later
   commits are ordinary, so mind recorded cases and pasted logs.

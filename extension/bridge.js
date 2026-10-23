@@ -127,7 +127,7 @@ async function sw5ePageExtract(argsJson) {
       }
     } else if (opts.mode === 'save') {
       // Save opts.currentStats and opts.fields onto the account's character opts.id, then
-      // compute the result. The server copy is the base (SW5E is the source of truth); only
+      // compute the result. The server copy is the base (the save starts from sw5e.com's latest copy); only
       // currentStats and the whitelisted simple fields below change.
       // If it changed on SW5E since the viewer loaded it (opts.expectedChangedAt / opts.expected),
       // nothing is saved and the newer server copy is returned instead (save.conflict).

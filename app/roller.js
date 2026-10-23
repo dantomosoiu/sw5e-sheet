@@ -2,8 +2,9 @@
  *
  * Any number marked rollable on the sheet (data-roll="kind|args", see rollable()) opens a roll
  * card in the dice dock: choose advantage/disadvantage, conditional bonuses ("vs melee", "with
- * Cryo Cell"), extra dice and a modifier, then roll. After rolling, all of that can still be
- * changed: dice already rolled keep their numbers, only added dice are rolled. Weapon attacks
+ * Cryo Cell"), extra dice and a modifier, then roll. Once rolled, the dice rolled and the mode
+ * stay; dice, bonuses, the modifier, the DC and the ability can still be added or changed (only
+ * added dice are rolled), and each change is logged on the roll (logChange). Weapon attacks
  * offer their damage roll (doubled dice on a critical) straight from the result.
  *
  * A roll: { id, char, label, kind: 'd20' | 'dice', rolled, at, mode: 'normal' | 'adv' | 'dis',
@@ -1121,8 +1122,8 @@ function announceRoll(r) {
   el.textContent = `${r.label}: ${rollTotal(r)}`;
 }
 /**
- * Advantage / normal / disadvantage, before or after rolling: a d20 roll adds or drops a d20; a roll of any other
- * single die adds or drops its twin (rolled now if the roll was made).
+ * Advantage / normal / disadvantage, before rolling: a d20 roll adds or drops a d20; a roll of any other single die
+ * adds or drops its twin.
  */
 function setMode(mode) {
   const r = rollState.current;

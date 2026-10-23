@@ -36,8 +36,9 @@ python dev/serve.py        # http://127.0.0.1:8765/
 ```
 - `/` opens the sheet (`app/`) as a web page, with dev additions injected (the files on disk are unchanged):
   storage in IndexedDB "sw5e-dev" (instead of the web version's "sw5e-sheet"), the test characters from
-  `dev/fixtures/` (`dev/dev-storage.js`; `/?reset` clears the dev storage and puts them in again), and sw5e.com
-  through the installed extension (`dev/bridge-proxy.js`).
+  `dev/fixtures/` if you have made that folder (`dev/dev-storage.js`; `/?reset` clears the dev storage and puts them
+  in again; see "Fixtures" below), and sw5e.com through the installed extension (`dev/bridge-proxy.js`).
+  `/` redirects to `/app/`.
 - Responses are `no-store`: edit a file, reload the page.
 - `/dev/phone.html?w=390&h=844` shows the dev page in a phone-sized frame (`?w=800&h=1000`: tablet), same storage.
 - `/app/rules.html` is the rules reader (SW5E's books).
@@ -56,9 +57,11 @@ python dev/serve.py        # http://127.0.0.1:8765/
   `mfikebeffkcgnkppppccnidnneblggaa`; use `/?ext=<id>` once if yours differs. Without the extension (another
   browser, Playwright) the dev page is the plain web version: those buttons are hidden.
 - **Protect your real characters first:** in the dev page's console,
-  `localStorage.setItem('sw5e-dev:protectedIds', JSON.stringify(['<sw5e.com id>', …]))` (`'[]'` if none). Those
-  characters are never saved to sw5e.com from the dev page nor recorded as test cases; until the list is set,
-  the dev page saves and records nothing. Test saves against a throwaway character.
+  `localStorage.setItem('sw5e-dev:protectedIds', JSON.stringify(['<sw5e.com id>', …]))` (`'[]'` if none), then
+  reload. Those characters are never saved to sw5e.com from the dev page nor recorded as test cases; until the list
+  is set, the dev page saves, creates and records nothing on sw5e.com (the sheet's own storage works as usual). Test
+  saves against a throwaway character. The guard is only in the dev page: the extension's own page saves whatever
+  you sync.
 - **The extension reloads itself** when its `manifest.json`, `background.js` or `bridge.js` changed on disk: on
   the dev page's next sw5e.com request it notices, reloads, and the page retries (a few seconds; open extension
   tabs close). Reload by hand in `chrome://extensions` only if this check itself changed.
@@ -116,10 +119,19 @@ report has:
 - **Sheet:** the text of every section, with the hover explanation of each number an effect changed.
 
 Changes are listed by part, old line above new (`--full` shows all of them, `--out=<dir>` writes the reports).
-A change you meant: `--update`, and commit the expected files with it.
+A change you meant: `--update`, and commit the expected files with it. The exit code is 1 only when a case changed:
+a new case without expected output yet (just after `bump-check --save`) is listed as new and exits 0.
 
-The cases (`dev/regress/cases/`) are the test characters in the dev page, with SW5E's own calculation of them. To
-record them again (new test characters, or to see whether sw5e.com's engine changed: record, then compare):
+What the Node runs never do: timers don't run (`setTimeout` is a no-op in `dev/headless.js`, so a recalculation or
+save scheduled for later never happens) and the page's `main()` is skipped. Code that only runs there is checked in
+the dev page, not by these tools. Nothing runs the checks for you either: GitHub's workflow only builds and publishes.
+
+The cases (`dev/regress/cases/`, 106 of them) are of two kinds. 12 were recorded from test characters on sw5e.com,
+with SW5E's own calculation of them (`armstech-test-local`, `kadro-vos-panel`…). The others were made from those by
+`dev/bump-check.js --save` to keep a fix fixed (mostly `dice-…`, `choices-…`, `items-…`, `readers-…`, `tweak-…`);
+they carry `from: { case, changes }`. A case copied and changed by hand needs `from` as well, or `dev/engine-check.js`
+compares it with the original character's SW5E calculation and reports differences. To record the test characters
+again (new test characters, or to see whether sw5e.com's engine changed: record, then compare):
 1. In the dev page's console: `const rec = await import('/dev/regress-record.js'); await rec.record()`. It has
    sw5e.com compute each character with its edits and effects (nothing is saved there) and writes the dev storage
    with those calculations to `dev/dumps/regress-state.json` (git-ignored). Protected characters (see above) are
@@ -139,7 +151,8 @@ any JavaScript on the stored character), draws it again and prints the lines of 
 numbers, the effects and tweaks, the rolls and the hover explanation of each changed number. It is how to check that
 a feat, feature or item raises what it should, and nothing else, with the right reason. `--save NAME` keeps the
 changed character as a case, so a fixed bug stays fixed (`node dev/regress.js --update NAME` accepts its output).
-dev/engine-check.js doesn't compare such a case with SW5E's stored calculation, which is the original character's.
+It records where it came from (`from`), so dev/engine-check.js doesn't compare it with SW5E's stored calculation,
+which is the original character's.
 
 ### What the text readers make of every source
 ```
@@ -190,12 +203,16 @@ character and run in its console:
 ' + document.documentElement.outerHTML})`.
 The previews use headless Chrome or Edge (`CHROME=<path>` if it isn't found) and Pillow to stack the images.
 
-Which picture an item gets is `app/art.js` (by name, then by kind); `node -e` with `require('./app/art.js')` over
-`app/data/sw5e/catalog.json` lists the spread. The screen effects (low HP, conditions, Rage…) are `app/fx.css`,
+Which picture an item gets is `app/art.js` (by name, then by kind), using the picture lists in `app/art/names.js`.
+`node dev/art-items.js` shows the tiles (it sets up those lists first, as `require('./app/art.js')` alone doesn't).
+`app/art/items.svg` and `app/art/names.js` are written by `python dev/art.py`: don't edit them by hand.
+`dev/art-release.py` stages what it builds with `git add`. The art tools need Pillow, and `dev/art-qa.py` numpy too. The screen effects (low HP, conditions, Rage…) are `app/fx.css`,
 driven by `screenFx` in viewer.js.
 
 ## Fixtures
-`dev/fixtures/*.json` are sheet snapshots (`format: "sw5e-sheet-snapshot"`), or raw SW5E exports (computed by
+The repository has no fixtures (the owner's own characters were left out of it); without them the dev page starts
+empty, and **New character…** or **Import file…** puts characters in. `dev/fixtures/` is read when it exists, and
+git-ignored: fixtures are usually real characters. `dev/fixtures/*.json` are sheet snapshots (`format: "sw5e-sheet-snapshot"`), or raw SW5E exports (computed by
 the sheet's engine). To capture fresh snapshots:
 1. Open a signed-in `https://sw5e.com/tools/mycharacters` tab.
 2. Paste the contents of `http://127.0.0.1:8765/dev/capture.js` into its DevTools console
@@ -212,5 +229,8 @@ manifest keys removed. Before publishing, unzip it, load it unpacked, and run th
 SW5E, Sync, Check with sw5e.com and Import in the extension's own page: the dev page doesn't cover the extension's
 `chrome.storage` or the toolbar button.
 
-The web version is `app/` as it is: any static file server can host it (it needs no server code). It keeps its
-data in the browser's IndexedDB and can't reach sw5e.com: characters come in as files.
+Before packing, raise `version` in `extension/manifest.json`: the zip is named after it.
+
+The web version is `dist/web/` (not `app/` as it is: its `sw.js` needs the file list and `sw5e-grab.js` the
+extraction code that `dev/build.py` fills in). Any static file server can host it; GitHub Pages does, from `main`.
+It keeps its data in the browser's IndexedDB; characters come in as files or through the sw5e.com bookmark.

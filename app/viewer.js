@@ -1,13 +1,14 @@
 /* SW5E Character Sheet Viewer
  *
  * Data model per character ("snapshot"):
- *   raw       – the SW5E builder character (source of truth; what SW5E exports/imports)
+ *   raw       – the SW5E builder character as last loaded or saved (what SW5E exports/imports); with the edits
+ *               below it is the character (this copy is the truth; sw5e.com is the check and an optional sync)
  *   complete  – the computed sheet: sw5e.com's own calculation when loaded from there (generateCompleteCharacter),
  *               else the sheet's engine's (engine.js, which follows SW5E's)
  *   refs      – reference entries the sheet needs (maneuvers, feats, class tables…)
  *   validation, error, source, loadedAt
  *
- * Local changes, kept per character until saved to sw5e.com (or discarded):
+ * Local changes, kept per character (Sync to SW5E sends what its format holds):
  *   trackers  – play state (currentStats), see "play-state tracker"
  *   edits     – field edits (notes, characteristics, credits, XP, inventory), see "field edits";
  *               shown over `raw`/`complete`, and recomputed in the background when they
@@ -226,9 +227,8 @@ async function savePortraits() {
   await platform.storage.set({ [PORTRAITS_KEY]: state.portraits, [WRITER_KEY]: writerStamp() });
 }
 
-// Version history. sw5e.com is the source of truth but not a backup (its storage can lose
-// characters), so every distinct raw character we see is kept here, newest last, capped per
-// character. Removing a character from the viewer keeps its history (it's still exported).
+// Version history. sw5e.com is not a backup (its storage can lose characters), so every
+// distinct raw character we see is kept here, newest last, capped per character. Removing a character from the viewer keeps its history (it's still exported).
 // JSON with sorted keys, so the same character serialized in a different key order matches.
 const canonical = (v) => JSON.stringify(v, (k, x) => (x && typeof x === 'object' && !Array.isArray(x)
   ? Object.fromEntries(Object.keys(x).sort().map((key) => [key, x[key]])) : x));

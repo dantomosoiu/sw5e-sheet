@@ -10,6 +10,8 @@ It is a web app (`app/`) that installs on a phone or computer and works offline,
 connects it to sw5e.com: **Load from SW5E** brings in your sw5e.com characters, **Sync to SW5E** sends them back, and
 each load compares the sheet's numbers with sw5e.com's own calculation.
 
+The web version is published from `main` at https://dantomosoiu.github.io/sw5e-sheet/ (GitHub Pages).
+
 The rules are SW5E's, by Galiphile and the SW5E contributors ([credits](app/data/sw5e/credits.md),
 [notices](NOTICE.md)). Not affiliated with SW5E, Lucasfilm, Disney or Wizards of the Coast.
 
@@ -31,22 +33,25 @@ The rules are SW5E's, by Galiphile and the SW5E contributors ([credits](app/data
     result with what they showed before, and the engine check (`node dev/engine-check.js`) against SW5E's results;
   - fetching SW5E's data again (`node dev/fetch-sw5e.js`), and reports on how SW5E's rules text is read.
 - `docs/`:
+  - [architecture.md](docs/architecture.md): how the code fits together, start here to work on it;
   - [engine.md](docs/engine.md): how the rules engine computes, SW5E's quirks it follows, and how it's checked;
   - [open-decisions.md](docs/open-decisions.md): rules decisions and known gaps;
-  - [class-audit.md](docs/class-audit.md): what each class needs;
-  - [wishlist.md](docs/wishlist.md): every wish from simulated player panels, with its outcome, and
-    `docs/panel/` with their logs;
-  - [open-source.md](docs/open-source.md) and [phone-app.md](docs/phone-app.md): plans.
+  - [open-source.md](docs/open-source.md) and [phone-app.md](docs/phone-app.md): plans, with their status;
+  - records of how the sheet was tested, not kept up to date: [class-audit.md](docs/class-audit.md) (what each class
+    needs, 2026-10-16), [wishlist.md](docs/wishlist.md) (every wish from simulated player panels, with its outcome)
+    and `docs/panel/` (the panels' briefs, logs and reviews).
+- [CONTRIBUTING.md](CONTRIBUTING.md): setting up, checking a change, conventions; [AGENTS.md](AGENTS.md): notes for
+  coding agents.
 
 ## Developing
-Requirements: Chrome, Python 3 (dev server and build) and Node.js 18 or later (checks and reports). No packages to
-install.
-1. `python dev/serve.py`: it builds the extension into `dist/extension/` and keeps it built, and serves the sheet
-   at http://127.0.0.1:8765/.
-2. Load `dist/extension/` unpacked in `chrome://extensions` (Developer mode).
-3. In the dev page's console, list the sw5e.com characters that must never be changed from it (see
+Requirements: Python 3 (dev server and build) and Node.js 18 or later (checks and reports); Chrome for the
+extension. No packages to install. In short ([CONTRIBUTING.md](CONTRIBUTING.md) has the whole of it):
+1. `python dev/serve.py`: serves the sheet at http://127.0.0.1:8765/ from the files on disk, and keeps
+   `dist/extension/` and `dist/web/` built.
+2. For sw5e.com (Load, Sync): load `dist/extension/` unpacked in `chrome://extensions` (Developer mode), and in the
+   dev page's console list the sw5e.com characters that must never be changed from it (see
    [dev/README.md](dev/README.md)).
-4. After a change: `node dev/regress.js`.
+3. After a change: `node dev/regress.js` and `node dev/engine-check.js`.
 
 ## License
 The sheet is licensed under the [GNU General Public License v3.0](LICENSE) ([notices](NOTICE.md)). SW5E's rules,
