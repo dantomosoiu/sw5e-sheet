@@ -16,6 +16,8 @@ dist/
 dev/dumps/
 # Your own characters for the dev page (dev/README.md, Fixtures)
 dev/fixtures/
+# The sheet server's database when run from the repository (server/server.js, DATA_DIR)
+server/data/
 
 # Playwright test output (screenshots, console logs)
 .playwright-mcp/

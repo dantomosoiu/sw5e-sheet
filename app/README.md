@@ -54,6 +54,17 @@ Everything you change is kept in this browser; **Sync to SW5E** sends it to sw5e
 - **Steady clicks:** section jumps are instant. If the sheet redraws and a different button ends up under the pointer (the next row's × after removing one, + instead of Use), a click there in the next moment is ignored, and the sheet says so (Undo stays). A click on the same button goes through. Notices stay 6 s (10 s with a button such as Undo); **Recent messages** (More ▾, or ☰ on phones) lists the last 15.
 - When sw5e.com can't be reached to recalculate the numbers, the sheet says so (with **Try again**) and retries a few times, then waits until you change something.
 
+## Accounts (where the sheet has its own server)
+Where the sheet is hosted with its own server, **More ▾ → Account…** (☰ → Account on phones) lets you make an account,
+with an e-mail and a password or with Google. Signed in, every character in this browser is backed up to the server
+a few seconds after it changes (the sheet asks once per browser before backing up what's already there), and
+**On the server** lists them: **Restore** brings one into this browser (on a new phone, say), **Earlier backups**
+goes back to one of the last 20, **Delete from server** removes the server's copy. Changes made on two devices are
+merged: where both changed, the newer change wins, part by part. Signing out leaves the characters in this browser.
+Without an account, or where there's no such server (the Chrome extension, GitHub Pages), nothing changes: your
+characters are kept in this browser only, and backup files work as always. A forgotten password is reset by whoever
+runs the server.
+
 ## Your data: kept here; the rules are SW5E's
 - **This viewer's copy is your character's data**: the character as loaded from sw5e.com plus everything changed here (fields, inventory, play state, tweaks and their reasons, effects, custom values). It's kept in the extension's storage, with a version history.
 - **The numbers are computed here, with SW5E's rules**: the sheet has its own rules engine, which works the numbers out the way sw5e.com's does (quirks included), from SW5E's rules and item data, which come with the sheet. Changes, effects and tweaks show at once and need no connection. When sw5e.com has newer data (a Load says which version it has), the sheet fetches it from SW5E's data service and keeps it. **Checked against sw5e.com:** each Load from SW5E brings sw5e.com's own calculation, and the sheet compares it with its own; **Settings, Tweaks & Data → Rules engine** says whether they agree (or lists the numbers that differ, with **Copy the details** for a report), and **More ▾ → Check the numbers with sw5e.com** asks for a fresh one. Creating a character and levelling up happen here (written in the fields its engine reads, so sw5e.com shows the same after a sync); its builder isn't needed. **Load from SW5E** joins the site's changes with yours: what only the site changed is taken (a level added there, say what it brings), lists take both sides' additions, and where both changed the same thing yours wins (the message names it). **One at a time…** in the banner takes sw5e.com's value for a single field. Load switches to the character open on sw5e.com, or to one that's new there.

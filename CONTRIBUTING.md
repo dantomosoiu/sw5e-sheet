@@ -42,6 +42,9 @@ And by kind of change:
   engine, even when SW5E's result looks wrong.
 - **What you see:** look at it in the dev page, also at phone size (`/dev/phone.html?w=390&h=844`), in light and
   dark. Rendering changes show in the regression output's "Sheet" part.
+- **The server or accounts** (`server/`, `app/account.js`): `node dev/server-check.js` (every API, on a temporary
+  database), and try it in a browser: `python dev/build.py`, `node server/server.js`, http://localhost:8780/
+  ([docs/server.md](docs/server.md)).
 - **The web version or the extension:** `python dev/build.py`, then `/web/` on the dev server, or reload the
   unpacked extension.
 
@@ -78,6 +81,7 @@ In the same commit as the change:
 - [docs/open-decisions.md](docs/open-decisions.md): a rules reading that needed a choice (numbered, with the
   alternative), and what isn't modelled yet ("Not done yet").
 - [docs/engine.md](docs/engine.md): what the engine computes and SW5E's quirks it copies.
+- [docs/server.md](docs/server.md): the server, its API, settings or deployment.
 - [dev/README.md](dev/README.md): a new tool or option. [docs/architecture.md](docs/architecture.md): a new file,
   storage key or flow.
 

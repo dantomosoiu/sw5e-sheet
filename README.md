@@ -10,7 +10,9 @@ It is a web app (`app/`) that installs on a phone or computer and works offline,
 connects it to sw5e.com: **Load from SW5E** brings in your sw5e.com characters, **Sync to SW5E** sends them back, and
 each load compares the sheet's numbers with sw5e.com's own calculation.
 
-The web version is published from `main` at https://dantomosoiu.github.io/sw5e-sheet/ (GitHub Pages).
+The web version is published from `main` at https://dantomosoiu.github.io/sw5e-sheet/ (GitHub Pages). It can also be
+hosted with its own server (`server/`, [docs/server.md](docs/server.md)), which adds optional accounts: signed in, a
+player's characters are backed up to the server and can be restored on any device.
 
 The rules are SW5E's, by Galiphile and the SW5E contributors ([credits](app/data/sw5e/credits.md),
 [notices](NOTICE.md)). Not affiliated with SW5E, Lucasfilm, Disney or Wizards of the Coast.
@@ -24,6 +26,8 @@ The rules are SW5E's, by Galiphile and the SW5E contributors ([credits](app/data
   `app/art/`, where the class styles' emblems and background art are too.
 - `extension/`: the Chrome extension around the app: manifest, toolbar button, the sw5e.com bridge, and its own
   `platform.js` (Chrome's storage, sw5e.com through a tab). [Installing it](extension/README.md).
+- `server/`: the sheet's own server: serves the web version, with accounts (e-mail and password, or Google) and
+  character backups ([docs/server.md](docs/server.md)); `deploy/`: setting it up on an Ubuntu droplet.
 - `dev/`: development tools ([dev/README.md](dev/README.md)):
   - building the extension and the web version (`python dev/build.py`: `dist/extension/`, `dist/web/`) and
     packing an extension release (`python dev/pack.py`);
@@ -35,6 +39,7 @@ The rules are SW5E's, by Galiphile and the SW5E contributors ([credits](app/data
 - `docs/`:
   - [architecture.md](docs/architecture.md): how the code fits together, start here to work on it;
   - [engine.md](docs/engine.md): how the rules engine computes, SW5E's quirks it follows, and how it's checked;
+  - [server.md](docs/server.md): the server, accounts and backups, and deploying it;
   - [open-decisions.md](docs/open-decisions.md): rules decisions and known gaps;
   - [open-source.md](docs/open-source.md) and [phone-app.md](docs/phone-app.md): plans, with their status;
   - records of how the sheet was tested, not kept up to date: [class-audit.md](docs/class-audit.md) (what each class

@@ -1,0 +1,14 @@
+# Caddy in front of the sheet's server (docs/server.md): HTTPS with a certificate it gets and renews by itself.
+# deploy/setup.sh installs this as /etc/caddy/Caddyfile with SITE_ADDRESS replaced: the domain (sheet.example.com),
+# or ":80" before there is one (plain HTTP, for testing only).
+SITE_ADDRESS {
+	encode zstd gzip
+	reverse_proxy 127.0.0.1:8780
+	header {
+		Strict-Transport-Security "max-age=31536000"
+		-Server
+	}
+	log {
+		output file /var/log/caddy/sheet.log
+	}
+}

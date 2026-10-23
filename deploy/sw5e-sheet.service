@@ -1,0 +1,32 @@
+# The sheet's server as a systemd service (docs/server.md). Installed by deploy/setup.sh as
+# /etc/systemd/system/sw5e-sheet.service; settings in /etc/sw5e-sheet.env.
+[Unit]
+Description=SW5E Character Sheet server
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=sheet
+Group=sheet
+WorkingDirectory=/opt/sw5e-sheet
+Environment=ENV_FILE=/etc/sw5e-sheet.env
+ExecStart=/usr/bin/node --disable-warning=ExperimentalWarning server/server.js
+Restart=always
+RestartSec=3
+
+# It only needs to read the code and write its database.
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+PrivateDevices=true
+ReadWritePaths=/var/lib/sw5e-sheet
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+RestrictSUIDSGID=true
+LockPersonality=true
+
+[Install]
+WantedBy=multi-user.target

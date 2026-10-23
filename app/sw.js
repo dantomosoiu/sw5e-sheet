@@ -40,6 +40,8 @@ self.addEventListener('fetch', (event) => {
     return;
   }
   if (req.method !== 'GET' || new URL(req.url).origin !== self.location.origin) return;
+  // The sheet's server (accounts, backups, Google's sign-in redirects): always the network, never a cached page.
+  if (new URL(req.url).pathname.startsWith(new URL('api/', self.registration.scope).pathname)) return;
   event.respondWith((async () => {
     const cache = await caches.open(CACHE);
     // ?id=… and the like pick a character; the file is the same.

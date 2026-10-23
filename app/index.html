@@ -35,6 +35,7 @@
           <button data-act="import" class="mid-only">Import file…</button>
           <button data-act="from-sw5e" class="no-sw5e" title="Without the browser extension: a bookmark on sw5e.com sends your characters here">Get characters from sw5e.com…</button>
           <button data-act="cr-new">New character…</button>
+          <button data-act="account" data-arg="open" id="accountItem" class="needs-server" title="An account on this sheet's server: every character in this browser backed up, and restored on your other devices">Account…</button>
           <hr class="mid-only">
           <button data-act="recompute" class="needs-sw5e" title="Ask sw5e.com for its own calculation of this character and compare it with the sheet’s">Check the numbers with sw5e.com</button>
           <button data-act="export-character" title="Everything this sheet keeps for this character: its data and your changes, play state, tweak reasons, effects, version history and recent rolls. Import the file to restore it.">Back up this character (.json)</button>
@@ -86,5 +87,6 @@
   <script src="shortcuts.js"></script>
   <script src="info.js"></script>
   <script src="pwa.js"></script>
+  <script src="account.js"></script>
 </body>
 </html>

@@ -43,11 +43,17 @@ has the tools' main commands; [CONTRIBUTING.md](../CONTRIBUTING.md) the way of w
 | `shortcuts.js` | | keyboard shortcuts |
 | `info.js` | | hover, focus and press-and-hold explanations; Explain mode; item cards |
 | `pwa.js`, `sw.js` | | the web version's offline app (service worker; `dev/build.py` fills in `sw.js`) |
+| `account.js` | `acct…`, `account` | accounts on the sheet's own server: sign-in, automatic backup of each changed character, restore ([server.md](server.md)); inert where `/api/me` doesn't answer |
 | `rules.html`, `rules.js` | | the rules reader (SW5E's books) |
 | `sw5e-grab.js` | | the bookmark's script that reads characters in a sw5e.com page (web version only) |
 
 The extension (`extension/`) adds `background.js` (the toolbar button), `bridge.js` (runs code in a sw5e.com tab:
 reading characters, sw5e.com's own calculation, saving) and its own `platform.js`.
+
+The server (`server/`, [server.md](server.md)) is separate from the app: `server.js` (HTTP, the API, static files),
+`auth.js` (passwords, sessions, Google), `db.js` (SQLite), `admin.js` (the owner's commands). It stores each
+character as the sheet's own backup file for it (`backupData(key)` in viewer.js) and knows nothing else about
+characters; the app merges with `restoreBackups`, as for an imported backup file.
 
 ## From a stored character to the page
 A character is a **snapshot** (see the top of viewer.js). The storage keys (constants at the top of viewer.js and
@@ -89,7 +95,8 @@ maneuvers…), advantage from conditions and states, and its follow-up (an attac
 `save`, `skill`, `tool`, `init`, `attack`, `damage`, `tech`, `force`, `pattack`, `pdmg`, `maneuver`, `supdie`,
 `hitdie`, `death`, `conc`, `featheal`, `itemheal`, `dice`.
 
-**Saving.** Changes are written to storage at once (every write is stamped so other tabs redraw). Sync to SW5E
+**Saving.** Changes are written to storage at once (every write is stamped so other tabs redraw). Signed in to the
+sheet's server, account.js listens to those writes and backs up each changed character a few seconds later. Sync to SW5E
 (sw5e.js → bridge.js) sends the edited `raw`; effects, tweak reasons and the sheet's own data that SW5E's format
 can't hold stay local. Since 2026-10-16 the sheet's copy (`raw` with its edits, play state and the rest) is the
 truth, and sw5e.com is the check (Load compares numbers), an optional sync and never a backup.

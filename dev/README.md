@@ -100,6 +100,14 @@ All three read SW5E's data from `app/data/sw5e/` unless given a file.
 `POST /dev/dump/<name>` saves the request body to `dev/dumps/<name>` (git-ignored), to pull data out of the dev
 page for analysis.
 
+## The server
+`server/` is the sheet's own server (accounts and backups; [docs/server.md](../docs/server.md)). `dev/serve.py` is not
+it: the dev page has no accounts.
+```
+python dev/build.py && node server/server.js     # http://localhost:8780/, database in server/data/
+node dev/server-check.js                         # every API on a temporary database, with a stand-in for Google
+```
+
 ## Regression check
 ```
 node dev/regress.js              # compare every case (exit code 1 when something changed)

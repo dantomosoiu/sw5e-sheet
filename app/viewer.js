@@ -228,7 +228,8 @@ async function savePortraits() {
 }
 
 // Version history. sw5e.com is not a backup (its storage can lose characters), so every
-// distinct raw character we see is kept here, newest last, capped per character. Removing a character from the viewer keeps its history (it's still exported).
+// distinct raw character we see is kept here, newest last, capped per character. Removing a
+// character from the viewer keeps its history (it's still exported).
 // JSON with sorted keys, so the same character serialized in a different key order matches.
 const canonical = (v) => JSON.stringify(v, (k, x) => (x && typeof x === 'object' && !Array.isArray(x)
   ? Object.fromEntries(Object.keys(x).sort().map((key) => [key, x[key]])) : x));
@@ -273,15 +274,10 @@ function addSnapshots(results, source, meta, reason) {
  */
 async function exportBackup(onlyKey) {
   const stamp = new Date();
-  const pick = (o) => (onlyKey ? (o && o[onlyKey] != null ? { [onlyKey]: o[onlyKey] } : {}) : o);
-  const snaps = pick(state.snapshots);
+  const data = backupData(onlyKey, stamp.getTime());
+  const snaps = data.snapshots;
   const name = onlyKey && state.snapshots[onlyKey] ? state.snapshots[onlyKey].raw.name : '';
-  download(onlyKey ? `${fileSafe(name || 'character')} backup ${localStamp(stamp)}.json` : `sw5e-sheet-backup-${localStamp(stamp)}.json`, {
-    format: 'sw5e-sheet-backup', version: 1, exportedAt: stamp.getTime(),
-    snapshots: snaps, trackers: pick(state.trackers), edits: pick(state.edits), itemState: pick(state.itemState), history: pick(state.history),
-    portraits: pick(state.portraits || {}),
-    rolls: rollState.log.filter((x) => (onlyKey ? x.key === onlyKey : true)),
-  });
+  download(onlyKey ? `${fileSafe(name || 'character')} backup ${localStamp(stamp)}.json` : `sw5e-sheet-backup-${localStamp(stamp)}.json`, data);
   if (onlyKey) state.charBackups = { ...(state.charBackups || {}), [onlyKey]: stamp.getTime() };
   else {
     state.lastBackup = stamp.getTime();
@@ -291,6 +287,30 @@ async function exportBackup(onlyKey) {
   if (state.current) renderAll({ keepTyping: true });
   setStatus(onlyKey ? `Backed up ${name || 'this character'}: its data, changes, play state, reasons, effects, history and recent rolls. Import the file to restore it.`
     : `Exported a backup of ${plural(Object.keys(snaps).length, 'character')}.`);
+}
+
+/** The backup file's contents: every character, or only `onlyKey` (also what an account's server keeps, account.js). */
+function backupData(onlyKey, at = Date.now()) {
+  const pick = (o) => (onlyKey ? (o && o[onlyKey] != null ? { [onlyKey]: o[onlyKey] } : {}) : o);
+  return {
+    format: 'sw5e-sheet-backup', version: 1, exportedAt: at,
+    snapshots: pick(state.snapshots), trackers: pick(state.trackers), edits: pick(state.edits), itemState: pick(state.itemState),
+    history: pick(state.history), portraits: pick(state.portraits || {}),
+    rolls: rollState.log.filter((x) => (onlyKey ? x.key === onlyKey : true)),
+  };
+}
+
+/**
+ * Merge backups in (from files or an account's server) and keep the result; newer data on either side wins, part by
+ * part (mergeBackup). Returns the character keys they held.
+ */
+async function restoreBackups(list) {
+  let keys = [];
+  for (const b of list) keys = keys.concat(mergeBackup(b));
+  if (!list.length) return keys;
+  await saveTrackers(); await saveEdits(); await saveItemState(); await savePortraits();
+  await saveStore();
+  return keys;
 }
 
 /** Remember a character's edits and effects before a change, for the Undo in that change's message. */
@@ -475,9 +495,7 @@ async function importFiles(files) {
       return;
     }
   }
-  let keys = [];
-  for (const b of backups) keys = keys.concat(mergeBackup(b));
-  if (backups.length) { await saveTrackers(); await saveEdits(); await saveItemState(); await savePortraits(); }
+  let keys = await restoreBackups(backups);
   if (snaps.length) keys = keys.concat(addSnapshots(snaps, 'file'));
   if (raws.length) {
     setStatus(engineCtx() ? 'Computing the imported character…' : 'Computing imported character with the SW5E rules engine…');
@@ -8312,7 +8330,8 @@ function renderSidebar(m, sections) {
       <select class="mbar-only mbar-btn sec-jump" data-jump aria-label="Go to a section, or more actions">
         <option value="" selected>☰</option>
         ${sectionGroups(sections).map(([g, list]) => `<optgroup label="${esc(SECTION_GROUPS[g] || 'Sections')}">${list.map((s) => `<option value="sec:sec-${s.id}">${esc(s.title)}</option>`).join('')}</optgroup>`).join('')}
-        <optgroup label="More">${[['load', 'Load from SW5E'], ['import', 'Import file…'], ['cr-new', 'New character…'], ['messages', 'Recent messages'], ['guide', 'First session guide'], ['export-character', 'Back up this character'], ['export-backup', 'Back up all characters'], ['toggle-compact', 'Compact cards on/off'], ['theme', 'Switch light / dark'], ['themes', 'Theme…']]
+        <optgroup label="More">${[['load', 'Load from SW5E'], ['import', 'Import file…'], ['cr-new', 'New character…'],
+          ...(document.documentElement.dataset.server === 'on' ? [['account', 'Account']] : []), ['messages', 'Recent messages'], ['guide', 'First session guide'], ['export-character', 'Back up this character'], ['export-backup', 'Back up all characters'], ['toggle-compact', 'Compact cards on/off'], ['theme', 'Switch light / dark'], ['themes', 'Theme…']]
           .map(([a, t]) => `<option value="act:${a}">${esc(t)}</option>`).join('')}</optgroup>
       </select>
       ${m.t ? live('mvitals', m, 'span', 'mvitals mbar-only') : ''}
@@ -8658,6 +8677,7 @@ async function handleAction(act, arg) {
     case 'messages': return showMessages();
     case 'guide': return showGuide();
     case 'from-sw5e': return showFromSw5e();
+    case 'account': return typeof accountAction === 'function' ? accountAction(arg) : undefined;
     case 'paste-sw5e': return pasteFromSw5e();
     case 'copy-bookmark':
       return navigator.clipboard.writeText(sw5eBookmarkCode())
@@ -9278,6 +9298,8 @@ async function main() {
   try { await ensureSw5eData(); } catch (e) { console.error(e); setStatus("Could not load SW5E's rules data: " + e.message, 'error'); }
   try { renderAll(); } catch (e) { console.error(e); setStatus('Could not draw the sheet: ' + e.message, 'error'); }
   if (state.current) scheduleRecompute(state.current);
+  // Served by the sheet's own server: accounts and backups (account.js); not awaited, the sheet doesn't wait for it.
+  if (typeof initAccount === 'function') initAccount().catch((e) => console.warn('Account:', e));
   // Opened by the sheet's bookmark on sw5e.com, or by sharing files to the installed app.
   if (params.get('from') === 'sw5e' || params.has('shared')) history.replaceState(null, '', location.pathname);
   if (params.get('from') === 'sw5e') {
