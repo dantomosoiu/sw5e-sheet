@@ -901,3 +901,7 @@ body:has(#dice:not([hidden])) .dice-fab { display: none; }
   .sheet { padding-bottom: 76px; }
 }
 @media (max-width: 560px) { .dice-fab { right: 14px; bottom: 14px; width: 52px; height: 52px; } }
+
+/* Settings, Tweaks & Data → Rules options */
+.rules-opt { display: flex; gap: 8px; align-items: flex-start; margin-top: 8px; cursor: pointer; }
+.rules-opt input { margin-top: 3px; }

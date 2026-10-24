@@ -856,7 +856,7 @@ Distinctions
 Horns, two hearts, facial tattoos
 Chosen increase
 Dexterity +1
-Traits (11)
+Traits (12)
 Ability Score Increase
 Your Constitution score increases by 2, and your Strength or Dexterity score increases by 1.
 Add a note
@@ -906,7 +906,12 @@ Unarmed Combatant
 Your unarmed strikes deal 1d4 kinetic damage and have the finesse property.
 Add a note
 Notes []
-sw5e.com also lists Darkvision: from before SW5E updated the Zabrak species, not among its traits now, so the sheet doesn't apply it.
+Darkvision
+From before SW5E updated the Zabrak species: sw5e.com still lists it, SW5E's species list no longer does. Not applied (Settings, Tweaks & Data → Rules options).
+Your vision can easily cut through darkness. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray.
+Add a note
+Notes []
+Darkvision: from before SW5E updated the Zabrak species (sw5e.com still lists it). Not applied: [apply it] (also in Settings, Tweaks & Data → Rules options).
 Ability score +1 1 / 1 Your Constitution score increases by 2, and your Strength or Dexterity score increases by 1.
 Dexterity [×]
 
@@ -1055,6 +1060,9 @@ Validation
 All checks passed
 Character id
 00000000-0000-4000-8000-000008000001 ↗
+Rules options
+[ ] Apply the Zabrak traits from before SW5E's update: Darkvision
+SW5E updated the Zabrak species (its changelog); its species list has the new traits, but its features list, which sw5e.com shows, still has these too. The shee… [298 chars #50f2b47f]
 Local version history 3 / 25
 SW5E can lose saved characters, so every version seen here is kept in this browser. Compare a version with the character as it is now, or restore it (Undo puts it back).
 Backups (files you keep): this character today, 00:02 · [Back up this character]

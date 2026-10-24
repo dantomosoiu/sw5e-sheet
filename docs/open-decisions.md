@@ -365,13 +365,15 @@ it._
      duration from the text); their benefits apply only while active.
 108. **The dice land flat** (owner, 2026-10-23): the table is seen from above, each die settles with the rolled face
      on top and its number upright; a d4 rests point up with its number at the point.
-109. **Species traits from before SW5E's species update aren't applied** (2026-10-24): SW5E's features list (which
-     its engine, and so sw5e.com, shows as a species' traits) still has traits that its species list no longer has:
-     Togruta's, Weequay's and Zabrak's Darkvision, Human's Proficiency (beside Human Versatility), Chiss's Darkvision
-     (beside Superior Darkvision) and 15 more across 16 species, which SW5E's changelog says were updated. The species
-     list is the current one, so only its traits count: the Species section names the others in a note
-     ("sw5e.com also lists Darkvision: from before SW5E updated the Togruta species…"). The engine still lists them,
-     as sw5e.com does. Nikto's subspecies entries are left out the same way; the Adaptation trait shows them.
+109. **Species traits from before SW5E's species update aren't applied by default** (owner, 2026-10-24): SW5E's
+     features list (which its engine, and so sw5e.com, shows as a species' traits) still has traits that its species
+     list no longer has: Togruta's, Weequay's and Zabrak's Darkvision, Human's Proficiency (beside Human Versatility),
+     Chiss's Darkvision (beside Superior Darkvision) and 15 more across 16 species, which SW5E's changelog says were
+     updated. The species list is the current one, so only its traits count. The Species section still shows every
+     trait sw5e.com lists: the old ones say where they come from and that they're not applied. **Settings, Tweaks &
+     Data → Rules options** (or "apply them" under the traits) applies them too, per character (kept with its local
+     state and backups, not sent to sw5e.com): their numbers, senses, defenses and picks then count like current
+     traits. Nikto's subspecies entries are the Adaptation trait's options, not old traits.
 110. **Resistances "dealt by weapons"** (Saber Ward) apply when the damage form says a weapon dealt it: a "by a
      weapon / not by a weapon" choice appears beside the damage type while such a resistance is active (by a weapon
      first). "Resistance to all damage except psychic" covers every other type. A resistance whose wording only says

@@ -631,7 +631,7 @@ Eyes
 Black
 Distinctions
 Leathery skin, subspecies
-Traits (10)
+Traits (15)
 Ability Score Increase
 Your Constitution score increases by 2, and one other ability score of your choice increases by 1.
 Add a note
@@ -660,12 +660,27 @@ Alignment
 Nikto's self-sufficient and clever nature causes them to tend toward balanced alignments, though there are exceptions.
 Add a note
 Notes []
+Esral'sa'Nikto (Mountain)
+Add a note
+Notes []
+Gluss'sa'Nikto (Pale)
+Add a note
+Notes []
 Hide
 You have a thick hide. While you are unarmored or wearing light armor, your AC is 13 + your Dexterity modifier.
 Add a note
 Notes []
+Kadas'sa'Nikto (Green)
+Add a note
+Notes []
+Kajain'sa'Nikto (Red)
+Add a note
+Notes []
 Languages
 You can speak, read, and write Galactic Basic, Nikto, and Huttese. Nikto is spoken with sharp syllables with a deep and rumbling cadence.
+Add a note
+Notes []
+M'shento'su'Nikto (Southern)
 Add a note
 Notes []
 Protective Membrane
@@ -684,7 +699,6 @@ Speed
 Your base walking speed is 30 feet.
 Add a note
 Notes []
-sw5e.com also lists Esral'sa'Nikto (Mountain), Gluss'sa'Nikto (Pale), Kadas'sa'Nikto (Green), Kajain'sa'Nikto (Red), M'shento'su'Nikto (Southern): from before S… [249 chars #081f0927]
 Ability score +1 0 / 1 Your Constitution score increases by 2, and one other ability score of your choice increases by 1.
 None chosen yet.
 [Choose an ability… ▾]

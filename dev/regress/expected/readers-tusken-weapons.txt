@@ -677,7 +677,7 @@ Eyes
 Pale gray or black
 Distinctions
 Full-body wrappings, goggles, mouth filter
-Traits (13)
+Traits (14)
 Ability Score Increase
 Your Constitution score increases by 2, and your Strength or Charisma score increases by 1.
 Add a note
@@ -730,7 +730,12 @@ Tusken Weaponry
 You have proficiency with the cycler rifle and vibroaxe.
 Add a note
 Notes []
-sw5e.com also lists Intimidating Roar: from before SW5E updated the Tusken species, not among its traits now, so the sheet doesn't apply it.
+Intimidating Roar
+From before SW5E updated the Tusken species: sw5e.com still lists it, SW5E's species list no longer does. Not applied (Settings, Tweaks & Data → Rules options).
+Once per day, you can cast the fear force power. Charisma is your forcecasting ability for this power.
+Add a note
+Notes []
+Intimidating Roar: from before SW5E updated the Tusken species (sw5e.com still lists it). Not applied: [apply it] (also in Settings, Tweaks & Data → Rules options).
 Powers from your species
 Power given, once per long rest 1 / 1 Tusken: Fearsome Roar
 Fear from the feature
@@ -821,6 +826,9 @@ Builder version
 0.7.6
 Validation
 All checks passed
+Rules options
+[ ] Apply the Tusken traits from before SW5E's update: Intimidating Roar
+SW5E updated the Tusken species (its changelog); its species list has the new traits, but its features list, which sw5e.com shows, still has these too. The shee… [298 chars #0bca5340]
 Local version history 1 / 25
 SW5E can lose saved characters, so every version seen here is kept in this browser. Compare a version with the character as it is now, or restore it (Undo puts it back).
 Backups (files you keep): this character never · [Back up this character]

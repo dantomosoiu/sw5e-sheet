@@ -560,7 +560,7 @@ Eyes
 Amber, blue, brown, gray, green, hazel, purple, or red
 Distinctions
 Biped with bilateral symmetry, opposable thumbs
-Traits (8)
+Traits (9)
 Ability Score Increase
 One ability score of your choice increases by 2, and two other ability scores of your choice increase by 1. Alternatively, four ability scores of your choice each increase by 1.
 Add a note
@@ -603,7 +603,12 @@ Speed
 Your base walking speed is 30 feet.
 Add a note
 Notes []
-sw5e.com also lists Proficiency: from before SW5E updated the Human species, not among its traits now, so the sheet doesn't apply it.
+Proficiency
+From before SW5E updated the Human species: sw5e.com still lists it, SW5E's species list no longer does. Not applied (Settings, Tweaks & Data → Rules options).
+You gain proficiency in one skill, one tool, and one weapon of your choice.
+Add a note
+Notes []
+Proficiency: from before SW5E updated the Human species (sw5e.com still lists it). Not applied: [apply it] (also in Settings, Tweaks & Data → Rules options).
 Ability score +2 0 / 1 One ability score of your choice increases by 2, and two other ability scores of your choice increase by 1. Alternatively, four ability scores of your choice each increase by 1.
 None chosen yet.
 [Choose an ability… ▾]
@@ -711,6 +716,9 @@ Validation
 All checks passed
 Character id
 00000000-0000-4000-8000-000003000001 ↗
+Rules options
+[ ] Apply the Human traits from before SW5E's update: Proficiency
+SW5E updated the Human species (its changelog); its species list has the new traits, but its features list, which sw5e.com shows, still has these too. The sheet… [297 chars #b46b031d]
 Local version history 1 / 25
 SW5E can lose saved characters, so every version seen here is kept in this browser. Compare a version with the character as it is now, or restore it (Undo puts it back).
 Backups (files you keep): this character never · [Back up this character]

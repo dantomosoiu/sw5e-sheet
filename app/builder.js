@@ -180,8 +180,9 @@ function bdPickList({ title, from = '', count, chosen, options, kind, arg, word 
 
 /** The species' traits as features ({ name, text }), without the ones every species has (age, size…). */
 function bdSpeciesTraitFeatures(m) {
-  const sp = bdSpeciesRef(m.raw);
-  return arr(sp && sp.traits).filter((t) => !/^(?:Ability Score Increase|Age|Alignment|Size|Speed|Languages?)$/i.test(t.name)).map((t) => ({ name: t.name, text: bdTraitText(m.raw, t), source: 'Species' }));
+  // The species' traits that count: the current ones, and its old ones when the character's rules option is on.
+  const list = typeof speciesTraitsOf === 'function' ? speciesTraitsOf(m.raw, m.snap && m.snap.key) : arr(bdSpeciesRef(m.raw) && bdSpeciesRef(m.raw).traits);
+  return list.filter((t) => !/^(?:Ability Score Increase|Age|Alignment|Size|Speed|Languages?)$/i.test(t.name)).map((t) => ({ name: t.name, text: bdTraitText(m.raw, t), source: 'Species' }));
 }
 /**
  * A species trait's text with its options ("Kiffar Heritage: … You choose one of the following heritages:", whose

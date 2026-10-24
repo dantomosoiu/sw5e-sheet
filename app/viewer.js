@@ -897,11 +897,13 @@ function buildModel(snap) {
   allFeatures.push(...missingClassFeatures(raw, allFeatures));
   // SW5E's engine lists a species' traits from its features list, which still has some from before SW5E updated the
   // species (its changelog): Togruta's Darkvision, Human's Proficiency beside Human Versatility, Chiss's Darkvision
-  // beside Superior Darkvision. Only the species' current traits count; the Species section names the others.
-  const spRef = state.rules && raw.species && raw.species.name ? bdSpeciesRef(raw) : null;
-  const traitNames = spRef && arr(spRef.traits).length ? new Set(arr(spRef.traits).map((t) => t.name)) : null;
-  const oldTraits = traitNames ? allFeatures.filter((f) => f.source === 'Species' && !traitNames.has(f.name)) : [];
-  for (const f of oldTraits) allFeatures.splice(allFeatures.indexOf(f), 1);
+  // beside Superior Darkvision. Only the species' current traits count, unless the character's rules option applies
+  // them too (Settings, Tweaks & Data → Rules options); the Species section shows them either way, saying which.
+  const oldNames = new Set(oldSpeciesTraits(raw).map((t) => t.name));
+  const oldTraits = allFeatures.filter((f) => f.source === 'Species' && oldNames.has(f.name)).map((f) => ({ ...f, old: true }));
+  const oldOn = oldTraitsOn(snap.key);
+  for (const f of allFeatures.filter((x) => x.source === 'Species' && oldNames.has(x.name))) allFeatures.splice(allFeatures.indexOf(f), 1);
+  if (oldOn) allFeatures.push(...oldTraits);
   const featRefs = refs.feats || {};
   const isFeat = (f) => f.source === 'Feat' || (!f.source && (featRefs[f.name] || 'attributesIncreased' in f || 'customIndex' in f));
   const speciesFeatures = allFeatures.filter((f) => f.source === 'Species');
@@ -911,7 +913,7 @@ function buildModel(snap) {
   const maneuverNames = arr(raw.classes).flatMap((k) => arr(k.maneuvers).concat(arr(k.archetype && k.archetype.maneuvers)));
   // Inventory or effects changed but not yet recomputed by SW5E: derived numbers may be out of date.
   const stale = derive && !fresh;
-  const m = { snap, raw, c, base, refs, has, allFeatures, speciesFeatures, oldTraits, feats, classFeatures, maneuverNames, edited, stale, fx };
+  const m = { snap, raw, c, base, refs, has, allFeatures, speciesFeatures, oldTraits, oldOn, feats, classFeatures, maneuverNames, edited, stale, fx };
   m.maneuverNames = maneuverNames.concat(slotManeuvers(m)); // Superiority Style and the like
   m.effects = fx.effects;
   m.bumps = base !== c ? diffStats(base, c) : {};
@@ -2072,6 +2074,26 @@ let featureFxCache = null;
 // What the player says is in use (itemState.inUse: "biochemist's pack as a tech focus" → true), for the features and
 // modifications that only work then; set by featureEffects for featureEffectsUncached.
 let featureInUse = {};
+/**
+ * A species' traits from before SW5E updated it (decision 109): in SW5E's features list (which sw5e.com shows), not in
+ * its species list. Not a trait's own options (Nikto's Adaptation lists its subspecies). [{ name, description }]
+ */
+function oldSpeciesTraits(raw) {
+  const sp = state.rules && raw.species && raw.species.name ? bdSpeciesRef(raw) : null;
+  if (!sp || !arr(sp.traits).length) return [];
+  const names = new Set(sp.traits.flatMap((t) => [t.name].concat(arr(t.options).map((o) => (o && o.name) || o))));
+  return arr(state.rules.modules && state.rules.modules.features)
+    .filter((f) => f.source === 'Species' && f.sourceName === raw.species.name && !names.has(f.name))
+    .map((f) => ({ name: f.name, description: f.text || '' }));
+}
+/** The character's rules option: apply its species' traits from before SW5E's update as well (itemState, per character). */
+const oldTraitsOn = (key) => !!(state.itemState[key] && state.itemState[key].oldTraits);
+/** The species traits that count: the current ones, and the old ones when the option is on. */
+const speciesTraitsOf = (raw, key) => {
+  const sp = raw.species && raw.species.name && state.rules ? bdSpeciesRef(raw) : null;
+  return arr(sp && sp.traits).concat(oldTraitsOn(key) ? oldSpeciesTraits(raw) : []);
+};
+
 function featureEffects(key, editedRaw, complete) {
   if (!state.rules) return [];
   // Cached: the same classes, notes, choices and rules give the same effects (this runs on every redraw).
@@ -2080,10 +2102,10 @@ function featureEffects(key, editedRaw, complete) {
     num(complete && complete.proficiencyBonus), // choice slots' "5 x your proficiency bonus"
     editedRaw.tweaks || null, editedRaw.customProficiencies || null, arr(complete && complete.proficiencies).length, // "if you are already proficient"
     catalogIndex ? catalogIndex.size : 0, // weapons are found through the catalog
-    (state.itemState[key] && state.itemState[key].inUse) || null, arr(editedRaw.equipment).map((it) => !!it.equipped)]);
+    (state.itemState[key] && state.itemState[key].inUse) || null, arr(editedRaw.equipment).map((it) => !!it.equipped), oldTraitsOn(key)]);
   featureInUse = (state.itemState[key] && state.itemState[key].inUse) || {};
   if (featureFxCache && featureFxCache.rules === state.rules && featureFxCache.sig === sig) return featureFxCache.out;
-  const own = featureEffectsUncached(editedRaw);
+  const own = featureEffectsUncached(editedRaw, key);
   const out = proficiencyRules(editedRaw, complete, own.concat(choiceEffects(editedRaw, complete, own)));
   featureFxCache = { rules: state.rules, sig, out };
   return out;
@@ -2224,7 +2246,7 @@ function choiceEffects(editedRaw, complete, features = []) {
   }
   return out;
 }
-function featureEffectsUncached(editedRaw) {
+function featureEffectsUncached(editedRaw, key) {
   const parsed = classRules();
   const out = [];
   arr(editedRaw.classes).forEach((k, ci) => {
@@ -2401,7 +2423,7 @@ function featureEffectsUncached(editedRaw) {
   // +3"), advantages (on the dice card), defenses and senses; SW5E's engine applies none of them. And the ones only a
   // species has, below: its walking speed, a hide's or carapace's AC, natural weapons (Toughness is read like Durable).
   const sp = editedRaw.species && editedRaw.species.name && state.rules ? bdSpeciesRef(editedRaw) : null; // a half-human's: with its other half's traits
-  for (let tr of arr(sp && sp.traits)) {
+  for (let tr of speciesTraitsOf(editedRaw, key)) {
     if (/^(?:Ability Score Increase|Age|Alignment|Size|Languages?)$/i.test(tr.name)) continue;
     const note = featureNoteOf(editedRaw, tr.name);
     // A trait with options (Nikto's Adaptation): clsFeatureEffects reads the chosen one; the rest below reads its text.
@@ -3814,7 +3836,7 @@ async function saveItemStateFor(key, st) {
   st.updatedAt = Date.now();
   if (!Object.keys(st.charges || {}).length && !arr(st.effects).length && !Object.keys(st.targets || {}).length
     && !Object.keys(st.reasons || {}).length && !st.combat && !arr(st.foretell).length && !st.frenzy
-    && !Object.keys(st.shots || {}).length && !Object.keys(st.keepTweaks || {}).length && !Object.keys(st.stackAnyway || {}).length && !Object.keys(st.toolPicks || {}).length && !Object.keys(st.itemPicks || {}).length && !Object.keys(st.inUse || {}).length && !Object.keys(st.focusOn || {}).length) delete state.itemState[key];
+    && !Object.keys(st.shots || {}).length && !Object.keys(st.keepTweaks || {}).length && !Object.keys(st.stackAnyway || {}).length && !Object.keys(st.toolPicks || {}).length && !Object.keys(st.itemPicks || {}).length && !Object.keys(st.inUse || {}).length && !Object.keys(st.focusOn || {}).length && !st.oldTraits) delete state.itemState[key];
   else state.itemState[key] = st;
   await saveItemState();
 }
@@ -5283,8 +5305,8 @@ function defensesOf(m) {
     add(isItem ? fe.defenses.filter((d) => !/^Damage from .* reduced by\b/.test(d.text)) : fe.defenses, from);
     add(fe.advantage.map((a) => ({ kind: 'advantage', text: ADV_TEXT(a) })), from);
   };
-  const sp = m.raw.species && m.raw.species.name && state.rules ? bdSpeciesRef(m.raw) : null;
-  const traits = sp && arr(sp.traits).length ? sp.traits.map((t) => ({ name: t.name, text: bdTraitText(m.raw, t) })) : arr(m.speciesFeatures);
+  const spTraits = speciesTraitsOf(m.raw, m.snap.key);
+  const traits = spTraits.length ? spTraits.map((t) => ({ name: t.name, text: bdTraitText(m.raw, t) })) : arr(m.speciesFeatures);
   for (const f of traits.concat(arr(m.feats))) fromText(f.text || f.description, f.name);
   // Equipment: enhanced items in use, worn weapons/armor, and other gear carried (a jetpack's flying
   // speed); not consumables, whose effects come from using them.
@@ -7709,8 +7731,12 @@ function renderSpecies(m) {
   // A half-human's traits from its non-human half (SW5E lists Half-human's own only).
   const inherited = eff && eff.halfOf ? arr(eff.traits).filter((t) => !/^(?:Ability Score Increase|Age|Alignment|Size|Speed|Languages?)$/i.test(t.name) && !m.speciesFeatures.some((f) => f.name === t.name))
     .map((t) => featureCard({ name: t.name, text: bdTraitFullText(t), source: 'Species', sourceName: eff.halfOf }, m)) : [];
-  const traits = m.speciesFeatures.length
-    ? m.speciesFeatures.map((f) => featureCard(withOptions(f), m)).concat(inherited)
+  // A trait from before SW5E updated the species: shown as sw5e.com shows it, saying whether it's applied and why.
+  const why = `_From before SW5E updated the ${name} species: sw5e.com still lists it, SW5E's species list no longer does. `;
+  const oldCard = (f) => featureCard({ ...f, text: `${why}${m.oldOn ? 'Applied: this character\'s rules option is on' : 'Not applied'} (Settings, Tweaks & Data → Rules options)._\n\n${f.text || ''}` }, m);
+  const current = m.speciesFeatures.filter((f) => !f.old);
+  const traits = current.length || m.oldTraits.length
+    ? current.map((f) => featureCard(withOptions(f), m)).concat(m.oldTraits.map(oldCard), inherited)
     : arr(ref.traits).map((t) => card({ title: t.name, body: md(t.description) }));
   const asi = m.raw.species.abilityScoreImprovement;
   const asiText = asi && typeof asi === 'object' && Object.keys(asi).length ? Object.entries(asi).map(([a, n]) => `${a} ${signed(n)}`).join(', ') : '';
@@ -7725,7 +7751,7 @@ function renderSpecies(m) {
     </div>
     <h3>Traits <span class="faint">(${traits.length})</span></h3>
     <div class="grid cards">${traits.join('') || empty('No traits found.')}</div>
-    ${arr(m.oldTraits).length ? `<p class="faint" title="${esc(m.oldTraits.map((f) => `${f.name}: ${f.text || ''}`).join(' · '))}">sw5e.com also lists ${esc(m.oldTraits.map((f) => f.name).join(', '))}: from before SW5E updated the ${esc(name)} species, not among its traits now, so the sheet doesn't apply ${m.oldTraits.length > 1 ? 'them' : 'it'}.</p>` : ''}
+    ${arr(m.oldTraits).length ? `<p class="faint">${esc(m.oldTraits.map((f) => f.name).join(', '))}: from before SW5E updated the ${esc(name)} species (sw5e.com still lists ${m.oldTraits.length > 1 ? 'them' : 'it'}). ${m.oldOn ? 'Applied, by this character\'s rules option' : 'Not applied'}: <button class="linklike" data-act="old-traits">${m.oldOn ? 'stop applying' : 'apply'} ${m.oldTraits.length > 1 ? 'them' : 'it'}</button> (also in Settings, Tweaks &amp; Data → Rules options).</p>` : ''}
     ${(() => {
       // Powers the species gives (Jawa: ion blast; Esh-Kha: your choice of three).
       const res = choiceInfo(m);
@@ -8226,11 +8252,24 @@ function renderData(m) {
           <dt>Validation</dt><dd>${esc((snap.validation && snap.validation.message) || '—')}</dd>
           ${raw.id ? `<dt>Character id</dt><dd><a href="https://sw5e.com/tools/mycharacters/${esc(encodeURIComponent(raw.id))}" target="_blank" rel="noopener">${esc(raw.id)} ↗</a></dd>` : ''}
         </dl></div>
+      ${renderRulesOptions(m)}
       ${renderHistoryCard(m)}
       ${renderEngineCard(m)}
     </div>
     <details style="margin-top:12px"><summary>Raw SW5E character JSON</summary><pre class="json">${esc(JSON.stringify(raw, null, 2))}</pre></details>
     <details style="margin-top:8px"><summary>Computed character JSON (${engineCtx() ? "the sheet's rules engine" : "from SW5E's rules engine"})</summary><pre class="json">${esc(JSON.stringify(m.c, null, 2))}</pre></details>`;
+}
+
+/** This character's rules options: rulings the sheet doesn't make by itself (for now, its species' old traits). */
+function renderRulesOptions(m) {
+  if (!m.oldTraits.length) return '';
+  const name = m.raw.species.name;
+  return `<div class="card no-toggle"><div class="card-head"><span class="title">Rules options</span></div>
+    <label class="rules-opt"><input type="checkbox" data-act="old-traits" ${m.oldOn ? 'checked' : ''}>
+      <span>Apply the ${esc(name)} traits from before SW5E's update: <b>${esc(m.oldTraits.map((f) => f.name).join(', '))}</b></span></label>
+    <p class="faint" style="font-size:12px;margin:6px 0">SW5E updated the ${esc(name)} species (its changelog); its species list has the new traits, but
+      its features list, which sw5e.com shows, still has these too. The sheet follows the species list and leaves them out unless your
+      GM uses them. Kept with this character (and its backups), not sent to sw5e.com.</p></div>`;
 }
 
 /** Where the numbers come from, and how the sheet's engine compared with sw5e.com's calculation of this character. */
@@ -9006,6 +9045,16 @@ async function handleAction(act, arg) {
       return;
     case 'demo':
       return openCharacter(DEMO_KEY);
+    case 'old-traits': { // the rules option (renderRulesOptions)
+      if (!snap) return undefined;
+      const st = itemStateOf(snap.key);
+      if (st.oldTraits) delete st.oldTraits; else st.oldTraits = true;
+      await saveItemStateFor(snap.key, st);
+      renderAll({ keepTyping: true });
+      scheduleRecompute(snap.key);
+      const names = buildModel(snap).oldTraits.map((f) => f.name).join(', ');
+      return setStatus(st.oldTraits ? `Applying ${names} as well (from before SW5E updated the species).` : `${names}: not applied any more.`);
+    }
     case 'reset-demo':
       // The banner's Reset: asks in the menu, like Remove.
       state.confirmRemoveChar = DEMO_KEY;
