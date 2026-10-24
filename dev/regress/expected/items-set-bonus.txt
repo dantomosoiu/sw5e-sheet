@@ -246,9 +246,10 @@ damage|1|crit: Unarmed Strike damage (critical): no dice +5 · = +1 unarmed stri
 damage|0||two: Lightsaber damage (two-handed): d4 d4 +4 · = +4 STR modifier · Energy · option: Force-Empowered Strikes +1d8 +1d8 · option: Force-Empowered Strikes +2d8 +2d8
 
 ## Sheet: Overview
-Maasha Vaal (Panel)
+Maasha Vaal (Panel) []
 Togruta · Guardian (Soresu Form) 4
-Level 4 Background: Jedi Lawful Light Proficiency +2 [Upload a picture] [Picture link…]
+Level 4 Background: Jedi Lawful Light Proficiency +2 [Add a portrait…]
+[2700]
 2,700 XP level 5 at 6,500 (3,800 to go)
 Still to choose (4): Guardian skills (2 more) · background skills (2 more) · background languages · Formfighting Dabbler: +1
 

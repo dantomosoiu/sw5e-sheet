@@ -204,9 +204,10 @@ damage|2|crit: Unarmed Strike damage (critical): no dice +4 · = +1 unarmed stri
 damage|0||two: Dire vibroblade damage (two-handed): d10 +3 · = +3 STR modifier · Kinetic
 
 ## Sheet: Overview
-Berserker Test (Claude)
+Berserker Test (Claude) []
 Human · Fighter (Praetorian Specialist) 5
-Level 5 Background: Soldier Balanced Neutral Proficiency +3 [Upload a picture] [Picture link…]
+Level 5 Background: Soldier Balanced Neutral Proficiency +3 [Add a portrait…]
+[6500]
 6,500 XP level 6 at 14,000 (7,500 to go)
 Still to choose (13): Fighter 4th level: ability score improvement or feat · Fighter Strategies · Fighter maneuvers (4 more) · Fighting style (Fighter: Fighting… [470 chars #d97eefd6]
 

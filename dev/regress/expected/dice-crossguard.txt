@@ -225,9 +225,10 @@ damage|3|crit: Unarmed Strike damage (critical): no dice +1 · = +1 unarmed stri
 damage|2||two: Lightsaber damage (two-handed): d4 d4 +0 · Energy
 
 ## Sheet: Overview
-Armstech Test (local)
+Armstech Test (local) []
 Human · Engineer (Artificer Engineering) 9
-Level 9 Background: Soldier Balanced Neutral Proficiency +4 [Upload a picture] [Picture link…]
+Level 9 Background: Soldier Balanced Neutral Proficiency +4 [Add a portrait…]
+[48000]
 48,000 XP level 10 at 64,000 (16,000 to go)
 Still to choose (19): Engineer skills (3 more) · Engineer tool · Artificer Modifications (5 more) · Engineer tech powers (18 more) · Force powers, 1st level (2 … [759 chars #895db528]
 

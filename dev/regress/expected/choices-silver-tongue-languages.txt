@@ -234,9 +234,10 @@ damage|1|crit: Vibrobaton damage (critical): d4 d4 d4 d4 +1 · = +1 STR modifier
 damage|2|crit: Unarmed Strike damage (critical): no dice +2 · = +1 unarmed strike +1 STR modifier · Kinetic · critical · option: Tyrannical Strike +d4 +1d4 · option: Disarming Blow +d4 +1d4
 
 ## Sheet: Overview
-Scholar Test (Claude)
+Scholar Test (Claude) []
 Bothan · Scholar (Politician Pursuit) 3
-Level 3 Background: Noble Balanced Neutral Proficiency +2 [Upload a picture] [Picture link…]
+Level 3 Background: Noble Balanced Neutral Proficiency +2 [Add a portrait…]
+[900]
 900 XP level 4 at 2,700 (1,800 to go)
 Still to choose (7): Scholar skills (3 more) · Scholar tool · background skills (2 more) · background tool · background languages · Silver Tongue: languages (2 more) · Silver Tongue: skill proficiency
 

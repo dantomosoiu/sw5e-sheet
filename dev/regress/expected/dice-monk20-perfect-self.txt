@@ -219,9 +219,9 @@ tool|One type of gaming set|proficient: One type of gaming set check: d20 +8 · 
 damage|0|crit: Unarmed Strike damage (critical): d12 d12 +6 · = +6 DEX modifier (Martial Arts) · Kinetic · critical
 
 ## Sheet: Overview
-Rakatan Test (local)
+Rakatan Test (local) []
 Human · Monk (Rakatan Order) 20
-Level 20 Background: Noble Lawful Light Proficiency +6 [Upload a picture] [Picture link…]
+Level 20 Background: Noble Lawful Light Proficiency +6 [Add a portrait…]
 6,500 XP highest level
 Level 20 usually needs 355,000 XP (you have 6,500).
 Still to choose (21): Monk skills (2 more) · Monk 8th level: ability score improvement or feat · Monk 10th level: ability score improvement or feat · Monk 12th … [840 chars #2a5bad44]

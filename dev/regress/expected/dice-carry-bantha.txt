@@ -207,9 +207,10 @@ damage|2|crit: Unarmed Strike damage (critical): no dice +4 · = +1 unarmed stri
 damage|0||two: Dire vibroblade damage (two-handed): d10 +3 · = +3 STR modifier · Kinetic · option: Rage Damage +2
 
 ## Sheet: Overview
-Berserker Test (Claude)
+Berserker Test (Claude) []
 Human · Berserker 7
-Level 7 Background: Soldier Balanced Neutral Proficiency +3 [Upload a picture] [Picture link…]
+Level 7 Background: Soldier Balanced Neutral Proficiency +3 [Add a portrait…]
+[6500]
 6,500 XP level 8 at 34,000 (27,500 to go)
 Level 7 usually needs 23,000 XP (you have 6,500).
 Still to choose (11): Berserker 4th level: ability score improvement or feat · Berserker approach · Berserker Instincts · background skills (2 more) · backgroun… [369 chars #293316b7]

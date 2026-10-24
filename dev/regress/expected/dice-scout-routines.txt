@@ -198,9 +198,10 @@ damage|0|crit: Blaster rifle damage (critical): d8 d8 +3 · = +3 DEX modifier ·
 damage|1|crit: Unarmed Strike damage (critical): no dice +1 · = +1 unarmed strike · Kinetic · critical · option: Ranger's Quarry +1d8
 
 ## Sheet: Overview
-Rakatan Test (local)
+Rakatan Test (local) []
 Human · Scout 9
-Level 9 Background: Noble Lawful Light Proficiency +4 [Upload a picture] [Picture link…]
+Level 9 Background: Noble Lawful Light Proficiency +4 [Add a portrait…]
+[6500]
 6,500 XP level 10 at 64,000 (57,500 to go)
 Level 9 usually needs 48,000 XP (you have 6,500).
 Still to choose (13): Scout skills (3 more) · Scout Expertise (2 more) · Scout technique · Scout tech powers (12 more) · Fighting style (Scout: Fighting Style) … [426 chars #d3f28393]

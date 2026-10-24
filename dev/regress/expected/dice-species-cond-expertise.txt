@@ -181,9 +181,10 @@ tool|One type of gaming set|proficient: One type of gaming set check: d20 +4 · 
 damage|0|crit: Unarmed Strike damage (critical): no dice +0 · = +1 unarmed strike −1 STR modifier · Kinetic · critical
 
 ## Sheet: Overview
-Consular Test (local)
+Consular Test (local) []
 Anomid · Consular (Way of Technology) 5
-Level 5 Background: Noble Lawful Light Proficiency +3 [Upload a picture] [Picture link…]
+Level 5 Background: Noble Lawful Light Proficiency +3 [Add a portrait…]
+[6500]
 6,500 XP level 6 at 14,000 (7,500 to go)
 Still to choose (7): Consular skills (2 more) · Force-Empowered Castings (2 more) · Consular force powers (13 more) · background skills (2 more) · background tool · background languages · Force Affinity: choose one
 

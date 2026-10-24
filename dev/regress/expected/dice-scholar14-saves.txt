@@ -235,9 +235,10 @@ damage|1|crit: Vibrobaton damage (critical): d4 d4 d4 d4 +1 · = +1 STR modifier
 damage|2|crit: Unarmed Strike damage (critical): no dice +2 · = +1 unarmed strike +1 STR modifier · Kinetic · critical · option: Tyrannical Strike +d10 +1d10 · option: Disarming Blow +d10 +1d10
 
 ## Sheet: Overview
-Scholar Test (Claude)
+Scholar Test (Claude) []
 Bothan · Scholar (Gambler Pursuit) 14
-Level 14 Background: Noble Balanced Neutral Proficiency +5 [Upload a picture] [Picture link…]
+Level 14 Background: Noble Balanced Neutral Proficiency +5 [Add a portrait…]
+[900]
 900 XP level 15 at 165,000 (164,100 to go)
 Level 14 usually needs 140,000 XP (you have 900).
 Still to choose (10): Scholar skills (3 more) · Scholar tool · Scholar 4th level: ability score improvement or feat · Scholar 8th level: ability score improveme… [349 chars #d595526f]

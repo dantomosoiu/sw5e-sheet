@@ -212,9 +212,10 @@ damage|0|crit: Vibrodagger damage (critical): d4 d4 +2 · = +2 DEX modifier · K
 damage|1|crit: Unarmed Strike damage (critical): d4 d4 +2 · = +2 DEX modifier (Unarmed Combatant) · Kinetic · critical
 
 ## Sheet: Overview
-Wizard Check (local)
+Wizard Check (local) []
 Zabrak · Engineer (Armstech Engineering) 4
-Level 4 Background: Scientist Proficiency +2 [Upload a picture] [Picture link…]
+Level 4 Background: Scientist Proficiency +2 [Add a portrait…]
+[2700]
 2,700 XP level 5 at 6,500 (3,800 to go)
 Still to choose (6): Armstech Modifications (4 more) · Engineer tech powers (10 more) · background skills · background tool · Coercive: skill proficiency · Crafters: tool proficiency
 

@@ -384,6 +384,11 @@ it._
      and their hover gives the breakdown the Abilities card writes under the score.
 112. **Vision** shows darkvision with its range (or "Normal"), and the other senses (tremorsense, blindsight,
      truesight, blindsense) with theirs under it; each says on hover what gives it.
+113. **Overview has no Edit** (owner, 2026-10-24): a pencil by the name changes the name, **Portrait…** the picture
+     (upload or link), and experience points are added by dragging the handle on the XP bar (or with the arrow keys;
+     not below the current level's XP). The bar measures the way to the next level and stays full, with **Level up**
+     (which opens the level-up form in Classes & Progression and scrolls there), until that level is taken. Credits
+     are changed in Equipment & Inventory.
 
 ## Not done yet (known gaps)
 

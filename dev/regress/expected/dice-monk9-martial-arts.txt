@@ -254,9 +254,10 @@ damage|2|crit: Unarmed Strike damage (critical): d8 d8 +3 · = +3 DEX modifier (
 damage|1||two: Vibroblade damage (two-handed): d10 +3 · = +3 DEX modifier (Martial Arts) · Kinetic · option: Sneak Attack +3d6
 
 ## Sheet: Overview
-Rakatan Test (local)
+Rakatan Test (local) []
 Human · Monk (Rakatan Order) 9, Operative 2
-Level 11 Background: Noble Lawful Light Proficiency +4 [Upload a picture] [Picture link…]
+Level 11 Background: Noble Lawful Light Proficiency +4 [Add a portrait…]
+[6500]
 6,500 XP level 12 at 100,000 (93,500 to go)
 Level 11 usually needs 85,000 XP (you have 6,500).
 Still to choose (20): Monk skills (2 more) · Monk 8th level: ability score improvement or feat · Monastic Vows (3 more) · Rakatan Order tech powers (7 more) · O… [692 chars #d7d9b02e]

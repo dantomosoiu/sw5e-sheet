@@ -232,9 +232,10 @@ damage|1|crit: Unarmed Strike damage (critical): no dice +5 · = +1 unarmed stri
 damage|0||two: Lightsaber damage (two-handed): d4 d4 +4 · = +4 STR modifier · Energy · option: Force-Empowered Strikes +1d8 +1d8 · option: Force-Empowered Strikes +2d8 +2d8 · option: Force-Empowered Strikes +3d8 +3d8
 
 ## Sheet: Overview
-Vessa Tal
+Vessa Tal []
 Togruta · Guardian (Soresu Form) 5
-Level 5 Background: Jedi Lawful Light Proficiency +3 [Upload a picture] [Picture link…]
+Level 5 Background: Jedi Lawful Light Proficiency +3 [Add a portrait…]
+[6500]
 6,500 XP level 6 at 14,000 (7,500 to go)
 
 ## Sheet: Combat & Vitals

@@ -212,9 +212,10 @@ damage|1|crit: Vibrobaton damage (critical): d4 d4 d4 d4 +0 · Kinetic · critic
 damage|2|crit: Unarmed Strike damage (critical): no dice +1 · = +1 unarmed strike · Kinetic · critical
 
 ## Sheet: Overview
-Consular Test (local)
+Consular Test (local) []
 Gamorrean · Consular (Way of Technology) 5
-Level 5 Background: Noble Lawful Light Proficiency +3 [Upload a picture] [Picture link…]
+Level 5 Background: Noble Lawful Light Proficiency +3 [Add a portrait…]
+[6500]
 6,500 XP level 6 at 14,000 (7,500 to go)
 Still to choose (10): Consular skills (2 more) · Force-Empowered Castings (2 more) · Consular force powers (13 more) · At-will tech power (2 more) (Feat: Tech D… [354 chars #d88659d6]
 

@@ -298,9 +298,9 @@ damage|1|crit: Vibrorapier damage (critical): d8 d8 +3 · = +3 DEX modifier · K
 damage|2|crit: Unarmed Strike damage (critical): d4 d4 +3 · = +3 DEX modifier (Unarmed Combatant) · Kinetic · critical · option: Sneak Attack +1d6 · option: Return Fire +d12 +1d12
 
 ## Sheet: Overview
-Kadro Vos (Panel)
+Kadro Vos (Panel) []
 Zabrak · Fighter (Fireteam Specialist) 20, Operative 1
-Level 21 Background: Soldier Chaotic Balanced Proficiency +6 [Upload a picture] [Picture link…]
+Level 21 Background: Soldier Chaotic Balanced Proficiency +6 [Add a portrait…]
 2,700 XP highest level
 Level 21 usually needs NaN XP (you have 2,700).
 Still to choose (17): Fighter skills (2 more) · Fighter 4th level: ability score improvement or feat · Fighter 6th level: ability score improvement or feat · Fi… [667 chars #e83ead00]

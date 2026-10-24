@@ -4568,8 +4568,10 @@ function pruneEdits(key, raw) {
 
 /** The fields each section's editor shows. */
 const EDITORS = {
-  overview: () => [{ path: 'experiencePoints', label: 'Experience points' }, { path: 'credits', label: 'Credits' },
-    { path: 'image', label: 'Portrait: a link to a picture', url: true }],
+  // Overview has no Edit: ✎ by the name edits the name, Portrait… the picture (XP is dragged on its bar; credits are
+  // in Equipment & Inventory).
+  overview: () => (state.editing && state.editing.only === 'image' ? [{ path: 'image', label: 'Portrait: a link to a picture', url: true }]
+    : [{ path: 'name', label: 'Name' }]),
   personality: (m) => {
     const known = new Set([...PERSONAL, ...PHYSICAL, 'alignment', 'Appearance', 'Backstory']);
     const other = Object.keys(m.raw.characteristics || {}).filter((k) => !known.has(k) && !k.includes('.'));
@@ -4599,16 +4601,17 @@ function renderEditor(m, section) {
     if (f.url) {
       return `<input ${attrs} type="url" value="${esc(v)}" autocomplete="off" placeholder="https://…/picture.jpg">
         <small class="faint">The picture itself, not a page showing it: open the picture, then right-click (or long-press) it → Copy image address. Leave empty for none.
-          Or <button type="button" class="linklike" data-act="portrait-upload">upload a picture from this device</button> (kept in this browser only).</small>`;
+          Or <button type="button" class="linklike" data-act="portrait-upload">upload a picture from this device</button> (kept in this browser only)${portraitOf(m.snap.key)
+  ? `; this character has one: <button type="button" class="linklike" data-act="portrait-remove">remove it</button>${m.raw.image ? ' (the link above shows again)' : ''}` : ''}.</small>`;
     }
     return `<input ${attrs} type="text" value="${esc(v)}" autocomplete="off"${numeric ? ' inputmode="numeric" placeholder="e.g. 250, +50 or -80"' : ''}${f.list ? ` list="${id}-list"` : ''}>`
       + (f.list ? `<datalist id="${id}-list">${f.list.map((o) => `<option value="${esc(o)}">`).join('')}</datalist>` : '');
   };
   return `<form class="editor" data-editor="${esc(section)}">
-    <div class="ed-grid">${fields.map((f) => `<label class="ed-field${f.long ? ' long' : ''}"><span>${esc(f.label)}${f.path in m.edited ? ' <span class="chip warn">edited</span>' : ''}</span>${control(f)}</label>`).join('')}</div>
+    <div class="ed-grid">${fields.map((f) => `<label class="ed-field${f.long || f.url ? ' long' : ''}"><span>${esc(f.label)}${f.path in m.edited ? ' <span class="chip warn">edited</span>' : ''}</span>${control(f)}</label>`).join('')}</div>
     <p class="ed-err" hidden></p>
     <div class="ed-actions"><button class="btn primary sm" type="submit">Done</button><button class="btn sm" type="button" data-act="edit-cancel">Cancel</button>
-      <span class="faint">${anyNumber ? 'Type a number, or +50 / −80 to add or subtract. ' : 'Markdown works here. '}Saved here when you press Done; Sync to SW5E also puts it on sw5e.com.</span></div>
+      <span class="faint">${anyNumber ? 'Type a number, or +50 / −80 to add or subtract. ' : fields.some((f) => f.long) ? 'Markdown works here. ' : ''}Saved here when you press Done; Sync to SW5E also puts it on sw5e.com.</span></div>
   </form>`;
 }
 
@@ -4634,6 +4637,8 @@ async function applyEditor(form) {
       v = (/^[+-]/.test(t) ? num(getPath(shown, path)) : 0) + parseInt(t, 10);
       if (v < 0) { el.focus(); return editorError(form, `${fieldLabel(path)} can't go below 0 (that would be ${v}).`); }
     }
+    if (path === 'name' && !v.trim()) { el.focus(); return editorError(form, 'The character needs a name.'); }
+    if (path === 'name') v = v.trim();
     if (path === 'image') {
       v = v.trim();
       if (v && !/^https?:\/\/\S+$/i.test(v)) { el.focus(); return editorError(form, 'Portrait: a link starting with https:// (or leave it empty).'); }
@@ -4821,7 +4826,7 @@ async function saveChangesToSw5e() {
 const SECTION_GROUPS = { play: 'Play', checks: 'Checks', gear: 'Gear', build: 'Build', story: 'Story', sheet: 'Sheet' };
 const SECTIONS = [
   // play
-  { id: 'overview', group: 'play', key: 'Digit1', title: 'Overview', when: () => true, render: renderOverview, editor: true },
+  { id: 'overview', group: 'play', key: 'Digit1', title: 'Overview', when: () => true, render: renderOverview },
   { id: 'combat', group: 'play', key: 'Digit2', short: 'Combat', title: 'Combat & Vitals', when: (m) => m.has, render: renderCombat },
   { id: 'attacks', group: 'play', key: 'Digit3', short: 'Attacks', title: 'Weapons & Attacks', when: (m) => m.has, render: renderAttacks, count: (m) => arr(m.c.weapons).length },
   { id: 'superiority', group: 'play', key: 'Digit4', short: 'Maneuvers', title: 'Superiority & Maneuvers', when: (m) => m.maneuverNames.length || m.c.superiority, render: renderSuperiority, count: (m) => m.maneuverNames.length },
@@ -4859,15 +4864,17 @@ function xpInfo(m, cur) {
   const table = xpTable();
   const level = num(m.c.currentLevel) || arr(m.raw.classes).reduce((n, k) => n + num(k.levels), 0) || 1;
   const reach = Math.max(1, table.filter((x) => cur >= x).length);
-  const top = Math.max(level, reach);
+  // The bar is the way to the level after the character's own: full (with Level up) until that level is taken.
+  const top = level;
   const prev = table[top - 1] || 0, next = table[top];
   const owed = reach - level;
   const note = owed > 0
     ? `<div class="chip warn xp-owed">${esc(`${fmtNum(cur)} XP is enough for level ${reach}: ${plural(owed, 'level')} to take.`)} ${bdLevelUpButton(m, 'Level up')}</div>`
     : reach < level ? `<div class="chip warn">${esc(`Level ${level} usually needs ${fmtNum(table[level - 1])} XP (you have ${fmtNum(cur)}).`)}</div>` : '';
   return {
+    prev, next, top,
     pct: next > prev ? clamp(((cur - prev) / (next - prev)) * 100, 0, 100) : 100,
-    label: next != null ? `level ${top + 1} at ${fmtNum(next)} (${fmtNum(Math.max(0, next - cur))} to go)` : 'highest level',
+    label: next == null ? 'highest level' : cur >= next ? `level ${top + 1} reached` : `level ${top + 1} at ${fmtNum(next)} (${fmtNum(next - cur)} to go)`,
     note,
   };
 }
@@ -4886,7 +4893,7 @@ function renderOverview(m) {
     ${img && !hidden ? `<div class="portrait mine"><img data-src="${esc(img)}" data-mine="1" alt="${esc(raw.name || 'Portrait')}">
       <button class="portrait-hide" data-act="portrait-toggle" title="Hide the picture (the chip below shows it again)" aria-label="Hide the picture">–</button></div>` : ''}
     <div>
-      <h1>${esc(raw.name || 'Unnamed character')}</h1>
+      <h1>${esc(raw.name || 'Unnamed character')}<button class="name-edit" data-act="edit-name" title="Change the name" aria-label="Change the name">${uiIcon('pencil')}</button></h1>
       <div class="line">${esc([c.species || (raw.species && raw.species.name), classText].filter(Boolean).join(' · '))}</div>
       <div class="chips" style="margin-top:8px">
         ${c.currentLevel ? chip('Level ' + c.currentLevel, 'accent') : ''}
@@ -4896,19 +4903,45 @@ function renderOverview(m) {
         ${live('insp', m, 'span')}
         ${hidden ? '<button class="chip" data-act="portrait-toggle" title="Show the picture again">Show picture</button>' : ''}
         ${link && !upload ? `<a class="chip blue" href="${esc(link)}" target="_blank" rel="noopener">Portrait link ↗</a>` : ''}
-        <button class="chip pic-chip" data-act="portrait-upload" title="Pick a picture on this device. It is made smaller and kept in this browser only (and in its backups): Sync to SW5E doesn't send it.">${uiIcon('upload')}${upload ? 'Change picture' : 'Upload a picture'}</button>
-        ${upload ? `<button class="chip" data-act="portrait-remove" title="Remove the uploaded picture${link ? ' (the picture link shows again)' : ''}">Remove picture</button>`
-          : `<button class="chip" data-act="edit-image" title="A link to a picture on the web (also kept on sw5e.com when you sync)">${link ? 'Change picture link' : 'Picture link…'}</button>`}
+        <button class="chip pic-chip" data-act="edit-image" title="A picture from this device (kept in this browser and its backups only) or a link to one on the web (also kept on sw5e.com when you sync)">${uiIcon('image')}${img ? 'Portrait…' : 'Add a portrait…'}</button>
       </div>
       ${loadoutStrip(m)}
       <div class="xp">
-        <div class="xp-bar"><div style="width:${xi.pct.toFixed(1)}%"></div></div>
-        <div class="xp-label"><span>${fmtNum(cur)} XP</span><span>${esc(xi.label)}</span></div>
+        <div class="xp-bar"><div style="width:${xi.pct.toFixed(1)}%"></div>${xi.next != null ? `<input type="range" class="xp-range" data-xp
+          min="${Math.min(xi.prev, cur)}" max="${xi.next}" step="1" value="${Math.min(cur, xi.next)}" aria-label="Experience points: drag to add"
+          aria-valuetext="${esc(`${fmtNum(cur)} XP`)}" title="Drag to add experience points (to ${fmtNum(xi.next)} for level ${xi.top + 1})">` : ''}</div>
+        <div class="xp-label"><span class="xp-now">${fmtNum(cur)} XP</span><span>${esc(xi.label)}</span></div>
         ${xi.note}
         ${bdOpenChoicesHtml(m)}
       </div>
     </div>
   </div>`;
+}
+
+/** While the XP bar's handle is dragged: the bar and the number follow it (kept when it's let go: setXp). */
+function xpPreview(input) {
+  const lo = num(input.min), hi = num(input.max), v = num(input.value);
+  const box = input.closest('.xp');
+  const fill = box && box.querySelector('.xp-bar > div');
+  if (fill) fill.style.width = `${hi > lo ? ((v - lo) / (hi - lo)) * 100 : 100}%`;
+  const now = box && box.querySelector('.xp-now');
+  if (now) now.textContent = `${fmtNum(v)} XP${v >= hi ? ' · level up!' : ''}`;
+  input.setAttribute('aria-valuetext', `${fmtNum(v)} XP`);
+}
+/** The XP the bar was dragged to; at the next level's XP, Level up is offered (here and in the message). */
+async function setXp(v) {
+  const snap = state.snapshots[state.current];
+  if (!snap) return;
+  const was = num(withEdits(snap.raw, editedFields(snap.key)).experiencePoints);
+  if (v === was) return;
+  const undo = rememberForUndo(snap.key, `experience points ${fmtNum(was)} → ${fmtNum(v)}`);
+  await setEditedFields(snap, { experiencePoints: v });
+  const m = buildModel(snap);
+  const reach = xpTable().filter((x) => v >= x).length;
+  const level = num(m.c.currentLevel) || arr(m.raw.classes).reduce((n, k) => n + num(k.levels), 0);
+  const up = reach > level && bdTotalLevel(m.raw) < 20 && state.rules;
+  setStatus(`Experience points: ${fmtNum(was)} → ${fmtNum(v)}.${up ? ` Enough for level ${reach}.` : ''}`, '', false,
+    up ? [{ act: 'lvl-open', label: 'Level up' }, undo] : undo);
 }
 
 /** Equipped and attuned gear as a row of tiles under the name (a tap goes to the inventory). */
@@ -8942,9 +8975,12 @@ async function handleAction(act, arg) {
       if (first) first.focus({ preventScroll: true });
       return;
     }
-    case 'edit-image': {
-      await handleAction('edit', 'overview');
-      const el = document.getElementById('ed-image');
+    case 'edit-name':
+    case 'edit-image': { // the Overview's ✎ and Portrait…: one field each
+      if (!snap) return;
+      state.editing = { key: snap.key, section: 'overview', only: act === 'edit-name' ? 'name' : 'image', draft: {} };
+      renderAll();
+      const el = document.getElementById(act === 'edit-name' ? 'ed-name' : 'ed-image');
       if (el) { el.focus({ preventScroll: true }); el.select(); }
       return;
     }
@@ -9171,6 +9207,7 @@ function wireUi() {
   };
   document.addEventListener('input', (e) => {
     if (e.target.id === 'filterBox') { state.filter = e.target.value; applyFilter(e.target.value, { keepPlace: true }); }
+    if (e.target.dataset && 'xp' in e.target.dataset) xpPreview(e.target);
     // Keep editor drafts so a re-render (e.g. another tab's write) doesn't lose typing.
     if (e.target.dataset && e.target.dataset.field && state.editing) state.editing.draft[e.target.dataset.field] = e.target.value;
     if (e.target.dataset && e.target.dataset.twadd) {
@@ -9259,6 +9296,7 @@ function wireUi() {
   });
   document.addEventListener('change', (e) => {
     const ds = e.target.dataset || {};
+    if ('xp' in ds) setXp(num(e.target.value));
     if (ds.fxweapon) setEffectWeapon(ds.fxweapon, e.target.value);
     if (ds.fxtool) setItemTool(ds.fxtool, e.target.value);
     if (ds.inuse) setInUse(ds.inuse, e.target.checked);

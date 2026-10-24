@@ -215,9 +215,10 @@ damage|2|crit: Unarmed Strike damage (critical): no dice +4 · = +1 unarmed stri
 damage|0||two: Dire vibroblade damage (two-handed): d10 +3 · = +3 STR modifier · Kinetic · option: Rage Damage +2
 
 ## Sheet: Overview
-Berserker Test (Claude)
+Berserker Test (Claude) []
 Human · Berserker (Industrial Approach) 5
-Level 5 Background: Soldier Balanced Neutral Proficiency +3 [Upload a picture] [Picture link…]
+Level 5 Background: Soldier Balanced Neutral Proficiency +3 [Add a portrait…]
+[6500]
 6,500 XP level 6 at 14,000 (7,500 to go)
 Still to choose (11): Berserker 4th level: ability score improvement or feat · Berserker Instincts (2 more) · Industrial Approach tech powers (5 more) · backgro… [400 chars #598f505d]
 

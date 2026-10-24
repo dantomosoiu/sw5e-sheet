@@ -207,9 +207,10 @@ damage|2|crit: Unarmed Strike damage (critical): no dice +4 · = +1 unarmed stri
 damage|0||two: Dire vibroblade damage (two-handed): d10 +3 · = +3 STR modifier · Kinetic · option: Rage Damage +3
 
 ## Sheet: Overview
-Berserker Test (Claude)
+Berserker Test (Claude) []
 Human · Berserker 9
-Level 9 Background: Soldier Balanced Neutral Proficiency +4 [Upload a picture] [Picture link…]
+Level 9 Background: Soldier Balanced Neutral Proficiency +4 [Add a portrait…]
+[6500]
 6,500 XP level 10 at 64,000 (57,500 to go)
 Level 9 usually needs 48,000 XP (you have 6,500).
 Still to choose (12): Berserker 4th level: ability score improvement or feat · Berserker 8th level: ability score improvement or feat · Berserker approach · Ber… [435 chars #a98c523c]

@@ -202,9 +202,10 @@ damage|1|crit: Vibrosword damage (critical): d6 d6 d6 d6 +0 · Kinetic · critic
 damage|2|crit: Unarmed Strike damage (critical): no dice +1 · = +1 unarmed strike · Kinetic · critical
 
 ## Sheet: Overview
-Armstech Test (local)
+Armstech Test (local) []
 Human · Engineer (Armormech Engineering) 9
-Level 9 Background: Soldier Balanced Neutral Proficiency +4 [Upload a picture] [Picture link…]
+Level 9 Background: Soldier Balanced Neutral Proficiency +4 [Add a portrait…]
+[48000]
 48,000 XP level 10 at 64,000 (16,000 to go)
 Still to choose (17): Engineer skills (3 more) · Engineer tool · Armormech Modifications (10 more) · Engineer tech powers (18 more) · At-will tech power (2 more… [591 chars #69bb3827]
 

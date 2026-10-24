@@ -208,9 +208,10 @@ damage|1|crit: Vibrosword damage (critical): d6 d6 d6 d6 +1 · = +1 Blade Focus 
 damage|2|crit: Unarmed Strike damage (critical): no dice +1 · = +1 unarmed strike · Kinetic · critical
 
 ## Sheet: Overview
-Armstech Test (local)
+Armstech Test (local) []
 Human · Operative (Gunslinger Practice) 9
-Level 9 Background: Soldier Balanced Neutral Proficiency +4 [Upload a picture] [Picture link…]
+Level 9 Background: Soldier Balanced Neutral Proficiency +4 [Add a portrait…]
+[48000]
 48,000 XP level 10 at 64,000 (16,000 to go)
 Still to choose (17): Operative skills (4 more) · Operative tool · Operative Expertise (4 more) · Operative Exploits (2 more) · At-will tech power (2 more) (Fea… [585 chars #ee1536bd]
 

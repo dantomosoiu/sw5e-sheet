@@ -386,9 +386,23 @@ table.inv { table-layout: fixed; min-width: 520px; }
 .hero h1 { margin: 0; font-size: 26px; line-height: 1.15; }
 .hero .line { color: var(--muted); margin-top: 4px; }
 .xp { margin-top: 10px; }
-.xp-bar { height: 8px; background: var(--panel-2); border-radius: 999px; overflow: hidden; border: 1px solid var(--line); }
-.xp-bar > div { height: 100%; background: var(--accent); }
-.xp-label { font-size: 12px; color: var(--muted); margin-top: 4px; display: flex; justify-content: space-between; }
+.xp-bar { position: relative; height: 8px; background: var(--panel-2); border-radius: 999px; border: 1px solid var(--line); }
+.xp-bar > div { height: 100%; background: var(--accent); border-radius: 999px; }
+/* The XP bar's handle: a range input over the bar (drag, or arrow keys), only its handle drawn. */
+.xp-range { position: absolute; left: -7px; right: -7px; top: 50%; width: calc(100% + 14px); height: 22px; margin: 0; transform: translateY(-50%);
+  -webkit-appearance: none; appearance: none; background: transparent; cursor: pointer; }
+.xp-range:focus { outline: none; }
+.xp-range::-webkit-slider-runnable-track { background: transparent; height: 22px; }
+.xp-range::-moz-range-track { background: transparent; height: 22px; }
+.xp-range::-webkit-slider-thumb { -webkit-appearance: none; width: 14px; height: 18px; margin-top: 2px; border-radius: 4px;
+  background: var(--panel); border: 2px solid var(--accent); box-shadow: 0 1px 3px rgba(0, 0, 0, .25); }
+.xp-range::-moz-range-thumb { width: 10px; height: 14px; border-radius: 4px; background: var(--panel); border: 2px solid var(--accent); box-shadow: 0 1px 3px rgba(0, 0, 0, .25); }
+.xp-range:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 40%, transparent); }
+.xp-range:focus-visible::-moz-range-thumb { box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 40%, transparent); }
+/* ✎ by the character's name (Overview) */
+.name-edit { margin-left: 8px; padding: 2px 4px; border: 0; background: none; color: var(--muted); cursor: pointer; vertical-align: middle; border-radius: 6px; }
+.name-edit:hover, .name-edit:focus-visible { color: var(--accent); background: var(--panel-2); }
+.xp-label { font-size: 12px; color: var(--muted); margin-top: 8px; display: flex; justify-content: space-between; }
 
 .hp-bar { height: 10px; background: var(--panel); border-radius: 999px; overflow: hidden; border: 1px solid var(--line); margin-top: 6px; }
 .hp-bar > div { height: 100%; background: var(--good); }

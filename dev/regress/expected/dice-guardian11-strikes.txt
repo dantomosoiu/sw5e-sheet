@@ -243,9 +243,10 @@ damage|1|crit: Unarmed Strike damage (critical): no dice +5 · = +1 unarmed stri
 damage|0||two: Lightsaber damage (two-handed): d4 d4 +4 · = +4 STR modifier · Energy · option (on): Improved Force-Empowered Strikes +1d8 · option: Force-Empowered Strikes +1d8 +1d8 · option: Force-Empowered Strikes +2d8 +2d8 · option: Force-Empowered Strikes +3d8 +3d8 · option: Force-Empowered Strikes +4d8 +4d8
 
 ## Sheet: Overview
-Maasha Vaal (Panel)
+Maasha Vaal (Panel) []
 Togruta · Guardian (Soresu Form) 11
-Level 11 Background: Jedi Lawful Light Proficiency +4 [Upload a picture] [Picture link…]
+Level 11 Background: Jedi Lawful Light Proficiency +4 [Add a portrait…]
+[2700]
 2,700 XP level 12 at 100,000 (97,300 to go)
 Level 11 usually needs 85,000 XP (you have 2,700).
 Still to choose (7): Guardian skills (2 more) · Guardian 8th level: ability score improvement or feat · Guardian Auras · Guardian force powers (9 more) · backgr… [230 chars #ab59b6c4]
