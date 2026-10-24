@@ -310,6 +310,7 @@ STR
 Strength
 +3
 17
+  ↳ hover abilityScores.Strength.value: Strength 17 (modifier +3) / base 16 / +1 Half-human
 (Proficient) Saving throw+6
 (Proficient) Athletics+6
 base 16 · +1 Half-human
@@ -343,6 +344,7 @@ WIS
 Wisdom
 +1
 13
+  ↳ hover abilityScores.Wisdom.value: Wisdom 13 (modifier +1) / base 12 / +1 Half-human
 (Not proficient) Saving throw+1
 (Not proficient) Animal Handling+1
 (Not proficient) Insight+1
@@ -354,6 +356,7 @@ CHA
 Charisma
 +0
 11
+  ↳ hover abilityScores.Charisma.value: Charisma 11 (modifier +0) / base 10 / +1 Half-human
 (Not proficient) Saving throw+0
 (Not proficient) Deception+0
 (Proficient) Intimidation+3

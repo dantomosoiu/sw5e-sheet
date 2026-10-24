@@ -87,12 +87,29 @@
   tip.hidden = true;
   tip.setAttribute('role', 'tooltip');
   document.body.appendChild(tip);
+  /**
+   * Put a tip or card next to what it explains: below it, or above when it fits only there; when it fits on neither
+   * side, on the side with more room, kept inside the window (its top never off screen) and scrolling inside if need be.
+   */
   function place(box, el) {
     const r = el.getBoundingClientRect();
+    box.style.maxHeight = '';
+    box.style.overflowY = '';
     const w = box.offsetWidth;
     box.style.left = `${Math.max(8, Math.min(window.innerWidth - w - 8, r.left + r.width / 2 - w / 2)) + window.scrollX}px`;
-    const below = r.bottom + box.offsetHeight + 12 < window.innerHeight;
-    box.style.top = `${(below ? r.bottom + 6 : r.top - box.offsetHeight - 6) + window.scrollY}px`;
+    const below = window.innerHeight - r.bottom - 14;
+    const above = r.top - 14;
+    let h = box.offsetHeight;
+    let top;
+    if (h <= below) top = r.bottom + 6;
+    else if (h <= above) top = r.top - h - 6;
+    else {
+      const room = Math.max(below, above, 120);
+      if (h > room) { box.style.maxHeight = `${room}px`; box.style.overflowY = 'auto'; h = box.offsetHeight; }
+      top = below >= above ? r.bottom + 6 : r.top - h - 6;
+      top = Math.max(8, Math.min(window.innerHeight - h - 8, top));
+    }
+    box.style.top = `${top + window.scrollY}px`;
   }
   let shownFor = null;
   function showTip(el, x) {
@@ -173,8 +190,13 @@
     const ref = (!custom && catalogIndex && catalogIndex.get(name)) || own || { name };
     const mine = arr(raw.equipment).find((x) => x.name === name) || own;
     const a = itemArt({ ...ref, color: mine && mine.color });
+    // An enhanced weapon or armor built on a base item the character carries: what it's built on, with its numbers.
+    const items = arr(raw.equipment);
+    const bi = mine && !custom ? invBaseIndex(items, items.indexOf(mine)) : -1;
+    const base = bi >= 0 ? (catalogIndex && catalogIndex.get(items[bi].name)) || items[bi] : null;
     const kind = ref.equipmentCategory || ref.type ? itemKind(ref) : (custom ? 'Custom item' : '');
     const facts = [
+      base ? ['Built on', `${base.name}${base.ac ? ` (AC ${base.ac})` : base.damageNumberOfDice && base.damageDieType ? ` (${damageText({ ...base, damageBonus: 0 })})` : ''}`] : null,
       ref.damageNumberOfDice && ref.damageDieType ? ['Damage', damageText({ ...ref, damageBonus: 0 })] : null,
       ref.ac ? ['Armor class', String(ref.ac)] : null,
       arr(ref.properties).length ? ['Properties', { html: propsHtml(ref.properties, ref.equipmentCategory === 'Armor' ? 'armor' : 'weapon') }] : null,

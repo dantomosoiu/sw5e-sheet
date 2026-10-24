@@ -251,7 +251,7 @@ Still to choose (7): Engineer skills (3 more) · Engineer tool · Armstech Modif
 Armor Class
 14
   ↳ hover armorClass: Without tweaks or effects: 13 → now 14 / +1 AC · Armor (Fine) while equipped
-Combat suit
+Armor (Fine) (on Combat suit)
 Hit Points
 31 / 31
 No temporary HP
@@ -421,7 +421,9 @@ base 8
 DEX
 Dexterity
 +2
+  ↳ hover abilityScores.Dexterity.modifier: Dexterity 14 (modifier +2) / base 13 / +1 Sullustan
 14
+  ↳ hover abilityScores.Dexterity.value: Dexterity 14 (modifier +2) / base 13 / +1 Sullustan
 (Not proficient) Saving throw+2
 (Not proficient) Acrobatics+2
 (Not proficient) Sleight of Hand+2
@@ -436,9 +438,9 @@ base 14
 INT
 Intelligence
 +5
-  ↳ hover abilityScores.Intelligence.modifier: Without tweaks or effects: 4 → now 5 / +1 INT · Techie feat (background feat)
+  ↳ hover abilityScores.Intelligence.modifier: Intelligence 20 (modifier +5) / base 15 / +2 Sullustan / +2 ASI (Engineer 4) / +1 from Techie (feat)
 20
-  ↳ hover abilityScores.Intelligence.value: Without tweaks or effects: 19 → now 20 / +1 INT · Techie feat (background feat)
+  ↳ hover abilityScores.Intelligence.value: Intelligence 20 (modifier +5) / base 15 / +2 Sullustan / +2 ASI (Engineer 4) / +1 from Techie (feat)
 (Proficient) Saving throw+7
   ↳ hover abilityScores.Intelligence.savingThrow.modifier: Without tweaks or effects: 6 → now 7 / +1 INT modifier (+1 score) · Techie feat (background feat)
 (Proficient) Investigation+7

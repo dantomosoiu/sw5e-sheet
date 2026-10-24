@@ -362,7 +362,9 @@ base 18
 DEX
 Dexterity
 +3
+  ↳ hover abilityScores.Dexterity.modifier: Dexterity 16 (modifier +3) / base 14 / +2 Zilkin
 16
+  ↳ hover abilityScores.Dexterity.value: Dexterity 16 (modifier +3) / base 14 / +2 Zilkin
 (Not proficient) Saving throw+3
 (Not proficient) Acrobatics+3
 (Not proficient) Sleight of Hand+3

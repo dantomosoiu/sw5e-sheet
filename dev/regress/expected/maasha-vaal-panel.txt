@@ -271,6 +271,7 @@ Hit Dice
 +2 per die spent (Con)
 Vision
 Normal
+Tremorsense 30 ft
 Play tracker
 [] [untyped ▾] [Damage] [Heal] [Temp HP]
 Enter: Damage · Shift + Enter: Heal
@@ -415,7 +416,9 @@ If the warded creature makes an attack, casts a power that affects an enemy crea
 STR
 Strength
 +4
+  ↳ hover abilityScores.Strength.modifier: Strength 18 (modifier +4) / base 15 / +1 Togruta / +2 ASI (Guardian 4)
 18
+  ↳ hover abilityScores.Strength.value: Strength 18 (modifier +4) / base 15 / +1 Togruta / +2 ASI (Guardian 4)
 (Not proficient) Saving throw+7
   ↳ hover abilityScores.Strength.savingThrow.modifier: Without tweaks or effects: 4 → now 7 / +3 STR save + WIS · Aura of Presence Guardian Auras feature
 (Proficient) Athletics+6
@@ -453,9 +456,9 @@ base 8
 WIS
 Wisdom
 +3
-  ↳ hover abilityScores.Wisdom.modifier: Without tweaks or effects: 2 → now 3 / +1 Wisdom score · Formfighting Dabbler (Jedi background feat): +1 to an ability of my choice tweak
+  ↳ hover abilityScores.Wisdom.modifier: Wisdom 16 (modifier +3) / base 13 / +2 Togruta / +1 from Formfighting Dabbler (Jedi background feat): +1 to an ability of my choice (tweak)
 16
-  ↳ hover abilityScores.Wisdom.value: Without tweaks or effects: 15 → now 16 / +1 Wisdom score · Formfighting Dabbler (Jedi background feat): +1 to an ability of my choice tweak
+  ↳ hover abilityScores.Wisdom.value: Wisdom 16 (modifier +3) / base 13 / +2 Togruta / +1 from Formfighting Dabbler (Jedi background feat): +1 to an ability of my choice (tweak)
 (Not proficient) Saving throw+6
   ↳ hover abilityScores.Wisdom.savingThrow.modifier: Without tweaks or effects: 2 → now 6 / +1 WIS modifier (+1 score) · Formfighting Dabbler (Jedi background feat)… [259 chars #d1c21171]
 (Not proficient) Animal Handling+3
@@ -882,7 +885,7 @@ Distinctions
 Sharp canine teeth, two montrals, three or four head-tails
 Chosen increase
 Strength +1
-Traits (10)
+Traits (9)
 Ability Score Increase
 Your Wisdom score increases by 2, and your Strength or Dexterity score increases by 1.
 Add a note
@@ -893,10 +896,6 @@ Add a note
 Notes []
 Alignment
 Togruta culture focuses on unity which causes them to tend toward the light side, though there are exceptions.
-Add a note
-Notes []
-Darkvision
-Your vision can easily cut through darkness. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray.
 Add a note
 Notes []
 Languages
@@ -923,6 +922,7 @@ Wild Hunters
 You have proficiency in the Survival skill.
 Add a note
 Notes []
+sw5e.com also lists Darkvision: from before SW5E updated the Togruta species, not among its traits now, so the sheet doesn't apply it.
 Ability score +1 1 / 1 Your Wisdom score increases by 2, and your Strength or Dexterity score increases by 1.
 Strength [×]
 

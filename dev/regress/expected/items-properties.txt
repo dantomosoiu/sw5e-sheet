@@ -423,20 +423,20 @@ When a creature misses you with a ranged attack, you can use your reaction and e
 STR
 Strength
 +5
-  ↳ hover abilityScores.Strength.modifier: Without tweaks or effects: -1 → now 5 / +13 STR 21 (powered 21) (the item sets it to 21) · Powered Armoring Mk VI while installed
+  ↳ hover abilityScores.Strength.modifier: Strength 21 (modifier +5) / base 8 / +13 from Powered Armoring Mk VI (it sets the score to 21)
 21
-  ↳ hover abilityScores.Strength.value: Without tweaks or effects: 8 → now 21 / +13 STR 21 (powered 21) (the item sets it to 21) · Powered Armoring Mk VI while installed
+  ↳ hover abilityScores.Strength.value: Strength 21 (modifier +5) / base 8 / +13 from Powered Armoring Mk VI (it sets the score to 21)
 (Proficient) Saving throw+7
   ↳ hover abilityScores.Strength.savingThrow.modifier: Without tweaks or effects: 1 → now 7 / +6 STR modifier (+13 score) (the item sets it to 21) · Powered Armoring Mk VI while installed
 (Not proficient) Athletics+5
   ↳ hover abilityScores.Strength.skills.0.modifier: Without tweaks or effects: -1 → now 5 / +6 STR modifier (+13 score) (the item sets it to 21) · Powered Armoring Mk VI while installed
-base 8 · +13 from Powered Armoring Mk VI
+base 8 · +13 from Powered Armoring Mk VI (it sets the score to 21)
 DEX
 Dexterity
 +5
-  ↳ hover abilityScores.Dexterity.modifier: Without tweaks or effects: 3 → now 5 / +1 Dexterity score · Weapon Expert feat: +1 Dexterity (builder has no choice for … [256 chars #47cf5c62]
+  ↳ hover abilityScores.Dexterity.modifier: Dexterity 21 (modifier +5) / base 15 / +1 Zabrak / +1 from Weapon Expert feat: +1 Dexterity (builder has no choice for i… [227 chars #40ac9cc1]
 21
-  ↳ hover abilityScores.Dexterity.value: Without tweaks or effects: 16 → now 21 / +1 Dexterity score · Weapon Expert feat: +1 Dexterity (builder has no choice for i… [255 chars #38f15f8c]
+  ↳ hover abilityScores.Dexterity.value: Dexterity 21 (modifier +5) / base 15 / +1 Zabrak / +1 from Weapon Expert feat: +1 Dexterity (builder has no choice for it) … [224 chars #9395a197]
 (Not proficient) Saving throw+5
   ↳ hover abilityScores.Dexterity.savingThrow.modifier: Without tweaks or effects: 3 → now 5 / +1 DEX score · Weapon Expert feat: +1 Dexterity (builder has no choic… [254 chars #616d4f8f]
 (Not proficient) Acrobatics+5
@@ -445,11 +445,13 @@ Dexterity
   ↳ hover abilityScores.Dexterity.skills.1.modifier: Without tweaks or effects: 3 → now 5 / +1 DEX score · Weapon Expert feat: +1 Dexterity (builder has no choice f… [251 chars #842f72a6]
 (Expertise) Stealth+9
   ↳ hover abilityScores.Dexterity.skills.2.modifier: Without tweaks or effects: 7 → now 9 / +1 DEX score · Weapon Expert feat: +1 Dexterity (builder has no choice f… [343 chars #6b9a8070]
-base 15 · +1 Zabrak · +1 from Weapon Expert feat: +1 Dexterity (builder has no choice for it) (tweak) · +4 from Agile Armoring Mk VI
+base 15 · +1 Zabrak · +1 from Weapon Expert feat: +1 Dexterity (builder has no choice for it) (tweak) · +4 from Agile Armoring Mk VI (it sets the score to 21)
 CON
 Constitution
 +3
+  ↳ hover abilityScores.Constitution.modifier: Constitution 16 (modifier +3) / base 14 / +2 Zabrak
 16
+  ↳ hover abilityScores.Constitution.value: Constitution 16 (modifier +3) / base 14 / +2 Zabrak
 (Proficient) Saving throw+5
 base 14 · +2 Zabrak
 INT
@@ -874,7 +876,7 @@ Distinctions
 Horns, two hearts, facial tattoos
 Chosen increase
 Dexterity +1
-Traits (12)
+Traits (11)
 Ability Score Increase
 Your Constitution score increases by 2, and your Strength or Dexterity score increases by 1.
 Add a note
@@ -897,10 +899,6 @@ Crafters
 You have proficiency with one set of artisan’s implements of your choice.
 Tool proficiency 1 / 1 one set of artisan’s implements of your choice
 Tinker's implements [×]
-Add a note
-Notes []
-Darkvision
-Your vision can easily cut through darkness. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray.
 Add a note
 Notes []
 Languages
@@ -928,6 +926,7 @@ Unarmed Combatant
 Your unarmed strikes deal 1d4 kinetic damage and have the finesse property.
 Add a note
 Notes []
+sw5e.com also lists Darkvision: from before SW5E updated the Zabrak species, not among its traits now, so the sheet doesn't apply it.
 Ability score +1 1 / 1 Your Constitution score increases by 2, and your Strength or Dexterity score increases by 1.
 Dexterity [×]
 

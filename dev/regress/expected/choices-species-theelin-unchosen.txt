@@ -378,7 +378,9 @@ base 16 · +2 ASI (Consular 4) · −2 other
 CHA
 Charisma
 +3
+  ↳ hover abilityScores.Charisma.modifier: Charisma 16 (modifier +3) / base 14 / +2 Theelin
 16
+  ↳ hover abilityScores.Charisma.value: Charisma 16 (modifier +3) / base 14 / +2 Theelin
 (Proficient) Saving throw+6
 (Not proficient) Deception+3
 (Not proficient) Intimidation+3

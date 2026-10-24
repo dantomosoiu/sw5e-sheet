@@ -24,7 +24,8 @@ const DEMO_RAW = {
     name: 'Guardian',
     levels: 5,
     hitPoints: [6, 7, 5, 6],
-    abilityScoreImprovements: [{ type: 'Ability Score Improvement', abilitiesIncreased: [{ name: 'Strength', value: 2 }] }],
+    // Level 4: the Brawny feat (+1 Strength; Athletics, already proficient, becomes expertise).
+    abilityScoreImprovements: [{ type: 'Feat', name: 'Brawny' }],
     forcePowers: ['Guidance', 'Saber Reflect', 'Saber Ward', 'Force Leap', 'Saber Throw', 'Battle Insight', 'Heal', 'Heroism',
       'Force Jump', 'Sanctuary', 'Burst of Speed', 'Force Barrier'],
     skills: ['Athletics', 'Perception'],
@@ -33,7 +34,7 @@ const DEMO_RAW = {
   }],
   baseAbilityScores: { Strength: 15, Dexterity: 12, Constitution: 14, Intelligence: 8, Wisdom: 13, Charisma: 10 },
   background: {
-    name: 'Jedi', feat: { name: 'Formfighting Dabbler', type: 'Feat', abilityScoreImprovements: { Wisdom: 1 } }, feature: '',
+    name: 'Jedi', feat: { name: 'Formfighting Dabbler', type: 'Feat', abilityScoreImprovements: { Strength: 1 } }, feature: '',
     skills: ['Insight', 'Persuasion'], languages: ['Huttese'],
   },
   characteristics: {
@@ -83,7 +84,8 @@ const DEMO_RAW = {
     featuresTimesUsed: { 'Channel the Force': 0 }, conditions: [], exhaustion: 0,
     highLevelCasting: { level6: false, level7: false, level8: false, level9: false },
   },
-  tweaks: {},
+  // A tweak of the GM's (its reason is in DEMO_ITEMSTATE).
+  tweaks: { abilityScores: { Intelligence: { skills: { Piloting: { bonus: 2 } } } } },
   customProficiencies: [],
   customLanguages: [],
   customFeatures: [],
@@ -106,16 +108,23 @@ const DEMO_RAW = {
     '## Things to try',
     '- **Roll**: click any number with a die: an attack (Lightsaber), a save, a skill. The roller offers her bonuses.',
     '- **Take a hit**: Combat & Vitals, type an amount, Damage. Then a Short rest, spending Hit Dice to heal.',
+    '- **Defend**: cast Saber Ward, then take kinetic damage by a weapon: her resistance halves it.',
     '- **Cast**: Force Casting, Heroism or Force Barrier: Cast spends her force points.',
     '- **Use an item**: a Medpac or the Strength Stim, on her or on someone else; it shows under Effects.',
     '- **Start a state**: Class Features, Soresu Form or Aura of Presence; End it when it\'s over.',
-    '- **Hover a dotted number** to see what changed it (her armor, her aura, a stim).',
+    '- **Hover a dotted number** to see what changed it (her armor, her aura, a stim, her Strength).',
+    '- **Skills**: Athletics is at expertise (the Brawny feat); Piloting has a +2 tweak from the GM, with its reason '
+      + '(Settings, Tweaks & Data).',
     '- **Level up** from Class Features, or **Edit** any section.',
     '',
     '## Session 1: Trouble on Ord Mantell',
     '- **Debt: I owe Kessa (Kessa\'s Outfitters) 370 cr** for two Medpacs and the vibrodagger.',
     '- Docks ambush: Soresu Form and Heroism; lost concentration on a failed Constitution save.',
     '- Loot: 150 cr, a Strength Stim, the coded datapad.',
+    '',
+    '## Session 2: The speeder bike chase',
+    '- Ran the smugglers down through the Ord Mantell scrapyards on a borrowed speeder bike.',
+    '- GM: +2 to Piloting from now on, for the inspiring flying (a tweak, with its reason).',
     '',
   ].join('\n'),
   featureNotes: { 'channel the force': 'Lend Aid' },
@@ -124,6 +133,14 @@ const DEMO_RAW = {
     'Soresu Form: Form Basics': [{ name: 'Shien Form' }],
     'Guardian: Fighting Style': [{ name: 'Defense Style' }],
   },
+};
+
+// Its starting local state: the reason for the GM's tweak above (the Tweaks list shows it, and the number's hover).
+const DEMO_ITEMSTATE = {
+  charges: {},
+  effects: [],
+  reasons: { 'abilityScores.Intelligence.skills.Piloting': 'GM award: the inspiring speeder bike chase through the Ord Mantell scrapyards' },
+  updatedAt: DEMO_AT,
 };
 
 /** The demo's snapshot, as new: its computed sheet is the engine's, once SW5E's data is loaded (ensureSw5eData). */
@@ -140,12 +157,13 @@ function demoSnapshot() {
   return snap;
 }
 
-/** Add the demo to what's loaded (its snapshot isn't stored: see the top). */
+/** Add the demo to what's loaded (its snapshot isn't stored: see the top), and its starting local state where it has none. */
 function addDemo(st) {
   st.snapshots[DEMO_KEY] = demoSnapshot();
+  if (st.itemState && !st.itemState[DEMO_KEY]) st.itemState[DEMO_KEY] = JSON.parse(JSON.stringify(DEMO_ITEMSTATE));
 }
 
 /** The characters that are the user's own: every one but the demo. */
 const ownKeys = (snapshots) => Object.keys(snapshots).filter((k) => !isDemoKey(k));
 
-if (typeof module !== 'undefined') module.exports = { DEMO_KEY, DEMO_RAW, isDemoKey, demoSnapshot, addDemo, ownKeys };
+if (typeof module !== 'undefined') module.exports = { DEMO_KEY, DEMO_RAW, DEMO_ITEMSTATE, isDemoKey, demoSnapshot, addDemo, ownKeys };

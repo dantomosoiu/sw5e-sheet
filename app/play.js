@@ -80,19 +80,26 @@ function plSpeed(conditions, exhaustion) {
 
 /**
  * Damage after the character's defenses. `defenses`: [{ kind: 'resistance' | 'immunity' | 'vulnerability', text, from }]
- * as the sheet lists them ("Resistance to kinetic and energy damage"). Only defenses that name the type and add no
- * condition ("…from weapons", "…while raging" is already only listed while raging) apply; the others are mentioned.
- * Returns { amount, applied: [why], maybe: [text] }.
+ * as the sheet lists them ("Resistance to kinetic and energy damage"; "all damage except psychic damage" names every
+ * type but psychic). What only says how long it lasts ("…for the power's duration", "…while you wear this armor": it's
+ * listed while it does) applies. One dealt by weapons ("…dealt by weapons", Saber Ward) applies when `opts.weapon`
+ * says a weapon dealt it; other conditions ("…from falling", "…while raging" is already only listed while raging)
+ * are mentioned. Returns { amount, applied: [why], maybe: [text] }.
  */
-function plDamageAfterDefenses(amount, type, defenses) {
+function plDamageAfterDefenses(amount, type, defenses, opts = {}) {
   const t = String(type || '').toLowerCase();
   const out = { amount: Math.max(0, Math.floor(Number(amount) || 0)), applied: [], maybe: [] };
   if (!t || t === 'true') return out;
   let resist = null; let immune = null; let vuln = null;
   for (const d of defenses || []) {
     const m = /^(?:resistance|immun\w*|vulnerab\w*)\s+to\s+(.*?)\bdamage\b(.*)$/i.exec(d.text || '');
-    if (!m || !new RegExp(`\\b${t}\\b`, 'i').test(m[1])) continue;
-    const conditional = /^\s*(?:from|while|when|if|that|dealt|by|against|of)\b/i.test(m[2]) || /\b(?:chosen|that)\b/i.test(m[1]);
+    if (!m) continue;
+    const except = /^\s*except\s+(.*?)\s*damage\b(.*)$/i.exec(m[2]);
+    const names = /^\s*all\s*$/i.test(m[1]) ? !(except && new RegExp(`\\b${t}\\b`, 'i').test(except[1])) : new RegExp(`\\b${t}\\b`, 'i').test(m[1]);
+    if (!names) continue;
+    const tail = (except ? except[2] : m[2]).replace(/^\s*(?:for the (?:power's |feature's )?duration|while you wear (?:this|these|it)\b[\w ]*|until the (?:start|end) of your next turn)\s*$/i, '');
+    const byWeapon = /^\s*(?:dealt by|from) weapon(?:s| attacks)\s*$/i.test(tail);
+    const conditional = byWeapon ? !opts.weapon : /^\s*(?:from|while|when|if|that|dealt|by|against|of|type)\b/i.test(tail) || /\b(?:chosen|that)\b/i.test(m[1]);
     if (conditional) { out.maybe.push(`${d.text} (${d.from})`); continue; }
     const why = `${d.from}`;
     if (/^immun/i.test(d.text)) immune = immune || why;

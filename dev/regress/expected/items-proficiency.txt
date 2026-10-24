@@ -451,8 +451,9 @@ base 8
 DEX
 Dexterity
 +3
+  ↳ hover abilityScores.Dexterity.modifier: Dexterity 17 (modifier +3) / base 15 / +1 Zabrak / +1 from Weapon Expert feat: +1 Dexterity (builder has no choice for it) (tweak)
 17
-  ↳ hover abilityScores.Dexterity.value: Without tweaks or effects: 16 → now 17 / +1 Dexterity score · Weapon Expert feat: +1 Dexterity (builder has no choice for it) tweak
+  ↳ hover abilityScores.Dexterity.value: Dexterity 17 (modifier +3) / base 15 / +1 Zabrak / +1 from Weapon Expert feat: +1 Dexterity (builder has no choice for it) (tweak)
 (Expertise) Saving throw+7
   ↳ hover abilityScores.Dexterity.savingThrow.modifier: Without tweaks or effects: 3 → now 7 / expertise DEX saves: +3 proficiency steps · Dexterity Weave (Champion) while installed
 (Not proficient) Acrobatics+3
@@ -462,15 +463,17 @@ base 15 · +1 Zabrak · +1 from Weapon Expert feat: +1 Dexterity (builder has no
 CON
 Constitution
 +3
+  ↳ hover abilityScores.Constitution.modifier: Constitution 16 (modifier +3) / base 14 / +2 Zabrak
 16
+  ↳ hover abilityScores.Constitution.value: Constitution 16 (modifier +3) / base 14 / +2 Zabrak
 (Proficient) Saving throw+5
 base 14 · +2 Zabrak
 INT
 Intelligence
 +1
-  ↳ hover abilityScores.Intelligence.modifier: Without tweaks or effects: 0 → now 1 / +3 INT (the item sets it to 13) · Intuitive Facial Prosthesis while installed
+  ↳ hover abilityScores.Intelligence.modifier: Intelligence 13 (modifier +1) / base 10 / +3 from Intuitive Facial Prosthesis (it sets the score to 13)
 13
-  ↳ hover abilityScores.Intelligence.value: Without tweaks or effects: 10 → now 13 / +3 INT (the item sets it to 13) · Intuitive Facial Prosthesis while installed
+  ↳ hover abilityScores.Intelligence.value: Intelligence 13 (modifier +1) / base 10 / +3 from Intuitive Facial Prosthesis (it sets the score to 13)
 (Not proficient) Saving throw+1
   ↳ hover abilityScores.Intelligence.savingThrow.modifier: Without tweaks or effects: 0 → now 1 / +1 INT modifier (+3 score) (the item sets it to 13) · Intuitive Facial Prosthesis while installed
 (Proficient) Investigation+3
@@ -483,7 +486,7 @@ Intelligence
   ↳ hover abilityScores.Intelligence.skills.3.modifier: Without tweaks or effects: 0 → now 3 / +1 INT modifier (+3 score) (the item sets it to 13) · Intuitive Facia… [243 chars #f9a6dc26]
 (Not proficient) Technology+2
   ↳ hover abilityScores.Intelligence.skills.4.modifier: Without tweaks or effects: 0 → now 2 / +1 INT modifier (+3 score) (the item sets it to 13) · Intuitive Facia… [268 chars #0848d7a2]
-base 10 · +3 from Intuitive Facial Prosthesis
+base 10 · +3 from Intuitive Facial Prosthesis (it sets the score to 13)
 WIS
 Wisdom
 +1
@@ -500,7 +503,7 @@ CHA
 Charisma
 +1
 13
-  ↳ hover abilityScores.Charisma.value: Without tweaks or effects: 12 → now 13 / +1 CHA · Charming Noble Package while installed
+  ↳ hover abilityScores.Charisma.value: Charisma 13 (modifier +1) / base 12 / +1 from Charming Noble Package
 (Not proficient) Saving throw+1
 (Not proficient) Deception+1
 (Proficient) Intimidation+3
@@ -917,7 +920,7 @@ Distinctions
 Horns, two hearts, facial tattoos
 Chosen increase
 Dexterity +1
-Traits (12)
+Traits (11)
 Ability Score Increase
 Your Constitution score increases by 2, and your Strength or Dexterity score increases by 1.
 Add a note
@@ -940,10 +943,6 @@ Crafters
 You have proficiency with one set of artisan’s implements of your choice.
 Tool proficiency 1 / 1 one set of artisan’s implements of your choice
 Tinker's implements [×]
-Add a note
-Notes []
-Darkvision
-Your vision can easily cut through darkness. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray.
 Add a note
 Notes []
 Languages
@@ -971,6 +970,7 @@ Unarmed Combatant
 Your unarmed strikes deal 1d4 kinetic damage and have the finesse property.
 Add a note
 Notes []
+sw5e.com also lists Darkvision: from before SW5E updated the Zabrak species, not among its traits now, so the sheet doesn't apply it.
 Ability score +1 1 / 1 Your Constitution score increases by 2, and your Strength or Dexterity score increases by 1.
 Dexterity [×]
 

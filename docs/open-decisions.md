@@ -365,6 +365,23 @@ it._
      duration from the text); their benefits apply only while active.
 108. **The dice land flat** (owner, 2026-10-23): the table is seen from above, each die settles with the rolled face
      on top and its number upright; a d4 rests point up with its number at the point.
+109. **Species traits from before SW5E's species update aren't applied** (2026-10-24): SW5E's features list (which
+     its engine, and so sw5e.com, shows as a species' traits) still has traits that its species list no longer has:
+     Togruta's, Weequay's and Zabrak's Darkvision, Human's Proficiency (beside Human Versatility), Chiss's Darkvision
+     (beside Superior Darkvision) and 15 more across 16 species, which SW5E's changelog says were updated. The species
+     list is the current one, so only its traits count: the Species section names the others in a note
+     ("sw5e.com also lists Darkvision: from before SW5E updated the Togruta species…"). The engine still lists them,
+     as sw5e.com does. Nikto's subspecies entries are left out the same way; the Adaptation trait shows them.
+110. **Resistances "dealt by weapons"** (Saber Ward) apply when the damage form says a weapon dealt it: a "by a
+     weapon / not by a weapon" choice appears beside the damage type while such a resistance is active (by a weapon
+     first). "Resistance to all damage except psychic" covers every other type. A resistance whose wording only says
+     how long it lasts ("for the power's duration", "while you wear this armor") applies. Any other condition ("from
+     falling") isn't applied; the message names it so it can be halved by hand.
+111. **Ability scores raised above the base** (by the species, Ability Score Improvements, feats, tweaks or effects)
+     are marked like other changed numbers (green and dotted, red if lowered), in the Abilities card and the sidebar,
+     and their hover gives the breakdown the Abilities card writes under the score.
+112. **Vision** shows darkvision with its range (or "Normal"), and the other senses (tremorsense, blindsight,
+     truesight, blindsense) with theirs under it; each says on hover what gives it.
 
 ## Not done yet (known gaps)
 

@@ -360,9 +360,9 @@ base 8
 DEX
 Dexterity
 +3
-  ↳ hover abilityScores.Dexterity.modifier: Without tweaks or effects: 2 → now 3 / +2 DEX · Ability Score Increase Half-human trait
+  ↳ hover abilityScores.Dexterity.modifier: Dexterity 16 (modifier +3) / base 14 / +2 from Ability Score Increase (species trait)
 16
-  ↳ hover abilityScores.Dexterity.value: Without tweaks or effects: 14 → now 16 / +2 DEX · Ability Score Increase Half-human trait
+  ↳ hover abilityScores.Dexterity.value: Dexterity 16 (modifier +3) / base 14 / +2 from Ability Score Increase (species trait)
 (Not proficient) Saving throw+3
   ↳ hover abilityScores.Dexterity.savingThrow.modifier: Without tweaks or effects: 2 → now 3 / +1 DEX modifier (+2 score) · Ability Score Increase Half-human trait
 (Not proficient) Acrobatics+3
@@ -376,7 +376,7 @@ CON
 Constitution
 +2
 15
-  ↳ hover abilityScores.Constitution.value: Without tweaks or effects: 14 → now 15 / +1 CON · Ability Score Increase Half-human trait
+  ↳ hover abilityScores.Constitution.value: Constitution 15 (modifier +2) / base 14 / +1 from Ability Score Increase (species trait)
 (Not proficient) Saving throw+2
 base 14 · +1 from Ability Score Increase (species trait)
 INT

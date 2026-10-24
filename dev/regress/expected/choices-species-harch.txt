@@ -347,6 +347,7 @@ STR
 Strength
 −1
 9
+  ↳ hover abilityScores.Strength.value: Strength 9 (modifier −1) / base 8 / +1 Harch
 (Not proficient) Saving throw−1
 (Not proficient) Athletics−1
 base 8 · +1 Harch
@@ -363,13 +364,14 @@ CON
 Constitution
 +2
 15
-  ↳ hover abilityScores.Constitution.value: Without tweaks or effects: 14 → now 15 / +1 CON · Ability Score Increase Harch trait
+  ↳ hover abilityScores.Constitution.value: Constitution 15 (modifier +2) / base 14 / +1 from Ability Score Increase (species trait)
 (Not proficient) Saving throw+2
 base 14 · +1 from Ability Score Increase (species trait)
 INT
 Intelligence
 +0
 11
+  ↳ hover abilityScores.Intelligence.value: Intelligence 11 (modifier +0) / base 10 / +1 Harch
 (Not proficient) Saving throw+0
 (Not proficient) Investigation+0
 (Not proficient) Lore+0

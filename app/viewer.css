@@ -772,6 +772,9 @@ table.tweaks td { vertical-align: middle; }
   .trk-amount { flex-wrap: nowrap; }
   .trk-amount input { flex: 1 1 0; width: 0; min-width: 60px; padding-left: 6px; padding-right: 6px; }
   .trk-amount .btn { padding-left: 8px; padding-right: 8px; }
+  /* With "by a weapon" too it doesn't fit one line: the buttons go under. */
+  .trk-amount:has(#trackBy) { flex-wrap: wrap; }
+  .trk-amount:has(#trackBy) input { flex: 1 1 60px; }
   table.inv td:nth-child(2):has(.use-menu) { grid-column: 1 / -1; }
   .col-prof, .col-props { display: none; }
   .m-props { display: block !important; }

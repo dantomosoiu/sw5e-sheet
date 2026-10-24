@@ -339,7 +339,7 @@ CHA
 Charisma
 −1
 9
-  ↳ hover abilityScores.Charisma.value: Without tweaks or effects: 8 → now 9 / +1 CHA · Silver-Tongued feat (background feat)
+  ↳ hover abilityScores.Charisma.value: Charisma 9 (modifier −1) / base 8 / +1 from Silver-Tongued (feat)
 (Not proficient) Saving throw−1
 (Proficient) Deception+3
   ↳ hover abilityScores.Charisma.skills.0.modifier: Without tweaks or effects: -1 → now 3 / proficient Deception: proficient · Silver-Tongued feat
@@ -610,7 +610,7 @@ Eyes
 Amber, blue, brown, gray, green, hazel, purple, or red
 Distinctions
 Biped with bilateral symmetry, opposable thumbs
-Traits (9)
+Traits (8)
 Ability Score Increase
 One ability score of your choice increases by 2, and two other ability scores of your choice increase by 1. Alternatively, four ability scores of your choice each increase by 1.
 Add a note
@@ -644,10 +644,6 @@ Languages
 You can speak, read, and write Galactic Basic and one extra language of your choice. Humans typically learn the languages of other peoples they deal with, inclu… [346 chars #ff842958]
 Add a note
 Notes []
-Proficiency
-You gain proficiency in one skill, one tool, and one weapon of your choice.
-Add a note
-Notes []
 Size
 Humans vary widely in height and build, from barely 5 feet to well over 6 feet tall. Regardless of your position in that range, your size is Medium.
 Add a note
@@ -656,6 +652,7 @@ Speed
 Your base walking speed is 30 feet.
 Add a note
 Notes []
+sw5e.com also lists Proficiency: from before SW5E updated the Human species, not among its traits now, so the sheet doesn't apply it.
 Ability score +2 0 / 1 One ability score of your choice increases by 2, and two other ability scores of your choice increase by 1. Alternatively, four ability scores of your choice each increase by 1.
 None chosen yet.
 [Choose an ability… ▾]

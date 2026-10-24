@@ -366,7 +366,9 @@ base 12
 DEX
 Dexterity
 +3
+  ↳ hover abilityScores.Dexterity.modifier: Dexterity 16 (modifier +3) / base 15 / +1 Bothan
 16
+  ↳ hover abilityScores.Dexterity.value: Dexterity 16 (modifier +3) / base 15 / +1 Bothan
 (Not proficient) Saving throw+3
 (Not proficient) Acrobatics+3
 (Proficient) Sleight of Hand+5
@@ -382,7 +384,9 @@ base 13
 INT
 Intelligence
 +4
+  ↳ hover abilityScores.Intelligence.modifier: Intelligence 18 (modifier +4) / base 16 / +2 Bothan
 18
+  ↳ hover abilityScores.Intelligence.value: Intelligence 18 (modifier +4) / base 16 / +2 Bothan
 (Proficient) Saving throw+6
 (Not proficient) Investigation+4
 (Not proficient) Lore+4
@@ -405,9 +409,9 @@ base 13
 CHA
 Charisma
 +1
-  ↳ hover abilityScores.Charisma.modifier: Without tweaks or effects: 0 → now 1 / +1 Charisma score · tweak / +1 CHA · Silver-Tongued feat (background feat)
+  ↳ hover abilityScores.Charisma.modifier: Charisma 13 (modifier +1) / base 11 / +1 from Charisma score (tweak) / +1 from Silver-Tongued (feat)
 13
-  ↳ hover abilityScores.Charisma.value: Without tweaks or effects: 11 → now 13 / +1 Charisma score · tweak / +1 CHA · Silver-Tongued feat (background feat)
+  ↳ hover abilityScores.Charisma.value: Charisma 13 (modifier +1) / base 11 / +1 from Charisma score (tweak) / +1 from Silver-Tongued (feat)
 (Not proficient) Saving throw+1
   ↳ hover abilityScores.Charisma.savingThrow.modifier: Without tweaks or effects: 0 → now 1 / +1 CHA score · tweak / +1 CHA score · Silver-Tongued feat (background feat)
 (Expertise) Deception+5

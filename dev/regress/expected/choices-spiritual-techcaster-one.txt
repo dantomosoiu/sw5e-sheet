@@ -386,9 +386,9 @@ base 16
 WIS
 Wisdom
 +5
-  ↳ hover abilityScores.Wisdom.modifier: Without tweaks or effects: 4 → now 5 / +1 WIS · Spiritual Techcaster feat (Engineer ASI #3)
+  ↳ hover abilityScores.Wisdom.modifier: Wisdom 20 (modifier +5) / base 19 / +1 from Spiritual Techcaster (feat)
 20
-  ↳ hover abilityScores.Wisdom.value: Without tweaks or effects: 19 → now 20 / +1 WIS · Spiritual Techcaster feat (Engineer ASI #3)
+  ↳ hover abilityScores.Wisdom.value: Wisdom 20 (modifier +5) / base 19 / +1 from Spiritual Techcaster (feat)
 (Not proficient) Saving throw+5
   ↳ hover abilityScores.Wisdom.savingThrow.modifier: Without tweaks or effects: 4 → now 5 / +1 WIS modifier (+1 score) · Spiritual Techcaster feat (Engineer ASI #3)
 (Not proficient) Animal Handling+5
@@ -750,7 +750,7 @@ Eyes
 Amber, blue, brown, gray, green, hazel, purple, or red
 Distinctions
 Biped with bilateral symmetry, opposable thumbs
-Traits (9)
+Traits (8)
 Ability Score Increase
 One ability score of your choice increases by 2, and two other ability scores of your choice increase by 1. Alternatively, four ability scores of your choice each increase by 1.
 Add a note
@@ -785,10 +785,6 @@ Languages
 You can speak, read, and write Galactic Basic and one extra language of your choice. Humans typically learn the languages of other peoples they deal with, inclu… [346 chars #ff842958]
 Add a note
 Notes []
-Proficiency
-You gain proficiency in one skill, one tool, and one weapon of your choice.
-Add a note
-Notes []
 Size
 Humans vary widely in height and build, from barely 5 feet to well over 6 feet tall. Regardless of your position in that range, your size is Medium.
 Add a note
@@ -797,6 +793,7 @@ Speed
 Your base walking speed is 30 feet.
 Add a note
 Notes []
+sw5e.com also lists Proficiency: from before SW5E updated the Human species, not among its traits now, so the sheet doesn't apply it.
 Ability score +2 0 / 1 One ability score of your choice increases by 2, and two other ability scores of your choice increase by 1. Alternatively, four ability scores of your choice each increase by 1.
 None chosen yet.
 [Choose an ability… ▾]

@@ -339,9 +339,9 @@ Unarmed Strike
 STR
 Strength
 +5
-  ↳ hover abilityScores.Strength.modifier: Without tweaks or effects: 4 → now 5 / +1 STR · Brawny feat (background feat)
+  ↳ hover abilityScores.Strength.modifier: Strength 20 (modifier +5) / base 15 / +2 Wookiee / +2 ASI (Berserker 4) / +1 from Brawny (feat)
 20
-  ↳ hover abilityScores.Strength.value: Without tweaks or effects: 19 → now 20 / +1 STR · Brawny feat (background feat)
+  ↳ hover abilityScores.Strength.value: Strength 20 (modifier +5) / base 15 / +2 Wookiee / +2 ASI (Berserker 4) / +1 from Brawny (feat)
 (Proficient) Saving throw+7
   ↳ hover abilityScores.Strength.savingThrow.modifier: Without tweaks or effects: 6 → now 7 / +1 STR modifier (+1 score) · Brawny feat (background feat)
 (Expertise) Athletics+9
@@ -360,6 +360,7 @@ CON
 Constitution
 +2
 15
+  ↳ hover abilityScores.Constitution.value: Constitution 15 (modifier +2) / base 14 / +1 Wookiee
 (Proficient) Saving throw+4
 base 14 · +1 Wookiee
 INT

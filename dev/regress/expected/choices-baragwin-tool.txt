@@ -363,12 +363,15 @@ CON
 Constitution
 +2
 15
+  ↳ hover abilityScores.Constitution.value: Constitution 15 (modifier +2) / base 14 / +1 Baragwin
 (Not proficient) Saving throw+2
 base 14 · +1 Baragwin
 INT
 Intelligence
 +1
+  ↳ hover abilityScores.Intelligence.modifier: Intelligence 12 (modifier +1) / base 10 / +2 Baragwin
 12
+  ↳ hover abilityScores.Intelligence.value: Intelligence 12 (modifier +1) / base 10 / +2 Baragwin
 (Not proficient) Saving throw+1
 (Not proficient) Investigation+1
 (Not proficient) Lore+1

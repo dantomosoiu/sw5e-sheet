@@ -359,18 +359,19 @@ No powers known.
 STR
 Strength
 +5
-  ↳ hover abilityScores.Strength.modifier: Without tweaks or effects: 2 → now 5 / +6 STR (the item sets it to 21) · Strength Enhancer while attuned
+  ↳ hover abilityScores.Strength.modifier: Strength 21 (modifier +5) / base 15 / +6 from Strength Enhancer (it sets the score to 21)
 21
-  ↳ hover abilityScores.Strength.value: Without tweaks or effects: 15 → now 21 / +6 STR (the item sets it to 21) · Strength Enhancer while attuned
+  ↳ hover abilityScores.Strength.value: Strength 21 (modifier +5) / base 15 / +6 from Strength Enhancer (it sets the score to 21)
 (Proficient) Saving throw+8
   ↳ hover abilityScores.Strength.savingThrow.modifier: Without tweaks or effects: 5 → now 8 / +3 STR modifier (+6 score) (the item sets it to 21) · Strength Enhancer while attuned
 (Not proficient) Athletics+5
   ↳ hover abilityScores.Strength.skills.0.modifier: Without tweaks or effects: 2 → now 5 / +3 STR modifier (+6 score) (the item sets it to 21) · Strength Enhancer while attuned
-base 15 · +6 from Strength Enhancer
+base 15 · +6 from Strength Enhancer (it sets the score to 21)
 DEX
 Dexterity
 +2
 15
+  ↳ hover abilityScores.Dexterity.value: Dexterity 15 (modifier +2) / base 14 / +1 Bothan
 (Not proficient) Saving throw+2
 (Not proficient) Acrobatics+2
 (Not proficient) Sleight of Hand+2
@@ -385,7 +386,9 @@ base 14
 INT
 Intelligence
 +2
+  ↳ hover abilityScores.Intelligence.modifier: Intelligence 15 (modifier +2) / base 13 / +2 Bothan
 15
+  ↳ hover abilityScores.Intelligence.value: Intelligence 15 (modifier +2) / base 13 / +2 Bothan
 (Not proficient) Saving throw+2
 (Not proficient) Investigation+2
 (Not proficient) Lore+2
@@ -408,9 +411,9 @@ base 10
 CHA
 Charisma
 +0
-  ↳ hover abilityScores.Charisma.modifier: Without tweaks or effects: -1 → now 0 / +2 Charisma score · Test character setup: +1 CHA tweak / +1 CHA · Silver-Tongued feat (background feat)
+  ↳ hover abilityScores.Charisma.modifier: Charisma 11 (modifier +0) / base 8 / +2 from Test character setup: +1 CHA (tweak) / +1 from Silver-Tongued (feat)
 11
-  ↳ hover abilityScores.Charisma.value: Without tweaks or effects: 8 → now 11 / +2 Charisma score · Test character setup: +1 CHA tweak / +1 CHA · Silver-Tongued feat (background feat)
+  ↳ hover abilityScores.Charisma.value: Charisma 11 (modifier +0) / base 8 / +2 from Test character setup: +1 CHA (tweak) / +1 from Silver-Tongued (feat)
 (Not proficient) Saving throw+0
   ↳ hover abilityScores.Charisma.savingThrow.modifier: Without tweaks or effects: -1 → now 0 / +2 CHA score · Test character setup: +1 CHA tweak / +1 CHA score · Silver-Tongued feat (background feat)
 (Expertise) Deception+6

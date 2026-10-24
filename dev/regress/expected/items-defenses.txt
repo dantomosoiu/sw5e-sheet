@@ -293,7 +293,7 @@ Still to choose (7): Fighter skills (2 more) · Operative multiclass skill · Op
 Armor Class
 18
   ↳ hover armorClass: Without tweaks or effects: 15 → now 18 / +3 AC · Armor (Champion) while equipped
-Mesh armor
+Armor (Champion) (on Mesh armor)
 Hit Points
 41 / 43
   ↳ hover hitPoints.maximum: Without tweaks or effects: 39 → now 43 / +4 HP maximum · Toughness Zabrak trait
@@ -427,8 +427,9 @@ base 8
 DEX
 Dexterity
 +3
+  ↳ hover abilityScores.Dexterity.modifier: Dexterity 17 (modifier +3) / base 15 / +1 Zabrak / +1 from Weapon Expert feat: +1 Dexterity (builder has no choice for it) (tweak)
 17
-  ↳ hover abilityScores.Dexterity.value: Without tweaks or effects: 16 → now 17 / +1 Dexterity score · Weapon Expert feat: +1 Dexterity (builder has no choice for it) tweak
+  ↳ hover abilityScores.Dexterity.value: Dexterity 17 (modifier +3) / base 15 / +1 Zabrak / +1 from Weapon Expert feat: +1 Dexterity (builder has no choice for it) (tweak)
 (Not proficient) Saving throw+3
 (Not proficient) Acrobatics+3
 (Not proficient) Sleight of Hand+3
@@ -437,7 +438,9 @@ base 15 · +1 Zabrak · +1 from Weapon Expert feat: +1 Dexterity (builder has no
 CON
 Constitution
 +3
+  ↳ hover abilityScores.Constitution.modifier: Constitution 16 (modifier +3) / base 14 / +2 Zabrak
 16
+  ↳ hover abilityScores.Constitution.value: Constitution 16 (modifier +3) / base 14 / +2 Zabrak
 (Proficient) Saving throw+5
 base 14 · +2 Zabrak
 INT
@@ -886,7 +889,7 @@ Distinctions
 Horns, two hearts, facial tattoos
 Chosen increase
 Dexterity +1
-Traits (12)
+Traits (11)
 Ability Score Increase
 Your Constitution score increases by 2, and your Strength or Dexterity score increases by 1.
 Add a note
@@ -909,10 +912,6 @@ Crafters
 You have proficiency with one set of artisan’s implements of your choice.
 Tool proficiency 1 / 1 one set of artisan’s implements of your choice
 Tinker's implements [×]
-Add a note
-Notes []
-Darkvision
-Your vision can easily cut through darkness. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray.
 Add a note
 Notes []
 Languages
@@ -940,6 +939,7 @@ Unarmed Combatant
 Your unarmed strikes deal 1d4 kinetic damage and have the finesse property.
 Add a note
 Notes []
+sw5e.com also lists Darkvision: from before SW5E updated the Zabrak species, not among its traits now, so the sheet doesn't apply it.
 Ability score +1 1 / 1 Your Constitution score increases by 2, and your Strength or Dexterity score increases by 1.
 Dexterity [×]
 

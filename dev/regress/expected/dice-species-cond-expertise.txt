@@ -377,7 +377,9 @@ base 14
 INT
 Intelligence
 +1
+  ↳ hover abilityScores.Intelligence.modifier: Intelligence 12 (modifier +1) / base 10 / +2 Anomid
 12
+  ↳ hover abilityScores.Intelligence.value: Intelligence 12 (modifier +1) / base 10 / +2 Anomid
 (Not proficient) Saving throw+1
 (Not proficient) Investigation+1
 (Not proficient) Lore+1
@@ -390,6 +392,7 @@ WIS
 Wisdom
 +3
 17
+  ↳ hover abilityScores.Wisdom.value: Wisdom 17 (modifier +3) / base 16 / +1 Anomid / +2 ASI (Consular 4) / −2 other
 (Proficient) Saving throw+6
 (Not proficient) Animal Handling+3
 (Not proficient) Insight+3

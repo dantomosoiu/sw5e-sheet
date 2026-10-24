@@ -340,7 +340,9 @@ Your attunement to the Force warns you when you are about to enter danger. Until
 STR
 Strength
 +0
+  ↳ hover abilityScores.Strength.modifier: Strength 10 (modifier +0) / base 8 / +2 Gamorrean
 10
+  ↳ hover abilityScores.Strength.value: Strength 10 (modifier +0) / base 8 / +2 Gamorrean
 (Not proficient) Saving throw+0
 (Not proficient) Athletics+0
 base 8 · +2 Gamorrean
@@ -357,6 +359,7 @@ CON
 Constitution
 +2
 15
+  ↳ hover abilityScores.Constitution.value: Constitution 15 (modifier +2) / base 14 / +1 Gamorrean
 (Not proficient) Saving throw+2
 base 14 · +1 Gamorrean
 INT

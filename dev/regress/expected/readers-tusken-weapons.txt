@@ -385,7 +385,9 @@ base 14
 CON
 Constitution
 +3
+  ↳ hover abilityScores.Constitution.modifier: Constitution 16 (modifier +3) / base 14 / +2 Tusken
 16
+  ↳ hover abilityScores.Constitution.value: Constitution 16 (modifier +3) / base 14 / +2 Tusken
 (Not proficient) Saving throw+3
 base 14 · +2 Tusken
 INT
@@ -675,7 +677,7 @@ Eyes
 Pale gray or black
 Distinctions
 Full-body wrappings, goggles, mouth filter
-Traits (14)
+Traits (13)
 Ability Score Increase
 Your Constitution score increases by 2, and your Strength or Charisma score increases by 1.
 Add a note
@@ -704,10 +706,6 @@ Fearsome Roar
 Once per day, you can cast the fear force power. Charisma is your forcecasting ability for this power.
 Add a note
 Notes []
-Intimidating Roar
-Once per day, you can cast the fear force power. Charisma is your forcecasting ability for this power.
-Add a note
-Notes []
 Languages
 You can speak Tusken, and speak, read, and write Galactic Basic. Tusken is a guttural language characterized by its barks, growls, and roars. While Tuskens typi… [362 chars #5727f7a9]
 Add a note
@@ -732,6 +730,7 @@ Tusken Weaponry
 You have proficiency with the cycler rifle and vibroaxe.
 Add a note
 Notes []
+sw5e.com also lists Intimidating Roar: from before SW5E updated the Tusken species, not among its traits now, so the sheet doesn't apply it.
 Powers from your species
 Power given, once per long rest 1 / 1 Tusken: Fearsome Roar
 Fear from the feature

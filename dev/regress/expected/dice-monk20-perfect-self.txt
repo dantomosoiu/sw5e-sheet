@@ -353,9 +353,9 @@ base 10
 DEX
 Dexterity
 +6
-  ↳ hover abilityScores.Dexterity.modifier: Without tweaks or effects: 5 → now 6 / +2 DEX · Perfect Self Monk feature
+  ↳ hover abilityScores.Dexterity.modifier: Dexterity 22 (modifier +6) / base 20 / +2 ASI (Monk 4) / −2 other / +2 from Perfect Self (class feature)
 22
-  ↳ hover abilityScores.Dexterity.value: Without tweaks or effects: 20 → now 22 / +2 DEX · Perfect Self Monk feature
+  ↳ hover abilityScores.Dexterity.value: Dexterity 22 (modifier +6) / base 20 / +2 ASI (Monk 4) / −2 other / +2 from Perfect Self (class feature)
 (Proficient) Saving throw+12
   ↳ hover abilityScores.Dexterity.savingThrow.modifier: Without tweaks or effects: 11 → now 12 / +1 DEX modifier (+2 score) · Perfect Self Monk feature / proficient Dexterity saves: proficient · Diamond Soul Monk feature
 (Not proficient) Acrobatics+6
@@ -387,9 +387,9 @@ base 14
 WIS
 Wisdom
 +6
-  ↳ hover abilityScores.Wisdom.modifier: Without tweaks or effects: 5 → now 6 / +2 WIS · Perfect Self Monk feature
+  ↳ hover abilityScores.Wisdom.modifier: Wisdom 22 (modifier +6) / base 20 / +2 from Perfect Self (class feature)
 22
-  ↳ hover abilityScores.Wisdom.value: Without tweaks or effects: 20 → now 22 / +2 WIS · Perfect Self Monk feature
+  ↳ hover abilityScores.Wisdom.value: Wisdom 22 (modifier +6) / base 20 / +2 from Perfect Self (class feature)
 (Proficient) Saving throw+12
   ↳ hover abilityScores.Wisdom.savingThrow.modifier: Without tweaks or effects: 5 → now 12 / +1 WIS modifier (+2 score) · Perfect Self Monk feature / proficient Wisdom saves: proficient · Diamond Soul Monk feature
 (Not proficient) Animal Handling+6
@@ -407,7 +407,7 @@ CHA
 Charisma
 −1
 9
-  ↳ hover abilityScores.Charisma.value: Without tweaks or effects: 8 → now 9 / +1 CHA · Silver-Tongued feat (background feat)
+  ↳ hover abilityScores.Charisma.value: Charisma 9 (modifier −1) / base 8 / +1 from Silver-Tongued (feat)
 (Proficient) Saving throw+5
   ↳ hover abilityScores.Charisma.savingThrow.modifier: Without tweaks or effects: -1 → now 5 / proficient Charisma saves: proficient · Diamond Soul Monk feature
 (Proficient) Deception+5
@@ -797,7 +797,7 @@ Eyes
 Amber, blue, brown, gray, green, hazel, purple, or red
 Distinctions
 Biped with bilateral symmetry, opposable thumbs
-Traits (9)
+Traits (8)
 Ability Score Increase
 One ability score of your choice increases by 2, and two other ability scores of your choice increase by 1. Alternatively, four ability scores of your choice each increase by 1.
 Add a note
@@ -832,10 +832,6 @@ Languages
 You can speak, read, and write Galactic Basic and one extra language of your choice. Humans typically learn the languages of other peoples they deal with, inclu… [346 chars #ff842958]
 Add a note
 Notes []
-Proficiency
-You gain proficiency in one skill, one tool, and one weapon of your choice.
-Add a note
-Notes []
 Size
 Humans vary widely in height and build, from barely 5 feet to well over 6 feet tall. Regardless of your position in that range, your size is Medium.
 Add a note
@@ -844,6 +840,7 @@ Speed
 Your base walking speed is 30 feet.
 Add a note
 Notes []
+sw5e.com also lists Proficiency: from before SW5E updated the Human species, not among its traits now, so the sheet doesn't apply it.
 Ability score +2 0 / 1 One ability score of your choice increases by 2, and two other ability scores of your choice increase by 1. Alternatively, four ability scores of your choice each increase by 1.
 None chosen yet.
 [Choose an ability… ▾]

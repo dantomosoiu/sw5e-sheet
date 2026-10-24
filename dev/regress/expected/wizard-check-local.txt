@@ -327,7 +327,9 @@ base 8
 DEX
 Dexterity
 +2
+  ↳ hover abilityScores.Dexterity.modifier: Dexterity 14 (modifier +2) / base 13 / +1 Zabrak
 14
+  ↳ hover abilityScores.Dexterity.value: Dexterity 14 (modifier +2) / base 13 / +1 Zabrak
 (Not proficient) Saving throw+2
 (Not proficient) Acrobatics+2
 (Not proficient) Sleight of Hand+2
@@ -336,13 +338,17 @@ base 13 · +1 Zabrak
 CON
 Constitution
 +3
+  ↳ hover abilityScores.Constitution.modifier: Constitution 16 (modifier +3) / base 14 / +2 Zabrak
 16
+  ↳ hover abilityScores.Constitution.value: Constitution 16 (modifier +3) / base 14 / +2 Zabrak
 (Proficient) Saving throw+5
 base 14 · +2 Zabrak
 INT
 Intelligence
 +4
+  ↳ hover abilityScores.Intelligence.modifier: Intelligence 18 (modifier +4) / base 15 / +2 ASI (Engineer 4) / +1 Techie (background feat)
 18
+  ↳ hover abilityScores.Intelligence.value: Intelligence 18 (modifier +4) / base 15 / +2 ASI (Engineer 4) / +1 Techie (background feat)
 (Proficient) Saving throw+6
 (Proficient) Investigation+6
 (Proficient) Lore+6
@@ -636,7 +642,7 @@ Distinctions
 Horns, two hearts, facial tattoos
 Chosen increase
 Dexterity +1
-Traits (12)
+Traits (11)
 Ability Score Increase
 Your Constitution score increases by 2, and your Strength or Dexterity score increases by 1.
 Add a note
@@ -661,10 +667,6 @@ You have proficiency with one set of artisan’s implements of your choice.
 Tool proficiency 0 / 1 one set of artisan’s implements of your choice
 None chosen yet.
 [Choose a tool… ▾]
-Add a note
-Notes []
-Darkvision
-Your vision can easily cut through darkness. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray.
 Add a note
 Notes []
 Languages
@@ -692,6 +694,7 @@ Unarmed Combatant
 Your unarmed strikes deal 1d4 kinetic damage and have the finesse property.
 Add a note
 Notes []
+sw5e.com also lists Darkvision: from before SW5E updated the Zabrak species, not among its traits now, so the sheet doesn't apply it.
 Ability score +1 1 / 1 Your Constitution score increases by 2, and your Strength or Dexterity score increases by 1.
 Dexterity [×]
 

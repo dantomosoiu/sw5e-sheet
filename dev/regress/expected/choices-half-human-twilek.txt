@@ -358,6 +358,7 @@ DEX
 Dexterity
 +2
 15
+  ↳ hover abilityScores.Dexterity.value: Dexterity 15 (modifier +2) / base 14 / +1 Half-human
 (Not proficient) Saving throw+2
 (Not proficient) Acrobatics+2
 (Not proficient) Sleight of Hand+2
@@ -395,7 +396,9 @@ base 16 · +2 ASI (Consular 4) · −2 other
 CHA
 Charisma
 +3
+  ↳ hover abilityScores.Charisma.modifier: Charisma 16 (modifier +3) / base 14 / +2 Half-human
 16
+  ↳ hover abilityScores.Charisma.value: Charisma 16 (modifier +3) / base 14 / +2 Half-human
 (Proficient) Saving throw+6
 (Not proficient) Deception+3
 (Not proficient) Intimidation+3

@@ -357,7 +357,9 @@ base 8
 DEX
 Dexterity
 +3
+  ↳ hover abilityScores.Dexterity.modifier: Dexterity 16 (modifier +3) / base 14 / +2 Cathar
 16
+  ↳ hover abilityScores.Dexterity.value: Dexterity 16 (modifier +3) / base 14 / +2 Cathar
 (Not proficient) Saving throw+3
 (Not proficient) Acrobatics+3
 (Not proficient) Sleight of Hand+3
@@ -397,6 +399,7 @@ CHA
 Charisma
 +2
 15
+  ↳ hover abilityScores.Charisma.value: Charisma 15 (modifier +2) / base 14 / +1 Cathar
 (Proficient) Saving throw+5
 (Not proficient) Deception+2
 (Not proficient) Intimidation+2
@@ -645,7 +648,7 @@ Eyes
 Yellow or brown
 Distinctions
 Lion-like features
-Traits (12)
+Traits (11)
 Ability Score Increase
 Your Dexterity score increases by 2, and your Charisma score increases by 1.
 Add a note
@@ -660,10 +663,6 @@ Add a note
 Notes []
 Cat's Claws
 Your unarmed strikes deal 1d6 kinetic damage and have the finesse property.
-Add a note
-Notes []
-Cat's Talent
-You have proficiency in the Perception and Stealth skills.
 Add a note
 Notes []
 Darkvision
@@ -694,6 +693,7 @@ Treeclimber
 You have a climbing speed of 30 feet. You have advantage on Strength saving throws and Strength (Athletics) checks that involve climbing.
 Add a note
 Notes []
+sw5e.com also lists Cat's Talent: from before SW5E updated the Cathar species, not among its traits now, so the sheet doesn't apply it.
 
 ## Sheet: Background
 Skill proficiencies

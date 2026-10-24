@@ -455,9 +455,9 @@ base 14
 INT
 Intelligence
 +5
-  ↳ hover abilityScores.Intelligence.modifier: Without tweaks or effects: 4 → now 5 / +1 INT · Techie feat (background feat)
+  ↳ hover abilityScores.Intelligence.modifier: Intelligence 20 (modifier +5) / base 15 / +2 Droid, Class I / +2 ASI (Engineer 4) / +1 from Techie (feat)
 20
-  ↳ hover abilityScores.Intelligence.value: Without tweaks or effects: 19 → now 20 / +1 INT · Techie feat (background feat)
+  ↳ hover abilityScores.Intelligence.value: Intelligence 20 (modifier +5) / base 15 / +2 Droid, Class I / +2 ASI (Engineer 4) / +1 from Techie (feat)
 (Proficient) Saving throw+7
   ↳ hover abilityScores.Intelligence.savingThrow.modifier: Without tweaks or effects: 6 → now 7 / +1 INT modifier (+1 score) · Techie feat (background feat)
 (Proficient) Investigation+7

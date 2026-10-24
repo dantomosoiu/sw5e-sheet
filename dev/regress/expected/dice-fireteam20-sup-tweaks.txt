@@ -440,8 +440,9 @@ base 8
 DEX
 Dexterity
 +3
+  ↳ hover abilityScores.Dexterity.modifier: Dexterity 17 (modifier +3) / base 15 / +1 Zabrak / +1 from Weapon Expert feat: +1 Dexterity (builder has no choice for it) (tweak)
 17
-  ↳ hover abilityScores.Dexterity.value: Without tweaks or effects: 16 → now 17 / +1 Dexterity score · Weapon Expert feat: +1 Dexterity (builder has no choice for it) tweak
+  ↳ hover abilityScores.Dexterity.value: Dexterity 17 (modifier +3) / base 15 / +1 Zabrak / +1 from Weapon Expert feat: +1 Dexterity (builder has no choice for it) (tweak)
 (Not proficient) Saving throw+3
 (Not proficient) Acrobatics+3
 (Not proficient) Sleight of Hand+3
@@ -450,9 +451,9 @@ base 15 · +1 Zabrak · +1 from Weapon Expert feat: +1 Dexterity (builder has no
 CON
 Constitution
 +4
-  ↳ hover abilityScores.Constitution.modifier: Without tweaks or effects: 3 → now 4 / +2 CON · Master of Combat Fighter feature
+  ↳ hover abilityScores.Constitution.modifier: Constitution 18 (modifier +4) / base 14 / +2 Zabrak / +2 from Master of Combat (class feature)
 18
-  ↳ hover abilityScores.Constitution.value: Without tweaks or effects: 16 → now 18 / +2 CON · Master of Combat Fighter feature
+  ↳ hover abilityScores.Constitution.value: Constitution 18 (modifier +4) / base 14 / +2 Zabrak / +2 from Master of Combat (class feature)
 (Proficient) Saving throw+10
   ↳ hover abilityScores.Constitution.savingThrow.modifier: Without tweaks or effects: 9 → now 10 / +1 CON modifier (+2 score) · Master of Combat Fighter feature
 base 14 · +2 Zabrak · +2 from Master of Combat (class feature)
@@ -930,7 +931,7 @@ Distinctions
 Horns, two hearts, facial tattoos
 Chosen increase
 Dexterity +1
-Traits (12)
+Traits (11)
 Ability Score Increase
 Your Constitution score increases by 2, and your Strength or Dexterity score increases by 1.
 Add a note
@@ -953,10 +954,6 @@ Crafters
 You have proficiency with one set of artisan’s implements of your choice.
 Tool proficiency 1 / 1 one set of artisan’s implements of your choice
 Tinker's implements [×]
-Add a note
-Notes []
-Darkvision
-Your vision can easily cut through darkness. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in darkness, only shades of gray.
 Add a note
 Notes []
 Languages
@@ -984,6 +981,7 @@ Unarmed Combatant
 Your unarmed strikes deal 1d4 kinetic damage and have the finesse property.
 Add a note
 Notes []
+sw5e.com also lists Darkvision: from before SW5E updated the Zabrak species, not among its traits now, so the sheet doesn't apply it.
 Ability score +1 1 / 1 Your Constitution score increases by 2, and your Strength or Dexterity score increases by 1.
 Dexterity [×]
 

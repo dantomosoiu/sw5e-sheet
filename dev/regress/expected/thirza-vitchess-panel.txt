@@ -441,6 +441,7 @@ DEX
 Dexterity
 +2
 15
+  ↳ hover abilityScores.Dexterity.value: Dexterity 15 (modifier +2) / base 14 / +1 Kel Dor
 (Not proficient) Saving throw+2
 (Not proficient) Acrobatics+2
 (Not proficient) Sleight of Hand+2
@@ -467,9 +468,9 @@ base 10
 WIS
 Wisdom
 +4
-  ↳ hover abilityScores.Wisdom.modifier: Without tweaks or effects: 3 → now 4 / +1 WIS · Empathic feat (background feat)
+  ↳ hover abilityScores.Wisdom.modifier: Wisdom 18 (modifier +4) / base 15 / +2 Kel Dor / +1 from Empathic (feat)
 18
-  ↳ hover abilityScores.Wisdom.value: Without tweaks or effects: 17 → now 18 / +1 WIS · Empathic feat (background feat)
+  ↳ hover abilityScores.Wisdom.value: Wisdom 18 (modifier +4) / base 15 / +2 Kel Dor / +1 from Empathic (feat)
 (Proficient) Saving throw+6
   ↳ hover abilityScores.Wisdom.savingThrow.modifier: Without tweaks or effects: 5 → now 6 / +1 WIS modifier (+1 score) · Empathic feat (background feat)
 (Not proficient) Animal Handling+4

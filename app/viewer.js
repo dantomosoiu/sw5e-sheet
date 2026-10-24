@@ -895,6 +895,13 @@ function buildModel(snap) {
     ...arr(c.nonCombatFeatures).map((f) => ({ ...f, combat: false })),
   ];
   allFeatures.push(...missingClassFeatures(raw, allFeatures));
+  // SW5E's engine lists a species' traits from its features list, which still has some from before SW5E updated the
+  // species (its changelog): Togruta's Darkvision, Human's Proficiency beside Human Versatility, Chiss's Darkvision
+  // beside Superior Darkvision. Only the species' current traits count; the Species section names the others.
+  const spRef = state.rules && raw.species && raw.species.name ? bdSpeciesRef(raw) : null;
+  const traitNames = spRef && arr(spRef.traits).length ? new Set(arr(spRef.traits).map((t) => t.name)) : null;
+  const oldTraits = traitNames ? allFeatures.filter((f) => f.source === 'Species' && !traitNames.has(f.name)) : [];
+  for (const f of oldTraits) allFeatures.splice(allFeatures.indexOf(f), 1);
   const featRefs = refs.feats || {};
   const isFeat = (f) => f.source === 'Feat' || (!f.source && (featRefs[f.name] || 'attributesIncreased' in f || 'customIndex' in f));
   const speciesFeatures = allFeatures.filter((f) => f.source === 'Species');
@@ -904,7 +911,7 @@ function buildModel(snap) {
   const maneuverNames = arr(raw.classes).flatMap((k) => arr(k.maneuvers).concat(arr(k.archetype && k.archetype.maneuvers)));
   // Inventory or effects changed but not yet recomputed by SW5E: derived numbers may be out of date.
   const stale = derive && !fresh;
-  const m = { snap, raw, c, base, refs, has, allFeatures, speciesFeatures, feats, classFeatures, maneuverNames, edited, stale, fx };
+  const m = { snap, raw, c, base, refs, has, allFeatures, speciesFeatures, oldTraits, feats, classFeatures, maneuverNames, edited, stale, fx };
   m.maneuverNames = maneuverNames.concat(slotManeuvers(m)); // Superiority Style and the like
   m.effects = fx.effects;
   m.bumps = base !== c ? diffStats(base, c) : {};
@@ -1342,10 +1349,14 @@ async function trackerAction(op, arg, rolled) {
     if (op === 'long') m.t.lim.exhRest = longRestExhaustion(m)[0];
     // Typed damage against the character's resistances and immunities (the type from the tracker's list, or `arg`).
     const dtype = op === 'damage' ? (arg || ($('#trackType') ? $('#trackType').value : '')) : '';
-    const dd = op === 'damage' && dtype ? plDamageAfterDefenses(amount, dtype, defensesOf(m)) : null;
+    // Dealt by a weapon or not (the form asks when a defense depends on it: Saber Ward's "dealt by weapons").
+    const weapon = ($('#trackBy') ? $('#trackBy').value === 'weapon' : false);
+    const dd = op === 'damage' && dtype ? plDamageAfterDefenses(amount, dtype, defensesOf(m), { weapon }) : null;
     const taken = dd ? dd.amount : amount;
     let label = op === 'damage' && dd && !taken ? `${amount} ${dtype} damage: none taken (${dd.applied.join(', ')})` : applyTrackerAction(m.t, op, op === 'damage' ? '' : arg, op === 'damage' ? taken : amount);
     if (op === 'damage' && dd && taken) label = `Took ${taken} damage (${amount} ${dtype}${dd.applied.length ? `, ${dd.applied.join(', ')}` : ''})`;
+    // A defense whose condition the sheet can't tell: said, so it's applied by hand if it held.
+    if (op === 'damage' && dd && dd.maybe.length) label += `; not applied, if it held halve it yourself: ${dd.maybe.join('; ')}`;
     const hpNow = hpNowOf(m.t);
     // Down to 0: Unconscious (until healed); back up: not any more.
     if (hpNow === 0 && m.t.hpCurrent > 0 && !arr(m.t.s.conditions).includes('Unconscious')) m.t.s.conditions = arr(m.t.s.conditions).concat('Unconscious');
@@ -3321,6 +3332,11 @@ function effectWhen(e) {
   return `${e.source === 'received' ? 'received' : e.source === 'feature' ? 'started' : e.source === 'power' ? 'cast' : e.source === 'custom' ? 'added' : 'used'}${e.duration ? `, lasts ${e.duration}` : ''}, since ${since}`;
 }
 function bumpTip(m, path, d) {
+  // An ability's score or modifier: where the score comes from (effects and tweaks included), and what only sometimes
+  // changes it.
+  const ab = /^abilityScores\.(\w+)\.(?:value|modifier)$/.exec(path);
+  if (ab) return abilityTip(m, ab[1]) + bumpTip(m, `${path}#alts`, { from: '', to: '' });
+  path = path.replace(/#alts$/, '');
   const src = d.to != null && d.to !== '' ? bumpSources(m, path) : [];
   const fmt = (v) => esc(String(v));
   const alts = (m.alts[path] || []).map((a) => `<li><b>${esc(altValue(m, path, a))}</b> ${esc(a.cond)}: ${a.sources.map((cd) => `${esc(cd.mod.extraDamage && /damageBonus$/.test(path) ? '+' + cd.mod.extraDamage + ' damage' : signedLabel(cd.bonus))} · ${esc(cd.effect.name)} <span class="faint">${esc(effectWhen(cd.effect))}</span>`).join('; ')}</li>`);
@@ -5014,6 +5030,7 @@ function refreshTrackedInner(only) {
   const amount = $('#trackAmount');
   const typed = amount ? [amount.value, amount.selectionStart, amount.selectionEnd] : null;
   const dtype = $('#trackType') ? $('#trackType').value : '';
+  const dby = $('#trackBy') ? $('#trackBy').value : null;
   document.querySelectorAll('[data-live]').forEach((el) => {
     const [fn, arg] = el.dataset.live.split(/:(.*)/s);
     if (only && !only.includes(fn)) return;
@@ -5024,6 +5041,7 @@ function refreshTrackedInner(only) {
   const again = $('#trackAmount');
   if (again && typed && again !== amount) again.value = typed[0];
   if ($('#trackType')) $('#trackType').value = dtype;
+  if ($('#trackBy') && dby != null) $('#trackBy').value = dby;
   if (focused === 'trackAmount' && again) {
     again.focus({ preventScroll: true });
     try { again.setSelectionRange(typed[1], typed[2]); } catch (e) { /* number inputs have no caret */ }
@@ -5131,6 +5149,7 @@ function renderTracker(m) {
         <div class="trk-amount">
           <input id="trackAmount" type="number" min="0" step="1" inputmode="numeric" placeholder="Amount" aria-label="Amount of damage or healing" aria-describedby="trackHint" title="Enter: take it as damage · Shift + Enter: heal it">
           <select id="trackType" aria-label="Damage type" title="Damage type: resistances and immunities apply"><option value="">untyped</option>${PL_DAMAGE_TYPES.map((d) => `<option>${d}</option>`).join('')}</select>
+          ${defensesOf(m).some((d) => /\b(?:dealt by|from) weapon(?:s| attacks)\b/i.test(d.text)) ? `<select id="trackBy" aria-label="What dealt the damage" title="A resistance you have now only counts against damage dealt by weapons (${esc(defensesOf(m).filter((d) => /\b(?:dealt by|from) weapon/i.test(d.text)).map((d) => d.from).join(', '))})"><option value="weapon">by a weapon</option><option value="">not by a weapon</option></select>` : ''}
           <button class="btn sm" data-track="damage" title="Take the amount as damage: temporary hit points go first, resistances of the chosen type apply, and at 0 hit points death saves begin">Damage</button><button class="btn sm" data-track="heal" title="Regain the amount in hit points, up to your maximum (at 0 hit points this ends dying)">Heal</button><button class="btn sm" data-track="temp" title="Gain the amount as temporary hit points; they don't stack: the higher amount stays">Temp HP</button>
         </div>
         <span class="faint hint-kbd trk-hint" id="trackHint">Enter: Damage · Shift + Enter: Heal</span>
@@ -5168,14 +5187,17 @@ function renderCombat(m) {
   const speed = c.speed || {};
   const conds = arr(c.conditions);
   const condRefs = arr(m.refs.conditions);
-  // The armor and shield worn, as pictures in the corner of the Armor Class box.
-  const worn = arr(withEdits(m.snap.raw, editedFields(m.snap.key)).equipment).filter((it) => it.equipped)
+  // The armor and shield worn, as pictures in the corner of the Armor Class box. An enhanced armor built on a base one
+  // (Jensaarai Armor on Mesh armor) is one armor: the enhanced one shows, and names its base.
+  const items = arr(withEdits(m.snap.raw, editedFields(m.snap.key)).equipment);
+  const worn = items.filter((it) => it.equipped && !it.enhancedBy)
     .map((it) => ({ it, ref: (catalogIndex && catalogIndex.get(it.name)) || it }))
     .filter(({ ref }) => ref.equipmentCategory === 'Armor' || ['Armor', 'Shield'].includes(ref.type));
   const acArt = worn.length ? `<span class="stat-art">${worn.map(({ it, ref }) => itemTile({ ...ref, color: it.color }, 'sm', it.label || it.name)).join('')}</span>` : '';
+  const armorName = (n) => { const b = items.find((it) => it.equipped && it.enhancedBy && it.name === n); return b ? `${b.enhancedBy} (on ${n})` : n; };
   return `
     <div class="grid auto">
-      ${stat('Armor Class', bump(m, 'armorClass', esc(c.armorClass)) + acArt, esc(arr(c.armorList).join(', ') || 'Unarmored')
+      ${stat('Armor Class', bump(m, 'armorClass', esc(c.armorClass)) + acArt, esc(arr(c.armorList).map(armorName).join(', ') || 'Unarmored')
         + (acSetByTweak(m.raw) != null ? ` · <span class="warn-text" title="Armor, shields and effects don't change it while the tweak is there">set to ${acSetByTweak(m.raw)} by a tweak</span>` : '')
         // What can be added against one attack (Deflection's die, Shien Form's half WIS/CHA): acReactions (roller.js).
         + (typeof acReactions === 'function' && acReactions(m).length ? ` · <span title="Against one attack, when you choose (a reaction or a free roll)">vs one attack: ${esc(acReactions(m).join(', '))}</span>` : ''))}
@@ -5202,7 +5224,7 @@ function renderCombat(m) {
       ${stat('Proficiency', signed(c.proficiencyBonus))}
       ${stat('Passive Perception', bump(m, 'passivePerception', esc(c.passivePerception)))}
       ${live('hd', m, 'div', 'stat')}
-      ${stat('Vision', esc((/^normal$/i.test(c.vision || 'normal') && (defensesOf(m).find((d) => d.kind === 'sense' && /^Darkvision/.test(d.text)) || {}).text) || titleCase(c.vision || 'normal')))}
+      ${stat('Vision', ...visionHtml(m))}
     </div>
     ${speed.special ? `<p class="muted" style="margin:10px 0 0">Special movement: ${esc(speed.special)}</p>` : ''}
     <h3>Play tracker</h3>
@@ -5231,6 +5253,18 @@ const halfProfWhich = (e) => (Array.isArray(e.halfProf) ? `${e.halfProf.join('/'
 const ADV_TEXT = (a) => (a.kind === 'init' ? 'Advantage on initiative' : a.kind === 'skill' ? `Advantage on ${a.skill} checks`
   : a.kind === 'attack' ? `Advantage on ${a.melee ? 'melee ' : ''}weapon attacks${a.ability ? ` using ${a.ability}` : ''}`
   : `Advantage on ${a.ability} ${a.kind === 'save' ? 'saving throws' : 'checks'}`);
+/**
+ * The Vision tile, [value, note]: darkvision (or SW5E's own vision word), and under it the other senses, each with its
+ * range and, on hover, where it comes from (a species trait, a feature, an item).
+ */
+function visionHtml(m) {
+  const senses = defensesOf(m).filter((d) => d.kind === 'sense' && /^(?:Darkvision|Blindsight|Blindsense|Truesight|Tremorsense)\b/.test(d.text));
+  const dark = senses.filter((d) => /^Darkvision/.test(d.text));
+  const vision = m.c.vision || 'normal';
+  const word = /^normal$/i.test(vision) ? (dark.length ? '' : 'Normal') : dark.length && /dark/i.test(vision) ? '' : titleCase(vision);
+  const show = (d) => `<span title="${esc(`${d.text}: ${d.from}`)}">${esc(d.text)}</span>`;
+  return [[word && esc(word), ...dark.map(show)].filter(Boolean).join(' · '), senses.filter((d) => !dark.includes(d)).map(show).join(' · ')];
+}
 function defensesOf(m) {
   const out = [];
   const add = (list, from, kind) => arr(list).forEach((d) => out.push({ ...d, from, state: kind === 'temporary' }));
@@ -5432,42 +5466,73 @@ function abilitySources(m, a) {
   return out;
 }
 
-function renderAbilities(m) {
+/**
+ * Where an ability score comes from, as the Abilities card writes it under the score and the score's hover says:
+ * ["base 13", "+2 Togruta", "+1 Formfighting Dabbler", "+2 from Strength Stim (temporary)"…]. fx: the effects on it.
+ */
+function abilityBreakdown(m, a) {
   const { c, raw } = m;
   const tweaks = (raw.tweaks && raw.tweaks.abilityScores) || {};
+  const s = (c.abilityScores || {})[a] || {};
+  const base = raw.baseAbilityScores ? raw.baseAbilityScores[a] : null;
+  const tw = tweaks[a] && tweaks[a].score;
+  const path = `abilityScores.${a}.score`;
+  const fx = m.fx.tweaks.filter((t) => t.path === path && !(t.effect.kind === 'tweak' && !num(t.bonus)));
+  const fxBonus = fx.reduce((t, x) => t + x.bonus, 0);
+  const set = tw && engHasOverride(tw) ? num(tw.override) : null;
+  const floor = tw && set == null && engHasFloor(tw) ? num(tw.floor) : null;
+  // Without the tweak's "bump to": what the score would be (base, increases, effects).
+  const unbumped = floor != null ? num(((m.base.abilityScores || {})[a] || {}).value) + fxBonus : num(s.value);
+  const bumped = floor != null && floor > unbumped;
+  const diff = base != null ? (bumped ? unbumped : num(s.value)) - num(base) - (m.bumps[`abilityScores.${a}.value`] ? fxBonus : 0) : 0;
+  const bits = [];
+  if (base != null) bits.push(`base ${base}`);
+  const kindNote = (e) => (e.kind === 'feature' ? ` (${e.origin || 'class feature'})` : { temporary: ' (temporary)', tweak: ' (tweak)' }[e.kind] || '');
+  if (set != null) {
+    // "Set to": the score is the tweak's; what effects would add is shown as not applied.
+    bits.push(`set to ${set} by a tweak`);
+    for (const x of arr(m.fx.setByTweak).filter((t) => t.path === path)) bits.push(`${signedLabel(num(x.bonus))} from ${x.effect.name}${kindNote(x.effect)}: not applied`);
+  } else {
+    // Where the rest comes from: the species, each Ability Score Improvement, the background feat's +1, tweaks.
+    let left = diff;
+    for (const p of abilitySources(m, a)) { bits.push(`${signedLabel(p.n)} ${p.label}`); left -= p.n; }
+    if (left) bits.push(`${left > 0 ? '+' : '−'}${Math.abs(left)} other`);
+    for (const x of fx) bits.push(`${signedLabel(x.bonus)} from ${x.effect.name}${kindNote(x.effect)}${x.mod && x.mod.set != null ? ` (it sets the score to ${x.mod.set})` : ''}`);
+    if (floor != null) bits.push(bumped ? `bumped to ${floor} by a tweak` : `at least ${floor} (a tweak)`);
+  }
+  return { bits, fx };
+}
+/**
+ * An ability's score or modifier (part 'value' or 'modifier'), marked like any changed number: by effects and tweaks
+ * (bump), or else when the species, Ability Score Improvements or feats raise it above the base score; its hover
+ * says where it comes from (abilityTip).
+ */
+function abilityBump(m, a, part, html) {
+  const path = `abilityScores.${a}.${part}`;
+  const s = (m.c.abilityScores || {})[a] || {};
+  const base = m.raw.baseAbilityScores ? m.raw.baseAbilityScores[a] : null;
+  if (m.bumps[path] || base == null) return bump(m, path, html);
+  const from = part === 'value' ? num(base) : Math.floor((num(base) - 10) / 2);
+  const to = part === 'value' ? num(s.value) : num(s.modifier);
+  return bump(m, path, html, { from, to });
+}
+/** The hover of an ability's score or modifier: the score and where it comes from. */
+function abilityTip(m, a) {
+  const s = (m.c.abilityScores || {})[a] || {};
+  return `<div class="tip-head">${esc(a)} <b>${esc(s.value)}</b> (modifier <b>${esc(signed(s.modifier))}</b>)</div>
+    <ul>${abilityBreakdown(m, a).bits.map((b) => `<li>${esc(b)}</li>`).join('')}</ul>`;
+}
+
+function renderAbilities(m) {
+  const { c } = m;
   return `<div class="abilities">${ABILITIES.map((a) => {
     const s = (c.abilityScores || {})[a] || {};
-    const base = raw.baseAbilityScores ? raw.baseAbilityScores[a] : null;
-    const tw = tweaks[a] && tweaks[a].score;
-    const path = `abilityScores.${a}.score`;
-    const fx = m.fx.tweaks.filter((t) => t.path === path && !(t.effect.kind === 'tweak' && !num(t.bonus)));
-    const fxBonus = fx.reduce((t, x) => t + x.bonus, 0);
-    const set = tw && engHasOverride(tw) ? num(tw.override) : null;
-    const floor = tw && set == null && engHasFloor(tw) ? num(tw.floor) : null;
-    // Without the tweak's "bump to": what the score would be (base, increases, effects).
-    const unbumped = floor != null ? num(((m.base.abilityScores || {})[a] || {}).value) + fxBonus : num(s.value);
-    const bumped = floor != null && floor > unbumped;
-    const diff = base != null ? (bumped ? unbumped : num(s.value)) - num(base) - (m.bumps[`abilityScores.${a}.value`] ? fxBonus : 0) : 0;
-    const bits = [];
-    if (base != null) bits.push(`base ${base}`);
-    const kindNote = (e) => (e.kind === 'feature' ? ` (${e.origin || 'class feature'})` : { temporary: ' (temporary)', tweak: ' (tweak)' }[e.kind] || '');
-    if (set != null) {
-      // "Set to": the score is the tweak's; what effects would add is shown as not applied.
-      bits.push(`set to ${set} by a tweak`);
-      for (const x of arr(m.fx.setByTweak).filter((t) => t.path === path)) bits.push(`${signedLabel(num(x.bonus))} from ${x.effect.name}${kindNote(x.effect)}: not applied`);
-    } else {
-      // Where the rest comes from: the species, each Ability Score Improvement, the background feat's +1, tweaks.
-      let left = diff;
-      for (const p of abilitySources(m, a)) { bits.push(`${signedLabel(p.n)} ${p.label}`); left -= p.n; }
-      if (left) bits.push(`${left > 0 ? '+' : '−'}${Math.abs(left)} other`);
-      for (const x of fx) bits.push(`${signedLabel(x.bonus)} from ${x.effect.name}${kindNote(x.effect)}`);
-      if (floor != null) bits.push(bumped ? `bumped to ${floor} by a tweak` : `at least ${floor} (a tweak)`);
-    }
+    const { bits, fx } = abilityBreakdown(m, a);
     const st = s.savingThrow || {};
     const skills = arr(s.skills);
     return `<div class="ability">
       <div class="top${fx.length ? ' boosted' : ''}"><div><div class="abbr">${ABBR[a]}</div><div class="muted" style="font-size:12px">${a}</div></div>
-        <div class="mod">${rollable(`check|${a}`, bump(m, `abilityScores.${a}.modifier`, signed(s.modifier)), `Roll a ${a} check`)}</div><div class="score" title="Score">${bump(m, `abilityScores.${a}.value`, esc(s.value))}</div></div>
+        <div class="mod">${rollable(`check|${a}`, abilityBump(m, a, 'modifier', signed(s.modifier)), `Roll a ${a} check`)}</div><div class="score" title="Score">${abilityBump(m, a, 'value', esc(s.value))}</div></div>
       <div class="rows">
         <div class="row ${st.proficiency && st.proficiency !== 'none' ? 'p' : ''}"><span class="n">${profPip(st.proficiency)}Saving throw</span><b>${rollable(`save|${a}`, bump(m, `abilityScores.${a}.savingThrow.modifier`, signed(st.modifier)), `Roll a ${a} saving throw`)}</b></div>
         ${skills.map((k, i) => `<div class="row ${k.proficiency && k.proficiency !== 'none' ? 'p' : ''}"><span class="n">${profPip(k.proficiency)}${esc(k.name)}</span><span>${rollable(`skill|${a}|${i}`, bump(m, `abilityScores.${a}.skills.${i}.modifier`, signed(k.modifier)), `Roll ${k.name}`)}</span></div>`).join('')}
@@ -7660,6 +7725,7 @@ function renderSpecies(m) {
     </div>
     <h3>Traits <span class="faint">(${traits.length})</span></h3>
     <div class="grid cards">${traits.join('') || empty('No traits found.')}</div>
+    ${arr(m.oldTraits).length ? `<p class="faint" title="${esc(m.oldTraits.map((f) => `${f.name}: ${f.text || ''}`).join(' · '))}">sw5e.com also lists ${esc(m.oldTraits.map((f) => f.name).join(', '))}: from before SW5E updated the ${esc(name)} species, not among its traits now, so the sheet doesn't apply ${m.oldTraits.length > 1 ? 'them' : 'it'}.</p>` : ''}
     ${(() => {
       // Powers the species gives (Jawa: ion blast; Esh-Kha: your choice of three).
       const res = choiceInfo(m);
@@ -8316,7 +8382,7 @@ function renderSideSummary(m) {
         <div class="mini-stat"><b>${signed(c.proficiencyBonus)}</b><span>Prof</span></div>
         <div class="mini-stat"><b>${bump(m, 'passivePerception', esc(c.passivePerception))}</b><span>Passive</span></div>
       </div>
-      <div class="mini-abil">${ABILITIES.map((a) => `<div title="${a} ${esc((sc[a] || {}).value)}"><span>${ABBR[a]}</span><b>${rollable(`check|${a}`, bump(m, `abilityScores.${a}.modifier`, signed((sc[a] || {}).modifier)), `Roll a ${a} check`)}</b></div>`).join('')}</div>
+      <div class="mini-abil">${ABILITIES.map((a) => `<div title="${a} ${esc((sc[a] || {}).value)}"><span>${ABBR[a]}</span><b>${rollable(`check|${a}`, abilityBump(m, a, 'modifier', signed((sc[a] || {}).modifier)), `Roll a ${a} check`)}</b></div>`).join('')}</div>
       ${res.length ? `<div class="mini-res">${res.join('')}</div>` : ''}` : ''}`;
 }
 
