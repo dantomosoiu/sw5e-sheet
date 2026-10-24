@@ -134,7 +134,8 @@ What the Node runs never do: timers don't run (`setTimeout` is a no-op in `dev/h
 save scheduled for later never happens) and the page's `main()` is skipped. Code that only runs there is checked in
 the dev page, not by these tools. Nothing runs the checks for you either: GitHub's workflow only builds and publishes.
 
-The cases (`dev/regress/cases/`, 106 of them) are of two kinds. 12 were recorded from test characters on sw5e.com,
+The cases (`dev/regress/cases/`, 107 of them) are of two kinds, and the demo character (`demo-character`: empty
+storage, the sheet adds it; SW5E never computed it). 12 were recorded from test characters on sw5e.com,
 with SW5E's own calculation of them (`armstech-test-local`, `kadro-vos-panel`…). The others were made from those by
 `dev/bump-check.js --save` to keep a fix fixed (mostly `dice-…`, `choices-…`, `items-…`, `readers-…`, `tweak-…`);
 they carry `from: { case, changes }`. A case copied and changed by hand needs `from` as well, or `dev/engine-check.js`

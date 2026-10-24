@@ -38,6 +38,7 @@ has the tools' main commands; [CONTRIBUTING.md](../CONTRIBUTING.md) the way of w
 | `dice3d.js` | `Dice3D` | the dice drawn in 3D on a canvas (only how a roll looks; the numbers are rolled before) |
 | `roller.js` | `roll…`, `rl` | **the dice roller**: what each rollable number rolls (`buildRoll`), the dice dock, the roll log |
 | `builder.js` | `bd…` | the pickers and flows that build a character: proficiencies, level up, new character |
+| `demo.js` | `DEMO_…`, `isDemoKey` | **the demo character**: its SW5E data, added to the loaded characters each time (never stored as a snapshot); kept out of syncs, account backups and "Back up all" |
 | `art/names.js`, `art.js`, `icons.js` | `ART_…`, `art…`, `uiIcon` | item pictures, the sheet's line icons |
 | `viewer.js` | | **the sheet**: storage, the character model, edits, effects, tracking, every section's rendering, events (about 9,300 lines) |
 | `shortcuts.js` | | keyboard shortcuts |
@@ -65,6 +66,12 @@ roller.js); these are maps by character key:
 - `itemState`: local only: item charges, active effects (consumables used, effects received) and the states
   started (`inUse`: Rage, a form…);
 - `derived` (computed sheets), `history` (versions), `portraits`, `rolls` (the roll log).
+
+The demo character (`demo.js`, key `demo:sheet`) is the exception: its snapshot is made from the code by `addDemo`
+(in `loadStore`, and again in `ensureSw5eData` for its computed sheet) and `saveStore` leaves it out, so every version
+of the sheet brings its own. What's done with it is kept under its key like any character's; `resetDemo` drops that.
+Anything that sends characters elsewhere (Sync to SW5E, account.js, `backupData()` of all) skips it: `ownKeys`,
+`isDemoKey`.
 
 And single values: `rules` and `catalog` (a newer SW5E data version, when fetched, with `rulesInfo`/`catalogInfo`),
 `lastCharacter`, `lastBackupExport`, `backupInfo`, `rollSettings`, and `lastWriter` (who wrote last, so other tabs

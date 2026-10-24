@@ -6,6 +6,8 @@ levelling up characters, and SW5E's rule books to read and search. It keeps its 
 play state and changes) and computes the numbers with its own rules engine, which follows SW5E's and is checked
 against it. SW5E's rules data and books come with it, so it works offline.
 
+It comes with a demo character to try it with ([user guide](app/README.md#the-demo-character)).
+
 It is a web app (`app/`) that installs on a phone or computer and works offline, and runs as a Chrome extension (`extension/`, a thin wrapper around the app) that also
 connects it to sw5e.com: **Load from SW5E** brings in your sw5e.com characters, **Sync to SW5E** sends them back, and
 each load compares the sheet's numbers with sw5e.com's own calculation.

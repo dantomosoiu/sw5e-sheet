@@ -23,6 +23,7 @@ account features don't show at all.
   backup of one (Earlier backups). A character removed from a browser isn't brought back by itself.
 - **Deleting** from the server leaves the browser's copy alone; deleting the account deletes all of its backups.
 - Signing out leaves the characters in the browser.
+- The demo character (app/demo.js) is never backed up: it comes with the sheet in every browser.
 
 ## Security, in short
 - Passwords: scrypt hashes. Sessions: a random token in an HttpOnly, SameSite=Lax cookie (Secure over HTTPS),

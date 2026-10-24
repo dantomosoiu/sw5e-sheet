@@ -71,12 +71,14 @@ function acctFingerprint(key) {
   return acctHash(JSON.stringify([snap.raw, snap.loadedAt, state.trackers[key] || null, state.edits[key] || null, state.itemState[key] || null,
     hist.length, hist.length ? hist[hist.length - 1].at : 0, pic ? pic.at : 0, rolls.length, rolls.length ? rolls[rolls.length - 1].id : 0]));
 }
+/** The characters an account backs up: all in this browser but the demo (demo.js), which never leaves it. */
+const acctKeys = () => ownKeys(state.snapshots);
 const acctSummary = (snap) => arr(snap && snap.raw && snap.raw.classes).map((c) => `${c.name} ${c.levels}`).join(' / ');
 
 // ------------------------------------------------------------------ backing up
 function scheduleBackup(keys, delay = 4000) {
   if (!account.user || !syncState().auto) return;
-  for (const k of keys) account.waiting.add(k);
+  for (const k of keys) if (!isDemoKey(k)) account.waiting.add(k);
   clearTimeout(account.timer);
   account.timer = setTimeout(() => backupNow(), delay);
 }
@@ -86,13 +88,13 @@ async function backupNow({ all = false } = {}) {
   if (!account.user || account.busy) return;
   const s = syncState();
   if (!s.auto && !all) return;
-  const keys = all ? Object.keys(state.snapshots) : [...account.waiting];
+  const keys = all ? acctKeys() : [...account.waiting];
   account.waiting.clear();
   account.busy = true;
   let sent = 0;
   try {
     for (const key of keys) {
-      if (!state.snapshots[key]) continue;
+      if (!state.snapshots[key] || isDemoKey(key)) continue;
       const fp = acctFingerprint(key);
       const mine = s.sent[key];
       if (mine && mine.fp === fp) continue;
@@ -157,7 +159,7 @@ async function pullChanges() {
   if (!account.user || !(await refreshList())) return;
   const s = syncState();
   if (!s.auto) { renderAccount(); return; }
-  const newer = account.list.filter((c) => state.snapshots[c.key] && (!s.sent[c.key] || s.sent[c.key].rev !== c.rev));
+  const newer = account.list.filter((c) => state.snapshots[c.key] && !isDemoKey(c.key) && (!s.sent[c.key] || s.sent[c.key].rev !== c.rev));
   for (const c of newer) {
     const one = await acctApi('GET', `/api/characters/${encodeURIComponent(c.key)}`);
     if (!one.ok) continue;
@@ -219,7 +221,7 @@ function accountHtml() {
       <p class="faint">Forgot your password? Ask whoever runs this server to reset it.</p>`;
   }
   const s = syncState();
-  const here = Object.keys(state.snapshots);
+  const here = acctKeys();
   const list = account.list || [];
   const onServer = new Map(list.map((c) => [c.key, c]));
   const backedUp = here.filter((k) => s.sent[k] && onServer.has(k) && s.sent[k].rev === onServer.get(k).rev && s.sent[k].fp === acctFingerprint(k));
@@ -422,7 +424,7 @@ async function afterSignIn() {
   account.list = null;
   const s = syncState();
   // A browser with no characters yet has nothing to ask about: its characters are backed up as they come.
-  if (s.auto === null && !Object.keys(state.snapshots).length) { s.auto = true; saveSyncState(s); }
+  if (s.auto === null && !acctKeys().length) { s.auto = true; saveSyncState(s); }
   renderAccount();
   try {
     await pullChanges();
@@ -447,7 +449,7 @@ async function initAccount() {
   renderAccount();
   platform.storage.onChanged((changes) => {
     if (!account.user || !ACCOUNT_KEYS.some((k) => k in changes)) return;
-    scheduleBackup(Object.keys(state.snapshots));
+    scheduleBackup(acctKeys());
   });
   window.addEventListener('online', () => { if (account.user) backupNow(); });
   document.addEventListener('submit', (e) => {

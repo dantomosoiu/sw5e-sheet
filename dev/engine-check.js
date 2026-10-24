@@ -92,7 +92,8 @@ async function casePairs(data) {
     const full = (complete, validation) => (project === everything ? project(complete) : withValidation(project(complete), validation));
     // A case made by dev/bump-check.js (c.from) is a recorded character changed afterwards: SW5E's stored calculation is
     // the original's, not this one's.
-    if (snap.complete && !c.from) pairs.push({ label: `${c.name}: stored`, raw: snap.raw, sw5e: full(snap.complete, snap.validation) });
+    // The demo (app/demo.js) has only the engine's own calculation.
+    if (snap.complete && !c.from && snap.source !== 'demo') pairs.push({ label: `${c.name}: stored`, raw: snap.raw, sw5e: full(snap.complete, snap.validation) });
     const d = state.derived[c.key];
     if (d && sheet.get('needsDerived')(c.key)) {
       const { fx } = sheet.get('derivedInputs')(c.key);

@@ -22,7 +22,7 @@ records nothing on sw5e.com. Test saves on a throwaway character. The extension'
 
 ## Check a change
 Every change:
-1. `node dev/regress.js` (a few minutes): draws every recorded character (106 cases) with the sheet's code in Node
+1. `node dev/regress.js` (a few minutes): draws every recorded character (107 cases) with the sheet's code in Node
    and compares it with the accepted output. Read every changed line. If each one is what you meant,
    `node dev/regress.js --update` and commit `dev/regress/expected/` with the change.
 2. `node dev/engine-check.js`: the rules engine against SW5E's own results. It must stay at 0 wrong.

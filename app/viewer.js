@@ -153,7 +153,7 @@ function showMessages() {
 
 /** "First session": the few things a new player does at the table, in the order they come up (W-157). */
 const GUIDE_STEPS = [
-  ['Get your character', 'Load from SW5E brings in your sw5e.com characters; New character… (More ▾) builds one here.'],
+  ['Get your character', 'Load from SW5E brings in your sw5e.com characters; New character… (More ▾) builds one here. Or try the steps below on the demo character (More ▾ → Demo character).'],
   ['Roll', 'Click any number: a skill, a save, Initiative. The dice open at the bottom: press Roll (or Enter). Shift-click rolls at once. The round dice button (bottom right) opens them for plain dice.'],
   ['Attack', 'Weapons & Attacks: click the to-hit number, roll, then Hit: roll damage (or Critical damage).'],
   ['Take damage or heal', 'Combat & Vitals: type the amount, then Damage, Heal or Temp HP. At 0 HP the death saves appear there.'],
@@ -197,6 +197,7 @@ async function loadStore() {
   state.catalogInfo = data[CATALOG_INFO_KEY] || null;
   state.rulesInfo = data[RULES_INFO_KEY] || null;
   state.snapshots = data[STORE_KEY] || {};
+  addDemo(state); // the demo character (demo.js): always there, never stored as a snapshot
   state.trackers = data[TRACKER_KEY] || {};
   state.edits = data[EDITS_KEY] || {};
   state.history = data[HISTORY_KEY] || {};
@@ -208,9 +209,10 @@ async function loadStore() {
 }
 async function saveStore() {
   await platform.storage.set({
-    [STORE_KEY]: state.snapshots, [LAST_KEY]: state.current, [HISTORY_KEY]: state.history, [WRITER_KEY]: writerStamp(),
+    [STORE_KEY]: withoutDemo(state.snapshots), [LAST_KEY]: state.current, [HISTORY_KEY]: state.history, [WRITER_KEY]: writerStamp(),
   });
 }
+const withoutDemo = (o) => Object.fromEntries(Object.entries(o).filter(([k]) => !isDemoKey(k)));
 async function saveTrackers() {
   await platform.storage.set({ [TRACKER_KEY]: state.trackers, [WRITER_KEY]: writerStamp() });
 }
@@ -291,12 +293,13 @@ async function exportBackup(onlyKey) {
 
 /** The backup file's contents: every character, or only `onlyKey` (also what an account's server keeps, account.js). */
 function backupData(onlyKey, at = Date.now()) {
-  const pick = (o) => (onlyKey ? (o && o[onlyKey] != null ? { [onlyKey]: o[onlyKey] } : {}) : o);
+  // "Back up all" leaves the demo out (demo.js); "Back up this character" on the demo keeps it.
+  const pick = (o) => (onlyKey ? (o && o[onlyKey] != null ? { [onlyKey]: o[onlyKey] } : {}) : withoutDemo(o || {}));
   return {
     format: 'sw5e-sheet-backup', version: 1, exportedAt: at,
     snapshots: pick(state.snapshots), trackers: pick(state.trackers), edits: pick(state.edits), itemState: pick(state.itemState),
     history: pick(state.history), portraits: pick(state.portraits || {}),
-    rolls: rollState.log.filter((x) => (onlyKey ? x.key === onlyKey : true)),
+    rolls: rollState.log.filter((x) => (onlyKey ? x.key === onlyKey : !isDemoKey(x.key))),
   };
 }
 
@@ -339,7 +342,7 @@ function mergeBackup(b) {
   const keys = [];
   for (const [key, snap] of Object.entries(b.snapshots || {})) {
     const mine = state.snapshots[key];
-    if (!mine || num(snap.loadedAt) > num(mine.loadedAt)) state.snapshots[key] = { ...snap, key };
+    if (!isDemoKey(key) && (!mine || num(snap.loadedAt) > num(mine.loadedAt))) state.snapshots[key] = { ...snap, key };
     keys.push(key);
   }
   for (const [key, t] of Object.entries(b.trackers || {})) {
@@ -574,12 +577,12 @@ const fileSafe = (s) => String(s || 'character').replace(/[^\w\- ()']+/g, '').tr
 // ------------------------------------------------------------- render: shell
 function renderPicker() {
   const sel = $('#charSelect');
-  const entries = Object.values(state.snapshots).sort((a, b) => String(a.raw.name).localeCompare(String(b.raw.name)));
+  const entries = Object.values(state.snapshots).sort((a, b) => isDemoKey(a.key) - isDemoKey(b.key) || String(a.raw.name).localeCompare(String(b.raw.name)));
   sel.innerHTML = entries.length
     ? entries.map((s) => {
       const c = s.complete;
       const sub = c ? `${c.species || ''} ${c.classText || ''}`.trim() : 'raw';
-      const src = s.source === 'file' ? ' · file' : '';
+      const src = isDemoKey(s.key) ? ' · demo' : s.source === 'file' ? ' · file' : '';
       return `<option value="${esc(s.key)}"${s.key === state.current ? ' selected' : ''}>${esc(s.raw.name || 'Unnamed')} — ${esc(sub)}${src}</option>`;
     }).join('')
     : '<option value="">No characters yet</option>';
@@ -642,6 +645,8 @@ function renderAllInner(opts) {
            <button class="btn primary no-sw5e" data-act="from-sw5e">Get my characters from sw5e.com</button>
            <button class="btn" data-act="cr-new">Create a new character</button>
            <button class="btn" data-act="import">Import a character file…</button></p>
+        <p><button class="btn" data-act="demo">Try the demo character</button>
+           <span class="faint">Ready-made, to try everything with; it stays in this browser.</span></p>
         <p class="welcome-look"><button class="btn theme-btn" data-act="theme" title="Switch light / dark"><span class="when-dark">${uiIcon('sun')}Light</span><span class="when-light">${uiIcon('moon')}Dark</span></button>
            <button class="btn" data-act="themes" title="Theme: light or dark, a style and screen effects">${uiIcon('palette')}Style</button></p>
         <p class="faint"><span class="needs-sw5e">Loading uses your existing sw5e.com session (an open sw5e.com tab is used if there is one; otherwise one is opened briefly in the background).</span>
@@ -837,6 +842,12 @@ function renderPending(m) {
   const what = (state.trackers[key] ? ['play state'] : []).concat(edited);
   const fail = m.stale && state.recomputing !== key && recomputeFail[key];
   const retry = fail ? ` <button class="btn sm" data-act="recompute-retry" title="${esc(fail.message)}">Try again</button>` : '';
+  if (isDemoKey(key)) {
+    const changed = what.length || arr(state.itemState[key] && state.itemState[key].effects).length;
+    return `<div class="banner pending info"><span><b>The demo character.</b> Change anything: it stays in this browser, and isn't synced to
+      sw5e.com or backed up to an account.${what.length ? ` Changed: ${esc(what.join(', '))}.` : ''}</span>
+      ${changed ? '<span class="pending-btns"><button class="btn sm" data-act="reset-demo" title="Back to the demo as it comes with the sheet (asks first, in More ▾)">Reset…</button></span>' : ''}</div>`;
+  }
   // A character made here (or imported) that isn't on the account: it can be saved there as a new character.
   if (!what.length && !m.raw.id) {
     return `<div class="banner pending info"><span>Kept in this browser (and in backups); not on your sw5e.com account.</span>
@@ -3441,6 +3452,7 @@ async function ensureSw5eData({ refresh = false } = {}) {
   const p = ensureSw5eData.pending = (async () => {
     if (!state.rules || !state.catalog) await useKeptSw5eData();
     if (refresh || behind()) await fetchNewSw5eData();
+    addDemo(state); // computed now that the engine has its data
   })();
   ensureRules.pending = ensureCatalog.pending = p;
   try {
@@ -4623,7 +4635,7 @@ async function discardEdits() {
  */
 async function createOnAccount() {
   const snap = state.snapshots[state.current];
-  if (!snap || snap.raw.id || state.saving) return;
+  if (!snap || snap.raw.id || isDemoKey(snap.key) || state.saving) return;
   const key = snap.key;
   const raw = clone(withEdits(snap.raw, editedFields(key)));
   const local = state.trackers[key];
@@ -4698,6 +4710,7 @@ function siteDifferences(m) {
 }
 async function saveChangesToSw5e() {
   const snap = state.snapshots[state.current];
+  if (snap && isDemoKey(snap.key)) return setStatus("The demo character isn't synced to sw5e.com: create a character of your own for that.");
   if (snap && !snap.raw.id) return createOnAccount();
   if (!snap || !snap.raw.id || state.saving) return;
   const key = snap.key;
@@ -8638,9 +8651,42 @@ function syncMenu() {
   const r = $('#removeItem');
   if (r) {
     const confirm = !!state.current && state.confirmRemoveChar === state.current;
+    const demo = isDemoKey(state.current);
     r.classList.toggle('confirm', confirm);
-    r.textContent = confirm ? 'Really remove? Changes not synced to SW5E are lost' : 'Remove from this viewer';
+    r.textContent = demo ? (confirm ? 'Really reset? Your changes to the demo are lost' : 'Reset the demo character')
+      : confirm ? 'Really remove? Changes not synced to SW5E are lost' : 'Remove from this viewer';
   }
+}
+
+/** Show another character (the picker, the demo's buttons). */
+async function openCharacter(key) {
+  if (!state.snapshots[key]) return;
+  state.create = null;
+  state.current = key;
+  scheduleRecompute(state.current);
+  state.editing = null;
+  state.confirmDiscard = null;
+  state.confirmRemove = null;
+  state.useMenu = null;
+  await saveStore();
+  renderAll();
+  window.scrollTo({ top: 0 });
+}
+
+/** The demo as it comes with the sheet: what was done with it here (edits, play state, effects, history, rolls) goes. */
+async function resetDemo() {
+  for (const k of ['trackers', 'edits', 'itemState', 'portraits', 'history', 'derived']) delete state[k][DEMO_KEY];
+  addDemo(state);
+  rollState.log = rollState.log.filter((x) => !isDemoKey(x.key));
+  saveRollLog();
+  state.undo = null;
+  state.editUndo = null;
+  await saveTrackers(); await saveEdits(); await saveItemState(); await savePortraits(); await saveDerived();
+  recordHistory(DEMO_KEY, state.snapshots[DEMO_KEY].raw, 'The demo character');
+  await saveStore();
+  renderAll();
+  scheduleRecompute(DEMO_KEY);
+  setStatus('The demo character is back as it comes with the sheet.');
 }
 
 async function handleAction(act, arg) {
@@ -8869,6 +8915,7 @@ async function handleAction(act, arg) {
       syncMenu();
       $('#moreMenu').hidden = true;
       $('#btnMore').setAttribute('aria-expanded', 'false');
+      if (isDemoKey(snap.key)) return resetDemo();
       delete state.snapshots[state.current];
       if (state.trackers[state.current]) {
         delete state.trackers[state.current];
@@ -8886,11 +8933,19 @@ async function handleAction(act, arg) {
         delete state.portraits[state.current];
         await savePortraits();
       }
-      state.current = Object.keys(state.snapshots)[0] || null;
+      state.current = ownKeys(state.snapshots)[0] || null;
       await saveStore();
       renderAll();
       setStatus('Removed from viewer (nothing was changed on sw5e.com).');
       return;
+    case 'demo':
+      return openCharacter(DEMO_KEY);
+    case 'reset-demo':
+      // The banner's Reset: asks in the menu, like Remove.
+      state.confirmRemoveChar = DEMO_KEY;
+      $('#moreMenu').hidden = false;
+      $('#btnMore').setAttribute('aria-expanded', 'true');
+      return syncMenu();
     case 'expand-all':
       document.querySelectorAll('#sheet .card').forEach((c) => { c.classList.remove('collapsed'); c.classList.add('expanded'); });
       document.querySelectorAll('#sheet details').forEach((d) => { if (!d.querySelector('pre.json')) d.open = true; });
@@ -8914,17 +8969,7 @@ function wireUi() {
     e.target.value = '';
     if (files.length) await importFiles(files);
   });
-  $('#charSelect').addEventListener('change', async (e) => {
-    state.current = e.target.value;
-    scheduleRecompute(state.current);
-    state.editing = null;
-    state.confirmDiscard = null;
-    state.confirmRemove = null;
-    state.useMenu = null;
-    await saveStore();
-    renderAll();
-    window.scrollTo({ top: 0 });
-  });
+  $('#charSelect').addEventListener('change', (e) => openCharacter(e.target.value));
   const more = $('#btnMore'), pop = $('#moreMenu');
   more.addEventListener('click', (e) => {
     e.stopPropagation();
@@ -9262,8 +9307,8 @@ function wireUi() {
       }
     }
     if (changes[STORE_KEY] || changes[EDITS_KEY] || changes[ITEMSTATE_KEY] || changes[DERIVED_KEY]) {
-      if (changes[STORE_KEY]) state.snapshots = changes[STORE_KEY].newValue || {};
-      if (!state.snapshots[state.current]) state.current = Object.keys(state.snapshots)[0] || null;
+      if (changes[STORE_KEY]) { state.snapshots = changes[STORE_KEY].newValue || {}; addDemo(state); }
+      if (!state.snapshots[state.current]) state.current = ownKeys(state.snapshots)[0] || null;
       renderAll({ keepTyping: true });
     } else if (changes[TRACKER_KEY]) {
       refreshTracked();
@@ -9288,11 +9333,11 @@ async function main() {
     const hit = Object.values(state.snapshots).find((s) => s.raw.id === wantId || s.raw.localId === wantId);
     state.current = hit ? hit.key : (last && state.snapshots[last] ? last : null);
   } else {
-    state.current = last && state.snapshots[last] ? last : Object.keys(state.snapshots)[0] || null;
+    state.current = last && state.snapshots[last] ? last : ownKeys(state.snapshots)[0] || null;
   }
   // Characters cached before version history existed start their history with that copy.
   const unrecorded = Object.values(state.snapshots).filter((s) => !arr(state.history[s.key]).length);
-  for (const s of unrecorded) recordHistory(s.key, s.raw, 'Copy already in this viewer');
+  for (const s of unrecorded) recordHistory(s.key, s.raw, isDemoKey(s.key) ? 'The demo character' : 'Copy already in this viewer');
   if (unrecorded.length) await saveStore();
   // SW5E's rules and item data come with the sheet: with them the numbers are the sheet's own engine's.
   try { await ensureSw5eData(); } catch (e) { console.error(e); setStatus("Could not load SW5E's rules data: " + e.message, 'error'); }
@@ -9314,6 +9359,8 @@ async function main() {
   if ((tabId || wantId) && canReachSw5e()) {
     // Opened from a sw5e.com tab: refresh from it so the sheet is current.
     await loadFromSw5e({ preferredTabId: tabId, selectId: wantId });
+  } else if (isDemoKey(state.current)) {
+    setStatus('The demo character: try anything. More ▾ → Reset the demo character puts it back as it was.');
   } else if (state.current) {
     const s = state.snapshots[state.current];
     setStatus(`Showing the copy kept in this browser (${new Date(s.loadedAt).toLocaleString()})${canReachSw5e() ? ' — “Load from SW5E” to refresh' : ''}.`);

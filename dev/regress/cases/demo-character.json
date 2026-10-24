@@ -1,0 +1,8 @@
+{
+ "format": "sw5e-sheet-regress-case",
+ "name": "demo-character",
+ "note": "The demo character (app/demo.js), as new: nothing is stored, the sheet adds it.",
+ "key": "demo:sheet",
+ "recordedAt": 1792800000000,
+ "storage": {}
+}

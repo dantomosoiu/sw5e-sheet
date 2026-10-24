@@ -258,7 +258,8 @@ function report(sheet, key) {
   const engine = !!get('engineCtx')();
   const needed = engine || get('needsDerived')(key);
   L.push('', "## Sent to the rules engine");
-  L.push(engine ? `The sheet's engine computes the numbers. ${recordedFor || !get('needsDerived')(key) ? "SW5E's recorded calculation is for this same character." : "OUT OF DATE: SW5E's recorded calculation is for an older version of this character; record the case again (dev/regress-record.js) for dev/engine-check.js."}`
+  L.push(engine ? `The sheet's engine computes the numbers. ${get('isDemoKey')(key) ? 'SW5E never computed this character (the demo, app/demo.js).'
+    : recordedFor || !get('needsDerived')(key) ? "SW5E's recorded calculation is for this same character." : "OUT OF DATE: SW5E's recorded calculation is for an older version of this character; record the case again (dev/regress-record.js) for dev/engine-check.js."}`
     : !needed ? 'Nothing to calculate (no changes or effects): SW5E\'s own numbers'
       : recordedFor ? 'The recorded calculation matches.'
         : 'OUT OF DATE: the sheet now sends something else than what was recorded, so the numbers below are the old ones. Check the tweaks here, then record the case again (dev/regress-record.js).');
