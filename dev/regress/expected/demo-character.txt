@@ -157,7 +157,7 @@ exhaustion = 0
 forceCasting.powersKnown = [Guidance, Saber Reflect, Saber Ward, Force Leap, Saber Throw, Battle Insight, Heal, Heroism, Force Jump, Sanctuary, Burst of Speed, Force Barrier]
 
 ## Effects and tweaks
-effect: GM award: the inspiring speeder bike chase through the Ord Mantell scrapyards · tweak
+effect: +2 Piloting, a GM award: Vessa flew a borrowed speeder bike through the Ord Mantell scrapyards to run the smugglers down, and the table cheered (session 2) · tweak
 effect: Guardian weapon proficiencies · feature
 effect: Bonus Proficiencies · feature
 effect: Aura of Presence · feature
@@ -168,7 +168,7 @@ effect: Wild Hunters · feature
 effect: Defense Style · feature
 effect: Jensaarai Armor · item
 effect: Aratech Echo Belt · item
-tweak: abilityScores.Intelligence.skills.Piloting +2 · GM award: the inspiring speeder bike chase through the Ord Mantell scrapyards
+tweak: abilityScores.Intelligence.skills.Piloting +2 · +2 Piloting, a GM award: Vessa flew a borrowed speeder bike through the Ord Mantell scrapyards to run the smugglers down, and the table cheered (session 2)
 tweak: abilityScores.Strength.savingThrowModifier +2 · Aura of Presence
 tweak: abilityScores.Dexterity.savingThrowModifier +2 · Aura of Presence
 tweak: abilityScores.Constitution.savingThrowModifier +2 · Aura of Presence
@@ -456,7 +456,7 @@ Intelligence
 (Not proficient) Lore−1
 (Not proficient) Nature−1
 (Not proficient) Piloting+1
-  ↳ hover abilityScores.Intelligence.skills.3.modifier: Without tweaks or effects: -1 → now 1 / +2 Piloting · GM award: the inspiring speeder bike chase through the Ord Mantell scrapyards tweak
+  ↳ hover abilityScores.Intelligence.skills.3.modifier: Without tweaks or effects: -1 → now 1 / +2 Piloting · +2 Piloting, a GM award: Vessa flew a borrowed speeder… [267 chars #7a4d0410]
 (Not proficient) Technology−1
 base 8
 WIS
@@ -505,8 +505,8 @@ Skill | Ability | Bonus | Passive | Proficiency |
 (Not proficient) Performance | CHA | +0 | 10 | — |
 (Proficient) Persuasion | CHA | +3 | 13 | Proficient |
 (Not proficient) Piloting | INT | +1 | 11 | — |
-  ↳ hover abilityScores.Intelligence.skills.3.modifier: Without tweaks or effects: -1 → now 1 / +2 Piloting · GM award: the inspiring speeder bike chase through the Ord Mantell scrapyards tweak
-  ↳ hover abilityScores.Intelligence.skills.3.modifier: Without tweaks or effects: -1 → now 1 / +2 Piloting · GM award: the inspiring speeder bike chase through the Ord Mantell scrapyards tweak
+  ↳ hover abilityScores.Intelligence.skills.3.modifier: Without tweaks or effects: -1 → now 1 / +2 Piloting · +2 Piloting, a GM award: Vessa flew a borrowed speeder… [267 chars #7a4d0410]
+  ↳ hover abilityScores.Intelligence.skills.3.modifier: Without tweaks or effects: -1 → now 1 / +2 Piloting · +2 Piloting, a GM award: Vessa flew a borrowed speeder… [267 chars #7a4d0410]
 (Not proficient) Sleight of Hand | DEX | +1 | 11 | — |
 (Not proficient) Stealth | DEX | +1 | 11 | — |
 (Proficient) Survival | WIS | +5 | 15 | Proficient |
@@ -1080,7 +1080,7 @@ From sw5e.com's editor or added here. Give each a reason (kept in this viewer an
 Stat | Adjustment | Reason | |
 Piloting | Proficiency [— ▾] [add ▾] [2]
 Add: adds 2 (a negative number subtracts) on top of everything else
-| [GM award: the inspiring speeder bike chase through the Ord Mantell scrapyards] | [×] |
+| [+2 Piloting, a GM award: Vessa flew a borrowed speeder bike through the Ord Mantell scrapyards to run the smugglers down, and the table cheered (session 2)] | [×] |
 [Add a tweak to… ▾] [add (+/−) ▾] [] [] [Add]
 Add: adds N (a negative number subtracts) on top of everything else
 Builder settings

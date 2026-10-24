@@ -139,9 +139,14 @@ const DEMO_RAW = {
 const DEMO_ITEMSTATE = {
   charges: {},
   effects: [],
-  reasons: { 'abilityScores.Intelligence.skills.Piloting': 'GM award: the inspiring speeder bike chase through the Ord Mantell scrapyards' },
+  reasons: {
+    'abilityScores.Intelligence.skills.Piloting': '+2 Piloting, a GM award: Vessa flew a borrowed speeder bike through the Ord Mantell '
+      + 'scrapyards to run the smugglers down, and the table cheered (session 2)',
+  },
   updatedAt: DEMO_AT,
 };
+// Reasons earlier versions of the demo gave: replaced by this version's (a reason written in the sheet is kept).
+const DEMO_OLD_REASONS = ['GM award: the inspiring speeder bike chase through the Ord Mantell scrapyards'];
 
 /** The demo's snapshot, as new: its computed sheet is the engine's, once SW5E's data is loaded (ensureSw5eData). */
 function demoSnapshot() {
@@ -157,10 +162,23 @@ function demoSnapshot() {
   return snap;
 }
 
-/** Add the demo to what's loaded (its snapshot isn't stored: see the top), and its starting local state where it has none. */
+/**
+ * Add the demo to what's loaded (its snapshot isn't stored: see the top), and its starting local state where it has
+ * none. Where it has some (the demo was used before), this version's tweak reasons replace missing ones and the ones an
+ * earlier version gave; a reason written in the sheet is kept.
+ */
 function addDemo(st) {
   st.snapshots[DEMO_KEY] = demoSnapshot();
-  if (st.itemState && !st.itemState[DEMO_KEY]) st.itemState[DEMO_KEY] = JSON.parse(JSON.stringify(DEMO_ITEMSTATE));
+  if (!st.itemState) return;
+  const mine = st.itemState[DEMO_KEY];
+  if (!mine) { st.itemState[DEMO_KEY] = JSON.parse(JSON.stringify(DEMO_ITEMSTATE)); return; }
+  const reasons = { ...(mine.reasons || {}) };
+  let changed = false;
+  for (const [k, v] of Object.entries(DEMO_ITEMSTATE.reasons)) {
+    if (reasons[k] && !DEMO_OLD_REASONS.includes(reasons[k])) continue;
+    if (reasons[k] !== v) { reasons[k] = v; changed = true; }
+  }
+  if (changed) st.itemState[DEMO_KEY] = { ...mine, reasons };
 }
 
 /** The characters that are the user's own: every one but the demo. */
